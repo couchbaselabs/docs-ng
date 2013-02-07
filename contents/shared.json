@@ -1,13 +1,13 @@
 {
-	"site-title": "Couchbase",
-	"footer-text": "Built with <a href=\"http://laktek.github.com/punch\">Punch</a>",
-	"navbar": [
-	    { "label": "Server Guide", "href": "/" },
-        { "label": "Developer Guide", "href": "/about" },
-        { "label": "SDK Guides", "href": "/about", "subnav" : [
-            {"label": "sub", "href" : "/" }
-            ]
+        "site-title": "Couchbase",
+        "navbar": [
+        { "label": "Server Guide", "href": "/manual.html" },
+        { "label": "Developer Guide", "href": "/dev_guide.html" },
+        { "label": "SDK Guides", "href": "#", "subnav" : [
+                {"label": "Java", "href" : "/java.html" },
+                {"label": "Ruby", "href" : "/ruby.html" }
+                ]
         },
-        { "label": "Archives", "href": "/about" }
-	]
+        { "label": "Archives", "href": "/about.html" }
+        ]
 }
