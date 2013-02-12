@@ -5,11 +5,14 @@
 	"server": {
 		"port": 9009
 	},
+	"generator": {
+		"skip_paths": [
+			"/css/bootstrap/*"
+			]
+	},
 	"bundles": {
 		"/css/all.css": [
-			"/css/bootstrap.css",
-			"/css/main.less",
-			"/css/bootstrap-responsive.css"
+			"/css/main.less"
 		]
 	},
 	"plugins": {

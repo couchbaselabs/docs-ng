@@ -1,17 +1,9 @@
-.border-radius(@radius) {
-  -webkit-border-radius: @radius;
-     -moz-border-radius: @radius;
-          border-radius: @radius;
-}
+@import "bootstrap/bootstrap.less";
+@import "bootstrap/responsive.less";
 
-.transition(@prop, @duration:0.2s, @ease:ease-out) {
-  -webkit-transition: @prop @duration @ease;
-  -moz-transition: @prop @duration @ease;
-  -o-transition: @prop @duration @ease;
-  transition: @prop @duration @ease;
+h1, h2, h3 {
+  color: @cbred;
 }
-
-h1, h2, h3 { color: #A30A0A; }
 
 .sub-menu {
   height: 0px;
@@ -20,7 +12,7 @@ h1, h2, h3 { color: #A30A0A; }
 }
 
 #sidenav {
-  .border-radius(4px);
+  .border-radius(2px);
   border: 1px solid #e5e5e5;
   li > ul > li.active {
     text-decoration: underline;
@@ -37,12 +29,44 @@ h1, h2, h3 { color: #A30A0A; }
 }
 
 #sidenav.affix {
-    top: 10px;
+    top: 80px;
 }
 #sidenav.affix-top {
     position: absolute;
-    top: 100px;
+    top: 80px;
 }
 
 .mdcontent {
+  margin-top: 80px;
+}
+
+.masthead {
+  position: fixed;
+  right: 0;
+  left: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  background: white;
+  z-index: 1;
+  padding-top: 10px;
+  h3 {
+    margin-top: 0px;
+  }
+}
+
+.jumptarget:before {
+  content:"";
+  display:block;
+  height:70px; /* fixed header height*/
+  margin:-70px 0 0; /* negative fixed header height */
+}
+
+@media (max-width: 767px) {
+  .masthead {
+    position: relative;
+  }
+
+  .mdcontent {
+    margin-top: 10px;
+  }
 }

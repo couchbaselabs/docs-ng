@@ -29,6 +29,7 @@ function setupSideNav() {
     var id = dasherize(text);
     html += '<li><a href="#' + id + '">' + escapeHtml(text) + '</a>';
     $(el).attr('id', id);
+    $(el).addClass('jumptarget');
     if(taglevel > level) {
       html += '<ul class="sub-menu">';
     } else if (taglevel < level) {
@@ -43,7 +44,7 @@ function setupSideNav() {
     var $spy = $(this).scrollspy('refresh');
   });
   $("#sidenav").affix({
-    offset: { top: 60 }
+    offset: { top: 20 }
   });
   $("#sidenav li").on('activate', function() {
     $(this).addClass('active');

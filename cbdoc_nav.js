@@ -5,7 +5,10 @@ exports.get = function(basepath, file_extension, options, callback) {
         active_class: function(ctx) {
             //If the href of this nav item or any of its subnav children is the
             //current page, give it the active class.
-            function match(item) { return item.href.indexOf(basepath) === 0; }
+
+            function match(item) {
+                return item.href.indexOf(basepath) === 0;
+            }
             if(match(ctx) || (ctx.subnav && _.some(ctx.subnav, match)))
             {
                 return "active";
