@@ -3,7 +3,6 @@ exports.get = function(basepath, file_extension, options, callback) {
     // See https://github.com/laktek/punch/wiki/Writing-Custom-Helpers
     var block_helpers = {
         active_class: function(ctx) {
-            console.log("Active? ", JSON.stringify(ctx));
             //If the href of this nav item or any of its subnav children is the
             //current page, give it the active class.
             function match(item) {
@@ -16,7 +15,6 @@ exports.get = function(basepath, file_extension, options, callback) {
             return "";
         },
         version_widget: function(ctx) {
-            console.log("Ctx: ", JSON.stringify(ctx));
             var versionset = null;
             // if basepath is for example, /foo_bar-12.html, page is "foo_bar"
             var page = basepath.match(/\/([^.\-]+)/)[1];
@@ -28,7 +26,6 @@ exports.get = function(basepath, file_extension, options, callback) {
                     versionset = set;
                 }
             });
-            console.log("Version set:", versionset);
             if(versionset) {
                 var html = '<div class="pull-right versions">' +
                            '<ul class="nav nav-pills">'+
