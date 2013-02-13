@@ -2,48 +2,6 @@
 
 # Couchbase Server Manual 2.0
 
-This manual documents the Couchbase Server 2.0 series, including installation,
-monitoring, and administration interface and associated tools.
-
-For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
-1.8 Manual](http://www.couchbase.com/docs/moxi-manual-1.8/index.html).
-
-### External Community Resources
-
- * [Download Couchbase Server 2.0](http://www.couchbase.com/downloads)
-
- * [Couchbase Developer Guide
-   2.0](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html)
-
- * [Client Libraries](http://www.couchbase.com/develop)
-
- * [Couchbase Server
-   Forum](http://www.couchbase.com/forums/couchbase/couchbase-server-20x)
-
-
-
-*Last document update* : 13 Feb 2013 00:29; *Document built* : 13 Feb 2013
-00:29.
-
-### Documentation Availability and Formats
-
-This documentation is available **Unhandled:** `[:unknown-tag :wordasword]`. For
-other documentation from Couchbase, see [Couchbase Documentation
-Library](http://www.couchbase.com/docs)
-
-**Contact:**  [editors@couchbase.com](mailto:editors@couchbase.com) or
-[couchbase.com](http://www.couchbase.com)
-
-Copyright © 2010, 2011 Couchbase, Inc. Contact
-[copyright@couchbase.com](mailto:copyright@couchbase.com).
-
-For documentation license information, see [Documentation
-License](couchbase-manual-ready.html#license-documentation). For all license
-information, see [Licenses](couchbase-manual-ready.html#licenses).
-
-
-![](/media/server_guide/images/couchbase_logo.jpg)
-
 <a id="couchbase-server-2-0-preface"></a>
 
 ## Preface
@@ -80,80 +38,6 @@ The following sections provide information on best practice for different
 aspects of Couchbase Server 2.0.
 
 
-
-<a id="conventions"></a>
-
-## Manual Conventions
-
-This manual uses a number of text and style conventions to indicate and
-differentiate between different types of information:
-
- * *Text in this style* is used to show emphasis of some kind.
-
- * **Text in this style** is used to show a section heading, table heading, or
-   particularly important emphasis of some kind.
-
- * Program or configuration options are formatted using `this style`.
-
- * `Text in this style` demonstrates the name of a command, utility or script.
-
- * Functions will always include the parentheses when appropriate, for example:
-   `function()`.
-
- * Methods will include parentheses when appropriate for the language, for example:
-   `method()`.
-
- * `Text in this style` indicates literal or character sequence text used to show a
-   specific value.
-
- * Filenames, directories or paths are shown like this `/etc/passwd`.
-
- * For values that you can specify or replace, the text will be formatted `using
-   this style`.
-
- * Text or values that you should substitute with a specific version or alternative
-   are indicated using `Text in this style`.
-
-Code listings are used to show sample programs, code, configuration files and
-other elements. These can include both user input and replaceable values:
-
-
-```
-shell> cd /etc
-shell> unzip couchbase-server-2.0.rpm
-```
-
-In the above example command-lines to be entered into a shell are prefixed using
-`shell`. This shell is typically `sh`, `ksh`, or `bash` on Linux and Unix
-platforms, or `Cmd.exe` or PowerShell on Windows.
-
-If commands are to be executed using administrator privileges, each line will be
-prefixed with `root-shell`, for example:
-
-
-```
-root-shell> /etc/init.d/couchbase-server restart
-```
-
-<a id="contributing"></a>
-
-## Contributors
-
-The following people contributing to the contents of this manual, either
-directly, by helping with reviews, editing and information. Thank you to all
-contributors for their time and input.
-
- * MC Brown
-
- * Karen Zeller
-
- * Frank Weigel
-
- * Dipti Borkar
-
- * James Phillips
-
- * Perry Krug
 
 <a id="couchbase-introduction"></a>
 

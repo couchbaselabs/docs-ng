@@ -2,37 +2,6 @@
 
 # Couchbase Developer's Guide 2.0
 
-This manual provides information on how to build applications using Couchbase
-Server 2.0. The guide is designed to be used in conjunction with the
-language-specific guide for your chosen SDK.
-
-### Note
-
-The following document is still in production, and is not considered complete or
-exhaustive.
-
-*Last document update* : 08 Oct 2012 22:13; *Document built* : 08 Oct 2012
-22:45.
-
-### Documentation Availability and Formats
-
-This documentation is available **Unhandled:** `[:unknown-tag :wordasword]`. For
-other documentation from Couchbase, see [Couchbase Documentation
-Library](http://www.couchbase.com/docs)
-
-**Contact:**  [editors@couchbase.com](mailto:editors@couchbase.com) or
-[couchbase.com](http://www.couchbase.com)
-
-Copyright © 2010, 2011 Couchbase, Inc. Contact
-[copyright@couchbase.com](mailto:copyright@couchbase.com).
-
-For documentation license information, see [Documentation
-License](couchbase-devguide-ready.html#license-documentation). For all license
-information, see [Licenses](couchbase-devguide-ready.html#licenses).
-
-
-![](/media/dev_guide/images/couchbase_logo.jpg)
-
 <a id="couchbase-devguide-preface"></a>
 
 ## Preface
@@ -40,94 +9,6 @@ information, see [Licenses](couchbase-devguide-ready.html#licenses).
 This manual provides information on how to build applications using Couchbase
 Server 2.0. The guide is designed to be used in conjunction with the
 language-specific guide for your chosen SDK.
-
-<a id="conventions"></a>
-
-## Manual Conventions
-
-This manual uses a number of text and style conventions to indicate and
-differentiate between different types of information:
-
- * *Text in this style* is used to show emphasis of some kind.
-
- * **Text in this style** is used to show a section heading, table heading, or
-   particularly important emphasis of some kind.
-
- * Program or configuration options are formatted using `this style`.
-
- * `Text in this style` demonstrates the name of a command, utility or script.
-
- * Functions will always include the parentheses when appropriate, for example:
-   `function()`.
-
- * Methods will include parentheses when appropriate for the language, for example:
-   `method()`.
-
- * `Text in this style` indicates literal or character sequence text used to show a
-   specific value.
-
- * Filenames, directories or paths are shown like this `/etc/passwd`.
-
- * For values that you can specify or replace, the text will be formatted `using
-   this style`.
-
- * Text or values that you should substitute with a specific version or alternative
-   are indicated using `Text in this style`.
-
-Code listings are used to show sample programs, code, configuration files and
-other elements. These can include both user input and replaceable values:
-
-
-```
-shell> cd /etc
-shell> unzip couchbase-server-2.0.rpm
-```
-
-In the above example command-lines to be entered into a shell are prefixed using
-`shell`. This shell is typically `sh`, `ksh`, or `bash` on Linux and Unix
-platforms, or `Cmd.exe` or PowerShell on Windows.
-
-If commands are to be executed using administrator privileges, each line will be
-prefixed with `root-shell`, for example:
-
-
-```
-root-shell> /etc/init.d/couchbase-server restart
-```
-
-<a id="contributing"></a>
-
-## Contributors
-
-The following people contributing to the contents of this manual, either
-directly, by helping with reviews, editing and information. Thank you to all
-contributors for their time and input.
-
- * Karen Zeller
-
- * MC Brown
-
- * James Mauss
-
- * Timothy Smith
-
- * JChris Anderson
-
- * Jens Alfke
-
- * Mike Wiederhold
-
- * Aaron Miller
-
- * Frank Weigel
-
- * Dipti Borkar
-
- * Matt Ingenthron
-
- * Steve Yen
-
- * Perry Krug
 
 <a id="couchbase-introduction"></a>
 
@@ -176,7 +57,7 @@ hours, 7 days a week. Couchbase Server provides the following benefits:
    high throughput. It provides consistent sub-millisecond response times which
    help ensure an enjoyable experience for users of your application. By providing
    consistent, high data throughput, Couchbase Server enables you to support more
-   users with less servers. The server also automatically spreads workload across
+   users with fewer servers. The server also automatically spreads workload across
    all servers to maintain consistent performance and reduce bottlenecks at any
    given server in a cluster.
 
@@ -185,7 +66,7 @@ hours, 7 days a week. Couchbase Server provides the following benefits:
    Couchbase Server provides consistent sub-millisecond response times which help
    ensure an enjoyable experience for users of your application. By providing
    consistent, high data throughput, Couchbase Server enables you to support more
-   users with less servers. The server also automatically spreads workload across
+   users with fewer servers. The server also automatically spreads workload across
    all servers to maintain consistent performance and reduce bottlenecks at any
    given server in a cluster.
 
@@ -288,6 +169,9 @@ to change how the document is handled:
    Couchbase Server will delete values during regular maintenance if the ttl for an
    item has expired.
 
+   The expiration value deletes information from the entire database. It has no
+   effect on when the information is removed from the RAM caching layer.
+
  * **Flags** —These are SDK- specific flags which are used to provides a variety of
    options during storage, retrieval, update, and removal of documents. Typically
    flags are optional metadata used by a Couchbase client library to perform
@@ -378,7 +262,6 @@ Built for environments with high-speed data networking.                         
 Data can be flexibly stored as JSON documents or binary data. No need to predefine data types.                                                                                                                          | Data types must be predefined for columns.                                                                                                                       
 Does not require knowledge or use of SQL as query language.                                                                                                                                                             | Requires SQL as query language.                                                                                                                                  
 Highly optimized for retrieve and append operations; high-performance for data-intensive applications, such as serving pages on high-traffic websites; can handle a large number of documents and document read/writes. | Significantly slower times for retrieving and committing data. Designed for occasional, smaller read/write transactions and infrequent larger batch transactions.
-For optimal performance and speed, stores most frequently used data in RAM. Persistent storage also provided to survive system downtime and for re-population of RAM.                                                   | Assumes all data is persistent data to be stored on disk.                                                                                                        
 Data stored as key-document pairs; well suited for applications which handle rapidly growing lists of elements.                                                                                                         | Data stored in tables with fixed relations between tables.                                                                                                       
 Does not require extensive data modeling; data structure is of lesser significance during development.                                                                                                                  | Data modeling and establishing relational model for data structures required during application development.                                                     
 Asynchronous operations and optimistic concurrency enable applications designed for high throughput.                                                                                                                    | Strict enforcement of data integrity and normalization, with the tradeoff of lower performance and slower response times.                                        
@@ -454,7 +337,7 @@ information about alternate nodes that are still available. You use the
 Couchbase Admin tool to manually indicate a node has failed, or you can
 configure couchbase Server to use auto-failover. For more information, see
 [Couchbase Server 1.8
-Manual](http://www.couchbase.com/docs/couchbase-manual-1.8/index.html).
+Manual](http://www.couchbase.com/docs/couchbase-manual-2.0/index.html).
 
 During node failure, Couchbase SDKs will get errors trying to read or write any
 data that is on a failed node. Couchbase SDKs are still able to read and write
@@ -524,7 +407,7 @@ For more detailed information, including case studies and whitepapers, see
 
 **Ad, Offer and Content Targeting**
 
-The same attributes which server Couchbase in the gaming context also apply well
+The same attributes which serve Couchbase in the gaming context also apply well
 for real-time ad and content targeting. For example, Couchbase provides a fast
 storage capability for counters. Counters are useful for tracking visits,
 associating users with various targeting profiles, tracking ad-offers, and for
@@ -958,13 +841,12 @@ benefits:
    better guarantee atomicity since any changes will occur to a single document at
    once.
 
-When you provide a single document to represents an entire entity and any
-related records, the document is known as an *aggregate*. You can also choose to
-use separate documents for different object types in your application. This
-approach is known as *demoralization* in NoSQL database terms. In this case you
-provide cross references between objects as we demonstrated earlier in the
-beer-brewery documents. You typically gain the following from separate
-documents:
+When you provide a single document to represent an entire entity and any related
+records, the document is known as an *aggregate*. You can also choose to use
+separate documents for different object types in your application. This approach
+is known as *denormalization* in NoSQL database terms. In this case you provide
+cross references between objects as we demonstrated earlier in the beer-brewery
+documents. You typically gain the following from separate documents:
 
  * Reduce data duplication.
 
@@ -1257,7 +1139,7 @@ Views](couchbase-devguide-ready.html#indexing-querying-data)
 There are two approaches for finding information based on specific values. One
 approach is to perform index and querying with views in Couchbase 2.0. The other
 approach is to use supporting documents which contain the key for the main
-document. The later approach may be preferable even with the ability to query
+document. The latter approach may be preferable even with the ability to query
 and index in Couchbase 2.0 because the document-based lookup can still provide
 better performance if you are the lookup frequently. In this scenario, you could
 separate documents to represent a main application object, and create additional
@@ -1287,7 +1169,7 @@ imagine we store all users in documents structured as follows:
 ```
 
 To keep track of how many users are in our system, we create a counter,
-`user::counter` and increment it each time we add a new user. The key for each
+`user::count` and increment it each time we add a new user. The key for each
 user document will be in the standard form of `user::uuid`. The records that we
 will have in our system would be structured as follows:
 
@@ -1447,7 +1329,7 @@ Here is an example of a message document:
     "from": "user_512",
     "to": "user_768",
     "text": "Hey, that Beer you recommended is pretty fab, thx!"
-    "sent_timestamp": 1326476560
+    "sent_timestamp":476560
 }
 ```
 
@@ -1639,7 +1521,7 @@ Server, you will need to use moxi as a message proxy. For more information, see
 
 <a id="about-ttl-values"></a>
 
-## About TTLs
+## About Document Expiration
 
 Time to Live, also known as TTL, is the time until a document expires in
 Couchbase Server. By default, all documents will have a TTL of 0, which
@@ -1667,17 +1549,89 @@ Here is how to specify a TTL:
    provide a TTL in Unix epoch time; for instance, 1 095 379 198 indicates the
    seconds since 1970.
 
-Note that Couchbase Server does lazy expiration, that is, expired items are
+Be aware that Couchbase Server does lazy expiration, that is, expired items are
 flagged as deleted rather than being immediately erased. Couchbase Server has a
-maintenance process that will periodically look through all information and
-erase expired items. This maintenance process will run every 60 minutes, but it
-can be configured to run at a different interval. Couchbase Server will
-immediately remove an item flagged for deletion the next time the item
-requested; the server will respond that the item does not exist to the
+maintenance process, called *expiry pager* that will periodically look through
+all information and erase expired items. This maintenance process will run every
+60 minutes, but it can be configured to run at a different interval. Couchbase
+Server will immediately remove an item flagged for deletion the next time the
+item requested; the server will respond that the item does not exist to the
 requesting process.
 
+Couchbase Server 2.0 offers new functionality you can use to index and find
+documents and perform calculations on data, known as *views*. For views, you
+write functions in JavaScript that specify what data should be included in an
+index. When you want to retrieve information using views, it is called *querying
+a view* and the information Couchbase Server returns is called a *result set*.
+
+The result set from a view *will contain* any items stored on disk that meet the
+requirements of your views function. Therefore information that has not yet been
+removed from disk may appear as part of a result set when you query a view.
+
+Using Couchbase views, you can also perform *reduce functions* on data, which
+perform calculations or other aggregations of data. For instance if you want to
+count the instances of a type of object, you would use a reduce function. Once
+again, if an item is on disk, it will be included in any calculation performed
+by your reduce functions. Based on this behavior due to disk persistence, here
+are guidelines on handling expiration with views:
+
+ * **Detecting Expired Documents in Result Sets** : If you are using views for
+   indexing items from Couchbase Server, items that have not yet been removed as
+   part of the expiry pager maintenance process will be part of a result set
+   returned by querying the view. To exclude these items from a result set you
+   should use query parameter `include_doc` set to `true`. This parameter typically
+   includes all JSON documents associated with the keys in a result set. For
+   example, if you use the parameter `include_docs=true` Couchbase Server will
+   return a result set with an additional `"doc"` object which contains the JSON or
+   binary data for that key:
+
+    ```
+    {"total_rows":2,"rows":[
+    {"id":"test","key":"test","value":null,"doc":{"meta":{"id":"test","rev":"4-0000003f04e86b040000000000000000","expiration":0,"flags":0},"json":{"testkey":"testvalue"}}},
+    {"id":"test2","key":"test2","value":null,"doc":{"meta":{"id":"test2","rev":"3-0000004134bd596f50bce37d00000000","expiration":1354556285,"flags":0},"json":{"testkey":"testvalue"}}}
+    ]
+    }
+    ```
+
+   For expired documents if you set `include_doc=true`, Couchbase Server will
+   return a result set indicating the document does not exist anymore.
+   Specifically, the key that had expired but had not yet been removed by the
+   cleanup process will appear in the result set as a row where `"doc":null` :
+
+    ```
+    {"total_rows":2,"rows":[
+    {"id":"test","key":"test","value":null,"doc":{"meta":{"id":"test","rev":"4-0000003f04e86b040000000000000000","expiration":0,"flags":0},"json":{"testkey":"testvalue"}}},
+    {"id":"test2","key":"test2","value":null,"doc":null}
+    ]
+    }
+    ```
+
+ * **Reduces and Expired Documents** : In some cases, you may want to perform a
+   *reduce function* to perform aggregations and calculations on data in Couchbase
+   Server 2.0. In this case, Couchbase Server takes pre-calculated values which are
+   stored for an index and derives a final result. This also means that any expired
+   items still on disk will be part of the reduction. This may not be an issue for
+   your final result if the ratio of expired items is proportionately low compared
+   to other items. For instance, if you have 10 expired scores still on disk for an
+   average performed over 1 million players, there may be only a minimal level of
+   difference in the final result. However, if you have 10 expired scores on disk
+   for an average performed over 20 players, you would get very different result
+   than the average you would expect.
+
+   In this case, you may want to run the expiry pager process more frequently to
+   ensure that items that have expired are not included in calculations used in the
+   reduce function. We recommend an interval of 10 minutes for the expiry pager on
+   each node of a cluster. Do note that this interval will have some slight impact
+   on node performance as it will be performing cleanup more frequently on the
+   node.
+
 For more information about setting intervals for the maintenance process, refer
-to the Couchbase Manual on `exp_pager_stime`.
+to the Couchbase Manual command line tool, [Couchbase Server Manual 2.0,
+Specifying Disk Cleanup
+Interval](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-cbepctl-disk-cleanup.html)
+and refer to the examples on `exp_pager_stime`. For more information about views
+and view query parameters, see [Finding Data with
+Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html).
 
 <a id="about-asynchronous-operations"></a>
 
@@ -1743,7 +1697,8 @@ differ. Unique behavior for these store methods that you should be aware of:
  * Expiration: By default all documents you store using `set` and `add` will not
    expire. Removal must be explicit, such as using `delete`. If you do set an
    expiration to the value 0, this will also indicate no expiration. For more
-   information, see [About TTLs](couchbase-devguide-ready.html#about-ttl-values)
+   information, see [About Document
+   Expiration](couchbase-devguide-ready.html#about-ttl-values)
 
  * CAS ID/CAS Value: For every value that exists in Couchbase Server, the server
    will automatically add a unique Check and Set (CAS) value as a 64-bit integer
@@ -1776,7 +1731,7 @@ each plus meta data at 150 Bytes each will require about 20.5 GB of RAM for a
 cluster. This figure does not include caching any values or replica copies of
 data, if you consider these factors, you would need over 40 GB. For more
 information, see [Couchbase Manual, Sizing
-Guidelines](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-bestpractice-sizing.html).
+Guidelines](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-bestpractice-sizing.html).
 
 <a id="cb-set"></a>
 
@@ -2360,10 +2315,10 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 ## Retrieving Items with CAS Values
 
-These methods a value and the associated CAS value for a given key. The CAS
-value can be used later to perform a check and set operation. Getting the CAS
-value for a given document while you are getting the document may be useful if
-you want to update it, but want to do so while avoiding conflict with another
+These methods return a value and the associated CAS value for a given key. The
+CAS value can be used later to perform a check and set operation. Getting the
+CAS value for a given document while you are getting the document may be useful
+if you want to update it, but want to do so while avoiding conflict with another
 document change.
 
 The most common scenario where you will use a get-with-cas operation is when you
@@ -2449,7 +2404,7 @@ Couchbase Server. While a key is locked, other clients are not able to update
 the key, nor are they able to retrieve it.
 
 When you perform a get-and-lock operation you provide an expiration for the lock
-as a parameter. The maximum amount of time a key can be locked in 30 seconds;
+as a parameter. The maximum amount of time a key can be locked is 30 seconds;
 any parameter you provide that is more than 30 seconds will be set to 30
 seconds; negative numbers will be interpreted as 30 seconds also. When Couchbase
 Server locks a key, it sets a flag on the key indicating it is locked, it
@@ -2488,16 +2443,12 @@ c.get("foo", "bar", :lock => 3)
 In the first example, we use the standard method call of `get()` and include the
 parameter `:lock => true` to indicate we want to lock the when we perform the
 retrieve. This lock will remain on the key until we perform a `cas` operation on
-it with the correct CAS value, or the lock will expires by default in 30
-seconds. In the second version of get-and-lock we explicit set the lock to a
-three second expiration by providing the parameter `:lock => 3`. If we perform a
-`cas` operation within the three seconds with the correct CAS value it will
-release the key; alternately the lock will expire and Couchbase Server will
-unlock the key in three seconds.
-
-This method is currently also available in the Java SDK:
-
-This method is currently also available in the Java SDK:
+it with the correct CAS value, or the lock will expire by default in 30 seconds.
+In the second version of get-and-lock we explicit set the lock to a three second
+expiration by providing the parameter `:lock => 3`. If we perform a `cas`
+operation within the three seconds with the correct CAS value it will release
+the key; alternately the lock will expire and Couchbase Server will unlock the
+key in three seconds.
 
 
 ```
@@ -2642,7 +2593,7 @@ As we mention previously, you can perform a `touch` to explicitly test whether a
 key exists or not, and then create a key; you can try this with `set` or `add`.
 If a key is missing, Couchbase Server will return a 'key not found' type error
 which you can check. Be aware that when you use this approach, you are assuming
-the key will expire before you perform your next operation on it.
+the key will *not* expire before you perform your next operation on it.
 
 If the key is missing and you did not expect this result, you should check any
 application logic that creates that type of key, or any logic that deletes it
@@ -2690,9 +2641,9 @@ because this is the first user login and could then show the special offer page.
 ![](/media/dev_guide/images/replace2.png)
 
 Some Couchbase Server developers prefer to exclusively use `replace` anytime
-they update documents; this way they will know whether the key exists or not
-prior to updating it; using `replace` will it provides error information if the
-key is missing which you can handle in your application logic.
+they update documents. With this approach you will know whether the key exists
+or not prior to updating it; using `replace` will return error information if
+the key is missing which you can handle in your application logic.
 
 In Couchbase SDKs you can update the value with `replace` while simultaneously
 updating the document expiration.
@@ -3408,7 +3359,7 @@ information, and also perform a wide variety of calculations across a group of
 entries in the database. For instance if you want to generate an alphabetical
 list of users in your system you would use views to do so.
 
-Couchbase Server is can index and query information from a document when that
+Couchbase Server can index and query information from a document when that
 document is actually persisted to disk. Therefore you may want to use an
 observe-function to determine if the document is persisted and therefore
 available for use in views. To do so, you would make an observe request, and
@@ -3478,7 +3429,7 @@ the RAM of another Couchbase node. This supports very rapid reads/writes for the
 data once the data has been replicated. When Couchbase Server persists data, the
 data must wait in a queue before it is persisted to disk. Even if there are only
 a few documents ahead of document, it will take longer to be stored on disk from
-the queue that it would be to create a replica on another node. Therefore if
+the queue than it would be to create a replica on another node. Therefore if
 rapid access to data is your priority, but you want to provide high availability
 of the data, you may prefer to use replication.
 
@@ -3545,7 +3496,7 @@ timeout after 5 seconds of waiting for the two document writes onto disk.
 One common approach for using an observe-function is to verify that a document
 is on at least one replica node. If you want to be extremely certain about the
 durability of some documents, you may want to verify that the document is
-replicated to at three nodes and persisted to at least four servers. This
+replicated to at lease three nodes and persisted to at least four servers. This
 represents the maximum number of replicas and on-disk copies that Couchbase
 Server currently supports.
 
@@ -3605,6 +3556,9 @@ examples to start using views with Couchbase SDKs. For more detailed information
 about views, managing views, and handling views using Couchbase Web Console, see
 [Couchbase Server Manual: Views and
 Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+To see examples and patterns you can use for views, see [Couchbase Views, Sample
+Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns.html
+)
 
 <a id="understanding-views"></a>
 
@@ -3640,8 +3594,8 @@ the illustration below:
 
 Once you have your view functions, the next step is to *query* a view to
 actually get back data from Couchbase Server. When you query a view, you are
-asking for results based on that view. based on the functions in a view,
-Couchbase Server will create an result set, which contains key value pairs. Each
+asking for results based on that view. Based on the functions in a view,
+Couchbase Server will create a result set, which contains key value pairs. Each
 key and value in the result set is determined by the logic you provide in your
 views functions. Imagine you have several thousand contacts in Couchbase Server
 and you want to get all the phone numbers which begin with the prefix 408. Given
@@ -3695,27 +3649,18 @@ documents would look like for our blog posts:
 
 ```
 {
-  "_id":"moving",
-  "_rev":"72J8414KL",
-
   "title":"Move Today",
   "body":"We just moved into a new big apartment in Mountain View just off of....",
   "date":"2012/07/30 18:12:10"
 }
 
 {
-  "_id":"new_fridge",
-  "_rev":"21HDINM36",
-
   "title":"Bought New Fridge",
   "body":"Our freezer broke down so ordered this new one on Amazon....",
   "date":"2012/09/17 21:13:39"
 }
 
 {
-  "_id":"paint_ball",
-  "_rev":"43FBA7AB",
-
   "title":"Paint Ball",
   "body":"Had so much fun today when my company took the whole team out for...",
   "date":"2012/9/25 15:52:20"
@@ -3727,8 +3672,9 @@ Then we create our map function which will extract our blog post titles:
 
 ```
 function(doc) {
-  if(doc.title) {
-    emit(doc.title, null);
+    if(doc.title) {
+        emit(doc.title, null);
+
   }
 }
 ```
@@ -3737,13 +3683,15 @@ This function will look at a JSON document and if the document has a `title`
 attribute, it will include that title in the result set as a key. The `null`
 indicates no value should be provided in the result set. In reality if you look
 at all the details, a standard view function syntax is a bit more complex in
-Couchbase 2.0. Here is how the map function appears when you provide full
-handling of all JSON document information:
+Couchbase 2.0.
+
+Here is how the map function appears when you provide full handling of all JSON
+document information:
 
 
 ```
 function (doc, meta) {
-  if (meta.type == "json") {
+  if (meta.type == "json" && doc.title && doc.date) {
     // Check if doc is JSON
     emit(doc.title, doc.date);
   } else {
@@ -3751,6 +3699,14 @@ function (doc, meta) {
   }
 }
 ```
+
+As a best practice we want make sure that the fields we want to emit in our
+index actually exist before we emit it to the index. Therefore we have our map
+function within a conditional: `if (doc.title && doc.date)`. For instance, if we
+wanted to perform a views function that tried to emit `doc.name.length` we would
+get a "undefined reference" exception if the field does not exist and the view
+function would fail. By checking for the field we avoid these potential types of
+errors.
 
 If you have ever looked at a view in Couchbase Admin Console, this map function
 will be more familiar. In Couchbase 2.0 we separate metadata about an entry such
@@ -3788,7 +3744,7 @@ You store your map function as a string in a design document as follows:
   "views": {
     "titles": {
       "map": "function(doc, meta){
-          if (meta.type == "json") {
+          if (meta.type == "json" && doc.date && doc.title) {
                 // Check if doc is JSON
                 emit(doc.date, doc.title);
               } else {
@@ -4059,7 +4015,7 @@ probably expected the last two items in the index sorted in descending order.
 But when you specify the order `:descending` to be true, Couchbase Server will
 read index items from the bottom of the index upwards. Therefore you get the
 items in position 1 then 0 from the index. To get the results in position 1 and
-2, you would invert the logic of you query and use the `:endkey` parameter set
+2, you would invert the logic of your query and use the `:endkey` parameter set
 to 1:
 
 
@@ -4200,6 +4156,12 @@ function (doc, meta) {
 }
 ```
 
+As a best practice we want make sure that the fields we want to include in our
+index actually exist. Therefore we have our map function build on index based on
+a conditional, and the same conditional ensures the prescence of the items we
+want to index. This ensures the fields exist in documents when we query the view
+and we therefore avoid a view failure when Couchbase Server generates the index.
+
 If a brewery has all categories of information, namely country, state, and city,
 we will create an index with the country, state and city as key with the value
 equal to one. If the brewery only has country and state, we create an index with
@@ -4239,7 +4201,7 @@ appear in JSON as follows:
   "views": {
     "titles": {
       "map": "function(doc, meta){
-        if (meta.type == "json") {
+        if (meta.type == "json" && doc.date && doc.title) {
         // Check if doc is JSON
         emit(doc.date, doc.title);
          } else {
@@ -4264,12 +4226,11 @@ Functions](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-wr
 When Couchbase Server generates an index, it can create *compound keys* ; a
 compound key is an array that contains multiple values. Couchbase Server will
 sort items in an index based on the sequence of keys provided in a compound key.
-Couchbase Server can will sort items in an index based on the key in position 0,
-and then for all items with matching keys for position 0, sort based on the key
-in position 1 and so forth. This enables you to control how an index is sorted,
-and ultimately how you can retrieve information that is grouped the way you need
-it. For example here is an index created by Couchbase Server using compound
-keys:
+Couchbase Server will sort items in an index based on the key in position 0, and
+then for all items with matching keys for position 0, sort based on the key in
+position 1 and so forth. This enables you to control how an index is sorted, and
+ultimately how you can retrieve information that is grouped the way you need it.
+For example here is an index created by Couchbase Server using compound keys:
 
 
 ```
@@ -4344,7 +4305,161 @@ our index, therefore we have the value of 1. The last item is the unique prefix
 `["b","a"]` which occurs 2 times in the index, therefore we have a value of 2
 for that result. To learn more about group-by parameters used in view queries,
 see the individual Language Reference for your SDK at [Develop with
-Couchbase](http://www.couchbase.com/develop)
+Couchbase](http://www.couchbase.com/develop).
+
+A common question from developers is how to extract items based on date or time
+using views. For more information and examples, see [Couchbase Views, Date and
+Time
+Selection](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns-timestamp.html).
+
+<a id="creating-views-from-sdk"></a>
+
+## Using Views from an Application
+
+When you develop a new application using views, you sometimes need to create a
+view dynamically from your code. For example you may need this when you install
+your application, when you write a test, or when you are building a framework
+and want to create views and query data from the framework. This sections
+describes you how to do it. Make sure you have installed the [beer
+sample](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-sampledata-beer.html)
+dataset which comes as an option when you install Couchbase Server. For more
+information about the Couchbase Server install, see [Couchbase Server Manual,
+Installing](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install.html).
+
+For more information about using views from the Java SDK, see [Tug's
+Blog](http://tugdualgrall.blogspot.de/2012).
+
+The first thing we do in our application is to connect to the cluster from our
+Couchbase client. As a best practice we typically provide a list of URIs to
+different nodes in the cluster in case the initial node we try to connect to is
+unavailable. By doing so we can attempt another initial connection to the
+cluster at another node:
+
+
+```
+import com.couchbase.client.CouchbaseClient;
+
+    List<uri> uris = new LinkedList<uri>();
+
+    uris.add(URI.create("http://127.0.0.1:8091/pools"));
+
+    CouchbaseClient client = null;
+
+    try {
+
+        client = new CouchbaseClient(uris, "beer-sample", "");
+
+
+        // put your code here
+        client.shutdown();
+    } catch (Exception e) {
+        System.err.println("Error connecting to Couchbase: " + e.getMessage());
+        System.exit(0);
+    }
+
+
+</uri></uri>
+```
+
+Here we create a list of URIs to different nodes of the cluster; for the sake of
+convenience we are working with a single node cluster. Then we connect to our
+bucket, which in this case is `beer-sample`.
+
+**Creating View Functions with an SDK**
+
+Couchbase SDKs provide all the methods you need to save, index, and query views.
+Imagine we want to get all the beer names out of our sample database. In this
+case, our map function would appear as follows:
+
+
+```
+function (doc, meta) {
+  if(doc.type && doc.type == "beer") {
+    emit(doc.name, null);
+  }
+}
+```
+
+At first, we import the Java SDK libraries that we need to work with views. Then
+we can create a design document based on the `DesignDocument` class and also
+create our view as an instance of the `ViewDesign` class:
+
+
+```
+import com.couchbase.client.protocol.views.DesignDocument;
+import com.couchbase.client.protocol.views.ViewDesign;
+
+    DesignDocument designDoc = new DesignDocument("dev_beer");
+
+    String viewName = "by_name";
+    String mapFunction =
+            "function (doc, meta) {\n" +
+            "  if(doc.type && doc.type == \"beer\") {\n" +
+            "    emit(doc.name);\n" +
+            "  }\n" +
+            "}";
+
+    ViewDesign viewDesign = new ViewDesign(viewName,mapFunction);
+    designDoc.getViews().add(viewDesign);
+    client.createDesignDoc( designDoc );
+```
+
+In this case we create a design document named 'dev\_beer', name our actual view
+'by\_name' and store the map function in a String. We then create a a new view
+provide the constructor the name and function. Finally we add this view to our
+design document and store it to Couchbase Server with `createDesignDoc`.
+
+**Querying View from SDKs**
+
+At this point you can index and query your view. Be aware that when you first
+create a view, whether this in Couchbase Web Console, or via an SDK, the view is
+in development mode. You need to put the into production mode in order to query
+it:
+
+
+```
+import import com.couchbase.client.protocol.views.*;
+
+System.setProperty("viewmode", "development"); // before the connection to Couchbase
+
+// Create connection if needed
+
+View view = client.getView("beer", "by_name");
+Query query = new Query();
+query.setIncludeDocs(true).setLimit(20);
+query.setStale( Stale.FALSE );
+ViewResponse result = client.query(view, query);
+
+for(ViewRow row : result) {
+  row.getDocument(); // deal with the document/data
+}
+```
+
+Before we create a Couchbase client instance and connect to the server, we set a
+system property 'viewmode' to 'development' to put the view into production
+mode. Then we query our view and limit the number of documents returned to 20
+items. Finally when we query our view we set the `stale` parameter to FALSE to
+indicate we want to reindex and include any new or updated beers in Couchbase.
+For more information about the `stale` parameter and index updates, see [Index
+Updates and the Stale
+Parameter](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-stale.html).
+
+The last part of this code sample is a loop we use to iterate through each item
+in the result set. You can provide any code for handling or outputting
+individual results here.
+
+For more information about developing views in general, the follow resources
+describe best practices, and how indexing works on the server, along with other
+topics:
+
+ * [View Writing Best
+   Practice](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-bestpractice.html).
+
+ * [Views and Stored
+   Data](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-datastore.html).
+
+ * [Development and Production
+   Views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-types.html).
 
 <a id="creating-custom-reduces"></a>
 
@@ -4426,7 +4541,7 @@ date, and score:
 
 ```
 function (doc, meta) {
-  if (meta.type == "json") {
+  if (meta.type == "json" && doc.kind && doc.created_utc) {
     if(doc.kind == "link") {
       var dt = new Date(doc.created_utc * 1000);
       var hrs = dt.getUTCHours();
@@ -4442,6 +4557,13 @@ function (doc, meta) {
   }
 }
 ```
+
+As a best practice we want make sure that the fields we want to include in our
+index actually exist. Therefore we have our map function within a conditional
+which determines the document is JSON and also checks that the fields `doc.kind`
+and `doc.created_utc` actually exist. This ensures the fields exist in documents
+when we query the view and we therefore avoid a view failure when Couchbase
+Server generates the index.
 
 The first thing we do is determine if the document is JSON and whether it is a
 Reddit link. Then we create instance variables `dt` to store the date of the
@@ -4537,6 +4659,116 @@ visualization code available from [Data-Driven Documents](http://d3js.org). The
 graph is created using HTML and JQuery. For more information about the graphing,
 or about the sample application, see [Visualizing Reddit
 Data](http://crate.im/posts/visualizing-reddit-data/).
+
+<a id="understanding-custom-reduce"></a>
+
+## Understanding Custom Reduces and Re-reduce
+
+If you are going to write your own custom reduces, you should be aware of how
+the *rereduce* option works in Couchbase Server. Rereduces are a form of
+recursion where Couchbase Server pre-calculates preliminary results and stores
+these results in a structure known in computer science as a *b-tree*. First it
+applies the reduce function to groups of data in a result set and then stores
+these calculated values in the b-tree. The Server will then apply the reduce
+function to the calculated values, and will repeat the process on these
+resulting values, if needed. Couchbase Server performs the reduce as an initial
+reduction and then re-reduces repeatedly to provide better performance, and
+faster access to results.
+
+If you have a large initial result set, Couchbase Server may create a b-tree
+structure with several levels, where the results from the initial reduce are
+stored at one level, and results from the following re-reduces are stored at the
+second, third, and forth level, and so on. The number of pre-calculated results
+decreases at each level, as Couchbase Server re-applies the reduce function:
+
+
+![](/media/dev_guide/images/rereduce1.png)
+
+This example shows the initial result set, and the different levels of results
+that exist when we sum numbers as part of our reduce and rereduces. The first
+level represents the result set generated by a map function where the key is a
+letter and the value is a number. Additional levels represents the results from
+two rereduces. In this example, we assume the server applies a reduce and then
+applies rereduces to groups of three items. In reality the size of the blocks
+are arbitrary and determined by internal logic in Couchbase Server. When
+Couchbase Server applies the reduce function to groups of three from the
+original result set, it sums each set and stores 4, 6, and 8 as pre-calculated
+results. The last items in a result set only consist of two items, so those are
+summed and stored as the value 3, The second time Couchbase Server applies the
+function as a rereduce, we get 18 which is the sum of the set of three numbers:
+4 + 6 + 8. The second value for our rereduce is the remaining number 3, which
+has no other values to form a group of three and to be summed with.
+
+Now that you see the logic of rereduces with Couchbase Server, you may wonder if
+this matters to you at all. It does matter if you perform want to perform a
+calculation based on the original result set. Because you have the option of
+performing a reduce and rereduce, when you choose this option you can no longer
+assume that you final result will be the same result you would have gotten if
+you performed the reduce on the initial data set.
+
+For instance, this may be a consideration if you create a custom reduce which
+performs some type of counting. Couchbase Server already provides a built-in
+version of a count function which you can use for a reduce, but imagine you have
+a scenario where you need to do custom counting for your scenario. In this case,
+if you provided a count-type function the rereduce would apply the count to the
+pre-calculated values, not the original result set. You would get a count based
+on a reduced set, not the true number of values in the initial result. In the
+example below, if you use a count-type function to rereduce, you would get 3,
+which represent the number of values stored after the initial reduce:
+
+
+![](/media/dev_guide/images/rereduceCT.png)
+
+So instead of getting the number of keys, which is 8, you get the number of
+values in the reduction, which is only 3. This is not what you might have
+expected, had you known about rereduce before you built your custom reduce.
+Instead of using a type of counting function for and performing rereduce, you
+actually need to sum after the initial reduction. The following code samples
+demonstrates the custom reduce function you would use:
+
+
+```
+function (keys, values, rereduce) {
+    if(!rereduce) {
+        return values.length;
+    } else {
+        var sum = 0;
+        for (i in values) {
+            sum += values[i];
+        }
+        return sum;
+    }
+}
+```
+
+For all custom reduces you will write the reduce function to take `keys`,
+`values`, and `rereduce` as parameters. Couchbase Server will execute the custom
+reduce and provide the function keys and values from a map function, and will
+provide a boolean for `rereduce`. Whether this boolean is true or false is
+determined by internal Couchbase Server logic. So we should always provide a
+custom reduce function that can handle the case where `rereduce` can be false or
+`rereduce` is true. This way we cover our bases and create a custom reduce which
+produces results we expect.
+
+For this example if `rereduce` is false, Couchbase Server will not perform the
+reduce on a reduction, rather it will perform it on the original result set from
+a map function; therefore we can return the length of all values in the result
+set. In this case we will get the value 8. If `rereduce` is true, we need to
+handle this by performing a sum of the reduction which is the correct number of
+items, 8. The logic for this second case is illustrated below:
+
+
+![](/media/dev_guide/images/rereduce2.png)
+
+Be aware that this is a very contrived example to demonstrate the rereduce and
+how to handle it in your custom reduce. In reality Couchbase Server provides a
+built-in function `_count` which automatically handles the rereduce so that you
+get a count of all items in a result set, not the count of the reduced set.
+Nonetheless you should keep this behavior in mind if you perform a custom reduce
+which assumes the calculations are performed on the initial result set. If you
+want to find more information about the re-reduce, and other forms of custom
+reduces, see
+[](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-reduce.html)
 
 <a id="error-handing-for-views"></a>
 
@@ -4658,6 +4890,12 @@ Libraries:
  * Ruby
 
  * C
+
+The TCP/IP port allocation on Windows by default includes a restricted number of
+ports available for client communication. For more information on this issue,
+including information on how to adjust the configuration and increase the
+available ports, see [MSDN: Avoiding TCP/IP Port
+Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
 
 Depending upon the OS for your development platform and web application server
 platform, choose the 32- or 64- bit versions of the SDK. Download and install
@@ -5000,6 +5238,7 @@ complexity for now:
 
 ```
 function (doc) {
+    if ( doc.age && doc.name ) {
     if ( doc.age < 21 ) { emit(doc.name, doc.age) };
   }
 }
@@ -5010,13 +5249,19 @@ languages such as C, Java, or PHP, this should look familiar to you. This is a
 standard function definition with one parameter, `doc` which is a JSON document
 stored in Couchbase Server.
 
-They key part of this function to understand is the conditional statement `if
+The key part of this function to understand is the conditional statement `if
 (doc.age < 21 )....`. This is how you specify the core logic of your map
 function. In this case, we are saying that if `age` field has a value less than
 21, we want information from that record extracted and put in the result set.
 The next part of the code, `emit(doc.name, doc.age)` indicates when Couchbase
 Server finds a matching record, it should include value from the `name` field
 and should include value from the `age` field in the result set.
+
+As a best practice we want make sure that the fields we want to include in our
+index actually exist. Therefore we have our map function within a conditional:
+`if (doc.age && doc.name)`. This ensures the fields exist in documents when we
+query the view and we therefore avoid a view failure when Couchbase Server
+generates the index.
 
 For the sake of convenience, we can store our view in a 'design document' and
 then use a Couchbase SDK to store it from the file. Design documents are JSON
@@ -5031,7 +5276,7 @@ design document and include our view function in it:
   "language": "javascript",
   "views": {
     "underage": {
-      "map": "function(doc){if(doc.age < 21){emit(doc.name, doc.age);}}"
+      "map": "function(doc) {if (doc.age && doc.name) {if(doc.age < 21){emit(doc.name, doc.age);}}}"
     }
   }
 }
@@ -5043,6 +5288,12 @@ hash that contains any views and in this case we have one view called
 `underage`. Within the view we provide the map function described above. We can
 store this to the file system as `students.json` and then write the design
 document to Couchbase Server using an SDK. Here we use the Ruby SDK:
+
+As a best practice we want make sure that the fields we want to include in our
+index actually exist. Therefore we have our map function within a conditional:
+`if (doc.age && doc.name)`. This ensures the fields exist in documents when we
+query the view and we therefore avoid a view failure when Couchbase Server
+generates the index.
 
 
 ```
@@ -5089,7 +5340,7 @@ request. To store the view, you would make a REST request as follows:
 
 ```
 curl -X PUT -u newBucket:password -H 'Content-Type: application/json' 'http//server_ip:8092/newBucket/_design/students' \
--d '{"views": {"underage":{"map":"function(doc){if(doc.age<21){emit(doc.name, doc.age);}"}}}}'
+-d '{"views": {"underage":{"map":"function(doc) {if(doc.age && doc.name) {if(doc.age<21){emit(doc.name, doc.age);}}}"}}'
 ```
 
 We perform the REST request as a put and provide the bucket name and password
@@ -5144,11 +5395,6 @@ Server, you can perform retrieves and writes for a specific key.
 To connect Couchbase Server via telnet, provide the host and port where it is
 located. The default bucket created on the Couchbase Server will be on port
 11211 for purposes of telnet. This does not require any authentication:
-
-
-```
-get
-```
 
 
 ```
@@ -5519,9 +5765,10 @@ attributes, the beer name and the brewery. We then store the beer as a valid
 JSON document by using `json_encode()` and passing in the result as the value to
 `set()`. When we store the JSON document, we specify the key 'beer\_My\_Brew.'
 
-In the presidents example provided in the section on 'Seeding a Database,' we
-used one of the many JSON Libraries available that convert JSON documents in to
-native objects. In this case we use
+In the presidents example provided in the section on [Performing a Bulk
+Set](http://www.couchbase.com/docs/couchbase-devguide-2.0/populating-cb.html),
+we used one of the many JSON Libraries available that convert JSON documents in
+to native objects. In this case we use
 [Gson](http://code.google.com/p/google-gson/) an open source library which
 converts JSON documents into Java:
 
@@ -5590,7 +5837,7 @@ Couchbase Server is best suited for fast-changing data items of relatively small
 size. For in-memory storage, using Couchbase Memcached buckets, the memcached
 standard 1 megabyte limit applies to each value. Items suitable for storage
 include shopping carts, user profile, user sessions, time lines, game states,
-pages, conversations and product catalog Items that are less suitable include
+pages, conversations and product catalog. Items that are less suitable include
 large audio or video media files.
 
 Couchbase buckets can store any binary bytes, and the encoding is dependent on
@@ -5662,11 +5909,15 @@ tools, see:
 The following areas can be administered using the Couchbase REST API, the
 Couchbase Administrative Console, or Couchbase CLI:
 
- * Cluster management
+ * Managing individual Couchbase Server instances, or nodes,
 
- * Node management
+ * Managing clusters of servers,
 
- * Bucket-level operations
+ * Managing data buckets, such as create new buckets, changing settings and so on,
+
+ * Handling views,
+
+ * Managing Cross datacenter replication (XDCR.)
 
 <a id="data-partitioning-buckets"></a>
 
@@ -7047,7 +7298,7 @@ respective approaches you can use:
    This example uses the default bucket. Arguments include host:port, username,
    password, bucket name, and true indicates we want to use a persistent
    connection. For more information, refer to the [Couchbase PHP SDK Language
-   Reference.](http://www.couchbase.com/docs/couchbase-sdk-php-1.0/api-reference-connection.html)
+   Reference.](http://www.couchbase.com/docs/couchbase-sdk-php-1.1/api-reference-connection.html)
 
  * Java: When you create connection with the Java SDK, the connection is a
    thread-safe object that can be shared across multiple processes. The alternative
@@ -7055,7 +7306,7 @@ respective approaches you can use:
    objects.
 
    For more information, see [Couchbase Java SDK: Connecting to the
-   Server.](http://www.couchbase.com/docs/couchbase-sdk-java-1.0/connecting.html)
+   Server.](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/api-reference-connection.html)
 
  * .Net: Connections that you create with the.net SDK are also thread-safe objects;
    for persisted connections, you can use a connection pool which contains multiple
@@ -7063,7 +7314,10 @@ respective approaches you can use:
    Couchbase client per bucket, in accordance with.Net framework. The persistent
    client will maintain connection pools per server node. For more information, see
    [MSDN: AppDomain
-   Class](http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx)
+   Class](http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx).
+   You can also find more information about client instances and connection for
+   the.Net SDK at [.Net Connection
+   Operations](http://www.couchbase.com/docs/couchbase-sdk-net-1.2/api-reference-connection.html)
 
  * You can persist a Couchbase client storing it in a way such that the Ruby
    garbage collector does not remove from memory. To do this, you can create a
@@ -7294,7 +7548,8 @@ levels:
  * Request-level settings
 
 The Couchbase PHP SDK does not have any connection, authentication, or request
-timeouts which can be set as of the 1.0 version of the SDK.
+timeouts which are configurable, however you can build timeouts which are
+managed by your own application.
 
 The following are timeouts that can be set for a connection to Couchbase Server
 from the Java SDK:
@@ -7314,17 +7569,20 @@ these operations allocates memory at a low level. This can create a lot of
 information that needs to be garbage-collected by a VM, which will also slow
 down your application performance.
 
-The following are timeouts that you set for a connection to Couchbase Server
-from the.Net SDK:
+The following are some of the frequently-used timeouts that you set for a
+connection to Couchbase Server from the.Net SDK. for a full list of timeouts,
+their defaults, and their descriptions for.Net, please see [Couchbase.Net SDK,
+Configuration](http://www.couchbase.com/docs/couchbase-sdk-net-1.2/couchbase-sdk-net-configuration.html)
+:
 
 <a id="about-client-timeouts-net"></a>
 
-Parameter    | Description                                                                          | Default Setting
--------------|--------------------------------------------------------------------------------------|----------------
-Timeout      | Maximum number of milliseconds to wait to connect to a pool.                         | 10000          
-Deadtimeout  | Time to wait attempting to connect to pool when all nodes are down. In milliseconds. | 10000          
-RetryCount   | Number of times the SDK has attempted to reconnect to a pool.                        | 0              
-RetryTimeout | Maximum number of seconds to wait during an attempt to reconnect.                    | 500 seconds    
+Parameter          | Description                                                                                                         | Default Setting
+-------------------|---------------------------------------------------------------------------------------------------------------------|----------------
+retryTimeout       | The amount of time to wait in between failed attempts to read cluster configguration.                               | 2 seconds      
+observeTimeout     | Time to wait attempting to connect to pool when all nodes are down. In milliseconds.                                | 1 minute       
+httpRequestTimeout | The amount of time to wait for the HTTP streaming connection to receive cluster configuration                       | 1 minute       
+connectionTimeout  | The amount of time the client waits to establish a connection to the server, or get a free connection from the pool | 10 seconds     
 
 The following are timeouts that typically can be set for a connection to
 Couchbase Server from the Ruby SDK:
@@ -7352,6 +7610,16 @@ client instance fails to connect in the three seconds, it will timeout and
 return a failure to connect error. Then we set the timeout to 1.5, which will be
 the timeout level of any requests made with that client instance, such as the
 `set()`.
+
+The following is the standard, default, non-configurable timeout for the
+Couchbase C and PHP SDKs. This timeout applies to creating a connection to the
+server and all read- and write- operations:
+
+<a id="about-client-timeouts-c-and-php"></a>
+
+Description                                                                                | Default Setting      
+-------------------------------------------------------------------------------------------|----------------------
+Default, maximum number of microseconds to wait for a connection or a read/write to occur. | 2500000 microseconds.
 
 <a id="cb-client-troubleshooting"></a>
 
