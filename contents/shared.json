@@ -1,13 +1,23 @@
 {
-        "site-title": "Couchbase",
-        "navbar": [
-        { "label": "Server Guide", "href": "/server_guide.html" },
-        { "label": "Developer Guide", "href": "/dev_guide.html" },
-        { "label": "SDK Guides", "href": "#", "subnav" : [
-                {"label": "Java", "href" : "/java.html" },
-                {"label": "Ruby", "href" : "/ruby.html" }
-                ]
-        },
-        { "label": "Archives", "href": "/about.html" }
-        ]
+  "versions": {
+    "server_guide": [
+      [ "2.0", "/server_guide.html" ],
+      [ "1.8", "/server_guide-18.html" ]
+    ],
+    "dev_guide": [
+      [ "2.0", "/dev_guide.html" ],
+      [ "1.8", "/dev_guide-18.html" ]
+    ]
+  },
+  "navbar": [
+    { "href": "/server_guide.html", "label": "Server Guide" },
+    { "href": "/dev_guide.html", "label": "Developer Guide" },
+    { "href": "#", "label": "SDK Guides", "subnav": [
+        { "href": "/java.html", "label": "Java" },
+        { "href": "/ruby.html", "label": "Ruby" }
+      ]
+    },
+    { "href": "/about.html", "label": "Archives" }
+  ],
+  "site-title": "Couchbase"
 }
