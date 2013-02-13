@@ -22,8 +22,8 @@ For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
 
 
 
-*Last document update* : 13 Feb 2013 00:29; *Document built* : 13 Feb 2013
-00:29.
+*Last document update* : 13 Feb 2013 19:18; *Document built* : 13 Feb 2013
+19:18.
 
 ### Documentation Availability and Formats
 

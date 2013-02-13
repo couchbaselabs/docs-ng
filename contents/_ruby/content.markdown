@@ -9,9 +9,11 @@ This manual provides a reference to the key features and best practices for
 using the Ruby Couchbase Client Library. The content constitutes a reference to
 the core API, not a complete guide to the entire API functionality.
 
- * Couchbase Server 1.8 — ✓ — ✓ —
+Couchbase Server 1.8✓✓
 
- * Couchbase Server 2.0 — ✓ — ✓ —
+Couchbase Server 2.0✓✓
+
+
 
 
 
@@ -39,8 +41,8 @@ the core API, not a complete guide to the entire API functionality.
 The following document is still in production, and is not considered complete or
 exhaustive.
 
-*Last document update* : 12 Feb 2013 21:22; *Document built* : 12 Feb 2013
-21:22.
+*Last document update* : 13 Feb 2013 19:19; *Document built* : 13 Feb 2013
+19:19.
 
 ### Documentation Availability and Formats
 
@@ -232,7 +234,7 @@ Here’s a quick outline of what you’ll learn in this chapter:
 
 <a id="creating_and_updating_documents"></a>
 
-## Creating and Updating Documents
+### Creating and Updating Documents
 
 Couchbase Server provides a set of commands to store documents. The commands are
 very similar to each other and differ only in their meaning on the server-side.
@@ -268,7 +270,7 @@ client.replace(key, doc);
 
 <a id="reading_documents"></a>
 
-## Reading Documents
+### Reading Documents
 
 With Couchbase Server 2.0, you have two ways of fetching your documents: either
 by the unique key through the get method, or through Views. Since Views are more
@@ -354,7 +356,7 @@ In the logs, you can see the corresponding document keys automatically sorted
 
 **Unhandled:** `[:unknown-tag :screen]`<a id="deleting_documents"></a>
 
-## Deleting Documents
+### Deleting Documents
 
 If you want to get rid of a document, you can use the delete operation:
 
@@ -372,7 +374,7 @@ extend your Couchbase vocabulary.
 
 <a id="cas_and_locking"></a>
 
-## CAS and Locking
+### CAS and Locking
 
 If you need to coordinate shared access on documents, Couchbase helps you with
 two approaches. Depending on the application you may need to use both of them,
@@ -461,7 +463,7 @@ Once you update the document, the lock will be released. There is also the
 
 <a id="persistence_and_replication"></a>
 
-## Persistence and Replication
+### Persistence and Replication
 
 By default, the mutation operations return when Couchbase Server has accepted
 the command and stored it in memory (disk persistence and replication is handled
@@ -872,53 +874,55 @@ The `Ruby Client Library` supports the full suite of API calls to Couchbase. A
 summary of the supported methods are listed in **Couldn't resolve xref tag:
 table-couchbase-sdk-ruby-summary**.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_add** — Add a value with
-   the specified key that does not already exist —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_add** Add a value with
+the specified key that does not already exist
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_append** — Append a
-   value to an existing key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_append** Append a value
+to an existing key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_cas** — Compare and set
-   a value providing the supplied CAS key matches —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_cas** Compare and set a
+value providing the supplied CAS key matches
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_connect** —
-   Create connection to Couchbase Server —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_connect**
+Create connection to Couchbase Server
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_new** — New
-   alias for creating Couchbase client instance. —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_new** New
+alias for creating Couchbase client instance.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_decrement** — Decrement
-   the value of an existing numeric key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_decrement** Decrement
+the value of an existing numeric key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_delete** — Delete a
-   key/value —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_delete** Delete a
+key/value
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_flush** — Deletes all
-   values from the corresponding bucket —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_flush** Deletes all
+values from the corresponding bucket
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_get** — Get one or more
-   key values —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_get** Get one or more
+key values
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_increment** — Increment
-   the value of an existing numeric key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_increment** Increment
+the value of an existing numeric key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_prepend** — Prepend a
-   value to an existing key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_prepend** Prepend a
+value to an existing key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_replace** — Update an
-   existing key with a new value —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_replace** Update an
+existing key with a new value
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_set** — Store a value
-   using the specified key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_set** Store a value
+using the specified key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_stats** — Get the
-   database statistics —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_stats** Get the database
+statistics
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-many** — Update
-   the expiry time of an item —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-many** Update the
+expiry time of an item
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-one** — Update the
-   expiry time of an item —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-one** Update the
+expiry time of an item
+
+
 
 <a id="couchbase-sdk-ruby-summary-synchronous"></a>
 
@@ -993,11 +997,13 @@ can respond to several methods:
 The following document is still in production, and is not considered complete or
 exhaustive.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_connect** —
-   Create connection to Couchbase Server —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_connect**
+Create connection to Couchbase Server
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_new** — New
-   alias for creating Couchbase client instance. —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_new** New
+alias for creating Couchbase client instance.
+
+
 
 Creates a connection with the Couchbase Server. There are several ways to
 establish new connection to Couchbase Server. By default a Couchbase SDK uses
@@ -1148,14 +1154,16 @@ The Couchbase Ruby Client Library store operations set information within the
 Couchbase database. These are distinct from the update operations in that the
 key does not have to exist within the Couchbase database before being stored.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_add** — Add a value with
-   the specified key that does not already exist —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_add** Add a value with
+the specified key that does not already exist
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_replace** — Update an
-   existing key with a new value —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_replace** Update an
+existing key with a new value
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_set** — Store a value
-   using the specified key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_set** Store a value
+using the specified key
+
+
 
 <a id="couchbase-sdk-ruby-set-add"></a>
 
@@ -1164,64 +1172,65 @@ key does not have to exist within the Couchbase database before being stored.
 The `add` method adds a value to the database with the specified key, but will
 fail if the key already exists in the database.
 
- * **API Call** — `add(key, value, options)`
+**Signature**  `object.add(key, value, options)`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Add a value with the specified key that does not already
-   exist. Will fail if the key/value pair already exist.
+**Description** Add a value with the specified key that does not already exist.
+Will fail if the key/value pair already exist.
 
- * **Returns** — `fixnum` ( The CAS value for the object stored. A fixed number )
+**Returns**  `fixnum` ( The CAS value for the object stored. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **object value** — Value to be stored
+**object value** Value to be stored
 
- * **hash options** — Hash containing option/value pairs used during a set
-   operation.
+**hash options** Hash containing option/value pairs used during a set operation.
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:ttl` (int) — :ttl (Expiry) —
+`:ttl` (int) :ttl (Expiry)
 
- * — Time for document to exist in server before it is automatically destroyed.
-   This option symbol is :ttl and the value can be any number representing seconds.
+Time for document to exist in server before it is automatically destroyed. This
+option symbol is :ttl and the value can be any number representing seconds.
 
- * — `:flags` (fixnum) — Flags for storage options. —
+`:flags` (fixnum) Flags for storage options.
 
- * — Flags used during the set. These flags are ignored by the Couchbase server but
-   preserved for use by a client. This includes default flags recorded for new
-   values and was used as part of the memcached protocol.
+Flags used during the set. These flags are ignored by the Couchbase server but
+preserved for use by a client. This includes default flags recorded for new
+values and was used as part of the memcached protocol.
 
- * — `:format` (symbol) — How to represent value in storage. —
+`:format` (symbol) How to represent value in storage.
 
- * — Determines how a value is represented in storage. Possible values include
-   :document for JSON data, :plain for string storage, and :marshal to serialize
-   your ruby object using Marshall.dump and Marshal.load.
+Determines how a value is represented in storage. Possible values include
+:document for JSON data, :plain for string storage, and :marshal to serialize
+your ruby object using Marshall.dump and Marshal.load.
 
- * — `:cas` (fixnum) — CAS Value —
+`:cas` (fixnum) CAS Value
 
- * — The CAS value for an object. This value was created on the server and is
-   guaranteed to be unique for each value for a given key. You provide this value
-   as an option when you want basic optimistic concurrency control while doing
-   sets.
+The CAS value for an object. This value was created on the server and is
+guaranteed to be unique for each value for a given key. You provide this value
+as an option when you want basic optimistic concurrency control while doing
+sets.
 
- * **Exceptions** —
+**Exceptions**
 
- * `ArgumentError` — Exception object indicating failed attempt to pass a block in
-   synchronous mode.
+`ArgumentError` Exception object indicating failed attempt to pass a block in
+synchronous mode.
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
 
- * `Couchbase::Error::KeyExists` — Exception object indicating the key already
-   exists on the server.
+`Couchbase::Error::KeyExists` Exception object indicating the key already exists
+on the server.
 
- * `Couchbase::Error::ValueFormat` — Exception object indicating the value cannot
-   be serialized with chosen encoder, for instance, occurs if you try to store Hash
-   in :plain mode.
+`Couchbase::Error::ValueFormat` Exception object indicating the value cannot be
+serialized with chosen encoder, for instance, occurs if you try to store Hash in
+:plain mode.
+
+
 
 The `add` method adds a value to the database using the specified key.
 
@@ -1252,32 +1261,34 @@ c.add("foo", "baz")   # raises Couchbase::Error::KeyExists:
 The `replace` methods update an existing key/value pair in the database. If the
 specified key does not exist, then the operation will fail.
 
- * **API Call** — `replace(key, value [, ruby-replace-options ])`
+**Signature**  `object.replace(key, value [, ruby-replace-options ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Update an existing key with a new value
+**Description** Update an existing key with a new value
 
- * **Returns** — `fixnum` ( The CAS value for the object stored. A fixed number )
+**Returns**  `fixnum` ( The CAS value for the object stored. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **object value** — Value to be stored
+**object value** Value to be stored
 
- * **hash ruby-replace-options** — Hash of options containing key/value pairs
+**hash ruby-replace-options** Hash of options containing key/value pairs
 
- * **Exceptions** —
+**Exceptions**
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
 
- * `Couchbase::Error::KeyExists` — Exception object indicating the CAS value does
-   not match the one for the record already on the server.
+`Couchbase::Error::KeyExists` Exception object indicating the CAS value does not
+match the one for the record already on the server.
 
- * `Couchbase::Error::NotFound` — Exception object specifying a given key cannot be
-   found in datastore.
+`Couchbase::Error::NotFound` Exception object specifying a given key cannot be
+found in datastore.
+
+
 
 The first form of the `replace` method updates an existing value setting while
 supporting the explicit setting of the expiry time on the item. For example to
@@ -1297,61 +1308,62 @@ key and value. The value is stored against the specified key, even if the key
 already exists and has data. This operation overwrites the existing with the new
 data.
 
- * **API Call** — `set(key, value, options)`
+**Signature**  `object.set(key, value, options)`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Store a value using the specified key, whether the key already
-   exists or not. Will overwrite a value if the given key/value already exists.
+**Description** Store a value using the specified key, whether the key already
+exists or not. Will overwrite a value if the given key/value already exists.
 
- * **Returns** — `fixnum` ( The CAS value for the object stored. A fixed number )
+**Returns**  `fixnum` ( The CAS value for the object stored. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **object value** — Value to be stored
+**object value** Value to be stored
 
- * **hash options** — Hash containing option/value pairs used during a set
-   operation.
+**hash options** Hash containing option/value pairs used during a set operation.
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:ttl` (int) — :ttl (Expiry) —
+`:ttl` (int) :ttl (Expiry)
 
- * — Time for document to exist in server before it is automatically destroyed.
-   This option symbol is :ttl and the value can be any number representing seconds.
+Time for document to exist in server before it is automatically destroyed. This
+option symbol is :ttl and the value can be any number representing seconds.
 
- * — `:flags` (fixnum) — Flags for storage options. —
+`:flags` (fixnum) Flags for storage options.
 
- * — Flags used during the set. These flags are ignored by the Couchbase server but
-   preserved for use by a client. This includes default flags recorded for new
-   values and was used as part of the memcached protocol.
+Flags used during the set. These flags are ignored by the Couchbase server but
+preserved for use by a client. This includes default flags recorded for new
+values and was used as part of the memcached protocol.
 
- * — `:format` (symbol) — How to represent value in storage. —
+`:format` (symbol) How to represent value in storage.
 
- * — Determines how a value is represented in storage. Possible values include
-   :document for JSON data, :plain for string storage, and :marshal to serialize
-   your ruby object using Marshall.dump and Marshal.load.
+Determines how a value is represented in storage. Possible values include
+:document for JSON data, :plain for string storage, and :marshal to serialize
+your ruby object using Marshall.dump and Marshal.load.
 
- * — `:cas` (fixnum) — CAS Value —
+`:cas` (fixnum) CAS Value
 
- * — The CAS value for an object. This value was created on the server and is
-   guaranteed to be unique for each value for a given key. You provide this value
-   as an option when you want basic optimistic concurrency control while doing
-   sets.
+The CAS value for an object. This value was created on the server and is
+guaranteed to be unique for each value for a given key. You provide this value
+as an option when you want basic optimistic concurrency control while doing
+sets.
 
- * **Exceptions** —
+**Exceptions**
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
 
- * `Couchbase::Error::KeyExists` — Exception object indicating the key already
-   exists on the server.
+`Couchbase::Error::KeyExists` Exception object indicating the key already exists
+on the server.
 
- * `Couchbase::Error::ValueFormat` — Exception object indicating the value cannot
-   be serialized with chosen encoder, e.g. if you try to store the Hash in :plain
-   mode.
+`Couchbase::Error::ValueFormat` Exception object indicating the value cannot be
+serialized with chosen encoder, e.g. if you try to store the Hash in :plain
+mode.
+
+
 
 Examples of using set as follows:
 
@@ -1406,17 +1418,19 @@ end
 
 The `flush` operation deletes all values in a Couchbase bucket.
 
- * **API Call** — `flush()`
+**Signature**  `object.flush()`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Deletes all values from the corresponding bucket
+**Description** Deletes all values from the corresponding bucket
 
- * **Returns** — `Boolean` ( Boolean (true/false) )
+**Returns**  `Boolean` ( Boolean (true/false) )
 
- * **Arguments** —
+**Arguments**
 
- * — None —
+None
+
+
 
 This operation is deprecated as of the 1.8.1 Couchbase Server, to prevent
 accidental, detrimental data loss. Use of this operation should be done only
@@ -1449,96 +1463,100 @@ exhaustive.
 The retrieve operations get information from the Couchbase database. A summary
 of the available API calls is listed below.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_get** — Get one or more
-   key values —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_get** Get one or more
+key values
 
- * **API Call** — `get(keyn [, ruby-get-options ] [, ruby-get-keys ])`
 
- * **Asynchronous** — no
 
- * **Description** — Get one or more key values
+**Signature**  `object.get(keyn [, ruby-get-options ] [, ruby-get-keys ])`
 
- * **Returns** — `hash` ( Container with key/value pairs )
+**Asynchronous** no
 
- * **Arguments** —
+**Description** Get one or more key values
 
- * **String/Symbol/Array/Hash keyn** — One or more keys used to reference a value
+**Returns**  `hash` ( Container with key/value pairs )
 
- * — **Structure definition:**
+**Arguments**
 
- * — `key` (string) — Key —
+**String/Symbol/Array/Hash keyn** One or more keys used to reference a value
 
- * — Key as string.
+**Structure definition:**
 
- * — `keys` (strings) — Keys —
+`key` (string) Key
 
- * — Comma-separated strings for each key, e.g. client.get( "foo", "bar")
+Key as string.
 
- * — `symbol` (symbol) — Symbol —
+`keys` (strings) Keys
 
- * — Symbol for each key to be retrieved, e.g. :foo.
+Comma-separated strings for each key, e.g. client.get( "foo", "bar")
 
- * — `hash` (hash) — Hash Key —
+`symbol` (symbol) Symbol
 
- * — Key-expiration pairs provided in a hash-map, e.g.  c.get("foo" => 10, "bar" =>
-   20). Returns has of key-values for given keys.
+Symbol for each key to be retrieved, e.g. :foo.
 
- * **hash ruby-get-options** — Hash of options containing key/value pairs
+`hash` (hash) Hash Key
 
- * — **Structure definition:**
+Key-expiration pairs provided in a hash-map, e.g.  c.get("foo" => 10, "bar" =>
+20). Returns has of key-values for given keys.
 
- * — `:extended` (boolean) — :extended —
+**hash ruby-get-options** Hash of options containing key/value pairs
 
- * — Default is false. If set to true, returns ordered with pairs. Pairs follow
-   this convention: key => value, flags, cas. If you are getting one key, returns
-   an array. More than one pair returned as a hash.
+**Structure definition:**
 
- * — `:ttl` (int) — :ttl (Expiry) —
+`:extended` (boolean) :extended
 
- * — Time for document to exist in server before it is automatically destroyed.
-   This option symbol is :ttl and the value can be any number representing seconds.
+Default is false. If set to true, returns ordered with pairs. Pairs follow this
+convention: key => value, flags, cas. If you are getting one key, returns an
+array. More than one pair returned as a hash.
 
- * — `:quiet` (boolean) — Quiet Mode —
+`:ttl` (int) :ttl (Expiry)
 
- * — Suppresses errors while in synchronous mode. Default is true. If set to true,
-   will return nil, and raise no error. In asynchronous mode, this option ignored.
+Time for document to exist in server before it is automatically destroyed. This
+option symbol is :ttl and the value can be any number representing seconds.
 
- * — `:format` (symbol) — How to represent value. —
+`:quiet` (boolean) Quiet Mode
 
- * — Determines how a value is represented. Default is nil. Explicitly choose the
-   decoder for this option (:plain, :document, :marshal).
+Suppresses errors while in synchronous mode. Default is true. If set to true,
+will return nil, and raise no error. In asynchronous mode, this option ignored.
 
- * **hash ruby-get-keys** — Hash of options containing key/value pairs
+`:format` (symbol) How to represent value.
 
- * — **Structure definition:**
+Determines how a value is represented. Default is nil. Explicitly choose the
+decoder for this option (:plain, :document, :marshal).
 
- * — `key` (string) — Key —
+**hash ruby-get-keys** Hash of options containing key/value pairs
 
- * — Key as string.
+**Structure definition:**
 
- * — `keys` (strings) — Keys —
+`key` (string) Key
 
- * — Comma-separated strings for each key, e.g. client.get( "foo", "bar")
+Key as string.
 
- * — `symbol` (symbol) — Symbol —
+`keys` (strings) Keys
 
- * — Symbol for each key to be retrieved, e.g. :foo.
+Comma-separated strings for each key, e.g. client.get( "foo", "bar")
 
- * — `hash` (hash) — Hash Key —
+`symbol` (symbol) Symbol
 
- * — Key-expiration pairs provided in a hash-map, e.g.  c.get("foo" => 10, "bar" =>
-   20). Returns has of key-values for given keys.
+Symbol for each key to be retrieved, e.g. :foo.
 
- * **Exceptions** —
+`hash` (hash) Hash Key
 
- * `ArgumentError` — Exception object indicating failed attempt to pass a block in
-   synchronous mode.
+Key-expiration pairs provided in a hash-map, e.g.  c.get("foo" => 10, "bar" =>
+20). Returns has of key-values for given keys.
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+**Exceptions**
 
- * `Couchbase::Error::NotFound` — Exception object specifying a given key cannot be
-   found in datastore.
+`ArgumentError` Exception object indicating failed attempt to pass a block in
+synchronous mode.
+
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
+
+`Couchbase::Error::NotFound` Exception object specifying a given key cannot be
+found in datastore.
+
+
 
 The `get` method obtains an object stored in Couchbase using the default
 transcoder for serialization of the object.
@@ -1621,32 +1639,34 @@ exhaustive.
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_append** — Append a
-   value to an existing key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_append** Append a value
+to an existing key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_cas** — Compare and set
-   a value providing the supplied CAS key matches —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_cas** Compare and set a
+value providing the supplied CAS key matches
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_decrement** — Decrement
-   the value of an existing numeric key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_decrement** Decrement
+the value of an existing numeric key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_delete** — Delete a
-   key/value —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_delete** Delete a
+key/value
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_flush** — Deletes all
-   values from the corresponding bucket —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_flush** Deletes all
+values from the corresponding bucket
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_increment** — Increment
-   the value of an existing numeric key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_increment** Increment
+the value of an existing numeric key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_prepend** — Prepend a
-   value to an existing key —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_prepend** Prepend a
+value to an existing key
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-many** — Update
-   the expiry time of an item —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-many** Update the
+expiry time of an item
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-one** — Update the
-   expiry time of an item —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-one** Update the
+expiry time of an item
+
+
 
 <a id="couchbase-sdk-ruby-update-append"></a>
 
@@ -1666,49 +1686,51 @@ the integer. It will not contain an updated array with the new integer appended
 to it. De-serialization of objects that have had data appended may result in
 data corruption.
 
- * **API Call** — `append(key, value [, ruby-append-options ])`
+**Signature**  `object.append(key, value [, ruby-append-options ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Append a value to an existing key
+**Description** Append a value to an existing key
 
- * **Returns** — `fixnum` ( The CAS value for the object stored. A fixed number )
+**Returns**  `fixnum` ( The CAS value for the object stored. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **object value** — Value to be stored
+**object value** Value to be stored
 
- * **hash ruby-append-options** — Hash of options containing key/value pairs
+**hash ruby-append-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:cas` (fixnum) — CAS Value —
+`:cas` (fixnum) CAS Value
 
- * — The CAS value for an object. This value was created on the server and is
-   guaranteed to be unique for each value for a given key. You provide this value
-   as an option when you want basic optimistic concurrency control while doing
-   sets.
+The CAS value for an object. This value was created on the server and is
+guaranteed to be unique for each value for a given key. You provide this value
+as an option when you want basic optimistic concurrency control while doing
+sets.
 
- * — `:format` (symbol) — How to represent value in storage. —
+`:format` (symbol) How to represent value in storage.
 
- * — Determines how a value is represented in storage. Possible values include
-   :plain for string storage.
+Determines how a value is represented in storage. Possible values include :plain
+for string storage.
 
- * **Exceptions** —
+**Exceptions**
 
- * `ArgumentError` — Exception object indicating failed attempt to pass a block in
-   synchronous mode.
+`ArgumentError` Exception object indicating failed attempt to pass a block in
+synchronous mode.
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
 
- * `Couchbase::Error::KeyExists` — Exception object indicating the key already
-   exists on the server.
+`Couchbase::Error::KeyExists` Exception object indicating the key already exists
+on the server.
 
- * `Couchbase::Error::NotStored` — Exception object indicating the key/value does
-   not exist in the database.
+`Couchbase::Error::NotStored` Exception object indicating the key/value does not
+exist in the database.
+
+
 
 The `append` appends information to the end of an existing key/value pair. The
 `append` function requires a CAS value. For more information on CAS values, see
@@ -1792,43 +1814,45 @@ Error::KeyExists.
 
 CAS stands for "compare and swap", and avoids the need for manual key mutexing.
 
- * **API Call** — `cas(key [, ruby-cas-options ])`
+**Signature**  `object.cas(key [, ruby-cas-options ])`
 
- * **Asynchronous** — yes
+**Asynchronous** yes
 
- * **Description** — Compare and set a value providing the supplied CAS key matches
+**Description** Compare and set a value providing the supplied CAS key matches
 
- * **Returns** —( Check and set object )
+**Returns** ( Check and set object )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **hash ruby-cas-options** — Hash of options containing key/value pairs
+**hash ruby-cas-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:ttl` (int) — :ttl (Expiration) —
+`:ttl` (int) :ttl (Expiration)
 
- * — Time for document to exist in server before it is automatically destroyed.
-   This option symbol is :ttl and the value can be any number representing seconds.
+Time for document to exist in server before it is automatically destroyed. This
+option symbol is :ttl and the value can be any number representing seconds.
 
- * — `:format` (symbol) — How to represent value in storage. —
+`:format` (symbol) How to represent value in storage.
 
- * — Determines how a value is represented in storage. Possible values include
-   :document for JSON data, :plain for string storage, and :marshal to serialize
-   your ruby object using Marshall.dump and Marshal.load.
+Determines how a value is represented in storage. Possible values include
+:document for JSON data, :plain for string storage, and :marshal to serialize
+your ruby object using Marshall.dump and Marshal.load.
 
- * — `:flags` (fixnum) — Flags for storage options. —
+`:flags` (fixnum) Flags for storage options.
 
- * — Flags used during the commit. These flags are ignored by the Couchbase server
-   but preserved for use by a client. This includes default flags recorded for new
-   values and was used as part of the memcached protocol.
+Flags used during the commit. These flags are ignored by the Couchbase server
+but preserved for use by a client. This includes default flags recorded for new
+values and was used as part of the memcached protocol.
 
- * **Exceptions** —
+**Exceptions**
 
- * `Couchbase::Error::KeyExists` — Exception object indicateing the key was updated
-   before the codeblock has completed and therefore the CAS value had changed.
+`Couchbase::Error::KeyExists` Exception object indicateing the key was updated
+before the codeblock has completed and therefore the CAS value had changed.
+
+
 
 The following illustrates use of the `cas` function:
 
@@ -1859,47 +1883,49 @@ level to eliminate the need to get, update, and reset a simple integer value in
 the database. All the Ruby Client Library methods support the use of an explicit
 offset value that will be used to reduce the stored value in the database.
 
- * **API Call** — `decrement(key [, offset ] [, ruby-incr-decr-options ])`
+**Signature**  `object.decrement(key [, offset ] [, ruby-incr-decr-options ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Decrement the value of an existing numeric key. The Couchbase
-   Server stores numbers as unsigned values. Therefore the lowest you can decrement
-   is to zero.
+**Description** Decrement the value of an existing numeric key. The Couchbase
+Server stores numbers as unsigned values. Therefore the lowest you can decrement
+is to zero.
 
- * **Returns** — `fixnum` ( Value for a given key. A fixed number )
+**Returns**  `fixnum` ( Value for a given key. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **offset** — Integer offset value to increment/decrement (default 1)
+**offset** Integer offset value to increment/decrement (default 1)
 
- * **hash ruby-incr-decr-options** — Hash of options containing key/value pairs
+**hash ruby-incr-decr-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:create` (boolean) — :create —
+`:create` (boolean) :create
 
- * — Default is false. If set to true, it will initialize the key with zero value
-   and zero flags (use :initial option to set another initial value). Note: this
-   will not increment or decrement the missing value once it is initialized.
+Default is false. If set to true, it will initialize the key with zero value and
+zero flags (use :initial option to set another initial value). Note: this will
+not increment or decrement the missing value once it is initialized.
 
- * — `:initial` (fixnum) — :create —
+`:initial` (fixnum) :create
 
- * — Default is 0. Can be an integer (up to 64 bits) for missing key
-   initialization. This option automatically implies the :create option is true,
-   regardless of the setting.
+Default is 0. Can be an integer (up to 64 bits) for missing key initialization.
+This option automatically implies the :create option is true, regardless of the
+setting.
 
- * — `:ttl` (int) — :ttl (Expiration) —
+`:ttl` (int) :ttl (Expiration)
 
- * — Time for document to exist in server before it is automatically destroyed.
-   This option symbol is :ttl and the value can be any number representing seconds.
+Time for document to exist in server before it is automatically destroyed. This
+option symbol is :ttl and the value can be any number representing seconds.
 
- * — `:extended` (boolean) — :extended —
+`:extended` (boolean) :extended
 
- * — Default is false. If set to true, the operation will return an array, \[value,
-   cas\], otherwise it returns just the value.
+Default is false. If set to true, the operation will return an array, \[value,
+cas\], otherwise it returns just the value.
+
+
 
 The first form of the `decr` method accepts the keyname and offset value to be
 used when reducing the server-side integer. For example, to decrement the server
@@ -1964,47 +1990,49 @@ end
 The `delete` method deletes an item in the database with the specified key.
 Delete operations are synchronous only.
 
- * **API Call** — `delete(key [, ruby-delete-options ])`
+**Signature**  `object.delete(key [, ruby-delete-options ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Delete a key/value
+**Description** Delete a key/value
 
- * **Returns** — `Boolean` ( Boolean (true/false) )
+**Returns**  `Boolean` ( Boolean (true/false) )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **hash ruby-delete-options** — Hash of options containing key/value pairs
+**hash ruby-delete-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:quiet` (boolean) — :quiet —
+`:quiet` (boolean) :quiet
 
- * — If set to true, the operation returns nil for failure. Otherwise it will raise
-   error in synchronous mode. In asynchronous mode this option ignored.
+If set to true, the operation returns nil for failure. Otherwise it will raise
+error in synchronous mode. In asynchronous mode this option ignored.
 
- * — `:cas` (fixnum) — :cas —
+`:cas` (fixnum) :cas
 
- * — The CAS value for an object. This value created on the server and is
-   guaranteed to be unique for each value of a given key. This value is used to
-   provide simple optimistic concurrency control when multiple clients or threads
-   try to update/delete an item simultaneously.
+The CAS value for an object. This value created on the server and is guaranteed
+to be unique for each value of a given key. This value is used to provide simple
+optimistic concurrency control when multiple clients or threads try to
+update/delete an item simultaneously.
 
- * **Exceptions** —
+**Exceptions**
 
- * `ArgumentError` — Exception object indicating failed attempt to pass a block in
-   synchronous mode.
+`ArgumentError` Exception object indicating failed attempt to pass a block in
+synchronous mode.
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
 
- * `Couchbase::Error::KeyExists` — Exception object indicating mismatch of given
-   cas and cas for record.
+`Couchbase::Error::KeyExists` Exception object indicating mismatch of given cas
+and cas for record.
 
- * `Couchbase::Error::NotFound` — Exception object indicating key is missing.
-   Occurs in verbose mode.
+`Couchbase::Error::NotFound` Exception object indicating key is missing. Occurs
+in verbose mode.
+
+
 
 For example, to delete an item you might use code similar to the following:
 
@@ -2051,49 +2079,51 @@ basis; updating the value of a key if it can be parsed to an integer. The update
 operation occurs on the server and is provided at the protocol level. This
 simplifies what would otherwise be a two-stage get and set operation.
 
- * **API Call** — `increment(key [, offset ] [, ruby-incr-decr-options ])`
+**Signature**  `object.increment(key [, offset ] [, ruby-incr-decr-options ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Increment the value of an existing numeric key. Couchbase
-   Server stores numbers as unsigned numbers, therefore if you try to increment an
-   existing negative number, it will cause an integer overflow and return a
-   non-logical numeric result. If a key does not exist, this method will initialize
-   it with the zero or a specified value.
+**Description** Increment the value of an existing numeric key. Couchbase Server
+stores numbers as unsigned numbers, therefore if you try to increment an
+existing negative number, it will cause an integer overflow and return a
+non-logical numeric result. If a key does not exist, this method will initialize
+it with the zero or a specified value.
 
- * **Returns** — `fixnum` ( Value for a given key. A fixed number )
+**Returns**  `fixnum` ( Value for a given key. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **offset** — Integer offset value to increment/decrement (default 1)
+**offset** Integer offset value to increment/decrement (default 1)
 
- * **hash ruby-incr-decr-options** — Hash of options containing key/value pairs
+**hash ruby-incr-decr-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:create` (boolean) — :create —
+`:create` (boolean) :create
 
- * — Default is false. If set to true, it will initialize the key with zero value
-   and zero flags (use :initial option to set another initial value). Note: this
-   will not increment or decrement the missing value once it is initialized.
+Default is false. If set to true, it will initialize the key with zero value and
+zero flags (use :initial option to set another initial value). Note: this will
+not increment or decrement the missing value once it is initialized.
 
- * — `:initial` (fixnum) — :create —
+`:initial` (fixnum) :create
 
- * — Default is 0. Can be an integer (up to 64 bits) for missing key
-   initialization. This option automatically implies the :create option is true,
-   regardless of the setting.
+Default is 0. Can be an integer (up to 64 bits) for missing key initialization.
+This option automatically implies the :create option is true, regardless of the
+setting.
 
- * — `:ttl` (int) — :ttl (Expiration) —
+`:ttl` (int) :ttl (Expiration)
 
- * — Time for document to exist in server before it is automatically destroyed.
-   This option symbol is :ttl and the value can be any number representing seconds.
+Time for document to exist in server before it is automatically destroyed. This
+option symbol is :ttl and the value can be any number representing seconds.
 
- * — `:extended` (boolean) — :extended —
+`:extended` (boolean) :extended
 
- * — Default is false. If set to true, the operation will return an array, \[value,
-   cas\], otherwise it returns just the value.
+Default is false. If set to true, the operation will return an array, \[value,
+cas\], otherwise it returns just the value.
+
+
 
 The first form of the `incr` method accepts the keyname and offset (increment)
 value to be used when increasing the server-side integer. For example, to
@@ -2174,49 +2204,51 @@ key. Note that as with the `append` method, the information will be inserted
 before the existing binary data stored in the key, which means that
 serialization of complex objects may lead to corruption when using `prepend`.
 
- * **API Call** — `prepend(key, value [, ruby-prepend-options ])`
+**Signature**  `object.prepend(key, value [, ruby-prepend-options ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Prepend a value to an existing key
+**Description** Prepend a value to an existing key
 
- * **Returns** — `fixnum` ( The CAS value for the object stored. A fixed number )
+**Returns**  `fixnum` ( The CAS value for the object stored. A fixed number )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **object value** — Value to be stored
+**object value** Value to be stored
 
- * **hash ruby-prepend-options** — Hash of options containing key/value pairs
+**hash ruby-prepend-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:cas` (fixnum) — CAS Value —
+`:cas` (fixnum) CAS Value
 
- * — The CAS value for an object. This value was created on the server and is
-   guaranteed to be unique for each value for a given key. You provide this value
-   as an option when you want basic optimistic concurrency control while doing
-   sets.
+The CAS value for an object. This value was created on the server and is
+guaranteed to be unique for each value for a given key. You provide this value
+as an option when you want basic optimistic concurrency control while doing
+sets.
 
- * — `:format` (symbol) — How to represent value in storage. —
+`:format` (symbol) How to represent value in storage.
 
- * — Determines how a value is represented in storage. Possible values include
-   :plain for string storage.
+Determines how a value is represented in storage. Possible values include :plain
+for string storage.
 
- * **Exceptions** —
+**Exceptions**
 
- * `ArgumentError` — Exception object indicating failed attempt to pass a block in
-   synchronous mode.
+`ArgumentError` Exception object indicating failed attempt to pass a block in
+synchronous mode.
 
- * `Couchbase::Error::Connect` — Exception object specifying failure to connect to
-   a node.
+`Couchbase::Error::Connect` Exception object specifying failure to connect to a
+node.
 
- * `Couchbase::Error::KeyExists` — Exception object indicating the key already
-   exists on the server.
+`Couchbase::Error::KeyExists` Exception object indicating the key already exists
+on the server.
 
- * `Couchbase::Error::NotStored` — Exception object indicating the key/value does
-   not exist in the database.
+`Couchbase::Error::NotStored` Exception object indicating the key/value does not
+exist in the database.
+
+
 
 For example, to prepend a string to an existing key:
 
@@ -2278,30 +2310,33 @@ session active and available.
 
 In Ruby, `touch` can be used to update or more keys.
 
- * **API Call** — `touch-one(key [, ruby-touch-options ] [, ruby-touch-keys ])`
+**Signature**  `object.touch-one(key [, ruby-touch-options ] [, ruby-touch-keys
+])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Update the expiry time of an item
+**Description** Update the expiry time of an item
 
- * **Returns** — `Boolean` ( Boolean (true/false) )
+**Returns**  `Boolean` ( Boolean (true/false) )
 
- * **Arguments** —
+**Arguments**
 
- * **string key** — Document ID used to identify the value
+**string key** Document ID used to identify the value
 
- * **hash ruby-touch-options** — Hash of options containing key/value pairs
+**hash ruby-touch-options** Hash of options containing key/value pairs
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `:ttl` (fixnum) — :ttl —
+`:ttl` (fixnum) :ttl
 
- * — Expiration time for record. Default is indefinite, meaning the record will
-   remain until an explicit delete command is made. Values larger than
-   30\*24\*60\*60 seconds (30 days) are interpreted as absolute times from the
-   epoch.
+Expiration time for record. Default is indefinite, meaning the record will
+remain until an explicit delete command is made. Values larger than
+30\*24\*60\*60 seconds (30 days) are interpreted as absolute times from the
+epoch.
 
- * **hash ruby-touch-keys** — Hash of options containing key/value pairs
+**hash ruby-touch-keys** Hash of options containing key/value pairs
+
+
 
 The following examples demonstrate use of `touch` with a single key:
 
@@ -2320,36 +2355,38 @@ c.touch("foo", :ttl => 10)
 c.touch("foo" => 10)
 ```
 
- * **API Call** — `touch-many(keyn)`
+**Signature**  `object.touch-many(keyn)`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Update the expiry time of an item
+**Description** Update the expiry time of an item
 
- * **Returns** — `hash` ( Container with key/value pairs )
+**Returns**  `hash` ( Container with key/value pairs )
 
- * **Arguments** —
+**Arguments**
 
- * **String/Symbol/Array/Hash keyn** — One or more keys used to reference a value
+**String/Symbol/Array/Hash keyn** One or more keys used to reference a value
 
- * — **Structure definition:**
+**Structure definition:**
 
- * — `key` (string) — Key —
+`key` (string) Key
 
- * — Key as string.
+Key as string.
 
- * — `keys` (strings) — Keys —
+`keys` (strings) Keys
 
- * — Comma-separated strings for each key, e.g. client.get( "foo", "bar")
+Comma-separated strings for each key, e.g. client.get( "foo", "bar")
 
- * — `symbol` (symbol) — Symbol —
+`symbol` (symbol) Symbol
 
- * — Symbol for each key to be retrieved, e.g. :foo.
+Symbol for each key to be retrieved, e.g. :foo.
 
- * — `hash` (hash) — Hash Key —
+`hash` (hash) Hash Key
 
- * — Key-expiration pairs provided in a hash-map, e.g.  c.get("foo" => 10, "bar" =>
-   20). Returns has of key-values for given keys.
+Key-expiration pairs provided in a hash-map, e.g.  c.get("foo" => 10, "bar" =>
+20). Returns has of key-values for given keys.
+
+
 
 The following examples demonstrate use of `touch` with multiple keys, which are
 provided as a hash:
@@ -2385,8 +2422,10 @@ The Couchbase Ruby Client Library includes support for obtaining statistic
 information from all of the servers defined within a couchbase object. A summary
 of the commands is provided below.
 
- * **Couldn't resolve link tag: table-couchbase-sdk\_ruby\_stats** — Get the
-   database statistics —
+**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_stats** Get the database
+statistics
+
+
 
 
 ```
@@ -2420,18 +2459,19 @@ statistics for that server as key value pairs.
 }
 ```
 
- * **API Call** — `stats([ statname ])`
+**Signature**  `object.stats([ statname ])`
 
- * **Asynchronous** — no
+**Asynchronous** no
 
- * **Description** — Get the database statistics
+**Description** Get the database statistics
 
- * **Returns** — `object` ( Binary object )
+**Returns**  `object` ( Binary object )
 
- * **Arguments** —
+**Arguments**
 
- * **statname** — Group name of a statistic for selecting individual statistic
-   value
+**statname** Group name of a statistic for selecting individual statistic value
+
+
 
 <a id="api-reference-view"></a>
 
@@ -2609,6 +2649,80 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
+
+<a id="couchbase-sdk-ruby-rn_1-2-2"></a>
+
+## Release Notes for Couchbase Client Library Ruby 1.2.2 GA (11 Fabruary 2013)
+
+**New Features and Behaviour Changes in 1.2.2**
+
+ * EventMachine plugin to integrate with EventMachine library. Note that the engine
+   is experimental at this stage. Example:
+
+    ```
+    require 'eventmachine'
+    require 'couchbase'
+
+    EM.epoll = true if EM.epoll?
+    EM.kqueue = true if EM.kqueue?
+    EM.run do
+     con = Couchbase.connect(:engine => :eventmachine, :async => true)
+     con.on_connect do |res|
+     puts "connected: #{res.inspect}"
+     if res.success?
+     con.set("emfoo", "bar") do |res|
+     puts "set: #{res.inspect}"
+     con.get("emfoo") do |res|
+     puts "get: #{res.inspect}"
+     EM.stop
+     end
+     end
+     else
+     EM.stop
+     end
+     end
+    end
+    ```
+
+ * Allow to use Bucket instance in completely asynchronous environment like this,
+   without blocking on connect:
+
+    ```
+    conn = Couchbase.new(:async => true)
+    conn.run do
+     conn.on_connect do |res|
+     if res.success?
+     #
+     # schedule async requests
+     #
+     end
+     end
+    end
+    ```
+
+ * View\#fetch\_all - async method for fetching all records
+
+    ```
+    conn.run do
+     doc.recent_posts.fetch_all do |posts|
+     do_something_with_all_posts(posts)
+     end
+    end
+    ```
+
+**Fixes in 1.2.2**
+
+ * Data corruption on intensive store operations. The issue could also lead to
+   segfaults.
+
+   *Issues* : [RCBC-104](http://www.couchbase.com/issues/browse/RCBC-104)
+
+ * Alias \#total\_rows as \#total\_entries on view result set to match
+   documentation.
+
+   *Issues* : [RCBC-118](http://www.couchbase.com/issues/browse/RCBC-118)
+
+ * Bucket\#design\_docs will return a Hash with DesignDoc instances as a values.
 
 <a id="couchbase-sdk-ruby-rn_1-2-1"></a>
 
