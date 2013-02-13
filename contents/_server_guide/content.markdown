@@ -379,7 +379,7 @@ performance database.
 
 <a id="couchbase-introduction-architecture-nodes"></a>
 
-## Nodes and Clusters
+### Nodes and Clusters
 
 Couchbase Server can be used either in a standalone configuration, or in a
 cluster configuration where multiple Couchbase Servers are connected together to
@@ -412,7 +412,7 @@ In this description:
 
 <a id="couchbase-introduction-architecture-clustermanager"></a>
 
-## Cluster Manager
+### Cluster Manager
 
 Every node within a Couchbase Cluster includes the Cluster Manager component.
 The Cluster Manager is responsible for the following within a cluster:
@@ -441,7 +441,7 @@ access. Additional ports are configured for inter-node communication.
 
 <a id="couchbase-introduction-architecture-buckets"></a>
 
-## Buckets
+### Buckets
 
 Couchbase Server provides data management services using named buckets. These
 are isolated virtual containers for data. A bucket is a logical grouping of
@@ -533,7 +533,7 @@ over time.
 
 <a id="couchbase-introduction-architecture-quotas"></a>
 
-## RAM Quotas
+### RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
 the **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
@@ -582,7 +582,7 @@ Quotas](couchbase-manual-ready.html#couchbase-admin-tasks-quotas).
 
 <a id="couchbase-introduction-architecture-vbuckets"></a>
 
-## vBuckets
+### vBuckets
 
 A vBucket is defined as the *owner* of a subset of the key space of a Couchbase
 cluster. These vBuckets are used to allow information to be distributed
@@ -644,7 +644,7 @@ communicates directly with Server D to obtain the information.
 
 <a id="couchbase-introduction-architecture-datainram"></a>
 
-## Caching Layer
+### Caching Layer
 
 The architecture of Couchbase Server includes a built-in caching layer. This
 caching layer acts as a central part of the server and provides very rapid reads
@@ -667,7 +667,7 @@ layer and data persistence layer is handled entirely by server.
 
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
 
-## Ejection, Eviction and Working Set Management
+### Ejection, Eviction and Working Set Management
 
 *Ejection* is a process automatically performed by Couchbase Server; it is the
 process of removing data from RAM to provide room for frequently-used items.
@@ -691,7 +691,7 @@ Management](couchbase-manual-ready.html#couchbase-admin-tasks-working-set-mgmt).
 
 <a id="couchbase-introduction-architecture-expiration"></a>
 
-## Expiration
+### Expiration
 
 Each document stored in the database has an optional expiration value (TTL, time
 to live). The default is for there to be no expiration, i.e. the information
@@ -712,7 +712,7 @@ be removed from the system, freeing up RAM and disk for more active data.
 
 <a id="couchbase-introduction-architecture-diskstorage"></a>
 
-## Disk Storage
+### Disk Storage
 
 For performance, Couchbase Server prefers to store and provide information to
 clients using RAM. However, this is not always possible or desirable in an
@@ -780,7 +780,7 @@ erratic performance.
 
 <a id="couchbase-introduction-architecture-warmup"></a>
 
-## Server Warmup
+### Server Warmup
 
 Anytime you restart the Couchbase Server, or when you restore data to a server
 instance, the server must undergo a *warmup* process before it can handle
@@ -800,7 +800,7 @@ Warmup](couchbase-manual-ready.html#couchbase-admin-tasks-warmup-access).
 
 <a id="couchbase-introduction-architecture-rebalancing"></a>
 
-## Rebalancing
+### Rebalancing
 
 The way data is stored within Couchbase Server is through the distribution
 offered by the vBucket structure. If you want to expand or shrink your Couchbase
@@ -827,7 +827,7 @@ support the system.
 
 <a id="couchbase-introduction-architecture-replication"></a>
 
-## Replicas and Replication
+### Replicas and Replication
 
 In addition to distributing information across the cluster for even data
 distribution and cluster performance, you can also establish *replica vBuckets*
@@ -857,7 +857,7 @@ replication between clusters via XDCR see [Cross Datacenter Replication
 
 <a id="couchbase-introduction-architecture-failover"></a>
 
-## Failover
+### Failover
 
 Information is distributed around a cluster using a series of replicas. For
 Couchbase buckets you can configure the number of **Unhandled:** `[:unknown-tag
@@ -883,7 +883,7 @@ Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
 
 <a id="couchbase-introduction-architecture-tap"></a>
 
-## TAP
+### TAP
 
 The TAP protocol is an internal part of the Couchbase Server system and is used
 in a number of different areas to exchange data throughout the system. TAP
@@ -895,7 +895,7 @@ redestribute the information across the system.
 
 <a id="couchbase-introduction-architecture-clientinterface"></a>
 
-## Client Interface
+### Client Interface
 
 Within Couchbase Server, the techniques and systems used to get information into
 and out of the database differ according to the level and volume of data that
@@ -964,7 +964,7 @@ way you work with storing data in Couchbase Server.
 
 <a id="couchbase-introduction-architecture-administration"></a>
 
-## Administration Tools
+### Administration Tools
 
 Couchbase Server was designed to be as easy to use as possible, and does not
 require constant attention. Administration is however offered in a number of
@@ -1006,7 +1006,7 @@ Couchbase Server and cluster:
 
 <a id="couchbase-introduction-architecture-stats"></a>
 
-## Statistics and Monitoring
+### Statistics and Monitoring
 
 In order to understand what your cluster is doing and how it is performing,
 Couchbase Server incorporates a complete set of statistical and monitoring
@@ -1067,7 +1067,7 @@ understanding of the main concepts and terms.
 
 <a id="couchbase-introduction-migration-membase"></a>
 
-## Migrating for Membase Users
+### Migrating for Membase Users
 
 For an existing Membase user the primary methods for creating, adding,
 manipulating and retrieving data remain the same. In addition, the background
@@ -1154,7 +1154,7 @@ the basic running of a Membase cluster.
 
 <a id="couchbase-introduction-migration-couchdb"></a>
 
-## Migrating for CouchDB Users
+### Migrating for CouchDB Users
 
 Although Couchbase Server incorporates the view engine functionality built into
 CouchDB, the bulk of the rest of the functionality is supported through the
@@ -1293,7 +1293,7 @@ system requirements.
 
 <a id="couchbase-getting-started-prepare-platforms"></a>
 
-## Supported Platforms
+### Supported Platforms
 
 The following operating systems are supported:
 
@@ -1350,7 +1350,7 @@ The following operating systems are supported:
 
 <a id="couchbase-getting-started-prepare-hardware"></a>
 
-## Hardware Requirements
+### Hardware Requirements
 
 The following hardware requirements are recommended for installation:
 
@@ -1387,7 +1387,7 @@ will need additional RAM.
 
 <a id="couchbase-getting-started-prepare-storage"></a>
 
-## Storage Requirements
+### Storage Requirements
 
 For running Couchbase Server you must have the following storage available:
 
@@ -1398,7 +1398,7 @@ For running Couchbase Server you must have the following storage available:
 
 <a id="couchbase-getting-started-prepare-browser"></a>
 
-## Web Browser (for administration)
+### Web Browser (for administration)
 
 The Couchbase Server administration interface is supported using the following
 Web browsers, with Javascript support enabled:
@@ -1427,7 +1427,7 @@ Web browsers, with Javascript support enabled:
 
 <a id="couchbase-network-ports"></a>
 
-## Network Ports
+### Network Ports
 
 Couchbase Server uses a number of different network ports for communication
 between the different components of the server, and for communicating with
@@ -1497,7 +1497,7 @@ To perform an upgrade installation while reatining your existing datasset, see
 
 <a id="couchbase-getting-started-install-redhat"></a>
 
-## Red Hat Linux Installation
+### Red Hat Linux Installation
 
 The RedHat installation uses the RPM package. Installation is supported on
 RedHat and RedHat based operating systems such as CentOS.
@@ -1549,7 +1549,7 @@ Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-ubuntu"></a>
 
-## Ubuntu Linux Installation
+### Ubuntu Linux Installation
 
 The Ubuntu installation uses the DEB package.
 
@@ -1609,7 +1609,7 @@ Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-win"></a>
 
-## Microsoft Windows Installation
+### Microsoft Windows Installation
 
 To install on Windows you must download the Windows installer package. This is
 supplied as an Windows executable. You can install the package either using the
@@ -1627,7 +1627,7 @@ Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
 
 <a id="couchbase-getting-started-install-win-gui"></a>
 
-## GUI Installation
+### GUI Installation
 
 To use the GUI installer, double click on the downloaded executable file. The
 installer for windows will detect if any redistributable packages included with
@@ -1683,7 +1683,7 @@ Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-win-unattended"></a>
 
-## Unattended Installation
+### Unattended Installation
 
 The unattended installation process works by first recording your required
 installation settings using the GUI installation process outlined above which
@@ -1716,7 +1716,7 @@ package and the `setup.iss` file to each machine.
 
 <a id="couchbase-getting-started-install-macosx"></a>
 
-## Mac OS X Installation
+### Mac OS X Installation
 
 Couchbase Server on Mac OS X is for development purposes only.
 
@@ -1828,7 +1828,7 @@ Before beginning any upgrade, a backup should be taken as a best practice, see
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0"></a>
 
-## Upgrading from Couchbase Server 1.8.x to Couchbase Server 2.0.x
+### Upgrading from Couchbase Server 1.8.x to Couchbase Server 2.0.x
 
 You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.0 using either
 the online or offline upgrade method. If you are running Couchbase Server 1.8.0
@@ -1847,7 +1847,7 @@ the migration and update of the data.
 
 **Unhandled:** `[:unknown-tag :important]`<a id="couchbase-getting-started-upgrade-1-8-2-0-macnotes"></a>
 
-## Mac OS X Notes for 1.8 to 2.0 Upgrade
+### Mac OS X Notes for 1.8 to 2.0 Upgrade
 
 When you upgrade Couchbase Server 1.8 to Couchbase Server 2.0 on Mac OS X, you
 should perform the following in order for the latest version of the server to
@@ -1872,7 +1872,7 @@ work:
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-linuxnotes"></a>
 
-## Linux Notes for 1.8 to 2.0 Upgrade
+### Linux Notes for 1.8 to 2.0 Upgrade
 
 When upgrading Couchbase Server 1.8 to Couchbase Server 2.0 on Linux, you should
 be aware of the following requirements:
@@ -1906,7 +1906,7 @@ be aware of the following requirements:
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-windowsnotes"></a>
 
-## Windows Notes for 1.8 to 2.0 Upgrade
+### Windows Notes for 1.8 to 2.0 Upgrade
 
 When upgrading Couchbase Server 1.8 to Couchbase Server 2.0 on Windows, you
 should be aware of the following requirements:
@@ -1935,7 +1935,7 @@ should be aware of the following requirements:
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
 
-## Upgrade Process Notes 1.8 to 2.0
+### Upgrade Process Notes 1.8 to 2.0
 
 Upgrades can be performed using either the online or offline upgrade methods, as
 outlined below:
@@ -2000,7 +2000,7 @@ outlined below:
 
 <a id="couchbase-getting-started-upgrade-online"></a>
 
-## Online Upgrade Process
+### Online Upgrade Process
 
 Within an online upgrade, the upgrade process can take place without taking down
 the cluster or the associated application. This means that the cluster and
@@ -2073,7 +2073,7 @@ order to upgrade the entire cluster to the new version.
 
 <a id="couchbase-getting-started-upgrade-online-swap"></a>
 
-## Online Upgrade to Couchbase Server Using Swap Rebalance
+### Online Upgrade to Couchbase Server Using Swap Rebalance
 
 You can make use of the Swap Rebalance feature to easily and simply upgrade your
 servers to Couchbase Server 2.0, without reducing the performance of your
@@ -2107,7 +2107,7 @@ Once complete, your entire cluster should now be running Couchbase Server 2.0.
 
 <a id="couchbase-getting-started-upgrade-offline"></a>
 
-## Offline Upgrade Process
+### Offline Upgrade Process
 
 The offline upgrade process requires you to shutdown all the applications using
 the cluster, and the entire Couchbase Server cluster. With the cluster switched
@@ -2151,7 +2151,7 @@ on the upgraded cluster.
 
 <a id="couchbase-getting-started-upgrade-individual"></a>
 
-## Node Upgrade Process
+### Node Upgrade Process
 
 **Unhandled:** `[:unknown-tag :important]` Whether you are performing an online
 or offline upgrade, the steps for upgrading an individual node, including the
@@ -2271,7 +2271,7 @@ shutdown, installation, and start-up process remains the same:
 
 <a id="couchbase-getting-started-upgrade-cetoee"></a>
 
-## Upgrading from Community Edition to Enterprise Edition
+### Upgrading from Community Edition to Enterprise Edition
 
 To upgrade between Couchbase Server Community Edition and Couchbase Server
 Enterprise Edition, you can use two methods:
@@ -2571,7 +2571,7 @@ Telnet](couchbase-manual-ready.html#couchbase-getting-started-testing-telnet).
 
 <a id="couchbase-getting-started-testing-cbworkloadgen"></a>
 
-## Testing Couchbase Server using cbworkloadgen
+### Testing Couchbase Server using cbworkloadgen
 
 The `cbworkloadgen` is a basic tool that can be used to check the availability
 and connectivity of a Couchbase Server cluster. The tool executes a number of
@@ -2601,7 +2601,7 @@ shell> cbworkloadgen -n localhost:8091 --items=100000
 
 <a id="couchbase-getting-started-testing-telnet"></a>
 
-## Testing Couchbase Server using Telnet
+### Testing Couchbase Server using Telnet
 
 You can test your Couchbase Server installation by using Telnet to connect to
 the server and using the Memcached text protocol. This is the simplest method
@@ -2818,7 +2818,7 @@ platform-specific links:
 
 <a id="couchbase-admin-basics-running-linux"></a>
 
-## Startup and Shutdown on Linux
+### Startup and Shutdown on Linux
 
 On Linux, Couchbase Server is installed as a standalone application with support
 for running as a background (daemon) process during startup through the use of a
@@ -2844,7 +2844,7 @@ shell> sudo /etc/init.d/couchbase-server stop
 
 <a id="couchbase-admin-basics-running-windows"></a>
 
-## Startup and Shutdown on Windows
+### Startup and Shutdown on Windows
 
 On Windows, Couchbase Server is installed as a Windows service. You can use the
 `Services` tab within the Windows Task Manager to start and stop Couchbase
@@ -2894,7 +2894,7 @@ shell> C:\Program Files\Couchbase\Server\bin\service_stop.bat
 
 <a id="couchbase-admin-basics-running-macosx"></a>
 
-## Startup and Shutdown on Mac OS X
+### Startup and Shutdown on Mac OS X
 
 On Mac OS X, Couchbase Server is supplied as a standard application. You can
 start Couchbase Server by double clicking on the application. Couchbase Server
@@ -3074,14 +3074,14 @@ each limit will be increased linearly as the cluster size is increased.
 
 <a id="couchbase-bestpractice-sizing-ram"></a>
 
-## RAM Sizing
+### RAM Sizing
 
 RAM is usually the most critical sizing parameter. It's also the one that can
 have the biggest impact on performance and stability.
 
 <a id="couchbase-bestpractice-sizing-ram-workingset"></a>
 
-## Working Set
+### Working Set
 
 Before we can decide how much memory will we need for the cluster, we should
 understand the concept of a 'working set'. The 'working set' at any point of
@@ -3090,7 +3090,7 @@ your working set to live in memory.
 
 <a id="couchbase-bestpractice-sizing-ram-memoryquota"></a>
 
-## Memory quota
+### Memory quota
 
 It is very important that a Couchbase cluster is sized in accordance with the
 working set size and total data you expect.
@@ -3196,7 +3196,7 @@ per\_node\_ram\_quota as there maybe other programs running on your machine.
 
 <a id="couchbase-bestpractice-sizing-disk"></a>
 
-## Disk Throughput and Sizing
+### Disk Throughput and Sizing
 
 One of the big advantages that Couchbase Server provides is the decoupling of
 disk IO and RAM. This basic concept allows us to provide extremely high scales
@@ -3225,7 +3225,7 @@ maintenance.
 
 <a id="couchbase-bestpractice-sizing-network"></a>
 
-## Network Bandwidth
+### Network Bandwidth
 
 Network bandwidth is not normally a significant factor in your calculations and
 preparations for cluster sizing, but network bandwidth is vital for accessing
@@ -3251,7 +3251,7 @@ Operations per second = Application reads +
 
 <a id="couchbase-bestpractice-sizing-datasafety"></a>
 
-## Data Safety
+### Data Safety
 
 To ensure data safety you need to ensure there are enough nodes within the
 cluster to support the safety requirements for your data. This involves
@@ -3262,7 +3262,7 @@ cluster.
 
 <a id="couchbase-bestpractice-sizing-datadistribution"></a>
 
-## Data distribution
+### Data distribution
 
 The basic idea is that more nodes are better than less. If you only have 2
 nodes, your data will be split across the two nodes half, and half. This means
@@ -3281,7 +3281,7 @@ using at least 3 nodes.
 
 <a id="couchbase-bestpractice-sizing-replication"></a>
 
-## Replication
+### Replication
 
 Couchbase Server allows you to configure up to 3 replicas (creating 4 copies of
 the dataset). In the event of a failure, you can only "failover" (either
@@ -3312,7 +3312,7 @@ from having more replicas in smaller clusters.
 
 <a id="couchbase-bestpractice-sizing-hardware"></a>
 
-## Hardware Requirements
+### Hardware Requirements
 
 In general, Couchbase Server has very low hardware requirements and is designed
 to be run on commodity or virtualized systems. However, as a rough guide to the
@@ -3343,7 +3343,7 @@ primary concerns for your servers:
 
 <a id="couchbase-bestpractice-sizing-cloud"></a>
 
-## Considerations for Cloud environments (i.e. Amazon EC2)
+### Considerations for Cloud environments (i.e. Amazon EC2)
 
 Due to the unreliability and general lack of consistent IO performance in cloud
 environments, we highly recommend lowering the per-node RAM footprint and
@@ -3470,7 +3470,7 @@ nodes, using the standard monitoring tools.
 
 <a id="couchbase-bestpractice-ongoing-ui"></a>
 
-## Important UI Stats to Watch
+### Important UI Stats to Watch
 
 You can add the following graphs to watch on the Couchbase console. These graphs
 can be de/selected by clicking on the `Configure View` link at the top of the
@@ -3578,7 +3578,7 @@ Some considerations to take into account when deploying within the cloud are:
 
 <a id="couchbase-bestpractice-cloud-localstorage"></a>
 
-## Local Storage
+### Local Storage
 
 Dealing with the first point is not very much different than a data center
 deployment. However, EC2 provides an interesting solution. Through the use of
@@ -3595,7 +3595,7 @@ configuring Couchbase to point to wherever you have mounted an external volume.
 
 <a id="couchbase-bestpractice-cloud-ip"></a>
 
-## Handling Changes in IP Addresses
+### Handling Changes in IP Addresses
 
 When using Couchbase Server within a cloud environment, server instances can use
 internal or public IP addresses. Because of this you should configure Couchbase
@@ -3740,7 +3740,7 @@ address for your host.
 
 <a id="couchbase-bestpractice-cloud-netsecurity"></a>
 
-## Security groups/firewall settings
+### Security groups/firewall settings
 
 It's important to make sure you have both allowed AND restricted access to the
 appropriate ports in a Couchbase deployment. Nodes must be able to talk to one
@@ -3751,7 +3751,7 @@ and steps must be taken to restrict access.
 
 <a id="couchbase-bestpractice-cloud-swap"></a>
 
-## Swap Space
+### Swap Space
 
 Certain cloud systems by default don't have a swap partition configured. While a
 system should not utilize a swap partition heavily, it is our recommended
@@ -3770,7 +3770,7 @@ functionality.
 
 <a id="couchbase-deployment-vbucket-client"></a>
 
-## Using a smart (vBucket aware) Client
+### Using a smart (vBucket aware) Client
 
 When using a smart client, the client library provides an interface to the
 cluster, and performs server selection directly via the vBucket mechanism. The
@@ -3786,7 +3786,7 @@ for an in-depth description.
 
 <a id="couchbase-deployment-standaloneproxy"></a>
 
-## Client-Side (standalone) Proxy
+### Client-Side (standalone) Proxy
 
 If a smart client is not available for your chosen platform, the alternative
 option is to deploy a standalone proxy, which provides the same functionality as
@@ -3809,7 +3809,7 @@ For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
 
 <a id="couchbase-deployment-embedproxy"></a>
 
-## Using Server-Side (Couchbase Embedded) Proxy
+### Using Server-Side (Couchbase Embedded) Proxy
 
 Using a Server-side proxy configuration is not recommended for production use.
 You should use either a smart client or the client-side proxy configuration
@@ -4015,7 +4015,7 @@ chosen Couchbase SDK.
 
 <a id="couchbase-admin-tasks-cbstats-warmup"></a>
 
-## Getting Warmup Information
+### Getting Warmup Information
 
 You can use `cbstats` to get information about server warmup, including the
 status of warmup and whether warmup is enabled. The following are two alternates
@@ -4042,7 +4042,7 @@ Information](couchbase-manual-ready.html#couchbase-admin-cmdline-cbstats-warmup)
 
 <a id="couchbase-admin-tasks-access-scanner"></a>
 
-## Changing Access Scanner Settings
+### Changing Access Scanner Settings
 
 The server runs a periodic scanner process which will determine which keys are
 most frequently-used, and therefore, which documents should be loaded first
@@ -4128,7 +4128,7 @@ Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
 
 <a id="couchbase-admin-creating-replicas-for-buckets"></a>
 
-## Creating Replicas for Data Buckets
+### Creating Replicas for Data Buckets
 
 You can configure replicas on each bucket in cluster. You can also configure
 different buckets to have a different number of replicas according to the
@@ -4148,7 +4148,7 @@ Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-cr
 
 <a id="couchbase-admin-tasks-replica-backoff"></a>
 
-## Specifying Backoff for Replication
+### Specifying Backoff for Replication
 
 Your cluster is set up to perform some level of data replication between nodes
 within the cluster for any given node. One or more nodes can serve as a *replica
@@ -4304,7 +4304,7 @@ reclaim disk space and reduce fragmentation.
 
 <a id="couchbase-admin-tasks-compaction-process"></a>
 
-## Compaction Process
+### Compaction Process
 
 Compaction works as follows:
 
@@ -4386,7 +4386,7 @@ compaction process:
 
 <a id="couchbase-admin-tasks-compaction-autocompaction"></a>
 
-## Auto-Compaction Configuration
+### Auto-Compaction Configuration
 
 Couchbase Server incorporates an automated compaction mechanism that can compact
 both data files and the view index files, based on triggers that measure the
@@ -4490,7 +4490,7 @@ Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-cr
 
 <a id="couchbase-admin-tasks-compaction-strategies"></a>
 
-## Auto-compaction Strategies
+### Auto-compaction Strategies
 
 The exact fragmentation and scheduling settings for auto-compaction should be
 chosen carefully to ensure that your database performance and compaction
@@ -4524,7 +4524,7 @@ You want to consider the following:
 
 <a id="couchbase-admin-tasks-compaction-spatial"></a>
 
-## Compacting Spatial Views
+### Compacting Spatial Views
 
 If you have spatial views configured within your dataset, these are not
 automatically compacted for you. Instead, you must manually compact each spatial
@@ -4648,7 +4648,7 @@ a failover situation:
 
 <a id="couchbase-admin-tasks-failover-choosing"></a>
 
-## Choosing a Failover Solution
+### Choosing a Failover Solution
 
 Because failover has the potential to significantly reduce the performance of
 your cluster, you should consider how best to handle a failover situation.
@@ -4669,7 +4669,7 @@ more detail.
 
 <a id="couchbase-admin-tasks-failover-automatic-considerations"></a>
 
-## Automated failover considerations
+### Automated failover considerations
 
 Automatically failing components in any distributed system has the potential to
 cause problems. There are many examples of high-profile applications that have
@@ -4727,7 +4727,7 @@ solution include:
 
 <a id="couchbase-admin-tasks-failover-monitored"></a>
 
-## Manual (Monitored) Failover
+### Manual (Monitored) Failover
 
 Although automated failover has potential issues, choosing to use manual or
 monitored failover is not without potential problems.
@@ -4767,7 +4767,7 @@ information driven decision.
 
 <a id="couchbase-admin-tasks-failover-automatic"></a>
 
-## Using Automatic Failover
+### Using Automatic Failover
 
 Due to the potential for problems when using automated failover (see [Automated
 failover
@@ -4808,7 +4808,7 @@ Situation](couchbase-manual-ready.html#couchbase-admin-tasks-failover-handling).
 
 <a id="couchbase-admin-tasks-failover-automatic-reset"></a>
 
-## Resetting the Automatic failover counter
+### Resetting the Automatic failover counter
 
 After a node has been automatically failed over, an internal counter is used to
 identify how many nodes have been failed over. This counter is used to prevent
@@ -4835,7 +4835,7 @@ Auto-Failover](couchbase-manual-ready.html#couchbase-admin-restapi-reset-autofai
 
 <a id="couchbase-admin-tasks-failover-manual"></a>
 
-## Initiating a Node Failover
+### Initiating a Node Failover
 
 In the event of a problem where you need to remove a node from the cluster due
 to hardware or system failure, you need to mark the node as failed over. This
@@ -4885,7 +4885,7 @@ Situation](couchbase-manual-ready.html#couchbase-admin-tasks-failover-handling).
 
 <a id="couchbase-admin-tasks-failover-handling"></a>
 
-## Handling a Failover Situation
+### Handling a Failover Situation
 
 Whether a node has been failed over manually or automatically, the health of
 your Couchbase Server cluster has been reduced. Once a node is failed over:
@@ -4917,7 +4917,7 @@ Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance
 
 <a id="couchbase-admin-tasks-failover-addback"></a>
 
-## Adding Back a Failed Node
+### Adding Back a Failed Node
 
 You can add a failed node back to the cluster if you have identified and fixed
 the issue that originally made the node unavailable and suitable for being
@@ -4989,7 +4989,7 @@ guarantee total cluster consistency or in-order persistence.
 
 <a id="couchbase-backup-restore-backup-cbbackup"></a>
 
-## Backing Up Using cbbackup
+### Backing Up Using cbbackup
 
 The `cbbackup` tool is a flexible backup command that enables you to backup both
 local data and remote nodes and clusters involving different combinations of
@@ -5225,7 +5225,7 @@ expected method for restoring the data to the cluster.
 
 <a id="couchbase-backup-restore-backup-cbbackup-filter"></a>
 
-## Filtering Keys During Backup
+### Filtering Keys During Backup
 
 The `cbbackup` command includes support for filtering the keys that are backed
 up into the database files you create. This can be useful if you want to
@@ -5259,7 +5259,7 @@ tool](couchbase-manual-ready.html#couchbase-backup-restore-cbrestore).
 
 <a id="couchbase-backup-restore-backup-filecopy"></a>
 
-## Backing Up Using File Copies
+### Backing Up Using File Copies
 
 You can also backup by using either `cbbackup` and specifying the local
 directory where the data is stored, or by copying the data files directly using
@@ -5289,7 +5289,7 @@ configuration file from each node.
 
 <a id="couchbase-backup-restore-restore"></a>
 
-## Restoring Using cbrestore
+### Restoring Using cbrestore
 
 When restoring a backup, you have to select the appropriate restore sequence
 based on the type of restore you are performing. The methods available to you
@@ -5307,7 +5307,7 @@ Copies](couchbase-manual-ready.html#couchbase-backup-restore-filecopy).
 
 <a id="couchbase-backup-restore-filecopy"></a>
 
-## Restoring Using File Copies
+### Restoring Using File Copies
 
 To restore the information to the same cluster, with the same configuration, you
 must shutdown your entire cluster while you restore the data, and then restart
@@ -5350,7 +5350,7 @@ The steps required to complete the restore process are:
 
 <a id="couchbase-backup-restore-cbrestore"></a>
 
-## Restoring using cbrestore tool
+### Restoring using cbrestore tool
 
 The `cbrestore` command takes the information that has been backed up via the
 `cbbackup` command and streams the stored data into a cluster. The configuration
@@ -5436,7 +5436,7 @@ shell> cbrestore \
 
 <a id="couchbase-backup-restore-cbrestore-filter"></a>
 
-## Filtering Keys During Restore
+### Filtering Keys During Restore
 
 The `cbrestore` command includes support for filtering the keys that are
 restored to the database from the files that were created during backup. This is
@@ -5462,7 +5462,7 @@ The above will copy only the keys matching the specified prefix into the
 
 <a id="couchbase-backup-restore-mac"></a>
 
-## Backup and Restore Between Mac OS X and Other Platforms
+### Backup and Restore Between Mac OS X and Other Platforms
 
 Couchbase Server 2.0 on Mac OS X uses a different number of configured vBuckets
 than the Linux and Windows installations. Because of this, backing up from Mac
@@ -5644,7 +5644,7 @@ Behind-the-Scenes](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-r
 
 <a id="couchbase-admin-tasks-addremove-deciding"></a>
 
-## Choosing When to Rebalance
+### Choosing When to Rebalance
 
 Choosing when each of situations applies is not always straightforward. Detailed
 below is the information you need to choose when, and why, to rebalance your
@@ -5751,7 +5751,7 @@ are a few things to take into consideration:
 
 <a id="couchbase-admin-tasks-addremove-rebalance"></a>
 
-## Performing a Rebalance
+### Performing a Rebalance
 
 Rebalancing a cluster involves marking nodes to be added or removed from the
 cluster, and then starting the rebalance operation so that the data is moved
@@ -5784,7 +5784,7 @@ Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance
 
 <a id="couchbase-admin-tasks-addremove-rebalance-add"></a>
 
-## Adding a Node to a Cluster
+### Adding a Node to a Cluster
 
 There are a number of methods available for adding a node to a cluster. The
 result is the same in each case, the node is marked to be added to the cluster,
@@ -5933,7 +5933,7 @@ operation took place. You can cancel the operation through the web interface.
 
 <a id="couchbase-admin-tasks-addremove-rebalance-remove"></a>
 
-## Removing a Node from a Cluster
+### Removing a Node from a Cluster
 
 Removing a node marks the node for removal from the cluster, and will completely
 disable the node from serving any requests across the cluster. Once removed, a
@@ -5986,7 +5986,7 @@ operation to complete the removal process.
 
 <a id="couchbase-admin-tasks-addremove-rebalance-rebalancing"></a>
 
-## Starting a Rebalance
+### Starting a Rebalance
 
 Once you have configured the nodes that you want to add or remove from your
 cluster, you must perform a rebalance operation. This moves the data around the
@@ -6072,7 +6072,7 @@ Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance
 
 <a id="couchbase-admin-tasks-addremove-rebalance-swap"></a>
 
-## Swap Rebalance
+### Swap Rebalance
 
 Swap Rebalance is an automatic feature that optimizes the movement of data when
 you are adding and removing the same number of nodes within the same operation.
@@ -6158,7 +6158,7 @@ swap rebalance functionality affects the following situations:
 
 <a id="couchbase-admin-tasks-addremove-rebalance-monitoring"></a>
 
-## Monitoring During Rebalance
+### Monitoring During Rebalance
 
 ### Monitoring a Rebalance
 
@@ -6203,7 +6203,7 @@ There are essentially two stages to replication:
 
 <a id="couchbase-admin-tasks-addremove-questions"></a>
 
-## Common Rebalancing Questions
+### Common Rebalancing Questions
 
 Provided below are some common questions and answers for the rebalancing
 operation.
@@ -6271,7 +6271,7 @@ operation.
 
 <a id="couchbase-admin-tasks-addremove-buckets"></a>
 
-## Rebalance Effect on Bucket Types
+### Rebalance Effect on Bucket Types
 
 The rebalance operation works across the cluster on both Couchbase and
 `memcached` buckets, but there are differences in the rebalance operation due to
@@ -6306,7 +6306,7 @@ For `memcached` buckets:
 
 <a id="couchbase-admin-tasks-addremove-rebalance-background"></a>
 
-## Rebalance Behind-the-Scenes
+### Rebalance Behind-the-Scenes
 
 The rebalance process is managed through a specific process called the
 **Unhandled:** `[:unknown-tag :firstterm]`. This examines the current vBucket
@@ -6440,7 +6440,7 @@ Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuratio
 
 <a id="couchbase-admin-tasks-xdcr-schemes"></a>
 
-## Uses for XDCR
+### Uses for XDCR
 
 With XDCR you can start, stop, and restart replication, which enables you to
 create a snapshot of data that exists in a cluster in a moment in time. The
@@ -6529,7 +6529,7 @@ XDCR:
 
 <a id="couchbase-admin-tasks-xdcr-configuration"></a>
 
-## Configuring Replication
+### Configuring Replication
 
 You configure replications using the `XDCR` tab of the Administration Web
 Console.
@@ -6629,7 +6629,7 @@ Settings](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-internal-sett
 
 <a id="couchbase-admin-tasks-xdcr-monitoring"></a>
 
-## Monitoring Replication Status
+### Monitoring Replication Status
 
 There are two different areas of Couchbase Web Console which contain information
 about replication via XDCR: 1) the XDCR tab, and 2) the outgoing XDCR section
@@ -6747,7 +6747,7 @@ Settings](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-internal-sett
 
 <a id="couchbase-admin-tasks-xdcr-cancellation"></a>
 
-## Cancelling Replication
+### Cancelling Replication
 
 You can cancel replication at any time by clicking **Unhandled:** `[:unknown-tag
 :guibutton]` next to the active replication that is to be canceled.
@@ -6762,7 +6762,7 @@ active will be displayed within the `Past Replications` section of the
 
 <a id="couchbase-admin-xdcr-rest-crossref"></a>
 
-## Modifying XDCR Settings via REST
+### Modifying XDCR Settings via REST
 
 There are several Couchbase REST-API endpoints you can use to modify settings
 used in XDCR. Some of these settings are references used in XDCR and some of
@@ -6794,7 +6794,7 @@ references to these endpoints:
 
 <a id="couchbase-admin-xdcr-retry"></a>
 
-## Changing the XDCR Retry Setting
+### Changing the XDCR Retry Setting
 
 By default if XDCR is unable to replicate for any reason like network failures,
 it will stop and try to reach the remote cluster every 30 seconds if the network
@@ -6822,7 +6822,7 @@ environment parameter will supersede.
 
 <a id="couchbase-admin-tasks-xdcr-security"></a>
 
-## Securing Data Communication with XDCR
+### Securing Data Communication with XDCR
 
 When configuring XDCR across multiple clusters over public networks, the data is
 sent unencrypted across the public interface channel. To ensure security for the
@@ -6868,7 +6868,7 @@ every node within the cluster at each destination.
 
 <a id="couchbase-admin-tasks-xdcr-cloud"></a>
 
-## Using XDCR in Cloud Deployments
+### Using XDCR in Cloud Deployments
 
 If you want to use XDCR within a cloud deployment to replicate between two or
 more clusters that are deployed in the cloud, there are some additional
@@ -6920,7 +6920,7 @@ Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud).
 
 <a id="couchbase-admin-tasks-xdcr-functionality"></a>
 
-## Understanding XDCR Behavior
+### Understanding XDCR Behavior
 
 When you provide your settings and preferences for XDCR, you be aware of the
 following behavior and functions.
@@ -7225,7 +7225,7 @@ sections.
 
 <a id="couchbase-admin-web-console-cluster-overview-cluster"></a>
 
-## Cluster
+### Cluster
 
 The Cluster section provides information on the RAM and disk usage information
 for your cluster.
@@ -7286,7 +7286,7 @@ storage space across your cluster.
 
 <a id="couchbase-admin-web-console-cluster-overview-buckets"></a>
 
-## Buckets
+### Buckets
 
 The `Buckets` section provides two graphs showing the `Operations per second`
 and `Disk fetches per second`.
@@ -7302,7 +7302,7 @@ to disk to retrieve information instead of using the information stored in RAM.
 
 <a id="couchbase-admin-web-console-cluster-overview-servers"></a>
 
-## Servers
+### Servers
 
 The `Servers` section indicates overall server information for the cluster:
 
@@ -7456,7 +7456,7 @@ Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
 
 <a id="couchbase-admin-web-console-server-states"></a>
 
-## Couchbase Server States
+### Couchbase Server States
 
 Couchbase Server nodes can be in a number of different states depending on their
 current activity and availability. The displayed states are:
@@ -7545,7 +7545,7 @@ for details on creating new data buckets.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit"></a>
 
-## Creating and Editing Data Buckets
+### Creating and Editing Data Buckets
 
 When creating a new data bucket, or editing an existing one, you will be
 presented with the bucket configuration screen. From here you can set the memory
@@ -7554,7 +7554,7 @@ creating a new bucket, and the bucket type.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-create"></a>
 
-## Creating a new Bucket
+### Creating a new Bucket
 
 When creating a new bucket, you are presented with the `Create Bucket` dialog,
 as shown in the figure below.
@@ -7661,7 +7661,7 @@ following operations:
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editcb"></a>
 
-## Editing Couchbase Buckets
+### Editing Couchbase Buckets
 
 You can edit a limited number of settings for an existing Couchbase bucket:
 
@@ -7683,7 +7683,7 @@ To delete the configured bucket entirely, click the **Unhandled:**
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editmc"></a>
 
-## Editing Memcached Buckets
+### Editing Memcached Buckets
 
 For Memcached buckets, you can modify the following settings when editing an
 existing bucket:
@@ -7706,7 +7706,7 @@ buckets may delete important information.
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
-## Bucket Information
+### Bucket Information
 
 You can obtain basic information about the status of your data buckets by
 clicking on the *i* button within the `Data Buckets` page. The bucket
@@ -7769,7 +7769,7 @@ all the graphs and statistics display within the web console.
 
 <a id="couchbase-admin-web-console-data-buckets-individual"></a>
 
-## Individual Bucket Monitoring
+### Individual Bucket Monitoring
 
 Bucket monitoring within the Couchbase Web Console has been updated to show
 additional detailed information. The following statistic groups are available
@@ -7829,7 +7829,7 @@ Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-me
 
 <a id="couchbase-admin-web-console-data-buckets-summary"></a>
 
-## Bucket Monitoring — Summary Statistics
+### Bucket Monitoring — Summary Statistics
 
 The summary section is designed to provide a quick overview of the cluster
 activity. Each graph (or selected graph) shows information based on the
@@ -7944,7 +7944,7 @@ The following graph types are available:
 
 <a id="couchbase-admin-web-console-data-buckets-vbucket"></a>
 
-## Bucket Monitoring — vBucket Resources
+### Bucket Monitoring — vBucket Resources
 
 The vBucket statistics provide information for all vBucket types within the
 cluster across three different states. Within the statistic display the table of
@@ -8002,7 +8002,7 @@ The individual statistics, one for each state, shown are:
 
 <a id="couchbase-admin-web-console-data-buckets-diskqueues"></a>
 
-## Bucket Monitoring — Disk Queues
+### Bucket Monitoring — Disk Queues
 
 The Disk Queues statistics section displays the information for data being
 placed into the disk queue. Disk queues are used within Couchbase Server to
@@ -8046,7 +8046,7 @@ The displayed statistics are:
 
 <a id="couchbase-admin-web-console-data-buckets-tapqueues"></a>
 
-## Bucket Monitoring — TAP Queues
+### Bucket Monitoring — TAP Queues
 
 The TAP queues statistics are designed to show information about the TAP queue
 activity, both internally, beetween cluster nodes and clients. The statistics
@@ -8089,7 +8089,7 @@ The statistics in this section are detailed below:
 
 <a id="couchbase-admin-web-console-data-buckets-memcached"></a>
 
-## Bucket Monitoring — Memcached Buckets
+### Bucket Monitoring — Memcached Buckets
 
 For Memcached buckets a separate suite of Memcached-specific statistics are
 displayed.
@@ -8184,7 +8184,7 @@ The Memcached statistics are:
 
 <a id="couchbase-admin-web-console-data-buckets-xdcr"></a>
 
-## Bucket Monitoring — Outgoing XDCR
+### Bucket Monitoring — Outgoing XDCR
 
 The Outgoing XDCR shows the XDCR operations that are supporting cross datacenter
 replication from the current cluster to a destination cluster. For more
@@ -8210,7 +8210,7 @@ The statistics shown are:
 
 <a id="couchbase-admin-web-console-data-buckets-xdcr-recv"></a>
 
-## Bucket Monitoring — Incoming XDCR
+### Bucket Monitoring — Incoming XDCR
 
 The Incoming XDCR shows the XDCR operations supporting cross datacenter
 replication that are incoming to the current cluster from a remote cluster. For
@@ -8240,7 +8240,7 @@ The statistics shown are:
 
 <a id="couchbase-admin-web-console-data-buckets-views"></a>
 
-## Bucket Monitoring — View Statistics
+### Bucket Monitoring — View Statistics
 
 The View statistics show information about individual design documents within
 the selected bucket. One block of stats will be shown for each production-level
@@ -8350,7 +8350,7 @@ The individual elements of this interface are:
 
 <a id="couchbase-views-editor-createedit"></a>
 
-## Creating and Editing a View
+### Creating and Editing a View
 
 You can create a new design document and/or view by clicking the **Unhandled:**
 `[:unknown-tag :guibutton]` button within the `Views` section of the Web
@@ -8452,7 +8452,7 @@ Output](couchbase-manual-ready.html#couchbase-views-editor-view).
 
 <a id="couchbase-views-editor-publishing"></a>
 
-## Publishing a View
+### Publishing a View
 
 Publishing a view moves the view definition from the Development view to a
 Production View. Production views cannot be edited.
@@ -8466,7 +8466,7 @@ the view back to the production side.
 
 <a id="couchbase-views-editor-view"></a>
 
-## Examining the View Output
+### Examining the View Output
 
 Once a view has been published to be a production view, you can examine and
 manipulate the results of the view from within the web console view interface.
@@ -8579,7 +8579,7 @@ instance.
 
 <a id="couchbase-admin-web-console-settings-updatenotifications"></a>
 
-## Update Notification Settings
+### Update Notification Settings
 
 You can enable or disable Update Notifications by checking the `Enable software
 update notifications` checkbox within the `Update Notifications` screen. Once
@@ -8598,7 +8598,7 @@ Notifications](couchbase-manual-ready.html#couchbase-admin-web-console-update-no
 
 <a id="couchbase-admin-web-console-settings-autofailover"></a>
 
-## Auto-Failover Settings
+### Auto-Failover Settings
 
 The Auto-Failover settings enable auto-failover, and the timeout before the
 auto-failover process is started when a cluster node failure is detected.
@@ -8615,7 +8615,7 @@ Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-alerts"></a>
 
-## Alerts
+### Alerts
 
 You can enable email alerts to be raised when a signficant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
@@ -8726,7 +8726,7 @@ Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-autocompaction"></a>
 
-## Auto-Compaction
+### Auto-Compaction
 
 The `Auto-Compaction` tab configures the default auto-compaction settings for
 all the databases. These can be overridden using per-bucket settings available
@@ -8777,7 +8777,7 @@ Configuration](couchbase-manual-ready.html#couchbase-admin-tasks-compaction-auto
 
 <a id="couchbase-admin-web-console-settings-samplebuckets"></a>
 
-## Sample Buckets
+### Sample Buckets
 
 The `Sample Buckets` tab enables you to install the sample bucket data if the
 data has not already been loaded in the system. For more information on the
@@ -8833,7 +8833,7 @@ will not work.
 
 <a id="couchbase-admin-web-console-update-notifications-list"></a>
 
-## Notifications
+### Notifications
 
 If an update notification is available, the counter within the button display
 within the Couchbase Console will be displayed with the number of available
@@ -8841,7 +8841,7 @@ updates, as shown in the image below.
 
 <a id="couchbase-admin-web-console-update-notifications-available"></a>
 
-## Viewing Available Updates
+### Viewing Available Updates
 
 To view the available updates, click on the `Settings` link. This displays your
 current version and update availability. From here you can be taken to the
@@ -9385,7 +9385,7 @@ vb\_pending\_num\_ref\_ejects      | Number of times referenced item values got 
 
 <a id="couchbase-admin-cmdline-cbstats-timings"></a>
 
-## Getting Server Timings
+### Getting Server Timings
 
 The following is sample output from `cbstats timings` :
 
@@ -9441,7 +9441,7 @@ tap\_mutation           | Time spent servicing tap mutations
 
 <a id="couchbase-admin-cmdline-cbstats-warmup"></a>
 
-## Getting Warmup Information
+### Getting Warmup Information
 
 You can use `cbstats` to get information about server warmup, including the
 status of warmup and whether warmup is enabled. The following are two alternates
@@ -9502,7 +9502,7 @@ ep\_warmup\_time                    | Total time spent by loading data (warmup) 
 
 <a id="couchbase-admin-cmdline-cbstats-TAP"></a>
 
-## Getting TAP Information
+### Getting TAP Information
 
 Couchbase Server uses an internal protocol known as TAP to stream information
 about data changes between cluster nodes. Couchbase Server uses the TAP protocol
@@ -9616,7 +9616,7 @@ Parameter                      | Description
 
 <a id="couchbase-admin-cbepctl-disk-cleanup"></a>
 
-## Specifying Disk Cleanup Interval
+### Specifying Disk Cleanup Interval
 
 One of the most important use cases for the `cbepctl flush_param` is the set the
 time interval for disk cleanup in Couchbase Server 2.0. Couchbase Server does
@@ -9637,7 +9637,7 @@ waits before it tries to remove expired items from disk.
 
 <a id="couchbase-admin-cbepctl-disk-queue"></a>
 
-## Changing Disk Write Queue Quotas
+### Changing Disk Write Queue Quotas
 
 One of the specific uses of `cbepctl` is to the change the default maximum items
 for a disk write queue. This impacts replication of data that occurs between
@@ -9691,7 +9691,7 @@ Parameter                     | Description
 
 <a id="couchbase-admin-cbepctl-access-scanner"></a>
 
-## Changing Access Log Settings
+### Changing Access Log Settings
 
 In Couchbase Server 2.0, we provide a more optimized disk warmup. In past
 versions of Couchbase Server, the server would load all keys and data
@@ -9727,7 +9727,7 @@ In this example we set the initial time to 11:00 PM UTC.
 
 <a id="couchbase-admin-cbepctl-ejection"></a>
 
-## Changing Thresholds for Ejection
+### Changing Thresholds for Ejection
 
 Couchbase Server has a process to *eject* items from RAM when too much space is
 being taken up in RAM; ejection means that documents will be removed from RAM,
@@ -9809,7 +9809,7 @@ Management](couchbase-manual-ready.html#couchbase-admin-tasks-working-set-mgmt).
 
 <a id="couchbase-admin-cbepctl-flush-enable"></a>
 
-## Enabling Flush of Data Buckets
+### Enabling Flush of Data Buckets
 
 By default, this setting appears in Couchbase Web Console and is disabled; when
 it is enabled Couchbase Server is able to flush all the data in a bucket.
@@ -9842,7 +9842,7 @@ Bucket](couchbase-manual-ready.html#couchbase-admin-restapi-flushing-bucket).
 
 <a id="couchbase-admin-cbepctl-flush-params"></a>
 
-## Other cbepctl flush_param
+### Other cbepctl flush_param
 
 The complete list of options for `flush_param` are:
 
@@ -10656,7 +10656,7 @@ Couchbase server returns this response in JSON:
 
 <a id="couchbase-admin-restapi-bucket-stats-on-node"></a>
 
-## Retrieving Statistics from Nodes
+### Retrieving Statistics from Nodes
 
 To retrieve statistics about a node, you can first retrieve a list of nodes in a
 cluster with this request:
@@ -10723,7 +10723,7 @@ node.
 
 <a id="couchbase-admin-restapi-provisioning"></a>
 
-## Provisioning a Node
+### Provisioning a Node
 
 Creating a new cluster or adding a node to a cluster is called **Unhandled:**
 `[:unknown-tag :firstterm]`. You need to:
@@ -10747,7 +10747,7 @@ the URI and credentials to use the REST API with that cluster.
 
 <a id="couchbase-admin-restapi-provisioning-diskpath"></a>
 
-## Configuring Disk and Index Path for a Node
+### Configuring Disk and Index Path for a Node
 
 You configure node resources through a controller on the node. The primary
 resource you will want to configure is the disk path for the node, which is
@@ -10804,7 +10804,7 @@ shell> curl -X POST -u Administrator:password \
 
 <a id="couchbase-admin-restapi-node-username-pass"></a>
 
-## Setting Username and Password for a Node
+### Setting Username and Password for a Node
 
 While this can be done at any time for a cluster, it is typically the last step
 you complete when you add node into being a new cluster. The response will
@@ -10853,7 +10853,7 @@ when you update username/password.
 
 <a id="couchbase-admin-restapi-cluster-memory-quota"></a>
 
-## Configuring Node Memory Quota
+### Configuring Node Memory Quota
 
 The node memory quota configures how much RAM to be allocated to Couchbase for
 every node within the cluster.
@@ -10922,7 +10922,7 @@ and specific operations such as `FLUSH`.
 
 <a id="couchbase-admin-restapi-bucket-info"></a>
 
-## Viewing Buckets and Bucket Operations
+### Viewing Buckets and Bucket Operations
 
 If you create your own SDK for Couchbase, you can either the proxy path or the
 direct path to connect to Couchbase Server. If your SDK uses the direct path,
@@ -11061,7 +11061,7 @@ Cache-Control: no-cache no-store max-age=0
 
 <a id="restapi-named-bucket-info"></a>
 
-## Getting Individual Bucket Information
+### Getting Individual Bucket Information
 
 To retrieve information for a single bucket associated with a cluster, you make
 this request, where the last default can be replaced with the name of a specific
@@ -11129,7 +11129,7 @@ HTTP/1.1 200 OK
 
 <a id="couchbase-admin-restapi-bucket-stats"></a>
 
-## Getting Bucket Statistics
+### Getting Bucket Statistics
 
 You can use the REST API to get statistics with the at the bucket level from
 Couchbase Server. Your request URL should be taken from stats.uri property of a
@@ -11226,7 +11226,7 @@ Content-Length: nnn
 
 <a id="couchbase-admin-restapi-named-bucket-streaming-uri"></a>
 
-## Using the Bucket Streaming URI
+### Using the Bucket Streaming URI
 
 The individual bucket request is exactly the same as what would be obtained from
 the item in the array for the entire buckets list described previously. The
@@ -11355,7 +11355,7 @@ Content-Length: nnn
 
 <a id="couchbase-admin-restapi-creating-buckets"></a>
 
-## Creating and Editing Data Buckets
+### Creating and Editing Data Buckets
 
 You can create a new bucket with a POST command sent to the URI for buckets in a
 cluster. This can be used to create either a Couchbase or a Memcached type
@@ -11555,7 +11555,7 @@ the error reason.
 
 <a id="couchbase-admin-restapi-getting-bucket-request"></a>
 
-## Getting Bucket Configuration
+### Getting Bucket Configuration
 
 To obtain the information about an existing bucket, use the main REST API bucket
 endpoint with the bucket name. For example:
@@ -11611,7 +11611,7 @@ are the appropriate nodes to connect to.
 
 <a id="couchbase-admin-restapi-modifying-bucket-properties"></a>
 
-## Modifying Bucket Parameters
+### Modifying Bucket Parameters
 
 You can modify existing bucket parameters by posting the updated parameters used
 to create the bucket to the bucket's URI. Do not omit a parameter in your
@@ -11640,7 +11640,7 @@ You cannot change the name of a bucket via the REST API.
 
 <a id="couchbase-admin-restapi-bucket-memory-quota"></a>
 
-## Increasing the Memory Quota for a Bucket
+### Increasing the Memory Quota for a Bucket
 
 Increasing a bucket's ramQuotaMB from the current level. Note, the system will
 not let you decrease the ramQuotaMB for a couchbase bucket type and memcached
@@ -11672,7 +11672,7 @@ Cache-Control: no-cache no-store max-age=0
 
 <a id="couchbase-admin-restapi-bucket-authentication"></a>
 
-## Changing Bucket Authentication
+### Changing Bucket Authentication
 
 Changing a bucket from port based authentication to SASL authentication can be
 achieved by changing the active bucket configuration. You must specify the
@@ -11688,7 +11688,7 @@ shell> curl -X POST -u admin:password -d ramQuotaMB=130 -d authType=sasl \
 
 <a id="couchbase-admin-restapi-deleting-bucket"></a>
 
-## Deleting a Bucket
+### Deleting a Bucket
 
 **Method**  `DELETE /pools/default/buckets/bucket_name`
 
@@ -11738,7 +11738,7 @@ deleted.
 
 <a id="couchbase-admin-restapi-flushing-bucket"></a>
 
-## Flushing a Bucket
+### Flushing a Bucket
 
 This operation is data destructive. The service makes no attempt to confirm or
 double check the request. Client applications using this are advised to double
@@ -11890,7 +11890,7 @@ client, if backward compatibility is desirable.
 
 <a id="couchbase-admin-restapi-viewing-pool-info"></a>
 
-## Viewing Cluster Details
+### Viewing Cluster Details
 
 At the highest level, the response for this request describes a cluster, as
 mentioned previously. The response contains a number of properties which define
@@ -12020,7 +12020,7 @@ stopRebalance | Stop any rebalance operation currently running. This takes no pa
 
 <a id="restapi-create-new-node"></a>
 
-## Adding a Node to a Cluster
+### Adding a Node to a Cluster
 
 This is a REST request made to a Couchbase cluster to add a given node to the
 cluster. You add a new node with the at the RESTful endpoint
@@ -12046,7 +12046,7 @@ HTTP/1.1 200 OK
 
 <a id="couchbase-admin-restapi-add-node-to-cluster"></a>
 
-## Joining a Node into a Cluster
+### Joining a Node into a Cluster
 
 This is a REST request made to an individual Couchbase node to add that node to
 a given cluster. You cannot merge two clusters together into a single cluster
@@ -12101,7 +12101,7 @@ clusterMemberHostIp=192.168.0.1&clusterMemberPort=8091&user=admin&password=admin
 
 <a id="couchbase-admin-restapi-remove-node-from-cluster"></a>
 
-## Removing a Node from a Cluster
+### Removing a Node from a Cluster
 
 When a node is temporarily or permanently down, you may want to remove it from a
 cluster:
@@ -12133,7 +12133,7 @@ otpNode=ns_1@192.168.0.1
 
 <a id="couchbase-admin-restapi-rebalance"></a>
 
-## Initiating a Rebalance
+### Initiating a Rebalance
 
 To start a rebalance process through the REST API you must supply two arguments
 containing the list of nodes that have been marked to be ejected, and the list
@@ -12182,7 +12182,7 @@ Progress](couchbase-manual-ready.html#couchbase-admin-restapi-rebalance-progress
 
 <a id="couchbase-admin-restapi-rebalance-progress"></a>
 
-## Getting Rebalance Progress
+### Getting Rebalance Progress
 
 Once a rebalance process has been started the progress of the rebalance can be
 monitored by accessing the `/pools/default/rebalanceProgress` endpoint. This
@@ -12219,7 +12219,7 @@ as a floating point value betweeen 0 and 1).
 
 <a id="couchbase-admin-restapi-get-autofailover-settings"></a>
 
-## Retrieving Auto-Failover Settings
+### Retrieving Auto-Failover Settings
 
 Use this request to retrieve any auto-failover settings for a cluster.
 Auto-failover is a global setting for all clusters. You need to be authenticated
@@ -12276,7 +12276,7 @@ Content-Length: nnn
 
 <a id="couchbase-admin-restapi-autofailover"></a>
 
-## Enabling and Disabling Auto-Failover
+### Enabling and Disabling Auto-Failover
 
 This is a global setting you apply to all clusters. You need to be authenticated
 to change this value. An example of this request:
@@ -12323,7 +12323,7 @@ This endpoint isn't available yet.
 
 <a id="couchbase-admin-restapi-reset-autofailover"></a>
 
-## Resetting Auto-Failover
+### Resetting Auto-Failover
 
 This resets the number of nodes that Couchbase Server has automatically
 failed-over. You can send a request to set the auto-failover number to 0. This
@@ -12359,7 +12359,7 @@ This endpoint isn't available yet.
 
 <a id="couchbase-admin-restapi-max-buckets"></a>
 
-## Setting Maximum Buckets for Clusters
+### Setting Maximum Buckets for Clusters
 
 By default the maximum number of buckets recommended for a Couchbase Cluster is
 ten. This is a safety mechanism to ensure that a cluster does not have resource
@@ -12413,7 +12413,7 @@ over 128 buckets, you will get this error message:
 
 <a id="couchbase-admin-restapi-settings-maxparallelindexers"></a>
 
-## Setting Maximum Parallel Indexers
+### Setting Maximum Parallel Indexers
 
 You can set the number of parallel indexers that will be used on each node when
 view indexes are updated. To get the current setting of the number of parallel
@@ -12478,7 +12478,7 @@ configuration
 
 <a id="couchbase-admin-restapi-info-on-email-settings"></a>
 
-## View Settings for Email Notifications
+### View Settings for Email Notifications
 
 The response to this request will specify whether you have email alerts set, and
 which events will trigger emails. This is a global setting for all clusters. You
@@ -12520,7 +12520,7 @@ This endpoint isn't available yet.
 
 <a id="couchbase-admin-restapi-enbling-disabling-email"></a>
 
-## Enabling and Disabling Email Notifications
+### Enabling and Disabling Email Notifications
 
 This is a global setting for all clusters. You need to be authenticated to
 change this value. If this is enabled, Couchbase Server sends an email when
@@ -12604,7 +12604,7 @@ JSON object ({"errors": {"key": "error"}}) with errors.
 
 <a id="couchbase-admin-restapi-sending-test-emails"></a>
 
-## Sending Test Emails
+### Sending Test Emails
 
 This is a global setting for all clusters. You need to be authenticated to
 change this value. In response to this request, Couchbase Server sends a test
@@ -12641,7 +12641,7 @@ This endpoint isn't available yet.
 
 <a id="couchbase-admin-restapi-settings-max_bucket_count"></a>
 
-## Managing Internal Cluster Settings
+### Managing Internal Cluster Settings
 
 You can set a number of internal settings the number of maximum number of
 supported buckets supported by the cluster. To get the current setting of the
@@ -12718,7 +12718,7 @@ shell> curl -v -X POST http://Administrator:Password@localhost:8091/internalSett
 
 <a id="couchbase-admin-restapi-consistent-query"></a>
 
-## Disabling Consistent Query Results on Rebalance
+### Disabling Consistent Query Results on Rebalance
 
 If you perform queries during rebalance, this new feature will ensure that you
 receive the query results that you would expect from a node as if it is not
@@ -12777,7 +12777,7 @@ Console to configure XDCR, see [Cross Datacenter Replication
 
 <a id="couchbase-admin-restapi-xdcr-destination"></a>
 
-## Getting a Destination Cluster Reference
+### Getting a Destination Cluster Reference
 
 When you use XDCR, you establish *source* and *destination* cluster. A source
 cluster is the cluster from which you want to copy data; a destination cluster
@@ -12840,7 +12840,7 @@ see [Cross Datacenter Replication
 
 <a id="couchbase-admin-restapi-xdcr-create-ref"></a>
 
-## Creating a Destination Cluster Reference
+### Creating a Destination Cluster Reference
 
 When you use XDCR, you establish *source* and *destination* cluster. A source
 cluster is the cluster from which you want to copy data; a destination cluster
@@ -12905,7 +12905,7 @@ Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuratio
 
 <a id="couchbase-admin-restapi-xdcr-deleting-ref"></a>
 
-## Deleting a Destination Cluster Reference
+### Deleting a Destination Cluster Reference
 
 You can remove a reference to destination cluster using the REST API. A
 destination cluster is a cluster to which you replicate data. After you remove
@@ -12947,7 +12947,7 @@ Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuratio
 
 <a id="couchbase-admin-restapi-xdcr-create-repl"></a>
 
-## Creating XDCR Replications
+### Creating XDCR Replications
 
 To replicate data to an established destination cluster from a source cluster,
 you can use the REST API or Couchbase Web Console. Once you create a replication
@@ -12996,7 +12996,7 @@ Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuratio
 
 <a id="couchbase-admin-restapi-xdcr-delete-repl"></a>
 
-## Deleting XDCR Replications
+### Deleting XDCR Replications
 
 When you delete a replication, it stops replication from the source to the
 destination. If you re-create the replication between the same source and
@@ -13017,7 +13017,7 @@ Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuratio
 
 <a id="couchbase-admin-restapi-xdcr-internal-settings"></a>
 
-## Viewing Internal XDCR Settings
+### Viewing Internal XDCR Settings
 
 There are internal settings for XDCR which are only exposed via the REST API.
 These settings will change the replication behavior, performance, and timing. To
@@ -13070,7 +13070,7 @@ For more information about XDCR, see [Cross Datacenter Replication
 
 <a id="couchbase-admin-restapi-xdcr-change-settings"></a>
 
-## Changing Internal XDCR Settings
+### Changing Internal XDCR Settings
 
 There are internal settings for XDCR which are only exposed via the REST API.
 These settings will change the replication behavior, performance, and timing.
@@ -13444,7 +13444,7 @@ All views within Couchbase operate as follows:
 
 <a id="couchbase-views-expiration"></a>
 
-## How Expiration Impacts Views
+### How Expiration Impacts Views
 
 Be aware that Couchbase Server does lazy expiration, that is, expired items are
 flagged as deleted rather than being immediately erased. Couchbase Server has a
@@ -13526,7 +13526,7 @@ Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-da
 
 <a id="couchbase-views-operation-cluster"></a>
 
-## View Operation within the Cluster
+### View Operation within the Cluster
 
 When working within a cluster the operation of the views takes into account the
 fact that data may be spread across the cluster. When operating within a
@@ -13576,7 +13576,7 @@ cluster, views operate as follows:
 
 <a id="couchbase-views-operation-performance"></a>
 
-## View Performance
+### View Performance
 
 View performance, including the time taken to update the view, the time required
 for the view update to be accessed, and for the updated information to be
@@ -13611,7 +13611,7 @@ Some key notes and points are provided below:
 
 <a id="couchbase-views-writing-stale"></a>
 
-## Index Updates and the stale Parameter
+### Index Updates and the stale Parameter
 
 Indexes are created by Couchbase Server based on the view definition, but
 updating of these indexes can be controlled at the point of data querying,
@@ -13736,7 +13736,7 @@ as the record sequence may change between individual queries.
 
 <a id="couchbase-views-operation-autoupdate"></a>
 
-## Automated Index Updates
+### Automated Index Updates
 
 In addition to the user-selectable update interval, all indexes can be updated
 automatically in the background. The automated update is configured through two
@@ -13913,7 +13913,7 @@ within the Web Console.
 
 <a id="couchbase-views-datastore-json"></a>
 
-## JSON Basics
+### JSON Basics
 
 JSON is used because it is a lightweight, easily parsed, cross-platform data
 representation format. There are a multitude of libraries and tools designed to
@@ -13968,7 +13968,7 @@ as a binary object, not a JSON document.
 
 <a id="couchbase-views-datastore-fields"></a>
 
-## Document Metadata
+### Document Metadata
 
 During view processing, metadata about individual documents is exposed through a
 separate JSON object, `meta`, that can be optionally defined as the second
@@ -14010,7 +14010,7 @@ through the Memcached/Couchbase protocol as part of the document.
 
 <a id="couchbase-views-datastore-nonjson"></a>
 
-## Non-JSON Data
+### Non-JSON Data
 
 All documents stored in Couchbase Server will return a JSON structure, however,
 only submitted information that could be parsed into a JSON document will be
@@ -14029,7 +14029,7 @@ Data](couchbase-manual-ready.html#couchbase-views-writing-nonjson).
 
 <a id="couchbase-views-datastore-indexseq"></a>
 
-## Document Storage and Indexing Sequence
+### Document Storage and Indexing Sequence
 
 The method of storage of information into the Couchbase Server affects how and
 when the indexing information is built, and when data written to the cluster is
@@ -14286,7 +14286,7 @@ Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
 
 <a id="couchbase-views-writing-map"></a>
 
-## Map Functions
+### Map Functions
 
 The map function is the most critical part of any view as it provides the
 logical mapping between the input fields of the individual objects stored within
@@ -14425,7 +14425,7 @@ Samples](couchbase-manual-ready.html#couchbase-views-sample-patterns).
 
 <a id="couchbase-views-writing-reduce"></a>
 
-## Reduce Functions
+### Reduce Functions
 
 Often the information that you are searching or reporting on needs to be
 summarized or reduced. There are a number of different occasions when this can
@@ -14536,7 +14536,7 @@ within the `reduce()` function is 64KB.
 
 <a id="couchbase-views-writing-reduce-count"></a>
 
-## Built-in _count
+### Built-in _count
 
 The `_count` function provides a simple count of the input rows from the `map()`
 function, using the keys and group level to provide a count of the correlated
@@ -14600,7 +14600,7 @@ output.
 
 <a id="couchbase-views-writing-reduce-sum"></a>
 
-## Built-in _sum
+### Built-in _sum
 
 The built-in `_sum` function sums the values from the `map()` function call,
 this time summing up the information in the value for each row. The information
@@ -14645,7 +14645,7 @@ city:
 
 <a id="couchbase-views-writing-reduce-stats"></a>
 
-## Built-in _stats
+### Built-in _stats
 
 The built-in `_stats` reduce function produces statistical calculations for the
 input data. As with the `_sum` function, the corresponding value in the emit
@@ -14704,7 +14704,7 @@ rows.
 
 <a id="couchbase-views-writing-reduce-custom"></a>
 
-## Writing Custom Reduce Functions
+### Writing Custom Reduce Functions
 
 The `reduce()` function has to work slightly differently to the `map()`
 function. In the primary form, a `reduce()` function must convert the data
@@ -14769,7 +14769,7 @@ required for the specified key.
 
 <a id="couchbase-views-writing-reduce-custom-builtin"></a>
 
-## Re-writing the built-in Reduce Functions
+### Re-writing the built-in Reduce Functions
 
 Using this model as a template, it is possible to write the full implementation
 of the built-in functions `_sum` and `_count` when working with the sales data
@@ -14822,7 +14822,7 @@ with the final value being returned.
 
 <a id="couchbase-views-writing-reduce-custom-rereduce"></a>
 
-## Handling Rereduce
+### Handling Rereduce
 
 For `reduce()` functions, they should be both transparent and standalone. For
 example, the `_sum` function did not rely on global variables or parsing of
@@ -14946,7 +14946,7 @@ within the `reduce()` function is 64KB.
 
 <a id="couchbase-views-writing-nonjson"></a>
 
-## Views on non-JSON Data
+### Views on non-JSON Data
 
 If the data stored within your buckets is not JSON formatted or JSON in nature,
 then the information is stored in the database as an attachment to a JSON
@@ -15004,7 +15004,7 @@ startkey=['monster', null, null]&endkey=['monster','\u0000' ,'\u0000']
 
 <a id="couchbase-views-writing-utilityfuncs"></a>
 
-## Built-in Utility Functions
+### Built-in Utility Functions
 
 Couchbase Server incorporates different utility function beyond the core
 JavaScript functionality that can be used within `map()` and `reduce()`
@@ -15046,7 +15046,7 @@ functions where relevant.
 
 <a id="couchbase-views-writing-bestpractice"></a>
 
-## View Writing Best Practice
+### View Writing Best Practice
 
 Although you are free to write views matching your data, you should keep in mind
 the performance and storage implications of creating and organizing the
@@ -15358,7 +15358,7 @@ API.
 
 <a id="couchbase-views-designdoc-api-storing"></a>
 
-## Storing a Design Document
+### Storing a Design Document
 
 To create a new design document with one or more views, you can upload the
 corresponding design document using the REST API with the definition in place.
@@ -15476,7 +15476,7 @@ in this example), and for each view, a corresponding `map()` function.
 
 <a id="couchbase-views-designdoc-api-retrieving"></a>
 
-## Retrieving a Design Document
+### Retrieving a Design Document
 
 To obtain an existing design document from a given bucket, you need to access
 the design document from the corresponding bucket using a `GET` request, as
@@ -15570,7 +15570,7 @@ The metadata matches the corresponding metadata for a data document.
 
 <a id="couchbase-views-designdoc-api-deleting"></a>
 
-## Deleting a Design Document
+### Deleting a Design Document
 
 To delete a design document, you use the `DELETE` HTTP request with the URL of
 the corresponding design document. The summary information for this request is
@@ -15673,7 +15673,7 @@ supported values are the same across all environments.
 
 <a id="couchbase-views-querying-rest-api"></a>
 
-## Querying Using the REST API
+### Querying Using the REST API
 
 Querying can be performed through the REST API endpoint. The REST API supports
 and operates using the core HTTP protocol, and this is the same system used by
@@ -15908,7 +15908,7 @@ client library interfaces.
 
 <a id="couchbase-views-writing-querying-selection"></a>
 
-## Selecting Information
+### Selecting Information
 
 Couchbase Server supports a number of mechanisms for selecting information
 returned by the view. Key selection is made after the view results (including
@@ -15987,7 +15987,7 @@ The following selection types are supported:
 
 <a id="couchbase-views-writing-querying-selection-compoundbykey"></a>
 
-## Selecting Compound Information by key or keys
+### Selecting Compound Information by key or keys
 
 If you are generating a compound key within your view, for example when
 outputting a date split into individualy year, month, day elements, then the
@@ -16041,7 +16041,7 @@ Keys](couchbase-manual-ready.html#couchbase-views-writing-querying-selection-com
 
 <a id="couchbase-views-writing-querying-selection-partial"></a>
 
-## Partial Selection and Key Ranges
+### Partial Selection and Key Ranges
 
 Matching of the key value has a precedence from right to left for the key value
 and the supplied `startkey` and/or `endkey`. Partial strings may therefore be
@@ -16115,7 +16115,7 @@ being output that match the specified prefix.
 
 <a id="couchbase-views-writing-querying-selection-compound"></a>
 
-## Partial Selection with Compound Keys
+### Partial Selection with Compound Keys
 
 Compound keys, such as arrays or hashes, can also be specified in the view
 output, and the matching precedence can be used to provide complex selection
@@ -16183,7 +16183,7 @@ Selection](couchbase-manual-ready.html#couchbase-views-sample-patterns-timestamp
 
 <a id="couchbase-views-writing-querying-pagination"></a>
 
-## Pagination
+### Pagination
 
 Pagination over results can be achieved by using the `skip` and `limit`
 parameters. For example, to get the first 10 records from the view:
@@ -16232,7 +16232,7 @@ This is much faster than the skip/limit example shown above.
 
 <a id="couchbase-views-writing-querying-grouping"></a>
 
-## Grouping in Queries
+### Grouping in Queries
 
 If you have specified an array as your compound key within your view, then you
 can specify the group level to be applied to the query output when using a
@@ -16271,7 +16271,7 @@ compound key using an array as the output value for the key.
 
 <a id="couchbase-views-writing-querying-grouping-selection"></a>
 
-## Selection when Grouping
+### Selection when Grouping
 
 When using grouping and selection using the `key`, `keys`, or `startkey` /
 `endkey` parameters, they query value should match at least the format (and
@@ -16318,7 +16318,7 @@ and `endkey` are used to start and stop the selection of output rows.
 
 <a id="couchbase-views-writing-querying-ordering"></a>
 
-## Ordering
+### Ordering
 
 All view results are automatically output sorted, with the sorting based on the
 content of the key in the output view. Views are sorted using a specific sortinf
@@ -16391,7 +16391,7 @@ by eliminating the case differences.
 
 <a id="couchbase-views-writing-querying-errorcontrol"></a>
 
-## Error Control
+### Error Control
 
 There are a number of parameters that can be used to help control errors and
 responses during a view query.
@@ -16473,7 +16473,7 @@ structures, views and querying parameters required for different situations.
 
 <a id="couchbase-views-sample-patterns-general"></a>
 
-## General Advice
+### General Advice
 
 There are some general points and advice for writing all views that apply
 irrespective of the document structure, query format, or view content.
@@ -16513,7 +16513,7 @@ irrespective of the document structure, query format, or view content.
 
 <a id="couchbase-views-sample-patterns-type"></a>
 
-## Validating Document Type
+### Validating Document Type
 
 If your dataset includes documents that may be either JSON or binary, then you
 do not want to create a view that outputs individual fields for non-JSON
@@ -16535,7 +16535,7 @@ output.
 
 <a id="couchbase-views-sample-patterns-primary"></a>
 
-## Document ID (Primary) Index
+### Document ID (Primary) Index
 
 To create a 'primary key' index, i.e. an index that contains a list of every
 document within the database, with the document ID as the key, you can create a
@@ -16575,7 +16575,7 @@ the view, it cannot be used as a search or querying mechanism.
 
 <a id="couchbase-views-sample-patterns-second"></a>
 
-## Secondary Index
+### Secondary Index
 
 The simplest form of view is to create an index against a single field from the
 documents stored in your database.
@@ -16622,7 +16622,7 @@ regardless of the document field capitalization.
 
 <a id="couchbase-views-sample-patterns-expiry"></a>
 
-## Using Expiration Metadata
+### Using Expiration Metadata
 
 The metadata object makes it very easy to create and update different views on
 your data using information outside of the main document data. For example, you
@@ -16648,7 +16648,7 @@ view of who was recently active on the service.
 
 <a id="couchbase-views-sample-patterns-multiemit"></a>
 
-## Emitting Multiple Rows
+### Emitting Multiple Rows
 
 The `emit()` function is used to create a record of information for the view
 during the map phase, but it can be called multiple times within that map phase
@@ -16767,7 +16767,7 @@ This generates the following view:
 
 <a id="couchbase-views-sample-patterns-timestamp"></a>
 
-## Date and Time Selection
+### Date and Time Selection
 
 For date and time selection, consideration must be given to how the data will
 need to be selected when retrieving the information. This is particularly true
@@ -16972,7 +16972,7 @@ views for the limited datatypes of logtype to create a `warningsbydate` view.
 
 <a id="couchbase-views-sample-patterns-selectivemap"></a>
 
-## Selective Record Output
+### Selective Record Output
 
 If you are storing different document types within the same bucket, then you may
 want to ensure that you generate views only on a specific record type within the
@@ -17043,7 +17043,7 @@ selection can be much easier at the expense of updating additional view indexes.
 
 <a id="couchbase-views-sample-patterns-sortreduce"></a>
 
-## Sorting on Reduce Values
+### Sorting on Reduce Values
 
 The sorting algorithm within the view system outputs information ordered by the
 generated key within the view, and therfore it operates before any reduction
@@ -17056,7 +17056,7 @@ enabled from a client, and perform the sorting within the client application.
 
 <a id="couchbase-views-sample-patterns-joins"></a>
 
-## Solutions for Simulating Joins
+### Solutions for Simulating Joins
 
 Joins between data, even when the documents being examined are contained within
 the same bucket, are not possible directly within the view system. However, you
@@ -17151,7 +17151,7 @@ client SDK to get all the comment records from the Couchbase Server cache.
 
 <a id="couchbase-views-sample-patterns-transactions"></a>
 
-## Simulating Transactions
+### Simulating Transactions
 
 Couchbase Server does not support transactions, but the effect can be simulated
 by writing a suitable document and view definition that produces the effect
@@ -17290,7 +17290,7 @@ upsetting the existing stored data.
 
 <a id="couchbase-views-sample-patterns-commits"></a>
 
-## Simulating Multi-phase Transactions
+### Simulating Multi-phase Transactions
 
 The technique in [Simulating
 Transactions](couchbase-manual-ready.html#couchbase-views-sample-patterns-transactions)
@@ -17557,7 +17557,7 @@ than one needed to support selection by the author.
 
 <a id="couchbase-views-writing-sql-select"></a>
 
-## Translating SQL Field Selection (SELECT) to Map/Reduce
+### Translating SQL Field Selection (SELECT) to Map/Reduce
 
 The field selection within an SQL query can be translated into a corresponding
 view definition, either by adding the fields to the emitted key (if the value is
@@ -17613,7 +17613,7 @@ output.
 
 <a id="couchbase-views-writing-sql-where"></a>
 
-## Translating SQL WHERE to Map/Reduce
+### Translating SQL WHERE to Map/Reduce
 
 The `WHERE` clause within an SQL statement forms the selection criteria for
 choosing individual records. Within a view, the ability to query the data is
@@ -17792,7 +17792,7 @@ SELECT recipeid FROM recipe JOIN ingredients on ingredients.recipeid = recipe.re
 
 <a id="couchbase-views-writing-sql-order"></a>
 
-## Translating SQL ORDER BY to Map/Reduce
+### Translating SQL ORDER BY to Map/Reduce
 
 The `ORDER BY` clause within SQL controls the order of the records that are
 output. Ordering within a view is controlled by the value of the key. However,
@@ -17839,7 +17839,7 @@ using the `descending` query parameter. For more information, see
 
 <a id="couchbase-views-writing-sql-group"></a>
 
-## Translating SQL GROUP BY to Map/Reduce
+### Translating SQL GROUP BY to Map/Reduce
 
 The `GROUP BY` parameter within SQL provides summary information for a group of
 matching records according to the specified fields, often for use with a numeric
@@ -17890,7 +17890,7 @@ Functions](couchbase-manual-ready.html#couchbase-views-writing-reduce-custom).
 
 <a id="couchbase-views-writing-sql-paging"></a>
 
-## Translating SQL LIMIT and OFFSET
+### Translating SQL LIMIT and OFFSET
 
 Within SQL, the `LIMIT` and `OFFSET` clauses to a given query are used as a
 paging mechanism. For example, you might use:
@@ -17940,7 +17940,7 @@ to the view engine to provide advanced geospatial queries.
 
 <a id="couchbase-views-writing-geo-data"></a>
 
-## Adding Geometry Data
+### Adding Geometry Data
 
 GeoCouch supports the storage of any geometry information using the
 [GeoJSON](http://geojson.org/geojson-spec.html) specification. The format of the
@@ -17966,7 +17966,7 @@ sent to the bucket could be formatted like that below:
 
 <a id="couchbase-views-writing-geo-views"></a>
 
-## Views and Queries
+### Views and Queries
 
 The GeoCouch extension uses the standard Couchbase indexing system to build a
 two-dimensional index from the point data within the bucket. The format of the
@@ -18259,7 +18259,7 @@ essentially sleep until there are more items to write.
 
 <a id="couchbase-monitoring-diskwritequeue-monitoring"></a>
 
-## Monitoring the Disk Write Queue
+### Monitoring the Disk Write Queue
 
 There are basically two ways to monitor the disk queue, at a high-level from the
 Web UI or at a low-level from the individual node statistics.
@@ -18294,7 +18294,7 @@ the proxy and individual nodes have directly accessible statistics interfaces.
 
 <a id="couchbase-monitoring-stats-rest"></a>
 
-## REST Interface Statistics
+### REST Interface Statistics
 
 [The easiest to use interface into the statistics provided by REST is to use the
 [Web Console for
@@ -18307,7 +18307,7 @@ information.
 
 <a id="couchbase-monitoring-nodestats"></a>
 
-## Couchbase Server Node Statistics
+### Couchbase Server Node Statistics
 
 [Detailed stats
 documentation](http://github.com/membase/ep-engine/blob/master/docs/stats.org)
@@ -18360,14 +18360,14 @@ There are seven commands available through the stats interface:
 
 <a id="couchbase-monitoring-nodestats-stats"></a>
 
-## stats Command
+### stats Command
 
 This displays a large list of statistics related to the Couchbase process
 including the underlying engine (ep\_\* stats).
 
 <a id="couchbase-monitoring-nodestats-dispatcher"></a>
 
-## dispatcher Command
+### dispatcher Command
 
 This statistic will show what the dispatcher is currently doing:
 
@@ -18906,7 +18906,7 @@ of the object being stored.
 
 <a id="couchbase-sampledata-gamesim-views-leaderboard"></a>
 
-## leaderboard View
+### leaderboard View
 
 The `leaderboard` view is designed to generate a list of the players and their
 current score:
@@ -18997,7 +18997,7 @@ Which generates the following:
 
 <a id="couchbase-sampledata-gamesim-views-playerlist"></a>
 
-## playerlist View
+### playerlist View
 
 The `playerlist` view creates a list of all the players by using a map function
 that looks for "player" records.
@@ -19113,7 +19113,7 @@ defined.
 
 <a id="couchbase-sampledata-beer-views-brewerybeers"></a>
 
-## brewery_beers View
+### brewery_beers View
 
 The `brewery_beers` view outputs a composite list of breweries and beers they
 brew by using the view output format to create a 'fake' join, as detailed in
@@ -19201,7 +19201,7 @@ provide a list of the beers at each brewery.
 
 <a id="couchbase-sampledata-beer-views-by_location"></a>
 
-## by_location View
+### by_location View
 
 Outputs the brewery location, accounting for missing fields in the source data.
 The output creates information either by country, by country and state, or by

@@ -19,6 +19,13 @@ function dasherize(string) {
   return string.toLowerCase().replace(dashify, '-').replace(kill, '');
 }
 
+var scrollup = _.throttle(function () {
+  $('[data-spy="scroll"]').each(function() {
+    $(this).scrollspy('refresh');
+  });
+  console.log('Refreshed scrollspy');
+}, 1000);
+
 function setupSideNav() {
   var level = 1;
   var html = '';
@@ -40,15 +47,14 @@ function setupSideNav() {
     level = taglevel;
   });
   $("#sidenav").append(html);
-  $('[data-spy="scroll"]').each(function () {
-    var $spy = $(this).scrollspy('refresh');
-  });
   $("#sidenav").affix({
     offset: { top: 20 }
   });
   $("#sidenav li").on('activate', function() {
     $(this).addClass('active');
   });
+  $("img").load(scrollup);
+  scrollup();
 }
 
 $(document).ready(function () {
