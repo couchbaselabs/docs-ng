@@ -1,7 +1,7 @@
 {
         "site-title": "Couchbase",
         "navbar": [
-        { "label": "Server Guide", "href": "/manual.html" },
+        { "label": "Server Guide", "href": "/server_guide.html" },
         { "label": "Developer Guide", "href": "/dev_guide.html" },
         { "label": "SDK Guides", "href": "#", "subnav" : [
                 {"label": "Java", "href" : "/java.html" },
