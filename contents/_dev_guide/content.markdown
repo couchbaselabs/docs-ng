@@ -211,7 +211,7 @@ Manual](http://www.couchbase.com/docs/couchbase-manual-2.0/index.html).
 
 <a id="couchbase-as-doc-store"></a>
 
-## Couchbase as Document Store
+### Couchbase as Document Store
 
 The primary unit of data storage in Couchbase Server 2.0 is a JSON document,
 which is a data structure capable of holding arrays and other complex
@@ -241,7 +241,7 @@ For more information about working with JSON documents and Couchbase, see,
 
 <a id="couchbase-buckets"></a>
 
-## Data Buckets
+### Data Buckets
 
 Your web application stores data in a Couchbase cluster using *buckets*. Buckets
 are isolated, virtual containers which logically group records within a cluster;
@@ -258,7 +258,7 @@ Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-
 
 <a id="keys-documents"></a>
 
-## Keys and Metadata
+### Keys and Metadata
 
 All information that you store in Couchbase Server are documents with keys.
 *Keys* are unique identifiers for a document, and *values* are either JSON
@@ -296,7 +296,7 @@ to change how the document is handled:
 
 <a id="couchbase-clients"></a>
 
-## Couchbase SDKs
+### Couchbase SDKs
 
 Couchbase SDKs, sometimes also referred to as client libraries, are the
 language-specific SDKs provided by Couchbase and third-party providers and that
@@ -323,7 +323,7 @@ can communicate via a Couchbase SDK to a cluster.
 
 <a id="couchbase-nodes-clusters"></a>
 
-## Nodes and Clusters
+### Nodes and Clusters
 
 You deliver your application on several grouped servers, also known as a
 *cluster*. Each cluster consists of multiple *nodes* :
@@ -346,7 +346,7 @@ cluster node.
 
 <a id="couchbase-cluster-map"></a>
 
-## Information about the Cluster
+### Information about the Cluster
 
 Your web application does not need to directly handle any information about
 where a document resides; Couchbase SDKs automatically retrieve updates from
@@ -1780,7 +1780,7 @@ Guidelines](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-bestpra
 
 <a id="cb-set"></a>
 
-## Set
+### Set
 
 `set` will write information to the data store regardless of whether the key for
 the value already exists or not. The method is destructive; if the key exists,
@@ -1905,7 +1905,7 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 <a id="cb-add"></a>
 
-## Add
+### Add
 
 `add` will also write information to the Couchbase Server, but unlike `set`,
 `add` will fail if the value for a given key already exists in Couchbase Server.
@@ -2007,7 +2007,7 @@ value and the CAS value for document.
 
 <a id="cb-get-one-key"></a>
 
-## Get
+### Get
 
 You can use this operation for a document you want to change, or for a document
 you want to read, but not necessarily update or edit. In this first scenario
@@ -2142,7 +2142,7 @@ for more information.
 
 <a id="cb-get-multiple"></a>
 
-## Retrieving Multiple Keys
+### Retrieving Multiple Keys
 
 In the case of our spaceship game example, we create space environment which
 contains multiple planets and discussed how we could use `get` to retrieve
@@ -2287,7 +2287,7 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 <a id="cb-get-and-touch"></a>
 
-## Get and Touch
+### Get and Touch
 
 When you perform a `get` you may also want to update the expiration for that
 document. This is called a 'get-and-touch' operation and can be completed in a
@@ -2572,7 +2572,7 @@ some languages, parameters, return values, and data types may differ.
 
 <a id="cb-touch"></a>
 
-## Touch
+### Touch
 
 With the `touch` method you can update the expiration time on a given key. This
 can be useful for situations where you want to prevent an item from expiring
@@ -2666,7 +2666,7 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 <a id="cb-replace"></a>
 
-## Replace
+### Replace
 
 This method will update the value for a key, if the key already exists. If the
 key does not exist, it will fail and return an error. `Replace` is useful in
@@ -2750,7 +2750,7 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 <a id="cb-cas"></a>
 
-## Check and Set (CAS)
+### Check and Set (CAS)
 
 This operation is also known as a check-and-set method; it enables you to update
 information only if a unique identifier matches the identifier for the document
@@ -2905,7 +2905,7 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 <a id="cb-append-prepend"></a>
 
-## Appending and Pre-pending
+### Appending and Pre-pending
 
 With `append` and `prepend` methods, you can add information to the start or end
 of a binary data that already exists in the data store. Both of these methods,
@@ -3092,7 +3092,7 @@ Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
 
 <a id="cb-incr-decr"></a>
 
-## Incrementing and Decrementing
+### Incrementing and Decrementing
 
 These methods can increment or decrement a value for a given key, if that value
 can be interpreted as an integer value. Couchbase Server requires that the value
@@ -4689,7 +4689,7 @@ the server from the client.
 
 <a id="creating-a-bucket"></a>
 
-## Create Your First Bucket
+### Create Your First Bucket
 
 The first thing you will want to do after you set up Couchbase Server and you
 want to explore the SDKs is to create a data bucket. You can do so with the
@@ -4757,7 +4757,7 @@ Administration](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-adm
 
 <a id="couchbase-client-connecting"></a>
 
-## Connecting with Couchbase SDKs
+### Connecting with Couchbase SDKs
 
 To create a connection to Couchbase Server you create a Couchbase client
 instance which contains and manages connection information to the server. By
@@ -4872,7 +4872,7 @@ cluster information with updated node URLs.
 
 <a id="cb-authenticating"></a>
 
-## Authenticating a Client
+### Authenticating a Client
 
 When you create a connection to the Couchbase Server, you are actually creating
 a new instance of a Couchbase client object which contains your connection
@@ -5312,7 +5312,7 @@ does not attempt to interpret any structure for the value you provide.
 
 <a id="couchbase-keys"></a>
 
-## Specifying Keys
+### Specifying Keys
 
 Keys are unique identifiers that you provide as a parameter when you perform any
 operation on data. Each document you store in a data bucket must have a unique
@@ -5340,7 +5340,7 @@ GB of RAM for document meta data.
 
 <a id="couchbase-values"></a>
 
-## Specifying Values
+### Specifying Values
 
 Any value you want to store in Couchbase Server will be stored as a document, or
 as a pure byte string. In the case of JSON documents, the JSON syntax enables
@@ -5365,7 +5365,7 @@ across nodes.
 
 <a id="more-on-metadata"></a>
 
-## More on Metadata
+### More on Metadata
 
 When you store a key-document pair in Couchbase Server, it also saves meta data
 that is associated with the new record. The following are the types of meta
@@ -5424,7 +5424,7 @@ remove the item at that epoch time.
 
 <a id="how-couchbase-handles-expirations"></a>
 
-## Understanding Document Expirations
+### Understanding Document Expirations
 
 Time to live can be a bit confusing for developers at first. There are many
 cases where you may set an expiration to be 30 seconds, but the record may still
@@ -6116,7 +6116,7 @@ commits on multiple documents.
 
 <a id="reserving-documents"></a>
 
-## Using a 'Lease-Out' Pattern
+### Using a 'Lease-Out' Pattern
 
 When you use this web application pattern, you 'lease-out' information, or in
 other words, reserve a document for use by a single process. By doing so, you
@@ -6246,7 +6246,7 @@ event has already passed.
 
 <a id="two-phase-commits"></a>
 
-## Performing Two-Phase Commits
+### Performing Two-Phase Commits
 
 For traditional relational databases, we can store information for an object in
 one or more tables. This helps us from having a lot of duplicate information in
@@ -6707,7 +6707,7 @@ Commit](https://gist.github.com/3155132/2301591fa9d2dddbf3c2578ad1369703493c5aef
 
 <a id="getting_and-locking"></a>
 
-## Getting and Locking
+### Getting and Locking
 
 Retrieving information from back end or remote systems might be slow and consume
 a lot of resources. You can use advisory locks on records in order to control
@@ -6777,7 +6777,7 @@ plan your cluster and size your RAM data buckets to handle your working set.
 
 <a id="cb-server-cluster-sizing"></a>
 
-## Performing Cluster Sizing
+### Performing Cluster Sizing
 
 Before your application goes into production, you will need to determine your
 cluster size. This includes:
@@ -6796,7 +6796,7 @@ Manual: Sizing Guidelines.
 
 <a id="cb-improving-doc-access"></a>
 
-## Improving Document Access
+### Improving Document Access
 
 The way that you structure documents in Couchbase Server will influence how
 often retrieve them for their information, and will therefore influence
@@ -6885,7 +6885,7 @@ structures, keep in mind this approach.
 
 <a id="optimizing-method-calls"></a>
 
-## Using the Fastest Methods
+### Using the Fastest Methods
 
 There are several Couchbase SDK APIs which are considered 'convenience' methods
 in that they provide commonly used functionality in a single method call. They
@@ -7003,7 +7003,7 @@ integer.
 
 <a id="optimizing-client-instances"></a>
 
-## Optimizing Client Instances
+### Optimizing Client Instances
 
 Creating a new connection to Couchbase Server from an SDK, is done by creating
 an instance of the Couchbase client. When you create this object, it is one of
@@ -7025,7 +7025,7 @@ persistent client instance. The next section discusses this approach.
 
 <a id="cb-persistent-connections"></a>
 
-## Maintaining Persistent Connections
+### Maintaining Persistent Connections
 
 Couchbase SDKs support persistent connections which enable you to send multiple
 requests and receive multiple responses using the same connection. How the
@@ -7209,7 +7209,7 @@ side errors.
 
 <a id="about-client-timeouts"></a>
 
-## Client-Side Timeouts
+### Client-Side Timeouts
 
 Timeouts that occur during your application runtime can be configured on the
 Couchbase Client SDK side. In most cases, you should also assume that your
@@ -7365,7 +7365,7 @@ please refer to the Language Reference for your chosen SDK as well as the
 
 <a id="cb-configuring-logs"></a>
 
-## Configuring Logs
+### Configuring Logs
 
 You can configure logging at a few different levels for Couchbase Server:
 
@@ -7380,7 +7380,7 @@ You can configure logging at a few different levels for Couchbase Server:
 
 <a id="cb-handling-backups-restores"></a>
 
-## Backups and Restores
+### Backups and Restores
 
 Backing up your information should be a regular process you perform to help
 ensure you do not lose all your data in case of major hardware or other system
@@ -7391,7 +7391,7 @@ restores, see Couchbase Server Manual, "Backup and Restore with Couchbase."
 
 <a id="cb-handling-failover"></a>
 
-## Handling Failover
+### Handling Failover
 
 When a Couchbase Server node fails, any other node functioning in the cluster
 will continue to process requests and provide responses and you will experience
@@ -7511,7 +7511,7 @@ Authentication by using libsasl in C if you want some example code.
 
 <a id="couchbase-client-development-saslauth-listmechanisms"></a>
 
-## List Mechanisms
+### List Mechanisms
 
 We start the SASL authentication by asking the `memcached` server for the
 mechanisms it supports. This is achieved by sending the following packet:
@@ -7598,7 +7598,7 @@ CRAM-MD5 GSSAPI").
 
 <a id="couchbase-client-development-saslauth-authreq"></a>
 
-## Making an Authentication Request
+### Making an Authentication Request
 
 After choosing the desired mechanism from the ones that the Couchbase Server
 supports, you need to create an authentication request packet and send it to the
@@ -7805,7 +7805,7 @@ in the JSON response under the "buckets" array.
 
 <a id="couchbase-client-development-restjson-parsing"></a>
 
-## Parsing the JSON
+### Parsing the JSON
 
 Once your client library has received a complete vBucket-to-server map message,
 it should use its favorite JSON parser to process the map into more useful data
@@ -7820,7 +7820,7 @@ JSON vBucket-to-server map and provide an API to access the map information.
 
 <a id="couchbase-client-development-restjson-parsing-vbucketmap"></a>
 
-## Handling vBucketMap Information
+### Handling vBucketMap Information
 
 The `vBucketMap` value within the returned JSON describes the vBucket
 organization. For example:
@@ -7866,7 +7866,7 @@ variations of:
 
 <a id="couchbase-client-development-restjson-vbucket-encoding"></a>
 
-## Encoding the vBucketId
+### Encoding the vBucketId
 
 As the user's application makes item data API invocations on your client library
 (mc.get("some\_key"), mc.delete("some\_key"), your client library will hash the
@@ -7885,7 +7885,7 @@ the cluster is changing configuration, such as during a Rebalance.
 
 <a id="couchbase-client-development-restjson-rebalancing"></a>
 
-## Handling Rebalances in Your Client Library
+### Handling Rebalances in Your Client Library
 
 A major operation in a cluster of Couchbase servers is rebalancing. A Couchbase
 system administrator may choose to initiate a rebalance because new servers
@@ -7952,7 +7952,7 @@ own.
 
 <a id="couchbase-client-development-restjson-rebalancing-ffm"></a>
 
-## Fast Forward Map
+### Fast Forward Map
 
 A planned, forthcoming improvement to the above NOT\_MY\_VBUCKET handling
 approach is that Couchbase will soon send an optional second map during the
@@ -7970,7 +7970,7 @@ implementations as a good fallback, just-in-case error handling codepath.
 
 <a id="couchbase-client-development-restjson-redundancy-availability"></a>
 
-## Redundancy & Availability
+### Redundancy & Availability
 
 Client library authors should enable their user applications to specify multiple
 URLs into the Couchbase cluster for redundancy. Ideally, the user application
