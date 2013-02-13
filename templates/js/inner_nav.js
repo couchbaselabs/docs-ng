@@ -23,28 +23,43 @@ var scrollup = _.throttle(function () {
   $('[data-spy="scroll"]').each(function() {
     $(this).scrollspy('refresh');
   });
-  console.log('Refreshed scrollspy');
 }, 1000);
 
 function setupSideNav() {
   var level = 1;
   var html = '';
+  var ids = {};
+  var first = true;
   $(".mdcontent > h1, h2").each(function(i, el) {
     var tag = $(el).prop('tagName');
     var taglevel = parseInt(tag.charAt(1), 10);
     var text = $(el).text();
-    var id = dasherize(text);
-    html += '<li><a href="#' + id + '">' + escapeHtml(text) + '</a>';
+
+    var dashed = dasherize(text);
+    var id = dashed;
+    var incr = 2;
+    while(ids[id]) {
+      id = dashed + "_" + incr;
+    }
+    ids[id] = true;
+
     $(el).attr('id', id);
     $(el).addClass('jumptarget');
+
     if(taglevel > level) {
       html += '<ul class="sub-menu">';
+      html += '<li><a href="#' + id + '">' + escapeHtml(text) + '</a>';
     } else if (taglevel < level) {
       html += '</li></ul></li>';
+      html += '<li><a href="#' + id + '">' + escapeHtml(text) + '</a>';
     } else {
-      html += '</li>';
+      if(!first) {
+        html += '</li>';
+      }
+      html += '<li><a href="#' + id + '">' + escapeHtml(text) + '</a>';
     }
     level = taglevel;
+    first = false;
   });
   $("#sidenav").append(html);
   $("#sidenav").affix({
