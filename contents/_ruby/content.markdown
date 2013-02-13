@@ -2,67 +2,6 @@
 
 # Couchbase Client Library Ruby 1.2
 
-This is the manual for 1.2 of the Couchbase Ruby client library, which is
-compatible with Couchbase Server 1.8.
-
-This manual provides a reference to the key features and best practices for
-using the Ruby Couchbase Client Library. The content constitutes a reference to
-the core API, not a complete guide to the entire API functionality.
-
-Couchbase Server 1.8✓✓
-
-Couchbase Server 2.0✓✓
-
-
-
-
-
-### External Community Resources
-
- * [Download Client
-   Library](http://packages.couchbase.com/clients/ruby/couchbase-1.2.0.gem)
-
- * [RDoc](http://www.couchbase.com/autodocs/couchbase-ruby-client-1.2.0/index.html)
-
- * [Ruby Client Library](http://www.couchbase.com/develop/ruby/current)
-
- * [Couchbase Developer Guide
-   2.0](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html)
-
- * [Couchbase Server Manual
-   2.0](http://www.couchbase.com/docs/couchbase-manual-2.0/index.html)
-
- * [SDK Forum](http://www.couchbase.com/forums/sdks/sdks)
-
-
-
-### Note
-
-The following document is still in production, and is not considered complete or
-exhaustive.
-
-*Last document update* : 13 Feb 2013 19:19; *Document built* : 13 Feb 2013
-19:19.
-
-### Documentation Availability and Formats
-
-This documentation is available **Unhandled:** `[:unknown-tag :wordasword]`. For
-other documentation from Couchbase, see [Couchbase Documentation
-Library](http://www.couchbase.com/docs)
-
-**Contact:**  [editors@couchbase.com](mailto:editors@couchbase.com) or
-[couchbase.com](http://www.couchbase.com)
-
-Copyright © 2010, 2011 Couchbase, Inc. Contact
-[copyright@couchbase.com](mailto:copyright@couchbase.com).
-
-For documentation license information, see [Documentation
-License](couchbase-sdk-ruby-ready.html#license-documentation). For all license
-information, see [Licenses](couchbase-sdk-ruby-ready.html#licenses).
-
-
-![](/media/ruby/images/couchbase_logo.jpg)
-
 <a id="getting-started"></a>
 
 # Getting Started

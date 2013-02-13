@@ -2,64 +2,6 @@
 
 # Couchbase Client Library: Java 1.1
 
-This is the manual for 1.1 of the Couchbase Java client library, which is
-compatible with Couchbase Server 2.0.
-
-This manual provides a reference to the key features and best practice for using
-the Java Couchbase Client library ( `couchbase-client` ).
-
-Couchbase Server 1.8✓✓
-
-Couchbase Server 2.0✓✓
-
-
-
-
-
-### External Community Resources
-
- * [Download Client
-   Library](http://packages.couchbase.com/clients/java/1.1.2/Couchbase-Java-Client-1.1.2.zip)
-
- * [JavaDoc](http://www.couchbase.com/autodocs/couchbase-java-client-1.1.2/index.html)
-
- * [Couchbase Developer Guide
-   2.0](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html)
-
- * [Couchbase Server Manual
-   2.0](http://www.couchbase.com/docs/couchbase-manual-2.0/index.html)
-
- * [Java Client Library](http://www.couchbase.com/develop/java/current)
-
- * [SDK Forum](http://www.couchbase.com/forums/sdks/sdks)
-
- * [Wiki: Java Client
-   Library](http://www.couchbase.com/wiki/display/couchbase/Couchbase+Java+Client+Library)
-
-
-
-*Last document update* : 13 Feb 2013 19:18; *Document built* : 13 Feb 2013
-19:18.
-
-### Documentation Availability and Formats
-
-This documentation is available **Unhandled:** `[:unknown-tag :wordasword]`. For
-other documentation from Couchbase, see [Couchbase Documentation
-Library](http://www.couchbase.com/docs)
-
-**Contact:**  [editors@couchbase.com](mailto:editors@couchbase.com) or
-[couchbase.com](http://www.couchbase.com)
-
-Copyright © 2010, 2011 Couchbase, Inc. Contact
-[copyright@couchbase.com](mailto:copyright@couchbase.com).
-
-For documentation license information, see [Documentation
-License](couchbase-sdk-java-ready.html#license-documentation). For all license
-information, see [Licenses](couchbase-sdk-java-ready.html#licenses).
-
-
-![](/media/java/images/couchbase_logo.jpg)
-
 <a id="getting-started"></a>
 
 # Getting Started
