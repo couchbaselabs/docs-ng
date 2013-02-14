@@ -42,7 +42,7 @@
         
       ]
     },
-    { "href": "/about.html", "label": "Archives" }
+    { "href": "/archives", "label": "Archives" }
   ],
   "site-title": "Couchbase"
 }

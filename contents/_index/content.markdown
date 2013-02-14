@@ -6,6 +6,16 @@ Using Couchbase Server
 - [Initial set up tasks][ref7]
 - [Architecture and concepts][ref8]
 
+Developing with Couchbase
+-------------
+- [Modeling documents][ref16]
+- [Indexing and querying data][ref17]
+- [Accessing data][ref18]
+- [Storing data][ref19]
+- [Building an first app][ref20]
+- [Handling more complex application behavior][ref21]
+- [Using Elasticsearch with Couchbase][ref22]
+
 Managing Couchbase Server
 ---------------------
 - [Rebalancing][ref9] | [Failing Over][ref9]
@@ -16,15 +26,7 @@ Managing Couchbase Server
 - [Using the Command-Line][ref14]
 - Details: [Server release notes][ref15]
 
-Developing with Couchbase
--------------
-- [Modeling documents][ref16]
-- [Indexing and querying data][ref17]
-- [Accessing data][ref18]
-- [Storing data][ref19]
-- [Building an first app][ref20]
-- [Handling more complex application behavior][ref21]
-- [Using Elasticsearch with Couchbase][ref22]
+
 
 [ref1]: server_guide.html#installing-couchbase-server
 [ref2]: server_guide.html#red-hat-linux-installation
