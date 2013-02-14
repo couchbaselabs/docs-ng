@@ -39,10 +39,10 @@
         { "href": "/net.html", "label": ".Net" },
         { "href": "/php.html", "label": "PHP" },
         { "href": "/ruby.html", "label": "Ruby" }
-        
-      ]
+        ]
     },
     { "href": "/archives", "label": "Archives" }
+    
   ],
   "site-title": "Couchbase"
 }
