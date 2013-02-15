@@ -1,13 +1,12 @@
-Using Couchbase Server
----------------
+#### Using Couchbase Server
+
 - [Starting Out][ref1]
 - Installing | [Redhat][ref2] | [Ubuntu][ref3] | [Windows][ref4]
 - [Upgrading][ref5] | [Migrating][ref6]
 - [Initial set up tasks][ref7]
 - [Architecture and concepts][ref8]
 
-Developing with Couchbase
--------------
+####Developing with Couchbase
 - [Modeling documents][ref16]
 - [Indexing and querying data][ref17]
 - [Accessing data][ref18]
@@ -16,8 +15,7 @@ Developing with Couchbase
 - [Handling more complex application behavior][ref21]
 - [Using Elasticsearch with Couchbase][ref22]
 
-Managing Couchbase Server
----------------------
+####Managing Couchbase Server
 - [Rebalancing][ref9] | [Failing Over][ref9]
 - [Performing backup and restore][ref10]
 - [Using Web Console][ref11]

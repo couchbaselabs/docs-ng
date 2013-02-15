@@ -1,18 +1,17 @@
-### Available Plug-Ins and Connectors
+#### Plug-Ins and Connectors
 
-- [Elasticsearch Plug-in, for Couchbase Server 2.0][ref0]
 - [Hadoop Connector][ref1]
 - [Moxi 1.8][ref2]
 - [Moxi 1.7][ref3]
 
-### Couchbase 1.8
+#### Couchbase 1.8
 
 - [Couchbase Developer's Guide 1.8][ref4]
 - [Couchbase Server 1.8 Manual][ref5]
 - [Couchbase Server 1.8 Manual, Japanese][ref6]
 - [Couchbase Java SDK, Japanese][ref7]
 
-### Membase Server Content
+#### Membase Server Content
 
 - [Membase Server 1.7 Manual][ref8] | [Membase New Features][ref10]
 - [Membase Java Client Getting Started][ref11] | [Membase Java Client Tutorial][ref12] | [Membase Java API Reference][ref13] 
