@@ -41,7 +41,7 @@
         { "href": "/ruby.html", "label": "Ruby" }
         ]
     },
-    { "href": "/archives", "label": "Archives" }
+    { "href": "/archives.html", "label": "Archives" }
     
   ],
   "site-title": "Couchbase"
