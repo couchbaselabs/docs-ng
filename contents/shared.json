@@ -31,9 +31,9 @@
     ]
   },
   "navbar": [
-    { "href": "/server_guide.html", "label": "Server Guide" },
-    { "href": "/dev_guide.html", "label": "Developer Guide" },
-    { "href": "#", "label": "SDK Guides", "subnav": [
+    { "href": "/server_guide.html", "label": "Server" },
+    { "href": "/dev_guide.html", "label": "Developer" },
+    { "href": "#", "label": "SDKs", "subnav": [
         { "href": "/c.html", "label": "C" },
         { "href": "/java.html", "label": "Java" },
         { "href": "/net.html", "label": ".Net" },
