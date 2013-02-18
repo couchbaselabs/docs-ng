@@ -24,6 +24,9 @@
 		    <gcse:searchbox></gcse:searchbox>
 		</div>
 		<ul class="nav nav-pills pull-right">
+		    <li>
+		        <a href="/index"><img src="/images/home_icon.png"></a>
+		    </li>
 		    {{#navbar}}
 		    <li class="{{#if subnav}}dropdown {{/if}}{{active_class .}}">
 			<a {{#if subnav}}class="dropdown-toggle" data-toggle="dropdown"{{/if}} href="{{{href}}}">
@@ -45,7 +48,7 @@
         		        <a href="http://www.couchbase.com/kr"><img src="/images/ko.png"></a>
         		    </li>
 		</ul>
-		<h3>Couchbase</h3>
+		<h3 class="cb_logo"><a href="http://www.couchbase.com"><img src="/images/couchbase_logo.png"></a></h3>
 	    </div>
 	    <div id="cse-results">
 		<gcse:searchresults></gcse:searchresults>

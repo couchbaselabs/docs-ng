@@ -1,3 +1,4 @@
 {
-  "no_nav":true
+  "no_nav":true,
+  "css_class" : "index_page"
 }
