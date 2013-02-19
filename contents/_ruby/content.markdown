@@ -6,7 +6,7 @@
 
 # Getting Started
 
-<p class="lab"></p>Awesome that you want to learn more about Couchbase! This is the right place to
+Awesome that you want to learn more about Couchbase! This is the right place to
 start your journey. This chapter will teach you the basics of Couchbase and how
 to interact with it through the Ruby Client SDK.
 
