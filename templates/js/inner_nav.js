@@ -68,8 +68,12 @@ function setupSideNav() {
   $("#sidenav li").on('activate', function() {
     $(this).addClass('active');
   });
-  $("img").load(scrollup);
-  scrollup();
+
+	$("#sidenav > li > a").click(function(){
+		$(this).parent().toggleClass("active");
+	})
+  //$("img").load(scrollup);
+  //scrollup();
 }
 
 $(document).ready(function () {
