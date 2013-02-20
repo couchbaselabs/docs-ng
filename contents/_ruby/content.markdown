@@ -810,55 +810,49 @@ The following document is still in production, and is not considered complete or
 exhaustive.
 
 The `Ruby Client Library` supports the full suite of API calls to Couchbase. A
-summary of the supported methods are listed in **Couldn't resolve xref tag:
-table-couchbase-sdk-ruby-summary**.
+summary of the supported methods are listed in **ERROR**.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_add** Add a value with
-the specified key that does not already exist
+`object.add(key, value, options)` Add a value with the specified key that does
+not already exist
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_append** Append a value
-to an existing key
+`object.append(key, value [, ruby-append-options ])` Append a value to an
+existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_cas** Compare and set a
-value providing the supplied CAS key matches
+`object.cas(key [, ruby-cas-options ])` Compare and set a value providing the
+supplied CAS key matches
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_connect**
-Create connection to Couchbase Server
+`object.connect([ url ] [, bucket-symbol ] [, username ] [, password ] [,
+ruby-connect-options ])` Create connection to Couchbase Server
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_new** New
-alias for creating Couchbase client instance.
+`object.new([ url ] [, bucket-symbol ] [, username ] [, password ] [,
+ruby-connect-options ])` New alias for creating Couchbase client instance.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_decrement** Decrement
-the value of an existing numeric key
+`object.decrement(key [, offset ] [, ruby-incr-decr-options ])` Decrement the
+value of an existing numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_delete** Delete a
-key/value
+`object.delete(key [, ruby-delete-options ])` Delete a key/value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_flush** Deletes all
-values from the corresponding bucket
+`object.flush()` Deletes all values from the corresponding bucket
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_get** Get one or more
-key values
+`object.get(keyn [, ruby-get-options ] [, ruby-get-keys ])` Get one or more key
+values
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_increment** Increment
-the value of an existing numeric key
+`object.increment(key [, offset ] [, ruby-incr-decr-options ])` Increment the
+value of an existing numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_prepend** Prepend a
-value to an existing key
+`object.prepend(key, value [, ruby-prepend-options ])` Prepend a value to an
+existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_replace** Update an
-existing key with a new value
+`object.replace(key, value [, ruby-replace-options ])` Update an existing key
+with a new value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_set** Store a value
-using the specified key
+`object.set(key, value, options)` Store a value using the specified key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_stats** Get the database
-statistics
+`object.stats([ statname ])` Get the database statistics
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-many** Update the
-expiry time of an item
+`object.touch-many(keyn)` Update the expiry time of an item
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-one** Update the
+`object.touch-one(key [, ruby-touch-options ] [, ruby-touch-keys ])` Update the
 expiry time of an item
 
 
@@ -936,11 +930,11 @@ can respond to several methods:
 The following document is still in production, and is not considered complete or
 exhaustive.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_connect**
-Create connection to Couchbase Server
+`object.connect([ url ] [, bucket-symbol ] [, username ] [, password ] [,
+ruby-connect-options ])` Create connection to Couchbase Server
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_couchbase\_new** New
-alias for creating Couchbase client instance.
+`object.new([ url ] [, bucket-symbol ] [, username ] [, password ] [,
+ruby-connect-options ])` New alias for creating Couchbase client instance.
 
 
 
@@ -1093,14 +1087,13 @@ The Couchbase Ruby Client Library store operations set information within the
 Couchbase database. These are distinct from the update operations in that the
 key does not have to exist within the Couchbase database before being stored.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_add** Add a value with
-the specified key that does not already exist
+`object.add(key, value, options)` Add a value with the specified key that does
+not already exist
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_replace** Update an
-existing key with a new value
+`object.replace(key, value [, ruby-replace-options ])` Update an existing key
+with a new value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_set** Store a value
-using the specified key
+`object.set(key, value, options)` Store a value using the specified key
 
 
 
@@ -1402,8 +1395,8 @@ exhaustive.
 The retrieve operations get information from the Couchbase database. A summary
 of the available API calls is listed below.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_get** Get one or more
-key values
+`object.get(keyn [, ruby-get-options ] [, ruby-get-keys ])` Get one or more key
+values
 
 
 
@@ -1578,31 +1571,28 @@ exhaustive.
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_append** Append a value
-to an existing key
+`object.append(key, value [, ruby-append-options ])` Append a value to an
+existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_cas** Compare and set a
-value providing the supplied CAS key matches
+`object.cas(key [, ruby-cas-options ])` Compare and set a value providing the
+supplied CAS key matches
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_decrement** Decrement
-the value of an existing numeric key
+`object.decrement(key [, offset ] [, ruby-incr-decr-options ])` Decrement the
+value of an existing numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_delete** Delete a
-key/value
+`object.delete(key [, ruby-delete-options ])` Delete a key/value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_flush** Deletes all
-values from the corresponding bucket
+`object.flush()` Deletes all values from the corresponding bucket
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_increment** Increment
-the value of an existing numeric key
+`object.increment(key [, offset ] [, ruby-incr-decr-options ])` Increment the
+value of an existing numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_prepend** Prepend a
-value to an existing key
+`object.prepend(key, value [, ruby-prepend-options ])` Prepend a value to an
+existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-many** Update the
-expiry time of an item
+`object.touch-many(keyn)` Update the expiry time of an item
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_touch-one** Update the
+`object.touch-one(key [, ruby-touch-options ] [, ruby-touch-keys ])` Update the
 expiry time of an item
 
 
@@ -2361,8 +2351,7 @@ The Couchbase Ruby Client Library includes support for obtaining statistic
 information from all of the servers defined within a couchbase object. A summary
 of the commands is provided below.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_ruby\_stats** Get the database
-statistics
+`object.stats([ statname ])` Get the database statistics
 
 
 
