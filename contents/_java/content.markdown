@@ -1981,11 +1981,530 @@ client.shutdown();
 
 In this form the `shutdown()` method returns no value.
 
+<a id="api-reference-summary"></a>
+
+# Java Method Summary
+
+The `couchbase-client` and `spymemcached` libraries support the full suite of
+API calls to Couchbase. A summary of the supported methods are listed in
+**Couldn't resolve xref tag: table-couchbase-sdk-java-summary**.
+
+`client.add(key, expiry, value)` Add a value with the specified key that does
+not already exist
+
+`client.add(key, expiry, value, persistto)` Add a value using the specified key
+and observe it being persisted on master and more node(s).
+
+`client.add(key, expiry, value, persistto, replicateto)` Add a value using the
+specified key and observe it being persisted on master and more node(s) and
+being replicated to one or more node(s).
+
+`client.add(key, expiry, value, replicateto)` Add a value using the specified
+key and observe it being replicated to one or more node(s).
+
+`client.add(key, expiry, value, transcoder)` Add a value that does not already
+exist using custom transcoder
+
+`client.append(casunique, key, value)` Append a value to an existing key
+
+`client.append(casunique, key, value, transcoder)` Append a value to an existing
+key
+
+`client.asyncCAS(key, casunique, value)` Asynchronously compare and set a value
+
+`client.asyncCAS(key, casunique, expiry, value, transcoder)` Asynchronously
+compare and set a value with custom transcoder and expiry
+
+`client.asyncCAS(key, casunique, value, transcoder)` Asynchronously compare and
+set a value with custom transcoder
+
+`client.asyncDecr(key, offset)` Asynchronously decrement the value of an
+existing key
+
+`client.asyncGetAndTouch(key, expiry)` Asynchronously get a value and update the
+expiration time for a given key
+
+`client.asyncGetAndTouch(key, expiry, transcoder)` Asynchronously get a value
+and update the expiration time for a given key using a custom transcoder
+
+`client.asyncGet(key)` Asynchronously get a single key
+
+`client.asyncGetBulk(keycollection)` Asynchronously get multiple keys
+
+`client.asyncGetBulk(keyn)` Asynchronously get multiple keys
+
+`client.asyncGetBulk(transcoder, keyn)` Asynchronously get multiple keys using a
+custom transcoder
+
+`client.asyncGetBulk(keycollection, transcoder)` Asynchronously get multiple
+keys using a custom transcoder
+
+`client.asyncGet(key, transcoder)` Asynchronously get a single key using a
+custom transcoder
+
+`client.asyncGetLock(key [, getl-expiry ])` Asynchronously get a lock.
+
+`client.asyncGetLock(key [, getl-expiry ], transcoder)` Asynchronously get a
+lock with transcoder.
+
+`client.asyncGets(key)` Asynchronously get single key value with CAS value
+
+`client.asyncGets(key, transcoder)` Asynchronously get single key value with CAS
+value using custom transcoder
+
+`client.asyncIncr(key, offset)` Asynchronously increment the value of an
+existing key
+
+`client.cas(key, casunique, value)` Compare and set
+
+`client.cas(key, casunique, expiry, value, transcoder)` Compare and set with a
+custom transcoder and expiry
+
+`client.cas(key, casunique, value, transcoder)` Compare and set with a custom
+transcoder
+
+`client.decr(key, offset)` Decrement the value of an existing numeric key
+
+`client.decr(key, offset, default)` Decrement the value of a key, setting the
+initial value if the key didn't already exist
+
+`client.decr(key, offset, default, expiry)` Decrement the value of a key,
+setting the initial value if the key didn't already exist, with an expiry
+
+`client.delete(key)` Delete the specified key
+
+`client.getAndTouch(key, expiry)` Get a value and update the expiration time for
+a given key
+
+`client.getAndTouch(key, expiry, transcoder)` Get a value and update the
+expiration time for a given key using a custom transcoder
+
+`client.get(key)` Get a single key
+
+`client.getAndLock(key [, getl-expiry ])` Get and lock Asynchronously
+
+`client.getAndLock(key [, getl-expiry ], transcoder)` Get and lock
+
+`client.getBulk(keycollection)` Get multiple keys
+
+`client.getBulk(keyn)` Get multiple keys
+
+`client.getBulk(transcoder, keyn)` Get multiple keys using a custom transcoder
+
+`client.getBulk(keycollection, transcoder)` Get multiple keys using a custom
+transcoder
+
+`client.get(key, transcoder)` Get a single key using a custom transcoder
+
+`client.gets(key)` Get single key value with CAS value
+
+`client.gets(key, transcoder)` Get single key value with CAS value using custom
+transcoder
+
+`client.getStats()` Get the statistics from all connections
+
+`client.getStats(statname)` Get the statistics from all connections
+
+`client.getView(ddocname, viewname)` Create a view object
+
+`client.incr(key, offset)` Increment the value of an existing numeric key
+
+`client.incr(key, offset, default)` Increment the value of an existing numeric
+key
+
+`client.incr(key, offset, default, expiry)` Increment the value of an existing
+numeric key
+
+`client.new CouchbaseClient([ url ] [, urls ] [, username ] [, password ])`
+Create connection to Couchbase Server
+
+`client.prepend(casunique, key, value)` Prepend a value to an existing key using
+the default transcoder
+
+`client.prepend(casunique, key, value, transcoder)` Prepend a value to an
+existing key using a custom transcoder
+
+`client.query(view, query)` Query a view
+
+`Query.new()` Create a query object
+
+`client.replace(key, expiry, value)` Update an existing key with a new value
+
+`client.replace(key, expiry, value, persistto)` Replace a value using the
+specified key and observe it being persisted on master and more node(s).
+
+`client.replace(key, expiry, value, persistto, replicateto)` Replace a value
+using the specified key and observe it being persisted on master and more
+node(s) and being replicated to one or more node(s).
+
+`client.replace(key, expiry, value, replicateto)` Replace a value using the
+specified key and observe it being replicated to one or more node(s).
+
+`client.replace(key, expiry, value, transcoder)` Update an existing key with a
+new value using a custom transcoder
+
+`client.set(key, expiry, value)` Store a value using the specified key
+
+`client.set(key, expiry, value, persistto)` Store a value using the specified
+key and observe it being persisted on master and more node(s).
+
+`client.set(key, expiry, value, persistto, replicateto)` Store a value using the
+specified key and observe it being persisted on master and more node(s) and
+being replicated to one or more node(s).
+
+`client.set(key, expiry, value, replicateto)` Store a value using the specified
+key and observe it being replicated to one or more node(s).
+
+`client.set(key, expiry, value, transcoder)` Store a value using the specified
+key and a custom transcoder.
+
+`client.touch(key, expiry)` Update the expiry time of an item
+
+`client.unlock(key, casunique)` Unlock
+
+
+
+<a id="couchbase-sdk-java-summary-synchronous"></a>
+
+## Synchronous Method Calls
+
+The Java Client Libraries support the core Couchbase API methods as direct calls
+to the Couchbase server through the API call. These direct methods can be used
+to provide instant storage, retrieval and updating of Couchbase key/value pairs.
+
+For example, the `get()` is a synchronous operation:
+
+
+```
+Object myObject = client.get("someKey");
+```
+
+In the example code above, the client `get()` call will wait until a response
+has been received from the appropriately configured Couchbase servers before
+returning the required value or an exception.
+
+A list of the synchronous methods are shown in **Couldn't resolve xref tag:
+table-couchbase-sdk-java-summary-sync**.
+
+`client.append(casunique, key, value)` Append a value to an existing key
+
+`client.append(casunique, key, value, transcoder)` Append a value to an existing
+key
+
+`client.cas(key, casunique, value)` Compare and set
+
+`client.cas(key, casunique, expiry, value, transcoder)` Compare and set with a
+custom transcoder and expiry
+
+`client.cas(key, casunique, value, transcoder)` Compare and set with a custom
+transcoder
+
+`client.decr(key, offset)` Decrement the value of an existing numeric key
+
+`client.decr(key, offset, default)` Decrement the value of a key, setting the
+initial value if the key didn't already exist
+
+`client.decr(key, offset, default, expiry)` Decrement the value of a key,
+setting the initial value if the key didn't already exist, with an expiry
+
+`client.getAndTouch(key, expiry)` Get a value and update the expiration time for
+a given key
+
+`client.getAndTouch(key, expiry, transcoder)` Get a value and update the
+expiration time for a given key using a custom transcoder
+
+`client.get(key)` Get a single key
+
+`client.getAndLock(key [, getl-expiry ], transcoder)` Get and lock
+
+`client.getBulk(keycollection)` Get multiple keys
+
+`client.getBulk(keyn)` Get multiple keys
+
+`client.getBulk(transcoder, keyn)` Get multiple keys using a custom transcoder
+
+`client.getBulk(keycollection, transcoder)` Get multiple keys using a custom
+transcoder
+
+`client.get(key, transcoder)` Get a single key using a custom transcoder
+
+`client.gets(key)` Get single key value with CAS value
+
+`client.gets(key, transcoder)` Get single key value with CAS value using custom
+transcoder
+
+`client.getStats()` Get the statistics from all connections
+
+`client.getStats(statname)` Get the statistics from all connections
+
+`client.getView(ddocname, viewname)` Create a view object
+
+`client.incr(key, offset)` Increment the value of an existing numeric key
+
+`client.incr(key, offset, default)` Increment the value of an existing numeric
+key
+
+`client.incr(key, offset, default, expiry)` Increment the value of an existing
+numeric key
+
+`client.new CouchbaseClient([ url ] [, urls ] [, username ] [, password ])`
+Create connection to Couchbase Server
+
+`client.query(view, query)` Query a view
+
+`Query.new()` Create a query object
+
+`client.unlock(key, casunique)` Unlock
+
+
+
+<a id="couchbase-sdk-java-summary-asynchronous"></a>
+
+## Asynchronous Method Calls
+
+In addition, the librares also support a range of asynchronous methods that can
+be used to store, update and retrieve values without having to explicitly wait
+for a response.
+
+The asynchronous methods use a *Future* object or its appropriate implementation
+which is returned by the initial method call for the operation. The
+communication with the Couchbase server will be handled by the client libraries
+in the background so that the main program loop can continue. You can recover
+the status of the operation by using a method to check the status on the
+returned Future object. For example, rather than synchronously getting a key, an
+asynchronous call might look like this:
+
+
+```
+GetFuture getOp = client.asyncGet("someKey");
+```
+
+A list of the asynchronous methods are shown in **Couldn't resolve xref tag:
+table-couchbase-sdk-java-summary-async**.
+
+`client.add(key, expiry, value)` Add a value with the specified key that does
+not already exist
+
+`client.add(key, expiry, value, persistto)` Add a value using the specified key
+and observe it being persisted on master and more node(s).
+
+`client.add(key, expiry, value, persistto, replicateto)` Add a value using the
+specified key and observe it being persisted on master and more node(s) and
+being replicated to one or more node(s).
+
+`client.add(key, expiry, value, replicateto)` Add a value using the specified
+key and observe it being replicated to one or more node(s).
+
+`client.add(key, expiry, value, transcoder)` Add a value that does not already
+exist using custom transcoder
+
+`client.asyncCAS(key, casunique, value)` Asynchronously compare and set a value
+
+`client.asyncCAS(key, casunique, expiry, value, transcoder)` Asynchronously
+compare and set a value with custom transcoder and expiry
+
+`client.asyncCAS(key, casunique, value, transcoder)` Asynchronously compare and
+set a value with custom transcoder
+
+`client.asyncDecr(key, offset)` Asynchronously decrement the value of an
+existing key
+
+`client.asyncGetAndTouch(key, expiry)` Asynchronously get a value and update the
+expiration time for a given key
+
+`client.asyncGetAndTouch(key, expiry, transcoder)` Asynchronously get a value
+and update the expiration time for a given key using a custom transcoder
+
+`client.asyncGet(key)` Asynchronously get a single key
+
+`client.asyncGetBulk(keycollection)` Asynchronously get multiple keys
+
+`client.asyncGetBulk(keyn)` Asynchronously get multiple keys
+
+`client.asyncGetBulk(transcoder, keyn)` Asynchronously get multiple keys using a
+custom transcoder
+
+`client.asyncGetBulk(keycollection, transcoder)` Asynchronously get multiple
+keys using a custom transcoder
+
+`client.asyncGet(key, transcoder)` Asynchronously get a single key using a
+custom transcoder
+
+`client.asyncGetLock(key [, getl-expiry ])` Asynchronously get a lock.
+
+`client.asyncGetLock(key [, getl-expiry ], transcoder)` Asynchronously get a
+lock with transcoder.
+
+`client.asyncGets(key)` Asynchronously get single key value with CAS value
+
+`client.asyncGets(key, transcoder)` Asynchronously get single key value with CAS
+value using custom transcoder
+
+`client.asyncIncr(key, offset)` Asynchronously increment the value of an
+existing key
+
+`client.delete(key)` Delete the specified key
+
+`client.getAndLock(key [, getl-expiry ])` Get and lock Asynchronously
+
+`client.prepend(casunique, key, value)` Prepend a value to an existing key using
+the default transcoder
+
+`client.prepend(casunique, key, value, transcoder)` Prepend a value to an
+existing key using a custom transcoder
+
+`client.replace(key, expiry, value)` Update an existing key with a new value
+
+`client.replace(key, expiry, value, persistto)` Replace a value using the
+specified key and observe it being persisted on master and more node(s).
+
+`client.replace(key, expiry, value, persistto, replicateto)` Replace a value
+using the specified key and observe it being persisted on master and more
+node(s) and being replicated to one or more node(s).
+
+`client.replace(key, expiry, value, replicateto)` Replace a value using the
+specified key and observe it being replicated to one or more node(s).
+
+`client.replace(key, expiry, value, transcoder)` Update an existing key with a
+new value using a custom transcoder
+
+`client.set(key, expiry, value)` Store a value using the specified key
+
+`client.set(key, expiry, value, persistto)` Store a value using the specified
+key and observe it being persisted on master and more node(s).
+
+`client.set(key, expiry, value, persistto, replicateto)` Store a value using the
+specified key and observe it being persisted on master and more node(s) and
+being replicated to one or more node(s).
+
+`client.set(key, expiry, value, replicateto)` Store a value using the specified
+key and observe it being replicated to one or more node(s).
+
+`client.set(key, expiry, value, transcoder)` Store a value using the specified
+key and a custom transcoder.
+
+`client.touch(key, expiry)` Update the expiry time of an item
+
+
+
+This will populate the Future object `GetFuture` with the response from the
+server. The Future object class is defined
+[here](http://download.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/Future.html?is-external=true).
+The primary methods are:
+
+ * `cancel()`
+
+   Attempts to Cancel the operation if the operation has not already been
+   completed.
+
+ * `get()`
+
+   Waits for the operation to complete. Gets the object returned by the operation
+   as if the method was synchronous rather than asynchronous.
+
+ * `get(timeout, TimeUnit)`
+
+   Gets the object waiting for a maximum time specified by `timeout` and the
+   corresponding `TimeUnit`.
+
+ * `isDone()`
+
+   The operation has been completed successfully.
+
+For example, you can use the timeout method to obtain the value or cancel the
+operation:
+
+
+```
+GetFuture getOp = client.asyncGet("someKey");
+
+Object myObj;
+
+try {
+    myObj = getOp.get(5, TimeUnit.SECONDS);
+} catch(TimeoutException e) {
+    getOp.cancel(false);
+}
+```
+
+Alternatively, you can do a blocking wait for the response by using the `get()`
+method:
+
+
+```
+Object myObj;
+
+myObj = getOp.get();
+```
+
+<a id="couchbase-sdk-java-summary-transcoding"></a>
+
+## Object Serialization (Transcoding)
+
+All of the Java client library methods use the default Whalin transcoder that
+provides compatilibility with memcached clients for the serialization of objects
+from the object type into a byte array used for storage within Couchbase.
+
+You can also use a custom transcoder for the serialization of objects. This can
+be used to serialize objects in a format that is compatible with other languages
+or environments.
+
+You can customize the transcoder by implementing a new Transcoder interface and
+then using this when storing and retrieving values. The Transcoder will be used
+to encode and decode objects into binary strings. All of the methods that store,
+retrieve or update information have a version that supports a custom transcoder.
+
+<a id="couchbase-sdk-java-summary-expiry"></a>
+
+## Expiry Values
+
+All values in Couchbase and Memcached can be set with an expiry value. The
+expiry value indicates when the item should be expired from the database and can
+be set when an item is added or updated.
+
+Within `spymemcached` the expiry value is expressed in the native form of an
+integer as per the Memcached protocol specification. The integer value is
+expressed as the number of seconds, but the interpretation of the value is
+different based on the value itself:
+
+ * Expiry is less than `30*24*60*60` (30 days)
+
+   The value is interpreted as the number of seconds from the point of storage or
+   update.
+
+ * Expiry is greater than `30*24*60*60`
+
+   The value is interpreted as the number of seconds from the epoch (January 1st,
+   1970).
+
+ * Expiry is 0
+
+   This disables expiry for the item.
+
+For example:
+
+
+```
+client.set("someKey", 3600, someObject);
+```
+
+The value will have an expiry time of 3600 seconds (one hour) from the time the
+item was stored.
+
+The statement:
+
+
+```
+client.set("someKey", 1307458800, someObject);
+```
+
+Will set the expiry time as June 7th 2011, 15:00 (UTC).
+
 <a id="api-reference-connection"></a>
 
 # Connection Operations
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_new\_couchbaseclient**
+`client.new CouchbaseClient([ url ] [, urls ] [, username ] [, password ])`
 Create connection to Couchbase Server
 
 
@@ -2022,60 +2541,51 @@ The Couchbase Java Client Library store operations set information within the
 Couchbase database. These are distinct from the update operations in that the
 key does not have to exist within the Couchbase database before being stored.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_add** Add a value with
-the specified key that does not already exist
+`client.add(key, expiry, value)` Add a value with the specified key that does
+not already exist
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_add-persist** Add a
-value using the specified key and observe it being persisted on master and more
-node(s).
+`client.add(key, expiry, value, persistto)` Add a value using the specified key
+and observe it being persisted on master and more node(s).
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_add-persist-replicate**
-Add a value using the specified key and observe it being persisted on master and
-more node(s) and being replicated to one or more node(s).
-
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_add-replicate** Add a
-value using the specified key and observe it being replicated to one or more
-node(s).
-
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_add-transcoder** Add a
-value that does not already exist using custom transcoder
-
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_replace** Update an
-existing key with a new value
-
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_replace-persist**
-Replace a value using the specified key and observe it being persisted on master
-and more node(s).
-
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_replace-persist-replicate** Replace a value using the
+`client.add(key, expiry, value, persistto, replicateto)` Add a value using the
 specified key and observe it being persisted on master and more node(s) and
 being replicated to one or more node(s).
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_replace-replicate**
-Replace a value using the specified key and observe it being replicated to one
-or more node(s).
+`client.add(key, expiry, value, replicateto)` Add a value using the specified
+key and observe it being replicated to one or more node(s).
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_replace-transcoder**
-Update an existing key with a new value using a custom transcoder
+`client.add(key, expiry, value, transcoder)` Add a value that does not already
+exist using custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_set** Store a value
-using the specified key
+`client.replace(key, expiry, value)` Update an existing key with a new value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_set-persist** Store a
-value using the specified key and observe it being persisted on master and more
-node(s).
+`client.replace(key, expiry, value, persistto)` Replace a value using the
+specified key and observe it being persisted on master and more node(s).
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_set-persist-replicate**
-Store a value using the specified key and observe it being persisted on master
-and more node(s) and being replicated to one or more node(s).
+`client.replace(key, expiry, value, persistto, replicateto)` Replace a value
+using the specified key and observe it being persisted on master and more
+node(s) and being replicated to one or more node(s).
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_set-replicate** Store a
-value using the specified key and observe it being replicated to one or more
-node(s).
+`client.replace(key, expiry, value, replicateto)` Replace a value using the
+specified key and observe it being replicated to one or more node(s).
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_set-transcoder** Store a
-value using the specified key and a custom transcoder.
+`client.replace(key, expiry, value, transcoder)` Update an existing key with a
+new value using a custom transcoder
+
+`client.set(key, expiry, value)` Store a value using the specified key
+
+`client.set(key, expiry, value, persistto)` Store a value using the specified
+key and observe it being persisted on master and more node(s).
+
+`client.set(key, expiry, value, persistto, replicateto)` Store a value using the
+specified key and observe it being persisted on master and more node(s) and
+being replicated to one or more node(s).
+
+`client.set(key, expiry, value, replicateto)` Store a value using the specified
+key and observe it being replicated to one or more node(s).
+
+`client.set(key, expiry, value, transcoder)` Store a value using the specified
+key and a custom transcoder.
 
 
 
@@ -2153,8 +2663,8 @@ Will fail if the key/value pair already exist.
 
 This method is identical to the `add()` method, but supports the use of a custom
 transcoder for serialization of the object value. For more information on
-transcoding, see **Couldn't resolve xref tag:
-couchbase-sdk-java-summary-transcoding**.
+transcoding, see [Object Serialization
+(Transcoding)](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-transcoding).
 
 <a id="couchbase-sdk-java-set-set"></a>
 
@@ -2230,7 +2740,8 @@ System.out.printf("Result was %b",setOp.get());
 
 The second form of the `set()` method supports the use of a custom transcoder
 for serialization of the object value. For more information on transcoding, see
-**Couldn't resolve xref tag: couchbase-sdk-java-summary-transcoding**.
+[Object Serialization
+(Transcoding)](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-transcoding).
 
 <a id="couchbase-sdk-java-set-durability"></a>
 
@@ -2364,83 +2875,66 @@ operations.
 The retrieve operations get information from the Couchbase database. A summary
 of the available API calls is listed below.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncgat**
-Asynchronously get a value and update the expiration time for a given key
+`client.asyncGetAndTouch(key, expiry)` Asynchronously get a value and update the
+expiration time for a given key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncgat-transcoder**
-Asynchronously get a value and update the expiration time for a given key using
-a custom transcoder
+`client.asyncGetAndTouch(key, expiry, transcoder)` Asynchronously get a value
+and update the expiration time for a given key using a custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncget**
-Asynchronously get a single key
+`client.asyncGet(key)` Asynchronously get a single key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncget-bulk**
-Asynchronously get multiple keys
+`client.asyncGetBulk(keycollection)` Asynchronously get multiple keys
 
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_asyncget-bulk-multikeys** Asynchronously get multiple
-keys
+`client.asyncGetBulk(keyn)` Asynchronously get multiple keys
 
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_asyncget-bulk-multikeys-transcoder** Asynchronously
-get multiple keys using a custom transcoder
+`client.asyncGetBulk(transcoder, keyn)` Asynchronously get multiple keys using a
+custom transcoder
 
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_asyncget-bulk-transcoder** Asynchronously get
-multiple keys using a custom transcoder
+`client.asyncGetBulk(keycollection, transcoder)` Asynchronously get multiple
+keys using a custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncget-transcoder**
-Asynchronously get a single key using a custom transcoder
+`client.asyncGet(key, transcoder)` Asynchronously get a single key using a
+custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncgetl**
-Asynchronously get a lock.
+`client.asyncGetLock(key [, getl-expiry ])` Asynchronously get a lock.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncgetl-transcoder**
-Asynchronously get a lock with transcoder.
+`client.asyncGetLock(key [, getl-expiry ], transcoder)` Asynchronously get a
+lock with transcoder.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncgets**
-Asynchronously get single key value with CAS value
+`client.asyncGets(key)` Asynchronously get single key value with CAS value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncgets-transcoder**
-Asynchronously get single key value with CAS value using custom transcoder
+`client.asyncGets(key, transcoder)` Asynchronously get single key value with CAS
+value using custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_gat** Get a value and
-update the expiration time for a given key
+`client.getAndTouch(key, expiry)` Get a value and update the expiration time for
+a given key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_gat-transcoder** Get a
-value and update the expiration time for a given key using a custom transcoder
+`client.getAndTouch(key, expiry, transcoder)` Get a value and update the
+expiration time for a given key using a custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get** Get a single key
+`client.get(key)` Get a single key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get-and-lock** Get and
-lock Asynchronously
+`client.getAndLock(key [, getl-expiry ])` Get and lock Asynchronously
 
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_get-and-lock-transcoder** Get and lock
+`client.getAndLock(key [, getl-expiry ], transcoder)` Get and lock
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get-bulk** Get multiple
-keys
+`client.getBulk(keycollection)` Get multiple keys
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get-bulk-multikeys** Get
-multiple keys
+`client.getBulk(keyn)` Get multiple keys
 
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_get-bulk-multikeys-transcoder** Get multiple keys
-using a custom transcoder
+`client.getBulk(transcoder, keyn)` Get multiple keys using a custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get-bulk-transcoder**
-Get multiple keys using a custom transcoder
+`client.getBulk(keycollection, transcoder)` Get multiple keys using a custom
+transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get-transcoder** Get a
-single key using a custom transcoder
+`client.get(key, transcoder)` Get a single key using a custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_gets** Get single key
-value with CAS value
+`client.gets(key)` Get single key value with CAS value
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_gets-transcoder** Get
-single key value with CAS value using custom transcoder
+`client.gets(key, transcoder)` Get single key value with CAS value using custom
+transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_unlock** Unlock
+`client.unlock(key, casunique)` Unlock
 
 
 
@@ -3003,9 +3497,9 @@ transcoder for the returned values.
 
 
 
-The third form is identical to the multi-argument key request method (see
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_get-bulk-multikeys** ),
-except that the operation occurs asynchronously.
+The third form is identical to the multi-argument key request method
+(seecollection based `asyncBulkGet()` ), except that the operation occurs
+asynchronously.
 
 **Signature**  `client.asyncGetBulk(transcoder, keyn)`
 
@@ -3183,66 +3677,58 @@ client.unlock("getunltest", casv.getCas());
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_append** Append a value
-to an existing key
+`client.append(casunique, key, value)` Append a value to an existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_append-transcoder**
-Append a value to an existing key
+`client.append(casunique, key, value, transcoder)` Append a value to an existing
+key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asynccas**
-Asynchronously compare and set a value
+`client.asyncCAS(key, casunique, value)` Asynchronously compare and set a value
 
-**Couldn't resolve link tag:
-table-couchbase-sdk\_java\_asynccas-expiry-transcoder** Asynchronously compare
-and set a value with custom transcoder and expiry
+`client.asyncCAS(key, casunique, expiry, value, transcoder)` Asynchronously
+compare and set a value with custom transcoder and expiry
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asynccas-transcoder**
-Asynchronously compare and set a value with custom transcoder
+`client.asyncCAS(key, casunique, value, transcoder)` Asynchronously compare and
+set a value with custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncdecr**
-Asynchronously decrement the value of an existing key
+`client.asyncDecr(key, offset)` Asynchronously decrement the value of an
+existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_asyncincr**
-Asynchronously increment the value of an existing key
+`client.asyncIncr(key, offset)` Asynchronously increment the value of an
+existing key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_cas** Compare and set
+`client.cas(key, casunique, value)` Compare and set
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_cas-expiry-transcoder**
-Compare and set with a custom transcoder and expiry
+`client.cas(key, casunique, expiry, value, transcoder)` Compare and set with a
+custom transcoder and expiry
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_cas-transcoder** Compare
-and set with a custom transcoder
+`client.cas(key, casunique, value, transcoder)` Compare and set with a custom
+transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_decr** Decrement the
-value of an existing numeric key
+`client.decr(key, offset)` Decrement the value of an existing numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_decr-default** Decrement
-the value of a key, setting the initial value if the key didn't already exist
+`client.decr(key, offset, default)` Decrement the value of a key, setting the
+initial value if the key didn't already exist
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_decr-default-expiry**
-Decrement the value of a key, setting the initial value if the key didn't
-already exist, with an expiry
+`client.decr(key, offset, default, expiry)` Decrement the value of a key,
+setting the initial value if the key didn't already exist, with an expiry
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_delete** Delete the
-specified key
+`client.delete(key)` Delete the specified key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_incr** Increment the
-value of an existing numeric key
+`client.incr(key, offset)` Increment the value of an existing numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_incr-default** Increment
-the value of an existing numeric key
+`client.incr(key, offset, default)` Increment the value of an existing numeric
+key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_incr-default-expiry**
-Increment the value of an existing numeric key
+`client.incr(key, offset, default, expiry)` Increment the value of an existing
+numeric key
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_prepend** Prepend a
-value to an existing key using the default transcoder
+`client.prepend(casunique, key, value)` Prepend a value to an existing key using
+the default transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_prepend-transcoder**
-Prepend a value to an existing key using a custom transcoder
+`client.prepend(casunique, key, value, transcoder)` Prepend a value to an
+existing key using a custom transcoder
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_touch** Update the
-expiry time of an item
+`client.touch(key, expiry)` Update the expiry time of an item
 
 
 
@@ -3545,8 +4031,8 @@ value.
 
 
 This form of the `cas()` method updates both the key value and the expiry time
-for the value. For information on expiry values, see **Couldn't resolve xref
-tag: couchbase-sdk-java-summary-expiry**.
+for the value. For information on expiry values, see [Expiry
+Values](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-expiry).
 
 For example the following attempts to set the key `caskey` with an updated
 value, setting the expiry times to 3600 seconds (one hour).
@@ -3831,8 +4317,8 @@ long newcount =
     client.decr("dlcount",1,1000,3600);
 ```
 
-For information on expiry values, see **Couldn't resolve xref tag:
-couchbase-sdk-java-summary-expiry**.
+For information on expiry values, see [Expiry
+Values](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-expiry).
 
 **Signature**  `client.asyncDecr(key, offset)`
 
@@ -3986,8 +4472,8 @@ long newcount =
     client.incr("dlcount",1,1000,3600);
 ```
 
-For information on expiry values, see **Couldn't resolve xref tag:
-couchbase-sdk-java-summary-expiry**.
+For information on expiry values, see [Expiry
+Values](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-expiry).
 
 **Signature**  `client.asyncIncr(key, offset)`
 
@@ -4127,11 +4613,9 @@ The Couchbase Java Client Library includes support for obtaining statistic
 information from all of the servers defined within a `CouchbaseClient` object. A
 summary of the commands is provided below.
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_getstats** Get the
-statistics from all connections
+`client.getStats()` Get the statistics from all connections
 
-**Couldn't resolve link tag: table-couchbase-sdk\_java\_getstats-name** Get the
-statistics from all connections
+`client.getStats(statname)` Get the statistics from all connections
 
 
 
