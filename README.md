@@ -1,4 +1,12 @@
-How to Contribute
+How to Contribute Code
+===============
+
+-Clone this repo
+
+-Commit and send us a pull request
+
+
+How to Contribute Content
 ===========
 
 Experimental features/Labs, other items that have not yet been released:
