@@ -1,10 +1,12 @@
 About
-==========
-This is a project to build a static documentation website for Couchbase. After checking out a variety of static frameworks, we 
+=====
+
+This is a project to build a static documentation website for
+Couchbase. After checking out a variety of static frameworks, we
 settled on Punch, in NodeJS.
 
 How You Can Help
-===============
+================
 - Improve left navigation. Items at end disappear when multiple sub-menus are open.
 - Something better than Google Custom search, especially for jump-links.
 - Input/improvements popout hooked up to CBugg
@@ -12,22 +14,28 @@ How You Can Help
 - Anything else you can think of to make this a great user and authoring experience.
 
 How to Contribute Code
-===============
+======================
 
-- Clone this repo
+1. Fork it and clone (`git clone git@github.com:USERNAME/punch_stuff.git`)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
-- Get Punch at git@github.com:laktek/punch.git
+How to Run Locally
+==================
 
-- Commit and send us a pull request
-
+1. Make sure you have `npm` installed on your [node.js][1]
+2. Install punch (`sudo npm install -g punch`)
+3. Start punch server (`punch server`)
+4. Go to http://localhost:9009/
 
 How to Contribute Content
-===========
-
+=========================
 
 Experimental features/Labs, other items that have not yet been released:
 
-- For your first paragraph, add the class .labs: <p class="lab"></p>
+- For your first paragraph, add the class .labs: `<p class="lab"></p>`
 
 - Add the text to the paragraph:
 
