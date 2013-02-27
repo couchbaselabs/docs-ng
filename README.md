@@ -7,7 +7,7 @@ Additional Needs
 ===============
 - Improve left navigation. Items at end disappear when multiple sub-menus are open.
 - Something better than Google Custom search, especially for jump-links.
-- Input/improvements popout.
+- Input/improvements popout hooked up to CBugg
 - Anything else you can think of to make this a great user and authoring experience.
 
 How to Contribute Code
