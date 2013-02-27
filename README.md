@@ -7,7 +7,8 @@ settled on Punch, in NodeJS.
 
 How You Can Help
 ================
-- Improve left navigation. Items at end disappear when multiple sub-menus are open. (Volker)
+- Improve left navigation. Items at end disappear when multiple sub-menus are open. (Volker - DONE)
+- Provide a toggle open and close ability on left navigation.
 - Something better than Google Custom search, especially for jump-links.
 - Input/improvements popout hooked up to CBugg
 - Parser/conversions from SDK comments to Markdown (Sergey Ruby and C)
@@ -33,6 +34,19 @@ How to Run Locally
 How to Contribute Content
 =========================
 
+- For general content, be aware of this site structure: 
+  |-contents
+   |---_archives
+   |---_dev_guide
+   |---_index
+   |---_java
+   |---_ruby
+   |---_server_guide
+
+  At this level, the latest, current major point version of the doc exists. For earlier versions, create a 
+  subfolder underneath the guide, fo rinstnace _ruby11.
+  
+- For images, Punch requires that they be in templates/images. So use a subfolder in the directory that corresponds to your guide.
 Experimental features/Labs, other items that have not yet been released:
 
 - For your first paragraph, add the class .labs: `<p class="lab"></p>`
