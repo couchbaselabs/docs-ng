@@ -7,10 +7,10 @@ settled on Punch, in NodeJS.
 
 How You Can Help
 ================
-- Improve left navigation. Items at end disappear when multiple sub-menus are open.
+- Improve left navigation. Items at end disappear when multiple sub-menus are open. (Volker)
 - Something better than Google Custom search, especially for jump-links.
 - Input/improvements popout hooked up to CBugg
-- Parser/conversions from SDK comments to Markdown
+- Parser/conversions from SDK comments to Markdown (Sergey Ruby and C)
 - Anything else you can think of to make this a great user and authoring experience.
 
 How to Contribute Code
