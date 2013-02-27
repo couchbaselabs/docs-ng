@@ -3,6 +3,8 @@ How to Contribute Code
 
 -Clone this repo
 
+-Get Punch at git@github.com:laktek/punch.git
+
 -Commit and send us a pull request
 
 
