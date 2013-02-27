@@ -35,16 +35,18 @@ How to Contribute Content
 =========================
 
 - For general content, be aware of this site structure: 
-  |-contents
+
+>  |-contents
     |---_archives
     |---_dev_guide
-   |---_index
-   |---_java
-   |---_ruby
-   |---_server_guide
+    |---_index
+    |---_java
+    |---_ruby
+      |---_ruby11
+    |---_server_guide
 
   At this level, the latest, current major point version of the doc exists. For earlier versions, create a 
-  subfolder underneath the guide, for instnace _ruby11.
+  subfolder underneath the guide, for instance _ruby11.
   
 - For images, Punch requires that they be in templates/images. So use a subfolder in the directory that corresponds to your guide.
 Experimental features/Labs, other items that have not yet been released:
