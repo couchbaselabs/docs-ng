@@ -5,19 +5,19 @@ settled on Punch, in NodeJS.
 
 Additional Needs
 ===============
--Improve left navigation. Items at end disappear when multiple sub-menus are open.
--Something better than Google Custom search, especially for jump-links.
--Input/improvements popout.
--Anything else you can think of to make this a great user and authoring experience.
+- Improve left navigation. Items at end disappear when multiple sub-menus are open.
+- Something better than Google Custom search, especially for jump-links.
+- Input/improvements popout.
+- Anything else you can think of to make this a great user and authoring experience.
 
 How to Contribute Code
 ===============
 
--Clone this repo
+- Clone this repo
 
--Get Punch at git@github.com:laktek/punch.git
+- Get Punch at git@github.com:laktek/punch.git
 
--Commit and send us a pull request
+- Commit and send us a pull request
 
 
 How to Contribute Content
