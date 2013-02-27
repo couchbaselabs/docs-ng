@@ -69,9 +69,9 @@ function setupSideNav() {
     $(this).addClass('active');
   });
 
-	$("#sidenav > li > a").click(function(){
-		$(this).parent().toggleClass("active");
-	})
+  $("#sidenav > li > a").click(function(){
+    $(this).parent().addClass("active").siblings().removeClass("active");
+  });
   //$("img").load(scrollup);
   //scrollup();
 }
