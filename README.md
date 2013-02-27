@@ -3,11 +3,12 @@ About
 This is a project to build a static documentation website for Couchbase. After checking out a variety of static frameworks, we 
 settled on Punch, in NodeJS.
 
-Additional Needs
+How You Can Help
 ===============
 - Improve left navigation. Items at end disappear when multiple sub-menus are open.
 - Something better than Google Custom search, especially for jump-links.
 - Input/improvements popout hooked up to CBugg
+- Parser/conversions from SDK comments to Markdown
 - Anything else you can think of to make this a great user and authoring experience.
 
 How to Contribute Code
@@ -22,6 +23,7 @@ How to Contribute Code
 
 How to Contribute Content
 ===========
+
 
 Experimental features/Labs, other items that have not yet been released:
 
