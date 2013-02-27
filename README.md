@@ -8,7 +8,7 @@ settled on Punch, in NodeJS.
 How You Can Help
 ================
 - Improve left navigation. Items at end disappear when multiple sub-menus are open. (Volker - DONE)
-- Provide a toggle open and close ability on left navigation.
+- Provide a toggle open and close ability on left navigation to support mobile devices.
 - Something better than Google Custom search, especially for jump-links.
 - Input/improvements popout hooked up to CBugg
 - Parser/conversions from SDK comments to Markdown (Sergey Ruby and C)
