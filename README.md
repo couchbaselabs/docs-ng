@@ -9,7 +9,7 @@ How You Can Help
 ================
 - Improve left navigation. Items at end disappear when multiple sub-menus are open. (Volker - DONE)
 - Short-term mobile hack -toggle open and close of left navigation to support mobile. (Volker)
-- Longer term mobile layout. (Volker)
+- Longer term mobile layout.
 - Something better than Google Custom search, especially for jump-links. (Marty - investigating)
 - Input/improvements popout hooked up to CBugg (Dustin)
 - Parser/conversions from SDK comments to Markdown (Sergey Ruby and C)
