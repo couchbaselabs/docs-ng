@@ -18,6 +18,7 @@ General Requirements/Features
 - Input/improvements popout hooked up to CBugg (Dustin)
 - Parser/conversions from SDK comments to Markdown (Sergey Ruby and C)
 - Anything else you can think of to make this a great user and authoring experience.
+- Make repo public, or at minimum add support as contributors.
 
 How to Contribute Code
 ======================
