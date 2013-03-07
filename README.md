@@ -7,7 +7,7 @@ settled on Punch, in NodeJS.
 
 Showstoppers/Blockers
 ======================
-- Something better than Google Custom search, especially for jump-links. (Marty - investigating)
+- Something better than Google Custom search or alternate page separatation/anchors, especially for jump-links. (Marty - investigating)
 
 General Requirements/Features
 ================
@@ -65,3 +65,8 @@ How to Contribute Content
     "{Description of your feature here, what someone can use it for, benefits of this feature, potential use cases for the feature.} Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. This feature is experimental and is not meant for use in production systems. Be aware that you are using it at your own risk. We expect to release the final version of this feature in X.X of Y."
 
     [1]: http://nodejs.org/download/
+    
+Proposed Framework
+=================
+
+http://docs.scalabl3.com/
