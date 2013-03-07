@@ -19,6 +19,7 @@ General Requirements/Features
 - Parser/conversions from SDK comments to Markdown (Sergey Ruby and C)
 - Anything else you can think of to make this a great user and authoring experience.
 - Make repo public, or at minimum add support as contributors.
+- Provide longer pages with jump links to subsections
 
 How to Contribute Code
 ======================
