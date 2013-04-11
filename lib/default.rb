@@ -18,7 +18,9 @@ end
 #
 #   <%= include_item 'assets/js/bootstrap' %>
 def include_item(identifier)
-  lookup_item(identifier).compiled_content
+  if item = lookup_item(identifier)
+    item.compiled_content
+  end
 end
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
