@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+# Combine and compress all LESS stylesheets to the single file and
+# expose it as /assets/css/main.css
+compile '/assets/css/main' do
+  filter :less
+  filter :yui_compressor, :type => :css
+end
+route '/assets/css/main' do
+  "/assets/css/main.css"
+end
+
+# Combine all javascripts, enumerated in contents/assets/js/main.erb,
+# compress result and expose it as /assets/js/main.js
+compile '/assets/js/main' do
+  filter :erb
+  filter :yui_compressor, :type => :js
+end
+route '/assets/js/main' do
+  "/assets/js/main.js"
+end
+
+route '/assets/img/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+route '/assets/root/*' do
+  "/" + File.basename(item.identifier) + '.' + item[:extension]
+end
+
+# All stylesheets and javascripts has been embedded into main.css and
+# main.js therefore just skip them for routing and further compilation
+compile('/assets/*'){}
+route('/assets/*'){}
+
+compile '*' do
+  unless item.binary?
+    case item[:extension]
+    when 'markdown'
+      filter :highlight_code
+      filter :rdiscount, :extensions => [:smart, :autolink]
+    else
+      filter :erb
+      filter :extract_toc, :anchors => true
+    end
+    layout 'default'
+  end
+end
+
+route '*' do
+  if item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    item.identifier.chop + '.' + item[:extension]
+  else
+    # Write item with identifier /foo/ to /foo/index.html
+    item.identifier + 'index.html'
+  end
+end
+
+layout 'navbar_widget', :haml
+layout 'version_widget', :haml
+layout 'toc_widget', :haml
+layout 'default', :erb

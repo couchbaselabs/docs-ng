@@ -1,0 +1,8 @@
+- if versions = versions_for(@item)
+  .pull-right.versions
+    %ul.nav.nav-pills
+      %li
+        %span.versiontext= "Versions:"
+        - versions.each do |ver|
+          %li{:class => ver_li_class(ver)}
+            %a{:href => ver[:href]}= ver[:num]

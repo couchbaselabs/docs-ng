@@ -1,0 +1,11 @@
+.span3.hidden-phone
+  - unless @item.toc.empty?
+    %ul#sidenav.span3.nav.nav-list
+      - @item.toc.each do |entry|
+        %li
+          %a{:href => entry[:href]}= entry[:title]
+          - unless entry[:children].empty?
+            %ul.sub-menu
+              - entry[:children].each do |child|
+                %li
+                  %a{:href => child[:href]}= child[:title]

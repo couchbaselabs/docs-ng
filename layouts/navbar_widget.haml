@@ -1,0 +1,12 @@
+- @site.config[:navbar].each do |entry|
+  %li{:class => nav_li_class(entry)}
+    %a{nav_a_class(entry)}
+      = entry[:label]
+      - if entry[:subnav]
+        %b.caret
+    - if entry[:subnav]
+      %ul{:class => 'dropdown-menu', :role => 'menu'}
+        - entry[:subnav].each do |subentry|
+          %li
+            %a{:tabindex => -1, :href => subentry[:href]}
+              = subentry[:label]
