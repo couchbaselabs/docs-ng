@@ -1,0 +1,278 @@
+---
+no_toc: true
+
+---
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xml:lang="en" lang="en" dir="ltr"> <!--<![endif]-->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" type="image/x-icon" />
+    <meta name="keywords" content="nosql database,nosql databases,no sql database,what is nosql,nosql db,no sql databases,why nosql,database nosql,nosql movement,nosql database technology" />
+    <meta name="description" content="Learn what a NoSQL database can enable your web &amp; mobile applications to do and why NoSQL technology can deliver scalable performance cost-effectively." />
+    <meta name="robots" content="noodp" />
+    <meta name="robots" content="noydir" />
+  	<!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation | Couchbase</title>
+    <link type="text/css" rel="stylesheet" media="all" href="http://www.couchbase.com/sites/all/modules/google_cse/google_cse.css?i" />
+    <link type="text/css" rel="stylesheet" media="all" href="http://www.couchbase.com/sites/all/themes/nosql/css/normalize.css?i" />
+    <link type="text/css" rel="stylesheet" media="all" href="http://www.couchbase.com/sites/all/themes/nosql/css/style.css?i" />
+    <script type="text/javascript" src="http://www.couchbase.com/sites/all/modules/jquery_update/replace/jquery.min.js?i"></script>
+    <script type="text/javascript" src="http://www.couchbase.com/sites/all/themes/nosql/js/vendor/custom.modernizr.js?i"></script>
+    <script type="text/javascript" src="http://www.couchbase.com/sites/all/themes/nosql/js/responsive.js?i"></script>
+    <script type="text/javascript" src="http://www.couchbase.com/sites/all/themes/nosql/js/site.js?i"></script>
+    <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+      var typekitHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+      document.write(unescape("%3Cscript src='" + typekitHost + "use.typekit.com/esd6roa.js' type='text/javascript'%3E%3C/script%3E"));
+    //--><!]]>
+    </script>
+    <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    try{Typekit.load();}catch(e){}
+    //--><!]]>
+    </script>
+  </head>
+  <body id="inner" class="not-front logged-in node-type-page no-sidebars i18n-en page-why-nosql-nosql-database section-why-nosql body-node-2">
+    <div id="page-wrapper">
+      <div id="header">
+    	  <div class="row">
+    		  <div class="large-12 columns">
+            <div id="header-main"><div id="header-inner">
+              <div class="mobile-icon-menu show-for-small"><a href="#"><i class="icon-reorder"></i><i class="icon-remove" style="display:none;"></i></a></div>
+              <div id="logo">
+          			<a href="/" title="Couchbase"><img src="http://www.couchbase.com/sites/all/themes/nosql/logo.png" alt="Couchbase" /> </a>              </div>
+      <div id="block-menu_block-12" class="clear-block block block-menu_block">
+
+
+  <div class="content"><div class="menu-block-12 menu-name-primary-links parent-mlid-0 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13118 "><a href="http://www.couchbase.com/why-nosql/nosql-database" title="">Why NoSQL?</a></li>
+<li class="leaf menu-mlid-13119 has-children"><a href="http://www.couchbase.com/couchbase-server/overview" title="">Couchbase Server</a></li>
+<li class="leaf menu-mlid-13120"><a href="http://www.couchbase.com/download" title="">Download</a></li>
+<li class="leaf menu-mlid-13122"><a href="http://www.couchbase.com/learn" title="">Resources</a></li>
+<li class="leaf last menu-mlid-13123"><a href="http://www.couchbase.com/careers" title="">Careers</a></li>
+</ul></div>
+</div>
+</div>
+      <div id="block-google_cse-0" class="clear-block block block-google_cse">
+
+
+  <div class="content"><form action="http://www.couchbase.com/search/google"  accept-charset="UTF-8" method="get" id="google-cse-searchbox-form">
+<div><input type="hidden" name="cx" id="edit-cx" value="002525515635034081779:3e7lwhjxsom"  />
+<input type="hidden" name="cof" id="edit-cof" value="FORID:11"  />
+<div class="form-item" id="edit-query-wrapper">
+ <input type="text" maxlength="128" name="query" id="edit-query" size="15" value="" title="Enter the terms you wish to search for." class="form-text" />
+</div>
+<input type="submit" name="op" id="edit-sa" value="Search"  class="form-submit" />
+<input type="hidden" name="safe" id="edit-safe" value="off"  />
+<input type="hidden" name="form_build_id" id="form-c815a034ff5e65d2617fa58599331553" value="form-c815a034ff5e65d2617fa58599331553"  />
+<input type="hidden" name="form_token" id="edit-google-cse-searchbox-form-form-token" value="2c308d8cb70700560247c06ed719129b"  />
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form" value="google_cse_searchbox_form"  />
+
+</div></form>
+</div>
+</div>
+                <div class="mobile-icon-search"><a href="#"><i class="icon-search"></i><i class="icon-remove" style="display:none;"></i></a></div>
+            </div></div>
+            <div id="header-shadow"><div></div></div>
+          </div>
+        </div>
+      </div> <!-- /header -->
+      
+      <div id="mobile-menu" style="display:none;">
+        <div class="row">
+          <div class="small-12 columns first-level">
+      <div id="block-menu_block-12" class="clear-block block block-menu_block">
+
+
+  <div class="content"><div class="menu-block-12 menu-name-primary-links parent-mlid-0 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13118 active active-trail"><a href="http://www.couchbase.com/why-nosql/nosql-database" title="" class="active-trail active">Why NoSQL?</a></li>
+<li class="leaf menu-mlid-13119 has-children"><a href="http://www.couchbase.com/couchbase-server/overview" title="">Couchbase Server</a></li>
+<li class="leaf menu-mlid-13120"><a href="http://www.couchbase.com/download" title="">Download</a></li>
+<li class="leaf menu-mlid-13122"><a href="http://www.couchbase.com/learn" title="">Resources</a></li>
+<li class="leaf last menu-mlid-13123"><a href="http://www.couchbase.com/careers" title="">Careers</a></li>
+</ul></div>
+</div>
+</div>
+            </div>
+                  </div>
+      </div>
+      
+      <div id="mobile-search" style="display:none;">
+        <div class="row">
+          <div class="small-12 columns">
+      <div id="block-google_cse-0" class="clear-block block block-google_cse">
+
+
+  <div class="content"><form action="http://www.couchbase.com/search/google"  accept-charset="UTF-8" method="get" id="google-cse-searchbox-form">
+<div><input type="hidden" name="cx" id="edit-cx" value="002525515635034081779:3e7lwhjxsom"  />
+<input type="hidden" name="cof" id="edit-cof" value="FORID:11"  />
+<div class="form-item" id="edit-query-wrapper">
+ <input type="text" maxlength="128" name="query" id="edit-query" size="15" value="" title="Enter the terms you wish to search for." class="form-text" />
+</div>
+<input type="submit" name="op" id="edit-sa" value="Search"  class="form-submit" />
+<input type="hidden" name="safe" id="edit-safe" value="off"  />
+<input type="hidden" name="form_build_id" id="form-c815a034ff5e65d2617fa58599331553" value="form-c815a034ff5e65d2617fa58599331553"  />
+<input type="hidden" name="form_token" id="edit-google-cse-searchbox-form-form-token" value="2c308d8cb70700560247c06ed719129b"  />
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form" value="google_cse_searchbox_form"  />
+
+</div></form>
+</div>
+</div>
+            </div>
+        </div>
+      </div>
+      
+  <div id="main-content">
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="breadcrumb"><a href="http://www.couchbase.com/">Home</a> | Documentation</div>
+        <h1 id="main-title">Documentation</h1>
+      </div>
+    </div>
+
+    <div class="body-intro no-background">
+        <div class="row equal-height">
+          <div class="large-12 columns main-intro">
+            <div class="main-intro-content">
+<p>Documentation for the current releases are shown below. You can view a list of <a href="index-full.html">all the available documentation</a>, including documentation on Couchbase Server 1.8 and other products. An RSS feed of recent documentation changes and publications is available <a  title="RSS - Couchbase Docs" href="/docs/couchbase-docs.rss">here</a>.</p>
+            </div>
+          </div>                                    
+        </div>
+      </div>
+    </div>
+        
+    <div class="row" id="content">
+      <div class="large-12 columns">
+<table class="highlights"><tr><th>General</th><th>Administrators</th><th>Developers</th><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started.html">Getting Started</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/best-practice-guide.html">Best Practice</a></td><td><a href="http://www.couchbase.com/docs/couchbase-devguide-2.0/modeling-documents.html">Modeling Documents</a></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-upgrade.html">Upgrading</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-addremove.html">Rebalancing</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html">Views and Querying</a></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install-redhat.html">RedHat Linux Installation</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-backup-restore.html">Backup &amp; Restore</a></td><td><a href="http://www.couchbase.com/docs/couchbase-devguide-2.0/accessing-data.html">Couchbase Operations</a></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install-ubuntu.html">Ubuntu Linux Installation</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-xdcr.html">Cross Datacenter Replication</a></td><td><a href="http://www.couchbase.com/docs/couchbase-devguide-2.0/storing-data.html">Data Storage </a></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install-win.html">Windows Installation</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-failover.html">Failover</a></td><td><a href="http://www.couchbase.com/docs/couchbase-devguide-2.0/developing-clients.html">Building an Application</a></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-setup.html">Initial Setup</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console.html">Admin Web Console</a></td><td><a href="http://www.couchbase.com/docs/couchbase-elasticsearch/index.html">Couchbase Elasticsearch Plug-in</a></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-introduction-architecture.html">Architecture</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi.html">Admin REST API</a></td><td></td></tr><tr><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-introduction-migration.html">Migration</a></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-server-rn.html">Release Notes</a></td><td></td></tr><tr><td></td><td><a href="http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-cmdline.html">Admin Command-line </a></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>
+<a name="couchbase-2.0"></a><h4>Couchbase Server 2.0</h4><table class="doctable"><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-manual-2.0/index.html">Couchbase Server 2.0 Manual</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-manual-2.0-html-chapter.zip"title="HTML (Zip) (4.4 Mb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-manual-2.0-html-single.zip"title="HTML Single Page (Zip) (4.4 Mb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-manual-2.0.pdf"title="PDF (4.7 Mb)">PDF</a></td><td class="doclink"><a href="couchbase-manual-2.0.epub"title="EPUB (4.5 Mb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-devguide-2.0/index.html">Couchbase Developer's Guide 2.0</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-devguide-2.0-html-chapter.zip"title="HTML (Zip) (3.2 Mb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-devguide-2.0-html-single.zip"title="HTML Single Page (Zip) (3.2 Mb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-devguide-2.0.pdf"title="PDF (3.4 Mb)">PDF</a></td><td class="doclink"><a href="couchbase-devguide-2.0.epub"title="EPUB (3.2 Mb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-api-reference-1.1/index.html">Couchbase Server API Reference 1.1</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-api-reference-1.1-html-chapter.zip"title="HTML (Zip) (82 Kb)">HTML (Zip)</a></td><td class="doclink"></td><td class="doclink"></td><td class="doclink"></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-sdk-c-2.0/index.html">Couchbase Client Library C 2.0</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-sdk-c-2.0-html-chapter.zip"title="HTML (Zip) (93 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-c-2.0-html-single.zip"title="HTML Single Page (Zip) (84 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-c-2.0.pdf"title="PDF (224 Kb)">PDF</a></td><td class="doclink"><a href="couchbase-sdk-c-2.0.epub"title="EPUB (121 Kb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-sdk-net-1.2/index.html">Couchbase Client Library .NET 1.2</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-sdk-net-1.2-html-chapter.zip"title="HTML (Zip) (958 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-net-1.2-html-single.zip"title="HTML Single Page (Zip) (938 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-net-1.2.pdf"title="PDF (1.2 Mb)">PDF</a></td><td class="doclink"><a href="couchbase-sdk-net-1.2.epub"title="EPUB (972 Kb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-sdk-java-1.1/index.html">Couchbase Client Library Java 1.1</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-sdk-java-1.1-html-chapter.zip"title="HTML (Zip) (149 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-java-1.1-html-single.zip"title="HTML Single Page (Zip) (129 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-java-1.1.pdf"title="PDF (467 Kb)">PDF</a></td><td class="doclink"><a href="couchbase-sdk-java-1.1.epub"title="EPUB (182 Kb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-sdk-php-1.1/index.html">Couchbase Client Library PHP 1.1</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-sdk-php-1.1-html-chapter.zip"title="HTML (Zip) (111 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-php-1.1-html-single.zip"title="HTML Single Page (Zip) (94 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-php-1.1.pdf"title="PDF (288 Kb)">PDF</a></td><td class="doclink"><a href="couchbase-sdk-php-1.1.epub"title="EPUB (125 Kb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-sdk-python-1.0/index.html">Couchbase Client Library Python 1.0</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-sdk-python-1.0-html-chapter.zip"title="HTML (Zip) (96 Kb)">HTML (Zip)</a></td><td class="doclink"></td><td class="doclink"></td><td class="doclink"></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-sdk-ruby-1.2/index.html">Couchbase Client Library Ruby 1.2</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-sdk-ruby-1.2-html-chapter.zip"title="HTML (Zip) (153 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-ruby-1.2-html-single.zip"title="HTML Single Page (Zip) (134 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-sdk-ruby-1.2.pdf"title="PDF (303 Kb)">PDF</a></td><td class="doclink"><a href="couchbase-sdk-ruby-1.2.epub"title="EPUB (188 Kb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="couchbase-elasticsearch/index.html">Couchbase Elasticsearch Plug-in</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="couchbase-elasticsearch-html-chapter.zip"title="HTML (Zip) (1.0 Mb)">HTML (Zip)</a></td><td class="doclink"><a href="couchbase-elasticsearch-html-single.zip"title="HTML Single Page (Zip) (1.0 Mb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="couchbase-elasticsearch.pdf"title="PDF (1009 Kb)">PDF</a></td><td class="doclink"><a href="couchbase-elasticsearch.epub"title="EPUB (1.0 Mb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="hadoop-plugin/index.html">Couchbase Hadoop Plugin</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="hadoop-plugin-html-chapter.zip"title="HTML (Zip) (72 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="hadoop-plugin-html-single.zip"title="HTML Single Page (Zip) (66 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="hadoop-plugin.pdf"title="PDF (82 Kb)">PDF</a></td><td class="doclink"><a href="hadoop-plugin.epub"title="EPUB (93 Kb)">EPUB</a></td></tr><tr><td class="doctitle"><div class="doctitle"><a href="moxi-manual-1.8/index.html">Moxi 1.8 Manual</a> - Online</div><div class="docbuildate">updated on Mar 12, 2013</div></td><td class="docdownloadtitle">Download:</td><td class="doclink"><a href="moxi-manual-1.8-html-chapter.zip"title="HTML (Zip) (79 Kb)">HTML (Zip)</a></td><td class="doclink"><a href="moxi-manual-1.8-html-single.zip"title="HTML Single Page (Zip) (65 Kb)">HTML Single Page (Zip)</a></td><td class="doclink"><a href="moxi-manual-1.8.pdf"title="PDF (164 Kb)">PDF</a></td><td class="doclink"><a href="moxi-manual-1.8.epub"title="EPUB (87 Kb)">EPUB</a></td></tr></table>
+</div></div></div><!-- Main content area -->
+
+<div id="footer-menu">
+  	  <div class="row" id="footer-menu-inner">
+  		  <div class="large-2 columns" id="footer-menu-first">
+      <div id="block-menu_block-15" class="clear-block block block-menu_block">
+
+  <h2><a href="http://www.couchbase.com/company" title="">Company</a></h2>
+
+  <div class="content"><div class="menu-block-15 menu-name-menu-expanded-footer parent-mlid-13162 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13169"><a href="http://www.couchbase.com/company" title="">About Us</a></li>
+<li class="leaf menu-mlid-13170"><a href="http://www.couchbase.com/leadership" title="">Leadership</a></li>
+<li class="leaf menu-mlid-13171"><a href="http://www.couchbase.com/customers" title="">Customers</a></li>
+<li class="leaf menu-mlid-13172"><a href="http://www.couchbase.com/partners" title="">Partners</a></li>
+<li class="leaf last menu-mlid-13173"><a href="http://www.couchbase.com/contact" title="">Contact Us</a></li>
+</ul></div>
+</div>
+</div>
+          </div>
+  		  <div class="large-2 columns" id="footer-menu-second">
+      <div id="block-menu_block-14" class="clear-block block block-menu_block">
+
+  <h2><a href="http://www.couchbase.com/couchbase-server/overview" title="">Product</a></h2>
+
+  <div class="content"><div class="menu-block-14 menu-name-menu-expanded-footer parent-mlid-13161 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13166"><a href="http://www.couchbase.com/couchbase-server/overview" title="">Couchbase Server</a></li>
+<li class="leaf menu-mlid-13167"><a href="http://www.couchbase.com/develop" title="">Couchbase SDKs</a></li>
+<li class="leaf last menu-mlid-13168"><a href="http://www.couchbase.com/couchbase-server/use-cases" title="">Use Cases</a></li>
+</ul></div>
+</div>
+</div>
+          </div>
+  		  <div class="large-2 columns" id="footer-menu-third">
+      <div id="block-menu_block-17" class="clear-block block block-menu_block">
+
+  <h2><a href="http://www.couchbase.com/couchbase-open-source-project" title="">Open Source</a></h2>
+
+  <div class="content"><div class="menu-block-17 menu-name-menu-expanded-footer parent-mlid-13164 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13178"><a href="http://www.couchbase.com/couchbase-open-source-project" title="">Couchbase Project</a></li>
+<li class="leaf last menu-mlid-13179"><a href="http://www.couchbase.com/couchbase-vs-couchdb" title="">Couchbase vs. CouchDB</a></li>
+</ul></div>
+</div>
+</div>
+          </div>
+  		  <div class="large-2 columns" id="footer-menu-fourth">
+      <div id="block-menu_block-18" class="clear-block block block-menu_block">
+
+  <h2><a href="http://www.couchbase.com/contact" title="">Commercial</a></h2>
+
+  <div class="content"><div class="menu-block-18 menu-name-menu-expanded-footer parent-mlid-13165 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13180"><a href="http://www.couchbase.com/couchbase-support" title="">Subscriptions &amp; Support</a></li>
+<li class="leaf last menu-mlid-13181"><a href="http://www.couchbase.com/couchbase-services" title="">Training &amp; Services</a></li>
+</ul></div>
+</div>
+</div>
+          </div>
+  		  <div class="large-2 columns" id="footer-menu-fifth">
+      <div id="block-menu_block-16" class="clear-block block block-menu_block">
+
+  <h2><a href="http://www.couchbase.com/press-releases" title="">News</a></h2>
+
+  <div class="content"><div class="menu-block-16 menu-name-menu-expanded-footer parent-mlid-13163 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-13174"><a href="http://blog.couchbase.com/" title="">Blog</a></li>
+<li class="leaf menu-mlid-13175"><a href="http://info.couchbase.com/NewsletterSignup.html" title="">Newsletter</a></li>
+<li class="leaf menu-mlid-13176"><a href="http://www.couchbase.com/press-releases" title="">Press Releases</a></li>
+<li class="leaf last menu-mlid-13177"><a href="http://www.couchbase.com/buzz" title="">Buzz</a></li>
+</ul></div>
+</div>
+</div>
+          </div>
+  		  <div class="large-2 columns" id="footer-menu-sixth">
+      <div id="block-block-17" class="clear-block block block-block">
+
+  <h2>Follow Us</h2>
+
+  <div class="content"><div class="row">
+<div class="twelve columns">
+	<a href="http://www.facebook.com/pages/Couchbase/159035930813922" class="follow-icon facebook">&nbsp;</a><a href="http://twitter.com/couchbase" class="follow-icon twitter">&nbsp;</a><a href="http://www.linkedin.com/company/couchbase" class="follow-icon linkedin">&nbsp;</a><a href="https://plus.google.com/u/1/116265933027154117867/posts" class="follow-icon google">&nbsp;</a></div></div></div>
+</div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="large-5 columns" id="footer-first">
+      <div id="block-locale-0" class="clear-block block block-locale">
+
+  <h2>Languages</h2>
+
+  <div class="content"><ul><li class="en first active"><a href="http://www.couchbase.com/docs/index.html" class="language-link active"><img src="http://www.couchbase.com/sites/all/modules/languageicons/flags/en.png" alt="English" title="English"  class="language-icon" width="16" height="12" /> English</a></li>
+<li class="ja"><a href="http://www.couchbase.com/docs/index-ja.html" class="language-link"><img src="http://www.couchbase.com/sites/all/modules/languageicons/flags/ja.png" alt="日本語" title="日本語"  class="language-icon" width="16" height="12" /> 日本語</a></li>
+</ul></div>
+</div>
+          </div>
+        <div class="large-7 columns" id="footer-second">
+      <div id="block-menu-menu-footer" class="clear-block block block-menu">
+
+
+  <div class="content"><ul class="menu"><li class="leaf first"><a href="http://support.couchbase.com/" title="">Customer Login</a></li>
+<li class="leaf"><a href="http://www.couchbase.com/terms-of-service" title="">Terms of Service</a></li>
+<li class="leaf"><a href="http://www.couchbase.com/privacy" title="">Privacy Policy</a></li>
+<li class="leaf"><a href="http://www.couchbase.com/trademark-policy" title="">Trademark Policy</a></li>
+<li class="leaf last"><a href="http://www.couchbase.com/sitemap" title="">Site Map</a></li>
+</ul></div>
+</div>
+          </div>
+      </div>
+    </div>
+  
+    <div id="footer" class="sans">
+  	  <div class="row">
+  		  <div class="large-12 columns">
+          <p><span>&copy; 2013 COUCHBASE</span> All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+  <script type="text/javascript" src="http://www.couchbase.com/sites/all/modules/google_cse/google_cse.js?i"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "googleCSE": { "language": "en" } });
+//--><!]]>
+</script>
+  
+  
+    <script type="text/javascript" src="http://www.couchbase.com/sites/all/themes/nosql/js/retina.js"></script> 
+  </body>
+  </html>
