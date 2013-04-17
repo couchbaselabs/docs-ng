@@ -123,7 +123,7 @@ navbar:
   - label: SDKs
     subnav:
       - label: C
-        href: /c/
+        href: /couchbase-sdk-c-2.0/
 
       - label: Java
         href: /couchbase-sdk-java-1.1/
