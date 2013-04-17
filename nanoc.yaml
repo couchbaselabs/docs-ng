@@ -118,7 +118,7 @@ navbar:
     href: /server_guide/
 
   - label: Developer
-    href: /dev_guide/
+    href: /couchbase-devguide-2.0/
 
   - label: SDKs
     subnav:

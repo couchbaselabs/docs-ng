@@ -32,6 +32,10 @@ end
 compile('/assets/*'){}
 route('/assets/*'){}
 
+compile '/index.html' do
+  layout 'index'
+end
+
 compile '*' do
   unless item.binary?
     case item[:extension]
@@ -45,6 +49,8 @@ compile '*' do
     layout 'default'
   end
 end
+
+
 
 route '*' do
   if item.binary?
