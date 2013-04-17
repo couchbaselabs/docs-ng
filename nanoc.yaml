@@ -115,7 +115,7 @@ versions:
 
 navbar:
   - label: Server
-    href: /server_guide/
+    href: /couchbase-manual-2.0/
 
   - label: Developer
     href: /couchbase-devguide-2.0/
@@ -126,7 +126,7 @@ navbar:
         href: /c/
 
       - label: Java
-        href: /java/
+        href: /couchbase-sdk-java-1.1/
 
       - label: .NET
         href: /net/
@@ -135,7 +135,7 @@ navbar:
         href: /php/
 
       - label: Ruby
-        href: /ruby/
+        href: /couchbase-sdk-ruby-1.2/
 
   - label: Archives
     href: /archives/
