@@ -4,6 +4,8 @@ css_class: index_page
 no_nav: true
 ---
 
+####Ignore : using Corporate Docs Landing page on www.Couchbase.com...
+
 #### Using Couchbase Server
 
 - [Starting Out][ref1]

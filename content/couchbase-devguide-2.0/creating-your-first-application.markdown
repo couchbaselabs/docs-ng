@@ -459,7 +459,8 @@ design document and include our view function in it:
   "language": "javascript",
   "views": {
     "underage": {
-      "map": "function(doc) {if (doc.age && doc.name) {if(doc.age < 21){emit(doc.name, doc.age);}}}"
+      "map": "function(doc) {if (doc.age && doc.name)
+{if(doc.age < 21){emit(doc.name, doc.age);}}}"
     }
   }
 }
@@ -470,7 +471,7 @@ The first two fields indicate the JSON document is a design document named
 hash that contains any views and in this case we have one view called
 `underage`. Within the view we provide the map function described above. We can
 store this to the file system as `students.json` and then write the design
-document to Couchbase Server using an SDK. Here we use the Ruby SDK:
+document to Couchbase Server using an SDK.
 
 As a best practice we want make sure that the fields we want to include in our
 index actually exist. Therefore we have our map function within a conditional:
@@ -522,8 +523,10 @@ request. To store the view, you would make a REST request as follows:
 
 
 ```
-curl -X PUT -u newBucket:password -H 'Content-Type: application/json' 'http//server_ip:8092/newBucket/_design/students' \
--d '{"views": {"underage":{"map":"function(doc) {if(doc.age && doc.name) {if(doc.age<21){emit(doc.name, doc.age);}}}"}}'
+curl -X PUT -u newBucket:password -H 'Content-Type: application/json' \
+ 'http://server_ip:8092/newBucket/_design/students' \
+-d '{"views": {"underage":{"map":"function(doc) {if(doc.age && doc.name) \
+{if(doc.age<21){emit(doc.name, doc.age);}}}"}}}'
 ```
 
 We perform the REST request as a put and provide the bucket name and password
@@ -542,7 +545,7 @@ Now we can query the view by performing a REST request as follows:
 
 
 ```
-curl -X GET -u newBucket:password 'http//server_ip:8092/newBucket/_design/students/_view/underage?'
+curl -X GET -u newBucket:password 'http://server_ip:8092/newBucket/_design/students/_view/underage?'
 ```
 
 Couchbase Server responds with the following results as JSON:
