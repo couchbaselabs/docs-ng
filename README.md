@@ -10,6 +10,7 @@ Showstoppers/Blockers
 
 General Requirements/Features
 ================
+- Breadcrumb navigation - phase 2
 - Add corporate website headers, footers, etc to docs initial landing page (Karen)
 - Improve left navigation. Items at end disappear when multiple sub-menus are open. (Volker - DONE)
 - Short-term mobile hack -toggle open and close of left navigation to support mobile. (Volker)
