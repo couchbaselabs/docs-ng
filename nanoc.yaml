@@ -129,7 +129,7 @@ navbar:
         href: /couchbase-sdk-java-1.1/
 
       - label: .NET
-        href: /net/
+        href: /couchbase-sdk-net-1.1//
 
       - label: PHP
         href: /couchbase-sdk-php-1.1/
@@ -138,4 +138,4 @@ navbar:
         href: /couchbase-sdk-ruby-1.2/
 
   - label: Archives
-    href: /archives/
+    href: /archives/index.html
