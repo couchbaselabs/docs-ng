@@ -6,6 +6,9 @@ java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/p
 
 3) Remove [:unknown-tag :sidebar] 
 
+4) May need to generate and exclude PHP 1.1 views and manually create markdown- nested tables.
+
+
 
 REDIRECTS:
 
