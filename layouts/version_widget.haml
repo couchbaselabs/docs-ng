@@ -1,8 +1,6 @@
-- if versions = versions_for(@item)
-  .pull-right.versions
-    %ul.nav.nav-pills
-      %li
-        %span.versiontext= "Versions:"
-        - versions.each do |ver|
-          %li{:class => ver_li_class(ver)}
-            %a{:href => ver[:href]}= ver[:num]
+- @site.config[:versions].each do |entry|
+  - if entry[:href] == 'couchbase-manual'
+    %li{:class => nav_li_class(entry)}
+      %a{nav_a_class(entry)}
+        = entry[:nums]
+

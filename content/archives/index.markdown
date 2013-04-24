@@ -1,5 +1,5 @@
 ---
-title: Couchbase Documentation Project
+title: Library
 css_class: index_page
 
 ---

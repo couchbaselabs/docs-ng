@@ -77,38 +77,38 @@ watcher:
   notify_on_compilation_failure: true
 
 versions:
-  - href: /server_guide/
+  - href: couchbase-manual
     nums:
       - 2.0
       - 1.8
 
-  - href: /dev_guide/
+  - href: couchbase-devguide
     nums:
       - 2.0
       - 1.8
 
-  - href: /c/
+  - href: couchbase-sdk-c
     nums:
       - 2.0
       - 1.0
 
-  - href: /java/
+  - href: couchbase-sdk-java
     nums:
       - 1.1
       - 1.0
 
-  - href: /net/
+  - href: couchbase-sdk-net
     nums:
       - 1.2
       - 1.1
       - 1.1
 
-  - href: /php/
+  - href: couchbase-sdk-php
     nums:
       - 1.2
       - 1.1
 
-  - href: /ruby/
+  - href: couchbase-sdk-ruby
     nums:
       - 1.2
       - 1.1
@@ -129,7 +129,7 @@ navbar:
         href: /couchbase-sdk-java-1.1/
 
       - label: .NET
-        href: /couchbase-sdk-net-1.1//
+        href: /couchbase-sdk-net-1.1/
 
       - label: PHP
         href: /couchbase-sdk-php-1.1/
@@ -137,5 +137,5 @@ navbar:
       - label: Ruby
         href: /couchbase-sdk-ruby-1.2/
 
-  - label: Archives
+  - label: Library
     href: /archives/index.html
