@@ -37,13 +37,13 @@ MVC 4 Application under the Visual C\# project templates. Name the project
 “CouchbaseBeersWeb” and click “OK” to create the solution.
 
 
-![](couchbase-sdk-net-1.2/images/fig01-new-project.png)
+![](images/fig01-new-project.png)
 
 Start with an “Empty” application using the Razor view engine for the MVC
 template.
 
 
-![](couchbase-sdk-net-1.2/images/fig02-mvc-template.png)
+![](images/fig02-mvc-template.png)
 
 Next you'll need to add a reference to the Couchbase.NET Client Library. You
 could either download the assemblies from [the getting started
@@ -55,7 +55,7 @@ found in the zip file and should be referenced in your project if not using
 Nuget.
 
 
-![](couchbase-sdk-net-1.2/images/fig03-nuget-cb.png)
+![](images/fig03-nuget-cb.png)
 
 <a id="stage2"></a>
 
@@ -246,7 +246,7 @@ use of its design doc management API to create views from attributes placed on
 model classes. Using NuGet, add a reference to the CouchbaseModelViews package.
 
 
-![](couchbase-sdk-net-1.2/images/fig04-nuget-mv.png)
+![](images/fig04-nuget-mv.png)
 
 Once installed, modify the Brewery class definition to have two class level
 attributes, `CouchbaseDesignDoc` and `CouchbaseAllView`.
@@ -299,7 +299,7 @@ in the Couchbase web console and see the new design doc and view in the
 “Production Views” tab (as shown below).
 
 
-![](couchbase-sdk-net-1.2/images/fig05-all-view.png)
+![](images/fig05-all-view.png)
 
 If you click the link next to the “Filter Results” button, you will see the JSON
 that is returned to the `CouchbaseClient` when querying a view. Notice the “id”
@@ -331,7 +331,7 @@ NuGet. Note that in.NET 4.5, there is a `PluralizationService` class that will
 provide some of the same support.
 
 
-![](couchbase-sdk-net-1.2/images/fig06-nuget-i.png)
+![](images/fig06-nuget-i.png)
 
 To the `RepositoryBase` class, add a readonly private field and initialize it to
 the inflected and pluralized name of the type of T. The inflector extension
@@ -383,7 +383,7 @@ Controller. Name the controller “BreweriesController” and select the templat
 creating, updating, deleting, showing and listing breweries.
 
 
-![](couchbase-sdk-net-1.2/images/fig07-controller-template.png)
+![](images/fig07-controller-template.png)
 
 The Index method of the `BreweriesController` will be used to display the list
 of breweries. To allow the new controller to access brewery data, it will need
@@ -420,14 +420,14 @@ view that loops over the brewery results, displaying each as a row in an HTML
 table.
 
 
-![](couchbase-sdk-net-1.2/images/fig08-list-breweries.png)
+![](images/fig08-list-breweries.png)
 
 At this point, you should build your application and navigate to the Breweries
 path (e.g., [http://localhost:52962/breweries](http://localhost:52962/breweries)
 ). If all went well, you should see a list of breweries.
 
 
-![](couchbase-sdk-net-1.2/images/fig09-list-page.png)
+![](images/fig09-list-page.png)
 
 There are quite a few breweries being displayed in this list. Paging will be an
 eventual improvement, but for now limiting the results by modifying the defaults
@@ -693,7 +693,7 @@ click Add -> View. Name the view “Edit” and strongly type it to a Brewery wi
 Edit scaffolding.
 
 
-![](couchbase-sdk-net-1.2/images/fig10-edit-template.png)
+![](images/fig10-edit-template.png)
 
 Rebuild the application and return to the brewery listing page.  Click on an
 “Edit” link and you should see the edit form loaded with the details for that
@@ -701,7 +701,7 @@ brewery.  Edit some values on the form and click save. You should see your
 changes persisted on the listing page.
 
 
-![](couchbase-sdk-net-1.2/images/fig11-edit-brewery.png)
+![](images/fig11-edit-brewery.png)
 
 The `Details` action looks very much like `Edit`. Get the `Brewery` and provide
 it as the model for the view.
@@ -719,13 +719,13 @@ Create a scaffolding form for `Details` using the same process as was used with
 `Edit`.
 
 
-![](couchbase-sdk-net-1.2/images/fig12-details-template.png)
+![](images/fig12-details-template.png)
 
 Rebuild and return to the list page. Click on a "Details" link. You should see a
 page listing the data for that brewery.
 
 
-![](couchbase-sdk-net-1.2/images/fig13-details-brewery.png)
+![](images/fig13-details-brewery.png)
 
 The `Create` and `Edit` actions of the `BreweriesController` are quite similar,
 save for the fact that Create's GET method doesn't provide a model to the view.
@@ -1102,7 +1102,7 @@ public ActionResult Index(string startKey, string nextKey, int pageSize = 25)
 ```
 
 
-![](couchbase-sdk-net-1.2/images/fig14-paging.png)
+![](images/fig14-paging.png)
 
 At this point, breweries may be created, detailed (with Children), listed,
 updated and deleted.  The next step is to look at the brewery data from a
@@ -1191,7 +1191,7 @@ Create a new controller named "CountriesController" to contain the actions for
 the new grouped queries. Use the empty controller template.
 
 
-![](couchbase-sdk-net-1.2/images/fig15-countries-controller.png)
+![](images/fig15-countries-controller.png)
 
 Modify the new controller to include the code below, which sets up the
 `BreweryRepositoryReference` and loads sends the view results to the MVC View.
@@ -1217,7 +1217,7 @@ Next create a new directory under “Views” named “Countries.” Add a view 
 “Index” that is not strongly typed.
 
 
-![](couchbase-sdk-net-1.2/images/fig16-countries-index.png)
+![](images/fig16-countries-index.png)
 
 To the new view, add the Razor code below, which will simply display the keys
 and values as a list. It also links to the Provinces action, which you’ll create
@@ -1241,7 +1241,7 @@ next.
 Build and run your application and you should see a page like below.
 
 
-![](couchbase-sdk-net-1.2/images/fig17-countries.png)
+![](images/fig17-countries.png)
 
 Next, add the `Provinces` action to the `CountriesController`. This action will
 reuse the repository method, but will change the group level to Province (2) and
@@ -1280,7 +1280,7 @@ content.
 Compile and run the app. You should see the Provinces page below.
 
 
-![](couchbase-sdk-net-1.2/images/fig18-provinces.png)
+![](images/fig18-provinces.png)
 
 Creating the actions and views for cities and codes is a similar process. Modify
 `CountriesController` to include new action methods as shown below.
@@ -1347,12 +1347,12 @@ Compile and run the app. Navigate through the country and province listings to
 the cities listing. You should see the page below.
 
 
-![](couchbase-sdk-net-1.2/images/fig19-cities.png)
+![](images/fig19-cities.png)
 
 Click through to the codes page and you should see the page below.
 
 
-![](couchbase-sdk-net-1.2/images/fig20-codes.png)
+![](images/fig20-codes.png)
 
 The last step for this feature is to display the list of breweries for a given
 zip code. To implement this page, you need to add a new method to
@@ -1403,7 +1403,7 @@ Codes view. The code above already has a link to this new Details page. When you
 click on a postal code, you should see a list of breweries as below.
 
 
-![](couchbase-sdk-net-1.2/images/fig21-breweries-codes.png)
+![](images/fig21-breweries-codes.png)
 
 <a id="spatial"></a>
 
@@ -1597,7 +1597,7 @@ Compile and run these last changes.  Navigate to /locations/details and you
 should see a map such as the one shown below.
 
 
-![](couchbase-sdk-net-1.2/images/fig22-map.png)
+![](images/fig22-map.png)
 
 <a id="conclusion"></a>
 

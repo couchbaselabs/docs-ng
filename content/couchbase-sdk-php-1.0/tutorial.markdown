@@ -72,7 +72,7 @@ your own comments. From there you can log out (logout.php). This workflow is
 summarized in Figure 1.
 
 
-![](couchbase-sdk-php-1.0/images/figure1_workflow.png)
+![](images/figure1_workflow.png)
 
 Let's think a little bit about how we're going to store our user information. As
 mentioned previously, there are no SQL style schemas in Couchbase, only keys and
@@ -581,7 +581,7 @@ login, logout, register and chat.
 The login view (Figure 2) is a userid and password form.
 
 
-![](couchbase-sdk-php-1.0/images/figure2_login.png)
+![](images/figure2_login.png)
 
 The login code (login.php, Listing 8) passes the userid and password fields to
 the createUser method of the User class we saw previously in
@@ -643,7 +643,7 @@ false) the login page is shown again with a login error.
 The logout screen (Figure 3) just indicates the logged out status of the user.
 
 
-![](couchbase-sdk-php-1.0/images/figure3_logout.png)
+![](images/figure3_logout.png)
 
 The logout code (logout.php, Listing 9) calls the `User` class `logoutUse` r
 method, which we've seen already, then clears the current user PHP session.
@@ -668,7 +668,7 @@ The register screen (Figure 4), is similar to the login page and provides a
 userid and password form.
 
 
-![](couchbase-sdk-php-1.0/images/figure4_register.png)
+![](images/figure4_register.png)
 
 The register code (register.php, Listing 10) is similar to login; it takes a
 userid and password and calls the User class createUserAccount method; if an
@@ -738,7 +738,7 @@ button), and the last ten submitted comments. The delete buttons in the "Action"
 allow a user to delete their own comments.
 
 
-![](couchbase-sdk-php-1.0/images/figure5_chat.png)
+![](images/figure5_chat.png)
 
 The chat view (chat.php, Listing 11) has the most user interaction and
 behavioral complexity, however the bulk of this behavior is implemented in the

@@ -721,7 +721,7 @@ want to partition your key space among several applications to avoid naming
 collisions.
 
 
-![](couchbase-sdk-java-1.0/images/fig01-bucket-creation.png)
+![](images/fig01-bucket-creation.png)
 
 Figure 1 shows the dialog in the Couchbase Web Console that demonstrates
 creating a new bucket called private with two replicas. Here you also choose a

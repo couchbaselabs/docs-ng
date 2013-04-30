@@ -40,19 +40,19 @@ Open Visual Studio 2010 and create a new project. Select ASP.NET MVC 3 Web
 Application from the Web templates as shown in Figure 1.
 
 
-![](couchbase-sdk-net-1.0/images/fig01-new-mvc-3-project.png)
+![](images/fig01-new-mvc-3-project.png)
 
 Next you need to select the Empty template, and select the Razor view engine.
 
 
-![](couchbase-sdk-net-1.0/images/fig02-mvc-3-empty.png)
+![](images/fig02-mvc-3-empty.png)
 
 You will need to create a few files. Right click the Controllers folder in
 Solution Explorer and choose Add | Controller... Name this controller
 `HomeController` and choose the Empty controller template. See Figure 3.
 
 
-![](couchbase-sdk-net-1.0/images/fig03-new-home-controller.png)
+![](images/fig03-new-home-controller.png)
 
 Next right click on the Views folder, and create a folder named Home and then
 right click on that folder and choose Add | View... Name the view Index and use
@@ -63,7 +63,7 @@ After you've completed this, you will be left with Solution Explorer looking
 like Figure 4.
 
 
-![](couchbase-sdk-net-1.0/images/fig04-after-stage-1.png)
+![](images/fig04-after-stage-1.png)
 
 Open the HomeController.cs file and make its contents look like Listing 1 now.
 
@@ -162,7 +162,7 @@ Couchbase.dll and click OK to add these references to your project. See Figure
 5.
 
 
-![](couchbase-sdk-net-1.0/images/fig05-add-reference.png)
+![](images/fig05-add-reference.png)
 
 Once the references have been made, you will want to add an instance of
 `CouchbaseClient` to your project. One of the best places to do this is in

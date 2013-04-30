@@ -363,7 +363,7 @@ To fulfill these requirements, we can use these techniques:
 follow the basic application flow:
 
 
-![](couchbase-devguide-1.8/images/lease_out_pattern1.png)
+![](images/lease_out_pattern1.png)
 
 The initial stage of our ticket document, as JSON, would appear as follows:
 
@@ -441,7 +441,7 @@ process once again, this time we also demonstrate the state changes which keep
 track of the ticket along with the application flow:
 
 
-![](couchbase-devguide-1.8/images/lease_out_pattern_w_tickets.png)
+![](images/lease_out_pattern_w_tickets.png)
 
 This diagram shows some of the compensation mechanisms we can put in place. If
 the seat that a user selects is not `AVAILABLE` we can reset all the tickets
@@ -496,7 +496,7 @@ generally provide something functional analogous to an atomic transaction by
 performing a two-phase commit. You follow this approach:
 
 
-![](couchbase-devguide-1.8/images/two_phase_commit.png)
+![](images/two_phase_commit.png)
 
 Here is the same approach demonstrated in actual code using the Couchbase Ruby
 SDK. To view the complete code, as well as a slightly more complex version, see
@@ -676,7 +676,7 @@ programming language that you use, how you implement the rollbacks may vary
 slightly:
 
 
-![](couchbase-devguide-1.8/images/two-phase-rollback.png)
+![](images/two-phase-rollback.png)
 
 The next example demonstrates a transaction using the PHP SDK; as in the Ruby
 example provided above, we follow the same process of creating a separate

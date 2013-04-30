@@ -189,7 +189,7 @@ Couchbase Server cluster. In real deployments, multiple web application servers
 can communicate via a Couchbase SDK to a cluster.
 
 
-![](couchbase-devguide-2.0/images/CB_basic_arch.jpg)
+![](images/CB_basic_arch.jpg)
 
 <a id="couchbase-nodes-clusters"></a>
 

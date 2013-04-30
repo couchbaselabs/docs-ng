@@ -68,7 +68,7 @@ with a data bucket. To see the relationship between these logical elements, see
 the illustration below:
 
 
-![](couchbase-devguide-2.0/images/view_elements.png)
+![](images/view_elements.png)
 
 Once you have your view functions, the next step is to *query* a view to
 actually get back data from Couchbase Server. When you query a view, you are
@@ -81,7 +81,7 @@ a view function that defines this, Couchbase Server would return results that
 appears as follows:
 
 
-![](couchbase-devguide-2.0/images/view_result_set.png)
+![](images/view_result_set.png)
 
 In this case our results are an ordered list of key and values where the keys
 are phone numbers starting with a 408, and we have no value in our results
@@ -964,7 +964,7 @@ have information from a Reddit page as JSON documents stored in Couchbase
 Server. Here is the output we would like to present as graph:
 
 
-![](couchbase-devguide-2.0/images/reddit_snippet.png)
+![](images/reddit_snippet.png)
 
 In this graph we have a x-axis to represent the 24 hours in a day. Each bar that
 appears in the graph represents the number of Reddit posts that occurred in a
@@ -1130,7 +1130,7 @@ of Reddit posts that occurred in an entire day. We use the array values in
 can be plotted to the corresponding hour in a day and color-coded:
 
 
-![](couchbase-devguide-2.0/images/reddit.png)
+![](images/reddit.png)
 
 To create a graph from the JSON result set, we use open source data
 visualization code available from [Data-Driven Documents](http://d3js.org). The
@@ -1160,7 +1160,7 @@ second, third, and forth level, and so on. The number of pre-calculated results
 decreases at each level, as Couchbase Server re-applies the reduce function:
 
 
-![](couchbase-devguide-2.0/images/rereduce1.png)
+![](images/rereduce1.png)
 
 This example shows the initial result set, and the different levels of results
 that exist when we sum numbers as part of our reduce and rereduces. The first
@@ -1195,7 +1195,7 @@ example below, if you use a count-type function to rereduce, you would get 3,
 which represent the number of values stored after the initial reduce:
 
 
-![](couchbase-devguide-2.0/images/rereduceCT.png)
+![](images/rereduceCT.png)
 
 So instead of getting the number of keys, which is 8, you get the number of
 values in the reduction, which is only 3. This is not what you might have
@@ -1236,7 +1236,7 @@ handle this by performing a sum of the reduction which is the correct number of
 items, 8. The logic for this second case is illustrated below:
 
 
-![](couchbase-devguide-2.0/images/rereduce2.png)
+![](images/rereduce2.png)
 
 Be aware that this is a very contrived example to demonstrate the rereduce and
 how to handle it in your custom reduce. In reality Couchbase Server provides a

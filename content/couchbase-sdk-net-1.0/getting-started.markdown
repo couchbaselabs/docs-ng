@@ -63,7 +63,7 @@ completing the following steps (see Figure 2):
  1. Click OK to create the new project
 
 
-    ![](couchbase-sdk-net-1.0/images/fig-hello-couchbase-solution.png)
+    ![](images/fig-hello-couchbase-solution.png)
 
  1. Right click the HelloCouchbase project in the solution explorer and choose Add |
     New Folder, and name the new folder Libraries
@@ -89,7 +89,7 @@ After you have done these steps, your solution should look like that shown in
 Figure 2.
 
 
-![](couchbase-sdk-net-1.0/images/fig-solution-with-references.png)
+![](images/fig-solution-with-references.png)
 
 Next you will need to configure the client library to talk with Couchbase. This
 is most easily done by editing the App.config file to add a configuration

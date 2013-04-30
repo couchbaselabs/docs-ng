@@ -78,7 +78,7 @@ shell> rails server
 ```
 
 
-![](couchbase-sdk-ruby-1.1/images/couchbase-squish.png)
+![](images/couchbase-squish.png)
 
 In a URL shortening application there are a number of features we would like to
 accomplish. Let's define what they are:

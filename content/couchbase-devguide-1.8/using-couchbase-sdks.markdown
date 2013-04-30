@@ -290,7 +290,7 @@ here as well. For instance, if you are populating your new test database with
 documents that represent different planets, you could follow this approach:
 
 
-![](couchbase-devguide-1.8/images/set_seeding.png)
+![](images/set_seeding.png)
 
 Another scenario that is appropriate for using `set` is another scenario where
 you do not care about overwriting the last value for a key. For instance if you
@@ -405,7 +405,7 @@ unique username and you want to use usernames as a keys, you would want to store
 the new key with `add` instead of `set`.
 
 
-![](couchbase-devguide-1.8/images/sdk_add_example.png)
+![](images/sdk_add_example.png)
 
 If a user already exists in your system with the unique username, you would not
 want to overwrite the user with a new user's information. Instead, you could
@@ -518,7 +518,7 @@ not exist, we can create the new profile including information such as the
 player email address:
 
 
-![](couchbase-devguide-1.8/images/get_alt.png)
+![](images/get_alt.png)
 
 Developers who are starting with Couchbase Server will rely heavily on `get/set`
 requests to do all of their read and write operations. The majority of the time,
@@ -656,7 +656,7 @@ site, or in this case, the top scoring users for your site. To do this, you can
 perform a multiple-retrieve:
 
 
-![](couchbase-devguide-1.8/images/multi_get.png)
+![](images/multi_get.png)
 
 The method call varies by language; however the principle remains the same; you
 can pass a list, array, or hash as parameters to the retrieve method, and
@@ -784,7 +784,7 @@ also only exist for the next 30 seconds. To do this, you would perform a
 get-and-touch operation.
 
 
-![](couchbase-devguide-1.8/images/get_and_touch.png)
+![](images/get_and_touch.png)
 
 If you need to constantly retrieve a document and update it to keep it stored
 longer, this method will also improve your application performance, when you
@@ -862,7 +862,7 @@ use a get-with-cas method to find out if the CAS value has changed, and then you
 know you need to check another system:
 
 
-![](couchbase-devguide-1.8/images/get_w_cas.png)
+![](images/get_w_cas.png)
 
 All documents and values stored in Couchbase Server will create a CAS value
 associated with it as metadata. Couchbase Server provides CAS values as
@@ -940,7 +940,7 @@ that as long as they perform a `getl` and the repair part is in inventory, they
 will get that part:
 
 
-![](couchbase-devguide-1.8/images/getl.png)
+![](images/getl.png)
 
 Other spaceships that arrive in open repair spots afterwards cannot take it
 since the entire inventory is locked. In this case, it would make sense to
@@ -1081,10 +1081,10 @@ the result from `touch` to decide whether you store a key, or store an alternate
 key:
 
 
-![](couchbase-devguide-1.8/images/touch1.png)
+![](images/touch1.png)
 
 
-![](couchbase-devguide-1.8/images/touch2.png)
+![](images/touch2.png)
 
 The following shows and example of using `touch` in the Ruby SDK:
 
@@ -1154,10 +1154,10 @@ does not exist. Your application would then know that the key does not exist
 because this is the first user login and could then show the special offer page.
 
 
-![](couchbase-devguide-1.8/images/replace1.png)
+![](images/replace1.png)
 
 
-![](couchbase-devguide-1.8/images/replace2.png)
+![](images/replace2.png)
 
 Some Couchbase Server developers prefer to exclusively use `replace` anytime
 they update items; this way they will know whether the key exists or not prior
@@ -1264,7 +1264,7 @@ need is in inventory, we would use the CAS value to update our inventory
 document to show one less part.
 
 
-![](couchbase-devguide-1.8/images/cas1.png)
+![](images/cas1.png)
 
 By using the CAS value we will ensure that our spaceship either gets the part
 given our current CAS value, or needs to check inventory again because another
@@ -1275,7 +1275,7 @@ spaceships can only remove inventory when they have the right to do so by
 providing the correct CAS value.
 
 
-![](couchbase-devguide-1.8/images/cas2.png)
+![](images/cas2.png)
 
 Should you choose to enforce CAS values for a certain type of key or set of
 application data, you should retrieve the keys and store the CAS value returned
@@ -1410,10 +1410,10 @@ users. We have also improved our record-keeping system and we want to enable
 users to have suffixes:
 
 
-![](couchbase-devguide-1.8/images/append_prepend.png)
+![](images/append_prepend.png)
 
 
-![](couchbase-devguide-1.8/images/append_prepend2.png)
+![](images/append_prepend2.png)
 
 Notice that we provide the appropriate spacing and since the two methods are
 separate Couchbase Server requests, Couchbase Server updates the CAS value two
@@ -1630,7 +1630,7 @@ unique user id for a spaceship game. In this case we increment the user count,
 and then apply it to the new key for the user:
 
 
-![](couchbase-devguide-1.8/images/incr_decr.png)
+![](images/incr_decr.png)
 
 Both `incr` and `decr` are considered 'binary' methods in that they operate on
 binary data, not JSON documents. Because of this, keys used by `incr` and `decr`

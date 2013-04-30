@@ -24,7 +24,7 @@ or more document to represent a real-world object. The following compares a
 conventional table with document-based objects:
 
 
-![](couchbase-devguide-1.8/images/relational_vs_doc1.png)
+![](images/relational_vs_doc1.png)
 
 In this example we have a table that represents beers and their respective
 attributes: id, beer name, brewer, bottles available and so forth. As seen in
@@ -47,7 +47,7 @@ means you decompose data into smaller, related tables. The figure below
 illustrates this:
 
 
-![](couchbase-devguide-1.8/images/normalizing_data.png)
+![](images/normalizing_data.png)
 
 In the relational model, data is shared across multiple tables. The advantage to
 this model is that there is less duplicated data in the database. If we did not
@@ -67,7 +67,7 @@ documents. By providing a reference in the beer document to a brewery document,
 you create a relationship between the two entities:
 
 
-![](couchbase-devguide-1.8/images/relating_docs.png)
+![](images/relating_docs.png)
 
 In this example we have two different beers from the Amtel brewery. We represent
 each beer as a separate document and reference the brewery in the 'brewer'
@@ -570,7 +570,7 @@ user document will be in the standard form of `user::uuid`. The records that we
 will have in our system would be structured as follows:
 
 
-![](couchbase-devguide-1.8/images/user_lookup1.png)
+![](images/user_lookup1.png)
 
 In this case we start with an initial user count of `100`. In the Ruby example
 that follows we increment the counter and then set a new user record with a new
@@ -614,7 +614,7 @@ Smith` a the user name. In the past part of this code we take the user data and
 perform an `add` to store it to Couchbase. Now our document set is as follows:
 
 
-![](couchbase-devguide-1.8/images/user_lookup2.png)
+![](images/user_lookup2.png)
 
 Then we store additional supporting documents which will enable us to find the
 user with other keys. For each different type of lookup we create a separate
@@ -642,7 +642,7 @@ key `username::`. After we create all of our lookup records, the documents in
 our system that relate to our user appear as follows:
 
 
-![](couchbase-devguide-1.8/images/user_lookup3.png)
+![](images/user_lookup3.png)
 
 Once these supporting documents are stored, we can attempt a lookup using input
 from a form. This can be any type of web form content, such as an entry in a
@@ -688,7 +688,7 @@ illustrates the sequence of operations you can perform, and the documents used
 when you do an email-based lookup:
 
 
-![](couchbase-devguide-1.8/images/user_lookup4.png)
+![](images/user_lookup4.png)
 
 The other use case for this pattern is to create categories for object. For
 instance, if you have a beer, keyed with the id `beer::#{sku}`, you can create a
