@@ -23,6 +23,44 @@ def include_item(identifier)
   end
 end
 
+class DocVersion
+  attr_accessor :current, :name, :v
+
+  def initialize(name, v, current)
+    @name = name
+    @current = current
+    @v = v
+  end
+
+  def link_class
+    @current ? "current" : "alternate"
+  end
+
+  def link
+    "/#{name}-#{v}/"
+  end
+end
+
+def base_name(identifier)
+  if identifier
+    li = identifier.rindex '-'
+    li ? identifier[0...li] : identifier
+  end
+end
+
+def all_versions
+  identifier = base_name(@item[:title])
+  if identifier
+    thisv = @item[:title][identifier.length+1..-1]
+    vdata = @site.config[:versions][identifier.to_sym][:versions].map do |v|
+      DocVersion.new(identifier, v.to_s, v.to_s == thisv)
+    end
+  end
+  vdata || []
+rescue
+  []
+end
+
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'filters/highlight_code'
 require 'rendering/tags'

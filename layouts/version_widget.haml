@@ -1,7 +1,4 @@
-- @site.config[:versions].each do |entry|
-  - if entry[:href] == @item[:title]
-    - entry[:nums].each do |version|
-      %li{:class => nav_li_class(entry)}
-        %a{nav_a_class(entry)}
-          = version
-
+- all_versions.each do |v|
+  %li{:class => nav_li_class(v.v)}
+    %a{:href => v.link, :class => v.link_class}
+      = v.v

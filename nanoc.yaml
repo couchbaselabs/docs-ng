@@ -77,6 +77,15 @@ watcher:
   notify_on_compilation_failure: true
 
 versions:
+
+  couchbase-devguide:
+    versions:
+      - 2.0
+      - 1.8
+
+
+versions-old:
+
   - href: couchbase-manual-2.0
     nums:
       - 2.0
