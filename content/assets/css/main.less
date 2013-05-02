@@ -22,6 +22,7 @@ h1, h2, h3, h4 {
   }
   > li.active {
     *z-index: 1000;
+    background-color: @cbblue;
     > .sub-menu {
       display: block;
       height: auto;
@@ -88,7 +89,7 @@ margin-left: 100px;
 }
 
 #cse-search .cse input.gsc-search-button, input.gsc-search-button {
- background-color: 336699;
+ background-color: @cbblue;
 }
 
 .versiontext {
@@ -143,5 +144,11 @@ h1:hover, h2:hover, h3:hover, h4:hover {
     padding-right: 12px;
     padding-left: 12px;
     margin-right: 2px;
-    line-height: 14px;
+    line-height: 12px;
+}
+
+.version a.current {
+    color: white;
+    background-color: @cbblue;
+    .border-radius(3px);
 }
