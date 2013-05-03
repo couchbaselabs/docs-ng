@@ -1281,8 +1281,25 @@ shell> cbbackup http://HOST:8091 ~/backups \
           -u Administrator -p password
 ```
 
-Where `~/backups` is the directory where you want to store the data. To backup a
-single bucket in a cluster:
+Where `~/backups` is the directory where you want to store the data. When you
+perform this operation, be aware that cbbackup will create the following
+directory structure and files in the `~/backups` directory assuming you have two
+buckets in your cluster named `my_name` and `sasl` and two nodes `N1` and `N2` :
+
+
+```
+~/backups
+        bucket-my_name
+            N1
+            N2
+        bucket-sasl
+            N1
+            N2
+```
+
+Where `bucket-my_name` and `bucket-sasl` are directories containing data files
+and where `N1` and `N2` are two sets of data files for each node in the cluster.
+To backup a single bucket in a cluster:
 
 
 ```
@@ -1311,7 +1328,7 @@ follows:
 shell> cbbackup http://HOST:8091 /backups \
   -u Administrator -p password \
   --single-node \
-  -b default
+  -b bucket_name
 ```
 
 This final example shows you how you can specify keys that are backed up using
@@ -1322,7 +1339,7 @@ the `- k` option. For example, to backup all keys from a bucket with the prefix
 ```
 shell> cbbackup http://HOST:8091 /backups/backup-20120501 \
   -u Administrator -p password \
-  -b default \
+  -b bucket_name \
   -k '^object.*'
 ```
 
@@ -1330,6 +1347,37 @@ For more information on using `cbbackup` scenarios when you may want to use it
 and best practices for backup and restore of data with Couchbase Server, see
 [Backing Up Using
 cbbackup](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
+
+
+
+**Using cbbackup from Couchbase Server 2.0 with 1.8.x**
+
+Be aware that you can use `cbbackup` 2.x to backup data from a Couchbase 1.8.x
+cluster, including 1.8. To do so you use the same command options you use when
+you backup a 2.0 cluster except you provide it the hostname and port for the
+1.8.x cluster. You do not need to even install Couchbase Server 2.0 in order to
+use `cbbackup 2.x` to backup Couchbase Server 1.8.x. You can get a copy of the
+tool from the [Couchbase command-line tools GitHub
+repository](https://github.com/couchbase/couchbase-cli). After you get the tool,
+go to the directory where you cloned the tool and perform the command. For
+instance:
+
+
+```
+./cbbackup http://1.8_host_name:port ~/backup -u Administrator -p password
+```
+
+This creates a backup of all buckets in the 1.8 cluster at `~/backups` on the
+physical machine where you run `cbbackup`. So if you want to make the backup on
+the machine containing the 1.8.x data bucket, you should copy the tool on that
+machine. As in the case where you perform backup with Couchbase 2.0, you can use
+`cbbackup 2.0` options to backup all buckets in a cluster, backup a named
+bucket, backup the default bucket, or backup the data buckets associated with a
+single node.
+
+Be aware that you can also use the `cbrestore 2.0` tool to restore backup data
+onto a 1.8.x cluster. See **Couldn't resolve xref tag:
+couchbase-restore-1.8-with-2.0**.
 
 <a id="couchbase-admin-cmdline-cbrestore"></a>
 
@@ -1351,7 +1399,7 @@ The format of the `cbrestore` command is:
 
 
 ```
-cbrestore [options] [source] [destination]
+cbrestore [options] [host:ip] [source] [destination]
 ```
 
 Where:
@@ -1361,17 +1409,21 @@ Where:
    One or more options for the backup operation. See
    [](couchbase-manual-ready.html#table-couchbase-admin-cmdline-cbrestore-options).
 
+ * `[host:ip]`
+
+   Hostname and port for a node in cluster.
+
  * `[source]`
 
-   Source for the backup data. This should be the directory where the backups using
-   `cbbackup` were created.
+   Source file for the backup data. This in the directory created by `cbbackup`
+   when you performed the backup.
 
  * `[destination]`
 
-   The destination for the information to be restored. This should be the REST API
-   URL of a node in an existing cluster. When restoring the data to a single node,
-   it should be the node you want to restore to. When restoring an entire bucket,
-   it should be the URL of one of the nodes within the cluster.
+   The destination bucket for the restored information. This is a node in an
+   existing cluster. If you restore the data to a single node in a cluster, provide
+   the hostname and port for the node you want to restore to. If you restore an
+   entire data bucket, provide the URL of one of the nodes within the cluster.
 
 A list of the options for the `cbrestore` are listed in the table below.
 
@@ -1390,6 +1442,50 @@ Format                       | Description
 `-k`, `--key`                | Key name or regular expression to limit the items restored.                                               
 `-B`, `--bucket-destination` | Name of the bucket to write the restored data to.                                                         
 `-b`, `--bucket-source`      | Name of the bucket containing the data to be restored.                                                    
+
+
+
+**Using cbrestore from Couchbase Server 2.0 with 1.8.x**
+
+Be aware that you can use `cbrestore` 2.0 to backup data from a Couchbase 1.8.x
+cluster, including 1.8. To do so you use the same command options you use when
+you backup a 2.0 cluster except you provide it the hostname and port for the
+1.8.x cluster. You do not need to even install Couchbase Server 2.0 in order to
+use `cbrestore` 2.0 to backup Couchbase Server 1.8.x. You can get a copy of the
+tool from the [Couchbase command-line tools GitHub
+repository](https://github.com/couchbase/couchbase-cli). After you get the tool,
+go to the directory where you cloned the tool and perform the command. For
+instance:
+
+
+```
+./cbrestore ~/backup http://10.3.3.11:8091 -u Administrator -p password -B saslbucket_destination -b saslbucket_source
+```
+
+This restores all data in the `bucket-saslbucket_source` directory under
+`~/backups` on the physical machine where you run `cbbackup`. It will restore
+this data into a bucket named `saslbucket_destination` in the cluster with the
+node host:port of `10.3.3.11:8091`.
+
+Be aware that if you are trying to restore data to a different cluster, that you
+should make sure that cluster should have the same number of vBuckets as the
+cluster that you backed up. If you attempt to restore data from a cluster to a
+cluster with a different number of vBuckets, it will fail when you use the
+default port of `8091`. The default number of vBuckets for Couchbase 2.0 is
+1024; in earlier versions of Couchbase, you may have a different number of
+vBuckets. If you do want to restore data to a cluster with a different number of
+vBuckets, you should perform this command with port `11211`, which will
+accomodate the difference in vBuckets:
+
+
+```
+cbrestore /backups/backup-42 memcached://HOST:11211 \
+    --bucket-source=sessions --bucket-destination=sessions2
+```
+
+IF you want more information about using `cbbackup` 2.0 tool to backup data onto
+a 1.8.x cluster. See **Couldn't resolve xref tag:
+couchbase-backup-1.8-with-2.0**.
 
 For more information on using `cbrestore`, see [Restoring using cbrestore
 tool](couchbase-manual-ready.html#couchbase-backup-restore-cbrestore).

@@ -74,7 +74,7 @@ provides an overview of your cluster health, including RAM and disk usage and
 activity.
 
 
-![](couchbase-manual-2.0/images/web-console-cluster-overview.png)
+![](images/web-console-cluster-overview.png)
 
 [[[The page is divided into
 `Cluster`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-cluster),
@@ -91,7 +91,7 @@ The Cluster section provides information on the RAM and disk usage information
 for your cluster.
 
 
-![](couchbase-manual-2.0/images/web-console-cluster-overview-cluster.png)
+![](images/web-console-cluster-overview-cluster.png)
 
 For the RAM information you are provided with a graphical representation of your
 RAM situation, including:
@@ -152,7 +152,7 @@ The `Buckets` section provides two graphs showing the `Operations per second`
 and `Disk fetches per second`.
 
 
-![](couchbase-manual-2.0/images/web-console-cluster-overview-buckets.png)
+![](images/web-console-cluster-overview-buckets.png)
 
 The `Operations per second` provides information on the level of activity on the
 cluster in terms of storing or retrieving objects from the data store.
@@ -167,7 +167,7 @@ to disk to retrieve information instead of using the information stored in RAM.
 The `Servers` section indicates overall server information for the cluster:
 
 
-![](couchbase-manual-2.0/images/web-console-cluster-overview-servers.png)
+![](images/web-console-cluster-overview-servers.png)
 
  * `Active Servers` is the number of active servers within the current clsuter
    configuration.
@@ -193,14 +193,14 @@ The Server Nodes monitoring overview shows summary data for the Swap Usage, RAM
 Usage, CPU Usage and Active Items across all the nodes in your cluster.
 
 
-![](couchbase-manual-2.0/images/web-console-server-summary.png)
+![](images/web-console-server-summary.png)
 
 Clicking the triangle next to a server displays server node specific
 information, including the IP address, OS, Couchbase version and Memory and Disk
 allocation information.
 
 
-![](couchbase-manual-2.0/images/web-console-server-node.png)
+![](images/web-console-server-node.png)
 
 The detail display shows the following information:
 
@@ -282,7 +282,7 @@ Selecting a server from the list shows the server-specific version of the Bucket
 Monitoring overview, showing server-specific performance information.
 
 
-![](couchbase-manual-2.0/images/web-console-server-individual.png)
+![](images/web-console-server-individual.png)
 
 The graphs specific to the server are:
 
@@ -309,7 +309,7 @@ a specific bucket-statistic on an individual server, instead of across the
 entire cluster.
 
 
-![](couchbase-manual-2.0/images/web-console-server-specific.png)
+![](images/web-console-server-specific.png)
 
 For more information on the data bucket statistics, see [Viewing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
@@ -331,7 +331,7 @@ current activity and availability. The displayed states are:
    clients.
 
 
-   ![](couchbase-manual-2.0/images/web-console-server-states-down.png)
+   ![](images/web-console-server-states-down.png)
 
  * **Pend**
 
@@ -340,7 +340,7 @@ current activity and availability. The displayed states are:
    with information.
 
 
-   ![](couchbase-manual-2.0/images/web-console-server-states-pend.png)
+   ![](images/web-console-server-states-pend.png)
 
 You can monitor the current server status using both the `Manage: Server Nodes`
 and `Monitor: Server Nodes` screens within the Web Console.
@@ -362,7 +362,7 @@ rather than whole cluster or individual servers.
 The information is shown in the form of a table, as seen in the figure below.
 
 
-![](couchbase-manual-2.0/images/web-console-data-buckets-overview.png)
+![](images/web-console-data-buckets-overview.png)
 
 The list of buckets are separated by the bucket type. For each bucket, the
 following information is provided in each column:
@@ -420,7 +420,7 @@ When creating a new bucket, you are presented with the `Create Bucket` dialog,
 as shown in the figure below.
 
 
-![](couchbase-manual-2.0/images/web-console-create-bucket.png)
+![](images/web-console-create-bucket.png)
 
  * `Bucket Name`
 
@@ -573,7 +573,7 @@ information shows memory size, access, and replica information for the bucket,
 as shown in the figure below.
 
 
-![](couchbase-manual-2.0/images/web-console-bucket-info.png)
+![](images/web-console-bucket-info.png)
 
 You can edit the bucket information by clicking the **Unhandled:**
 `[:unknown-tag :guibutton]` button within the bucket information display.
@@ -663,7 +663,7 @@ for Couchbase bucket types.
 
  * **XDC Destination**
 
-   The XDC Destination section show you statistical information about the Cross
+   The XDCR Destination section show you statistical information about the Cross
    Datacenter Replication (XDCR), if XDCR has been configured. For more information
    on XDCR, see [Cross Datacenter Replication
    (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr). For more
@@ -695,7 +695,7 @@ activity. Each graph (or selected graph) shows information based on the
 currently selected bucket.
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-summary.png)
+![](images/web-console-server-stats-summary.png)
 
 The following graph types are available:
 
@@ -812,7 +812,7 @@ states for each individual statistic. The final column provides the total value
 for each statistic.
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-vbucket.png)
+![](images/web-console-server-stats-vbucket.png)
 
 The Active column displays the information for vBuckets within the Active state.
 The Replica column displays the statistics for vBuckets within the Replica state
@@ -869,7 +869,7 @@ store the information written to RAM on disk for persistence. Information is
 displayed for each of the disk queue states, Active, Replica and Pending.
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-diskqueues.png)
+![](images/web-console-server-stats-diskqueues.png)
 
 The Active column displays the information for the Disk Queues within the Active
 state. The Replica column displays the statistics for the Disk Queues within the
@@ -913,7 +913,7 @@ information is therefore organized as a table with columns showing the
 statistics for TAP queues used for replication, rebalancing and clients.
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-tapqueues.png)
+![](images/web-console-server-stats-tapqueues.png)
 
 The statistics in this section are detailed below:
 
@@ -953,7 +953,7 @@ The statistics in this section are detailed below:
 For Memcached buckets, Web Console displays a separate group of statistics:
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-memcached.png)
+![](images/web-console-server-stats-memcached.png)
 
 The Memcached statistics are:
 
@@ -1050,21 +1050,87 @@ information on XDCR, see [Cross Datacenter Replication
 (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-xdcr-dest.png)
+![](images/outbound_xdcr_web_console.png)
 
 The statistics shown are:
 
- * `changes queue`
+ * `outbound XDCR mutation`
 
-   Number of changes in the queue to be sent to the destination cluster.
+   Number of changes in the queue waiting to be sent to the destination cluster.
 
- * `documents checked`
+ * `1000 mutations checked`
 
-   Number of documents checked for potential changes.
+   Number of documents checked for changes in thousands.
 
- * `documents replicated`
+ * `1000 mutations replicated`
 
-   Number of documents actually replicated to the destination cluster.
+   Number of documents actually replicated to the destination cluster in thousands.
+
+ * `data replicated`
+
+   Size of data replicated in bytes.
+
+ * `active vb reps`
+
+   Active vBucket replicators.
+
+ * `waiting vb reps`
+
+   Waiting vBucket replicators.
+
+ * `secs in replicating`
+
+   Seconds elapsed for data replication.
+
+ * `secs in checkpointing`
+
+   Time working in seconds including wait time for replication.
+
+ * `checkpoints issued`
+
+   Number of checkpoints issued in replication queue.
+
+ * `checkpoints failed`
+
+   Number of checkpoints failed during replication.
+
+ * `mutations in queue`
+
+   Number of documents in replication queue.
+
+ * `XDCR queue size`
+
+   Size of replication queue in bytes.
+
+ * `mutation replication rate`
+
+   Number of documents replicated per second.
+
+ * `data replication rate`
+
+   Bytes replicated per second.
+
+ * `ms meta ops latency`
+
+   Weighted average time for requesting document metadata.
+
+ * `ms docs ops latency`
+
+   Weighted average latency for sending replicated changes to destination cluster.
+
+ * `percent completed`
+
+   Total documents replicated divided by documents waiting for replication plus
+   replicated documents.
+
+Be aware that if you use an earlier version of Couchbase Server, such as
+Couchbase Server 2.0, only the first three statistics appear and have the labels
+**changes queue, documents checked, and documents replicated** respectively. You
+can also get XDCR statistics using the Couchbase REST-API. All of the statistics
+in Web Console are based on statistics via the REST API or values derived from
+them. For more information including a full list of available statistics, see
+[Getting XDCR Stats via
+REST](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-stats).
 
 <a id="couchbase-admin-web-console-data-buckets-xdcr-recv"></a>
 
@@ -1076,13 +1142,15 @@ Datacenter Replication
 (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-xdcr-src.png)
+![](images/inbound_xdcr_web_console.png)
 
 The statistics shown are:
 
- * `gets per sec.`
+ * `metadata reads per sec.`
 
-   Get operations per second for incoming XDCR data.
+   Number of documents XDCR scans for metadata per second. XDCR uses this
+   information for conflict resolution. See, **Couldn't resolve xref tag:
+   xdcr-metadata-conflict-resolution**.
 
  * `sets per sec.`
 
@@ -1106,7 +1174,7 @@ design document. For more information on Views, see [Views and
 Indexes](couchbase-manual-ready.html#couchbase-views).
 
 
-![](couchbase-manual-2.0/images/web-console-server-stats-views.png)
+![](images/web-console-server-stats-views.png)
 
 The statistics shown are:
 
@@ -1133,7 +1201,7 @@ selecting the **Unhandled:** `[:unknown-tag :guibutton]` page from the main
 navigation panel.
 
 
-![](couchbase-manual-2.0/images/views-overview.png)
+![](images/views-overview.png)
 
 The individual elements of this interface are:
 
@@ -1232,7 +1300,7 @@ document set (which is quicker and places less load on the system), or the full
 data set.
 
 
-![](couchbase-manual-2.0/images/views-editing.png)
+![](images/views-editing.png)
 
 The top portion of the interface provides navigation between the available
 design documents and views.
@@ -1283,7 +1351,7 @@ For more information on querying and selecting information from a view, see
 [Querying Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
 
 
-![](couchbase-manual-2.0/images/views-filters.png)
+![](images/views-filters.png)
 
 Clicking on the `Filter Results` query string will open a new window containing
 the raw, JSON formatted, version of the View results. To access the view results
@@ -1333,7 +1401,7 @@ name within the view list. This will present you with a view similar to that
 shown in the figure below.
 
 
-![](couchbase-manual-2.0/images/views-detail.png)
+![](images/views-detail.png)
 
 The top portion of the interface provides navigation between the available
 design documents and views.
@@ -1382,7 +1450,7 @@ Buckets` view. This will open a list of available documents. You are shown only
 a selection of the available documents, rather than all documents.
 
 
-![](couchbase-manual-2.0/images/web-console-document-list.png)
+![](images/web-console-document-list.png)
 
 You can select a different Bucket by using the bucket selection popup on the
 left. You can also page through the list of documents shown by using the
@@ -1397,7 +1465,7 @@ button. This will open a prompt to specify the document Id of the created
 document.
 
 
-![](couchbase-manual-2.0/images/web-console-document-create.png)
+![](images/web-console-document-create.png)
 
 Once the document Id has been set, you will be presented with the document
 editor. The document editor will also be opened when you click on the document
@@ -1405,7 +1473,7 @@ ID within the document list. To edit the contents of the document, use the
 textbox to modify the JSON of the stored document.
 
 
-![](couchbase-manual-2.0/images/web-console-document-edit.png)
+![](images/web-console-document-edit.png)
 
 Within the document editor, you can click **Unhandled:** `[:unknown-tag
 :guibutton]` to delete the current document, **Unhandled:** `[:unknown-tag
@@ -1423,7 +1491,7 @@ Couchbase Server so that you can identify activity and errors within your
 Couchbase cluster.
 
 
-![](couchbase-manual-2.0/images/web-console-server-log.png)
+![](images/web-console-server-log.png)
 
 <a id="couchbase-admin-web-console-settings"></a>
 
@@ -1446,7 +1514,7 @@ only notify you of your currently installed version, and no alert will be
 provided.
 
 
-![](couchbase-manual-2.0/images/web-console-server-settings-updatenotifications.png)
+![](images/web-console-server-settings-updatenotifications.png)
 
 For more information on how Update Notifications work, see [Updating
 Notifications](couchbase-manual-ready.html#couchbase-admin-web-console-update-notifications).
@@ -1463,7 +1531,7 @@ delay, in seconds, before auto-failover is started, enter the number of seconds
 it the `Timeout` box. The default timeout is 30 seconds.
 
 
-![](couchbase-manual-2.0/images/web-console-server-settings-autofailover.png)
+![](images/web-console-server-settings-autofailover.png)
 
 For more information on Auto-Failover, see [Using Automatic
 Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
@@ -1574,7 +1642,7 @@ The available settings are:
       for a bucket.
 
 
-![](couchbase-manual-2.0/images/web-console-server-settings-alerts.png)
+![](images/web-console-server-settings-alerts.png)
 
 For more information on Auto-Failover, see [Using Automatic
 Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
@@ -1589,7 +1657,7 @@ within [Creating and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
 
 
-![](couchbase-manual-2.0/images/web-console-server-settings-autocompact.png)
+![](images/web-console-server-settings-autocompact.png)
 
 The settings tab sets the following default parameters:
 
@@ -1640,7 +1708,7 @@ sample data available, see [Couchbase Sample
 Buckets](couchbase-manual-ready.html#couchbase-sampledata).
 
 
-![](couchbase-manual-2.0/images/web-console-server-settings-sample.png)
+![](images/web-console-server-settings-sample.png)
 
 If the sample bucket data was not loaded during setup, select the sample buckets
 that you want to load using the checkboxes, and click the **Unhandled:**
@@ -1710,7 +1778,7 @@ Alerts are provided as a popup within the web console. A sample of the IP
 address popup is shown below:
 
 
-![](couchbase-manual-2.0/images/warning-notification.png)
+![](images/warning-notification.png)
 
 The following errors and alerts are supported:
 

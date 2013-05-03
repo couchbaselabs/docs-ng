@@ -197,7 +197,7 @@ runs as a background application which installs a menubar item through which you
 can control the server.
 
 
-![](couchbase-manual-2.0/images/macosx-menubar.png)
+![](images/macosx-menubar.png)
 
 The individual menu options perform the following actions:
 

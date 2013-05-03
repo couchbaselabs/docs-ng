@@ -106,8 +106,8 @@ versions:
 
   couchbase-sdk-php:
     versions:
-      - 1.2
       - 1.1
+      - 1.0
       
   couchbase-sdk-ruby:
     versions:

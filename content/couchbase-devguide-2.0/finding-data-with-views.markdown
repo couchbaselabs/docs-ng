@@ -955,7 +955,7 @@ reduce functions.
 
 For more information about the sample application described in this section, as
 well as the custom reduce function used in it, see [Visualizing Reddit Data with
-Couchbase 2.0](http://crate.im/posts/visualizing-reddit-data/)
+Couchbase 2.0](http://crate.im/posts/couchbase-views-reddit-data/)
 
 The goal of our application is to show the frequency of Reddit posts that occur
 over the course of a day. To do this we aggregate information from Reddit, the

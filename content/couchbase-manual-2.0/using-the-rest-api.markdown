@@ -514,6 +514,24 @@ Content-Type: application/json
 Content-Length: 0
 ```
 
+<a id="couchbase-admin-restapi-hostname"></a>
+
+### Providing Hostnames for Nodes
+
+There are several ways you can provide hostnames for Couchbase 2.0.2+. You can
+provide a hostname when you install a Couchbase Server 2.0.2 node, when you add
+it to an existing cluster for online upgrade, or via a REST-API call. If a node
+fails, any hostname you establish with one of these methods will survive; once
+the node functions again, you can refer to it with the hostname.
+
+For earlier versions of Couchbase Server you must follow a manual process where
+you edit config files for each node which we describe below. For more
+information, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+To see the specific REST request, see **Couldn't resolve xref tag:
+couchbase-adding-hostname-via-rest**.
+
 <a id="couchbase-admin-restapi-failover-node"></a>
 
 ### Manually Failing Over a Node
@@ -818,7 +836,7 @@ Content-Length: nnn
 
             "samplesCount": 60,
             "isPersistent": true,
-            "lastTStamp": 1292513777166.0,
+            "lastTStamp":513777166.0,
             "interval": 1000
         },
         "hot_keys": [
@@ -983,7 +1001,7 @@ Content-Length: nnn
   "replicaNumber": 1,
   "quota": {
     "ram": 1887436800,
-    "rawRAM": 629145600
+    "rawRAM":145600
   },
   "basicStats": {
     "quotaPercentUsed": 14.706055058373344,
@@ -1008,7 +1026,8 @@ To create a new Couchbase bucket, or edit the existing parameters for an
 existing bucket, you can send a `POST` to the REST API endpoint. You can also
 use this same endpoint to get a list of buckets that exist for a cluster.
 
-**Unhandled:** `[:unknown-tag :sidebar]`<a id="table-couchbase-admin-restapi-creating-buckets"></a>
+**Unhandled:** `[:unknown-tag :sidebar]`  **Unhandled:** `[:unknown-tag
+:sidebar]`<a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
 **Method**                    | `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
 ------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1220,6 +1239,78 @@ the request:
 shell> curl -X POST -u admin:password -d ramQuotaMB=130 -d authType=sasl \
     -d saslPassword=letmein \
     http://localhost:8091/pools/default/buckets/acache
+```
+
+<a id="couchbase-admin-rest-compacting-bucket"></a>
+
+### Compacting Bucket Data and Indexes
+
+Couchbase Server will write all data that you append, update and delete as files
+on disk. This process can eventually lead to gaps in the data file, particularly
+when you delete data. Be aware the server also writes index files in a
+sequential format based on appending new results in the index. You can reclaim
+the empty gaps in all data files by performing a process called compaction. In
+both the case of data files and index files, you will want to perform frequent
+compaction of the files on disk to help reclaim disk space and reduce disk
+fragmentation. For more general information on this administrative task, see
+[Database and View
+Compaction](couchbase-manual-ready.html#couchbase-admin-tasks-compaction).
+
+**Compacting Data Buckets and Indexes**
+
+To compact data files for a given bucket as well as any indexes associated with
+that bucket, you perform a request as follows:
+
+
+```
+shell> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/compactBucket
+```
+
+Where you provide the ip and port for a node that accesses the bucket as well as
+the bucket name. You will also need to provide administrative credentials for
+that node in the cluster. To stop bucket compaction, you issue this request:
+
+
+```
+shell> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/cancelBucketCompaction
+```
+
+**Compacting Spatial Views**
+
+If you have spatial views configured within your dataset, these are not
+automatically compacted for you. Instead, you must manually compact each spatial
+view through the REST API.
+
+To do this, you must call the spatial compaction routine at the URL format:
+
+
+```
+http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
+```
+
+This URL contains the following special information:
+
+ * `127.0.0.1:9500`
+
+   The port number, 9500, is unique to the spatial indexing system.
+
+ * `BUCKETNAME`
+
+   The `BUCKETNAME` is the name of the bucket in which the design document is
+   configured.
+
+ * `DDOCNAME`
+
+   The name of the design document that contains the spatial index or indexes that
+   you want to compact.
+
+For example, you can send a request using `curl` :
+
+
+```
+shell> curl -X POST \
+    'http://127.0.0.1:9500/default/_design/dev_test_spatial_compaction/_spatial/_compact'
+    -H 'Content-type: application/json'
 ```
 
 <a id="couchbase-admin-restapi-deleting-bucket"></a>
@@ -2278,6 +2369,36 @@ Content-Type: application/json
 For more information about views and how they function within a cluster, see
 [View Operation](couchbase-manual-ready.html#couchbase-views-operation).
 
+<a id="couchbase-admin-restapi-views"></a>
+
+## Managing Views with REST
+
+In Couchbase 2.0 you can index and query JSON documents using views. Views are
+functions written in JavaScript that can serve several purposes in your
+application. You can use them to: find all the documents in your database,
+create a copy of data in a document and present it in a specific order, create
+an index to efficiently find documents by a particular value or by a particular
+structure in the document, represent relationships between documents, and
+perform calculations on data contained in documents.
+
+You store view functions in a design document as JSON and can use the REST-API
+to manage your design documents. Please refer to the following resources:
+
+ * [Storing a Design
+   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-storing.html).
+
+ * [Retrieving a Design
+   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-retrieving.html).
+
+ * [Deleting a Design
+   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
+
+ * Querying View via the REST-API. [Querying Using the REST
+   API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
+
+ * Querying View via the REST-API. [Querying Using the REST
+   API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
+
 <a id="couchbase-admin-restapi-xdcr"></a>
 
 ## Managing Cross Data Center Replication (XDCR)
@@ -2690,6 +2811,93 @@ can adjust are defined as follows:
 
 For more information about XDCR, see [Cross Datacenter Replication
 (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+
+<a id="couchbase-admin-restapi-xdcr-stats"></a>
+
+### Getting XDCR Stats via REST
+
+You can get XDCR statistics from either Couchbase Web Console, or the REST-API.
+You perform all of these requests on a source cluster to get information about a
+destination cluster. All of these requests use the UUID, a unique identifier for
+destination cluster. You can get this ID by using the REST-API if you do not
+already have it. For instructions, see [Getting a Destination Cluster
+Reference](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-destination).
+The endpoints are as follows:
+
+
+```
+http://hostname:port/pools/default/buckets/[bucket_name]/stats/[destination_endpoint]
+
+# where a possible [destination endpoint] includes:
+
+# number of documents written to destination cluster via XDCR
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_written
+
+# size of data replicated in bytes
+replications/[UUID]/[source_bucket]/[destination_bucket]/data_replicated
+
+# number of updates still pending replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/changes_left
+
+# number of documents checked for changes
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_checked
+
+# number of checkpoints issued in replication queue
+replications/[UUID]/[source_bucket]/[destination_bucket]/num_checkpoints
+
+# number of checkpoints failed during replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/num_failedckpts
+
+# size of replication queue in bytes
+replications/[UUID]/[source_bucket]/[destination_bucket]/size_rep_queue
+
+# active vBucket replicators
+replications/[UUID]/[source_bucket]/[destination_bucket]/active_vbreps
+
+# waiting vBucket replicators
+replications/[UUID]/[source_bucket]/[destination_bucket]/waiting_vbreps
+
+# seconds elapsed during replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/time_committing
+
+# time working in seconds including wait time
+replications/[UUID]/[source_bucket]/[destination_bucket]/time_working
+
+# bandwidth used during replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/bandwidth_usage
+
+# aggregate time waiting to send changes to destination cluster in milliseconds
+# weighted average latency for sending replicated changes to destination cluster
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_latency_aggr
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_latency_wt
+
+# Number of documents in replication queue
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_rep_queue
+
+# aggregate time to request and receive metadata about documents
+# weighted average time for requesting document metadata
+# XDCR uses this for conflict resolution prior to sending document into replication queue
+replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_aggr
+replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_wt
+
+# bytes replicated per second
+replications/[UUID]/[source_bucket]/[destination_bucket]/rate_replication
+```
+
+You can also see the number of write operations that occur on a destination
+cluster due to replication via XDCR. For this REST request, you need to make the
+request on your destination cluster at the following endpoint:
+
+
+```
+http://[Destination_IP]:8091/pools/default/buckets/[bucket_name]/stats
+```
+
+Within the JSON you find an attribute `xdc_ops` and the value for this attribute
+will be the write operations on the destination due to XDCR. Finally be aware
+that we expose many of these statistics in Couchbase Web Console. For more
+information, see [Monitoring Outgoing
+XDCR](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-xdcr).
 
 <a id="couchbase-admin-restapi-using-system-logs"></a>
 

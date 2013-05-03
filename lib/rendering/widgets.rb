@@ -3,13 +3,13 @@ require 'set'
 def nav_li_class(entry)
   classes = Set.new
   if entry[:href] == @item_rep.path
-    classes << "active "
+    classes << "active"
   end
   if entry[:subnav]
     classes << "dropdown"
     entry[:subnav].each do |subentry|
       if subentry[:href] == @item_rep.path
-        classes << "active "
+        classes << "active"
       end
     end
   end

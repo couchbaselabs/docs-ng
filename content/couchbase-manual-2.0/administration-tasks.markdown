@@ -213,6 +213,19 @@ There are more detailed statistics available on the warmup process. For more
 information, see [Getting Warmup
 Information](couchbase-manual-ready.html#couchbase-admin-cmdline-cbstats-warmup).
 
+<a id="couchbase-admin-warmup-threshold"></a>
+
+### Changing the Warmup Threshold
+
+To modify warmup behavior by changing the setting for
+`ep_warmup_min_items_threshold` use the command-line tool provided with your
+Couchbase Server installation, `cbepctl`. This indicates the number of items
+loaded in RAM that must be reached for Couchbase Server to begin serving data.
+The lower this number, the sooner your server can begin serving data. Be aware,
+however that if you set this value to be too low, once requests come in for
+items, the item may not be in memory and Couchbase Server will experience
+cache-miss errors.
+
 <a id="couchbase-admin-tasks-access-scanner"></a>
 
 ### Changing Access Scanner Settings
@@ -278,7 +291,7 @@ following shows two different nodes in a Couchbase cluster, and illustrates how
 two nodes can store replica data for one another:
 
 
-![](couchbase-manual-2.0/images/replica_backoff.png)
+![](images/replica_backoff.png)
 
 When a client application writes data to a node, that data will be placed in a
 replication queue and then a copy will be sent to another node. The replicated
@@ -594,8 +607,8 @@ both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
 Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually. For more information, see [Compacting Spatial
-Views](couchbase-manual-ready.html#couchbase-admin-tasks-compaction-spatial).
+compacted manually. For more information, see **Couldn't resolve xref tag:
+couchbase-admin-tasks-compaction-spatial**.
 
 Auto-compaction can be configured in two ways:
 
@@ -721,46 +734,6 @@ You want to consider the following:
    auto-compaction, you may want to schedule your auto-compaction time period for
    each bucket in a staggered fashion so that compaction on each bucket can take
    place within a it's own unique time period.
-
-<a id="couchbase-admin-tasks-compaction-spatial"></a>
-
-### Compacting Spatial Views
-
-If you have spatial views configured within your dataset, these are not
-automatically compacted for you. Instead, you must manually compact each spatial
-view through the REST API.
-
-To do this, you must call the spatial compaction routine at the URL format:
-
-
-```
-http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
-```
-
-This URL contains the following special information:
-
- * `127.0.0.1:9500`
-
-   The port number, 9500, is unique to the spatial indexing system.
-
- * `BUCKETNAME`
-
-   The `BUCKETNAME` is the name of the bucket in which the design document is
-   configured.
-
- * `DDOCNAME`
-
-   The name of the design document that contains the spatial index or indexes that
-   you want to compact.
-
-For example, you can send a request using `curl` :
-
-
-```
-shell> curl -X POST \
-    'http://127.0.0.1:9500/default/_design/dev_test_spatial_compaction/_spatial/_compact'
-    -H 'Content-type: application/json'
-```
 
 <a id="couchbase-admin-tasks-failover"></a>
 
@@ -2029,7 +2002,7 @@ a sample of this in the figure below, here shown on the `Manage Server Nodes`
 page
 
 
-![](couchbase-manual-2.0/images/admin-tasks-pending-rebalance.png)
+![](images/admin-tasks-pending-rebalance.png)
 
 To rebalance the cluster, you must initiate the rebalance process, detailed in
 [Starting a
@@ -2049,15 +2022,15 @@ The methods are:
  * **Web Console — During Installation**
 
    When you are performing the Setup of a new Couchbase Server installation (see
-   [Setting up Couchbase
-   Server](couchbase-manual-ready.html#couchbase-getting-started-setup) ), you have
+   [Initial Server
+   Setup](couchbase-manual-ready.html#couchbase-getting-started-setup) ), you have
    the option of joining the new node to an existing cluster.
 
    During the first step, you can select the `Join a cluster now` radio button, as
    shown in the figure below:
 
 
-   ![](couchbase-manual-2.0/images/admin-tasks-rebalance-add-setup.png)
+   ![](images/admin-tasks-rebalance-add-setup.png)
 
    You are prompted for three pieces of information:
 
@@ -2078,7 +2051,7 @@ The methods are:
    in the example below:
 
 
-   ![](couchbase-manual-2.0/images/admin-tasks-rebalance-node-added.png)
+   ![](images/admin-tasks-rebalance-node-added.png)
 
  * **Web Console — After Installation**
 
@@ -2087,7 +2060,7 @@ The methods are:
    Nodes` area of the Admin Console. You can see the button in the figure below.
 
 
-   ![](couchbase-manual-2.0/images/admin-tasks-rebalance-add-button.png)
+   ![](images/admin-tasks-rebalance-add-button.png)
 
    You will be presented with a dialog box, as shown below. Couchbase Server should
    be installed, and should have been configured as per the normal setup
@@ -2095,7 +2068,7 @@ The methods are:
    another cluster using this method. The Couchbase Server must be running.
 
 
-   ![](couchbase-manual-2.0/images/admin-tasks-rebalance-add-console.png)
+   ![](images/admin-tasks-rebalance-add-console.png)
 
    You need to fill in the requested information:
 
@@ -2261,7 +2234,7 @@ To initiate a rebalance operation:
    **Unhandled:** `[:unknown-tag :guibutton]` button.
 
 
-   ![](couchbase-manual-2.0/images/admin-tasks-rebalance-starting-console.png)
+   ![](images/admin-tasks-rebalance-starting-console.png)
 
    Clicking this button will immediately initiate a rebalance operation. You can
    monitor the progress of the rebalance operation through the web console. The
@@ -2269,7 +2242,7 @@ To initiate a rebalance operation:
    movement progress as a percentage.
 
 
-   ![](couchbase-manual-2.0/images/admin-tasks-rebalance-monitoring-console.png)
+   ![](images/admin-tasks-rebalance-monitoring-console.png)
 
    You can stop a rebalance operation at any time during the process by clicking
    the **Unhandled:** `[:unknown-tag :guibutton]` button. This only stops the
@@ -2629,7 +2602,7 @@ following illustrates some of the different source and destination
 configurations available with XDCR:
 
 
-![](couchbase-manual-2.0/images/xdcr.png)
+![](images/xdcr.png)
 
 When you configure replication with XDCR, you can specify one or more
 destination buckets for a given source bucket. Similarly, you can specify one or
@@ -2718,10 +2691,8 @@ XDCR:
     * You set up unidirectional replication to replicate data from Cluster A to a
       backup cluster, Cluster B.
 
-    * When a failure occurs Cluster A needs to be recreated once the cluster is
-      functioning once again. You can then use unidirectional replication to replicate
-      the data stored on Cluster B back Cluster A, and then re-enable your application
-      on Cluster A.
+    * When a failure occurs in Cluster A and data in the cluster is no longer
+      available you can restore this data from Cluster B via XDCR.
 
  * **Spreading Cluster Data Geographically**
 
@@ -2835,7 +2806,7 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     number for the remote cluster.
 
 
-    ![](couchbase-manual-2.0/images/xdcr-cluster-reference.png)
+    ![](images/xdcr-cluster-reference.png)
 
     Enter the username and password for the administrator on the destination
     cluster.
@@ -2855,7 +2826,7 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     the destination cluster:
 
 
-    ![](couchbase-manual-2.0/images/xdcr-cluster-setup.png)
+    ![](images/xdcr-cluster-setup.png)
 
  1. Click the **Unhandled:** `[:unknown-tag :guibutton]` button to start the
     replication process.
@@ -2864,7 +2835,7 @@ After you have configured and started replication, the web console will show the
 current status and list of replications in the `Ongoing Replications` section:
 
 
-![](couchbase-manual-2.0/images/xdcr-cluster-monitor.png)
+![](images/xdcr-cluster-monitor.png)
 
 To configure a bidirectional replication:
 
@@ -2900,7 +2871,7 @@ You can monitor the current status for all active replications in the `Ongoing
 Replications` section under the XDCR tab:
 
 
-![](couchbase-manual-2.0/images/xdcr_ongoing.png)
+![](images/xdcr_ongoing.png)
 
 The `Ongoing Replications` section shows the following information:
 
@@ -2941,7 +2912,7 @@ If you view the `Outbound XDCR` section, you will see information about
 replication from this source bucket to a destination bucket:
 
 
-![](couchbase-manual-2.0/images/outbound_xdcr.png)
+![](images/outbound_xdcr.png)
 
 Here are the meanings for the outgoing XDCR statistics:
 
@@ -2980,7 +2951,7 @@ If a cluster is a destination cluster, you will also see this information in
 Couchbase Web Console for the specific bucket. When you use XDCR,
 
 
-![](couchbase-manual-2.0/images/xdcr_incoming.png)
+![](images/xdcr_incoming.png)
 
  * `gets per sec` : shows the number of items on a destination cluster which are
    being read by a source cluster.
@@ -3088,7 +3059,7 @@ can configure a point to point VPN connection using a static route between the
 two clusters:
 
 
-![](couchbase-manual-2.0/images/xdcr-vpn-static.png)
+![](images/xdcr-vpn-static.png)
 
 When using Amazon EC2 or other cloud deployment solutions, particularly when
 using different EC2 zones, there is no built-in VPN support between the
@@ -3104,7 +3075,7 @@ region to the third-party BGP VPN router, and the VPN connection from the other
 region, using the BGP gateway to route between the two VPN connections.
 
 
-![](couchbase-manual-2.0/images/xdcr-vpn-bgp.png)
+![](images/xdcr-vpn-bgp.png)
 
 Configuration of these VPN routes and systems is dependent on your VPN solution.
 
@@ -3266,7 +3237,8 @@ following behavior and functions.
     * XDCR automatically performs conflict resolution between the source and
       destination clusters and is designed to ensure that changes to individual
       documents are replicated successfully. For each stored document, XDCR looks at
-      the following items to create a check value to resolve conflicts:
+      the following items for document metadata to create a check value to resolve
+      conflicts:
 
        * Numerical sequence, which is incremented on each mutation
 
@@ -3378,8 +3350,8 @@ To change the disk path of the existing node, the recommended sequence is:
     ), using the command-line (seecluster initializationfor more information).
 
     Alternatively, connect to the Web UI of the new node, and follow the setup
-    process to configure the disk path (see [Setting up Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
+    process to configure the disk path (see [Initial Server
+    Setup](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
  1. Add the node back to the cluster, see [Adding a Node to a
     Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-add).

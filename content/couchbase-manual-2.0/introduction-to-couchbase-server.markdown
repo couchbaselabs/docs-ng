@@ -281,7 +281,11 @@ resources:
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
 the **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
-:firstterm]`.
+:firstterm]`. For more information about creating and changing these two
+settings, see [Configuring Node Memory
+Quota](couchbase-manual-ready.html#couchbase-admin-restapi-cluster-memory-quota)
+and [Creating and Editing Data
+Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
 
  * **Server Quota**
 
@@ -304,7 +308,7 @@ the **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
    cluster would extend your aggregate bucket quota to 12GB.
 
 
-![](couchbase-manual-2.0/images/ram-quotas.png)
+![](images/ram-quotas.png)
 
 From this description and diagram, you can see that adding new nodes to the
 cluster expands the overal RAM quota, and the bucket quota, increasing the
@@ -367,13 +371,13 @@ vBucket map, the client determines Server C hosts vB8. The `get` operation is
 sent directly to Server C.
 
 
-![](couchbase-manual-2.0/images/vbuckets.png)
+![](images/vbuckets.png)
 
 After some period of time, there is a need to add a server to the cluster. A new
 node, Server D is added to the cluster and the vBucket Map is updated.
 
 
-![](couchbase-manual-2.0/images/vbuckets-after.png)
+![](images/vbuckets-after.png)
 
 [The vBucket map is updated during
 therebalance](couchbase-manual-ready.html#couchbase-introduction-architecture-rebalancing)
@@ -478,7 +482,7 @@ determine when it is necessary to start freeing up available memory. These are
 `mem_low_wat` and `mem_high_wat`.
 
 
-![](couchbase-manual-2.0/images/couchbase-060711-1157-32_img_300.jpg)
+![](images/couchbase-060711-1157-32_img_300.jpg)
 
 As the system is loaded with data, eventually the mem\_low\_wat is passed. At
 this time, no action is taken. This is the "goal" the system will move toward

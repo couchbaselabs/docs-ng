@@ -627,20 +627,20 @@ configuring Couchbase to point to wherever you have mounted an external volume.
 
 ### Handling Changes in IP Addresses
 
-When using Couchbase Server within a cloud environment, server instances can use
-internal or public IP addresses. Because of this you should configure Couchbase
-to use a DNS entry instead of an IP address.
+When you use Couchbase Server in the cloud, server nodes can use internal or
+public IP addresses. Because of this you should configure Couchbase to use a
+hostname instead of an IP address.
 
 By default Couchbase Servers use specific IP addresses as a unique identifier.
 If the IP changes, an individual node will not be able to identify its own
 configuration and other servers that are in the same cluster will not be able to
-access it. To configure Couchbase Server instances in the cloud to use DNS names
-rather than IP addressed, you should follow these steps. Note that the
-RightScale server templates provided by Couchbase will automatically handle the
-DNS configurations.
+access it. To configure Couchbase Server instances in the cloud to use hostnames
+rather than IP addressed, you should follow these steps. Note that RightScale
+server templates provided by Couchbase will automatically handle the hostname
+configurations.
 
-Here are a few points you should keep in mind when you set up DNS entries for
-nodes:
+Here are a few points you should keep in mind when you set up hostnames for
+nodes in the cloud:
 
  * Make sure that this hostname always resolves to the IP address of the node that
    it is on. This can be accomplished by using a dynamic DNS service such as
@@ -648,21 +648,36 @@ nodes:
    underlying IP address changes.
 
  * It is best to make sure that the IP address registered with the hostname is the
-   internal address for the node (rather than the external one provided by Amazon)
-   so that other nodes and application machines can contact it
+   internal address for the node rather than the external one provided by Amazon.
+   This way you know that other nodes and application machines can contact it.
 
 The steps that follow will completely destroy any data and configuration from
 the node, so it is best to start with a fresh Couchbase install. If you already
 have a running cluster, you can easily rebalance a node out of the cluster, make
-the change and then rebalance it back into the cluster. Nodes with IP's and
-hostnames can exist in the same cluster.
+the change and then rebalance it back into the cluster. For more information,
+see [Upgrading to Couchbase Server
+2.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
 
-When explicitly setting the IP address using this method, you should not specify
-the address `localhost` or `127.0.0.1` as this will be invalid when used as the
-identifier for multiple nodes within the cluster. Instead, use the correct IP
-address for your host.
+Nodes with both IPs and hostnames can exist in the same cluster. When you set
+the IP address using this method, you should not specify the address `localhost`
+or `127.0.0.1` as this will be invalid when used as the identifier for multiple
+nodes within the cluster. Instead, use the correct IP address for your host.
 
-**For Linux:**
+**Linux and Windows 2.0.2 and above**
+
+There are several ways you can provide hostnames for Couchbase 2.0.2+. You can
+provide a hostname when you install a Couchbase Server 2.0.2 node, when you add
+it to an existing cluster for online upgrade, or via a REST-API call. If a node
+fails, any hostname you establish with one of these methods will survive; once
+the node functions again, you can refer to it with the hostname. For
+instructions, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+For earlier versions of Couchbase Server you must follow a manual process where
+you edit config files for each node which we describe below for Couchbase in the
+cloud.
+
+**For Linux 2.0.1 and Earlier:**
 
  1. Install Couchbase Server.
 
@@ -722,9 +737,9 @@ address for your host.
     cleared out; but after completing the wizard the node will be properly
     identified.
 
-**For Windows** :
+**For Windows 2.0.1 and Earlier** :
 
- 1. Install the Couchbase Server software
+ 1. Install Couchbase Server.
 
  1. Stop the service by running:
 
@@ -764,9 +779,9 @@ address for your host.
      ```
 
  1. See the node correctly identifying itself as the hostname in the GUI under the
-    Manage Servers page (you will be taken back to the setup wizard since the
+    Manage Servers page. Note you will be taken back to the setup wizard since the
     configuration was cleared out, but after completing the wizard the node will be
-    named properly).
+    named properly.
 
 <a id="couchbase-bestpractice-cloud-netsecurity"></a>
 
@@ -809,7 +824,7 @@ enables the sharing of the vBucket map, and the selection within the client of
 the required vBucket when obtaining and storing information.
 
 
-![](couchbase-manual-2.0/images/couchbase-060711-1157-32_img_281.jpg)
+![](images/couchbase-060711-1157-32_img_281.jpg)
 
 See also [vBuckets](http://dustin.github.com/2010/06/29/memcached-vbuckets.html)
 for an in-depth description.
@@ -826,7 +841,7 @@ valuable services, such as connection pooling. The diagram below shows the flow
 with a standalone proxy installed on the application server.
 
 
-![](couchbase-manual-2.0/images/couchbase-060711-1157-32_img_280.jpg)
+![](images/couchbase-060711-1157-32_img_280.jpg)
 
 The memcached client is configured to have just one server in its server list
 (localhost), so all operations are forwarded to `localhost:11211` — a port
@@ -856,7 +871,7 @@ server list on the client, then using vBucket hashing and server mapping on the
 proxy) with an additional round trip network hop introduced.
 
 
-![](couchbase-manual-2.0/images/couchbase-060711-1157-32_img_279.jpg)
+![](images/couchbase-060711-1157-32_img_279.jpg)
 
 For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
 1.8 Manual](http://www.couchbase.com/docs/moxi-manual-1.8/index.html).
