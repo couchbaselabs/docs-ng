@@ -87,7 +87,7 @@ versions:
     versions:
       - 2.0
       - 1.8
-  
+
   couchbase-sdk-c:
     versions:
       - 2.0
@@ -108,14 +108,11 @@ versions:
     versions:
       - 1.1
       - 1.0
-      
+
   couchbase-sdk-ruby:
     versions:
       - 1.2
       - 1.1
-
-
-
 
 
 navbar:
