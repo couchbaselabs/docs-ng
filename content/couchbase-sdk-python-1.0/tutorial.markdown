@@ -1,360 +1,454 @@
 # Tutorial
 
-The tutorials in this document will lead you through various server
-administration and then some more advanced interaction examples, both using the
-Couchbase Python API.
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`<a id="_quickstart"></a>
 
-<a id="prerequisites"></a>
+## Quickstart
 
-## Prerequisites
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
-This article assumes that you have a working Python installation and a running
-Couchbase server. The Couchbase server can be local or remote but a local
-example will be used in the tutorial. The Couchbase Python module must also be
-installed, as described below. You will also need the python-nmap module for
-giving access to the network monitoring tools you will use.
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
-In order to follow along in this tutorial you need the following items to be
-installed and functional:
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :screen]`
 
- * Python 2.6 or higher
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]````
+   function (doc, meta) {
+       if (doc.type && doc.type == "beer") {
+           emit(doc.name, null);
+       }
+   }
+   ```
 
- * Python Couchbase SDK, or module
+   **Unhandled:** `[:unknown-tag :simpara]````
+   function (doc, meta) {
+       if (doc.type == "brewery") {
+           emit(doc.name, null);
+       }
+   }
+   ```
 
- * python-nmap module installed, from
-   [http://xael.org/norman/python/python-nmap/](http://xael.org/norman/python/python-nmap/)
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :screen]`
 
-This section assumes that you have installed Couchbase Python SDK and you have
-installed the Couchbase server on your development machine. We assume you have
-at least one instance of Couchbase Server and one data bucket established. If
-you need to set up these items in Couchbase Server, you can do with the
-Couchbase Administrative Console, or Couchbase Command-Line Interface (CLI), or
-the Couchbase REST-API. For information and instructions, see:
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
- * [Using the Couchbase Web
-   Console](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-introduction.html),
-   for information on using the Couchbase Administrative Console,
+<a id="_preparations"></a>
 
- * [Couchbase
-   CLI](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-web-console.html),
-   for the command line interface,
+## Preparations
 
- * [Couchbase REST
-   API](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-restapi.html),
-   for creating and managing Couchbase resources.
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_project_setup"></a>
 
-After you have your Couchbase Server set up and you have installed the Couchbase
-SDK, you can compile and run the following basic program.
+### Project Setup
 
-<a id="installation"></a>
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :screen]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+   `[:unknown-tag :screen]`  **Unhandled:** `[:unknown-tag :simpara]`
+   **Unhandled:** `[:unknown-tag :simpara]`
 
-## Installation
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
-The same process for installing Python modules from source code is also followed
-for installing the couchbase module. You download the package, unzip it, then
-build and install it.
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
- 1. Download
-    [couchbase-python-client-0.6.tar.gz](http://files.couchbase.com/developer-previews/clients/couchbase-server-2.0.0-compatible/python/couchbase-python-client-0.6.tar.gz)
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
- 1. Unzip the compressed file and move into the folder.
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
-     ```
-     shell> tar -xf couchbase-python-client-0.6.tar.gz
-     shell> cd couchbase-python-client-0.6
-     ```
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_preparing_the_views"></a>
 
- 1. Build and install the module. Build first is recommended to check for any errors
-    or problems, but doing install also builds for you. You will need
-    root/administrator rights to complete the install step.
+### Preparing the Views
 
-     ```
-     shell> python setup.py build
-     shell> python setup.py install
-     ```
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
 
-<a id="testing"></a>
+ * **Unhandled:** `[:unknown-tag :simpara]`
 
-## Testing the Installation
+**Unhandled:** `[:unknown-tag :simpara]`
+```
+function (doc, meta) {
+  if(doc.type && doc.type == "beer") {
+    emit(doc.name, null);
+  }
+}
+```
 
-The above steps install your new module, named couchbase, into your default
-Python installation. With the couchbase module installed, Python should now be
-able to access the module. This can be tested by launching Python and trying a
-simple import command. The command will return quietly to the Python >>> prompt
-if it loads properly.
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]````
+   function (doc, meta) {
+     if(doc.type && doc.type == "brewery") {
+       emit(doc.name, null);
+     }
+   }
+   ```
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`
+
+<a id="_structure_of_the_flask_application"></a>
+
+### Structure of the Flask Application
+
+### beer.py (imports)
 
 
 ```
-shell> python
-Python 2.6.7 (r267:88850, Jul 18 2011, 14:32:54)
-[GCC 4.2.1 (Apple Inc. build) (dot 3)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> import couchbase
->>>
+from collections import namedtuple
+import json
+
+from flask import Flask, request, redirect, abort, render_template
+
+from couchbase import Couchbase
+from couchbase.exceptions import KeyExistsError
+from couchbase.views.iterator import RowProcessor
+from couchbase.views.params import UNSPEC, Query
 ```
 
-If successful this means that all the files for the module have been properly
-installed and are accessible to your Python instance. Otherwise it will get
-confused and complain that your new module cannot be found.
 
-<a id="api-overview"></a>
 
-## API Overview
+### beer.py (configuration)
 
-Before launching into how to build our sample application it is a good idea to
-look at what the Python Couchbase module offers. For this tutorial, only a small
-portion of the module will be used. This is to keep it simple, but in the
-future, more advanced tutorials will show you how to take advantage of more of
-these features.
+**Unhandled:** `[:unknown-tag :screen]`
 
-The couchbase API instance is mainly accessed through an object called
-VBucketAwareCouchbaseClient. All the main methods shown in this tutorial are
-called through that client. Using this object, you create a connection to the
-server and use the `get`, `set` and similar functions to interact with the
-server as shown in the related [Getting Started
-guide](http://www.couchbase.com/docs/couchbase-sdk-python-getting-started/).
-
-<a id="couchbase-client"></a>
-
-## VBucketAwareCouchbaseClient
-
-The main object is accessed by importing from its parent objects as follows:
+### beer.py (creating the application)
 
 
 ```
-from couchbase.couchbaseclient import VBucketAwareCouchbaseClient
+app = Flask(__name__, static_url_path='')
+app.config.from_object(__name__)
 ```
 
-This makes the VBucketAwareCouchbaseClient available for client connections with
-a variety of settings. The basic syntax can be described as shown in this
-example:
 
 
-```
-v = VBucketAwareCouchbaseClient(url, bucket, password, verbose=False)
-...
-v = VBucketAwareCouchbaseClient("http://localhost:8091/pools/default","default","",False)
-```
-
-For any buckets other than the "default" you will need to also include a
-password, which is left blank "" in the above example. The "verbose" option will
-print out more information about your connection when your script runs.
-
-<a id="example-app"></a>
-
-## Example Application: Network Monitoring
-
-Couchbase lends itself well to real-time monitoring and logging applications.
-With its simple setting and retrieval mechanisms, putting data in and getting
-data out are extremely simplified. In this example application, as you will see,
-there is more code to run the monitoring side of things than there is for the
-database interaction.
-
-A simplified approach to network monitoring can be taken by simply scanning
-whether a host is responsive and by checking the availability of open network
-ports on the system. In this example application we use a Python library that
-gives simplified access to the nmap port scanning toolset. Data retrieve from
-the nmap module is that stored in the database for later use.
-
-<a id="planning"></a>
-
-## Planning
-
-Before launching into the application itself, let's plan ahead for how we will
-store and retrieve the data in the database. There are two levels of information
-that we are going to collect and store.
-
-First, in this application we will check the general status of the given host.
-So the hostname or IP address will be our main document ID or key. Then the host
-is check for its availability or status - is it responsive at all or not? Then
-the timestamp for the last time it was checked is also collected. The status,
-timestamp and hostname are the high level of data stored.
-
-Second, a detailed list of ports is scanned and the responses of what protocols
-are available and what ports are open is returned. This detailed information is
-stored using a key combining host, protocol, port, and timestamp.
-
-With the above planned approach, it is possible to quickly grab the current
-status for a host. It is also possible to retrieve the detailed information
-about a particular port at a specific point in time. More advanced features
-using views and design documents will be considered elsewhere, but by using this
-plan, querying for view-level data will be much easier and provide a quick way
-to roll-up stats across a network.
-
-<a id="setup"></a>
-
-## Setting Up Network Scanner
-
-First we'll get the network scanning portion of the Python script up and
-running. The following code does a basic scan for a specific set of ports on a
-given host and prints some of the results.
+### beer.py (generating a Connection object)
 
 
 ```
-import nmap
+def connect_db():
+    return Couchbase.connect(
+        bucket=app.config['DATABASE'],
+        host=app.config['HOST'])
 
-def scan(host='127.0.0.1',range='22-80'):
-  nm = nmap.PortScanner()
-  nm.scan(host, range)
-  return nm
-
-nm = scan()
-
-print "Hosts scanned: " + str(nm.all_hosts())
-for host in nm.all_hosts():
-  print "Host state: " + str(host) + ": " + nm[host].state()
-  print "Protocols checked: " + str(nm[host].all_protocols())
-  for proto in nm[host].all_protocols():
-    print "Ports checked: " + str(nm[host][proto].keys())
-    for port in nm[host][proto].keys():
-      print "Port status: " + str(port) + ": " + str(nm[host][proto][port])
+db = connect_db()
 ```
 
-As you can see there are three different loops. In the example only a single
-host is checked and only tcp ports are considered and no services were found, as
-shown in the output below.
+
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`<a id="_the_welcome_page"></a>
+
+## The Welcome Page
+
+### beer.py (welcome page)
 
 
 ```
-shell> python nmap-tutorial-mini.py
-Hosts scanned: [u'127.0.0.1']
-Host state: 127.0.0.1: up
-Protocols checked: []
+@app.route('/')
+def welcome():
+    return render_template('welcome.html')
+
+app.add_url_rule('/welcome', view_func=welcome)
 ```
 
-After turning on the ssh service on the host, you can see the results of the
-script change:
 
 
-```
-shell> python nmap-tutorial-mini.py
-Hosts scanned: [u'127.0.0.1']
-Host state: 127.0.0.1: up
-Protocols checked: [u'tcp']
-Ports checked: [22]
-Port status: 22: {'state': u'open', 'reason': u'syn-ack', 'name': u'ssh'}
-```
+### templates/welcome.html
 
-With the above information we have a variety of information tidbits to use in
-our logging application. You can download the script from:
-[nmap-tutorial-mini.py](http://www.couchbase.com/docs/couchbase-sdk-python-tutorial/nmap-tutorial-mini.py)
+**Unhandled:** `[:unknown-tag :screen]`
 
-<a id="data-restructure"></a>
+### templates/layout.html
 
-## Restructing the Data
+**Unhandled:** `[:unknown-tag :screen]`
 
-Next we just need to restructure the data into a useful format, in this case
-we'll put collect the strings together and then dump it as `json` format.
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_managing_beers"></a>
 
-By using `json` it is ready for more advanced manipulations in the future.
-Further atomization of the data is possible too, but sticking with our original
-plan is a good example to begin with.
+## Managing Beers
 
-Remember the two levels of data we want to collect: host level and service/port
-level, stored in the following as `host_state` and `port_state`.
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_showing_beers"></a>
+
+### Showing Beers
+
+### beer.py (custom Beer row class and processing)
 
 
 ```
-import nmap, json, time
+class Beer(object):
+    def __init__(self, id, name, doc=None):
+        self.id = id
+        self.name = name
+        self.brewery = None
+        self.doc = doc
 
-def scan(host='127.0.0.1',range='22-80'):
-  '''Setup port scanner'''
-  nm = nmap.PortScanner()
-  nm.scan(host, range)
-  return nm
+    def __getattr__(self, name):
+        if not self.doc:
+            return ""
+        return self.doc.get(name, "")
 
-nm = scan()
 
-for host in nm.all_hosts():
-  host_state = {}
-  host_state["host"] = host
-  host_state["state"] = nm[host].state()
-  for proto in nm[host].all_protocols():
-    for port in nm[host][proto].keys():
-      port_state = nm[host][proto][port]
-      port_state["host"] = host
-      port_state["protocol"] = proto
-      port_state["port"] = port
-      timestamp = time.time()
-      host_state["timestamp"] = str(timestamp)
-      port_state["timestamp"] = str(timestamp)
-      print json.dumps(host_state)
-      print json.dumps(port_state)
-      docid = str(host) + ":" + str(proto) + ":" + str(port) + ":" + str(port_state["timestamp"])
+class BeerListRowProcessor(object):
+    """
+    This is the row processor for listing all beers (with their brewery IDs).
+    """
+    def handle_rows(self, rows, connection, include_docs):
+        ret = []
+        by_docids = {}
+
+        for r in rows:
+            b = Beer(r['id'], r['key'])
+            ret.append(b)
+            by_docids[b.id] = b
+
+        keys_to_fetch = [ x.id for x in ret ]
+        docs = connection.get_multi(keys_to_fetch, quiet=True)
+
+        for beer_id, doc in docs.items():
+            if not doc.success:
+                ret.remove(beer)
+                continue
+
+            beer = by_docids[beer_id]
+            beer.brewery_id = doc.value['brewery_id']
+
+        return ret
 ```
 
-In addition to a few more lines of code, note specifically that you must now
-import `json` and `time` modules. We also remove all the verbose print lines and
-only print the resulting `json` string instead. The `docid` variable is also
-created, which will be used for the Couchbase document key in the next step.
 
-You can download the script from:
-[nmap-tutorial-collect.py](http://www.couchbase.com/docs/couchbase-sdk-python-tutorial/nmap-tutorial-collect.py)
 
-<a id="example-app-completion"></a>
-
-## Bringing It All Together
-
-Almost done! The above steps were the hard part, next comes the easy part,
-putting the data into the database. We import the part of the couchbase module
-we need, issue a couple `.set()` functions, then instead of printing the source
-strings, we request the data from the database using a `.get()` call and print
-it to confirm data was entered.
-
-Note that you must issue the closing `cb.done()` call or your script will hang.
-The Couchbase module uses multithreading and this helps it tie up any loose
-ends. Should you forget to do this call you will likely have to kill the python
-process in your task/activity manager (Windows/OSX) or by issuing the kill
-command (Linux/OSX) for the Python process id (pid) as reported by the `ps -e`
-command.
+### beer.py (showing beer listings)
 
 
 ```
-import nmap, json, time
+@app.route('/beers')
+def beers():
+    rp = BeerListRowProcessor()
+    rows = db.query("beer", "by_name",
+                    limit=ENTRIES_PER_PAGE,
+                    row_processor=rp)
 
-from couchbase.couchbaseclient import VBucketAwareCouchbaseClient as CbClient
-cb = CbClient("http://localhost:8091/pools/default","default","",False)
-
-def scan(host='127.0.0.1',range='22-80'):
-  '''Setup port scanner'''
-  nm = nmap.PortScanner()
-  nm.scan(host, range)
-  return nm
-
-nm = scan()
-
-for host in nm.all_hosts():
-  host_state = {}
-  host_state["host"] = host
-  host_state["state"] = nm[host].state()
-  for proto in nm[host].all_protocols():
-    for port in nm[host][proto].keys():
-      port_state = nm[host][proto][port]
-      port_state["host"] = host
-      port_state["protocol"] = proto
-      port_state["port"] = port
-      timestamp = time.time()
-      host_state["timestamp"] = str(timestamp)
-      port_state["timestamp"] = str(timestamp)
-      docid = str(host) + ":" + str(proto) + ":" + str(port) + ":" + str(port_state["timestamp"])
-      cb.set(docid,0,0,json.dumps(port_state))
-      cb.set(str(host),0,0,json.dumps(host_state))
-      print cb.get(docid)
-      print cb.get(str(host))
-
-cb.done()
+    return render_template('beer/index.html', results=rows)
 ```
 
-You can download the script, including more detailed comments, from:
-[nmap-tutorial-complete.py](http://www.couchbase.com/docs/couchbase-sdk-python-tutorial/nmap-tutorial-complete.py)
 
-<a id="conclusion"></a>
 
-## Conclusion
+### templates/beer/index.html
 
-The basic interaction with Couchbase is limited to a few simple functions. It is
-most likely that the Couchbase portions of any script you write will be very
-minimal. Consider other logging applications you've written and see how easy it
-might be to port them over to running on Couchbase.
+**Unhandled:** `[:unknown-tag :screen]`
 
-<a id="couchbase-sdk-python-summary"></a>
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`<a id="_deleting_beers"></a>
+
+### Deleting Beers
+
+### beer.py (deleting a beer)
+
+**Unhandled:** `[:unknown-tag :screen]`
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`<a id="_displaying_beers"></a>
+
+### Displaying Beers
+
+### beer.py (showing a single beer)
+
+
+```
+@app.route('/beers/show/<beer_id>')
+def show_beer(beer_id):
+    doc = db.get(beer_id, quiet=True)
+    if not doc.success:
+        return "No such beer {0}".format(beer_id), 404
+
+
+    return render_template(
+        'beer/show.html',
+        beer=Beer(beer_id, doc.value['name'], doc.value))
+```
+
+
+
+### templates/beer/show.html
+
+**Unhandled:** `[:unknown-tag :screen]`
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`<a id="_editing_beers"></a>
+
+### Editing Beers
+
+### beer.py (beer edit page)
+
+
+```
+def normalize_beer_fields(form):
+    doc = {}
+    for k, v in form.items():
+        name_base, fieldname = k.split('_', 1)
+        if name_base != 'beer':
+            continue
+
+        doc[fieldname] = v
+
+    if not 'name' in doc or not doc['name']:
+        return (None, ("Must have name", 400))
+
+    if not 'brewery_id' in doc or not doc['brewery_id']:
+        return (None, ("Must have brewery ID", 400))
+
+    if not db.get(doc['brewery_id'], quiet=True).success:
+        return (None,
+                ("Brewery ID {0} not found".format(doc['brewery_id']), 400))
+
+    return doc, None
+
+@app.route('/beers/edit/<beer>', methods=['GET'])
+def edit_beer_display(beer):
+    bdoc = db.get(beer, quiet=True)
+    if not bdoc.success:
+        return "No Such Beer", 404
+
+    return render_template('beer/edit.html',
+                           beer=Beer(beer, bdoc.value['name'], bdoc.value),
+                           posturl='/beers/edit/' + beer,
+                           is_create=False)
+
+
+@app.route('/beers/edit/<beer>', methods=['POST'])
+def edit_beer_submit(beer):
+    doc, err = normalize_beer_fields(request.form)
+
+    if not doc:
+        return err
+
+    db.set(beer, doc)
+    return redirect('/beers/show/' + beer)
+```
+
+
+
+### templates/beer/edit.html
+
+**Unhandled:** `[:unknown-tag :screen]`
+
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_creating_beers"></a>
+
+### Creating Beers
+
+### beer.py (create beer page)
+
+**Unhandled:** `[:unknown-tag :screen]`
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`<a id="_searching_beers"></a>
+
+### Searching Beers
+
+### static/js/beersample.js (snippet)
+
+
+```
+$(document).ready(function() {
+
+    /**
+     * AJAX Beer Search Filter
+     */
+    $("#beer-search").keyup(function() {
+       var content = $("#beer-search").val();
+       if(content.length >= 0) {
+           $.getJSON("/beers/search", {"value": content}, function(data) {
+               $("#beer-table tbody tr").remove();
+               for(var i=0;i<data.length;i++) {
+                   var html = "<tr>";
+                   html += "<td><a href=\"/beers/show/"+data[i].id+"\">"+data[i].name+"</a></td>";
+                   html += "<td><a href=\"/breweries/show/"+data[i].brewery+"\">To Brewery</a></td>";
+                   html += "<td>";
+                   html += "<a class=\"btn btn-small btn-warning\" href=\"/beers/edit/"+data[i].id+"\">Edit</a>\n";
+                   html += "<a class=\"btn btn-small btn-danger\" href=\"/beers/delete/"+data[i].id+"\">Delete</a>";
+                   html += "</td>";
+                   html += "</tr>";
+                   $("#beer-table tbody").append(html);
+               }
+           });
+       }
+    });
+});
+```
+
+
+
+### beer.py (ajax search response)
+
+
+```
+def return_search_json(ret):
+    response = app.make_response(json.dumps(ret))
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+@app.route('/beers/search')
+def beer_search():
+    value = request.args.get('value')
+    q = Query()
+    q.mapkey_range = [value, value + Query.STRING_RANGE_END]
+    q.limit = ENTRIES_PER_PAGE
+
+    ret = []
+
+    rp = BeerListRowProcessor()
+    res = db.query("beer", "by_name",
+                   row_processor=rp,
+                   query=q,
+                   include_docs=True)
+
+    for beer in res:
+        ret.append({'id' : beer.id,
+                    'name' : beer.name,
+                    'brewery' : beer.brewery_id})
+
+    return return_search_json(ret)
+```
+
+
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+```
+{ "id" : "beer_id", "name" : "beer_name", "brewery" : "the_brewery_id" }
+```
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`<a id="_managing_breweries"></a>
+
+## Managing Breweries
+
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_wrapping_up"></a>
+
+## Wrapping Up
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`<a id="_food_for_thought"></a>
+
+### Food For Thought
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`
+
+<a id="_using_the_apis"></a>

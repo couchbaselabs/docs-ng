@@ -1,4 +1,4 @@
-1) Conversion commands:
+1) Conversion command is:
 
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.0/couchbase-devguide-ready.xml couchbase-devguide-2.0
 
@@ -6,8 +6,13 @@ java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/p
 
 3) Remove [:unknown-tag :sidebar] 
 
-4) May need to generate and exclude PHP 1.1 views and manually create markdown- nested tables.
+4) To convert the entire documentation set, run ./convert_kz.sh. This contains XML preparation, validation as well as the conversion command.
 
+5) To convert markdown files to html files under output, go to docs-ng and do nanoc 
+
+6) To preview the site locally: nanoc view
+
+7) To commit new content files put then in a directory under docs-ng/content then git add . , git commit, git push.
 
 
 REDIRECTS:

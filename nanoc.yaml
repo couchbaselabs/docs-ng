@@ -111,10 +111,13 @@ versions:
       
   couchbase-sdk-ruby:
     versions:
+      - 1.3
       - 1.2
       - 1.1
 
-
+  couchbase-sdk-python:
+    versions:
+      - 1.0
 
 
 
@@ -138,9 +141,12 @@ navbar:
 
       - label: PHP
         href: /couchbase-sdk-php-1.1/
+        
+      - label: Python
+        href: /couchbase-sdk-python-1.0/
 
       - label: Ruby
-        href: /couchbase-sdk-ruby-1.2/
+        href: /couchbase-sdk-ruby-1.3/
 
   - label: Library
     href: /archives/index.html

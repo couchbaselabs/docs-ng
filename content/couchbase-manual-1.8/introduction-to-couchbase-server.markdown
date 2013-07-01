@@ -272,9 +272,9 @@ system:
    nodes will change the size of the bucket.
 
 For more information about creating and changing these node memory quota and
-bucket quota, see [Configuring Memory Quota for a
-Cluster](couchbase-manual-ready.html#restapi-cluster-memory-quota) and [Creating
-and Editing Data
+bucket quota, see [Initializing
+Nodes](couchbase-manual-ready.html#couchbase-cli-initializing-nodes) and
+[Creating and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
 
 <a id="couchbase-introduction-architecture-buckets"></a>

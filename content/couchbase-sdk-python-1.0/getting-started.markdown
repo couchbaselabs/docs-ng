@@ -1,305 +1,386 @@
 # Getting Started
 
-This chapter will get you started with using Couchbase Server and the Python
-Client Library.
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_download_and_installation"></a>
 
-<a id="server"></a>
+## Download and Installation
 
-## Get a Server
+ 1. **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+    :simpara]`
 
-[Get & Install Couchbase
-Server.](http://new.stage.couchbase.com/couchbase-server/next) Come back here
-when you're done
+ 1. **Unhandled:** `[:unknown-tag :simpara]`
 
-<a id="downloading"></a>
+ 1. **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+    :screen]`
 
-## Get a Client Library
+ 1. **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+    :simpara]`  **Unhandled:** `[:unknown-tag :screen]`  **Unhandled:**
+    `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
 
-The easiest way to get the Couchbase Python Client Library is to use PIP.
+ 1. **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+    :screen]`
 
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_hello_couchbase"></a>
 
-```
-pip install couchbase
-```
+## Hello Couchbase
 
-The TCP/IP port allocation on Windows by default includes a restricted number of
-ports available for client communication. For more information on this issue,
-including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
-
-<a id="tryitout"></a>
-
-## Try it Out!
-
-### Setup
-
-Once the Couchbase Python Client Library has been installed, it's easy to get
-started. Create a new Python file and add your import statements.
+### hello-couchbase.py
 
 
 ```
-#!/usr/bin/env python
+from couchbase import Couchbase
+from couchbase.exceptions import CouchbaseError
 
-from couchbase.client import Couchbase
+c = Couchbase.connect(bucket='beer-sample', host='localhost')
+
+try:
+    beer = c.get("aass_brewery-juleol")
+
+except CouchbaseError as e:
+    print "Couldn't retrieve value for key", e
+    # Rethrow the exception, making the application exit
+    raise
+
+doc = beer.value
+
+# Because Python 2.x will complain if an ASCII format string is used
+# with Unicode format values, we make the format string unicode as
+# well.
+
+print unicode("{name}, ABV: {abv}").format(name=doc['name'], abv=doc['abv'])
+
+doc['comment'] = "Random beer from Norway"
+
+try:
+    result = c.replace("aass_brewery-juleol", doc)
+    print result
+
+except CouchbaseError as e:
+    print "Couldn't replace key"
+    raise
 ```
 
-<a id="couchbaseclient"></a>
 
-### Creating a Couchbase Client Instance
 
-To create a Couchbase client instance, the URI of any available node in the
-cluster is needed, as is a bucket name and password (or cluster credentials).
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+   `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+   `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:literallayout]`  **Unhandled:** `[:unknown-tag :literallayout]`  **Unhandled:**
+`[:unknown-tag :simpara]`<a id="_working_with_documents"></a>
+
+## Working With Documents
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+**Unhandled:** `[:unknown-tag :simpara]`<a id="_storing_documents"></a>
+
+### Storing Documents
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+   `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+### CRUD Example
+
+**Unhandled:** `[:unknown-tag :simpara]`
+```
+from couchbase import Couchbase
+from couchbase.exceptions import CouchbaseError
+
+key = "demo_key"
+value = "demo_value"
+
+# We use the 'default' bucket.
+c = Couchbase.connect(bucket='default', host='localhost')
+
+print "Setting key {0} with value {1}".format(key, value)
+result = c.set(key, value)
+print "...", result
+
+print ""
+print "Getting value for key {0}".format(key)
+result = c.get(key)
+print "...", result
+
+print ""
+print "Creating new key {0} with value 'new_value'".format(key)
+print "This will fail as '{0}' already exists".format(key)
+try:
+    c.add(key, "another value")
+except CouchbaseError as e:
+    print e
+
+print "Replacing existing key {0} with new value".format(key)
+result = c.replace(key, "new value")
+print "...", "result"
+
+print ""
+print "Getting new value for key {0}".format(key)
+result = c.get(key)
+print "...", result
+
+print ""
+print "Deleting key", key
+result = c.delete(key)
+print "...", result
+
+print ""
+print "Getting value for key {0}. This will fail as it has been deleted".format(key)
+try:
+    c.get(key)
+except CouchbaseError as e:
+    print e
+
+print ""
+print "Creating new key {0} with value 'added_value'".format(key)
+result = c.add(key, "added_value")
+print "...", result
+
+print "Getting the new value"
+result = c.get(key)
+print "...", result
+```
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:screen]`<a id="_getting_documents_by_key"></a>
+
+### Getting Documents By Key
+
+### Getting A Single Document
 
 
 ```
-couchbase = Couchbase("http://192.168.56.2:8091/pools/default", "default", "");
+client.store("my list", [])
+result = client.get("my list")
+doc = result.value
 ```
 
-The default Couchbase Server installation creates a bucket named "default"
-without a password, therefore the third argument is optional when used with this
-bucket. If you created an authenticated bucket, you should specify those values
-in place of the default settings above.
 
-The construction of a Couchbase client instance does require some overhead as
-the cluster topology is discovered, so as a best practice the client should not
-be created more than once per bucket, per application.
 
-<a id="buckets"></a>
-
-### Working with a Bucket
-
-The Couchbase instance is a container for Bucket instances, which based on the
-credentials supplied are accessible through the client's bucket collection.
-Using the credentials above, only the default bucket would be available to an
-application. If cluster credentials were supplied, then all buckets would be
-available.
+### Getting Multiple Documents
 
 
 ```
-bucket = client["default"]
+client.set_multi({
+    'sheep_counting' : ['first sheep', 'second sheep'],
+    'famous_sheep' : {'sherry lewis' : 'Lamb Chops'}
+})
+
+keys = ('sheep_counting', 'famous_sheep')
+results = client.get_multi(keys)
+for key, result in results.items():
+    doc = result.value
 ```
 
-CRUD operations are performed by using an instance of a Bucket.
 
-<a id="crud"></a>
 
-### CRUD Operations
+### Error Handling
 
-The primary CRUD API used by the Python Client is that of a standard key/value
-store. You create and update documents by supplying a key and value. You
-retrieve or remove documents by supplying a key. For example, consider the JSON
-document that you'll find in the "beer-sample" bucket that's available when you
-install Couchbase Server and setup your cluster. The key "110fc0f765" is
-associated with the beer document below.
+### Passing quiet to get
 
 
 ```
-{
- "name": "Sundog",
- "abv": 5.25,
- "ibu": 0,
- "srm": 0,
- "upc": 0,
- "type": "beer",
- "brewery_id": "110f1bb0ee",
- "updated": "2010-07-22 20:00:20",
- "description": "Sundog is an amber ale as deep as the copper glow of a Lake Michigan sunset. Its biscuit malt give Sundog a toasty character and a subtle malty sweetness. Sundog brings out the best in grilled foods, caramelized onions, nutty cheese, barbecue, or your favorite pizza.",
- "style": "American-Style Amber/Red Ale",
- "category": "North American Ale"
+result = client.get("non-exist-key", quiet=True)
+if result.success:
+    print "Got document OK"
+else:
+    print ("Couldn't retrieve document. "
+           "Result was received with code"), result.rc
+```
+
+
+
+### Setting quiet in the constructor
+
+
+```
+client = Couchbase.connect(bucket='default', quiet=True)
+result = client.get("non-exist-key")
+if result.success:
+    print "Got document OK"
+else:
+    print "Couldn't retrieve document"
+```
+
+
+
+**Unhandled:** `[:unknown-tag :simpara]`
+```
+>>> CouchbaseError.rc_to_exctype(result.rc)
+<class 'couchbase.exceptions.NotFoundError'>
+```
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`
+```
+results = client.get_multi(("i exist", "but i don't"), quiet=True)
+if not results.all_ok:
+    print "Couldn't get all keys"
+```
+
+<a id="_getting_documents_by_querying_views"></a>
+
+### Getting Documents by Querying Views
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+```
+view_results = client.query("beer", "brewery_beers")
+for result in view_results:
+    print "Mapped key: %r" % (result.key,)
+    print "Emitted value: %r" % (result.value,)
+    print "Document ID: %s" % (result.docid,)
+```
+
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:simpara]`
+```
+results = client.query("beer", "brewery_beers", opt1=value1, opt2=value2, ...)
+for result in results:
+    # do something with result..
+```
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+ * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+   :simpara]`
+
+**Unhandled:** `[:unknown-tag :simpara]`
+```
+results = client.query("beer", "brewery_beers",
+                       include_docs=True, limit=5)
+
+for result in results:
+    print "key is %r" % (result.key)
+    doc = result.doc.value
+    if doc['type'] == "beer":
+        print "Got a beer. It's got %0.2f ABV" % (doc['abv'],)
+```
+
+<a id="_encoding_and_serialization"></a>
+
+### Encoding and Serialization
+
+**Unhandled:** `[:unknown-tag :simpara]`
+```
+# -*- coding: utf-8 -*-
+
+import pprint
+from couchbase import Couchbase
+
+client = Couchbase.connect(bucket='default', host='localhost')
+value = {
+    "this is a" : "dictionary",
+    "and this is a list" : ["with", "some", "elements"],
+    "and this is a tuple" : ("with", "more", "elements"),
+    "you can also use floats" : 3.14,
+    "integers" : 42,
+    "strings" : "hello",
+    "unicode" : "שלום!",
+    "blobs" : "\x00",
+    "or a None" : None
 }
+
+client.set("a_key", value)
+result = client.get("a_key")
+pprint.pprint(result.value)
+print result.value['unicode']
 ```
 
-Note that credentials and bucket selection would vary slightly for this example.
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:screen]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`<a id="_other_formats"></a>
 
+### Other Formats
 
+**Unhandled:** `[:unknown-tag :simpara]`
 ```
-couchbase = Couchbase("http://192.168.56.2:8091/pools/default", "beer-sample", "");
-bucket = couchbase["beer-sample"]
-```
+import pprint
 
-To retrieve this document, you simply call the Get method of the client.
+from couchbase import Couchbase, FMT_PICKLE
 
+c = Couchbase.connect(bucket='default')
+c.set("a_python_object", object(), format=FMT_PICKLE)
+c.set("a_python_set", set([1,2,3]), format=FMT_PICKLE)
 
-```
-var savedBeer = client.Get("110fc0f765");
-```
-
-To retrieve this document, you simply call the get method of the bucket. The get
-method returns a tuple, where the third element is the value. The first is the
-status code and the second the CAS value for the key.
-
-
-```
-savedBeer = bucket.get("110fc0f765")[2]
+pprint.pprint(c.get("a_python_object").value)
+pprint.pprint(c.get("a_python_set").value)
 ```
 
-If you add a line to print the savedBeer to the console, you should see a JSON
-string that contains the data above.
-
-
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:screen]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`
 ```
-savedBeer = client.get("110fc0f765")
-print savedBeer
-```
+import pprint
 
-To add a document, first create a JSON string.
+from couchbase import Couchbase, FMT_BYTES
 
-
-```
-newBeer = \
-"""
-   "name": "Old Yankee Ale",
-   "abv": 5.00,
-   "ibu": 0,
-   "srm": 0,
-   "upc": 0,
-   "type": "beer",
-   "brewery_id": "110a45622a",
-   "updated": "2012-08-30 20:00:20",
-   "description": ".A medium-bodied Amber Ale",
-   "style": "American-Style Amber",
-   "category": "North American Ale"
-"""
+c = Couchbase.connect(bucket='default')
+c.set("blob", b"\x01\x02\x03\x04", format=FMT_BYTES)
+pprint.pprint(c.get("blob").value)
 ```
 
-For a key, we'll simply compute a SHA-1 hash of our document and then grab the
-first 10 characters. The exact mechanism by which you create your keys need only
-be consistent. If you are going to query documents by key (not just through
-views) you should choose predictable keys (e.g., beer\_Old\_Yankee\_Ale).
-
-
+**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
+:screen]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
+`[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
 ```
-import hashlib
-key = hashlib.sha1(newBeer).hexdigest()[0:10]
-```
+from couchbase import Couchbase, FMT_UTF8
 
-With this new key, the JSON document may easily be stored.
-
-
-```
-bucket.set(key, 0, 0, newBeer)
+c = Couchbase.connect(bucket='default')
+c.set("EXCALIBUR", u"\u03EE", format=FMT_UTF8)
+print c.get("EXCALIBUR")
 ```
 
-The set method will replace a key if it exists or add it if it does not. There
-are also individual add and replace methods. There are four arguments to provide
-the set method. The first is the key and the fourth the value. The second and
-third arguments provided are the expiry and flags for the set operation. In the
-case above, the key will not expire, nor will it have any flags set on the data.
-For more on these topics please see the Python API docs.
+### Setting The Default Format
 
-Removing a document simply entails calling the delete method with the key to be
-removed.
-
-
+**Unhandled:** `[:unknown-tag :simpara]`
 ```
-bucket.delete(key)
+c = Couchbase.connect(bucket='default', default_format=FMT_UTF8)
 ```
 
-<a id="storingjson"></a>
-
-### Storing JSON Documents
-
-While storing and retreiving JSON strings is a straightforward process,
-documents in a typical application are likely at some point to be represented by
-domain objects or some data structure other than a string. For example, the beer
-documents could be represented by an instance of a Beer class in memory or more
-simply as dictionaries. The Python Client Library will accept arbitrary strings
-as values. However, on the server, these strings (if not JSON) will be stored as
-binary attachments to a JSON document. The impact of being an attachment is that
-it will not be indexed in a view. A better solution then, is to serialize data
-objects or dictionaries to JSON strings before storing them and deserializing
-the JSON document strings to objects or dictionaries when retrieving them.
-
-Instead of the JSON string above, using a dictionary provides an easy way to
-organize documents.
-
-
+**Unhandled:** `[:unknown-tag :simpara]`
 ```
-newBeer = \
-{
-   "name": "Old Yankee Ale",
-   "abv": 5.00,
-   "ibu": 0,
-   "srm": 0,
-   "upc": 0,
-   "type": "beer",
-   "brewery_id": "110a45622a",
-   "updated": "2012-08-30 20:00:20",
-   "description": ".A medium-bodied Amber Ale",
-   "style": "American-Style Amber",
-   "category": "North American Ale"
-}
+c.default_format = FMT_PICKLE
 ```
 
-To store this dictionary as a JSON document, simply use the dumps method of the
-json module.
-
-
-```
-import json
-bucket.set(key, 0, 0, json.dumps(newBeer)
-```
-
-To retrieve the stored document string into a dictionary instance, use the json
-loads method.
-
-
-```
-savedBeer = json.loads(bucket.get(key)[2])
-print savedBeer["name"]
-```
-
-<a id="workingwithviews"></a>
-
-### Working with Views
-
-Map/Reduce Views are used to create queryable, secondary indexes in Couchbase
-Server. The primary index for documents is the key you use when performing the
-standard CRUD methods described above. See the view documentation for more
-information on writing views.
-
-For this example, a by\_name view in a beer design document will be queried.
-This view simply checks whether a document is a beer and has a name. If it does,
-it emits the beer's name into the index. This view will allow for beers to be
-queried for by name. For example, it's now possible to ask the question "What
-beers start with A?"
-
-
-```
-function (doc, meta) {
-  if (doc.type && doc.type == "beer" && doc.name) {
-     emit(doc.name, null);
-  }
-}
-```
-
-Querying a view through the Python client is performed through the view method.
-
-
-```
-view = bucket.view("_design/beer/_view/by_name")
-```
-
-The view method returns a list with dictionary entries for each row in the
-view's results. Iterating over the results of the view, the "id" property of the
-row (currently the unicode id must be converted to an ASCII string) can be used
-to retrieve the original document.
-
-
-```
-for row in view:
-    id = row["id"].__str__()
-    beer = json.loads(bucket.get(id)[2])
-    print beer["name"]
-```
-
-Finally, the view results can be modified by specifying keyword arguments when
-first calling the view method.
-
-
-```
-view = bucket.view("_design/beer/_view/by_name", limit=10, key="Sundog")
-```
-
-<a id="tutorial"></a>
+<a id="_tutorial"></a>

@@ -97,55 +97,48 @@ Where:
 
 <a id="couchbase-admin-cmdline-couchbase-commands"></a>
 
-Command            | Description                                                                                 
--------------------|---------------------------------------------------------------------------------------------
-`server-list`      | List all servers in a cluster. Requires authentication.                                     
-`server-info`      | Show details on one server. Requires authentication.                                        
-`server-add`       | Add one or more servers to the cluster. Requires authentication.                            
-`server-readd`     | Add a node to a cluster after it had been removed/failed-over. Requires authentication.     
-`rebalance`        | Start a cluster rebalance. Requires authentication.                                         
-`rebalance-stop`   | Stop current cluster rebalance. Requires authentication.                                    
-`rebalance-status` | Show status of current cluster rebalancing. Requires authentication.                        
-`failover`         | Removes one or more servers from a cluster. Requires authentication and option for node URI.
-`cluster-init`     | Set the username, password and port for the cluster.                                        
-`node-init`        | Set node-specific parameters.                                                               
-                   |                                                                                             
-`bucket-list`      | List all buckets in a cluster. No authentication required.                                  
-`bucket-create`    | Create a new bucket and add it to a cluster.                                                
-`bucket-edit`      | Modify properties for an existing bucket.                                                   
-`bucket-delete`    | Delete an existing bucket.                                                                  
-`bucket-flush`     | Flush a given bucket.                                                                       
-                   |                                                                                             
-`help`             | Show CLI help and examples.                                                                 
+Command            | Description                                        
+-------------------|----------------------------------------------------
+`server-list`      | List all servers in a cluster                      
+`server-info`      | Show details on one server                         
+`server-add`       | Add one or more servers to the cluster             
+`server-readd`     | Re-add a server that was failed over to the cluster
+`rebalance`        | Start a cluster rebalancing                        
+`rebalance-stop`   | Stop current cluster rebalancing                   
+`rebalance-status` | Show status of current cluster rebalancing         
+`failover`         | Failover one or more servers                       
+`cluster-init`     | Set the username, password and port of the cluster 
+`node-init`        | Set node specific parameters                       
+`bucket-list`      | List all buckets in a cluster                      
+`bucket-create`    | Add a new bucket to the cluster                    
+`bucket-edit`      | Modify an existing bucket                          
+`bucket-delete`    | Delete an existing bucket                          
+`bucket-flush`     | Flush a given bucket                               
+`help`             | Show longer usage/help and examples                
 
 <a id="couchbase-admin-cmdline-couchbase-commands-stdopts"></a>
 
-Option                               | Commands Using                              | Description                                                                                                         
--------------------------------------|---------------------------------------------|---------------------------------------------------------------------------------------------------------------------
-`--user=USERNAME`, `-u USERNAME`     | Required by server commands                 | Administrative username for the cluster                                                                             
-`--password=PASSWORD`, `-p PASSWORD` | Required by server commands                 | Administrative password for the cluster                                                                             
-`--output=KIND`, `-o KIND`           | `server-list`, `bucket-list`, `server-info` | Type of response output: either `json` for JSON format, or `standard` for the native format for the command.        
-`--debug`, `-d`                      | All CLI commands                            | Output debug information from the CLI. Includes HTTP method, parameters, encoded parameters and REST API equivalent.
-                                     |                                             |                                                                                                                     
-`--server-add=HOST[:PORT]`           | `server-add`, `server-readd`, `rebalance`   | Server to be added to a cluster.                                                                                    
-`--server-add-username=USERNAME`     | `server-add`, `server-readd`, `rebalance`   | Administrative username for the server to be added.                                                                 
-`--server-add-password=PASSWORD`     | `server-add`, `server-readd`, `rebalance`   | Administrative password for the server to be added.                                                                 
-`--server-remove=HOST[:PORT]`        | `rebalance`                                 | The server to be removed.                                                                                           
-`--server-failover=HOST[:PORT]`      | `failover`                                  | Server to failover.                                                                                                 
-                                     |                                             |                                                                                                                     
-`--node-init-data-path=PATH`         | `node-init`                                 | New disk path for node. When Couchbase Server persists data from this node, it store to this disk path.             
-                                     |                                             |                                                                                                                     
-`--cluster-init-username=USER`       | `cluster-init`                              | New administrative username.                                                                                        
-`--cluster-init-password=PASSWORD`   | `cluster-init`                              | New administrative password.                                                                                        
-`--cluster-init-port=PORT`           | `cluster-init`                              | New cluster port.                                                                                                   
-`--cluster-init-ramsize=300`         | `cluster-init`                              | New RAM quota for cluster.                                                                                          
-                                     |                                             |                                                                                                                     
-`--bucket=BUCKETNAME`                | `bucket-create`, `bucket-edit`              | Bucket to perform a command on.                                                                                     
-`--bucket-type=TYPE`                 | `bucket-create`, `bucket-edit`              | Type of bucket: either Memcached or Couchbase.                                                                      
-`--bucket-port=PORT`                 | `bucket-create`, `bucket-edit`              | Port for bucket. Supports ASCII protocol only and cannot require authentication.                                    
-`--bucket-password=PASSWORD`         | `bucket-create`, `bucket-edit`              | Password for bucket.                                                                                                
-`--bucket-ramsize=RAMSIZEMB`         | `bucket-create`, `bucket-edit`              | RAM quota for bucket in MB. Minimum size is 100MB.                                                                  
-`--bucket-replica=COUNT`             | `bucket-create`, `bucket-edit`              | Specify number of replicas for Couchbase bucket. Maximum is 3.                                                      
+Option                               | Command                                   | Description                                                                                     
+-------------------------------------|-------------------------------------------|-------------------------------------------------------------------------------------------------
+`--user=USERNAME`, `-u USERNAME`     |                                           | Administrator username for accessing the cluster                                                
+`--password=PASSWORD`, `-p PASSWORD` |                                           | Administrator password for accessing the cluster                                                
+`--output=KIND`, `-o KIND`           |                                           | Output kind, either `json` for JSON format, or `standard` for the native format for the command.
+`--debug`, `-d`                      |                                           | Output debug information.                                                                       
+`--server-add=HOST[:PORT]`           | `server-add`, `server-readd`, `rebalance` | Server to be added                                                                              
+`--server-add-username=USERNAME`     | `server-add`, `server-readd`, `rebalance` | Admin username for the server to be added                                                       
+`--server-add-password=PASSWORD`     | `server-add`, `server-readd`, `rebalance` | Admin password for the server to be added                                                       
+`--server-remove=HOST[:PORT]`        | `rebalance`                               | The server to be removed                                                                        
+`--server-failover=HOST[:PORT]`      | `failover`                                | Server to failover                                                                              
+`--cluster-init-username=USER`       | `cluster-init`                            | New admin username                                                                              
+`--cluster-init-password=PASSWORD`   | `cluster-init`                            | New admin password                                                                              
+`--cluster-init-port=PORT`           | `cluster-init`                            | New cluster port                                                                                
+`--cluster-init-ramsize=300`         | `cluster-init`                            | New RAM quota                                                                                   
+`--bucket=BUCKETNAME`                | `bucket*`                                 | Bucket to act on                                                                                
+`--bucket-type=TYPE`                 | `bucket*`                                 | Memcached or Couchbase                                                                          
+`--bucket-port=PORT`                 | `bucket*`                                 | Supports ASCII protocol and is auth-less                                                        
+`--bucket-password=PASSWORD`         | `bucket*`                                 | Standard port, exclusive with bucket-port                                                       
+`--bucket-ramsize=RAMSIZEMB`         | `bucket*`                                 | RAM quota in MB                                                                                 
+`--bucket-replica=COUNT`             | `bucket*`                                 | Replication count                                                                               
 
 <a id="couchbase-cli-list-servers"></a>
 
