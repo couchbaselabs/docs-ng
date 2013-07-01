@@ -47,7 +47,28 @@ And run the generator and server with Foreman
 
 The site will be available at <http://localhost:3000/>
 
+Resources
+======================
+
+Internal Staging site at docs.pub.couchbase.com 
+External Site
+
 How to Contribute Content
 =========================
 
 TODO: new contributing guidelines
+
+
+
+How to Convert on Docs Staging
+==================
+
+1) Manually:
+
+cd /home/docs/docs-ng
+./pull_publish.sh
+
+2) Automatically
+
+The ./pull_publish.sh is running automatically as a cron job every 60 minutes and will pull from git, convert with nanoc.
+
