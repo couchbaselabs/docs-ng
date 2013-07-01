@@ -32,16 +32,16 @@ h1, h2, h3, h4 {
 
 #sidenav.affix {
     bottom: 0;
-    top: 100px;
+    top: 120px;
     overflow: auto;
 }
 #sidenav.affix-top {
     position: absolute;
-    top: 100px;
+    top: 120px;
 }
 
 .mdcontent {
-  margin-top: 80px;
+  margin-top: 100px;
 }
 
 .masthead {
@@ -66,7 +66,7 @@ margin-left: 100px;
   content:"";
   display:block;
   height:90px; /* fixed header height*/
-  margin:-70px 0 0; /* negative fixed header height */
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 @media (max-width: 767px) {
@@ -150,4 +150,11 @@ h1:hover, h2:hover, h3:hover, h4:hover {
     color: white;
     background-color: @cbblue;
     .border-radius(3px);
+}
+
+.guide_title {
+    color: @cbblue;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-bottom: -20px;
 }
