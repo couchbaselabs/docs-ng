@@ -61,6 +61,14 @@ rescue
   []
 end
 
+def section_name
+  identifier = base_name(@item[:title])
+  @site.config[:versions][identifier.to_sym][:name]
+rescue => e
+  print e
+  ""
+end
+
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'filters/highlight_code'
 require 'rendering/tags'
