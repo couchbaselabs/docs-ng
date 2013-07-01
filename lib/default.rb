@@ -64,8 +64,7 @@ end
 def section_name
   identifier = base_name(@item[:title])
   @site.config[:versions][identifier.to_sym][:name]
-rescue => e
-  print e
+rescue
   ""
 end
 
