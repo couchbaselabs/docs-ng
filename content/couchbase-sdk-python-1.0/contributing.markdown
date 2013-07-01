@@ -1,17 +1,41 @@
 # Contributing
 
-**Unhandled:** `[:unknown-tag :simpara]`<a id="_general_information"></a>
+This section contains means by which you can contribute to this SDK.
+
+<a id="_general_information"></a>
 
 ## General Information
 
-**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-:simpara]`<a id="_compiling_python_from_source"></a>
+The latest source code for the Python SDK may be found on *github*. It is
+located at
+[https://github.com/couchbase/couchbase-python-client](https://github.com/couchbase/couchbase-python-client).
+
+If you wish to contribute to the C extension itself, it may be worthwhile using
+a debug build of Python.
+
+<a id="_compiling_python_from_source"></a>
 
 ### Compiling Python From Source
 
-**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
-`[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`
+You may skip this section if you do not intend to contribute to the C part of
+the SDK.
+
+The instructions here have been tested on Python 2.6.7 and Python 3.2.4. They
+will likely work for any version of Python.
+
+In order to generate a debug build of python, you will need to compile it from
+source. To do this, you will need to modify some Python source files as
+instructed in the `Misc/README.valgrind` file within the Python source
+distribution.
+
+Additionally, if you wish to have your Python be useful for installing other
+packages (for example, `nose` ), you will need to have `pip` and `distribute`
+installed. These themselves depend on several core modules which may not be
+built by default on some systems.
+
+The `Modules/Setup` file may be modified using the following diff as a guidline:
+
+
 ```
 --- ../../tmp/Python-2.6.7/Modules/Setup.dist   2008-11-27 02:15:12.000000000 -0800
 +++ Setup.dist  2013-05-15 15:58:30.559170619 -0700
@@ -62,7 +86,11 @@
  #
 ```
 
-**Unhandled:** `[:unknown-tag :simpara]`
+Note that on some distributions (specifically Debian) you may get a build
+failure when building the `ssl` module. If so, you likely need to modify the
+`Modules/_ssl.c` file like so:
+
+
 ```
 --- ../../tmp/Python-2.6.7/Modules/_ssl.c       2010-08-03 11:50:32.000000000 -0700
 +++ _ssl.c      2013-05-15 15:58:03.471170217 -0700
@@ -77,75 +105,120 @@
      PySSL_END_ALLOW_THREADS
 ```
 
-**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-:screen]`<a id="_running_tests"></a>
+Once the source tree is prepared, you can do something like:
+
+**Unhandled:** `[:unknown-tag :screen]`<a id="_running_tests"></a>
 
 ### Running Tests
 
-**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-:simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
-`[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag :simpara]` 
-**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-:screen]`  **Unhandled:** `[:unknown-tag :simpara]`<a id="_building_docs"></a>
+If you’ve made changes to the library, you need to run the test suite to ensure
+that nothing broke with your changes.
+
+To run the tests, you need to have the `nose` package installed (this may also
+work with the `unittest` module as well, but is less tested).
+
+Additionally, you need a real cluster to test against. The test may modify the
+buckets specified, so be sure not to point it to a production server(!).
+
+Note that the views test may fail if you have made changes to the `beer-sample`
+bucket.
+
+To tell the test about your cluster setup, copy the file `tests/test.ini.sample`
+to `tests/test.ini` and modify as needed.
+
+To run the tests, simply do:
+
+**Unhandled:** `[:unknown-tag :screen]` from within the root of the SDK source.
+
+<a id="_building_docs"></a>
 
 ### Building Docs
 
-**Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-:screen]`  **Unhandled:** `[:unknown-tag :simpara]`<a id="_source_style_guidelines"></a>
+You will need `sphinx` and `numpydoc` installed. Simply do
+
+**Unhandled:** `[:unknown-tag :screen]` Once done, the built HTML should be in
+`docs/build/html`, and you can begin browsing by opening
+`docs/build/html/index.html` in your browser.
+
+<a id="_source_style_guidelines"></a>
 
 ## Source Style Guidelines
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`  **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:**
-   `[:unknown-tag :simpara]`
+For the Python code, a loose adherence to *PEP-8* should be used. For the C
+extension code, a fairly more strict adherence to *PEP-7* should be used.
 
- * **Unhandled:** `[:unknown-tag :simpara]`
+These rules are meant to be broken; this just reflects some guidelines to use.
 
- * **Unhandled:** `[:unknown-tag :simpara]`
+In general:
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+ * Use spaces, not tabs
 
- * **Unhandled:** `[:unknown-tag :simpara]`
+ * Lines should never be longer than 80 columns
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+ * Code should be compatible with Python versions 2.6 up to the latest 3.x
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+Python-Specific:
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+ * Doc strings should be readable by Sphinx
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+ * Methods should not have more than three positional arguments
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]````
-   static PyObject*
-   do_something(PyObject *self, PyObject *args, ...)
-   {
-       /** ... **/
-   }
-   ```
+ * Avoid using string literals in code
 
-   **Unhandled:** `[:unknown-tag :simpara]````
-   static PyObject *do_something(PyObject *self, PyObject *args)
-   {
-       /** ... **/
-   }
-   ```
+   If a new object makes use of a dictionary, consider converting this dictionary
+   to a proper Python object, using a `namedtuple`, etc.
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :screen]`
+ * Avoid dependencies not in Python’s standard library
 
- * **Unhandled:** `[:unknown-tag :simpara]`
+   Though you may add conditional functionality depending on whether a specific
+   library is installed or not.
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+ * Don’t use threads
 
- * **Unhandled:** `[:unknown-tag :simpara]`  **Unhandled:** `[:unknown-tag
-   :simpara]`
+   While threads are a useful construct in application code, they do not belong in
+   library code without good reason.
+
+C-Specific:
+
+ * Use of `goto` is better than deeply nested blocks
+
+ * Return type and storage specifiers should be on their own line
+
+   Thus:
+
+    ```
+    static PyObject*
+    do_something(PyObject *self, PyObject *args, ...)
+    {
+        /** ... **/
+    }
+    ```
+
+   Rather than
+
+    ```
+    static PyObject *do_something(PyObject *self, PyObject *args)
+    {
+        /** ... **/
+    }
+    ```
+
+ * Code should compile with the following flags (for GCC or clang)
+
+   **Unhandled:** `[:unknown-tag :screen]`
+
+ * Non-static functions should have a `pycbc_` prefix
+
+ * Functions exposed as Python methods should be named as `pycbc_<Object>_<Method>`
+
+   Where `<Object>` is the name of the class in the SDK (e.g. `Connection` ) and
+   `<Method>` is the name of the method (e.g. `<get>` ), thus,
+   `pycbc_Connection_get`
+
+ * Code should be portable to Win32
+
+   Therefore, only include standard library headers and use `PyOS_*` functions when
+   needed.
 
 <a id="couchbase-sdk-python-rn"></a>
 

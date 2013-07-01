@@ -46,6 +46,16 @@ cd ~/Desktop/docs-ng/
 #mkdir content/couchbase-devguide-2.0
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.0/couchbase-devguide-ready.xml couchbase-devguide-2.0
 
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.1.0
+make depend
+make validate
+make reformat
+make couchbase-devguide.xml
+cd ~/Desktop/docs-ng/
+#mkdir content/couchbase-devguide-2.1.0
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.1.0/couchbase-devguide-ready.xml couchbase-devguide-2.1.0
+
+
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-java-1.0
 make depend
 make validate
@@ -92,14 +102,14 @@ cd ~/Desktop/docs-ng/
 #mkdir content/couchbase-sdk-c-2.0
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.0/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.0
 
-cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1.0
 make depend
 make validate
 make reformat
 make couchbase-sdk-c.xml
 cd ~/Desktop/docs-ng/
-#mkdir content/couchbase-sdk-c-2.1
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.1
+#mkdir content/couchbase-sdk-c-2.1.0
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1.0/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.1.0
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-net-1.0
 make depend
@@ -191,7 +201,7 @@ make reformat
 make couchbase-sdk-python.xml
 cd ~/Desktop/docs-ng/
 #mkdir content/couchbase-sdk-python-1.0
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-python-x.x/couchbase-sdk-python-ready.xml couchbase-sdk-python-1.0
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-python-1.0/couchbase-sdk-python-ready.xml couchbase-sdk-python-1.0
 
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/hadoop-plugin

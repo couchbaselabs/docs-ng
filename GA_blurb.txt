@@ -1,0 +1,5 @@
+In conjunction with the 2.2 release, Couchbase also launches a new documentation site, which we designed to be easy to use. We have listened to all of your feedback as customers and community members over the past year and we now provide simpler document navigation, cleaner page layout, and integrated search results. To make it easier for partners and Team 8091 to contribute, our content is now in Markdown and our content repository on GitHub is public for anyone to view or download as a standalone web site. Some of the highlights of the new system include a versioning widget so you know which version of a document you are in, expandable and collapsible navigation, less levels of hierarchy for content, and a straightforward page layout which is easy to scroll and skim.
+
+Visit our new content and site at: http://www.couchbase.com/documentation
+
+Stay tuned for future improvements to the new documentation site. 

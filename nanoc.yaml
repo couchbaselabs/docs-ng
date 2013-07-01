@@ -81,18 +81,21 @@ versions:
   couchbase-devguide:
     name: "Developer Guide"
     versions:
+      - 2.1.0
       - 2.0
       - 1.8
 
   couchbase-manual:
     name: "Server Manual"
     versions:
+      - 2.1.0
       - 2.0
       - 1.8
 
   couchbase-sdk-c:
     name: "Client Library C"
     versions:
+      - 2.1.0
       - 2.0
       - 1.0
 
@@ -129,15 +132,15 @@ versions:
 
 navbar:
   - label: Server
-    href: /couchbase-manual-2.0/
+    href: /couchbase-manual-2.1.0/
 
   - label: Developer
-    href: /couchbase-devguide-2.0/
+    href: /couchbase-devguide-2.1.0/
 
   - label: SDKs
     subnav:
       - label: C
-        href: /couchbase-sdk-c-2.0/
+        href: /couchbase-sdk-c-2.1.0/
 
       - label: Java
         href: /couchbase-sdk-java-1.1/
@@ -155,4 +158,4 @@ navbar:
         href: /couchbase-sdk-ruby-1.3/
 
   - label: Library
-    href: /archives/index.html
+    href: http://www.couchbase.com/documentation-archives
