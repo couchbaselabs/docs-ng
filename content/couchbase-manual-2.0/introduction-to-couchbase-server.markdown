@@ -3,7 +3,7 @@
 Couchbase Server is a NoSQL document database for interactive web applications.
 It has a flexible data model, is easily scalable, provides consistent high
 performance and is 'always-on,' meaning it is can serve application data 24
-hours, 7 days a week. Couchbase Server provides the following benefits:
+hours, 7 days a week. Couchbase Server provides the following:
 
  * **Flexible Data Model**
 

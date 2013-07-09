@@ -6,7 +6,7 @@
 
 ## Preface
 
-This manual documents the Couchbase Server database system, for the 2.0 release
+This manual describes the Couchbase Server database system, for the 2.0 release
 series. For differences between individual version within this release series,
 see the version-specific notes throughout the manual.
 
