@@ -129,6 +129,11 @@ versions:
     name: "Client Library Python"
     versions:
       - 1.0
+      
+  couchbase-query-language:
+    name: "Couchbase Query Language, N1QL"
+    versions:
+      - 1.0
 
 navbar:
   - label: Server
