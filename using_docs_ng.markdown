@@ -37,4 +37,20 @@ In general you can use any editor of your choice, with the preference that it in
 
 After you are done making your changes, make sure you make a pull request so they are picked up in the master repo and published on the staging server.
 
+##Previewing and Publishing Content
+
+To preview your content locally, in the docs-ng repo convert your Markdown to HTML:
+
+nanoc
+
+Then you can preview it:
+
+nanoc view
+
+Open your web browser to  localhost:3000/guide_name/
+
+When you content is ready to stage, commit it and send a pull request to have it added to the master branch in GitHub. This will get picked up by the staging server automatically.
+
+
+
 
