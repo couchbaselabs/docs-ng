@@ -79,29 +79,32 @@ watcher:
 versions:
 
   couchbase-devguide:
-    name: "Developer Guide"
+    name: "Developer"
     versions:
-      - 2.1.0
+      - 2.2
+      - 2.1
       - 2.0
       - 1.8
 
   couchbase-manual:
-    name: "Server Manual"
+    name: "Server"
     versions:
-      - 2.1.0
+      - 2.2
+      - 2.1
       - 2.0
       - 1.8
 
   couchbase-sdk-c:
     name: "Client Library C"
     versions:
-      - 2.1.0
+      - 2.1
       - 2.0
       - 1.0
 
   couchbase-sdk-java:
     name: "Client Library Java"
     versions:
+      - 1.2
       - 1.1
       - 1.0
 
@@ -137,21 +140,21 @@ versions:
 
 navbar:
   - label: Server
-    href: /couchbase-manual-2.1.0/
+    href: /couchbase-manual-2.2/
 
   - label: Developer
-    href: /couchbase-devguide-2.1.0/
+    href: /couchbase-devguide-2.2/
 
   - label: SDKs
     subnav:
       - label: C
-        href: /couchbase-sdk-c-2.1.0/
+        href: /couchbase-sdk-c-2.1/
 
       - label: Java
-        href: /couchbase-sdk-java-1.1/
+        href: /couchbase-sdk-java-1.2/
 
       - label: .NET
-        href: /couchbase-sdk-net-1.1/
+        href: /couchbase-sdk-net-1.2/
 
       - label: PHP
         href: /couchbase-sdk-php-1.1/

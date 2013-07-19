@@ -13,9 +13,11 @@ The other advantage to the flexible, document-based data model is that it is wel
 
 ##Queries and Result Sets
 
+Queries consist of a single command and zero or more clauses, which can provide additional filtering, operations, or functions on data. 
+
 ##Expressions and Nested Expressions
 
-##NiQL and SQL
+##N1QL and SQL
 
 ##Types of Operations
 

@@ -25,8 +25,18 @@ make validate
 make reformat
 make couchbase-manual.xml
 cd ~/Desktop/docs-ng/
-#mkdir content/couchbase-manual-2.1.0
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-manual-2.1.0/couchbase-manual-ready.xml couchbase-manual-2.1.0
+#mkdir content/couchbase-manual-2.1
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-manual-2.1./couchbase-manual-ready.xml couchbase-manual-2.1
+
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-manual-2.2
+make depend
+make validate
+make reformat
+make couchbase-manual.xml
+cd ~/Desktop/docs-ng/
+#mkdir content/couchbase-manual-2.2
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-manual-2.2/couchbase-manual-ready.xml couchbase-manual-2.2
+
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-1.8
 make depend
@@ -52,8 +62,17 @@ make validate
 make reformat
 make couchbase-devguide.xml
 cd ~/Desktop/docs-ng/
-#mkdir content/couchbase-devguide-2.1.0
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.1.0/couchbase-devguide-ready.xml couchbase-devguide-2.1.0
+#mkdir content/couchbase-devguide-2.1
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.1.0/couchbase-devguide-ready.xml couchbase-devguide-2.1
+
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.2
+make depend
+make validate
+make reformat
+make couchbase-devguide.xml
+cd ~/Desktop/docs-ng/
+#mkdir content/couchbase-devguide-2.2
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-devguide-2.2/couchbase-devguide-ready.xml couchbase-devguide-2.2
 
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-java-1.0
@@ -73,6 +92,15 @@ make couchbase-sdk-java.xml
 cd ~/Desktop/docs-ng/
 #mkdir content/couchbase-sdk-java-1.1
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-java-1.1/couchbase-sdk-java-ready.xml couchbase-sdk-java-1.1
+
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-java-1.2
+make depend
+make validate
+make reformat
+make couchbase-sdk-java.xml
+cd ~/Desktop/docs-ng/
+#mkdir content/couchbase-sdk-java-1.2
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-java-1.2/couchbase-sdk-java-ready.xml couchbase-sdk-java-1.2
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-elastic-search
 make depend
@@ -102,14 +130,14 @@ cd ~/Desktop/docs-ng/
 #mkdir content/couchbase-sdk-c-2.0
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.0/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.0
 
-cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1.0
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1
 make depend
 make validate
 make reformat
 make couchbase-sdk-c.xml
 cd ~/Desktop/docs-ng/
-#mkdir content/couchbase-sdk-c-2.1.0
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1.0/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.1.0
+#mkdir content/couchbase-sdk-c-2.1
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.1
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-net-1.0
 make depend
