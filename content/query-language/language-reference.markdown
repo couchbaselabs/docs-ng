@@ -10,17 +10,29 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
 
     SELECT [ DISTINCT | UNIQUE ]
         [ FROM data-source ]
-        [ WHERE expression ]
-        [ GROUP BY expression [, ...] ]
-        [ HAVING expression ]
+        [ WHERE expr ]
+        [ GROUP BY result-expr-list [, ...] ]
+        [ HAVING result-expr-list ]
         [ ORDER BY ]
         [ LIMIT ]
         [ OFFSET ]
         
-###Supported Versions
+###Compatibility
+
+Available in Couchbase Server 0.0
 
 ###Description
 
+The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Result objects from a step in the process become inputs into the next step:
+
+* Data Source. This is the Couchbase data bucket you query. You provide this as the parameter data-source in a FROM clause.
+* Filtering. Results objects from the SELECT can be filtered by adding a WHERE clause.
+* Result Set. You generate a set of result objects with GROUP BY or HAVING clauses along with a result expression list, `result-expr-list`.
+* Duplicate Removal. Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
+
+The following describe optional clauses you can use in your select statement:
+
+* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is the provide `data-source`
 
 ###Parameters
 
