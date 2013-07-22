@@ -2,59 +2,119 @@
 title: Couchbase Documentation Project
 css_class: index_page
 no_nav: true
----
+-----
 
-####Ignore : using Corporate Docs Landing page on www.Couchbase.com...
 
-#### Using Couchbase Server
-
-- [Starting Out][ref1]
-- Installing | [Redhat][ref2] | [Ubuntu][ref3] | [Windows][ref4]
-- [Upgrading][ref5] | [Migrating][ref6]
-- [Initial set up tasks][ref7]
-- [Architecture and concepts][ref8]
-
-####Developing with Couchbase
-- [Modeling documents][ref16]
-- [Indexing and querying data][ref17]
-- [Accessing data][ref18]
-- [Storing data][ref19]
-- [Building an first app][ref20]
-- [Handling more complex application behavior][ref21]
-- [Using Elasticsearch with Couchbase][ref22]
-
-####Managing Couchbase Server
-- [Rebalancing][ref9] | [Failing Over][ref9]
-- [Performing backup and restore][ref10]
-- [Using Web Console][ref11]
-- [Managing via REST][ref12]
-- [Replicating data between clusters][ref13]
-- [Using the Command-Line][ref14]
-- Details: [Server release notes][ref15]
-
-[ref1]: server_guide.html#installing-couchbase-server
-[ref2]: server_guide.html#red-hat-linux-installation
-[ref3]: server_guide.html#ubuntu-linux-installation
-[ref4]: server_guide.html#microsoft-windows-installation
-[ref5]: server_guide.html#upgrading-to-couchbase-server-20
-
-[ref6]: server_guide.html#migration-to-couchbase
-[ref7]: server_guide.html#setting-up-couchbase-server
-[ref8]: server_guide.html#architecture-and-concepts
-[ref9]: server_guide.html#node-failover
-[ref10]: server_guide.html#backup-and-restore
-
-[ref11]: server_guide.html#web-console-for-administration
-[ref12]: server_guide.html#using-the-rest-api
-[ref13]: server_guide.html#cross-datacenter-replication-xdcr
-[ref14]: server_guide.html#command-line-interface-for-administration
-[ref15]: server_guide.html#appendix-release-notes
-
-[ref16]: dev_guide.html#modeling-documents
-[ref17]: dev_guide.html#finding-data-with-views
-[ref18]: dev_guide.html#accessing-data-with-couchbase-sdks
-[ref19]: dev_guide.html#storing-data
-[ref20]: dev_guide.html#creating-your-first-application
-
-[ref21]: dev_guide.html#advanced-topics-in-development
-[ref22]: elasticsearch_guide.html
+<div class="row" style="padding-top: 30px;">
+	<div class="large-4 columns">
+		<h5>
+			[General]</h5>
+		<ul class="no-bullet">
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started.html">Getting Started</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-upgrade.html">Upgrading</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-install-redhat.html">RedHat Linux Installation</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-install-ubuntu.html">Ubuntu Linux Installation</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-install-win.html">Windows Installation</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-setup.html">Initial Setup</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-introduction-architecture.html">Architecture</a></li>
+		</ul>
+	</div>
+	<div class="large-4 columns">
+		<h5>
+			[Administrator]</h5>
+		<ul class="no-bullet">
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/best-practice-guide.html">Best Practice</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-addremove.html">Rebalancing</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-backup-restore.html">Backup &amp; Restore</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-xdcr.html">Cross Datacenter Replication</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-web-console.html">Admin Web Console</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-restapi.html">Admin REST API</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-server-rn.html">Release Notes</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-cmdline.html">Admin Command-line </a></li>
+		</ul>
+	</div>
+	<div class="large-4 columns">
+		<h5>
+			[Developer]</h5>
+		<ul class="no-bullet">
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/modeling-documents.html">Modeling Documents</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views.html">Views and Querying</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/accessing-data.html">Couchbase Operations</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/storing-data.html">Data Storage </a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/developing-clients.html">Building an Application</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-elasticsearch/index.html">Couchbase Elasticsearch Plug-in</a></li>
+		</ul>
+	</div>
+</div>
+<div class="row" style="padding-top: 30px;">
+	<div class="large-4 columns">
+		<h5>
+			[Couchbase Developer]</h5>
+		<ul class="no-bullet">
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/couchbase-vs-RDMS.html">Couchbase and RDMS</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/document-design-options.html">Document Design</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/cb-store-operations.html">Storing Documents</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/cb-retrieve-operations.html">Retrieving Documents</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/reference-docs-and-lookup-pattern.html">Look-Up Pattern</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/two-phase-commits.html">Two-Phase Commits</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/using-built-in-reduces.html">Built-In Reduce Functions</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-devguide-2.1.0/understanding-custom-reduce.html">Custom Reduces and Re-reduce</a></li>
+		</ul>
+	</div>
+	<div class="large-4 columns">
+		<h5>
+			[Couchbase Server]</h5>
+		<ul class="no-bullet">
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-warmup-access.html">Handling Server Warmup</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-working-set-mgmt.html">Working Set Management</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-compaction.html">Data and Index Compaction</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-addremove.html">Rebalancing a Cluster</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-backup-restore.html">Backup and Restore Data</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-xdcr-configuration.html">Configuring XDCR</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-restapi-bucketops.html">Managing Buckets via REST</a></li>
+			<li>
+				<a href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-cmdline-cbbackup.html">Backup and Restore Design Documents Only</a></li>
+		</ul>
+	</div>
+	<div class="large-4 columns">
+		&nbsp;</div>
+</div>
+<hr />
+<p><a class="more" href="http://www.couchbase.com/documentation-archives">View All Documentation</a></p>
+  </div>
