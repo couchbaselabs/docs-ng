@@ -2608,11 +2608,14 @@ returned by the view. Key selection is made after the view results (including
 the reduction function) are executed, and after the items in the view output
 have been sorted.
 
-**Unhandled:** `[:unknown-tag :important]` When specifying the key selection
-through a parameter, the keys must match the format of the keys emitted by the
-view. Compound keys, for example where an array or hash has been used in the
-emitted key structure, the supplied selection value should also be an array or a
-hash.
+When specifying keys to the selection mechanism, the key must be expressed in
+the form of a JSON value. For example, when specifying a single key, a string
+must be literald ("string").
+
+When specifying the key selection through a parameter, the keys must match the
+format of the keys emitted by the view. Compound keys, for example where an
+array or hash has been used in the emitted key structure, the supplied selection
+value should also be an array or a hash.
 
 The following selection types are supported:
 
@@ -4838,11 +4841,11 @@ request. The full list is provided in the following summary table.
                             | `ok` : Allow stale views                                            
                             | `update_after` : Allow stale view, update view after access         
 
-**Unhandled:** `[:unknown-tag :bridgehead]` If you do not supply a bounding box,
-the full dataset is returned. When querying a spatial index you can use the
-bounding box to specify the boundaries of the query lookup on a given value. The
-specification should be in the form of a comma-separated list of the coordinates
-to use during the query.
+Bounding Box QueriesIf you do not supply a bounding box, the full dataset is
+returned. When querying a spatial index you can use the bounding box to specify
+the boundaries of the query lookup on a given value. The specification should be
+in the form of a comma-separated list of the coordinates to use during the
+query.
 
 These coordinates are specified using the GeoJSON format, so the first two
 numbers are the lower left coordinates, and the last two numbers are the upper

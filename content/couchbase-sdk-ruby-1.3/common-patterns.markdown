@@ -351,6 +351,60 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+<a id="couchbase-sdk-ruby-rn_1-3-2"></a>
+
+## Release Notes for Couchbase Client Library Ruby 1.3.2 GA (10 July 2013)
+
+**New Features and Behaviour Changes in 1.3.2**
+
+ * Allow application to select the strategy of reading from replica nodes. *This
+   version requires libcouchbase >= 2.0.7.* Now three strategies are available:
+
+    1. `:first` - synonym to `true`, previous behaviour now the default. It means that
+       the library will sequentially iterate over all replicas in the configuration
+       supplied by the cluster and will return as soon as it finds a successful
+       response, or report an error.
+
+        ```
+        c.get("foo", :replica => true)
+        c.get("foo", :replica => :first)
+        #=> "bar"
+        c.get("foo", :replica => :first, :extended => true)
+        #=> ["bar", 0, 11218368683493556224]
+        ```
+
+    1. `:all` - query all replicas in parallel. In this case the method will return the
+       array of the values on the all replica nodes without a particular order. Also if
+       the key isn't on the node, it will be skipped in the result array.
+
+        ```
+        c.get("foo", :replica => :all)
+        #=> ["bar", "bar", "bar"]
+        c.get("foo", :replica => :all, :extended => true)
+        #=> [["bar", 0, 11218368683493556224],
+        # ["bar", 0, 11218368683493556224],
+        # ["bar", 0, 11218368683493556224]]
+        ```
+
+    1. `Fixnum` - you can also select specific replica node by its index in the cluster
+       configuration. It should be in interval `0...c.num_replicas`
+
+        ```
+        0...c.num_replicas
+        #=> 0...3
+        c.get("foo", :replica => 1)
+        #=> "bar"
+        c.get("foo", :replica => 42)
+        #=> ArgumentError: replica index should be in interval 0...3
+        ```
+
+   Note that applications should not assume the order of the replicas indicates
+   more recent data is at a lower index number. It is up to the application to
+   determine which version of a document/item it may wish to use in the case of
+   retrieving data from a replica.
+
+   *Issues* : [RCBC-133](http://www.couchbase.com/issues/browse/RCBC-133)
+
 <a id="couchbase-sdk-ruby-rn_1-3-1"></a>
 
 ## Release Notes for Couchbase Client Library Ruby 1.3.1 GA (06 June 2013)

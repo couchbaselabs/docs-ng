@@ -9,7 +9,6 @@ Administration](couchbase-manual-ready.html#couchbase-admin-restapi).
 Couchbase command-line tools are described individually within the following
 sections:
 
-**Unhandled thing here**
 Couchbase Server installer places tools in a number of directories, dependent on
 the tool and platform. You can either go to that directory and use the command
 line tool, or create a symbolic link to the directory:
@@ -387,7 +386,11 @@ shell> couchbase-cli bucket-edit -c 192.168.0.1:8091 --bucket=test_bucket \
       --bucket-port=11222 --bucket-ramsize=400
 ```
 
-**Unhandled:** `[:unknown-tag :sidebar]`<a id="couchbase-cli-deleting-buckets"></a>
+You cannot change the name of a bucket with `couchbase-cli`, the Couchbase REST
+API, or Couchbase Administration Console. You can however delete the bucket and
+create a new bucket with the new name and properties of your choice.
+
+<a id="couchbase-cli-deleting-buckets"></a>
 
 ### Deleting Buckets
 
@@ -683,7 +686,10 @@ Name                                              | Description
 
 To view memory allocations, and memory usage for a bucket:
 
-**Unhandled:** `[:unknown-tag :sidebar]`
+Couchbase Server 1.8 on OSX using different memory allocation than other
+platforms, therefore this information is not available.
+
+
 ```
 ./cbstats 10.4.2.5:11210 allocator -a -b _admin -p _admin
 ```
@@ -739,8 +745,11 @@ about operations that completed within different time intervals:
 The `cbflushctl` command enables you to control many of the configuration, RAM
 and disk parameters of a running cluster.
 
-**Unhandled:** `[:unknown-tag :caution]` You can find this tool at one of the
-following locations, depending upon your platform:
+Changes to the cluster configuration using `cbflushctl` are not retained after a
+cluster restart. Any configuration you had set will return to cluster defaults.
+
+You can find this tool at one of the following locations, depending upon your
+platform:
 
 <a id="table-couchbase-admin-cmdline-cbflushctl-locs"></a>
 

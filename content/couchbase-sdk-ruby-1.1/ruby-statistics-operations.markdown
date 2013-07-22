@@ -4,7 +4,6 @@ The Couchbase Ruby Client Library includes support for obtaining statistic
 information from all of the servers defined within a couchbase object. A summary
 of the commands is provided below.
 
-**Unhandled thing here**
 
 ```
 couchbase.stats

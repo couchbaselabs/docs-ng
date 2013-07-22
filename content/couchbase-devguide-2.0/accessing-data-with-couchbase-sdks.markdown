@@ -24,7 +24,7 @@ to index/query. Couchbase SDK read/write methods are all built upon the binary
 version of the memcached protocol. When you perform an operation an SDK converts
 it into a binary memcached command which is then sent to Couchbase Server. For
 more information about memcached protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 Couchbase REST API can be used to get information about a cluster or make
 changes to a entire cluster. At an underlying level, Couchbase SDKs use the REST
@@ -317,8 +317,9 @@ as well as the metadata that Couchbase Server automatically adds to items:
    not eject any keys to free up space.
 
  * Metadata: This is the information Couchbase Server automatically stores with
-   your value, namely CAS value, expiration and flags. Metadata per document is 150
-   Bytes, is stored in RAM at all times, and cannot be ejected from RAM.
+   your value, namely CAS value, expiration and flags. Metadata per document is 60
+   Bytes for Couchbase 2.0.1 and 54 for Couchbase 2.0.2. This is stored in RAM at
+   all times, and cannot be ejected from RAM.
 
  * Values: You can store values up to 1 MB in memcached buckets and up to 20 MB in
    Couchbase buckets. Values can be any arbitrary binary data or it can be a
@@ -327,9 +328,9 @@ as well as the metadata that Couchbase Server automatically adds to items:
 Be aware of key and metadata size if you are handling millions of documents or
 more. Couchbase Server keeps all keys and metadata in RAM and does not remove
 them to create more space in RAM. One hundred million keys which are 70 Bytes
-each plus meta data at 150 Bytes each will require about 20.5 GB of RAM for a
+each plus meta data at 54 Bytes each will require about 11.2 GB of RAM for a
 cluster. This figure does not include caching any values or replica copies of
-data, if you consider these factors, you would need over 40 GB. For more
+data, if you consider these factors, you would need over 23 GB. For more
 information, see [Couchbase Manual, Sizing
 Guidelines](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-bestpractice-sizing.html).
 
@@ -443,7 +444,7 @@ the document, and is used for optimistic locking.
 
 The associated memcached protocol in ASCII is `set` which stores a key. For more
 information, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html)
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt)
 
 The types of errors that can occur during this operation include 1) inability to
 connect to a node, or 2) some error exists while attempting to format a value
@@ -521,7 +522,7 @@ providing a document expiration.
 
 The memcached protocol equivalent for this method is `add`. For more information
 about the underlying protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html)
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt)
 
 If you receive an unexpected 'key exists' error when you use `add` you should
 log the error, and then go back into your code to determine why the key already
@@ -663,7 +664,7 @@ session, otherwise we return false.
 The memcached protocol which relate to this method are `get` and `getk`. These
 first is the operation for retrieving an item; the later is for getting the
 value and the key. For more information about memcached protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 If a key does not exist, you will receive a 'key not found' type error as a
 response to `get`. If you expected the key to actually exist, you should check
@@ -886,7 +887,7 @@ val = c.get("foo", :ttl => 10)
 The Couchbase SDK get-and-touch methods are based on the memcached protocol
 command `get` with a specified expiration. For more information about the
 protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 If a key does not exist, you will get a 'key does not exist' type error in
 response. If you did not expect this result, you should check any application
@@ -1096,7 +1097,7 @@ successfully updates the document, it will also unlock the key.
 The equivalent call in the memcached protocol is `get` which returns the value
 for the key and will set a timed lock if you provide it as a parameter. For more
 information, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 The types of errors that can occur during this operation include 1) inability to
 connect to a node, or 2) some error exists while attempting to format a value
@@ -1187,7 +1188,7 @@ method.
 
 The equivalent call in the memcached protocol is `touch` which updates the item
 expiration. For more information, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 As we mention previously, you can perform a `touch` to explicitly test whether a
 key exists or not, and then create a key; you can try this with `set` or `add`.
@@ -1271,7 +1272,7 @@ format.
 
 The equivalent call in the memcached protocol is `replace` ; for more
 information, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 If a key does not exist, you will receive 'key not found' type error. If you
 receive this error and you expected it to exist, you should check your
@@ -1434,7 +1435,7 @@ update the content.
 
 The equivalent call in the memcached protocol is `set` with a CAS value
 provided. For more information, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 The only other types of errors you can typically experience with `cas` are
 issues with the new value you provide, such as formatting. The other error is
@@ -1472,12 +1473,28 @@ overwriting changes from another `append/prepend` request. Note however that the
 order in which Couchbase Server appends or prepends data is not guaranteed for
 concurrent `append/prepend` requests.
 
-**Unhandled:** `[:unknown-tag :sidebar]` Both `append` and `prepend` originated
-from the request that Couchbase Server supports 'lists' or sets. Developers
-wanted to maintain documents representing the latest 100 RSS feeds, or the
-latest 100 tweets about a certain topic, or hash-tag. At this point, you can use
-it to maintain lists, but be aware that the content needs to be a binary form,
-such as strings or numeric information.
+Non-linear, hierarchical formats in the database will merely have the new
+information added at the start or end. There will be no logic which adds the
+information to a certain place in a stored document structure or object.
+
+Therefore, if you have a serialized object in Couchbase Server and then append,
+or prepend, the existing content in the serialized object will not be extended.
+For instance, if you `append` an integer to an Array stored in Couchbase, this
+will result in the document containing a serialized array, and then the
+serialized integer.
+
+Similarly, if you have JSON document with nested attributes, when you prepend
+and append, the new data will appear either before or after the entire JSON
+object, but not within the JSON object, nor any nested attributes in the JSON.
+
+De-serialization of objects that have data appended or prepended may result in
+data corruption, due to the behavior previously described.
+
+Both `append` and `prepend` originated from the request that Couchbase Server
+supports 'lists' or sets. Developers wanted to maintain documents representing
+the latest 100 RSS feeds, or the latest 100 tweets about a certain topic, or
+hash-tag. At this point, you can use it to maintain lists, but be aware that the
+content needs to be a binary form, such as strings or numeric information.
 
 In the chapter on more advanced development topics, we provide an example on
 managing a data set using `append` ; we provide the sample as a Python script.
@@ -1611,7 +1628,7 @@ c.get('karen').class     #Fixnum
 
 The equivalent memcached protocol calls are `append` and `prepend`. These are
 the methods for appending and prepending; for more information see, [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 If you encounter a data type or generally data you did not expect, refer back to
 the methods that create your keys, as well as prepend or append them. Confirm
@@ -1787,7 +1804,7 @@ puts user_info
 The memcached protocol equivalents for this method are `incr` and `decr` which
 are the commands for incrementing and decrementing. For more information about
 the underlying protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 Couchbase Server returns no specific operation-level error objects when you
 perform this operation. If a key does not exist, `incr` and `decr` at the
@@ -1817,12 +1834,18 @@ identifier, and if the number provided as a `delete` parameter does not match
 the deletion will fail and return an error. If Couchbase Server successfully
 deletes a document, it returns a status code indicating success or failure.
 
-**Unhandled:** `[:unknown-tag :sidebar]` It is important to note that in some
-SDK's such as in Ruby, a `delete` can be performed in synchronous or
-asynchronous mode; in contrast other SDK's such as Java support `delete` as an
-asynchronous operation only. Consult your respective language reference to find
-out more about your chosen SDK. For more information about asynchronous calls in
-Couchbase SDKs, see [Synchronous and Asynchronous
+Be aware that when you `delete` a key it may not be removed immediately from the
+server. Instead Couchbase Server will flag an item for deletion and if the key
+is requested by another client, the server returns a 'key not found' error.
+Couchbase Server will actually remove the item from the server upon the next
+request for it. Alternately Couchbase Server has a maintenance process that runs
+by default every hour and will remove any items flagged for deletion.
+
+It is important to note that in some SDK's such as in Ruby, a `delete` can be
+performed in synchronous or asynchronous mode; in contrast other SDK's such as
+Java support `delete` as an asynchronous operation only. Consult your respective
+language reference to find out more about your chosen SDK. For more information
+about asynchronous calls in Couchbase SDKs, see [Synchronous and Asynchronous
 Transactions](couchbase-devguide-ready.html#synchronous-and-asynchronous)
 
 The following example demonstrates a `delete` in Ruby. In this case, parameters
@@ -1862,7 +1885,7 @@ client.delete("rec1", :cas => cas)
 
 The memcached protocol equivalents for this method is `delete`. For more
 information about the underlying protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-architecture-apis-memcached-protocol.html).
+protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 
 <a id="cb-destroy-operations"></a>
 

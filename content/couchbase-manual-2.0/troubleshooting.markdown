@@ -97,11 +97,11 @@ platform, see
 
 <a id="couchbase-troubleshooting-logs-oslocs"></a>
 
-Platform | Location                                                                          
----------|-----------------------------------------------------------------------------------
-Linux    | `/opt/couchbase/var/lib/couchbase/logs`                                           
-Windows  | `C:\Program Files\Couchbase\Server\log`  **Unhandled:** `[:unknown-tag :footnote]`
-Mac OS X | `~/Library/Logs`                                                                  
+Platform | Location                                                                     
+---------|------------------------------------------------------------------------------
+Linux    | `/opt/couchbase/var/lib/couchbase/logs`                                      
+Windows  | `C:\Program Files\Couchbase\Server\log` Assumes default installation location
+Mac OS X | `~/Library/Logs`                                                             
 
 Individual log files are automatically numbered, with the number suffix
 incremented for each new log, with a maximum of 20 files per log. Individual log
@@ -291,8 +291,8 @@ method appropriate for your operating system.
 Before removing Couchbase Server from your system, you should do the following:
 
  * Shutdown your Couchbase Server. For more information on the methods of shutting
-   down your server for your platform, see [Startup and Shutdown of Couchbase
-   Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+   down your server for your platform, see [Server Startup and
+   Shutdown](couchbase-manual-ready.html#couchbase-admin-basics-running).
 
  * If your machine is part of an active cluster, you should rebalance your cluster
    to take the node out of your configuration. See
@@ -346,10 +346,8 @@ your system.
 To uninstall the software on a Windows system you must have Administrator or
 Power User privileges to uninstall Couchbase.
 
-To remove, choose **Unhandled:** `[:unknown-tag :guimenu]` > **Unhandled:**
-`[:unknown-tag :guimenuitem]` > **Unhandled:** `[:unknown-tag :guimenuitem]`,
-choose **Unhandled:** `[:unknown-tag :guimenuitem]`, and remove the Couchbase
-Server software.
+To remove, choose `Start` > `Settings` > `Control Panel`, choose `Add or Remove
+Programs`, and remove the Couchbase Server software.
 
 <a id="couchbase-uninstalling-macosx"></a>
 
@@ -385,7 +383,7 @@ sample databases. The available sample buckets include:
 
 The Game Simlution sample bucket is designed to showcase a typical gaming
 application that combines records showing individual gamers, game objects and
-how this information can be mesged together and then reported on using views.
+how this information can be merged together and then reported on using views.
 
 For example, a typical game player record looks like the one below:
 
@@ -514,7 +512,7 @@ Which generates the following:
       {
          "value" : null,
          "id" : "Srini0",
-         "key" : 17459
+         "key" :9
       },
       {
          "value" : null,
@@ -1693,7 +1691,7 @@ node mapping:
    9 and 13 are replicas at that same node
 
  * vbuckets 8, 9, 10 and 11 are active at node 192.168.1.83:12004, and vbuckets 2,
-   6, 15 and 15 are replicas at that same node
+   6, 14 and 15 are replicas at that same node
 
  * vbuckets 12, 13, 14 and 15 are active at node 192.168.1.84:12006, and vbucket 3,
    7, 11 and 10
@@ -2081,7 +2079,8 @@ Some of the top level fields and their meaning:
  * `passive_partitions` - this is a list with the ID of all vbuckets marked as
    passive in the index.
 
- * `cleanup_partitions` - this is a list with the ID of all vbuckets marked.
+ * `cleanup_partitions` - this is a list with the ID of all vBuckets marked as
+   cleanup in the index.
 
  * `compact_running` - true if index compaction is ongoing, false otherwise.
 
@@ -3017,7 +3016,7 @@ etc.
 # Appendix: Release Notes
 
 The following sections provide release notes for individual release versions of
-Couchbase Server. To browse or submit new issaes, see [Couchbase Server Issues
+Couchbase Server. To browse or submit new issues, see [Couchbase Server Issues
 Tracker](http://www.couchbase.com/issues/browse/MB).
 
 <a id="couchbase-server-rn_2-0-0l"></a>
@@ -3075,10 +3074,6 @@ bug fixes related to system timeouts and system stability. This includes:
 
       *Issues* : [MB-7182](http://www.couchbase.com/issues/browse/MB-7182)
 
-    * We now provide Couchbase Server as a yum and Debian package repositories.
-
-      *Issues* : [MB-6972](http://www.couchbase.com/issues/browse/MB-6972)
-
  * **Command-line Tools**
 
     * There is a new setting available in `cbepctl` named `mutation_mem_threshold`.
@@ -3117,14 +3112,23 @@ bug fixes related to system timeouts and system stability. This includes:
 
       *Issues* : [MB-7275](http://www.couchbase.com/issues/browse/MB-7275)
 
+    * When you create a replication between two clusters, you may see two error
+      messages: "Failed to grab remote bucket info, vbucket" and "Error replicating
+      vbucket X". Nonetheless, replication will still start and then function as
+      expected, but the error messages may appear for some time in the Web Console.
+      This has been fixed.
+
+      *Issues* : [MB-7786](http://www.couchbase.com/issues/browse/MB-7786),
+      [MB-7457](http://www.couchbase.com/issues/browse/MB-7457)
+
 **Known Issues in 2.0.1**
 
  * **Installation and Upgrade**
 
     * When you upgrade from Couchbase Server 2.0.0 to 2.0.1 on Linux the install may
       not replace the `file2.beam` with the latest version. This will cause indexing
-      and querying to fail. The workaround is install 2.0.1 and then manually restart
-      Couchbase Server with the following commands:
+      and querying to fail. The workaround is to install 2.0.1 and then manually
+      restart Couchbase Server with the following commands:
 
        ```
        sudo /etc/init.d/couchbase-server stop
@@ -3165,6 +3169,15 @@ bug fixes related to system timeouts and system stability. This includes:
 
  * **Cluster Operations**
 
+    * If you query a view during cluster rebalance it will fail and return the
+      messages "error Reason: A view spec can not consist of merges exclusively" and
+      then "no\_active\_vbuckets Reason: Cannot execute view query since the node has
+      no active vbuckets." The workaround for this situation is to handle this error
+      and retry later in your code. Alternatively the latest version of the Java SDK
+      will automatically retry upon these errors.
+
+      *Issues* : [MB-7661](http://www.couchbase.com/issues/browse/MB-7661)
+
     * If you want to add a new Couchbase Server 2.0.1 node to a running 2.0 cluster,
       and you want to refer to this node by hostname do the following on the new node:
 
@@ -3182,6 +3195,14 @@ bug fixes related to system timeouts and system stability. This includes:
 
       *Issues* : [MB-7664](http://www.couchbase.com/issues/browse/MB-7664)
 
+    * By default most Linux systems have swappiness set to 60. This will lead to
+      overuse of disk swap with Couchbase Server. Please follow our current
+      recommendations on swappiness and swap space, see [Swap
+      Space](couchbase-manual-ready.html#couchbase-bestpractice-cloud-swap).
+
+      *Issues* : [MB-7737](http://www.couchbase.com/issues/browse/MB-7737),
+      [MB-7774](http://www.couchbase.com/issues/browse/MB-7774)
+
     * If you try to add a node during cluster rebalance, the rebalance may fail and
       return the messages `{detected_nodes_change` or `{ns_node_disco_events`. To
       avoid this error complete your cluster rebalance, add the new node and then
@@ -3191,7 +3212,7 @@ bug fixes related to system timeouts and system stability. This includes:
 
     * A cluster rebalance may exit and produce the error
       {not\_all\_nodes\_are\_ready\_yet} if you perform the rebalance right after
-      failing over a node in the cluster. You may need to wait 30 seconds after the
+      failing over a node in the cluster. You may need to wait 60 seconds after the
       node failover before you attempt the cluster rebalance.
 
       This is because the failover REST API is a synchronous operation with a timeout.
@@ -3220,15 +3241,6 @@ bug fixes related to system timeouts and system stability. This includes:
       settings on your cluster to try to resolve this behavior.
 
       *Issues* : [MB-7657](http://www.couchbase.com/issues/browse/MB-7657)
-
-    * When you create a replication between two clusters, you may experience two error
-      messages: "Failed to grab remote bucket info, vbucket" and "Error replicating
-      vbucket X". Nonetheless, replication will still start and then function as
-      expected, but the error messages may appear for some time in the Web Console.
-      Please ignore this behavior.
-
-      *Issues* : [MB-7786](http://www.couchbase.com/issues/browse/MB-7786),
-      [MB-7457](http://www.couchbase.com/issues/browse/MB-7457)
 
 <a id="couchbase-server-rn_2-0-0k"></a>
 
@@ -3594,9 +3606,9 @@ The major new features available in Couchbase Server 2.0 include:
       need to make changes to the ip file located on the node at
       Couchbase\Server\var\lib\couchbase\ip as well as complete some additional steps
       on your node which will apply whether you are using Windows on the cloud or not.
-      For more information about upgrading from 1.8.x to 2.0, see [Upgrading from
-      Couchbase Server 1.8.x to Couchbase Server
-      2.0.x](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
+      For more information about upgrading from 1.8.x to 2.0, see [Upgrades Notes
+      1.8.1 to 2.0
+      +](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
 
       *Issues* : [MB-7289](http://www.couchbase.com/issues/browse/MB-7289)
 
@@ -3658,6 +3670,15 @@ The major new features available in Couchbase Server 2.0 include:
 
  * **Cluster Operations**
 
+    * If you query a view during cluster rebalance it will fail and return the
+      messages "error Reason: A view spec can not consist of merges exclusively" and
+      then "no\_active\_vbuckets Reason: Cannot execute view query since the node has
+      no active vbuckets." The workaround for this situation is to handle this error
+      and retry later in your code. Alternatively the latest version of the Java SDK
+      will automatically retry upon these errors.
+
+      *Issues* : [MB-7661](http://www.couchbase.com/issues/browse/MB-7661)
+
     * During a rebalance operation for clusters undergoing uni- and bi-directional
       replication via XDCR, the following server errors may appear, which are
       currently under investigation:
@@ -3680,6 +3701,14 @@ The major new features available in Couchbase Server 2.0 include:
        ```
 
       *Issues* : [MB-7286](http://www.couchbase.com/issues/browse/MB-7286)
+
+    * By default most Linux systems have swappiness set to 60. This will lead to
+      overuse of disk swap with Couchbase Server. Please follow our current
+      recommendations on swappiness and swap space, see [Swap
+      Space](couchbase-manual-ready.html#couchbase-bestpractice-cloud-swap).
+
+      *Issues* : [MB-7737](http://www.couchbase.com/issues/browse/MB-7737),
+      [MB-7774](http://www.couchbase.com/issues/browse/MB-7774)
 
     * One of the internal maintenance processes within Couchbase Server for checking
       vBuckets will stop node rebalance when you create replication via XDCR on a
@@ -3739,9 +3768,8 @@ The major new features available in Couchbase Server 2.0 include:
     * The sample data loader will fail to run on a cluster when the cluster contains
       nodes with different versions of Couchbase. The workaround is to upgrade all
       cluster nodes to Couchbase Server 2.0. For more information about upgrading
-      nodes from 1.8.x to 2.0, see [Upgrading from Couchbase Server 1.8.x to Couchbase
-      Server
-      2.0.x](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
+      nodes from 1.8.x to 2.0, see [Upgrades Notes 1.8.1 to 2.0
+      +](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
 
       *Issues* : [MB-7171](http://www.couchbase.com/issues/browse/MB-7171)
 
@@ -3752,7 +3780,7 @@ The major new features available in Couchbase Server 2.0 include:
 
       *Issues* : [MB-7323](http://www.couchbase.com/issues/browse/MB-7323)
 
-      For more information, see [Configuring Disk and Index Path for a
+      For more information, see [Configuring Index Path for a
       Node](couchbase-manual-ready.html#couchbase-admin-restapi-provisioning-diskpath).
 
     * The sample data loader will also fail if there are multiple nodes in a cluster
@@ -4776,8 +4804,8 @@ Couchbase Server 2.0, visit [Couchbase Server
 
       *Issues* : [MB-5938](http://www.couchbase.com/issues/browse/MB-5938)
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` in the View tab does not show the
-      actual values for document revision, expiration, flags.
+    * `Preview Random Document` in the View tab does not show the actual values for
+      document revision, expiration, flags.
 
       *Issues* : [MB-6620](http://www.couchbase.com/issues/browse/MB-6620)
 

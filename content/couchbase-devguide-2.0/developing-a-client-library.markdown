@@ -764,7 +764,7 @@ As a final note, should you choose to provide an observe-function as an
 asynchronous method, you need to provide an 'observe-set' as part of your SDK.
 An observe-set is a table that stores all the ongoing observe requests sent from
 the SDK. When Couchbase Server fulfills an observe request by providing all
-required status updates for a key,, your SDK should remove an observe request
+required status updates for a key, your SDK should remove an observe request
 from the observe-set. In the SDK you should naturally also provide a function
 that retrieves any asynchronous observe results that are received from Couchbase
 Server and stored in SDK runtime memory.

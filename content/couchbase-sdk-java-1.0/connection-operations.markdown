@@ -1,6 +1,5 @@
 # Connection Operations
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_java_connect"></a>
 
 **API Call**        | `client.new CouchbaseClient([ url ] [, urls ] [, username ] [, password ])`                                                                                                                                                                                        

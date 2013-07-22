@@ -1,6 +1,5 @@
 # Connection Operations
 
-**Unhandled thing here**
 An example below on creating a single connection to the default bucket at
 Couchbase Server:
 

@@ -1,6 +1,5 @@
 # Retrieve Operations
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_php_get"></a>
 
 **API Call**                       | `$object->get($key [, $callback ] [, $casunique ])`                       

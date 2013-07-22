@@ -3,7 +3,7 @@
 Couchbase Server is a NoSQL document database for interactive web applications.
 It has a flexible data model, is easily scalable, provides consistent high
 performance and is 'always-on,' meaning it is can serve application data 24
-hours, 7 days a week. Couchbase Server provides the following:
+hours, 7 days a week. Couchbase Server provides the following benefits:
 
  * **Flexible Data Model**
 
@@ -280,11 +280,10 @@ resources:
 ### RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
-the **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
-:firstterm]`. For more information about creating and changing these two
-settings, see [Configuring Node Memory
-Quota](couchbase-manual-ready.html#couchbase-admin-restapi-cluster-memory-quota)
-and [Creating and Editing Data
+the `Server Quota` and `Bucket Quota`. For more information about creating and
+changing these two settings, see [Other couchbase-cli
+Usage](couchbase-manual-ready.html#couchbase-cli-other-examples) and [Creating
+and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
 
  * **Server Quota**
@@ -411,7 +410,65 @@ server determines that a cached item is infrequently used, it can remove it from
 RAM to free space for other items. Similarly the server can retrieve
 infrequently-used items from disk and store them into the caching layer when the
 items are requested. So the entire process of managing data between the caching
-layer and data persistence layer is handled entirely by server.
+layer and data persistence layer is handled entirely by server. In order provide
+the most frequently-used data while maintaining high performance, Couchbase
+Server manages a *working set* of your entire information; this set consists of
+the all data you most frequently access and is kept in RAM for high performance.
+
+Couchbase automatically moves data from RAM to disk asynchronously in the
+background in order to keep frequently used information in memory, and less
+frequently used data on disk. Couchbase constantly monitors the information
+accessed by clients, and decides how to keep the active data within the caching
+layer. Data is ejected to disk from memory in the background while the server
+continues to service active requests. During sequences of high writes to the
+database, clients will be notified that the server is temporarily out of memory
+until enough items have been ejected from memory to disk. The asynchronous
+nature and use of queues in this way enables reads and writes to be handled at a
+very fast rate, while removing the typical load and performance spikes that
+would otherwise cause a traditional RDBMS to produce erratic performance.
+
+When the server stores data on disk and a client requests the data, it sends an
+individual document ID then the server determines whether the information exists
+or not. Couchbase Server does this with metadata structures. The `metadata`
+holds information about each document in the database and this information is
+held in RAM. This means that the server can always return a 'document ID not
+found' response for an invalid document ID or it can immediately return the data
+from RAM, or return it after it fetches it from disk.
+
+<a id="couchbase-introduction-architecture-diskstorage"></a>
+
+### Disk Storage
+
+For performance, Couchbase Server mainly stores and retrieves information for
+clients using RAM. At the same time, Couchbase Server will eventually store all
+data to disk to provide a higher level of reliability. If a node fails and you
+lose all data in the caching layer, you can still recover items from disk. We
+call this process of disk storage *eventual persistence* since the server does
+not block a client while it writes to disk, rather it writes data to the caching
+layer and puts the data into a disk write queue to be persisted to disk. Disk
+persistence enables you to perform backup and restore operations, and enables
+you to grow your datasets larger than the built-in caching layer. For more
+information, see [Ejection, Eviction and Working Set
+Management](couchbase-manual-ready.html#couchbase-introduction-architecture-ejection-eviction).
+
+When the server identifies an item that needs to be loaded from disk because it
+is not in active memory, the process is handled by a background process that
+processes the load queue and reads the information back from disk and into
+memory. The client is made to wait until the data has been loaded back into
+memory before the information is returned.
+
+
+
+**Document Deletion from Disk**
+
+[Couchbase Server will never delete entire items from disk unless a client
+explicitly deletes the item from the database or
+theexpiration](couchbase-manual-ready.html#couchbase-introduction-architecture-expiration)
+value for the item is reached. The ejection mechanism removes an item from RAM,
+while keeping a copy of the key and metadata for that document in RAM and also
+keeping copy of that document on disk. For more information about document
+expiration and deletion, see [Couchbase Developer Guide, About Document
+Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
 
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
 
@@ -425,12 +482,31 @@ be safely retrieved back into RAM if the item is requested. The process that
 Couchbase Server performs to free space in RAM, and to ensure the most-used
 items are still available in RAM is also known as *working set management*.
 
-**Unhandled:** `[:unknown-tag :important]` Some of you may be using only
-memcached buckets with Couchbase Server; in this case the server provides only a
-caching layer as storage and no data persistence on disk. If your server runs
-out of space in RAM, it will *evict* items from RAM on a least recently used
-basis (LRU). Eviction means the server will remove the key, metadata and all
-other data for the item from RAM. After eviction, the item is irretrievable.
+In addition to memory quota for the caching layer, there are two watermarks the
+engine will use to determine when it is necessary to start persisting more data
+to disk. These are `mem_low_wat` and `mem_high_wat`.
+
+As the caching layer becomes full of data, eventually the mem\_low\_wat is
+passed. At this time, no action is taken. As data continues to load, it will
+eventually reach `mem_high_wat`. At this point a background job is scheduled to
+ensure items are migrated to disk and the memory is then available for other
+Couchbase Server items. This job will run until measured memory reaches
+`mem_low_wat`. If the rate of incoming items is faster than the migration of
+items to disk, the system may return errors indicating there is not enough
+space. This will continue until there is available memory. The process of
+removing data from the caching to make way for the actively used information is
+called `ejection`, and is controlled automatically through thresholds set on
+each configured bucket in your Couchbase Server Cluster.
+
+
+![](images/couchbase-060711-1157-32_img_300.jpg)
+
+Some of you may be using only memcached buckets with Couchbase Server; in this
+case the server provides only a caching layer as storage and no data persistence
+on disk. If your server runs out of space in RAM, it will *evict* items from RAM
+on a least recently used basis (LRU). Eviction means the server will remove the
+key, metadata and all other data for the item from RAM. After eviction, the item
+is irretrievable.
 
 For more detailed technical information about ejection and working set
 management, including any administrative tasks which impact this process, see
@@ -457,74 +533,6 @@ Typical uses for an expiration value include web session data, where you want
 the actively stored information to be removed from the system if the user
 activity has stopped and not been explicitly deleted. The data will time out and
 be removed from the system, freeing up RAM and disk for more active data.
-
-<a id="couchbase-introduction-architecture-diskstorage"></a>
-
-### Disk Storage
-
-For performance, Couchbase Server prefers to store and provide information to
-clients using RAM. However, this is not always possible or desirable in an
-application. Instead, what is required is the 'working set' of information
-stored in RAM and immediately available for supporting low-latency responses.
-
-Couchbase Server stores data on disk, in addition to keeping as much data as
-possible in RAM as part of the caching layer used to improve performance. Disk
-persistence allows for easier backup/restore operations, and allows datasets to
-grow larger than the built-in caching layer.
-
-Couchbase automatically moves data between RAM and disk (asynchronously in the
-background) in order to keep regularly used information in memory, and less
-frequently used data on disk. Couchbase constantly monitors the information
-accessed by clients, keeping the active data within the caching layer.
-
-In addition to the quota, there are two watermarks the engine will use to
-determine when it is necessary to start freeing up available memory. These are
-`mem_low_wat` and `mem_high_wat`.
-
-
-![](images/couchbase-060711-1157-32_img_300.jpg)
-
-As the system is loaded with data, eventually the mem\_low\_wat is passed. At
-this time, no action is taken. This is the "goal" the system will move toward
-when migrating items to disk. As data continues to load, it will evenutally
-reach `mem_high_wat`. At this point a background job is scheduled to ensure
-items are migrated to disk and the memory is then available for other Couchbase
-Server items. This job will run until measured memory reaches `mem_low_wat`. If
-the rate of incoming items is faster than the migration of items to disk, the
-system may return errors indicating there is not enough space. This will
-continue until there is available memory.
-
-The process of removing data from the caching to make way for the actively used
-information is called **Unhandled:** `[:unknown-tag :firstterm]`, and is
-controlled automatically through thresholds set on each configured bucket in
-your Couchbase Server Cluster.
-
-The use of disk storage presents an issue in that a client request for an
-individual document ID must know whether the information exists or not.
-Couchbase Server achieves this using metadata structures. The **Unhandled:**
-`[:unknown-tag :firstterm]` holds information about each document stored in the
-database and this information is held in RAM. This means that the server can
-always return a 'document ID not found' response for an invalid document ID,
-while returning the data for an item either in RAM (in which case it is returned
-immediately), or after the item has been read from disk (after a delay, or until
-a timeout has been reached).
-
-The process of moving information to disk is asynchronous. Data is ejected to
-disk from memory in the background while the server continues to service active
-requests. During sequences of high writes to the database, clients will be
-notified that the server is temporarily out of memory until enough items have
-been ejected from memory to disk.
-
-Similarly, when the server identifies an item that needs to be loaded from disk
-because it is not in active memory, the process is handled by a background
-process that processes the load queue and reads the information back from disk
-and into memory. The client is made to wait until the data has been loaded back
-into memory before the information is returned.
-
-The asynchronous nature and use of queues in this way enables reads and writes
-to be handled at a very fast rate, while removing the typical load and
-performance spikes that would otherwise cause a traditional RDBMS to produce
-erratic performance.
 
 <a id="couchbase-introduction-architecture-warmup"></a>
 
@@ -554,8 +562,7 @@ The way data is stored within Couchbase Server is through the distribution
 offered by the vBucket structure. If you want to expand or shrink your Couchbase
 Server cluster then the information stored in the vBuckets needs to be
 redistributed between the available nodes, with the corresponding vBucket map
-updated to reflect the new structure. This process is called **Unhandled:**
-`[:unknown-tag :firstterm]`.
+updated to reflect the new structure. This process is called `rebalancing`.
 
 Rebalancing is an deliberate process that you need to initiate manually when the
 structure of your cluster changes. The rebalance process changes the allocation
@@ -608,15 +615,14 @@ replication between clusters via XDCR see [Cross Datacenter Replication
 ### Failover
 
 Information is distributed around a cluster using a series of replicas. For
-Couchbase buckets you can configure the number of **Unhandled:** `[:unknown-tag
-:firstterm]` (complete copies of the data stored in the bucket) that should be
-kept within the Couchbase Server Cluster.
+Couchbase buckets you can configure the number of `replicas` (complete copies of
+the data stored in the bucket) that should be kept within the Couchbase Server
+Cluster.
 
 In the event of a failure in a server (either due to transient failure, or for
-administrative purposes), you can use a technique called **Unhandled:**
-`[:unknown-tag :firstterm]` to indicate that a node within the Couchbase Cluster
-is no longer available, and that the replica vBuckets for the server are
-enabled.
+administrative purposes), you can use a technique called `failover` to indicate
+that a node within the Couchbase Cluster is no longer available, and that the
+replica vBuckets for the server are enabled.
 
 The failover process contacts each server that was acting as a replica and
 updates the internal table that maps client requests for documents to an
@@ -826,13 +832,11 @@ the basic running of a Membase cluster.
 
    The following terms are new, or updated, in Couchbase Server:
 
-    * **Unhandled:** `[:unknown-tag :firstterm]`, and the associated terms of the
-      **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
-      :firstterm]` functions used to define views. Views provide an alternative method
-      for accessing and querying information stored in key/value pairs within
-      Couchbase Server. Views allow you to query and retrieve information based on the
-      values of the contents of a key/value pair, providing the information has been
-      stored in JSON format.
+    * `Views`, and the associated terms of the `map` and `reduce` functions used to
+      define views. Views provide an alternative method for accessing and querying
+      information stored in key/value pairs within Couchbase Server. Views allow you
+      to query and retrieve information based on the values of the contents of a
+      key/value pair, providing the information has been stored in JSON format.
 
     * *JSON (JavaScript Object Notation)*, a data representation format that is
       required to store the information in a format that can be parsed by the View

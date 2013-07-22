@@ -3,7 +3,6 @@
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
-**Unhandled thing here**
 <a id="couchbase-sdk-net-update-append"></a>
 
 ## Append Methods

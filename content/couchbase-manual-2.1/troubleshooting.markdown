@@ -97,11 +97,11 @@ platform, see
 
 <a id="couchbase-troubleshooting-logs-oslocs"></a>
 
-Platform | Location                                                                          
----------|-----------------------------------------------------------------------------------
-Linux    | `/opt/couchbase/var/lib/couchbase/logs`                                           
-Windows  | `C:\Program Files\Couchbase\Server\log`  **Unhandled:** `[:unknown-tag :footnote]`
-Mac OS X | `~/Library/Logs`                                                                  
+Platform | Location                                                                     
+---------|------------------------------------------------------------------------------
+Linux    | `/opt/couchbase/var/lib/couchbase/logs`                                      
+Windows  | `C:\Program Files\Couchbase\Server\log` Assumes default installation location
+Mac OS X | `~/Library/Logs`                                                             
 
 Individual log files are automatically numbered, with the number suffix
 incremented for each new log, with a maximum of 20 files per log. Individual log
@@ -3018,6 +3018,33 @@ etc.
 The following sections provide release notes for individual release versions of
 Couchbase Server. To browse or submit new issues, see [Couchbase Server Issues
 Tracker](http://www.couchbase.com/issues/browse/MB).
+
+<a id="couchbase-server-rn_2-1-1a"></a>
+
+## Release Notes for Couchbase Server 2.1.1 GA (August 2013)
+
+Couchbase Server 2.1.1 is first maintenance release for Couchbase Server 2.1.
+This release includes some major bug fixes and enhancements:
+
+**New Features and Behaviour Changes in 2.1.1**
+
+ * The Enterprise Edition of Couchbase Server is now available on Mac OSX. See
+   [Couchbase, Downloads](http://www.couchbase.com/download).
+
+   *Issues* : [](http://www.couchbase.com/issues/browse/)
+
+**Known Issues in 2.1.1**
+
+ * **Cluster Operations**
+
+    * In Couchbase 2.1.0 if you tried to assign a hostname to a node when you join the
+      node to a cluster, it will be reset. The hostname will not be saved for the node
+      and will not be used by the cluster to identify the node. This has been fixed.
+      For more information about managing hostnames, see [Using Hostnames with
+      Couchbase
+      Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+      *Issues* : [MB-8545](http://www.couchbase.com/issues/browse/MB-8545)
 
 <a id="couchbase-server-rn_2-1-0a"></a>
 

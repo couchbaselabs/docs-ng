@@ -23,10 +23,10 @@ These administration tasks include:
 
    You can add or remove multiple nodes from your cluster at the same time. Once
    the new node arrangement has been configured, the process redistributing the
-   data and bringing the nodes into the cluster is called **Unhandled:**
-   `[:unknown-tag :firstterm]`. The rebalancing process moves the data around the
-   cluster to match the new structure, and can be performed live while the cluster
-   is still servicing application data requests.
+   data and bringing the nodes into the cluster is called `rebalancing`. The
+   rebalancing process moves the data around the cluster to match the new
+   structure, and can be performed live while the cluster is still servicing
+   application data requests.
 
    More information on increasing and reducing your cluster size and performing a
    rebalance operation is available in
@@ -237,12 +237,23 @@ time and the interval for the process. You may want to do this, for instance, if
 you have a peak time for your application when you want the keys used during
 this time to be quickly available after server restart.
 
-**Unhandled:** `[:unknown-tag :sidebar]` By default the scanner process will run
-once every 24 hours with a default initial start time of 2:00 AM UTC. This means
-after you install a new Couchbase Server 2.0 instance or restart the server, by
-default the scanner will run every 24- hour time period at 2:00 AM UTC by
-default. To change the time interval when the access scanner process runs to
-every 20 minutes:
+Note if you want to change this setting for an entire Couchbase cluster, you
+will need to perform this command on per-node and per-bucket in the cluster. By
+default any setting you change with `cbepctl` will only be for the named bucket
+at the specific node you provide in the command.
+
+This means if you have a data bucket that is shared by two nodes, you will
+nonetheless need to issue this command twice and provide the different host
+names and ports for each node and the bucket name. Similarly, if you have two
+data buckets for one node, you need to issue the command twice and provide the
+two data bucket names. If you do not specify a named bucket, it will apply to
+the default bucket or return an error if a default bucket does not exist.
+
+By default the scanner process will run once every 24 hours with a default
+initial start time of 2:00 AM UTC. This means after you install a new Couchbase
+Server 2.0 instance or restart the server, by default the scanner will run every
+24- hour time period at 2:00 AM UTC by default. To change the time interval when
+the access scanner process runs to every 20 minutes:
 
 
 ```
@@ -442,8 +453,8 @@ serves three important purposes in a system:
  * Finally the expiration process in Couchbase Server uses the metadata in RAM to
    quickly scan for items that are expired and later remove them from disk. This
    process is known as the *expiry pager* and runs every 60 minutes by default. For
-   more information about the pager, and changing the setting for it, see
-   [Specifying Disk Cleanup
+   more information about the pager, and changing the setting for it, see [Changing
+   the Disk Cleanup
    Interval](couchbase-manual-ready.html#couchbase-admin-cbepctl-disk-cleanup).
 
 **Understanding the Item Pager**
@@ -744,9 +755,8 @@ Failover means that Couchbase Server removes the node from a cluster and makes
 replicated data at other nodes available for client requests. Because Couchbase
 Server provides data replication within a cluster, the cluster can handle
 failure of one or more nodes without affecting your ability to access the stored
-data. In the event of a node failure, you can manually initiate a **Unhandled:**
-`[:unknown-tag :firstterm]` status for the node in Web Console and resolve the
-issues.
+data. In the event of a node failure, you can manually initiate a `failover`
+status for the node in Web Console and resolve the issues.
 
 Alternately you can configure Couchbase Server so it will *automatically* remove
 a failed node from a cluster and have the cluster operate in a degraded mode. If
@@ -827,9 +837,10 @@ to return the cluster to a healthy state.
 
 If you choose manual failover to manage your cluster you need to monitor the
 cluster and identify when an issue occurs. If an issues does occur you then
-trigger a manual failover and rebalance operation. Although it requires more
-monitoring and manual intervention, there is a possibility that your cluster and
-data access may still degrade before you initiate failover and rebalance.
+trigger a manual failover and rebalance operation. This approach requires more
+monitoring and manual intervention, there is also still a possibility that your
+cluster and data access may still degrade before you initiate failover and
+rebalance.
 
 In the following sections the two alternatives and their issues are described in
 more detail.
@@ -955,7 +966,7 @@ Solution](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tas
 
  * **Required Intervention** Automatic failover will only fail over one node before
    requiring human intervention. This is to prevent a chain reaction failure of all
-   nodes int he cluster.
+   nodes in the cluster.
 
  * **Failover Delay** There is a minimum 30 second delay before a node will be
    failed over. This time can be raised, but the software is hard coded to perform
@@ -1029,14 +1040,13 @@ You can provide the failover status for a node with two different methods:
  * **Using the Web Console**
 
    Go to the `Management -> Server Nodes` section of the Web Console. Find the node
-   that you want to failover, and click the **Unhandled:** `[:unknown-tag
-   :guibutton]` button. You can only failover nodes that the cluster has identified
-   as being Down.
+   that you want to failover, and click the `Fail Over` button. You can only
+   failover nodes that the cluster has identified as being Down.
 
    Web Console will display a warning message.
 
-   Click **Unhandled:** `[:unknown-tag :guibutton]` to indicate the node is failed
-   over. You can also choose to **Unhandled:** `[:unknown-tag :guibutton]`.
+   Click `Fail Over` to indicate the node is failed over. You can also choose to
+   `Cancel`.
 
  * **Using the Command-line**
 
@@ -1099,7 +1109,7 @@ longer be *synchronized* with the rest of the cluster; this means the node will
 no longer handle data request or receive replicated data.
 
 When you add a failed over node back into a cluster, the cluster will treat it
-as if it is a new node. The means that you should rebalance after you add the
+as if it is a new node. This means that you should rebalance after you add the
 node to the cluster. This also means that any data stored on disk at that node
 will be destroyed when you perform this rebalance.
 
@@ -1153,9 +1163,13 @@ There are a number of methods for performing a backup:
    [To restore, you need to use thefile
    copy](couchbase-manual-ready.html#couchbase-backup-restore-filecopy) method.
 
-**Unhandled:** `[:unknown-tag :sidebar]` For detailed information on the restore
-processes and options, see [Restoring Using
-cbrestore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
+Due to the active nature of Couchbase Server it is impossible to create a
+complete in-time backup and snapshot of the entire cluster. Because data is
+always being updated and modified, it would be impossible to take an accurate
+snapshot.
+
+For detailed information on the restore processes and options, see [Restoring
+Using cbrestore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
 
 It is a best practice to backup and restore your entire cluster to minimize any
 inconsistencies in data. Couchbase is always per-item consistent, but does not
@@ -1202,8 +1216,17 @@ The `cbbackup` command takes the following arguments:
 cbbackup [options] [source] [backup_dir]
 ```
 
-**Unhandled:** `[:unknown-tag :sidebar]` Where the arguments are as described
-below:
+The `cbbackup` tool is located within the standard Couchbase command-line
+directory. See [Command-line Interface for
+Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+
+Be aware that `cbbackup` does not support external IP addresses. This means that
+if you install Couchbase Server with the default IP address, you cannot use an
+external hostname to access it. To change the address format into a hostname
+format for the server, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+Where the arguments are as described below:
 
  * `[options]`
 
@@ -1447,7 +1470,7 @@ backup file will be restored.
 
 The regular expression match is performed client side. This means that the
 entire bucket contents must be accessed by the `cbbackup` command and then
-discardeed if the regular expression does not match.
+discarded if the regular expression does not match.
 
 Key-based regular expressions can also be used when restoring data. You can
 backup an entire bucket and restore selected keys during the restore process
@@ -1532,18 +1555,14 @@ before proceeding:
 The steps required to complete the restore process are:
 
  1. Stop the Couchbase Server service on all nodes. For more information, see
-    [Startup and Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+    [Server Startup and
+    Shutdown](couchbase-manual-ready.html#couchbase-admin-basics-running).
 
  1. On each node, restore the database, `stats.json`, and configuration file (
     `config.dat` ) from your backup copies for each node.
 
-    On each node, restore the database and configuration files from your backup
-    copies for each node.
-
- 1. Restart the service on each node. For more information, see [Startup and
-    Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+ 1. Restart the service on each node. For more information, see [Server Startup and
+    Shutdown](couchbase-manual-ready.html#couchbase-admin-basics-running).
 
 <a id="couchbase-backup-restore-cbrestore"></a>
 
@@ -1684,7 +1703,7 @@ done
 
 The above will copy only the keys matching the specified prefix into the
 `default` bucket. For each key skipped, an information message will be supplied.
-The reamining output shows the records transferred and summary as normal.
+The remaining output shows the records transferred and summary as normal.
 
 <a id="couchbase-backup-restore-mac"></a>
 
@@ -1786,8 +1805,7 @@ Couchbase Server is designed to actively change the number of nodes configured
 within the cluster to cope with these requirements, all while the cluster is up
 and running and servicing application requests. The overall process is broken
 down into two stages; the addition and/or removal of nodes in the cluster, and
-the **Unhandled:** `[:unknown-tag :firstterm]` of the information across the
-nodes.
+the `rebalancing` of the information across the nodes.
 
 The addition and removal process merely configures a new node into the cluster,
 or marks a node for removal from the cluster. No actual changes are made to the
@@ -1815,7 +1833,7 @@ During the rebalance operation:
  * The cluster remains up, and continues to service and handle client requests.
    Updates and changes to the stored data during the migration process are tracked
    and will be updated and migrated with the data that existed when the rebalance
-   was requested. By copying over the existing and actively updated information
+   was requested.
 
  * The current vBucket map, used to identify which nodes in the cluster are
    responsible for handling client requests, is updated incrementally as each
@@ -1986,7 +2004,7 @@ around the cluster to reflect the new structure.
  * For information on adding nodes to your cluster, see [Adding a Node to a
    Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-add).
 
- * For information on adding nodes to your cluster, see [Removing a Node from a
+ * For information on removing nodes to your cluster, see [Removing a Node from a
    Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-remove).
 
  * In the event of a failover situation, a rebalance is required to bring the
@@ -2056,8 +2074,8 @@ The methods are:
  * **Web Console — After Installation**
 
    You can add a new node to an existing cluster after installation by clicking the
-   **Unhandled:** `[:unknown-tag :guibutton]` button within the `Manage Server
-   Nodes` area of the Admin Console. You can see the button in the figure below.
+   `Add Server` button within the `Manage Server Nodes` area of the Admin Console.
+   You can see the button in the figure below.
 
 
    ![](images/admin-tasks-rebalance-add-button.png)
@@ -2183,10 +2201,9 @@ Like adding nodes, there are a number of solutions for removing a node:
    You can remove a node from the cluster from within the `Manage Server Nodes`
    section of the Web Console, as shown in the figure below.
 
-   To remove a node, click the **Unhandled:** `[:unknown-tag :guibutton]` button
-   next to the node you want to remove. You will be provided with a warning to
-   confirm that you want to remove the node. Click **Unhandled:** `[:unknown-tag
-   :guibutton]` to mark the node for removal.
+   To remove a node, click the `Remove Server` button next to the node you want to
+   remove. You will be provided with a warning to confirm that you want to remove
+   the node. Click `Remove` to mark the node for removal.
 
  * **Using the Command-line**
 
@@ -2221,9 +2238,9 @@ adding data to different nodes in the process.
 
 If Couchbase Server identifies that a rebalance is required, either through
 explicit addition or removal, or through a failover, then the cluster is in a
-**Unhandled:** `[:unknown-tag :firstterm]` state. This does not affect the
-cluster operation, it merely indicates that a rebalance operation is required to
-move the cluster into its configured state.
+`pending rebalance` state. This does not affect the cluster operation, it merely
+indicates that a rebalance operation is required to move the cluster into its
+configured state.
 
 To initiate a rebalance operation:
 
@@ -2231,7 +2248,7 @@ To initiate a rebalance operation:
 
    Within the `Manage Server Nodes` area of the Couchbase Administration Web
    Console, a cluster pending a rebalance operation will have enabled the
-   **Unhandled:** `[:unknown-tag :guibutton]` button.
+   `Rebalance` button.
 
 
    ![](images/admin-tasks-rebalance-starting-console.png)
@@ -2245,9 +2262,8 @@ To initiate a rebalance operation:
    ![](images/admin-tasks-rebalance-monitoring-console.png)
 
    You can stop a rebalance operation at any time during the process by clicking
-   the **Unhandled:** `[:unknown-tag :guibutton]` button. This only stops the
-   rebalance operation, it does not cancel the operation. You should complete the
-   rebalance operation.
+   the `Stop Rebalance` button. This only stops the rebalance operation, it does
+   not cancel the operation. You should complete the rebalance operation.
 
  * **Using the Command-line**
 
@@ -2401,7 +2417,7 @@ There are essentially two stages to replication:
    not designed to impact any client activity.
 
    You can monitor the progress of this task by watching for ongoing TAP disk
-   fetches and/or watching `cbstats tap`, or
+   fetches and/or watching `cbstats tap`. For example:
 
     ```
     shell> cbstats <node_IP>:11210 -b bucket_name -p bucket_password tap | grep backfill
@@ -2417,7 +2433,8 @@ There are essentially two stages to replication:
    exactly at a given instant in time. However, you should be able to determine
    whether there is a significant difference between the two figures.
 
-   **Unhandled:** `[:unknown-tag :caution]`
+   Until this is completed, you should avoid using the "failover" functionality
+   since that may result in loss of the data that has not yet been replicated.
 
  * **Draining**
 
@@ -2535,9 +2552,9 @@ For `memcached` buckets:
 ### Rebalance Behind-the-Scenes
 
 The rebalance process is managed through a specific process called the
-**Unhandled:** `[:unknown-tag :firstterm]`. This examines the current vBucket
-map and then combines that information with the node additions and removals in
-order to create a new vBucket map.
+`orchestrator`. This examines the current vBucket map and then combines that
+information with the node additions and removals in order to create a new
+vBucket map.
 
 The orchestrator starts the process of moving the individual vBuckets from the
 current vBucket map to the new vBucket structure. The process is only started by
@@ -2547,10 +2564,10 @@ vBucket map match the current situation.
 
 Each vBucket is moved independently, and a number of vBuckets can be migrated
 simultaneously in parallel between the different nodes in the cluster. On each
-destination node, a process called **Unhandled:** `[:unknown-tag :firstterm]` is
-started, which uses the TAP system to request that all the data is transferred
-for a single vBucket, and that the new vBucket data will become the active
-vBucket once the migration has been completed.
+destination node, a process called `ebucketmigrator` is started, which uses the
+TAP system to request that all the data is transferred for a single vBucket, and
+that the new vBucket data will become the active vBucket once the migration has
+been completed.
 
 While the vBucket migration process is taking place, clients are still sending
 data to the existing vBucket. This information is migrated along with the
@@ -2563,200 +2580,233 @@ communicated back to the connected clients which will now use the new location.
 
 ## Cross Datacenter Replication (XDCR)
 
-Cross Datacenter Replication (XDCR) is new functionality as of Couchbase Server
-2.0. It enables you to automatically replicate data between clusters and between
-data buckets. There are two major benefits of using XDCR as part of your
-Couchbase Server implementation:
+Couchbase Server 2.0 supports cross datacenter replication (XDCR), providing an
+easy way to replicate data from one cluster to another for disaster recovery as
+well as better data locality (getting data closer to its users).
 
- * **Disaster Recovery** : Restore data from one Couchbase cluster to another
-   cluster after system failure. Because XDCR replicates information to one or more
-   clusters, you have more assurance that events such as natural disasters, or
-   infrastructure failures will only impact a copy of data at one data center. XDCR
-   enables you to restore the data to a cluster once the cluster is back up.
-
- * **Improved Locality** : Create copies of data at data centers that are more
-   proximate to users. With XDCR you can provide replica data on clusters that are
-   closer to your users; this provides better application performance and reduces
-   latency.
-
-When you use XDCR, you specify *source* and *destination* clusters. A source
-cluster is the cluster from which you want to copy data; a destination cluster
-is the cluster where you want the replica data to be stored. When you configure
-replication, you specify your selections for an individual cluster using
-Couchbase Admin Console.
-
-XDCR will replicate data between specific buckets and specific clusters and you
-can configure replication be either *uni-directional* or *bi-directional*.
-Uni-directional replication means that XDCR replicates from a source to a
-destination; in contrast, bi-directional replication means that XDCR replicates
-from a source to a destination and also replicates from the destination to the
-source. For more information about using Couchbase Admin Console to configure
-replication, see [Configuring
-Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuration).
-
-You can configure multiple replications for each data bucket in a cluster and
-can specify that XDCR replicate to different destination clusters. When you
-configure bi-directional replication between cluster A and B, changes can be
-made to the data on either cluster will be replicated to the other cluster. The
-following illustrates some of the different source and destination
-configurations available with XDCR:
+Couchbase Server provides support for both intra-cluster replication and cross
+datacenter replication (XDCR). Intra-cluster replication is the process of
+replicating data on multiple servers within a cluster in order to provide data
+redundancy should one or more servers crash. Data in Couchbase Server is
+distributed uniformly across all the servers in a cluster, with each server
+holding active and replica documents. When a new document is added to Couchbase
+Server, in addition to being persisted, it is also replicated to other servers
+within the cluster (this is configurable up to three replicas). If a server goes
+down, failover promotes replica data to active:
 
 
-![](images/xdcr.png)
+![](images/intra_cluster_repl.png)
 
-When you configure replication with XDCR, you can specify one or more
-destination buckets for a given source bucket. Similarly, you can specify one or
-more source buckets for a given destination bucket. Your replication settings
-can either be uni-directional or bi-directional between one or more source and
-one or more destination buckets.
+Cross datacenter replication in Couchbase Server involves replicating active
+data to multiple, geographically diverse datacenters either for disaster
+recovery or to bring data closer to its users for faster data access, as shown
+in below:
 
-Couchbase Server 2.0 currently supports *continuous replication* of data. This
-means that if you change data on a source cluster, after the data is persisted
-at the source cluster, it will be replicated to the destination cluster.
 
-XDCR also has what is also known as *cluster-aware* functionality. This means
-that is that it is able to get updated cluster information should a node in a
-destination or source cluster goes down. With updated cluster information, XDCR
-is able to replicate data to a node that is still functioning in a destination
+![](images/xdcr_1.png)
+
+You can also see that XDCR and intra-cluster replication occurs simultaneously.
+Intra-cluster replication is taking place within the clusters at both Datacenter
+1 and Datacenter 2, while at the same time XDCR is replicating documents across
+datacenters. Both datacenters are serving read and write requests from the
+application.
+
+### Use Cases
+
+**Disaster Recovery.** Disaster can strike your datacenter at any time – often
+with little or no warning. With active-active cross datacenter replication in
+Couchbase Server, applications can read and write to any geo-location ensuring
+availability of data 24x365 even if an entire datacenter goes down.
+
+**Bringing Data Closer to Users.** Interactive web applications demand low
+latency response times to deliver an awesome application experience. The best
+way to reduce latency is to bring relevant data closer to the user. For example,
+in online advertising, sub-millisecond latency is needed to make optimized
+decisions about real-time ad placements. XDCR can be used to bring
+post-processed user profile data closer to the user for low latency data access.
+
+**Data Replication for Development and Test Needs.** Developers and testers
+often need to simulate production-like environments for troubleshooting or to
+produce a more reliable test. By using cross datacenter replication, you can
+create test clusters that host subset of your production data so that you can
+test code changes without interrupting production processing or risking data
+loss.
+
+<a id="xdcr-topologies"></a>
+
+### Basic Topologies
+
+XDCR can be configured to support a variety of different topologies; the most
+common are unidirectional and bidirectional.
+
+Unidirectional Replication is one-way replication, where active data gets
+replicated from the source cluster to the destination cluster. You may use
+unidirectional replication when you want to create an active offsite backup,
+replicating data from one cluster to a backup cluster.
+
+Bidirectional Replication allows two clusters to replicate data with each other.
+Setting up bidirectional replication in Couchbase Server involves setting up two
+unidirectional replication links from one cluster to the other. This is useful
+when you want to load balance your workload across two clusters where each
+cluster bidirectionally replicates data to the other cluster.
+
+In both topologies, data changes on the source cluster are replicated to the
+destination cluster only after they are persisted to disk. You can also have
+more than two datacenters and replicate data between all of them.
+
+XDCR can be setup on a per bucket basis. A bucket is a logical container for
+documents in Couchbase Server. Depending on your application requirements, you
+might want to replicate only a subset of the data in Couchbase Server between
+two clusters. With XDCR you can selectively pick which buckets to replicate
+between two clusters in a unidirectional or bidirectional fashion. As shown in
+Figure 3, there is no XDCR between Bucket A (Cluster 1) and Bucket A (Cluster
+2). Unidirectional XDCR is setup between Bucket B (Cluster 1) and Bucket B
+(Cluster 2). There is bidirectional XDCR between Bucket C (Cluster 1) and Bucket
+C (Cluster 2):
+
+Cross datacenter replication in Couchbase Server involves replicating active
+data to multiple, geographically diverse datacenters either for disaster
+recovery or to bring data closer to its users for faster data access, as shown
+in below:
+
+
+![](images/xdcr_selective.png)
+
+As shown above, after the document is stored in Couchbase Server and before XDCR
+replicates a document to other datacenters, a couple of things happen within
+each Couchbase Server node.
+
+ 1. Each server in a Couchbase cluster has a managed cache. When an application
+    stores a document in Couchbase Server it is written into the managed cache.
+
+ 1. The document is added into the intra-cluster replication queue to be replicated
+    to other servers within the cluster.
+
+ 1. The document is added into the disk write queue to be asynchronously persisted
+    to disk. The document is persisted to disk after the disk-write queue is
+    flushed.
+
+ 1. After the documents are persisted to disk, XDCR pushes the replica documents to
+    other clusters. On the destination cluster, replica documents received will be
+    stored in cache. This means that replica data on the destination cluster can
+    undergo low latency read/write operations:
+
+
+    ![](images/xdcr-persistence.png)
+
+<a id="xdcr-architecture"></a>
+
+### XDCR Architecture
+
+There are a number of key elements in Couchbase Server’s XDCR architecture
+including:
+
+**Continuous Replication.** XDCR in Couchbase Server provides continuous
+replication across geographically distributed datacenters. Data mutations are
+replicated to the destination cluster after they are written to disk. There are
+multiple data streams (32 by default) that are shuffled across all shards
+(called vBuckets in Couchbase Server) on the source cluster to move data in
+parallel to the destination cluster. The vBucket list is shuffled so that
+replication is evenly load balanced across all the servers in the cluster. The
+clusters scale horizontally, more the servers, more the replication streams,
+faster the replication rate. For information on changing the number of data
+streams for replication.
+
+**Cluster Aware.** XDCR is cluster topology aware. The source and destination
+clusters could have different number of servers. If a server in the source or
+destination cluster goes down, XDCR is able to get the updated cluster topology
+information and continue replicating data to available servers in the
+destination cluster.
+
+**Push based connection resilient replication.** XDCR in Couchbase Server is
+push-based replication. The source cluster regularly checkpoints the replication
+queue per vBucket and keeps track of what data the destination cluster last
+received. If the replication process is interrupted for example due to a server
+crash or intermittent network connection failures, it is not required to restart
+replication from the beginning. Instead, once the replication link is restored,
+replication can continue from the last checkpoint seen by the destination
 cluster.
 
-For instance, if you have two clusters A and B and the first cluster has two
-sources, and the second cluster has two destinations, if the one of the
-destinations is unavailable, the source cluster can get updated cluster
-information about cluster B. It can then use this information to create replica
-data using the existing, functioning node on cluster B. Similarly if one of the
-servers fails in a source cluster, existing servers in the source cluster can
-detect the failure and take over the replication work from the failed server.
-Replication will continue via XDCR from the functioning servers in the source
-cluster to the destination cluster. Destination clusters are able to take on the
-replication workload from failed servers in the destination cluster, and
-determine if a server has failed in a source cluster.
+**Efficient.** For the sake of efficiency, Couchbase Server is able to
+de-duplicate information that is waiting to be stored on disk. For instance, if
+there are three changes to the same document in Couchbase Server, and these
+three changes are waiting in queue to be persisted, only the last version of the
+document is stored on disk and later gets pushed into the XDCR queue to be
+replicated.
 
-For the sake of efficiency, Couchbase Server is able to de-duplicate information
-that is waiting to be stored on disk. For instance if there are five changes to
-the same document in Couchbase Server, and these five changes are waiting in
-queue to be persisted, the server will only take the last version of the
-document to store on disk. Since items replicated by XDCR are those on disk, the
-document replicated to a destination cluster will be the last mutation of that
-document from the source cluster. XDCR will replicate data that is persisted in
-the source cluster and create the replica data in destination RAM. This means
-that the replica data on the destination cluster can undergo high-speed
-read/write operations.
+**Active-Active Conflict Resolution.** Within a cluster, Couchbase Server
+provides strong consistency at the document level. On the other hand, XDCR also
+provides eventual consistency across clusters. Built-in conflict resolution will
+pick the same “winner” on both the clusters if the same document was mutated on
+both the clusters. If a conflict occurs, the document with the most updates will
+be considered the “winner.” If the same document is updated the same number of
+times on the source and destination, additional metadata such as numerical
+sequence, CAS value, document flags and expiration TTL value are used to pick
+the “winner.” XDCR applies the same rule across clusters to make sure document
+consistency is maintained:
 
-Couchbase XDCR also provides built-in conflict resolution that helps provide a
-consistent version of a document on both source and destination clusters. The
-most basic rule for conflict resolution in XDCR is that the document with the
-most updates will be considered the "winner" of conflicts; this means the
-document with most updates will take precedence over the duplicate document. If
-the winning document is located at a source cluster and the cluster has
-unidirectional replication, it will be replicated at the destination. If the
-winning document is on a destination cluster, and bi-directional replication is
-set up, it will be replicated to the source cluster.
 
-For more information and examples on the different replication structures and
-schemes that are available, see [Uses for
-XDCR](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-schemes).
+![](images/xdcr_conflict_res.png)
+
+As shown in above, bidirectional replication is set up between Datacenter 1 and
+Datacenter 2 and both the clusters start off with the same JSON document (Doc
+1). In addition, two additional updates to Doc 1 happen on Datacenter 2. In the
+case of a conflict, Doc 1 on Datacenter 2 is chosen as the winner because it has
+seen more updates.
+
+### Advanced Topologies
+
+By combining unidirectional and bidirectional topologies, you have the
+flexibility to create several complex topologies such as the chain and
+propagation topology as shown below:
+
+
+![](images/xdcr_repl_chain.png)
+
+In the image below there is one bidirectional replication link between
+Datacenter 1 and Datacenter 2 and two unidirectional replication links between
+Datacenter 2 and Datacenters 3 and 4. Propagation replication can be useful in a
+scenario when you want to setup a replication scheme between two regional
+offices and several other local offices. Data between the regional offices is
+replicated bidirectionally between Datacenter 1 and Datacenter 2. Data changes
+in the local offices (Datacenters 3 and 4) are pushed to the regional office
+using unidirectional replication:
+
+
+![](images/xdcr_advanced.png)
 
 A description of the functionality, implementation and limitations of XDCR are
-provided in [Understanding XDCR
-Behavior](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-functionality).
+provided in [Behavior and
+Limitations](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-functionality).
 
-For a guide to creating and configuring replication, see [Configuring
+To create and configure replication, see [Configuring
 Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuration).
-
-<a id="couchbase-admin-tasks-xdcr-schemes"></a>
-
-### Uses for XDCR
-
-With XDCR you can start, stop, and restart replication, which enables you to
-create a snapshot of data that exists in a cluster in a moment in time. The
-result is that there are a number of possible solutions you can implement with
-XDCR:
-
- * **Creating an Active Offsite Backup**
-
-   You can use XDCR to provide a live backup of your application data in a second,
-   separate cluster. This secondary cluster can be local, can be within a different
-   datacenter, can be geographically local or can be distant from your live running
-   cluster. In the event of system failure for your main cluster, you can either
-   enable the secondary cluster, or use the data stored in the secondary cluster to
-   re-populate data in the primary cluster.
-
-   For example, using this solution you could configure your infrastructure as
-   follows:
-
-    * Cluster A is your primary cluster. It holds your live data and is actively used
-      by your application servers to support your application.
-
-    * You set up unidirectional replication to replicate data from Cluster A to a
-      backup cluster, Cluster B.
-
-    * When a failure occurs in Cluster A and data in the cluster is no longer
-      available you can restore this data from Cluster B via XDCR.
-
- * **Spreading Cluster Data Geographically**
-
-   You can use bi-directional replication to synchronize data between two different
-   buckets in two different cluster, including clusters in two different locations.
-   You can use this model to spread the load geographically, for example, to spread
-   data between the US and Europe, while maintaining a consistent data set across
-   the two clusters.
-
-   In this scenario, you would configure your clusters as follows:
-
-    1. Configure source cluster to replicate data from one or more source buckets to
-       destination buckets on Cluster B.
-
-    1. Configure destination cluster to replicate data from the destination buckets to
-       source buckets on Cluster A.
-
-   XDCR replicates any changes to data stored on Cluster A to destination buckets
-   on Cluster B, and vice versa. This keeps the two clusters in synchronization
-   with each other, and will help maintain documents that are consistent with one
-   another in each cluster.
-
- * **Continuously Update a Secondary Backup**
-
-   If you create a local backup of your live cluster, this will require additional
-   cluster resources during the backup process such as CPU and disk space. The
-   backup process takes a snapshot of data in a cluster as it exists in a point in
-   time. For a live cluster, the data you create with a local backup may not be
-   consistent if additional changes to the documents occur after the backup. Each
-   time you want to make your backup current with actual data in the live cluster,
-   you need to run the backup process again.
-
-   Using XDCR has two advantages in this scenario:
-
-    * XDCR will replicate data to another cluster incrementally and automatically, so
-      you can manage the backup process and set it up on regular backup times for your
-      destination cluster.
-
-    * You shift the resource burden of backups from one cluster to another; if the
-      source cluster is resource constrained, performing a backup on the destination
-      is more desirable. To perform backup on a destination, you configure
-      unidirectional replication between two clusters, and then use the secondary
-      cluster to perform your backup.
-
-   The sequence of operations are:
-
-    1. Configure uni-directional replication from source cluster to destination
-       cluster.
-
-    1. Backup the data on destination cluster using the Couchbase backup tool,
-       `cbbackup`. The destination cluster will be not be serving active data, so a
-       more consistent backup snapshot will be created.
-
-   At periodic intervals, repeat this process to update the backup on the
-   destination cluster with changes in the live cluster. For more information about
-   `cbbackup`, see [cbbackup
-   Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
 
 <a id="couchbase-admin-tasks-xdcr-configuration"></a>
 
 ### Configuring Replication
 
 You configure replications using the `XDCR` tab of the Administration Web
-Console.
+Console. You configure replication on a bucket basis. If you want to replicate
+data from all buckets in a cluster, you should individually configure
+replication for each bucket.
+
+**Before You Configure XDCR**
+
+ * All nodes within each cluster must be configured to communicate with all the
+   nodes on the destination cluster. XDCR will use any node in a cluster to
+   replicate between the two clusters.
+
+ * Couchbase Server versions and platforms, must match. For instance if you want to
+   replicate from a Linux-based cluster, you need to do so with another Linux-based
+   cluster.
+
+ * When XDCR performs replication, it exchanges data between clusters over TCP/IP
+   port 8092; Couchbase Server uses TCP/IP port 8091 to exchange cluster
+   configuration information. If you are communicating with a destination cluster
+   over a dedicated connection or the Internet you should ensure that all the nodes
+   in the destination and source clusters can communicate with each other over
+   ports 8091 and 8092.
 
 `Ongoing Replications` are those replications that are currently configured and
 operating. You can monitor the current configuration, current status, and the
@@ -2786,11 +2836,6 @@ For more information about creating buckets via the REST API, see [Creating and
 Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-restapi-creating-buckets).
 
-Replication occurs between the individual nodes within each cluster. If you are
-communicating with a destination cluster over a dedicated connection or the
-Internet you should ensure that all the nodes in the destination and source
-clusters can communicate with each other over ports 8091 and 8092.
-
 To create a uni-directional replication (i.e. from cluster A to cluster B):
 
  1. Check and ensure that a destination bucket exists on the cluster to which you
@@ -2800,10 +2845,10 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
      curl -u Admin:password http://ip.for.destination.cluster:8091/pools/default/buckets
      ```
 
- 1. To set up a destination cluster reference, click the **Unhandled:**
-    `[:unknown-tag :guibutton]` button. You will be prompted to enter a name used to
-    identify this cluster, the IP address, and optionally the administration port
-    number for the remote cluster.
+ 1. To set up a destination cluster reference, click the `Create Cluster Reference`
+    button. You will be prompted to enter a name used to identify this cluster, the
+    IP address, and optionally the administration port number for the remote
+    cluster.
 
 
     ![](images/xdcr-cluster-reference.png)
@@ -2815,9 +2860,8 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     information will now be available when you configure replication for your source
     cluster.
 
- 1. Click **Unhandled:** `[:unknown-tag :guibutton]` to configure a new XDCR
-    replication. A panel appears where you can configure a new replication from
-    source to destination cluster.
+ 1. Click `Create Replication` to configure a new XDCR replication. A panel appears
+    where you can configure a new replication from source to destination cluster.
 
  1. In the `Replicate changes from` section select a from the current cluster that
     is to be replicated. This is your source bucket.
@@ -2828,8 +2872,7 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
 
     ![](images/xdcr-cluster-setup.png)
 
- 1. Click the **Unhandled:** `[:unknown-tag :guibutton]` button to start the
-    replication process.
+ 1. Click the `Replicate` button to start the replication process.
 
 After you have configured and started replication, the web console will show the
 current status and list of replications in the `Ongoing Replications` section:
@@ -2837,18 +2880,30 @@ current status and list of replications in the `Ongoing Replications` section:
 
 ![](images/xdcr-cluster-monitor.png)
 
-To configure a bidirectional replication:
+**Configuring Bi-Directional Replication**
+
+Replication is unidirectional from one cluster to another. To configure
+bidirectional replication between two clusters, you need to provide settings for
+two separate replication streams. One stream replicates changes from Cluster A
+to Cluster B, another stream replicates changes from Cluster B to Cluster A. To
+configure a bidirectional replication:
 
  1. Create a replication from Cluster A to Cluster B on Cluster A.
 
  1. Create a replication from Cluster B to Cluster A on Cluster B.
 
-XDCR replications can also be configured using the Administration REST API. For
-more information, see [Getting a Destination Cluster
+You do not need identical topologies for both clusters; you can have a different
+number of nodes in each cluster, and different RAM and persistence
+configurations.
+
+You can also create a replication using the Administration REST API instead of
+Couchbase Web Console. For more information, see [Getting a Destination Cluster
 Reference](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-destination).
 
-For information on changing the internal configuration settings, see [Viewing
-Internal XDCR
+After you create a replication between clusters, you can configure the number of
+parallel replicators that run per node. The default number of parallel, active
+streams per node is 32, but you can adjust this. For information on changing the
+internal configuration settings, see [Viewing Internal XDCR
 Settings](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-internal-settings).
 
 <a id="couchbase-admin-tasks-xdcr-monitoring"></a>
@@ -2867,103 +2922,21 @@ a destination cluster, you need to open the console at that cluster. Therefore,
 when you configure bi-directional you should use the web consoles that belong to
 source and destination clusters to monitor both clusters.
 
-You can monitor the current status for all active replications in the `Ongoing
-Replications` section under the XDCR tab:
+To see statistics on incoming and outgoing replications via XDCR see the
+following:
+
+ * Incoming Replications, see [Monitoring Incoming
+   XDCR](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-xdcr-recv).
+
+ * Outgoing Replications, see [Monitoring Outgoing
+   XDCR](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-xdcr).
+
+Any errors that occur during replication appear in the XDCR errors panel. In the
+example below, we show the errors that occur if replication streams from XDCR
+will fail due to the missing vBuckets:
 
 
-![](images/xdcr_ongoing.png)
-
-The `Ongoing Replications` section shows the following information:
-
-Column | Description                                                       
--------|-------------------------------------------------------------------
-Bucket | The source bucket on the current cluster that is being replicated.
-From   | Source cluster name.                                              
-To     | Destination cluster name.                                         
-Status | Current status of replications.                                   
-When   | Indicates when replication occurs.                                
-
-The `Status` column indicates the current state of the replication
-configuration. Possible include:
-
- * **Starting Up**
-
-   The replication process has just started, and the clusters are determining what
-   data needs to be sent from the originatin cluster to the destination cluster.
-
- * **Replicating**
-
-   The bucket is currently being replicated and changes to the data stored on the
-   originating cluster are being sent to the destination cluster.
-
- * **Failed**
-
-   Replication to the destination cluster has failed. The destination cluster
-   cannot be reached. The replication configuration may need to be deleted and
-   recreated.
-
-Under the `Data Buckets` tab you can click on a named Couchbase bucket and find
-more statistics about replication for that bucket. Couchbase Web Console
-displays statistics for the particular bucket; on this page you can find two
-drop-down areas called in the `Outgoing XDCR` and `Incoming XDCR Operations`.
-Both provides statistics about ongoing replication for the particular bucket.
-
-If you view the `Outbound XDCR` section, you will see information about
-replication from this source bucket to a destination bucket:
-
-
-![](images/outbound_xdcr.png)
-
-Here are the meanings for the outgoing XDCR statistics:
-
- * `mutations to replicate` : shows the items on this source bucket that are
-   awaiting replication.
-
- * `mutations checked` : shows the number of documents that have been persisted and
-   checked for replication.
-
- * `mutations replicated` : number of documents that have been replicated to the
-   destination bucket.
-
- * `data replicated` : size of all item replicated
-
- * `active vb reps` : number of active replicators which are currently working
-
- * `waiting vb reps` : number of replicators waiting for items to replicate
-
- * `secs in replicating` : time spent by replicators checking items and waiting
-
- * `secs in checkpointing` : time spent by replicators checkpointing and committing
-   items to a destination cluster
-
- * `checkpoints issued` : number of checkpoints that have been issued. This is
-   updated every 30 minutes.
-
- * `checkpoints failed` : number of failed checkpoints. These are checkpoints which
-   have been issued by the server but have failed.
-
- * `mutations in queue` : number of document mutations that are in the replication
-   queue for XDCR
-
- * `queue size` : size of all documents that are in the XDCR replication queue.
-
-If a cluster is a destination cluster, you will also see this information in
-Couchbase Web Console for the specific bucket. When you use XDCR,
-
-
-![](images/xdcr_incoming.png)
-
- * `gets per sec` : shows the number of items on a destination cluster which are
-   being read by a source cluster.
-
- * `sets per sec` : shows the number of items on a destination cluster which are
-   being creating or changed by a source cluster.
-
- * `deletes per sec` : number of items that have been deleted from a destination
-   bucket by a source cluster.
-
- * `total ops per sec` : total gets, sets, or deletes on a destination cluster by a
-   source cluster.
+![](images/xdcr-errors-missing-vbuckets.png)
 
 You can tune your XDCR parameters by using the administration REST API. See
 [Viewing Internal XDCR
@@ -2973,8 +2946,8 @@ Settings](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-internal-sett
 
 ### Cancelling Replication
 
-You can cancel replication at any time by clicking **Unhandled:** `[:unknown-tag
-:guibutton]` next to the active replication that is to be canceled.
+You can cancel replication at any time by clicking `Delete` next to the active
+replication that is to be canceled.
 
 A prompt will confirm the deletion of the configured replication. Once the
 replication has been stopped, replication will cease on the originating cluster
@@ -2984,14 +2957,99 @@ Canceled replications that were terminated while the replication was still
 active will be displayed within the `Past Replications` section of the
 `Replications` section of the web console.
 
-<a id="couchbase-admin-xdcr-rest-crossref"></a>
+<a id="couchbase-admin-tasks-xdcr-functionality"></a>
 
-### Modifying XDCR Settings via REST
+### Behavior and Limitations
 
-There are several Couchbase REST-API endpoints you can use to modify settings
-used in XDCR. Some of these settings are references used in XDCR and some of
-these settings will change XDCR behavior or performance. The following are
-references to these endpoints:
+ * **Network and System Outages**
+
+    * XDCR is resilient to intermittent network failures. In the event that the
+      destination cluster is unavailable due to a network interruption, XDCR will
+      pause replication and will then retry the connection to the cluster every 30
+      seconds. Once XDCR can successfully reconnect with a destination cluster, it
+      will resume replication. In the event of a more prolonged network failure where
+      the destination cluster is unavailable for more than 30 seconds, a source
+      cluster will continue polling the destination cluster which may result in
+      numerous errors over time. In this case, you should delete the replication in
+      Couchbase Web Console, fix the system issue, then re-create the replication. The
+      new XDCR replication will resume replicating items from where the old
+      replication had been stopped.
+
+    * Your configurations will be retained over host restarts and reboots. You do not
+      need to re-configure your replication configuration in the event of a system
+      failure.
+
+ * **Document Handling**
+
+    * XDCR does not replicate views and view indexes; you must manually exchange view
+      definitions between clusters and re-generate the index on the destination
+      cluster.
+
+    * Non UTF-8 encodable document IDs on the source cluster are automatically
+      filtered out and logged and are not transferred to the remote cluster.
+
+ * **Flush Requests**
+
+   Flush requests to delete the entire contents of bucket are not replicated to the
+   remote cluster. Performing a flush operation will only delete data on the local
+   cluster. Flush is disabled if there is an active outbound replica stream
+   configured.
+
+<a id="couchbase-xdcr-conflict-resolution"></a>
+
+### Conflict Resolution in XDCR
+
+XDCR automatically performs conflict resolution for different document versions
+on source and destination clusters. The algorithm is designed to consistently
+select the same document on either a source or destination cluster. For each
+stored document, XDCR perform checks of metadata to resolve conflicts. It checks
+the following:
+
+ * Numerical sequence, which is incremented on each mutation
+
+ * CAS value
+
+ * Document flags
+
+ * Expiration (TTL) value
+
+If a document does not have the highest revision number, changes to this
+document will not be stored or replicated; instead the document with the highest
+score will take precedence on both clusters. Conflict resolution is automatic
+and does not require any manual correction or selection of documents.
+
+By default XDCR fetches metadata twice from every document before it replicates
+the document at a destination cluster. XDCR fetches metadata on the source
+cluster and looks at the number of revisions for a document. It compares this
+number with the number of revisions on the destination cluster and the document
+with more revisions is considered the 'winner.'
+
+If XDCR determines a document from a source cluster will win conflict
+resolution, it puts the document into the replication queue. If the document
+will lose conflict resolution because it has a lower number of mutations, XDCR
+will not put it into the replication queue. Once the document reaches the
+destination, this cluster will request metadata once again to confirm the
+document on the destination has not changed since the initial check. If the
+document from the source cluster is still the 'winner' it will be persisted onto
+disk at the destination. The destination cluster will discard the document
+version with the lowest number of mutations.
+
+The key point is that the number of document mutations is the main factor that
+determines whether XDCR keeps a document version or not. This means that the
+document that has the most recent mutation may not be necessarily the one that
+wins conflict resolution. If both documents have the same number of mutations,
+XDCR selects a winner based on other document metadata. Precisely determining
+which document is the most recently changed is often difficult in a distributed
+system. The algorithm Couchbase Server uses does ensure that each cluster can
+independently reach a consistent decision on which document wins.
+
+<a id="changing-xdcr-settings"></a>
+
+### Changing XDCR Settings
+
+Besides Couchbase Web Console, you can use several Couchbase REST-API endpoints
+to modify XDCRsettings. Some of these settings are references used in XDCR and
+some of these settings will change XDCR behavior or performance:
 
  * Viewing, setting and removing destination cluster references, can be found in
    [Getting a Destination Cluster
@@ -3007,26 +3065,22 @@ references to these endpoints:
    and [Deleting a Destination Cluster
    Reference](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-deleting-ref).
 
- * Changing XDCR internal settings via REST can be found in. The most important
-   settings you may want to change is `xdcrMaxConcurrentReps` which is the number
-   of concurrent replications per Couchbase Server instance. By default the setting
-   is 32 concurrent replication streams. You may to decrease this setting if your
-   destination cluster cannot keep up with the source cluster replications, or you
-   can increase it if you are certain your source and destination clusters have the
-   CPU to support this increased load. See [Viewing Internal XDCR
+ * Concurrent replications, which is the number of concurrent replications per
+   Couchbase Server instance. See [Viewing Internal XDCR
    Settings](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-internal-settings).
 
-<a id="couchbase-admin-xdcr-retry"></a>
+For the XDCR retry interval you can provide an environment variable or make a
+PUT request. By default if XDCR is unable to replicate for any reason like
+network failures, it will stop and try to reach the remote cluster every 30
+seconds if the network is back, XDCR will resume replicating. You can change
+this default behavior by changing an environment variable or by changing the
+server parameter `xdcr_failure_restart_interval` with a PUT request:
 
-### Changing the XDCR Retry Setting
+Note that if you are using XDCR on multiple nodes in cluster and you want to
+change this setting throughout the cluster, you will need to perform this
+operation on every node in the cluster.
 
-By default if XDCR is unable to replicate for any reason like network failures,
-it will stop and try to reach the remote cluster every 30 seconds if the network
-is back, XDCR will resume replicating. You can change this default by changing
-an environment variable or by changing the server parameter
-`xdcr_failure_restart_interval`.
-
- * **Unhandled:** `[:unknown-tag :sidebar]` By an environment variable:
+ * By an environment variable:
 
     ```
     shell>    export XDCR_FAILURE_RESTART_INTERVAL=60
@@ -3142,131 +3196,6 @@ For more information in general about using Couchbase Server in the cloud, see
 [Using Couchbase in the
 Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud).
 
-<a id="couchbase-admin-tasks-xdcr-functionality"></a>
-
-### Understanding XDCR Behavior
-
-When you provide your settings and preferences for XDCR, you be aware of the
-following behavior and functions.
-
- * **General Settings and Functions**
-
-    * Replication is configured on a bucket basis. If you want to replicate data from
-      all buckets in a cluster, you should individually configure each bucket
-      replication.
-
-    * Only document changes that occurred since the previous replication will be
-      replicated to the destination cluster. Couchbase Server uses checkpoints on
-      individual vBuckets used during replication so that only the changes since the
-      last checkpoint are transferred when replication is restarted.
-
- * **Cluster Configurations**
-
-    * Replication is unidirectional from one cluster to another. To configure
-      bidirectional replication between two clusters, you need to provide settings for
-      two separate replication streams. One stream replicates changes from Cluster A
-      to Cluster B, another stream replicates changes from Cluster B to Cluster A.
-
-    * You do not need to provide identical configurations for each cluster; you can
-      have a different number of nodes in each cluster, and different RAM and
-      persistence configurations. XDCR is also *cluster-aware* ; this means that if a
-      node in a source or destination cluster is no longer available, XDCR can
-      retrieve updated cluster information and continue replication using the
-      available nodes.
-
-    * All nodes within each cluster must be configured to communicate with all the
-      nodes on the destination cluster. XDCR will use any node in a cluster to
-      replicate between the two clusters.
-
-    * Couchbase Server versions and platforms, must match. If you want to replicate
-      from a Linux-based cluster, you need to do so with another Linux-based cluster,
-      and so forth.
-
-    * When you specify a source cluster, all XDCR replication and configuration will
-      be driven by the source cluster. When XDCR replicates information from Cluster A
-      to Cluster B, Cluster A is responsible for determining the documents that must
-      be replicated.
-
-    * XDCR performs replication directly between the vBuckets on individual nodes for
-      the configured bucket. All nodes within each cluster are therefore directly
-      responsible for the exchange of information between the two clusters.
-
-    * When XDCR performs replication, it exchanges data between clusters over TCP/IP
-      port 8092; Couchbase Server uses TCP/IP port 8091 to exchange cluster
-      configuration information.
-
- * **Network and System Outages**
-
-    * XDCR is resilient to intermittent network failures. In the event that the
-      destination cluster is unavailable due to a network interruption, XDCR will
-      pause replication and will then retry the connection to the cluster every 30
-      seconds. Once XDCR can successfully reconnect with a destination cluster, it
-      will resume replication.
-
-    * In the event of a more prolonged network failure where the destination cluster
-      is unavailable for more than 30 seconds, a source cluster will continue polling
-      the destination cluster which may result in numerous errors over time. In this
-      case, you should delete the replication in Couchbase Web Console, fix the system
-      issue, then re-create the replication. The new XDCR replication will resume
-      replicating items from where the old replication had been stopped.
-
-    * Your configurations will be retained over host restarts and reboots. You do not
-      need to re-configure your replication configuration in the event of a system
-      failure.
-
- * **Document Handling, and Conflict Resolution**
-
-    * XDCR replicates data only after a document has been written to disk. Documents
-      in RAM that have not been persisted to disk will not be replicated.
-
-    * When possible, multiple changes to the same document will be replicated as only
-      one change to help reduce the quantity of exchanged data and reduce the overall
-      network bandwidth required for replication.
-
-    * XDCR does not replicate views and view indexes; you must manually exchange view
-      definitions between clusters and re-generate the index on the destination
-      cluster.
-
-    * Because the same document can be updated on the source and destination clusters,
-      XDCR provides automatic conflict resolution to compare the documents and
-      determine which document contains the most recent and valid change.
-
-    * Non UTF-8 encodable document IDs on the source cluster are automatically
-      filtered out and logged and are not transferred to the remote cluster.
-
-    * XDCR automatically performs conflict resolution between the source and
-      destination clusters and is designed to ensure that changes to individual
-      documents are replicated successfully. For each stored document, XDCR looks at
-      the following items for document metadata to create a check value to resolve
-      conflicts:
-
-       * Numerical sequence, which is incremented on each mutation
-
-       * CAS value
-
-       * Document flags
-
-       * Expiration (TTL) value
-
-      During conflict resolution, XDCR sequentially checks the values until it
-      identifies the document with the highest value. XDCR will use this version of
-      the document for replication. The algorithm is designed to consistently select
-      the same document on either a source or destination cluster.
-
-      If a changed document does not have the highest revision number, changes to this
-      document will not be stored or replicated; instead the document with the highest
-      score will take precedence and be used. Revision control is automatic and does
-      not require any manual correction or selection of documents.
-
- * **Flush Requests**
-
-   Flush requests to delete the entire contents of bucket are not replicated to the
-   remote cluster. Performing a flush operation will only delete data on the local
-   cluster.
-
-   The Flush operation is disabled if there is an active outbound replica stream
-   configured.
-
 <a id="couchbase-admin-tasks-quotas"></a>
 
 ## Changing Couchbase Quotas
@@ -3344,8 +3273,8 @@ To change the disk path of the existing node, the recommended sequence is:
  1. Perform a rebalance operation, see [Starting a
     Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-rebalancing).
 
- 1. Configure the new disk path, either by using the REST API (see [Configuring Disk
-    and Index Path for a
+ 1. Configure the new disk path, either by using the REST API (see [Configuring
+    Index Path for a
     Node](couchbase-manual-ready.html#couchbase-admin-restapi-provisioning-diskpath)
     ), using the command-line (seecluster initializationfor more information).
 

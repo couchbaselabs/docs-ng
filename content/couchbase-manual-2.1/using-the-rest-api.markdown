@@ -341,8 +341,8 @@ node.
 
 ### Provisioning a Node
 
-Creating a new cluster or adding a node to a cluster is called **Unhandled:**
-`[:unknown-tag :firstterm]`. You need to:
+Creating a new cluster or adding a node to a cluster is called `provisioning`.
+You need to:
 
  * Create a new node by installing a new Couchbase Server.
 
@@ -1016,8 +1016,25 @@ To create a new Couchbase bucket, or edit the existing parameters for an
 existing bucket, you can send a `POST` to the REST API endpoint. You can also
 use this same endpoint to get a list of buckets that exist for a cluster.
 
-**Unhandled:** `[:unknown-tag :sidebar]`  **Unhandled:** `[:unknown-tag
-:sidebar]`<a id="table-couchbase-admin-restapi-creating-buckets"></a>
+Be aware that when you edit bucket properties, if you do not specify an existing
+bucket property Couchbase Server may reset this the property to be the default.
+So even if you do not intend to change a certain property when you edit a
+bucket, you should specify the existing value to avoid this behavior.
+
+This REST API will return a successful response when preliminary files for a
+data bucket are created on one node. Because you may be using a multi-node
+cluster, bucket creation may not yet be complete for all nodes when a response
+is sent. Therefore it is possible that the bucket is not available for
+operations immediately after this REST call successful returns.
+
+To ensure a bucket is available the recommended approach is try to read a key
+from the bucket. If you receive a 'key not found' error, or the document for the
+key, the bucket exists and is available to all nodes in a cluster. You can do
+this via a Couchbase SDK with any node in the cluster. See [Couchbase Developer
+Guide 2.0, Performing Connect, Set and
+Get](http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
+
+<a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
 **Method**                    | `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
 ------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2436,8 +2453,16 @@ By default this functionality is enabled; although it is possible to disable
 this functionality via the REST API, under certain circumstances described
 below.
 
-**Unhandled:** `[:unknown-tag :sidebar]` To disable this feature, provide a
-request similar to the following:
+Be aware that rebalance may take significantly more time if you have implemented
+views for indexing and querying. While this functionality is enabled by default,
+if rebalance time becomes a critical factor for your application, you can
+disable this feature via the REST API.
+
+We do not recommend you disable this functionality for applications in
+production without thorough testing. To do so may lead to unpredictable query
+results during rebalance.
+
+To disable this feature, provide a request similar to the following:
 
 
 ```

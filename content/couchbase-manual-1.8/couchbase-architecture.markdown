@@ -559,12 +559,11 @@ and determines Server D now owns vB8. The get operation is sent to Server D.
 ### vBuckets in a world of memcached clients
 
 The interface between clients and your Couchbase Cluster will largely depend on
-the client environment you are using. For the majority of client interfaces, a
-**Unhandled:** `[:unknown-tag :quote]` client is available that can talk
-natively to the Couchbase Cluster. This provides the client with a number of
-advantages in terms of the interface and sharing of information between the
-cluster and the client, and results in better overall performance and
-availability in failover situations.
+the client environment you are using. For the majority of client interfaces,
+asmartclient is available that can talk natively to the Couchbase Cluster. This
+provides the client with a number of advantages in terms of the interface and
+sharing of information between the cluster and the client, and results in better
+overall performance and availability in failover situations.
 
 Although you can continue to use `memcached` compatible clients, there are
 significant performance disadvantages to this deployment model, as it requires

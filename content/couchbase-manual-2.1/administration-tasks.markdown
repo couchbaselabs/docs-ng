@@ -23,10 +23,10 @@ These administration tasks include:
 
    You can add or remove multiple nodes from your cluster at the same time. Once
    the new node arrangement has been configured, the process redistributing the
-   data and bringing the nodes into the cluster is called **Unhandled:**
-   `[:unknown-tag :firstterm]`. The rebalancing process moves the data around the
-   cluster to match the new structure, and can be performed live while the cluster
-   is still servicing application data requests.
+   data and bringing the nodes into the cluster is called `rebalancing`. The
+   rebalancing process moves the data around the cluster to match the new
+   structure, and can be performed live while the cluster is still servicing
+   application data requests.
 
    More information on increasing and reducing your cluster size and performing a
    rebalance operation is available in
@@ -450,12 +450,23 @@ time and the interval for the process. You may want to do this, for instance, if
 you have a peak time for your application when you want the keys used during
 this time to be quickly available after server restart.
 
-**Unhandled:** `[:unknown-tag :sidebar]` By default the scanner process will run
-once every 24 hours with a default initial start time of 2:00 AM UTC. This means
-after you install a new Couchbase Server 2.0 instance or restart the server, by
-default the scanner will run every 24- hour time period at 2:00 AM UTC by
-default. To change the time interval when the access scanner process runs to
-every 20 minutes:
+Note if you want to change this setting for an entire Couchbase cluster, you
+will need to perform this command on per-node and per-bucket in the cluster. By
+default any setting you change with `cbepctl` will only be for the named bucket
+at the specific node you provide in the command.
+
+This means if you have a data bucket that is shared by two nodes, you will
+nonetheless need to issue this command twice and provide the different host
+names and ports for each node and the bucket name. Similarly, if you have two
+data buckets for one node, you need to issue the command twice and provide the
+two data bucket names. If you do not specify a named bucket, it will apply to
+the default bucket or return an error if a default bucket does not exist.
+
+By default the scanner process will run once every 24 hours with a default
+initial start time of 2:00 AM UTC. This means after you install a new Couchbase
+Server 2.0 instance or restart the server, by default the scanner will run every
+24- hour time period at 2:00 AM UTC by default. To change the time interval when
+the access scanner process runs to every 20 minutes:
 
 
 ```
@@ -957,9 +968,8 @@ Failover means that Couchbase Server removes the node from a cluster and makes
 replicated data at other nodes available for client requests. Because Couchbase
 Server provides data replication within a cluster, the cluster can handle
 failure of one or more nodes without affecting your ability to access the stored
-data. In the event of a node failure, you can manually initiate a **Unhandled:**
-`[:unknown-tag :firstterm]` status for the node in Web Console and resolve the
-issues.
+data. In the event of a node failure, you can manually initiate a `failover`
+status for the node in Web Console and resolve the issues.
 
 Alternately you can configure Couchbase Server so it will *automatically* remove
 a failed node from a cluster and have the cluster operate in a degraded mode. If
@@ -1366,9 +1376,13 @@ There are a number of methods for performing a backup:
    [To restore, you need to use thefile
    copy](couchbase-manual-ready.html#couchbase-backup-restore-filecopy) method.
 
-**Unhandled:** `[:unknown-tag :sidebar]` For detailed information on the restore
-processes and options, see [Restoring Using
-cbrestore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
+Due to the active nature of Couchbase Server it is impossible to create a
+complete in-time backup and snapshot of the entire cluster. Because data is
+always being updated and modified, it would be impossible to take an accurate
+snapshot.
+
+For detailed information on the restore processes and options, see [Restoring
+Using cbrestore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
 
 It is a best practice to backup and restore your entire cluster to minimize any
 inconsistencies in data. Couchbase is always per-item consistent, but does not
@@ -1415,8 +1429,17 @@ The `cbbackup` command takes the following arguments:
 cbbackup [options] [source] [backup_dir]
 ```
 
-**Unhandled:** `[:unknown-tag :sidebar]` Where the arguments are as described
-below:
+The `cbbackup` tool is located within the standard Couchbase command-line
+directory. See [Command-line Interface for
+Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+
+Be aware that `cbbackup` does not support external IP addresses. This means that
+if you install Couchbase Server with the default IP address, you cannot use an
+external hostname to access it. To change the address format into a hostname
+format for the server, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+Where the arguments are as described below:
 
  * `[options]`
 
@@ -1995,8 +2018,7 @@ Couchbase Server is designed to actively change the number of nodes configured
 within the cluster to cope with these requirements, all while the cluster is up
 and running and servicing application requests. The overall process is broken
 down into two stages; the addition and/or removal of nodes in the cluster, and
-the **Unhandled:** `[:unknown-tag :firstterm]` of the information across the
-nodes.
+the `rebalancing` of the information across the nodes.
 
 The addition and removal process merely configures a new node into the cluster,
 or marks a node for removal from the cluster. No actual changes are made to the
@@ -2192,8 +2214,11 @@ Rebalancing a cluster involves marking nodes to be added or removed from the
 cluster, and then starting the rebalance operation so that the data is moved
 around the cluster to reflect the new structure.
 
- * **Unhandled:** `[:unknown-tag :caution]` For information on adding nodes to your
-   cluster, see [Adding a Node to a
+Until you complete a rebalance, you should avoid using the failover
+functionality since that may result in loss of data that has not yet been
+replicated.
+
+ * For information on adding nodes to your cluster, see [Adding a Node to a
    Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-add).
 
  * For information on removing nodes to your cluster, see [Removing a Node from a
@@ -2428,9 +2453,9 @@ adding data to different nodes in the process.
 
 If Couchbase Server identifies that a rebalance is required, either through
 explicit addition or removal, or through a failover, then the cluster is in a
-**Unhandled:** `[:unknown-tag :firstterm]` state. This does not affect the
-cluster operation, it merely indicates that a rebalance operation is required to
-move the cluster into its configured state. To start a rebalance:
+`pending rebalance` state. This does not affect the cluster operation, it merely
+indicates that a rebalance operation is required to move the cluster into its
+configured state. To start a rebalance:
 
  * **Using the Web Console**
 
@@ -2777,9 +2802,9 @@ For `memcached` buckets:
 ### Rebalance Behind-the-Scenes
 
 The rebalance process is managed through a specific process called the
-**Unhandled:** `[:unknown-tag :firstterm]`. This examines the current vBucket
-map and then combines that information with the node additions and removals in
-order to create a new vBucket map.
+`orchestrator`. This examines the current vBucket map and then combines that
+information with the node additions and removals in order to create a new
+vBucket map.
 
 The orchestrator starts the process of moving the individual vBuckets from the
 current vBucket map to the new vBucket structure. The process is only started by
@@ -2789,10 +2814,10 @@ vBucket map match the current situation.
 
 Each vBucket is moved independently, and a number of vBuckets can be migrated
 simultaneously in parallel between the different nodes in the cluster. On each
-destination node, a process called **Unhandled:** `[:unknown-tag :firstterm]` is
-started, which uses the TAP system to request that all the data is transferred
-for a single vBucket, and that the new vBucket data will become the active
-vBucket once the migration has been completed.
+destination node, a process called `ebucketmigrator` is started, which uses the
+TAP system to request that all the data is transferred for a single vBucket, and
+that the new vBucket data will become the active vBucket once the migration has
+been completed.
 
 While the vBucket migration process is taking place, clients are still sending
 data to the existing vBucket. This information is migrated along with the
@@ -3387,7 +3412,11 @@ seconds if the network is back, XDCR will resume replicating. You can change
 this default behavior by changing an environment variable or by changing the
 server parameter `xdcr_failure_restart_interval` with a PUT request:
 
- * **Unhandled:** `[:unknown-tag :sidebar]` By an environment variable:
+Note that if you are using XDCR on multiple nodes in cluster and you want to
+change this setting throughout the cluster, you will need to perform this
+operation on every node in the cluster.
+
+ * By an environment variable:
 
     ```
     shell>    export XDCR_FAILURE_RESTART_INTERVAL=60

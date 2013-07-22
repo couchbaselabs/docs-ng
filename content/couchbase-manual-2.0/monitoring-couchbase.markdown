@@ -8,7 +8,7 @@ before starting your monitoring procedure.
 
 ## Underlying Server Processes
 
-There are several different server processes that constant run in Couchbase
+There are several different server processes that constantly run in Couchbase
 Server whether or not the server is actively handling reads/writes or handling
 other operations from a client application. Right after you start up a node, you
 may notice a spike in CPU utilization, and the utilization rate will plateau at

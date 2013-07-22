@@ -247,12 +247,12 @@ following information is provided in each column:
  * `Disk Fetches/sec` shows the number of operations required to fetch items from
    disk.
 
- * Clicking the **Unhandled:** `[:unknown-tag :guibutton]` button opens the basic
-   bucket information summary. For more information, see [Bucket
+ * Clicking the `Information` button opens the basic bucket information summary.
+   For more information, see [Bucket
    Information](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-info).
 
-To create a new data bucket, click the **Unhandled:** `[:unknown-tag
-:guibutton]`. See [Creating and Editing Data
+To create a new data bucket, click the `Create New Data Bucket`. See [Creating
+and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit)
 for details on creating new data buckets.
 
@@ -316,10 +316,9 @@ as shown in the figure below.
 
    You can disable replication by setting the number of replica copies to zero (0).
 
-Once you selected the options for the new bucket, you can click **Unhandled:**
-`[:unknown-tag :guibutton]` button to create and activate the bucket within your
-cluster. You can cancel the bucket creation using the **Unhandled:**
-`[:unknown-tag :guibutton]` button.
+Once you selected the options for the new bucket, you can click `Create` button
+to create and activate the bucket within your cluster. You can cancel the bucket
+creation using the `Cancel` button.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editcb"></a>
 
@@ -335,8 +334,7 @@ You can edit a limited number of settings for an existing Couchbase bucket:
 
 The bucket name cannot be modified.
 
-To delete the configured bucket entirely, click the **Unhandled:**
-`[:unknown-tag :guibutton]` button.
+To delete the configured bucket entirely, click the `Delete` button.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editmc"></a>
 
@@ -351,15 +349,13 @@ existing bucket:
    Cluster configuration. You can reduce the amount of memory allocated to a bucket
    if that space is not already in use.
 
-You can delete the bucket entirely by clicking the **Unhandled:** `[:unknown-tag
-:guibutton]` button.
+You can delete the bucket entirely by clicking the `Delete` button.
 
 You can empty a Memcached bucket of all the cached information that it stores by
-using the **Unhandled:** `[:unknown-tag :guibutton]` button.
+using the `Flush` button.
 
-Using the **Unhandled:** `[:unknown-tag :guibutton]` button removes all the
-objects stored in the Memcached bucket. Using this button on active Memcached
-buckets may delete important information.
+Using the `Flush` button removes all the objects stored in the Memcached bucket.
+Using this button on active Memcached buckets may delete important information.
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
@@ -373,8 +369,8 @@ as shown in the figure below.
 
 ![](images/web-console-bucket-info.png)
 
-You can edit the bucket information by clicking the **Unhandled:**
-`[:unknown-tag :guibutton]` button within the bucket information display.
+You can edit the bucket information by clicking the `Edit` button within the
+bucket information display.
 
 <a id="couchbase-admin-web-console-data-buckets-individual"></a>
 
@@ -852,8 +848,7 @@ instance.
 
 You can enable or disable Update Notifications by checking the `Enable software
 update notifications` checkbox within the `Update Notifications` screen. Once
-you have changed the option, you must click **Unhandled:** `[:unknown-tag
-:guibutton]` to record the change.
+you have changed the option, you must click `Save` to record the change.
 
 If update notifications are disabled then the Update Notifications screen will
 only notify you of your currently installed version, and no alert will be
@@ -986,10 +981,10 @@ Time        | Time and date when the event occurred.
 
 You can run a diagnostic report to get a snapshot of your deployment, including
 version information, the state of the cluster, and log output. To generate a
-diagnostic report: Under Monitor in the left-hand navigation menu, click
-**Unhandled:** `[:unknown-tag :guibutton]`. Click **Unhandled:** `[:unknown-tag
-:guibutton]` ( `http://hostname:8091/diag` ). The Couchbase Web Console opens a
-new browser window and downloads the text of the diagnostic report.
+diagnostic report: Under Monitor in the left-hand navigation menu, click `Log`.
+Click `Generate Diagnostic Report` ( `http://hostname:8091/diag` ). The
+Couchbase Web Console opens a new browser window and downloads the text of the
+diagnostic report.
 
 <a id="couchbase-admin-web-console-update-notifications"></a>
 

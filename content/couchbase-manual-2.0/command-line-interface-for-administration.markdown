@@ -19,7 +19,6 @@ As of Couchbase Server 2.0, the following publicly available tools have been
 renamed, consolidated or removed. This is to provide better usability, and
 reduce the number of commands required to manage Couchbase Server:
 
-**Unhandled thing here**
 By default, the command-line tools are installed into the following locations on
 each platform:
 
@@ -92,16 +91,16 @@ Tool                         | Server Versions | Description/Status
 ## couchbase-cli Tool
 
 You can find this tool in the following locations, depending upon your platform.
-Be aware that this tool is known as a **cluster-wide operation**, this means
-when you run the command it will impact and entire cluster. For instance, if you
-use this tool to create a data bucket, it will create a bucket that all nodes in
-the cluster have access to.
+This tool can perform operations on an entire cluster, on a bucket shared across
+an entire cluster, or on a single node in a cluster. For instance, if you use
+this tool to create a data bucket, it will create a bucket that all nodes in the
+cluster have access to.
 
 <a id="table-couchbase-admin-cmdline-couchbase-cli-locs"></a>
 
 **Linux**    | `/opt/couchbase/bin/couchbase-cli`                                                      
 -------------|-----------------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\couchbase\server\bin\couchbase-cli.exe`                               
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\couchbase-cli.exe`                               
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/couchbase-cli`
 
 This tool provides access to various management operations for Couchbase Server
@@ -109,13 +108,12 @@ clusters, nodes and buckets. The basic usage format is:
 
 
 ```
-couchbase-cli COMMAND CLUSTER [OPTIONS]
+couchbase-cli COMMAND [BUCKET_NAME] CLUSTER [OPTIONS]
 ```
 
 Where:
 
- * `COMMAND` is a command from
-   [](couchbase-manual-ready.html#couchbase-admin-cmdline-couchbase-commands)
+ * `COMMAND` is a command listed below.
 
  * `CLUSTER` is a cluster specification. You can use either:
 
@@ -152,6 +150,8 @@ Command            | Description
 `bucket-flush`     | Flush a given bucket                               
 `help`             | Show longer usage/help and examples                
 
+Administration — `couchbase` Tool commands:
+
 <a id="couchbase-admin-cmdline-couchbase-commands-stdopts"></a>
 
 Option                               | Command                                   | Description                                                                                     
@@ -176,21 +176,24 @@ Option                               | Command                                  
 `--bucket-ramsize=RAMSIZEMB`         | `bucket*`                                 | RAM quota in MB                                                                                 
 `--bucket-replica=COUNT`             | `bucket*`                                 | Replication count                                                                               
 
+You can also perform many of these same settings using the REST-API, see [Using
+the REST API](couchbase-manual-ready.html#couchbase-admin-restapi).
+
 <a id="couchbase-admin-cli-flushing"></a>
 
 ### Flushing Buckets with couchbase-cli
 
 **Enabling Flush of Buckets:**
 
-**When you want to flush a data bucket you must first enable this option then
-actually issue the command to flush the data bucket. We do not advise that you
+When you want to flush a data bucket you must first enable this option then
+actually issue the command to flush the data bucket. *We do not advise that you
 enable this option if your data bucket is in a production environment. Be aware
-that this is one of the preferred methods for enabling data bucket flush.** The
+that this is one of the preferred methods for enabling data bucket flush.* The
 other option available to enable data bucket flush is to use the Couchbase Web
 Console, see [Creating and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
-You can enable this options when you actually create the data bucket, or when
-you edit the bucket properties:
+You can enable this option when you actually create the data bucket, or when you
+edit the bucket properties:
 
 
 ```
@@ -598,7 +601,6 @@ get\_stats\_cmd         | Servicing get\_stats requests
 set\_vb\_cmd            | Servicing vbucket set state commands                                     
 item\_alloc\_sizes      | Item allocation size counters (in bytes)                                 
 notify\_io              | Time for waking blocked connections                                      
-set\_vb\_cmd            | Servicing vbucket set state commands                                     
 storage\_age            | Time since most recently persisted item was initially queued for storage.
 tap\_mutation           | Time spent servicing tap mutations                                       
 
@@ -722,10 +724,10 @@ You use the `cbstats tapagg` to get statistics from named tap connections which
 are logically grouped and aggregated together by prefixes.
 
 For example, if all of your tap connections started with `rebalance_` or
-`replication_`, you could call `stats tapagg _` to request stats grouped by the
-prefix starting with `_`. This would return a set of statistics for `rebalance`
-and a set for `replication`. The following are possible values returned by
-`cbstats tapagg` :
+`replication_`, you could call `cbstats tapagg _` to request stats grouped by
+the prefix starting with `_`. This would return a set of statistics for
+`rebalance` and a set for `replication`. The following are possible values
+returned by `cbstats tapagg` :
 
 \[prefix\]:count                | Number of connections matching this prefix
 --------------------------------|-------------------------------------------
@@ -748,7 +750,10 @@ configuration, memory and disk persistence behavior. This tool was formerly
 provided as the separate tools, `cbvbucketctl` and `cbflushctl` in Couchbase
 1.8.
 
-**Unhandled:** `[:unknown-tag :caution]`<a id="table-couchbase-admin-cmdline-cbepctl-locs"></a>
+Changes to the cluster configuration using `cbepctl` are not persisted over a
+cluster restart.
+
+<a id="table-couchbase-admin-cmdline-cbepctl-locs"></a>
 
 **Linux**    | `/opt/couchbase/bin/cbepctl`                                                      
 -------------|-----------------------------------------------------------------------------------
@@ -801,7 +806,7 @@ Parameter                      | Description
 
 <a id="couchbase-admin-cbepctl-disk-cleanup"></a>
 
-### Specifying Disk Cleanup Interval
+### Changing the Disk Cleanup Interval
 
 One of the most important use cases for the `cbepctl flush_param` is the set the
 time interval for disk cleanup in Couchbase Server 2.0. Couchbase Server does
@@ -1172,8 +1177,11 @@ If you choose the verbosity option, `-v` debugging information for
 `cbcollect_info`, it will gather statistics from an individual node in the
 cluster.
 
-**Unhandled:** `[:unknown-tag :sidebar]` The tool will create the following.log
-files in your named archive:
+This command will collect information from an individual Couchbase Server node.
+If you are experiencing problems with multiple nodes in a cluster, you may need
+to run it on all nodes in a cluster.
+
+The tool will create the following.log files in your named archive:
 
 <a id="table-couchbase-admin-cmdline-cbcollect_info"></a>
 
@@ -1208,8 +1216,13 @@ entire bucket, a single node, or a single bucket on a single functioning node.
 Your node or cluster needs to be functioning in order to create the backup.
 Couchbase Server will write a copy of data onto disk.
 
-**Unhandled:** `[:unknown-tag :sidebar]` Depending upon your platform, this tool
-is the following directories:
+Be aware that `cbbackup` does not support external IP addresses. This means that
+if you install Couchbase Server with the default IP address, you cannot use an
+external hostname to access it. To change the address format into a hostname
+format for the server, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+Depending upon your platform, this tool is the following directories:
 
 <a id="table-couchbase-admin-cmdline-cbbackup-locs"></a>
 
@@ -1229,8 +1242,8 @@ Where:
 
  * `[options]`
 
-   One or more options for the backup operation. See
-   [](couchbase-manual-ready.html#table-couchbase-admin-cmdline-cbbackup-options).
+   Same options available for `cbtransfer`, see [cbtransfer
+   Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer)
 
  * `[source]`
 
@@ -1244,22 +1257,6 @@ Where:
    directory must exist, and be empty, or the directory will be created. The parent
    directory must exist.
 
-A list of the options for the `cbbackup` are listed in the table below.
-
-<a id="table-couchbase-admin-cmdline-cbbackup-options"></a>
-
-Format                  | Description                                                                                               
-------------------------|-----------------------------------------------------------------------------------------------------------
-`-v`, `--verbose`       | Verbose logging of the progress. Using the option multpple times increases the amount of logging produced.
-`-t`, `--threads`       | Specify the number of concurrent threads to be used when performing the backup.                           
-`-n`, `--dry-run`       | Perform a dry run; validates parameters, files and configuration, but performs no backup.                 
-`-h`, `--help`          | Display help message and exit.                                                                            
-`--single-node`         | Backup only the single node, not the entire cluster.                                                      
-`-p`, `--password`      | REST password for the cluster or node.                                                                    
-`-u`, `--username`      | REST username for the cluster or node.                                                                    
-`-k`, `--key`           | Key name or regular expression to limit the items backed up.                                              
-`-b`, `--bucket-source` | Name of the bucket to be backed up.                                                                       
-
 This tool has several different options which you can use to:
 
  * Backup all buckets in an entire cluster,
@@ -1269,6 +1266,10 @@ This tool has several different options which you can use to:
  * Backup all buckets on a node in a cluster,
 
  * Backup one named buckets on a specified node,
+
+All command options for `cbbackup` are the same options available for
+`cbtransfer`. For a list of standard and special-use options, see [cbtransfer
+Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer).
 
 You can backup an entire cluster, which includes all of the data buckets and
 data at all nodes. This will also include all design documents; do note however
@@ -1331,8 +1332,8 @@ shell> cbbackup http://HOST:8091 /backups \
   -b bucket_name
 ```
 
-This final example shows you how you can specify keys that are backed up using
-the `- k` option. For example, to backup all keys from a bucket with the prefix
+This example shows you how you can specify keys that are backed up using the `-
+k` option. For example, to backup all keys from a bucket with the prefix
 'object':
 
 
@@ -1348,16 +1349,14 @@ and best practices for backup and restore of data with Couchbase Server, see
 [Backing Up Using
 cbbackup](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
 
-
-
 **Using cbbackup from Couchbase Server 2.0 with 1.8.x**
 
-Be aware that you can use `cbbackup` 2.x to backup data from a Couchbase 1.8.x
-cluster, including 1.8. To do so you use the same command options you use when
-you backup a 2.0 cluster except you provide it the hostname and port for the
-1.8.x cluster. You do not need to even install Couchbase Server 2.0 in order to
-use `cbbackup 2.x` to backup Couchbase Server 1.8.x. You can get a copy of the
-tool from the [Couchbase command-line tools GitHub
+You can use `cbbackup` 2.x to backup data from a Couchbase 1.8.x cluster,
+including 1.8. To do so you use the same command options you use when you backup
+a 2.0 cluster except you provide it the hostname and port for the 1.8.x cluster.
+You do not need to even install Couchbase Server 2.0 in order to use `cbbackup
+2.x` to backup Couchbase Server 1.8.x. You can get a copy of the tool from the
+[Couchbase command-line tools GitHub
 repository](https://github.com/couchbase/couchbase-cli). After you get the tool,
 go to the directory where you cloned the tool and perform the command. For
 instance:
@@ -1376,8 +1375,8 @@ bucket, backup the default bucket, or backup the data buckets associated with a
 single node.
 
 Be aware that you can also use the `cbrestore 2.0` tool to restore backup data
-onto a 1.8.x cluster. See **Couldn't resolve xref tag:
-couchbase-restore-1.8-with-2.0**.
+onto a 1.8.x cluster. See [cbrestore
+Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbrestore).
 
 <a id="couchbase-admin-cmdline-cbrestore"></a>
 
@@ -1406,8 +1405,9 @@ Where:
 
  * `[options]`
 
-   One or more options for the backup operation. See
-   [](couchbase-manual-ready.html#table-couchbase-admin-cmdline-cbrestore-options).
+   Command options for `cbrestore` are the same options for `cbtransfer`, see
+   [cbtransfer
+   Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer).
 
  * `[host:ip]`
 
@@ -1415,44 +1415,28 @@ Where:
 
  * `[source]`
 
-   Source file for the backup data. This in the directory created by `cbbackup`
-   when you performed the backup.
+   Source bucket name for the backup data. This is in the directory created by
+   `cbbackup` when you performed the backup.
 
  * `[destination]`
 
-   The destination bucket for the restored information. This is a node in an
+   The destination bucket for the restored information. This is a bucker in an
    existing cluster. If you restore the data to a single node in a cluster, provide
    the hostname and port for the node you want to restore to. If you restore an
    entire data bucket, provide the URL of one of the nodes within the cluster.
 
-A list of the options for the `cbrestore` are listed in the table below.
-
-<a id="table-couchbase-admin-cmdline-cbrestore-options"></a>
-
-Format                       | Description                                                                                               
------------------------------|-----------------------------------------------------------------------------------------------------------
-`-a`, `--add`                | Add the data to the existing bucket data, rather than using set and overwriting existing items.           
-`-p`, `--password`           | REST password for the cluster or node.                                                                    
-`-u`, `--username`           | REST username for the cluster or node.                                                                    
-`-i`, `--id`                 | Restore only items that match a specified vBucket ID.                                                     
-`-v`, `--verbose`            | Verbose logging of the progress. Using the option multpple times increases the amount of logging produced.
-`-t`, `--threads`            | Specify the number of concurrent threads to be used when performing the backup.                           
-`-n`, `--dry-run`            | Perform a dry run; validates parameters, files and configuration, but performs no backup.                 
-`-h`, `--help`               | Display help message and exit.                                                                            
-`-k`, `--key`                | Key name or regular expression to limit the items restored.                                               
-`-B`, `--bucket-destination` | Name of the bucket to write the restored data to.                                                         
-`-b`, `--bucket-source`      | Name of the bucket containing the data to be restored.                                                    
-
-
+All command options for `cbrestore` are the same options available for
+`cbtransfer`. For a list of standard and special-use options, see [cbtransfer
+Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer).
 
 **Using cbrestore from Couchbase Server 2.0 with 1.8.x**
 
-Be aware that you can use `cbrestore` 2.0 to backup data from a Couchbase 1.8.x
-cluster, including 1.8. To do so you use the same command options you use when
-you backup a 2.0 cluster except you provide it the hostname and port for the
-1.8.x cluster. You do not need to even install Couchbase Server 2.0 in order to
-use `cbrestore` 2.0 to backup Couchbase Server 1.8.x. You can get a copy of the
-tool from the [Couchbase command-line tools GitHub
+You can use `cbrestore` 2.0 to backup data from a Couchbase 1.8.x cluster,
+including 1.8. To do so you use the same command options you use when you backup
+a 2.0 cluster except you provide it the hostname and port for the 1.8.x cluster.
+You do not need to even install Couchbase Server 2.0 in order to use `cbrestore`
+2.0 to backup Couchbase Server 1.8.x. You can get a copy of the tool from the
+[Couchbase command-line tools GitHub
 repository](https://github.com/couchbase/couchbase-cli). After you get the tool,
 go to the directory where you cloned the tool and perform the command. For
 instance:
@@ -1483,24 +1467,24 @@ cbrestore /backups/backup-42 memcached://HOST:11211 \
     --bucket-source=sessions --bucket-destination=sessions2
 ```
 
-IF you want more information about using `cbbackup` 2.0 tool to backup data onto
-a 1.8.x cluster. See **Couldn't resolve xref tag:
-couchbase-backup-1.8-with-2.0**.
+If you want more information about using `cbbackup` 2.0 tool to backup data onto
+a 1.8.x cluster. See [cbbackup
+Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
 
-For more information on using `cbrestore`, see [Restoring using cbrestore
+For general information on using `cbbackup`, see [Restoring using cbrestore
 tool](couchbase-manual-ready.html#couchbase-backup-restore-cbrestore).
 
 <a id="couchbase-admin-cmdline-cbtransfer"></a>
 
 ## cbtransfer Tool
 
-You can use this tool to create a copy of data from a node which is completely
-down; then you can load the data into a live cluster. Unlike `cbbackup`, this
-tool can create a copy of data from a node that no longer running. This tool is
-the underlying, generic data transfer tool that `cbbackup` and `cbrestore` are
-built upon. It is a lightweight extract-transform-load (ETL) tool that can move
-data from a source to a destination. The source and destination parameters are
-similar to URLs or file paths.
+You use this tool to transfer data and design documents between two clusters or
+from a file to a cluster. With this tool you can also create a copy of data from
+a node that no longer running. This tool is the underlying, generic data
+transfer tool that `cbbackup` and `cbrestore` are built upon. It is a
+lightweight extract-transform-load (ETL) tool that can move data from a source
+to a destination. The source and destination parameters are similar to URLs or
+file paths.
 
 <a id="table-couchbase-admin-cmdline-cbtransfer-locs"></a>
 
@@ -1509,71 +1493,60 @@ similar to URLs or file paths.
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
-The following is the standard command format:
+The following is the syntax and examplesfor this command:
 
 
 ```
-Usage: cbtransfer [options] source destination
+> ./cbtransfer [options] source destination
 
-Transfer couchbase cluster data from source to destination.
 
 Examples:
   cbtransfer http://SOURCE:8091 /backups/backup-42
   cbtransfer /backups/backup-42 http://DEST:8091
   cbtransfer /backups/backup-42 couchbase://DEST:8091
   cbtransfer http://SOURCE:8091 http://DEST:8091
-
-Options:
-  -h, --help            show this help message and exit
-  -b BUCKET_SOURCE, --bucket-source=BUCKET_SOURCE
-                        single bucket from source to transfer
-  -B BUCKET_DESTINATION, --bucket-destination=BUCKET_DESTINATION
-                        when --bucket-source is specified, overrides the
-                        destination bucket name; this allows you to transfer
-                        to a different bucket; defaults to the same as the
-                        bucket-source
-  -i ID, --id=ID        allow only items that match a vbucketID
-  -k KEY, --key=KEY     allow only items with keys that match a regexp
-  -n, --dry-run         no actual work; just validate parameters, files,
-                        connectivity and configurations
-  -u USERNAME, --username=USERNAME
-                        REST username for cluster or server node
-  -p PASSWORD, --password=PASSWORD
-                        REST password for cluster or server node
-  -t THREADS, --threads=THREADS
-                        number of concurrent workers
-  -v, --verbose         verbose logging; more -v's provide more verbosity
-  -x EXTRA, --extra=EXTRA
-                        extra, uncommon config parameters;
-                        comma-separated key=val(,key=val)* pairs
-  --single-node         use a single server node from the source only,
-                        not all server nodes from the entire cluster;
-                        this single server node is defined by the source URL
-  --source-vbucket-state=SOURCE_VBUCKET_STATE
-                        only transfer from source vbuckets in this state,
-                        such as 'active' (default) or 'replica',
-                        if supported by the source class
-  --destination-vbucket-state=DESTINATION_VBUCKET_STATE
-                        only transfer to destination vbuckets in this state,
-                        such as 'active' (default) or 'replica',
-                        if supported by the destination class
-  --destination-operation=DESTINATION_OPERATION
-                        use a given operation (set, add, get) on the
-                        destination, if supported
-
-  Available extra config parameters (-x):
-    batch_max_bytes=400000 (max # of msg value bytes per batch);
-    batch_max_size=1000 (max # msgs per batch); cbb_max_mb=100000 (max #
-    of msg value MB per *.cbb file); max_retry=10 (max # of sequential
-    retries); nmv_retry=1 (1 to retry after NOT_MY_VBUCKET replies);
-    recv_min_bytes=4096 (amount of bytes for every recv() call); report=5
-    (# batches before updating progress bar); report_full=2000 (# batches
-    before emitting progress info); try_xwm=1 (1 to first try XXX-WITH-
-    META commands)
+  cbtransfer 1.8_COUCHBASE_BUCKET_MASTER_DB_SQLITE_FILE http://DEST:8091
 ```
 
-The most important way you can use this tool is to transfer data from a failed
-Couchbase node to a node or cluster which is functioning:
+The following are the standard command options which you can also view with
+`cbtransfer -h` :
+
+<a id="table-couchbase-admin-cbtranfer-options"></a>
+
+-h, --help                                                       | Command help                                                                                                                                                                                                                 
+-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-b BUCKET\_SOURCE                                                | Single named bucket from source cluster to transfer                                                                                                                                                                          
+-B BUCKET\_DESTINATION, --bucket-destination=BUCKET\_DESTINATION | Single named bucket on destination cluster which receives transfer. This allows you to transfer to a bucket with a different name as your source bucket. If you do not provide defaults to the same name as the bucket-source
+-i ID, --id=ID                                                   | Transfer only items that match a vbucketID                                                                                                                                                                                   
+-k KEY, --key=KEY                                                | Transfer only items with keys that match a regexp                                                                                                                                                                            
+-n, --dry-run                                                    | No actual transfer; just validate parameters, files, connectivity and configurations                                                                                                                                         
+-u USERNAME, --username=USERNAME                                 | REST username for source cluster or server node                                                                                                                                                                              
+-p PASSWORD, --password=PASSWORD                                 | REST password for cluster or server node                                                                                                                                                                                     
+-t THREADS, --threads=THREADS                                    | Number of concurrent workers threads performing the transfer. Defaults to 4.                                                                                                                                                 
+-v, --verbose                                                    | Verbose logging; provide more verbosity                                                                                                                                                                                      
+-x EXTRA, --extra=EXTRA                                          | Provide extra, uncommon config parameters                                                                                                                                                                                    
+--single-node                                                    | Transfer from a single server node in a source cluster. This single server node is a source node URL                                                                                                                         
+--source-vbucket-state=SOURCE\_VBUCKET\_STATE                    | Only transfer from source vbuckets in this state, such as 'active' (default) or 'replica'. Must be used with Couchbase cluster as source.                                                                                    
+--destination-vbucket-state=DESTINATION\_VBUCKET\_STATE          | Only transfer to destination vbuckets in this state, such as 'active' (default) or 'replica'. Must be used with Couchbase cluster as destination.                                                                            
+--destination-operation=DESTINATION\_OPERATION                   | Perform this operation on transfer. "set" will override an existing document, 'add' will not override, 'get' will load all keys transferred from a source cluster into the caching layer at the destination.                 
+
+The following are extra, specialized command options you use in this form
+`cbtransfer -x [EXTRA OPTIONS]` :
+
+<a id="table-couchbase-admin-cbtranfer-special-options"></a>
+
+batch\_max\_bytes=400000 | Transfer this \# of bytes per batch.                                            
+-------------------------|---------------------------------------------------------------------------------
+batch\_max\_size=1000    | Transfer this \# of documents per batch                                         
+cbb\_max\_mb=100000      | Split backup file on destination cluster if it exceeds MB                       
+max\_retry=10            | Max number of sequential retries if transfer fails                              
+nmv\_retry=1             | 0 or 1, where 1 retries transfer after a NOT\_MY\_VBUCKET message. Default of 1.
+recv\_min\_bytes=4096    | Amount of bytes for every TCP/IP batch transferred                              
+report=5                 | Number batches transferred before updating progress bar in console              
+report\_full=2000        | Number batches transferred before emitting progress information in console      
+
+The most important way you can use this tool is to transfer data from a
+Couchbase node that is no longer running to a cluster that is running:
 
 
 ```

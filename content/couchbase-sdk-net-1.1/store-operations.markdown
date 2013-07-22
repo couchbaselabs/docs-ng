@@ -4,7 +4,6 @@ The Couchbase.NET Client Library store operations set information within the
 Couchbase database. These are distinct from the update operations in that the
 key does not have to exist within the Couchbase database before being stored.
 
-**Unhandled thing here**
 <a id="couchbase-sdk-net-retrieve-set"></a>
 
 ## Store Methods

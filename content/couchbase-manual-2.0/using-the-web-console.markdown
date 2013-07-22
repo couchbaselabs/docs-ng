@@ -385,21 +385,21 @@ following information is provided in each column:
  * `Disk Fetches/sec` shows the number of operations required to fetch items from
    disk.
 
- * Clicking the **Unhandled:** `[:unknown-tag :guibutton]` opens the basic bucket
-   information summary. For more information, see [Bucket
+ * Clicking the `Bucket Name` opens the basic bucket information summary. For more
+   information, see [Bucket
    Information](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-info).
 
- * Clicking the **Unhandled:** `[:unknown-tag :guibutton]` button will take you to
-   a list of objects identified as parseable documents. See [Using the Document
+ * Clicking the `Documents` button will take you to a list of objects identified as
+   parseable documents. See [Using the Document
    Editor](couchbase-manual-ready.html#couchbase-admin-web-console-documents) for
    more information.
 
- * The **Unhandled:** `[:unknown-tag :guibutton]` button allows you to create and
-   manage views on your stored objects. For more information, see [Using the Views
+ * The `Views` button allows you to create and manage views on your stored objects.
+   For more information, see [Using the Views
    Editor](couchbase-manual-ready.html#couchbase-views-editor).
 
-To create a new data bucket, click the **Unhandled:** `[:unknown-tag
-:guibutton]`. See [Creating and Editing Data
+To create a new data bucket, click the `Create New Data Bucket`. See [Creating
+and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit)
 for details on creating new data buckets.
 
@@ -495,27 +495,25 @@ as shown in the figure below.
 The buttons at the bottom of the bucket configuration window support the
 following operations:
 
- * **Unhandled:** `[:unknown-tag :guibutton]`
+ * `Delete`
 
    Deletes the configured bucket, deleting all the associated stored content.
 
- * **Unhandled:** `[:unknown-tag :guibutton]`
+ * `Flush`
 
-   If `Flush` is enabled, the **Unhandled:** `[:unknown-tag :guibutton]` button
-   will empty all the data from the configured bucket, leaving the bucket and
-   configuration in place. You will be prompted to confirm the operation before the
-   flush operation takes place.
+   If `Flush` is enabled, the `Flush` button will empty all the data from the
+   configured bucket, leaving the bucket and configuration in place. You will be
+   prompted to confirm the operation before the flush operation takes place.
 
-   The **Unhandled:** `[:unknown-tag :guibutton]` button will appear only if Flush
-   support is enabled when the `Configure Bucket` is opened. If you change the
-   `Flush` setting, you must click **Unhandled:** `[:unknown-tag :guibutton]` and
-   re-open the `Configured Bucket` dialog to perform a flush operation.
+   The `Flush` button will appear only if Flush support is enabled when the
+   `Configure Bucket` is opened. If you change the `Flush` setting, you must click
+   `Save` and re-open the `Configured Bucket` dialog to perform a flush operation.
 
- * **Unhandled:** `[:unknown-tag :guibutton]`
+ * `Cancel`
 
    Cancels any changes to the bucket configuration, and closes the window.
 
- * **Unhandled:** `[:unknown-tag :guibutton]`
+ * `Save`
 
    Saves the changes to the bucket configuration.
 
@@ -538,7 +536,7 @@ Web Console:
  * `Flush` support. You can enable or disable support for the Flush command.
 
 The bucket name cannot be modified. To delete the configured bucket entirely,
-click the **Unhandled:** `[:unknown-tag :guibutton]` button.
+click the `Delete` button.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editmc"></a>
 
@@ -553,30 +551,28 @@ existing bucket:
    your Cluster configuration. You can reduce the amount of memory allocated to a
    bucket if that space is not already in use.
 
-You can delete the bucket entirely by clicking the **Unhandled:** `[:unknown-tag
-:guibutton]` button.
+You can delete the bucket entirely by clicking the `Delete` button.
 
 You can empty a Memcached bucket of all the cached information that it stores by
-using the **Unhandled:** `[:unknown-tag :guibutton]` button.
+using the `Flush` button.
 
-Using the **Unhandled:** `[:unknown-tag :guibutton]` button removes all the
-objects stored in the Memcached bucket. Using this button on active Memcached
-buckets may delete important information.
+Using the `Flush` button removes all the objects stored in the Memcached bucket.
+Using this button on active Memcached buckets may delete important information.
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
 ### Bucket Information
 
 You can obtain basic information about the status of your data buckets by
-clicking on the *i* button within the `Data Buckets` page. The bucket
-information shows memory size, access, and replica information for the bucket,
-as shown in the figure below.
+clicking on the drop-down next to the bucket name under the `Data Buckets` page.
+The bucket information shows memory size, access, and replica information for
+the bucket, as shown in the figure below.
 
 
 ![](images/web-console-bucket-info.png)
 
-You can edit the bucket information by clicking the **Unhandled:**
-`[:unknown-tag :guibutton]` button within the bucket information display.
+You can edit the bucket information by clicking the `Edit` button within the
+bucket information display.
 
 <a id="couchbase-admin-web-console-monitoring"></a>
 
@@ -661,7 +657,7 @@ for Couchbase bucket types.
    information, see [Monitoring TAP
    Queues](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-tapqueues).
 
- * **XDC Destination**
+ * **XDCR Destination**
 
    The XDCR Destination section show you statistical information about the Cross
    Datacenter Replication (XDCR), if XDCR has been configured. For more information
@@ -1049,88 +1045,87 @@ replication from the current cluster to a destination cluster. For more
 information on XDCR, see [Cross Datacenter Replication
 (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
 
+You can monitor the current status for all active replications in the `Ongoing
+Replications` section under the XDCR tab:
 
-![](images/outbound_xdcr_web_console.png)
 
-The statistics shown are:
+![](images/xdcr_ongoing.png)
 
- * `outbound XDCR mutation`
+The `Ongoing Replications` section shows the following information:
 
-   Number of changes in the queue waiting to be sent to the destination cluster.
+Column | Description                                                       
+-------|-------------------------------------------------------------------
+Bucket | The source bucket on the current cluster that is being replicated.
+From   | Source cluster name.                                              
+To     | Destination cluster name.                                         
+Status | Current status of replications.                                   
+When   | Indicates when replication occurs.                                
 
- * `1000 mutations checked`
+The `Status` column indicates the current state of the replication
+configuration. Possible include:
 
-   Number of documents checked for changes in thousands.
+ * **Starting Up**
 
- * `1000 mutations replicated`
+   The replication process has just started, and the clusters are determining what
+   data needs to be sent from the originatin cluster to the destination cluster.
 
-   Number of documents actually replicated to the destination cluster in thousands.
+ * **Replicating**
 
- * `data replicated`
+   The bucket is currently being replicated and changes to the data stored on the
+   originating cluster are being sent to the destination cluster.
 
-   Size of data replicated in bytes.
+ * **Failed**
 
- * `active vb reps`
+   Replication to the destination cluster has failed. The destination cluster
+   cannot be reached. The replication configuration may need to be deleted and
+   recreated.
 
-   Active vBucket replicators.
+Under the `Data Buckets` tab you can click on a named Couchbase bucket and find
+more statistics about replication for that bucket. Couchbase Web Console
+displays statistics for the particular bucket; on this page you can find two
+drop-down areas called in the `Outgoing XDCR` and `Incoming XDCR Operations`.
+Both provides statistics about ongoing replication for the particular bucket.
+Under the `Outgoing XDCR` panel if you have multiple replication streams you
+will see statistics for each stream.
 
- * `waiting vb reps`
+Under the `Outbound XDCR` section, you will see information about replication
+from this source bucket to a destination bucket:
 
-   Waiting vBucket replicators.
 
- * `secs in replicating`
+![](images/outbound_xdcr.png)
 
-   Seconds elapsed for data replication.
+Here are the meanings for the outgoing XDCR statistics:
 
- * `secs in checkpointing`
+ * `mutations to replicate` : shows the items on this source bucket that are
+   awaiting replication.
 
-   Time working in seconds including wait time for replication.
+ * `mutations checked` : shows the number of documents that have been persisted and
+   checked for replication.
 
- * `checkpoints issued`
+ * `mutations replicated` : number of documents that have been replicated to the
+   destination bucket.
 
-   Number of checkpoints issued in replication queue.
+ * `data replicated` : size of all item replicated
 
- * `checkpoints failed`
+ * `active vb reps` : number of active replicators which are currently working
 
-   Number of checkpoints failed during replication.
+ * `waiting vb reps` : number of replicators waiting for items to replicate
 
- * `mutations in queue`
+ * `secs in replicating` : time spent by replicators checking items and waiting
 
-   Number of documents in replication queue.
+ * `secs in checkpointing` : time spent by replicators checkpointing and committing
+   items to a destination cluster
 
- * `XDCR queue size`
+ * `checkpoints issued` : number of checkpoints that have been issued. This is
+   updated every 30 minutes.
 
-   Size of replication queue in bytes.
+ * `checkpoints failed` : number of failed checkpoints. These are checkpoints which
+   have been issued by the server but have failed.
 
- * `mutation replication rate`
+ * `mutations in queue` : number of document mutations that are in the replication
+   queue for XDCR
 
-   Number of documents replicated per second.
-
- * `data replication rate`
-
-   Bytes replicated per second.
-
- * `ms meta ops latency`
-
-   Weighted average time for requesting document metadata.
-
- * `ms docs ops latency`
-
-   Weighted average latency for sending replicated changes to destination cluster.
-
- * `percent completed`
-
-   Total documents replicated divided by documents waiting for replication plus
-   replicated documents.
-
-Be aware that if you use an earlier version of Couchbase Server, such as
-Couchbase Server 2.0, only the first three statistics appear and have the labels
-**changes queue, documents checked, and documents replicated** respectively. You
-can also get XDCR statistics using the Couchbase REST-API. All of the statistics
-in Web Console are based on statistics via the REST API or values derived from
-them. For more information including a full list of available statistics, see
-[Getting XDCR Stats via
-REST](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-stats).
+ * `queue size` : size of all documents that are in the XDCR replication queue.
 
 <a id="couchbase-admin-web-console-data-buckets-xdcr-recv"></a>
 
@@ -1141,28 +1136,23 @@ current cluster from a remote cluster. For more information on XDCR, see [Cross
 Datacenter Replication
 (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
 
+If a cluster is a destination cluster, you will also see this information in
+Couchbase Web Console for the specific bucket. When you use XDCR,
 
-![](images/inbound_xdcr_web_console.png)
 
-The statistics shown are:
+![](images/xdcr_incoming.png)
 
- * `metadata reads per sec.`
+ * `gets per sec` : shows the number of items on a destination cluster which are
+   being read by a source cluster.
 
-   Number of documents XDCR scans for metadata per second. XDCR uses this
-   information for conflict resolution. See, **Couldn't resolve xref tag:
-   xdcr-metadata-conflict-resolution**.
+ * `sets per sec` : shows the number of items on a destination cluster which are
+   being creating or changed by a source cluster.
 
- * `sets per sec.`
+ * `deletes per sec` : number of items that have been deleted from a destination
+   bucket by a source cluster.
 
-   Set operations per second for incoming XDRC data.
-
- * `deletes per sec.`
-
-   Delete operations per second as a result of the incoming XDCR data stream.
-
- * `total ops per sec.`
-
-   Total of all the operations per second.
+ * `total ops per sec` : total gets, sets, or deletes on a destination cluster by a
+   source cluster.
 
 <a id="couchbase-admin-web-console-data-buckets-views"></a>
 
@@ -1195,9 +1185,8 @@ The statistics shown are:
 ## Using the Views Editor
 
 The Views Editor is available within the Couchbase Web Console. You can access
-the View Editor either by clicking the **Unhandled:** `[:unknown-tag
-:guibutton]` for a given data bucket within the `Data Buckets` display, or by
-selecting the **Unhandled:** `[:unknown-tag :guibutton]` page from the main
+the View Editor either by clicking the `Views` for a given data bucket within
+the `Data Buckets` display, or by selecting the `Views` page from the main
 navigation panel.
 
 
@@ -1208,13 +1197,12 @@ The individual elements of this interface are:
  * The pop-up, at the top-left, provides the selection of the data bucket where you
    are viewing or editing a view.
 
- * The **Unhandled:** `[:unknown-tag :guibutton]` enables you to create a new view
-   either thin the current design document, or within a new document. See [Creating
-   and Editing
+ * The `Create Development View` enables you to create a new view either within the
+   current design document, or within a new document. See [Creating and Editing
    Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
 
- * You can switch between **Unhandled:** `[:unknown-tag :guibutton]` and
-   **Unhandled:** `[:unknown-tag :guibutton]`. See [Development and Production
+ * You can switch between `Production Views` and `Development Views`. See
+   [Development and Production
    Views](couchbase-manual-ready.html#couchbase-views-types) for more information.
 
  * The final section provides a list of the design documents, and within each
@@ -1222,55 +1210,53 @@ The individual elements of this interface are:
 
    When viewing `Development Views`, you can perform the following actions:
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` the view index with an associated
-      design document. This will compact the view index and recover space used to
-      store the view index on disk.
+    * `Compact` the view index with an associated design document. This will compact
+      the view index and recover space used to store the view index on disk.
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` a design document. This will delete
-      all of the views defined within the design document.
+    * `Delete` a design document. This will delete all of the views defined within the
+      design document.
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` creates a new spatial view within the
-      corresponding design document. See [Creating and Editing
+    * `Add Spatial View` creates a new spatial view within the corresponding design
+      document. See [Creating and Editing
       Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` creates a new view within the
-      corresponding design document. See [Creating and Editing
+    * `Add View` creates a new view within the corresponding design document. See
+      [Creating and Editing
       Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` your design document (and all of the
-      defined views) as a production design document. See [Publishing
+    * `Publish` your design document (and all of the defined views) as a production
+      design document. See [Publishing
       Views](couchbase-manual-ready.html#couchbase-views-editor-publishing).
 
     * For each individual view listed:
 
-       * **Unhandled:** `[:unknown-tag :guibutton]`, or clicking the view name
+       * `Edit`, or clicking the view name
 
          Opens the view editor for the current view name, see [Creating and Editing
          Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
 
-       * **Unhandled:** `[:unknown-tag :guibutton]`
+       * `Delete`
 
          Deletes an individual view.
 
    When viewing `Production Views` you can perform the following operations on each
    design document:
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` the view index with an associated
-      design document. This will compact the view index and recover space used to
-      store the view index on disk.
+    * `Compact` the view index with an associated design document. This will compact
+      the view index and recover space used to store the view index on disk.
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` a design document. This will delete
-      all of the views defined within the design document.
+    * `Delete` a design document. This will delete all of the views defined within the
+      design document.
 
-    * **Unhandled:** `[:unknown-tag :guibutton]` copies the view definition to the
-      development area of the view editor. This enables you edit the view definition.
-      Once you have finished making changes, using the **Unhandled:** `[:unknown-tag
-      :guibutton]` button will then overwrite the existing view definition.
+    * `Copy to Dev` copies the view definition to the development area of the view
+      editor. This enables you edit the view definition. Once you have finished making
+      changes, using the `Publish` button will then overwrite the existing view
+      definition.
 
     * For each individual view:
 
-       * By clicking the view name, or the **Unhandled:** `[:unknown-tag :guibutton]`
-         button, execute and examine the results of a production view. See [Getting View
+       * By clicking the view name, or the `Show` button, execute and examine the results
+         of a production view. See [Getting View
          Results](couchbase-manual-ready.html#couchbase-views-editor-view) for more
          information.
 
@@ -1278,16 +1264,15 @@ The individual elements of this interface are:
 
 ### Creating and Editing Views
 
-You can create a new design document and/or view by clicking the **Unhandled:**
-`[:unknown-tag :guibutton]` button within the `Views` section of the Web
-Console. If you are creating a new design document and view you will be prompted
-to supply both the design document and view name. To create or edit your
-documents using the REST API, see [Design Document REST
+You can create a new design document and/or view by clicking the `Create
+Development View` button within the `Views` section of the Web Console. If you
+are creating a new design document and view you will be prompted to supply both
+the design document and view name. To create or edit your documents using the
+REST API, see [Design Document REST
 API](couchbase-manual-ready.html#couchbase-views-designdoc-api).
 
-To create a new view as part of an existing design document, click the
-**Unhandled:** `[:unknown-tag :guibutton]` button against the corresponding
-design document.
+To create a new view as part of an existing design document, click the `Add
+View` button against the corresponding design document.
 
 View names must be specified using one or more UTF-8 characters. You cannot have
 a blank view name. View names cannot have leading or trailing whitespace
@@ -1307,10 +1292,9 @@ design documents and views.
 
 The `Sample Document` section allows you to view a random document from the
 database to help you write your view functions and so that you can compare the
-document content with the generated view output. Clicking the **Unhandled:**
-`[:unknown-tag :guibutton]` will randomly select a document from the database.
-Clicking **Unhandled:** `[:unknown-tag :guibutton]` will take you to the [Using
-the Document
+document content with the generated view output. Clicking the `Preview a Random
+Document` will randomly select a document from the database. Clicking `Edit
+Document` will take you to the Views Editor, see [Using the Document
 Editor](couchbase-manual-ready.html#couchbase-admin-web-console-documents)
 
 Documents stored in the database that are identified as Non-JSON may be
@@ -1329,26 +1313,25 @@ required, the reduce function is optional. When creating a new view a basic
 information in your view that you require.
 
 Once you have edited your `map()` and `reduce()` functions, you must use the
-**Unhandled:** `[:unknown-tag :guibutton]` button to save the view definition.
+`Save` button to save the view definition.
 
 The design document will be validated before it is created or updated in the
 system. The validation checks for valid Javascript and for the use of valid
 built-in reduce functions. Any validation failure is reported as an error.
 
 You can also save the modified version of your view as a new view using the
-**Unhandled:** `[:unknown-tag :guibutton]` button.
+`Save As...` button.
 
 The lower section of the window will show you the list of documents that would
-be generated by the view. You can use the **Unhandled:** `[:unknown-tag
-:guibutton]` to execute the view.
+be generated by the view. You can use the `Show Results` to execute the view.
 
 To execute a view and get a sample of the output generated by the view
-operation, click the **Unhandled:** `[:unknown-tag :guibutton]` button. This
-will create the index and show the view output within the table below. You can
-configure the different parameters by clicking the arrow next to `Filter
-Results`. This shows the view selection criteria, as seen in the figure below.
-For more information on querying and selecting information from a view, see
-[Querying Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
+operation, click the `Show Results` button. This will create the index and show
+the view output within the table below. You can configure the different
+parameters by clicking the arrow next to `Filter Results`. This shows the view
+selection criteria, as seen in the figure below. For more information on
+querying and selecting information from a view, see [Querying
+Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
 
 
 ![](images/views-filters.png)
@@ -1359,19 +1342,19 @@ using the REST API, see [Querying Using the REST
 API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
 
 By default, Views during the development stage are executed only over a subset
-of the full document set. This is indicated by the **Unhandled:** `[:unknown-tag
-:guibutton]` button. You can execute the view over the full document set by
-selecting **Unhandled:** `[:unknown-tag :guibutton]`. Because this executes the
-view in real-time on the data set, the time required to build the view may be
-considerable. Progress for building the view is shown at the top of the window.
+of the full document set. This is indicated by the `Development Time Subset`
+button. You can execute the view over the full document set by selecting `Full
+Cluster Data Set`. Because this executes the view in real-time on the data set,
+the time required to build the view may be considerable. Progress for building
+the view is shown at the top of the window.
 
 If you have edited either the `map()` or `reduce()` portions of your view
-definition, you *must* save the definition. The **Unhandled:** `[:unknown-tag
-:guibutton]` button will remain greyed out until the view definition has been
-saved.
+definition, you *must* save the definition. The `Show Results` button will
+remain greyed out until the view definition has been saved.
 
-You can also filter the results and the output using the in-built filter system
-that matches the options available to clients when using the view information.
+You can also filter the results and the output using the built-in filter system.
+This filter provides similar options that are available to clients for filtering
+results.
 
 For more information on the filter options, see [Getting View
 Results](couchbase-manual-ready.html#couchbase-views-editor-view).
@@ -1396,9 +1379,9 @@ manipulate the results of the view from within the web console view interface.
 This makes it easy to study the output of a view without using a suitable client
 library to obtain the information.
 
-To examine the output of a view, click the magnifying glass next to the view
-name within the view list. This will present you with a view similar to that
-shown in the figure below.
+To examine the output of a view, click the icon next to the view name within the
+view list. This will present you with a view similar to that shown in the figure
+below.
 
 
 ![](images/views-detail.png)
@@ -1408,17 +1391,16 @@ design documents and views.
 
 The `Sample Document` section allows you to view a random document from the
 database so that you can compare the document content with the generated view
-output. Clicking the **Unhandled:** `[:unknown-tag :guibutton]` will randomly
-select a document from the database. If you know the ID of a document that you
-want to examine, enter the document ID in the box, and click the **Unhandled:**
-`[:unknown-tag :guibutton]` button to load the specified document.
+output. Clicking the `Preview a Random Document` will randomly select a document
+from the database. If you know the ID of a document that you want to examine,
+enter the document ID in the box, and click the `Lookup Id` button to load the
+specified document.
 
 To examine the function that generate the view information, use the `View Code`
 section of the display. This will show the configured map and reduce functions.
 
 The lower portion of the window will show you the list of documents generated by
-the view. You can use the **Unhandled:** `[:unknown-tag :guibutton]` to execute
-the view.
+the view. You can use the `Show Results` to execute the view.
 
 The `Filter Results` interface allows you to query and filter the view results
 by selecting the sort order, key range, or document range, and view result
@@ -1426,10 +1408,10 @@ limits and offsets.
 
 To specify the filter results, click on the pop-up triangle next to `Filter
 Results`. You can delete existing filters, and add new filters using the
-embedded selection windows. Click **Unhandled:** `[:unknown-tag :guibutton]`
-when you have finished selecting filter values. The filter values you specify
-are identical to those available when querying from a standard client library.
-For more information, see [Querying
+embedded selection windows. Click `Show Results` when you have finished
+selecting filter values. The filter values you specify are identical to those
+available when querying from a standard client library. For more information,
+see [Querying
 Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
 
 Due to the nature of range queries, a special character may be added to query
@@ -1445,9 +1427,9 @@ Ranges](couchbase-manual-ready.html#couchbase-views-writing-querying-selection-p
 
 The Document Viewer and Editor enables you to browser, view and edit individual
 documents stored in Couchbase Server buckets. To get to the `Documents` editor,
-click on the **Unhandled:** `[:unknown-tag :guibutton]` button within the `Data
-Buckets` view. This will open a list of available documents. You are shown only
-a selection of the available documents, rather than all documents.
+click on the `Documents` button within the `Data Buckets` view. This will open a
+list of available documents. You are shown only a selection of the available
+documents, rather than all documents.
 
 
 ![](images/web-console-document-list.png)
@@ -1455,14 +1437,12 @@ a selection of the available documents, rather than all documents.
 You can select a different Bucket by using the bucket selection popup on the
 left. You can also page through the list of documents shown by using the
 navigation arrows on the right. To jump to a specific document ID, enter the ID
-in the box provided and click **Unhandled:** `[:unknown-tag :guibutton]`. To
-edit an existing document, click the **Unhandled:** `[:unknown-tag :guibutton]`
-button. To delete the document from the bucket, click **Unhandled:**
-`[:unknown-tag :guibutton]`.
+in the box provided and click `Lookup Id`. To edit an existing document, click
+the `Edit Document` button. To delete the document from the bucket, click
+`Delete`.
 
-To create a new document, click the **Unhandled:** `[:unknown-tag :guibutton]`
-button. This will open a prompt to specify the document Id of the created
-document.
+To create a new document, click the `Create Document` button. This will open a
+prompt to specify the document Id of the created document.
 
 
 ![](images/web-console-document-create.png)
@@ -1475,12 +1455,10 @@ textbox to modify the JSON of the stored document.
 
 ![](images/web-console-document-edit.png)
 
-Within the document editor, you can click **Unhandled:** `[:unknown-tag
-:guibutton]` to delete the current document, **Unhandled:** `[:unknown-tag
-:guibutton]` will copy the currently displayed information and create a new
-document with the document Id you specify. The **Unhandled:** `[:unknown-tag
-:guibutton]` will save the current document and return you to the list of
-documents.
+Within the document editor, you can click `Delete` to delete the current
+document, `Save As...` will copy the currently displayed information and create
+a new document with the document Id you specify. The `Save` will save the
+current document and return you to the list of documents.
 
 <a id="couchbase-admin-web-console-log"></a>
 
@@ -1506,8 +1484,7 @@ instance.
 
 You can enable or disable Update Notifications by checking the `Enable software
 update notifications` checkbox within the `Update Notifications` screen. Once
-you have changed the option, you must click **Unhandled:** `[:unknown-tag
-:guibutton]` to record the change.
+you have changed the option, you must click `Save` to record the change.
 
 If update notifications are disabled then the Update Notifications screen will
 only notify you of your currently installed version, and no alert will be
@@ -1587,9 +1564,8 @@ The available settings are:
    A list of the recipients of each alert message. You can specify more than one
    recipient by separating each address by a space, comma or semicolon.
 
-   Clicking the **Unhandled:** `[:unknown-tag :guibutton]` button will send a test
-   email to confirm the settings and configuration of the email server and
-   recipients.
+   Clicking the `Test Mail` button will send a test email to confirm the settings
+   and configuration of the email server and recipients.
 
  * `Available alerts`
 
@@ -1711,8 +1687,7 @@ Buckets](couchbase-manual-ready.html#couchbase-sampledata).
 ![](images/web-console-server-settings-sample.png)
 
 If the sample bucket data was not loaded during setup, select the sample buckets
-that you want to load using the checkboxes, and click the **Unhandled:**
-`[:unknown-tag :guibutton]` button.
+that you want to load using the checkboxes, and click the `Create` button.
 
 If the sample bucket data has already been loaded, it will be listed under the
 `Installed Samples` section of the page.

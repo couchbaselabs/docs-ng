@@ -21,9 +21,8 @@ Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud).
    Memory is one of the most important factors that determines how smoothly your
    cluster will operate. Couchbase is well suited for applications that want most
    of its active dataset in memory. This data that is actively used at any given
-   point in time is called the **Unhandled:** `[:unknown-tag :firstterm]`. It is
-   very important that enough memory is allocated for the entire Working Set to
-   live in memory.
+   point in time is called the `Working Set`. It is very important that enough
+   memory is allocated for the entire Working Set to live in memory.
 
    After the data has been added to memory it is persisted to disk. Although this
    happens in the background, you must ensure that your nodes are capable of
@@ -225,25 +224,25 @@ assumed to be constants.
 
 <a id="couchbase-bestpractice-sizing-ram-constants"></a>
 
-Constant                                           | Description                                                                                                                                                    
----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------
-Meta data per document (metadata\_per\_document)   | This is the space that Couchbase needs to keep metadata per document. It is 120 bytes. All the documents and their metadata need to live in memory at all times
-SSD or Spinning                                    | SSDs give better I/O performance.                                                                                                                              
-headroom **Unhandled:** `[:unknown-tag :footnote]` | Typically 25% (0.25) for SSD and 30% (0.30) for spinning (traditional) hard disks as SSD are faster than spinning disks.                                       
-High Water Mark (high\_water\_mark)                | By default it is set at 70% of memory allocated to the node                                                                                                    
+Constant                                                                                                                                                                                                                    | Description                                                                                                                                                    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Meta data per document (metadata\_per\_document)                                                                                                                                                                            | This is the space that Couchbase needs to keep metadata per document. It is 120 bytes. All the documents and their metadata need to live in memory at all times
+SSD or Spinning                                                                                                                                                                                                             | SSDs give better I/O performance.                                                                                                                              
+headroomThe headroom is the additional overhead required by the cluster to store metadata about the information being stored. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Typically 25% (0.25) for SSD and 30% (0.30) for spinning (traditional) hard disks as SSD are faster than spinning disks.                                       
+High Water Mark (high\_water\_mark)                                                                                                                                                                                         | By default it is set at 70% of memory allocated to the node                                                                                                    
 
 This is a rough guideline to size your cluster:
 
 <a id="couchbase-bestpractice-sizing-ram-calculations"></a>
 
-Variable                                                  | Calculation                                                           
-----------------------------------------------------------|-----------------------------------------------------------------------
-no\_of\_copies                                            | `1 + number_of_replicas`                                              
-total\_metadata **Unhandled:** `[:unknown-tag :footnote]` | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
-total\_dataset                                            | `(documents_num) * (value_size) * (no_of_copies)`                     
-working\_set                                              | `total_dataset * (working_set_percentage)`                            
-Cluster RAM quota required                                | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
-number of nodes                                           | `Cluster RAM quota required / per_node_ram_quota`                     
+Variable                                                    | Calculation                                                           
+------------------------------------------------------------|-----------------------------------------------------------------------
+no\_of\_copies                                              | `1 + number_of_replicas`                                              
+total\_metadataAll the documents need to live in the memory | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
+total\_dataset                                              | `(documents_num) * (value_size) * (no_of_copies)`                     
+working\_set                                                | `total_dataset * (working_set_percentage)`                            
+Cluster RAM quota required                                  | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
+number of nodes                                             | `Cluster RAM quota required / per_node_ram_quota`                     
 
 You will need at least the number of replicas + 1 nodes irrespective of your
 data size.
@@ -273,7 +272,7 @@ high\_water\_mark       | 70%
 
 Variable                   | Calculation                                                      
 ---------------------------|------------------------------------------------------------------
-no\_of\_copies             | = 2 **Unhandled:** `[:unknown-tag :footnote]`                    
+no\_of\_copies             | = 21 for original and 1 for replica                              
 total\_metadata            | = 1,000,000 \* (100 + 120) \* (2) = 440,000,000                  
 total\_dataset             | = 1,000,000 \* (10,000) \* (2) = 20,000,000,000                  
 working\_set               | = 20,000,000,000 \* (0.2) = 4,000,000,000                        
@@ -904,8 +903,7 @@ To create an instance using the 1-Click method:
 
  1. Select the key pair you want to use when connecting to the node over `ssh`.
 
- 1. Click **Unhandled:** `[:unknown-tag :guibutton]`. This will create your new
-    instance.
+ 1. Click `Launch with 1-Click`. This will create your new instance.
 
  1. Once the instance has been created, you will be presented with the deployment
     details. Take a note of the Instance ID.
@@ -956,9 +954,9 @@ them to the cluster. To add each node to your cluster, follow these steps:
 
  1. Go to the `Manage Server Nodes` section of the Web Console.
 
- 1. Click **Unhandled:** `[:unknown-tag :guibutton]`. Enter the internal IP address
-    of each new instance. The username will be `Administrator` and the password will
-    be the individual instance ID.
+ 1. Click `Add Server`. Enter the internal IP address of each new instance. The
+    username will be `Administrator` and the password will be the individual
+    instance ID.
 
  1. Once you have added your nodes, perform a rebalance operation to enable your
     nodes within the cluster. For more information, see [Rebalancing (Expanding and

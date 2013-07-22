@@ -12,7 +12,7 @@ exercise will show you how to:
 This section assumes that you have the following items set up for your
 development environment:
 
- * PHP 5 and above installed. For more information, see [PHP
+ * PHP 5.3 and above installed. For more information, see [PHP
    Manual](http://php.net/manual/en/install.php),
 
  * Web server installed and configured to serve PHP pages,
@@ -92,8 +92,27 @@ Follow these steps to install and set up the PHP SDK:
      extension=/path/to/couchbase.so
      ```
 
-**Unhandled:** `[:unknown-tag :sidebar]` Now you are ready to verify your
-install by creating a small sample script using the PHP SDK.
+Depending on the platform you are using, you may also need to reference the JSON
+library in your PHP configuration file.
+
+If you are using the Couchbase PHP SDK on Red Hat/CentOS or their derivatives,
+be aware that JSON encoding for PHP is by default not available to other
+extensions. As a result you will receive an error resolving the
+`php_json_encode` symbol. The solution is to edit the `php.ini` file to load the
+JSON library and also load the Couchbase library. For instance, if your
+extensions are at `/etc/php.ini`, add the following two lines, in this order, to
+the file:
+
+
+```
+extension=/path/to/json.so
+extension=/path/to/couchbase.so
+```
+
+The reference to the two extensions must be in this specific order.
+
+Now you are ready to verify your install by creating a small sample script using
+the PHP SDK.
 
 <a id="installation-verification"></a>
 
@@ -128,12 +147,28 @@ these steps:
 
     Couchbase Server returns 101.
 
-**Unhandled:** `[:unknown-tag :sidebar]` Now you are ready to ready to develop
-with the PHP SDK and Couchbase Server 2.0. For more information about methods
-available in this SDK, see [Couchbase Client Library: PHP
-1.1](couchbase-sdk-php-ready.html#couchbase-sdk-php-1-1). For learning more in
-general about developing application on Couchbase Server, see [Couchbase
-Developer's Guide
+If you are using the PHP SDK on a Linux distribution such as Red Hat/CentOS, be
+aware that JSON encoding for PHP is by default not available to other
+extensions. As a result you will receive an error resolving the
+`php_json_encode` symbol. The solution is to edit the PHP configuration file as
+we described earlier to include the JSON extension and then the Couchbase
+extension. For instance, if your PHP config file is `/etc/php.ini`, add the
+following two lines to the file:
+
+
+```
+extension=/path/to/json.so
+extension=/path/to/couchbase.so
+```
+
+The references to your JSON library and the PHP SDK need to be provided in this
+order.
+
+Now you are ready to ready to develop with the PHP SDK and Couchbase Server 2.0.
+For more information about methods available in this SDK, see [Couchbase Client
+Library: PHP 1.1](couchbase-sdk-php-ready.html#couchbase-sdk-php-1-1). For
+learning more in general about developing application on Couchbase Server, see
+[Couchbase Developer's Guide
 2.0](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html).
 
 <a id="accessing-php"></a>

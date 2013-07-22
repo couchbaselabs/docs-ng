@@ -5,7 +5,6 @@
 The following document is still in production, and is not considered complete or
 exhaustive.
 
-**Unhandled thing here**
 Creates a connection with the Couchbase Server. There are several ways to
 establish new connection to Couchbase Server. By default a Couchbase SDK uses
 the `http://localhost:8091/pools/default/buckets/default` as the endpoint. The
@@ -56,7 +55,7 @@ possible nodes for initial connection:
 
 ```
 c = Couchbase.connect(:bucket => "mybucket",
-                      :node_list => ['example.com:8091', example.net'])
+                      :node_list => ['example.com:8091', 'example.net'])
 ```
 
 Here is creating a connection to a protected bucket by providing a username and

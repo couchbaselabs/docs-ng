@@ -23,10 +23,10 @@ These administration tasks include:
 
    You can add or remove multiple nodes from your cluster at the same time. Once
    the new node arrangement has been configured, the process redistributing the
-   data and bringing the nodes into the cluster is called **Unhandled:**
-   `[:unknown-tag :firstterm]`. The rebalancing process moves the data around the
-   cluster to match the new structure, and can be performed live while the cluster
-   is still servicing application data requests.
+   data and bringing the nodes into the cluster is called `rebalancing`. The
+   rebalancing process moves the data around the cluster to match the new
+   structure, and can be performed live while the cluster is still servicing
+   application data requests.
 
    More information on increasing and reducing your cluster size and performing a
    rebalance operation is available in
@@ -450,12 +450,23 @@ time and the interval for the process. You may want to do this, for instance, if
 you have a peak time for your application when you want the keys used during
 this time to be quickly available after server restart.
 
-**Unhandled:** `[:unknown-tag :sidebar]` By default the scanner process will run
-once every 24 hours with a default initial start time of 2:00 AM UTC. This means
-after you install a new Couchbase Server 2.0 instance or restart the server, by
-default the scanner will run every 24- hour time period at 2:00 AM UTC by
-default. To change the time interval when the access scanner process runs to
-every 20 minutes:
+Note if you want to change this setting for an entire Couchbase cluster, you
+will need to perform this command on per-node and per-bucket in the cluster. By
+default any setting you change with `cbepctl` will only be for the named bucket
+at the specific node you provide in the command.
+
+This means if you have a data bucket that is shared by two nodes, you will
+nonetheless need to issue this command twice and provide the different host
+names and ports for each node and the bucket name. Similarly, if you have two
+data buckets for one node, you need to issue the command twice and provide the
+two data bucket names. If you do not specify a named bucket, it will apply to
+the default bucket or return an error if a default bucket does not exist.
+
+By default the scanner process will run once every 24 hours with a default
+initial start time of 2:00 AM UTC. This means after you install a new Couchbase
+Server 2.0 instance or restart the server, by default the scanner will run every
+24- hour time period at 2:00 AM UTC by default. To change the time interval when
+the access scanner process runs to every 20 minutes:
 
 
 ```
@@ -957,9 +968,8 @@ Failover means that Couchbase Server removes the node from a cluster and makes
 replicated data at other nodes available for client requests. Because Couchbase
 Server provides data replication within a cluster, the cluster can handle
 failure of one or more nodes without affecting your ability to access the stored
-data. In the event of a node failure, you can manually initiate a **Unhandled:**
-`[:unknown-tag :firstterm]` status for the node in Web Console and resolve the
-issues.
+data. In the event of a node failure, you can manually initiate a `failover`
+status for the node in Web Console and resolve the issues.
 
 Alternately you can configure Couchbase Server so it will *automatically* remove
 a failed node from a cluster and have the cluster operate in a degraded mode. If
@@ -1243,14 +1253,13 @@ You can provide the failover status for a node with two different methods:
  * **Using the Web Console**
 
    Go to the `Management -> Server Nodes` section of the Web Console. Find the node
-   that you want to failover, and click the **Unhandled:** `[:unknown-tag
-   :guibutton]` button. You can only failover nodes that the cluster has identified
-   as being Down.
+   that you want to failover, and click the `Fail Over` button. You can only
+   failover nodes that the cluster has identified as being Down.
 
    Web Console will display a warning message.
 
-   Click **Unhandled:** `[:unknown-tag :guibutton]` to indicate the node is failed
-   over. You can also choose to **Unhandled:** `[:unknown-tag :guibutton]`.
+   Click `Fail Over` to indicate the node is failed over. You can also choose to
+   `Cancel`.
 
  * **Using the Command-line**
 
@@ -1330,6 +1339,240 @@ For more information on adding a node to the cluster and rebalancing, see
 [Performing a
 Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance).
 
+<a id="couchbase-admin-tasks-remote-recovery"></a>
+
+## Data Recovery from Remote Clusters
+
+If more nodes fail in a cluster than the number of replicas, data partitions in
+that cluster will no longer be available. For instance, if you have a four node
+cluster with one replica per node and two nodes fail, some data partitions will
+no longer be available. There are two solutions for this scenario:
+
+ * Recover data from disk. If you plan on recovering from disk, you may not be able
+   to do so if the disk completely fails.
+
+ * Recover partitions from a remote cluster. You can use this second option when
+   you have XDCR set up to replicate data to the second cluster. The requirement
+   for using `cbrecovery` is that you need to set up a second cluster that will
+   contain backup data.
+
+For more information on XDCR as a backup, see [Basic
+Topologies](couchbase-manual-ready.html#xdcr-topologies). The following shows a
+scenario where you will lose replica vBuckets from a cluster due to multi-node
+failure:
+
+
+![](images/cb_rec_multi_failure.png)
+
+Before you perform a recovery, make sure that your main cluster has an adequate
+amount of memory and disk space to support the workload as well as the data you
+recover. This means that even though you can recover data to a cluster with
+failed nodes, you should investigate what caused the node failures and also make
+sure your cluster has adequate capacity before you recover data. If you do add
+nodes be certain to rebalance only after you have For more information about
+handling node failure in a cluster, see [Failing Over
+Nodes](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
+
+When you use `cbrecovery` it compares the data partitions from a main cluster
+with a backup cluster, then sends missing data partitions detected. If it fails,
+once you successfully restart `cbrecovery`, it will do a delta between clusters
+again and determine any missing partitions since the failure then resume
+restoring these partitions.
+
+**Failure Scenarios**
+
+Imagine the following happens when you have a four node cluster with one
+replica. Each node has 256 active and 256 replica vBuckets which total 1024
+active and 1024 replica vBuckets:
+
+ 1. When one node fails, some active and some replica vBuckets are no longer
+    available in the cluster.
+
+ 1. After you fail over this node, the corresponding replica vBuckets on other nodes
+    will be put into an active state. At this point you have a full set of active
+    vBuckets and a partial set of replica vBuckets in the cluster.
+
+ 1. A second node fails. More active vBuckets will not be accessible.
+
+ 1. You fail over the second node. At this point any missing active vBuckets that do
+    not have corresponding replica vBuckets will be lost.
+
+In this type of scenario you can use `cbrecovery` to get the missing vBuckets
+from your backup cluster. If you have multi-node failure on both your main and
+backup clusters you will experience data loss.
+
+**Recovery Scenarios for cbrecovery**
+
+The following describes some different cluster setups so that you can better
+understand whether or not this approach will work in your failure scenario:
+
+ * **Multiple Node Failure in Cluster**. If multiple nodes fail in a cluster then
+   some vBuckets may be unavailable. In this case if you have already setup XDCR
+   with another cluster, you can recover those unavailable vBuckets from the other
+   cluster.
+
+ * **Bucket with Inadequate Replicas**.
+
+   **Single Bucket**. In this case where we have only one bucket with zero replicas
+   on all the nodes in a cluster. In this case when a node goes down in the cluster
+   some of the partitions for that node will be unavailable. If we have XDCR set up
+   for this cluster we can recover the missing partitions with `cbrecovery`.
+
+   **Multi-Bucket**. In this case, nodes in a cluster have multiple buckets and
+   some buckets might have replicas and some do not. In the image below we have a
+   cluster and all nodes have two buckets, Bucket1 and Bucket2. Bucket 1 has
+   replicas but Bucket2 does not. In this case if one of the nodes goes down, since
+   Bucket 1 has replicas, when we failover the node the replicas on other nodes
+   will be activated. But for the bucket with no replicas some partitions will be
+   unavailable and will require `cbrecovery` to recover data. In this same example
+   if multiple nodes fail in the cluster, we need to perform vBucket recovery both
+   buckets since both will have missing partitions.
+
+
+   ![](images/cbrecovery_diff_replicas.png)
+
+**Handling the Recovery**
+
+Should you encounter node failure and have unavailable vBuckets, you should
+follow this process:
+
+ 1. For each failed node, Click Fail Over under the Server Nodes tab in Web Console.
+    For more information, see [Initiating a Node
+    Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-manual).
+
+    After you click Fail Over, under Web Console | Log tab you will see whether data
+    is unavailable and which vBuckets are unavailable. If you do not have enough
+    replicas for the number of failed over nodes, some vBuckets will no longer be
+    available:
+
+
+    ![](images/post-failover-log-lost-data.png)
+
+ 1. Add new functioning nodes to replace the failed nodes.
+
+    Do not rebalance after you add new nodes to the cluster. Typically you do this
+    after adding nodes to a cluster, but in this scenario the rebalance will destroy
+    information about the missing vBuckets and you cannot recover them.
+
+
+    ![](images/cb_recovery1b.png)
+
+    In this example we have two nodes that failed in a three-node cluster and we add
+    a new node 10.3.3.61.
+
+    If you are certain your cluster can easily handle the workload and recovered
+    data, you may choose to skip this step. For more instructions on adding nodes,
+    see [Adding a Node to a
+    Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-add).
+
+ 1. Run `cbrecovery` to recover data from your backup cluster. In the Server Panel,
+    a Stop Recovery button appears.
+
+
+    ![](images/cb_recovery2.png)
+
+    After the recovery completes, this button disappears.
+
+ 1. Rebalance your cluster. For more information, see [Performing a
+    Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance).
+
+    Once the recovery is done, you can rebalance your cluster, which will recreate
+    replica vBuckets and evenly redistribute them across the cluster.
+
+
+    ![](images/cbrecovery_3b.png)
+
+**Recovery 'Dry-Run'**
+
+Before you recover vBuckets, you may want to preview a list of buckets no longer
+available in the cluster. Use this command and options:
+
+
+```
+shell> ./cbrecovery http://Administrator:password@10.3.3.72:8091 http://Administrator:password@10.3.3.61:8091 -n
+```
+
+Here we provide administrative credentials for the node in the cluster as well
+as the option `-n`. This will return a list of vBuckets in the remote secondary
+cluster which are no longer in the your first cluster. If there are any
+unavailable buckets in the cluster with failed nodes, you see output as follows:
+
+
+```
+2013-04-29 18:16:54,384: MainThread Missing vbuckets to be recovered:[{"node": "ns_1@10.3.3.61",
+"vbuckets": [513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526,, 528, 529,
+530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545,, 547, 548,
+549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567,
+568, 569, 570, 571, 572,....
+```
+
+Where the `vbuckets` array contains all the vBuckets that are no longer
+available in the cluster. These are the bucket you can recover from the remotes
+cluster. To recover the vBuckets:
+
+
+```
+shell> ./cbrecovery http://Administrator:password@<From_IP>:8091 \
+    http://Administrator:password@<To_IP>:8091 -B bucket_name
+```
+
+You can run the command on either the cluster with unavailable vBuckets or on
+the remote cluster, as long as you provide the hostname, port, and credentials
+for remote cluster and the cluster with missing vBuckets in that order. If you
+do not provide the parameter `- B` the tool assumes you will recover unavailable
+vBuckets for the default bucket.
+
+**Monitoring the Recovery Process**
+
+You can monitor the progress of recovery under the Data Buckets tab of Couchbase
+Web Console:
+
+ 1. Click on the Data Buckets tab.
+
+ 1. Select the data bucket you are recovering in the Data Buckets drop-down.
+
+ 1. Click on the Summary drop-down to see more details about this data bucket. You
+    see observe an increased number in the `items` level during recovery:
+
+
+    ![](images/monitor_cb_recovery.png)
+
+ 1. You can also see the number of active vBuckets increase as they are recovered
+    until you reach 1024 vBuckets. Click on the vBucket Resources drop-down:
+
+
+    ![](images/cbrec_monitor_vbucks.png)
+
+ 1. As this tool runs from the command line you can stop it at any time as you would
+    any other command-line tool.
+
+    A `Stop Recovery` button appears in the Servers panels. If you click this
+    button, you will stop the recovery process between clusters. Once the recovery
+    process completes, this button will no longer appear and you will need to
+    rebalance the cluster. If you are in Couchbase Web Console, you can also stop it
+    in this panel:
+
+
+    ![](images/stop_cbrecovery.png)
+
+ 1. After recovery completes, click on the Server Nodes tab then Rebalance to
+    rebalance your cluster.
+
+When `cbrecovery` finishes it will output a report in the console:
+
+
+```
+Recovery :                Total |    Per sec
+ batch    :                 0000 |       14.5
+ byte     :                 0000 |      156.0
+ msg      :                 0000 |       15.6
+4 vbuckets recovered with elapsed time 10.90 seconds
+```
+
+In this report `batch` is a group of internal operations performed by
+`cbrecovery`, `byte` indicates the total number of bytes recovered and `msg` is
+the number of documents recovered.
+
 <a id="couchbase-backup-restore"></a>
 
 ## Backup and Restore
@@ -1367,9 +1610,13 @@ There are a number of methods for performing a backup:
    [To restore, you need to use thefile
    copy](couchbase-manual-ready.html#couchbase-backup-restore-filecopy) method.
 
-**Unhandled:** `[:unknown-tag :sidebar]` For detailed information on the restore
-processes and options, see [Restoring Using
-cbrestore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
+Due to the active nature of Couchbase Server it is impossible to create a
+complete in-time backup and snapshot of the entire cluster. Because data is
+always being updated and modified, it would be impossible to take an accurate
+snapshot.
+
+For detailed information on the restore processes and options, see [Restoring
+Using cbrestore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
 
 It is a best practice to backup and restore your entire cluster to minimize any
 inconsistencies in data. Couchbase is always per-item consistent, but does not
@@ -1416,8 +1663,17 @@ The `cbbackup` command takes the following arguments:
 cbbackup [options] [source] [backup_dir]
 ```
 
-**Unhandled:** `[:unknown-tag :sidebar]` Where the arguments are as described
-below:
+The `cbbackup` tool is located within the standard Couchbase command-line
+directory. See [Command-line Interface for
+Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+
+Be aware that `cbbackup` does not support external IP addresses. This means that
+if you install Couchbase Server with the default IP address, you cannot use an
+external hostname to access it. To change the address format into a hostname
+format for the server, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+Where the arguments are as described below:
 
  * `[options]`
 
@@ -1996,8 +2252,7 @@ Couchbase Server is designed to actively change the number of nodes configured
 within the cluster to cope with these requirements, all while the cluster is up
 and running and servicing application requests. The overall process is broken
 down into two stages; the addition and/or removal of nodes in the cluster, and
-the **Unhandled:** `[:unknown-tag :firstterm]` of the information across the
-nodes.
+the `rebalancing` of the information across the nodes.
 
 The addition and removal process merely configures a new node into the cluster,
 or marks a node for removal from the cluster. No actual changes are made to the
@@ -2193,8 +2448,11 @@ Rebalancing a cluster involves marking nodes to be added or removed from the
 cluster, and then starting the rebalance operation so that the data is moved
 around the cluster to reflect the new structure.
 
- * **Unhandled:** `[:unknown-tag :caution]` For information on adding nodes to your
-   cluster, see [Adding a Node to a
+Until you complete a rebalance, you should avoid using the failover
+functionality since that may result in loss of data that has not yet been
+replicated.
+
+ * For information on adding nodes to your cluster, see [Adding a Node to a
    Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-add).
 
  * For information on removing nodes to your cluster, see [Removing a Node from a
@@ -2265,8 +2523,8 @@ operation. The methods are:
  * **Web Console — After Installation**
 
    You can add a new node to an existing cluster after installation by clicking the
-   **Unhandled:** `[:unknown-tag :guibutton]` button within the `Manage Server
-   Nodes` area of the Admin Console. You can see the button in the figure below.
+   `Add Server` button within the `Manage Server Nodes` area of the Admin Console.
+   You can see the button in the figure below.
 
 
    ![](images/admin-tasks-rebalance-add-button.png)
@@ -2392,10 +2650,9 @@ Like adding nodes, there are a number of solutions for removing a node:
    You can remove a node from the cluster from within the `Manage Server Nodes`
    section of the Web Console, as shown in the figure below.
 
-   To remove a node, click the **Unhandled:** `[:unknown-tag :guibutton]` button
-   next to the node you want to remove. You will be provided with a warning to
-   confirm that you want to remove the node. Click **Unhandled:** `[:unknown-tag
-   :guibutton]` to mark the node for removal.
+   To remove a node, click the `Remove Server` button next to the node you want to
+   remove. You will be provided with a warning to confirm that you want to remove
+   the node. Click `Remove` to mark the node for removal.
 
  * **Using the Command-line**
 
@@ -2430,15 +2687,15 @@ adding data to different nodes in the process.
 
 If Couchbase Server identifies that a rebalance is required, either through
 explicit addition or removal, or through a failover, then the cluster is in a
-**Unhandled:** `[:unknown-tag :firstterm]` state. This does not affect the
-cluster operation, it merely indicates that a rebalance operation is required to
-move the cluster into its configured state. To start a rebalance:
+`pending rebalance` state. This does not affect the cluster operation, it merely
+indicates that a rebalance operation is required to move the cluster into its
+configured state. To start a rebalance:
 
  * **Using the Web Console**
 
    Within the `Manage Server Nodes` area of the Couchbase Administration Web
    Console, a cluster pending a rebalance operation will have enabled the
-   **Unhandled:** `[:unknown-tag :guibutton]` button.
+   `Rebalance` button.
 
 
    ![](images/admin-tasks-rebalance-starting-console.png)
@@ -2447,9 +2704,8 @@ move the cluster into its configured state. To start a rebalance:
    monitor the progress of the rebalance operation through the web console.
 
    You can stop a rebalance operation at any time during the process by clicking
-   the **Unhandled:** `[:unknown-tag :guibutton]` button. This only stops the
-   rebalance operation, it does not cancel the operation. You should complete the
-   rebalance operation.
+   the `Stop Rebalance` button. This only stops the rebalance operation, it does
+   not cancel the operation. You should complete the rebalance operation.
 
  * **Using the Command-line**
 
@@ -2780,9 +3036,9 @@ For `memcached` buckets:
 ### Rebalance Behind-the-Scenes
 
 The rebalance process is managed through a specific process called the
-**Unhandled:** `[:unknown-tag :firstterm]`. This examines the current vBucket
-map and then combines that information with the node additions and removals in
-order to create a new vBucket map.
+`orchestrator`. This examines the current vBucket map and then combines that
+information with the node additions and removals in order to create a new
+vBucket map.
 
 The orchestrator starts the process of moving the individual vBuckets from the
 current vBucket map to the new vBucket structure. The process is only started by
@@ -2792,10 +3048,10 @@ vBucket map match the current situation.
 
 Each vBucket is moved independently, and a number of vBuckets can be migrated
 simultaneously in parallel between the different nodes in the cluster. On each
-destination node, a process called **Unhandled:** `[:unknown-tag :firstterm]` is
-started, which uses the TAP system to request that all the data is transferred
-for a single vBucket, and that the new vBucket data will become the active
-vBucket once the migration has been completed.
+destination node, a process called `ebucketmigrator` is started, which uses the
+TAP system to request that all the data is transferred for a single vBucket, and
+that the new vBucket data will become the active vBucket once the migration has
+been completed.
 
 While the vBucket migration process is taking place, clients are still sending
 data to the existing vBucket. This information is migrated along with the
@@ -3074,10 +3330,10 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
      curl -u Admin:password http://ip.for.destination.cluster:8091/pools/default/buckets
      ```
 
- 1. To set up a destination cluster reference, click the **Unhandled:**
-    `[:unknown-tag :guibutton]` button. You will be prompted to enter a name used to
-    identify this cluster, the IP address, and optionally the administration port
-    number for the remote cluster.
+ 1. To set up a destination cluster reference, click the `Create Cluster Reference`
+    button. You will be prompted to enter a name used to identify this cluster, the
+    IP address, and optionally the administration port number for the remote
+    cluster.
 
 
     ![](images/xdcr-cluster-reference.png)
@@ -3089,9 +3345,8 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     information will now be available when you configure replication for your source
     cluster.
 
- 1. Click **Unhandled:** `[:unknown-tag :guibutton]` to configure a new XDCR
-    replication. A panel appears where you can configure a new replication from
-    source to destination cluster.
+ 1. Click `Create Replication` to configure a new XDCR replication. A panel appears
+    where you can configure a new replication from source to destination cluster.
 
  1. In the `Replicate changes from` section select a from the current cluster that
     is to be replicated. This is your source bucket.
@@ -3102,8 +3357,7 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
 
     ![](images/xdcr-cluster-setup.png)
 
- 1. Click the **Unhandled:** `[:unknown-tag :guibutton]` button to start the
-    replication process.
+ 1. Click the `Replicate` button to start the replication process.
 
 After you have configured and started replication, the web console will show the
 current status and list of replications in the `Ongoing Replications` section:
@@ -3177,8 +3431,8 @@ Settings](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-internal-sett
 
 ### Cancelling Replication
 
-You can cancel replication at any time by clicking **Unhandled:** `[:unknown-tag
-:guibutton]` next to the active replication that is to be canceled.
+You can cancel replication at any time by clicking `Delete` next to the active
+replication that is to be canceled.
 
 A prompt will confirm the deletion of the configured replication. Once the
 replication has been stopped, replication will cease on the originating cluster
@@ -3392,7 +3646,11 @@ seconds if the network is back, XDCR will resume replicating. You can change
 this default behavior by changing an environment variable or by changing the
 server parameter `xdcr_failure_restart_interval` with a PUT request:
 
- * **Unhandled:** `[:unknown-tag :sidebar]` By an environment variable:
+Note that if you are using XDCR on multiple nodes in cluster and you want to
+change this setting throughout the cluster, you will need to perform this
+operation on every node in the cluster.
+
+ * By an environment variable:
 
     ```
     shell>    export XDCR_FAILURE_RESTART_INTERVAL=60

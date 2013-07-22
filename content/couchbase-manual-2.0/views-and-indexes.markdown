@@ -721,12 +721,11 @@ JSON supports the same basic types as supported by JavaScript, these are:
 
  * Number (either integer or floating-point).
 
-   JavaScript supports a maximum numerical value of 2 **Unhandled:** `[:unknown-tag
-   :superscript]`. If you are working with numbers larger than this from within
-   your client library environment (for example, 64-bit numbers), you must store
-   the value as a string.
+   JavaScript supports a maximum numerical value of 2 `53`. If you are working with
+   numbers larger than this from within your client library environment (for
+   example, 64-bit numbers), you must store the value as a string.
 
- * String — this should be enclosed by double-quotes and supports Unicode
+ * String — this should be enclosed by double-literals and supports Unicode
    characters and backslash escaping. For example:
 
     ```
@@ -843,11 +842,10 @@ The basic storage and indexing sequence is:
  1. Once the document has been persisted to disk, the document can be indexed by the
     view mechanism.
 
-This sequence means that the view results are **Unhandled:** `[:unknown-tag
-:firstterm]` with what is stored in memory based on whether documents have been
-persisted to disk. It is possible to write a document to the cluster, and access
-the index, without the newly written document appearing in the generated view
-index.
+This sequence means that the view results are `eventually consistent` with what
+is stored in memory based on whether documents have been persisted to disk. It
+is possible to write a document to the cluster, and access the index, without
+the newly written document appearing in the generated view index.
 
 Conversely, documents that have been stored with an expiry may continue to be
 included within the view index until the document has been removed from the
@@ -862,9 +860,8 @@ documents. In addition, the creation and updating of the view is subject to the
 `stale` parameter. This controls how and when the view is updated when the view
 content is queried. For more information, see [Index Updates and the stale
 Parameter](couchbase-manual-ready.html#couchbase-views-writing-stale). Views can
-also be automatically updated on a configurable schedule to ensure that views do
-not become higely out of sync with the stored documents. For more information,
-see [Automated Index
+also be automatically updated on a schedule so that their data is not too out of
+sync with stored documents. For more information, see [Automated Index
 Updates](couchbase-manual-ready.html#couchbase-views-operation-autoupdate).
 
 <a id="couchbase-views-types"></a>
@@ -879,10 +876,9 @@ generated. However, views also need to be built and developed using the actively
 stored information.
 
 To support both the creation and testing of views, and the deployment of views
-in production, Couchbase Server supports two different view types,
-**Unhandled:** `[:unknown-tag :quote]` views and **Unhandled:** `[:unknown-tag
-:quote]` views. The two view types work identically, but have different purposes
-and restrictions placed upon their operation.
+in production, Couchbase Server supports two different view types, `Development`
+views and `Production` views. The two view types work identically, but have
+different purposes and restrictions placed upon their operation.
 
  * **Development Views**
 
@@ -1579,9 +1575,8 @@ function(doc, meta)
 ```
 
 The `_count` function returns a count of all the records for a given key. Since
-the `data` argument to the reduce function contains an array of all the values
-for a given key, the length of the array needs to be returned in the `reduce()`
-function:
+argument for the reduce function contains an array of all the values for a given
+key, the length of the array needs to be returned in the `reduce()` function:
 
 
 ```
@@ -1645,11 +1640,10 @@ function.
 
 That is, the input of a reduce function can be not only the raw data from the
 map phase, but also the output of a previous reduce phase. This is called
-**Unhandled:** `[:unknown-tag :firstterm]`, and can be identified by the third
-argument to the `reduce()` ). When the `rereduce` argument is true, both the
-`key` and `values` arguments are arrays, with the corresponding element in each
-containing the relevant key and value. I.e., `key[1]` is the key related to the
-value of `value[1]`.
+`rereduce`, and can be identified by the third argument to the `reduce()`. When
+the `rereduce` argument is true, both the `key` and `values` arguments are
+arrays, with the corresponding element in each containing the relevant key and
+value. I.e., `key[1]` is the key related to the value of `value[1]`.
 
 An example of this can be seen by considering an expanded version of the `sum`
 function showing the supplied values for the first iteration of the view index
@@ -1901,7 +1895,7 @@ You should keep the following in mind while developing and deploying your views:
 
  * **Check Document Fields**
 
-   Fields and attributes from source documentation in `map()` or `reduce()` )
+   Fields and attributes from source documentation in `map()` or `reduce()`
    functions should be checked before their value is checked or compared. Because
    the view definitions in a design document are processed at the same time. A
    runtime error in one of the views within a design document will cause the other
@@ -1986,9 +1980,10 @@ You should keep the following in mind while developing and deploying your views:
 
     ```
     function(doc, meta)
-    {
+        {
+        if(doc.type == 'object')
         emit(doc.experience, null);
-    }
+        }
     ```
 
    This will create an optimized view containing only the information required,
@@ -2010,9 +2005,10 @@ You should keep the following in mind while developing and deploying your views:
 
     ```
     function(doc, meta)
-    {
-      emit(doc.experience, doc);
-    }
+        {
+        if(doc.type == 'object')
+        emit(doc.experience, doc);
+        }
     ```
 
    The above view may have significant performance and index size effects.
@@ -2023,9 +2019,10 @@ You should keep the following in mind while developing and deploying your views:
 
     ```
     function(doc, meta)
-    {
+        {
+        if(doc.type == 'object')
         emit(doc.experience, null);
-    }
+        }
     ```
 
    You can then either access the document data individually through the client
@@ -2217,7 +2214,7 @@ In the above example:
 
  * `-d @byfield.ddoc`
 
-   Specifes that the data payload should be loaded from the file `byfield.ddoc`.
+   Specifies that the data payload should be loaded from the file `byfield.ddoc`.
 
 If successful, the HTTP response code will be 201 (created). The returned JSON
 will contain the field `ok` and the ID of the design document created:
@@ -2382,7 +2379,7 @@ shell> curl -v -X DELETE -H 'Content-Type: application/json' \
 ```
 
 When the design document has been successfully removed, the JSON returned
-indidicates successful completion, and confirmation of the design document
+indicates successful completion, and confirmation of the design document
 removed:
 
 
@@ -2495,7 +2492,7 @@ GET http://localhost:8092/bucketname/_design/designdocname/_view/viewname?limit=
 The formatting of the URL follows the HTTP specification. The first argument
 should be separated from the base URL using a question mark ( `?` ). Additional
 arguments should be separated using an ampersand ( `&` ). Special characters
-should be quoted or escaped according to the HTTP standard rules.
+should be literald or escaped according to the HTTP standard rules.
 
 The additional supported arguments are detailed in the table below.
 
@@ -2516,7 +2513,7 @@ The additional supported arguments are detailed in the table below.
 `full_set`                  | Use the full cluster data set (development views only).                                                                                                              
                             | **Parameters** : boolean; optional                                                                                                                                   
 `group`                     | Group the results using the reduce function to a group or single row                                                                                                 
-                            | **Parameters: boolean; optional**                                                                                                                                    
+                            | **Parameters** : boolean; optional                                                                                                                                   
 `group_level`               | Specify the group level to be used                                                                                                                                   
                             | **Parameters** : numeric; optional                                                                                                                                   
 `inclusive_end`             | Specifies whether the specified end key should be included in the result                                                                                             
@@ -2529,7 +2526,7 @@ The additional supported arguments are detailed in the table below.
                             | **Parameters** : numeric; optional                                                                                                                                   
 `on_error`                  | Sets the response in the event of an error                                                                                                                           
                             | **Parameters** : string; optional                                                                                                                                    
-**Supported Values**        |                                                                                                                                                                      
+                            | **Supported Values**                                                                                                                                                 
                             | `continue` : Continue to generate view information in the event of an error, including the error information in the view response stream.                            
                             | `stop` : Stop immediately when an error condition occurs. No further view information will be returned.                                                              
 `reduce`                    | Use the reduction function                                                                                                                                           
@@ -2537,8 +2534,8 @@ The additional supported arguments are detailed in the table below.
 `skip`                      | Skip this number of records before starting to return the results                                                                                                    
                             | **Parameters** : numeric; optional                                                                                                                                   
 `stale`                     | Allow the results from a stale view to be used                                                                                                                       
-                            | **Parameters**                                                                                                                                                       
-                            | **Supported Values** : string; optional                                                                                                                              
+                            | **Parameters** : string; optional                                                                                                                                    
+                            | **Supported Values** :                                                                                                                                               
                             | `false` : Force a view update before returning data                                                                                                                  
                             | `ok` : Allow stale views                                                                                                                                             
                             | `update_after` : Allow stale view, update view after it has been accessed                                                                                            
@@ -2608,11 +2605,14 @@ returned by the view. Key selection is made after the view results (including
 the reduction function) are executed, and after the items in the view output
 have been sorted.
 
-**Unhandled:** `[:unknown-tag :important]` When specifying the key selection
-through a parameter, the keys must match the format of the keys emitted by the
-view. Compound keys, for example where an array or hash has been used in the
-emitted key structure, the supplied selection value should also be an array or a
-hash.
+When specifying keys to the selection mechanism, the key must be expressed in
+the form of a JSON value. For example, when specifying a single key, a string
+must be literald ("string").
+
+When specifying the key selection through a parameter, the keys must match the
+format of the keys emitted by the view. Compound keys, for example where an
+array or hash has been used in the emitted key structure, the supplied selection
+value should also be an array or a hash.
 
 The following selection types are supported:
 
@@ -2656,7 +2656,7 @@ The following selection types are supported:
     * `startkey` only
 
       Output does not start until the first occurrence of `startkey`, or a value
-      greater than the specifid value, is seen. Output will then continue until the
+      greater than the specified value, is seen. Output will then continue until the
       end of the view.
 
     * `endkey` only
@@ -2683,7 +2683,7 @@ The following selection types are supported:
 ### Selecting Compound Information by key or keys
 
 If you are generating a compound key within your view, for example when
-outputting a date split into individualy year, month, day elements, then the
+outputting a date split into individually year, month, day elements, then the
 selection value must exactly match the format and size of your compound key. The
 value of `key` or `keys` must exactly match the output key structure.
 
@@ -2779,7 +2779,7 @@ For example, specifying a `startkey` of "d" will return:
 ```
 
 This is because the first match is identified as soon as the a key from a view
-row matches the supplied `startkey` value *from right to left*. The supplied
+row matches the supplied `startkey` value *from left to right*. The supplied
 single character matches the first character of the view output.
 
 When comparing larger strings and compound values the same matching algorithm is
@@ -2821,7 +2821,7 @@ ranges. For example, if time data is emitted in the following format:
 ```
 
 Then precise date (and time) ranges can be selected by specifying the date and
-time in the generate data. For example, to get information between 1st April
+time in the generated data. For example, to get information between 1st April
 2011, 00:00 and 30th September 2011, 23:59:
 
 
@@ -2942,7 +2942,7 @@ in **Couldn't resolve xref tag: fig-couchbase-views-writing-querying-grouping**.
 ![](images/views-grouping.png)
 
 The `group_level` parameter specifies the array index (starting at 1) at which
-you want the grouping occur, and thgenerates a unique value based on this value
+you want the grouping occur, and generate a unique value based on this value
 that is used to identify all the items in the view output that include this
 unique value:
 
@@ -2968,7 +2968,7 @@ compound key using an array as the output value for the key.
 ### Selection when Grouping
 
 When using grouping and selection using the `key`, `keys`, or `startkey` /
-`endkey` parameters, they query value should match at least the format (and
+`endkey` parameters, the query value should match at least the format (and
 element count) of the group level that is being queried.
 
 For example, using the following `map()` function to output information by date
@@ -3015,7 +3015,7 @@ and `endkey` are used to start and stop the selection of output rows.
 ### Ordering
 
 All view results are automatically output sorted, with the sorting based on the
-content of the key in the output view. Views are sorted using a specific sortinf
+content of the key in the output view. Views are sorted using a specific sorting
 format, with the basic order for all basic and compound follows as follows:
 
  * `null`
@@ -3362,7 +3362,7 @@ document ID, for example to get documents with a specific ID prefix:
 ?startkey="object"&endkey="object\u0000"
 ```
 
-Or to obtain a list of objects wtihin a given range:
+Or to obtain a list of objects within a given range:
 
 
 ```
@@ -3795,7 +3795,7 @@ function(doc, meta) {
 The same solution can also be used if you want to create a view over a specific
 range or value of documents while still allowing specific querying structures.
 For example, to filter all the records from the statistics logging system over a
-date range that are of the type warning you could use the following `map()`
+date range that are of the type error you could use the following `map()`
 function:
 
 
@@ -3845,7 +3845,7 @@ selection can be much easier at the expense of updating additional view indexes.
 ### Sorting on Reduce Values
 
 The sorting algorithm within the view system outputs information ordered by the
-generated key within the view, and therfore it operates before any reduction
+generated key within the view, and therefore it operates before any reduction
 takes place. Unfortunately, it is not possible to sort the output order of the
 view on computed reduce values, as there is no post-processing on the generated
 view information.
@@ -4493,7 +4493,7 @@ function(doc, meta)
 }
 ```
 
-Although this approach seems to severly limit your queries, remember you can
+Although this approach seems to severely limit your queries, remember you can
 create multiple views, so you could create one for 10 mins, one for 20, one for
 30, or whatever intervals you select. It's unlikely that anyone will really want
 to select recipes that can be prepared in 17 minutes, so such granular selection
@@ -4838,11 +4838,11 @@ request. The full list is provided in the following summary table.
                             | `ok` : Allow stale views                                            
                             | `update_after` : Allow stale view, update view after access         
 
-**Unhandled:** `[:unknown-tag :bridgehead]` If you do not supply a bounding box,
-the full dataset is returned. When querying a spatial index you can use the
-bounding box to specify the boundaries of the query lookup on a given value. The
-specification should be in the form of a comma-separated list of the coordinates
-to use during the query.
+Bounding Box QueriesIf you do not supply a bounding box, the full dataset is
+returned. When querying a spatial index you can use the bounding box to specify
+the boundaries of the query lookup on a given value. The specification should be
+in the form of a comma-separated list of the coordinates to use during the
+query.
 
 These coordinates are specified using the GeoJSON format, so the first two
 numbers are the lower left coordinates, and the last two numbers are the upper

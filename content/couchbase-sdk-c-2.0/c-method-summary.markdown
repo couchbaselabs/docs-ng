@@ -4,7 +4,6 @@
 Couchbase cluster. A summary of the supported methods are listed in **Couldn't
 resolve xref tag: table-couchbase-sdk-c-summary**.
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_c_lcb_arithmetic"></a>
 
 **API Call**            | `lcb_arithmetic (lcb_t instance, const void* cookie, const void* key, size_t nkey, int64_t delta, time_t exptime, bool create, uint64_t initial)`                               

@@ -3,7 +3,6 @@
 The retrieve operations get information from the Couchbase database. A summary
 of the available API calls is listed below.
 
-**Unhandled thing here**
 <a id="couchbase-sdk-java-retrieve-get"></a>
 
 ## Synchronous get Methods

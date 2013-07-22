@@ -883,8 +883,18 @@ both online upgrades or offline upgrades:
 
  * Couchbase 2.0.1 to Couchbase 2.1.0 and above
 
-**Unhandled:** `[:unknown-tag :important]` You can perform a cluster upgrade in
-two ways:
+If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
+available for both your original Couchbase Server 1.8 data files and the new
+format for Couchbase Server 2.0 files. You will also need additional disk space
+for new functions such as indexing and compaction. You will need approximately
+three times the disk space.
+
+You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
+must first upgrade from Couchbase Server 1.8 or earlier to Couchbase Server
+1.8.1 to provide data compatibility with Couchbase Server 2.0 +. After you
+perform this initial upgrade you can then upgrade to 2.0+.
+
+You can perform a cluster upgrade in two ways:
 
  * **Online Upgrades**
 
@@ -1030,8 +1040,14 @@ back nodes into the cluster. This would reduce your cluster capacity while you
 add the new node back into the cluster, which could lead to data being ejected
 to disk.
 
-**Unhandled:** `[:unknown-tag :important]` To perform an standard, online
-upgrade of your cluster:
+For information on upgrading from Couchbase Server 1.8 to Couchbase Server
+2.1.0, see [Upgrades Notes 1.8.1 to
+2.1.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
+You cannot directly upgrade from Couchbase Server 1.8 to 2.0+, instead you must
+first upgrade to Couchbase Server 1.8.1 for data compatibility and then upgrade
+to Couchbase Server 2.1.0+.
+
+To perform an standard, online upgrade of your cluster:
 
  1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
     Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).

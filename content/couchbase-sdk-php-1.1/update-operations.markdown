@@ -1,6 +1,5 @@
 # Update Operations
 
-**Unhandled thing here**
 <a id="api-reference-update-preappend"></a>
 
 ## Append and Prepend Operations

@@ -3,7 +3,6 @@
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
-**Unhandled thing here**
 <a id="couchbase-sdk-net-update-append"></a>
 
 ## Append Methods
@@ -1359,8 +1358,8 @@ the current release of Enyim.Memcached (2.15)
 
     ```
     <servers>
-              <add uri="http://127.0.0.1:8091/pools" />
-         </servers>
+     <add uri="http://127.0.0.1:8091/pools" />
+     </servers>
     ```
 
    The.NET client performs a heartbeat check on the streaming connection it
@@ -1393,9 +1392,9 @@ the current release of Enyim.Memcached (2.15)
     ```
     var storeResult = client.ExecuteStore(StoreMode.Set, "foo", "bar");
 
-    if (! result.Success) {
-        Console.WriteLine("Operation failed: {0}", result.Message);
-    }
+     if (! result.Success) {
+     Console.WriteLine("Operation failed: {0}", result.Message);
+     }
     ```
 
    Each of the new Execute methods returns an instance of an `IOperationResult`,
@@ -1409,20 +1408,20 @@ the current release of Enyim.Memcached (2.15)
     ```
     IOperationResult opertionResult = client.Store(StoreMode.Set, "foo", "bar");
 
-    //Was the operation successful (i.e., no errors or exceptions)?
-    Console.WriteLine("Success: " + operationResult.Success);
+     //Was the operation successful (i.e., no errors or exceptions)?
+     Console.WriteLine("Success: " + operationResult.Success);
 
-    //Print out possible error, warning or informational message
-    Console.WriteLine("Message: " + operationResult.Message);
+     //Print out possible error, warning or informational message
+     Console.WriteLine("Message: " + operationResult.Message);
 
-    //Print out a caught exception
-    Console.WriteLine("Exception: " + operationResult.Exception.Message);
+     //Print out a caught exception
+     Console.WriteLine("Exception: " + operationResult.Exception.Message);
 
-    //Print out status code (nullable)
-    Console.WriteLine("StatusCode: " + operationResult.StatusCode);
+     //Print out status code (nullable)
+     Console.WriteLine("StatusCode: " + operationResult.StatusCode);
 
-    //Print out InnerResult, which is populated on handled failures (i.e., IO exceptions)
-    Console.WriteLine("InnerResult: " + operationResult.InnerResult.Message);
+     //Print out InnerResult, which is populated on handled failures (i.e., IO exceptions)
+     Console.WriteLine("InnerResult: " + operationResult.InnerResult.Message);
     ```
 
    Store, Get, Mutate and Concat operation results all return Cas values.
@@ -1430,8 +1429,8 @@ the current release of Enyim.Memcached (2.15)
     ```
     var getResult = client.ExecuteGet("foo");
 
-    //Print out the Cas value
-    Console.WriteLine("Cas value for 'foo':" + getResult.Cas);
+     //Print out the Cas value
+     Console.WriteLine("Cas value for 'foo':" + getResult.Cas);
     ```
 
    Get operation results also expose HasValue and Value properties.
@@ -1439,11 +1438,11 @@ the current release of Enyim.Memcached (2.15)
     ```
     var getResult = client.ExecuteGet("foo");
 
-    //Print out whether getResult contains a value (shortcut for value null check)
-    Console.WriteLine("getResult HasValue: " + getResult.HasValue);
+     //Print out whether getResult contains a value (shortcut for value null check)
+     Console.WriteLine("getResult HasValue: " + getResult.HasValue);
 
-    //Print out the item value
-    Console.WriteLine("Value for 'foo':" + getResult.Value);
+     //Print out the item value
+     Console.WriteLine("Value for 'foo':" + getResult.Value);
     ```
 
    Most failures are likely to fall into one of two categories. The first are

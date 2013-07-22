@@ -205,17 +205,17 @@ use either a 'source' mode (different reverse-proxies/load- balancers have
 different terms for this concept), where the same HTTP client from a given IP
 address would be proxy for the same HTTP server.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Moxi will listen on port 11211 by
-default. To change Moxi's listen port, use a -Z port\_listen flag:
+Changing the default listening portMoxi will listen on port 11211 by default. To
+change Moxi's listen port, use a -Z port\_listen flag:
 
 
 ```
 shell> moxi -Z port_listen=11311 http://membase1:8091/pools/default/bucketsStreaming/shoppingCarts
 ```
 
-**Unhandled:** `[:unknown-tag :bridgehead]` If your bucket has SASL
-authentication credentials, you can also specify them using the usr and pwd -Z
-flags. For example:
+Specifying SASL authenticationIf your bucket has SASL authentication
+credentials, you can also specify them using the usr and pwd -Z flags. For
+example:
 
 
 ```
@@ -223,9 +223,8 @@ shell> moxi -Z usr=shoppingCarts,pwd=need_a_better_pswd,port_listen=11311 \
     http://membase1:8091/pools/default/bucketsStreaming/shoppingCarts
 ```
 
-**Unhandled:** `[:unknown-tag :bridgehead]` To have moxi emit more logging
-information, you can specify -v, -vv, or -vvv flags (the more v's, the more
-verbose moxi will be). For example:
+Increased LoggingTo have moxi emit more logging information, you can specify -v,
+-vv, or -vvv flags (the more v's, the more verbose moxi will be). For example:
 
 
 ```
@@ -266,16 +265,16 @@ gateway moxi). For example, a bucket-specific moxi might be listening on port
 (get/set/delete/flush\_all/etc) to affect key-value items in that shoppingCarts
 bucket.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` To start a gateway moxi, use a URL
-of the form: /pools/default/saslBucketsStreaming
+Gateway moxiTo start a gateway moxi, use a URL of the form:
+/pools/default/saslBucketsStreaming
 
 For example:
 
 ./moxi -Z usr=Administrator,pwd=DontTell
 http://membase-a:8091/pools/default/saslBucketsStreaming
 
-**Unhandled:** `[:unknown-tag :bridgehead]` To start a per-bucket moxi, use a
-URL of the form: /pools/default/bucketsStreaming/<BUCKET\_NAME> For example:
+Per-Bucket moxiTo start a per-bucket moxi, use a URL of the form:
+/pools/default/bucketsStreaming/<BUCKET\_NAME> For example:
 
 ./moxi http://membase-a:8091/pools/default/bucketsStreaming/shoppingCarts
 
@@ -285,15 +284,15 @@ URL of the form: /pools/default/bucketsStreaming/<BUCKET\_NAME> For example:
 
 There are a couple ways to increase concurrency in moxi:
 
-**Unhandled:** `[:unknown-tag :bridgehead]` By default, moxi uses 4 worker
-threads. This can be changed via the -t THREAD\_NUM flag. For example:
+Increase Worker ThreadsBy default, moxi uses 4 worker threads. This can be
+changed via the -t THREAD\_NUM flag. For example:
 
 
 ```
 shell> moxi -t 6 -Z port_listen=11311 http://membase1:8091/pools/default/bucketsStreaming/shoppingCarts
 ```
 
-**Unhandled:** `[:unknown-tag :bridgehead]` moxi limits the number of inflight
+Increase Number of Concurrent Client Requestsmoxi limits the number of inflight
 or concurrent client requests that it will send to the Couchbase cluster. This
 is controlled via the -Z concurrency configuration value, whose default value is
 1024. For older users of moxi, the "concurrency" configuration parameter is also
@@ -315,16 +314,15 @@ concurrency has been overridden to be 8. So, there will be moxi allow only 32
 concurrent client requests to be processed. All other client requests will go
 onto a wait queue until active requests are finished.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Increasing concurrency and the
-number of worker threads isn't necessarily a free lunch. More threads, for
-example, means using resources that other processes (such as your web app
-servers) might need. Higher concurrency settings from moxi (when multiplied by
-the number moxi's you've deployed) means more connections will be created to
-downstream servers, which can eventually cause other performance issues or hit
-connection (file descriptor) limits.
+ImplicationsIncreasing concurrency and the number of worker threads isn't
+necessarily a free lunch. More threads, for example, means using resources that
+other processes (such as your web app servers) might need. Higher concurrency
+settings from moxi (when multiplied by the number moxi's you've deployed) means
+more connections will be created to downstream servers, which can eventually
+cause other performance issues or hit connection (file descriptor) limits.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` More information on the downstream
-conn queues is available: [Following A Request Through
+Downstream conn queuesMore information on the downstream conn queues is
+available: [Following A Request Through
 Moxi](moxi-manual-ready.html#moxi-dataflow).
 
 <a id="moxi-standalone-timeouts"></a>
@@ -450,7 +448,7 @@ shell> moxi -Z ./moxi.cfg -z ./cluster.cfg
 
 ## Errors
 
-**Unhandled:** `[:unknown-tag :bridgehead]` If you're pointing moxi at the wrong
+Command-line and Configuration ErrorsIf you're pointing moxi at the wrong
 server/URL, or moxi can't reach any of its REST/URL's, you'll see output
 prefixed with the word `ERROR:` :
 
@@ -479,7 +477,7 @@ the 2nd URL some time later), moxi will start over from the start of the
 REST/URL's list with the first URL (in the hopes that the favored earlier URL is
 now back online).
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Please see: [Moxi Error
+Protocol ErrorsPlease see: [Moxi Error
 Responses](moxi-manual-ready.html#moxi-errors)
 
 <a id="moxi-memcached"></a>

@@ -403,7 +403,7 @@ from some remote system, and there might be delays. For example:
 ./moxi -z url=http://HOST:8080/pools/default/bucketsStreaming/default
 ```
 
-**Unhandled:** `[:unknown-tag :bridgehead]` When moxi knows its listen ports and
+Static Configuration Startup SequenceWhen moxi knows its listen ports and
 cluster at start-time:
 
  1. The main thread parses cmd-line parameters.
@@ -415,7 +415,7 @@ cluster at start-time:
  1. The main thread then goes into the libevent main event loop, awaiting
     connections from clients or other work tasks.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` When moxi goes through dynamic
+Dynamic Configuration Startup SequenceWhen moxi goes through dynamic
 configuration:
 
  1. The main thread parses cmd-line parameters.
@@ -450,17 +450,15 @@ worker thread. That connection assignment queue code still exists and is used in
 moxi (it's not broken). However, the work queue code allows any work task to be
 assigned to a different thread.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` A work task is a function pointer
-plus opaque callback data.
+Work TasksA work task is a function pointer plus opaque callback data.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Both the connection assignment queue
-code and the work queue code integrate with libevent, and use the
-memcached-inspired trick of writing one byte to a pipe, if necessary, in order
-to wakeup a target thread that might be waiting for file-descriptor activity in
-libevent.
+Work Queues & LibeventBoth the connection assignment queue code and the work
+queue code integrate with libevent, and use the memcached-inspired trick of
+writing one byte to a pipe, if necessary, in order to wakeup a target thread
+that might be waiting for file-descriptor activity in libevent.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` The work queue facility is
-fundamentally asynchronous, so it supports fire-and-forget work tasks.
+Asynchronous vs Synchronous Work TasksThe work queue facility is fundamentally
+asynchronous, so it supports fire-and-forget work tasks.
 
 The work queue code also has functions that support higher-level synchronous
 work tasks between threads. That is, a calling thread can fire off a work task
@@ -470,10 +468,10 @@ to complete (when the target thread marks the task as complete).
 Most communication between the libconflate thread and the main thread uses the
 synchronous work task facility.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` The work queue code also has
-functions that support "broadcast" scatter/gather patterns. For example, the
-main thread can fire off "statistics gathering" work tasks at each worker
-thread, and then wait/block until there are responses from all worker threads.
+Scatter/Gather Work TasksThe work queue code also has functions that support
+"broadcast" scatter/gather patterns. For example, the main thread can fire off
+"statistics gathering" work tasks at each worker thread, and then wait/block
+until there are responses from all worker threads.
 
 Most communication between the main thread and worker threads uses the
 scatter/gather facility.
@@ -486,7 +484,7 @@ In the dynamic configuration world, configuration, whether the first time or
 whether a re-configuration, uses the work queues and the same code paths. That
 is, the first time is just an edge case of re-configuration.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Also, to keep locking to a minimum,
+Configuration Lock Avoidance & VersioningAlso, to keep locking to a minimum,
 each thread has its own copy of the configuration data structures and strings.
 Each copy of the configuration is associated with a version number (called
 "config\_ver"), to allow for faster comparisons. That is, it's fast to test that
@@ -494,21 +492,21 @@ configuration hasn't changed by just comparing numbers.
 
 In the dynamic configuration world, it all starts with libconflate.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Libconflate has its own, dedicated
-thread for making HTTP/REST calls to retrieve a cluster configuration and
-processing JSON responses. When the libconflate receives a proper REST response,
-it invokes moxi callbacks (so the dynamic re-configuration callbacks are
-happening on libconflate's dedicated thread).
+Integration with LibconflateLibconflate has its own, dedicated thread for making
+HTTP/REST calls to retrieve a cluster configuration and processing JSON
+responses. When the libconflate receives a proper REST response, it invokes moxi
+callbacks (so the dynamic re-configuration callbacks are happening on
+libconflate's dedicated thread).
 
 Those moxi callbacks are implemented by the agent\_config.c file in moxi. The
 agent\_config code next sends a synchronous work task (with the latest,
 successfully parsed config info to moxi's main thread.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Note that there may be more than one
-proxy config in a single "re-configuration" work task. The reason is that each
-JSON configuration message, for simplicity, includes all buckets, even if most
-of the buckets haven't changed. For example, if there are 55 buckets, the JSON
-message will have 55 bucket configuration details in it.
+One JSON message has all bucketsNote that there may be more than one proxy
+config in a single "re-configuration" work task. The reason is that each JSON
+configuration message, for simplicity, includes all buckets, even if most of the
+buckets haven't changed. For example, if there are 55 buckets, the JSON message
+will have 55 bucket configuration details in it.
 
 Later, if another bucket is added, for example, the next JSON reconfiguration
 message will have 56 buckets in it (as opposed to just sending a delta).
@@ -519,20 +517,20 @@ the first-time pathway, re-configuration pathway, and approach to handling
 restarts are all the same, since everything that moxi needs to operate will
 appear in a single JSON message.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` The main thread tracks a list of
-active proxies. Each active proxy has a name, such as "default". In a
-multi-tenant deployment, this proxy name is the same as a bucket name. During
-the re-configuration work task, the main thread walks through its active proxies
-list and updates each proxy data structure
+Main thread's list of proxiesThe main thread tracks a list of active proxies.
+Each active proxy has a name, such as "default". In a multi-tenant deployment,
+this proxy name is the same as a bucket name. During the re-configuration work
+task, the main thread walks through its active proxies list and updates each
+proxy data structure
 
 appropriately. Also, new proxies are created and no longer unlisted proxies are
 deleted, as necessary.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` While the main thread is responsible
-for proxy data structures (and the linked list of proxy structures), each worker
-thread has its own copy or snapshot of this information (plus more
-thread-specific data), called a proxy\_td data structure. This is short for
-"proxy thread data", and is often abbreviated as "ptd" in the code.
+proxy vs proxy\_tdWhile the main thread is responsible for proxy data structures
+(and the linked list of proxy structures), each worker thread has its own copy
+or snapshot of this information (plus more thread-specific data), called a
+proxy\_td data structure. This is short for "proxy thread data", and is often
+abbreviated as "ptd" in the code.
 
 A proxy keeps track of its proxy\_td's (one proxy\_td per worker thread).
 
@@ -546,7 +544,7 @@ structure fields are inherently read-only and static, so they don't need
 locking. The code comments (cproxy.h) try to clearly specify which fields are
 immutable and lockless.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Between each request, each worker
+Worker threads handle a proxy\_td change.Between each request, each worker
 thread grabs a very short lock on its parent's proxy data structure to compare
 config\_ver numbers. If the config\_ver numbers match, the worker thread knows
 that the proxy's configuration remains the same, and the request can proceed.

@@ -376,10 +376,8 @@ your system.
 To uninstall the software on a Windows system you must have Administrator or
 Power User privileges to uninstall Couchbase.
 
-To remove, choose **Unhandled:** `[:unknown-tag :guimenu]` > **Unhandled:**
-`[:unknown-tag :guimenuitem]` > **Unhandled:** `[:unknown-tag :guimenuitem]`,
-choose **Unhandled:** `[:unknown-tag :guimenuitem]`, and remove the Couchbase
-Server software.
+To remove, choose `Start` > `Settings` > `Control Panel`, choose `Add or Remove
+Programs`, and remove the Couchbase Server software.
 
 <a id="couchbase-uninstalling-macosx"></a>
 
@@ -923,8 +921,25 @@ Couchbase Server 1.8 is the updated and rebranded release of Membase Server.
 To browse or submit new issues, see [Couchbase Server Issues
 Tracker](http://www.couchbase.com/issues/browse/MB).
 
-**Unhandled:** `[:unknown-tag :important]`  **New Features and Behaviour Changes
-in 1.8.0**
+In line with the rebranding and name changes, there are some significant changes
+to the following areas of this release:
+
+ * **Directory Changes**
+
+   Couchbase Server is now installed into a `couchbase` directory, for example on
+   Linux the default installation directory is `/opt/couchbase` instead of
+   `/opt/membase`.
+
+   During an upgrade, the location of your data files will not be modified.
+
+ * **Command Changes**
+
+   The name of many of the core commands provided with Couchbase Server have been
+   renamed, with the existing scripts deprecated. For example, the backup command
+   `mbbackup` in Membase Server is now called `cbbackup`. See the full release note
+   entry below for more detailed information.
+
+**New Features and Behaviour Changes in 1.8.0**
 
  * Ubuntu 9.x is no longer a supported platform and support will be removed in a
    future release.

@@ -19,7 +19,6 @@ As of Couchbase Server 2.0, the following publicly available tools have been
 renamed, consolidated or removed. This is to provide better usability, and
 reduce the number of commands required to manage Couchbase Server:
 
-**Unhandled thing here**
 By default, the command-line tools are installed into the following locations on
 each platform:
 
@@ -880,7 +879,10 @@ configuration, memory and disk persistence behavior. This tool was formerly
 provided as the separate tools, `cbvbucketctl` and `cbflushctl` in Couchbase
 1.8.
 
-**Unhandled:** `[:unknown-tag :caution]`<a id="table-couchbase-admin-cmdline-cbepctl-locs"></a>
+Changes to the cluster configuration using `cbepctl` are not persisted over a
+cluster restart.
+
+<a id="table-couchbase-admin-cmdline-cbepctl-locs"></a>
 
 **Linux**    | `/opt/couchbase/bin/cbepctl`                                                      
 -------------|-----------------------------------------------------------------------------------
@@ -1307,8 +1309,11 @@ If you choose the verbosity option, `-v` debugging information for
 `cbcollect_info`, it will gather statistics from an individual node in the
 cluster.
 
-**Unhandled:** `[:unknown-tag :sidebar]` The tool will create the following.log
-files in your named archive:
+This command will collect information from an individual Couchbase Server node.
+If you are experiencing problems with multiple nodes in a cluster, you may need
+to run it on all nodes in a cluster.
+
+The tool will create the following.log files in your named archive:
 
 <a id="table-couchbase-admin-cmdline-cbcollect_info"></a>
 
@@ -1343,8 +1348,13 @@ entire bucket, a single node, or a single bucket on a single functioning node.
 Your node or cluster needs to be functioning in order to create the backup.
 Couchbase Server will write a copy of data onto disk.
 
-**Unhandled:** `[:unknown-tag :sidebar]` Depending upon your platform, this tool
-is the following directories:
+Be aware that `cbbackup` does not support external IP addresses. This means that
+if you install Couchbase Server with the default IP address, you cannot use an
+external hostname to access it. To change the address format into a hostname
+format for the server, see [Using Hostnames with Couchbase
+Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+
+Depending upon your platform, this tool is the following directories:
 
 <a id="table-couchbase-admin-cmdline-cbbackup-locs"></a>
 

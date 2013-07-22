@@ -32,7 +32,8 @@ The SELECT statement queries a data source. It returns a JSON array containing z
 
 The following describe optional clauses you can use in your select statement:
 
-* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is the provide `data-source`
+* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket. Alternately you can provide the database or data bucket name as an alias using the `AS` clause within `FROM.`
+Another use of the `FROM` clause is to specify a path within a bucket. With this option, the server evaluates the path specified for each document in the data bucket and the value at that path becomes an input into the query.
 
 ###Parameters
 

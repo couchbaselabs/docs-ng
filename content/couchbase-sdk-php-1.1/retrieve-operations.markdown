@@ -1,6 +1,5 @@
 # Retrieve Operations
 
-**Unhandled thing here**
 <a id="api-reference-retrieve-get"></a>
 
 ## Basic Get Operations

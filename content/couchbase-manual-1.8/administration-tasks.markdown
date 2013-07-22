@@ -23,10 +23,10 @@ These administration tasks include:
 
    You can add or remove multiple nodes from your cluster at the same time. Once
    the new node arrangement has been configured, the process redistributing the
-   data and bringing the nodes into the cluster is called **Unhandled:**
-   `[:unknown-tag :firstterm]`. The rebalancing process moves the data around the
-   cluster to match the new structure, and can be performed live while the cluster
-   is still servicing application data requests.
+   data and bringing the nodes into the cluster is called `rebalancing`. The
+   rebalancing process moves the data around the cluster to match the new
+   structure, and can be performed live while the cluster is still servicing
+   application data requests.
 
    More information on increasing and reducing your cluster size and performing a
    rebalance operation is available in [Rebalancing (Expanding and Shrinking your
@@ -66,9 +66,9 @@ These administration tasks include:
 The replica system within Couchbase Server enables the cluster to cope with a
 failure of one or more nodes within the cluster without affecting your ability
 to access the stored data. In the event of an issue on one of the nodes, you can
-initiate a **Unhandled:** `[:unknown-tag :firstterm]` status for the node. This
-removes the node from the cluster, and enables the replicas of the data stored
-on that node within the other nodes in the cluster.
+initiate a `failover` status for the node. This removes the node from the
+cluster, and enables the replicas of the data stored on that node within the
+other nodes in the cluster.
 
 Because failover of a node enables the replica vBuckets for the corresponding
 data stored, the load on the nodes holding the replica data will increase. Once
@@ -330,13 +330,12 @@ methods:
  * **Using the Web Console**
 
    Go to the `Management -> Server Nodes` section of the Administration Web
-   Console. Find the node that you want to failover, and click the **Unhandled:**
-   `[:unknown-tag :guibutton]` button. You can only failover nodes that the cluster
-   has identified as being 'Down'.
+   Console. Find the node that you want to failover, and click the `Fail Over`
+   button. You can only failover nodes that the cluster has identified as being
+   'Down'.
 
-   You will be presented with a warning. Click **Unhandled:** `[:unknown-tag
-   :guibutton]` to finish marking the node as failed over. Click **Unhandled:**
-   `[:unknown-tag :guibutton]` if you want to cancel the operation.
+   You will be presented with a warning. Click `Fail Over` to finish marking the
+   node as failed over. Click `Cancel` if you want to cancel the operation.
 
  * **Using the Command-line**
 
@@ -425,8 +424,12 @@ Backing up your data should be a regular process on your cluster to ensure that
 you do not lose information in the event of a serious hardware or installation
 failure.
 
-**Unhandled:** `[:unknown-tag :sidebar]` For detailed information on the restore
-processes and options, see
+Due to the active nature of Couchbase Server it is impossible to create a
+complete in-time backup and snapshot of the entire cluster. Because data is
+always being updated and modified, it would be impossible to take an accurate
+snapshot.
+
+For detailed information on the restore processes and options, see
 [Restore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
 
 It is a best practice to backup and restore all nodes together to minimize any
@@ -464,11 +467,11 @@ commands that are executed during the process.
 Recommended best practice is to run the command as the `couchbase` user, as this
 is the default owner of the files when Couchbase Server is installed.
 
-The `cbbackup` script will also perform a **Unhandled:** `[:unknown-tag
-:firstterm]` of the database files to defragment them which provides faster
-startup times. Depending on the amount of data, this script can take an extended
-amount of time to run. It is a best practice to make sure that your connection
-to the server running the script is not broken.
+The `cbbackup` script will also perform a `vacuum` of the database files to
+defragment them which provides faster startup times. Depending on the amount of
+data, this script can take an extended amount of time to run. It is a best
+practice to make sure that your connection to the server running the script is
+not broken.
 
  * **Linux**
 
@@ -723,8 +726,7 @@ Couchbase Server is designed to actively change the number of nodes configured
 within the cluster to cope with these requirements, all while the cluster is up
 and running and servicing application requests. The overall process is broken
 down into two stages; the addition and/or removal of nodes in the cluster, and
-the **Unhandled:** `[:unknown-tag :firstterm]` of the information across the
-nodes.
+the `rebalancing` of the information across the nodes.
 
 The addition and removal process merely configures a new node into the cluster,
 or marks a node for removal from the cluster. No actual changes are made to the
@@ -993,8 +995,8 @@ The methods are:
  * **Web Console — After Installation**
 
    You can add a new node to an existing cluster after installation by clicking the
-   **Unhandled:** `[:unknown-tag :guibutton]` button within the `Manage Server
-   Nodes` area of the Admin Console. You can see the button in the figure below.
+   `Add Server` button within the `Manage Server Nodes` area of the Admin Console.
+   You can see the button in the figure below.
 
 
    ![](images/admin-tasks-rebalance-add-button.png)
@@ -1110,10 +1112,9 @@ Like adding nodes, there are a number of solutions for removing a node:
    You can remove a node from the cluster from within the `Manage Server Nodes`
    section of the Web Console, as shown in the figure below.
 
-   To remove a node, click the **Unhandled:** `[:unknown-tag :guibutton]` button
-   next to the node you want to remove. You will be provided with a warning to
-   confirm that you want to remove the node. Click **Unhandled:** `[:unknown-tag
-   :guibutton]` to mark the node for removal.
+   To remove a node, click the `Remove Server` button next to the node you want to
+   remove. You will be provided with a warning to confirm that you want to remove
+   the node. Click `Remove` to mark the node for removal.
 
  * **Using the Command-line**
 
@@ -1148,9 +1149,9 @@ adding data to different nodes in the process.
 
 If Couchbase Server identifies that a rebalance is required, either through
 explicit addition or removal, or through a failover, then the cluster is in a
-**Unhandled:** `[:unknown-tag :firstterm]` state. This does not affect the
-cluster operation, it merely indicates that a rebalance operation is required to
-move the cluster into its configured state.
+`pending rebalance` state. This does not affect the cluster operation, it merely
+indicates that a rebalance operation is required to move the cluster into its
+configured state.
 
 To initiate a rebalance operation:
 
@@ -1158,7 +1159,7 @@ To initiate a rebalance operation:
 
    Within the `Manage Server Nodes` area of the Couchbase Administration Web
    Console, a cluster pending a rebalance operation will have enabled the
-   **Unhandled:** `[:unknown-tag :guibutton]` button.
+   `Rebalance` button.
 
 
    ![](images/admin-tasks-rebalance-starting-console.png)
@@ -1182,9 +1183,8 @@ To initiate a rebalance operation:
    ![](images/swap-rebalance-active-vbuckets.png)
 
    You can stop a rebalance operation at any time during the process by clicking
-   the **Unhandled:** `[:unknown-tag :guibutton]` button. This only stops the
-   rebalance operation, it does not cancel the operation. You should complete the
-   rebalance operation.
+   the `Stop Rebalance` button. This only stops the rebalance operation, it does
+   not cancel the operation. You should complete the rebalance operation.
 
  * **Using the Command-line**
 
@@ -1366,7 +1366,8 @@ There are essentially two stages to rebalancing:
    exactly at a given instant in time. However, you should be able to determine
    whether there is a significant difference between the two figures.
 
-   **Unhandled:** `[:unknown-tag :caution]`
+   Until this is completed, you should avoid using the "failover" functionality
+   since that may result in loss of the data that has not yet been replicated.
 
  * **Draining**
 
@@ -1484,9 +1485,9 @@ For `memcached` buckets:
 ### Rebalance Behind-the-Scenes
 
 The rebalance process is managed through a specific process called the
-**Unhandled:** `[:unknown-tag :firstterm]`. This examines the current vBucket
-map and then combines that information with the node additions and removals in
-order to create a new vBucket map.
+`orchestrator`. This examines the current vBucket map and then combines that
+information with the node additions and removals in order to create a new
+vBucket map.
 
 The orchestrator starts the process of moving the individual vBuckets from the
 current vBucket map to the new vBucket structure. The process is only started by
@@ -1496,10 +1497,10 @@ vBucket map match the current situation.
 
 Each vBucket is moved independently, and a number of vBuckets can be migrated
 simultaneously in parallel between the different nodes in the cluster. On each
-destination node, a process called **Unhandled:** `[:unknown-tag :firstterm]` is
-started, which uses the TAP system to request that all the data is transferred
-for a single vBucket, and that the new vBucket data will become the active
-vBucket once the migration has been completed.
+destination node, a process called `ebucketmigrator` is started, which uses the
+TAP system to request that all the data is transferred for a single vBucket, and
+that the new vBucket data will become the active vBucket once the migration has
+been completed.
 
 While the vBucket migration process is taking place, clients are still sending
 data to the existing vBucket. This information is migrated along with the

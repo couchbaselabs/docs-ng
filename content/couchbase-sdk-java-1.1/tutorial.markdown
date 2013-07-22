@@ -1,6 +1,6 @@
 # Tutorial
 
-In this chapter we'll build on the foundations introduced in the [Getting
+In this chapter we will build on the foundations introduced in the [Getting
 Started](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/getting-started.html)
 guide and build a full-blown web application on top of it. Make sure to have the
 `beer-sample` bucket around, because the application will allow you to display
@@ -154,9 +154,6 @@ the repository mentioned at the beginning of the tutorial):
             <name>Couchbase Maven Repository</name>
             <layout>default</layout>
             <url>http://files.couchbase.com/maven2/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
@@ -164,7 +161,7 @@ the repository mentioned at the beginning of the tutorial):
         <dependency>
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.7</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

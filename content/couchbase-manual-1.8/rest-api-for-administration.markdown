@@ -375,8 +375,8 @@ node.
 
 ## Provisioning a Node
 
-Creating a new cluster or adding a node to a cluster is called **Unhandled:**
-`[:unknown-tag :firstterm]`. You need to:
+Creating a new cluster or adding a node to a cluster is called `provisioning`.
+You need to:
 
  * Create a new node by installing a new Couchbase Server.
 
@@ -406,7 +406,10 @@ where Couchbase Server persists items for the node. You must configure a disk
 path for a node prior to creating a new cluster or adding a node to an existing
 cluster.
 
-**Unhandled:** `[:unknown-tag :sidebar]` Example as follows:
+Note that the disk path must already exist and must already be writable before
+you perform this request.
+
+Example as follows:
 
 
 ```
@@ -1871,8 +1874,9 @@ example:
 
 
 ```
-shell&gt; curl -u admin:password -v -X POST 'http://Administrator:Password@192.168.0.77:8091/controller/rebalance' \
-    -d 'ejectedNodes=&knownNodes=ns_1%40192.168.0.77%2Cns_1%40192.168.0.56'
+> curl -v -u Administrator:password -X POST
+'http://172.23.121.11:8091/controller/rebalance' -d
+'ejectedNodes=&knownNodes=ns_1@172.23.121.11,ns_1@172.23.121.12'
 ```
 
 The corresponding raw HTTP request:

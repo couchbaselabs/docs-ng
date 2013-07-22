@@ -1,6 +1,5 @@
 # PHP Method Summary
 
-**Unhandled thing here**
 For convenience, all distributions include a stub API reference file that
 contains the definitions for all the different methods and constants supported.
 The API information is provided in the `couchbase-api.php` file.

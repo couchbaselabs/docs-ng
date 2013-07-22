@@ -3,6 +3,9 @@
 This chapter will get you started with using Couchbase Server and the.NET (C\#)
 Client Library.
 
+As of release 1.2.5, the Couchbase.NET Client Library supports.NET Framework
+versions 3.5 and 4.0.
+
 <a id="server"></a>
 
 ## Get a Server
@@ -15,7 +18,7 @@ here when you're done
 ## Get a Client Library
 
 It can either be [downloaded as a
-zipfile](http://packages.couchbase.com/clients/net/1.2/Couchbase-Net-Client-1.2.4.zip)
+zipfile](http://packages.couchbase.com/clients/net/1.2/Couchbase-Net-Client-1.2.6.zip)
 or run the following in the NuGet Package Manger console:
 
 

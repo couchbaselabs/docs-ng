@@ -53,7 +53,14 @@ The following operating systems are supported:
  * Mac OS X 10.5 or higher (minimum), 10.6 or higher preferred (64-bit only)
    *Developer Only*
 
-**Unhandled:** `[:unknown-tag :sidebar]`<a id="couchbase-getting-started-prepare-hardware"></a>
+### Use of SELinux
+
+Couchbase Server does not currently operate when SELinux is enabled. You should
+disable SELinux on each node in the cluster to prevent problems with the
+operation of Couchbase Server. For more information on disable SELinux, see [How
+to Disable SELinux](http://www.crypt.gen.nz/selinux/disable_selinux.html).
+
+<a id="couchbase-getting-started-prepare-hardware"></a>
 
 ### Hardware Requirements
 
@@ -124,8 +131,8 @@ Web browsers, with Javascript support enabled:
  * Internet Explorer 8 or higher
 
    To enable JavaScript, by enabling `Active Scripting` within the `Custom Level`,
-   section of the `Security` section of the **Unhandled:** `[:unknown-tag
-   :guimenuitem]` item of the **Unhandled:** `[:unknown-tag :guimenu]` menu.
+   section of the `Security` section of the `Internet Options` item of the `Tools`
+   menu.
 
 <a id="couchbase-network-ports"></a>
 
@@ -305,20 +312,19 @@ screen.
 
 ![](images/win-install-1.png)
 
-Click **Unhandled:** `[:unknown-tag :guibutton]` to start the installation. You
-will be prompted with the `Installation Location` screen. You can change the
-location where the Couchbase Server application is located. Note that this does
-not configure the location of where the persistent data will be stored, only the
-location of the application itself. To select the install location, click the
-**Unhandled:** `[:unknown-tag :guibutton]` button to select the folder. Click
-**Unhandled:** `[:unknown-tag :guibutton]` to continue the installation.
+Click `Next` to start the installation. You will be prompted with the
+`Installation Location` screen. You can change the location where the Couchbase
+Server application is located. Note that this does not configure the location of
+where the persistent data will be stored, only the location of the application
+itself. To select the install location, click the `Browse` button to select the
+folder. Click `Next` to continue the installation.
 
 
 ![](images/win-install-2.png)
 
 Configuration has now been completed. You will be prompted to confirm that you
-want to continue installation. Click **Unhandled:** `[:unknown-tag :guibutton]`
-to confirm the installation and start the installation process.
+want to continue installation. Click `Next` to confirm the installation and
+start the installation process.
 
 
 ![](images/win-install-3.png)
@@ -335,8 +341,8 @@ for administration of the Couchbase Server.
 Once the installation process has been completed, you will be prompted with the
 completion screen. This indicates that the installation has been completed and
 your Couchbase Server is ready to be setup and configured. When you click
-**Unhandled:** `[:unknown-tag :guibutton]`, the installer will quit and
-automatically open a web browser with the Couchbase Server setup window.
+`Finish`, the installer will quit and automatically open a web browser with the
+Couchbase Server setup window.
 
 
 ![](images/win-install-5.png)
@@ -517,16 +523,14 @@ To perform an online upgrade of your cluster:
     If necessary, you can add new nodes to your cluster to maintain performance
     while your existing nodes are upgraded.
 
- 1. On the `Manage->Server Nodes` screen, click the **Unhandled:** `[:unknown-tag
-    :guibutton]`. This marks the server for removal from the cluster, but does not
-    actually remove it.
+ 1. On the `Manage->Server Nodes` screen, click the `Remove Server`. This marks the
+    server for removal from the cluster, but does not actually remove it.
 
 
     ![](images/online-upgrade-removenode.png)
 
  1. The `Pending Rebalance` will show the number of servers that require a rebalance
-    to remove them from the cluster. Click the **Unhandled:** `[:unknown-tag
-    :guibutton]` button.
+    to remove them from the cluster. Click the `Rebalance` button.
 
 
     ![](images/online-upgrade-rebalance.png)
@@ -555,16 +559,16 @@ To perform an online upgrade of your cluster:
  1. With the node upgraded, you need to add the node back to the cluster.
 
     On an existing node within the running cluster, navigate to the
-    `Manage-gt;Server Nodes` page. Click the **Unhandled:** `[:unknown-tag
-    :guibutton]` button. You will be prompted to enter the IP address and
-    username/password of the server to add back to the cluster.
+    `Manage-gt;Server Nodes` page. Click the `Add Server` button. You will be
+    prompted to enter the IP address and username/password of the server to add back
+    to the cluster.
 
 
     ![](images/online-upgrade-addnode.png)
 
  1. The `Pending Rebalance` count will indicate that servers need to be rebalanced
-    into the cluster. Click **Unhandled:** `[:unknown-tag :guibutton]` to rebalance
-    the cluster, and bring the node back into production.
+    into the cluster. Click `Rebalance` to rebalance the cluster, and bring the node
+    back into production.
 
 You will need to repeate the above sequence for each node within the cluster in
 order to upgrade the entire cluster to the new version.
@@ -740,8 +744,14 @@ Server cluster. With the cluster switched off, you can then perform the upgrade
 process on each of the nodes, and bring your cluster and application back up
 again.
 
-**Unhandled:** `[:unknown-tag :important]` To upgrade an existing cluster using
-the offline method:
+It's important to ensure that your disk write queue ( [Disk Write
+Queue](couchbase-manual-ready.html#couchbase-monitoring-diskwritequeue) ) has
+been completely drained before shutting down the cluster service. This will
+ensure that all data has been persisted to disk and will be available after the
+upgrade. It is a best practice to turn off the application and allow the queue
+to drain prior to beginning the upgrade.
+
+To upgrade an existing cluster using the offline method:
 
  1. Turn off your application, so that no requests are going to your Membase
     Cluster. You can monitor the activity of your cluster by using the
@@ -903,7 +913,9 @@ Step-by-step instructions are probided below:
     Membase Server 1.7.x | Linux    | `/opt/membase/var/lib/membase/config/config.dat`
     Membase Server 1.7.x | Windows  | `C:\Program Files\Membase\Server\Config\var\lib\membase\config.dat`
 
-    **Unhandled:** `[:unknown-tag :important]`
+    If you have multiple version subdirectories in your `/etc/opt/membase`
+    directory, you must first cleanup the directory so only the last, most recent
+    version remains.
 
  1. **Linux Upgrade Process from Membase Server 1.7.x**
 
@@ -952,9 +964,8 @@ Step-by-step instructions are probided below:
     installation to Couchbase Server, using the same installation location. If you
     have installed Membase Server in the default location, `C:\Program
     Files\Membase\Server`, the Couchbase Server installer will copy the new files to
-    the same location. Once the upgrade process is completed you will see the
-    **Unhandled:** `[:unknown-tag :guiicon]` icon on the Desktop and under
-    **Unhandled:** `[:unknown-tag :guimenu]` replacing Membase Server.
+    the same location. Once the upgrade process is completed you will see theicon on
+    the Desktop and under `Start->Programs` replacing Membase Server.
 
 After every node has been upgraded and restarted, and you can monitor its
 progress of "warming up". For more details, see [Monitoring startup
@@ -1201,8 +1212,7 @@ can also use an IP address or, if you are on the same machine,
 
     ![](images/web-console-startup-1.png)
 
-    Click the **Unhandled:** `[:unknown-tag :guibutton]` button to start the setup
-    process.
+    Click the `SETUP` button to start the setup process.
 
  1. First, you must set the disk storage and cluster configuration.
 
@@ -1231,8 +1241,7 @@ can also use an IP address or, if you are on the same machine,
 
     ![](images/web-console-startup-2b.png)
 
-    Click **Unhandled:** `[:unknown-tag :guibutton]` to continue the installation
-    process.
+    Click `Next` to continue the installation process.
 
  1. Couchbase Server stores information in buckets. You should set up a default
     bucket for Couchbase Server to start with. You can change and alter the bucket
@@ -1286,7 +1295,7 @@ can also use an IP address or, if you are on the same machine,
           For more information, see [Memory
           Quotas](couchbase-manual-ready.html#couchbase-introduction-architecture-quotas).
 
-    Click **Unhandled:** `[:unknown-tag :guibutton]` to continue the setup process.
+    Click `Next` to continue the setup process.
 
  1. You can optionally enable the notification system within the Couchbase Web
     Console.
@@ -1328,7 +1337,7 @@ can also use an IP address or, if you are on the same machine,
        and related products. You can unsubscribe from the mailing list at any time
        using the unsubscribe link provided in each email communication.
 
-    Click **Unhandled:** `[:unknown-tag :guibutton]` to continue the setup process.
+    Click `Next` to continue the setup process.
 
  1. The final step in the setup process is to configure the username and password
     for the administrator of the server. If you create a new cluster then this
@@ -1340,7 +1349,7 @@ can also use an IP address or, if you are on the same machine,
 
     ![](images/web-console-startup-5.png)
 
-    Click **Unhandled:** `[:unknown-tag :guibutton]` to complete the process.
+    Click `Next` to complete the process.
 
 Once the setup process has been completed, you will be presented with the
 Couchbase Web Console showing the Cluster Overview page.

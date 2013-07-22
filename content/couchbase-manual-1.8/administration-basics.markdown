@@ -144,8 +144,8 @@ granted the rights to manage services to start and stop Couchbase Server.
 
 By default, the service should start automatically when the machine boots. To
 manually start the service, open the Windows Task Manager and choose the
-`Services` tab, or select the **Unhandled:** `[:unknown-tag :guimenu]`, choose
-`Run` and then type `Services.msc` to open the Services management console.
+`Services` tab, or select the `Start`, choose `Run` and then type `Services.msc`
+to open the Services management console.
 
 Once open, find the `CouchbaseServer` service, right-click and then choose to
 Start or Stop the service as appropriate. You can also alter the configuration
@@ -195,22 +195,22 @@ can control the server.
 
 The individual menu options perform the following actions:
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `About Couchbase`
 
    Opens a standard About dialog containing the licensing and version information
    for the Couchbase Server installed.
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `Open Admin Console`
 
    Opens the Web Administration Console in your configured default browser.
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `Visit Support Forum`
 
    Opens the Couchbase Server support forum within your default browser at the
    Couchbase website where you can ask questions to other users and Couchbase
    developers.
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `Check for Updates`
 
    Checks for updated versions of Couchbase Server. This checks the currently
    installed version against the latest version available at Couchbase and offers
@@ -237,19 +237,19 @@ The individual menu options perform the following actions:
    You can also enable automated updates by selecting the `Automatically download
    and install updates in the future` checkbox.
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `Launch Admin Console at Start`
 
    If this menu item is checked, then the Web Console for administrating Couchbase
    Server will be opened whenever the Couchbase Server is started. Selecting the
    menu item will toggle the selection.
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `Automatically Start at Login`
 
    If this menu item is checked, then Couchbase Server will be automatically
    started when the Mac OS X machine starts. Selecting the menu item will toggle
    the selection.
 
- * **Unhandled:** `[:unknown-tag :guimenuitem]`
+ * `Quit Couchbase`
 
    Selecting this menu option will shut down your running Couchbase Server, and
    close the menubar interface. To restart, you must open the Couchbase Server

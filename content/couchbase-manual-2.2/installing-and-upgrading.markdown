@@ -141,8 +141,8 @@ support enabled:
  * Internet Explorer 8 or higher
 
    To enable JavaScript, by enabling `Active Scripting` within the `Custom Level`,
-   section of the `Security` section of the **Unhandled:** `[:unknown-tag
-   :guimenuitem]` item of the **Unhandled:** `[:unknown-tag :guimenu]` menu.
+   section of the `Security` section of the `Internet Options` item of the `Tools`
+   menu.
 
 <a id="couchbase-network-ports"></a>
 
@@ -883,8 +883,18 @@ both online upgrades or offline upgrades:
 
  * Couchbase 2.0.1 to Couchbase 2.1.0 and above
 
-**Unhandled:** `[:unknown-tag :important]` You can perform a cluster upgrade in
-two ways:
+If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
+available for both your original Couchbase Server 1.8 data files and the new
+format for Couchbase Server 2.0 files. You will also need additional disk space
+for new functions such as indexing and compaction. You will need approximately
+three times the disk space.
+
+You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
+must first upgrade from Couchbase Server 1.8 or earlier to Couchbase Server
+1.8.1 to provide data compatibility with Couchbase Server 2.0 +. After you
+perform this initial upgrade you can then upgrade to 2.0+.
+
+You can perform a cluster upgrade in two ways:
 
  * **Online Upgrades**
 
@@ -1030,8 +1040,14 @@ back nodes into the cluster. This would reduce your cluster capacity while you
 add the new node back into the cluster, which could lead to data being ejected
 to disk.
 
-**Unhandled:** `[:unknown-tag :important]` To perform an standard, online
-upgrade of your cluster:
+For information on upgrading from Couchbase Server 1.8 to Couchbase Server
+2.1.0, see [Upgrades Notes 1.8.1 to
+2.1.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
+You cannot directly upgrade from Couchbase Server 1.8 to 2.0+, instead you must
+first upgrade to Couchbase Server 1.8.1 for data compatibility and then upgrade
+to Couchbase Server 2.1.0+.
+
+To perform an standard, online upgrade of your cluster:
 
  1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
     Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
@@ -1040,16 +1056,15 @@ upgrade of your cluster:
     at a time, or if you have enough cluster capacity, two nodes at a time. We do
     not recommend that you remove more than two nodes at a time for this upgrade.
 
- 1. In Couchbase Web Console under `Manage->Server Nodes` screen, click
-    **Unhandled:** `[:unknown-tag :guibutton]`. This marks the server for removal
-    from the cluster, but does not actually remove it.
+ 1. In Couchbase Web Console under `Manage->Server Nodes` screen, click `Remove
+    Server`. This marks the server for removal from the cluster, but does not
+    actually remove it.
 
 
     ![](images/online-upgrade-removenode.png)
 
  1. The `Pending Rebalance` shows servers that require a rebalance. Click the
-    **Unhandled:** `[:unknown-tag :guibutton]` button next to the node you will
-    remove.
+    `Rebalance` button next to the node you will remove.
 
 
     ![](images/online-upgrade-rebalance.png)
@@ -1072,8 +1087,8 @@ upgrade of your cluster:
 
  1. Go to `Manage->Server Nodes`.
 
- 1. Click the **Unhandled:** `[:unknown-tag :guibutton]` button. You will see a
-    prompt to add a node to the cluster.
+ 1. Click the `Add Server` button. You will see a prompt to add a node to the
+    cluster.
 
     *At this point you can provide a hostname for the new node you add. For more
     information, see.*
@@ -1084,8 +1099,8 @@ upgrade of your cluster:
     After you add the new node, the Pending Rebalance count will indicate that
     servers need to be rebalanced into the cluster.
 
- 1. Click **Unhandled:** `[:unknown-tag :guibutton]` to rebalance the cluster and
-    bring the new node into an active state.
+ 1. Click `Rebalance` to rebalance the cluster and bring the new node into an active
+    state.
 
 Repeat these steps for each node in the cluster in order to upgrade the entire
 cluster to a new version.

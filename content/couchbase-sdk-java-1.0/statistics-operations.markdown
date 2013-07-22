@@ -4,7 +4,6 @@ The Couchbase Java Client Library includes support for obtaining statistic
 information from all of the servers defined within a `CouchbaseClient` object. A
 summary of the commands is provided below.
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_java_getstats"></a>
 
 **API Call**     | `client.getStats()`        

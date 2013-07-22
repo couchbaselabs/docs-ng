@@ -156,25 +156,25 @@ assumed to be constants.
 
 <a id="couchbase-bestpractice-sizing-ram-constants"></a>
 
-Constant                                           | Description                                                                                                                                                                           
----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Meta data per document (metadata\_per\_document)   | This is the space that Couchbase needs to keep metadata per document. It is 64 bytes. All the metadata for documents needs to live in memory while a node is running and serving data.
-SSD or Spinning                                    | SSDs give better I/O performance.                                                                                                                                                     
-headroom **Unhandled:** `[:unknown-tag :footnote]` | Typically 25% (0.25) for SSD and 30% (0.30) for spinning (traditional) hard disks as SSD are faster than spinning disks.                                                              
-High Water Mark (high\_water\_mark)                | By default it is set at 70% of memory allocated to the node                                                                                                                           
+Constant                                                                                                                                                                                                                    | Description                                                                                                                                                                                                  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Meta data per document (metadata\_per\_document)                                                                                                                                                                            | This is the space that Couchbase needs to keep metadata per document. As of Couchbase 2.0.1, it is 64 bytes. All the metadata for documents needs to live in memory while a node is running and serving data.
+SSD or Spinning                                                                                                                                                                                                             | SSDs give better I/O performance.                                                                                                                                                                            
+headroomThe headroom is the additional overhead required by the cluster to store metadata about the information being stored. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Typically 25% (0.25) for SSD and 30% (0.30) for spinning (traditional) hard disks as SSD are faster than spinning disks.                                                                                     
+High Water Mark (high\_water\_mark)                                                                                                                                                                                         | By default it is set at 70% of memory allocated to the node                                                                                                                                                  
 
 This is a rough guideline to size your cluster:
 
 <a id="couchbase-bestpractice-sizing-ram-calculations"></a>
 
-Variable                                                  | Calculation                                                           
-----------------------------------------------------------|-----------------------------------------------------------------------
-no\_of\_copies                                            | `1 + number_of_replicas`                                              
-total\_metadata **Unhandled:** `[:unknown-tag :footnote]` | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
-total\_dataset                                            | `(documents_num) * (value_size) * (no_of_copies)`                     
-working\_set                                              | `total_dataset * (working_set_percentage)`                            
-Cluster RAM quota required                                | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
-number of nodes                                           | `Cluster RAM quota required / per_node_ram_quota`                     
+Variable                                                    | Calculation                                                           
+------------------------------------------------------------|-----------------------------------------------------------------------
+no\_of\_copies                                              | `1 + number_of_replicas`                                              
+total\_metadataAll the documents need to live in the memory | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
+total\_dataset                                              | `(documents_num) * (value_size) * (no_of_copies)`                     
+working\_set                                                | `total_dataset * (working_set_percentage)`                            
+Cluster RAM quota required                                  | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
+number of nodes                                             | `Cluster RAM quota required / per_node_ram_quota`                     
 
 You will need at least the number of replicas + 1 nodes irrespective of your
 data size.
@@ -204,7 +204,7 @@ high\_water\_mark       | 70%
 
 Variable                   | Calculation                                                      
 ---------------------------|------------------------------------------------------------------
-no\_of\_copies             | = 2 **Unhandled:** `[:unknown-tag :footnote]`                    
+no\_of\_copies             | = 21 for original and 1 for replica                              
 total\_metadata            | = 1,000,000 \* (100 + 120) \* (2) = 440,000,000                  
 total\_dataset             | = 1,000,000 \* (10,000) \* (2) = 20,000,000,000                  
 working\_set               | = 20,000,000,000 \* (0.2) = 4,000,000,000                        
@@ -447,9 +447,8 @@ Some important statistics related to water marks are:
 
  * Low WaterMark ( `ep_mem_low_wat` )
 
-   The system does not do anything when this watermark is reached but this is the
-   'goal' of the system when it starts ejecting data as a result of high watermark
-   being met.
+   When a threshold known as low water mark is reached, this process starts
+   ejecting inactive replica data from RAM on the node.
 
  * Memory Used ( `mem_used` )
 
@@ -628,160 +627,41 @@ configuring Couchbase to point to wherever you have mounted an external volume.
 ### Handling Changes in IP Addresses
 
 When you use Couchbase Server in the cloud, server nodes can use internal or
-public IP addresses. Because of this you should configure Couchbase to use a
-hostname instead of an IP address.
+public IP addresses. Because IP addresses in the cloud may change quite
+frequently, you should configure Couchbase to use a hostname instead of an IP
+address.
 
 By default Couchbase Servers use specific IP addresses as a unique identifier.
 If the IP changes, an individual node will not be able to identify its own
-configuration and other servers that are in the same cluster will not be able to
-access it. To configure Couchbase Server instances in the cloud to use hostnames
-rather than IP addressed, you should follow these steps. Note that RightScale
-server templates provided by Couchbase will automatically handle the hostname
-configurations.
+address and other servers in the same cluster will not be able to access it. To
+configure Couchbase Server instances in the cloud to use hostnames, you should
+follow steps later in this section. Note that RightScale server templates
+provided by Couchbase can automatically configure a node with a provided
+hostname.
 
-Here are a few points you should keep in mind when you set up hostnames for
-nodes in the cloud:
-
- * Make sure that this hostname always resolves to the IP address of the node that
-   it is on. This can be accomplished by using a dynamic DNS service such as
-   DNSMadeEasy which will allow you to automatically update the hostname when an
-   underlying IP address changes.
-
- * It is best to make sure that the IP address registered with the hostname is the
-   internal address for the node rather than the external one provided by Amazon.
-   This way you know that other nodes and application machines can contact it.
+Make sure that your hostname always resolves to the IP address of the node. This
+can be accomplished by using a dynamic DNS service such as DNSMadeEasy which
+will allow you to automatically update the hostname when an underlying IP
+address changes.
 
 The steps that follow will completely destroy any data and configuration from
-the node, so it is best to start with a fresh Couchbase install. If you already
-have a running cluster, you can easily rebalance a node out of the cluster, make
-the change and then rebalance it back into the cluster. For more information,
-see [Upgrading to Couchbase Server
-2.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
+the node, so you should start with a fresh Couchbase install. If you already
+have a running cluster, you can rebalance a node out of the cluster, make the
+change and then rebalance it back into the cluster. For more information, see
+[Upgrading to Couchbase Server
+2.0.x](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
 
 Nodes with both IPs and hostnames can exist in the same cluster. When you set
 the IP address using this method, you should not specify the address `localhost`
 or `127.0.0.1` as this will be invalid when used as the identifier for multiple
 nodes within the cluster. Instead, use the correct IP address for your host.
 
-**Linux and Windows 2.0.2 and above**
+**Linux and Windows 2.0.1 and earlier**
 
-There are several ways you can provide hostnames for Couchbase 2.0.2+. You can
-provide a hostname when you install a Couchbase Server 2.0.2 node, when you add
-it to an existing cluster for online upgrade, or via a REST-API call. If a node
-fails, any hostname you establish with one of these methods will survive; once
-the node functions again, you can refer to it with the hostname. For
-instructions, see [Using Hostnames with Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
-
-For earlier versions of Couchbase Server you must follow a manual process where
+For Couchbase Server 2.0.1 and earlier you must follow a manual process where
 you edit config files for each node which we describe below for Couchbase in the
-cloud.
-
-**For Linux 2.0.1 and Earlier:**
-
- 1. Install Couchbase Server.
-
- 1. Execute:
-
-     ```
-     sudo /etc/init.d/couchbase-server stop
-     ```
-
- 1. Edit the `start()` function in the script located at
-    `/opt/couchbase/bin/couchbase-server`
-
-    Under the line that reads:
-
-     ```
-     -run ns_bootstrap -- \
-     ```
-
-    Add a new line that reads:
-
-     ```
-     -name ns_1@hostname \
-     ```
-
-    Where `hostname` is either a DNS name or an IP address that you want this server
-    to identify the node (the 'ns\_1@' prefix is mandatory). For example:
-
-     ```
-     ...
-          -run ns_bootstrap -- \
-          -name ns_1@couchbase1.company.com \
-          -ns_server config_path "\"/opt/couchbase/etc/couchbase/static_config\"" \
-     ...
-     ```
-
- 1. You must also edit the IP address configuration file,
-    `/opt/couchbase/var/lib/couchbase/ip`. This file contains the identified IP
-    address of the node once it is part of a cluster. Open the file, and add a
-    single line containing the `hostname`, as configured in the previous step.
-
- 1. Delete the files under:
-
-     * `/opt/couchbase/var/lib/couchbase/data/*`
-
-     * `/opt/couchbase/var/lib/couchbase/mnesia/*`
-
-     * `/opt/couchbase/var/lib/couchbase/config/config.dat`
-
- 1. Execute:
-
-     ```
-     sudo /etc/init.d/couchbase-server start
-     ```
-
- 1. You can see the correctly identified node as the hostname under the Manage
-    Servers page. You will again see the setup wizard since the configuration was
-    cleared out; but after completing the wizard the node will be properly
-    identified.
-
-**For Windows 2.0.1 and Earlier** :
-
- 1. Install Couchbase Server.
-
- 1. Stop the service by running:
-
-     ```
-     shell> C:\Program Files\Couchbase\Server\bin\service_stop.bat
-     ```
-
- 1. Unregister the service by running:
-
-     ```
-     shell> C:\Program Files\Couchbase\Server\bin\service_unregister.bat
-     ```
-
- 1. As Administrator, edit the script located at
-    `C:\Program Files\Couchbase\Server\bin\service_register.bat` :
-
-     * On the 7th line it says: `set NS_NAME=ns_1@%IP_ADDR%`
-
-     * Replace `%IP_ADDR%` with the hostname/IP address that you want to use/
-
- 1. You must also edit the IP address configuration file,
-    `C:\Program Files\Couchbase\Server\var\lib\couchbase\ip`. This file contains the
-    identified IP address of the node once it is part of a cluster. Open the file,
-    and add a single line containing the `hostname`, as configured in the previous
-    step.
-
- 1. Register the service by running the modified script:
-    `C:\Program Files\Couchbase\Server\bin\service_register.bat`
-
- 1. Delete the files located under:
-    `C:\Program Files\Couchbase\Server\var\lib\couchbase\mnesia`.
-
- 1. Start the service by running:
-
-     ```
-     shell> C:\Program Files\Couchbase\Server\bin\service_start.bat
-     ```
-
- 1. See the node correctly identifying itself as the hostname in the GUI under the
-    Manage Servers page. Note you will be taken back to the setup wizard since the
-    configuration was cleared out, but after completing the wizard the node will be
-    named properly.
+cloud. For instructions, see [Hostnames for Couchbase Server 2.0.1 and
+Earlier](couchbase-manual-ready.html#couchbase-getting-started-hostnames-pre2.0).
 
 <a id="couchbase-bestpractice-cloud-netsecurity"></a>
 

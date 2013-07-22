@@ -2,20 +2,18 @@
 
 To start using Couchbase Server, you need to follow these steps:
 
- 1. Prepare your target system by ensuring that you meet the system requirements.
-    See
+ 1. Make sure your machine meets the system requirements. See
     [Preparation](couchbase-manual-ready.html#couchbase-getting-started-prepare).
 
- 1. Install Couchbase Server using one of the available binary distributions. See
-    [Installing Couchbase
+ 1. Install Couchbase Server. See [Installing Couchbase
     Server](couchbase-manual-ready.html#couchbase-getting-started-install).
 
  1. For more information on Upgrading Couchbase Server from a previous version, see
     [Upgrading to Couchbase Server
-    2.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
+    2.0.x](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
 
- 1. Test the installation by connecting to the Couchbase Server and storing some
-    data using the native Memcached protocol. See [Testing Couchbase
+ 1. Test the installation by connecting and storing some data using the native
+    Memcached protocol. See [Testing Couchbase
     Server](couchbase-manual-ready.html#couchbase-getting-started-testing).
 
  1. Setup the new Couchbase Server system by completing the web-based setup
@@ -62,21 +60,26 @@ Your system should meet or exceed the following system requirements.
 
  * Ubuntu Linux 12.04 (32-bit and 64-bit) *for production. Recommended.*
 
- * Later Ubuntu versions may work, but are unsupported. You may need to install a
+ * Ubuntu Linux 13.04 may work, but is unsupported. You may need to install a
    specific OpenSSL dependency by running:
 
     ```
     root-shell> apt-get install libssl0.9.8
     ```
 
-   **Unhandled:** `[:unknown-tag :sidebar]`
+   ### About SELinux
+
+   Couchbase Server does not currently operate when SELinux is enabled. You should
+   disable SELinux on each node in the cluster to prevent problems with the
+   operation of Couchbase Server. For more information on disable SELinux, see [How
+   to Disable SELinux](http://www.crypt.gen.nz/selinux/disable_selinux.html).
 
  * Windows Server 2008 R2 with Service Pack 1 (64-bit). You must upgrade your
    Windows Server 2008 R2 installation with Service Pack 1 installed before running
    Couchbase Server. You can obtain Service Pack 1 from [Microsoft
    TechNet](http://technet.microsoft.com/en-us/windows/gg635126.aspx).
 
- * Windows 7 Pro (64-bit)
+ * Windows 7 (64-bit).
 
  * Mac OS X 10.7 and 10.8 (64-bit only) for *Developer Only*. Not supported in
    production. Couchbase Server on Mac OSX uses 64 vBuckets as opposed to the 1024
@@ -92,7 +95,9 @@ Your system should meet or exceed the following system requirements.
 
 The following hardware requirements are recommended for installation:
 
- * Quad-core, 64-bit CPU running at 3GHz
+ * Quad-core for key-value store, 64-bit CPU running at 3GHz
+
+ * Six cores if you use XDCR and views.
 
  * 16GB RAM (physical)
 
@@ -101,16 +106,16 @@ The following hardware requirements are recommended for installation:
 
 A minimum specification machine should have the following characteristics:
 
- * Dual-core CPU running at 2GHz
+ * Dual-core CPU running at 2GHz for key-value store
 
  * 4GB RAM (physical)
 
-For development and testing purposes a reduced CPU and RAM configuration than
-the minimum specified can be used. This can be as low as 256MB of free RAM
-(beyond operating system requirements) and a single CPU core.
+For development and testing purposes a reduced CPU and RAM than the minimum
+specified can be used. This can be as low as 1GB of free RAM beyond operating
+system requirements and a single CPU core.
 
 However, you should not use a configuration lower than that specified above in
-production. Performance on machines lower than the above specification will be
+production. Performance on machines lower than the minimum specification will be
 significantly lower and should not be used as an indication of the performance
 on a production machine.
 
@@ -119,9 +124,10 @@ reduced.
 
 You must have enough memory to run your operating system and the memory reserved
 for use by Couchbase Server. For example, if you want to dedicate 8GB of RAM to
-Couchbase Server you must have at least an additional 128MB of RAM to host your
-operating system. If you are running additional applications and servers, you
-will need additional RAM.
+Couchbase Server you must have enough RAM to host your operating system. If you
+are running additional applications and servers, you will need additional RAM.
+For smaller systems, such as those with less than 16GB you should for instance
+you should allocate at least 40% of RAM to your operating system.
 
 <a id="couchbase-getting-started-prepare-storage"></a>
 
@@ -129,9 +135,9 @@ will need additional RAM.
 
 You must have the following storage available:
 
- * 100MB for application logging
+ * 1GB for application logging
 
- * Disk space to match your physical RAM requirements for persistence of
+ * At least twice the disk space to match your physical RAM for persistence of
    information
 
 <a id="couchbase-getting-started-prepare-browser"></a>
@@ -160,8 +166,8 @@ support enabled:
  * Internet Explorer 8 or higher
 
    To enable JavaScript, by enabling `Active Scripting` within the `Custom Level`,
-   section of the `Security` section of the **Unhandled:** `[:unknown-tag
-   :guimenuitem]` item of the **Unhandled:** `[:unknown-tag :guimenu]` menu.
+   section of the `Security` section of the `Internet Options` item of the `Tools`
+   menu.
 
 <a id="couchbase-network-ports"></a>
 
@@ -173,7 +179,8 @@ clients that accessing the data stored in the Couchbase cluster. The ports
 listed must be available on the host for Couchbase Server to run and operate
 correctly. Couchbase Server will configure these ports automatically, but you
 must ensure that your firewall or IP tables configuration allow communication on
-the specified ports for each usage type.
+the specified ports for each usage type. On Linux the installer will notify you
+that you need to open these ports.
 
 The following table lists the ports used for different types of communication
 with Couchbase Server, as follows:
@@ -227,9 +234,9 @@ machine before you start the installation. For more information on uninstalling
 Couchbase Server, see [Uninstalling Couchbase
 Server](couchbase-manual-ready.html#couchbase-uninstalling).
 
-To perform an upgrade installation while reatining your existing datasset, see
+To perform an upgrade installation while retaining your existing dataset, see
 [Upgrading to Couchbase Server
-2.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
+2.0.x](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
 
 <a id="couchbase-getting-started-install-redhat"></a>
 
@@ -249,26 +256,31 @@ root-shell> rpm --install couchbase-server version.rpm
 
 Where `version` is the version number of the downloaded package.
 
-Once the `rpm` command has been executed, the Couchbase server starts
-automatically, and is configured to automatically start during boot under the 2,
-3, 4, and 5 runlevels. Refer to the RedHat RPM documentation for more
-information about installing packages using RPM.
+Once the `rpm` command completes, Couchbase Server starts automatically, and is
+configured to automatically start during boot under the 2, 3, 4, and 5
+runlevels. Refer to the RedHat RPM documentation for more information about
+installing packages using RPM.
 
-Once installation has completed, the installation process will display a message
+Once installation finishes, the installation process will display a message
 similar to that below:
 
 
 ```
-Starting Couchbase server: [ OK ]
+Minimum RAM required  : 4 GB
+System RAM configured : 8174464 kB
+
+Minimum number of processors required : 4 cores
+Number of processors on the system    : 4 cores
+
+Starting couchbase-server[  OK  ]
 
 You have successfully installed Couchbase Server.
-Please browse to http://hostname:8091/ to configure your server.
-Please refer to http://couchbase.com/support for
-additional resources.
+Please browse to http://host_name:8091/ to configure your server.
+Please refer to http://couchbase.com for additional resources.
 
 Please note that you have to update your firewall configuration to
-allow connections to the following ports:1,0, 4369, 8091
-and from 21100 to 21199.
+allow connections to the following ports: 11211, 11210, 11209, 4369,
+8091, 8092 and from 21100 to 21299.
 
 By using this software you agree to the End User License Agreement.
 See /opt/couchbase/LICENSE.txt.
@@ -276,11 +288,12 @@ See /opt/couchbase/LICENSE.txt.
 
 Once installed, you can use the RedHat `chkconfig` command to manage the
 Couchbase Server service, including checking the current status and creating the
-links to enable and disable automatic start-up. Refer to the RedHat
-documentation for instructions.
+links to enable and disable automatic start-up. Refer to the [RedHat
+documentation](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-services-chkconfig.html)
+for instructions.
 
-To continue installation you must open a web browser and access the web
-administration interface. See [Initial Server
+To continue installation you open a web browser and access the Couchbase Web
+Console. See [Initial Server
 Setup](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-ubuntu"></a>
@@ -309,21 +322,30 @@ similar to that below:
 
 ```
 Selecting previously deselected package couchbase-server.
-(Reading database ... 218698 files and directories currently installed.)
-Unpacking couchbase-server (from couchbase-server-community_x86_64_beta.deb) ...
-Setting up couchbase-server (2-0~basestar) ...
- * Started Couchbase server
+(Reading database ... 73755 files and directories currently installed.)
+Unpacking couchbase-server (from couchbase-server_x86_64_2.x.x-xxx-rel.deb) ...
+libssl0.9.8 is installed. Continue installing
+Minimum RAM required  : 4 GB
+System RAM configured : 4058708 kB
+
+Minimum number of processors required : 4 cores
+Number of processors on the system    : 4 cores
+Setting up couchbase-server (2.0.x) ...
+ * Started couchbase-server
 
 You have successfully installed Couchbase Server.
-Please browse to http://tellurium-internal:8091/ to configure your server.
+Please browse to http://slv-0501:8091/ to configure your server.
 Please refer to http://couchbase.com for additional resources.
 
 Please note that you have to update your firewall configuration to
-allow connections to the following ports:1,0, 4369, 8091
-and from 21100 to 21199.
+allow connections to the following ports: 11211, 11210, 11209, 4369,
+8091, 8092 and from 21100 to 21299.
 
 By using this software you agree to the End User License Agreement.
 See /opt/couchbase/LICENSE.txt.
+
+Processing triggers for ureadahead ...
+ureadahead will be reprofiled on next reboot
 ```
 
 Once installed, you can use the `service` command to manage the Couchbase Server
@@ -336,11 +358,12 @@ Setup](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
 ### Microsoft Windows Installation
 
-To install on Windows you must download the Windows installer package. This is
-supplied as an Windows executable. You can install the package either using the
-GUI installation process, or by using the unattended installation process. In
-either case, make sure that you have no anti-virus software running on the
-machine before you start the installation process.
+To install on Windows, download the Windows installer package. This is supplied
+as a Windows executable. You can install the package either using the wizard, or
+by doing an unattended installation process. In either case make sure that you
+have no anti-virus software running on the machine before you start the
+installation process. You also need administrator privileges on the machine
+where you install it.
 
 ### Port Exhaustion on Windows
 
@@ -350,12 +373,11 @@ including information on how to adjust the configuration and increase the
 available ports, see [MSDN: Avoiding TCP/IP Port
 Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
 
-Couchbase Server relies on the Microsoft C++ redistributable package, which will
-automatically be downloaded for you during installation. However, if another
+Couchbase Server uses the Microsoft C++ redistributable package, which will
+automatically download for you during installation. However, if another
 application on your machine is already using the package, your installation
-process may hang. To ensure that your installation process completes
-successfully, shut down all other running application during the installation
-process.
+process may fail. To ensure that your installation process completes
+successfully, shut down all other running applications during installation.
 
 **Installation Wizard**
 
@@ -371,50 +393,46 @@ process.
     You will be prompted with the `Installation Location` screen. You can change the
     location where the Couchbase Server application is located. Note that this does
     not configure the location of where the persistent data will be stored, only the
-    location of the application itself.
+    location of the server itself.
 
-    At this point you can provide a hostname for your new node. For more information
-    see [](couchbase-getting-started-hostnames).
-
- 1. The install will copy over the necessary files to the system. During the
-    installation process, the installer will also check to ensure that the default
-    administration port is not already in use by another application. If the default
-    port is unavailable, the installer will prompt for a different port to be used
-    for administration of the Couchbase server.
+    The install will copy the necessary files to the system. During the installation
+    process, the installer will also check to ensure that the default administration
+    port is not already in use by another application. If the default port is
+    unavailable, the installer will prompt for a different port to be used for
+    administration of the Couchbase server.
 
 After installation you should follow the server setup instructions. See [Initial
 Server Setup](couchbase-manual-ready.html#couchbase-getting-started-setup).
 
 **Unattended Installation**
 
-The unattended installation process works by first recording your required
-installation settings using the GUI installation process outlined above which
-are saved to a file. You can then use the file created to act as the option
-input to future installations.
+To use the unattended installation process, you first record your installation
+settings in wizard installation. These settings are saved to a file. You can use
+this file to silently install other nodes of the same version.
 
-To record your installation options, open a Command Terminal or Powershell and
-start the installation executable with the `/r` command-line option:
-
-
-```
-shell> couchbase_server_version.exe /r
-```
-
-You will be prompted with the installation choices as outlined above, but the
-installation process will not actually be completed. Instead, a file with your
-option choices will be recorded in the file `C:\Windows\setup.iss`.
-
-To perform an installation using a previously recorded setup file, copy the
-`setup.iss` file into the same directory as the installer executable. Run the
-installer from the command-line, this time using the `/s` option.
+To record your install options, open a Command Terminal or Powershell and start
+the installation executable with the `/r` command-line option:
 
 
 ```
-shell> couchbase_server_version.exe /s
+shell> couchbase_server_version.exe /r /f1your_file_name.iss
 ```
 
-You can repeat this process on multiple machines by copying the executable
-package and the `setup.iss` file to each machine.
+You will be prompted with installation options, and the wizard will complete the
+server install. A file with your options will be recorded at
+`C:\Windows\your_file_name.iss`.
+
+To perform an installation using this recorded setup file, copy the
+`your_file_name.iss` file into the same directory as the installer executable.
+Run the installer from the command-line using the `/s` option:
+
+
+```
+shell> couchbase_server_version.exe /s -f1your_file_name.iss
+```
+
+You can repeat this process on multiple machines by copying the install package
+and the `your_file_name.iss` file to the same directory on each machine.
 
 <a id="couchbase-getting-started-install-macosx"></a>
 
@@ -424,8 +442,8 @@ Couchbase Server on Mac OS X is for development purposes only.
 
 The Mac OS X installation uses a Zip file which contains a standalone
 application that can be copied to the `Applications` folder or to any other
-location you choose. The installation location does not affect the location of
-the Couchbase data files.
+location you choose. The installation location is not the same as the location
+of the Couchbase data files.
 
 Due to limitations within the Mac OS X operating system, the Mac OS X
 implementation is incompatible with other operating systems. It is not possible
@@ -439,106 +457,111 @@ Platforms](couchbase-manual-ready.html#couchbase-backup-restore-mac).
 
 To install:
 
+ 1. Delete any previous installs of Couchbase Server at the command line or by
+    dragging the icon to the Trash can.
+
+ 1. Remove remaining files from previous installations:
+
+     ```
+     > rm -rf ~/Library/Application Support/Couchbase
+
+     >rm -rf ~/Library/Application Support/Membase
+     ```
+
  1. Download the Mac OS X Zip file.
 
- 1. Double-click the downloaded Zip installation file to extract the contents. This
-    will create a single file, the `Couchbase.app` application.
+ 1. Double-click the downloaded Zip installation file to extract the server. This
+    will create a single folder, the `Couchbase Server.app` application.
 
- 1. Drag and Drop the `Couchbase.app` to your chosen installation folder, such as
+ 1. Drag and Drop `Couchbase Server.app` to your chosen installation folder, such as
     the system `Applications` folder.
 
- 1. When you open Couchbase for the first time, you will be asked whether you want
-    to install the Couchbase command-line tools into another directory. This creates
-    symbolic links to the core command line tools in the chosen directory.
-
-Once the application has been copied to your chosen location, you can
-double-click on the application to start it. The application itself has no user
-interface. Instead, the Couchbase application icon will appear in the menu bar
-on the right-hand side. If there is no active configuration for Couchbase, then
-the Couchbase Web Console will be opened and you will be asked to complete the
-Couchbase Server setup process. See [Initial Server
+Once the install completes, you can double-click on `Couchbase Server.app` to
+start it. The Couchbase Server icon appears in the menu bar on the right-hand
+side. If you have not yet configured your server, then the Couchbase Web Console
+opens and you should to complete the Couchbase Server setup process. See
+[Initial Server
 Setup](couchbase-manual-ready.html#couchbase-getting-started-setup) for more
 details.
 
-The Couchbase application runs as a background application. Clicking on the menu
-bar gives you a list of operations that can be performed, as shown in **Couldn't
-resolve xref tag: fig-couchbase-getting-started-macosx-menubar**.
+The Couchbase application runs as a background application. If you click on the
+icon in the menu bar you see a list of operations that can be performed, as
+shown in **Couldn't resolve xref tag:
+fig-couchbase-getting-started-macosx-menubar**.
 
-The command line tools are included within the Couchbase Server application
-directory. You can access them within Terminal by using the full location of the
+The command line tools are included in the Couchbase Server application
+directory. You can access them in Terminal by using the full path of the
 Couchbase Server installation. By default, this is
-`/Applications/Couchbase Server.app/Contents//Resources/couchbase-core/bin/`.
+`/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`.
 
 <a id="couchbase-getting-started-setup"></a>
 
 ## Initial Server Setup
 
-We recommend that you clear your browser cache before starting the setup
-process. You can find notes and tips on how to do this on different browsers and
+We recommend that you clear your browser cache before doing the setup process.
+You can find notes and tips on how to do this on different browsers and
 platforms on [this page](http://www.wikihow.com/Clear-Your-Browser's-Cache).
 
-To start the configuration and setup process, you open the Couchbase Web
-Console. On Windows this opens automatically. On all platforms you can access
-the web console by connecting to the embedded web server on port 8091. For
-example, if your server can be identified on your network as `servera`, you can
-access the web console by opening `http://servera:8091/`. You can also use an IP
-address or, if you are on the same machine, `http://localhost:8091`.
+On all platforms you can access the web console by connecting to the embedded
+web server on port 8091. For example, if your server can be identified on your
+network as `servera`, you can access the web console by opening
+`http://servera:8091/`. You can also use an IP address or, if you are on the
+same machine, `http://localhost:8091`. If you set up Couchbase Server on another
+port other than `8091`, go to that port.
 
- 1. Click the **Unhandled:** `[:unknown-tag :guibutton]` button to start the setup
-    process.
+ 1. Open Couchbase Web Console.
 
- 1. First set the disk storage and cluster configuration.
+ 1. Set the disk storage and cluster configuration.
 
     The `Configure Disk Storage` option specifies the location of the persistent
-    (on-disk) storage used by Couchbase Server. The setting affects only this server
-    and sets the directory where all the data will be stored on disk, and where the
-    indices created by the view mechanism will be stored. These can be configured
-    independently.
+    storage used by Couchbase Server. The setting affects only this node and sets
+    the directory where all the data will be stored on disk. This will also set
+    where the indices created by views will be stored. If you are not indexing data
+    with views you can accept the default setting. For the best performance, you may
+    want to configure two different disks for storing your document and index data.
 
     The `Configure Server Memory` section sets the amount of physical RAM that will
     be allocated by Couchbase Server for storage.
 
-    If you are creating a new cluster, you specify the memory that will be allocated
-    on each node within your Couchbase cluster. You must specify a value that will
-    be supported on all the nodes in your cluster as this is a global setting.
+    If you are creating a new cluster, this is the amount of memory that will be
+    allocated on each node within your Couchbase cluster. The memory for each node
+    in a cluster must be the same amount. You must specify a value that can be
+    supported by all the nodes in your cluster as this setting will apply to the
+    entire cluster.
 
     The default value is 60% of your total free RAM. This figure is designed to
     allow RAM capacity for use by the operating system caching layer when accessing
-    and using views. For the best performance, you should configure different disks
-    for storing your document and index data.
+    and using views.
 
- 1. Then you can provide an IP or hostname for your node under Configure Server
-    Hostname. For more details about this feature in current and past versions of
-    Couchbase, see [Using Hostnames with Couchbase
+ 1. Provide a node IP or hostname under Configure Server Hostname. For more details
+    about using hostnames see [Using Hostnames with Couchbase
     Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
 
 
     ![](images/configure_server1.png)
 
- 1. To join an existing cluster, select the radio button.
+ 1. To join an existing cluster, Click Join a cluster now.
 
     Provide the IP Address or hostname of an existing node, and administrative
     credentials for that existing cluster.
 
- 1. You can optionally load Couchbase Server with sample buckets. This demonstrates
-    Couchbase Server and help you understand and develop views using structured
-    data. If you decide to install sample data, one Couchbase Bucket will be created
-    for each set of sample data that you install.
+ 1. Click on the name of a sample bucket to load Couchbase Server with sample data.
+    This demonstrates Couchbase Server and help you understand and develop views. If
+    you decide to install sample data, the installer creates one Couchbase bucket
+    for each set of sample data you choose.
 
 
     ![](images/web-console-startup-3.png)
 
-    To install a sample bucket, select the checkbox next to each sample bucket that
-    you want to install. For more information on the contents of the sample buckets
-    provided, see [Couchbase Sample
-    Buckets](couchbase-manual-ready.html#couchbase-sampledata).
+    For more information on the contents of the sample buckets, see [Couchbase
+    Sample Buckets](couchbase-manual-ready.html#couchbase-sampledata).
 
- 1. You should set up a default bucket for Couchbase Server to start. You can change
-    and alter the bucket configuration at any time.
+ 1. Set up a default bucket for Couchbase Server. You can change the bucket settings
+    later. Note that you cannot change the bucket name after you create it.
 
-    ### Default Bucket Should Only Be Used for Testing
+    ### Default Bucket Should Only for Testing
 
-    The default bucket should not be used for storing live application data. You
+    The default bucket should not be used for storing live application data; you
     should create a bucket specifically for your application. The default bucket
     should only be used for testing.
 
@@ -549,8 +572,7 @@ address or, if you are on the same machine, `http://localhost:8091`.
 
      * **Bucket Type**
 
-       Specifies the type of the bucket to be created, either `Memcached` or
-       `Couchbase`. See [Data
+       The type of the bucket, either `Memcached` or `Couchbase`. See [Data
        Storage](couchbase-manual-ready.html#couchbase-introduction-architecture-buckets)
        for more information. The remainder of the options differ based on your
        selection.
@@ -559,34 +581,35 @@ address or, if you are on the same machine, `http://localhost:8091`.
 
         * **Memory Size**
 
-          This option specifies the amount of available RAM configured on this server
-          which should be allocated to the bucket.
+          The amount of available RAM on this server which should be allocated to the
+          bucket.
 
         * **Replicas**
 
-          For Couchbase buckets you can enable replication to support multiple replicas of
-          the default bucket across the servers within the cluster. You can configure up
-          to three replicas. Each replica receives copies of all the key/value pairs that
-          are managed by the bucket. If the host machine for a bucket fails, a replica can
-          be promoted to take its place, providing continuous (high-availability) cluster
-          operations in spite of machine failure.
+          For Couchbase buckets you can enable data replication so that the data is copied
+          to other nodes in a cluster. You can configure up to three replicas per bucket.
+          If you set this to one, you need to have a minimum of two nodes in your cluster
+          and so forth. If a node in a cluster fails, after you perform failover, the
+          replicated data will be made available on a functioning node. This provides
+          continuous cluster operations in spite of machine failure. For more information,
+          see [Failing Over
+          Nodes](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
 
           You can disable replication by deselecting the `Enable` checkbox.
 
-          To configure the number of replica copies, select the number of replicas using
-          the `Number of replica (backup) copies` pop-up list.
+          To configure replicas, Select a number in `Number of replica (backup) copies`
+          drop-down list.
 
-          Couchbase Server can also optionally create replicas of the indexes created by
-          the view index process. This ensures that indexes do not need to be rebuilt in
-          the event of a failure, but increases the network load as the index information
-          is replicated along with the data. Replica indexes are enabled by default. To
-          disable replica indexes, deselect the `Index replicas` checkbox.
+          To enable replica indexes, Select the `Index replicas` checkbox. Couchbase
+          Server can also create replicas of indexes. This ensures that indexes do not
+          need to be rebuilt in the event of a node failure. This will increase network
+          load as the index information is replicated along with the data.
 
         * **Flush**
 
-          Enable or disable support for the Flush command, which deletes all the data in
-          an a bucket. The default is for the flush operation to be disabled. To enable
-          the operation for a bucket, click the `Enable` checkbox.
+          To enable the operation for a bucket, click the `Enable` checkbox. Enable or
+          disable support for the Flush command, which deletes all the data in an a
+          bucket. The default is for the flush operation to be disabled.
 
        For `Memcached` bucket type:
 
@@ -598,10 +621,9 @@ address or, if you are on the same machine, `http://localhost:8091`.
           For more information, see [RAM
           Sizing](couchbase-manual-ready.html#couchbase-bestpractice-sizing-ram).
 
- 1. You can also enable the notifications. If you select `Update Notifications`,
-    Couchbase Web Console will communicate with Couchbase nodes and confirm the
-    version numbers of each node. During this process, the client sends the
-    following information to Couchbase Server:
+ 1. Select `Update Notifications`, and Couchbase Web Console will communicate with
+    Couchbase nodes and confirm the version numbers of each node. During this
+    process, the client sends the following information to Couchbase Server:
 
      * The current version. When a new version of Couchbase Server exists, you get
        information on where you can download the new version.
@@ -609,11 +631,10 @@ address or, if you are on the same machine, `http://localhost:8091`.
      * Information about the size and configuration of your Couchbase cluster. This
        information helps us prioritize our development efforts.
 
-    As long as you have internet access, the information can be communicated to the
-    Couchbase servers. The update notification process provides the information
-    anonymously. We only use this information to provide you with update
-    notifications and to provide information that will help us improve the future
-    development process for Couchbase Server and related products.
+    As long as you have internet access, the information will be sent. The update
+    notification process provides the information anonymously. Couchbase only uses
+    this information to provide you with updates and information that will help us
+    improve Couchbase Server and related products.
 
     When you provide an email address we will add it to the Couchbase community
     mailing list, which will provide you with news and update information about
@@ -621,27 +642,26 @@ address or, if you are on the same machine, `http://localhost:8091`.
     time using the unsubscribe link provided in each email communication.
 
  1. Enter a username and password. The password must be at least six characters in
-    length. For new clusters this information will be used to authenticate each new
-    server into the cluster. You use the same credentials when you use Couchbase
-    REST API.
+    length. You use these credentials each time you add a new server into the
+    cluster. The are also the same credentials for Couchbase REST API. See, [Using
+    the REST API](couchbase-manual-ready.html#couchbase-admin-restapi).
 
-Once the setup process completes, you see Couchbase Web Console with the Cluster
-Overview page.
+Once you finish this setup, you see Couchbase Web Console with the Cluster
+Overview page:
 
 
 ![](images/web-console-startup-7.png)
 
-Your Couchbase server is now running and ready to use. After you install your
-server and finish initial setup you can also optionally configure other
-settings, such as the port, RAM configuration, and the data file location, as
-well as creating the first bucket by using any of the following methods:
+Your server is now running and ready to use. After you install your server and
+finish initial setup you can also optionally configure other settings, such as
+the port, RAM, using any of the following methods:
 
  * **Using command-line tools**
 
-   The command line tool set provided with your Couchbase Server installation
-   includes `couchbase-cli`. This command provides access to the core functionality
-   of the Couchbase Server by providing a wrapper to the REST API. Seecluster
-   initializationfor more information.
+   The command line tools provided with your Couchbase Server installation includes
+   `couchbase-cli`. This tool provides access to the core functionality of the
+   Couchbase Server by providing a wrapper to the REST API. Seecluster
+   initialization.
 
  * **Using the REST API**
 
@@ -657,544 +677,424 @@ well as creating the first bucket by using any of the following methods:
 
 ## Using Hostnames with Couchbase Server
 
-When you first install Couchbase Server you can access it at default IP address.
-There may be cases where you want to provide a hostname for each instance of a
-server. This section describes how you can do so on Windows and Linux for the
-different versions of Couchbase Server.
+When you first install Couchbase Server you can access using a default IP
+address. There may be cases where you want to provide a hostname for each
+instance of a server. Each hostname you provide should be a valid one and will
+ultimately resolve to a valid IP Address. This section describes how you provide
+hostnames on Windows and Linux for the different versions of Couchbase Server.
+If you restart a node, it will use the hostname once again. If you failover or
+remove a node from a cluster, the node you should configure the hostname once
+again.
 
-**Couchbase 2.0.2 Linux and Windows**
-
-There are several ways you can provide hostnames for Couchbase 2.0.2+. You can
-provide a hostname when you install a Couchbase Server 2.0.2 node, when you add
-it to an existing cluster for online upgrade, or via a REST-API call. If a node
-fails, any hostname you establish with one of these methods will survive; once
-the node functions again, you can refer to it with the hostname. For earlier
-versions of Couchbase Server you must follow a manual process where you edit
-config files for each node which we describe below.
-
-If you upgrade from Couchbase 1.8.1+ to 2.0.2, either as an offline upgrade
-process, Couchbase Server will detect any hostnames you established in the
-appropriate config file and apply the hostname to the upgraded node.
-
-If you perform an online upgrade process to go from 1.8.1+ to 2.0.2, you should
-add the hostname when you create the new 2.0.2 node, when you add it to your
-existing cluster or via a REST-API call. For more information about upgrading
-between versions, see [Upgrading to Couchbase Server
-2.0](couchbase-manual-ready.html#couchbase-getting-started-upgrade)
-
-**On Initial Setup**
-
-In the first screen that appears when you first log into Couchbase Server, you
-can provide either a hostname or IP address under **Configure Server Hostname**.
-Any hostname you provide will survive node failure and will be used once a node
-functions again:
-
-
-![](images/configure_server1.png)
-
-**While Adding a Node**
-
-When you add a new or existing node a Couchbase cluster, you can provide either
-a hostname or IP address under **Add Server**. Any hostname you provide in the
-**Server IP Address** field will survive node failure and will be used once a
-node functions again. If you add 2.0.2 nodes to an existing cluster as part of
-an online upgrade process, you can provide the new hostnames at this point:
-
-
-![](images/hostname_add_node.png)
-
-**Providing Hostnames via REST-API**
-
-The third way you can provide a node a hostname is to do a REST request at the
-endpoint `http://127.0.0.1:9000/node/controller/rename` :
-
-
-```
-curl -v -X POST -u Administrator:asdasd \
-http://127.0.0.1:9000/node/controller/rename -d hostname=shz.localdomain
-```
-
-Where you provide the IP address and port for the node and administrative
-credentials for the cluster. The value you provide for `hostname` should be a
-valid hostname for the node. Possible errors that may occur when you do this
-request:
-
- * Could not resolve the hostname. The hostname you provide as a parameter does not
-   resolve to a IP address.
-
- * Could not listen. The hostname resolves to an IP address, but no network
-   connection exists for the address.
-
- * Could not rename the node because name was fixed at server start-up.
-
- * Could not save address after rename.
-
- * Requested name hostname is not allowed. Invalid hostname provided.
-
-**Linux - 2.0.1 and Earlier**
-
-For Couchbase 2.0.1 and earlier you will need to manually edit configuration
-files in order to provide hostnames. If you upgrade to Couchbase 2.0.2, the
-server can detect these files and apply the settings to the upgraded nodes.
-
-For 2.0, please update the `/opt/couchbase/var/lib/couchbase/ip` file with your
-hostnames after you perform an install, or before you perform the upgrade.
-
-For 2.0.1, update the ip\_start  file with the hostname used to identify your
-node. You can do this by editing the file 
-`/opt/couchbase/var/lib/couchbase/ip_start`, ensuring that it contains the
-*hostnames*.
-
-**Windows - 2.0.1 and Earlier**
-
-For Couchbase 2.0.1 and earlier you will need to manually edit configuration
-files in order to provide hostnames. If you upgrade to Couchbase 2.0.2, the
-server can detect these files and apply the settings to the upgraded nodes.
-
-For 2.0, provide hostnames in the file
-`C:\Program Files\Couchbase\Server\var\lib\couchbase\ip.`
-
-For 2.0.1, provide the hostname in
-`C:\Program Files\Couchbase\Server\var\lib\couchbase\ip_start.`
-
-For upgrades on Windows from 1.8.1 to 2.0 for the Microsoft Windows platform,
-you need to start and restart the server when you provide hostnames. To do this:
-
- 1. Stop Couchbase Server.
-
-     ```
-     shell> net stop couchbaseserver
-     ```
-
- 1. Copy the configuration information.
-
-     ```
-     shell> copy \Program Files\Couchbase\Server\var\lib\couchbase\config.dat
-                 \Program Files\Couchbase\Server\var\lib\couchbase\config\config.dat
-     ```
-
- 1. Start Couchbase Server.
-
-     ```
-     shell> net start couchbaseserver
-     ```
-
-**On Amazon**. For more information about handling IP addresses and hostnames,
-see [Handling Changes in IP
+**In the Cloud (such as EC2, Azure, etc)**. For more information about handling
+IP addresses and hostnames, see [Handling Changes in IP
 Addresses](couchbase-manual-ready.html#couchbase-bestpractice-cloud-ip).
+
+<a id="couchbase-getting-started-hostnames-pre2.0"></a>
+
+### Hostnames for Couchbase Server 2.0.1 and Earlier
+
+For 2.0.1 please follow the same steps for 2.0 and earlier.
+
+**For Linux 2.0.1 and Earlier:**
+
+ 1. Install Couchbase Server.
+
+ 1. Execute:
+
+     ```
+     sudo /etc/init.d/couchbase-server stop
+     ```
+
+ 1. Edit the `start()` function in the script located at
+    `/opt/couchbase/bin/couchbase-server`.
+
+    Under the line that reads:
+
+     ```
+     -run ns_bootstrap -- \
+     ```
+
+    Add a new line that reads:
+
+     ```
+     -name ns_1@hostname \
+     ```
+
+    Where `hostname` is either a DNS name or an IP address that you want this server
+    to identify the node (the 'ns\_1@' prefix is mandatory). For example:
+
+     ```
+     ...
+          -run ns_bootstrap -- \
+          -name ns_1@couchbase1.company.com \
+          -ns_server config_path "\"/opt/couchbase/etc/couchbase/static_config\"" \
+     ...
+     ```
+
+ 1. Edit the IP address configuration file.
+
+    This is located at `/opt/couchbase/var/lib/couchbase/ip`. This file contains the
+    identified IP address of the node once it is part of a cluster. Open the file,
+    and add a single line containing the `hostname`, as configured in the previous
+    step.
+
+ 1. Delete the files under:
+
+     * `/opt/couchbase/var/lib/couchbase/data/*`
+
+     * `/opt/couchbase/var/lib/couchbase/mnesia/*`
+
+     * `/opt/couchbase/var/lib/couchbase/config/config.dat`
+
+ 1. Execute:
+
+     ```
+     sudo /etc/init.d/couchbase-server start
+     ```
+
+ 1. You can see the correctly identified node as the hostname under the Manage
+    Servers page. You will again see the setup wizard since the configuration was
+    cleared out; but after completing the wizard the node will be properly
+    identified.
+
+**For Windows 2.0.1 and Earlier** :
+
+ 1. Install Couchbase Server.
+
+ 1. Stop the service by running:
+
+     ```
+     shell> C:\Program Files\Couchbase\Server\bin\service_stop.bat
+     ```
+
+ 1. Unregister the service by running:
+
+     ```
+     shell> C:\Program Files\Couchbase\Server\bin\service_unregister.bat
+     ```
+
+ 1. For 2.0, edit the script located at
+    `C:\Program Files\Couchbase\Server\bin\service_register.bat`.
+
+     * On the 7th line it says: `set NS_NAME=ns_1@%IP_ADDR%`
+
+     * Replace `%IP_ADDR%` with the hostname/IP address that you want to use.
+
+ 1. Edit the IP address configuration file.
+
+    Edit `C:\Program Files\Couchbase\Server\var\lib\couchbase\ip`. This file
+    contains the identified IP address of the node once it is part of a cluster.
+    Open the file, and add a single line containing the `hostname`, as configured in
+    the previous step.
+
+ 1. Register the service by running the modified script:
+    `C:\Program Files\Couchbase\Server\bin\service_register.bat`
+
+ 1. Delete the files located under:
+    `C:\Program Files\Couchbase\Server\var\lib\couchbase\mnesia`.
+
+ 1. Start the service by running:
+
+     ```
+     shell> C:\Program Files\Couchbase\Server\bin\service_start.bat
+     ```
+
+ 1. See the node correctly identifying itself as the hostname in the GUI under the
+    Manage Servers page. Note you will be taken back to the setup wizard since the
+    configuration was cleared out, but after completing the wizard the node will be
+    named properly.
 
 <a id="couchbase-getting-started-upgrade"></a>
 
-## Upgrading to Couchbase Server 2.0
+## Upgrading to Couchbase Server 2.0.x
 
-Couchbase Server supports upgrades from the previous major release version
-(Couchbase Server 1.8) to any minor release within Couchbase Server 2.0, or
-between minor releases within Couchbase Server 2.0.
+The following are officially supported upgrade paths for Couchbase Server for
+both online upgrades or offline upgrades:
 
-**Unhandled:** `[:unknown-tag :important]` Upgrades using either the online or
-offline method are supported only when upgrading from Couchbase Server 1.8 to
-Couchbase Server 2.0. For cluster upgrades older than Couchbase Server 1.8, you
-must upgrade to Couchbase Server 1.8.1 first.
+ * Couchbase 1.8.1 to Couchbase 2.0.x and above
 
-The upgrade process for a cluster can be performed in two ways:
+ * Couchbase 2.0 to Couchbase 2.0.x and above
+
+If you want to upgrade from 1.8.0 to 2.0.x, you must have enough disk space
+available for both your original Couchbase Server 1.8 data files and the new
+format for Couchbase Server 2.0 files. You will also need additional disk space
+for new functions such as indexing and compaction. You will need approximately
+three times the disk space.
+
+Direct upgrades from Couchbase Server 1.8.0 to 2.0 or earlier releases are not
+supported. You must first upgrade to Couchbase Server 1.8.1 to provide data
+compatibility with Couchbase Server 2.0 +.
+
+You can perform a cluster upgrade in two ways:
 
  * **Online Upgrades**
 
-   Online upgrades enable you to upgrade your cluster without taking your cluster
-   down, allowing your application to continue running. Using the Online upgrade
-   method, individual nodes are removed from the cluster (using rebalancing),
-   upgraded, and then brought back into action within the cluster.
+   You can upgrade your cluster without taking your cluster down and so your
+   application keeps running during the upgrade process. There are two ways you can
+   perform this process: as a standard, rolling online upgrade, or as a swap
+   rebalance. Using the standard, rolling upgrade, you take down one or two nodes
+   from a cluster, and rebalance so that remaining nodes handle incoming requests.
+   This is an approach you use if you have enough remaining cluster capacity to
+   handle the nodes you remove and upgrade. You will need to perform rebalance
+   twice for every node you upgrade: the first time to move data onto remaining
+   nodes, and a second time to move data onto the new nodes. For more information
+   about a standard, rolling upgrade, see
 
-   Online upgrades naturally take a long time, as each node must be taken out of
-   the cluster, upgraded, and then brought back in. However, because the cluster
-   can be upgraded without taking either the cluster or associated applications
-   down, it can be a more effective method of upgrading.
+   Standard online upgrades may take a while because each node must be taken out of
+   the cluster, upgraded to a current version, brought back into the cluster, and
+   then rebalanced. However since you can upgrade the cluster without taking it
+   cluster down, you may prefer this upgrade method. For instructions on online
+   upgrades, see [Online
+   Upgrades](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
 
-   For full instructions on performing an online upgrade, see [Online Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
+   For swap rebalance, you add a note to the cluster then perform a swap rebalance
+   to shift data from an old node to a new node. You might prefer this approach if
+   you do not have enough cluster capacity to handle data when you remove an old
+   node. This upgrade process is also much quicker than performing a standard
+   online upgrade because you only need to rebalance each upgraded node once. For
+   more information on swap rebalance, see [Swap
+   Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-swap).
 
  * **Offline Upgrades**
 
-   Offline upgrades involve taking your application and Couchbase Server cluster
-   offline, upgrading every node within the cluster while the cluster is down, and
-   then restarting the upgraded cluster.
+   This type of upgrade must be well-planned and scheduled. For offline upgrades,
+   you shut down your application first so that no more incoming data arrives. Then
+   you shut down each Couchbase Server node and verify the disk write queue is 0.
+   This way you know that Couchbase Server has stored all items onto disk from
+   during shutdown. You then perform an install of the latest version of Couchbase
+   onto the machine. The installer will automatically detect the files from the
+   older install and convert them to the correct format, if needed.
 
-   Offline upgrades can be quicker because the upgrade process can take place
-   simultaneously on every node in the cluster. The cluster, though, must be shut
-   down for the upgrade to take place. This disables both the cluster and all the
-   applications that rely on it.
-
-   For full instructions on performing an offline upgrade, see [Offline Upgrade
+   Offline upgrades can take less time than online upgrades because you can upgrade
+   every node in the cluster at once. The cluster must be shut down for the upgrade
+   to take place. Both the cluster and all the applications built on it will not be
+   available during this time. For full instructions on performing an offline
+   upgrade, see [Offline Upgrade
    Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-offline).
 
 <a id="table-couchbase-getting-started-upgrade"></a>
 
-Feature                       | Online Upgrades                                 | Offline Upgrades                  
-------------------------------|-------------------------------------------------|-----------------------------------
-Applications Remain Available | Yes                                             | No                                
-Cluster Stays in Operation    | Yes                                             | No                                
-Cluster must be Shutdown      | No                                              | Yes                               
-Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node | Entire Cluster is Upgraded at Once
+Feature                       | Online Upgrades                                 | Offline Upgrades                     
+------------------------------|-------------------------------------------------|--------------------------------------
+Applications Remain Available | Yes                                             | No                                   
+Cluster Stays in Operation    | Yes                                             | No                                   
+Cluster must be Shutdown      | No                                              | Yes                                  
+Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node | All nodes in Cluster Upgraded at Once
 
 ### Backup your data before performing an upgrade
 
-Before beginning any upgrade, a backup should be taken as a best practice, see
-[Backup and Restore](couchbase-manual-ready.html#couchbase-backup-restore).
-
-<a id="couchbase-getting-started-upgrade-1-8-2-0"></a>
-
-### Upgrading from Couchbase Server 1.8.x to Couchbase Server 2.0.x
-
-You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.0 using either
-the online or offline upgrade method. If you are running Couchbase Server 1.8.0
-or earlier, you must upgrade to Couchbase Server 1.8.1 first.
-
-### Use Online Upgrades for Couchbase Server 1.8 to Couchbase Server 2.0
-
-The recommended method for upgrading to Couchbase Server 2.0 from Couchbase
-Server 1.8 is to use the online upgrade method. The process is quicker and can
-take place while your cluster and application are up and running.
-
-When upgrading from Couchbase Server 1.8 to Couchbase Server 2.0 the data files
-are updated to use the new Couchstore data format in place of the SQLite format.
-This increases the upgrade time, and requires additional disk space to support
-the migration and update of the data.
-
-**Unhandled:** `[:unknown-tag :important]`<a id="couchbase-getting-started-upgrade-1-8-2-0-macnotes"></a>
-
-### Mac OS X Notes for 1.8 to 2.0 Upgrade
-
-When you upgrade Couchbase Server 1.8 to Couchbase Server 2.0 on Mac OS X, you
-should perform the following in order for the latest version of the server to
-work:
-
- * Stop any instances of Couchbase Server by selecting Quit Couchbase from your
-   menu bar.
-
- * Remove any previous versions of Couchbase Server by opening your Applications
-   folder and dragging the Couchbase icon to the trash.
-
- * Remove the following two files from your directory system:
-
-    ```
-    shell> rm -rf ~/Library/Application Support/Couchbase
-    shell> rm -rf ~/Library/Application Support/Membase
-    ```
-
- * Do not move the application to another location while it is running. If you do
-   so, this will break all symbolic links to directories containing command-line
-   tools from Couchbase. Instead stop the server then move it to a new location.
-
-<a id="couchbase-getting-started-upgrade-1-8-2-0-linuxnotes"></a>
-
-### Linux Notes for 1.8 to 2.0 Upgrade
-
-When upgrading Couchbase Server 1.8 to Couchbase Server 2.0 on Linux, you should
-be aware of the following requirements:
-
- * **OpenSSL**
-
-   OpenSSL is a required component and should be installed before starting the
-   upgrade process.
-
-   On RedHat-based systems, use `yum` to install the required OpenSSL package:
-
-    ```
-    root-shell> yum install openssl098e
-    ```
-
-   On Debian-based systems, use `apt-get` to install the required OpenSSL package:
-
-    ```
-    shell> sudo apt-get install libssl0.9.8
-    ```
-
- * *Hostname Configuration*.
-
-   For Couchbase 2.0.2 or later you can set up hostnames for your node when you
-   install it, or when you add it to a cluster, or via a REST-API call. See [Using
-   Hostnames with Couchbase
-   Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames)
-
-   For Couchbase 2.0.1 or earlier, you will need to manually updates files in order
-   to provide a hostname for your node, see [Using Hostnames with Couchbase
-   Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
-
-   For more information, check the individual node upgrade process in [Node Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual).
-
-<a id="couchbase-getting-started-upgrade-1-8-2-0-windowsnotes"></a>
-
-### Windows Notes for 1.8 to 2.0 Upgrade
-
-When upgrading Couchbase Server 1.8 to Couchbase Server 2.0 on Windows, you
-should be aware of the following requirements:
-
- * *Hostname Configuration*
-
-   If you have configured your Couchbase Server nodes to use hostnames, rather than
-   IP addresses, to identify themselves within the cluster, you must ensure that
-   the IP and hostname configuration is correct both before the upgrade and after
-   upgrading the software.
-
-    * Before the Upgrade
-
-      Ensure that the file `C:\Program Files\Couchbase\Server\var\lib\couchbase\ip`
-      contains the hostname used to identify the cluster.
-
-    * After the Upgrade, from 1.8 to 2.0 only:
-
-      Stop Couchbase Server, copy the configuration file, and ensure that the hostname
-      information has been updated according to [Handling Changes in IP
-      Addresses](couchbase-manual-ready.html#couchbase-bestpractice-cloud-ip), then
-      restart the server. You do not need to do this step for upgrade to 2.0.1.
-
-   For more information, check the individual node upgrade process in [Node Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual).
-
-<a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
-
-### Upgrade Process Notes 1.8 to 2.0
-
-Upgrades can be performed using either the online or offline upgrade methods, as
-outlined below:
-
- * **Online Upgrade**
-
-   The online upgrade process operates in an identical fashion to the main online
-   upgrade process, as provided in [Online Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
-
-   Using the online upgrade method you can upgrade or add, new Couchbase Server
-   2.0+ servers to your existing cluster configuration. You can use the swap
-   rebalance functionality to swap and upgrade multiple servers while optimizing
-   the rebalance process. For more information on swap rebalance, see [Swap
-   Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-swap).
-
-   During online upgrades, new Couchbase Server 2.0+ features are disabled until
-   the entire cluster has been migrated to Couchbase Server 2.0. This includes
-   views and XDCR.
-
- * **Offline Upgrade**
-
-   You can perform an offline upgrade of your Couchbase Server 1.8.1+ cluster to
-   upgrade it to Couchbase Server 2.0+. Offline upgrades require your entire
-   cluster to be shutdown cleanly before the installation and upgrade process can
-   be completed. The process is similar to the standard offline upgrade, but
-   requires extra time where the upgrade tool migrates all your existing data to
-   the new format. For more information, see [Offline Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-offline).
-
-   To perform an offline upgrade, you use the standard installation system (
-   `dpkg`, `rpm` or Windows Setup Installer) to perform the upgrade. Each installer
-   will perform the following operations:
-
-   You must have enough disk space available for both your original Couchbase
-   Server 1.8 data files and the new format Couchbase Server 2.0 files. You will
-   need approximately double the disk space.
-
-    * Shutdown the Couchbase Server 1.8.x, if the server has not already been stopped.
-      Do not uninstall the server.
-
-    * The installer will detect any prerequisite software or components. An error is
-      raised if the pre-requisites are missing.
-
-      **Unhandled:** `[:unknown-tag :important]`
-
-    * The installer will copy 1.8.x data and configuration files to a backup location.
-
-    * Install Couchbase Server 2.0 software.
-
-    * Automatically run the `cbupgrade` program. This will (non-destructively) convert
-      data from the 1.8 database file format (SQLite) to 2.0 database file format
-      (couchstore). The 1.8 database files are left "as-is", and new 2.0 database
-      files are created. There must be enough disk space to handle this conversion
-      operation (e.g., 2x more disk space).
-
-   The data migration process from the old file format to the new file format may
-   take some time. You should wait for the process to complete before starting up
-   Couchbase Server 2.0.
-
-   Once the upgrade process has completed, Couchbase Server 2.0 should be started
-   automatically. This process should be repeated on all nodes within your cluster.
+Before you perform an upgrade, whether it is online or offline, you should
+backup your data, see [Backup and
+Restore](couchbase-manual-ready.html#couchbase-backup-restore).
 
 <a id="couchbase-getting-started-upgrade-online"></a>
 
-### Online Upgrade Process
+### Online Upgrades
 
-Within an online upgrade, the upgrade process can take place without taking down
-the cluster or the associated application. This means that the cluster and
-applications can continue to function while you upgrade the individual nodes
-within the cluster.
+This is also known as a standard, rolling upgrade process and it can take place
+without taking down the cluster or your application. This means that the cluster
+and applications can continue running while you upgrade the individual nodes in
+a cluster to the latest Couchbase version.
 
-The online upgrade process makes use of the auto-sharding and rebalancing
-functionality within Couchbase Server to enable one or more nodes within the
-cluster to be temporarily removed from the cluster, upgraded, and then
-re-enabled within the cluster again.
+For information on upgrading from Couchbase Server 1.8 to Couchbase Server 2.0,
+see [Upgrades Notes 1.8.1 to 2.0
++](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
+Direct upgrades from Couchbase Server 1.8 to 2.0 Beta or earlier releases are
+not supported.
 
-**Unhandled:** `[:unknown-tag :important]` To perform an online upgrade of your
-cluster:
+To perform an online upgrade of your cluster:
 
- 1. Depending on the size and activity of your cluster, choose one or more nodes to
-    be temporarily removed from the cluster and upgraded. You can upgrade one node
-    at a time, or if you have capacity, multiple nodes by taking them out of the
-    cluster at the same time.
+ 1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
+    Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
 
-    If necessary, you can add new nodes to your cluster to maintain performance
-    while your existing nodes are upgraded.
+ 1. Choose a node to remove from the cluster and upgrade. You can upgrade one node
+    at a time, or if you have enough cluster capacity, two nodes at a time. We do
+    not recommend that you remove more than two nodes at a time for this upgrade.
 
- 1. On the `Manage->Server Nodes` screen, click the **Unhandled:** `[:unknown-tag
-    :guibutton]`. This marks the server for removal from the cluster, but does not
+ 1. In Couchbase Web Console under `Manage->Server Nodes` screen, click `Remove
+    Server`. This marks the server for removal from the cluster, but does not
     actually remove it.
 
 
     ![](images/online-upgrade-removenode.png)
 
- 1. The `Pending Rebalance` will show the number of servers that require a rebalance
-    to remove them from the cluster. Click the **Unhandled:** `[:unknown-tag
-    :guibutton]` button.
+ 1. The `Pending Rebalance` shows servers that require a rebalance. Click the
+    `Rebalance` button next to the node you will remove.
 
 
     ![](images/online-upgrade-rebalance.png)
 
-    This will start the rebalance process. Once rebalancing has been completed, the
-    `Server Nodes` display should display only the remaining (active) nodes in your
-    cluster.
+    This will move data from the node to remaining nodes in cluster. Once
+    rebalancing has been completed, the `Server Nodes` display should display only
+    the remaining, active nodes in your cluster.
 
 
     ![](images/online-upgrade-noderemoved.png)
 
- 1. Perform a standard node upgrade to the new version of Couchbase Server. See
-    [Node Upgrade
-    Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual)
-    for details.
+ 1. Perform an individual node upgrade to the latest version of Couchbase Server.
+    See [Upgrading Individual
+    Nodes](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual).
 
- 1. Couchbase Server should be started automatically after the upgrade. If not,
-    restart the Couchbase Server process, using the methods described in [Startup
-    and Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+    Couchbase Server starts automatically after the upgrade. You now need to add the
+    node back to the cluster.
 
- 1. With the node upgraded, you need to add the node back to the cluster.
+ 1. Open Web Console for an existing node in the cluster.
 
-    On an existing node within the running cluster, navigate to the `Manage->Server
-    Nodes` page. Click the **Unhandled:** `[:unknown-tag :guibutton]` button. You
-    will be prompted to enter the IP address and username/password of the server to
-    add back to the cluster.
+ 1. Go to `Manage->Server Nodes`.
 
-    *For Couchbase 2.0.2 you can provide either a hostname or IP Address for the
-    node you want to add. For more information, see.*
+ 1. Click the `Add Server` button. You will see a prompt to add a node to the
+    cluster.
+
+    *At this point you can provide a hostname for the new node you add. For more
+    information, see.*
 
 
     ![](images/online-upgrade-addnode.png)
 
- 1. The `Pending Rebalance` count will indicate that servers need to be rebalanced
-    into the cluster. Click **Unhandled:** `[:unknown-tag :guibutton]` to rebalance
-    the cluster, and bring the node back into production.
+    After you add the new node, the Pending Rebalance count will indicate that
+    servers need to be rebalanced into the cluster.
 
-You will need to repeat the above sequence for each node within the cluster in
-order to upgrade the entire cluster to the new version.
+ 1. Click `Rebalance` to rebalance the cluster and bring the new node into an active
+    state.
+
+Repeat these steps for each node in the cluster in order to upgrade the entire
+cluster to a new version.
 
 <a id="couchbase-getting-started-upgrade-online-swap"></a>
 
-### Online Upgrade to Couchbase Server Using Swap Rebalance
+### Online Upgrade with Swap Rebalance
 
-You can make use of the Swap Rebalance feature to easily and simply upgrade your
-servers to Couchbase Server 2.0, without reducing the performance of your
-cluster. For background information on the improvements with swap rebalance, see
-[Swap
+You can perform a swap rebalance to upgrade your nodes to Couchbase Server 2.0,
+without reducing the performance of your cluster. For general information on
+swap rebalance, see [Swap
 Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-swap).
 
-You will need one spare node to start the upgrade process.
+You will need one extra node to perform a swap rebalance.
 
- 1. Install Couchbase Server 2.0 on one spare node.
+ 1. Install Couchbase Server 2.0 on one extra machine that is not yet in the
+    cluster. For install instructions, see [Installing Couchbase
+    Server](couchbase-manual-ready.html#couchbase-getting-started-install).
 
- 1. Add the new node with Couchbase Server 2.0 to the cluster.
+ 1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
+    Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
 
- 1. Mark one of your existing Couchbase 1.8.x nodes for removal from the cluster.
+ 1. Open Couchbase Web Console at an existing node in the cluster.
 
- 1. Perform a rebalance operation.
+ 1. Go to `Manage->Server Nodes`. In the Server panel you can view and managing
+    servers in the cluster:
 
-    The rebalance will operate as a swap rebalance and move the data directly from
-    the Couchbase 1.8.0 node to the new Couchbase 2.0 node.
 
-Repeat steps 1-5 (add/remove and swap rebalance operation), for all the
-remaining Couchbase Server 1.8.x nodes within the cluster. Providing you add and
-remove the same number of nodes with each rebalance operation, the rebalance
-will be optimized for swap rebalance.
+    ![](images/upgrade_addserver.png)
 
-**Unhandled:** `[:unknown-tag :important]` For more information on swap
-rebalance, see [Swap
+ 1. Click Add Server. A panel appears where you can provide credentials and either a
+    host name or IP address for the new node: *At this point you can provide a
+    hostname for the node you add. For more information, see.*
+
+
+    ![](images/online-upgrade-addnode.png)
+
+ 1. Remove one of your existing old nodes to from the cluster. Under Server Nodes |
+    Server panel, Click Remove Server for the node you want to remove. This will
+    flag this server for removal:
+
+ 1. In the Server panel, click Rebalance.
+
+    The rebalance will automatically take all data from the node flagged for removal
+    and move it to your new node.
+
+Repeat these steps for all the remaining old nodes in the cluster. You can add
+up to two new nodes at a time and remove two nodes, however you should always
+add the same number of nodes from the cluster as you remove. For instance if you
+add one node, remove one node and if you add two nodes, you can remove two.
+
+Until you upgrade all nodes in a cluster to Couchbase Server 2.0, any features
+in 2.0 will be disabled. This means views or XDCR will not yet function until
+you migrate all nodes in your cluster to 2.0. After you do so, they will be
+enabled for your use.
+
+For general information on swap rebalance, see [Swap
 Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-swap).
-
-Once complete, your entire cluster should now be running Couchbase Server 2.0.
 
 <a id="couchbase-getting-started-upgrade-offline"></a>
 
 ### Offline Upgrade Process
 
-The offline upgrade process requires you to shutdown all the applications using
-the cluster, and the entire Couchbase Server cluster. With the cluster switched
-off, you can then perform the upgrade process on each of the nodes, and bring
-your cluster and application back up again.
+The offline upgrade process requires you to shutdown all the applications and
+then the entire Couchbase Server cluster. You can then perform the upgrade the
+software on each machine, and bring your cluster and application back up again.
 
-If you are upgrading from Couchbase Server 1.8 to Couchbase 2.0 there are
-additional stages to the upgrade process. For more information, see [Upgrading
-from Couchbase Server 1.8.x to Couchbase Server
-2.0.x](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
+If you are upgrade from Couchbase Server 1.8 to Couchbase 2.0 there are more
+steps for the upgrade because you must first upgrade to Couchbase 1.8.1 for data
+compatibility with 2.0. For more information, see [Upgrades Notes 1.8.1 to 2.0
++](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
 
-It is also important to ensure that your disk write queue ( [Disk Write
-Queue](couchbase-manual-ready.html#couchbase-monitoring-diskwritequeue) ) has
-been completely drained before shutting down the cluster service. This will
-ensure that all data has been persisted to disk and will be available after the
-upgrade. It is a best practice to turn off the application and allow the queue
-to drain prior to beginning the upgrade.
+Check that your disk write queue ( [Disk Write
+Queue](couchbase-manual-ready.html#couchbase-monitoring-diskwritequeue) ) is
+completely drained before you remove and upgrade a node. This will ensure that
+all data has been persisted to disk and will be available after the upgrade. It
+is a best practice to turn off your application and allow the queue to drain
+before you upgrade it. It is also a best practice to perform a backup of all
+data before you upgrade
 
-To upgrade an existing cluster using the offline method:
+To perform an offline upgrade:
 
- 1. Turn off your application, so that no requests are going to your Couchbase
-    Cluster. You can monitor the activity of your cluster by using the
-    Administration Web Console.
+ 1. Shut down your application, so that no more requests go to Couchbase Cluster.
 
- 1. With the application switched off, the cluster now needs to complete writing the
-    information stored out to disk. This will ensure that when you cluster is
-    restarted, all of your data remains available. You can do this by monitoring the
-    Disk Write Queue within the Web Console. The disk write queue should reach zero
-    (i.e. no data remaining to be written to disk).
+    You can monitor the activity of your cluster by using Couchbase Web Console. The
+    cluster needs to finish writing all information to disk. This will ensure that
+    when you restart your cluster, all of your data can be brought back into the
+    caching layer from disk. You can do this by monitoring the Disk Write Queue for
+    every bucket in your cluster. The disk write queue should reach zero; this means
+    no data remains to be written to disk.
 
- 1. On each node within the cluster:
+ 1. Open Web Console at a node in your cluster.
 
-     * With Couchbase Server shutdown on the node, you can perform a standard node
-       upgrade to the new version of Couchbase Server. See [Node Upgrade
-       Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual)
-       for details.
+ 1. Click Data Buckets | *your\_bucket*. In the Summary section, check that `disk
+    write queue` reads 0. If you have more than one data bucket for your cluster,
+    repeat this step to check each bucket has a disk write queue of 0.
 
-    Couchbase Server should be started automatically on each node as you perform the
+
+    ![](images/upgrade_disk_write_zero.png)
+
+ 1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
+    Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
+
+ 1. Shutdown Couchbase Server on each machine in your cluster. For instructions, see
+    [Server Startup and
+    Shutdown](couchbase-manual-ready.html#couchbase-admin-basics-running)
+
+ 1. After you shutdown your nodes, perform a standard node upgrade to the new
+    version of Couchbase Server. See [Upgrading Individual
+    Nodes](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual)
+    for instructions.
+
+    Couchbase Server starts automatically on each node after you perform the node
     upgrade.
 
- 1. As the cluster is warming up again, you can monitor the status of the warmup
-    process to determine when you can switch on your application. See [Monitoring
-    startup (warmup)](couchbase-manual-ready.html#couchbase-monitoring-startup).
+ 1. As the cluster warms up, you can monitor the status of the warmup process to
+    determine when you can switch on your application. See [Monitoring startup
+    (warmup)](couchbase-manual-ready.html#couchbase-monitoring-startup).
 
-Once the cluster has been started up again, you can re-enable your application
-on the upgraded cluster.
+Once the cluster finishes warmup, you can re-enable your application on the
+upgraded cluster.
 
 <a id="couchbase-getting-started-upgrade-individual"></a>
 
-### Node Upgrade Process
+## Upgrading Individual Nodes
 
-**Unhandled:** `[:unknown-tag :important]` Whether you are performing an online
-or offline upgrade, the steps for upgrading an individual node, including the
-shutdown, installation, and start-up process remains the same:
+Whether you are performing an online or offline upgrade, the steps for upgrading
+an individual nodes in a cluster remain the same:
 
- 1. Download `couchbase-server-edition_and_arch_version`
+ 1. Download Couchbase Server
 
- 1. Backup the node data. To backup an existing Couchbase Server installation, use
-    `cbbackup`. See [Backing Up Using
+ 1. Backup data for that node. To backup an existing Couchbase Server installation,
+    use `cbbackup`. See [Backing Up Using
     cbbackup](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
 
- 1. Backup the node specific configuration files. While the upgrade script will
-    perform a backup of the configuration and data files, it is our recommended best
-    practice to take your own backup of the files located at:
+ 1. Backup the node-specific configuration files. While the upgrade script perform a
+    backup of the configuration and data files, as a best practice you should make
+    your own backup of these files:
 
     <a id="table-couchbase-getting-started-upgrade-individual"></a>
 
@@ -1203,82 +1103,149 @@ shutdown, installation, and start-up process remains the same:
     Linux    | `/opt/couchbase/var/lib/couchbase/config/config.dat`
     Windows  | `C:\Program Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat`
 
- 1. Stop the Couchbase Server process. For guidance on specific platforms, see
-    [Startup and Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+ 1. Stop Couchbase Server. For instructions, see [Server Startup and
+    Shutdown](couchbase-manual-ready.html#couchbase-admin-basics-running).
 
- 1. If you have deployed your Couchbase Server installation within a cloud service,
-    or you are using hostnames rather than IP addresses to refer to the different
-    hosts within your cluster you must ensure that the hostname has been configured
-    correctly before performing the upgrade process.
-
-    **Linux Upgrade with Hostname Configuration**
-
-    For 2.0.2 nodes, you can provide the hostname when you create the node, add the
-    node to a cluster, or via a REST-API call. If the node fails, Couchbase Server
-    can retrieve this hostname from file and use it once the node functions once
-    again. See [Using Hostnames with Couchbase
+ 1. Check your hostname configurations. If you have deployed Couchbase Server in a
+    cloud service, or you are using hostnames rather than IP addresse, you must
+    ensure that the hostname has been configured correctly before performing the
+    upgrade. See [Using Hostnames with Couchbase
     Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames)
 
-    For Couchbase 2.0.1 or earlier, you will need to manually updates files in order
-    to provide a hostname for your node, see [Using Hostnames with Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+ 1. Check for required components and if needed, install them. This ensures that
+    Couchbase Server upgrades and migrates your existing data files. See [Upgrades
+    Notes 1.8.1 to 2.0
+    +](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-2-0).
 
-    **Windows Upgrade with Hostname Configuration**
+ 1. Perform the installation upgrade for your platform:
 
-    For 2.0.2 nodes, you can provide the hostname when you create the node, add the
-    node to a cluster, or via a REST-API call. If the node fails, Couchbase Server
-    can retrieve this hostname from file and use it once the node functions once
-    again. See [Using Hostnames with Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames)
+    **RHEL/Centos**
 
-    For adding a 2.0.1 or earlier node you need to manually update config files. See
-    [Using Hostnames with Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+    You can perform an upgrade install using the RPM package — this will keep the
+    data and existing configuration.
 
- 1. See steps for your platform below:
+     ```
+     root-shell> rpm -U couchbase-server-architecture___meta_current_version__.rpm
+     ```
 
-     * **Linux Upgrade Process from Couchbase Server 1.8.x**
+    **Ubuntu/Debian Linux**
 
-       **Red Hat/CentOS Linux**
+    You can perform a package upgrade by installing the updated `.pkg` package:
 
-       OpenSSL is a required component and should be installed before starting the
-       upgrade process. Use `yum` to install the required OpenSSL package:
+     ```
+     shell> sudo dpkg -i couchbase-server-architecture___meta_current_release.deb
+     ```
 
-        ```
-        root-shell> yum install openssl098e
-        ```
+    **Windows**
 
-       You can perform an upgrade install using the RPM package — this will keep the
-       data and existing configuration.
+    The Install Wizard will upgrade your server installation using the same
+    installation location. For example, if you have installed Couchbase Server in
+    the default location, `C:\Program Files\Couchbase\Server`, the Couchbase Server
+    installer will put the latest version at the same location.
 
-        ```
-        root-shell> rpm -U couchbase-server-architecture___meta_current_version__.rpm
-        ```
+<a id="couchbase-getting-started-upgrade-1-8-2-0"></a>
 
-       **Ubuntu/Debian Linux**
+## Upgrades Notes 1.8.1 to 2.0 +
 
-       OpenSSL is a required component and should be installed before starting the
-       upgrade process. Use `apt-get` to install the required OpenSSL package:
+You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.0 using either
+the online or offline upgrade method. See [Upgrading to Couchbase Server
+1.8](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-getting-started-upgrade.html)
+for more information.
 
-        ```
-        shell> sudo apt-get install libssl0.9.8
-        ```
+**Use Online Upgrades for Couchbase Server 1.8.1 to Couchbase Server 2.0**
 
-       You can perform a package upgrade by installing the updated `.pkg` package:
+We recommend online upgrade method for 1.8.1 to 2.0. The process is quicker and
+can take place while your cluster and application are up and running. When you
+upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.0, the data files are
+updated to use the new Couchstore data format instead of the SQLite format used
+in 1.8.1 and earlier. This increases the upgrade time, and requires additional
+disk space to support the migration.
 
-        ```
-        shell> sudo dpkg -i couchbase-server-architecture___meta_current_release.deb
-        ```
+Be aware that if you perform a scripted online upgrade from 1.8.1 to 2.0 you
+should have a 10 second delay from adding a 2.0 node to the cluster and
+rebalancing. If you request rebalance too soon after adding a 2.0 node, the
+rebalance may fail.
 
-       **Unhandled:** `[:unknown-tag :important]`
+**Linux Upgrade Notes for 1.8.1 to 2.0**
 
-     * **Windows Upgrade Process**
+When you upgrade from Couchbase Server 1.8.x to Couchbase Server 2.0 on Linux,
+you should be aware of the **OpenSSL** requirement. OpenSSL is a required
+component and you will get an error message during upgrade if it is not
+installed. To install it RedHat-based systems, use `yum` :
 
-       The Couchbase Server Windows installer will upgrade your server installation
-       using the same installation location. For example, if you have installed
-       Couchbase Server in the default location, `C:\Program Files\Couchbase\Server`,
-       the Couchbase Server installer will copy new 2.0.0 files to the same location.
+
+```
+root-shell> yum install openssl098e
+```
+
+On Debian-based systems, use `apt-get` to install the required OpenSSL package:
+
+
+```
+shell> sudo apt-get install libssl0.9.8
+```
+
+**Windows Upgrade Notes for 1.8.1 to 2.0**
+
+If you have configured your Couchbase Server nodes to use hostnames, rather than
+IP addresses, to identify themselves within the cluster, you must ensure that
+the IP and hostname configuration is correct both before the upgrade and after
+upgrading the software. See [Hostnames for Couchbase Server 2.0.1 and
+Earlier](couchbase-manual-ready.html#couchbase-getting-started-hostnames-pre2.0).
+
+**Mac OSX Notes for 1.8.1 to 2.0**
+
+There is currently no officially supported upgrade installer for Mac OSX. If you
+want to migrate to 1.8.1 to 2.0 on OSX, you must make a backup of your data
+files with `cbbackup`, install the latest version, then restore your data with
+`cbrestore`. For more information, see [cbbackup
+Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup) and
+[cbrestore Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbrestore).
+
+<a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
+
+### Upgrade Notes 1.8 and Earlier to 2.0 +
+
+If you run Couchbase Server 1.8 or earlier, you must upgrade to Couchbase Server
+1.8.1 first. If you want to upgrade from Membase Server 1.7.2 or earlier, or
+Couchbase Server 1.8 you also must upgrade to Couchbase Server 1.8.1 first. You
+do this so that your data files can convert into 2.0 compatible formats. This
+conversion is only available from 1.8.1 to 2.0 + upgrades.
+
+ * **Online Upgrade**
+
+   During online upgrade, new Couchbase Server 2.0 features are disabled until the
+   entire cluster has been migrated to Couchbase Server 2.0. This includes views
+   and XDCR.
+
+ * **Offline Upgrade**
+
+   To perform an offline upgrade, you use the standard installation system such as
+   `dpkg`, `rpm` or Windows Setup Installer to upgrade the software on each
+   machine. Each installer will perform the following operations:
+
+    * Shutdown Couchbase Server 1.8. Do not uninstall the server.
+
+    * Run the installer. The installer will detect any prerequisite software or
+      components. An error is raised if the pre-requisites are missing. If you install
+      additional required components such as OpenSSL during the upgrade, you must
+      manually restart Couchbase after you install the components.
+
+      The installer will copy 1.8.1-compatible data and configuration files to a
+      backup location.
+
+      The `cbupgrade` program will automatically start. This will non-destructively
+      convert data from the 1.8.1 database file format (SQLite) to 2.0 database file
+      format (couchstore). The 1.8 database files are left "as-is", and new 2.0
+      database files are created. There must be enough disk space to handle this
+      conversion operation (e.g., 3x more disk space).
+
+   The data migration process from the old file format to the new file format may
+   take some time. You should wait for the process to finish before you start
+   Couchbase Server 2.0.
+
+   Once the upgrade process finishes, Couchbase Server 2.0 starts automatically.
+   Repeat this process on all nodes within your cluster.
 
 <a id="couchbase-getting-started-upgrade-cetoee"></a>
 
@@ -1291,19 +1258,19 @@ Enterprise Edition, you can use two methods:
 
  * Perform an online upgrade
 
-   Here you remove one or more nodes from the cluster and rebalance. On the nodes
-   you have taken out of the cluster, uninstall Couchbase Server Community Edition
-   package, and install Couchbase Server Enterprise Edition. You can then add the
-   new nodes back to the cluster and rebalance. This process can be repeated until
-   the entire cluster is using the Enterprise Edition.
+   Here you remove one node from the cluster and rebalance. On the nodes you have
+   taken out of the cluster, uninstall Couchbase Server Community Edition package,
+   and install Couchbase Server Enterprise Edition. You can then add the new nodes
+   back into the cluster and rebalance. Repeat this process until the entire
+   cluster is using the Enterprise Edition.
 
-   For more information on performing online upgrades, see [Online Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
+   For more information on performing online upgrades, see [Online
+   Upgrades](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
 
  * Perform an offline upgrade
 
-   Here you need to shutdown the entire cluster, and uninstall Couchbase Server
-   Community Edition, and install Couchbase Server Enterprise Edition. The data
+   Shutdown the entire cluster, and uninstall Couchbase Server Community Edition
+   from each machine. Then install Couchbase Server Enterprise Edition. The data
    files will be retained, and the cluster can be restarted.
 
    For more information on performing offline upgrades, see [Offline Upgrade

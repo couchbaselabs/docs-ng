@@ -1,8 +1,7 @@
 # Connection Operations
 
-**Unhandled thing here**
-To connect to a Couchbase Server, you must should create a new **Unhandled:**
-`[:unknown-tag :classname]` object:
+To connect to a Couchbase Server, you must should create a new `Couchbase`
+object:
 
 <a id="table-couchbase-sdk_php_new_couchbase"></a>
 

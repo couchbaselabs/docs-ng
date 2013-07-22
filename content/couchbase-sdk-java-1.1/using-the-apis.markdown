@@ -161,12 +161,12 @@ client.shutdown(60, TimeUnit.SECONDS);
 The unit specification relies on the `TimeUnit` object enumerator, which
 supports the following values:
 
-Constant                | Description                                                      
-------------------------|------------------------------------------------------------------
-`TimeUnit.NANOSECONDS`  | Nanoseconds (10 **Unhandled:** `[:unknown-tag :superscript]` s). 
-`TimeUnit.MICROSECONDS` | Microseconds (10 **Unhandled:** `[:unknown-tag :superscript]` s).
-`TimeUnit.MILLISECONDS` | Milliseconds (10 **Unhandled:** `[:unknown-tag :superscript]` s).
-`TimeUnit.SECONDS`      | Seconds.                                                         
+Constant                | Description              
+------------------------|--------------------------
+`TimeUnit.NANOSECONDS`  | Nanoseconds (10 `-9` s). 
+`TimeUnit.MICROSECONDS` | Microseconds (10 `-6` s).
+`TimeUnit.MILLISECONDS` | Milliseconds (10 `-3` s).
+`TimeUnit.SECONDS`      | Seconds.                 
 
 The method returns a `boolean` value indicating whether the shutdown request
 completed successfully.

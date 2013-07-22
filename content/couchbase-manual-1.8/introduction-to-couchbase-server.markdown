@@ -414,7 +414,13 @@ client. Ejection is a key part of keeping the frequently used information in RAM
 and ensuring there is space within the Couchbase RAM allocation to load that
 data back into RAM when the information is requested by a client.
 
-**Unhandled:** `[:unknown-tag :important]`<a id="couchbase-introduction-architecture-expiration"></a>
+[For Couchbase buckets, data is never deleted from the system unless a client
+explicitly deletes the document from the database or
+theexpiration](couchbase-manual-ready.html#couchbase-introduction-architecture-expiration)
+value for the document is reached. Instead, the ejection mechanism removes it
+from RAM, keeping a copy of that information on disk.
+
+<a id="couchbase-introduction-architecture-expiration"></a>
 
 ### Expiration
 
@@ -443,7 +449,11 @@ Eviction is the process of removing information entirely from memory for
 `memcached` buckets. The `memcached` system uses a least recently used (LRU)
 algorithm to remove data from the system entirely when it is no longer used.
 
-**Unhandled:** `[:unknown-tag :important]`<a id="couchbase-introduction-architecture-diskstorage"></a>
+Within a `memcached` bucket, LRU data is removed to make way for new data, with
+the information being deleted, since there is no persistence for `memcached`
+buckets.
+
+<a id="couchbase-introduction-architecture-diskstorage"></a>
 
 ### Disk Storage
 
@@ -463,19 +473,17 @@ frequently used data on disk. Couchbase constantly monitors the information
 accessed by clients, keeping the active data within the caching layer.
 
 The process of removing data from the caching to make way for the actively used
-information is called **Unhandled:** `[:unknown-tag :firstterm]`, and is
-controlled automatically through thresholds set on each configured bucket in
-your Couchbase Server Cluster.
+information is called `ejection`, and is controlled automatically through
+thresholds set on each configured bucket in your Couchbase Server Cluster.
 
 The use of disk storage presents an issue in that a client request for an
 individual document ID must know whether the information exists or not.
-Couchbase Server achieves this using metadata structures. The **Unhandled:**
-`[:unknown-tag :firstterm]` holds information about each document stored in the
-database and this information is held in RAM. This means that the server can
-always return a 'document ID not found' response for an invalid document ID,
-while returning the data for an item either in RAM (in which case it is returned
-immediately), or after the item has been read from disk (after a delay, or until
-a timeout has been reached).
+Couchbase Server achieves this using metadata structures. The `metadata` holds
+information about each document stored in the database and this information is
+held in RAM. This means that the server can always return a 'document ID not
+found' response for an invalid document ID, while returning the data for an item
+either in RAM (in which case it is returned immediately), or after the item has
+been read from disk (after a delay, or until a timeout has been reached).
 
 The process of moving information to disk is asynchronous. Data is ejected to
 disk from memory in the background while the server continues to service active
@@ -515,8 +523,7 @@ The way data is stored within Couchbase Server is through the distribution
 offered by the vBucket structure. If you want to expand or shrink your Couchbase
 Server cluster then the information stored in the vBuckets needs to be
 redistributed between the available nodes, with the corresponding vBucket map
-updated to reflect the new structure. This process is called **Unhandled:**
-`[:unknown-tag :firstterm]`.
+updated to reflect the new structure. This process is called `rebalancing`.
 
 Rebalancing is an deliberate process that you need to initiate manually when the
 structure of your cluster changes. The rebalance process changes the allocation
@@ -576,15 +583,14 @@ created.
 ### Failover
 
 Information is distributed around a cluster using a series of replicas. For
-Couchbase buckets you can configure the number of **Unhandled:** `[:unknown-tag
-:firstterm]` (complete copies of the data stored in the bucket) that should be
-kept within the Couchbase Server Cluster.
+Couchbase buckets you can configure the number of `replicas` (complete copies of
+the data stored in the bucket) that should be kept within the Couchbase Server
+Cluster.
 
 In the event of a failure in a server (either due to transient failure, or for
-administrative purposes), you can use a technique called **Unhandled:**
-`[:unknown-tag :firstterm]` to indicate that a node within the Couchbase Cluster
-is no longer available, and that the replica vBuckets for the server are
-enabled.
+administrative purposes), you can use a technique called `failover` to indicate
+that a node within the Couchbase Cluster is no longer available, and that the
+replica vBuckets for the server are enabled.
 
 The failover process contacts each server that was acting as a replica and
 updates the internal table that maps client requests for documents to an

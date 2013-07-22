@@ -26,18 +26,29 @@ used.
 
 After that you can clone the complete repository from couchbaselabs on github:
 
-**Unhandled:** `[:unknown-tag :screen]` Navigate to the directory and install
+`shell> git clone git://github.com/couchbaselabs/couchbase-beer.rb.git Cloning
+into 'couchbase-beer.rb'... remote: Counting objects: 409, done. remote:
+Compressing objects: 100% (254/254), done. remote: Total 409 (delta 183), reused
+340 (delta 114) Receiving objects: 100% (409/409), 235.17 KiB | 130 KiB/s, done.
+Resolving deltas: 100% (183/183), done.` Navigate to the directory and install
 all application dependencies:
 
-**Unhandled:** `[:unknown-tag :screen]` That’s it. Assuming that Couchbase
-Server with `beer-sample` bucket is up and running on localhost, you can just
-start the Ruby web server:
+`shell> cd couchbase-beer.rb/ shell> bundle install...snip... Your bundle is
+complete! Use `bundle show [gemname]` to see where a bundled gem is installed.`
+That’s it. Assuming that Couchbase Server with `beer-sample` bucket is up and
+running on localhost, you can just start the Ruby web server:
 
-**Unhandled:** `[:unknown-tag :screen]` Then navigate to
-[http://localhost:3000/](http://localhost:3000/). You should see something like
-that:
+`shell> rails server => Booting Thin => Rails 3.2.8 application starting in
+development on http://0.0.0.0:3000 => Call with -d to detach => Ctrl-C to
+shutdown server >> Thin web server (v1.5.0 codename Knife) >> Maximum
+connections set to 1024 >> Listening on 0.0.0.0:3000, CTRL+C to stop` Then
+navigate to [http://localhost:3000/](http://localhost:3000/). You should see
+something like that:
 
-**Unhandled:** `[:unknown-tag :informalfigure]`<a id="_create_application_skeleton"></a>
+
+![](images/couchbase-beer.rb-home.png)
+
+<a id="_create_application_skeleton"></a>
 
 ## Create the Application
 
@@ -45,9 +56,9 @@ If you want to learn how to create this application from scratch just continue
 reading. As with any Rails application we will use generators a lot. Since we
 don’t need ActiveRecord we’ll let `rails new` know about this:
 
-**Unhandled:** `[:unknown-tag :screen]` Now navigate to the project root and
-open up the `Gemfile` in your favorite editor. First, we need to add the
-Couchbase client libraries there:
+`shell> rails new couchbase-beer.rb -O --old-style-hash` Now navigate to the
+project root and open up the `Gemfile` in your favorite editor. First, we need
+to add the Couchbase client libraries there:
 
 
 ```
@@ -109,15 +120,17 @@ configuration. So if you know how `config/database.yml` works, you can make some
 assumptions about how `config/couchbase.yml` works. To generate a config, use
 the `couchbase:config` generator:
 
-**Unhandled:** `[:unknown-tag :screen]` Since our bucket name differs from the
-project name, you should update the `bucket` property in the config. Also if
-your Couchbase Server is not running on the local machine, you should also
-change the hostname in the config. After you’ve made your modifications, your
-config should look like this:
+`shell> rails generate couchbase:config create  config/couchbase.yml` Since our
+bucket name differs from the project name, you should update the `bucket`
+property in the config. Also if your Couchbase Server is not running on the
+local machine, you should also change the hostname in the config. After you’ve
+made your modifications, your config should look like this:
 
 ### config/couchbase.yml
 
-**Unhandled:** `[:unknown-tag :screen]`
+`common: &common hostname: localhost port: 8091 username: password: pool:
+default  development: <<: *common bucket: beer-sample  production: <<: *common
+bucket: beer-sample`
 
 That’s it for configuration, let’s move forward and create some models.
 
@@ -180,17 +193,23 @@ the map/reduce JavaScript files and update the design document if needed. There
 is also the Rails generator for views. It will put view stubs for you in proper
 places. Here for example, is the model layout for this particular application:
 
-**Unhandled:** `[:unknown-tag :screen]` For each model which has views, you
+`app/models/ ├── beer │   ├── all │   │   └── map.js │   └── by_category │      
+├── map.js │       └── reduce.js ├── beer.rb ├── brewery │   ├── all │   │   └──
+map.js │   ├── all_with_beers │   │   └── map.js │   ├── by_country │   │   ├──
+map.js │   │   └── reduce.js │   └── points │       └── spatial.js ├──
+brewery.rb ├── favorites.rb └── user.rb` For each model which has views, you
 should create a directory with the same name and put in the appropriate
 JavaScript files. Each should implement the corresponding parts of the view. For
 example `_design/brewery/_view/by_country` does require both map and reduce
 parts. To generate a new view you should pass model name and view name you need
 to get:
 
-**Unhandled:** `[:unknown-tag :screen]` Those automatically generated files are
-full of comments, so they are worth reading as a quick start about how to write
-View indexes. For more information about using views for indexing and querying
-from Couchbase Server, here are some useful resources:
+`shell> rails generate couchbase:view beer test create 
+app/models/beer/test/map.js create  app/models/beer/test/reduce.js` Those
+automatically generated files are full of comments, so they are worth reading as
+a quick start about how to write View indexes. For more information about using
+views for indexing and querying from Couchbase Server, here are some useful
+resources:
 
  * For technical details on views, how they operate, and how to write effective
    map/reduce queries, see [Couchbase Server 2.0:
@@ -255,13 +274,14 @@ It has two actions:
  1. "show" uses another view from the `Brewery` model, which collates breweries with
     beer for easier access. Here is a map function which does that job:
 
-    **Unhandled:** `[:unknown-tag :screen]` As you can see we are using a compound
-    key with brewery ID in the first position and the document name in the second
-    position. Because we are selecting only beers without null names, they will be
-    sorted after the breweries. By doing so, when we filter result by the first key
-    only, the `@brewery` variable will receive first element of the sequence, and
-    `@beers` will get the rest of the collection because of the splat ( `*` )
-    operator.
+    `function(doc, meta) { switch(doc.type) { case "brewery": emit([meta.id]);
+    break; case "beer": if (doc.brewery_id && doc.name) { emit([doc.brewery_id,
+    doc.name]); } break; } }` As you can see we are using a compound key with
+    brewery ID in the first position and the document name in the second position.
+    Because we are selecting only beers without null names, they will be sorted
+    after the breweries. By doing so, when we filter result by the first key only,
+    the `@brewery` variable will receive first element of the sequence, and `@beers`
+    will get the rest of the collection because of the splat ( `*` ) operator.
 
 <a id="_bonus_spatial_queries_sessions_and_cache"></a>
 
@@ -276,10 +296,12 @@ will execute a spatial query using map bounds and the Couchbase Server will give
 you all the breweries which are nearby. The following is part of the
 implementation. The core of this feature is `brewery/points/spatial.js` :
 
-**Unhandled:** `[:unknown-tag :screen]` The function will emit a Point object
-and the name with coordinates as the payload. The action in the controller is
-quite trivial, it transmits the result to the application in JSON
-representation, and Google maps is renders markers for each object.
+`function(doc, meta) { if (doc.geo && doc.geo.lng && doc.geo.lat && doc.name) {
+emit({type: "Point", coordinates: [doc.geo.lng, doc.geo.lat]}, {name: doc.name,
+geo: doc.geo}); } }` The function will emit a Point object and the name with
+coordinates as the payload. The action in the controller is quite trivial, it
+transmits the result to the application in JSON representation, and Google maps
+is renders markers for each object.
 
 Except nice extensions, provided by `couchbase-model` library, `couchbase` gem
 itself has few more nice features which could be useful in the web application.

@@ -179,6 +179,11 @@ message might be from the server or it could be from the client. The
 `StatusCode` property is a `Nullable<int>` that will be populated from the
 server's response.
 
+Note that the 1.1 release of the `OperationResult` API wrapped lower level
+(networking) exceptions in an `InnerResult` object. Since release 1.2,
+`InnerResult` is no longer populated. The property still remains so as to be
+backwards compatible.
+
 Like the standard CRUD methods, the Execute methods will swallow exceptions.
 However, caught exceptions are passed back to the caller by way of the
 `Exception` property. This allows the caller to check for an exception and throw
@@ -291,6 +296,163 @@ respectively. `IRemoveOperationResult` includes only the properties found in
 
 For more information on which API methods support ExecuteXXX variants, see the
 API reference.
+
+<a id="couchbase-sdk-net-json"></a>
+
+# Appendix: JSON Extension Methods
+
+The following sections provide details on how to use the `CouchbaseClient` JSON
+extensions.
+
+The `Couchbase.Extensions` namespace contains a series of extension methods that
+provide out of the box support for storing and retrieving JSON with Couchbase
+Server. These methods use JSON.NET, and provide only limited customization. If
+your JSON serialization needs are advanced, you will need to provide your own
+methods to work with JSON.
+
+To use the JSON extensions in your application, you'll first need to include a
+using block for the extensions namespace
+
+
+```
+using Couchbase.Extensions;
+```
+
+Once that using directive has been added, an instance of an `ICouchbaseClient`
+will be able to execute various JSON methods.
+
+Generally speaking, for each store or get method, there is a corresponding Json
+method.
+
+
+```
+//Person will be stored using binary serialization
+    var storeResult = client.ExecuteStore(StoreMode.Set, "person1", new Person { Name = "John" });
+
+    //Person will be stored as a view-ready, JSON string { name : "John" }
+    var storeJsonResult = client.ExecuteStoreJson(StoreMode.Set, "person2", new Person { Name = "John" });
+
+    //getResult.Value will contain an instance of a Person
+    var getResult = client.ExecuteGet<Person>("person1");
+
+    //InvalidCastException will be thrown, since "person1" contains a binary value
+    var getJsonResult = client.ExecuteGetJson<Person>("person1");
+
+    //Invalid cast exception, because person2 contains a string
+    var getResult = client.ExecuteGet<Person>("person2");
+
+    //getJsonResult.Value will contain an instance of a Person
+    var getJsonResult = client.ExecuteGetJson<Person>("person2");
+```
+
+`ExecuteStoreJson` is overloaded to provide support for key expiration, and
+durability requirements.
+
+
+```
+var person = new Person { Name = "John" };
+
+    //key will expire in 10 minutes
+    var storeJsonResult1 = client.ExecuteStoreJson(StoreMode.Set, "john", person, DateTime.Now.AddMinutes(10));
+
+    //key will expire in 10 minutes
+    var storeJsonResult2 = client.ExecuteStoreJson(StoreMode.Set, "john", person, TimeSpan.FromMinutes(10));
+
+    //storeJsonResult3 will fail unless the key is written to disk on its master node, and replicated to two nodes
+    var storeJsonResult3 = client.ExecuteStoreJson(StoreMode.Set, "john", person, PersistTo.One, ReplicateTo.Two);
+```
+
+CAS operations are also available via the `ExecuteCasJson` extension method.
+
+
+```
+var person = new Person { Name = "John" };
+
+    var getResult = client.ExecuteGetJson("key");
+    getResult.Value.Name = "John Z";
+
+    //would fail if the CAS value has changed on the server since it was retrieved
+    var casResult = client.ExecuteCasJson(StoreMode.Set, "key", getResult.Value, getResult.Cas);
+```
+
+The JSON extensions make an important assumption about your model objects, and
+how they serialize and deserialize them. It is important that you understand
+this assumption before using these methods. Consider the following Person class:
+
+
+```
+public class Person
+{
+  public string Id { get; set; }
+
+  public string Type { get { return "person"; } }
+
+  public string Name { get; set; }
+}
+```
+
+The assumption is that the `Id` property of a domain object is meant to be
+mapped to the key in the key/value used to store your data.
+
+
+```
+var person = new Person { Id = "person_12345", Name = "Tony Soprano" };
+
+var storeResult = client.ExecuteStoreJson(StoreMode.Set, person.Id, person);
+
+//the JSON would be:
+//{ "name" : "Tony Soprano", type : "person" }
+```
+
+When the JSON is saved, it will ignore the `Id` property and its value. Since it
+is assumed that the `Id` is the key, it would be redundant to include it in the
+saved JSON. Moreover, it would also be a challenge to keep the key in sync with
+the JSON.
+
+When the `Person` is retrieved, the `ExecuteGetJson` method will automatically
+map the `Id` property to the key. This mapping is achieved by inserting the key
+as an "id" property in the JSON document before it is deserialized.
+
+
+```
+var getResult = client.ExecuteGetJson<Person>("person_12345");
+
+Console.WriteLine("Id: " + Person.Id);
+//Id: person_12345
+```
+
+The importance of how the "id" property is mapped is that you are able to take
+advantage of JSON.NET attributes to have some control over which property is
+your "Id" property. If you wanted to map the key to a `Key` property, then you
+could use the `JsonProperty` attribute as below. Note however, that should you
+use this mapping, it will override the ignore "id" on write and you'll have your
+key in the JSON.
+
+
+```
+public class Person
+{
+  [JsonProperty("Id")]
+  public string Key { get; set; }
+
+  public string Type { get { return "person"; } }
+
+  public string Name { get; set; }
+}
+```
+
+The default behavior of the JSON extensions works well with strongly typed
+views, which will also map an `Id` property of a class to its key as you iterate
+over the view.
+
+
+```
+var view = client.GetView<Person>("people", "by_name", true).Key("Tony Soprano");
+var person = view.FirstOrDefault();
+
+Console.WriteLine("Id: " + Person.Id);
+//Id: person_12345
+```
 
 <a id="couchbase-sdk-net-configuration"></a>
 
@@ -532,6 +694,68 @@ The `transcoder` is used to map objects to servers in the pool.
 </couchbase>
 ```
 
+It is not possible to configure (in app|web.config) a single instance of a
+CouchbaseClient to work with multiple buckets. Though it is possible to
+programmatically reconstruct a client to work with multiple buckets, it is not
+recommended. The process of creating a client is expensive (relative to other
+Couchbase operations) and should ideally be done once per app domain.
+
+It is possible however to set multiple config sections in app|web.config to
+allow for multiple client instances to be created, while still maintaining
+bucket affinity.
+
+
+```
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <sectionGroup name="couchbase">
+      <section name="bucket-a" type="Couchbase.Configuration.CouchbaseClientSection, Couchbase"/>
+      <section name="bucket-b" type="Couchbase.Configuration.CouchbaseClientSection, Couchbase"/>
+    </sectionGroup>
+  </configSections>
+
+  <couchbase>
+    <bucket-a>
+      <servers bucket="default">
+        <add uri="http://127.0.0.1:8091/pools" />
+      </servers>
+    </bucket-a>
+    <bucket-b>
+      <servers bucket="beernique" bucketPassword="b33rs">
+        <add uri="http://127.0.0.1:8091/pools" />
+      </servers>
+    </bucket-b>
+  </couchbase>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+</configuration>
+```
+
+After defining the config sections, bucket specific clients are created by
+reading the appropriate config sections and passing the config section reference
+to the constructor of the CouchbaseClient. Again, constructing the client should
+not be done per operation, but rather per app domain.
+
+
+```
+var bucketASection = (CouchbaseClientSection)ConfigurationManager.GetSection("couchbase/bucket-a");
+var bucketBSection = (CouchbaseClientSection)ConfigurationManager.GetSection("couchbase/bucket-b");
+
+var clientA = new CouchbaseClient(bucketASection);
+var clientB = new CouchbaseClient(bucketBSection);
+
+clientA.ExecuteStore(StoreMode.Set, "fooA", "barA");
+var itemA = clientA.Get<string>("fooA");
+Console.WriteLine(itemA);
+
+clientB.ExecuteStore(StoreMode.Set, "fooB", "barB");
+var itemB = clientB.Get<string>("fooB");
+Console.WriteLine(itemB);
+```
+
 <a id="couchbase-sdk-net-logging"></a>
 
 # Appendix: Configuring Logging
@@ -544,14 +768,16 @@ Enyim.Caching dependency. Enyim logging currently supports either log4net or
 NLog.
 
 Start by adding a reference to either Enyim.Caching.Log4NetAdapter or
-Enyim.Caching.NLogAdapter. Both are available as part of the Couchbase.NET
-Client Nuget package or as part of the client library zip file.
+Enyim.Caching.NLogAdapter. Both are available as part of the part of the client
+library zip file, or as separate NuGet packages.
+
+To install via NuGet, look for either the CouchbaseLog4NetAdapter or
+CouchbaseNLogAdapter package.
 
 You could also get the projects from
-[](https://github.com/enyim/EnyimMemcached). If you use these Visual Studio
-projects, you'll also need to add a reference to log4net or NLog (depending on
-which adapter you choose). Each of these dependencies is located in a "binaries"
-directory under the root "EnyimMemcached" directory.
+[](https://github.com/couchbase/couchbase-net-client). If you use these Visual
+Studio projects, you'll need NuGet installed, as dependencies to NLog and
+log4Net are managed using NuGet.
 
 For log4net, your configuration should include an enyim.com section that defines
 which log factory to use along with standard log4net configuration.
@@ -831,6 +1057,60 @@ var cluster = new CouchbaseCluster(config);
 
 
 
+<a id="couchbase-sdk-net-available-packages"></a>
+
+# Appendix: Available packages for the.NET Client Library
+
+The following sections provide details about the various Couchbase packages
+available on NuGet, and via direct download.
+
+The official Client Library and associated loggers are both available as.NET 3.5
+and.NET 4.0 builds. When you download the zip file, there are directories for
+each framework version. The NuGet package contains both 3.5 and 4.0 binaries.
+
+ * `CouchbaseNetClient` Contains the latest `Couchbase` and `Enyim.Caching`
+   assemblies. `Newtonsoft.Json` is a dependency.
+
+ * `CouchbaseNLogAdapter` Contains the latest `NLog` logging adapter, built against
+   the Couchbase fork of `Enyim.Caching`. Installing the `EnyimMemcached-NLog`
+   package will lead to a build conflict in your project. `CouchbaseNetClient` and
+   `NLog` are dependencies.
+
+ * `CouchbaseLog4NetAdapter` Contains the latest `log4net` logging adapter, built
+   against the Couchbase fork of `Enyim.Caching`. Installing the
+   `EnyimMemcached-log4net` package will lead to a build conflict in your project.
+   `CouchbaseNetClient` and `log4net` are dependencies.
+
+ * `CouchbaseHttpClients` Contains the latest `RestSharp` and `Hammock` view HTTP
+   clients. These clients are legacy. The latest `CouchbaseClient` uses the BCL
+   `WebClient`. `CouchbaseNetClient`, `RestSharp`, and `Hammock` are dependencies.
+   These assemblies are unsigned, due to the NuGet package for `RestSharp` being
+   unsigned.
+
+Several integration packages are also available via NuGet.
+
+ * `Couchbase ASP.NET SessionState and OutputCache Providers` allows Couchbase to
+   be used as an out of process session state provider, and output caching
+   provider.
+
+ * `CouchbaseElmahErrorLog` allows ELMAH error logs to be stored in Couchbase.
+
+ * `CouchbaseSnippets` adds some basic Visual Studio snippets.
+
+ * `CouchbaseNHibernateCache` allows Couchbase to be used as an NHibernate second
+   level cache.
+
+ * `Couchbase Model Views` allows classes to be decorated with attributes used to
+   create simple, and complex views without writing map functions.
+
+   `Glimpse for Couchbase` allows `CouchbaseClient` logs to be viewable via a
+   Glimpse tab.
+
+If not using NuGet, the lastest binaries are available as a direct download at
+[](https://www.couchbase.com/develop/net/current/). The download package
+contains the `CouchbaseClient`, and `Enyim.Caching` assemblies. The
+`Newtonsoft.Json`, `NLog`, and `log4net` dependencies are also included.
+
 <a id="couchbase-sdk-net-rn"></a>
 
 # Appendix: Release Notes
@@ -838,6 +1118,89 @@ var cluster = new CouchbaseCluster(config);
 The following sections provide release notes for individual release versions of
 Couchbase Client Library.NET. To browse or submit new issaues, see [Couchbase
 Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
+
+<a id="couchbase-sdk-net-rn_1-2-6a"></a>
+
+## Release Notes for Couchbase Client Library.NET 1.2.6 GA (07 May 2013)
+
+.NET Couchbase Client 1.2.6 fixes an issue where the 1.2.5 NuGet package
+contained an unsigned Enyim.Caching assembly (3.5 only). The 4.0 NuGet package
+was not affected.
+
+<a id="couchbase-sdk-net-rn_1-2-5a"></a>
+
+## Release Notes for Couchbase Client Library.NET 1.2.5 GA (07 May 2013)
+
+.NET Couchbase Client 1.2.5 removes the RestSharp and Hammock dependencies, adds
+support for.NET 3.5, along with new features and bug fixes.
+
+**New Features and Behaviour Changes in 1.2.5**
+
+ * NCBC-231: Support for Unlock without CAS operation
+
+    ```
+    var lockResult = client.ExecuteGetWithLock("key", TimeSpan.FromSeconds(20));
+
+     var storeResult = client.ExecuteStore(StoreMode.Set, "key", "new value");
+     Assert.That(storeResult.Success, Is.False);
+
+     var unlockResult = client.ExecuteUnlock("key"); //unlock before the timeout
+     //may also use Boolean form (e.g., var boolVal = client.Unlock("key");
+     Assert.That(unlockResult.Success, Is.True);
+
+     var storeResult2 = client.ExecuteStore(StoreMode.Set, "key", "another new value");
+     Assert.That(storeResult.Success, Is.True);
+    ```
+
+ * The logging assemblies are now available via separate NuGet pacakges, which
+   reference NLog and log4net via NuGet, instead of local assemblies. See
+   CouchbaseLog4NetAdapter and CouchbaseNLogAdapater on NuGet.
+
+ * NCBC-254: JSON extensions should default to ignore Id property on
+   add/replace/set. This change allows for compatibility with the generic view
+   queries, which map the key to an Id property.
+
+    ```
+    var thing = new Thing { Id = key, SomeProperty = "Foo", SomeOtherProperty = 17 };
+     var result = _Client.StoreJson(StoreMode.Set, key, thing);
+     Assert.That(result, Is.True);
+
+     //An "Id" property will be removed from the stored JSON
+     var obj = _Client.Get<string>(key);
+     Assert.That(obj, Is.Not.StringContaining("\"id\""));
+
+     //GetJson will automatically assign the key to an Id property
+     var savedThing = _Client.GetJson<Thing>(key);
+     Assert.That(savedThing.Id, Is.StringContaining(key));
+    ```
+
+ * NCBC-246: The.NET Client Library is now code compatible with the.NET Framework
+   version 3.5. The NuGet package and release zip file contain both 4.0 and 3.5
+   assemblies. The solution (see GitHub) now includes a Couchbase.Net35 project.
+
+ * NCBC-247: RestSharp and Hammock are no longer dependencies of the Couchbase.NET
+   Client Library.
+
+   No change should be necessary, unless using explicit RestSharp or Hammock
+   configuration for the HttpClientFactory. If not, the default configuration will
+   use the new HttpClientFactory, which relies only on WebClient. In 1.2.4, the
+   default HttpClientFactory relied on RestSharp.
+
+   RestSharp and Hammock will be usable via a separate NuGet project, or from the
+   Couchbase.HttpClients project (via GitHub). These assemblies will not be signed,
+   to avoid collisions with a custom RestSharp, which is unsigned.
+
+**Fixes in 1.2.5**
+
+ * NCBC-256: Throw exception when lock expiry exceeds server limit (30 seconds)
+
+    ```
+    try {
+     var lockResult = client.ExecuteGetWithLock("key", TimeSpan.FromSeconds(40));
+     } catch (ArgumentOutOfRangeException ex) {
+     //handle exception
+     }
+    ```
 
 <a id="couchbase-sdk-net-rn_1-2-4a"></a>
 
@@ -848,20 +1211,6 @@ bug fixes.
 
 **New Features and Behaviour Changes in 1.2.4**
 
- * NCBC-231: Support for Get with Lock
-
-    ```
-    var lockResult = client.ExecuteGetWithLock("key", TimeSpan.FromSeconds(30));
-    var storeResult = client.ExecuteStore(StoreMode.Set, "key", "new value");
-    Assert.That(storeResult.Success, Is.False);
-    Assert.That(storeResult.StatusCode.Value, Is.EqualTo((int)StatusCodeEnums.DataExistsForKey));
-
-    //or
-    var getLockResultA = client.ExecuteGetWithLock("key");
-    var getLockResultB = client.ExecuteGetWithLock("key");
-    Assert.That(getLockResultB.StatusCode, Is.EqualTo((int)CouchbaseStatusCodeEnums.LockError));
-    ```
-
  * NCBC-238: Support for key exists check without getting value.
 
    Observe is used behind the scenes to support the check. `KeyExists` method
@@ -870,6 +1219,20 @@ bug fixes.
 
     ```
     var exists = client.KeyExists("foo");
+    ```
+
+ * NCBC-231: Support for Get with Lock
+
+    ```
+    var lockResult = client.ExecuteGetWithLock("key", TimeSpan.FromSeconds(30));
+     var storeResult = client.ExecuteStore(StoreMode.Set, "key", "new value");
+     Assert.That(storeResult.Success, Is.False);
+     Assert.That(storeResult.StatusCode.Value, Is.EqualTo((int)StatusCodeEnums.DataExistsForKey));
+
+     //or
+     var getLockResultA = client.ExecuteGetWithLock("key");
+     var getLockResultB = client.ExecuteGetWithLock("key");
+     Assert.That(getLockResultB.StatusCode, Is.EqualTo((int)CouchbaseStatusCodeEnums.LockError));
     ```
 
 **Fixes in 1.2.4**
@@ -900,7 +1263,7 @@ Enyim.Caching in release 1.2.2.
 
     ```
     var getResult = client.ExecuteGet("key");
-    var removeResult = client.ExecuteRemove("key", getResult.Cas);
+     var removeResult = client.ExecuteRemove("key", getResult.Cas);
     ```
 
 **Fixes in 1.2.2**
@@ -930,13 +1293,13 @@ Enyim.Caching in release 1.2.2.
     ```
     var view = client.GetView("cities", "by_name");
 
-    if (view.CheckExists())
-    {
+     if (view.CheckExists())
+     {
      foreach(var item in view)
      {
      //do something
      }
-    }
+     }
     ```
 
  * NCBC-179: Additional JSON extensions are now available. For each Store or
@@ -948,18 +1311,18 @@ Enyim.Caching in release 1.2.2.
 
     ```
     //store
-    var city = new City { Name = "Hartford", State = "CT", Type = "city" };
-    var result = client.ExecuteStoreJson(StoreMode.Set, "city_Hartford_CT", city, DateTime.Now.AddMinutes(30));
-    //get
-    var otherCity = client.ExecuteGetJson<City>("city_Bridgeport_CT");
+     var city = new City { Name = "Hartford", State = "CT", Type = "city" };
+     var result = client.ExecuteStoreJson(StoreMode.Set, "city_Hartford_CT", city, DateTime.Now.AddMinutes(30));
+     //get
+     var otherCity = client.ExecuteGetJson<City>("city_Bridgeport_CT");
     ```
 
  * NCBC-159: Support for getting debug info from views.
 
     ```
     var view = client.GetView("cities", "by_name").Debug(true);
-    view.Count(); //need to execute the query to get debug info
-    var local = view.DebugInfo["local"]; //DebugInfo is a dictionary
+     view.Count(); //need to execute the query to get debug info
+     var local = view.DebugInfo["local"]; //DebugInfo is a dictionary
     ```
 
  * NCBC-190: `CouchbaseCluster` now has method FlushBucket. Creating buckets with
@@ -967,7 +1330,7 @@ Enyim.Caching in release 1.2.2.
 
     ```
     var cluster = new CouchbaseCluster(config);
-    cluster.CreateBucket(new Bucket
+     cluster.CreateBucket(new Bucket
      {
      Name = "transaction",
      AuthType = AuthTypes.Sasl,
@@ -976,7 +1339,7 @@ Enyim.Caching in release 1.2.2.
      ReplicaNumber = ReplicaNumbers.Zero,
      FlushOption = FlushOptions.Enabled
      });
-    //and flushing
+     //and flushing
      cluster.FlushBucket("transaction");
     ```
 
@@ -988,19 +1351,6 @@ Enyim.Caching in release 1.2.2.
 
     ```
     <keyTransformer type="Enyim.Caching.Memcached.LegacyMemcachedKeyTransformer, Enyim.Caching" />
-    ```
-
- * NCBC-192: NRE was being thrown when executing ops against a down node. NRE was
-   also the symptom displayed when app client configuration was incorrect. Ops
-   against a bad node should now return the message "Unable to locate node" when
-   using the `IOperationResult` methods. There is a constant for this error.
-
-    ```
-    var result = client.ExecuteGet("somekey");
-    if (! result.Success && result.Message == ClientErrors.FAILURE_NODE_NOT_FOUND)
-    {
-     //couldn't reach the node, check config if first run of app
-    }
     ```
 
  * NCBC-189: Fix to NRE when ExecuteIncrement or ExecuteDecrement returned null
@@ -1026,6 +1376,19 @@ Enyim.Caching in release 1.2.2.
  * NCBC-197: When 0 bytes are received on sockets, but read was valid, Enyim client
    was throwing an exception with the message "?." A descriptive exception message
    is now included.
+
+ * NCBC-192: NRE was being thrown when executing ops against a down node. NRE was
+   also the symptom displayed when app client configuration was incorrect. Ops
+   against a bad node should now return the message "Unable to locate node" when
+   using the `IOperationResult` methods. There is a constant for this error.
+
+    ```
+    var result = client.ExecuteGet("somekey");
+    if (! result.Success && result.Message == ClientErrors.FAILURE_NODE_NOT_FOUND)
+    {
+     //couldn't reach the node, check config if first run of app
+    }
+    ```
 
  * NCBC-212: `ExecuteRemove` is no longer swallowing status codes on errors.
    `StatusCode` property was always null previously on errors.
@@ -1143,31 +1506,22 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 **New Features and Behaviour Changes in 1.2.0-DP4**
 
+ * New bucket administration methods
+
+    ```
+    var cluster = new CouchbaseCluster("couchbase"); //name of config section with credentials
+     cluster.CreateBucket(new Bucket { ... });
+     var buckets = cluster.ListBuckets();
+     cluster.DeleteBucket();
+    ```
+
  * New, basic JSON conversion extension methods for serializing objects to and from
    JSON. Methods use Newtonsoft.Json for JSON conversions.
 
     ```
     using Couchbase.Extensions;
-             var result = client.StoreJson<Beer>(StoreMode.Set, "foo", new Beer { ... });
-             var beer = client.GetJson<Beer>("foo");
-    ```
-
- * New bucket administration methods
-
-    ```
-    var cluster = new CouchbaseCluster("couchbase"); //name of config section with credentials
-             cluster.CreateBucket(new Bucket { ... });
-             var buckets = cluster.ListBuckets();
-             cluster.DeleteBucket();
-    ```
-
- * New design document administration methods
-
-    ```
-    var cluster = new CouchbaseCluster("couchbase"); //name of config section with credentials
-             cluster.CreateDesignDocument("bucketname", "{ ... }");
-             var designDoc = cluster.RetrieveDesignDocument("bucketname", "designdocname");
-             cluster.DeleteDesignDocument("bucketname", "designdocname");
+     var result = client.StoreJson<Beer>(StoreMode.Set, "foo", new Beer { ... });
+     var beer = client.GetJson<Beer>("foo");
     ```
 
  * 1.2.0 specific configuration elements (HttpClientFactory and
@@ -1176,8 +1530,17 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
     ```
     using Couchbase.Extensions;
-             var result = client.StoreJson<Beer>(StoreMode.Set, "foo", new Beer { ... });
-             var beer = client.GetJson<Beer>("foo");
+     var result = client.StoreJson<Beer>(StoreMode.Set, "foo", new Beer { ... });
+     var beer = client.GetJson<Beer>("foo");
+    ```
+
+ * New design document administration methods
+
+    ```
+    var cluster = new CouchbaseCluster("couchbase"); //name of config section with credentials
+     cluster.CreateDesignDocument("bucketname", "{ ... }");
+     var designDoc = cluster.RetrieveDesignDocument("bucketname", "designdocname");
+     cluster.DeleteDesignDocument("bucketname", "designdocname");
     ```
 
 **Fixes in 1.2.0-DP4**
@@ -1194,10 +1557,10 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
     ```
     //check for master persistence
-             var result = client.ExecuteStore(StoreMode.Set, "foo", "bar", PersistTo.One);
+     var result = client.ExecuteStore(StoreMode.Set, "foo", "bar", PersistTo.One);
 
-             //check for master persistence with replication to 2 nodes
-             var result = client.ExecuteStore(StoreMode.Set, "foo", "bar", PersistTo.One, ReplicateTo.Two);
+     //check for master persistence with replication to 2 nodes
+     var result = client.ExecuteStore(StoreMode.Set, "foo", "bar", PersistTo.One, ReplicateTo.Two);
     ```
 
 **Known Issues in 1.2.0-DP3**
@@ -1229,10 +1592,10 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
     ```
     var view = client.GetView("designdoc", "viewname");
-         foreach(var item in view)
-         {
-          Console.WriteLine(item.ItemId);
-         }
+     foreach(var item in view)
+     {
+     Console.WriteLine(item.ItemId);
+     }
     ```
 
  * Couchbase.dll is now compiled against the.NET Framework 4.0

@@ -27,12 +27,16 @@ Views](couchbase-devguide-ready.html#indexing-querying-data).
 
 ## Comparing Document-Oriented and Relational Data
 
-**Unhandled:** `[:unknown-tag :sidebar]` In a relational database system you
-must define a *schema* before adding records to a database. The schema is the
-structure described in a formal language supported by the database and provides
-a blueprint for the tables in a database and the relationships between tables of
-data. Within a table, you need to define constraints in terms of rows and named
-columns as well as the type of data that can be stored in each column.
+Want to learn more about moving from relational to document-oriented databases?
+See the Couchbase whitepaper here [Relational to
+NoSQL](http://info.couchbase.com/Relational-to-NoSQL.html )
+
+In a relational database system you must define a *schema* before adding records
+to a database. The schema is the structure described in a formal language
+supported by the database and provides a blueprint for the tables in a database
+and the relationships between tables of data. Within a table, you need to define
+constraints in terms of rows and named columns as well as the type of data that
+can be stored in each column.
 
 In contrast, a document-oriented database contains *documents*, which are
 records that describe the data in the document, as well as the actual data.

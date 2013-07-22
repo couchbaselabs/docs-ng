@@ -156,25 +156,25 @@ assumed to be constants.
 
 <a id="couchbase-bestpractice-sizing-ram-constants"></a>
 
-Constant                                           | Description                                                                                                                                                                                                                                                   
----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Meta data per document (metadata\_per\_document)   | This is the space that Couchbase needs to keep metadata per document. Prior to 2.1.0, it is 64 bytes. As of Couchbase 2.1.0 metadata uses 56 bytes of memory. All the metadata for documents needs to live in memory while a node is running and serving data.
-SSD or Spinning                                    | SSDs give better I/O performance.                                                                                                                                                                                                                             
-headroom **Unhandled:** `[:unknown-tag :footnote]` | Typically 25% (0.25) for SSD and 30% (0.30) for spinning (traditional) hard disks as SSD are faster than spinning disks.                                                                                                                                      
-High Water Mark (high\_water\_mark)                | By default it is set at 70% of memory allocated to the node                                                                                                                                                                                                   
+Constant                                                                                                                                                                                                                    | Description                                                                                                                                                                                                                                                   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Meta data per document (metadata\_per\_document)                                                                                                                                                                            | This is the space that Couchbase needs to keep metadata per document. Prior to 2.1.0, it is 64 bytes. As of Couchbase 2.1.0 metadata uses 56 bytes of memory. All the metadata for documents needs to live in memory while a node is running and serving data.
+SSD or Spinning                                                                                                                                                                                                             | SSDs give better I/O performance.                                                                                                                                                                                                                             
+headroomThe headroom is the additional overhead required by the cluster to store metadata about the information being stored. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Typically 25% (0.25) for SSD and 30% (0.30) for spinning (traditional) hard disks as SSD are faster than spinning disks.                                                                                                                                      
+High Water Mark (high\_water\_mark)                                                                                                                                                                                         | By default it is set at 70% of memory allocated to the node                                                                                                                                                                                                   
 
 This is a rough guideline to size your cluster:
 
 <a id="couchbase-bestpractice-sizing-ram-calculations"></a>
 
-Variable                                                  | Calculation                                                           
-----------------------------------------------------------|-----------------------------------------------------------------------
-no\_of\_copies                                            | `1 + number_of_replicas`                                              
-total\_metadata **Unhandled:** `[:unknown-tag :footnote]` | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
-total\_dataset                                            | `(documents_num) * (value_size) * (no_of_copies)`                     
-working\_set                                              | `total_dataset * (working_set_percentage)`                            
-Cluster RAM quota required                                | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
-number of nodes                                           | `Cluster RAM quota required / per_node_ram_quota`                     
+Variable                                                    | Calculation                                                           
+------------------------------------------------------------|-----------------------------------------------------------------------
+no\_of\_copies                                              | `1 + number_of_replicas`                                              
+total\_metadataAll the documents need to live in the memory | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
+total\_dataset                                              | `(documents_num) * (value_size) * (no_of_copies)`                     
+working\_set                                                | `total_dataset * (working_set_percentage)`                            
+Cluster RAM quota required                                  | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
+number of nodes                                             | `Cluster RAM quota required / per_node_ram_quota`                     
 
 You will need at least the number of replicas + 1 nodes irrespective of your
 data size.
@@ -204,7 +204,7 @@ high\_water\_mark       | 70%
 
 Variable                   | Calculation                                                      
 ---------------------------|------------------------------------------------------------------
-no\_of\_copies             | = 2 **Unhandled:** `[:unknown-tag :footnote]`                    
+no\_of\_copies             | = 21 for original and 1 for replica                              
 total\_metadata            | = 1,000,000 \* (100 + 120) \* (2) = 440,000,000                  
 total\_dataset             | = 1,000,000 \* (10,000) \* (2) = 20,000,000,000                  
 working\_set               | = 20,000,000,000 \* (0.2) = 4,000,000,000                        

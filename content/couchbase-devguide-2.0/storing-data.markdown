@@ -40,8 +40,9 @@ applies to keys:
 
 This last point about key size is important if you consider the size of keys
 stored for tens or hundreds of millions of records. One hundred million keys
-which are 70 Bytes each plus meta data at 150 Bytes each will require about 45
-GB of RAM for document meta data.
+which are 70 Bytes each plus meta data at 54 Bytes each will require about 23 GB
+of RAM for document meta data. As of Couchbase Server 2.0.1, metadata is 60
+Bytes and as of Couchbase Server 2.0.2 it is 54 Bytes.
 
 <a id="couchbase-values"></a>
 
@@ -103,10 +104,11 @@ SDKs will expose flags for an application to handle; in other SDKs flags may be
 automatically handled by the SDK itself. For more information about the flags
 unique to your chosen SDK, please refer to the SDK's API reference.
 
-On average, document metadata is about 150 Bytes per item. Couchbase Server
-keeps all document metadata and keys in RAM and does not remove them from RAM to
-free up additional space. This means 100 million items with a 70 Byte key and
-150 Byte meta data would require approximately 45 GB of RAM at runtime.
+Document metadata is 56 Bytes per item as of Couchbase Server 2.0.2 and is 64
+Bytes for Couchbase Server 2.0.1. Couchbase Server keeps all document metadata
+and keys in RAM and does not remove them from RAM to free up additional space.
+This means 100 million items with a 70 Byte key and 56 Byte meta data would
+require over 23 GB of RAM at runtime.
 
 As discussed previously in this guide, you can provide an explicit expiration
 for a record or let Couchbase assign a default. The default expiration for any

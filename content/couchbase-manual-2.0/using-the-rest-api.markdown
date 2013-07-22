@@ -341,8 +341,8 @@ node.
 
 ### Provisioning a Node
 
-Creating a new cluster or adding a node to a cluster is called **Unhandled:**
-`[:unknown-tag :firstterm]`. You need to:
+Creating a new cluster or adding a node to a cluster is called `provisioning`.
+You need to:
 
  * Create a new node by installing a new Couchbase Server.
 
@@ -363,27 +363,16 @@ the URI and credentials to use the REST API with that cluster.
 
 <a id="couchbase-admin-restapi-provisioning-diskpath"></a>
 
-### Configuring Disk and Index Path for a Node
+### Configuring Index Path for a Node
 
-You configure node resources through a controller on the node. The primary
-resource you will want to configure is the disk path for the node, which is
-where Couchbase Server persists items for the node. You must configure a disk
-path for a node prior to creating a new cluster or adding a node to an existing
-cluster.
-
-The path for the data files, and the path for the index files can be configured
-separately through the use of the `path` and `index_path` parameters:
-
-Changing the data path for a node that is already part of a cluster will
-permananently delete the data stored. For more information on how to safely
-change the disk path on your node, see [Changing the Configured Disk
-Path](couchbase-manual-ready.html#couchbase-admin-tasks-changepath).
+The path for the index files can be configured through the use of the
+`index_path` parameter:
 
 Example as follows:
 
 
 ```
-shell> curl -X POST -u admin:password -d path=/var/tmp/test \
+shell> curl -X POST -u admin:password \
     -d index_path=/var/tmp/text-index \
     http://localhost:8091/nodes/self/controller/settings
 ```
@@ -408,14 +397,13 @@ Content-Type: application/json
 Content-Length: 0
 ```
 
-This following example shows you how to set the path for the file containing
-information indexed by Couchbase Server:
+As of Couchbase Server 2.0.1 if you try to set the data path at this endpoint,
+you will receive this error:
 
 
 ```
-shell> curl -X POST -u Administrator:password \
-    -d index_path=/new/path/ \
-    http://localhost:8091/nodes/self/controller/settings
+ERROR: unable to init 10.3.4.23 (400) Bad Request
+{u'error': u'Changing data of nodes that are part of provisioned cluster is not supported'}
 ```
 
 <a id="couchbase-admin-restapi-node-username-pass"></a>
@@ -518,19 +506,10 @@ Content-Length: 0
 
 ### Providing Hostnames for Nodes
 
-There are several ways you can provide hostnames for Couchbase 2.0.2+. You can
-provide a hostname when you install a Couchbase Server 2.0.2 node, when you add
-it to an existing cluster for online upgrade, or via a REST-API call. If a node
-fails, any hostname you establish with one of these methods will survive; once
-the node functions again, you can refer to it with the hostname.
-
-For earlier versions of Couchbase Server you must follow a manual process where
+For Couchbase Server 2.0.1 and earlier you must follow a manual process where
 you edit config files for each node which we describe below. For more
 information, see [Using Hostnames with Couchbase
 Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
-
-To see the specific REST request, see **Couldn't resolve xref tag:
-couchbase-adding-hostname-via-rest**.
 
 <a id="couchbase-admin-restapi-failover-node"></a>
 
@@ -585,13 +564,13 @@ and specific operations such as `FLUSH`.
 
 ### Viewing Buckets and Bucket Operations
 
-If you create your own SDK for Couchbase, you can either the proxy path or the
-direct path to connect to Couchbase Server. If your SDK uses the direct path,
-your SDK will not be insulated from most reconfiguration changes to the bucket.
-This means your SDK will need to either poll the bucket's URI or connect to the
-streamingUri to receive updates when the bucket configuration changes. Bucket
-configuration can happen for instance, when nodes are added, removed, or if a
-node fails.
+If you create your own SDK for Couchbase, you can use either the proxy path or
+the direct path to connect to Couchbase Server. If your SDK uses the direct
+path, your SDK will not be insulated from most reconfiguration changes to the
+bucket. This means your SDK will need to either poll the bucket's URI or connect
+to the streamingUri to receive updates when the bucket configuration changes.
+Bucket configuration can happen for instance, when nodes are added, removed, or
+if a node fails.
 
 To retrieve information for all bucket for cluster:
 
@@ -1026,8 +1005,25 @@ To create a new Couchbase bucket, or edit the existing parameters for an
 existing bucket, you can send a `POST` to the REST API endpoint. You can also
 use this same endpoint to get a list of buckets that exist for a cluster.
 
-**Unhandled:** `[:unknown-tag :sidebar]`  **Unhandled:** `[:unknown-tag
-:sidebar]`<a id="table-couchbase-admin-restapi-creating-buckets"></a>
+Be aware that when you edit bucket properties, if you do not specify an existing
+bucket property Couchbase Server may reset this the property to be the default.
+So even if you do not intend to change a certain property when you edit a
+bucket, you should specify the existing value to avoid this behavior.
+
+This REST API will return a successful response when preliminary files for a
+data bucket are created on one node. Because you may be using a multi-node
+cluster, bucket creation may not yet be complete for all nodes when a response
+is sent. Therefore it is possible that the bucket is not available for
+operations immediately after this REST call successful returns.
+
+To ensure a bucket is available the recommended approach is try to read a key
+from the bucket. If you receive a 'key not found' error, or the document for the
+key, the bucket exists and is available to all nodes in a cluster. You can do
+this via a Couchbase SDK with any node in the cluster. See [Couchbase Developer
+Guide 2.0, Performing Connect, Set and
+Get](http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
+
+<a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
 **Method**                    | `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
 ------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1324,7 +1320,7 @@ shell> curl -X POST \
 **Request Data**            | None                                        
 **Response Data**           | None                                        
 **Authentication Required** | yes                                         
-                            | **Return Codes**                            
+**Return Codes**            |                                             
 200                         | OK Bucket Deleted on all nodes              
 401                         | Unauthorized                                
 404                         | Object Not Found                            
@@ -1760,7 +1756,7 @@ containing the list of nodes that have been marked to be ejected, and the list
 of nodes that are known within the cluster. You can obtain this information by
 getting the current node configuration from [Managing Couchbase
 Nodes](couchbase-manual-ready.html#couchbase-admin-restapi-node-management).
-This is to ensure that the client making the REST API request is aeare of the
+This is to ensure that the client making the REST API request is aware of the
 current cluster configuration. Nodes should have been previously added or marked
 for removal as appropriate.
 
@@ -1770,8 +1766,9 @@ example:
 
 
 ```
-shell&gt; curl -v -X -u admin:password POST 'http://Administrator:Password@192.168.0.77:8091/controller/rebalance' \
-    -d 'ejectedNodes=&knownNodes=ns_1%40192.168.0.77%2Cns_1%40192.168.0.56'
+>curl -v -u Administrator:password -X POST
+'http://172.23.121.11:8091/controller/rebalance&#39; -d
+'ejectedNodes=&amp;knownNodes=ns_1@172.23.121.11,ns_1@172.23.121.12'
 ```
 
 The corresponding raw HTTP request:
@@ -1806,11 +1803,11 @@ Progress](couchbase-manual-ready.html#couchbase-admin-restapi-rebalance-progress
 
 Once a rebalance process has been started the progress of the rebalance can be
 monitored by accessing the `/pools/default/rebalanceProgress` endpoint. This
-returns a JSON structure continaing the current progress information:
+returns a JSON structure containing the current progress information:
 
 
 ```
-shell&gt; curl -u admin:password 'http://Administrator:Password@192.168.0.77:8091/pools/default/rebalanceProgress'
+curl -u admin:password 'http://Administrator:Password@192.168.0.77:8091/pools/default/rebalanceProgress'
 ```
 
 As a pure REST API call:
@@ -1857,11 +1854,11 @@ wget --post-data='rebalanceMovesBeforeCompaction=256'
 
 This needs to be made as POST request to the `/internalSettings` endpoint. By
 default this setting is 16, which specifies the number of vBuckets which will
-moved per node before pausing all moves, which will then trigger index
-compaction. Index compaction will not be performed while vBuckets are being
-moved, so if you specify a larger value, it means that the server will spend
-less time compacting the index, which will result in larger index files that
-take up more disk space.
+moved per node until all vBucket movements pauses. After this pause the system
+triggers index compaction. Index compaction will not be performed while vBuckets
+are being moved, so if you specify a larger value, it means that the server will
+spend less time compacting the index, which will result in larger index files
+that take up more disk space.
 
 <a id="couchbase-admin-restapi-get-autofailover-settings"></a>
 
@@ -1892,9 +1889,9 @@ The following parameters and settings appear:
 
  * `count` : can be 0 or 1. Number of times any node in a cluster can be
    automatically failed-over. After one auto-failover occurs, count is set to 1 and
-   Couchbase server will not perform auto-failure for the cluster again again
-   unless you reset the count to 0. If you want to failover more than one node at a
-   time in a cluster, you will need to do so manually. do it manually.
+   Couchbase server will not perform auto-failure for the cluster again unless you
+   reset the count to 0. If you want to failover more than one node at a time in a
+   cluster, you will need to do so manually.
 
 Possible errors include:
 
@@ -2286,8 +2283,8 @@ number of parallel indexers, use a `GET` request.
 **Request Data**            | None                             
 **Response Data**           | JSON of current internal settings
 **Authentication Required** | no                               
-**Return Codes**            | 200                              
-                            | Settings returned                
+**Return Codes**            |                                  
+200                         | Settings returned                
 
 For example:
 
@@ -2349,8 +2346,16 @@ By default this functionality is enabled; although it is possible to disable
 this functionality via the REST API, under certain circumstances described
 below.
 
-**Unhandled:** `[:unknown-tag :sidebar]` To disable this feature, provide a
-request similar to the following:
+Be aware that rebalance may take significantly more time if you have implemented
+views for indexing and querying. While this functionality is enabled by default,
+if rebalance time becomes a critical factor for your application, you can
+disable this feature via the REST API.
+
+We do not recommend you disable this functionality for applications in
+production without thorough testing. To do so may lead to unpredictable query
+results during rebalance.
+
+To disable this feature, provide a request similar to the following:
 
 
 ```
@@ -2393,10 +2398,7 @@ to manage your design documents. Please refer to the following resources:
  * [Deleting a Design
    Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
 
- * Querying View via the REST-API. [Querying Using the REST
-   API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
-
- * Querying View via the REST-API. [Querying Using the REST
+ * Querying Views via the REST-API. [Querying Using the REST
    API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
 
 <a id="couchbase-admin-restapi-xdcr"></a>
@@ -2774,8 +2776,8 @@ can adjust are defined as follows:
    to 5 minutes, the incoming batches of data via XDCR replication will take
    priority in the disk write queue over incoming write workload for a destination
    cluster. This may result in the problem of having an ever growing disk-write
-   queue on a destination cluster; also items in the disk-write queue that are of
-   were priority than the XDCR items will grow staler/older before they are
+   queue on a destination cluster; also items in the disk-write queue that are
+   higher priority than the XDCR items will grow staler/older before they are
    persisted.
 
  * `xdcrWorkerBatchSize` (Integer)
@@ -2808,9 +2810,6 @@ can adjust are defined as follows:
    expect more frequent network or server failures, you may want to set this to a
    lower value. This is the time that XDCR waits before it attempts to restart
    replication after a server or network failure.
-
-For more information about XDCR, see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-xdcr-stats"></a>
 

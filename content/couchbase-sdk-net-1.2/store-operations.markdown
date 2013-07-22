@@ -4,7 +4,6 @@ The Couchbase.NET Client Library store operations set information within the
 Couchbase database. These are distinct from the update operations in that the
 key does not have to exist within the Couchbase database before being stored.
 
-**Unhandled thing here**
 <a id="couchbase-sdk-net-store-set"></a>
 
 ## Store Methods
@@ -23,11 +22,10 @@ first parameter to a value from the `StoreMode` enumeration.
  * `StoreMode.Set` - Add a key to the database, replacing the key if it already
    exists
 
-JavaScript can store numbers up to a maximum size of 2 **Unhandled:**
-`[:unknown-tag :superscript]`. If you are storing 64-bit integers within
-Couchbase and want to use the numbers through the Map/Reduce engine, numbers
-larger than 2 **Unhandled:** `[:unknown-tag :superscript]` should be stored as a
-string to prevent number rounding errors.
+JavaScript can store numbers up to a maximum size of 2 `53`. If you are storing
+64-bit integers within Couchbase and want to use the numbers through the
+Map/Reduce engine, numbers larger than 2 `53` should be stored as a string to
+prevent number rounding errors.
 
 <a id="table-couchbase-sdk_net_store"></a>
 

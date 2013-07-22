@@ -3,10 +3,10 @@
 Errors are reported differently based on whether you are using the ASCII or
 binary protocol.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Besides the normal memcached error
-codes ( `CLIENT_ERROR...`, `SERVER_ERROR...`, `NOT_FOUND`, `NOT_STORED` ), moxi
-has its own set of proxy-specific error responses. These follow the
-`SERVER_ERROR` prefix used by memcached ascii protocol.
+ASCII protocol error messagesBesides the normal memcached error codes (
+`CLIENT_ERROR...`, `SERVER_ERROR...`, `NOT_FOUND`, `NOT_STORED` ), moxi has its
+own set of proxy-specific error responses. These follow the `SERVER_ERROR`
+prefix used by memcached ascii protocol.
 
  * `SERVER_ERROR proxy downstream closed`
 
@@ -71,8 +71,8 @@ has its own set of proxy-specific error responses. These follow the
    return the `SERVER_ERROR a2b not_my_vbucket` error response to your client
    application.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` Moxi will respond to the client with
-the same binary error response message that it received from the downstream
+Binary protocol error messagesMoxi will respond to the client with the same
+binary error response message that it received from the downstream
 membase/memcached server.
 
 For all other proxy-related errors, moxi will respond with a binary error

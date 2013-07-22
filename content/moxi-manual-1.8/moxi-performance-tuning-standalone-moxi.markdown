@@ -18,10 +18,10 @@ especially when bumping into O/S limits (eg, number of file descriptors).
 There are two sides of this, client-side (upstream) and Couchbase server-side
 (downstream).
 
-**Unhandled:** `[:unknown-tag :bridgehead]` In general, moxi usually has no
-trouble servicing many hundreds or more of connections from upstream clients
-(eg, from your application). If you need to tune this, use the -c command-line
-parameter (see moxi -h for more moxi command-line usage information).
+Upstream ConnectionsIn general, moxi usually has no trouble servicing many
+hundreds or more of connections from upstream clients (eg, from your
+application). If you need to tune this, use the -c command-line parameter (see
+moxi -h for more moxi command-line usage information).
 
 However, moxi doesn't let all client/upstream connections attack the servers all
 at once, but has a (per-thread) connection pool and a configurable concurrency
@@ -33,10 +33,9 @@ discussed here: [Standalone Moxi
 Component](moxi-manual-ready.html#moxi-standalone) andFollow A Request Through
 Moxi](moxi-manual-ready.html#moxi-dataflow)
 
-**Unhandled:** `[:unknown-tag :bridgehead]` The other side of moxi, of course,
-is with its Couchbase server-facing connections. Usually, you won't run into
-limitations here, but should instead consider the equation from Couchbase
-server's point of view.
+Downstream ConnectionsThe other side of moxi, of course, is with its Couchbase
+server-facing connections. Usually, you won't run into limitations here, but
+should instead consider the equation from Couchbase server's point of view.
 
 You might have NUM\_MOXI number of standalone moxi processes all feverishly
 processing requests at their downstream\_max limits of concurrency. And, you
@@ -67,9 +66,9 @@ number of connections that each moxi will make just on its downstream side.
 These numbers (plus whatever whatever extra wiggle room you need) can help you
 calculate your ulimit's correctly.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` To see the current number of
-connections into moxi, as totals and on the upstream and/or downstream-side,
-send moxi an ascii "stats proxy" request. More information on this is at: [Moxi
+Current ConnectionsTo see the current number of connections into moxi, as totals
+and on the upstream and/or downstream-side, send moxi an ascii "stats proxy"
+request. More information on this is at: [Moxi
 Statistics](moxi-manual-ready.html#moxi-statistics)
 
 <a id="moxi-performance-ostuning"></a>

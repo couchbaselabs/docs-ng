@@ -154,10 +154,10 @@ The normal flow of data for `moxi` is as follows:
     waiting client request (if any) is taken off the downstream conn queue and
     assigned to use that downstream conn.
 
-**Unhandled:** `[:unknown-tag :bridgehead]` At step 6, there's a case where a
-`connect()` attempt might fail. Moxi can be configured to count up the number of
-`connect()` failures for a downstream server, and will also track the time of
-the last failing `connect()` attempt.
+Backoff/BlacklistingAt step 6, there's a case where a `connect()` attempt might
+fail. Moxi can be configured to count up the number of `connect()` failures for
+a downstream server, and will also track the time of the last failing
+`connect()` attempt.
 
 With the `connect()` failure counting, moxi can be configured to blacklist a
 server if too many `connect()` failures are seen, which is defined by the

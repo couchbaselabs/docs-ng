@@ -432,6 +432,202 @@ Couchbase Client Library Java. To browse or submit new issues, see [Couchbase
 Client Library Java Issues
 Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-1-8a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.1.8 GA (9 July 2013)
+
+This 1.1.8 release is the eighth bugfix release for the 1.1 series. The main
+additions (aside from the regular bugfixes) are support for "replica read" and
+"delete with CAS" through the upgrade of spymemcached to 2.9.1.
+
+**New Features and Behaviour Changes in 1.1.8**
+
+ * Spymemcached has been upgraded to 2.9.1, which adds the capability to use delete
+   with CAS. This allows better handling of concurrent deletes.
+
+   Here is a simple example. Note that in a production environment, proper retry on
+   CAS failure needs to be implemented.
+
+    ```
+    CASValue<Object> casvalue = c.gets("mykey");
+    boolean goodToDelete = yourCheckIfDocCanBeDeleted(casvalue);
+    if (goodToDelete) {
+     c.delete("mykey", casvalue.getCas());
+    }
+    ```
+
+ * Alongside with the Couchbase Server 2.1 release, the 1.1.8 version of the SDK
+   adds support for "replica read". This allows the developer to choose a tradeoff
+   between data consistency and availability. Note that this operation is not
+   intended for read scaling, but instead for fault tolerance.
+
+   Here is a (simple) example on how to use it. If asynchronous get is used, the
+   future needs to be inspected and properly acted upon its resulting status.
+
+    ```
+    Object result;
+    try {
+     result = client.get("mykey");
+    } catch (Exception ex) {
+     // Read from all replicas and return the first responding value
+     result = client.getFromReplica("mykey");
+    }
+
+    if(result != null) {
+     // Do something with the eventually consistent value.
+    }
+    ```
+
+   The underlying code will "fan out" to all of the currently available replicas
+   and return the value from the first that responds. This is because we know that
+   the cluster is in a unstable state and the original response is already delayed
+   until cancelled or timeouted.
+
+   Note that because of the eventually consistent nature, it can be the case that
+   the value has not been replicated to one of the replicas, leading to a valid
+   null as reponse. Also, be aware that since the cluster is currently not in a
+   "stable" state, wildly calling `getFromReplica` for every get that failed will
+   only result in even more load against it.
+
+   *Issues* : [JCBC-76](http://www.couchbase.com/issues/browse/JCBC-76)
+
+**Fixes in 1.1.8**
+
+ * The `flush()` method on the `CouchbaseClient()` object can now no longer be
+   called after the `shutdown()` method has been executed.
+
+   *Issues* : [JCBC-323](http://www.couchbase.com/issues/browse/JCBC-323)
+
+ * If memcached-type buckets are used, the client now checks for inactive nodes and
+   triggers hard reconfiguration if no new configuration arrives on time. This
+   makes sure that clients connect to memcached-type buckets now eventually recover
+   when the streaming connection node is removed / failed over.
+
+   *Issues* : [JCBC-319](http://www.couchbase.com/issues/browse/JCBC-319)
+
+ * The code now makes sure that rebalance/reconnection is only called once at a
+   time, making sure that there are not more connections opened than needed.
+
+   *Issues* : [JCBC-318](http://www.couchbase.com/issues/browse/JCBC-318)
+
+**Known Issues in 1.1.8**
+
+ * It can be possible that View operations don't recover properly through rebalance
+   operations when the node on which the client is currently receiving
+   configuration updates from is removed. This will be addressed in one of the next
+   bugfix releases.
+
+<a id="couchbase-sdk-java-rn_1-1-7a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.1.7 GA (7 June 2013)
+
+The 1.1.7 release is the seventh bugfix release for the 1.1 series. This release
+mostly brings better stability during rebalance and failover phases. Also,
+fail-fast exceptions have been implemented to disallow certain operations on
+memcache buckets.
+
+**New Features and Behaviour Changes in 1.1.7**
+
+ * For lots of HTTP responses (Views, DesignDocuments) we now retry until timeout
+   when its not a 200 success. This especially helps for transient errors and
+   server redirects. This should bring better stability for http requests during
+   the rebalance process.
+
+   *Issues* : [JCBC-313](http://www.couchbase.com/issues/browse/JCBC-313)
+
+ * The SDK now "fails fast" when one tries to use persistence options (ReplicateTo,
+   PersistTo) with memcached-type buckets. This is not supported and now
+   immediately throws a exception instead of failing further down the stack.
+
+   *Issues* : [JCBC-250](http://www.couchbase.com/issues/browse/JCBC-250)
+
+ * Spymemcached has been upgraded to 2.9.0. One of the major enhancements is
+   support for SLF4J, which is now also available for the Java SDK.
+
+**Fixes in 1.1.7**
+
+ * In cases where there is no master partition available for the key (so in the
+   internal vbucket map its ID is -1), now we correctly cancel the operation and
+   also trigger reconfiguration (to make sure the system eventually recovers).
+
+   *Issues* : [JCBC-312](http://www.couchbase.com/issues/browse/JCBC-312)
+
+ * Possible `ConcurrentModificationException` in the IO thread are caught and we
+   are making sure that those type of exceptions dont terminate it. There are rare
+   occurences where they can occur internally, but they are temporary. Note that
+   they still get logged properly.
+
+   *Issues* : [JCBC-309](http://www.couchbase.com/issues/browse/JCBC-309)
+
+**Known Issues in 1.1.7**
+
+ * It can be possible that View operations don't recover properly through rebalance
+   operations when the node on which the client is currently receiving
+   configuration updates from is removed. This will be addressed in one of the next
+   bugfix releases.
+
+<a id="couchbase-sdk-java-rn_1-1-6a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.1.6 GA (13 May 2013)
+
+The 1.1.6 release is the sixth bugfix release for the 1.1 series. Improvements
+have been made around view query handling and pagination. Also, new operations
+without the need to provide a TTL have been added for convenience.
+
+**New Features and Behaviour Changes in 1.1.6**
+
+ * It is now possible to pass a single "null" value in when using the
+   ComplexKey.of() method. This will be translated to a "null" (without the quotes)
+   in the Query string.
+
+   *Issues* : [JCBC-177](http://www.couchbase.com/issues/browse/JCBC-177)
+
+ * An optimization has been implemented so when ReplicateTo.ZERO and PersistTo.ZERO
+   are used, the persistence constraint checks are avoided completely (and treated
+   the same as if they are not present at all). Previously, a potentially costly
+   but not needed "observe" call has been executed and therefore decreased
+   performance.
+
+   *Issues* : [JCBC-268](http://www.couchbase.com/issues/browse/JCBC-268)
+
+ * The View Paginator has been completely refactored internally. It is now possible
+   to use it for reduced views as well. Note that it should be more efficient
+   because only one HTTP call is done behind the scenes instead of two for every
+   iteration.
+
+   Because of the current API, in odd cases, Pagination with numbers in strings on
+   view keys can lead to infinte loops. To address this issue, a new method has
+   been added which allows one to force a certain key type even if its not a string
+   value. Please see the Paginator\#forceKeyType() method for more information. In
+   general, this will be not needed and should only be used when those inifite
+   loops occur.
+
+   Also note that this is considered "band aid" and is in place because we don't
+   want to change the API completely in the 1.1 series. For a future minor release
+   (most likely 1.2), the API for views will change a bit so keys don't directly
+   get casted to strings and therefore loose the type information needed to address
+   this issue. We will then depcrecate this method.
+
+   *Issues* : [JCBC-241](http://www.couchbase.com/issues/browse/JCBC-241)
+
+ * set, add and replace methods have been overloaded so you don't need to provide a
+   TTL of 0 all the time if it is not needed. You can now use shorther method
+   calles like:
+
+    ```
+    client.set("key", "{\"name\":\"My JSON doc with no TTL\"}");
+    ```
+
+   *Issues* : [JCBC-284](http://www.couchbase.com/issues/browse/JCBC-284)
+
+**Fixes in 1.1.6**
+
+ * An issue when parsing view query params has been fixed. Previously, a key like
+   "123ABC" has been incorrectly sent as key=123 over the wire (ComplexKex and
+   setKeys have been working correctly).
+
+   *Issues* : [JCBC-288](http://www.couchbase.com/issues/browse/JCBC-288)
+
 <a id="couchbase-sdk-java-rn_1-1-5a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.1.5 GA (4 April 2013)

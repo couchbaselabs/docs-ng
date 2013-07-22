@@ -103,6 +103,74 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library C. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-c-rn_2-0-7"></a>
+
+## Release Notes for Couchbase Client Library C 2.0.7 GA (10 July 2013)
+
+**New Features and Behaviour Changes in 2.0.7**
+
+ * Improve `lcb\_get\_replica()`. Now it is possible to choose between three
+   strategies:
+
+    1. `LCB_REPLICA_FIRST` : Previously accessible and now the default, the caller will
+       get a reply from the first replica to successfully reply within the timeout for
+       the operation or will receive an error.
+
+    1. `LCB_REPLICA_ALL` : Ask all replicas to send documents/items back.
+
+    1. `LCB_REPLICA_SELECT` : Select one replica by the index in the configuration
+       starting from zero. This approach can more quickly receive all possible replies
+       for a given topology, but it can also generate false negatives.
+
+   Note that applications should not assume the order of the replicas indicates
+   more recent data is at a lower index number. It is up to the application to
+   determine which version of a document/item it may wish to use in the case of
+   retrieving data from a replica.
+
+   *Issues* : [CCBC-183](http://www.couchbase.com/issues/browse/CCBC-183)
+
+<a id="couchbase-sdk-c-rn_2-0-6"></a>
+
+## Release Notes for Couchbase Client Library C 2.0.6 GA (07 May 2013)
+
+**New Features and Behaviour Changes in 2.0.6**
+
+ * Added an example to properly use the bucket credentials for authentication
+   instead of administrator credentials
+
+   *Issues* : [CCBC-179](http://www.couchbase.com/issues/browse/CCBC-179)
+
+ * Add Host header in http request http://cbugg.hq.couchbase.com/bug/bug-555 points
+   out that Host is a required field in HTTP 1.1
+
+   *Issues* : [CCBC-201](http://www.couchbase.com/issues/browse/CCBC-201)
+
+**Fixes in 2.0.6**
+
+ * Fix segfault when rebalancing. When a (!connected) server is reconnected, the
+   tasks in its "pending" buffer will be moved into "output" buffer. If its
+   connection is broken again immediately, relocate\_packets() will go to wrong
+   path.
+
+   *Issues* : [CCBC-188](http://www.couchbase.com/issues/browse/CCBC-188)
+
+ * Don't try to switch to backup nodes when timeout is reached
+
+   *Issues* : [CCBC-202](http://www.couchbase.com/issues/browse/CCBC-202)
+
+ * Fix compile error with sun studio. `"src/event.c", line 172: error: statement
+   not reached (E_STATEMENT_NOT_REACHED)`
+
+ * Don't invoke HTTP callbacks after cancellation, because user code might assume a
+   previously-freed resource is still valid
+
+ * Check if SASL struct is valid before disposing
+
+   *Issues* : [CCBC-188](http://www.couchbase.com/issues/browse/CCBC-188)
+
+ * example/yajl/couchview.c: pass cookie to the command Fixes coredump when
+   executing./examples/yajl/couchview
+
 <a id="couchbase-sdk-c-rn_2-0-5"></a>
 
 ## Release Notes for Couchbase Client Library C 2.0.5 GA (05 April 2013)

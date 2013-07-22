@@ -3,7 +3,6 @@
 The retrieve operations get information from the Couchbase database. A summary
 of the available API calls is listed below.
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_ruby_get"></a>
 
 **API Call**                      | `object.get(keyn [, ruby-get-options ] [, ruby-get-keys ])`                                                                                                                                               

@@ -1,6 +1,5 @@
 # Storage Operations
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_php_add"></a>
 
 **API Call**                       | `$object->add($key, $value [, $expiry ] [, $persistto ] [, $replicateto ])`                                                 

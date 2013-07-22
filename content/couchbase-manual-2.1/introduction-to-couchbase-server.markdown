@@ -280,10 +280,9 @@ resources:
 ### RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
-the **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
-:firstterm]`. For more information about creating and changing these two
-settings, see **Couldn't resolve xref tag: couchbase-cli-other-examples** and
-[Creating and Editing Data
+the `Server Quota` and `Bucket Quota`. For more information about creating and
+changing these two settings, see **Couldn't resolve xref tag:
+couchbase-cli-other-examples** and [Creating and Editing Data
 Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
 
  * **Server Quota**
@@ -429,12 +428,11 @@ would otherwise cause a traditional RDBMS to produce erratic performance.
 
 When the server stores data on disk and a client requests the data, it sends an
 individual document ID then the server determines whether the information exists
-or not. Couchbase Server does this with metadata structures. The **Unhandled:**
-`[:unknown-tag :firstterm]` holds information about each document in the
-database and this information is held in RAM. This means that the server can
-always return a 'document ID not found' response for an invalid document ID or
-it can immediately return the data from RAM, or return it after it fetches it
-from disk.
+or not. Couchbase Server does this with metadata structures. The `metadata`
+holds information about each document in the database and this information is
+held in RAM. This means that the server can always return a 'document ID not
+found' response for an invalid document ID or it can immediately return the data
+from RAM, or return it after it fetches it from disk.
 
 <a id="couchbase-introduction-architecture-diskstorage"></a>
 
@@ -525,9 +523,8 @@ Couchbase Server items. This job will run until measured memory reaches
 items to disk, the system may return errors indicating there is not enough
 space. This will continue until there is available memory. The process of
 removing data from the caching to make way for the actively used information is
-called **Unhandled:** `[:unknown-tag :firstterm]`, and is controlled
-automatically through thresholds set on each configured bucket in your Couchbase
-Server Cluster.
+called `ejection`, and is controlled automatically through thresholds set on
+each configured bucket in your Couchbase Server Cluster.
 
 
 ![](images/couchbase-060711-1157-32_img_300.jpg)
@@ -593,8 +590,7 @@ The way data is stored within Couchbase Server is through the distribution
 offered by the vBucket structure. If you want to expand or shrink your Couchbase
 Server cluster then the information stored in the vBuckets needs to be
 redistributed between the available nodes, with the corresponding vBucket map
-updated to reflect the new structure. This process is called **Unhandled:**
-`[:unknown-tag :firstterm]`.
+updated to reflect the new structure. This process is called `rebalancing`.
 
 Rebalancing is an deliberate process that you need to initiate manually when the
 structure of your cluster changes. The rebalance process changes the allocation
@@ -647,15 +643,14 @@ replication between clusters via XDCR see [Cross Datacenter Replication
 ### Failover
 
 Information is distributed around a cluster using a series of replicas. For
-Couchbase buckets you can configure the number of **Unhandled:** `[:unknown-tag
-:firstterm]` (complete copies of the data stored in the bucket) that should be
-kept within the Couchbase Server Cluster.
+Couchbase buckets you can configure the number of `replicas` (complete copies of
+the data stored in the bucket) that should be kept within the Couchbase Server
+Cluster.
 
 In the event of a failure in a server (either due to transient failure, or for
-administrative purposes), you can use a technique called **Unhandled:**
-`[:unknown-tag :firstterm]` to indicate that a node within the Couchbase Cluster
-is no longer available, and that the replica vBuckets for the server are
-enabled.
+administrative purposes), you can use a technique called `failover` to indicate
+that a node within the Couchbase Cluster is no longer available, and that the
+replica vBuckets for the server are enabled.
 
 The failover process contacts each server that was acting as a replica and
 updates the internal table that maps client requests for documents to an
@@ -865,13 +860,11 @@ the basic running of a Membase cluster.
 
    The following terms are new, or updated, in Couchbase Server:
 
-    * **Unhandled:** `[:unknown-tag :firstterm]`, and the associated terms of the
-      **Unhandled:** `[:unknown-tag :firstterm]` and **Unhandled:** `[:unknown-tag
-      :firstterm]` functions used to define views. Views provide an alternative method
-      for accessing and querying information stored in key/value pairs within
-      Couchbase Server. Views allow you to query and retrieve information based on the
-      values of the contents of a key/value pair, providing the information has been
-      stored in JSON format.
+    * `Views`, and the associated terms of the `map` and `reduce` functions used to
+      define views. Views provide an alternative method for accessing and querying
+      information stored in key/value pairs within Couchbase Server. Views allow you
+      to query and retrieve information based on the values of the contents of a
+      key/value pair, providing the information has been stored in JSON format.
 
     * *JSON (JavaScript Object Notation)*, a data representation format that is
       required to store the information in a format that can be parsed by the View

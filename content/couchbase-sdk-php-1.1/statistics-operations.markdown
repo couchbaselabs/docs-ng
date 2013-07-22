@@ -1,6 +1,5 @@
 # Statistics Operations
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_php_getstats"></a>
 
 **API Call**                       | `$object->getStats()`                                                     

@@ -9,7 +9,6 @@ The `Ruby Client Library` supports the full suite of API calls to Couchbase. A
 summary of the supported methods are listed in **Couldn't resolve xref tag:
 table-couchbase-sdk-ruby-summary**.
 
-**Unhandled thing here**
 <a id="couchbase-sdk-ruby-summary-synchronous"></a>
 
 ## Synchronous Method Calls

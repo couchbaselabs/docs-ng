@@ -724,10 +724,9 @@ JSON supports the same basic types as supported by JavaScript, these are:
 
  * Number (either integer or floating-point).
 
-   JavaScript supports a maximum numerical value of 2 **Unhandled:** `[:unknown-tag
-   :superscript]`. If you are working with numbers larger than this from within
-   your client library environment (for example, 64-bit numbers), you must store
-   the value as a string.
+   JavaScript supports a maximum numerical value of 2 `53`. If you are working with
+   numbers larger than this from within your client library environment (for
+   example, 64-bit numbers), you must store the value as a string.
 
  * String — this should be enclosed by double-quotes and supports Unicode
    characters and backslash escaping. For example:
@@ -846,11 +845,10 @@ The basic storage and indexing sequence is:
  1. Once the document has been persisted to disk, the document can be indexed by the
     view mechanism.
 
-This sequence means that the view results are **Unhandled:** `[:unknown-tag
-:firstterm]` with what is stored in memory based on whether documents have been
-persisted to disk. It is possible to write a document to the cluster, and access
-the index, without the newly written document appearing in the generated view
-index.
+This sequence means that the view results are `eventually consistent` with what
+is stored in memory based on whether documents have been persisted to disk. It
+is possible to write a document to the cluster, and access the index, without
+the newly written document appearing in the generated view index.
 
 Conversely, documents that have been stored with an expiry may continue to be
 included within the view index until the document has been removed from the
@@ -881,10 +879,9 @@ generated. However, views also need to be built and developed using the actively
 stored information.
 
 To support both the creation and testing of views, and the deployment of views
-in production, Couchbase Server supports two different view types,
-**Unhandled:** `[:unknown-tag :quote]` views and **Unhandled:** `[:unknown-tag
-:quote]` views. The two view types work identically, but have different purposes
-and restrictions placed upon their operation.
+in production, Couchbase Server supports two different view
+types,Developmentviews andProductionviews. The two view types work identically,
+but have different purposes and restrictions placed upon their operation.
 
  * **Development Views**
 
@@ -1646,11 +1643,10 @@ function.
 
 That is, the input of a reduce function can be not only the raw data from the
 map phase, but also the output of a previous reduce phase. This is called
-**Unhandled:** `[:unknown-tag :firstterm]`, and can be identified by the third
-argument to the `reduce()`. When the `rereduce` argument is true, both the `key`
-and `values` arguments are arrays, with the corresponding element in each
-containing the relevant key and value. I.e., `key[1]` is the key related to the
-value of `value[1]`.
+`rereduce`, and can be identified by the third argument to the `reduce()`. When
+the `rereduce` argument is true, both the `key` and `values` arguments are
+arrays, with the corresponding element in each containing the relevant key and
+value. I.e., `key[1]` is the key related to the value of `value[1]`.
 
 An example of this can be seen by considering an expanded version of the `sum`
 function showing the supplied values for the first iteration of the view index
@@ -2612,11 +2608,14 @@ returned by the view. Key selection is made after the view results (including
 the reduction function) are executed, and after the items in the view output
 have been sorted.
 
-**Unhandled:** `[:unknown-tag :important]` When specifying the key selection
-through a parameter, the keys must match the format of the keys emitted by the
-view. Compound keys, for example where an array or hash has been used in the
-emitted key structure, the supplied selection value should also be an array or a
-hash.
+When specifying keys to the selection mechanism, the key must be expressed in
+the form of a JSON value. For example, when specifying a single key, a string
+must be quoted ("string").
+
+When specifying the key selection through a parameter, the keys must match the
+format of the keys emitted by the view. Compound keys, for example where an
+array or hash has been used in the emitted key structure, the supplied selection
+value should also be an array or a hash.
 
 The following selection types are supported:
 
@@ -4842,11 +4841,11 @@ request. The full list is provided in the following summary table.
                             | `ok` : Allow stale views                                            
                             | `update_after` : Allow stale view, update view after access         
 
-**Unhandled:** `[:unknown-tag :bridgehead]` If you do not supply a bounding box,
-the full dataset is returned. When querying a spatial index you can use the
-bounding box to specify the boundaries of the query lookup on a given value. The
-specification should be in the form of a comma-separated list of the coordinates
-to use during the query.
+Bounding Box QueriesIf you do not supply a bounding box, the full dataset is
+returned. When querying a spatial index you can use the bounding box to specify
+the boundaries of the query lookup on a given value. The specification should be
+in the form of a comma-separated list of the coordinates to use during the
+query.
 
 These coordinates are specified using the GeoJSON format, so the first two
 numbers are the lower left coordinates, and the last two numbers are the upper

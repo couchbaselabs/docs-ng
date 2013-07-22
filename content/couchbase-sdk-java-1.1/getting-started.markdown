@@ -69,9 +69,9 @@ all `jar` files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you add specific `jar` files to your project. Make sure to have the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.1.4.jar
+ * couchbase-client-1.1.7.jar
 
- * spymemcached-2.8.12.jar
+ * spymemcached-2.9.0.jar
 
  * commons-codec-1.5.jar
 
@@ -99,17 +99,13 @@ vary. Here is an example on how to do it in Maven by updating your `pom.xml`.
     <name>Couchbase Maven Repository</name>
     <layout>default</layout>
     <url>http://files.couchbase.com/maven2/</url>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
   </repository>
 </repositories>
 
 <dependency>
     <groupId>couchbase</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.1.4</version>
-    <scope>provided</scope>
+    <version>1.1.7</version>
 </dependency>
 ```
 
@@ -121,7 +117,7 @@ If you are coming from Scala and want to manage your dependencies through
 ```
 resolvers += "Couchbase Maven Repository" at "http://files.couchbase.com/maven2"
 
-libraryDependencies += "couchbase" % "couchbase-client" % "1.1.4"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.1.7"
 ```
 
 <a id="ide-setup"></a>
@@ -155,7 +151,7 @@ settings:
 
  * Artifact ID: couchbase-client
 
- * Version: 1.1.4
+ * Version: 1.1.7
 
 Now all dependencies are in place and we can move forward to our first
 application with Couchbase!
@@ -727,6 +723,6 @@ provide useful information for your day-to-day work with Couchbase. Finally, the
 API docs of the Java SDK can be found
 [here](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/api-reference-summary.html).
 And JavaDoc is also
-[available](http://www.couchbase.com/autodocs/couchbase-java-client-1.1.4/index.html).
+[available](http://www.couchbase.com/autodocs/couchbase-java-client-1.1.7/index.html).
 
 <a id="tutorial"></a>

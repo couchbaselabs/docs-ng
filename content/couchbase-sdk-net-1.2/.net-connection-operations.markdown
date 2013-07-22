@@ -1,6 +1,5 @@
 # .Net Connection Operations
 
-**Unhandled thing here**
 <a id="table-couchbase-sdk_net_connect"></a>
 
 **API Call**        | `object.new CouchbaseClient([ url ] [, username ] [, password ])`                                                                                                                                                                                                  
