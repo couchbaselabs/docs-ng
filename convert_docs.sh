@@ -155,6 +155,7 @@ make validate
 make reformat
 make couchbase-sdk-net.xml
 cd ~/Desktop/docs-ng/
+rm -rf content/couchbase-sdk-net-1.1
 mkdir content/couchbase-sdk-net-1.1
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-net-1.1/couchbase-sdk-net-ready.xml couchbase-sdk-net-1.1
 
