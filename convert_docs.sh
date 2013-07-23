@@ -226,7 +226,7 @@ cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk
 make depend
 make validate
 make reformat
-make couchbase-sdk-python.xml
+make couchbase-sdk-python.pdf
 cd ~/Desktop/docs-ng/
 mkdir content/couchbase-sdk-python-1.0
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-python-1.0/couchbase-sdk-python-ready.xml couchbase-sdk-python-1.0
