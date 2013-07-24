@@ -1,0 +1,39 @@
+Unknown: supress message, show content inline/splice:
+
+Tags that appear within paragraphs = splice content into paragraph  
+
+:classname
+
+:superscript
+
+:screen
+
+:guimenuitem
+
+:guimenu
+
+:guibutton
+
+
+:firstterm
+
+
+
+:quote
+
+Tags surround standalone paragraphs = dump into paragraph
+
+:important
+
+:sidebar 
+
+:caution
+
+:bridgehead
+
+:footnote
+
+Images:
+
+:informalfigure = image tag
+

@@ -24,6 +24,8 @@ TechPubs will set up your new folder for new guides or new major versions, for e
 
     <%= include_item 'couchbase-devguide-2.0/couchbase-developer-s-guide-2.0' %>
     
+- In your guide folder, keep all your images in a file called images.
+    
 ##Adding and Editing Content
 
 Follow the spec set down by 

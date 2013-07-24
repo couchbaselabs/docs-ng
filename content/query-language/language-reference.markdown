@@ -9,13 +9,19 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
 ###Syntax
 
     SELECT [ DISTINCT | UNIQUE ]
+        * | expr
         [ FROM data-source ]
         [ WHERE expr ]
         [ GROUP BY result-expr-list [, ...] ]
         [ HAVING result-expr-list ]
-        [ ORDER BY ]
+        [ ORDER BY ordering-term ]
         [ LIMIT ]
         [ OFFSET ]
+        
+    where data_source can be:
+    
+        data_bucket_name
+        path [ [AS] alias ]
         
 ###Compatibility
 
@@ -23,19 +29,45 @@ Available in Couchbase Server 0.0
 
 ###Description
 
-The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Result objects from a step in the process become inputs into the next step:
+The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Each step in a sequence produces result objects which are them used as inputs in the next step until all steps complete:
 
-* Data Source. This is the Couchbase data bucket you query. You provide this as the parameter data-source in a FROM clause.
+* Data Source. This is the Couchbase data bucket you query. You provide this as the parameter data-source in a FROM clause. Alternately you can provide a `path` as data source.
+
 * Filtering. Results objects from the SELECT can be filtered by adding a WHERE clause.
+
 * Result Set. You generate a set of result objects with GROUP BY or HAVING clauses along with a result expression list, `result-expr-list`.
+
 * Duplicate Removal. Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
+
+###Options
 
 The following describe optional clauses you can use in your select statement:
 
-* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket. Alternately you can provide the database or data bucket name as an alias using the `AS` clause within `FROM.`
-Another use of the `FROM` clause is to specify a path within a bucket. With this option, the server evaluates the path specified for each document in the data bucket and the value at that path becomes an input into the query.
+* `DISTINCT` Clause. If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`the query will return all objects that meet the query conditions in a result set.
 
-###Parameters
+* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket. Alternately you can provide the database or data bucket name as an alias using the `AS` clause within `FROM.`
+
+    Another use of the `FROM` clause is to specify a path within a bucket. With this option, the server evaluates the path specified for each document in the data bucket and the value at that path becomes an input into the query. For example, imagine you have a data bucket named `breweries` which has a document that describes each brewery in a country. Each document has a field called `address`. To get all addresses as input for a query, you use this clause:
+
+        FROM brewer.address
+
+    This will get all address fields from all breweries in the data bucket. If the address field does not exist for a brewer, it will not be part of the query input.    
+
+
+* `WHERE` Clause. Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is included in a results array. For example:
+
+        select * FROM players WHERE score > 100
+
+* `GROUP BY` Clause. 
+
+* `HAVING` Clause.
+
+* `ORDER BY` Clause. The order of items in the result set is determined by expression in this clause. Objects are sorted first by the left-most expression in the list of expressions. Any items with the same sort value will be sorted with the next expression in the list. This process repeats all items are sorted and all expressions in the list are evaluated. 
+
+    The `ORDER BY` clause can evaluate any JSON value. This means it can compare values of different types, for instance 'four' and 4 and will order by type. The following describes order by type from highest to lowest:
+    
+     
+
 
 ###Examples
 
