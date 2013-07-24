@@ -335,8 +335,12 @@ exception object consists of the following properties:
 Because this is a C extension, some fatal errors might result in an application
 crash. On Unix-based systems, these typically look like this:
 
-`python: src/callbacks.c:132: get_common_objects: Assertion
-`PyDict_Contains((PyObject*)*mres, hkey) == 0' failed. Aborted` Or simply:
+
+```
+python: src/callbacks.c:132: get_common_objects: Assertion `PyDict_Contains((PyObject*)*mres, hkey) == 0' failed. Aborted
+```
+
+Or simply:
 
 `Segmentation Fault` While the actual cause might be in the application code or
 in the SDK itself, there is often less information available in debugging it.
@@ -368,6 +372,11 @@ and redistribute it. There is NO WARRANTY, to the extent permitted by law.  Type
 /usr/bin/python...Reading symbols from /usr/lib/debug/usr/bin/python2.7...done.
 done.` This brings you to the `gdb` prompt. Run the program by typing `r` and
 then pressing *enter*.
+
+
+```
+(gdb) r Starting program: /usr/bin/python crash.py [Thread debugging using libthread_db enabled] Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1". python: src/callbacks.c:132: get_common_objects: Assertion `PyDict_Contains((PyObject*)*mres, hkey) == 0' failed.  Program received signal SIGABRT, Aborted. 0x00007ffff6fc9475 in *__GI_raise (sig=<optimized out>) at../nptl/sysdeps/unix/sysv/linux/raise.c:64 64     ../nptl/sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+```
 
 ### Debugging an already-running application
 

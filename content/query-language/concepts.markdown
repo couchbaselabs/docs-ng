@@ -56,7 +56,11 @@ A document field can contain nested data structures such as arrays and hashes; w
         ]
     }
 
-You use a path either with an array element, or hash key in order to get to attributes within the data structure.
+You use a path either with an array element, or hash key in order to get to attributes within the data structure. For example, to get the names of reviewers, you would provide this path in a query:
+
+    x.x
+    
+
 
 
 

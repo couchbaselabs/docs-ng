@@ -27,7 +27,7 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
 
     SELECT [ DISTINCT | UNIQUE ]
         * | expr
-        [ FROM data-source ]
+        [ FROM data-source [, ...] ]
         [ WHERE expr ]
         [ GROUP BY expr [, ...] ]
         [ HAVING expr ]
@@ -102,8 +102,7 @@ The following describe optional clauses you can use in your select statement:
 
 * `OFFSET` Clause. This clause can optionally follow a `LIMIT` clause. If you specify and offset, this many objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be an integer.
 
-
-
+* `OVER` Clause. This clause can optionally follow a `FROM` clause. This will join attributes at multiple paths within a document. If a document contains a nested array, this clause will have each of the array elements joined within the document. The joined elements will them become input for further query operations. If the item 
 
 ###Examples
 
