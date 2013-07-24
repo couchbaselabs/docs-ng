@@ -299,15 +299,36 @@ The `welcome.html` template is actually a *Jinja* template inside the
 
 ### templates/welcome.html
 
-`{% extends "layout.html" %} {% block body %} <div class="span6"> <div
-class="span12"> <h4>Browse all Beers</h4> <a href="/beers" class="btn
-btn-warning">Show me all beers</a> <hr /> </div> <div class="span12"> <h4>Browse
-all Breweries</h4> <a href="/breweries" class="btn btn-info">Take me to the
-breweries</a> </div> </div> <div class="span6"> <div class="span6"> <div
-class="span12"> <h4>About this App</h4> <p>Welcome to Couchbase!</p> <p>This
-application helps you to get started on application development with Couchbase.
-It shows how to create, update and delete documents and how to work with JSON
-documents.</p> </div> </div>  {% endblock %}`
+
+```
+{% extends "layout.html" %}
+{% block body %}
+<div class="span6">
+  <div class="span12">
+    <h4>Browse all Beers</h4>
+    <a href="/beers" class="btn btn-warning">Show me all beers</a>
+    <hr />
+  </div>
+  <div class="span12">
+    <h4>Browse all Breweries</h4>
+    <a href="/breweries" class="btn btn-info">Take me to the breweries</a>
+  </div>
+</div>
+<div class="span6">
+<div class="span6">
+  <div class="span12">
+    <h4>About this App</h4>
+    <p>Welcome to Couchbase!</p>
+    <p>This application helps you to get started on application
+        development with Couchbase. It shows how to create, update and
+        delete documents and how to work with JSON documents.</p>
+  </div>
+</div>
+
+{% endblock %}
+```
+
+
 
 The template simply provides some links to the brewery and beer pages (which are
 shown later).
@@ -319,23 +340,57 @@ template.
 
 ### templates/layout.html
 
-`<!DOCTYPE HTML>  <html lang="en"> <head> <meta charset="utf-8">
-<title>Couchbase Python Beer Sample</title> <meta name="viewport"
-content="width=device-width, initial-scale=1.0"> <meta name="description"
-content="The Couchbase Java Beer-Sample App"> <meta name="author"
-content="Couchbase, Inc. 2013">  <link href="/css/bootstrap.min.css"
-rel="stylesheet"> <link href="/css/beersample.css" rel="stylesheet"> <link
-href="/css/bootstrap-responsive.min.css" rel="stylesheet">  <!-- HTML5 shim, for
-IE6-8 support of HTML5 elements --> <!--[if lt IE 9]> <script
-src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-</head>  <body> <div class="container-narrow"> <div class="masthead"> <ul
-class="nav nav-pills pull-right"> <li><a href="/welcome">Home</a></li> <li><a
-href="/beers">Beers</a></li> <li><a href="/breweries">Breweries</a></li> </ul>
-<h2 class="muted">Couchbase Beer Sample</h2> </div> <hr> <div class="row-fluid">
-<div class="span12"> {% block body %}{% endblock %} </div> </div> <hr> <div
-class="footer"> <p>&copy; Couchbase, Inc. 2013</p> </div> </div> <script
-src="/js/jquery.min.js"></script> <script src="/js/bootstrap.min.js"></script>
-<script src="/js/beersample.js"></script> </body> </html>`
+
+```
+<!DOCTYPE HTML>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Couchbase Python Beer Sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Couchbase Java Beer-Sample App">
+    <meta name="author" content="Couchbase, Inc. 2013">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/beersample.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container-narrow">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="/welcome">Home</a></li>
+          <li><a href="/beers">Beers</a></li>
+          <li><a href="/breweries">Breweries</a></li>
+        </ul>
+        <h2 class="muted">Couchbase Beer Sample</h2>
+      </div>
+      <hr>
+      <div class="row-fluid">
+        <div class="span12">
+            {% block body %}{% endblock %}
+        </div>
+      </div>
+      <hr>
+      <div class="footer">
+        <p>&copy; Couchbase, Inc. 2013</p>
+      </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/beersample.js"></script>
+  </body>
+</html>
+```
+
+
 
 If you start your app now, you should be able to navigate to `localhost:5000`
 and see the welcome page. You’ll get a 404 error if you try to visit any links
@@ -482,17 +537,47 @@ Here is the `beer/index.html` template:
 
 ### templates/beer/index.html
 
-`{% extends "layout.html" %} {% block body %}  <h3>Browse Beers</h3> <form
-class="navbar-search pull-left"> <input id="beer-search" type="text"
-class="search-query" placeholder="Search for Beers"> </form>   <table
-id="beer-table" class="table table-striped"> <thead> <tr> <th>Name</th>
-<th>Brewery</th> <th></th> </tr> </thead> <tbody> {% for beer in results %} <tr>
-<td><a href="/beers/show/{{beer.id}}">{{beer.name}}</a></td> <td><a
-href="/breweries/show/{{beer.brewery_id}}">To Brewery</a></td> <td> <a
-class="btn btn-small btn-warning" href="/beers/edit/{{beer.id}}">Edit</a> <a
-class="btn btn-small btn-danger" href="/beers/delete/{{beer.id}}">Delete</a>
-</td> </tr> {% endfor %} </tbody> </table>  <div> <a class="btn btn-small
-btn-success" href="/beers/create">Add Beer</a> </div>  {% endblock %}`
+
+```
+{% extends "layout.html" %}
+{% block body %}
+
+<h3>Browse Beers</h3>
+<form class="navbar-search pull-left">
+    <input id="beer-search" type="text" class="search-query" placeholder="Search for Beers">
+</form>
+
+
+<table id="beer-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Brewery</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for beer in results %}
+        <tr>
+            <td><a href="/beers/show/{{beer.id}}">{{beer.name}}</a></td>
+            <td><a href="/breweries/show/{{beer.brewery_id}}">To Brewery</a></td>
+            <td>
+                <a class="btn btn-small btn-warning" href="/beers/edit/{{beer.id}}">Edit</a>
+                <a class="btn btn-small btn-danger" href="/beers/delete/{{beer.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-small btn-success" href="/beers/create">Add Beer</a>
+</div>
+
+{% endblock %}
+```
+
+
 
 We’re using *Jinja*  `{% for %}` blocks to iterate and emit a fragment of HTML
 for each `Beer` object returned by the query.
@@ -514,9 +599,19 @@ to delete both beers and breweries.
 
 ### beer.py (deleting a beer)
 
-`@app.route('<otype>/delete/<id>') def delete_object(otype, id): try:
-db.delete(id) return redirect('/welcome')  except NotFoundError: return "No such
-{0} '{1}'".format(otype, id), 404`
+
+```
+@app.route('<otype>/delete/<id>')
+def delete_object(otype, id):
+    try:
+        db.delete(id)
+        return redirect('/welcome')
+
+    except NotFoundError:
+        return "No such {0} '{1}'".format(otype, id), 404
+```
+
+
 
 Here we tell Flask to route any URL that has as its second component the string
 `delete` to this method. The paths in `<angle brackets>` are routing tokens that
@@ -581,16 +676,39 @@ show here:
 
 ### templates/beer/show.html
 
-`{% extends "layout.html" %} {% block body %}  {% set display = beer.doc %} {%
-set brewery_id = display['brewery_id'] %}  <h3>Show Details for Beer
-"{{beer.name}}"</h3> <table class="table table-striped"> <tbody> <tr>
-<td><strong>brewery_id</strong></td> <td><a
-href="/breweries/show/{{brewery_id}}">{{brewery_id}}</a></td> </tr> {% for k, v
-in display.items() if not k == "brewery_id" %} <tr>
-<td><strong>{{k}}</strong></td> <td>{{v}}</td> </tr> {% endfor %} </tbody>
-</table>  <a class="btn btn-medium btn-warning"
-href="/beers/edit/{{beer.id}}">Edit</a> <a class="btn btn-medium btn-danger"
-href="/beers/delete/{{beer.id}}">Delete</a>  {% endblock %}`
+
+```
+{% extends "layout.html" %}
+{% block body %}
+
+{% set display = beer.doc %}
+{% set brewery_id = display['brewery_id'] %}
+
+<h3>Show Details for Beer "{{beer.name}}"</h3>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td><strong>brewery_id</strong></td>
+            <td><a href="/breweries/show/{{brewery_id}}">{{brewery_id}}</a></td>
+        </tr>
+        {% for k, v in display.items() if not k == "brewery_id" %}
+        <tr>
+            <td><strong>{{k}}</strong></td>
+            <td>{{v}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a class="btn btn-medium btn-warning"
+    href="/beers/edit/{{beer.id}}">Edit</a>
+<a class="btn btn-medium btn-danger"
+    href="/beers/delete/{{beer.id}}">Delete</a>
+
+{% endblock %}
+```
+
+
 
 Here we make the `display` variable in a special `{% set %}` directive. This
 makes dealing with the rest of the code simpler.
@@ -677,30 +795,74 @@ nice description.
 
 ### templates/beer/edit.html
 
-`{% extends "layout.html" %} {% block body %}  {% if is_create %} <h3>Create
-Beer</h3> {% else %} <h3>Editing {{beer.name}}</h3> {% endif %}  <form
-method="post" action=""> <fieldset> <legend>General Info</legend> <div
-class="span12"> <div class="span6"> <label>Name</label> <input type="text"
-name="beer_name" placeholder="The name of the beer." value="{{beer.name}}"> 
-<label>Description</label> <input type="text" name="beer_description"
-placeholder="A short description." value="{{beer.description}}"> </div> <div
-class="span6"> <label>Style</label> <input type="text" name="beer_style"
-placeholder="Bitter? Sweet? Hoppy?" value="{{beer.style}}"> 
-<label>Category</label> <input type="text" name="beer_category"
-placeholder="Ale? Stout? Lager?" value="{{beer.category}}"> </div> </div>
-</fieldset> <fieldset> <legend>Details</legend> <div class="span12"> <div
-class="span6"> <label>Alcohol (ABV)</label> <input type="text" name="beer_abv"
-placeholder="The beer's ABV" value="{{beer.abv}}">  <label>Biterness
-(IBU)</label> <input type="text" name="beer_ibu" placeholder="The beer's IBU"
-value="{{beer.ibu}}"> </div> <div class="span6"> <label>Beer Color (SRM)</label>
-<input type="text" name="beer_srm" placeholder="The beer's SRM"
-value="{{beer.srm}}">  <label>Universal Product Code (UPC)</label> <input
-type="text" name="beer_upc" placeholder="The beer's UPC" value="{{beer.upc}}">
-</div> </div> </fieldset> <fieldset> <legend>Brewery</legend> <div
-class="span12"> <div class="span6"> <label>Brewery</label> <input type="text"
-name="beer_brewery_id" placeholder="The brewery" value="{{beer.brewery_id}}">
-</div> </div> </fieldset> <div class="form-actions"> <button type="submit"
-class="btn btn-primary">Save changes</button> </div> </form>  {% endblock %}`
+
+```
+{% extends "layout.html" %}
+{% block body %}
+
+{% if is_create %}
+<h3>Create Beer</h3>
+{% else %}
+<h3>Editing {{beer.name}}</h3>
+{% endif %}
+
+<form method="post" action="">
+  <fieldset>
+    <legend>General Info</legend>
+    <div class="span12">
+      <div class="span6">
+        <label>Name</label>
+        <input type="text" name="beer_name" placeholder="The name of the beer." value="{{beer.name}}">
+
+        <label>Description</label>
+        <input type="text" name="beer_description" placeholder="A short description." value="{{beer.description}}">
+      </div>
+      <div class="span6">
+        <label>Style</label>
+        <input type="text" name="beer_style" placeholder="Bitter? Sweet? Hoppy?" value="{{beer.style}}">
+
+        <label>Category</label>
+        <input type="text" name="beer_category" placeholder="Ale? Stout? Lager?" value="{{beer.category}}">
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Details</legend>
+    <div class="span12">
+      <div class="span6">
+        <label>Alcohol (ABV)</label>
+        <input type="text" name="beer_abv" placeholder="The beer's ABV" value="{{beer.abv}}">
+
+        <label>Biterness (IBU)</label>
+        <input type="text" name="beer_ibu" placeholder="The beer's IBU" value="{{beer.ibu}}">
+      </div>
+      <div class="span6">
+        <label>Beer Color (SRM)</label>
+        <input type="text" name="beer_srm" placeholder="The beer's SRM" value="{{beer.srm}}">
+
+        <label>Universal Product Code (UPC)</label>
+        <input type="text" name="beer_upc" placeholder="The beer's UPC" value="{{beer.upc}}">
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Brewery</legend>
+    <div class="span12">
+      <div class="span6">
+        <label>Brewery</label>
+        <input type="text" name="beer_brewery_id" placeholder="The brewery" value="{{beer.brewery_id}}">
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save changes</button>
+  </div>
+</form>
+
+{% endblock %}
+```
+
+
 
 The template first checks the `is_create` variable. If it’s `False`, then we’re
 editing an existing beer, and the caption is filled with that name. Otherwise,
@@ -714,13 +876,32 @@ Creating beers is largely the same as editing beers:
 
 ### beer.py (create beer page)
 
-`@app.route('/beers/create') def create_beer_display(): return
-render_template('beer/edit.html', beer=Beer('', ''), is_create=True)  
-@app.route('/beers/create', methods=['POST']) def create_beer_submit(): doc, err
-= normalize_beer_fields(request.form)  if not doc: return err  id =
-'{0}-{1}'.format(doc['brewery_id'], doc['name'].replace(' ', '_').lower())  try:
-db.add(id, doc) return redirect('/beers/show/' + id)  except KeyExistsError:
-return "Beer already exists!", 400`
+
+```
+@app.route('/beers/create')
+def create_beer_display():
+    return render_template('beer/edit.html', beer=Beer('', ''), is_create=True)
+
+
+@app.route('/beers/create', methods=['POST'])
+def create_beer_submit():
+    doc, err = normalize_beer_fields(request.form)
+
+    if not doc:
+        return err
+
+    id = '{0}-{1}'.format(doc['brewery_id'],
+                          doc['name'].replace(' ', '_').lower())
+
+    try:
+        db.add(id, doc)
+        return redirect('/beers/show/' + id)
+
+    except KeyExistsError:
+        return "Beer already exists!", 400
+```
+
+
 
 Here we display the same form as the one for editing beers, except we set the
 `is_create` parameter to True, and pass an empty `Beer` object. This is

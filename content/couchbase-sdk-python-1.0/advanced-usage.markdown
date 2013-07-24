@@ -294,39 +294,58 @@ except CouchbaseError as e:
 
 Printing the exception object typically produces something like this:
 
-`# line breaks inserted for clarity  <Couldn't encode value, inner_cause=<object
-object at 0x7f873cf220d0> is not JSON serializable, C
-Source=(src/convert.c,131), OBJ=<object object at 0x7f873cf220d0> >` The
-exception object consists of the following properties:
+
+```
+# line breaks inserted for clarity
+
+<Couldn't encode value,
+    inner_cause=<object object at 0x7f873cf220d0> is not JSON serializable,
+    C Source=(src/convert.c,131),
+    OBJ=<object object at 0x7f873cf220d0>
+>
+```
+
+The exception object consists of the following properties:
 
  * `message`
 
    This is the message, if any, that indicates what went wrong. It is always a
    string.
 
-   `>>> e.message "Couldn't encode value"`
+    ```
+    >>> e.message
+    "Couldn't encode value"
+    ```
 
  * `inner_cause`
 
    If this exception is triggered by another exception, this field contains it. In
    the above example, we see the exception
 
-   `>>> e.inner_cause TypeError('<object object at 0x7f873cf220d0> is not JSON
-   serializable',)`
+    ```
+    >>> e.inner_cause
+    TypeError('<object object at 0x7f873cf220d0> is not JSON serializable',)
+    ```
 
  * `csrc_info`
 
    If present, contains the source code information where the exception was raised.
    This is only present for exceptions raised from within the C extension.
 
-   `>>> e.csrc_info ('src/convert.c', 131)`
+    ```
+    >>> e.csrc_info
+    ('src/convert.c', 131)
+    ```
 
  * `objextra`
 
    Contains the Python object that likely caused the exception. If present, it
    means the object was of an invalid type or format.
 
-   `>>> e.objextra <object object at 0x7f873cf220d0>`
+    ```
+    >>> e.objextra
+    <object object at 0x7f873cf220d0>
+    ```
 
 <a id="_application_crashes"></a>
 
@@ -337,13 +356,19 @@ crash. On Unix-based systems, these typically look like this:
 
 
 ```
-python: src/callbacks.c:132: get_common_objects: Assertion `PyDict_Contains((PyObject*)*mres, hkey) == 0' failed. Aborted
+python: src/callbacks.c:132: get_common_objects: Assertion `PyDict_Contains((PyObject*)*mres, hkey) == 0' failed.
+Aborted
 ```
 
 Or simply:
 
-`Segmentation Fault` While the actual cause might be in the application code or
-in the SDK itself, there is often less information available in debugging it.
+
+```
+Segmentation Fault
+```
+
+While the actual cause might be in the application code or in the SDK itself,
+there is often less information available in debugging it.
 
 The SDK should never crash under normal circumstances, and any application crash
 ultimately indicates a bug in the SDK itself (invalid user input should result
@@ -362,20 +387,36 @@ When you have the desired debugging symbols, invoke `gdb` as follows. For this
 example, we assume `python` is a Python interpreter, and `crash.py` is a script
 that can trigger the crash.
 
-`shell> gdb --args python crash.py GNU gdb (GDB) 7.4.1-debian Copyright (C) 2012
-Free Software Foundation, Inc. License GPLv3+: GNU GPL version 3 or later
-<http://gnu.org/licenses/gpl.html> This is free software: you are free to change
-and redistribute it. There is NO WARRANTY, to the extent permitted by law.  Type
-"show copying" and "show warranty" for details. This GDB was configured as
-"x86_64-linux-gnu". For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>... Reading symbols from
-/usr/bin/python...Reading symbols from /usr/lib/debug/usr/bin/python2.7...done.
-done.` This brings you to the `gdb` prompt. Run the program by typing `r` and
-then pressing *enter*.
+
+```
+shell> gdb --args python crash.py
+GNU gdb (GDB) 7.4.1-debian
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /usr/bin/python...Reading symbols from /usr/lib/debug/usr/bin/python2.7...done.
+done.
+```
+
+This brings you to the `gdb` prompt. Run the program by typing `r` and then
+pressing *enter*.
 
 
 ```
-(gdb) r Starting program: /usr/bin/python crash.py [Thread debugging using libthread_db enabled] Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1". python: src/callbacks.c:132: get_common_objects: Assertion `PyDict_Contains((PyObject*)*mres, hkey) == 0' failed.  Program received signal SIGABRT, Aborted. 0x00007ffff6fc9475 in *__GI_raise (sig=<optimized out>) at../nptl/sysdeps/unix/sysv/linux/raise.c:64 64     ../nptl/sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+(gdb) r
+Starting program: /usr/bin/python crash.py
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+python: src/callbacks.c:132: get_common_objects: Assertion `PyDict_Contains((PyObject*)*mres, hkey) == 0' failed.
+
+Program received signal SIGABRT, Aborted.
+0x00007ffff6fc9475 in *__GI_raise (sig=<optimized out>) at ../nptl/sysdeps/unix/sysv/linux/raise.c:64
+64      ../nptl/sysdeps/unix/sysv/linux/raise.c: No such file or directory.
 ```
 
 ### Debugging an already-running application
@@ -385,35 +426,53 @@ In this case, you need to debug an already-running application. This can be done
 with `gdb` by determining the process ID of the already-running process. In this
 case, you can attach `gdb` to the running process like so:
 
-`shell> gdb -p 29342..... (gdb) continue` Once `gdb` is attached, you can type
-`continue` (instead of `r` ) to continue the application.
+
+```
+shell> gdb -p 29342
+.....
+(gdb) continue
+```
+
+Once `gdb` is attached, you can type `continue` (instead of `r` ) to continue
+the application.
 
 This shows us that an application crashed. When this happens, `gdb` will print
 the location of the crash. This is not enough, however as we need the full trace
 of the crash. To do this, type `bt` and then enter to obtain the trace:
 
-`(gdb) bt #0  0x00007ffff6fc9475 in *__GI_raise (sig=<optimized out>)
-at../nptl/sysdeps/unix/sysv/linux/raise.c:64 #1  0x00007ffff6fcc6f0 in
-*__GI_abort () at abort.c:92 #2  0x00007ffff6fc2621 in *__GI___assert_fail
-(assertion=assertion@entry= 0x7ffff67f6f68 "PyDict_Contains((PyObject*)*mres,
-hkey) == 0", file=<optimized out>, file@entry=0x7ffff67f6e0d "src/callbacks.c",
-line=line@entry=132, function=function@entry= 0x7ffff67f6fe0
-"get_common_objects") at assert.c:81 #3  0x00007ffff67f000c in
-get_common_objects (cookie=<optimized out>, key=<optimized out>, nkey=<optimized
-out>, err=err@entry=LCB_KEY_ENOENT, conn=conn@entry=0x7fffffffd328,
-res=res@entry=0x7fffffffd330, restype=restype@entry=2,
-mres=mres@entry=0x7fffffffd338) at src/callbacks.c:132 #4  0x00007ffff67f0623 in
-get_callback (instance=<optimized out>, cookie=<optimized out>,
-err=LCB_KEY_ENOENT, resp=0x7fffffffd3e0) at src/callbacks.c:216 #5 
-0x00007ffff65cf861 in lcb_server_purge_implicit_responses () from
-/sources/libcouchbase/inst/lib/libcouchbase.so.2 #6  0x00007ffff65d0f1b in
-lcb_proto_parse_single () from /sources/libcouchbase/inst/lib/libcouchbase.so.2
-#7  0x00007ffff65cfef5 in lcb_server_v0_event_handler () from
-/sources/libcouchbase/inst/lib/libcouchbase.so.2 #8  0x00007ffff58b9ccc in
-event_base_loop () from /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5 #9 
-0x00007ffff65d50f0 in lcb_wait () ---Type <return> to continue, or q <return> to
-quit---` Python traces can be rather long; continue pressing *enter* until the
-last line ( `--Type <return>...` ) is no longer present.
+
+```
+(gdb) bt
+#0  0x00007ffff6fc9475 in *__GI_raise (sig=<optimized out>)
+    at ../nptl/sysdeps/unix/sysv/linux/raise.c:64
+#1  0x00007ffff6fcc6f0 in *__GI_abort () at abort.c:92
+#2  0x00007ffff6fc2621 in *__GI___assert_fail (assertion=assertion@entry=
+    0x7ffff67f6f68 "PyDict_Contains((PyObject*)*mres, hkey) == 0",
+    file=<optimized out>, file@entry=0x7ffff67f6e0d "src/callbacks.c",
+    line=line@entry=132, function=function@entry=
+    0x7ffff67f6fe0 "get_common_objects") at assert.c:81
+#3  0x00007ffff67f000c in get_common_objects (cookie=<optimized out>,
+    key=<optimized out>, nkey=<optimized out>, err=err@entry=LCB_KEY_ENOENT,
+    conn=conn@entry=0x7fffffffd328, res=res@entry=0x7fffffffd330,
+    restype=restype@entry=2, mres=mres@entry=0x7fffffffd338)
+    at src/callbacks.c:132
+#4  0x00007ffff67f0623 in get_callback (instance=<optimized out>,
+    cookie=<optimized out>, err=LCB_KEY_ENOENT, resp=0x7fffffffd3e0)
+    at src/callbacks.c:216
+#5  0x00007ffff65cf861 in lcb_server_purge_implicit_responses ()
+   from /sources/libcouchbase/inst/lib/libcouchbase.so.2
+#6  0x00007ffff65d0f1b in lcb_proto_parse_single ()
+   from /sources/libcouchbase/inst/lib/libcouchbase.so.2
+#7  0x00007ffff65cfef5 in lcb_server_v0_event_handler ()
+   from /sources/libcouchbase/inst/lib/libcouchbase.so.2
+#8  0x00007ffff58b9ccc in event_base_loop ()
+   from /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5
+#9  0x00007ffff65d50f0 in lcb_wait ()
+---Type <return> to continue, or q <return> to quit---
+```
+
+Python traces can be rather long; continue pressing *enter* until the last line
+( `--Type <return>...` ) is no longer present.
 
 After you have a backtrace, send the information (along with the script to
 reproduce, if possible) to your desired support venue.
