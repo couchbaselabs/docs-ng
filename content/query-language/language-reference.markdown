@@ -2,6 +2,23 @@
 
 This reference section describes the syntax and general semantics of N1QL. This includes all available commands, functions, expressions, conditionals and operators for the language.
 
+##Explain
+
+You can use this keyword before any N1QL statement and get information about how the statement operates.
+
+###Syntax
+
+    EXPLAIN statement
+    
+###Compatibility
+
+Available in Couchbase Server X.X
+
+###Description
+
+The EXPLAIN statement can precede any N1QL statement. The statement will be evaluated and will return information about how the statement 
+operates. The output from this statement is for analysis and troubleshooting queries only.
+
 ##Select
 
 You use the SELECT statement to extract data from Couchbase Server. The result of this command will be one or more objects.
@@ -12,20 +29,26 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
         * | expr
         [ FROM data-source ]
         [ WHERE expr ]
-        [ GROUP BY result-expr-list [, ...] ]
-        [ HAVING result-expr-list ]
+        [ GROUP BY expr [, ...] ]
+        [ HAVING expr ]
+        [ OVER data-source ]
         [ ORDER BY ordering-term ]
-        [ LIMIT ]
+        [ LIMIT { int } ]
         [ OFFSET ]
         
     where data_source can be:
     
         data_bucket_name
-        path [ [AS] alias ]
+        path [ [AS] identifier ]
+        
+    where path can be
+    
+        identifier [int] [ . ] path
+        
         
 ###Compatibility
 
-Available in Couchbase Server 0.0
+Available in Couchbase Server X.X
 
 ###Description
 
@@ -66,7 +89,20 @@ The following describe optional clauses you can use in your select statement:
 
     The `ORDER BY` clause can evaluate any JSON value. This means it can compare values of different types, for instance 'four' and 4 and will order by type. The following describes order by type from highest to lowest:
     
-     
+    * missing value, known as MISSING
+    * null value, known as NULL
+    * false
+    * true
+    * number
+    * string
+    * arrays, where each element in the array is compared with the corresponding element in another array. A longer array will sort after a shorter array
+    * object, where key-values from one object are compared to key-values from another object. Keys are evaluated in sorted order for strings. Larger objects will sort after smaller objects.
+    
+*  `LIMIT` Clause. Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have an integer as upper bound.
+
+* `OFFSET` Clause. This clause can optionally follow a `LIMIT` clause. If you specify and offset, this many objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be an integer.
+
+
 
 
 ###Examples
