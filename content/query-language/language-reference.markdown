@@ -2,6 +2,13 @@
 
 This reference section describes the syntax and general semantics of N1QL. This includes all available commands, functions, expressions, conditionals and operators for the language.
 
+We use the following typographical conventions to mark different parts of the command syntax:
+
+- Square brackets [] indicate optional parts
+- Curled braces {} indicate you must provide this clause
+- Separator | indicates you choose one alternative
+- Dots ... mean that you can repeat the preceding element in a query
+
 ##Explain
 
 You can use this keyword before any N1QL statement and get information about how the statement operates.
@@ -31,9 +38,9 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
         [ WHERE expr ]
         [ GROUP BY expr [, ...] ]
         [ HAVING expr ]
-        [ ORDER BY ordering-term ]
-        [ LIMIT { int } ]
-        [ OFFSET ]
+        [ ORDER BY ordering-term [, ...] ]
+        [ LIMIT { int } [ OFFSET { int } ] ]
+
         
     where result-expr-list can be:
     
@@ -50,9 +57,18 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
     
         path [ [AS] identifier ] [ OVER data-source] 
         
-    where path can be
+    where path can be:
     
         identifier [int] [ .path ]
+    
+    where identifier can be:
+    
+        bucket_name
+        database_name
+    
+    where ordering-term can be:
+    
+        expr [ ASC | DESC ]
         
         
 ###Compatibility
@@ -77,9 +93,9 @@ The following describe optional clauses you can use in your select statement:
 
 * `DISTINCT` Clause. If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`the query will return all objects that meet the query conditions in a result set.
 
-* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket or path. Alternately you can provide the database, data bucket name, or path as an alias using the `AS` clause in `FROM.`
+* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause in `FROM.`
 
-    One use of the `FROM` clause is to specify a path within a bucket as `data-source`. With this option, the server evaluates the path specified for each document in the data bucket and the value at that path becomes an input for the query. For example, imagine you have a data bucket named `breweries` which has a document that describes each brewery in a country. Each document has a field called `address`. To get all addresses as input for a query, you use this clause:
+    One use of the `FROM` clause is to specify a path within a bucket as `data-source`. The path refers an array in the your documents. With this option, the server evaluates the path for each document in the data bucket and the value at that path becomes an input for the query. For example, imagine you have a data bucket named `breweries` which has a document that describes each brewery in a country. Each document has an array called `address`. To get all addresses as input for a query, you use this clause:
 
         FROM brewer.address
 
@@ -168,6 +184,88 @@ These functions will return a single value based on the items in a result set. T
 | MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx|
 
 ##Expressions
+
+These are the different symbols and operators in N1QL you can use to manipulate document data and result set objects. 
+
+###Syntax
+
+        [ literal-value ]
+        [ identifier ]
+        [ case-expr ]
+        [ collection-expr ]
+        [ logical-term ]
+        [ comparison-term ]
+        [ arithmetic-term ]
+        [ string-term ]
+        [ function ]
+        [ nested-expr ]
+        [ expr ]
+        
+        where literal-value can be one of:
+        
+        [ string | number | object | array | TRUE | FALSE | NULL ]
+        
+        where object can be one of:
+        
+        { } 
+        { members }
+        
+        where members can be one of:
+        
+        pair
+        pair.{ members }
+        
+        where pair is:
+        
+        string:expr
+        
+        where nested-expr can be one of:
+        
+        expr.expr
+        expr[ expr ]
+        
+        
+###Compatibility
+
+Available in Couchbase Server X.X
+
+###Description
+
+N1QL expressions are similar to formulas but written in a query language. They include operators, 
+symbols, and values which you can use to evaluate and filter result objects.
+
+###Options
+
+- `literal-value` includes standard literal values in JSON. This includes strings, numbers, objects, arrays, the booleans TRUE and FALSE as well as NULL. The rules defined at [json.org](http://www.json.org/) apply to literal values in N1QL with two exceptions:
+    - JSON arrays and objects can only contain nested values. In N1QL, literal arrays and objects can also contain nested expressions.
+    - In JSON 'true', 'false', and 'null are case-sensitive. In N1QL they are case-insensitive to be consistent with other keywords.
+
+- `identifier` is also known as a path. It can be an escaped or unescaped identifier. Unescaped identifiers support the most common identifiers in JSON as a simpler syntax. Escaped identifiers are surrounded by back-ticks and support all identifiers in JSON. Using two back-tick within an escaped identifier will create a single back-tick. The syntax for `identifier` is as follows:
+
+        [ unescaped-identifier ]
+        [ escaped-identifier ]
+        
+        where unescaped-identifier is:
+        
+        { a-z | A-Z | _ | & } [ 0-9 | a-z | a-Z | _ | $ ]
+        
+        where escaped-identifier is:
+        
+        { `chars` }
+        
+    An identifier, or path, is a reference to a particular value in a document. For instance given a people database with documents as follows:
+    
+        {
+            "firstName" : "Geremy"
+            "lastName" : "Irving"
+        }
+    
+    The path person.lastName would evaluate to the value "Irving".  
+         
+###Examples
+
+###See Also
+
 
 ##Conditions
 
