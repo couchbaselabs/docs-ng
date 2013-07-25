@@ -23,46 +23,45 @@ A document is a JSON object consisting of the number of fields that you define. 
 
 ##Attributes and Paths
 
-In traditional relational database attributes are in table rows and each record is represented by a table row. Attributes in the document-oriented data model are actually fields in a JSON document. As simple document representing beers:
+In traditional relational database attributes are in table rows and each record is represented by a table row. Attributes in the document-oriented data model are actually fields in a JSON document. As simple document representing a customer:
 
     {
         "id": "7983345",
-        "name": "Takayama Pale Ale",
-        "brewer": "Hida Takayama Brewing Corp."
+        "name": "Liam Kilpatrick",
+        "type": "retail"
         ....
     }
 
+A document field can contain nested data structures such as arrays and hashes; within an array or hash, you can further nest data. For example, consider a more complex document representing a customer order:
+
+    {
+      "type": "customer-order",
+      "grand_total": 1000,
+      "billTo": {
+         "street": "123 foo",
+         "state": "CA",
+      },
+      "shipTo": {
+         "street": "123 foo",
+         "state": "CA"
+      },
+      items: [
+        { "productId": "coffee", "qty": 1 },
+        { "productId": "tea", "qty": 1 }
+      ]
+    }
 
 This makes N1QL a unique querying language compared to SQL. In order to navigate nested data in documents, N1QL supports the concepts of *paths*. A path uses a *dot notation* syntax and provides the logical location of an attribute within a document:
 
-A document field can contain nested data structures such as arrays and hashes; within an array or hash, you can further nest data. For example, consider a more complex document:
+    orders.shipTo.street
 
-    {
-        "id": "7983345",
-        "name": "Takayama Pale Ale",
-        "brewer": "Hida Takayama Brewing Corp.",
-        "reviews" : [
-            {   
-                "reviewer" : "Takeshi Kitano", 
-                "publication" : "Outdoor Japan Magazine",
-                "date": "3/2013"
-            }
-            {
-                "reviewer" : "Moto Ohtake",
-                "publication" : "Japan Beer Times",
-                "date" : "7/2013"
-            }
-         
-        ]
-    }
+This path refers to the value for 'street' in the 'billTo' object. You use a path with a arrays or nested objects in order to get to attributes within the data structure. You can also use array syntax in your path:
 
-You use a path either with an array element, or hash key in order to get to attributes within the data structure. For example, to get the names of reviewers, you would provide this path in a query:
-
-    x.x
+    orders.items[0].productId
     
+Will result in the item 'coffee' as this is the 'productID' for the first array element under 'items'. 
 
-
-
+Paths enable you to find and extract data out of document structures without having to get the entire document or handle it with application log. Any document data can be requested and only the relevant information in the document will be returned to your application; this reduces bandwidth required by your request.
 
 
 ##Queries and Result Sets

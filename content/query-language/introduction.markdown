@@ -18,11 +18,16 @@ nested structures within the document, such as hashes or arrays. To find informa
 
 ##Who Uses It
 
-Application developers and client library developers can use N1QL to perform ad-hoc querying. Application developers 
-who want to provide reports or find data that is hard to find can use N1QL in their application logic. Client library 
+Application developers and client library developers can use N1QL to perform ad-hoc querying. Any application developer 
+who wants to provide reports or find data that is hard to find can use N1QL in their application logic. Client library 
 developers who want to provide query functionality in their library can use N1QL as the standard to build their new APIs.
 
 ##Ways to Use It
+
+The major use cases for N1QL are:
+
+- Embed complex query requests in your application logic. Individual queries can include powerful logic such as AND or NOT which would require multiple request using other query engines.
+- Light analytics and reporting. You can perform ad-hoc queries for your application. For example if you want a list of all users in your application who have purchased a specific item, you can can N1QL. 
 
 ##Where to Start Learning
 

@@ -8,7 +8,7 @@ You can use this keyword before any N1QL statement and get information about how
 
 ###Syntax
 
-    EXPLAIN statement
+    EXPLAIN select-statement
     
 ###Compatibility
 
@@ -25,25 +25,34 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
 
 ###Syntax
 
-    SELECT [ DISTINCT | UNIQUE ]
-        * | expr
-        [ FROM data-source [, ...] ]
+    SELECT [ DISTINCT ]
+        { result-expr-list }
+        [ FROM data-source ]
         [ WHERE expr ]
         [ GROUP BY expr [, ...] ]
         [ HAVING expr ]
-        [ OVER data-source ]
         [ ORDER BY ordering-term ]
         [ LIMIT { int } ]
         [ OFFSET ]
         
+    where result-expr-list can be:
+    
+        result-expr [, result-expr-list] ...
+        
+    where result-expr can be:
+        
+        *
+        path
+        path.*
+        expr [ AS identifier ]
+    
     where data_source can be:
     
-        data_bucket_name
-        path [ [AS] identifier ]
+        path [ [AS] identifier ] [ OVER data-source] 
         
     where path can be
     
-        identifier [int] [ . ] path
+        identifier [int] [ .path ]
         
         
 ###Compatibility
@@ -52,7 +61,7 @@ Available in Couchbase Server X.X
 
 ###Description
 
-The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Each step in a sequence produces result objects which are them used as inputs in the next step until all steps complete:
+The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Each step in a sequence produces result objects which are then used as inputs in the next step in a query until all steps complete:
 
 * Data Source. This is the Couchbase data bucket you query. You provide this as the parameter data-source in a FROM clause. Alternately you can provide a `path` as data source.
 
@@ -68,22 +77,39 @@ The following describe optional clauses you can use in your select statement:
 
 * `DISTINCT` Clause. If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`the query will return all objects that meet the query conditions in a result set.
 
-* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket. Alternately you can provide the database or data bucket name as an alias using the `AS` clause within `FROM.`
+* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket or path. Alternately you can provide the database, data bucket name, or path as an alias using the `AS` clause in `FROM.`
 
-    Another use of the `FROM` clause is to specify a path within a bucket. With this option, the server evaluates the path specified for each document in the data bucket and the value at that path becomes an input into the query. For example, imagine you have a data bucket named `breweries` which has a document that describes each brewery in a country. Each document has a field called `address`. To get all addresses as input for a query, you use this clause:
+    One use of the `FROM` clause is to specify a path within a bucket as `data-source`. With this option, the server evaluates the path specified for each document in the data bucket and the value at that path becomes an input for the query. For example, imagine you have a data bucket named `breweries` which has a document that describes each brewery in a country. Each document has a field called `address`. To get all addresses as input for a query, you use this clause:
 
         FROM brewer.address
 
     This will get all address fields from all breweries in the data bucket. If the address field does not exist for a brewer, it will not be part of the query input.    
 
+* `OVER` Clause. This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will them become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
 
+        { "id": "7983345",
+        "name": "Takayama Pale Ale",
+        "brewer": "Hida Takayama Brewing Corp.",
+        "reviews" : [
+            { "reviewerName" : "Takeshi Kitano", "publication" : "Outdoor Japan Magazine", "date": "3/2013" },
+            { "reviewerName" : "Moto Ohtake", "publication" : "Japan Beer Times", "date" : "7/2013" }
+            ]
+        }
+    
+    In this case you would provide a statement containing `OVER` as follows:
+
+        SELECT reviews.reviewerName, reviews.publication
+        FROM beers OVER reviews
+    
+    The `OVER` clause iterates over the 'reviews' array and collects 'reviewerName' and 'publication' from each element in the array. This collection of objects can be used as input for other query operations.
+    
 * `WHERE` Clause. Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is included in a results array. For example:
 
         select * FROM players WHERE score > 100
 
-* `GROUP BY` Clause. 
+* `GROUP BY` Clause. Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. 
 
-* `HAVING` Clause.
+* `HAVING` Clause. This clause can optionally follow a `GROUP BY` clause. It can be  filter result objects from the `GROUP BY` clause with a given expression.
 
 * `ORDER BY` Clause. The order of items in the result set is determined by expression in this clause. Objects are sorted first by the left-most expression in the list of expressions. Any items with the same sort value will be sorted with the next expression in the list. This process repeats all items are sorted and all expressions in the list are evaluated. 
 
@@ -102,7 +128,7 @@ The following describe optional clauses you can use in your select statement:
 
 * `OFFSET` Clause. This clause can optionally follow a `LIMIT` clause. If you specify and offset, this many objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be an integer.
 
-* `OVER` Clause. This clause can optionally follow a `FROM` clause. This will join attributes at multiple paths within a document. If a document contains a nested array, this clause will have each of the array elements joined within the document. The joined elements will them become input for further query operations. If the item 
+
 
 ###Examples
 
@@ -112,7 +138,7 @@ The following describe optional clauses you can use in your select statement:
 
 ##Functions
 
-N1QL provides several built-in functions for performing calculations on data. You can find both aggregate and scalar functions. Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. Scalar functions take a single item in a result set and returns a single value.
+N1QL provides several built-in functions for performing calculations on data. You can find both aggregate and scalar functions. Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.
 
 ###Aggregate Functions
 
@@ -128,7 +154,18 @@ You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you
 
 ### Scalar Functions
 
-These functions will return a single value based on the items in a result set. 
+These functions will return a single value based on the items in a result set. The following are scalar functions in N1QL:
+
+|Function | Description | Returns | Example |
+|--------- |:------------:| -----:|--------:|
+| CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx|
+| FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx|
+| GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value | xxxx|
+| IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value | xxxx|
+| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value | xxxx|
+| IFNULL(expr, expr, ....) | Returns the first non-NULL value | value | xxxx|
+| META() | Returns metadata for the document | value | xxxx|
+| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx|
 
 ##Expressions
 
