@@ -174,14 +174,24 @@ These functions will return a single value based on the items in a result set. T
 
 |Function | Description | Returns | Example |
 |--------- |:------------:| -----:|--------:|
-| CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx|
-| FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx|
-| GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value | xxxx|
-| IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value | xxxx|
-| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value | xxxx|
+| CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx |
+| FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx |
+| GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value | xxxx |
+| IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value | xxxx |
+| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value | xxxx |
 | IFNULL(expr, expr, ....) | Returns the first non-NULL value | value | xxxx|
 | META() | Returns metadata for the document | value | xxxx|
-| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx|
+| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx |
+| LEAST(expr, expr, ... ) | Returns the smallest non-NULL, non-MISSING VALUE after evaluating all expressions. If all values are NULL or MISSING, returns NULL | value or NULL | xxxx |
+|   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | xxxx |
+|   LOWER(expr) | If expr is a string, returns string in all lowercase, otherwise NULL | string or NULL | xxxx |
+|   LTRIM(expr, charset) | Remove the longest string containing the characters in `charset` from start of string. | string or NULL | xxxx |
+|   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | xxxx |
+|   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL | xxxx |
+|   ROUND( value, digits ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL | xxxx |
+|   RTRIM( expr, charset ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL | xxxx |
+
+
 
 ##Expressions
 
@@ -260,7 +270,7 @@ symbols, and values which you can use to evaluate and filter result objects.
             "lastName" : "Irving"
         }
     
-    The path person.lastName would evaluate to the value "Irving".  
+    The path person.lastName would evaluate to the value "Irving" in this example.  
          
 ###Examples
 
