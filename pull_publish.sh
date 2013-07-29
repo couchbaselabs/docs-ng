@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ -e ~/cronenv ]
+then
+    source ~/cronenv
+fi
 cd `dirname $0`
 BRANCH=`git symbolic-ref --short`
 echo "On branch ${BRANCH}, doing git pull"
