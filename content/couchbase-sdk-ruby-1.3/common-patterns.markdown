@@ -342,156 +342,65 @@ conn.transcoder = GzipTranscoder.new
 conn.get("foo")
 ```
 
+<a id="couchbase-sdk-connection-pool"></a>
+
+## Using Couchbase::ConnectionPool
+
+When your application using threads for better concurrency or parallelism, it is
+become important to carefully use all data structures. For example you cannot
+share `Couchbase::Bucket` instance between threads. But the library contains
+special class `Couchbase::ConnectionPool` which designed to leverage
+[connection\_pool gem](https://rubygems.org/gems/connection_pool) and protect
+`Couchbase::Bucket`. Note that the `Couchbase::ConnectionPool` class available
+only for ruby 1.9+. Here is small example, which demonstrates how to use it:
+
+
+```
+require 'rubygems'
+require 'couchbase'
+
+CONFIG = {
+  :node_list => ["example.net:8091"],
+  :key_prefix => "pool_",
+  :pool_size => 3
+}
+
+# returns the thread-safe pool object, which proxies all methods to
+# the Couchbase::Bucket instance
+def connection(bucket)
+  @servers ||= {}
+  @servers[bucket] ||= begin
+                         size = CONFIG[:pool_size]
+                         params = CONFIG.merge(:bucket => bucket)
+                         Couchbase::ConnectionPool.new(size, params)
+                       end
+end
+
+connection("default").set('foo', 'bar')
+
+threads = []
+5.times do
+  threads << Thread.new do
+    connection("default").get('foo')
+  end
+end
+
+threads.map do |t|
+  puts [t.object_id, t.value].join("\t")
+end
+```
+
+If you will run it in your terminal, it should printout a table of thread IDs
+and the values, received from the Couchbase Server like this:
+
+
+```
+shell> ruby base.rb
+70236984451160    bar
+70236984451080    bar
+70236984451000    bar
+70236984450920    bar
+70236984389840    bar
+```
+
 <a id="couchbase-sdk-ruby-rn"></a>
-
-# Appendix: Release Notes
-
-The following sections provide release notes for individual release versions of
-Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
-Client Library Ruby Issues
-Tracker](http://www.couchbase.com/issues/browse/RCBC).
-
-<a id="couchbase-sdk-ruby-rn_1-3-2"></a>
-
-## Release Notes for Couchbase Client Library Ruby 1.3.2 GA (10 July 2013)
-
-**New Features and Behaviour Changes in 1.3.2**
-
- * Allow application to select the strategy of reading from replica nodes. *This
-   version requires libcouchbase >= 2.0.7.* Now three strategies are available:
-
-    1. `:first` - synonym to `true`, previous behaviour now the default. It means that
-       the library will sequentially iterate over all replicas in the configuration
-       supplied by the cluster and will return as soon as it finds a successful
-       response, or report an error.
-
-        ```
-        c.get("foo", :replica => true)
-        c.get("foo", :replica => :first)
-        #=> "bar"
-        c.get("foo", :replica => :first, :extended => true)
-        #=> ["bar", 0, 11218368683493556224]
-        ```
-
-    1. `:all` - query all replicas in parallel. In this case the method will return the
-       array of the values on the all replica nodes without a particular order. Also if
-       the key isn't on the node, it will be skipped in the result array.
-
-        ```
-        c.get("foo", :replica => :all)
-        #=> ["bar", "bar", "bar"]
-        c.get("foo", :replica => :all, :extended => true)
-        #=> [["bar", 0, 11218368683493556224],
-        # ["bar", 0, 11218368683493556224],
-        # ["bar", 0, 11218368683493556224]]
-        ```
-
-    1. `Fixnum` - you can also select specific replica node by its index in the cluster
-       configuration. It should be in interval `0...c.num_replicas`
-
-        ```
-        0...c.num_replicas
-        #=> 0...3
-        c.get("foo", :replica => 1)
-        #=> "bar"
-        c.get("foo", :replica => 42)
-        #=> ArgumentError: replica index should be in interval 0...3
-        ```
-
-   Note that applications should not assume the order of the replicas indicates
-   more recent data is at a lower index number. It is up to the application to
-   determine which version of a document/item it may wish to use in the case of
-   retrieving data from a replica.
-
-   *Issues* : [RCBC-133](http://www.couchbase.com/issues/browse/RCBC-133)
-
-<a id="couchbase-sdk-ruby-rn_1-3-1"></a>
-
-## Release Notes for Couchbase Client Library Ruby 1.3.1 GA (06 June 2013)
-
-**Fixes in 1.3.1**
-
- * Fix compatibility with multi\_json 1.7.5. It removed the VERSION constant
-   unexpectedly.
-   [github.com/intridea/multi\_json/commit/f803f397d1a3ef839a80a669a09318c64b252e5f](https://github.com/intridea/multi_json/commit/f803f397d1a3ef839a80a669a09318c64b252e5f#diff-1)
-
- * Couchbase::Cluster instance shouldn't require persistent connections. There was
-   an issue which lead to a Couchbase::Error::Connect exception and blocked the
-   creation/removing of buckets.
-
-   *Issues* : [RCBC-131](http://www.couchbase.com/issues/browse/RCBC-131)
-
-<a id="couchbase-sdk-ruby-rn_1-3-0"></a>
-
-## Release Notes for Couchbase Client Library Ruby 1.3.0 GA (07 May 2013)
-
-**New Features and Behaviour Changes in 1.3.0**
-
- * Introduce Transcoders. This mechanism is more flexible, and similar to how other
-   clients encode values.
-
- * Implement Couchbase::ConnectionPool to allow applications (and
-   ActiveSupport::Cache::CouchbaseStore) use it in multi-threaded environment
-
-   *Issues* : [RCBC-46](http://www.couchbase.com/issues/browse/RCBC-46)
-
-**Fixes in 1.3.0**
-
- * Deprecate numeric argument to 'default\_format'. Instead of this style:
-
-    ```
-    Couchbase.connect(:default_format => Couchbase::Bucket::FMT_MARSHAL)
-    ```
-
-   Symbol notation or explicit transcoder entity should be used
-
-    ```
-    Couchbase.connect(:default_format => :marshal)
-    Couchbase.connect(:transcoder => Couchbase::Transcoder::Marshal)
-    ```
-
-<a id="licenses"></a>
-
-# Appendix: Licenses
-
-This documentation and associated software is subject to the following licenses.
-
-<a id="license-documentation"></a>
-
-## Documentation License
-
-This documentation in any form, software or printed matter, contains proprietary
-information that is the exclusive property of Couchbase. Your access to and use
-of this material is subject to the terms and conditions of your Couchbase
-Software License and Service Agreement, which has been executed and with which
-you agree to comply. This document and information contained herein may not be
-disclosed, copied, reproduced, or distributed to anyone outside Couchbase
-without prior written consent of Couchbase or as specifically provided below.
-This document is not part of your license agreement nor can it be incorporated
-into any contractual agreement with Couchbase or its subsidiaries or affiliates.
-
-Use of this documentation is subject to the following terms:
-
-You may create a printed copy of this documentation solely for your own personal
-use. Conversion to other formats is allowed as long as the actual content is not
-altered or edited in any way. You shall not publish or distribute this
-documentation in any form or on any media, except if you distribute the
-documentation in a manner similar to how Couchbase disseminates it (that is,
-electronically for download on a Web site with the software) or on a CD-ROM or
-similar medium, provided however that the documentation is disseminated together
-with the software on the same medium. Any other use, such as any dissemination
-of printed copies or use of this documentation, in whole or in part, in another
-publication, requires the prior written consent from an authorized
-representative of Couchbase. Couchbase and/or its affiliates reserve any and all
-rights to this documentation not expressly granted above.
-
-This documentation may provide access to or information on content, products,
-and services from third parties. Couchbase Inc. and its affiliates are not
-responsible for and expressly disclaim all warranties of any kind with respect
-to third-party content, products, and services. Couchbase Inc. and its
-affiliates will not be responsible for any loss, costs, or damages incurred due
-to your access to or use of third-party content, products, or services.
-
-The information contained herein is subject to change without notice and is not
-warranted to be error-free. If you find any errors, please report them to us in
-writing.

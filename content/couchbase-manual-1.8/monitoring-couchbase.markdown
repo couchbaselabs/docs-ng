@@ -130,17 +130,14 @@ select the "Disk Write Queue" statistic. Closing this window will show that
 there is a new mini-graph. This graph is showing the Disk Write Queue for all
 nodes in the cluster. To get a deeper view into this statistic, you can monitor
 each node individually using the 'stats' output (see [Server
-Nodes](couchbase-manual-ready.html#couchbase-admin-web-console-server-nodes) for
-more information about gathering node-level stats). There are two statistics to
-watch here:
+Nodes](#couchbase-admin-web-console-server-nodes) for more information about
+gathering node-level stats). There are two statistics to watch here:
 
 ep\_queue\_size (where new mutations are placed) flusher\_todo (the queue of
 items currently being written to disk)
 
-[SeeThe
-Dispatcher](couchbase-manual-ready.html#couchbase-monitoring-nodestats-dispatcher)
-for more information about monitoring what the disk subsystem is doing at any
-given time.
+[SeeThe Dispatcher](#couchbase-monitoring-nodestats-dispatcher) for more
+information about monitoring what the disk subsystem is doing at any given time.
 
 <a id="couchbase-monitoring-stats"></a>
 
@@ -157,13 +154,11 @@ the proxy and individual nodes have directly accessible statistics interfaces.
 ### REST Interface Statistics
 
 [The easiest to use interface into the statistics provided by REST is to use the
-[Web Console for
-Administration](couchbase-manual-ready.html#couchbase-admin-web-console). This
-GUI gathers statistics via REST and displays them to your browser. The REST
-interface has a set of resources that provide access to the current and historic
-statistics the cluster gathers and stores. See theREST
-documentation](couchbase-manual-ready.html#couchbase-admin-restapi) for more
-information.
+[Web Console for Administration](#couchbase-admin-web-console). This GUI gathers
+statistics via REST and displays them to your browser. The REST interface has a
+set of resources that provide access to the current and historic statistics the
+cluster gathers and stores. See theREST documentation](#couchbase-admin-restapi)
+for more information.
 
 <a id="couchbase-monitoring-nodestats"></a>
 
@@ -175,8 +170,7 @@ can be found in the repository.
 
 [Along with stats at the REST and UI level, individual nodes can also be queried
 for statistics either through a client which uses binary protocol or through
-thestats utility](couchbase-manual-ready.html#couchbase-admin-cmdline-cbstats)
-shipped with couchbase.
+thestats utility](#couchbase-admin-cmdline-cbstats) shipped with couchbase.
 
 For example:
 
@@ -246,10 +240,10 @@ nio_dispatcher
 [The first entry, dispatcher, monitors the process responsible for disk access.
 The second entry is a non-IO (non disk) dispatcher. There may also be a
 ro\_dispatcher dispatcher present if the engine is allowingconcurrent reads and
-writes](couchbase-manual-ready.html#couchbase-architecture-diskstorage-dgm-concurrentrw).
-When a task is actually running on a given dispatcher, the "runtime" tells you
-how long the current task has been running. Newer versions will show you a log
-of recently run dispatcher jobs so you can see what's been happening.
+writes](#couchbase-architecture-diskstorage-dgm-concurrentrw). When a task is
+actually running on a given dispatcher, the "runtime" tells you how long the
+current task has been running. Newer versions will show you a log of recently
+run dispatcher jobs so you can see what's been happening.
 
 <a id="couchbase-monitoring-moxistats"></a>
 

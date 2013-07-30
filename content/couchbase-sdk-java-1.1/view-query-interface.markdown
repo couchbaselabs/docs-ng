@@ -143,8 +143,7 @@ The following methods are available on the `ViewRow` interface.
 
    to get the document associated with the row.
 
-For usage of these classes, please refer to the
-[Tutorial](couchbase-sdk-java-ready.html#tutorial) which has been enhanced to
-include Views.
+For usage of these classes, please refer to the [Tutorial](#tutorial) which has
+been enhanced to include Views.
 
 <a id="api-reference-troubleshooting"></a>

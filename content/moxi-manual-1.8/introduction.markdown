@@ -41,7 +41,7 @@ connection to 127.0.0.1:11211, and `moxi` will do the rest to proxy requests to
 the right Couchbase server.
 
 For more information on running `moxi` in client-side, see [Standalone Moxi
-Component](moxi-manual-ready.html#moxi-standalone)
+Component](#moxi-standalone)
 
 `moxi` is a proxy server that speaks the `memcached` protocol, can multiplex
 multiple clients onto fewer, shared connections, and can translate between
@@ -126,8 +126,8 @@ cluster reconfiguration algorithms of Couchbase. Any cluster membership or
 health changes can propagate automatically to the client-side `moxi` 's
 instances.
 
-See [Standalone Moxi Component](moxi-manual-ready.html#moxi-standalone) for more
-information about configuring a client-side `moxi`.
+See [Standalone Moxi Component](#moxi-standalone) for more information about
+configuring a client-side `moxi`.
 
 <a id="moxi-datamanagement-channel"></a>
 

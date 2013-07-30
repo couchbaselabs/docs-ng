@@ -296,13 +296,12 @@ afterwards in the applications, such as output or display.
 ## Providing Transactional Logic
 
 In another chapter of this guide, "Structuring Data" [Structuring
-Data](couchbase-devguide-ready.html#structuring-data), we discuss much more in
-depth the advantages you gain when you use JSON documents with Couchbase Server;
-we also discuss when you might want to use more than one document to represent
-an object. Here we want to discuss how to perform operations on data across one
-or more documents while providing some reliability and consistency. In
-traditional relational database systems, this is the concept of database concept
-of ACIDity:
+Data](#structuring-data), we discuss much more in depth the advantages you gain
+when you use JSON documents with Couchbase Server; we also discuss when you
+might want to use more than one document to represent an object. Here we want to
+discuss how to perform operations on data across one or more documents while
+providing some reliability and consistency. In traditional relational database
+systems, this is the concept of database concept of ACIDity:
 
  * Atomicity means that if a transaction fails, all changes to related records fail
    and the data is left unchanged,

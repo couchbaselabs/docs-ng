@@ -12,23 +12,21 @@ see the version-specific notes throughout the manual.
 
 For more help on specific areas of using Couchbase Server 2.2, see:
 
- * [Installing and
-   Upgrading](couchbase-manual-ready.html#couchbase-getting-started)
+ * [Installing and Upgrading](#couchbase-getting-started)
 
- * [Best Practices](couchbase-manual-ready.html#couchbase-bestpractice)
+ * [Best Practices](#couchbase-bestpractice)
 
- * [Backup and Restore](couchbase-manual-ready.html#couchbase-backup-restore)
+ * [Backup and Restore](#couchbase-backup-restore)
 
- * [Failing Over Nodes](couchbase-manual-ready.html#couchbase-admin-tasks-failover)
+ * [Failing Over Nodes](#couchbase-admin-tasks-failover)
 
- * [Using Couchbase in the
-   Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud)
+ * [Using Couchbase in the Cloud](#couchbase-bestpractice-cloud)
 
- * [Using the Web Console](couchbase-manual-ready.html#couchbase-admin-web-console)
+ * [Using the Web Console](#couchbase-admin-web-console)
 
- * [Sizing Guidelines](couchbase-manual-ready.html#couchbase-bestpractice-sizing)
+ * [Sizing Guidelines](#couchbase-bestpractice-sizing)
 
- * [FAQs](couchbase-manual-ready.html#couchbase-faq)
+ * [FAQs](#couchbase-faq)
 
 <a id="best-practice-guide"></a>
 

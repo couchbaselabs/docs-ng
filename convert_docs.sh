@@ -23,7 +23,7 @@ cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-man
 make depend
 make validate
 make reformat
-make couchbase-manual.pdf
+make couchbase-manual.xml
 cd ~/Desktop/docs-ng/
 mkdir content/couchbase-manual-2.1
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-manual-2.1.0/couchbase-manual-ready.xml couchbase-manual-2.1
@@ -106,7 +106,7 @@ cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-ela
 make depend
 make validate
 make reformat
-make couchbase-elasticguide.pdf
+make couchbase-elasticguide.xml
 cd ~/Desktop/docs-ng/
 mkdir content/couchbase-elastic-search
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-elastic-search/couchbase-elasticguide-ready.xml couchbase-elastic-search
@@ -239,8 +239,8 @@ make validate
 make reformat
 make hadoop-plugin.xml
 cd ~/Desktop/docs-ng/
-mkdir content/hadoop-plugin
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/hadoop-plugin/hadoop-plugin-ready.xml hadoop-plugin
+mkdir content/hadoop-plugin-1.0
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/hadoop-plugin/hadoop-plugin-ready.xml hadoop-plugin-1.0
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/hadoop-plugin-1.1
 make depend
@@ -250,15 +250,6 @@ make hadoop-plugin.xml
 cd ~/Desktop/docs-ng/
 mkdir content/hadoop-plugin-1.1
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/hadoop-plugin-1.1/hadoop-plugin-ready.xml hadoop-plugin-1.1
-
-cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-python-1.0
-make depend
-make validate
-make reformat
-make couchbase-sdk-python.xml
-cd ~/Desktop/docs-ng/
-mkdir content/hadoop-plugin-1.1
-java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-python-1.0/couchbase-sdk-python-ready.xml couchbase-sdk-python-1.0
 
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/moxi/moxi-manual-1.7
 make depend

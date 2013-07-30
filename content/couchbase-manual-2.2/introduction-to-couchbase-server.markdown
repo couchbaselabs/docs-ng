@@ -160,8 +160,7 @@ The Cluster Manager is responsible for the following within a cluster:
  * Client proxy service to redirect requests
 
 Access to the Cluster Manager is provided through the administration interface
-(see [Administration
-Tools](couchbase-manual-ready.html#couchbase-introduction-architecture-administration)
+(see [Administration Tools](#couchbase-introduction-architecture-administration)
 ) on a dedicated network port, and through dedicated network ports for client
 access. Additional ports are configured for inter-node communication.
 
@@ -263,17 +262,16 @@ For more information about creating and managing buckets, see the following
 resources:
 
  * Bucket RAM Quotas: see [RAM
-   Quotas](couchbase-manual-ready.html#couchbase-introduction-architecture-quotas).
+   Quotas](#couchbase-introduction-architecture-quotas).
 
  * Creating and Managing Buckets with Couchbase Web Console: see [Viewing Data
-   Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
+   Buckets](#couchbase-admin-web-console-data-buckets).
 
  * Creating and Managing Buckets with Couchbase REST-API: see [Managing
-   Buckets](couchbase-manual-ready.html#couchbase-admin-restapi-bucketops).
+   Buckets](#couchbase-admin-restapi-bucketops).
 
  * Creating and Managing Buckets with Couchbase CLI (Command-Line Tool): see
-   [couchbase-cli
-   Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-couchbase-cli).
+   [couchbase-cli Tool](#couchbase-admin-cmdline-couchbase-cli).
 
 <a id="couchbase-introduction-architecture-quotas"></a>
 
@@ -283,7 +281,7 @@ RAM is allocated to Couchbase Server in two different configurable quantities,
 the `Server Quota` and `Bucket Quota`. For more information about creating and
 changing these two settings, see **Couldn't resolve xref tag:
 couchbase-cli-other-examples** and [Creating and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
+Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 
  * **Server Quota**
 
@@ -313,11 +311,11 @@ cluster expands the overal RAM quota, and the bucket quota, increasing the
 amount of information that can be kept in RAM.
 
 [The Bucket Quota is used by the system to determine when data should
-beejected](couchbase-manual-ready.html#couchbase-introduction-architecture-ejection-eviction)
-from memory. Bucket Quotas are dynamically configurable within the limit of your
-Server Quota, and enable you to individually control the caching of information
-in memory on a per bucket basis. You can therefore configure different buckets
-to cope with your required caching RAM allocation requirements.
+beejected](#couchbase-introduction-architecture-ejection-eviction) from memory.
+Bucket Quotas are dynamically configurable within the limit of your Server
+Quota, and enable you to individually control the caching of information in
+memory on a per bucket basis. You can therefore configure different buckets to
+cope with your required caching RAM allocation requirements.
 
 The Server Quota is also dynamically configurable, but care must be taken to
 ensure that the nodes in your cluster have the available RAM to support your
@@ -378,10 +376,9 @@ node, Server D is added to the cluster and the vBucket Map is updated.
 ![](images/vbuckets-after.png)
 
 [The vBucket map is updated during
-therebalance](couchbase-manual-ready.html#couchbase-introduction-architecture-rebalancing)
-operation; the updated map is then sent the cluster to all the cluster
-participants, including the other nodes, any connected "smart" clients, and the
-Moxi proxy service.
+therebalance](#couchbase-introduction-architecture-rebalancing) operation; the
+updated map is then sent the cluster to all the cluster participants, including
+the other nodes, any connected "smart" clients, and the Moxi proxy service.
 
 Within the new four-node cluster model, when a client again wants to `get` the
 value of KEY, the hashing algorithm will still resolve to vBucket 8 ( `vB8` ).
@@ -448,7 +445,7 @@ layer and puts the data into a disk write queue to be persisted to disk. Disk
 persistence enables you to perform backup and restore operations, and enables
 you to grow your datasets larger than the built-in caching layer. For more
 information, see [Ejection, Eviction and Working Set
-Management](couchbase-manual-ready.html#couchbase-introduction-architecture-ejection-eviction).
+Management](#couchbase-introduction-architecture-ejection-eviction).
 
 When the server identifies an item that needs to be loaded from disk because it
 is not in active memory, the process is handled by a background process that
@@ -458,7 +455,7 @@ memory before the information is returned.
 
 **Multiple Readers and Writers**
 
-As of Couchbase Server 2.1.0, we support multiple readers and writers to persist
+As of Couchbase Server 2.1, we support multiple readers and writers to persist
 data onto disk. For earlier versions of Couchbase Server, each server instance
 had only single disk reader and writer threads. Disk speeds have now increased
 to the point where single read/write threads do not efficiently keep up with the
@@ -485,17 +482,17 @@ pre-allocated threads and two data Buckets. Each thread has the range of
 vBuckets that is statically partitioned for read and write access.
 
 For information about configuring this option, see [Using Multi- Readers and
-Writers](couchbase-manual-ready.html#couchbase-admin-tasks-mrw).
+Writers](#couchbase-admin-tasks-mrw).
 
 **Document Deletion from Disk**
 
 [Couchbase Server will never delete entire items from disk unless a client
 explicitly deletes the item from the database or
-theexpiration](couchbase-manual-ready.html#couchbase-introduction-architecture-expiration)
-value for the item is reached. The ejection mechanism removes an item from RAM,
-while keeping a copy of the key and metadata for that document in RAM and also
-keeping copy of that document on disk. For more information about document
-expiration and deletion, see [Couchbase Developer Guide, About Document
+theexpiration](#couchbase-introduction-architecture-expiration) value for the
+item is reached. The ejection mechanism removes an item from RAM, while keeping
+a copy of the key and metadata for that document in RAM and also keeping copy of
+that document on disk. For more information about document expiration and
+deletion, see [Couchbase Developer Guide, About Document
 Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
 
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
@@ -538,8 +535,7 @@ is irretrievable.
 
 For more detailed technical information about ejection and working set
 management, including any administrative tasks which impact this process, see
-[Ejection and Working Set
-Management](couchbase-manual-ready.html#couchbase-admin-tasks-working-set-mgmt).
+[Ejection and Working Set Management](#couchbase-admin-tasks-working-set-mgmt).
 
 <a id="couchbase-introduction-architecture-expiration"></a>
 
@@ -579,8 +575,7 @@ loading data sequentially from disk into RAM, it divides the data to be loaded
 and handles it in multiple phases. Couchbase Server is also able to begin
 serving data before it has actually loaded all the keys and data from vBuckets.
 For more technical details about server warmup and how to manage server warmup,
-see [Handling Server
-Warmup](couchbase-manual-ready.html#couchbase-admin-tasks-warmup-access).
+see [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
 
 <a id="couchbase-introduction-architecture-rebalancing"></a>
 
@@ -628,15 +623,14 @@ After Couchbase has stored replica data at a destination node, the data will
 also be placed in a queue to be persisted on disk at that destination node. For
 more technical details about data replication within Couchbase clusters, or to
 learn about any configurations for replication, see [Handling Replication within
-a
-Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-intercluster-replication).
+a Cluster](#couchbase-admin-tasks-intercluster-replication).
 
 As of Couchbase Server 2.0, you are also able to perform replication between two
 Couchbase clusters. This is known as cross datacenter replication (XDCR) and can
 provide a copy of your data at a cluster which is closer to your users, or to
 provide the data in case of disaster recovery. For more information about
 replication between clusters via XDCR see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+(XDCR)](#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-introduction-architecture-failover"></a>
 
@@ -660,8 +654,7 @@ Failover can be performed manually, or you can use the built-in automatic
 failover that reacts after a preset time when a node within the cluster becomes
 unavailable.
 
-For more information, see [Failing Over
-Nodes](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
+For more information, see [Failing Over Nodes](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-introduction-architecture-tap"></a>
 
@@ -751,7 +744,7 @@ way you work with storing data in Couchbase Server.
 Couchbase Server was designed to be as easy to use as possible, and does not
 require constant attention. Administration is however offered in a number of
 different tools and systems. For a list of the most common administration tasks,
-see [Administration Tasks](couchbase-manual-ready.html#couchbase-admin-tasks).
+see [Administration Tasks](#couchbase-admin-tasks).
 
 Couchbase Server includes three solutions for managing and monitoring your
 Couchbase Server and cluster:
@@ -762,8 +755,7 @@ Couchbase Server and cluster:
    complete interface for configuring, managing, and monitoring your Couchbase
    Server installation.
 
-   For more information, see [Using the Web
-   Console](couchbase-manual-ready.html#couchbase-admin-web-console).
+   For more information, see [Using the Web Console](#couchbase-admin-web-console).
 
  * **Administration REST API**
 
@@ -772,8 +764,7 @@ Couchbase Server and cluster:
    interface can be called from your own custom management and administration
    scripts to support different operations.
 
-   Full details are provided in [Using the REST
-   API](couchbase-manual-ready.html#couchbase-admin-restapi)
+   Full details are provided in [Using the REST API](#couchbase-admin-restapi)
 
  * **Command Line Interface**
 
@@ -784,7 +775,7 @@ Couchbase Server and cluster:
    procedures. The command-line tools make use of the REST API.
 
    For information on the command-line tools available, see [Command-line Interface
-   for Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+   for Administration](#couchbase-admin-cmdline).
 
 <a id="couchbase-introduction-architecture-stats"></a>
 

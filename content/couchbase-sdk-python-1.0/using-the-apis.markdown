@@ -480,8 +480,7 @@ more view queries you have defined. You can execute these queries from the
 Python SDK and retrieve their results.
 
 [You can define views via either the Couchbase Server web interface or thePython
-SDK design document management
-functions](couchbase-sdk-python-ready.html#_design_document_management).
+SDK design document management functions](#_design_document_management).
 
 Couchbase Server comes with two pre-defined sample buckets which can be
 installed from the "Sample Buckets" section in the "Settings" pane.

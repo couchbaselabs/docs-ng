@@ -383,7 +383,7 @@ ID-prefixing.
 
 Couchbase Server supports two different bucket types, Couchbase and memcached.
 For a full discussion of the major differences, see
-[Buckets](couchbase-manual-ready.html#couchbase-architecture-buckets).
+[Buckets](#couchbase-architecture-buckets).
 
 <a id="couchbase-for-memcachedusers"></a>
 

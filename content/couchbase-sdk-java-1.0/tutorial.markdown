@@ -198,8 +198,7 @@ For the purpose of this tutorial, we will use the spymemcached logging
 framework. The Couchbase Java SDK is compatible with the framework. There are
 two other approaches to logging with the Java SDK either by setting JDK
 properties, or by logging from an application. For more information, see
-[Configuring
-Logging](couchbase-sdk-java-ready.html#java-api-configuring-logging)
+[Configuring Logging](#java-api-configuring-logging)
 
 To provide logging via spymemcached:
 

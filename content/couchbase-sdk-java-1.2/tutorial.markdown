@@ -5,8 +5,7 @@ Started](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/getting-started.ht
 section and build a complete web application. Make sure to have the
 `beer-sample` bucket installed, because the application will allow you to
 display and manage beers and breweries. If you still need to get the sample
-database, see
-[Preparation](couchbase-sdk-java-ready.html#getting-started-preparations).
+database, see [Preparation](#getting-started-preparations).
 
 The full sourcecode for the example we show you is available at [couchbaselabs
 on GitHub](http://github.com/couchbaselabs/beersample-java). Note that the
@@ -114,7 +113,7 @@ In your IDE, create a new `Web Project`, either with or without Maven support.
 If you have not already gone through the Getting Started for the Java SDK, you
 should review the information on how to include the Couchbase SDK and all the
 required dependencies in your project. For more information, see
-[Preparation](couchbase-sdk-java-ready.html#getting-started-preparations).
+[Preparation](#getting-started-preparations).
 
 Also make sure to include Google GSON or your favorite JSON library as well.
 

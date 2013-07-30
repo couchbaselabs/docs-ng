@@ -292,8 +292,7 @@ more connections will be created to downstream servers, which can eventually
 cause other performance issues or hit connection (file descriptor) limits.
 
 Downstream conn queuesMore information on the downstream conn queues is
-available: [Following A Request Through
-Moxi](moxi-manual-ready.html#moxi-dataflow).
+available: [Following A Request Through Moxi](#moxi-dataflow).
 
 <a id="moxi-standalone-timeouts"></a>
 
@@ -319,8 +318,8 @@ timing system calls). For example:
      http://membase1:8091/pools/default/bucketsStreaming/shoppingCarts
 ```
 
-Please see [Following A Request Through
-Moxi](moxi-manual-ready.html#moxi-dataflow) for more information on timeouts.
+Please see [Following A Request Through Moxi](#moxi-dataflow) for more
+information on timeouts.
 
 <a id="moxi-standalone-configfile"></a>
 
@@ -435,7 +434,6 @@ the 2nd URL some time later), moxi will start over from the start of the
 REST/URL's list with the first URL (in the hopes that the favored earlier URL is
 now back online).
 
-Protocol ErrorsPlease see: [Moxi Error
-Responses](moxi-manual-ready.html#moxi-errors)
+Protocol ErrorsPlease see: [Moxi Error Responses](#moxi-errors)
 
 <a id="moxi-memcached"></a>

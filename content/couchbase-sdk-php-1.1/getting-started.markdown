@@ -166,9 +166,8 @@ order.
 
 Now you are ready to ready to develop with the PHP SDK and Couchbase Server 2.0.
 For more information about methods available in this SDK, see [Couchbase Client
-Library: PHP 1.1](couchbase-sdk-php-ready.html#couchbase-sdk-php-1-1). For
-learning more in general about developing application on Couchbase Server, see
-[Couchbase Developer's Guide
+Library: PHP 1.1](#couchbase-sdk-php-1-1). For learning more in general about
+developing application on Couchbase Server, see [Couchbase Developer's Guide
 2.0](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html).
 
 <a id="accessing-php"></a>

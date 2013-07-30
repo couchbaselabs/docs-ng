@@ -9,7 +9,7 @@ retrieve run-time statistics within your Couchbase Server deployment. If you
 want to develop your own Couchbase-compatible SDK, you will also use the
 REST-API within your library to handle *views*. Views enable you to index and
 query data based on functions you define. For more information about views, see
-[Views and Indexes](couchbase-manual-ready.html#couchbase-views).
+[Views and Indexes](#couchbase-views).
 
 The REST API should *not* be used to read or write data to the server. Data
 operations such as `set` and `get` for example, are handled by Couchbase SDKs.
@@ -43,10 +43,8 @@ The REST API is built on a number of basic principles:
  * **HTTP Basic Access Authentication**
 
    The Couchbase Management REST API uses HTTP basic authentication. The
-   browser-based [Using the Web
-   Console](couchbase-manual-ready.html#couchbase-admin-web-console) and
-   [Command-line Interface for
-   Administration](couchbase-manual-ready.html#couchbase-admin-cmdline) also use
+   browser-based [Using the Web Console](#couchbase-admin-web-console) and
+   [Command-line Interface for Administration](#couchbase-admin-cmdline) also use
    HTTP basic authentication.
 
  * **Versatile Server Nodes**
@@ -103,7 +101,7 @@ operations:
    Views enable you to index and query data based on logic you specify. You can
    also use views to perform calculations and aggregations, such as statistics, for
    items in Couchbase Server. For more information, see [Views and
-   Indexes](couchbase-manual-ready.html#couchbase-views).
+   Indexes](#couchbase-views).
 
  * **Cross Datacenter Replication (XDCR)**
 
@@ -114,7 +112,7 @@ operations:
    Couchbase cluster to another cluster after system failure. 2) provide copies of
    data on clusters that are physically closer to your end users. For more
    information, see [Cross Datacenter Replication
-   (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+   (XDCR)](#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-key-concepts-httpheaders"></a>
 
@@ -169,17 +167,16 @@ tasks such as creating a new bucket, adding a node to a cluster, or changing
 cluster settings.
 
 [For a list of supported browsers, seeSystem
-Requirements](couchbase-manual-ready.html#couchbase-getting-started-prepare).
-For the Couchbase Web Console, a separate UI hierarchy is served from each node
-of the system (though asking for the root "/" would likely return a redirect to
-the user agent). To launch the Couchbase Web Console, point your browser to the
-appropriate host and port, for instance on your development machine:
-`http://localhost:8091`
+Requirements](#couchbase-getting-started-prepare). For the Couchbase Web
+Console, a separate UI hierarchy is served from each node of the system (though
+asking for the root "/" would likely return a redirect to the user agent). To
+launch the Couchbase Web Console, point your browser to the appropriate host and
+port, for instance on your development machine: `http://localhost:8091`
 
 The operation and interface for the console is described in [Using the Web
-Console](couchbase-manual-ready.html#couchbase-admin-web-console). For most of
-the administrative operations described in this chapter for the REST-API, you
-can perform the functional equivalent in Couchbase Web Console.
+Console](#couchbase-admin-web-console). For most of the administrative
+operations described in this chapter for the REST-API, you can perform the
+functional equivalent in Couchbase Web Console.
 
 <a id="couchbase-admin-restapi-node-management"></a>
 
@@ -506,21 +503,21 @@ Content-Length: 0
 
 ### Providing Hostnames for Nodes
 
-There are several ways you can provide hostnames for Couchbase 2.1.0+. You can
-provide a hostname when you install a Couchbase Server 2.1.0 node, when you add
-it to an existing cluster for online upgrade, or via a REST-API call. If a node
+There are several ways you can provide hostnames for Couchbase 2.1+. You can
+provide a hostname when you install a Couchbase Server 2.1 node, when you add it
+to an existing cluster for online upgrade, or via a REST-API call. If a node
 restarts, any hostname you establish will be used. You cannot provide a hostname
 for a node that is already part of a Couchbase cluster; the server will reject
 the request and return `error 400 reason: unknown ["Renaming is disallowed for
 nodes that are already part of a cluster"]`.
 
 To see the specific REST request, see [Using Hostnames with Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+Server](#couchbase-getting-started-hostnames).
 
 For Couchbase Server 2.0.1 and earlier you must follow a manual process where
 you edit config files for each node which we describe below. For more
 information, see [Using Hostnames with Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+Server](#couchbase-getting-started-hostnames).
 
 <a id="couchbase-admin-restapi-failover-node"></a>
 
@@ -1052,7 +1049,7 @@ Get](http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-s
 `replicaIndex`                | Optional parameter. Boolean. 1 enable replica indexes for replica bucket data while 0 disables. Default of 1.                                                                                                                                                                                                                                             
 `replicaNumber`               | Optional parameter. Numeric. Number of replicas to be configured for this bucket. Required parameter when creating a Couchbase bucket. Default 1, minimum 0, maximum 3.                                                                                                                                                                                   
 `saslPassword`                | Optional Parameter. String. Password for SASL authentication. Required if SASL authentication has been enabled.                                                                                                                                                                                                                                           
-`threadsNumber`               | Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and writers for the data bucket. For detailed information about this feature, see [Using Multi- Readers and Writers](couchbase-manual-ready.html#couchbase-admin-tasks-mrw).                                                                                             
+`threadsNumber`               | Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and writers for the data bucket. For detailed information about this feature, see [Using Multi- Readers and Writers](#couchbase-admin-tasks-mrw).                                                                                                                        
 **Return Codes**              |                                                                                                                                                                                                                                                                                                                                                           
 202                           | Accepted                                                                                                                                                                                                                                                                                                                                                  
 204                           | Bad Request JSON with errors in the form of {"errors": {.... }} name: Bucket with given name already exists ramQuotaMB: RAM Quota is too large or too small replicaNumber: Must be specified and must be a non-negative integer proxyPort: port is invalid, port is already in use                                                                        
@@ -1193,8 +1190,7 @@ shell> curl -v -X POST -u Administrator:Password -d name=customer \
 ```
 
 [Available parameters are identical to those available when creating a bucket.
-Seebucket
-parameters](couchbase-manual-ready.html#table-couchbase-admin-restapi-creating-buckets).
+Seebucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
@@ -1261,8 +1257,7 @@ the empty gaps in all data files by performing a process called compaction. In
 both the case of data files and index files, you will want to perform frequent
 compaction of the files on disk to help reclaim disk space and reduce disk
 fragmentation. For more general information on this administrative task, see
-[Database and View
-Compaction](couchbase-manual-ready.html#couchbase-admin-tasks-compaction).
+[Database and View Compaction](#couchbase-admin-tasks-compaction).
 
 **Compacting Data Buckets and Indexes**
 
@@ -1374,10 +1369,9 @@ the ability to flush individual buckets by setting the `flushEnabled` parameter
 on a bucket in Couchbase Web Console or via `cbepctl flush_param`.
 
 For information about changing this setting in the Web Console, see [Viewing
-Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
-For information about flushing data buckets via REST, see [Flushing a
-Bucket](couchbase-manual-ready.html#couchbase-admin-restapi-flushing-bucket).
+Data Buckets](#couchbase-admin-web-console-data-buckets). For information about
+flushing data buckets via REST, see [Flushing a
+Bucket](#couchbase-admin-restapi-flushing-bucket).
 
 The `doFlush` operation empties the contents of the specified bucket, deleting
 all stored data. The operation will only succeed if flush is enabled on
@@ -1440,10 +1434,9 @@ does not correspond to an active bucket in the system.
 
 You can configure whether flush is enabled for a bucket by configuring the
 individual bucket properties, either the REST API (see [Modifying Bucket
-Parameters](couchbase-manual-ready.html#couchbase-admin-restapi-modifying-bucket-properties)
-), or through the Admin Console (see [Creating and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit)
-).
+Parameters](#couchbase-admin-restapi-modifying-bucket-properties) ), or through
+the Admin Console (see [Creating and Editing Data
+Buckets](#couchbase-admin-web-console-data-buckets-createedit) ).
 
 <a id="couchbase-admin-restapi-clusterops"></a>
 
@@ -1767,10 +1760,10 @@ To start a rebalance process through the REST API you must supply two arguments
 containing the list of nodes that have been marked to be ejected, and the list
 of nodes that are known within the cluster. You can obtain this information by
 getting the current node configuration from [Managing Couchbase
-Nodes](couchbase-manual-ready.html#couchbase-admin-restapi-node-management).
-This is to ensure that the client making the REST API request is aware of the
-current cluster configuration. Nodes should have been previously added or marked
-for removal as appropriate.
+Nodes](#couchbase-admin-restapi-node-management). This is to ensure that the
+client making the REST API request is aware of the current cluster
+configuration. Nodes should have been previously added or marked for removal as
+appropriate.
 
 The information must be supplied via the `ejectedNodes` and `knownNodes`
 parameters as a `POST` operation to the `/controller/rebalance` endpoint. For
@@ -1807,7 +1800,7 @@ will be returned:
 ```
 
 Progress of the rebalance operation can be obtained by using [Getting Rebalance
-Progress](couchbase-manual-ready.html#couchbase-admin-restapi-rebalance-progress).
+Progress](#couchbase-admin-restapi-rebalance-progress).
 
 <a id="couchbase-admin-restapi-rebalance-progress"></a>
 
@@ -1817,8 +1810,8 @@ There are two endpoints for rebalance progress. One is a general request which
 outputs high-level percentage completion at `/pools/default/rebalanceProgress`.
 The second possible endpoint is one corresponds to the detailed rebalance report
 available in Web Console, see [Monitoring a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-monitoring)
-for details and definitions.
+Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring) for details
+and definitions.
 
 This first request returns a JSON structure containing the current progress
 information:
@@ -1926,8 +1919,7 @@ The response data packet contains a JSON structure showing detailed progress:
 This will show percentage complete for each individual node undergoing
 rebalance. For each specific node, it provides the current number of docs
 transferred and other items. For details and definitions of these items, see
-[Monitoring a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-monitoring).
+[Monitoring a Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
 If you rebalance fails, you will see this response:
 
 
@@ -2479,7 +2471,7 @@ Content-Type: application/json
 ```
 
 For more information about views and how they function within a cluster, see
-[View Operation](couchbase-manual-ready.html#couchbase-views-operation).
+[View Operation](#couchbase-views-operation).
 
 <a id="couchbase-admin-restapi-views"></a>
 
@@ -2506,17 +2498,17 @@ to manage your design documents. Please refer to the following resources:
    Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
 
  * Querying Views via the REST-API. [Querying Using the REST
-   API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
+   API](#couchbase-views-querying-rest-api).
 
 <a id="couchbase-restapi-request-limits"></a>
 
 ### Limiting Simultaneous Node Requests
 
-As of Couchbase 2.1.0+ you can use the `/internalSettings` endpoint to limit the
+As of Couchbase 2.1+ you can use the `/internalSettings` endpoint to limit the
 number of simultaneous requests each node can accept. In earlier releases, too
 many simultaneous views requests resulted in a node being overwhelmed. For
 general information about this endpoint, see [Managing Internal Cluster
-Settings](couchbase-manual-ready.html#couchbase-admin-restapi-settings-max_bucket_count).
+Settings](#couchbase-admin-restapi-settings-max_bucket_count).
 
  When Couchbase Server rejects an incoming connection because one of these
 limits is exceeded, it responds with an HTTP status code of 503. The HTTP
@@ -2562,7 +2554,7 @@ Cross Datacenter Replication (XDCR) enables you to automatically replicate data
 between clusters and between data buckets. There are several endpoints for the
 Couchbase REST API that you can use specifically for XDCR. For more information
 about using and configuring XDCR, see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+(XDCR)](#couchbase-admin-tasks-xdcr).
 
 When you use XDCR, you specify source and destination clusters. A source cluster
 is the cluster from which you want to copy data; a destination cluster is the
@@ -2575,7 +2567,7 @@ source to a destination; in contrast, bi-directional replication means that XDCR
 replicates from a source to a destination and also replicates from the
 destination to the source. For more information about using Couchbase Web
 Console to configure XDCR, see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+(XDCR)](#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-xdcr-destination"></a>
 
@@ -2637,8 +2629,7 @@ The following describes the response elements:
    has been deleted or not.
 
 For more information about XDCR and using XDCR via the Couchbase Web Console,
-see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+see [Cross Datacenter Replication (XDCR)](#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-xdcr-create-ref"></a>
 
@@ -2703,7 +2694,7 @@ The following describes the response elements:
 
 For more information about XDCR and creating references to destination clusters
 via the Couchbase Web Console, see [Configuring
-Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuration).
+Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-deleting-ref"></a>
 
@@ -2745,7 +2736,7 @@ Pragma: no-cache
 
 For more information about XDCR and references to destination clusters via the
 Couchbase Web Console, see [Configuring
-Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuration).
+Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-create-repl"></a>
 
@@ -2794,7 +2785,7 @@ The unique document ID returned in the JSON is a reference you can use if you
 want to delete the replication.
 
 For more information about XDCR and creating a new replication see [Configuring
-Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuration).
+Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-delete-repl"></a>
 
@@ -2815,7 +2806,7 @@ http://10.4.2.4:8091/controller/cancelXDCR/9eee38236f3bf28406920213d93981a3%2Fbe
 You use a URL-encoded endpoint which contains the unique document ID that
 references the replication. You can also delete a replication using the
 Couchbase Web Console. For more information, see [Configuring
-Replication](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr-configuration).
+Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-internal-settings"></a>
 
@@ -2867,7 +2858,7 @@ The the XDCR-related values are defined as follows:
    300 (seconds). Default 30.
 
 For more information about XDCR, see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+(XDCR)](#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-xdcr-change-settings"></a>
 
@@ -2979,8 +2970,8 @@ You perform all of these requests on a source cluster to get information about a
 destination cluster. All of these requests use the UUID, a unique identifier for
 destination cluster. You can get this ID by using the REST-API if you do not
 already have it. For instructions, see [Getting a Destination Cluster
-Reference](couchbase-manual-ready.html#couchbase-admin-restapi-xdcr-destination).
-The endpoints are as follows:
+Reference](#couchbase-admin-restapi-xdcr-destination). The endpoints are as
+follows:
 
 
 ```
@@ -3120,7 +3111,7 @@ write operations on the destination due to XDCR:
 
 Finally be aware that we expose many of these statistics in Couchbase Web
 Console. For more information, see [Monitoring Outgoing
-XDCR](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-xdcr).
+XDCR](#couchbase-admin-web-console-data-buckets-xdcr).
 
 <a id="couchbase-admin-restapi-using-system-logs"></a>
 

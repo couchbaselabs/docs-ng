@@ -2,9 +2,8 @@
 
 Couchbase Server includes a number of command-line tools that can be used to
 manage and monitor a Couchbase Server cluster or server. All operations are
-mapped to their appropriate [Using the REST
-API](couchbase-manual-ready.html#couchbase-admin-restapi) call (where
-available).
+mapped to their appropriate [Using the REST API](#couchbase-admin-restapi) call
+(where available).
 
 There are a number of command-line tools that perform different functions and
 operations, these are described individually within the following sections.
@@ -262,7 +261,7 @@ Command                | Option                                     | Descriptio
 `xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to                                           
 
 You can also perform many of these same settings using the REST-API, see [Using
-the REST API](couchbase-manual-ready.html#couchbase-admin-restapi).
+the REST API](#couchbase-admin-restapi).
 
 Some examples of commonly-used `couchbase-cli` commands:
 
@@ -419,9 +418,9 @@ enable this option if your data bucket is in a production environment. Be aware
 that this is one of the preferred methods for enabling data bucket flush.* The
 other option available to enable data bucket flush is to use the Couchbase Web
 Console, see [Creating and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
-You can enable this option when you actually create the data bucket, or when you
-edit the bucket properties:
+Buckets](#couchbase-admin-web-console-data-buckets-createedit). You can enable
+this option when you actually create the data bucket, or when you edit the
+bucket properties:
 
 
 ```
@@ -440,8 +439,7 @@ are advised to double check with the end user before sending such a request. You
 can control and limit the ability to flush individual buckets by setting the
 `flushEnabled` parameter on a bucket in Couchbase Web Console or via
 `couchbase-cli` as described in the previous section. See also [Creating and
-Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
+Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 
 
 ```
@@ -478,8 +476,8 @@ to perform the command for every node/bucket combination that exists for that
 cluster.
 
 [You use this tool to get thecouchbase node
-statistics](couchbase-manual-ready.html#couchbase-monitoring-nodestats). The
-general format for the command is:
+statistics](#couchbase-monitoring-nodestats). The general format for the command
+is:
 
 
 ```
@@ -1013,8 +1011,8 @@ In this example, we set the threshold to 15% of all items at a replica node.
 When a disk write queue on a replica node reaches this point, it will request
 replication backoff. For more information about replicas, replication and
 backoff from replication, see [Replicas and
-Replication](couchbase-manual-ready.html#couchbase-introduction-architecture-replication).
-The other command options for `tap_param` are:
+Replication](#couchbase-introduction-architecture-replication). The other
+command options for `tap_param` are:
 
 Parameter                     | Description                                                                                                                                 
 ------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------
@@ -1093,7 +1091,7 @@ cluster.
 
 For technical information about the ejection process, the role of NRU and server
 processes related to ejection, see [Ejection and Working Set
-Management](couchbase-manual-ready.html#couchbase-admin-tasks-working-set-mgmt).
+Management](#couchbase-admin-tasks-working-set-mgmt).
 
 **Setting the Low Water Mark**
 
@@ -1154,7 +1152,7 @@ these defaults.
 
 For technical information about the ejection process, the role of NRU and server
 processes related to ejection, see [Ejection and Working Set
-Management](couchbase-manual-ready.html#couchbase-admin-tasks-working-set-mgmt).
+Management](#couchbase-admin-tasks-working-set-mgmt).
 
 <a id="couchbase-admin-cbepctl-mutation_mem"></a>
 
@@ -1198,9 +1196,8 @@ configuration not operating on data buckets shared by multiple nodes.
 **The preferred way to enable data bucket flush is either 1) Couchbase Web
 Console or via 2) couchbase-cli**. For more information about these two options,
 see [Creating and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit)
-and [Flushing Buckets with
-couchbase-cli](couchbase-manual-ready.html#couchbase-admin-cli-flushing).
+Buckets](#couchbase-admin-web-console-data-buckets-createedit) and [Flushing
+Buckets with couchbase-cli](#couchbase-admin-cli-flushing).
 
 Flushing a bucket is data destructive. If you use **cbepctl**, it makes no
 attempt to confirm or double check the request. Client applications using this
@@ -1233,9 +1230,9 @@ shell> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param
 
 You can initiate the flush via the REST-API. For information about changing this
 setting in the Web Console, see [Viewing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
-For information about flushing data buckets via REST, see [Flushing a
-Bucket](couchbase-manual-ready.html#couchbase-admin-restapi-flushing-bucket).
+Buckets](#couchbase-admin-web-console-data-buckets). For information about
+flushing data buckets via REST, see [Flushing a
+Bucket](#couchbase-admin-restapi-flushing-bucket).
 
 <a id="couchbase-admin-cbepctl-flush-params"></a>
 
@@ -1317,14 +1314,14 @@ The tool will create the following.log files in your named archive:
 
 <a id="table-couchbase-admin-cmdline-cbcollect_info"></a>
 
-**couchbase.log**          | OS-level information about a node.                                                                                                                                 
----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**ns\_server.couchdb.log** | Information about the persistence layer for a node.                                                                                                                
-**ns\_server.debug.log**   | Debug-level information for the cluster management component of this node.                                                                                         
-**ns\_server.error.log**   | Error-level information for the cluster management component of this node.                                                                                         
-**ns\_server.info.log**    | Info-level entries for the cluster management component of this node.                                                                                              
-**ns\_server.views.log**   | Includes information about indexing, time taken for indexing, queries which have been run, and other statistics about views.                                       
-**stats.log**              | The results from multiple `cbstats` options run for the node. For more information, see [cbstats Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbstats)
+**couchbase.log**          | OS-level information about a node.                                                                                                      
+---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------
+**ns\_server.couchdb.log** | Information about the persistence layer for a node.                                                                                     
+**ns\_server.debug.log**   | Debug-level information for the cluster management component of this node.                                                              
+**ns\_server.error.log**   | Error-level information for the cluster management component of this node.                                                              
+**ns\_server.info.log**    | Info-level entries for the cluster management component of this node.                                                                   
+**ns\_server.views.log**   | Includes information about indexing, time taken for indexing, queries which have been run, and other statistics about views.            
+**stats.log**              | The results from multiple `cbstats` options run for the node. For more information, see [cbstats Tool](#couchbase-admin-cmdline-cbstats)
 
 After you finish running the tool, you should upload the archive and send it to
 Couchbase technical support:
@@ -1352,7 +1349,7 @@ Be aware that `cbbackup` does not support external IP addresses. This means that
 if you install Couchbase Server with the default IP address, you cannot use an
 external hostname to access it. To change the address format into a hostname
 format for the server, see [Using Hostnames with Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-hostnames).
+Server](#couchbase-getting-started-hostnames).
 
 Depending upon your platform, this tool is the following directories:
 
@@ -1375,7 +1372,7 @@ Where:
  * `[options]`
 
    Same options available for `cbtransfer`, see [cbtransfer
-   Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer)
+   Tool](#couchbase-admin-cmdline-cbtransfer)
 
  * `[source]`
 
@@ -1401,7 +1398,7 @@ This tool has several different options which you can use to:
 
 All command options for `cbbackup` are the same options available for
 `cbtransfer`. For a list of standard and special-use options, see [cbtransfer
-Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer).
+Tool](#couchbase-admin-cmdline-cbtransfer).
 
 You can backup an entire cluster, which includes all of the data buckets and
 data at all nodes. This will also include all design documents; do note however
@@ -1478,15 +1475,14 @@ shell> cbbackup http://HOST:8091 /backups/backup-20120501 \
 
 For more information on using `cbbackup` scenarios when you may want to use it
 and best practices for backup and restore of data with Couchbase Server, see
-[Backing Up Using
-cbbackup](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
+[Backing Up Using cbbackup](#couchbase-backup-restore-backup-cbbackup).
 
 **Backing Up Design Documents Only**
 
 As of Couchbase Server 2.1 you can backup only design documents from a cluster
 or bucket with the option, `design_doc_only=1`. You can later restore the design
 documents only with `cbrestore`, see [cbrestore
-Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbrestore) :
+Tool](#couchbase-admin-cmdline-cbrestore) :
 
 
 ```
@@ -1595,8 +1591,7 @@ bucket, backup the default bucket, or backup the data buckets associated with a
 single node.
 
 Be aware that you can also use the `cbrestore 2.0` tool to restore backup data
-onto a 1.8.x cluster. See [cbrestore
-Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbrestore).
+onto a 1.8.x cluster. See [cbrestore Tool](#couchbase-admin-cmdline-cbrestore).
 
 <a id="couchbase-admin-cmdline-cbrestore"></a>
 
@@ -1626,8 +1621,7 @@ Where:
  * `[options]`
 
    Command options for `cbrestore` are the same options for `cbtransfer`, see
-   [cbtransfer
-   Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer).
+   [cbtransfer Tool](#couchbase-admin-cmdline-cbtransfer).
 
  * `[host:ip]`
 
@@ -1647,14 +1641,13 @@ Where:
 
 All command options for `cbrestore` are the same options available for
 `cbtransfer`. For a list of standard and special-use options, see [cbtransfer
-Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbtransfer).
+Tool](#couchbase-admin-cmdline-cbtransfer).
 
 **Using cbrestore for Design Documents Only**
 
-As of Couchbase Server 2.1.0 you can restore design documents to a server node
+As of Couchbase Server 2.1 you can restore design documents to a server node
 with the option, `design_doc_only=1`. You can restore from a backup file you
-create with `cbbackup`, see [cbbackup
-Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup) :
+create with `cbbackup`, see [cbbackup Tool](#couchbase-admin-cmdline-cbbackup) :
 
 
 ```
@@ -1681,8 +1674,7 @@ the backup files `~/backup/bucket_one/design.json` and
 This will restore design documents in both backup files to a bucket in your
 cluster named `my_bucket` After you restore the design documents you can see
 them in Couchbase Web Console under the Views tab. For more information about
-the Views Editor, see [Using the Views
-Editor](couchbase-manual-ready.html#couchbase-views-editor).
+the Views Editor, see [Using the Views Editor](#couchbase-views-editor).
 
 **Using cbrestore from Couchbase Server 2.0 with 1.8.x**
 
@@ -1723,11 +1715,10 @@ cbrestore /backups/backup-42 memcached://HOST:11211 \
 ```
 
 If you want more information about using `cbbackup` 2.0 tool to backup data onto
-a 1.8.x cluster. See [cbbackup
-Tool](couchbase-manual-ready.html#couchbase-admin-cmdline-cbbackup).
+a 1.8.x cluster. See [cbbackup Tool](#couchbase-admin-cmdline-cbbackup).
 
 For general information on using `cbbackup`, see [Restoring using cbrestore
-tool](couchbase-manual-ready.html#couchbase-backup-restore-cbrestore).
+tool](#couchbase-backup-restore-cbrestore).
 
 <a id="couchbase-admin-cmdline-cbtransfer"></a>
 
@@ -1792,18 +1783,18 @@ The following are extra, specialized command options you use in this form
 
 <a id="table-couchbase-admin-cbtranfer-special-options"></a>
 
-batch\_max\_bytes=400000 | Transfer this \# of bytes per batch.                                                                                   
--------------------------|------------------------------------------------------------------------------------------------------------------------
-batch\_max\_size=1000    | Transfer this \# of documents per batch                                                                                
-cbb\_max\_mb=100000      | Split backup file on destination cluster if it exceeds MB                                                              
-max\_retry=10            | Max number of sequential retries if transfer fails                                                                     
-nmv\_retry=1             | 0 or 1, where 1 retries transfer after a NOT\_MY\_VBUCKET message. Default of 1.                                       
-recv\_min\_bytes=4096    | Amount of bytes for every TCP/IP batch transferred                                                                     
-report=5                 | Number batches transferred before updating progress bar in console                                                     
-report\_full=2000        | Number batches transferred before emitting progress information in console                                             
-try\_xwm=1               | As of 2.1.0, transfer documents with metadata. 1 is default. 0 should only be used if you transfer from 1.8.x to 1.8.x.
-data\_only=0             | For value 1, only transfer data from a backup file or cluster.                                                         
-design\_doc\_only=0      | For value 1, transfer design documents only from a backup file or cluster. Defaults to 0.                              
+batch\_max\_bytes=400000 | Transfer this \# of bytes per batch.                                                                                 
+-------------------------|----------------------------------------------------------------------------------------------------------------------
+batch\_max\_size=1000    | Transfer this \# of documents per batch                                                                              
+cbb\_max\_mb=100000      | Split backup file on destination cluster if it exceeds MB                                                            
+max\_retry=10            | Max number of sequential retries if transfer fails                                                                   
+nmv\_retry=1             | 0 or 1, where 1 retries transfer after a NOT\_MY\_VBUCKET message. Default of 1.                                     
+recv\_min\_bytes=4096    | Amount of bytes for every TCP/IP batch transferred                                                                   
+report=5                 | Number batches transferred before updating progress bar in console                                                   
+report\_full=2000        | Number batches transferred before emitting progress information in console                                           
+try\_xwm=1               | As of 2.1, transfer documents with metadata. 1 is default. 0 should only be used if you transfer from 1.8.x to 1.8.x.
+data\_only=0             | For value 1, only transfer data from a backup file or cluster.                                                       
+design\_doc\_only=0      | For value 1, transfer design documents only from a backup file or cluster. Defaults to 0.                            
 
 The most important way you can use this tool is to transfer data from a
 Couchbase node that is no longer running to a cluster that is running:
@@ -1865,9 +1856,9 @@ not the associated design documents. To to so, you should explicitly use
 
 **Exporting and Importing CSV Files**
 
-As of Couchbase Server 2.1.0 you can import and export well-formed.csv files
-with `cbtransfer`. This will import data into Couchbase Server as documents and
-will export documents from the server into comma-separated values. This does not
+As of Couchbase Server 2.1 you can import and export well-formed.csv files with
+`cbtransfer`. This will import data into Couchbase Server as documents and will
+export documents from the server into comma-separated values. This does not
 include any design documents associated with a bucket in the cluster.
 
 For example imagine you have records as follows in the default bucket in a
@@ -1943,8 +1934,8 @@ w0 error: fails to read from csv file, .....
 
 **Transferring Design Documents Only**
 
-As of Couchbase Server 2.1.0 you can transfer design documents from one cluster
-to another one with the option, `design_doc_only=1` :
+As of Couchbase Server 2.1 you can transfer design documents from one cluster to
+another one with the option, `design_doc_only=1` :
 
 
 ```
@@ -2087,7 +2078,7 @@ that node:
 
 
 ```
-shell> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
+> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
 ```
 
 Will produce a result similar to the following if successful:

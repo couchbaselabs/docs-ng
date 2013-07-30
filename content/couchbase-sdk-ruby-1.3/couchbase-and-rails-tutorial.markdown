@@ -33,8 +33,11 @@ Compressing objects: 100% (254/254), done. remote: Total 409 (delta 183), reused
 Resolving deltas: 100% (183/183), done.` Navigate to the directory and install
 all application dependencies:
 
-`shell> cd couchbase-beer.rb/ shell> bundle install...snip... Your bundle is
-complete! Use `bundle show [gemname]` to see where a bundled gem is installed.`
+
+```
+shell> cd couchbase-beer.rb/ shell> bundle install...snip... Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+```
+
 That’s it. Assuming that Couchbase Server with `beer-sample` bucket is up and
 running on localhost, you can just start the Ruby web server:
 

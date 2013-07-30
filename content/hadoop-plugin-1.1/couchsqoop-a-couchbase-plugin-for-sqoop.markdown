@@ -15,4 +15,4 @@ used Sqoop before for doing imports and exports from other databases then using
 this plugin should be straightforward since it uses a similar command line
 argument structure.
 
-<a id="hadoop-plugin-background"></a>
+<a id="hadoop-plugin-installation"></a>

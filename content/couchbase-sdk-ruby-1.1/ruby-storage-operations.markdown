@@ -44,9 +44,8 @@ The `add` method adds a value to the database using the specified key.
 couchbase.add("someKey", 0, someObject);
 ```
 
-Unlike [Set
-Operations](couchbase-sdk-ruby-ready.html#couchbase-sdk-ruby-set-set) the
-operation can fail (and return false) if the specified key already exists.
+Unlike [Set Operations](#couchbase-sdk-ruby-set-set) the operation can fail (and
+return false) if the specified key already exists.
 
 For example, the first operation in the example below may complete if the key
 does not already exist, but the second operation will always fail as the first

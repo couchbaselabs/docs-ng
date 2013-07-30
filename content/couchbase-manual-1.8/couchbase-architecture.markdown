@@ -41,9 +41,8 @@ Cluster coordination and communication is handled by the `ns_server` erlang
 process. Generally, users of Couchbase Server need not be aware of the details
 about how `ns_server` performs its tasks, as interfacing with the cluster is
 done with the aforementioned [REST API for
-Administration](couchbase-manual-ready.html#couchbase-admin-restapi). As part of
-keeping the system simple, all nodes of the cluster expose the state of the
-cluster.
+Administration](#couchbase-admin-restapi). As part of keeping the system simple,
+all nodes of the cluster expose the state of the cluster.
 
 <a id="couchbase-architecture-persistencedesign"></a>
 
@@ -313,14 +312,13 @@ all of the commands to be able to pass the `memcapable` testsuite.
 running `memcapable` -h to see the list of available options). If you run
 `memcapable` without any options it will try to connect to `localhost:11211` and
 run the `memcapable` testsuite (see
-[Example](couchbase-manual-ready.html#couchbase-architecture-apis-memcached-memcapable-example)
-). If you're trying to implement your own server and one of the tests fails, you
-might want to know why it failed. There is two options you might find useful for
-that: `-v` or `-c`. The `-v` option prints out the assertion why the test
-failed, and may help you figure out the problem. I'm a big fan of debuggers and
-corefiles, so I prefer `-c`. When using `-c`  `memcapable` will dump core
-whenever a test fails, so you can inspect the corefile to figure out why the
-test failed.
+[Example](#couchbase-architecture-apis-memcached-memcapable-example) ). If
+you're trying to implement your own server and one of the tests fails, you might
+want to know why it failed. There is two options you might find useful for that:
+`-v` or `-c`. The `-v` option prints out the assertion why the test failed, and
+may help you figure out the problem. I'm a big fan of debuggers and corefiles,
+so I prefer `-c`. When using `-c`  `memcapable` will dump core whenever a test
+fails, so you can inspect the corefile to figure out why the test failed.
 
 <a id="couchbase-architecture-apis-memcached-memcapable-example"></a>
 
@@ -572,6 +570,6 @@ the correct vBucket and node.
 
 If you want to continue to use the `memcached` you should use the client-side
 Moxi deployment solution, as outlined in [Client-Side (standalone)
-Proxy](couchbase-manual-ready.html#couchbase-deployment-standaloneproxy).
+Proxy](#couchbase-deployment-standaloneproxy).
 
 <a id="couchbase-monitoring"></a>

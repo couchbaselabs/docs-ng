@@ -375,8 +375,7 @@ end
 
 To begin this example, we import any libraries we require for our application.
 Then we create a connection to the Couchbase bucket `newBucket` that we created
-earlier in [Create Your First
-Bucket](couchbase-devguide-ready.html#creating-a-bucket).
+earlier in [Create Your First Bucket](#creating-a-bucket).
 
 After we create a Couchbase client instance, we create a Ruby array containing
 individual hashes. Each hash contains information for a user. We look through
@@ -563,8 +562,8 @@ Couchbase Server responds with the following results as JSON:
 This section is intended as a brief introduction to querying and indexing JSON
 documents with Couchbase SDKs. There is definitely much more to learn about the
 topic. For more detailed information about the topic, see [Finding Data with
-Views](couchbase-devguide-ready.html#indexing-querying-data) for using views
-with the SDKs, and [Couchbase Server Manual, Views and
+Views](#indexing-querying-data) for using views with the SDKs, and [Couchbase
+Server Manual, Views and
 Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html)
 for understanding indexing and querying in general with Couchbase Server 2.0.
 

@@ -30,7 +30,7 @@ These administration tasks include:
 
    More information on increasing and reducing your cluster size and performing a
    rebalance operation is available in [Rebalancing (Expanding and Shrinking your
-   Cluster)](couchbase-manual-ready.html#couchbase-admin-tasks-addremove)
+   Cluster)](#couchbase-admin-tasks-addremove)
 
  * **Handle a Failover Situation**
 
@@ -46,8 +46,7 @@ These administration tasks include:
    considerations for each failover type, and you should read the notes to ensure
    that you know the best solution for your specific situation.
 
-   For more information, see [Node
-   Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
+   For more information, see [Node Failover](#couchbase-admin-tasks-failover).
 
  * **Backup and Restore Your Cluster Data**
 
@@ -56,8 +55,7 @@ These administration tasks include:
    have a backup of your bucket data in the event of a more significant failure.
 
    More information on the available backup and restore methods are available in
-   [Backup and Restore with
-   Couchbase](couchbase-manual-ready.html#couchbase-backup-restore).
+   [Backup and Restore with Couchbase](#couchbase-backup-restore).
 
 <a id="couchbase-admin-tasks-failover"></a>
 
@@ -88,9 +86,8 @@ situation to ensure the health and performance of your cluster is maintained.
 Failover should be used on a node that has become unresponsive or that cannot be
 reached due to a network or other issue. If you need to remove a node for
 administration purposes, you should use the remove and rebalance functionality.
-See [Performing a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance).
-This will ensure that replicas and data remain in tact.
+See [Performing a Rebalance](#couchbase-admin-tasks-addremove-rebalance). This
+will ensure that replicas and data remain in tact.
 
 Using failover on a live node (instead of using remove/rebalance) may introduce
 a small data-loss window as any data that has not yet been replicated may be
@@ -105,21 +102,20 @@ a failover situation:
    However, there are deliberate limitations to the automated failover feature. For
    more information on choosing whether to use automated or manual (monitored)
    failover is available in [Choosing a Failover
-   Solution](couchbase-manual-ready.html#couchbase-admin-tasks-failover-choosing).
+   Solution](#couchbase-admin-tasks-failover-choosing).
 
    For information on how to enable and monitor automatic failover, see [Using
-   Automatic
-   Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
+   Automatic Failover](#couchbase-admin-tasks-failover-automatic).
 
  * Initiating a **failover**, whether automatically or manually requires additional
    operations to return the cluster back to full operational health. More
    information on handling a failover situation is provided in [Handling a Failover
-   Situation](couchbase-manual-ready.html#couchbase-admin-tasks-failover-handling).
+   Situation](#couchbase-admin-tasks-failover-handling).
 
  * Once the issue with the failed over node has been addressed, you can add the
    failed node back to your cluster. The steps and considerations required for this
    operation are provided in [Adding Back a Failed
-   Node](couchbase-manual-ready.html#couchbase-admin-tasks-failover-addback).
+   Node](#couchbase-admin-tasks-failover-addback).
 
 <a id="couchbase-admin-tasks-failover-choosing"></a>
 
@@ -225,10 +221,9 @@ information driven decision.
  * **External monitoring**
 
    [Another option is to have a system monitoring the cluster via theManagement
-   REST API](couchbase-manual-ready.html#couchbase-admin-restapi). Such an external
-   system is in the best position to order the failover of nodes because it can
-   take into account system components that are outside the scope of Couchbase
-   Server visibility.
+   REST API](#couchbase-admin-restapi). Such an external system is in the best
+   position to order the failover of nodes because it can take into account system
+   components that are outside the scope of Couchbase Server visibility.
 
    For example, by observing that a network switch is flaking and that there is a
    dependency on that switch by the Couchbase cluster, the management system may
@@ -246,8 +241,8 @@ information driven decision.
 
 Due to the potential for problems when using automated failover (see [Automated
 failover
-considerations](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic-considerations)
-), there are a number of restrictions on the automatic failover functionality in
+considerations](#couchbase-admin-tasks-failover-automatic-considerations) ),
+there are a number of restrictions on the automatic failover functionality in
 Couchbase Server:
 
  * Automatic failover is disabled by default. This prevents Couchbase Server from
@@ -271,15 +266,14 @@ If there are any node failures, an email can be configured to be sent out both
 when an automatic failover occurs, and when it doesn't.
 
 To configure automatic failover through the Administration Web Console, see
-[Auto-Failover
-Settings](couchbase-manual-ready.html#couchbase-admin-web-console-settings-autofailover).
+[Auto-Failover Settings](#couchbase-admin-web-console-settings-autofailover).
 For information on using the REST API, see [Retrieve Auto-Failover
-Settings](couchbase-manual-ready.html#restapi-get-autofailover-settings).
+Settings](#restapi-get-autofailover-settings).
 
 Once an automatic failover has occurred, the Couchbase Cluster is relying on
 replicas to serve data. A rebalance should be initiated to return your cluster
 to proper operational state. For more information, see [Handling a Failover
-Situation](couchbase-manual-ready.html#couchbase-admin-tasks-failover-handling).
+Situation](#couchbase-admin-tasks-failover-handling).
 
 <a id="couchbase-admin-tasks-failover-automatic-reset"></a>
 
@@ -305,8 +299,7 @@ shell> curl -i -u cluster-username:cluster-password \
 ```
 
 More information on using the REST API for this operation can be found in
-[Resetting
-Auto-Failovers](couchbase-manual-ready.html#restapi-reset-autofailover).
+[Resetting Auto-Failovers](#restapi-reset-autofailover).
 
 <a id="couchbase-admin-tasks-failover-manual"></a>
 
@@ -318,11 +311,11 @@ causes Couchbase Server to activate one of the available replicas for the
 buckets in the cluster.
 
 Before marking a node for failover you should read [Node
-Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover). You
-should not use failover to remove a node from the cluster for administration or
-upgrade. This is because initiating a failover activates the replicas for a
-bucket, reducing the available replicas with the potential for data loss if
-additional failovers occur.
+Failover](#couchbase-admin-tasks-failover). You should not use failover to
+remove a node from the cluster for administration or upgrade. This is because
+initiating a failover activates the replicas for a bucket, reducing the
+available replicas with the potential for data loss if additional failovers
+occur.
 
 You can explicitly mark a node as failed over using a number of different
 methods:
@@ -355,7 +348,7 @@ methods:
 Once the node has been marked as failed over you must handle the failover
 situation and get your cluster back into it's configured operation state. For
 more information, see [Handling a Failover
-Situation](couchbase-manual-ready.html#couchbase-admin-tasks-failover-handling).
+Situation](#couchbase-admin-tasks-failover-handling).
 
 <a id="couchbase-admin-tasks-failover-handling"></a>
 
@@ -387,7 +380,7 @@ You may decide to optionally add one or more new nodes to the cluster after a
 failover to return the cluster to the same, or higher, node count than before
 the failover occurred. For more information on adding new nodes, and performing
 the rebalance operation, see [Performing a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance).
+Rebalance](#couchbase-admin-tasks-addremove-rebalance).
 
 <a id="couchbase-admin-tasks-failover-addback"></a>
 
@@ -413,8 +406,7 @@ location (for example another disk, or EBS volume). During the node addition and
 rebalance operation, the data files will be deleted, recreated and repopulated.
 
 For more information on adding the node to the cluster and rebalancing, see
-[Performing a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance).
+[Performing a Rebalance](#couchbase-admin-tasks-addremove-rebalance).
 
 <a id="couchbase-backup-restore"></a>
 
@@ -430,7 +422,7 @@ always being updated and modified, it would be impossible to take an accurate
 snapshot.
 
 For detailed information on the restore processes and options, see
-[Restore](couchbase-manual-ready.html#couchbase-backup-restore-restore).
+[Restore](#couchbase-backup-restore-restore).
 
 It is a best practice to backup and restore all nodes together to minimize any
 inconsistencies in data. Couchbase is always per-item consistent, but does not
@@ -454,7 +446,7 @@ cbbackup [bucket_path_name] [dest_dir_path]
 
 The `cbbackup` tool is located within the standard Couchbase command-line
 directory. See [Command-line Interface for
-Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+Administration](#couchbase-admin-cmdline).
 
 Make sure that there is enough disk space to accommodate the backup. You will
 need at least as much storage space as currently used by the node for storing
@@ -518,7 +510,7 @@ of restoring your cluster:
    and identical IP addresses to the cluster at the point when it was backed up.
 
    For advice on using this method, see [Restoring to the same
-   cluster](couchbase-manual-ready.html#couchbase-backup-restore-prevstate-same).
+   cluster](#couchbase-backup-restore-prevstate-same).
 
  * Restoring a cluster to a previous state, to a different cluster
 
@@ -529,7 +521,7 @@ of restoring your cluster:
    changed considerably.
 
    For advice on using this method, see [Restoring to a different
-   cluster](couchbase-manual-ready.html#couchbase-backup-restore-prevstate-different).
+   cluster](#couchbase-backup-restore-prevstate-different).
 
  * Restoring a cluster to a different configuration
 
@@ -539,7 +531,7 @@ of restoring your cluster:
    configuration.
 
    For advice on using this method, see [Restoring using cbrestore
-   tool](couchbase-manual-ready.html#couchbase-backup-restore-cbrestore).
+   tool](#couchbase-backup-restore-cbrestore).
 
 Make sure that any restoration of files also sets the proper ownership of those
 files to the couchbase user
@@ -571,15 +563,13 @@ before proceeding:
 The steps required to complete the restore process are:
 
  1. Stop the Couchbase Server service on all nodes. For more information, see
-    [Startup and Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+    [Startup and Shutdown of Couchbase Server](#couchbase-admin-basics-running).
 
  1. On each node, restore the database and configuration file ( `config.dat` ) from
     your backup copies for each node.
 
  1. Restart the service on each node. For more information, see [Startup and
-    Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+    Shutdown of Couchbase Server](#couchbase-admin-basics-running).
 
 <a id="couchbase-backup-restore-prevstate-different"></a>
 
@@ -786,26 +776,25 @@ replicas match the current state of the cluster.
 
 For information and guidance on choosing how, and when, to rebalance your
 cluster, read [Choosing When to
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-deciding).
-This will provide background information on the typical triggers and indicators
-that your cluster requires changes to the node configuration, and when a good
-time to perform the rebalance is required.
+Rebalance](#couchbase-admin-tasks-addremove-deciding). This will provide
+background information on the typical triggers and indicators that your cluster
+requires changes to the node configuration, and when a good time to perform the
+rebalance is required.
 
 Instructions on how to expand and shrink your cluster, and initiate the
 rebalance operation are provided in [Starting a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-rebalancing).
+Rebalance](#couchbase-admin-tasks-addremove-rebalance-rebalancing).
 
 Once the rebalance operation has been initiated, you should monitor the
 rebalance operation and progress. You can find information on the statistics and
 events to monitor using [Monitoring During
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-monitoring).
+Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
 
 Common questions about the rebalancing operation are located in [Common
-Rebalancing
-Questions](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-questions).
+Rebalancing Questions](#couchbase-admin-tasks-addremove-questions).
 
 For a deeper background on the rebalancing and how it works, see [Rebalance
-Behind-the-Scenes](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-background).
+Behind-the-Scenes](#couchbase-admin-tasks-addremove-rebalance-background).
 
 <a id="couchbase-admin-tasks-addremove-deciding"></a>
 
@@ -923,15 +912,15 @@ cluster, and then starting the rebalance operation so that the data is moved
 around the cluster to reflect the new structure.
 
  * For information on adding nodes to your cluster, see [Adding a Node to a
-   Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-add).
+   Cluster](#couchbase-admin-tasks-addremove-rebalance-add).
 
  * For information on adding nodes to your cluster, see [Removing a Node from a
-   Cluster](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-remove).
+   Cluster](#couchbase-admin-tasks-addremove-rebalance-remove).
 
  * In the event of a failover situation, a rebalance is required to bring the
    cluster back to a healthy state and re-enable the configured replicas. For more
    information on how to handle a failover situation, see [Node
-   Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover)
+   Failover](#couchbase-admin-tasks-failover)
 
 The Couchbase Admin Web Console will indicate when the cluster requires a
 rebalance because the structure of the cluster has been changed, either through
@@ -944,8 +933,7 @@ page
 ![](images/admin-tasks-pending-rebalance.png)
 
 To rebalance the cluster, you must initiate the rebalance process, detailed in
-[Starting a
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-rebalancing).
+[Starting a Rebalance](#couchbase-admin-tasks-addremove-rebalance-rebalancing).
 
 <a id="couchbase-admin-tasks-addremove-rebalance-add"></a>
 
@@ -961,9 +949,8 @@ The methods are:
  * **Web Console — During Installation**
 
    When you are performing the Setup of a new Couchbase Server installation (see
-   [Setting up Couchbase
-   Server](couchbase-manual-ready.html#couchbase-getting-started-setup) ), you have
-   the option of joining the new node to an existing cluster.
+   [Setting up Couchbase Server](#couchbase-getting-started-setup) ), you have the
+   option of joining the new node to an existing cluster.
 
    During the first step, you can select the `Join a cluster now` radio button, as
    shown in the figure below:
@@ -1045,7 +1032,7 @@ The methods are:
     ```
 
    For more information, see [Adding a Node to a
-   Cluster](couchbase-manual-ready.html#restapi-create-new-node).
+   Cluster](#restapi-create-new-node).
 
  * **Using the Command-line**
 
@@ -1132,7 +1119,7 @@ Like adding nodes, there are a number of solutions for removing a node:
     ```
 
    For more information on the rebalance operation, see [Starting a
-   Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-rebalancing).
+   Rebalance](#couchbase-admin-tasks-addremove-rebalance-rebalancing).
 
 Removing a node does not stop the node from servicing requests. Instead, it only
 marks the node ready for removal from the cluster. You must perform a rebalance
@@ -1231,7 +1218,7 @@ activity, and is therefore impossible to accurately predict or estimate.
 
 Throughout any rebalance operation you should monitor the process to ensure that
 it completes successfully, see [Monitoring During
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-monitoring).
+Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
 
 <a id="couchbase-admin-tasks-addremove-rebalance-swap"></a>
 
@@ -1251,8 +1238,7 @@ cluster.
 Swap rebalance can be used during an upgrade process to upgrade all the nodes of
 the cluster, without requiring data to be moved around the cluster degrading the
 performance. For more information, [Upgrading to Couchbase Server 1.8.1 Using
-Swap
-Rebalance](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online-swap-1-8-1).
+Swap Rebalance](#couchbase-getting-started-upgrade-online-swap-1-8-1).
 
 Swap rebalance only occurs if the following are true:
 
@@ -1549,7 +1535,7 @@ Couchbase Server includes two key quotas for allocating RAM for storing data:
 
    The easiest way to configure the Bucket Quota is through the Couchbase Web
    Console. For more details, see [Editing Couchbase
-   Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit-editcb).
+   Buckets](#couchbase-admin-web-console-data-buckets-createedit-editcb).
 
    The value can also be modified from the command-line using the `couchbase-cli`
    command:

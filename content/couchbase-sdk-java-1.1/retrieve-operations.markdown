@@ -208,10 +208,8 @@ The `gets()` methods obtain a CAS value for a given key. The CAS value is used
 in combination with the corresponding Check-and-Set methods when updating a
 value. For example, you can use the CAS value with the `append()` operation to
 update a value only if the CAS value you supply matches. For more information
-see [Append
-Methods](couchbase-sdk-java-ready.html#couchbase-sdk-java-update-append) and
-[Check-and-Set
-Methods](couchbase-sdk-java-ready.html#couchbase-sdk-java-update-cas).
+see [Append Methods](#couchbase-sdk-java-update-append) and [Check-and-Set
+Methods](#couchbase-sdk-java-update-cas).
 
 <a id="table-couchbase-sdk_java_gets"></a>
 
@@ -461,8 +459,8 @@ transcoder for the returned values.
 
 [The third form is identical to the multi-argument key request method
 (seecollection based
-`asyncBulkGet()`](couchbase-sdk-java-ready.html#table-couchbase-sdk_java_get-bulk-multikeys)
-), except that the operation occurs asynchronously.
+`asyncBulkGet()`](#table-couchbase-sdk_java_get-bulk-multikeys) ), except that
+the operation occurs asynchronously.
 
 <a id="table-couchbase-sdk_java_asyncget-bulk-multikeys-transcoder"></a>
 

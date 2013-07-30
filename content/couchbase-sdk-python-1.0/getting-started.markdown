@@ -184,10 +184,9 @@ prerequisite to demonstrate how to retrieve documents because there must be
 something to retrieve.
 
 There are additional storage methods beyond those described here, which are
-covered in the Advanced section, see [Advanced
-Usage](couchbase-sdk-python-ready.html#_advanced_usage). These include
-manipulating numeric counters, setting expiration times for documents, and
-appending/prepending to existing values.
+covered in the Advanced section, see [Advanced Usage](#_advanced_usage). These
+include manipulating numeric counters, setting expiration times for documents,
+and appending/prepending to existing values.
 
 The `Connection` object provides the following store operations, which conform
 to the *CRUD* model:

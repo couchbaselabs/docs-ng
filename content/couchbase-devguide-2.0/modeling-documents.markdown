@@ -21,7 +21,7 @@ you can index and query these records. This enables you to collect and retrieve
 information based on rules you specify about given fields; it also enables you
 to retrieve records without using the key for the record. For more information
 about indexing and querying using Couchbase SDK, see [Finding Data with
-Views](couchbase-devguide-ready.html#indexing-querying-data).
+Views](#indexing-querying-data).
 
 <a id="documented-oriented-data-model"></a>
 
@@ -255,7 +255,7 @@ developer you benefit in several ways from this approach:
 When you use JSON documents with Couchbase, you also create an application that
 can benefit from all the new features of Couchbase 2.0, particularly indexing
 and querying. For more information, see [Finding Data with
-Views](couchbase-devguide-ready.html#indexing-querying-data).
+Views](#indexing-querying-data).
 
 There are several considerations to have in mind when you design your JSON
 document:
@@ -337,7 +337,7 @@ document is to perform a check-and-set operation on the document to change it;
 with this type of operation, Couchbase Server will send you a message that the
 data has already changed if someone has already changed the record. For more
 information about check-and-set methods with Couchbase, see [Check and Set
-(CAS)](couchbase-devguide-ready.html#cb-cas)
+(CAS)](#cb-cas)
 
 To create relationships between items, we again use fields. In this example we
 create a logical connection between beers and breweries using the `brewery`
@@ -402,7 +402,7 @@ multiple documents. Consider:
  * Whether you will index and query data through *views*, which are stored
    functions you use to find, extract, sort, and perform calculations on documents
    in Couchbase Server 2.0. For more information see [Finding Data with
-   Views](couchbase-devguide-ready.html#indexing-querying-data).
+   Views](#indexing-querying-data).
 
 The following provides some guidelines on when you would prefer using one or
 more than one document to represent your data.
@@ -707,9 +707,8 @@ the player profile that often. You could store references to player abilities in
 the player document and then describe the abilities in separate documents.
 
 For more information about retrieving information using a multiple retrieve, or
-by using indexing and querying, see [Retrieving Multiple
-Keys](couchbase-devguide-ready.html#cb-get-multiple) and [Finding Data with
-Views](couchbase-devguide-ready.html#indexing-querying-data)
+by using indexing and querying, see [Retrieving Multiple Keys](#cb-get-multiple)
+and [Finding Data with Views](#indexing-querying-data)
 
 <a id="reference-docs-and-lookup-pattern"></a>
 
@@ -891,7 +890,7 @@ look like this:
 When you perform a lookup, you could also do a `multi-get` on all items that are
 keyed `category::ales`. This way you can retrieve all primary records for ales.
 For more information about multi-get, see [Retrieving Multiple
-Keys](couchbase-devguide-ready.html#cb-get-multiple)
+Keys](#cb-get-multiple)
 
 <a id="example-storage-documents"></a>
 

@@ -73,8 +73,7 @@ Replication](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-
     true number of documents indexed by Elasticsearch, which excludes extra status
     documents. You can use this method to debug possible data transfer issues
     between Couchbase and Elasticsearch. For more information, see [Monitoring and
-    Troubleshooting](couchbase-elasticguide-ready.html#couchbase-elastic-debugging),
-    Compare Document Count.
+    Troubleshooting](#couchbase-elastic-debugging), Compare Document Count.
 
 <a id="couchbase-elastic-querying"></a>
 

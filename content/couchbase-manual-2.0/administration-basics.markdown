@@ -10,7 +10,7 @@ cluster. Administration is supported through three primary methods:
    cluster.
 
    For more information, read [Using the Web
-   Console](couchbase-manual-ready.html#couchbase-admin-web-console).
+   Console](#couchbase-admin-web-console).
 
  * **Command-line Toolkit**
 
@@ -18,15 +18,14 @@ cluster. Administration is supported through three primary methods:
    allow you to communicate and control your Couchbase cluster.
 
    For more information, read [Command-line Interface for
-   Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+   Administration](#couchbase-admin-cmdline).
 
  * **Couchbase REST API**
 
    Couchbase Server includes a RESTful API that enables any tool capable of
    communicating over HTTP to administer and monitor a Couchbase cluster.
 
-   For more information, read [Using the REST
-   API](couchbase-manual-ready.html#couchbase-admin-restapi).
+   For more information, read [Using the REST API](#couchbase-admin-restapi).
 
 <a id="couchbase-data-files"></a>
 
@@ -42,8 +41,7 @@ Windows  | `C:\Program Files\couchbase\server\var\lib\couchbase\data`
 Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
 
 [This path can be changed for each node at setup either via the Web UI setup
-wizard, using theREST API](couchbase-manual-ready.html#couchbase-admin-restapi)
-or using the Couchbase CLI:
+wizard, using theREST API](#couchbase-admin-restapi) or using the Couchbase CLI:
 
 Changing the data path for a node that is already part of a cluster will
 permanently delete the data stored.
@@ -70,26 +68,25 @@ When using the command line tool, you cannot change the data file and index file
 path settings individually. If you need to configure the data file and index
 file paths individually, use the REST API. For more information, see
 [Configuring Index Path for a
-Node](couchbase-manual-ready.html#couchbase-admin-restapi-provisioning-diskpath)
+Node](#couchbase-admin-restapi-provisioning-diskpath)
 
 For Couchbase Server 2.0, once a node or cluster has already been setup and is
 storing data, you cannot change the path while the node is part of a running
 cluster. You must take the node out of the cluster then follow the steps below:
 
  1. [Change the path on a running node either via theREST
-    API](couchbase-manual-ready.html#couchbase-admin-restapi) or using the Couchbase
-    CLI (commands above). This change will not actually take effect until the node
-    is restarted. For more information about using a REST-API request for ejecting
-    nodes from clusters, see [Removing a Node from a
-    Cluster](couchbase-manual-ready.html#couchbase-admin-restapi-remove-node-from-cluster).
+    API](#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
+    change will not actually take effect until the node is restarted. For more
+    information about using a REST-API request for ejecting nodes from clusters, see
+    [Removing a Node from a
+    Cluster](#couchbase-admin-restapi-remove-node-from-cluster).
 
  1. Shut the node down.
 
  1. Copy all the data files from their original location into the new location.
 
- 1. [Start the service again
-    andmonitor](couchbase-manual-ready.html#couchbase-monitoring) the "warmup" of
-    the data.
+ 1. [Start the service again andmonitor](#couchbase-monitoring) the "warmup" of the
+    data.
 
 <a id="couchbase-admin-basics-running"></a>
 
@@ -102,14 +99,11 @@ mechanisms.
 For information on starting and stopping Couchbase Server, see the different
 platform-specific links:
 
- * [Startup and Shutdown on
-   Linux](couchbase-manual-ready.html#couchbase-admin-basics-running-linux)
+ * [Startup and Shutdown on Linux](#couchbase-admin-basics-running-linux)
 
- * [Startup and Shutdown on
-   Windows](couchbase-manual-ready.html#couchbase-admin-basics-running-windows)
+ * [Startup and Shutdown on Windows](#couchbase-admin-basics-running-windows)
 
- * [Startup and Shutdown on Mac OS
-   X](couchbase-manual-ready.html#couchbase-admin-basics-running-macosx)
+ * [Startup and Shutdown on Mac OS X](#couchbase-admin-basics-running-macosx)
 
 <a id="couchbase-admin-basics-running-linux"></a>
 

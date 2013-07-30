@@ -10,7 +10,7 @@ cluster. Administration is supported through three primary methods:
    cluster.
 
    For more information, read [Web Console for
-   Administration](couchbase-manual-ready.html#couchbase-admin-web-console).
+   Administration](#couchbase-admin-web-console).
 
  * **Command-line Toolkit**
 
@@ -18,7 +18,7 @@ cluster. Administration is supported through three primary methods:
    allow you to communicate and control your Couchbase cluster.
 
    For more information, read [Command-line Interface for
-   Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+   Administration](#couchbase-admin-cmdline).
 
  * **Couchbase REST API**
 
@@ -26,7 +26,7 @@ cluster. Administration is supported through three primary methods:
    communicating over HTTP to administer and monitor a Couchbase cluster.
 
    For more information, read [REST API for
-   Administration](couchbase-manual-ready.html#couchbase-admin-restapi).
+   Administration](#couchbase-admin-restapi).
 
 <a id="couchbase-data-files"></a>
 
@@ -49,8 +49,7 @@ C:\Program Files\Couchbase\Server\data\ns_1
 ```
 
 [This path can be changed for each node at setup either via the Web UI setup
-wizard, using theREST API](couchbase-manual-ready.html#couchbase-admin-restapi)
-or using the Couchbase CLI:
+wizard, using theREST API](#couchbase-admin-restapi) or using the Couchbase CLI:
 
 Linux:
 
@@ -74,16 +73,15 @@ Once a node or cluster has already been setup and is storing data, you can still
 change the path but it is not an "online" operation:
 
  1. [Change the path on a running node either via theREST
-    API](couchbase-manual-ready.html#couchbase-admin-restapi) or using the Couchbase
-    CLI (commands above). This change won't take effect until the node is restarted.
+    API](#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
+    change won't take effect until the node is restarted.
 
  1. Shut the service down
 
  1. Copy all the data files from their original location into the new location
 
- 1. [Start the service again
-    andmonitor](couchbase-manual-ready.html#couchbase-monitoring) the "warmup" of
-    the data.
+ 1. [Start the service again andmonitor](#couchbase-monitoring) the "warmup" of the
+    data.
 
 <a id="couchbase-admin-basics-running"></a>
 
@@ -96,14 +94,11 @@ mechanisms.
 For information on starting and stopping Couchbase Server, see the different
 platform-specific links:
 
- * [Startup and Shutdown on
-   Linux](couchbase-manual-ready.html#couchbase-admin-basics-running-linux)
+ * [Startup and Shutdown on Linux](#couchbase-admin-basics-running-linux)
 
- * [Startup and Shutdown on
-   Windows](couchbase-manual-ready.html#couchbase-admin-basics-running-windows)
+ * [Startup and Shutdown on Windows](#couchbase-admin-basics-running-windows)
 
- * [Startup and Shutdown on Mac OS
-   X](couchbase-manual-ready.html#couchbase-admin-basics-running-macosx)
+ * [Startup and Shutdown on Mac OS X](#couchbase-admin-basics-running-macosx)
 
 <a id="couchbase-admin-basics-running-linux"></a>
 

@@ -11,9 +11,8 @@ series. For differences between individual version within this release series,
 see the version-specific notes throughout the manual.
 
 Couchbase Server 1.8 is a re-branded release of Membase Server 1.7 with some
-additional fixes and changes. See [Release
-Notes](couchbase-manual-ready.html#couchbase-server-rn) for more details of the
-precise changes.
+additional fixes and changes. See [Release Notes](#couchbase-server-rn) for more
+details of the precise changes.
 
 Couchbase Server 1.8 retains all the same functionality and capabilities of
 Membase Server 1.7, including:
@@ -34,26 +33,23 @@ Membase Server 1.7, including:
 
 For more help on specific areas of using Couchbase Server 1.8, see:
 
- * [Getting Started](couchbase-manual-ready.html#couchbase-getting-started)
+ * [Getting Started](#couchbase-getting-started)
 
- * [Best Practices](couchbase-manual-ready.html#couchbase-bestpractice)
+ * [Best Practices](#couchbase-bestpractice)
 
- * [Backup and Restore with
-   Couchbase](couchbase-manual-ready.html#couchbase-backup-restore)
+ * [Backup and Restore with Couchbase](#couchbase-backup-restore)
 
- * [Node Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover)
+ * [Node Failover](#couchbase-admin-tasks-failover)
 
- * [Using Couchbase in the
-   Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud)
+ * [Using Couchbase in the Cloud](#couchbase-bestpractice-cloud)
 
- * [Web Console for
-   Administration](couchbase-manual-ready.html#couchbase-admin-web-console)
+ * [Web Console for Administration](#couchbase-admin-web-console)
 
- * [Sizing Guidelines](couchbase-manual-ready.html#couchbase-bestpractice-sizing)
+ * [Sizing Guidelines](#couchbase-bestpractice-sizing)
 
- * [Couchbase Architecture](couchbase-manual-ready.html#couchbase-architecture)
+ * [Couchbase Architecture](#couchbase-architecture)
 
- * [FAQs](couchbase-manual-ready.html#couchbase-faq)
+ * [FAQs](#couchbase-faq)
 
 <a id="best-practice-guide"></a>
 
