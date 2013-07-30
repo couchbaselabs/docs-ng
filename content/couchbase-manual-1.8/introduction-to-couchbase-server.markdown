@@ -21,18 +21,16 @@ adding more servers as your load and application requirements increase.
 For a more in-depth description of Couchbase Server, see the following sections:
 
  * The guiding principles and design goals of Couchbase Server are covered in
-   [Couchbase Server
-   Basics](couchbase-manual-ready.html#couchbase-introduction-basics).
+   [Couchbase Server Basics](#couchbase-introduction-basics).
 
  * Couchbase Server is part of the NoSQL database movement. For background
    information on what NoSQL is, and how this maps to Couchbase Server
-   functionality, see [Couchbase Server and
-   NoSQL](couchbase-manual-ready.html#couchbase-introduction-nosql).
+   functionality, see [Couchbase Server and NoSQL](#couchbase-introduction-nosql).
 
  * Information on the different components and systems in Couchbase Server, and how
    these map to the concepts and architecture required to understand the
    fundamentals of how it works are provided in [Architecture and
-   Concepts](couchbase-manual-ready.html#couchbase-introduction-architecture).
+   Concepts](#couchbase-introduction-architecture).
 
 <a id="couchbase-introduction-basics"></a>
 
@@ -207,8 +205,7 @@ The Cluster Manager is responsible for the following within a cluster:
  * Client proxy service to redirect requests
 
 Access to the Cluster Manager is provided through the administration interface
-(see [Administration
-Tools](couchbase-manual-ready.html#couchbase-introduction-architecture-administration)
+(see [Administration Tools](#couchbase-introduction-architecture-administration)
 ) on a dedicated network port, and through dedicated network ports for client
 access. Additional ports are configured for inter-node communication.
 
@@ -272,10 +269,9 @@ system:
    nodes will change the size of the bucket.
 
 For more information about creating and changing these node memory quota and
-bucket quota, see [Initializing
-Nodes](couchbase-manual-ready.html#couchbase-cli-initializing-nodes) and
+bucket quota, see [Initializing Nodes](#couchbase-cli-initializing-nodes) and
 [Creating and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
+Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 
 <a id="couchbase-introduction-architecture-buckets"></a>
 
@@ -314,7 +310,7 @@ Replication | A configurable number of replica servers can receive copies of all
 Rebalancing | Rebalancing enables load distribution across resources and dynamic addition or removal of buckets and servers in the cluster.                                                                                                                                                                              
 
 For more information on the bucket types, their configuration and accessibility,
-see [Buckets](couchbase-manual-ready.html#couchbase-architecture-buckets).
+see [Buckets](#couchbase-architecture-buckets).
 
 Couchbase Server leverages the memcached storage engine interface and the
 Couchbase Bucket Engine to enable isolated buckets that support multi-tenancy.
@@ -416,9 +412,9 @@ data back into RAM when the information is requested by a client.
 
 [For Couchbase buckets, data is never deleted from the system unless a client
 explicitly deletes the document from the database or
-theexpiration](couchbase-manual-ready.html#couchbase-introduction-architecture-expiration)
-value for the document is reached. Instead, the ejection mechanism removes it
-from RAM, keeping a copy of that information on disk.
+theexpiration](#couchbase-introduction-architecture-expiration) value for the
+document is reached. Instead, the ejection mechanism removes it from RAM,
+keeping a copy of that information on disk.
 
 <a id="couchbase-introduction-architecture-expiration"></a>
 
@@ -600,8 +596,7 @@ Failover can be performed manually, or you can use the built-in automatic
 failover that reacts after a preset time when a node within the cluster becomes
 unavailable.
 
-For more information, see [Node
-Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover).
+For more information, see [Node Failover](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-introduction-architecture-tap"></a>
 
@@ -672,7 +667,7 @@ way you work with storing data in Couchbase Server.
 Couchbase Server was designed to be as easy to use as possible, and does not
 require constant attention. Administration is however offered in a number of
 different tools and systems. For a list of the most common administration tasks,
-see [Administration Tasks](couchbase-manual-ready.html#couchbase-admin-tasks).
+see [Administration Tasks](#couchbase-admin-tasks).
 
 Couchbase Server includes three solutions for managing and monitoring your
 Couchbase Server and cluster:
@@ -684,7 +679,7 @@ Couchbase Server and cluster:
    Server installation.
 
    For more information, see [Web Console for
-   Administration](couchbase-manual-ready.html#couchbase-admin-web-console).
+   Administration](#couchbase-admin-web-console).
 
  * **Administration REST API**
 
@@ -694,7 +689,7 @@ Couchbase Server and cluster:
    scripts to support different operations.
 
    Full details are provided in [REST API for
-   Administration](couchbase-manual-ready.html#couchbase-admin-restapi)
+   Administration](#couchbase-admin-restapi)
 
  * **Command Line Interface**
 
@@ -705,7 +700,7 @@ Couchbase Server and cluster:
    procedures. The command-line tools make use of the REST API.
 
    For information on the command-line tools available, see [Command-line Interface
-   for Administration](couchbase-manual-ready.html#couchbase-admin-cmdline).
+   for Administration](#couchbase-admin-cmdline).
 
 <a id="couchbase-introduction-architecture-stats"></a>
 

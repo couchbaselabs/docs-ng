@@ -30,9 +30,8 @@ The `add()` method adds a value to the database using the specified key.
 client.add("someKey", 0, someObject);
 ```
 
-Unlike [Set
-Operations](couchbase-sdk-java-ready.html#couchbase-sdk-java-set-set) the
-operation can fail (and return false) if the specified key already exist.
+Unlike [Set Operations](#couchbase-sdk-java-set-set) the operation can fail (and
+return false) if the specified key already exist.
 
 For example, the first operation in the example below may complete if the key
 does not already exist, but the second operation will always fail as the first
@@ -62,7 +61,7 @@ System.out.printf("Result was %b",addOp.get());
 This method is identical to the `add()` method, but supports the use of a custom
 transcoder for serialization of the object value. For more information on
 transcoding, see [Object Serialization
-(Transcoding)](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-transcoding).
+(Transcoding)](#couchbase-sdk-java-summary-transcoding).
 
 <a id="couchbase-sdk-java-set-set"></a>
 
@@ -120,6 +119,6 @@ System.out.printf("Result was %b",setOp.get());
 This method is identical to the `set()` method, but supports the use of a custom
 transcoder for serialization of the object value. For more information on
 transcoding, see [Object Serialization
-(Transcoding)](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-transcoding).
+(Transcoding)](#couchbase-sdk-java-summary-transcoding).
 
 <a id="api-reference-retrieve"></a>

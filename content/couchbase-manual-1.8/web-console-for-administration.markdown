@@ -7,31 +7,27 @@ Couchbase installation. The Web Console provides the following functionality:
    cluster.
 
    For more information, read [Cluster
-   Overview](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview).
+   Overview](#couchbase-admin-web-console-cluster-overview).
 
  * `Data Buckets` provides access to your data bucket configuration, including
    creating new buckets, editing existing configurations, and provides detailed
    analysis and statistics on the bucket activity.
 
-   See [Data
-   Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
+   See [Data Buckets](#couchbase-admin-web-console-data-buckets).
 
  * `Server Nodes` details your active nodes and their configuration and activity.
    You can also fail over nodes and remove them from your cluster, and view
    server-specific performance and monitoring statistics.
 
-   Read [Server
-   Nodes](couchbase-manual-ready.html#couchbase-admin-web-console-server-nodes).
+   Read [Server Nodes](#couchbase-admin-web-console-server-nodes).
 
  * `Log` access allows you to view errors and problems.
 
-   See [Log](couchbase-manual-ready.html#couchbase-admin-web-console-log) for more
-   information.
+   See [Log](#couchbase-admin-web-console-log) for more information.
 
  * `Settings` configures the console and cluster settings.
 
-   See [Settings](couchbase-manual-ready.html#couchbase-admin-web-console-settings)
-   for more information.
+   See [Settings](#couchbase-admin-web-console-settings) for more information.
 
 In addition to the navigable sections of the Couchbase Web Console, there are
 additional systems within the web console, including:
@@ -40,18 +36,18 @@ additional systems within the web console, including:
 
    Update notifications warn you when there is an update available for the
    installed Couchbase Server. See [Update
-   Notifications](couchbase-manual-ready.html#couchbase-admin-web-console-update-notifications)
-   for more information on this feature.
+   Notifications](#couchbase-admin-web-console-update-notifications) for more
+   information on this feature.
 
  * `Warnings and Alerts`
 
    The warnings and alerts system will notify you through the web console where
    there is an issue that needs to be addressed within your cluster. The warnings
    and alerts can be configured through the
-   [Settings](couchbase-manual-ready.html#couchbase-admin-web-console-settings).
+   [Settings](#couchbase-admin-web-console-settings).
 
    For more information on the warnings and alerts, see [Warnings and
-   Alerts](couchbase-manual-ready.html#couchbase-admin-web-console-alerting).
+   Alerts](#couchbase-admin-web-console-alerting).
 
 <a id="couchbase-admin-web-console-cluster-overview"></a>
 
@@ -65,11 +61,9 @@ RAM and disk usage and activity.
 ![](images/web-console-cluster-overview.png)
 
 [[[The page is divided into
-`Cluster`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-cluster),
-`Buckets`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-buckets),
-and
-`Servers`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-servers)
-sections.
+`Cluster`](#couchbase-admin-web-console-cluster-overview-cluster),
+`Buckets`](#couchbase-admin-web-console-cluster-overview-buckets), and
+`Servers`](#couchbase-admin-web-console-cluster-overview-servers) sections.
 
 <a id="couchbase-admin-web-console-cluster-overview-cluster"></a>
 
@@ -181,10 +175,9 @@ all the graphs and statistics display within the web console.
    The `Server Selection` option enables you to enable the display for an
    individual server instead of for the entire cluster. You can select an
    individual node, which displays the [Server
-   Nodes](couchbase-manual-ready.html#couchbase-admin-web-console-server-nodes) for
-   that node. Selecting `All Server Nodes` shows the [Data
-   Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets)
-   page.
+   Nodes](#couchbase-admin-web-console-server-nodes) for that node. Selecting `All
+   Server Nodes` shows the [Data
+   Buckets](#couchbase-admin-web-console-data-buckets) page.
 
  * `Interval Selection`
 
@@ -232,7 +225,7 @@ following information is provided in each column:
  * `Bucket name` is the given name for the bucket. Clicking on the bucket name
    takes you to the individual bucket statistics page. For more information, see
    [Individual Bucket
-   Monitoring](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-individual).
+   Monitoring](#couchbase-admin-web-console-data-buckets-individual).
 
  * `RAM Usage/Quota` shows the amount of RAM used (for active objects) against the
    configure bucket size.
@@ -249,11 +242,10 @@ following information is provided in each column:
 
  * Clicking the `Information` button opens the basic bucket information summary.
    For more information, see [Bucket
-   Information](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-info).
+   Information](#couchbase-admin-web-console-data-buckets-info).
 
 To create a new data bucket, click the `Create New Data Bucket`. See [Creating
-and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit)
+and Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit)
 for details on creating new data buckets.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit"></a>
@@ -384,28 +376,28 @@ for Couchbase bucket types.
 
    The summary section provides a quick overview of the cluster activity. For more
    information, see [Bucket Monitoring — Summary
-   Statistics](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-summary).
+   Statistics](#couchbase-admin-web-console-data-buckets-summary).
 
  * **vBucket Resources**
 
    This section provides detailed information on the vBucket resources across the
    cluster, including the active, replica and pending operations. For more
    information, see [Bucket Monitoring — vBucket
-   Resources](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-vbucket).
+   Resources](#couchbase-admin-web-console-data-buckets-vbucket).
 
  * **Disk Queues**
 
    Disk queues show the activity on the backend disk storage used for persistence
    within a data bucket. The information displayed shows the active, replica and
    pending activity. For more information, see [Bucket Monitoring — Disk
-   Queues](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-diskqueues).
+   Queues](#couchbase-admin-web-console-data-buckets-diskqueues).
 
  * **TAP Queues**
 
    The TAP queues section provides information on the activity within the TAP
    queues across replication, rebalancing and client activity. For more
    information, see [Bucket Monitoring — TAP
-   Queues](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-tapqueues).
+   Queues](#couchbase-admin-web-console-data-buckets-tapqueues).
 
  * **Top Keys**
 
@@ -414,7 +406,7 @@ for Couchbase bucket types.
 
 For Memcached bucket types, the Memcached static summary is provided. See
 [Bucket Monitoring — Memcached
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-memcached).
+Buckets](#couchbase-admin-web-console-data-buckets-memcached).
 
 <a id="couchbase-admin-web-console-data-buckets-summary"></a>
 
@@ -802,7 +794,7 @@ given statistic.
 ![](images/web-console-server-specific.png)
 
 For more information on the data bucket statistics, see [Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
+Buckets](#couchbase-admin-web-console-data-buckets).
 
 <a id="couchbase-admin-web-console-server-states"></a>
 
@@ -858,7 +850,7 @@ provided.
 ![](images/web-console-server-settings-updatenotifications.png)
 
 For more information on how Update Notifications work, see [Update
-Notifications](couchbase-manual-ready.html#couchbase-admin-web-console-update-notifications).
+Notifications](#couchbase-admin-web-console-update-notifications).
 
 <a id="couchbase-admin-web-console-settings-autofailover"></a>
 
@@ -875,7 +867,7 @@ it the `Timeout` box. The default timeout is 30 seconds.
 ![](images/web-console-server-settings-autofailover.png)
 
 For more information on Auto-Failover, see [Using Automatic
-Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
+Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-alerts"></a>
 
@@ -950,7 +942,7 @@ The available settings are:
 ![](images/web-console-server-settings-alerts.png)
 
 For more information on Auto-Failover, see [Using Automatic
-Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
+Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-log"></a>
 

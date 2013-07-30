@@ -20,13 +20,11 @@ of the PHP exception mechanism and may be removed in a future release.
 
 All the interface calls support exceptions and will raise a specific or generic
 Couchbase exception if an operation fails. For more information on the
-exceptions supported, see
-[Exceptions](couchbase-sdk-php-ready.html#api-reference-summary-exceptions).
+exceptions supported, see [Exceptions](#api-reference-summary-exceptions).
 Operations also raise a result code which can be obtained by calling the
 `getResultCode()` method immediately after an operation. Constants are provided
 to identify specific error conditions. See [Error Codes and
-Constants](couchbase-sdk-php-ready.html#api-reference-summary-errors) for more
-information.
+Constants](#api-reference-summary-errors) for more information.
 
 <a id="api-reference-summary-exceptions"></a>
 
@@ -118,7 +116,7 @@ removed in a future release. The PHP exception system will replace the
 functionality of these two methods.
 
 A full list of the constants and error messages available for each operation as
-shown in [](couchbase-sdk-php-ready.html#table-api-reference-summary-errors).
+shown in [](#table-api-reference-summary-errors).
 
 <a id="table-api-reference-summary-errors"></a>
 

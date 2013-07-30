@@ -212,8 +212,7 @@ Couchbase server which are now in runtime memory.
 This is only one example of the pattern of method calls used to perform an
 asynchronous operation. A few more examples will follow in this section,
 therefore we introduce the concept here. For more information, see [Synchronous
-and Asynchronous
-Transactions](couchbase-devguide-ready.html#synchronous-and-asynchronous)
+and Asynchronous Transactions](#synchronous-and-asynchronous)
 
 <a id="cb-store-operations"></a>
 
@@ -227,13 +226,13 @@ differ. Unique behavior for these store methods that you should be aware of:
  * Expiration: By default all items you store using `set` and `add` will not
    expire. Removal must be explicit, such as using `delete`. If you do set an
    expiration to the value 0, this will also indicate no expiration. For more
-   information, see [About TTLs](couchbase-devguide-ready.html#about-ttl-values)
+   information, see [About TTLs](#about-ttl-values)
 
  * CAS ID/CAS Value: For every value that exists in Couchbase Server, the server
    will automatically add a unique Check and Set (CAS) value as a 64-bit integer
    with the item. You can use this value in your implementation to provide basic
    optimistic concurrency. For more information, see [Retrieving Items with CAS
-   Values](couchbase-devguide-ready.html#cb-get-with-cas)
+   Values](#cb-get-with-cas)
 
 For existing keys, `set` will overwrite any existing value if a key already
 exists; in contrast `add` will fail and return an error. If you use `replace` it
@@ -383,9 +382,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-add"></a>
 
@@ -474,9 +472,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-retrieve-operations"></a>
 
@@ -613,9 +610,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 There are variations for parameters used in the `get` depending on the SDK. For
 instance, some SDKs, such as the one for Java, support providing a transcoder
@@ -754,9 +750,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-get-and-touch"></a>
 
@@ -825,9 +820,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-get-with-cas"></a>
 
@@ -908,9 +902,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="get-and-lock"></a>
 
@@ -1027,9 +1020,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-update-operations"></a>
 
@@ -1130,9 +1122,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-replace"></a>
 
@@ -1214,9 +1205,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-cas"></a>
 
@@ -1367,9 +1357,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-append-prepend"></a>
 
@@ -1414,10 +1403,10 @@ content needs to be a binary form, such as strings or numeric information.
 
 In the chapter on more advanced development topics, we provide an example on
 managing a data set using `append` ; we provide the sample as a Python script.
-Please refer to [Using the Fastest
-Methods](couchbase-devguide-ready.html#optimizing-method-calls). You can also
-view the entire blog post about the topic from Dustin Sallings at the Couchbase
-blog, [Maintaining a Set](http://blog.couchbase.com/maintaining-set-memcached).
+Please refer to [Using the Fastest Methods](#optimizing-method-calls). You can
+also view the entire blog post about the topic from Dustin Sallings at the
+Couchbase blog, [Maintaining a
+Set](http://blog.couchbase.com/maintaining-set-memcached).
 
 For purposes of this introduction to pre-pending and appending with Couchbase
 SDKs, we offer these illustrations to show how the two methods work. Imagine we
@@ -1570,9 +1559,8 @@ and how it is encoded and see if there are any issues that make the item
 incompatible with Couchbase Server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-incr-decr"></a>
 
@@ -1736,9 +1724,8 @@ stored. If you have a connection-level error you may need to reattempt
 connection, and possibly check the status of the server.
 
 For more information about connections and connection-level settings, see
-[Optimizing Client
-Instances](couchbase-devguide-ready.html#optimizing-client-instances) and
-[Client-Side Timeouts](couchbase-devguide-ready.html#about-client-timeouts)
+[Optimizing Client Instances](#optimizing-client-instances) and [Client-Side
+Timeouts](#about-client-timeouts)
 
 <a id="cb-delete-operations"></a>
 
@@ -1762,7 +1749,7 @@ performed in synchronous or asynchronous mode; in contrast other SDK's such as
 Java support `delete` as an asynchronous operation only. Consult your respective
 language reference to find out more about your chosen SDK. For more information
 about asynchronous calls in Couchbase SDKs, see [Synchronous and Asynchronous
-Transactions](couchbase-devguide-ready.html#synchronous-and-asynchronous)
+Transactions](#synchronous-and-asynchronous)
 
 The following example demonstrates a `delete` in Ruby. In this case, parameters
 can be provided to check the unique identifier for a value, so that if there is

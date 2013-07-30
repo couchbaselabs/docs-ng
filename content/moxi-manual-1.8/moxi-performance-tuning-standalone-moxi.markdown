@@ -5,8 +5,7 @@ standalone or client-side Moxi. (It can be even better, too, to move towards a
 "smart client", which removes the need for moxi (whether server-side or
 client-side) in the first place.)
 
-See [Standalone Moxi Component](moxi-manual-ready.html#moxi-standalone) for more
-information.
+See [Standalone Moxi Component](#moxi-standalone) for more information.
 
 <a id="moxi-performance-conncounts"></a>
 
@@ -29,9 +28,8 @@ limit on the number of upstream/client requests it will send to downstream
 servers.
 
 [See the "concurrency" (aka, "downstream\_max") configuration parameter, as
-discussed here: [Standalone Moxi
-Component](moxi-manual-ready.html#moxi-standalone) andFollow A Request Through
-Moxi](moxi-manual-ready.html#moxi-dataflow)
+discussed here: [Standalone Moxi Component](#moxi-standalone) andFollow A
+Request Through Moxi](#moxi-dataflow)
 
 Downstream ConnectionsThe other side of moxi, of course, is with its Couchbase
 server-facing connections. Usually, you won't run into limitations here, but
@@ -68,8 +66,7 @@ calculate your ulimit's correctly.
 
 Current ConnectionsTo see the current number of connections into moxi, as totals
 and on the upstream and/or downstream-side, send moxi an ascii "stats proxy"
-request. More information on this is at: [Moxi
-Statistics](moxi-manual-ready.html#moxi-statistics)
+request. More information on this is at: [Moxi Statistics](#moxi-statistics)
 
 <a id="moxi-performance-ostuning"></a>
 

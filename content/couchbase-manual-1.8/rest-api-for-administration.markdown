@@ -39,10 +39,8 @@ The REST API is built on a number of basic principles:
  * **HTTP Basic Access Authentication**
 
    The Couchbase Management REST API uses HTTP basic authentication. The
-   browser-based [Web Console for
-   Administration](couchbase-manual-ready.html#couchbase-admin-web-console) and
-   [Command-line Interface for
-   Administration](couchbase-manual-ready.html#couchbase-admin-cmdline) also use
+   browser-based [Web Console for Administration](#couchbase-admin-web-console) and
+   [Command-line Interface for Administration](#couchbase-admin-cmdline) also use
    HTTP basic authentication.
 
  * **Versatile Server Nodes**
@@ -145,12 +143,11 @@ Although part of the REST API, the Couchbase Administrative Console uses many of
 the same REST API endpoints you would use for a REST API request.
 
 For a list of supported browsers, see [Getting
-Started](couchbase-manual-ready.html#couchbase-getting-started) System
-Requirements. For the Couchbase Web Console, a separate UI hierarchy is served
-from each node of the system (though asking for the root "/" would likely return
-a redirect to the user agent). To launch the Couchbase Web Console, point your
-browser to the appropriate host and port, for instance on your development
-machine: `http://localhost:8091`
+Started](#couchbase-getting-started) System Requirements. For the Couchbase Web
+Console, a separate UI hierarchy is served from each node of the system (though
+asking for the root "/" would likely return a redirect to the user agent). To
+launch the Couchbase Web Console, point your browser to the appropriate host and
+port, for instance on your development machine: `http://localhost:8091`
 
 <a id="restspi-bootstrapping"></a>
 
@@ -1863,10 +1860,9 @@ To start a rebalance process through the REST API you must supply two arguments
 containing the list of nodes that have been marked to be ejected, and the list
 of nodes that are known within the cluster. You can obtain this information by
 getting the current node configuration as reported by [Getting Information on
-Nodes](couchbase-manual-ready.html#getting-node-info). This is to ensure that
-the client making the REST API request is aeare of the current cluster
-configuration. Nodes should have been previously added or marked for removal as
-appropriate.
+Nodes](#getting-node-info). This is to ensure that the client making the REST
+API request is aeare of the current cluster configuration. Nodes should have
+been previously added or marked for removal as appropriate.
 
 The information must be supplied via the `ejectedNodes` and `knownNodes`
 parameters as a `POST` operation to the `/controller/rebalance` endpoint. For
@@ -1903,7 +1899,7 @@ will be returned:
 ```
 
 Progress of the rebalance operation can be obtained by using [Getting Rebalance
-Progress](couchbase-manual-ready.html#restapi-rebalance-progress).
+Progress](#restapi-rebalance-progress).
 
 <a id="restapi-rebalance-progress"></a>
 

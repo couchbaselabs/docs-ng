@@ -11,7 +11,7 @@ Views are eventually consistent compared to the underlying stored documents.
 Documents are included in views when the document data is persisted to disk, and
 documents with expiry times are removed from indexes only when the expiration
 pager operates to remove the document from the database. Fore more information,
-read [View Operation](couchbase-manual-ready.html#couchbase-views-operation).
+read [View Operation](#couchbase-views-operation).
 
 Views can be used within Couchbase Server for a number of reasons, including:
 
@@ -37,31 +37,29 @@ Couchbase Server database.
 
  * For background information on the creation of views and how they relate to the
    contents of your Couchbase Server database, see [View
-   Basics](couchbase-manual-ready.html#couchbase-views-basics).
+   Basics](#couchbase-views-basics).
 
  * For more information on how views work with stored information, see [Views and
-   Stored Data](couchbase-manual-ready.html#couchbase-views-datastore).
+   Stored Data](#couchbase-views-datastore).
 
  * For information on the rules and implementation of views, see [View
-   Operation](couchbase-manual-ready.html#couchbase-views-operation).
+   Operation](#couchbase-views-operation).
 
  * Two types of views, development and production, are used to help optimize
    performance and view development. See [Development and Production
-   Views](couchbase-manual-ready.html#couchbase-views-types).
+   Views](#couchbase-views-types).
 
  * Writing views, including the language and options available are covered in
-   [Development and Production
-   Views](couchbase-manual-ready.html#couchbase-views-types).
+   [Development and Production Views](#couchbase-views-types).
 
  * For a detailed background and technical information on troubleshooting views,
    see [Troubleshooting Views (Technical
-   Background)](couchbase-manual-ready.html#couchbase-views-troubleshooting).
+   Background)](#couchbase-views-troubleshooting).
 
  * The Couchbase Server Web Console includes an editor for writing and developing
-   new views. See [Using the Views
-   Editor](couchbase-manual-ready.html#couchbase-views-editor). You can also use a
-   REST API to create, update and delete design documents. See [Design Document
-   REST API](couchbase-manual-ready.html#couchbase-views-designdoc-api).
+   new views. See [Using the Views Editor](#couchbase-views-editor). You can also
+   use a REST API to create, update and delete design documents. See [Design
+   Document REST API](#couchbase-views-designdoc-api).
 
 <a id="couchbase-views-basics"></a>
 
@@ -144,15 +142,14 @@ All views within Couchbase operate as follows:
  * Updates can be triggered in two ways:
 
     * At the point of access or query by using the `stale` parameter (see [Index
-      Updates and the stale
-      Parameter](couchbase-manual-ready.html#couchbase-views-writing-stale) ).
+      Updates and the stale Parameter](#couchbase-views-writing-stale) ).
 
     * Automatically by Couchbase Server based on the number of updated documents, or
       the period since the last update.
 
       Automatic updates can be controlled either globally, or individually on each
       design document. See [Automated Index
-      Updates](couchbase-manual-ready.html#couchbase-views-operation-autoupdate).
+      Updates](#couchbase-views-operation-autoupdate).
 
  * Views are updated incrementally. The first time the view is accessed, all the
    documents within the bucket are processed through the map/reduce functions. Each
@@ -170,7 +167,7 @@ All views within Couchbase operate as follows:
    is updated efficiently. Compaction (including auto-compaction) will optimize the
    index size on disk and optimize the index structure. An optimized index is more
    efficient to update and query. See [Database and View
-   Compaction](couchbase-manual-ready.html#couchbase-admin-tasks-compaction).
+   Compaction](#couchbase-admin-tasks-compaction).
 
  * The entire view is recreated if the view definition has changed. Because this
    would have a detrimental effect on live data, only development views can be
@@ -187,7 +184,7 @@ All views within Couchbase operate as follows:
    you query. Or you can choose to retrieve the existing result set from a view
    when you query the view. In this case the results are possibly out of date, or
    stale. For more information, see [Index Updates and the stale
-   Parameter](couchbase-manual-ready.html#couchbase-views-writing-stale).
+   Parameter](#couchbase-views-writing-stale).
 
  * The views engine creates an index is for each design document; this index
    contains the results for all the views within that design document.
@@ -337,7 +334,7 @@ Parameter](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-wr
 
 To handle errors when you perform a query, you can configure how the cluster
 behaves when errors occur. See [Error
-Control](couchbase-manual-ready.html#couchbase-views-writing-querying-errorcontrol).
+Control](#couchbase-views-writing-querying-errorcontrol).
 
 **Queries During Rebalance or Failover**
 
@@ -411,7 +408,7 @@ and/or updated in the index.
 
 Views can also be updated automatically according to a document change, or
 interval count. See [Automated Index
-Updates](couchbase-manual-ready.html#couchbase-views-operation-autoupdate).
+Updates](#couchbase-views-operation-autoupdate).
 
 Three values for `stale` are supported:
 
@@ -629,13 +626,13 @@ For example:
 
 You can set this information when creating and updating design documents through
 the design document REST API. For more information, see [Design Document REST
-API](couchbase-manual-ready.html#couchbase-views-designdoc-api).
+API](#couchbase-views-designdoc-api).
 
 To perform this operation using the `curl` tool:
 
 
 ```
-shell> curl -X POST -v -d 'updateInterval=7000&updateMinChanges=7000' \
+> curl -X POST -v -d 'updateInterval=7000&updateMinChanges=7000' \
     'http://Administrator:Password@192.168.0.72:8091/settings/viewUpdateDaemon'
 ```
 
@@ -823,7 +820,7 @@ significant. For example, if you store information using a prefix to the key to
 identify the record type, you can create document-type specific indexes.
 
 For more information and examples, see [Views on non-JSON
-Data](couchbase-manual-ready.html#couchbase-views-writing-nonjson).
+Data](#couchbase-views-writing-nonjson).
 
 <a id="couchbase-views-datastore-indexseq"></a>
 
@@ -862,10 +859,10 @@ When accessing a view, the contents of the view are asynchronous to the stored
 documents. In addition, the creation and updating of the view is subject to the
 `stale` parameter. This controls how and when the view is updated when the view
 content is queried. For more information, see [Index Updates and the stale
-Parameter](couchbase-manual-ready.html#couchbase-views-writing-stale). Views can
-also be automatically updated on a schedule so that their data is not too out of
-sync with stored documents. For more information, see [Automated Index
-Updates](couchbase-manual-ready.html#couchbase-views-operation-autoupdate).
+Parameter](#couchbase-views-writing-stale). Views can also be automatically
+updated on a schedule so that their data is not too out of sync with stored
+documents. For more information, see [Automated Index
+Updates](#couchbase-views-operation-autoupdate).
 
 <a id="couchbase-views-types"></a>
 
@@ -893,25 +890,25 @@ but have different purposes and restrictions placed upon their operation.
       information. You can, however, force the generation of a development view
       information on the full dataset.
 
-    * Uses live data from the selected Couchbase bucket, enabling you to develop and
-      refine your view in real-time on your production data.
+    * Development views use live data from the selected Couchbase bucket, enabling you
+      to develop and refine your view in real-time on your production data.
 
     * Development views are not automatically rebuilt, and during a rebalance
       operation, development views are not updated, even when when consistent views
       are enabled, as this relies on the automated update mechanism. Updating
       development views in this way would waste system resources.
 
-    * Development views are full editable and modifiable during their lifetime. You
+    * Development views are fully editable and modifiable during their lifetime. You
       can change and update the view definition for a development view at any time.
 
-    * During development of the view you can view and edit stored document to help
+    * During development of the view, you can view and edit stored document to help
       develop the view definition.
 
     * Development views are accessed from client libraries through a different URL
       than production views, making it easy to determine the view type and information
       during development of your application.
 
-    * Within the Web Console the execution of a view by default occurs only over a
+    * Within the Web Console, the execution of a view by default occurs only over a
       subset of the full set of documents stored in the bucket. You can elect to run
       the View over the full set using the Web Console.
 
@@ -925,6 +922,11 @@ but have different purposes and restrictions placed upon their operation.
    following attributes:
 
     * Production views always operate on the full dataset for their respective bucket.
+
+    * Production views can either be created from the Web Console or through REST API.
+      From the Web Console, you first create development views and then publish them
+      as production views. Through REST API, you directly create the production views
+      (and skip the initial development views).
 
     * Production views cannot be modified through the UI. You can only access the
       information exposed through a production view. To make changes to a production
@@ -966,8 +968,7 @@ documents. You can therefore have both development and production views within
 the same bucket while you development different indexes on your data.
 
 For information on publishing a view from development to production state, see
-[Publishing
-Views](couchbase-manual-ready.html#couchbase-views-editor-publishing).
+[Publishing Views](#couchbase-views-editor-publishing).
 
 <a id="couchbase-views-writing"></a>
 
@@ -1061,23 +1062,20 @@ functions individually.
 
 For information on how to write map functions, and how the output of the map
 function affects and supports searching, see [Map
-Functions](couchbase-manual-ready.html#couchbase-views-writing-map). For details
-on writing the reduce function, see [Reduce
-Functions](couchbase-manual-ready.html#couchbase-views-writing-reduce).
+Functions](#couchbase-views-writing-map). For details on writing the reduce
+function, see [Reduce Functions](#couchbase-views-writing-reduce).
 
 View names must be specified using one or more UTF-8 characters. You cannot have
 a blank view name. View names cannot have leading or trailing whitespace
 characters (space, tab, newline, or carriage-return).
 
 To create views, you can use either the Admin Console View editor (see [Using
-the Views Editor](couchbase-manual-ready.html#couchbase-views-editor) ), use the
-REST API for design documents (see [Design Document REST
-API](couchbase-manual-ready.html#couchbase-views-designdoc-api) ), or use one of
-the client libraries that support view management.
+the Views Editor](#couchbase-views-editor) ), use the REST API for design
+documents (see [Design Document REST API](#couchbase-views-designdoc-api) ), or
+use one of the client libraries that support view management.
 
 For more information and examples on how to query and obtain information from a
-map, see [Querying
-Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
+map, see [Querying Views](#couchbase-views-writing-querying).
 
 <a id="couchbase-views-writing-map"></a>
 
@@ -1132,7 +1130,7 @@ each stored document, `doc` and `meta` :
 
    The metadata for the stored document, containing expiry time, document ID,
    revision and other information. For more information, see [Document
-   Metadata](couchbase-manual-ready.html#couchbase-views-datastore-fields).
+   Metadata](#couchbase-views-datastore-fields).
 
 Every document in the Couchbase bucket is submitted to the `map()` function in
 turn. After the view is created, only the documents created or changed since the
@@ -1163,7 +1161,7 @@ record in the generated view:
    the key. Keys using a numeric value are sorted numerically, for strings, UTF-8
    is used. Keys can also support compound values such as arrays and hashes. For
    more information on the sorting algorithm and sequence, see
-   [Ordering](couchbase-manual-ready.html#couchbase-views-writing-querying-ordering).
+   [Ordering](#couchbase-views-writing-querying-ordering).
 
    The key content is used for querying by using a combination of this sorting
    process and the specification of either an explicit key or key range within the
@@ -1172,8 +1170,7 @@ record in the generated view:
    only the keys matching 'Lasagne' are returned.
 
    For more information on querying and extracting information using the key value,
-   see [Querying
-   Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
+   see [Querying Views](#couchbase-views-writing-querying).
 
  * *value*
 
@@ -1197,8 +1194,7 @@ The `emit()` function can be called multiple times in a single map function,
 with each call outputting a single row in the generated view. This can be useful
 when you want to supporting querying information in the database based on a
 compound field. For a sample view definition and selection criteria, see
-[Emitting Multiple
-Rows](couchbase-manual-ready.html#couchbase-views-sample-patterns-multiemit).
+[Emitting Multiple Rows](#couchbase-views-sample-patterns-multiemit).
 
 Views and map generation are also very forgiving. If you elect to output fields
 in from the source JSON objects that do not exist, they will simply be replaced
@@ -1216,7 +1212,7 @@ before emitting the data.
 
 To better understand how the map function works to output different types of
 information and retrieve it, see [View and Query Pattern
-Samples](couchbase-manual-ready.html#couchbase-views-sample-patterns).
+Samples](#couchbase-views-sample-patterns).
 
 <a id="couchbase-views-writing-reduce"></a>
 
@@ -1294,7 +1290,7 @@ When using a reduce function the reduction is applied as follows:
    during querying you can specify the level of the reduction function, which is
    analogous to the element of the array on which the data should be grouped. For
    more information, see [Grouping in
-   Queries](couchbase-manual-ready.html#couchbase-views-writing-querying-grouping).
+   Queries](#couchbase-views-writing-querying-grouping).
 
 The view definition is flexible. You can select whether the reduce function is
 applied when the view is accessed. This means that you can access both the
@@ -1307,11 +1303,10 @@ array of the group elements according to the group level), and the value is the
 computed reduction value.
 
 [[[[Couchbase includes three built-in reduce functions,
-`_count`](couchbase-manual-ready.html#couchbase-views-writing-reduce-count),
-`_sum`](couchbase-manual-ready.html#couchbase-views-writing-reduce-sum), and
-`_stats`](couchbase-manual-ready.html#couchbase-views-writing-reduce-stats). You
-can also write your owncustom reduction
-functions](couchbase-manual-ready.html#couchbase-views-writing-reduce-custom).
+`_count`](#couchbase-views-writing-reduce-count),
+`_sum`](#couchbase-views-writing-reduce-sum), and
+`_stats`](#couchbase-views-writing-reduce-stats). You can also write your
+owncustom reduction functions](#couchbase-views-writing-reduce-custom).
 
 The reduce function also has a final additional benefit. The results of the
 computed reduction are stored in the index along with the rest of the view
@@ -1815,7 +1810,7 @@ functions where relevant.
    The function can be particularly useful when building views using dates as the
    key where the use of a reduce function is being used for counting or rollup. For
    an example, see [Date and Time
-   Selection](couchbase-manual-ready.html#couchbase-views-sample-patterns-timestamp).
+   Selection](#couchbase-views-sample-patterns-timestamp).
 
    Currently, the function works only on UTC values. Timezones are not supported.
 
@@ -1868,10 +1863,10 @@ You should keep the following in mind while developing and deploying your views:
 
    You can always configure the updating of the view through the use of the `stale`
    parameter (see [Index Updates and the stale
-   Parameter](couchbase-manual-ready.html#couchbase-views-writing-stale) ). You can
-   also configure different automated view update times for individual design
-   documents, for more information see [Automated Index
-   Updates](couchbase-manual-ready.html#couchbase-views-operation-autoupdate).
+   Parameter](#couchbase-views-writing-stale) ). You can also configure different
+   automated view update times for individual design documents, for more
+   information see [Automated Index
+   Updates](#couchbase-views-operation-autoupdate).
 
  * **Modifying Existing Views**
 
@@ -2064,9 +2059,9 @@ You should keep the following in mind while developing and deploying your views:
  * **Use Built-in Reduce Functions**
 
    [[[Where possible, use one of the supplied built-in reduce functions,
-   `_sum`](couchbase-manual-ready.html#couchbase-views-writing-reduce-sum),
-   `_count`](couchbase-manual-ready.html#couchbase-views-writing-reduce-count),
-   `_stats`](couchbase-manual-ready.html#couchbase-views-writing-reduce-stats).
+   `_sum`](#couchbase-views-writing-reduce-sum),
+   `_count`](#couchbase-views-writing-reduce-count),
+   `_stats`](#couchbase-views-writing-reduce-stats).
 
    These functions are highly optimized. Using a custom reduce function requires
    additional processing and may impose additional build time on the production of
@@ -2147,7 +2142,7 @@ changes.
 
 ## Design Document REST API
 
-Design documents are used to store one ore more view definitions. Views can be
+Design documents are used to store one or more view definitions. Views can be
 defined within a design document and uploaded to the server through the REST
 API.
 
@@ -2170,11 +2165,11 @@ The format of this command is as shown in the table below:
 201                         | Document created successfully.                                                                           
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.
 
-When creating a design document through the REST API it is recommended that you
-create a development ( `dev` ) view. It is recommended that you create a dev
-design document and views first, and then check the output of the configured
-views in your design document. To create a dev view you *must* explicitly use
-the `dev_` prefix for the design document name.
+When creating a design document through the REST API, we recommend that you
+create a development ( `dev` ) view. We recommend that you create a dev design
+document and views first, and then check the output of the configured views in
+your design document. To create a dev view you *must* explicitly use the `dev_`
+prefix for the design document name.
 
 For example, using `curl`, you can create a design document, `byfield`, by
 creating a text file (with the name `byfield.ddoc` ) with the design document
@@ -2182,7 +2177,7 @@ content using the following command:
 
 
 ```
-shell> curl -X PUT -H 'Content-Type: application/json' \
+> curl -X PUT -H 'Content-Type: application/json' \
    http://user:password@localhost:8092/sales/_design/dev_byfield' \
    -d @byfield.ddoc
 ```
@@ -2288,7 +2283,7 @@ design document `byfield` :
 
 
 ```
-shell> curl -X GET \
+> curl -X GET \
     -H 'Content-Type: application/json' \
     'http://user:password@192.168.0.77:8092/sales/_design/dev_byfield
 ```
@@ -2316,7 +2311,7 @@ For example:
 
 
 ```
-shell&gt; curl -v -X GET \
+&gt; curl -v -X GET \
    -H 'Content-Type: application/json' \
    'http://user:password@192.168.0.77:8092/sales/_design/
 * About to connect() to 192.168.0.77 port 8092 (#0)
@@ -2377,7 +2372,7 @@ For example, to delete the previously created design document using `curl` :
 
 
 ```
-shell> curl -v -X DELETE -H 'Content-Type: application/json' \
+> curl -v -X DELETE -H 'Content-Type: application/json' \
     'http://Administrator:Password@192.168.0.77:8092/default/_design/dev_byfield'
 ```
 
@@ -2467,9 +2462,9 @@ Where:
  * `designdocname` is the name of the design document that contains the view.
 
    For views defined within the development context (see [Development and
-   Production Views](couchbase-manual-ready.html#couchbase-views-types) ), the
-   `designdocname` is prefixed with `dev_`. For example, the design document `beer`
-   is accessible as a development view using `dev_beer`.
+   Production Views](#couchbase-views-types) ), the `designdocname` is prefixed
+   with `dev_`. For example, the design document `beer` is accessible as a
+   development view using `dev_beer`.
 
    Production views are accessible using their name only.
 
@@ -2679,7 +2674,7 @@ The following selection types are supported:
 
    The matching algorithm works on partial values, which can be used to an
    advantage when searching for ranges of keys. See [Partial Selection and Key
-   Ranges](couchbase-manual-ready.html#couchbase-views-writing-querying-selection-partial)
+   Ranges](#couchbase-views-writing-querying-selection-partial)
 
 <a id="couchbase-views-writing-querying-selection-compoundbykey"></a>
 
@@ -2733,7 +2728,7 @@ must use a range that encompasses the information range you want to output:
 
 This will output all records within the specified range for the specified date.
 For more information, see [Partial Selection with Compound
-Keys](couchbase-manual-ready.html#couchbase-views-writing-querying-selection-compound).
+Keys](#couchbase-views-writing-querying-selection-compound).
 
 <a id="couchbase-views-writing-querying-selection-partial"></a>
 
@@ -2875,8 +2870,7 @@ This will instead output all the values from the first day at 10am to the last
 day at 2pm.
 
 For more information and examples on formatting and querying this data, see
-[Date and Time
-Selection](couchbase-manual-ready.html#couchbase-views-sample-patterns-timestamp).
+[Date and Time Selection](#couchbase-views-sample-patterns-timestamp).
 
 <a id="couchbase-views-writing-querying-pagination"></a>
 
@@ -3149,15 +3143,14 @@ This is particularly important for you to understand if you query Couchbase
 Server with a `startkey` and `endkey` to get back a range of results. The items
 you would retrieve under Byte order are different compared to Unicode collation.
 For more information about ordering results, see [Partial Selection and Key
-Ranges](couchbase-manual-ready.html#couchbase-views-writing-querying-selection-partial).
+Ranges](#couchbase-views-writing-querying-selection-partial).
 
 **Ordering and Query Example**
 
 This following example demonstrates Unicode collation in Couchbase Server and
 the impact on query results returned with a `startkey` and `endkey`. It is based
 on the `beer-sample` database provided with Couchbase Server 2.0. For more
-information, see [Beer Sample
-Bucket](couchbase-manual-ready.html#couchbase-sampledata-beer).
+information, see [Beer Sample Bucket](#couchbase-sampledata-beer).
 
 Imagine you want to retrieve all breweries with names starting with uppercase Y.
 Your query parameters would appear as follows:
@@ -4095,11 +4088,11 @@ upsetting the existing stored data.
 ### Simulating Multi-phase Transactions
 
 The technique in [Simulating
-Transactions](couchbase-manual-ready.html#couchbase-views-sample-patterns-transactions)
-will work if your data will allow the use of a view to effectively roll-up the
-changes into a single operation. However, if your data and document structure do
-not allow it then you can use a multi-phase transaction process to perform the
-operation in a number of distinct stages.
+Transactions](#couchbase-views-sample-patterns-transactions) will work if your
+data will allow the use of a view to effectively roll-up the changes into a
+single operation. However, if your data and document structure do not allow it
+then you can use a multi-phase transaction process to perform the operation in a
+number of distinct stages.
 
 This method is not reliant on views, but the document structure and update make
 it easy to find out if there are 'hanging' or trailing transactions that need to
@@ -4291,7 +4284,7 @@ in the following ways:
    The field list within the SQL statement affects either the corresponding key or
    value within the `map()` function, depending on whether you are also selecting
    or reducing your data. See [Translating SQL Field Selection (SELECT) to
-   Map/Reduce](couchbase-manual-ready.html#couchbase-views-writing-sql-select)
+   Map/Reduce](#couchbase-views-writing-sql-select)
 
  * `FROM table`
 
@@ -4301,14 +4294,14 @@ in the following ways:
    want to use the `map()` function to make a selection.
 
    For examples of this in action, see [Selective Record
-   Output](couchbase-manual-ready.html#couchbase-views-sample-patterns-selectivemap).
+   Output](#couchbase-views-sample-patterns-selectivemap).
 
  * `WHERE condition`
 
    The `map()` function and the data generated into the view key directly affect
    how you can query, and therefore how selection of records takes place. For
    examples of this in action, see [Translating SQL WHERE to
-   Map/Reduce](couchbase-manual-ready.html#couchbase-views-writing-sql-where).
+   Map/Reduce](#couchbase-views-writing-sql-where).
 
  * `ORDER BY orderfield`
 
@@ -4316,22 +4309,21 @@ in the following ways:
    specified during the `map()` function phase of the view generation.
 
    For further discussion, see [Translating SQL ORDER BY to
-   Map/Reduce](couchbase-manual-ready.html#couchbase-views-writing-sql-order).
+   Map/Reduce](#couchbase-views-writing-sql-order).
 
  * `LIMIT limitcount OFFSET offsetcount`
 
    There are a number of different paging strategies available within the
    map/reduce and views mechanism. Discussion on the direct parameters can be seen
-   in [Translating SQL LIMIT and
-   OFFSET](couchbase-manual-ready.html#couchbase-views-writing-sql-paging). For
+   in [Translating SQL LIMIT and OFFSET](#couchbase-views-writing-sql-paging). For
    alternative paging solutions, see
-   [Pagination](couchbase-manual-ready.html#couchbase-views-writing-querying-pagination).
+   [Pagination](#couchbase-views-writing-querying-pagination).
 
  * `GROUP BY groupfield`
 
    Grouping within SQL is handled within views through the use of the `reduce()`
    function. For comparison examples, see [Translating SQL GROUP BY to
-   Map/Reduce](couchbase-manual-ready.html#couchbase-views-writing-sql-group).
+   Map/Reduce](#couchbase-views-writing-sql-group).
 
 The interaction between the view `map()` function, `reduce()` function,
 selection parameters and other miscellaneous parameters according to the table
@@ -4406,7 +4398,7 @@ function(doc, meta) {
 If the entire document for each item is required, load the document data after
 the view has been requested through the client library. For more information on
 this parameter and the performance impact, see [View Writing Best
-Practice](couchbase-manual-ready.html#couchbase-views-writing-bestpractice).
+Practice](#couchbase-views-writing-bestpractice).
 
 Within a `SELECT` statement it is common practice to include the primary key for
 a given record in the output. Within a view this is not normally required, since
@@ -4637,7 +4629,7 @@ Now you can search for a name while still getting the information in city order.
 
 The order the output can be reversed (equivalent to `ORDER BY field DESC` ) by
 using the `descending` query parameter. For more information, see
-[Ordering](couchbase-manual-ready.html#couchbase-views-writing-querying-ordering).
+[Ordering](#couchbase-views-writing-querying-ordering).
 
 <a id="couchbase-views-writing-sql-group"></a>
 
@@ -4684,11 +4676,11 @@ the `SUM()` function is used, the built-in `reduce()` function `_sum` can be
 used.
 
 An example of this map/reduce combination can be seen in [Built-in
-_sum](couchbase-manual-ready.html#couchbase-views-writing-reduce-sum).
+_sum](#couchbase-views-writing-reduce-sum).
 
 More complex grouping operations may require a custom reduce function. For more
 information, see [Writing Custom Reduce
-Functions](couchbase-manual-ready.html#couchbase-views-writing-reduce-custom).
+Functions](#couchbase-views-writing-reduce-custom).
 
 <a id="couchbase-views-writing-sql-paging"></a>
 
@@ -4719,8 +4711,8 @@ query provide the same basic functionality:
 ```
 
 Performance for high values of skip can be affected. See
-[Pagination](couchbase-manual-ready.html#couchbase-views-writing-querying-pagination)
-for some further examples of paging strategies.
+[Pagination](#couchbase-views-writing-querying-pagination) for some further
+examples of paging strategies.
 
 <a id="couchbase-views-writing-geo"></a>
 

@@ -5,7 +5,9 @@ Welcome to the new static website for Couchbase TechPubs. To create content, you
 ##Staging Site and Production Site
 
 - Staging: http://docs.pub.couchbase.com/
-- Production:
+- Production: docs.couchbase.com
+
+The Staging server is setup to get and produce content in stage branch of docs-ng. There is a second copy of the repo that will produce and publish the master branch of docs-ng to the public system at S3.
 
 ##Source Control
 
@@ -13,7 +15,22 @@ The entire new site as well as new content are in a public GitHub repo you can b
 
 - To edit content, branch this repo make your changes to existing files:
     [Github Repo for docs-ng](https://github.com/couchbaselabs/docs-ng)
+    
+- Then `git checkout stage` to work on the staging server-only content
+- To check the branch you are on use `git branch`
+- Commit your changes, `git add` and `git commit`
+- Push change to staging repo: `git push`
 - When you are ready, send a pull request so your changes can be merged and published
+
+- Tech Pubs will elevate any content from the stage repo to the master repo, resolving any merge conflicts if needed:
+
+        git checkout stage
+        git pull #make sure stage repo up to date
+        git checkout master
+        git pull #make sure mater repo up to date
+        git merge stage #to merge staged changes to master branch
+        git push #to push to master
+        
 
 ##New Guides and New Major Versions
 

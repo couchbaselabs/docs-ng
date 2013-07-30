@@ -4,7 +4,7 @@ Couchbase Server includes a number of command-line tools that can be used to
 manage and monitor a Couchbase Server cluster or server. Most operations
 correspond to Couchbase REST API requests, and were applicable we
 cross-reference these REST reqeusts: [REST API for
-Administration](couchbase-manual-ready.html#couchbase-admin-restapi).
+Administration](#couchbase-admin-restapi).
 
 Couchbase command-line tools are described individually within the following
 sections:
@@ -77,8 +77,7 @@ couchbase-cli COMMAND CLUSTER [OPTIONS]
 
 Where:
 
- * `COMMAND` is a command from
-   [](couchbase-manual-ready.html#couchbase-admin-cmdline-couchbase-commands)
+ * `COMMAND` is a command from [](#couchbase-admin-cmdline-couchbase-commands)
 
  * `CLUSTER` is a cluster specification. You can use either:
 
@@ -423,8 +422,8 @@ install:
 **Mac OS X** | `/Applications/Couchbase \Server.app/Contents/Resources/couchbase-core/bin/cbstats`
 
 [You can use this utility to getcouchbase node
-statistics](couchbase-manual-ready.html#couchbase-monitoring-nodestats). The
-general format for using it is:
+statistics](#couchbase-monitoring-nodestats). The general format for using it
+is:
 
 
 ```
@@ -788,7 +787,7 @@ Where `COMMAND` is one of the following commands:
 
    Set the value for a configurable parameter within the persistence system. For
    more information, see [cbflushctlset
-   Command](couchbase-manual-ready.html#couchbase-admin-cmdline-cbflushctl-set).
+   Command](#couchbase-admin-cmdline-cbflushctl-set).
 
 Note that for each command you must specify the bucketname (and bucket password
 if configured) to configure the appropriate bucket. If you want to set the

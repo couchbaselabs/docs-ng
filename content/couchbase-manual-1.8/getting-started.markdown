@@ -3,24 +3,21 @@
 To start using Couchbase Server, you need to follow these steps:
 
  1. Prepare your target system by ensuring that you meet the system requirements.
-    See
-    [Preparation](couchbase-manual-ready.html#couchbase-getting-started-prepare).
+    See [Preparation](#couchbase-getting-started-prepare).
 
  1. Install Couchbase Server using one of the available binary distributions. See
-    [Installing Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-install).
+    [Installing Couchbase Server](#couchbase-getting-started-install).
 
  1. For more information on Upgrading Couchbase Server from a previous version, see
-    [Upgrading to Couchbase Server
-    1.8](couchbase-manual-ready.html#couchbase-getting-started-upgrade).
+    [Upgrading to Couchbase Server 1.8](#couchbase-getting-started-upgrade).
 
  1. Test the installation by connecting to the Couchbase Server and storing some
     data using the native Memcached protocol. See [Testing Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-testing).
+    Server](#couchbase-getting-started-testing).
 
  1. Setup the new Couchbase Server system by completing the web-based setup
     instructions. See [Setting up Couchbase
-    Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
+    Server](#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-prepare"></a>
 
@@ -236,7 +233,7 @@ for instructions.
 
 To continue installation you must open a web browser and access the web
 administration interface. See [Setting up Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
+Server](#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-ubuntu"></a>
 
@@ -289,7 +286,7 @@ documentation for instructions.
 
 To continue installation you must open a web browser and access the web
 administration interface. See [Setting up Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
+Server](#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-win"></a>
 
@@ -348,8 +345,7 @@ Couchbase Server setup window.
 ![](images/win-install-5.png)
 
 To continue installation you should follow the server setup instructions. See
-[Setting up Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-setup).
+[Setting up Couchbase Server](#couchbase-getting-started-setup).
 
 <a id="couchbase-getting-started-install-win-unattended"></a>
 
@@ -409,13 +405,12 @@ interface. Instead, the Couchbase application icon will appear in the menubar on
 the right-hand side. If there is no active configuration for Couchbase, then the
 Couchbase Web Console will be opened and you will be asked to complete the
 Couchbase Server setup process. See [Setting up Couchbase
-Server](couchbase-manual-ready.html#couchbase-getting-started-setup) for more
-details.
+Server](#couchbase-getting-started-setup) for more details.
 
 The Couchbase application runs as a background application. Clicking on the
 menubar gives you a list of operations that can be performed. For more
 information, see [Startup and Shutdown on Mac OS
-X](couchbase-manual-ready.html#couchbase-admin-basics-running-macosx).
+X](#couchbase-admin-basics-running-macosx).
 
 The command line tools are included within the Couchbase Server application
 directory. You can access them within Terminal by using the full location of the
@@ -441,8 +436,7 @@ A known issue exists when performing a rolling upgrade from Membase Server 1.7.1
 to Couchbase Server 1.8. The problem manifests itself as the rebalance process
 failing to complete effectively. You should perform an offline (in-place)
 upgrade. See [Offline (in-place) Upgrade
-Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-offline),
-for more information.
+Process](#couchbase-getting-started-upgrade-offline), for more information.
 
 The upgrade process for a cluster can be performed in two ways:
 
@@ -459,14 +453,13 @@ The upgrade process for a cluster can be performed in two ways:
    can be a more effective method of upgrading.
 
    For full instructions on performing an online upgrade, see [Online (rolling)
-   Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
+   Upgrade Process](#couchbase-getting-started-upgrade-online).
 
    Starting with Couchbase Server 1.8.1, you can also make use of the swap
    rebalance functionality to perform an online upgrade with reduced performance
    impact on your cluster. For more information, see [Upgrading to Couchbase Server
    1.8.1 Using Swap
-   Rebalance](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online-swap-1-8-1).
+   Rebalance](#couchbase-getting-started-upgrade-online-swap-1-8-1).
 
  * **Offline (in-place) Upgrades**
 
@@ -480,8 +473,7 @@ The upgrade process for a cluster can be performed in two ways:
    applications that rely on it.
 
    For full instructions on performing an offline upgrade, see [Offline (in-place)
-   Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-offline).
+   Upgrade Process](#couchbase-getting-started-upgrade-offline).
 
 <a id="table-couchbase-getting-started-upgrade"></a>
 
@@ -493,8 +485,7 @@ Cluster must be Shutdown      | ✗                                             
 Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node | Entire Cluster is Upgraded at Once
 
 Before beginning any upgrade, a backup should be taken as a best practice, see
-[Backup and Restore with
-Couchbase](couchbase-manual-ready.html#couchbase-backup-restore).
+[Backup and Restore with Couchbase](#couchbase-backup-restore).
 
 For information on backing up Membase 1.7.x, see
 [](http://www.couchbase.com/docs/membase-manual-1.7/membase-backup_1-7-0_backup.html).
@@ -544,17 +535,15 @@ To perform an online upgrade of your cluster:
 
  1. On the node to be upgraded, stop the Couchbase Server process. For guidance on
     specific platforms, see [Startup and Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+    Server](#couchbase-admin-basics-running).
 
  1. With Couchbase Server shutdown on the node, you can perform a standard node
     upgrade to the new version of Couchbase Server. See [Node Upgrade
-    Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual)
-    for details.
+    Process](#couchbase-getting-started-upgrade-individual) for details.
 
  1. Couchbase Server should be started automatically after the upgrade. If not,
     restart the Couchbase Server process, using the methods described in [Startup
-    and Shutdown of Couchbase
-    Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+    and Shutdown of Couchbase Server](#couchbase-admin-basics-running).
 
  1. With the node upgraded, you need to add the node back to the cluster.
 
@@ -584,8 +573,7 @@ Swap rebalance functionality is available in Couchbase Server 1.8.1.
 You can make use of the Swap Rebalance feature to easily and simply upgrade your
 servers to Couchbase Server 1.8.1, without reducing the performance of your
 cluster. For background information on the improvements with swap rebalance, see
-[Swap
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-swap).
+[Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
 
 You must apply a patch to enable the swap rebalance functionality during
 upgrade. See step 3 below.
@@ -730,7 +718,7 @@ nodes in your cluster, after the initial rebalance, you can add three new nodes,
 and remove your existing three 1.8.0 nodes in one rebalance operation.
 
 For more information on swap rebalance, see [Swap
-Rebalance](couchbase-manual-ready.html#couchbase-admin-tasks-addremove-rebalance-swap).
+Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
 
 Once complete, your entire cluster should now be running Couchbase Server 1.8.1.
 
@@ -745,11 +733,11 @@ process on each of the nodes, and bring your cluster and application back up
 again.
 
 It's important to ensure that your disk write queue ( [Disk Write
-Queue](couchbase-manual-ready.html#couchbase-monitoring-diskwritequeue) ) has
-been completely drained before shutting down the cluster service. This will
-ensure that all data has been persisted to disk and will be available after the
-upgrade. It is a best practice to turn off the application and allow the queue
-to drain prior to beginning the upgrade.
+Queue](#couchbase-monitoring-diskwritequeue) ) has been completely drained
+before shutting down the cluster service. This will ensure that all data has
+been persisted to disk and will be available after the upgrade. It is a best
+practice to turn off the application and allow the queue to drain prior to
+beginning the upgrade.
 
 To upgrade an existing cluster using the offline method:
 
@@ -769,19 +757,18 @@ To upgrade an existing cluster using the offline method:
 
        On the node to be upgraded, stop the Couchbase Server process. For guidance on
        specific platforms, see [Startup and Shutdown of Couchbase
-       Server](couchbase-manual-ready.html#couchbase-admin-basics-running).
+       Server](#couchbase-admin-basics-running).
 
      * With Couchbase Server shutdown on the node, you can perform a standard node
        upgrade to the new version of Couchbase Server. See [Node Upgrade
-       Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-individual)
-       for details.
+       Process](#couchbase-getting-started-upgrade-individual) for details.
 
     Couchbase Server should be started automatically on each node as you perform the
     upgrade.
 
  1. As the cluster is warming up again, you can monitor the status of the warmup
     process to determine when you can switch on your application. See [Monitoring
-    startup (warmup)](couchbase-manual-ready.html#couchbase-monitoring-startup).
+    startup (warmup)](#couchbase-monitoring-startup).
 
 Once the cluster has been started up again, you can re-enable your application
 on the upgraded cluster.
@@ -797,8 +784,7 @@ remains the same.
  1. Download `couchbase-server-edition_and_arch_version`.
 
  1. Backup the node data. To backup an existing Couchbase Server installation, use
-    `cbbackup`. See [Backing
-    Up](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
+    `cbbackup`. See [Backing Up](#couchbase-backup-restore-backup-cbbackup).
 
  1. Backup the node specific configuration files. While the upgrade script will
     perform a backup of the configuration and data files, it is our recommended best
@@ -835,8 +821,7 @@ remains the same.
     If you are upgrading from Membase Server 1.7.2 or Couchbase Server 1.8.0 to
     Couchbase Server 1.8.1 you must perform additional steps. See [Upgrading from
     Membase Server 1.7.2 and Couchbase Server 1.8.0 to Couchbase Server 1.8.1
-    (Windows
-    only)](couchbase-manual-ready.html#couchbase-getting-started-upgrade-1-8-1-windows).
+    (Windows only)](#couchbase-getting-started-upgrade-1-8-1-windows).
 
     The Couchbase Server Windows installer will upgrade your server installation
     using the same installation location. For example, if you have installed
@@ -863,13 +848,12 @@ upgrade correctly. The correct steps are:
     existing Membase Server 1.7.x installation, see [Membase Server 1.7
     Backup](http://www.couchbase.com/docs/membase-manual-1.7/membase-backup_1-7-0_backup.html).
     For Couchbase Server 1.8.0, see [Backing
-    Up](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
+    Up](#couchbase-backup-restore-backup-cbbackup).
 
  1. If you are upgradeding from Membase Server 1.7.2, stop Membase Server. For
     Couchbase Server 1.8.0, stop Couchbase Server. For more information, see
-    [Startup and Shutdown on
-    Windows](couchbase-manual-ready.html#couchbase-admin-basics-running-windows).
-    Wait until the server process has stopped completely before continuing.
+    [Startup and Shutdown on Windows](#couchbase-admin-basics-running-windows). Wait
+    until the server process has stopped completely before continuing.
 
  1. Double-click on the downloaded package installer for Couchbase Server 1.8.1. The
     initial execution will update the registry information in preparation for the
@@ -900,7 +884,7 @@ Step-by-step instructions are probided below:
     1.7.x (see [Backup and Restore in Membase Server
     1.7.x](http://www.couchbase.com/docs/membase-manual-1.7/membase-backup-restore.html)
     ). If you are upgrading Couchbase Server, use `cbbackup`. See [Backing
-    Up](couchbase-manual-ready.html#couchbase-backup-restore-backup-cbbackup).
+    Up](#couchbase-backup-restore-backup-cbbackup).
 
  1. Backup the node specific configuration files. While the upgrade script will
     perform a backup of the configuration and data files, it is our recommended best
@@ -969,8 +953,7 @@ Step-by-step instructions are probided below:
 
 After every node has been upgraded and restarted, and you can monitor its
 progress of "warming up". For more details, see [Monitoring startup
-(warmup)](couchbase-manual-ready.html#couchbase-monitoring-startup). Turn your
-application back on.
+(warmup)](#couchbase-monitoring-startup). Turn your application back on.
 
 <a id="couchbase-getting-started-upgrade-manual"></a>
 
@@ -1141,8 +1124,7 @@ Enterprise Edition, you can use two methods:
    be repeated until the entire cluster is using the Enterprise Edition.
 
    For more information on performing rolling upgrades, see [Online (rolling)
-   Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-online).
+   Upgrade Process](#couchbase-getting-started-upgrade-online).
 
  * Perform an offline upgrade
 
@@ -1151,8 +1133,7 @@ Enterprise Edition, you can use two methods:
    Edition. The data files will be retained, and the cluster can be restarted.
 
    For more information on performing rolling upgrades, see [Offline (in-place)
-   Upgrade
-   Process](couchbase-manual-ready.html#couchbase-getting-started-upgrade-offline).
+   Upgrade Process](#couchbase-getting-started-upgrade-offline).
 
 You should use the same version number when performing the migration process to
 prevent version differences causing issues during the upgrade process.
@@ -1181,8 +1162,7 @@ by using any of the following methods:
    Couchbase Server.
 
    For more information on using the REST API to provision and setup your node, see
-   [Provisioning a
-   Node](couchbase-manual-ready.html#couchbase-admin-restapi-provisioning).
+   [Provisioning a Node](#couchbase-admin-restapi-provisioning).
 
  * **Using Web Setup**
 
@@ -1261,9 +1241,8 @@ can also use an IP address or, if you are on the same machine,
      * **Bucket Type**
 
        Specifies the type of the bucket to be created, either `Memcached` or
-       `Couchbase`. See
-       [Buckets](couchbase-manual-ready.html#couchbase-introduction-architecture-buckets)
-       for more information.
+       `Couchbase`. See [Buckets](#couchbase-introduction-architecture-buckets) for
+       more information.
 
        The remainder of the options differ based on your selection.
 
@@ -1293,7 +1272,7 @@ can also use an IP address or, if you are on the same machine,
           will change as nodes are added/removed.
 
           For more information, see [Memory
-          Quotas](couchbase-manual-ready.html#couchbase-introduction-architecture-quotas).
+          Quotas](#couchbase-introduction-architecture-quotas).
 
     Click `Next` to continue the setup process.
 
@@ -1380,11 +1359,11 @@ To verify your installation works for clients, you can use either the
 Python Client SDK to communicate with the cluster, checking both the cluster
 administration port and data update ports. For more information, see [Testing
 Couchbase Server using
-cbworkloadgen](couchbase-manual-ready.html#couchbase-getting-started-testing-cbworkloadgen).
+cbworkloadgen](#couchbase-getting-started-testing-cbworkloadgen).
 
 Using `telnet` only checks the Memcached compatibility ports and the memcached
 text-only protocol. For more information, see [Testing Couchbase Server using
-Telnet](couchbase-manual-ready.html#couchbase-getting-started-testing-telnet).
+Telnet](#couchbase-getting-started-testing-telnet).
 
 <a id="couchbase-getting-started-testing-cbworkloadgen"></a>
 
@@ -1497,14 +1476,14 @@ All of the Memcached protocols commands will work through Telnet.
 ## Next Steps
 
  * For basic instructions on using your Couchbase Server installation, see
-   [Administration Basics](couchbase-manual-ready.html#couchbase-admin-basics).
+   [Administration Basics](#couchbase-admin-basics).
 
  * For information on deploying and building your Couchbase Server cluster, see
-   [Deployment Strategies](couchbase-manual-ready.html#couchbase-deployment).
+   [Deployment Strategies](#couchbase-deployment).
 
  * For instructions on how to use the Couchbase Web Console to manage your
    Couchbase Server installation, see [Web Console for
-   Administration](couchbase-manual-ready.html#couchbase-admin-web-console).
+   Administration](#couchbase-admin-web-console).
 
    You should create buckets for each of the applications you intend to deploy.
 

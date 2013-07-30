@@ -6,44 +6,39 @@ installation. The Web Console provides the following tabs:
  * `Cluster Overview` : a quick guide to the status of your Couchbase cluster.
 
    For more information, read [Viewing Cluster
-   Summary](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview).
+   Summary](#couchbase-admin-web-console-cluster-overview).
 
  * `Data Buckets` : view and update data bucket settings. You can create new
    buckets, edit existing settings, and see detailed statistics on the bucket.
 
-   See [Viewing Data
-   Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
+   See [Viewing Data Buckets](#couchbase-admin-web-console-data-buckets).
 
  * `Server Nodes` : shows your active nodes, their configuration and activity.
    Under this tab you can also fail over nodes and remove them from your cluster,
    view server-specific performance, and monitor cluster statistics.
 
-   Read [Viewing Server
-   Nodes](couchbase-manual-ready.html#couchbase-admin-web-console-server-nodes).
+   Read [Viewing Server Nodes](#couchbase-admin-web-console-server-nodes).
 
  * `Views` : is were you can create and manage your views functions for indexing
    and querying data. Here you can also preview results from views.
 
-   See [Using the Views Editor](couchbase-manual-ready.html#couchbase-views-editor)
-   for the views editor in Web Console. For more information on views in general,
-   see [Views and Indexes](couchbase-manual-ready.html#couchbase-views).
+   See [Using the Views Editor](#couchbase-views-editor) for the views editor in
+   Web Console. For more information on views in general, see [Views and
+   Indexes](#couchbase-views).
 
  * `Documents` : you can be create and edit documents under this tab. This enables
    you to view and modify documents that have been stored in a data bucket and can
    be useful when you work with views.
 
-   See [Using the Document
-   Editor](couchbase-manual-ready.html#couchbase-admin-web-console-documents).
+   See [Using the Document Editor](#couchbase-admin-web-console-documents).
 
  * `Log` : displays errors and problems.
 
-   See [Log](couchbase-manual-ready.html#couchbase-admin-web-console-log) for more
-   information.
+   See [Log](#couchbase-admin-web-console-log) for more information.
 
  * `Settings` : under this tab you can configure the console and cluster settings.
 
-   See [Settings](couchbase-manual-ready.html#couchbase-admin-web-console-settings)
-   for more information.
+   See [Settings](#couchbase-admin-web-console-settings) for more information.
 
 In addition to these sections of the Couchbase Web Console, there are additional
 systems within the web console, including:
@@ -52,18 +47,17 @@ systems within the web console, including:
 
    Update notifications indicates when there is an update available for the
    installed Couchbase Server. See [Updating
-   Notifications](couchbase-manual-ready.html#couchbase-admin-web-console-update-notifications)
-   for more information on this feature.
+   Notifications](#couchbase-admin-web-console-update-notifications) for more
+   information on this feature.
 
  * `Warnings and Alerts`
 
    Warnings and alerts in Web Console will notify you when there is an issue that
    needs to be addressed within your cluster. The warnings and alerts can be
-   configured through
-   [Settings](couchbase-manual-ready.html#couchbase-admin-web-console-settings).
+   configured through [Settings](#couchbase-admin-web-console-settings).
 
    For more information on the warnings and alerts, see [Warnings and
-   Alerts](couchbase-manual-ready.html#couchbase-admin-web-console-alerting).
+   Alerts](#couchbase-admin-web-console-alerting).
 
 <a id="couchbase-admin-web-console-cluster-overview"></a>
 
@@ -77,11 +71,9 @@ activity.
 ![](images/web-console-cluster-overview.png)
 
 [[[The page is divided into
-`Cluster`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-cluster),
-`Buckets`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-buckets),
-and
-`Servers`](couchbase-manual-ready.html#couchbase-admin-web-console-cluster-overview-servers)
-sections.
+`Cluster`](#couchbase-admin-web-console-cluster-overview-cluster),
+`Buckets`](#couchbase-admin-web-console-cluster-overview-buckets), and
+`Servers`](#couchbase-admin-web-console-cluster-overview-servers) sections.
 
 <a id="couchbase-admin-web-console-cluster-overview-cluster"></a>
 
@@ -312,7 +304,7 @@ entire cluster.
 ![](images/web-console-server-specific.png)
 
 For more information on the data bucket statistics, see [Viewing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets).
+Buckets](#couchbase-admin-web-console-data-buckets).
 
 <a id="couchbase-admin-web-console-server-states"></a>
 
@@ -370,7 +362,7 @@ following information is provided in each column:
  * `Bucket name` is the given name for the bucket. Clicking on the bucket name
    takes you to the individual bucket statistics page. For more information, see
    [Individual Bucket
-   Monitoring](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-individual).
+   Monitoring](#couchbase-admin-web-console-data-buckets-individual).
 
  * `RAM Usage/Quota` shows the amount of RAM used (for active objects) against the
    configure bucket size.
@@ -387,20 +379,17 @@ following information is provided in each column:
 
  * Clicking the `Bucket Name` opens the basic bucket information summary. For more
    information, see [Bucket
-   Information](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-info).
+   Information](#couchbase-admin-web-console-data-buckets-info).
 
  * Clicking the `Documents` button will take you to a list of objects identified as
    parseable documents. See [Using the Document
-   Editor](couchbase-manual-ready.html#couchbase-admin-web-console-documents) for
-   more information.
+   Editor](#couchbase-admin-web-console-documents) for more information.
 
  * The `Views` button allows you to create and manage views on your stored objects.
-   For more information, see [Using the Views
-   Editor](couchbase-manual-ready.html#couchbase-views-editor).
+   For more information, see [Using the Views Editor](#couchbase-views-editor).
 
 To create a new data bucket, click the `Create New Data Bucket`. See [Creating
-and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit)
+and Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit)
 for details on creating new data buckets.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit"></a>
@@ -430,8 +419,7 @@ as shown in the figure below.
  * `Bucket Type`
 
    Specifies the type of the bucket to be created, either `Memcached` or
-   `Couchbase`. See [Data
-   Storage](couchbase-manual-ready.html#couchbase-introduction-architecture-buckets)
+   `Couchbase`. See [Data Storage](#couchbase-introduction-architecture-buckets)
    for more information.
 
  * `Access Control`
@@ -477,13 +465,13 @@ as shown in the figure below.
    Both data and index information stored on disk can become fragmented. Compaction
    rebuilds the stored data on index to reduce the fragmentation of the data. For
    more information on database and view compaction, see [Database and View
-   Compaction](couchbase-manual-ready.html#couchbase-admin-tasks-compaction).
+   Compaction](#couchbase-admin-tasks-compaction).
 
    You can opt to override the default auto compaction settings for this individual
    bucket. Default settings are configured through the `Settings` menu. For more
    information on setting the default autocompaction parameters, see [Enabling
-   Auto-Compaction](couchbase-manual-ready.html#couchbase-admin-web-console-settings-autocompaction).
-   If you override the default autocompaction settings, you can configure the same
+   Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction). If you
+   override the default autocompaction settings, you can configure the same
    parameters, but the limits will affect only this bucket.
 
  * **Flush**
@@ -595,11 +583,9 @@ all the graphs and statistics display within the web console.
 
    The `Server Selection` option enables you to limit the display to an individual
    server or entire cluster. You can select an individual node, which displays the
-   [Viewing Server
-   Nodes](couchbase-manual-ready.html#couchbase-admin-web-console-server-nodes) for
-   that node. Selecting `All Server Nodes` shows the [Viewing Data
-   Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets)
-   page.
+   [Viewing Server Nodes](#couchbase-admin-web-console-server-nodes) for that node.
+   Selecting `All Server Nodes` shows the [Viewing Data
+   Buckets](#couchbase-admin-web-console-data-buckets) page.
 
  * `Interval Selection`
 
@@ -634,44 +620,43 @@ for Couchbase bucket types.
 
    The summary section provides a quick overview of the cluster activity. For more
    information, see [Bucket Monitoring — Summary
-   Statistics](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-summary).
+   Statistics](#couchbase-admin-web-console-data-buckets-summary).
 
  * **vBucket Resources**
 
    This section provides detailed information on the vBucket resources across the
    cluster, including the active, replica and pending operations. For more
    information, see [Monitoring vBucket
-   Resources](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-vbucket).
+   Resources](#couchbase-admin-web-console-data-buckets-vbucket).
 
  * **Disk Queues**
 
    Disk queues show the activity on the backend disk storage used for persistence
    within a data bucket. The information displayed shows the active, replica and
    pending activity. For more information, see [Monitoring Disk
-   Queues](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-diskqueues).
+   Queues](#couchbase-admin-web-console-data-buckets-diskqueues).
 
  * **TAP Queues**
 
    The TAP queues section provides information on the activity within the TAP
    queues across replication, rebalancing and client activity. For more
    information, see [Monitoring TAP
-   Queues](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-tapqueues).
+   Queues](#couchbase-admin-web-console-data-buckets-tapqueues).
 
  * **XDCR Destination**
 
    The XDCR Destination section show you statistical information about the Cross
    Datacenter Replication (XDCR), if XDCR has been configured. For more information
-   on XDCR, see [Cross Datacenter Replication
-   (XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr). For more
-   information on the available statistics, see [Monitoring Outgoing
-   XDCR](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-xdcr).
+   on XDCR, see [Cross Datacenter Replication (XDCR)](#couchbase-admin-tasks-xdcr).
+   For more information on the available statistics, see [Monitoring Outgoing
+   XDCR](#couchbase-admin-web-console-data-buckets-xdcr).
 
  * **View Stats**
 
    The View Stats section allows you to monitor the statistics for each production
    view configured within the bucket or system. For more information on the
    available statistics, see [Monitoring View
-   Statistics](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-views).
+   Statistics](#couchbase-admin-web-console-data-buckets-views).
 
  * **Top Keys**
 
@@ -679,8 +664,7 @@ for Couchbase bucket types.
    bucket.
 
 For Memcached bucket types, the Memcached statistic summary is provided. See
-[Bucket Memcached
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-memcached).
+[Bucket Memcached Buckets](#couchbase-admin-web-console-data-buckets-memcached).
 
 <a id="couchbase-admin-web-console-data-buckets-summary"></a>
 
@@ -1043,7 +1027,7 @@ The Memcached statistics are:
 The Outgoing XDCR shows the XDCR operations that are supporting cross datacenter
 replication from the current cluster to a destination cluster. For more
 information on XDCR, see [Cross Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+(XDCR)](#couchbase-admin-tasks-xdcr).
 
 You can monitor the current status for all active replications in the `Ongoing
 Replications` section under the XDCR tab:
@@ -1133,8 +1117,7 @@ Here are the meanings for the outgoing XDCR statistics:
 
 The Incoming XDCR section shows the XDCR operations that are coming into to the
 current cluster from a remote cluster. For more information on XDCR, see [Cross
-Datacenter Replication
-(XDCR)](couchbase-manual-ready.html#couchbase-admin-tasks-xdcr).
+Datacenter Replication (XDCR)](#couchbase-admin-tasks-xdcr).
 
 If a cluster is a destination cluster, you will also see this information in
 Couchbase Web Console for the specific bucket. When you use XDCR,
@@ -1161,7 +1144,7 @@ Couchbase Web Console for the specific bucket. When you use XDCR,
 The View statistics show information about individual design documents within
 the selected bucket. One block of stats will be shown for each production-level
 design document. For more information on Views, see [Views and
-Indexes](couchbase-manual-ready.html#couchbase-views).
+Indexes](#couchbase-views).
 
 
 ![](images/web-console-server-stats-views.png)
@@ -1199,11 +1182,10 @@ The individual elements of this interface are:
 
  * The `Create Development View` enables you to create a new view either within the
    current design document, or within a new document. See [Creating and Editing
-   Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
+   Views](#couchbase-views-editor-createedit).
 
  * You can switch between `Production Views` and `Development Views`. See
-   [Development and Production
-   Views](couchbase-manual-ready.html#couchbase-views-types) for more information.
+   [Development and Production Views](#couchbase-views-types) for more information.
 
  * The final section provides a list of the design documents, and within each
    document, each defined view.
@@ -1217,23 +1199,20 @@ The individual elements of this interface are:
       design document.
 
     * `Add Spatial View` creates a new spatial view within the corresponding design
-      document. See [Creating and Editing
-      Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
+      document. See [Creating and Editing Views](#couchbase-views-editor-createedit).
 
     * `Add View` creates a new view within the corresponding design document. See
-      [Creating and Editing
-      Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
+      [Creating and Editing Views](#couchbase-views-editor-createedit).
 
     * `Publish` your design document (and all of the defined views) as a production
-      design document. See [Publishing
-      Views](couchbase-manual-ready.html#couchbase-views-editor-publishing).
+      design document. See [Publishing Views](#couchbase-views-editor-publishing).
 
     * For each individual view listed:
 
        * `Edit`, or clicking the view name
 
          Opens the view editor for the current view name, see [Creating and Editing
-         Views](couchbase-manual-ready.html#couchbase-views-editor-createedit).
+         Views](#couchbase-views-editor-createedit).
 
        * `Delete`
 
@@ -1256,9 +1235,8 @@ The individual elements of this interface are:
     * For each individual view:
 
        * By clicking the view name, or the `Show` button, execute and examine the results
-         of a production view. See [Getting View
-         Results](couchbase-manual-ready.html#couchbase-views-editor-view) for more
-         information.
+         of a production view. See [Getting View Results](#couchbase-views-editor-view)
+         for more information.
 
 <a id="couchbase-views-editor-createedit"></a>
 
@@ -1268,8 +1246,7 @@ You can create a new design document and/or view by clicking the `Create
 Development View` button within the `Views` section of the Web Console. If you
 are creating a new design document and view you will be prompted to supply both
 the design document and view name. To create or edit your documents using the
-REST API, see [Design Document REST
-API](couchbase-manual-ready.html#couchbase-views-designdoc-api).
+REST API, see [Design Document REST API](#couchbase-views-designdoc-api).
 
 To create a new view as part of an existing design document, click the `Add
 View` button against the corresponding design document.
@@ -1295,7 +1272,7 @@ database to help you write your view functions and so that you can compare the
 document content with the generated view output. Clicking the `Preview a Random
 Document` will randomly select a document from the database. Clicking `Edit
 Document` will take you to the Views Editor, see [Using the Document
-Editor](couchbase-manual-ready.html#couchbase-admin-web-console-documents)
+Editor](#couchbase-admin-web-console-documents)
 
 Documents stored in the database that are identified as Non-JSON may be
 displayed as binary, or text-encoded binary, within the UI.
@@ -1304,7 +1281,7 @@ Document metadata is displayed in a separate box on the right hand side of the
 associated document. This shows the metadata for the displayed document, as
 supplied to the `map()` as the second argument to the function. For more
 information on writing views and creating the `map()` and `reduce()` functions,
-see [Writing Views](couchbase-manual-ready.html#couchbase-views-writing).
+see [Writing Views](#couchbase-views-writing).
 
 With the View Code section, you should enter the function that you want to use
 for the `map()` and `reduce()` portions of the view. The map function is
@@ -1331,7 +1308,7 @@ the view output within the table below. You can configure the different
 parameters by clicking the arrow next to `Filter Results`. This shows the view
 selection criteria, as seen in the figure below. For more information on
 querying and selecting information from a view, see [Querying
-Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
+Views](#couchbase-views-writing-querying).
 
 
 ![](images/views-filters.png)
@@ -1339,7 +1316,7 @@ Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
 Clicking on the `Filter Results` query string will open a new window containing
 the raw, JSON formatted, version of the View results. To access the view results
 using the REST API, see [Querying Using the REST
-API](couchbase-manual-ready.html#couchbase-views-querying-rest-api).
+API](#couchbase-views-querying-rest-api).
 
 By default, Views during the development stage are executed only over a subset
 of the full document set. This is indicated by the `Development Time Subset`
@@ -1357,7 +1334,7 @@ This filter provides similar options that are available to clients for filtering
 results.
 
 For more information on the filter options, see [Getting View
-Results](couchbase-manual-ready.html#couchbase-views-editor-view).
+Results](#couchbase-views-editor-view).
 
 <a id="couchbase-views-editor-publishing"></a>
 
@@ -1411,15 +1388,14 @@ Results`. You can delete existing filters, and add new filters using the
 embedded selection windows. Click `Show Results` when you have finished
 selecting filter values. The filter values you specify are identical to those
 available when querying from a standard client library. For more information,
-see [Querying
-Views](couchbase-manual-ready.html#couchbase-views-writing-querying).
+see [Querying Views](#couchbase-views-writing-querying).
 
 Due to the nature of range queries, a special character may be added to query
 specifications when viewing document ranges. The character may not show up in
 all web browsers, and may instead appear instead as an invisible, but
 selectable, character. For more information on this character and usage, see
 [Partial Selection and Key
-Ranges](couchbase-manual-ready.html#couchbase-views-writing-querying-selection-partial).
+Ranges](#couchbase-views-writing-querying-selection-partial).
 
 <a id="couchbase-admin-web-console-documents"></a>
 
@@ -1494,7 +1470,7 @@ provided.
 ![](images/web-console-server-settings-updatenotifications.png)
 
 For more information on how Update Notifications work, see [Updating
-Notifications](couchbase-manual-ready.html#couchbase-admin-web-console-update-notifications).
+Notifications](#couchbase-admin-web-console-update-notifications).
 
 <a id="couchbase-admin-web-console-settings-autofailover"></a>
 
@@ -1511,7 +1487,7 @@ it the `Timeout` box. The default timeout is 30 seconds.
 ![](images/web-console-server-settings-autofailover.png)
 
 For more information on Auto-Failover, see [Using Automatic
-Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
+Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-alerts"></a>
 
@@ -1621,7 +1597,7 @@ The available settings are:
 ![](images/web-console-server-settings-alerts.png)
 
 For more information on Auto-Failover, see [Using Automatic
-Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
+Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-autocompaction"></a>
 
@@ -1630,7 +1606,7 @@ Failover](couchbase-manual-ready.html#couchbase-admin-tasks-failover-automatic).
 The `Auto-Compaction` tab configures the default auto-compaction settings for
 all the databases. These can be overridden using per-bucket settings available
 within [Creating and Editing Data
-Buckets](couchbase-manual-ready.html#couchbase-admin-web-console-data-buckets-createedit).
+Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 
 
 ![](images/web-console-server-settings-autocompact.png)
@@ -1670,9 +1646,9 @@ The settings tab sets the following default parameters:
    throughput of your disk.
 
 For more information on compaction, see [Database and View
-Compaction](couchbase-manual-ready.html#couchbase-admin-tasks-compaction). For
-information on how auto-compaction operates, see [Auto-Compaction
-Configuration](couchbase-manual-ready.html#couchbase-admin-tasks-compaction-autocompaction).
+Compaction](#couchbase-admin-tasks-compaction). For information on how
+auto-compaction operates, see [Auto-Compaction
+Configuration](#couchbase-admin-tasks-compaction-autocompaction).
 
 <a id="couchbase-admin-web-console-settings-samplebuckets"></a>
 
@@ -1680,8 +1656,7 @@ Configuration](couchbase-manual-ready.html#couchbase-admin-tasks-compaction-auto
 
 The `Sample Buckets` tab enables you to install the sample bucket data if the
 data has not already been loaded in the system. For more information on the
-sample data available, see [Couchbase Sample
-Buckets](couchbase-manual-ready.html#couchbase-sampledata).
+sample data available, see [Couchbase Sample Buckets](#couchbase-sampledata).
 
 
 ![](images/web-console-server-settings-sample.png)

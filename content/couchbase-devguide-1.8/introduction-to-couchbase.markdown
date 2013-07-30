@@ -169,7 +169,7 @@ How this actually works is a slightly more advanced topic and is mainly relevant
 for those developers who want to create their own Couchbase SDK. This topic is
 more relevant for developers who want to create a Couchbase SDK for a language
 that is not yet supported. For more information, see, [Handling vBucketMap
-Information](couchbase-devguide-ready.html#couchbase-client-development-restjson-parsing-vbucketmap)
+Information](#couchbase-client-development-restjson-parsing-vbucketmap)
 
 <a id="couchbase-vs-RDMS"></a>
 
@@ -285,7 +285,7 @@ the option of having Couchbase automatically delete old sessions.
 
 Optimistic concurrency operations can be used to ensure concurrent web requests
 from a single user do not lose data. For more information, see [Check and Set
-(CAS)](couchbase-devguide-ready.html#cb-cas).
+(CAS)](#cb-cas).
 
 Many web application frameworks such as Ruby on Rails and various PHP and Python
 web frameworks also provide pre-integrated support for storing session data

@@ -708,7 +708,7 @@ look like this:
 When you perform a lookup, you could also do a `multi-get` on all items that are
 keyed `category::ales`. This way you can retrieve all primary records for ales.
 For more information about multi-get, see [Retrieving Multiple
-Keys](couchbase-devguide-ready.html#cb-get-multiple)
+Keys](#cb-get-multiple)
 
 <a id="example-storage-documents"></a>
 

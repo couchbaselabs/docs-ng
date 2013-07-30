@@ -7,10 +7,10 @@ addition to the overall cluster sizing and distribution configuration.
 
 For more information on the basic design and configuration of your Couchbase
 Server cluster, see [Cluster Design
-Considerations](couchbase-manual-ready.html#couchbase-bestpractice-clusterdesign).
+Considerations](#couchbase-bestpractice-clusterdesign).
 
 If you are hosting in the cloud, see [Using Couchbase in the
-Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud).
+Cloud](#couchbase-bestpractice-cloud).
 
 <a id="couchbase-bestpractice-clusterdesign"></a>
 
@@ -69,8 +69,7 @@ Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud).
    [A smart client, that understands the cluster topology, or a client side Moxi is
    always preferred over a server side Moxi for performance reasons. Read more
    about clients [here](http://www.couchbase.com/develop). Read more about
-   different Deployment
-   Strategieshere](couchbase-manual-ready.html#couchbase-deployment).
+   different Deployment Strategieshere](#couchbase-deployment).
 
    Using a Server-side proxy configuration is not recommended for production use.
    You should use either a smart client or the client-side proxy configuration
@@ -451,7 +450,7 @@ less data. By distributing the data further, it will make the impact of losing a
 single node (which could be fairly common) even less.
 
 Also, see the best practices for [Using Couchbase in the
-Cloud](couchbase-manual-ready.html#couchbase-bestpractice-cloud).
+Cloud](#couchbase-bestpractice-cloud).
 
 <a id="couchbase-bestpractice-deployment"></a>
 
@@ -504,8 +503,7 @@ effectively, there are a number of different statistics that you should monitor
 to diagnose and identify problems. Some of these key statistics include:
 
 [The 'watermark' determines when it is necessary to start freeing up available
-memory. Read more about this
-concepthere](couchbase-manual-ready.html#couchbase-architecture-diskstorage).
+memory. Read more about this concepthere](#couchbase-architecture-diskstorage).
 Some important statistics related to water marks are:
 
  * High WaterMark ( `ep_mem_high_wat` )
@@ -669,7 +667,7 @@ auto-scaling and pre-packaged deployment. Check out the templates here
 We've also authored a number of AMIs for use within EC2 independent of
 RightScale. You can find these AMI by searching for 'couchbase' in Amazon's AWS
 Marketplace. For more information on using these AMIs, see [Deployment Using
-Amazon EC2 AMIs](couchbase-manual-ready.html#couchbase-deployment-ec2).
+Amazon EC2 AMIs](#couchbase-deployment-ec2).
 
 Some considerations to take into account when deploying within the cloud are:
 
@@ -960,8 +958,7 @@ them to the cluster. To add each node to your cluster, follow these steps:
 
  1. Once you have added your nodes, perform a rebalance operation to enable your
     nodes within the cluster. For more information, see [Rebalancing (Expanding and
-    Shrinking your
-    Cluster)](couchbase-manual-ready.html#couchbase-admin-tasks-addremove).
+    Shrinking your Cluster)](#couchbase-admin-tasks-addremove).
 
 **Changing your Couchbase Server Administrator password**
 
@@ -987,8 +984,7 @@ remote-shell> /opt/couchbase/bin/couchbase-cli cluster-init \
 This will configure the Administrator password for the cluster.
 
 For information on typical administration tasks, including failover, backup, and
-rebalancing, see [Administration
-Tasks](couchbase-manual-ready.html#couchbase-admin-tasks).
+rebalancing, see [Administration Tasks](#couchbase-admin-tasks).
 
 <a id="couchbase-deployment-vbucket-client"></a>
 

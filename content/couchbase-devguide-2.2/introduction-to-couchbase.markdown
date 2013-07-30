@@ -100,11 +100,10 @@ you write to Couchbase Server.
 When you use Couchbase Server as a store for JSON documents, you also get the
 ability to index and query your records. Couchbase Server 2.1.0 provides a
 JavaScript-based query engine you use to find records based on field values. For
-more information, see [Finding Data with
-Views](couchbase-devguide-ready.html#indexing-querying-data).
+more information, see [Finding Data with Views](#indexing-querying-data).
 
 For more information about working with JSON documents and Couchbase, see,
-[Modeling Documents](couchbase-devguide-ready.html#modeling-documents).
+[Modeling Documents](#modeling-documents).
 
 <a id="couchbase-buckets"></a>
 
@@ -229,7 +228,7 @@ and is mainly relevant for those developers who want to create their own
 Couchbase SDK. For instance developers who want to create a Couchbase SDK for a
 language not yet supported would be interested in this topic. For more
 information, see, [Getting Cluster
-Topology](couchbase-devguide-ready.html#couchbase-client-topology-via-rest).
+Topology](#couchbase-client-topology-via-rest).
 
 <a id="couchbase-vs-RDMS"></a>
 
@@ -360,7 +359,7 @@ the option of having Couchbase automatically delete old sessions.
 
 Optimistic concurrency operations can be used to ensure concurrent web requests
 from a single user do not lose data. For more information, see [Check and Set
-(CAS)](couchbase-devguide-ready.html#cb-cas).
+(CAS)](#cb-cas).
 
 Many web application frameworks such as Ruby on Rails and various PHP and Python
 web frameworks also provide pre-integrated support for storing session data

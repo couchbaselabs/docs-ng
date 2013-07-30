@@ -479,6 +479,6 @@ reproduce, if possible) to your desired support venue.
 
 You can also debug a crash using *Valgrind*, but the process is significantly
 more involved and requires a slightly modified build of Python. See
-[Contributing](couchbase-sdk-python-ready.html#_contributing) for more details.
+[Contributing](#_contributing) for more details.
 
 <a id="_contributing"></a>

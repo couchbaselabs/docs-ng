@@ -35,8 +35,7 @@ data corruption.
 
 The `append()` appends information to the end of an existing key/value pair. The
 `append()` function requires a CAS value. For more information on CAS values,
-see [CAS get
-Methods](couchbase-sdk-java-ready.html#couchbase-sdk-java-retrieve-gets).
+see [CAS get Methods](#couchbase-sdk-java-retrieve-gets).
 
 For example, to append a string to an existing key:
 
@@ -106,7 +105,7 @@ serialization of complex objects may lead to corruption when using `prepend()`.
 The `prepend()` inserts information before the existing data stored in the
 key/value pair. The `prepend()` function requires a CAS value. For more
 information on CAS values, see [CAS get
-Methods](couchbase-sdk-java-ready.html#couchbase-sdk-java-retrieve-gets).
+Methods](#couchbase-sdk-java-retrieve-gets).
 
 For example, to prepend a string to an existing key:
 
@@ -171,7 +170,7 @@ does not match the value stored on the server will fail.
 
 The `cas()` methods are used to explicitly set the value only if the CAS
 supplied by the client matches the CAS on the server, analogous to the [Set
-Operations](couchbase-sdk-java-ready.html#couchbase-sdk-java-set-set) method.
+Operations](#couchbase-sdk-java-set-set) method.
 
 With all CAS operations, the `CASResponse` value returned indicates whether the
 operation succeeded or not, and if not why. The `CASResponse` is an `Enum` with
@@ -255,7 +254,7 @@ value.
 
 This form of the `cas()` method updates both the key value and the expiry time
 for the value. For information on expiry values, see [Expiry
-Values](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-expiry).
+Values](#couchbase-sdk-java-summary-expiry).
 
 For example the following attempts to set the key `caskey` with an updated
 value, setting the expiry times to 3600 seconds (one hour).
@@ -486,7 +485,7 @@ long newcount =
 ```
 
 For information on expiry values, see [Expiry
-Values](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-expiry).
+Values](#couchbase-sdk-java-summary-expiry).
 
 <a id="table-couchbase-sdk_java_asyncdecr"></a>
 
@@ -603,7 +602,7 @@ long newcount =
 ```
 
 For information on expiry values, see [Expiry
-Values](couchbase-sdk-java-ready.html#couchbase-sdk-java-summary-expiry).
+Values](#couchbase-sdk-java-summary-expiry).
 
 <a id="table-couchbase-sdk_java_asyncincr"></a>
 

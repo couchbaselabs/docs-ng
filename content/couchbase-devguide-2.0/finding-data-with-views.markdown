@@ -98,7 +98,7 @@ been persisted to disk and will therefore appear in a result set when you query
 a view. Couchbase SDKs provide helper methods, collectively referred to as
 *observe-functions* to get more information about an item you want to persist
 and then index. For more information, see [Monitoring Data (Using
-Observe)](couchbase-devguide-ready.html#monitoring-data).
+Observe)](#monitoring-data).
 
 Notice also that Couchbase Server generates an index and returns a result set
 *when you actually query the view*. Building an index is a resource-intensive
@@ -109,7 +109,7 @@ other cases, you may not care about retrieving an index that contains the most
 recent items. Couchbase SDKs enable you to specify if you want to query and
 refresh the index to include current items, or if you only want the index that
 is currently stored. For more information about this topic, see [Building an
-Index](couchbase-devguide-ready.html#building-index)
+Index](#building-index)
 
 For more detailed information about views, including how and when Couchbase
 Server creates an index based on views, see [Couchbase Server Manual,
@@ -356,13 +356,12 @@ Operation](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-op
 ## Providing Efficient Lookups
 
 Views enable us to find documents based on any value or structure that resides
-in the document. In [Filtering and Extracting
-Data](couchbase-devguide-ready.html#filter-extract-data) we demonstrated how you
-can find the data and have Couchbase Server generate it in an index; this
-section describes how you can use *query parameters* to constrain the result
-set. For instance, imagine you know the date of a particular blog post. To find
-a single document based on that date, you can provide parameters which specify
-which items in a index Couchbase Server should return.
+in the document. In [Filtering and Extracting Data](#filter-extract-data) we
+demonstrated how you can find the data and have Couchbase Server generate it in
+an index; this section describes how you can use *query parameters* to constrain
+the result set. For instance, imagine you know the date of a particular blog
+post. To find a single document based on that date, you can provide parameters
+which specify which items in a index Couchbase Server should return.
 
 Imagine we want to find all blog posts with comments that were made between
 certain dates. In this case we have a map function in our view and we have
@@ -422,11 +421,9 @@ objects and use indexing and querying to retrieve the related object.
 
 For more information about different ways to model related objects for future
 search and retrieval, see [Modeling Documents for
-Retrieval](couchbase-devguide-ready.html#relating-documents-for-retrieval) and
-[Using Reference Documents for
-Lookups](couchbase-devguide-ready.html#reference-docs-and-lookup-pattern). For
-information about performing multiple-retrieves, see [Retrieving Multiple
-Keys](couchbase-devguide-ready.html#cb-get-multiple).
+Retrieval](#relating-documents-for-retrieval) and [Using Reference Documents for
+Lookups](#reference-docs-and-lookup-pattern). For information about performing
+multiple-retrieves, see [Retrieving Multiple Keys](#cb-get-multiple).
 
 <a id="ordering-results"></a>
 
@@ -1006,7 +1003,7 @@ sorted first by the first element, and then by the second element, and so on.
 This means that items in an index from the same `subreddit` will be grouped, and
 within that group, items are sorted by `day-of-week` and so on. For more
 information about compound keys and sorting, see [Using Compound Keys and
-Group-By Functions](couchbase-devguide-ready.html#using-compound-keys-group-by).
+Group-By Functions](#using-compound-keys-group-by).
 
 Creating compound keys sorts the keys so that we can specify what range we want
 to retrieve from the index using query parameters. When we query the view for

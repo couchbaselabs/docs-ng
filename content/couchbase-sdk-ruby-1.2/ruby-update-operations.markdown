@@ -50,8 +50,7 @@ data corruption.
 
 The `append` appends information to the end of an existing key/value pair. The
 `append` function requires a CAS value. For more information on CAS values, see
-[Ruby — Retrieve
-Operations](couchbase-sdk-ruby-ready.html#couchbase-sdk-ruby-retrieve).
+[Ruby — Retrieve Operations](#couchbase-sdk-ruby-retrieve).
 
 For example, to append a string to an existing key:
 

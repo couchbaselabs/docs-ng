@@ -116,7 +116,7 @@ The return type is an array of the servers in the cluster.
 The PHP client library supports a number of global options that can be
 configured using the `setOption()` method. The supported options are configured
 by using one of the constnats in
-[](couchbase-sdk-php-ready.html#table-couchbase-sdk-php-summary-optconstants).
+[](#table-couchbase-sdk-php-summary-optconstants).
 
 <a id="table-couchbase-sdk-php-summary-optconstants"></a>
 
@@ -153,7 +153,7 @@ serialize/deserilize data which will not update the flags value.
 **scalar $mixed** | Option value (constant, number, or string)       
 
 The list of supported constants and behaviour are described in
-[](couchbase-sdk-php-ready.html#table-couchbase-sdk-php-summary-optconstants-serializer).
+[](#table-couchbase-sdk-php-summary-optconstants-serializer).
 
 <a id="table-couchbase-sdk-php-summary-optconstants-serializer"></a>
 
@@ -173,7 +173,7 @@ $couchbase->setOption(Couchbase::OPT_COMPRESSION, Couchbase::COMPRESSION_ZLIB);
 ```
 
 The list of supported constants and behaviour are described in
-[](couchbase-sdk-php-ready.html#table-couchbase-sdk-php-summary-optconstants-compression).
+[](#table-couchbase-sdk-php-summary-optconstants-compression).
 
 <a id="table-couchbase-sdk-php-summary-optconstants-compression"></a>
 
