@@ -95,46 +95,46 @@ versions:
       - 1.8
 
   couchbase-sdk-c:
-    name: "Client Library C"
+    name: "C SDK"
     versions:
       - 2.1
       - 2.0
       - 1.0
 
   couchbase-sdk-java:
-    name: "Client Library Java"
+    name: "Java SDK"
     versions:
       - 1.2
       - 1.1
       - 1.0
 
   couchbase-sdk-net:
-    name: "Client Library .Net"
+    name: ".Net SDK"
     versions:
       - 1.2
       - 1.1
       - 1.0
 
   couchbase-sdk-php:
-    name: "Client Library PHP"
+    name: "PHP SDK"
     versions:
       - 1.1
       - 1.0
 
   couchbase-sdk-ruby:
-    name: "Client Library Ruby"
+    name: "Ruby SDK"
     versions:
       - 1.3
       - 1.2
       - 1.1
 
   couchbase-sdk-python:
-    name: "Client Library Python"
+    name: "Python SDK"
     versions:
       - 1.0
       
   couchbase-query-language:
-    name: "Couchbase Query Language, N1QL"
+    name: "Query Language, N1QL"
     versions:
       - 1.0
 
