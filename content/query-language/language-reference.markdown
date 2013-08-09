@@ -93,7 +93,10 @@ The following describe optional clauses you can use in your select statement:
 
 * `DISTINCT` Clause. If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`the query will return all objects that meet the query conditions in a result set.
 
-* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause in `FROM.`
+* `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause in `FROM.` For example:
+
+        SELECT children[0].name AS cname
+        	FROM contacts
 
     One use of the `FROM` clause is to specify a path within a bucket as `data-source`. The path refers an array in the your documents. With this option, the server evaluates the path for each document in the data bucket and the value at that path becomes an input for the query. For example, imagine you have a data bucket named `breweries` which has a document that describes each brewery in a country. Each document has an array called `address`. To get all addresses as input for a query, you use this clause:
 
