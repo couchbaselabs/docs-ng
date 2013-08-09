@@ -1201,9 +1201,10 @@ You cannot change the name of a bucket via the REST API.
 
 ### Increasing the Memory Quota for a Bucket
 
-Increasing a bucket's ramQuotaMB from the current level. Note, the system will
-not let you decrease the ramQuotaMB for a couchbase bucket type and memcached
-bucket types will be flushed when the ramQuotaMB is changed:
+You can increase and decrease a bucket's ramQuotaMB from its current level.
+However, while increasing will do no harm, decreasing should be done with proper
+sizing. Decreasing the bucket's ramQuotaMB lowers the watermark, and some items
+may be unexpectedly ejected if the ramQuotaMB is set too low.
 
 As of 1.6.0, there are some known issues with changing the ramQuotaMB for
 memcached bucket types.
@@ -2074,7 +2075,7 @@ this value. No parameters are required:
 
 
 ```
-shell> curl -i -u Administrator:letmein \
+shell> curl -X POST -i -u Administrator:letmein \
     http://localhost:8091/settings/autoFailover/resetCount
 ```
 

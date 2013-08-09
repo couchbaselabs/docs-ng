@@ -215,4 +215,4 @@ and example libcouchbase programs.
 
 On Linux you may find these examples in TODO...
 
-<a id="couchbase-sdk-c-api-introduction"></a>
+<a id="tutorial_integration"></a>

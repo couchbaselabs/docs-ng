@@ -197,7 +197,7 @@ Constants               | value
 ------------------------|------
 Type of Storage         | SSD  
 overhead\_percentage    | 25%  
-metadata\_per\_document | 120  
+metadata\_per\_document | 64   
 high\_water\_mark       | 70%  
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>

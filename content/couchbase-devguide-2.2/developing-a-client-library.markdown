@@ -48,14 +48,27 @@ rebalancing, migration and replication.
 ## Providing SASL Authentication
 
 This section is relevant for developers who are creating their own client
-library that communicates with the Couchbase Server. For instance, developers
-creating a library for language or framework that is not yet supported by
-Couchbase would be interested in this content.
+library that communicates with the Couchbase Server. Developers creating a
+library for language or framework that is not yet supported by Couchbase would
+be interested in this content.
 
 In order to connect to a given bucket you need to run a SASL authentication with
 the `Couchbase` server. The SASL authentication for `Couchbase` is specified in
-[SASLAuthProtocol](http://code.google.com/p/memcached/wiki/SASLAuthProtocol)
-(binary protocol only).
+[SASLAuthProtocol](http://code.google.com/p/memcached/wiki/SASLAuthProtocol).
+
+As of Couchbase Server 2.2, we provide challenge-response authentication
+mechanism known as CRAM-MD5 support for SASL authentication. This enables
+multiple data buckets to be accessed from the same process. Couchbase clients
+can determine which buckets they connect to using PLAIN SASL authentication and
+specifying the bucket name and bucket password, however you could not encrypt
+the bucket name, username or bucket password. As of Couchbase Server 2.2. we
+include CRAM-MD5 support to encrypt username and password before sending a
+request over the wire. For known limitation of this SASL mechanism, see [IETF
+Tools, CRAM-MD5 SASL
+Mechanism](http://tools.ietf.org/html/draft-ietf-sasl-crammd5-10).
+
+If you want your SDK to connect to versions of Couchbase Server prior to 2.2,
+you will still need to support plain SASL authentication.
 
 [vbucketmigrator](http://github.com/membase/vbucketmigrator) implements SASL
 Authentication by using libsasl in C if you want some example code.
@@ -64,44 +77,92 @@ Authentication by using libsasl in C if you want some example code.
 
 ### List Mechanisms
 
-We start the SASL authentication by asking the `memcached` server for the
-mechanisms it supports. This is achieved by sending the following packet:
+To start SASL authentication you first ask Couchbase Server for the
+authentication mechanisms it supports. You can do so with the following binary
+request:
 
 
 ```
-Byte/ 0 | 1 | 2 | 3 |
-/ | | | |
-|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|
-+---------------+---------------+---------------+---------------+
-0| 80 | 20 | 00 | 00 |
-+---------------+---------------+---------------+---------------+
-4| 00 | 00 | 00 | 00 |
-+---------------+---------------+---------------+---------------+
-8| 00 | 00 | 00 | 00 |
-+---------------+---------------+---------------+---------------+
-12| 00 | 00 | 00 | 00 |
-+---------------+---------------+---------------+---------------+
-16| 00 | 00 | 00 | 00 |
-+---------------+---------------+---------------+---------------+
-20| 00 | 00 | 00 | 00 |
-```
+Byte/     0       |       1       |       2       |       3       |
+   /              |               |               |               |
+  |0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|
+  +---------------+---------------+---------------+---------------+
+ 0|       80      |    B2 ('+')   |       00      |       05      |
+  +---------------+---------------+---------------+---------------+
+ 4|       08      |       00      |       00      |       03      |
+  +---------------+---------------+---------------+---------------+
+ 8|       00      |       00      |       00      |       14      |
+  +---------------+---------------+---------------+---------------+
+12|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+16|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+20|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+24|       00      |       00      |       00      |       07      |
+  +---------------+---------------+---------------+---------------+
 
-
-```
 Header breakdown
-Field (offset) (value)
-Magic (0): 0x80 (PROTOCOL_BINARY_REQ)
-Opcode (1): 0x20 (sasl list mechs)
-Key length (2-3): 0x0000 (0)
-Extra length (4): 0x00
-Data type (5): 0x00
-vBucket (6-7): 0x0000 (0)
-Total body (8-11): 0x00000000 (0)
-Opaque (12-15): 0x00000000 (0)
-CAS (16-23): 0x0000000000000000 (0)
+SASL List Mechanisms command
+Field        (offset) (value)
+Magic        (0)    : 0x80                (Request)
+Opcode       (1)    : 0x20                (SASL List Mechanisms)
+Key length   (2,3)  : 0x0000              (field not used)
+Extra length (4)    : 0x00                (field not used)
+Data type    (5)    : 0x00                (field not used)
+VBucket      (6,7)  : 0x0000              (field not used)
+Total body   (8-11) : 0x00000000          (field not used)
+Opaque       (12-15): 0x00000000
+CAS          (16-23): 0x0000000000000000  (field not used)
 ```
 
-If the server supports SASL authentication the following packet is returned:
+If the server supports SASL PLAIN and CRAM-MD5 authentication you get this
+response, where `Mechanisms` specifically lists 'PLAIN CRAM-MD5.'
+
+
+```
+Byte/     0       |       1       |       2       |       3       |
+   /              |               |               |               |
+  |0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|
+  +---------------+---------------+---------------+---------------+
+ 0|       81      |    20 (' ')   |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 4|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 8|       00      |       00      |       00      |       0D      |
+  +---------------+---------------+---------------+---------------+
+12|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+16|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+20|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+24|       50      |       4C      |       41      |       49      |
+  +---------------+---------------+---------------+---------------+
+28|       4E      |       20      |       43      |       52      |
+  +---------------+---------------+---------------+---------------+
+32|       41      |       4D      |       2D      |       4D      |
+  +---------------+---------------+---------------+---------------+
+36|       44      |       35      |
+  +---------------+---------------+
+
+Header breakdown
+SASL List Mechanisms command
+Field        (offset) (value)
+Magic        (0)    : 0x81                (Response)
+Opcode       (1)    : 0x20                (SASL List Mechanisms)
+Key length   (2,3)  : 0x0000              (field not used)
+Extra length (4)    : 0x00                (field not used)
+Data type    (5)    : 0x00                (field not used)
+VBucket      (6,7)  : 0x0000              (field not used)
+Total body   (8-11) : 0x0000000D          (14)
+Opaque       (12-15): 0x00000000
+CAS          (16-23): 0x0000000000000000  (field not used)
+Mechanisms   (24-37): "PLAIN CRAM-MD5"
+```
+
+If your version of Couchbase Server only supports PLAIN, you will get this
+response:
 
 
 ```
@@ -123,12 +184,8 @@ Byte/ 0 | 1 | 2 | 3 |
 +---------------+---------------+---------------+---------------+
 24| 50 ('P') | 4c ('L') | 41 ('A') | 49 ('I') |
 +---------------+---------------+---------------+---------------+
-```
-
 28| 4e ('N') |
 
-
-```
 Header breakdown
 Field (offset) (value)
 Magic (0): 0x81 (PROTOCOL_BINARY_RES)
@@ -149,7 +206,7 @@ CRAM-MD5 GSSAPI").
 
 <a id="couchbase-client-development-saslauth-authreq"></a>
 
-### Making an Authentication Request
+### Making Request via PLAIN
 
 After choosing the desired mechanism from the ones that the Couchbase Server
 supports, you need to create an authentication request packet and send it to the
@@ -181,10 +238,7 @@ Byte/ 0 | 1 | 2 | 3 |
 32| 00 | 66 ('f') | 6f ('o') | 6f ('o') |
 +---------------+---------------+---------------+---------------+
 36| 00 | 62 ('b') | 61 ('a') | 72 ('r') |
-```
 
-
-```
 Header breakdown
 Field (offset) (value)
 Magic (0): 0x80 (PROTOCOL_BINARY_REQ)
@@ -202,7 +256,7 @@ Auth token (29-39): foo0x00foo0x00bar
 
 When the server accepts this username/password combination, it returns one of
 two status codes: Success or "Authentication Continuation". Success means that
-you're done
+you are done with authentication:
 
 
 ```
@@ -229,10 +283,7 @@ Byte/ 0 | 1 | 2 | 3 |
 32| 63 ('c') | 61 ('a') | 74 ('t') | 65 ('e') |
 +---------------+---------------+---------------+---------------+
 36| 64 ('d') |
-```
 
-
-```
 Header breakdown
 Field (offset) (value)
 Magic (0): 0x81 (PROTOCOL_BINARY_RES)
@@ -246,6 +297,153 @@ Opaque (12-15): 0x00000000 (0)
 CAS (16-23): 0x0000000000000000 (0)
 Info (24-36): Authenticated
 ```
+
+<a id="couchbase-client-cram-auth"></a>
+
+### Making a Request via CRAM-MD5
+
+After you determine your Couchbase Server version supports CRAM-MD5, you can
+create an authentication request packet and send it to the server:
+
+
+```
+Byte/     0       |       1       |       2       |       3       |
+   /              |               |               |               |
+  |0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|
+  +---------------+---------------+---------------+---------------+
+ 0|       81      |    21 (' ')   |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 4|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 8|       00      |       00      |       00      |       08      |
+  +---------------+---------------+---------------+---------------+
+12|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+16|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+20|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+24|       43      |       52      |       41      |       4D      |
+  +---------------+---------------+---------------+---------------+
+28|       2D      |       4D      |       44      |       35      |
+  +---------------+---------------+---------------+---------------+
+
+Header breakdown
+SASL List Mechanisms command
+Field        (offset) (value)
+Magic        (0)    : 0x81                (Response)
+Opcode       (1)    : 0x21                (SASL Authenticate)
+Key length   (2,3)  : 0x0000              (field not used)
+Extra length (4)    : 0x00                (field not used)
+Data type    (5)    : 0x00                (field not used)
+VBucket      (6,7)  : 0x0000              (field not used)
+Total body   (8-11) : 0x00000008          (8)
+Opaque       (12-15): 0x00000000
+CAS          (16-23): 0x0000000000000000  (field not used)
+Mechanisms   (24-31): "CRAM-MD5"
+```
+
+The server then sends a challenge-response to a client. The challenge-response
+will be a random string that the client should use when hashing the password
+with MD5. The string is unique for each connection attempt to the server. This
+will prevent access to Couchbase Server's memcached port by a replay attack. A
+challenge-response will appear as follows:
+
+
+```
+Byte/     0       |       1       |       2       |       3       |
+   /              |               |               |               |
+  |0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|
+  +---------------+---------------+---------------+---------------+
+ 0|       81      |    21 (' ')   |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 4|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 8|       00      |       00      |       00      |       12      |
+  +---------------+---------------+---------------+---------------+
+12|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+16|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+20|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+24|       68      |       73      |       61      |       30      |
+  +---------------+---------------+---------------+---------------+
+28|       62      |       66      |       32      |       38      |
+  +---------------+---------------+---------------+---------------+
+32|       39      |       32      |       62      |       66      |
+  +---------------+---------------+---------------+---------------+
+36|       77      |       66      |       6B      |       6B      |
+  +---------------+---------------+---------------+---------------+
+
+Header breakdown
+SASL List Mechanisms command
+Field        (offset) (value)
+Magic        (0)    : 0x81                (Response)
+Opcode       (1)    : 0x21                (SASL Authenticate)
+Key length   (2,3)  : 0x0000              (field not used)
+Extra length (4)    : 0x00                (field not used)
+Data type    (5)    : 0x00                (field not used)
+VBucket      (6,7)  : 0x0000              (field not used)
+Total body   (8-11) : 0x00000012          (18)
+Opaque       (12-15): 0x00000000
+CAS          (16-23): 0x0000000000000000  (field not used)
+Mechanisms   (24-39): "hsa0bf2892bfwfkk"
+```
+
+A client should then use the random string when it hashes a password with
+CRAM-MD5. The response should include the hashed password:
+
+
+```
+Byte/     0       |       1       |       2       |       3       |
+   /              |               |               |               |
+  |0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|
+  +---------------+---------------+---------------+---------------+
+ 0|       81      |    20 (' ')   |       00      |       08      |
+  +---------------+---------------+---------------+---------------+
+ 4|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+ 8|       00      |       00      |       00      |       24      |
+  +---------------+---------------+---------------+---------------+
+12|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+16|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+20|       00      |       00      |       00      |       00      |
+  +---------------+---------------+---------------+---------------+
+24|       75      |       73      |       65      |       72      |
+  +---------------+---------------+---------------+---------------+
+28|       6E      |       61      |       6D      |       65      |
+  +---------------+---------------+---------------+---------------+
+32|       66      |       33      |       32      |       37      |
+  +---------------+---------------+---------------+---------------+
+36|       68      |       66      |       67      |       6A      |
+  +---------------+---------------+---------------+---------------+
+40|       69      |       62      |       66      |       33      |
+  +---------------+---------------+---------------+---------------+
+44|       39      |       34      |       38      |       66      |
+  +---------------+---------------+---------------+---------------+
+
+Header breakdown
+SASL List Mechanisms command
+Field        (offset) (value)
+Magic        (0)    : 0x81                (Response)
+Opcode       (1)    : 0x22                (SASL Step)
+Key length   (2,3)  : 0x0008              (8)
+Extra length (4)    : 0x00                (field not used)
+Data type    (5)    : 0x00                (field not used)
+VBucket      (6,7)  : 0x0000              (field not used)
+Total body   (8-11) : 0x00000018          (24)
+Opaque       (12-15): 0x00000000
+CAS          (16-23): 0x0000000000000000  (field not used)
+Username     (24-31): "username"
+Password     (32-47): "f327hfqjibf3948f"
+```
+
+When the server accepts this username/password combination, it returns one of
+two status codes: Success or "Authentication Continuation". Success means that
+you have completed authentication.
 
 <a id="couchbase-client-topology-via-rest"></a>
 

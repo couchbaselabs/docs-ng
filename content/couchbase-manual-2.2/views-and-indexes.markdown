@@ -10,7 +10,7 @@ allowing you to search and select information stored within Couchbase Server.
 Views are eventually consistent compared to the underlying stored documents.
 Documents are included in views when the document data is persisted to disk, and
 documents with expiry times are removed from indexes only when the expiration
-pager operates to remove the document from the database. Fore more information,
+pager operates to remove the document from the database. For more information,
 read [View Operation](#couchbase-views-operation).
 
 Views can be used within Couchbase Server for a number of reasons, including:
@@ -124,6 +124,8 @@ All views within Couchbase operate as follows:
  * Document IDs that are not UTF-8 encodable are automatically filtered and not
    included in any view. The filtered documents are logged so that they can be
    identified.
+
+ * If you have a long view request, use POST instead of GET.
 
  * Views can only access documents defined within their corresponding bucket. You
    cannot access or aggregate data from multiple buckets within a given view.
@@ -1894,11 +1896,10 @@ You should keep the following in mind while developing and deploying your views:
  * **Check Document Fields**
 
    Fields and attributes from source documentation in `map()` or `reduce()`
-   functions should be checked before their value is checked or compared. Because
-   the view definitions in a design document are processed at the same time. A
-   runtime error in one of the views within a design document will cause the other
-   views in the same design document not to be executed. A common cause of runtime
-   errors in views is missing, or invalid field and attribute checking.
+   functions should be checked before their value is checked or compared. This can
+   cause issues because the view definitions in a design document are processed at
+   the same time. A common cause of runtime errors in views is missing or invalid
+   field and attribute checking.
 
    The most common issue is a field within a null object being accessed. This
    generates a runtime error that will cause execution of all views within the
@@ -2988,7 +2989,7 @@ such as `[2012,8]` :
 ?group=true&group_level=2&key=[2012,8]
 ```
 
-Or a range:
+You can query it for a range:
 
 
 ```

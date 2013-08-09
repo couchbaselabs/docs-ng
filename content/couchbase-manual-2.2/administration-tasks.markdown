@@ -611,7 +611,7 @@ percentage or a specified number of items, replication requests will slow down:
 
 
 ```
-> ./management/cbepctl 10.5.2.31:11210 set -b bucketname tap_param tap_throttle_cap_pcnt 15
+> ./cbepctl  10.5.2.31:11210 set -b bucketname tap_param tap_throttle_cap_pcnt 15
 ```
 
 In this example, we set the threshold to 15% of all items at a replica node.
@@ -664,6 +664,54 @@ serves three important purposes in a system:
    more information about the pager, and changing the setting for it, see [Changing
    the Disk Cleanup Interval](#couchbase-admin-cbepctl-disk-cleanup).
 
+**Not-Frequently-Used Items**
+
+All items in the server contain metadata indicating whether the item has been
+recently accessed or not; this metadata is known as NRU, which is an
+abbreviation for *not-recently-used*. If an item has not been recently used then
+the item is a candidate for ejection if the high water mark has been exceeded.
+When the high water mark has been exceeded, the server evicts items from RAM.
+
+As of Couchbase Server 2.0.1+ we provide two NRU bits per item and also provide
+a replication protocol that can propagate items that are frequently read, but
+not mutated often. For earlier versions of Couchbase Server, we had provided
+only a single bit for NRU and a different replication protocol which resulted in
+two issues: metadata could not reflect how frequently or recently an item had
+been changed, and the replication protocol only propagated NRUs for mutation
+items from an active vBucket to a replica vBucket. This second behavior meant
+that the working set on an active vBucket could be quite different than the set
+on a replica vBucket. By changing the replication protocol in 2.0.1+ the working
+set in replica vBuckets will be closer to the working set in the active vBucket.
+
+NRUs will be decremented or incremented by server processes to indicate an item
+is more frequently used, or less frequently used. Items with lower bit values
+will have lower scores and will be considered more frequently used. The bit
+values, corresponding scores and status are as follows:
+
+<a id="table-couchbase-admin-NRU"></a>
+
+**Binary NRU** | **Score** | **Working Set Replication Status (WSR)** | **Access Pattern**                                                  | **Description**           
+---------------|-----------|------------------------------------------|---------------------------------------------------------------------|---------------------------
+00             | 0         | TRUE                                     | Set by write access to 00. Decremented by read access or no access. | Most heavily used item.   
+01             | 1         | Set to TRUE                              | Decremented by read access.                                         | Frequently access item.   
+10             | 2         | Set to FALSE                             | Initial value or decremented by read access.                        | Default for new items.    
+11             | 3         | Set to FALSE                             | Incremented by item pager for eviction.                             | Less frequently used item.
+
+When WSR is set to TRUE it means that an item should be replicated to a replica
+vBucket. There are two processes which change the NRU for an item: 1) if a
+client reads or writes an item, the server decrements NRU and lowers the item's
+score, 2) Couchbase Server also has a daily process which creates a list of
+frequently-used items in RAM. After this process runs, the server increment one
+of the NRU bits. Because two processes will change NRUs, they will also affect
+which items are candidates for ejection. For more information about the access
+scanner, see [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
+
+You can adjust settings for Couchbase Server which change behavior during
+ejection. You can indicate the percentage of RAM you are willing to consume
+before items are ejected, or you can indicate whether ejection should occur more
+frequently on replicated data than on original data. Be aware that for Couchbase
+Server 2.0+, we recommend that you remain using the defaults provided.
+
 **Understanding the Item Pager**
 
 The process that periodically runs and removes documents from RAM is known as
@@ -676,46 +724,39 @@ consumed is below the *low water mark*. Both the high water mark and low water
 mark are expressed as an absolute amount of RAM, such as 5577375744 bytes.
 
 When you change either of these settings, you can provide a percentage of total
-RAM for a node such as 60% or as an absolute number of bytes. For Couchbase
-Server 2.0, we recommend you remain using the default settings provided, which
-are 60% for the low water mark and 75% for the high water mark. For more
-information about changing this setting, see [Changing Thresholds for
+RAM for a node such as 80% or as an absolute number of bytes. For Couchbase
+Server 2.0 and above, we recommend you remain using the default settings
+provided. Defaults for these two settings are listed below.
+
+<a id="table-couchbase-admin-watermark-defaults"></a>
+
+**Version** | **High Water Mark** | **Low Water Mark**
+------------|---------------------|-------------------
+2.0         | 75%                 | 60%               
+2.0.1+      | 85%                 | 75%               
+
+The item pager ejects items from RAM in two phases:
+
+ * **Phase 1: Eject based on NRU**. Scan NRU for items and create list of all items
+   with score of 3. Eject all items with a NRU score of 3. Check RAM usage and
+   repeat this process if usage is still above the low water mark.
+
+ * **Phase 2: Eject based on Algorithm**. Increment all item NRUs by 1. If an NRU
+   is equal to 3, generate a random number and eject that item if the random number
+   is greater than a specified probability. The probability is based on current
+   memory usage, low water mark, and whether a vBucket is in an active or replica
+   state. If a vBucket is in active state the probability of ejection is lower than
+   if the vBucket is in a replica state. The default probabilities for ejection
+   from active of replica vBuckets is as follows:
+
+<a id="table-couchbase-admin-ejection-defaults"></a>
+
+**Version** | **Probability for Active vBucket** | **Probability for Replica vBucket**
+------------|------------------------------------|------------------------------------
+2.0+        | 60%                                | 40%                                
+
+For instructions to change this setting, see [Changing Thresholds for
 Ejection](#couchbase-admin-cbepctl-ejection).
-
-**Understanding Not-Frequently-Used Items**
-
-All items in the server contain 1 bit of metadata indicating whether the item
-has been recently accessed or not; this metadata is known as NRU, which is an
-abbreviation for *not-recently-used*. If an item has not been recently used then
-the item is a candidate for ejection if the high water mark has been exceeded.
-When the high water mark has been exceeded, the item pager evicts items from RAM
-in two phases:
-
- * **Eject based on NRU**. Scan NRU for items and eject all items where the item is
-   not frequently used.
-
- * **Eject based on Algorithm**. If the item pager has removed all
-   infrequently-used items but the high water mark is still exceeded, the pager
-   will begin to remove even active items from RAM. The pager will try to eject 60%
-   of random replica data from the node, and only 40% from active data.
-
-There are two processes which change the NRU for an item: 1) if a client reads
-or writes an item, the server will specify that the item is frequently used, 2)
-Couchbase Server also has a daily process which creates a list of
-frequently-used items in RAM. After the process runs, the server will specify
-that all items are not frequently used. So be aware that these two processes
-will change NRUs and therefore will affect which items are candidates for
-ejection. For more information about the access scanner, see [Handling Server
-Warmup](#couchbase-admin-tasks-warmup-access).
-
-You can adjust settings for Couchbase Server which affect the ejection process.
-In doing so, you can indicate the percentage of RAM you are willing to consume
-before items are ejected, or you can indicate whether ejection should occur more
-frequently on replica data than on original, source data. Be aware that for
-Couchbase Server 2.0, we recommend that you remain using the defaults provided.
-
-For information about changing settings for ejection, see [Changing Thresholds
-for Ejection](#couchbase-admin-cbepctl-ejection).
 
 <a id="couchbase-admin-tasks-compaction"></a>
 
@@ -1508,7 +1549,7 @@ shell> ./cbrecovery http://Administrator:password@<From_IP>:8091 \
 You can run the command on either the cluster with unavailable vBuckets or on
 the remote cluster, as long as you provide the hostname, port, and credentials
 for remote cluster and the cluster with missing vBuckets in that order. If you
-do not provide the parameter `- B` the tool assumes you will recover unavailable
+do not provide the parameter `-B` the tool assumes you will recover unavailable
 vBuckets for the default bucket.
 
 **Monitoring the Recovery Process**
@@ -1521,7 +1562,7 @@ Web Console:
  1. Select the data bucket you are recovering in the Data Buckets drop-down.
 
  1. Click on the Summary drop-down to see more details about this data bucket. You
-    see observe an increased number in the `items` level during recovery:
+    see an increased number in the `items` level during recovery:
 
 
     ![](images/monitor_cb_recovery.png)
@@ -3426,6 +3467,37 @@ active will be displayed within the `Past Replications` section of the
 
 ### Behavior and Limitations
 
+ * **Replication via Memcached Protocol** As of Couchbase Server 2.2+, XDCR can
+   replicate data through the memcached protocol. By using this protocol for XDCR
+   replication you can significantly reduce overhead and improve latency. In the
+   past, XDCR supported a single internal REST protocol for replicating data from
+   one cluster to another. On a source cluster a work process batched multiple
+   mutations and sent the batch to a destination cluster using a REST interface.
+   The REST interface at the destination node unpacked the batch of mutations and
+   sent each mutation via a single memcached command. The destination cluster then
+   stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies
+   on the REST API known as CAPI.
+
+   This additional mode available for XDCR is known as *XMEM mode XDCR* and will
+   bypass the REST interface and replicate mutations via the memcached protocol at
+   the destination cluster:
+
+
+   ![](images/XDCR_xmem.png)
+
+   In this mode, every replication process at a source cluster will deliver
+   mutations directly via the memcached protocol on the remote cluster. This
+   additional mode will not impact current XDCR architecture, rather it is
+   implemented completely within the data communication layer used in XDCR. Any
+   external XDCR interface remains the same. The benefit of using this mode is
+   performance: this will increase XDCR throughput, improve XDCR scalability, and
+   reduce CPU usage at destination clusters during replication.
+
+   You can configure XDCR to operate via the new XMEM mode or remain using the CAPI
+   mode. To do so, you use the REST-API and change the setting for
+   `xdcr_replication_mode`, see [Changing Internal XDCR
+   Settings](#couchbase-admin-restapi-xdcr-change-settings).
+
  * **Network and System Outages**
 
     * XDCR is resilient to intermittent network failures. In the event that the
@@ -3451,7 +3523,9 @@ active will be displayed within the `Past Replications` section of the
       cluster.
 
     * Non UTF-8 encodable document IDs on the source cluster are automatically
-      filtered out and logged and are not transferred to the remote cluster.
+      filtered out and logged and are not transferred to the remote cluster. If you
+      have any non UTF-8 keys you will see warning output in the `xdcr_error.*` log
+      files along with a list of all non-UTF-8 keys found by XDCR.
 
  * **Flush Requests**
 

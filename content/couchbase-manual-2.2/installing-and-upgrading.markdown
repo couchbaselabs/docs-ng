@@ -274,6 +274,51 @@ To do the initial setup for Couchbase, open a web browser and access the
 Couchbase Web Console. See [Initial Server
 Setup](#couchbase-getting-started-setup).
 
+**Installing as a Non-Root, Non-Sudo User**
+
+There may be cases when you want to install the server as a non-root, non-sudo
+user. To do so on Centos/RedHat:
+
+ 1. After you download the Couchbase RPM, go to the directory where it is located
+    and extract it:
+
+     ```
+     > rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
+     --no-absolute-filenames
+     ```
+
+    In the directory where you extracted the files, you will see `opt` and `etc`
+    subdirectories.
+
+ 1. After you extract the Couchbase Server install files, go to the subdirectory:
+
+     ```
+     cd opt/couchbase
+     ```
+
+ 1. Run this password-related script:
+
+     ```
+     ./bin/install/reloc.sh `pwd`
+     ```
+
+    This enables you to continue the install as a non-root, non-sudo user.
+
+ 1. To run the server:
+
+     ```
+     ./bin/couchbase-server -- -noinput -detached
+     ```
+
+ 1. To stop the server:
+
+     ```
+     ./bin/couchbase-server -k
+     ```
+
+For general instructions on server start-up and shutdown as a sudo or root user,
+see [Server Startup and Shutdown](#couchbase-admin-basics-running).
+
 <a id="couchbase-getting-started-install-ubuntu"></a>
 
 ### Ubuntu Linux Installation
@@ -341,6 +386,50 @@ Couchbase Server service, including checking the current status. Refer to the
 Ubuntu documentation for instructions. To provide initial setup for Couchbase,
 open a web browser and access the web administration interface. See [Initial
 Server Setup](#couchbase-getting-started-setup).
+
+**Installing as a Non-Root, Non-Sudo User**
+
+There may be cases when you want to install the server as a non-root, non-sudo
+user. To do so on Ubuntu:
+
+ 1. After you download the Couchbase DEB package, go to the directory where it is
+    located and extract it:
+
+     ```
+     >  dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb $HOME
+     ```
+
+    In the directory where you extracted the files, you will see `opt` and `etc`
+    subdirectories.
+
+ 1. After you extract the Couchbase Server install files, go to the subdirectory:
+
+     ```
+     cd opt/couchbase
+     ```
+
+ 1. Run this password-related script:
+
+     ```
+     ./bin/install/reloc.sh `pwd`
+     ```
+
+    This enables you to continue the install as a non-root, non-sudo user.
+
+ 1. To run the server:
+
+     ```
+     ./bin/couchbase-server -- -noinput -detached
+     ```
+
+ 1. To stop the server:
+
+     ```
+     ./bin/couchbase-server -k
+     ```
+
+For general instructions on server start-up and shutdown as a sudo or root user,
+see [Server Startup and Shutdown](#couchbase-admin-basics-running).
 
 <a id="couchbase-getting-started-install-win"></a>
 
@@ -454,6 +543,50 @@ Run the installer from the command-line using the `/s` option:
 You can repeat this process on multiple machines by copying the install package
 and the `your_file_name.iss` file to the same directory on each machine.
 
+**Installing as a Non-Root, Non-Sudo User**
+
+There may be cases when you want to install the server as a non-root, non-sudo
+user. To do so on Windows, you will need a.exe extract utility for Windows, for
+instance [UniVersal Extractor](http://legroom.net/software/uniextract) :
+
+ 1. After you download the Couchbase Windows.exe, use your extractor to extract the
+    files.
+
+    For instance in UniVersal Extractor, right click on the utility icon and choose
+    "UniExtract Files..." then "InstallShield /b swith".
+
+    After all images files are uncompressed the actual InstallShield for Couchbase
+    Server on Windows will start.
+
+ 1. Stop the InstallShield application which starts after image files are
+    uncompressed.
+
+ 1. Find Couchbase Server.msi file in your extractor utility and extract it. For
+    instance, in UniVersal Extractor, right click and choose "UniExtract Files..."
+    again.
+
+    After this completes, all server files are extracted.
+
+ 1. Go to `Couchbase Server\program files\Couchbase\Server` and run the following
+    script:
+
+     ```
+     bin\reloc.bat
+     ```
+
+    This will enable you to use Couchbase Server as a non-sudo, non-root user.
+
+ 1. To start the server remain in this folder and run this command:
+
+     ```
+     bin\shell.bat
+     ```
+
+ 1. To stop the server, open the Services Panel and stop the service.
+
+For general instructions on server start-up and shutdown as a sudo or root user,
+see [Server Startup and Shutdown](#couchbase-admin-basics-running).
+
 <a id="couchbase-getting-started-install-macosx"></a>
 
 ### Mac OS X Installation
@@ -464,6 +597,11 @@ OS X is for development purposes only. The Mac OS X installation uses a Zip file
 which contains a standalone application that can be copied to the `Applications`
 folder or to any other location you choose. The installation location is not the
 same as the location of the Couchbase data files.
+
+Please use the default archive file hander in Mac OS X, Archive Utility, when
+you unpack the Couchbase Server distribution. It is more difficult to diagnose
+non-functioning or damaged installations after extraction by other third party
+archive extraction tools.
 
 Due to limitations within the Mac OS X operating system, the Mac OS X
 implementation is incompatible with other operating systems. It is not possible
@@ -509,6 +647,44 @@ The command line tools are included in the Couchbase Server application
 directory. You can access them in Terminal by using the full path of the
 Couchbase Server installation. By default, this is
 `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`.
+
+**Installing as a Non-Root, Non-Sudo User**
+
+There may be cases when you want to install the server as a non-root, non-sudo
+user. To do so on Mac OSX:
+
+ 1. After you download Couchbase Server, open Terminal and go to the Downloads
+    directory:
+
+     ```
+     cd ~/Downloads/
+     ```
+
+ 1. Unzip the package containing Couchbase Server:
+
+     ```
+     open couchbase-server-enterprise_x86_64_2.1.0.zip
+     ```
+
+ 1. Move Couchbase App to your `/Applications` folder:
+
+     ```
+     mv couchbase-server-enterprise_x86_64_2.1.0/Couchbase\ Server.app /Applications/
+     ```
+
+ 1. Start the server from Terminal:
+
+     ```
+     open /Applications/Couchbase\ Server.app
+     ```
+
+    This will enable you to use Couchbase Server as a non-sudo, non-root user.
+
+ 1. To stop the server, Click on the Couchbase icon in the menu bar and select Quit
+    Couchbase Server.
+
+For general instructions on server start-up and shutdown as a sudo or root user,
+see [Server Startup and Shutdown](#couchbase-admin-basics-running).
 
 <a id="couchbase-getting-started-setup"></a>
 
@@ -677,11 +853,10 @@ Any hostname you provide will survive node restart:
 
 **While Adding a Node**
 
-When you add a new 2.1 node to an existing Couchbase cluster, you can provide
-either a hostname or IP address under **Add Server**. You provide it in the
-**Server IP Address** field. If you add nodes to an existing cluster as part of
-an online upgrade process, you can provide a hostname for the 2.1 node that you
-add:
+If you add a new 2.1+ node to an existing 2.0.1 or older Couchbase cluster you
+should first setup the hostname for the 2.1+ node in the setup wizard. If you
+add a new 2.1+ node to a 2.1 cluster you can provide either a hostname or IP
+address under **Add Server**. You provide it in the **Server IP Address** field:
 
 
 ![](images/hostname_add_node.png)

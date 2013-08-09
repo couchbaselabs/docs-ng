@@ -307,7 +307,7 @@ Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 ![](images/ram-quotas.png)
 
 From this description and diagram, you can see that adding new nodes to the
-cluster expands the overal RAM quota, and the bucket quota, increasing the
+cluster expands the overall RAM quota, and the bucket quota, increasing the
 amount of information that can be kept in RAM.
 
 [The Bucket Quota is used by the system to determine when data should

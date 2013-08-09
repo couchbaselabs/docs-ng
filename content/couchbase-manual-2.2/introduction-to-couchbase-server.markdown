@@ -495,6 +495,38 @@ that document on disk. For more information about document expiration and
 deletion, see [Couchbase Developer Guide, About Document
 Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
 
+**Tombstone Purging**
+
+Couchbase Server and other distributed databases maintain tombstones in order to
+provide eventual consistency between nodes and between clusters. Tombstones are
+records of expired or deleted items and they include the key for the item as
+well as metadata. As of Couchbase Server 2.0, we stored the key plus 60 bytes of
+metadata per deleted item in two structures per node. With millions of
+mutations, the space taken up by tombstones can grow quickly. This is especially
+the case if you have a larger number of deletions or expired documents.
+
+As of Couchbase Server 2.2+ you can now permanently remove this data from a data
+bucket during compaction by setting a timed interval. As part of this
+functionality you can also get alerts per design-document if you have indexed
+items for that design document which will be purged. You can run a tool which
+identifies documents that appear in an index but have been purged.
+
+For more information and instructions, see:
+
+ * Setting Purge Interval for Metadata. Instructions for setting and viewing alerts
+   related to metadata purge in Couchbase Web Console. See XXXXXX. You can also
+   change this interval via REST, see XXXXXX.
+
+ * Viewing Purged Items Still in Index. Using Couchbase Web Console to see any
+   design documents and related indexes which may be impacted by a purge. See
+   XXXXXX.
+
+ * Validating Purged Items. Use the command-line tool `cbindexvalidator` to get all
+   document IDs that have been purged but may still appear in an index. See
+   XXXXXXX.
+
+
+
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
 
 ### Ejection, Eviction and Working Set Management

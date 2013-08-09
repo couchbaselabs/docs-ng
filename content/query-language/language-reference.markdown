@@ -223,10 +223,9 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
         [ string | number | object | array | TRUE | FALSE | NULL ]
         
-        where object can be one of:
+        where identifier can be one of:
         
-        { } 
-        { members }
+        [ unescaped-identifier | escaped-identifier ]
         
         where members can be one of:
         
@@ -288,6 +287,10 @@ symbols, and values which you can use to evaluate and filter result objects.
             },
             "revisions": [2013]
         }
+        
+    The expression `address.city` evaluates to the value 'Mountain View' and the expression `revisions[0]` evaluates to the value `2013`.
+    
+- `case-expr` enable you to do conditional logic within an expression. 
       
          
 ###Examples

@@ -4,6 +4,126 @@ The following sections provide release notes for individual release versions of
 Couchbase Server. To browse or submit new issues, see [Couchbase Server Issues
 Tracker](http://www.couchbase.com/issues/browse/MB).
 
+<a id="couchbase-server-rn_2-2-0a"></a>
+
+## Release Notes for Couchbase Server 2.2 GA (September 2013)
+
+This release is our second minor release for Couchbase Server 2.0 after a 2.1
+release. In 2.1, we added some major enhancements for Disk IO optimization, XDCR
+optimization, Hostname management and many more and also fixed some critical
+bugs. The 2.2 will be more focused enhancing some key area which includes:
+
+ * XDCR protocol update to use memcached, see [Behavior and
+   Limitations](#couchbase-admin-tasks-xdcr-functionality).
+
+ * Managing expired and deleted data efficiently. Better handling of persisted
+   delete tombstones and automated purging of tombstones.
+
+ * Read-only admin user and reset password for administrator.
+
+In addition, this release will try to address some existing issues that
+customers are facing:
+
+ * Hash passwords on the wire for SASL buckets from an SDK, see [Couchbase
+   Developer Guide 2.2, Providing SASL
+   Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication).
+
+ * Support installing Couchbase as non-root and non-sudo user.
+
+ * Efficiently support "Append" patterns with tcmalloc upgrade.
+
+ * Improved rebalance speeds for smaller number datasets and node counts.
+
+**Fixes in 2.2**
+
+ * **Database Operations**
+
+    * If you continuously perform numerous appends to a document, it may lead to
+      memory fragmentation and overuse. This is due to an underlying issue of
+      inefficient memory allocation and deallocation with third party software
+      `tcmalloc`. This has been fixed.
+
+      *Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
+
+ * **Command-line Tools**
+
+    * In past versions of Couchbase Server, `cbbackup` would continue past 100%
+      progress. This is due to a a bug in the `cbbackup` progress indicator and tool
+      behavior. In the past, `cbtransfer` only accounted for items in RAM in the
+      backup estimate, but would also backup deleted items as well as items read from
+      disk into memory. This resulted in greater than 100% progress being displayed.
+      These issues have been fixed.
+
+      *Issues* : [MB-8692](http://www.couchbase.com/issues/browse/MB-8692)
+
+ * **Indexing and Querying**
+
+    * In the past you had to delete an XDCR replication and recreate it if you wanted
+      to change any XDCR internal settings. This includes:
+      `xdcr_optimistic_replication_threshold`, `xdcr_worker_batch_size`,
+      `xdcr_connection_timeout`, `xdcr_num_worker_process`,
+      `xdcr_num_http_connections`, and `xdcr_num_retries_per_request`. You can now
+      change these settings and they will immeidately apply to the existing XDCR
+      replication. For more information, see [Changing Internal XDCR
+      Settings](#couchbase-admin-restapi-xdcr-change-settings).
+
+      *Issues* : [MB-8422](http://www.couchbase.com/issues/browse/MB-8422)
+
+ * **Cross Datacenter Replication (XDCR)**
+
+    * Non-UTF-8 encoded keys will not be replicated to destination clusters via XDCR
+      by design. If any non-UTF-8 key is detected at a source cluster, a warning
+      message will appear in the `xdcr_error.*` log files along with a list of
+      non-UTF-8 keys. The message you will see is "Warning! These non-UTF-8 keys are
+      filtered out and will not be replicated:" followed by a list of keys. See
+      [Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
+
+      *Issues* : [MB-8727](http://www.couchbase.com/issues/browse/MB-8727)
+
+<a id="couchbase-server-rn_2-1-1a"></a>
+
+## Release Notes for Couchbase Server 2.1.1 GA (July 2013)
+
+Couchbase Server 2.1.1 is first maintenance release for Couchbase Server 2.1.
+This release includes some major bug fixes and enhancements:
+
+**New Edition in 2.1.1**
+
+The Enterprise Edition of Couchbase Server is now available on Mac OSX. See
+[Couchbase, Downloads](http://www.couchbase.com/download).
+
+**Fixes in 2.1.1**
+
+ * **Database Operations**
+
+    * There was an underlying Windows Management Instrumentation issue in
+      `wmi_port.cpp` which caused memory leaks. This has been fixed.
+
+      *Issues* : [MB-8674](http://www.couchbase.com/issues/browse/MB-8674)
+
+    * The 2.1 version of the server exposes fewer server stats than it did in earlier
+      versions. The five stats that have been removed are `key_data_age`,
+      `key_last_modification_time`, `paged_out _time`, `ep_too_young` and
+      `ep_too_old`.
+
+      *Issues* : [MB-8539](http://www.couchbase.com/issues/browse/MB-8539)
+
+ * **Cluster Operations**
+
+    * The rebalance speed for small datasets has been significantly improved. This
+      includes time to rebalance empty buckets and buckets containing tens of
+      thousands of items.
+
+      *Issues* : [MB-8521](http://www.couchbase.com/issues/browse/MB-8521)
+
+    * In Couchbase 2.1.0 if you tried to assign a hostname to a node when you join the
+      node to a cluster, it will be reset. The hostname will not be saved for the node
+      and will not be used by the cluster to identify the node. This has been fixed.
+      For more information about managing hostnames, see [Using Hostnames with
+      Couchbase Server](#couchbase-getting-started-hostnames).
+
+      *Issues* : [MB-8545](http://www.couchbase.com/issues/browse/MB-8545)
+
 <a id="couchbase-server-rn_2-1-0a"></a>
 
 ## Release Notes for Couchbase Server 2.1.0 GA (June 2013)
