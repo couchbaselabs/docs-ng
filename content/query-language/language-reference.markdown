@@ -271,14 +271,24 @@ symbols, and values which you can use to evaluate and filter result objects.
         
         { `chars` }
         
-    An identifier, or path, is a reference to a particular value in a document. For instance given a people database with documents as follows:
+    An identifier, is a reference to value in the current context of a query. For instance given a people database with a document structure as follows:
     
         {
             "firstName" : "Geremy"
             "lastName" : "Irving"
         }
     
-    The path person.lastName would evaluate to the value "Irving" in this example.  
+    The identifier person.lastName would evaluate to the value "Irving." 
+    
+- ` nested-expr` are a way to specify fields nested inside of other objects. They can include the dot operator, `.`, as well as bracket notation, `[]` to access items in an array or object. For example, image the following document structure:
+
+        {
+            "address": {
+                "city": "Mountain View"
+            },
+            "revisions": [2013]
+        }
+      
          
 ###Examples
 
