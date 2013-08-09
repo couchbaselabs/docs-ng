@@ -70,7 +70,7 @@ Paths enable you to find and extract data out of document structures without hav
 
 As of N1QL 1.0, we assume that you perform a query on a single data bucket in Couchbase Server. You can have one or more buckets for a single server instance and more than one bucket for an entire Couchbase cluster. Therefore when you use N1QL 1.0 for queries, it will find information in a single bucket. This also implies that there are no JOIN operations; queries are not yet supported as joins across multiple data buckets.
 
-Besides a command, each query can have multiple optional parts, including clauses, expressions and functions. *Expressions* are parts of a query which will compare values against one another or perform arithmetic calculations, and *clauses* are typically use for the limiting scope of query. Couchbase Server evaluates these clauses in the following order:
+Besides a command, each query can have multiple optional parts, including clauses, expressions and functions. *Expressions* are parts of a query which will compare values against one another or perform arithmetic calculations, and *clauses* are typically used for the limiting the scope of a query. Couchbase Server evaluates these clauses in the following order:
 
 * Filter Expressions. If you provide a filtering expression, the server applies this to every item in a data bucket and only keeps the items where the result is true.
 * Aggregate Expressions. This expression groups all items in a result set by evaluating the aggregate expression. The result set contains these groups.
@@ -78,7 +78,7 @@ Besides a command, each query can have multiple optional parts, including clause
 * Order Expressions.  A query orders the item in the result set by evaluating this expression.
 * Skip Value. The server discards this number of items in the result set starting at the first item at index 0.
 
-
+When you perform a query, you can see it as a sequence of steps where each step corresponds to the different clauses and expression in a query. The expressions evaluated first will produce an intermediate *result set* also known as *output objects*. The output objects from a step will become the input for the next step and produce the next result set. After all expressions have been evaluated in a query you have a *final result set*. 
 
 ##N1QL and SQL
 
