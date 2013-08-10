@@ -20,7 +20,7 @@ The entire new site as well as new content are in a public GitHub repo you can b
 - To check the branch you are on use `git branch`
 - Commit your changes, `git add` and `git commit`
 - Push change to staging repo: `git push`
-- When you are ready, send a pull request so your changes can be merged and published
+- When you areready, send a pull request so your changes can be merged and published
 
 - Tech Pubs will elevate any content from the stage repo to the master repo, resolving any merge conflicts if needed:
 
