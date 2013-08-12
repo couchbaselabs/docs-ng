@@ -226,15 +226,22 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         where identifier can be one of:
         
         [ unescaped-identifier | escaped-identifier ]
+
+        where unescaped-identifier is:
+
+        { a-z | A-Z | _ | & } [ 0-9 | a-z | a-Z | _ | $ ]
+
+        where escaped-identifier is:
+
+        { `chars` }
         
-        where members can be one of:
+        where case-expr is as follows:
         
-        pair
-        pair.{ members }
+        { CASE WHEN expr THEN expr [, ...] } [ ELSE expr ] { END }
         
-        where pair is:
+        where collection-expr is as follows
         
-        string:expr
+        { ANY | ALL } { expr OVER path AS identifier }
         
         where nested-expr can be one of:
         
@@ -259,16 +266,7 @@ symbols, and values which you can use to evaluate and filter result objects.
 
 - `identifier` is also known as a path. It can be an escaped or unescaped identifier. Unescaped identifiers support the most common identifiers in JSON as a simpler syntax. Escaped identifiers are surrounded by back-ticks and support all identifiers in JSON. Using two back-tick within an escaped identifier will create a single back-tick. The syntax for `identifier` is as follows:
 
-        [ unescaped-identifier ]
-        [ escaped-identifier ]
-        
-        where unescaped-identifier is:
-        
-        { a-z | A-Z | _ | & } [ 0-9 | a-z | a-Z | _ | $ ]
-        
-        where escaped-identifier is:
-        
-        { `chars` }
+   
         
     An identifier, is a reference to value in the current context of a query. For instance given a people database with a document structure as follows:
     
@@ -290,7 +288,25 @@ symbols, and values which you can use to evaluate and filter result objects.
         
     The expression `address.city` evaluates to the value 'Mountain View' and the expression `revisions[0]` evaluates to the value `2013`.
     
-- `case-expr` enable you to do conditional logic within an expression. 
+- `case-expr`. You can do conditional logic in an expression. If the first `WHEN` expression evaluates to TRUE, the result for this expression is the `THEN` expression. If the first `WHEN` evaluates to FALSE, then the next `WHEN` clauses will be evaluated. If no `WHEN` clause evaluates to `TRUE` the result is the `ELSE` expression. If no `ELSE` expression is provided in the clause, the result is NULL.
+
+- `collection-expr`. Enables you to use boolean expressions for nested collections. The two different ways to provide this expression is through either `ANY` or `ALL`. You provide an array to evaluate as a `path` in an `OVER` clause. The server will iterate through each element in the array and assign each item an `identifier` from the `AS` clause. The `identifier` is only used as a identifier within the `ANY` or `ALL` clause and is distinct from identifiers provided in other clauses.
+
+    `ANY` If an expression evaluates to an array and at least one item in the array satisfies the `ANY` expression, then return `TRUE`, otherwise return `FALSE`.
+    
+    `ALL` If an expression evaluates to an array and all array elements satisfy the `ALL` expression, return TRUE. Otherwise return `FALSE.` If an array is empty, return `TRUE`.
+    
+- `logical-term`. Enables you to combine other expression with boolean logic. Includes `AND`, `OR`, and `NOT`.
+
+- `comparison-term`. These clauses enable you to compare the results of two expressions. This includes `=`, `<`, `>`, `<=`, `>=` and others. The terms `=` and `==` are functional equivalents of equal which are provided for compatibility with other languages. The terms `!=` and `<>` are also equivalent comparisons provided for compatibility.
+    
+    If a comparison term is missing from the clause, returns `MISSING`. If either operand in a comparison results in `NULL` returns `NULL`. If comparison operators return results of different types, returns `FALSE`.
+    
+    By default any string comparisons use raw collation, otherwise known as binary collation. This collation is case sensitive. If you want to perform case-insensitive comparisons, you can first transform a string with `UPPER()` or `LOWER()` functions.
+    
+    The `LIKE` operator enables you to do wildcard matching in strings. You provide a pattern to the right of the operators which can optionally contain wildcard characters of `%` or `_`. The percentage sign, `%`, indicates any string of zero or more characters. The underscore, `_` matches any single character.
+    
+    *Comparing `NULL` and `MISSING` values*
       
          
 ###Examples
