@@ -83,12 +83,3 @@ There are different types of expressions in N1QL for extracting, grouping and or
 * Having Expressions. The server applies this expression to all items in a result set and only keeps an item in the result set if the expression evaluates to true.
 * Order Expressions.  A query orders the item in the result set by evaluating this expression.
 * Skip Value. The server discards this number of items in the result set starting at the first item at index 0.
-
-##Expression Evaluation
-
-##N1QL and SQL
-
-
-##N1QL in a Distributed System
-
-##Other Language Bindings

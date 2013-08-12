@@ -308,11 +308,33 @@ symbols, and values which you can use to evaluate and filter result objects.
     
     **Comparing NULL and MISSING values**
       
+    `NULL` or `MISSING` values have special comparison terms because we need to determine type information. The following special operators are used with these values:
+      
+    - `IS NULL`. Returns items where the value of a property is explicitly set to NULL and is not missing.
+    - `IS NOT NULL`. Returns items which contain a value. The value is not `NULL` and is not missing.
+    - `IS MISSING`. Returns items where the value of a property is missing and not `NULL`.
+    - `IS NOT MISSING`. Returns items which contain a value or `NULL`.
+    - `IS VALUED`. Returns TRUE if a property has a value. Returns FALSE if NULL or missing.
+    - `IS NOT VALUED`. Returns TRUE if property is NULL or missing.
          
 ###Examples
 
 ###See Also
 
+##Comparison Terms
+
+The following comparison terms are available in N1QL:
+
+| Comparison | Description | Returns | 
+| ------------- |:-------------:| -----:|
+| = | Equals to | TRUE or FALSE |
+| == | Equals to | TRUE or FALSE |
+| != | Not equal to | TRUE or FALSE |
+| <> | Not equal to | TRUE or FALSE |
+| > | Greater than | TRUE or FALSE |
+| >= | Greater than or equal to | TRUE or FALSE |
+| < | Less than | TRUE or FALSE |
+| <= | Less than or equal to | TRUE or FALSE |
 
 ##Conditions
 
