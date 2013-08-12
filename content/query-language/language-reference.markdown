@@ -302,11 +302,11 @@ symbols, and values which you can use to evaluate and filter result objects.
     
     If a comparison term is missing from the clause, returns `MISSING`. If either operand in a comparison results in `NULL` returns `NULL`. If comparison operators return results of different types, returns `FALSE`.
     
-    By default any string comparisons use raw collation, otherwise known as binary collation. This collation is case sensitive. If you want to perform case-insensitive comparisons, you can first transform a string with `UPPER()` or `LOWER()` functions.
+    By default any string comparisons use raw collation, otherwise known as binary collation. This collation is *case sensitive*. If you want to perform case-insensitive comparisons, you can first transform a string with `UPPER()` or `LOWER()` functions.
     
     The `LIKE` operator enables you to do wildcard matching in strings. You provide a pattern to the right of the operators which can optionally contain wildcard characters of `%` or `_`. The percentage sign, `%`, indicates any string of zero or more characters. The underscore, `_` matches any single character.
     
-    *Comparing `NULL` and `MISSING` values*
+    **Comparing NULL and MISSING values**
       
          
 ###Examples
@@ -320,19 +320,19 @@ symbols, and values which you can use to evaluate and filter result objects.
 
 The following operators are available in N1QL. The list that follows is also in the order of precedence where the items listed above others have precedence over them:
 
-* CASE | WHEN | THEN | ELSE | END
-* .
-* []
-* -
-* */%
-* +-
-* IS NULL | IS MISSING | IS VALUED
-* IS NOT NULL | IS NOT MISSING | IS NOT VALUED
-* like
-* <, >, <=, and =>
-* =
-* NOT
-* AND
-* OR
+* `CASE | WHEN | THEN | ELSE | END`
+* `.`
+* `[]`
+* `-`
+* `*/%`
+* `+-`
+* `IS NULL | IS MISSING | IS VALUED`
+* `IS NOT NULL | IS NOT MISSING | IS NOT VALUED`
+* `LIKE`
+* `<`, `>`, `<=`, and `=>`
+* `=`
+* `NOT`
+* `AND`
+* `OR`
 
 You can also use parenthesis to combine expressions and operators and the parenthesis have the highest precedence. If you use parenthesis to group operators and expressions, these items will be evaluated first and then the result will then be used in any other operations.
