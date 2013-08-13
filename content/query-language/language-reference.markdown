@@ -153,53 +153,8 @@ The following describe optional clauses you can use in your select statement:
 
 ###See Also
 
-##Operators
 
-##Functions
 
-N1QL provides several built-in functions for performing calculations on data. You can find both aggregate and scalar functions. Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.
-
-###Aggregate Functions
-
-You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you use an aggregate function in a clause with these commands, the query will act as an aggregate query. 
-
-| Function | Description | Returns | Example | 
-| ------------- |:-------------:| -----:|-----:|
-| COUNT(expr) | Returns the number items in a result set | 0 or positive integer | xxx|
-| MIN(expr) | Returns minimum value of all values in a result set. This is the first non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer, NULL if no non-NULL, non-MISSING items in result set | xxx |
-| MAX(expr) | Returns maximum value of all values in a result set. This is the last non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer | xxx |
-| AVG(expr) | Returns average value of all values in a result set. Non-numeric values in a result set are ignored. | Integer | xxx |
-| SUM(expr) | Returns sum of all numeric values in a result set. Non-numeric values in a result set are ignored | Integer | xxx |
-
-### Scalar Functions
-
-These functions will return a single value based on the items in a result set. The following are scalar functions in N1QL:
-
-|Function | Description | Returns | Example |
-|--------- |:------------:| -----:|--------:|
-| CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx 
-| FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx 
-| GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value | xxxx 
-| IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value | xxxx 
-| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value | xxxx 
-| IFNULL(expr, expr, ....) | Returns the first non-NULL value | value | xxxx
-| META() | Returns metadata for the document | value | xxxx|
-| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx 
-| LEAST(expr, expr, ... ) | Returns the smallest non-NULL, non-MISSING VALUE after evaluating all expressions. If all values are NULL or MISSING, returns NULL | value or NULL | xxxx 
-|   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | xxxx 
-|   LOWER(expr) | If expr is a string, returns string in all lowercase, otherwise NULL | string or NULL | xxxx 
-|   LTRIM(expr, charset) | Remove the longest string containing the characters in `charset` from start of string. | string or NULL | xxxx 
-|   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | xxxx 
-|   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL | xxxx 
-|   ROUND( value, digits ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL | xxxx 
-|   RTRIM( expr, charset ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL | xxxx 
-|   SUBSTR( value, position ) | For value of string and position numeric, returns substring from position to end of string. String position starts at 1. If position 0, starts at position 1 nonetheless. If negative position, characters are counted from the end of string. Otherwise returns NULL. | string or NULL | xxxx 
-|   SUBSTR( value, position, length ) | If length is positive integer, returns substring starting at position up to length characters. Otherwise NULL | string or NULL | xxxx 
-|   TRIM( expr, charset ) | Functional equivalent of LTRIM(RTRIM(expr, charset)) | string or NULL | xxxx 
-|   TRUNC( value ) | If numeric value, truncates towards zero. Functional equivalent of TRUNC(value, 0). Otherwise returns NULL | integer or NULL | xxxx 
-|   TRUNC( value, digits ) | If digits an integer and value numeric, truncates value to the specific number of digits. Otherwise returns NULL | integer or NULL | xxxx 
-|   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL | xxxx 
-|   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL | xxxx 
 
 ##Expressions
 
@@ -247,6 +202,10 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
         expr.expr
         expr[ expr ]
+        
+        where function is a follows:
+        
+        function-name( path. | path.* | DISTINCT { expr [, ... ] } | UNIQUE { expr [ , ... ] } )
         
         
 ###Compatibility
@@ -310,7 +269,12 @@ symbols, and values which you can use to evaluate and filter result objects.
       
     `NULL` or `MISSING` values have special comparison terms because we need to determine type information. For more information, see [Comparison Terms](#Comparison_Terms).
     
-- `arithmetic-term`. Enable you to perform arithmetic methods within an expression. This includes basic mathematical operations such as addition, subtraction, multiplication, divisions, and modulo. In addition, a negation operation will change the sign of a value. See
+- `arithmetic-term`. Enable you to perform arithmetic methods within an expression. This includes basic mathematical operations such as addition, subtraction, multiplication, divisions, and modulo. In addition, a negation operation will change the sign of a value. See [Arithmetic Operators](#arithmetic_ops).
+
+- `string-term`, or `||`. If both operands are strings, the `||` operator will concatenate the strings, otherwise evaluates to NULL.
+
+- `function-name`. Used to apply a function to values, to values at a specified path, or to values derived from a `DISTINCT` or `UNIQUE` clause. For a full list of 
+functions, see [Functions](#functions).
          
 ###Examples
 
@@ -340,6 +304,7 @@ The following comparison terms are available in N1QL:
 | IS VALUED | Value for field found. Value is neither missing nor NULL | TRUE or FALSE |
 | IS NOT VALUED | Value for field not found. Value is NULL. | TRUE or FALSE |
 
+<a id="arithmetic_ops"></a>
 ##Arithmetic Operators
 
 The following are the arithmetic operations in N1QL. These operators only function on numeric values. If either operand is non-numeric, and expression will evaluate to NULL.
@@ -373,3 +338,51 @@ The following operators are available in N1QL. The list that follows is also in 
 * `OR`
 
 You can also use parenthesis to combine expressions and operators and the parenthesis have the highest precedence. If you use parenthesis to group operators and expressions, these items will be evaluated first and then the result will then be used in any other operations.
+
+<a id="functions"></a>
+##Functions
+
+N1QL provides several built-in functions for performing calculations on data. You can find both aggregate and scalar functions. Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.
+
+###Aggregate Functions
+
+You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you use an aggregate function in a clause with these commands, the query will act as an aggregate query. 
+
+| Function | Description | Returns | Example | 
+| ------------- |:-------------:| -----:|-----:|
+| COUNT(expr) | Returns the number items in a result set | 0 or positive integer | xxx|
+| MIN(expr) | Returns minimum value of all values in a result set. This is the first non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer, NULL if no non-NULL, non-MISSING items in result set | xxx |
+| MAX(expr) | Returns maximum value of all values in a result set. This is the last non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer | xxx |
+| AVG(expr) | Returns average value of all values in a result set. Non-numeric values in a result set are ignored. | Integer | xxx |
+| SUM(expr) | Returns sum of all numeric values in a result set. Non-numeric values in a result set are ignored | Integer | xxx |
+
+### Scalar Functions
+
+These functions will return a single value based on the items in a result set. The following are scalar functions in N1QL:
+
+|Function | Description | Returns | Example |
+|--------- |:------------:| -----:|--------:|
+| CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx 
+| FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer | xxxx 
+| GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value | xxxx 
+| IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value | xxxx 
+| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value | xxxx 
+| IFNULL(expr, expr, ....) | Returns the first non-NULL value | value | xxxx
+| META() | Returns metadata for the document | value | xxxx|
+| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx 
+| LEAST(expr, expr, ... ) | Returns the smallest non-NULL, non-MISSING VALUE after evaluating all expressions. If all values are NULL or MISSING, returns NULL | value or NULL | xxxx 
+|   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | xxxx 
+|   LOWER(expr) | If expr is a string, returns string in all lowercase, otherwise NULL | string or NULL | xxxx 
+|   LTRIM(expr, charset) | Remove the longest string containing the characters in `charset` from start of string. | string or NULL | xxxx 
+|   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | xxxx 
+|   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL | xxxx 
+|   ROUND( value, digits ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL | xxxx 
+|   RTRIM( expr, charset ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL | xxxx 
+|   SUBSTR( value, position ) | For value of string and position numeric, returns substring from position to end of string. String position starts at 1. If position 0, starts at position 1 nonetheless. If negative position, characters are counted from the end of string. Otherwise returns NULL. | string or NULL | xxxx 
+|   SUBSTR( value, position, length ) | If length is positive integer, returns substring starting at position up to length characters. Otherwise NULL | string or NULL | xxxx 
+|   TRIM( expr, charset ) | Functional equivalent of LTRIM(RTRIM(expr, charset)) | string or NULL | xxxx 
+|   TRUNC( value ) | If numeric value, truncates towards zero. Functional equivalent of TRUNC(value, 0). Otherwise returns NULL | integer or NULL | xxxx 
+|   TRUNC( value, digits ) | If digits an integer and value numeric, truncates value to the specific number of digits. Otherwise returns NULL | integer or NULL | xxxx 
+|   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL | xxxx 
+|   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL | xxxx 
+
