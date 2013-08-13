@@ -295,8 +295,8 @@ The following comparison terms are available in N1QL:
 | >= | Greater than or equal to | TRUE or FALSE |
 | < | Less than | TRUE or FALSE |
 | <= | Less than or equal to | TRUE or FALSE |
-| LIKE | Match string with wildcard expression. % for zero or more wildcards, _ to match any character at this place in a string | TRUE or FALSE |
-| NOT LIKE | xxxxx | TRUE or FALSE |
+| LIKE | Match string with wildcard expression. `%` for zero or more wildcards, `_` to match any character at this place in a string | TRUE or FALSE |
+| NOT LIKE | Inverse of LIKE. Return TRUE if string is not similar to given string. | TRUE or FALSE |
 | IS NULL | Field has value of NULL. | TRUE or FALSE |
 | IS NOT NULL | Field has value or is missing. | TRUE or FALSE |
 | IS MISSING | No value for field found. | TRUE or FALSE |
