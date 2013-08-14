@@ -33,10 +33,12 @@ The major use cases for N1QL are the following:
 
 There are different approaches for learning new language. Depending on your learning style, you can start with information at one of the links below:
 
-- Concepts - for those of you who like to understand the theories and ideas behind the language.
+- [Concepts](#concepts) - for those of you who like to understand the theories and ideas behind the language.
 - Tutorial - developers who want to start with a reference application with N1QL.
 - Blogs - articles, tutorials, and demonstrations of N1QL.
 - Presentations - features, abilities, background information, and examples of the language.
+
+For the full language and syntax see the [N1QL language reference](#language_ref).
 
 
 

@@ -1,3 +1,4 @@
+<a href="#language_ref"></a>
 #Language Reference
 
 This reference section describes the syntax and general semantics of N1QL. This includes all available commands, functions, expressions, conditionals and operators for the language.
@@ -77,21 +78,21 @@ Available in Couchbase Server X.X
 
 ###Description
 
-The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Each step in a sequence produces result objects which are then used as inputs in the next step in a query until all steps complete:
+The SELECT statement queries a data source. It returns a JSON array containing zero or more result objects. You can see how SELECT behaves as a sequence of steps in a process. Each step in the process produces result objects which are then used as inputs in the next step until all steps in the process are complete. The possible elements and operations in a query include:
 
-* Data Source. This is the Couchbase data bucket you query. You provide this as the parameter data-source in a FROM clause. Alternately you can provide a `path` as data source.
+* **Data Source** - This is the Couchbase data bucket you query. You provide this as the parameter data-source in a FROM clause. Alternately you can provide a `path` as data source.
 
-* Filtering. Results objects from the SELECT can be filtered by adding a WHERE clause.
+* **Filtering** - Results objects from the SELECT can be filtered by adding a WHERE clause.
 
-* Result Set. You generate a set of result objects with GROUP BY or HAVING clauses along with a result expression list, `result-expr-list`.
+* **Result Set** - You generate a set of result objects with GROUP BY or HAVING clauses along with a result expression list, `result-expr-list`.
 
-* Duplicate Removal. Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
+* **Duplicate Removal** Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
 
 ###Options
 
-The following describe optional clauses you can use in your select statement:
+The following describes optional clauses you can use in your select statement:
 
-* `DISTINCT` Clause. If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`the query will return all objects that meet the query conditions in a result set.
+* `DISTINCT` Clause - If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`the query will return all objects that meet the query conditions in a result set.
 
 * `FROM` Clause. This is an optional clause for your query. If you omit this clause the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause in `FROM.` For example:
 
