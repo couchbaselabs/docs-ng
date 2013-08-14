@@ -1,6 +1,6 @@
 # Couchbase Lite Concepts
 
-# 2. Couchbase Lite's Data Model
+# Couchbase Lite's Data Model
 
 <table frame="box" align="right">
 <caption><b>Database Terminology</b></caption>

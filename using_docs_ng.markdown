@@ -37,7 +37,7 @@ The entire new site as well as new content are in a public GitHub repo you can b
 TechPubs will set up your new folder for new guides or new major versions, for example this_guide_name-X.X. TechPubs will also set up the YAML file to include menu options and navigation to your guide. Follow these guidelines once your file is set up:
 
 - Create .markdown files for each chapter in your guide.
-- Create an index.erb file at the root of your guide. In this file add an include statement for each .markdown chapter, for instance: 
+- Create an index.erb file at the root of the content folder. In this file add an include statement for each .markdown chapter, for instance: 
 
     <%= include_item 'couchbase-devguide-2.0/couchbase-developer-s-guide-2.0' %>
     
