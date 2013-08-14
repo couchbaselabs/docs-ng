@@ -434,6 +434,11 @@ and the `your_file_name.iss` file to the same directory on each machine.
 
 Couchbase Server on Mac OS X is for development purposes only.
 
+Please use the default archive file hander in Mac OS X, Archive Utility, when
+you unpack the Couchbase Server distribution. It is more difficult to diagnose
+non-functioning or damaged installations after extraction by other third party
+archive extraction tools.
+
 The Mac OS X installation uses a Zip file which contains a standalone
 application that can be copied to the `Applications` folder or to any other
 location you choose. The installation location is not the same as the location

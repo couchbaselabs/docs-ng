@@ -424,9 +424,9 @@ bucket properties:
 
 
 ```
-shell> couchbase-cli bucket-create [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]  // 0 the default and 1 to enable
+> couchbase-cli bucket-create [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]  // 0 the default and 1 to enable
 
-shell> couchbase-cli bucket-edit [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]  // 0 the default and 1 to enable
+ > couchbase-cli bucket-edit [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]  // 0 the default and 1 to enable
 ```
 
 After you enable this option, you can then flush the data bucket.
@@ -443,7 +443,7 @@ Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 
 
 ```
-shell> couchbase-cli bucket-flush [cluster_admin:pass] [bucket_name OPTIONS]
+> couchbase-cli bucket-flush [cluster_admin:pass] [bucket_name OPTIONS]
 ```
 
 By default this command will confirm whether or not you truly want to flush the
@@ -481,7 +481,7 @@ is:
 
 
 ```
-shell> cbstats <IP>:11210 <command> -b <bucket_name> [-p <bucket_password>]
+> cbstats <IP>:11210 <command> -b <bucket_name> [-p <bucket_password>]
 ```
 
 Where `BUCKET_HOST` is the hostname and port ( `HOSTNAME[:PORT]` ) combination
@@ -516,7 +516,7 @@ sort and filter the data.
 
 
 ```
-shell> watch --diff "cbstats \
+> watch --diff "cbstats \
     ip-10-12-19-81:11210 -b bucket1 -p password all | egrep 'item|mem|flusher|ep_queue|bg|eje|resi|warm'"
 ```
 
@@ -534,8 +534,8 @@ ep\_queue\_age\_cap                | Queue age cap setting.
 ep\_max\_txn\_size                 | Max number of updates per transaction.                                                                                                                                           
 ep\_data\_age                      | Seconds since most recently stored object was modified.                                                                                                                          
 ep\_data\_age\_highwat             | ep\_data\_age high water mark                                                                                                                                                    
-ep\_too\_young                     | Number of times an object was not stored due to being too young.                                                                                                                 
-ep\_too\_old                       | Number of times an object was stored after being dirty too long.                                                                                                                 
+ep\_too\_young                     | Deprecated in 2.1.0. Number of times an object was not stored due to being too young.                                                                                            
+ep\_too\_old                       | Deprecated in 2.1.0. Number of times an object was stored after being dirty too long.                                                                                            
 ep\_total\_enqueued                | Total number of items queued for persistence                                                                                                                                     
 ep\_total\_new\_items              | Total number of persisted new items.                                                                                                                                             
 ep\_total\_del\_items              | Total number of persisted deletions.                                                                                                                                             
@@ -978,7 +978,7 @@ you specify. For instance:
 
 
 ```
-shell> ./cbepctl 10.5.2.31:11210 -b bucket1 -p bucket_password set tap_param tap_throttle_queue_cap 2000000
+> ./cbepctl 10.5.2.31:11210 -b bucket1 -p bucket_password set tap_param tap_throttle_queue_cap 2000000
 ```
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
@@ -1004,7 +1004,7 @@ percentage or a specified number of items, replication requests will slow down:
 
 
 ```
-shell> ./cbepctl 10.5.2.31:11210 -b bucket1 -p bucket_password set tap_param tap_throttle_cap_pcnt 15
+> ./cbepctl 10.5.2.31:11210 -b bucket1 -p bucket_password set tap_param tap_throttle_cap_pcnt 15
 ```
 
 In this example, we set the threshold to 15% of all items at a replica node.
@@ -1051,7 +1051,7 @@ the time interval when the access scanner process runs to every 20 minutes:
 
 
 ```
-shell> ./cbepctl hostname:port -b bucket1 -p bucket_password set flush_param alog_sleep_time 20
+> ./cbepctl hostname:port -b bucket1 -p bucket_password set flush_param alog_sleep_time 20
 ```
 
 To change the initial time that the access scanner process runs from the default
@@ -1059,7 +1059,7 @@ of 2:00 AM UTC:
 
 
 ```
-shell> ./cbepctl hostname:port -b bucket1 -p bucket_password set flush_param alog_task_time 23
+> ./cbepctl hostname:port -b bucket1 -p bucket_password set flush_param alog_task_time 23
 ```
 
 In this example we set the initial time to 11:00 PM UTC.
@@ -1079,7 +1079,7 @@ known as the *high water mark*. The server determines that items are not
 frequently used based on a boolean for each item known as NRU
 (Not-Recently-used). There a few settings you can adjust to change server
 behavior during the ejection process. In general, we do not recommend you change
-ejection defaults for Couchbase Server 2.0 unless you are required to do so.
+ejection defaults for Couchbase Server 2.0+ unless you are required to do so.
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -1089,8 +1089,8 @@ node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster.
 
-For technical information about the ejection process, the role of NRU and server
-processes related to ejection, see [Ejection and Working Set
+For background information about the ejection process, the role of NRU and
+server processes related to ejection, see [Ejection and Working Set
 Management](#couchbase-admin-tasks-working-set-mgmt).
 
 **Setting the Low Water Mark**
@@ -1101,7 +1101,7 @@ written to disk. To change this percentage for instance:
 
 
 ```
-shell>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 65
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 70
 ```
 
 You can also provides an absolute number of bytes when you change this setting.
@@ -1114,11 +1114,11 @@ Couchbase command-line tool, `cbepctl` :
 
 
 ```
-shell>    ./cbepctl 10.5.2.31:11210 -b bucket_name -b bucket_password set flush_param mem_high_wat 70
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -b bucket_password set flush_param mem_high_wat 80
 ```
 
-Here we set the high water mark to be 70% of RAM for a specific data bucket on a
-given node. This means that items in RAM on this node can consume up to 70% of
+Here we set the high water mark to be 80% of RAM for a specific data bucket on a
+given node. This means that items in RAM on this node can consume up to 80% of
 RAM before the item pager begins ejecting items. You can also specify an
 absolute number of bytes when you set this threshold.
 
@@ -1126,16 +1126,13 @@ absolute number of bytes when you set this threshold.
 
 After Couchbase Server removes all infrequently-used items and the high water
 mark is still breached, the server will then eject replicated data and active
-data from a node whether or not the data is frequently or infrequently used. By
-default, the server is configured to eject 40% random active items and will
-eject 60% random replica data from a node.
-
-You change also the default percentage for ejection of active items versus
-replica items using the Couchbase command-line tool, `cbepctl` :
+data from a node whether or not the data is frequently or infrequently used. You
+change also the default percentage for ejection of active items versus replica
+items using the Couchbase command-line tool, `cbepctl` :
 
 
 ```
-shell>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
 ```
 
 This increases the percentage of active items that can be ejected from a node to
@@ -1150,10 +1147,6 @@ has to retrieve the items from disk back into RAM and then it can respond to the
 requests. For Couchbase Server 2.0 we generally recommend that you do not change
 these defaults.
 
-For technical information about the ejection process, the role of NRU and server
-processes related to ejection, see [Ejection and Working Set
-Management](#couchbase-admin-tasks-working-set-mgmt).
-
 <a id="couchbase-admin-cbepctl-mutation_mem"></a>
 
 ### Changing Setting for Out Of Memory Errors
@@ -1166,7 +1159,7 @@ queue or for server data structures. To change this value:
 
 
 ```
-shell>./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mutation_mem_threshold 65
+>./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mutation_mem_threshold 65
 ```
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
@@ -1218,14 +1211,14 @@ To enable flushing a data bucket:
 
 
 ```
-shell> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled true
+> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled true
 ```
 
 To disable flushing a data bucket:
 
 
 ```
-shell> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
+> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
 ```
 
 You can initiate the flush via the REST-API. For information about changing this
@@ -1328,7 +1321,7 @@ Couchbase technical support:
 
 
 ```
-shell> curl --upload-file file_name https://s3.amazonaws.com/customers.couchbase.com/company_name/
+> curl --upload-file file_name https://s3.amazonaws.com/customers.couchbase.com/company_name/
 ```
 
 Where `file_name` is the name of your archive, and `company_name` is the name of
@@ -1407,7 +1400,7 @@ an entire cluster and all buckets for that cluster:
 
 
 ```
-shell> cbbackup http://HOST:8091 ~/backups \
+> cbbackup http://HOST:8091 ~/backups \
           -u Administrator -p password
 ```
 
@@ -1433,7 +1426,7 @@ To backup a single bucket in a cluster:
 
 
 ```
-shell> cbbackup http://HOST:8091 /backups/backup-20120501 \
+> cbbackup http://HOST:8091 /backups/backup-20120501 \
   -u Administrator -p password \
   -b default
 ```
@@ -1445,7 +1438,7 @@ buckets from a single node which access the buckets:
 
 
 ```
-shell> cbbackup http://HOST:8091 /backups/ \
+> cbbackup http://HOST:8091 /backups/ \
   -u Administrator -p password \
   --single-node
 ```
@@ -1455,7 +1448,7 @@ follows:
 
 
 ```
-shell> cbbackup http://HOST:8091 /backups \
+> cbbackup http://HOST:8091 /backups \
   -u Administrator -p password \
   --single-node \
   -b bucket_name
@@ -1467,7 +1460,7 @@ k` option. For example, to backup all keys from a bucket with the prefix
 
 
 ```
-shell> cbbackup http://HOST:8091 /backups/backup-20120501 \
+> cbbackup http://HOST:8091 /backups/backup-20120501 \
   -u Administrator -p password \
   -b bucket_name \
   -k '^object.*'
@@ -1831,7 +1824,7 @@ a node to standard output:
 
 
 ```
-shell> ./cbtransfer http://10.5.2.37:8091/ stdout:
+> ./cbtransfer http://10.5.2.37:8091/ stdout:
 ```
 
 Will produce a output as follows:
@@ -1953,8 +1946,32 @@ and select `bucket_two` in the drop-down.
 
 ## cbhealthchecker Tool
 
-Generate a health report for your Couchbase cluster with `cbhealthchecker`. You
-can find this tool in the following locations, depending upon your platform:
+The `cbhealthchecker` tool generates a health report named *Cluster Health Check
+Report* for a Couchbase cluster. The report provides data that helps
+administrators, developers, and testers determine whether a cluster is healthy,
+has issues that must be addressed soon to prevent future problems, or has issues
+that must be addressed immediately.
+
+[The tool retrieves data from the Couchbase Server monitoring system, aggregates
+it over a time scale, analyzes the statistics against thresholds, and generates
+a report. Unlike other command line tools such as `cbstats` and `cbtransfer`
+that use theTAP protocol](#couchbase-introduction-architecture-tap) to obtain
+data from the monitoring system, `cbhealthchecker` obtains data by using the
+REST API and the memcached protocol. For more information about the statistics
+provided by Couchbase Server, see [Statistics and
+Monitoring](#couchbase-introduction-architecture-stats).
+
+You can generate reports on the following time scales: minute, hour, day, week,
+month, and year. The tool outputs an HTML file, a text file, and a JSON file.
+Each file contains the same information — the only difference between them is
+the format of the information. All `cbhealthchecker` output is stored in a
+`reports` folder. The tool does not delete any files from the folder. You can
+delete files manually if the `reports` folder becomes too large. The path to the
+output files is displayed when the run finishes.
+
+`cbhealthchecker` is automatically installed with Couchbase Server 2.1 and
+later. You can find the tool in the following locations, depending upon your
+platform:
 
 <a id="table-couchbase-admin-cmdline-cbhealthchecker-locs"></a>
 
@@ -1963,24 +1980,158 @@ can find this tool in the following locations, depending upon your platform:
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
-Usage is as follows:
+The format of the `cbhealthchecker` command is:
 
 
 ```
-cbhealthchecker host:port username password OPTIONS
+cbhealthchecker CLUSTER USERNAME PASSWORD OPTIONS
 ```
 
-<a id="table-couchbase-admin-cmdline-cbhealthchecker-options"></a>
+Where:
 
--u USERNAME, --user=USERNAME       | Admin username of the cluster                                                           
------------------------------------|-----------------------------------------------------------------------------------------
--p PASSWORD, --password=PASSWORD   | Admin password of the cluster                                                           
--b BUCKETNAME, --bucket=BUCKETNAME | Specific bucket name. Default is all buckets                                            
--i FILENAME, --input=FILENAME      | Construct report out of input JSON file                                                 
--o FILENAME, --output=FILENAME     | Default output filename is 'health\_report.html'                                        
--h --help                          | Show this help message and exit                                                         
--s SCALE, --scale=SCALE            | Specify stats scale, i.e. minute, hour, day, week, month and year Default scale is 'day'
--j --jsononly                      | Collect data only but no analysis report generated                                      
+ * `CLUSTER`
+
+   The cluster for which you want a report:
+
+   `-c HOST[:PORT]`  `--cluster=HOST[:PORT]` | Hostname and port of a node in the cluster. The default port is 8091.
+   ------------------------------------------|----------------------------------------------------------------------
+
+ * `USERNAME`
+
+   Username of the cluster administrator account:
+
+   `-u USERNAME`  `--user=USERNAME` | Admin username of the cluster.
+   ---------------------------------|-------------------------------
+
+ * `PASSWORD`
+
+   Password of the cluster administrator account:
+
+   `-p PASSWORD`  `--password=PASSWORD` | Admin password of the cluster.
+   -------------------------------------|-------------------------------
+
+ * `OPTIONS`
+
+   Command options:
+
+   <a id="table-couchbase-admin-cmdline-cbhealthchecker-options"></a>
+
+   `-b BUCKETNAME`  `--bucket=BUCKETNAME` | Specific bucket on which to report. The default is all buckets.
+   ---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------
+   `-i FILENAME`  `--input=FILENAME`      | Generate an analysis report from an input JSON file.
+   `-o FILENAME`  `--output=FILENAME`     | File name for the HTML report. The default output file name is the report time stamp, for example: `2013-07-26_13-26-23.html`.
+   `-h`  `--help`                         | Show the help message and exit.
+   `-s SCALE`  `--scale=SCALE`            | Time span (scale) for the statistics: minute, hour, day, week, month or year. The default time span is day.
+   `-j`  `--jsononly`                     | Collect data and output only a JSON file. When you use this option, the analysis report is not generated.
+
+**Sample Commands**
+
+The following command runs a report on all buckets in the cluster for the past
+day:
+
+
+```
+./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password
+
+bucket: default
+  node: 10.3.1.10 11210
+  node: 10.3.1.11 11210
+................................
+
+The run finished successfully.
+Please find html output at '/opt/couchbase/bin/reports/2013-07-23_16-29-02.html'
+and text output at '/opt/couchbase/bin/reports/2013-07-23_16-29-02.txt'.
+```
+
+The following command runs a report on all buckets in the cluster for the past
+month:
+
+
+```
+./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password -s month
+
+The run finished successfully.
+Please find html output at '/opt/couchbase/bin/reports/2013-07-26_13-26-23.html'
+and text output at '/opt/couchbase/bin/reports/2013-07-26_13-26-23.txt'.
+```
+
+The following command runs a report on only the `beer-sample` bucket for the
+past year and outputs the HTML report to a file named `beer-health-report.html`.
+
+
+```
+./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password -o beer-health-report.html \
+      -b beer-sample -s year
+
+The run finished successfully.
+Please find html output at '/opt/couchbase/bin/reports/beer-health-report.html'
+and text output at '/opt/couchbase/bin/reports/2013-07-26_15-57-11.txt'.
+```
+
+The following command generates only the statistics and outputs them in a JSON
+file:
+
+
+```
+./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password -j
+
+The run finished successfully.
+Please find collected stats at '/opt/couchbase/bin/reports/2013-07-26_13-30-36.json'.
+```
+
+**HTML Report**
+
+You can view the HTML report in any web browser. If you copy the report to
+another location, be sure to copy all the files in the reports folder to ensure
+that the report is displayed correctly by the browser. When you have multiple
+HTML reports in the folder, you can use the tabs at the top of the page to
+display a particular report. (If the tabs do not function in your browser, try
+using Firefox.)
+
+Throughout the report, normal health statuses are highlighted in green, warnings
+are highlighted in yellow, and conditions that require immediate action are
+highlighted in red. When viewing the report, you can hover your mouse over each
+statistic to display a message that describes how the statistic is calculated.
+
+The report begins with a header that lists the statistics scale, the date and
+time the report was run, and an assessment of the overall health of the cluster.
+The following figure shows the report header:
+
+
+![](images/health-report-header.png)
+
+ * The body of the report is divided into several sections:Couchbase — Alerts
+
+   The alerts section contains a list of urgent issues that require immediate
+   attention. For each issue, the report lists the symptoms detected, the impact of
+   the issue, and the recommended corrective action to take. This section appears
+   in the report only when urgent issues are detected. The following figure shows a
+   portion of the alerts section of a report:
+
+
+   ![](images/health-report-alerts.png)
+
+ * Couchbase Cluster Overview
+
+   The cluster overview section contains cluster-wide metrics and metrics for each
+   bucket and node in the cluster. This section appears in all reports. The
+   following figure shows a portion of the cluster overview section of a report:
+
+
+   ![](images/health-report-cluster-overview.png)
+
+ * Couchbase — Warning Indicators
+
+   The warning indicators section contains a list of issues that require attention.
+   For each issue, the report lists the symptoms detected, the impact of the issue,
+   and the recommended corrective action to take. This section appears in the
+   report only when warning indicators are detected. The following figure shows a
+   portion of the warning indicators section of a report:
+
+
+   ![](images/health-report-warnings.png)
+
+
 
 <a id="couchbase-admin-cmdline-cbdocloader"></a>
 

@@ -1,18 +1,17 @@
 # Getting Started
 
-Now that you've installed Couchbase and have probably created a cluster of
-Couchbase servers, you will need to use a client library to save and retrieve
-data from the cluster. The Couchbase C client library, also known as
-libcouchbase, is one way of doing so.
+Now that you've installed Couchbase and have created a cluster of servers, you
+need a client library to read and write data from the cluster. The Couchbase C
+client library, also known as libcouchbase, can be used from your application to
+access Couchbase Server.
 
 Here's a quick outline of what you'll learn in this chapter:
 
- * How to obtain the client library.
+ * Get the client library.
 
- * How to build the client library from source (optional).
+ * Build the client library from source (optional).
 
- * Write a simple program to demonstrate connecting to Couchbase and saving some
-   data.
+ * Write a simple program to connecting to Couchbase and save some data.
 
 <a id="downloading"></a>
 
@@ -26,15 +25,15 @@ archive in both `.zip` and `.tar.gz`
 
 ## Installing on Linux using Packages
 
-Packages are provided for RedHat and Ubuntu Linux systems by seeding your
-package manager with the Couchbase repo information. The method for installation
-this way is dependent on your platform:
+Packages are provided for RedHat and Ubuntu Linux systems by providing your
+package manager with the Couchbase repository information. The method for
+installation is dependent on your platform:
 
 <a id="c-install-linux-redhat"></a>
 
 ### RedHat/CentOS
 
-You must seed RPM with a new source, which is depedendent on your RedHat
+You must populate RPM with a new source, which is dependent on your RedHat
 version:
 
  * **RHEL/CentOS 5.5**
@@ -67,7 +66,7 @@ shell> sudo yum install -y  libcouchbase2 libcouchbase-devel
 
 ### Ubuntu
 
-You must update the `apt-get` repository:
+You must update the `apt-get` repository to install the client library:
 
  * **Ubuntu 12.04 Precise Pangolin (Debian unstable)**
 
@@ -101,7 +100,7 @@ Also make sure you have the GPG key installed:
 shell> wget -O- http://packages.couchbase.com/ubuntu/couchbase.key | sudo apt-key add -
 ```
 
-Then to install libcouchbase itself run:
+Then to install libcouchbase run:
 
 
 ```
@@ -113,8 +112,8 @@ shell> sudo apt-get install libcouchbase2 libcouchbase-dev
 
 ## Installing using packages on Mac OS X
 
-This client library is available via a homebrew recipe. After installing
-homebrew, to install libcouchbase:
+This client library is available via a [homebrew](http://brew.sh/) recipe. After
+you install homebrew, install libcouchbase:
 
 
 ```
@@ -138,7 +137,7 @@ shell> make install
 ```
 
 Standard configure options such as `--prefix` can be passed to the configure
-command. Running./configure with --help with provide additional information on
+command. Running./configure with --help provides additional information on
 configuration options.
 
 For libcouchbase, extract the archive, then cd into the directory and run:
@@ -161,7 +160,7 @@ Microsoft Visual Studio 2010.
 
 Open the Visual Studio Command Prompt, and navigate to the directory for the
 extracted archive for libvbucket. The NMakefile defines an `INSTALL` variable as
-`C:\local`. Edit the NMakefile if you wish to change the installation location.
+`C:\local`. Edit the NMakefile if you want to change the installation location.
 Then build and install libvbucket:
 
 
@@ -173,7 +172,7 @@ Because it uses memcached binary protocol, libcouchbase requires header files
 from the memcached project. After obtaining the memcached source, copy
 `memcached.h` and `protocol_binary.h` into `c:\local\include\memcached`.
 
-Then navigate to the directory for libcouchbase. Edit the NMakefile if you wish
+Then navigate to the directory for libcouchbase. Edit the NMakefile if you want
 to change the installation location, then build and install libcouchbase:
 
 
@@ -185,14 +184,14 @@ shell> nmake -f NMakefile install
 
 ## Hello C Couchbase
 
-The C client library, `libcouchbase`, is a callback oriented client which makes
+The C client library, `libcouchbase`, is a callback-oriented client which makes
 it very easy to write high performance programs. There are a few ways you can
-drive IO with the library. The simplest is to use the synchronous interface over
-the asynch internals of the library. More advanced programs will want to either
-call the `libcouchbase_wait()` function after generating some operations, or
-drive the event loop themselves.
+drive IO with the library. The simplest approach is to use the synchronous
+interface over the asynch internals of the library. More advanced programs will
+either call the `libcouchbase_wait()` function after generating some operations,
+or drive the event loop themselves.
 
-To connect, you must configure the connection options and then create an
+To connect, you first configure the connection options and then create an
 instance of the connection to the cluster:
 
 
@@ -230,8 +229,8 @@ if ((err = lcb_connect(instance)) != LCB_SUCCESS) {
 lcb_wait(instance);
 ```
 
-Callbacks are used by the library and are simple functions to handle the result
-of operations. For example:
+Callbacks are used by the library and are simple functions which handle the
+result of operations. For example:
 
 
 ```
@@ -269,9 +268,9 @@ lcb_wait(instance);
 ```
 
 Callbacks can be set up for all of your operations called in libcouchbase. In
-the API, you'll note the use of a "cookie". This is opaque data from your
-application which is associated with the request. Underlying libcouchbase will
-not inspect the field, or send it to the server.
+the API, you'll note the use of a cookie. This is metadata from your application
+which is associated with the request. Underlying libcouchbase will not inspect
+the field, or send it to the server.
 
 Putting the connect logic and the get callback all together into a complete
 program with the include headers would be:

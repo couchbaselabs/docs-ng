@@ -653,7 +653,7 @@ this value. No parameters are required:
 
 
 ```
-shell> curl -i -u Administrator:letmein \
+shell> curl -X POST -i -u Administrator:letmein \
     http://localhost:8091/settings/autoFailover/resetCount
 ```
 

@@ -465,6 +465,11 @@ which contains a standalone application that can be copied to the `Applications`
 folder or to any other location you choose. The installation location is not the
 same as the location of the Couchbase data files.
 
+Please use the default archive file hander in Mac OS X, Archive Utility, when
+you unpack the Couchbase Server distribution. It is more difficult to diagnose
+non-functioning or damaged installations after extraction by other third party
+archive extraction tools.
+
 Due to limitations within the Mac OS X operating system, the Mac OS X
 implementation is incompatible with other operating systems. It is not possible
 either to mix operating systems within the same cluster, or configure XDCR
@@ -677,11 +682,10 @@ Any hostname you provide will survive node restart:
 
 **While Adding a Node**
 
-When you add a new 2.1 node to an existing Couchbase cluster, you can provide
-either a hostname or IP address under **Add Server**. You provide it in the
-**Server IP Address** field. If you add nodes to an existing cluster as part of
-an online upgrade process, you can provide a hostname for the 2.1 node that you
-add:
+If you add a new 2.1+ node to an existing 2.0.1 or older Couchbase cluster you
+should first setup the hostname for the 2.1+ node in the setup wizard. If you
+add a new 2.1+ node to a 2.1 cluster you can provide either a hostname or IP
+address under **Add Server**. You provide it in the **Server IP Address** field:
 
 
 ![](images/hostname_add_node.png)
