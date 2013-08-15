@@ -94,10 +94,30 @@ The following describes optional clauses you can use in your select statement:
 
 * **`DISTINCT`** - If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`, the query will return all objects that meet the query conditions in a result set.
 
-* **`FROM`** - This is an optional clause for your query. If you omit this clause, the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause with `FROM.` For example:
+* **`FROM`** - This is an optional clause for your query. If you omit this clause, the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause with `FROM.` For example, if you have contact documents as follows:
 
-        SELECT children[0].name AS cname
+        {"type":"contact",
+         "name":"earl",
+         "children":[
+                {"name":"xena","age":17,"gender":"f"},
+                {"name":"yuri","age":2,"gender":"m"}
+         ],
+         "hobbies":["surfing"]
+        }
+        
+    You can perform query with `FROM` and `AS` to get any children from the first contact retrieved:
+
+        SELECT children[0].name AS kid
         	FROM contacts
+        	
+    This will return a result as follows:
+    
+    "resultset": [
+       {
+         "kid": "bill"
+       },
+       ....
+       ]
 
     Another way to use the `FROM` clause is to specify a path within a bucket as `data-source`. The path refers to an array in the your documents. With this option, the server evaluates the path for each document in the data bucket and the value at that path becomes an input for the query. For example, you have a data bucket named `contacts` which has documents that describes each contact in a system. Each document has an array called `address`. To get all addresses as input for a query, you use this clause:
 
@@ -127,7 +147,11 @@ The following describes optional clauses you can use in your select statement:
 
         select * FROM players WHERE score > 100
 
-* **`GROUP BY`** - Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. 
+* **`GROUP BY`** - Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. For example, if you have json documents for books and films and all films have a field "type": "movie" while books have a field "type": "book" you can perform this query:
+
+        select title, type, COUNT(*) AS count FROM catalog GROUP BY type
+        
+    Any books in the result set will grouped together and returned in an object while all fils will be grouped and returned in another object.
 
 * **`HAVING`** - This clause can optionally follow a `GROUP BY` clause. It can filter result objects from the `GROUP BY` clause with a given expression.
 
@@ -385,3 +409,14 @@ These functions will return a single value based on the items in a result set. T
 |   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL | xxxx 
 |   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL | xxxx 
 
+## Error and Response Codes
+
+There are several numeric return codes in N1QL which indicate a query has successfully completed or 
+there are issues with the query:
+
+| Code | Description | Resolution |
+|----- |:------:| -----:|
+| 100: Successful run | Query ran successfully | N/A 
+| 101 | Total elapsed time to run query in milliseconds | N/A 
+| 4200: Semantic Error | Incorrect of query clauses or expressions | Fix query statement
+| 4100: Parse Error | Error in query syntax | Correct query syntax 
