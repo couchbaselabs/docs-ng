@@ -105,7 +105,7 @@ The following describes optional clauses you can use in your select statement:
 
     This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, it will not be part of the query input.    
 
-* `OVER` Clause. This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will them become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
+* **`OVER`** - This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will then become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
 
         { "id": "7983345",
         "name": "Takayama Pale Ale",
@@ -123,17 +123,17 @@ The following describes optional clauses you can use in your select statement:
     
     The `OVER` clause iterates over the 'reviews' array and collects 'reviewerName' and 'publication' from each element in the array. This collection of objects can be used as input for other query operations.
     
-* `WHERE` Clause. Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is included in a results array. For example:
+* **`WHERE`** - Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is included in a results array. For example:
 
         select * FROM players WHERE score > 100
 
-* `GROUP BY` Clause. Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. 
+* **`GROUP BY`** - Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. 
 
-* `HAVING` Clause. This clause can optionally follow a `GROUP BY` clause. It can be  filter result objects from the `GROUP BY` clause with a given expression.
+* **`HAVING`** - This clause can optionally follow a `GROUP BY` clause. It can filter result objects from the `GROUP BY` clause with a given expression.
 
-* `ORDER BY` Clause. The order of items in the result set is determined by expression in this clause. Objects are sorted first by the left-most expression in the list of expressions. Any items with the same sort value will be sorted with the next expression in the list. This process repeats all items are sorted and all expressions in the list are evaluated. 
+* **`ORDER BY`** - The order of items in the result set is determined by expression in this clause. Objects are sorted first by the left-most expression in the list of expressions. Any items with the same sort value will be sorted with the next expression in the list. This process repeats until all items are sorted and all expressions in the list are evaluated. 
 
-    The `ORDER BY` clause can evaluate any JSON value. This means it can compare values of different types, for instance 'four' and 4 and will order by type. The following describes order by type from highest to lowest:
+    The `ORDER BY` clause can evaluate any JSON value. This means it can compare values of different types. For instance 'four' and 4 and will order by type. The following describes order by type from highest to lowest precedence:
     
     * missing value, known as MISSING
     * null value, known as NULL
@@ -141,12 +141,12 @@ The following describes optional clauses you can use in your select statement:
     * true
     * number
     * string
-    * arrays, where each element in the array is compared with the corresponding element in another array. A longer array will sort after a shorter array
+    * arrays, where each element in the array is compared with the corresponding element in another array. A longer array will sort after a shorter array.
     * object, where key-values from one object are compared to key-values from another object. Keys are evaluated in sorted order for strings. Larger objects will sort after smaller objects.
     
-*  `LIMIT` Clause. Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have an integer as upper bound.
+*  **`LIMIT`** - Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have an integer as upper bound.
 
-* `OFFSET` Clause. This clause can optionally follow a `LIMIT` clause. If you specify and offset, this many objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be an integer.
+* **`OFFSET`** - This clause can optionally follow a `LIMIT` clause. If you specify an offset, this many number of objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be an integer.
 
 
 
@@ -215,20 +215,18 @@ Available in Couchbase Server X.X
 
 ###Description
 
-N1QL expressions are similar to formulas but written in a query language. They include operators, 
-symbols, and values which you can use to evaluate and filter result objects.
+N1QL expressions are like formulas but they are written in a query language. They include operators, 
+symbols and values you can use to evaluate and filter result objects.
 
 ###Options
 
-- `literal-value` includes standard literal values in JSON. This includes strings, numbers, objects, arrays, the booleans TRUE and FALSE as well as NULL. The rules defined at [json.org](http://www.json.org/) apply to literal values in N1QL with two exceptions:
+- `literal-value` - includes standard literal values in JSON. This includes strings, numbers, objects, arrays, the boolean TRUE/FALSE as well as NULL. The rules defined at [json.org](http://www.json.org/) apply to literal values in N1QL with two exceptions:
     - JSON arrays and objects can only contain nested values. In N1QL, literal arrays and objects can also contain nested expressions.
-    - In JSON 'true', 'false', and 'null are case-sensitive. In N1QL they are case-insensitive to be consistent with other keywords.
+    - In JSON 'true', 'false', and 'null' are case-sensitive. In N1QL they are case-insensitive to be consistent with other keywords.
 
-- `identifier` is also known as a path. It can be an escaped or unescaped identifier. Unescaped identifiers support the most common identifiers in JSON as a simpler syntax. Escaped identifiers are surrounded by back-ticks and support all identifiers in JSON. Using two back-tick within an escaped identifier will create a single back-tick. The syntax for `identifier` is as follows:
-
-   
+- `identifier` is also known as a path. It can be an escaped or unescaped identifier. Unescaped identifiers support the most common identifiers in JSON as a simpler syntax. Escaped identifiers are surrounded by back-ticks and support all identifiers in JSON. Using two back-ticks within an escaped identifier will create a single back-tick. The syntax for `identifier` is as follows:
         
-    An identifier, is a reference to value in the current context of a query. For instance given a people database with a document structure as follows:
+    An identifier is a reference to a value in the current context of a query. For instance if you have a contacts database with a document structure as follows:
     
         {
             "firstName" : "Geremy"
@@ -237,7 +235,7 @@ symbols, and values which you can use to evaluate and filter result objects.
     
     The identifier person.lastName would evaluate to the value "Irving." 
     
-- ` nested-expr` are a way to specify fields nested inside of other objects. They can include the dot operator, `.`, as well as bracket notation, `[]` to access items in an array or object. For example, image the following document structure:
+- ` nested-expr` - is a way to specify fields nested inside of other objects. It can include the dot operator, `.`, as well as bracket notation, `[]` to access items in an array or object. For example our contacts documents can have the following document structure:
 
         {
             "address": {
@@ -248,17 +246,17 @@ symbols, and values which you can use to evaluate and filter result objects.
         
     The expression `address.city` evaluates to the value 'Mountain View' and the expression `revisions[0]` evaluates to the value `2013`.
     
-- `case-expr`. You can do conditional logic in an expression. If the first `WHEN` expression evaluates to TRUE, the result for this expression is the `THEN` expression. If the first `WHEN` evaluates to FALSE, then the next `WHEN` clauses will be evaluated. If no `WHEN` clause evaluates to `TRUE` the result is the `ELSE` expression. If no `ELSE` expression is provided in the clause, the result is NULL.
+- `case-expr` - You can do conditional logic in an expression. If the first `WHEN` expression evaluates to TRUE, the result for this expression is the `THEN` expression. If the first `WHEN` evaluates to FALSE, then the next `WHEN` clauses will be evaluated. If no `WHEN` clause evaluates to `TRUE` the result is the `ELSE` expression. If no `ELSE` expression is provided in the clause, the result is NULL.
 
-- `collection-expr`. Enables you to use boolean expressions for nested collections. The two different ways to provide this expression is through either `ANY` or `ALL`. You provide an array to evaluate as a `path` in an `OVER` clause. The server will iterate through each element in the array and assign each item an `identifier` from the `AS` clause. The `identifier` is only used as a identifier within the `ANY` or `ALL` clause and is distinct from identifiers provided in other clauses.
+- `collection-expr` - Enables you to use boolean expressions for nested collections. The two different ways to provide this expression is through either `ANY` or `ALL`. You provide an array to evaluate as a `path` in an `OVER` clause. The server will iterate through each element in the array and assign each item an `identifier` from the `AS` clause. The `identifier` is only used as a identifier within the `ANY` or `ALL` clause and is distinct from identifiers provided in other clauses.
 
     `ANY` If an expression evaluates to an array and at least one item in the array satisfies the `ANY` expression, then return `TRUE`, otherwise return `FALSE`.
     
     `ALL` If an expression evaluates to an array and all array elements satisfy the `ALL` expression, return TRUE. Otherwise return `FALSE.` If an array is empty, return `TRUE`.
     
-- `logical-term`. Enables you to combine other expression with boolean logic. Includes `AND`, `OR`, and `NOT`.
+- `logical-term` - Enables you to combine other expression with boolean logic. Includes `AND`, `OR`, and `NOT`.
 
-- `comparison-term`. These clauses enable you to compare the results of two expressions. This includes `=`, `<`, `>`, `<=`, `>=` and others. The terms `=` and `==` are functional equivalents of equal which are provided for compatibility with other languages. The terms `!=` and `<>` are also equivalent comparisons provided for compatibility. See [Comparison Terms](#Comparison_Terms).
+- `comparison-term` - These clauses enable you to compare the results of two expressions. This includes `=`, `<`, `>`, `<=`, `>=` and others. The terms `=` and `==` are functional equivalents of equal which are provided for compatibility with other languages. The terms `!=` and `<>` are also equivalent comparisons provided for compatibility. See [Comparison Terms](#Comparison_Terms).
     
     If a comparison term is missing from the clause, returns `MISSING`. If either operand in a comparison results in `NULL` returns `NULL`. If comparison operators return results of different types, returns `FALSE`.
     
@@ -270,11 +268,11 @@ symbols, and values which you can use to evaluate and filter result objects.
       
     `NULL` or `MISSING` values have special comparison terms because we need to determine type information. For more information, see [Comparison Terms](#Comparison_Terms).
     
-- `arithmetic-term`. Enable you to perform arithmetic methods within an expression. This includes basic mathematical operations such as addition, subtraction, multiplication, divisions, and modulo. In addition, a negation operation will change the sign of a value. See [Arithmetic Operators](#arithmetic_ops).
+- `arithmetic-term` - perform arithmetic methods within an expression. This includes basic mathematical operations such as addition, subtraction, multiplication, divisions, and modulo. In addition, a negation operation will change the sign of a value. See [Arithmetic Operators](#arithmetic_ops).
 
-- `string-term`, or `||`. If both operands are strings, the `||` operator will concatenate the strings, otherwise evaluates to NULL.
+- `string-term`, or `||` - If both operands are strings, the `||` operator will concatenate the strings, otherwise evaluates to NULL.
 
-- `function-name`. Used to apply a function to values, to values at a specified path, or to values derived from a `DISTINCT` or `UNIQUE` clause. For a full list of 
+- `function-name` - used to apply a function to values, to values at a specified path, or to values derived from a `DISTINCT` or `UNIQUE` clause. For a full list of 
 functions, see [Functions](#functions).
          
 ###Examples
