@@ -1,6 +1,6 @@
 # Couchbase Lite Concepts
 
-# 2. Couchbase Lite's Data Model
+The Couchbase Lite API makes more sense if you understand how it structures its data. If you already know Couchbase Server, you can safely skip this, but if your database knowledge is based on SQL, or key-value stores like Berkeley DB, you'll find that it's different from what you're used to &mdash; as you'll see, it's sort of like each of those, and sort of like a version control system like Git, and sort of like a web server.
 
 <table frame="box" align="right">
 <caption><b>Database Terminology</b></caption>
@@ -18,7 +18,7 @@
 <tr><td>DELETE		</td><td> DELETE</td></tr>
 </table>
 
-The Couchbase Lite API will make much more sense if you understand how it structures its data. If you already know Couchbase Server, you can safely skip this, but if your database knowledge is based on SQL, or key-value stores like Berkeley DB, you'll find that it's different from what you're used to &mdash; as you'll see, it's sort of like each of those, and sort of like a version control system like Git, and sort of like a web server.
+
 
 ## Documents
 
