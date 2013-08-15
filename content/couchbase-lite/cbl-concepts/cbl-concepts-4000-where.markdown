@@ -1,21 +1,17 @@
 # Where To Go From Here
 
 
-1. Learn more about Sync Gateway.
-
-2. Download and install Sync Gateway.
-
-1. Learn about Couchbase Lite for your platform:
-
-    * Couchbase Lite for iOS
-    * Couchbase Lite for Android  
-
-1. Download Couchbase Lite for your platform:
-    * Couchbase Lite for iOS  
-    * Couchbase Lite for Android  
-    
-1. Download Couchbase Server. For development Couchbase Server is optional; you can instead use a very simple, built-in data store called Walrus.
-2. Develop your app!
+* Learn more about Sync Gateway:
+    * Read the guide
+    * Download Sync Gateway  
+* Learn about Couchbase Lite for iOS
+    * Read the Couchbase Lite for iOS guide
+    * Download Couchbase Lite for iOS 
+* Learn about Couchbase Lite for Android:
+    * Read the Couchbase Lite for Android guide
+    * Download Couchbase Lite for Android
+* Join the [Couchbase Lite mailing list](https://groups.google.com/forum/#!forum/mobile-couchbase)
+* Develop your own app!
     
 
 

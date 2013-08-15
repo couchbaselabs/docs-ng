@@ -1,6 +1,7 @@
 # Couchbase Lite Architecture
 
-Couchbase Lite enables sync on iOS and Android devices and includes Sync Gateway to handle the server side of your app synchronization connections. In production, you run Sync Gateway and use Couchbase Server for storage so you can handle a growing user base with confidence.
+Couchbase Lite enables sync on iOS and Android devices and includes Sync Gateway to handle the server side of your app synchronization connections. In production, you run Sync Gateway and use Couchbase Server for storage so you can handle a growing user base with confidence. For development Couchbase Server is optional &mdash; you can instead use a very simple, built-in data store called Walrus.
+
 
 ## Mobile Technology Stack
 
