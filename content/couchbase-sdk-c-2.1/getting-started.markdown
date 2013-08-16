@@ -7,11 +7,11 @@ access Couchbase Server.
 
 Here's a quick outline of what you'll learn in this chapter:
 
- * Get the client library.
+ * How to get the client library.
 
- * Build the client library from source (optional).
+ * How to build the client library from source (optional).
 
- * Write a simple program to connecting to Couchbase and save some data.
+ * How to write a simple program to connecting to Couchbase and save some data.
 
 <a id="downloading"></a>
 
