@@ -10,6 +10,7 @@ We use the following typographical conventions to mark different parts of the co
 - Separator | indicates you choose one alternative
 - Dots ... mean that you can repeat the preceding element in a query
 
+<a href="#explain"></a>
 ##Explain
 
 You can use this keyword before any N1QL statement and get information about how the statement operates.
@@ -27,6 +28,73 @@ Available in Couchbase Server X.X
 The EXPLAIN statement can precede any N1QL statement. The statement will be evaluated and will return information about how the statement 
 operates. The output from this statement is for analysis and troubleshooting queries only.
 
+###Example
+
+Perform any N1QL statement preceding by they keyword `EXPLAIN` to get JSON output describing how the query would execute. For example:
+
+    EXPLAIN select name, age from contacts limit 2
+    
+Will return the following output:
+
+{
+    "resultset": [
+        {
+            "root": {
+                "type": "limit",
+                "input": {
+                    "type": "projector",
+                    "input": {
+                        "type": "fetch",
+                        "input": {
+                            "type": "scan",
+                            "scanner": "_design//_view/_all_docs",
+                            "bucket": "contacts"
+                        },
+                        "bucket": "contacts",
+                        "projection": {
+                            "type": "function",
+                            "name": "VALUE",
+                            "operands": []
+                        },
+                        "as": "contacts"
+                    },
+                    "result": [
+                        {
+                            "star": true,
+                            "expr": {
+                                "type": "property",
+                                "path": "default"
+                            },
+                            "as": ""
+                        }
+                    ]
+                },
+                "value": 2
+            }
+        }
+    ],
+    "info": [
+        {
+            "caller": "http:161",
+            "code": 100,
+            "key": "total_rows",
+            "message": "1"
+        },
+        {
+            "caller": "http:163",
+            "code": 101,
+            "key": "total_elapsed_time",
+            "message": "38.192789ms"
+        }
+    ]
+}
+
+The 'type' of 'limit' indicate we are performing a limit clause on our result set in the bucket named 'contacts.' The 'scanner' field tells us the server has scanned everything in the data bucket.
+
+###See Also
+- [Errors and Response Codes](#errors_responses)
+
+<a href="#select"></a>    
 ##Select
 
 You use the SELECT statement to extract data from Couchbase Server. The result of this command will be one or more objects.
@@ -176,11 +244,116 @@ The following describes optional clauses you can use in your select statement:
 
 ###Examples
 
+Given customer order that appear as follows:
+
+        {
+            "type": "customer-order",
+            "grand_total": 1000,
+            "billToAddress": {
+                "street": "123 foo",
+                "state": "CA",
+                "geo": {
+                    "lat": 1234, "lon": 2344
+                }
+            },
+            "shipToAddress": {
+                "street": "123 foo",
+                "state": "CA"
+            },
+            items: [
+                { "productId": "coffee", "qty": 1 },
+                { "productId": "tea", "qty": 1 }
+            ]
+        }
+
+- `FROM` will return any values from the `orders` data bucket. For example:
+
+        SELECT * FROM orders.items.productId
+
+    Will return a list of all product ids from the orders data bucket. Sample output would appears as follows:
+    
+       "results": [
+        {
+            "productId": "coffee"
+        },
+        {
+            "productId": "tea"
+        }
+    ]
+
+- `AS` will return any values retrieved by the select statement using an alias provided. For instance:
+
+        SELECT
+             shipToAddress.state AS state_abv FROM orders
+             
+    Will return all states from ship to addresses in an array where each array element uses the alias: { "state_abv": { .... } }
+    
+        SELECT
+             shipToAddress.state AS state,
+             SUM(grand_total) AS grandTotalByState
+          FROM orders
+             GROUP BY shipToAddress.state
+    
+    Will get states from orders and then sum the grand_totals from the orders and label these amounts `grandTotalByState` in the result set.
+    
+- `WHERE` will return results based on a condition or expression provided in the `WHERE` clauses. For example, with the customer orders documents we can perform this query:
+
+        SELECT * FROM orders WHERE grand_total > 2000
+          
+    This query will return a result set of all customer orders where the `grand_total` is greater than 2000.
+
+- `ORDER BY` will return a result set which is sorted by a given field. For example, to get all names in a contact database and order then by age:
+
+        SELECT shipToAddress.state FROM orders ORDER BY grand_total.
+        
+    This will scan all orders and return all items in a result set ordered by the grand_total by ascending order, from lowest to highest.
+    
+- `GROUP-BY` will return a result set where all orders that meet the conditions are grouped by a particular expression. For example:
+
+        
+        SELECT
+             shipToAddress.state AS state
+          FROM orders
+          WHERE grand_total > 2000
+          GROUP BY shipToAddress.state
+          
+    This query gets all states from ship-to addresses in customer orders where the grand total is greater than 2000. The result set will be grouped by state.
+    
+- `HAVING` can be used after a `GROUP BY` clause to filter items in a group by a given condition. The following example builds upon the `GROUP BY` we used previously:
+
+        SELECT
+             shipToAddress.state AS state,
+             SUM(grand_total) AS grandTotalByState
+          FROM orders
+          WHERE grand_total > 2
+          GROUP BY shipToAddress.state
+          HAVING grandTotalByState >= 1000
+
+    This will return a list of states where the grand total of orders, grouped by state is greater than or equal to 1000. The sample output appears as follows:
+    
+        [
+            {"state": "CA",
+                "grandTotalByState": 10000000},
+            {"state": "DE",
+                "grandTotalByState": 5000},
+            ....
+        ]
+        
+- `OVER` can be used after the `FROM` clause to iterate through all items in a document array and provide these elements input into other query clauses. For example, to go through each child in a children array in contacts:
+
+        SELECT * FROM contacts AS contact OVER contact.children AS child WHERE child.name = \"aiden\
+
+
 ###See Also
+- [Expressions](#expressions)
+- [Comparison Terms](#Comparison_Terms)
+- [Functions](#functions)
+- [Arithmetic Operators](#arithmetic_ops)
+- [Errors and Response Codes](#errors_responses)
 
 
 
-
+<a href="#expressions"></a>
 ##Expressions
 
 These are the different symbols and operators in N1QL you can use to manipulate document data and result set objects. 
@@ -301,7 +474,101 @@ functions, see [Functions](#functions).
          
 ###Examples
 
+Given a customer order document with the following information:
+
+        {
+            "type":"contact",
+            "name":"dave",
+            "age": 45,
+            "email": "dave@gmail.com",
+            "children":[
+                {"name":"aiden","age":17,"gender":"m"},
+                {"name":"bill","age":2,"gender":"f"}
+                ],
+            ....
+        }
+
+- `ANY` will return any record with one or more items that meet the condition or expression. For example this query will return all contacts who have one or more children over the age of 14:
+
+        SELECT name FROM contacts WHERE ANY child.age > 14 OVER children
+
+    This will return at one item in the result set for 'dave' because one of his children is 17. The sample output is as follows:
+
+        "results": [
+          {
+            "name": "dave"
+          },
+          ....
+        ]
+        
+ `ALL` will return records with fields that meet all conditions or expression provided in the query. For example, this query is almost identical to the one above with `ANY` however we substitute it for `ALL`:
+ 
+        SELECT name FROM tutorial WHERE ALL child.age > 10 OVER tutorial.children AS child
+        
+    This query will scan all contacts and return the name of any contact that has children over the age of 10. Example output for this query is below:
+    
+        {
+            "name": "ian"
+        }
+
+    This tell us that out of all of the contacts only 'ian' has children who are both over the age 10.
+    
+- `LIKE` will return contacts are similar to a given string. For example, to get all contacts with an email ending with '@yahoo':
+
+        SELECT name, email
+            FROM tutorial 
+                WHERE email LIKE '%@yahoo.com'
+                
+    The % indicates any characters prior to @ can appear. This will return output similar to the following:
+    
+        {
+            "email": "harry@yahoo.com",
+            "name": "harry"
+        },
+    
+- `NOT LIKE` is the inverse of `LIKE`. It will return items that are not like the given string. For example, the following clause will return all emails from contacts which do not contain `@yahoo`:
+
+        SELECT name, email
+            FROM tutorial 
+                WHERE email NOT LIKE '%@yahoo.com'
+            
+    This will return results as follows:
+    
+        {
+            "email": "dave@gmail.com",
+            "name": "dave"
+        },
+
+- `logical-expr` can be used to provide logical operators, for example you can test for two conditions at the same time in a query:
+
+        SELECT name FROM tutorial WHERE LENGTH(children) > 0 AND email LIKE '%@gmail.com'
+        
+    This query will scan all contacts and output the name of any contact with more than one child who also has an email ending in '@gmail'. Example output from this query follows:
+    
+        [
+            {
+                "name": "dave"
+            },
+            ....
+        ]
+
+- `case-expr` will apply conditional logic to documents. For example the following uses a `CASE` clause to handle documents that do not have an ship date:
+
+        SELECT CASE WHEN `shipped-on` IS NOT NULL THEN `shipped-on` ELSE \"not-shipped-yet\" END AS shipped FROM orders
+    
+    This will scan all orders and if an order has a shipped-on date, provide it in the result set. If an order does not have a shipped-on date, it will provide default text instead. Sample output for this query is as follows:
+    
+        { "shipped": "2013/01/02" },
+        { "shipped": "2013/01/12" },
+        { "shipped": "not-shipped-yet" },
+        ....
+
+
 ###See Also
+- [Comparison Terms](#Comparison_Terms)
+- [Functions](#functions)
+- [Arithmetic Operators](#arithmetic_ops)
+- [Errors and Response Codes](#errors_responses)
 
 <a id="Comparison_Terms"></a>
 ##Comparison Terms
@@ -394,7 +661,7 @@ These functions will return a single value based on the items in a result set. T
 | META() | Returns metadata for the document | value | xxxx|
 | MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | xxxx 
 | LEAST(expr, expr, ... ) | Returns the smallest non-NULL, non-MISSING VALUE after evaluating all expressions. If all values are NULL or MISSING, returns NULL | value or NULL | xxxx 
-|   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | xxxx 
+|   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | length(orders.items)
 |   LOWER(expr) | If expr is a string, returns string in all lowercase, otherwise NULL | string or NULL | xxxx 
 |   LTRIM(expr, charset) | Remove the longest string containing the characters in `charset` from start of string. | string or NULL | xxxx 
 |   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | xxxx 
@@ -409,6 +676,7 @@ These functions will return a single value based on the items in a result set. T
 |   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL | xxxx 
 |   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL | xxxx 
 
+<a id="errors_responses"></a>
 ## Error and Response Codes
 
 There are several numeric return codes in N1QL which indicate a query has successfully completed or 
@@ -419,4 +687,6 @@ there are issues with the query:
 | 100: Successful run | Query ran successfully | N/A 
 | 101 | Total elapsed time to run query in milliseconds | N/A 
 | 4200: Semantic Error | Incorrect of query clauses or expressions | Fix query statement
-| 4100: Parse Error | Error in query syntax | Correct query syntax 
+| 4100: Parse Error | Error in query syntax | Make sure query syntax correct
+| 5000: Internal Error | Server error | xxxx
+
