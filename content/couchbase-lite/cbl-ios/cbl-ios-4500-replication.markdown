@@ -29,10 +29,10 @@ It's not strictly necessary to keep references to the replication objects, but y
 ### Monitoring Replication Progress
 A replication object has several properties you can observe to track its progress. The most useful are:
 
- * **completed** — the number of documents copied so far in the current batch
- * **total** — the total number of documents to be copied
- * **error** — will be set to an `NSError` if the replication fails
- * **mode** — an enumeration that tells you whether the replication is stopped, offline, idle or active. Offline means the server is unreachable over the network. Idle means the replication is continuous but there is currently nothing left to be copied.
+ * **completed**—the number of documents copied so far in the current batch
+ * **total**—the total number of documents to be copied
+ * **error**—set to an `NSError` if the replication fails
+ * **mode**—an enumeration that tells you whether the replication is stopped, offline, idle or active. Offline means the server is unreachable over the network. Idle means the replication is continuous but there is currently nothing left to be copied.
 
 Generally you can get away with just observing `completed`:
 
@@ -66,9 +66,9 @@ Pulling from another database requires some trust because you are importing docu
 
 The solution to this is to add a validation function to your database. The validation function is called on every document being added or updated. The function decides whether the document should be accepted, and can even decide which HTTP error code to return ()most commonly 403 Forbidden, but possibly 401 Unauthorized).
 
-**Note:** Validation functions aren't just called during replication: they see _every_ insertion or update, so they can also be used as a sanity check for your own application code. If you forget this, you might occasionally be surprised by getting a 403 Forbidden error from a document update when a change is rejected by one of your own validation functions.
+Validation functions aren't just called during replication&mdash;they see _every_ insertion or update, so they can also be used as a sanity check for your own application code. If you forget this, you might occasionally be surprised by getting a 403 Forbidden error from a document update when a change is rejected by one of your own validation functions.
 
-Here's an example validation function definition from the Grocery Sync sample code. This is a real-life example of self-protection from bad data. During development there was a time when the Android Grocery Sync app was generating dates in the wrong format, which confused the iOS app when it pulled down the documents created on Android. After the bug was fixed, the affected docs were still in server-side databases. The following validation function was added to reject  documents that had incorrect dates:
+Here's an example validation function definition from the Grocery Sync sample code. This is a real-life example of self-protection from bad data. At one point during development the Android Grocery Sync app was generating dates in the wrong format, which confused the iOS app when it pulled down the documents created on Android. After the bug was fixed, the affected docs were still in server-side databases. The following validation function was added to reject  documents that had incorrect dates:
 
     [database defineValidation: @"date" asBlock: VALIDATIONBLOCK({
         if (newRevision.deleted)
@@ -143,13 +143,13 @@ It's likely that the remote database Couchbase Lite replicates with will require
 
 You'll need to register login credentials for the replicator to use. There are several ways to do this, and most of them use the standard credential mechanism provided by the Foundation framework.
 
-#### Hardcoded Username/Password
+#### Hardcoded Username and Password
 
-The simplest but least-secure way to store credentials is to use the standard syntax for embedding them in the URL of the remote database, for example
+The simplest but least-secure way to store credentials is to use the standard syntax for embedding them in the URL of the remote database:
 
 	https://frank:s33kr1t@sync.example.com/database/
 
-This URL specifies a username `frank` and password `s33kr1t`. If you use this as the remote URL when creating a replication, Couchbase Lite will know to use the included credentials. The drawback of course is that the password is easily readable by anything with access to your app's data files. (This is less of a big deal on a sandboxed platform like iOS than it is on Android or Mac OS.)
+This URL specifies a username `frank` and password `s33kr1t`. If you use this as the remote URL when creating a replication, Couchbase Lite will know to use the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
 
 #### Using The Credential Store
 
@@ -179,7 +179,7 @@ Finally, register the credential for the protection space:
 
 This is best done right after the user has entered her name and password in your configuration UI. Because this example specified _permanent_ persistence, the credential store writes the password securely to the Keychain. From then on, NSURLConnection, Cocoa's underlying HTTP client engine, finds it when it needs to authenticate with that same server.
 
-The Keychain is a secure place to store secrets: it's encrypted with a key derived from the user's iOS passcode, and managed only by a single trusted OS process. But if you don’t want the password stored to disk, use `NSURLCredentialPersistenceForSession` instead. But then youneed to call the above code on every launch, begging the question of where you get the password from; the alternatives are generally less secure than the Keychain.
+The Keychain is a secure place to store secrets: it's encrypted with a key derived from the user's iOS passcode, and managed only by a single trusted OS process. If you don’t want the password stored to disk, use `NSURLCredentialPersistenceForSession`  for the persistence setting. But then you need to call the above code on every launch, begging the question of where you get the password from; the alternatives are generally less secure than the Keychain.
 
 **NOTE:** The OS is pretty picky about the parameters of the protection space. If they don’t match exactly—including the `port` and the `realm` string—the credentials won’t be used and the sync will fail with a 401 error. This is annoying to troubleshoot. In case of mysterious auth failures, double-check the all the credential's and protection space's spelling and port numbers!
 
@@ -209,7 +209,7 @@ OAuth tokens expire after some time, so if you install them into a persistent re
 
 ### Replication Conflicts
 
-Replication is a bit like merging branches in a version control system (or pushing and pulling in Git). And just as in version control, you can run into conflicts if incompatible changes have been made to the same data. In Couchbase Lite this happens if a replicated document is changed differently in the two databases, and then one database is replicated to the other. Now both of the changes exist there. Here's an example scenario:
+Replication is a bit like merging branches in a version control system (for example, pushing and pulling in Git). And just as in version control, you can run into conflicts if incompatible changes have been made to the same data. In Couchbase Lite this happens if a replicated document is changed differently in the two databases, and then one database is replicated to the other. Now both of the changes exist there. Here's an example scenario:
 
  1. Create mydatabase on device A.
  2. Create document 'doc' in mydatabase. Let's say its revision ID is '1-foo'.
@@ -228,4 +228,4 @@ You can detect conflicts in the following ways:
 * Call `-[CBLDocument getConflictingRevisions:]` and check for multiple returned values.
 * Create a view that finds all conflicts by having its map function look for a `_conflicts` property and emit a row if it's present.
 
-In either case, after a conflict is detected, you resolve it by deleting the revisions you don't want, and optionally putting a revision containing the merged contents. So in the example, if the app wants to keep one revision it can just delete the other one. But more likely it needs to merge parts of each revision, so it can do so, delete revision '2-bar' and put the new merged copy as a child of '2-baz'.
+After a conflict is detected, you resolve it by deleting the revisions you don't want, and optionally storing a revision that contains the merged contents. So in the example, if the app wants to keep one revision it can just delete the other one. But more likely it needs to merge parts of each revision, so it can do so, delete revision '2-bar' and put the new merged copy as a child of '2-baz'.
