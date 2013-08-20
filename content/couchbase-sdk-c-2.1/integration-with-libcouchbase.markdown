@@ -334,7 +334,7 @@ arguments to internal buffers for further handing, and a function-callback,
 which will be called with the results of the operation. It is possible to
 implement a wrapper which will provide a more synchronous API, but it is
 difficult to write generic and efficient at the same time library API. Also
-since  all communication is done by using function arguments, it is easier to
+since all communication is done by using function arguments, it is easier to
 maintain backward compatible APIs by versioning both incoming structures and
 results. Let's see how we did it in our sample.
 

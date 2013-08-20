@@ -4,6 +4,119 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library C. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-c-rn_2-1-0"></a>
+
+## Release Notes for Couchbase Client Library C 2.1.0 GA (18 August 2013)
+
+**New Features and Behaviour Changes in 2.1.0**
+
+ * New backend `select`. This backend is based on the select(2) system call and its
+   Windows version. It could be considered the most portable solution and is
+   available with the libcouchbase core.
+
+ * API for durability operations. This new API is based on `lcb_observe(3)` and
+   allows you to monitor keys more easily. See the man pages
+   `lcb_durability_poll(3)` and `lcb_set_durability_callback(3)` for more info.
+
+   *Issues* : [CCBC-145](http://www.couchbase.com/issues/browse/CCBC-145)
+
+ * New backend `libuv`. This backend previously was part of the
+   [couchnode](https://github.com/couchbase/couchnode) project and is now available
+   as a plugin. Because libuv doesn't ship binary packages there is no binary
+   package `libcouchbase2-libuv`. You can build plugin from the source
+   distribution, or through the `libcouchbase-dev` or `libcouchbase-devel` package
+   on UNIX like systems.
+
+   *Issues* : [CCBC-236](http://www.couchbase.com/issues/browse/CCBC-236)
+
+ * New backend `iocp`. This is a Windows specific backend, which uses "I/O
+   Completion Ports". As a part of the change, a new version of plugin API was
+   introduced which is more optimized to this model of asynchronous IO.
+
+ * New configuration interface `lcb_cntl(3)` along with new tunable options of the
+   library and connection instances. In this release the following settings are
+   available. See the man page for more information and examples.:
+
+    * LCB\_CNTL\_OP\_TIMEOUT operation timeout (default 2.5 seconds)
+
+    * LCB\_CNTL\_CONFIGURATION\_TIMEOUT time to fetch cluster configuration. This is
+      similar to a connection timeout (default 5 seconds)
+
+    * LCB\_CNTL\_VIEW\_TIMEOUT timeout for couchbase views (default 75 seconds)
+
+    * LCB\_CNTL\_HTTP\_TIMEOUT timeout for other HTTP operations like RESTful flush,
+      bucket creating etc. (default 75 seconds)
+
+    * LCB\_CNTL\_RBUFSIZE size of the internal read buffer (default 32768 bytes)
+
+    * LCB\_CNTL\_WBUFSIZE size of the internal write buffer (default 32768 bytes)
+
+    * LCB\_CNTL\_HANDLETYPE type of the `lcb\_t` handler (readonly)
+
+    * LCB\_CNTL\_VBCONFIG returns pointer to VBUCKET\_CONFIG\_HANDLE (readonly)
+
+    * LCB\_CNTL\_IOPS get the implementation of IO (lcb\_io\_opt\_t)
+
+    * LCB\_CNTL\_VBMAP get vBucket ID for a given key
+
+    * LCB\_CNTL\_MEMDNODE\_INFO get memcached node info
+
+    * LCB\_CNTL\_CONFIGNODE\_INFO get config node info
+
+    * LCB\_CNTL\_SYNCMODE control synchronous behaviour (default LCB\_ASYNCHRONOUS)
+
+    * LCB\_CNTL\_IP6POLICY specify IPv4/IPv6 policy (default LCB\_IPV6\_DISABLED)
+
+    * LCB\_CNTL\_CONFERRTHRESH control configuration error threshold (default 100)
+
+    * LCB\_CNTL\_DURABILITY\_TIMEOUT durability timeout (default 5 seconds)
+
+    * LCB\_CNTL\_DURABILITY\_INTERVAL durability polling interval (default 100
+      milliseconds)
+
+    * LCB\_CNTL\_IOPS\_DEFAULT\_TYPES get the default IO types
+
+    * LCB\_CNTL\_IOPS\_DLOPEN\_DEBUG control verbose printing of dynamic loading of IO
+      plugins.
+
+**Fixes in 2.1.0**
+
+ * Fixed bug when `REPLICA_SELECT` didn't invoke callbacks for negative error codes
+
+   *Issues* : [CCBC-228](http://www.couchbase.com/issues/browse/CCBC-228)
+
+ * Fixed bug when `LCB_REPLICA_FIRST` fails if first try does not return key
+
+   *Issues* : [CCBC-229](http://www.couchbase.com/issues/browse/CCBC-229)
+
+**Known Issues in 2.1.0**
+
+ * From the release the 2.1.0 package `libcouchbase2` will not install an IO
+   backend automatically. If you are upgrading, there are no changes because you
+   have already `libcouchbase2-libev` or `libcouchbase2-libevent` packages
+   installed. For new installations, a backend must be selected for the client
+   library to work correctly.
+
+   If for example you are using the PHP SDK, the old way, which works for pre-2.1.0
+   versions is:
+
+    ```
+    # DEB-based systems
+    shell> sudo apt-get install libcouchbase2 libcouchbase-dev
+    # RPM-based systems
+    shell> sudo yum install libcouchbase2 libcouchbase-devel
+    ```
+
+   But a more explicit way to do this, which works for all versions (including
+   2.1.0) is:
+
+    ```
+    # DEB-based systems
+    shell> sudo apt-get install libcouchbase2-libevent libcouchbase-dev
+    # RPM-based systems
+    shell> sudo yum install libcouchbase2-libevent libcouchbase-devel
+    ```
+
 <a id="couchbase-sdk-c-rn_2-0-7"></a>
 
 ## Release Notes for Couchbase Client Library C 2.0.7 GA (10 July 2013)
