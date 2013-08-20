@@ -69,5 +69,6 @@ When your app launches, after creating a `CBLDatabase` instance for its database
         NSAssert(database, @"Failed to open database");
     }
 
+
 ### Connecting to an Existing Database
 After the initial launch of your app, you need to connect to the existing database on the device each time the app is launched.

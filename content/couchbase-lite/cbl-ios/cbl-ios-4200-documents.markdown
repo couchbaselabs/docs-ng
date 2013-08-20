@@ -4,7 +4,7 @@ The [CBLDocument][CBLDOCUMENT] class represents a document. A `CBLDocument` know
 
 ### Creating A Document
 
-You create a new document when the user creates a persistent data item in your app, such as a reminder, a photograph or a high score. To save this, construct a JSON-compatible representation of the data, instantiate a new `CBLDocument` and save the data to it.
+You create a new document when the user creates a persistent data item in your app, such as a reminder, a photograph or a high score. To save the data, construct a JSON-compatible representation of the data, instantiate a new `CBLDocument` and save the data to it.
 
 Here's an example from the Grocery Sync demo app:
 
@@ -38,7 +38,7 @@ Finally save the contents to the document:
 
 If later on you want to retrieve the contents of the document, you need to obtain the `CBLDocument` object representing it and then get the contents from that object.
 
-You can get the `CBLDocument` in the any of the following ways:
+You can get the `CBLDocument` in the following ways:
 
  * You might know its ID (maybe you kept it in memory, maybe you got it from `NSUserDefaults` or even from a property of another document), in which case you can call `[database documentWithID:]`.
  
