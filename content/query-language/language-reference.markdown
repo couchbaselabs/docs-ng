@@ -308,6 +308,35 @@ Given customer order that appear as follows:
         
     This will scan all orders and return all items in a result set ordered by the grand_total by ascending order, from lowest to highest.
     
+- `LIMIT` can be used as a standalone clause to limit the number of results, or can be used with other clauses such as order by to limit the number of sorted results that appear. For example:
+
+        SELECT name FROM contacts LIMIT 2
+    
+    Will only return two names from the contacts database. Sample output would look like this:
+    
+        {
+          "name": "dave"
+        },
+        {
+          "name": "earl"
+        }
+        
+    If you use this statement in conjunction with an `ORDER BY` the objects will first be sorted in ascending order and then limited by the given number:
+    
+        SELECT name FROM contacts ORDER BY age LIMIT 3
+    
+    This query will return the names of the three youngest contacts, sorted by age. An example of output is as follows:
+    
+        {
+          "name": "fred"
+        },
+        {
+          "name": "harry"
+        },
+        {
+          "name": "jane"
+        }
+    
 - `GROUP-BY` will return a result set where all orders that meet the conditions are grouped by a particular expression. For example:
 
         
@@ -341,8 +370,32 @@ Given customer order that appear as follows:
         
 - `OVER` can be used after the `FROM` clause to iterate through all items in a document array and provide these elements input into other query clauses. For example, to go through each child in a children array in contacts:
 
-        SELECT * FROM contacts AS contact OVER contact.children AS child WHERE child.name = \"aiden\
+        SELECT * FROM contacts AS contact OVER contact.children AS child WHERE child.name = 'aiden'
 
+    This example will scan all 'children' arrays in contacts, find the document where the child's name is 'aiden' and return the contacts in a result set. An example result set, given just one matching contact would look like this:
+    
+            {
+              "children": [
+                {
+                  "age": 17,
+                  "gender": "m",
+                  "name": "aiden"
+                },
+                {
+                  "age": 2,
+                  "gender": "f",
+                  "name": "amy"
+                }
+              ],
+              "hobbies": [
+                "golf",
+                "surfing"
+              ],
+              "name": "dave",
+              "type": "contact"
+            }
+            
+    Here the actual contact is named dave and the one child in the array of children that matches is 17 and male.
 
 ###See Also
 - [Expressions](#expressions)
@@ -488,6 +541,16 @@ Given a customer order document with the following information:
             ....
         }
 
+- `literal-expr` will return any record that matches the literal expression provided in a query. For example:
+
+        SELECT email FROM contacts AS contact WHERE contact.name = 'dave'
+    
+    Will return emails from any contacts where the contact name is 'dave.' Sample output appears as follows:
+    
+        {
+          "email": "dave@gmail.com"
+        }
+        
 - `ANY` will return any record with one or more items that meet the condition or expression. For example this query will return all contacts who have one or more children over the age of 14:
 
         SELECT name FROM contacts WHERE ANY child.age > 14 OVER children
@@ -545,13 +608,25 @@ Given a customer order document with the following information:
         
     This query will scan all contacts and output the name of any contact with more than one child who also has an email ending in '@gmail'. Example output from this query follows:
     
-        [
             {
                 "name": "dave"
             },
             ....
-        ]
+            
+- `arithmetic-expr` will apply an arithmetic expression to any numerical values retrieved as part of query clauses. For example:
 
+        SELECT name, age, age*12 AS age_in_months
+            FROM tutorial 
+                WHERE name = 'dave'
+                
+    This will select the document where name is 'dave' and return the name, age and age times 12. Example output appears as follows:
+    
+        {
+          "age": 45,
+          "age_in_months": 540,
+          "name": "dave"
+        }
+        
 - `case-expr` will apply conditional logic to documents. For example the following uses a `CASE` clause to handle documents that do not have an ship date:
 
         SELECT CASE WHEN `shipped-on` IS NOT NULL THEN `shipped-on` ELSE \"not-shipped-yet\" END AS shipped FROM orders
