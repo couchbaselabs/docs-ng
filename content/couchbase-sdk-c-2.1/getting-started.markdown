@@ -40,9 +40,9 @@ version:
 
     ```
     shell> sudo wget -O/etc/yum.repos.d/couchbase.repo \
-              http://packages.couchbase.com/rpm/couchbase-centos55-i386.repo
+          http://packages.couchbase.com/rpm/couchbase-centos55-i386.repo
     shell> sudo wget -O/etc/yum.repos.d/couchbase.repo \
-              http://packages.couchbase.com/rpm/couchbase-centos55-x86_64.repo
+          http://packages.couchbase.com/rpm/couchbase-centos55-x86_64.repo
     ```
 
  * **RHEL/CentOS 6.2**
@@ -54,12 +54,12 @@ version:
               http://packages.couchbase.com/rpm/couchbase-centos62-x86_64.repo
     ```
 
-Then to install libcouchbase itself, run:
+Then to install libcouchbase with libevent backend, run:
 
 
 ```
 shell> sudo yum check-update
-shell> sudo yum install -y  libcouchbase2 libcouchbase-devel
+shell sudo yum install -y  libcouchbase2-libevent libcouchbase-devel
 ```
 
 <a id="c-install-linux-ubuntu"></a>
@@ -74,7 +74,7 @@ You must update the `apt-get` repository to install the client library:
 
     ```
     shell> sudo wget -O/etc/apt/sources.list.d/couchbase.list \
-              http://packages.couchbase.com/ubuntu/couchbase-ubuntu1204.list
+        http://packages.couchbase.com/ubuntu/couchbase-ubuntu1204.list
     ```
 
  * **Ubuntu 11.10 Oneiric Ocelot (Debian unstable)**
@@ -100,12 +100,12 @@ Also make sure you have the GPG key installed:
 shell> wget -O- http://packages.couchbase.com/ubuntu/couchbase.key | sudo apt-key add -
 ```
 
-Then to install libcouchbase run:
+Then to install libcouchbase with libevent backend run:
 
 
 ```
 shell> sudo apt-get update
-shell> sudo apt-get install libcouchbase2 libcouchbase-dev
+shell> sudo apt-get install libcouchbase2-libevent libcouchbase-dev
 ```
 
 <a id="c-install-mac"></a>
@@ -159,25 +159,21 @@ Building and installing on Microsoft Windows depends on `nmake` and tools in
 Microsoft Visual Studio 2010.
 
 Open the Visual Studio Command Prompt, and navigate to the directory for the
-extracted archive for libvbucket. The NMakefile defines an `INSTALL` variable as
-`C:\local`. Edit the NMakefile if you want to change the installation location.
-Then build and install libvbucket:
+extracted archive for libcouchbase. The NMakefile defines an `INSTALL` variable
+as `C:\local`. Edit the NMakefile if you want to change the installation
+location. Then build and install libcouchbase:
 
 
 ```
 shell> nmake -f NMakefile install
 ```
 
-Because it uses memcached binary protocol, libcouchbase requires header files
-from the memcached project. After obtaining the memcached source, copy
-`memcached.h` and `protocol_binary.h` into `c:\local\include\memcached`.
-
-Then navigate to the directory for libcouchbase. Edit the NMakefile if you want
-to change the installation location, then build and install libcouchbase:
+From libcouchbase version 2.1.0, you can also use CMake system to generate
+correct MS Visual Studio project, for example
 
 
 ```
-shell> nmake -f NMakefile install
+shell> cmake -G "Visual Studio 10"
 ```
 
 <a id="hello_couchbase-c-sdk"></a>
@@ -280,6 +276,7 @@ program with the include headers would be:
 #include <libcouchbase/couchbase.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 static void error_callback(lcb_t instance,
                            lcb_error_t err,
@@ -290,6 +287,7 @@ static void error_callback(lcb_t instance,
     exit(EXIT_FAILURE);
 }
 
+/* the callback invoked by the library when receiving a get response */
 static void get_callback(lcb_t instance,
                          const void *cookie,
                          lcb_error_t error,
@@ -305,6 +303,7 @@ static void get_callback(lcb_t instance,
         fprintf(stderr, "\" is : ");
         fwrite(resp->v.v0.bytes, 1, resp->v.v0.nbytes, stderr);
     }
+    (void)cookie; /* ignore */
 }
 
 int main(void)
@@ -326,37 +325,38 @@ int main(void)
         return 1;
     }
 
-    /* Set up the handler to catch all errors! */
+    /* set up the handler to catch all errors */
     lcb_set_error_callback(instance, error_callback);
 
-    /*
-     * Initiate the connect sequence in libcouchbase
-     */
-    if ((err = lcb_connect(instance)) != LCB_SUCCESS) {
+    /* initiate the connect sequence in libcouchbase */
+    err = lcb_connect(instance);
+    if (err != LCB_SUCCESS) {
         fprintf(stderr, "Failed to initiate connect: %s\n",
                 lcb_strerror(NULL, err));
         return 1;
     }
 
-    /* Run the event loop and wait until we've connected */
+    /* run the event loop and wait until we've connected */
     lcb_wait(instance);
 
-    /*
-     * Set up a callback for our get requests
-     */
+    /* set up a callback for our get requests  */
     lcb_set_get_callback(instance, get_callback);
 
-    lcb_get_cmd_t cmd;
-    const lcb_get_cmd_t * const commands[1] = { &cmd };
-    memset(&cmd, 0, sizeof(cmd));
-    cmd.v.v0.key = "foo";
-    cmd.v.v0.nkey = 3;
+    {
+        lcb_get_cmd_t cmd;
+        const lcb_get_cmd_t *commands[1];
 
-    err = lcb_get(instance, NULL, 1, commands);
-    if (err != LCB_SUCCESS) {
-        fprintf(stderr, "Failed to get: %s\n",
-                lcb_strerror(NULL, err));
-        return 1;
+        commands[0] = &cmd;
+        memset(&cmd, 0, sizeof(cmd));
+        cmd.v.v0.key = "foo";
+        cmd.v.v0.nkey = 3;
+
+        err = lcb_get(instance, NULL, 1, commands);
+        if (err != LCB_SUCCESS) {
+            fprintf(stderr, "Failed to get: %s\n",
+                    lcb_strerror(NULL, err));
+            return 1;
+        }
     }
 
     lcb_wait(instance);
