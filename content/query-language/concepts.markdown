@@ -76,7 +76,7 @@ When you perform a query, a sequence of steps gets executed. Each step correspon
 
 ##Types of Operations
 
-There are different types of expressions in N1QL for extracting, grouping and ordering data. The following describes the major categories of operations and the order in which they are handled:
+There are different types of expressions in N1QL for extracting, grouping and ordering data. The following describe the major categories of operations and the order in which they are handled:
 
 * **Filter Expressions** - If you provide a filtering expression, the server applies this to every item in a data bucket and only keeps the items where the result is true.
 * **Aggregate Expressions** - This expression groups all items in a result set by evaluating the aggregate expression. The result set contains these groups.
