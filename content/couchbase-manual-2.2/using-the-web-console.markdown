@@ -3,9 +3,9 @@
 The Couchbase Web Console is the main tool for managing your Couchbase
 installation. The Web Console provides the following tabs:
 
- * `Cluster Overview` : a quick guide to the status of your Couchbase cluster.
-
-   For more information, read [Viewing Cluster
+ * `Cluster Overview` : a qui status of your Couchbase cluster. 
+ 
+ 	See [Viewing Cluster
    Summary](#couchbase-admin-web-console-cluster-overview).
 
  * `Data Buckets` : view and update data bucket settings. You can create new
@@ -140,7 +140,7 @@ storage space across your cluster.
 
 ### Viewing Buckets
 
-The `Buckets` section provides two graphs showing the `Operations per second`
+The `Buckets` section provides `Operations per second`
 and `Disk fetches per second`.
 
 
@@ -156,7 +156,7 @@ to disk to retrieve information instead of using the information stored in RAM.
 
 ### Viewing Servers
 
-The `Servers` section indicates overall server information for the cluster:
+The `Servers` section has overall server information for the cluster:
 
 
 ![](images/web-console-cluster-overview-servers.png)
@@ -177,24 +177,24 @@ The `Servers` section indicates overall server information for the cluster:
 
 ## Viewing Server Nodes
 
-In addition to monitoring buckets over all the nodes within the cluster,
-Couchbase Server also includes support for monitoring the statistics for an
+In addition to monitoring buckets over all the nodes in a cluster,
+Couchbase Web Console can monitor the statistics for an
 individual node.
 
-The Server Nodes monitoring overview shows summary data for the Swap Usage, RAM
+The Server Nodes monitoring overview shows summary data for Swap Usage, RAM
 Usage, CPU Usage and Active Items across all the nodes in your cluster.
 
 
 ![](images/web-console-server-summary.png)
 
-Clicking the triangle next to a server displays server node specific
+Clicking the drop-down next to a server. This displays server node specific
 information, including the IP address, OS, Couchbase version and Memory and Disk
 allocation information.
 
 
 ![](images/web-console-server-node.png)
 
-The detail display shows the following information:
+The detail display shows the following:
 
  * **Node Information**
 

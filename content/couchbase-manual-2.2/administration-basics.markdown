@@ -54,9 +54,14 @@ To create a read-only user:
 
 	![reset or delete read-only user](images/reset-delete-read-only.png "read only user created")
 
-The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only uses performs a REST requests that changes cluster, bucket, XDCR, or node settings, the following error will occur:
+The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only uses performs a REST requests that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
 
+        HTTP/1.1 401 Unauthorized
+        Authentication problem. Ignoring this.
+        WWW-Authenticate: Basic realm="Couchbase Server Admin / REST"
+        ....
 
+For more information about Web Console or REST API, see [Using the Web Console](#couchbase-admin-web-console) or [Using the REST API](#couchbase-admin-restapi).
 
 
 
