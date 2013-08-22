@@ -1,6 +1,6 @@
 # Couchbase Lite Concepts
 
-This section describes how Couchbase Lite structures and works with data. If you are familiar with SQL and relational databases, you'll notice that Couchbase Lite works differently and has its own database terminology. The following table compares the terminology:
+This section describes how Couchbase Lite structures and works with data. If you are familiar with relational databases and SQL, you'll notice that Couchbase Lite works differently and has its own database terminology. The following table compares the terminology:
 
 <table style="width:55%">
 <col style="width:50%;text-align:left" />
