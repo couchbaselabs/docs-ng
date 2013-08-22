@@ -4,6 +4,53 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library C. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-c-rn_2-1-1"></a>
+
+## Release Notes for Couchbase Client Library C 2.1.1 GA (22 August 2013)
+
+**New Features and Behaviour Changes in 2.1.1**
+
+ * Fallback to 'select' IO plugin if default plugin cannot be loaded. On UNIX-like
+   systems, default IO backend is 'libevent', which uses third-party library might
+   be not available at the run-time. Read in lcb\_cntl(3couchbase) man page in
+   section LCB\_CNTL\_IOPS\_DEFAULT\_TYPES about how to determine effective IO
+   plugin, when your code chose to use LCB\_IO\_OPS\_DEFAULT during connection
+   instantiation. The fallback mode doesn't affect application which specify IO
+   backend explicitly.
+
+   *Issues* : [CCBC-246](http://www.couchbase.com/issues/browse/CCBC-246)
+
+ * Skip misconfigured nodes in the list. New lcb\_cntl(3couchbase) added to control
+   whether the library will skip nodes in initial node list, which listen on
+   configuration port (8091 usually) but doesn't meet required parameters (invalid
+   authentication or missing bucket). By default report this issue and stop trying
+   nodes from the list, like all previous release. Read more at man page
+   lcb\_cntl(3couchbase) in section
+   LCB\_CNTL\_SKIP\_CONFIGURATION\_ERRORS\_ON\_CONNECT
+
+   *Issues* : [CCBC-192](http://www.couchbase.com/issues/browse/CCBC-192)
+
+ * Distribute debug information with release binaries on Windows
+
+   *Issues* : [CCBC-245](http://www.couchbase.com/issues/browse/CCBC-245)
+
+**Fixes in 2.1.1**
+
+ * Do not use socket after failout. Fixes segmentation faults during rebalance.
+
+   *Issues* : [CCBC-239](http://www.couchbase.com/issues/browse/CCBC-239)
+
+ * Use provided credentials for authenticating to the data nodes. With this fix, it
+   is no longer possible to use Administrator credentials with a bucket. If your
+   configuration does so, you must change the credentials you use before applying
+   this update. No documentation guides use of Administrator credentials, so this
+   change is not expected to affect few, if any deployments.
+
+ * Do not disable config.h on UNIX-like platforms. It fixes build issue, when
+   application is trying to include plugins from the tarball.
+
+   *Issues* : [CCBC-248](http://www.couchbase.com/issues/browse/CCBC-248)
+
 <a id="couchbase-sdk-c-rn_2-1-0"></a>
 
 ## Release Notes for Couchbase Client Library C 2.1.0 GA (18 August 2013)

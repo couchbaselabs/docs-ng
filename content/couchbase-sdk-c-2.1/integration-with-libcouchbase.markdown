@@ -1,15 +1,15 @@
 # Integration with libcouchbase
 
-This tutorial assumes you have installed libcouchbase on your systems per the
-installation instructions in the Getting Started section of this guide. Because
-the approach for building a program based on libcouchbase may vary between
-Linux/Mac OS and Windows, this tutorial will focus on the components of the
-program rather than how to build it.
+This tutorial assumes you have installed libcouchbase on your systems, following
+the installation instructions in the Getting Started section of this guide.
+Because the approach for building a program based on libcouchbase may vary
+between Linux/Mac OS and Windows, this tutorial will focus on the components of
+the program rather than how to build it.
 
-The libcouchbase is written in C and can be integrated in variety ways with your
-application. First is the most trivial case, when your application written in a
-scripting language supported by Couchbase client libraries, which already have
-libcouchbase wrappers. Couchbase has built and maintains following
+The libcouchbase is written in C and can be integrated in various ways with your
+application. The simplest integration scenario is when your application is
+written in a scripting language (supported by a Couchbase client library) that
+already has a libcouchbase wrapper. Couchbase has built and maintains following
 libcouchbase-based libraries:
 
  * [Ruby](http://www.couchbase.com/communities/ruby/getting-started)
@@ -21,41 +21,42 @@ libcouchbase-based libraries:
  * [node.js](https://github.com/couchbase/couchnode)
 
 Users of these libraries automatically get an API, which looks natural for their
-platform, so that it doesn't require knowledge of libcouchbase APIs. But this
+platform, so that it doesn't require knowledge of libcouchbase APIs. This
 tutorial is mostly about two other use cases:
 
- * Add libcouchbase into existing application to implement persistence layer. This
-   section will contain two sections: first we will create a simple echo server
-   written using [libev](http://software.schmorp.de/pkg/libev.html) library. And
-   then it will be shown how to persist each message going through the server to
+ * Add libcouchbase into an existing application to implement persistence layer.
+   This section will contain two parts: first we will create a simple echo server
+   written using [libev](http://software.schmorp.de/pkg/libev.html) library.
+   Second, we will show how to persist each message going through the server to
    Couchbase.
 
    Get complete code here:
    [https://github.com/couchbaselabs/libev-couchbase-example](https://github.com/couchbaselabs/libev-couchbase-example)
 
- * Build applications around libcouchbase. Here we show how to build a proxy server
-   for regular memcached clients. Just like [moxi
-   server](http://www.couchbase.com/docs/moxi-manual-1.8/), but limited for
-   demonstrative purposes.
+ * Build applications around libcouchbase. Here we'll show how to build a proxy
+   server for regular memcached clients. Building this proxy server is just like
+   building a [moxi server](http://www.couchbase.com/docs/moxi-manual-1.8/), but
+   the proxy server will be more limited more limited in abilities.
 
-   get complete code here:
+   Get complete code here:
    [https://github.com/couchbaselabs/libcouchbase-proxy-sample](https://github.com/couchbaselabs/libcouchbase-proxy-sample)
 
 <a id="add_to_existent_application"></a>
 
 ## Add to an Application
 
-Lets start from defining specification of an existing application. Our
+Let's start with a specific existing application for this example. Our
 application is the asynchronous single-threaded echo server, which leverages
 [libev](http://software.schmorp.de/pkg/libev.html) to solve [C10K
-problem](http://www.kegel.com/c10k.html) and efficiently serve huge number of
-concurrent connections. It should listen given port (in this sample 4567), and
-send back everything the client submitting to it.
+problem](http://www.kegel.com/c10k.html) and efficiently serves a huge number of
+concurrent connections. It should listen to the given port (in this sample 4567)
+and send back everything the client submitted to it.
 
 The libev library implements [reactor
-pattern](http://en.wikipedia.org/wiki/Reactor_pattern) uses term `event loop` to
-represent entity which encapsulate register of handlers for various IO events
-and the timers. To start we have the application code from the main function:
+pattern](http://en.wikipedia.org/wiki/Reactor_pattern) which uses the term
+`event loop` to represent an entity which encapsulates the register of handlers
+for various IO events and the timers. To start, we have the application code
+from the main function:
 
 
 ```
@@ -92,13 +93,13 @@ int main()
 }
 ```
 
-Here we are create an event loop instance, and create and bind new socket to
+Here we are create an event loop instance, and create and bind a new socket to
 local port `PORT_NO (4567)`. After that we can mark this socket as listening and
 ask libev to call the function `accept_cb` when the socket become ready to read,
 that is when the new client will come to us. The final step is to run `ev_run()`
 which does all the server interaction.
 
-The `accept_cb` is in charge of allocating client structures with the buffer for
+The `accept_cb` is in charge of allocating client structures 60 the buffer for
 messages. The sample is using ring buffers from the libcouchbase code for easier
 managing memory for IO buffers.
 
@@ -139,16 +140,16 @@ void accept_cb(struct ev_loop *loop, struct ev_io *watcher, int revents)
 }
 ```
 
-The most interesting part of the function above in last two lines, which
-registers a new handler `client_cb` on reading an event for the client socket.
-This handler will be called each time when the kernel will receive new data from
-the socket, so that it could be read with non-blocking call.
+The most interesting part of the function above is in the last two lines. It
+registers the new handler, `client_cb`, upon reading an event for the client
+socket. This handler will be called each time when the kernel receives new data
+from the socket, so that it could be read with a non-blocking call.
 
 The last snippet of our application depicts the `client_cb` function, which
 handles all the application logic. It reads everything from the socket if it is
-ready and registers itself for write events, and then sends all the contents out
-to the network. It is also the handling end of a stream situation, which means
-that the client closed the connection.
+ready, registers itself for write events, and then sends all the contents out to
+the network. It is also the handling end of a stream situation, which means that
+the client closed the connection with the Couchbase server.
 
 
 ```
@@ -201,9 +202,9 @@ void client_cb(struct ev_loop *loop, struct ev_io *watcher, int revents)
 }
 ```
 
-Again, the whole application is stored on the github at
+Again, the whole application is stored on github at
 [https://github.com/couchbaselabs/libev-couchbase-example](https://github.com/couchbaselabs/libev-couchbase-example).
-Let's see it in action. To clone and build the applications use the following
+Let's see it in action. To clone and build the applications, use the following
 commands:
 
 
@@ -213,9 +214,9 @@ commands:
 step1 $ ./autogen.sh && ./configure && make
 ```
 
-As the client for the echo application, any telnet-like application will be
-adequate, such as telnet, nc etc. The following listing simulates two terminals
-by splitting them with vertical line:
+As a client for an echo application, we can build any telnet-like application.
+The following listing simulates two terminals by splitting them with a vertical
+line:
 
 
 ```
@@ -231,19 +232,19 @@ Peer disconnected                   |  foo bar
                                     |  telnet> Connection closed.
 ```
 
-When we described our application, let's integrate Couchbase as the database
+Now that we described our application, let's integrate Couchbase as the database
 using libcouchbase. The `server.c` file will have some small additions. In the
 `main` function, before initializing server socket, we will call `storage_init`
-and put a connection handle into the server struct.
+and assign the connection information to the server structure variable.
 
 
 ```
 server.handle = storage_init(loop, "localhost:8091", "default", null);
 ```
 
-And also in the `client_cb` handler, each time we receive a data from the
-client, we will send it to Couchbase server with `storage_put` where `the_key`
-is a hard-coded string `"example"`.
+Also in the `client_cb` handler, each time libcouchbase receives data from the
+client, it will send the data to Couchbase server with `storage_put` where
+`the_key` is a string `"example"`.
 
 
 ```
@@ -252,14 +253,14 @@ storage_put(client, the_key, val, nbytes);
 
 Here, the initial application from step one is already using its own custom
 event loop to handle other IO in the application. The application could be more
-complex, but libcouchbase has separate interface to inject your IO
+complex, but libcouchbase has a separate interface to inject your IO
 implementation into the library. In the simplest case, for example if your
 application is using one of the IO libraries supported by libcouchbase, you can
 just pass your event loop instance into the initializer, and libcouchbase won't
 create new one. Instead it will register all its events on this external loop.
 In case your application is using its own implementation of a reactor pattern,
 such as nginx, or you use linux epoll API, you can easily write your own IO
-plugin, and pass it to connection initializer.
+plugin and pass it to the connection initializer.
 
 The echo server is using libev library, and libcouchbase provides a plugin to
 libev out-of-the-box. In this case we can imagine that it doesn't already have
@@ -314,9 +315,9 @@ lcb_t storage_init(struct ev_loop *loop, const char *host, const char *bucket, c
 ```
 
 The end of the function may look familiar, but the `io_opts` structure is more
-interesting, because it defines how to look up our custom IO plugin. The
-`io_opts.v.v1.sofile` set to `NULL` to specify that our plugin compiled into the
-current executable image, In this case, `symbol` is the string name of the
+interesting. It defines how to look up our custom IO plugin. The
+`io_opts.v.v1.sofile` is set to `NULL` to specify that our plugin compiled into
+the current executable image. In this case, `symbol` is the string name of the
 function with the following signature:
 
 
@@ -324,19 +325,19 @@ function with the following signature:
 lcb_error_t lcb_create_libev_io_opts(int version, lcb_io_opt_t *io, void *loop);
 ```
 
-Which initializes the IO plugin and then the `cookie` will be passed to this
+This initializes the IO plugin and then the `cookie` will be passed to this
 function as the `loop` argument. You can refer to the `lcb_create_io_ops(3)`
 manpage for other ways to initialize IO subsystem.
 
-The libcouchbase client is purely asynchronous, therefore each data operation is
-split into two parts: a function-scheduler which validates and copies all
+The libcouchbase client is purely asynchronous; therefore, each data operation
+isplits into two parts: a function-scheduler, which validates and copies all
 arguments to internal buffers for further handing, and a function-callback,
 which will be called with the results of the operation. It is possible to
 implement a wrapper which will provide a more synchronous API, but it is
-difficult to write generic and efficient at the same time library API. Also
-since all communication is done by using function arguments, it is easier to
-maintain backward compatible APIs by versioning both incoming structures and
-results. Let's see how we did it in our sample.
+difficult to write a library API that is both generic and efficient. Since all
+communication is done by using function arguments, it is easier to maintain
+backward compatible APIs by versioning both incoming structures and results.
+Let's see how we did it in our sample:
 
 
 ```
@@ -386,17 +387,17 @@ void storage_callback(lcb_t instance, const void *cookie,
 }
 ```
 
-Here `storage_put()` function is a wrapper over `lcb_store(3)` and translates
-arguments to the versioned structure and runs `lcb_store` to pass it to the
-library. The data won't be sent immediately, but when the data socket, the
-libcouchbase is connecting will be ready to accept data. After the server will
-process the request, the application will be notified asynchronously via
-`storage_callback`. Which in turn will copy CAS value to the output buffer to be
-sent to the client.
+Here, the `storage_put()` function is a wrapper over `lcb_store(3)`. The
+`storage_put()` function translates arguments to the versioned structure and
+runs `lcb_store` to pass it to the library. The data won't be sent immediately,
+but when the library connects to the data socket, it will be ready to accept
+data. After the server processes the request, the application will be notified
+asynchronously via `storage_callback`. This callback will copy CAS value to the
+output buffer to be sent to the client.
 
-Time to demonstrate an application. This application is built as the previous
-one, except you need to navigate to `step2/` directory. As previously noted the
-script will be split to demonstrate both server and the client:
+Time to demonstrate an application. This application is built the same as
+before, except you need to navigate to `step2/` directory. As previously noted,
+the script will be split to demonstrate both server and the client:
 
 
 ```
@@ -410,9 +411,9 @@ Peer disconnected                   |  2916447493390860288
                                     |  telnet> Connection closed.
 ```
 
-Now you can install `cbc` tools from package `libcouchbase2-bin`. In the case
-you installed libcouchbase from source, you likely have it already. Check that
-it created a key example and the CAS values are matching:
+Now you can install `cbc` tools from package `libcouchbase2-bin`. If you
+installed libcouchbase from source, you most likely have it already. Then you
+can check that it created a key example and that the CAS values are matching:
 
 
 ```
@@ -427,19 +428,19 @@ Hello world!
 
 ## Build an Application
 
-You can use libcouchbase when you are building Couchbase-enabled application,
-and want to bootstrap quickly. To do so you can build you application using IO
+You can use libcouchbase when you are building Couchbase-enabled application and
+want to bootstrap quickly. To do so you can build your application using the IO
 abstraction provided with libcouchbase.
 
-In this example we create a thin proxy application which will expose the
+In this example, we create a thin proxy application which will expose the
 memcached-compatible API for the system. Similar approaches exist for [moxi
 server](http://www.couchbase.com/docs/moxi-manual-1.8/). Also this application
 will use less hard-coded logic and more look like real-life service. Full source
-code could be found at
+code can be found at
 [https://github.com/couchbaselabs/libcouchbase-proxy-sample](https://github.com/couchbaselabs/libcouchbase-proxy-sample).
 
-We skip parsing and initialization of the Couchbase connection from the `main`
-function for brevity. The proxy code begins in `run_proxy`, which is similar to
+For clarity, we skip parsing and initialization of the Couchbase connection from
+the `main` function. The proxy code begins in `run_proxy`, which is similar to
 the main function in the previous section. The important difference here is that
 we are using the IO abstraction from libcouchbase, to register events, and drive
 an event loop.
@@ -487,10 +488,10 @@ void run_proxy(lcb_t conn)
 }
 ```
 
-As in the previous example, we create a listening socket and bind a handler to
-read events. The handler is `proxy_accept_callback`, and it will be triggered
-for each new client. In turn it will create a new client structure, defined as
-follows:
+As in the previous example, we create a listening socket, and then we bind a
+handler to process read events. The handler is `proxy_accept_callback`, and it
+will be triggered for each new client. In turn it will create a new client
+structure, defined as follows:
 
 
 ```
@@ -505,12 +506,12 @@ struct client_st {
 };
 ```
 
-This initializes input and output buffers, and makes socket descriptors
-non-blocking. At the end it register handler function `proxy_client_callback`
-for read events, and then await for incoming data.
+This initializes input and output buffers,and makes the socket descriptors
+non-blocking. At the end, the code will register the handler function
+`proxy_client_callback` for read events, and then wait for incoming data.
 
-The proxy implements a very limited number of protocol commands: GET, SET and
-VERSION. But other commands could be easily added.
+The proxy implements a very limited number of protocol commands: GET, SET, and
+VERSION. But other commands can be easily added. Here's an example:
 
 
 ```
@@ -620,23 +621,22 @@ void proxy_client_callback(lcb_socket_t sock, short which, void *data)
 
 The function `proxy_client_callback` logically divided into two parts.
 
- * First one is taking effect when the event loop notifies us that the socket is
-   ready for non-blocking reading. In this case it tries to read all the data
-   available on the socket, find bounds of the packets and pass aligned byte arrays
-   to `handle_packet`. Once it get from the IO subsystem special code, that it
-   cannot read anything without blocking, it stops processing and register itself
-   for write events, because in nearest future, responses will appear in the output
-   buffer.
+ * The first part occurs when the event loop notifies us that the socket is ready
+   for non-blocking reading. At this point, the function tries to read all the data
+   available on the socket. It finds the packets and passes aligned byte arrays to
+   `handle_packet`. Once the code gets a special code from the IO subsystem get
+   from the IO subsystem special code, that it cannot read anything without
+   blocking, it stops processing and registers itself for write events, because in
+   nearest future, responses will appear in the output buffer.
 
- * The second part of the function reacts on write events and basically much
-   simpler. It just checks if there data in the output buffer, if so, it will try
-   to send it to the client, otherwise unregister itself from write event to save
-   CPU cycles.
+ * The second part of the function reacts to write events and is much simpler. It
+   just checks to see if there is data in the output buffer. If there is data in
+   the output buffer, it will try to send that data to the client. If not, the
+   functionwill unregister itself from write events to save CPU cycles.
 
-The function `handle_packet` is good place to start playing with this example if
-you'd like to add new features there. It decodes protocol packet and translates
-it into libcouchbase calls. When for unknown commands it renders special packed
-immediately.
+The function `handle_packet` is a good place to start playing with this example
+if you'd like to add new features there. It decodes protocol packet and
+translates it into libcouchbase calls.
 
 
 ```
@@ -724,9 +724,9 @@ void handle_packet(client_t *cl, char *buf)
 ```
 
 To maintain a logical link between requests and responses for the clients, the
-protocol defines a special field `opaque`, which could be a special tag or
+protocol defines a special field `opaque`, which can be a special tag or
 sequence number. To preserve this field in the response, we will put it into a
-`cookie_t` structure. During the proxy initialization we defined two
+`cookie_t` structure. During the proxy initialization, we defined two
 callback-functions for libcouchbase:
 
 
@@ -735,9 +735,9 @@ lcb_set_get_callback(conn, get_callback);
 lcb_set_store_callback(conn, store_callback);
 ```
 
-In this kind application these function just build a protocol response from
-libcouchbase return value and also register the `proxy_client_callback` on write
-events to send out the data just written into the buffer.
+In this kind of application, these functions just build a protocol response from
+libcouchbase return value. They also register the `proxy_client_callback` on
+write events to send out data recently written into the buffer.
 
 
 ```
@@ -769,13 +769,13 @@ void get_callback(lcb_t conn, const void *cookie, lcb_error_t err,
 }
 ```
 
-This is virtually the all integration points with libcouchbase. As we
-demonstrated, libcouchbase more than protocol parser; it also abstract and
+These are viritually all the integration points with libcouchbase. As we
+demonstrated, libcouchbase more than a protocol parser; it also an abstract and
 portable IO framework, allowing you to build asynchronous applications around
 Couchbase Server.
 
-As a conclusion, let's run your favourite memcached client, and verify our
-proxy. First you need to clone and build it:
+To conclude, let's run your favourite memcached client and verify our proxy.
+First you need to clone and build it:
 
 
 ```
@@ -784,8 +784,8 @@ $ cd libcouchbase-proxy-sample
 libcouchbase-proxy-sample $ make
 ```
 
-Run the server, and send couple of commands to it. We will use the
-[dalli](https://github.com/mperham/dalli) ruby gem here.
+Run the server and send couple of commands to it. We will use the
+[dalli](https://github.com/mperham/dalli) ruby gem here:
 
 
 ```

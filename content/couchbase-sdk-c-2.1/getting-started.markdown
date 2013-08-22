@@ -7,11 +7,11 @@ access Couchbase Server.
 
 Here's a quick outline of what you'll learn in this chapter:
 
- * How to get the client library.
+ * Get the client library.
 
- * How to build the client library from source (optional).
+ * Build the client library from source (optional).
 
- * How to write a simple program to connecting to Couchbase and save some data.
+ * Write a simple program to connecting to Couchbase and save some data.
 
 <a id="downloading"></a>
 
@@ -100,7 +100,7 @@ Also make sure you have the GPG key installed:
 shell> wget -O- http://packages.couchbase.com/ubuntu/couchbase.key | sudo apt-key add -
 ```
 
-Then to install libcouchbase with libevent backend run:
+Then to install libcouchbase with libevent backend, run:
 
 
 ```
@@ -137,8 +137,8 @@ shell> make install
 ```
 
 Standard configure options such as `--prefix` can be passed to the configure
-command. Running./configure with --help provides additional information on
-configuration options.
+command. For additional information on configuration options, run./configure
+with --help.
 
 For libcouchbase, extract the archive, then cd into the directory and run:
 
@@ -149,16 +149,16 @@ shell> make install
 ```
 
 The `--disable-couchbasemock` simply disables some tests which are common during
-development of libcouchbase, but not required when installing a release.
+the development of libcouchbase, but not required when installing a release.
 
 <a id="c-install-windows"></a>
 
 ## Installing from Source: Microsoft Windows
 
-Building and installing on Microsoft Windows depends on `nmake` and tools in
+Building and installing on Microsoft Windows requires `nmake` and tools in
 Microsoft Visual Studio 2010.
 
-Open the Visual Studio Command Prompt, and navigate to the directory for the
+Open the Visual Studio Command Prompt and navigate to the directory for the
 extracted archive for libcouchbase. The NMakefile defines an `INSTALL` variable
 as `C:\local`. Edit the NMakefile if you want to change the installation
 location. Then build and install libcouchbase:
@@ -169,7 +169,7 @@ shell> nmake -f NMakefile install
 ```
 
 From libcouchbase version 2.1.0, you can also use CMake system to generate
-correct MS Visual Studio project, for example
+correct MS Visual Studio project, for example:
 
 
 ```
@@ -184,7 +184,7 @@ The C client library, `libcouchbase`, is a callback-oriented client which makes
 it very easy to write high performance programs. There are a few ways you can
 drive IO with the library. The simplest approach is to use the synchronous
 interface over the asynch internals of the library. More advanced programs will
-either call the `libcouchbase_wait()` function after generating some operations,
+either call the `libcouchbase_wait()` function after generating some operations
 or drive the event loop themselves.
 
 To connect, you first configure the connection options and then create an
@@ -265,11 +265,11 @@ lcb_wait(instance);
 
 Callbacks can be set up for all of your operations called in libcouchbase. In
 the API, you'll note the use of a cookie. This is metadata from your application
-which is associated with the request. Underlying libcouchbase will not inspect
-the field, or send it to the server.
+which is associated with the request. The libcouchbase library will not inspect
+any cookie or send the cookie to the server.
 
-Putting the connect logic and the get callback all together into a complete
-program with the include headers would be:
+When you put the connect logic and the get callback together and plug them into
+a complete program with the include headers, you get:
 
 
 ```

@@ -27,6 +27,39 @@ cluster. Administration is supported through three primary methods:
 
    For more information, read [Using the REST API](#couchbase-admin-restapi).
 
+
+
+<a id="couchbase-read-only-user"></a>
+
+##Create a Read-only User
+
+As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access 
+in Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR setup or create views. Any REST API calls which require an administrator will fail and return and error for this user. In Web Console a read-only user will be able to view:
+
+- Cluster Overview.
+- Design documents and views but no sample results for the views.
+- Bucket summaries including Cache Size and Storage Size, but no documents in the buckets.
+- List of XDCR replications and remote clusters.
+- Logs under the Log tab, but the user cannot Generate Diagnostic Report.
+- Current settings for node.
+
+To create a read-only user:
+
+1. In Couchbase Web Console, click Settings. A panel appears with several different sub-tabs.
+2. Click Account Management. A panel appears where you can add the user:
+
+	![create read-only user](images/create_read-only.png "read only user")
+3. Enter a Username, Password and verify the password.
+4. Click Create. The panel refreshes and has options for resetting the read-only user password or deleting the user:
+
+	![reset or delete read-only user](images/reset-delete-read-only.png "read only user created")
+
+The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only uses performs a REST requests that changes cluster, bucket, XDCR, or node settings, the following error will occur:
+
+
+
+
+
 <a id="couchbase-data-files"></a>
 
 ## Couchbase Data Files
