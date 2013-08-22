@@ -10,16 +10,17 @@ Tracker](http://www.couchbase.com/issues/browse/MB).
 
 This release is our second minor release for Couchbase Server 2.0 after a 2.1
 release. In 2.1, we added some major enhancements for Disk IO optimization, XDCR
-optimization, Hostname management and many more and also fixed some critical
-bugs. The 2.2 will be more focused enhancing some key area which includes:
+optimization, hostname management and also fixed some critical bugs. The 2.2
+enhances some key areas which include:
 
  * XDCR protocol update to use memcached, see [Behavior and
    Limitations](#couchbase-admin-tasks-xdcr-functionality).
 
  * Managing expired and deleted data efficiently. Better handling of persisted
-   delete tombstones and automated purging of tombstones.
+   delete tombstones and automated purging of tombstones. See [Disk
+   Storage](#couchbase-introduction-architecture-diskstorage).
 
- * Read-only admin user and reset password for administrator.
+ * Read-only admin user and ability to reset password for administrators.
 
 In addition, this release will try to address some existing issues that
 customers are facing:
@@ -28,7 +29,8 @@ customers are facing:
    Developer Guide 2.2, Providing SASL
    Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication).
 
- * Support installing Couchbase as non-root and non-sudo user.
+ * Support installing Couchbase as a non-root and non-sudo user, see [Installing
+   Couchbase Server](#couchbase-getting-started-install).
 
  * Efficiently support "Append" patterns with tcmalloc upgrade.
 
@@ -71,6 +73,12 @@ customers are facing:
 
  * **Cross Datacenter Replication (XDCR)**
 
+    * If you used a custom data path then performed a server uninstall and upgraded,
+      older XDCR replication files were left intact. This resulted in Couchbase Server
+      crashes and incorrect information in Web Console. This has been fixed.
+
+      *Issues* : [MB-8460](http://www.couchbase.com/issues/browse/MB-8460)
+
     * Non-UTF-8 encoded keys will not be replicated to destination clusters via XDCR
       by design. If any non-UTF-8 key is detected at a source cluster, a warning
       message will appear in the `xdcr_error.*` log files along with a list of
@@ -79,6 +87,49 @@ customers are facing:
       [Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
 
       *Issues* : [MB-8727](http://www.couchbase.com/issues/browse/MB-8727)
+
+ * **Performance**
+
+    * Users experienced higher latency rates when they performed `observe` for
+      replicated data. This was due to a one-second sleep interval which occurred when
+      Couchbase server was idle. This sleep interval has been significantly reduced
+      and has improved latency so that it is at least 5 times faster for this use
+      case.
+
+      *Issues* : [MB-8453](http://www.couchbase.com/issues/browse/MB-8453)
+
+**Known Issues in 2.2**
+
+ * **Installation and Upgrade**
+
+    * For Mac OSX, if you move the server after it is installed and configured, it
+      will fail. If you must move a configured server on this platform, you should
+      first stop the server, delete the config.dat file found at
+      `/var/lib/couchbase/config`, start the server and configure it once again.
+
+      *Issues* : [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
+
+ * **Cluster Operations**
+
+    * The detailed rebalance report in Couchbase Web Console display numbers for
+      `Total number of keys to be transferred` and `Estimated number of keys
+      transferred` when you rebalance empty data buckets. We incorrectly show the
+      number of internal server messages that will be transferred and have been
+      transferred, instead of only documents in a data bucket. This will be fixed in
+      future releases. For more information about detailed rebalance information, see
+      [Monitoring a Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
+
+      *Issues* : [MB-8654](http://www.couchbase.com/issues/browse/MB-8654)
+
+ * **Command-line Tools**
+
+    * If you use `cbbackup`, `cbrestore`, or `cbtransfer` you should perform the
+      backup, restore, or transfer from a node in your Couchbase cluster. These three
+      tools will not transfer data from external IP addresses; they will function with
+      IP addresses from an internal Couchbase cluster node list. See [cbbackup
+      Tool](#couchbase-admin-cmdline-cbbackup),
+
+      *Issues* : [MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
 
 <a id="couchbase-server-rn_2-1-1a"></a>
 

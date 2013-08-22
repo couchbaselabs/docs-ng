@@ -1710,7 +1710,7 @@ The settings tab sets the following default parameters:
    If checked, you must specify the start hour and minute, and end hour and minute
    of the time period when compaction is allowed to occur.
 
- * `Abort compaction if run time exceeds the above period`
+ * `Abort if run time exceeds the above period`
 
    If checked, if database compaction is running when the configured time period
    ends, the compaction process will be terminated.
@@ -1720,10 +1720,19 @@ The settings tab sets the following default parameters:
    If enabled, database and view compaction will be executed simultaneously,
    implying a heavier processing and disk I/O load during the compaction process.
 
-   ### Enable Parallel Compaction
+ * `Metadata Purge Interval`
 
-   It is recommended to run data and view compaction in parallel based on the
-   throughput of your disk.
+   Defaults to three days. The number of days an item is deleted or expired before
+   the tombstone for the item is removed during compaction. Tombstones are records
+   of expired or deleted items and they include the key for the item as well as
+   metadata. Tombstones are used in Couchbase Server to provide eventual
+   consistency of data between clusters. If you set this value too low, you may see
+   more inconsistent results in views queries such as deleted items in a result
+   set. You may also see inconsistent items in clusters with XDCR set up between
+   the clusters. If you set this value too low,  it will delay the server from
+   reclaiming disk space.
+
+   You can also changes this setting with the REST API, see.
 
 For more information on compaction, see [Database and View
 Compaction](#couchbase-admin-tasks-compaction). For information on how

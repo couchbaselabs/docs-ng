@@ -300,7 +300,7 @@ Info (24-36): Authenticated
 
 <a id="couchbase-client-cram-auth"></a>
 
-### Making a Request via CRAM-MD5
+### Making Requests via CRAM-MD5
 
 After you determine your Couchbase Server version supports CRAM-MD5, you can
 create an authentication request packet and send it to the server:
@@ -444,6 +444,26 @@ Password     (32-47): "f327hfqjibf3948f"
 When the server accepts this username/password combination, it returns one of
 two status codes: Success or "Authentication Continuation". Success means that
 you have completed authentication.
+
+The possible return codes and errors sent during CRAM-MD5 authentication
+include:
+
+ * **SASL\_OK (0)** - The server sends this message at the end of the
+   authentication handshake to indicate that SASL authentication has completed
+   successfully
+
+ * **SASL\_CONTINUE (1)** - Indicates that the last message sent during
+   authentication was successfully received, but authentication is not yet complete
+   and the server is expecting more information from a client.
+
+   For example, the server returns this code during CRAM-MD5 SASL authentication
+   along with the challenge string.
+
+ * **SASL\_FAIL (2)** - May occur at any time during the SASL authentication and
+   indicates that authentication has failed.
+
+ * **SASL\_BADPARAM (3)** - SASL authentication has failed because a bad or illegal
+   authentication parameter was received.
 
 <a id="couchbase-client-topology-via-rest"></a>
 

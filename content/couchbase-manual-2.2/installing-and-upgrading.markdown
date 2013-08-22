@@ -218,6 +218,24 @@ Platforms](#couchbase-getting-started-prepare-platforms). The RedHat
 installation uses the RPM package. Installation is supported on RedHat and
 RedHat-based operating systems such as CentOS.
 
+ 1. For Red Hat Enterprise Linux version 6.0, Couchbase Server 2.2 RPM will do
+    dependency checks for OpenSSL using `pkg-config`. Therefore you need to check
+    that this pkg-config is installed and if you do not have it, install it:
+
+     ```
+     root-> sudo yum install -y pkgconfig
+     ```
+
+    Upon successful install you will see output as follows:
+
+     ```
+     Loaded plugins
+     ....
+      Installed:
+       pkgconfig.x86_64 1:0.21-2.el5
+     Complete!
+     ```
+
  1. For Red Hat Enterprise Linux version 6.0 and above, you need to install a
     specific OpenSSL dependency by running:
 
@@ -917,6 +935,11 @@ Addresses](#couchbase-bestpractice-cloud-ip).
 
 For 2.0.1 please follow the same steps for 2.0 and earlier. The one difference
 between versions is the name and location of the file you change.
+
+This operation on both Linux and Windows is data destructive. This process will
+reinitialize the node and remove all data on the node. You may want to perform a
+backup of node data before you perform this operation, see [cbbackup
+Tool](#couchbase-admin-cmdline-cbbackup).
 
 **For Linux 2.0.1 and Earlier:**
 
