@@ -397,16 +397,3 @@ some additional resources:
    results.
 
 <a id="elasticsearch-release-notes"></a>
-
-## Release Notes
-
-This appendix contains release notes for individual versions of Couchbase
-Plug-in for Elasticsearch
-
-<a id="elastic-relnotes-1.1.0"></a>
-
-### Release Notes for Couchbase Plug-in for Elasticsearch 1.1.0 GA (August 2013)
-
-This release adds compatibility with Elasticsearch 0.90.2.
-
-<a id="elastic-relnotes-1.0.0"></a>

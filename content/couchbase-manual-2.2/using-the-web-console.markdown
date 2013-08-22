@@ -1547,7 +1547,7 @@ only notify you of your currently installed version, and no alert will be
 provided.
 
 
-![](images/web-console-server-settings-updatenotifications.png)
+![](images/web_con_update_note.png)
 
 For more information on how Update Notifications work, see [Updating
 Notifications](#couchbase-admin-web-console-update-notifications).
@@ -1564,7 +1564,7 @@ delay, in seconds, before auto-failover is started, enter the number of seconds
 it the `Timeout` box. The default timeout is 30 seconds.
 
 
-![](images/web-console-server-settings-autofailover.png)
+![](images/web-enable-autofail.png)
 
 For more information on Auto-Failover, see [Using Automatic
 Failover](#couchbase-admin-tasks-failover-automatic).
@@ -1573,10 +1573,12 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 ### Enabling Alerts
 
-You can enable email alerts to be raised when a signficant error occurs on your
+You can enable email alerts to be raised when a significant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
 to a configured SMTP server. Each alert email is send to the list of configured
 email recipients.
+
+![](images/web-enable-email.png)
 
 The available settings are:
 
@@ -1630,7 +1632,7 @@ The available settings are:
 
     * `Node was auto-failovered`
 
-      The sending node has been auto-failovered.
+      The sending node is set to auto failover.
 
     * `Maximum number of auto-failovered nodes was reached`
 
@@ -1674,7 +1676,7 @@ The available settings are:
       for a bucket.
 
 
-![](images/web-console-server-settings-alerts.png)
+
 
 For more information on Auto-Failover, see [Using Automatic
 Failover](#couchbase-admin-tasks-failover-automatic).
@@ -1748,13 +1750,51 @@ data has not already been loaded in the system. For more information on the
 sample data available, see [Couchbase Sample Buckets](#couchbase-sampledata).
 
 
-![](images/web-console-server-settings-sample.png)
+
+![add sample buckets](images/web-sample_buckets.png "add sample buckets")
 
 If the sample bucket data was not loaded during setup, select the sample buckets
 that you want to load using the checkboxes, and click the `Create` button.
 
 If the sample bucket data has already been loaded, it will be listed under the
 `Installed Samples` section of the page.
+
+<a id="couchbase-read-only-user"></a>
+
+##Create a Read-only User
+
+As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access 
+in Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR setup or create views. Any REST API calls which require an administrator will fail and return and error for this user. In Web Console a read-only user will be able to view:
+
+- Cluster Overview.
+- Design documents and views but no sample results for the views.
+- Bucket summaries including Cache Size and Storage Size, but no documents in the buckets.
+- List of XDCR replications and remote clusters.
+- Logs under the Log tab, but the user cannot Generate Diagnostic Report.
+- Current settings for node.
+
+To create a read-only user:
+
+1. In Couchbase Web Console, click Settings. A panel appears with several different sub-tabs.
+2. Click Account Management. A panel appears where you can add the user:
+
+	![create read-only user](images/create_read-only.png "read only user")
+3. Enter a Username, Password and verify the password.
+4. Click Create. The panel refreshes and has options for resetting the read-only user password or deleting the user:
+
+	![reset or delete read-only user](images/reset-delete-read-only.png "read only user created")
+
+The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only uses performs a REST requests that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
+
+        HTTP/1.1 401 Unauthorized
+        Authentication problem. Ignoring this.
+        WWW-Authenticate: Basic realm="Couchbase Server Admin / REST"
+        ....
+
+For more information about Web Console or REST API, see [Using the Web Console](#couchbase-admin-web-console) or [Using the REST API](#couchbase-admin-restapi).
+
+
+
 
 <a id="couchbase-admin-web-console-update-notifications"></a>
 
@@ -1776,7 +1816,7 @@ information to the Couchbase server:
  * Basic information about the size and configuration of your Couchbase cluster.
    This information will be used to help us prioritize our development efforts.
 
-You can enable/disable software updaate notifications
+You can enable/disable software update notifications
 
 The process occurs within the browser accessing the web console, not within the
 server itself, and no further configuration or internet access is required on

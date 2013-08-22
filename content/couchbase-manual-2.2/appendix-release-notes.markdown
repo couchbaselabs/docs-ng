@@ -100,6 +100,15 @@ customers are facing:
 
 **Known Issues in 2.2**
 
+ * **XDCR and Installation and Upgrade**
+
+    * There is a scenario with bi-directional XDCR where you may see deletions sent to a destination then replicated back to the
+     source and persisted once again on the source cluster. If you are performing an online upgrade of a cluster on 2.1 or earlier to a 2.2 and are performing bidirectional XDCR from this cluster to a 2.2 cluster, you will see this behavior. 
+     
+   This results in no data loss but creates additional, unneeded re-deletions in XDCR. After you complete the online upgrade of your entire source cluster to 2.2, the behavior resolves. This issue will be fixed in future releases.
+
+      *Issues* : [MB-8825](http://www.couchbase.com/issues/browse/MB-8825)
+      
  * **Installation and Upgrade**
 
     * For Mac OSX, if you move the server after it is installed and configured, it
