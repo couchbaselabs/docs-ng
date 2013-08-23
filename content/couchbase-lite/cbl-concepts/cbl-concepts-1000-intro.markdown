@@ -1,3 +1,13 @@
+This guide provides a platform-independent overview of Couchbase Lite. The overview  focuses on what Couchbase Lite is and how it works with your data.
+
+The guide contains the following sections:
+
+* [Introduction](#introduction)
+* [Couchbase Lite Architecture](#couchbase-lite-architecture)
+* [Couchbase Lite Concepts](#couchbase-lite-concepts)
+* [Where to Go From Here](#where-to-go-from-here)
+
+
 # Introduction
 
 
