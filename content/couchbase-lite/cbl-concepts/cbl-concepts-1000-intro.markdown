@@ -37,7 +37,9 @@ The guide contains the following sections:
 * Conflicts can be detected and resolved, with app logic in full control of merging.
 * Revision trees allow for complex replication topologies, including server-to-server (for multiple data centers) and peer-to-peer, without data loss or false conflicts.
 
-Couchbase Lite provides native APIs for seamless  iOS (Objective-C) and Android (Java) development. In addition, it includes LiteGap integration for iPhone, which enables you to call the REST API from other languages such as JavaScript or C# and build cross-platform mobile apps with PhoneGap.
+Couchbase Lite provides native APIs for seamless  iOS (Objective-C) and Android (Java) development. 
+
+In addition, it includes the Couchbase Lite Plug-in for PhoneGap, which enables you to build iOS and Android apps that you develop by using familiar web-application programming techniques and the [PhoneGap mobile development framework](http://phonegap.com).
 
 ## Features
 
@@ -45,7 +47,7 @@ Major features of Couchbase Lite:
 
   * **JSON-based**. Every document is a [JSON](http://json.org) object consisting of freeform key-value pairs. The values can contain arrays or even nested objects.This lets you structure your data in a way that's natural to your app, without having to deal with complex data normalization or joins.
   * **Schemaless**. This means that you don't have to define a rigid data layout beforehand, and later go through complex migrations if you need to update it. Data layout is somewhat freeform, and records, called *documents*, can have different structures. A sophisticated MapReduce query engine enables you to perform efficient queries, even on large data sets, regardless of how you structure the data in your documents.
-  * Provides **native, object-oriented APIs for iOS and Android devices** that integrate with your app framework. These APIs can map database documents to your own native object model, let you work directly with JSON structures, or both. Additionally, apps built with web technologies such as PhoneGap can use the Couchbase Lite REST API from JavaScript or any language that has an HTTP client library (for example, C# or Python).
+  * Provides **native, object-oriented APIs for iOS and Android devices** that integrate with your app framework. These APIs can map database documents to your own native object model, let you work directly with JSON structures, or both. Additionally, apps built with web technologies can use the Couchbase Lite REST API (for example, Javascript, C#, or Python applications).
   * Supports **replication** with compatible database servers.  This gives your app best-of-breed sync capabilities. Not only can the user's data stay in sync across multiple devices, but multiple users' data can be synced together.
   * Supports **peer-to-peer replication**. By adding an extra HTTP listener component, your app can accept connections from other devices running Couchbase Lite and exchange data with them.
  * Supports **low-latency** and even **offline** access to data. In contrast with the frequent network request and response cycle of a traditional networked app, you work primarily with local data. This means your app remains responsive whether it's on WiFi, a slow cell network, or offline. The user can even modify data while offline, and it'll be synced to the server as soon as possible.
@@ -73,21 +75,21 @@ Couchbase Lite provides a sync solution that already works. It's easy to set up,
 * Lets companies update data sets (whether corporate databases or restaurant directories) in one central place and have the updates delivered efficiently to clients.
 * Makes apps more responsive, and even lets users work offline, by _taking network I/O out of the critical path_. The app's UI operates on local data, and syncing runs in the background.
 
-However, syncing is very difficult to implement properly. It requires special metadata (like vector clocks or revision trees), has to handle network partition and data conflicts, and its algorithms have to work incrementally and be highly failure-tolerant. Some mobile developers have waded into ad-hoc sync implementations and found themselves in over their heads, with delayed or canceled products. Couchbase Lite provides a sync solution that already works.
+However, syncing is very difficult to implement properly. It requires special metadata (like vector clocks or revision trees), has to handle network partition and data conflicts, and its algorithms have to work incrementally and be highly failure-tolerant. Some mobile developers have waded into ad-hoc sync implementations and found themselves in over their heads, with delayed or canceled products. Couchbase Lite has sync compatibility with a solution that already works, Couchbase Sync Gateway. 
 
 ### Total Control
 
 With Couchbase Lite, you have total control over every aspect of your app. Consider the following:
 
-**Conflict Resolution.** This is important and hard to get right. The app is ultimately responsible for merging changes within a record, but the sync framework needs to identify the conflicting revisions. Couchbase Lite tracks revision histories and propagates a tree of revisions, which is the most reliable way to do it.
-
 **Flexible Schema.** iCloud's structured storage is accessed via Core Data, which is an object-relational mapping and thus strongly schema-based. You can update a Core Data app's schema, but migrating existing data can be tricky. Couchbase Lite is flexible, so this is less of an issue.
+
+**Flexible Storage.** Proprietary services store data on their own servers. These servers are reliable and secure, but it's better to have a choice. Couchbase Lite can sync to your own servers, to a desktop machine, or even peer-to-peer.
 
 **Sharing.** iCloud syncs only between devices owned by the same person. Couchbase Lite can do that and more. Apps can share in small groups (for example, Glassboard and GroupMe), or publish to the public (like a blog or Instagram). Hybrids of those are possible too.
 
-**Cross-Platform.** iOS users might also have an Android device. iCloud won't work for that, but Couchbase Lite does. Couchbase Lite also supports [PhoneGap interfaces](https://github.com/couchbaselabs/Couchbase-Lite-PhoneGap-Plugin) for maximum portability.
+**Conflict Resolution.** This is important and hard to get right. The app is ultimately responsible for merging changes within a record, but the sync framework needs to identify the conflicting revisions. Couchbase Lite tracks revision histories and propagates a tree of revisions, which is the most reliable way to do it.
 
-**Flexible Storage.** Proprietary services store data on their own servers. These servers are reliable and secure, but it's better to have a choice. Couchbase Lite can sync to your own servers, to a desktop machine, or even peer-to-peer.
+**Cross-Platform.** iOS users might also have an Android device. iCloud won't work for that, but Couchbase Lite does. Couchbase Lite also supports [PhoneGap interfaces](https://github.com/couchbaselabs/Couchbase-Lite-PhoneGap-Plugin) for maximum portability.
 
 **Enterprise Data.** The only way to get data into an iCloud account is from an iOS device or Mac. But a frequent desire in mobile apps is to view small subsets of a huge upstream database (such as enterprise sales data, scientific observations, or consumer info like movie reviews) and be able to work with them while offline or bandwidth-limited. Couchbase Lite connects to Couchbase Server via [Sync Gateway](https://github.com/couchbase/sync_gateway), which supports fine-grained access control and subset sync.
 

@@ -1,6 +1,6 @@
 # Couchbase Lite Concepts
 
-This section describes how Couchbase Lite structures and works with data. If you are familiar with relational databases and SQL, you'll notice that Couchbase Lite works differently and has its own database terminology. The following table compares the terminology:
+This section describes how Couchbase Lite structures and works with data. If you're familiar with relational databases and SQL, you'll notice that Couchbase Lite works differently and has its own database terminology. The following table compares the terminology:
 
 <table style="width:55%">
 <col style="width:50%;text-align:left" />
@@ -23,14 +23,13 @@ This section describes how Couchbase Lite structures and works with data. If you
 <tr><td> DELETE</td><td>DELETE</td></tr>
 </table>
 
-
 ## Documents
 
-Couchbase Lite is a **document** database. Partly this is just terminology, but a document really is different from a SQL database row. A document has a much more flexible data format, generally contains all the information about a data entity (including compound data) rather than being normalized across tables, and can have arbitrary-sized binary attachments.
+Couchbase Lite is a **document** database. A document has a much more flexible data format than a SQL database row, generally contains all the information about a data entity (including compound data) rather than being normalized across tables, and can have arbitrary-sized binary attachments.
 
 A document is a JSON object, similar to a dictionary data structure, that consists of arbitrary key-value pairs. There's no schema—every document can have its own individual set of keys, although almost all databases adopt one or more informal schemas.
 
-Whatever its contents, though, every document has a special property called `_id`. This property is the **document ID**, which is the document's unique identifier in its database. A document ID is very much like a SQL primary key, except that primary keys are usually integers while document IDs are strings.  When you create a document, you can either provide your own ID or let Couchbase Lite assign one. If you provide your own document IDs, you can use any string you want, such as a [universally unique identifier](http://en.wikipedia.org/wiki/Uuid) (UUID) or a string that is meaningful to your application.
+Whatever its contents, though, every document has a special property called `_id`. This property is the **document ID**, which is the document's unique identifier in its database. A document ID is similar to a SQL primary key, except that primary keys are usually integers while document IDs are strings.  When you create a document, you can either provide your own ID or let Couchbase Lite assign one. If you provide your own document IDs, you can use any string you want, such as a [universally unique identifier](http://en.wikipedia.org/wiki/Uuid) (UUID) or a string that is meaningful to your application.
 
 Documents have some other special properties, and their names always start with an underscore. The leading underscore denotes a reserved property—don't use an underscore prefix for any of your own properties.
 
@@ -44,7 +43,7 @@ Unlike relational databases, Couchbase Lite databases don't contain tables. They
 
 ## Views And Queries
 
-Querying is probably the hardest thing about Couchbase Lite for SQL jockeys to get used to. In SQL, you use a complex query language to specify exactly what data you want, then run the query and get back the data. In Couchbase Lite it's a two-stage process based on a technique called [MapReduce](http://en.wikipedia.org/wiki/MapReduce).
+Querying is probably the hardest thing about Couchbase Lite for SQL users to get used to. In SQL, you use a complex query language to specify exactly what data you want, then run the query and get back the data. In Couchbase Lite it's a two-stage process based on a technique called [MapReduce](http://en.wikipedia.org/wiki/MapReduce).
 
 First you define a **view** that uses a _map function_ to extract information out of every document. The map function is written in the same language as your app—most likely Objective-C or Java—so it's very flexible. The result of applying the map function to the database is an ordered set of key-value pairs. For example, a map function might grind through an address-book database and produce a set of mappings from names to phone numbers. The view's output is stored persistently in the database and updated incrementally as documents change. It's very much like the type of index a SQL database creates internally to optimize queries.
 
