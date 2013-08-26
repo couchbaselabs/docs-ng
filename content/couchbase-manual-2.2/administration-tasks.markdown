@@ -3379,10 +3379,12 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     information will now be available when you configure replication for your source
     cluster.
     
+<a id="admin-tasks-xdcr-new-replication"></a>
+    
 ###Create New Replication
 
 After you create references to the source and destination, you can create a replication 
-between the clusters. 
+between the clusters in Couchbase Web Console. 
 
 
  1. Click `Create Replication` to configure a new XDCR replication. A panel appears
@@ -3405,6 +3407,8 @@ current status and list of replications in the `Ongoing Replications` section:
 
 ![](images/xdcr-cluster-monitor.png)
 
+<a id="admin-tasks-xdcr-advanced"></a>
+
 ###Providing Advanced Settings
 
 As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see 
@@ -3421,7 +3425,82 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
     See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
     [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
     
-3. Provide any changes for internal XDCR settings. You can also change these settings via the REST API, 
+3. Provide any changes for internal XDCR settings. You can also change these settings via the REST API, see 
+    [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings). 
+    
+    How you adjust these variables differs based on what whether you want to perform
+    uni-directional or bi-directional replication between clusters. Other factors
+    for consideration include intensity of read/write operations on your clusters,
+    the rate of disk persistence on your destination cluster, and your system
+    environment. Changing these parameters will impact performance of your clusters
+    as well as XDCR replication performance.
+    
+    Internal settings include:
+    
+    * `XDCR Max Replications per Bucket`
+
+      Maximum concurrent replications per bucket, 8 to 256. This controls the number
+      of parallel replication streams per node. If you are running your cluster on
+      hardware with high-performance CPUs, you can increase this value to improve
+      replication speed.
+
+    * `XDCR Checkpoint Interval`
+
+      Interval between checkpoints, 60 to 14400 (seconds). Default 1800. At this time
+      interval, batches of data via XDCR replication will be placed in the front of
+      the disk persistence queue. This time interval determines the volume of data
+      that will be replicated via XDCR should replication need to restart. The greater
+      this value, the longer amount of time transpires for XDCR queues to grow. For
+      example, if you set this to 10 minutes and a network error occurs, when XDCR
+      restarts replication, 10 minutes of items will have accrued for replication.
+
+      Changing this to a smaller value could impact cluster operations when you have
+      significant amount of write operations on a destination cluster and you are
+      performing bi-directional replication with XDCR. For instance, if you set this
+      to 5 minutes, the incoming batches of data via XDCR replication will take
+      priority in the disk write queue over incoming write workload for a destination
+      cluster. This may result in the problem of having an ever growing disk-write
+      queue on a destination cluster; also items in the disk-write queue that are
+      higher priority than the XDCR items will grow staler/older before they are
+      persisted.
+
+    * `XDCR Batch Count`
+
+      Document batching count, 500 to 10000. Default 500. In general, increasing this
+      value by 2 or 3 times will improve XDCR transmissions rates, since larger
+      batches of data will be sent in the same timed interval. For unidirectional
+      replication from a source to a destination cluster, adjusting this setting by 2
+      or 3 times will improve overall replication performance as long as persistence
+      to disk is fast enough on the destination cluster. Note however that this can
+      have a negative impact on the destination cluster if you are performing
+      bi-directional replication between two clusters and the destination already
+      handles a significant volume of reads/writes.
+
+    * `XDCR Batch Size (KB)`
+
+      Document batching size, 10 to 100000 (kB). Default 2048. In general, increasing
+      this value by 2 or 3 times will improve XDCR transmissions rates, since larger
+      batches of data will be sent in the same timed interval. For unidirectional
+      replication from a source to a destination cluster, adjusting this setting by 2
+      or 3 times will improve overall replication performance as long as persistence
+      to disk is fast enough on the destination cluster. Note however that this can
+      have a negative impact on the destination cluster if you are performing
+      bi-directional replication between two clusters and the destination already
+      handles a significant volume of reads/writes.
+
+    * `XDCR Failure Retry Interval`
+
+      Interval for restarting failed XDCR, 1 to 300 (seconds). Default 30. If you
+      expect more frequent network or server failures, you may want to set this to a
+      lower value. This is the time that XDCR waits before it attempts to restart
+      replication after a server or network failure.
+
+    * `XDCR Optimistic Replication Threshold`
+
+      Document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
+      will get metadata for documents larger than this size on a single time before
+      replicating the document to a destination cluster. For background information, see 
+      ['Optimistic Replication' in XDCR](#xdcr-optimistic-replication)
 
 
 
