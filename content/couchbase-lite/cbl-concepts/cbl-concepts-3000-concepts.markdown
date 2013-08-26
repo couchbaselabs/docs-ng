@@ -1,6 +1,9 @@
+
+
+
 # Couchbase Lite Concepts
 
-This section describes how Couchbase Lite structures and works with data. If you are familiar with relational databases and SQL, you'll notice that Couchbase Lite works differently and has its own database terminology. The following table compares the terminology:
+This section describes how Couchbase Lite structures and works with data. If you're familiar with relational databases and SQL, you'll notice that Couchbase Lite works differently and has its own database terminology. The following table compares the terminology:
 
 <table style="width:55%">
 <col style="width:50%;text-align:left" />
@@ -26,11 +29,11 @@ This section describes how Couchbase Lite structures and works with data. If you
 
 ## Documents
 
-Couchbase Lite is a **document** database. Partly this is just terminology, but a document really is different from a SQL database row. A document has a much more flexible data format, generally contains all the information about a data entity (including compound data) rather than being normalized across tables, and can have arbitrary-sized binary attachments.
+Couchbase Lite is a **document** database. A document has a much more flexible data format than a SQL database row, generally contains all the information about a data entity (including compound data) rather than being normalized across tables, and can have arbitrary-sized binary attachments.
 
 A document is a JSON object, similar to a dictionary data structure, that consists of arbitrary key-value pairs. There's no schema—every document can have its own individual set of keys, although almost all databases adopt one or more informal schemas.
 
-Whatever its contents, though, every document has a special property called `_id`. This property is the **document ID**, which is the document's unique identifier in its database. A document ID is very much like a SQL primary key, except that primary keys are usually integers while document IDs are strings.  When you create a document, you can either provide your own ID or let Couchbase Lite assign one. If you provide your own document IDs, you can use any string you want, such as a [universally unique identifier](http://en.wikipedia.org/wiki/Uuid) (UUID) or a string that is meaningful to your application.
+Whatever its contents, though, every document has a special property called `_id`. This property is the **document ID**, which is the document's unique identifier in its database. A document ID is similar to a SQL primary key, except that primary keys are usually integers while document IDs are strings.  When you create a document, you can either provide your own ID or let Couchbase Lite assign one. If you provide your own document IDs, you can use any string you want, such as a [universally unique identifier](http://en.wikipedia.org/wiki/Uuid) (UUID) or a string that is meaningful to your application.
 
 Documents have some other special properties, and their names always start with an underscore. The leading underscore denotes a reserved property—don't use an underscore prefix for any of your own properties.
 
@@ -44,7 +47,7 @@ Unlike relational databases, Couchbase Lite databases don't contain tables. They
 
 ## Views And Queries
 
-Querying is probably the hardest thing about Couchbase Lite for SQL jockeys to get used to. In SQL, you use a complex query language to specify exactly what data you want, then run the query and get back the data. In Couchbase Lite it's a two-stage process based on a technique called [MapReduce](http://en.wikipedia.org/wiki/MapReduce).
+Querying is probably the hardest thing about Couchbase Lite for SQL users to get used to. In SQL, you use a complex query language to specify exactly what data you want, then run the query and get back the data. In Couchbase Lite it's a two-stage process based on a technique called [MapReduce](http://en.wikipedia.org/wiki/MapReduce).
 
 First you define a **view** that uses a _map function_ to extract information out of every document. The map function is written in the same language as your app—most likely Objective-C or Java—so it's very flexible. The result of applying the map function to the database is an ordered set of key-value pairs. For example, a map function might grind through an address-book database and produce a set of mappings from names to phone numbers. The view's output is stored persistently in the database and updated incrementally as documents change. It's very much like the type of index a SQL database creates internally to optimize queries.
 
@@ -59,15 +62,13 @@ Replication is basically unidirectional. A replication from a remote to a local 
 
 Although any one replication involves only two databases, it's possible to set up chains of replications between any number of databases. This creates a directed graph, with databases as nodes and replications as arcs. Many topologies are possible, from a star with one master database and a number of replicas, to a mesh network where changes made at any node eventually propagate to all the others.
 
-### Changes Feed
-
-Couchbase Lite provides a mechanism to track changes to a database. It's based on _sequence numbers_, which are consecutive serial numbers assigned to document updates. The database's **changes feed** is a query that returns metadata about all document updates that have occurred since a given sequence number. The client can then remember the latest sequence number reported in the feed, and the next time it fetches the feed it passes in that sequence number so it can get only the new changes. There's also a mechanism to leave the feed running and be notified of all new changes in real time.
 
 ### Replication Workflow
 
 At a high level, replication is simply a matter of finding all the changes that have been made to the source database since the last replication, fetching them, and applying them to the target database. The first step uses the source's changes feed, passing in a sequence number saved during the previous replication. After all the updates are applied, the checkpoint is updated to the latest sequence number from the source.
 
 Because replication uses document IDs to identify matching documents, it implicitly assumes that both databases share the same document-ID namespace. (And if they didn't for some reason, they will afterwards, whether or not that was intended!) This is why UUIDs are so popular as document IDs—they pretty much guarantee that new documents created on different servers are distinct. Other naming schemes such as serial numbers or time stamps might cause unintentional ID collisions.
+
 
 ### Conflict Resolution
 
@@ -78,14 +79,17 @@ It's actually not obvious that both revisions are present. When the app retrieve
 
 ## Revisions
 
-One significant difference from other databases is document **versioning**. Couchbase Lite uses a technique called [Multiversion Concurrency Control](http://en.wikipedia.org/wiki/Multiversion_concurrency_control) (MVCC) to manage conflicts between multiple writers. This is exactly the same technique used by version-control systems like Git or Subversion, and by [WebDAV](http://en.wikipedia.org/wiki/Webdav). Document versioning is similar to the check-and-set mechanism (CAS) of Couchbase Server, except that in Couchbase Lite versioning is required rather than optional and the token is a UUID rather than an integer.
+One significant difference from other databases is document **versioning**. Couchbase Lite uses a technique called [Multiversion Concurrency Control](http://en.wikipedia.org/wiki/Multiversion_concurrency_control) (MVCC) to manage conflicts between multiple writers. This is the same technique used by version-control systems like Git or Subversion, and by [WebDAV](http://en.wikipedia.org/wiki/Webdav). Document versioning is similar to the check-and-set mechanism (CAS) of Couchbase Server, except that in Couchbase Lite versioning is required rather than optional and the token is a UUID rather than an integer.
 
 Every document has a special field called `_rev` that contains the revision ID. The revision ID is assigned automatically each time the document is saved. Every time a document is updated, it gets a different and unique revision ID.
 
-The tricky bit is that, to save an update to an existing document, _you have to include its current revision ID_. If the revision ID you provide isn't the current one, the update is rejected. When this happens, it means some other client snuck in and updated the document before you. You need to fetch the new version, reconcile any changes, incorporate the newer revision ID, and try again.
+When you save an update to an existing document, _you must include its current revision ID_. If the revision ID you provide isn't the current one, the update is rejected. When this happens, it means some other client snuck in and updated the document before you. You need to fetch the new version, reconcile any changes, incorporate the newer revision ID, and try again.
 
-Yes, this is just like when you find someone else beat you by committing a patch to `foo.c` while you were working on your own. Or if you've used WebDAV, it's _exactly_ like getting a 409 Conflict response when the `If-Match:` condition in your `PUT` request fails (Couchbase Lite's REST API also uses [Etags](http://en.wikipedia.org/wiki/HTTP_ETag) and the 409 status code).
+Keep in mind that Couchbase Lite is *not* a version control system and you *must not* use the versioning feature in your application (for example, you can't use it to store the revision history of pages in a wiki). The old revisions are just *cached*—they are periodically thrown away when the database is compacted, and they're never replicated. They're not there to use in your data model, they're there only to help with concurrency and resolving conflicts during replication.
 
-Another way in which Couchbase Lite is like a version control system is that it remembers a document's revision history (the list of previous revision IDs) and even caches the content of obsolete revisions. If a revision is cached, you can get its contents by passing its revision ID along with the document ID when you GET the document.
 
-This is a very misunderstood feature: it does _not_ mean that Couchbase Lite is a real version control system, nor that you can safely take advantage of this feature in your application (for example, to store the revision history of pages in a wiki). The old revisions literally are just  *cached*—they are periodically thrown away when the database is compacted, and they're never replicated. They're not there to use in your data model, they're there to help with concurrency and resolving conflicts during replication.
+## Changes Feed
+
+Couchbase Lite provides a mechanism called the *changes feed* to track changes to a database. Couchbase Lite assigns a sequence identifier, similar to a serial number, to each document update. The database's changes feed is a query that returns metadata about all document updates that have occurred since a given sequence identifier. The client can then store the latest sequence identifier reported in the feed, and the next time it fetches the feed it passes in that sequence identifier so it can get only the new changes. Couchbase Lite also provides a mechanism to leave the feed running and be notified of all new changes in real time.
+
+The changes feed powers sync between devices or from the Sync Gateway to a device. It can also be used by asynchronous background processes to be notified of updates by Sync Gateway. For instance, to send an email when a user creates a new document, you could have a script listen to the changes feed from Sync Gateway and send emails when it sees a relevant document.
