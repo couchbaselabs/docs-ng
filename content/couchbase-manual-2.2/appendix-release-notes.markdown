@@ -127,6 +127,12 @@ customers are facing:
       [Monitoring a Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
 
       *Issues* : [MB-8654](http://www.couchbase.com/issues/browse/MB-8654)
+      
+     * A cluster rebalance may exit and produce the error {not_all_nodes_are_ready_yet} if you perform the rebalance right after failing over a node in the cluster. You may need to wait 60 seconds after the node failover before you attempt the cluster rebalance.
+
+      This is because the failover REST API is a synchronous operation with a timeout. If it fails to complete the failover process by the timeout, the operation internally switches into a asynchronous operation. It will immediately return and re-attempt failover in the background which will cause rebalance to fail since the failover operation is still running.
+
+      *Issues* : [MB-7168](http://www.couchbase.com/issues/browse/MB-7168)
 
  * **Command-line Tools**
 
