@@ -747,6 +747,11 @@ Addresses](#couchbase-bestpractice-cloud-ip).
 For 2.0.1 please follow the same steps for 2.0 and earlier. The one difference
 between versions is the name and location of the file you change.
 
+This operation on both Linux and Windows is data destructive. This process will
+reinitialize the node and remove all data on the node. You may want to perform a
+backup of node data before you perform this operation, see [cbbackup
+Tool](#couchbase-admin-cmdline-cbbackup).
+
 **For Linux 2.0.1 and Earlier:**
 
  1. Install Couchbase Server.

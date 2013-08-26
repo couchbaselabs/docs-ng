@@ -1338,10 +1338,13 @@ entire bucket, a single node, or a single bucket on a single functioning node.
 Your node or cluster needs to be functioning in order to create the backup.
 Couchbase Server will write a copy of data onto disk.
 
-Be aware that `cbbackup` does not support external IP addresses. This means that
-if you install Couchbase Server with the default IP address, you cannot use an
-external hostname to access it. To change the address format into a hostname
-format for the server, see [Using Hostnames with Couchbase
+`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+addresses for server nodes outside of a cluster. They can only communicate with
+nodes from a node list obtained within a cluster. You should perform backup,
+restore, or transfer to data from a node within a Couchbase cluster. This also
+means that if you install Couchbase Server with the default IP address, you
+cannot use an external hostname to access it. For general information about
+hostnames for the server, see [Using Hostnames with Couchbase
 Server](#couchbase-getting-started-hostnames).
 
 Depending upon your platform, this tool is the following directories:
@@ -1592,8 +1595,18 @@ onto a 1.8.x cluster. See [cbrestore Tool](#couchbase-admin-cmdline-cbrestore).
 
 The `cbrestore` tool restores data from a file to an entire cluster or to a
 single bucket in the cluster. Items that had been written to file on disk will
-be restored to RAM. The tool is in the following locations, depending on your
-platform:
+be restored to RAM.
+
+`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+addresses for server nodes outside of a cluster. They can only communicate with
+nodes from a node list obtained within a cluster. You should perform backup,
+restore, or transfer to data from a node within a Couchbase cluster. This also
+means that if you install Couchbase Server with the default IP address, you
+cannot use an external hostname to access it. For general information about
+hostnames for the server, see [Using Hostnames with Couchbase
+Server](#couchbase-getting-started-hostnames).
+
+The tool is in the following locations, depending on your platform:
 
 <a id="table-couchbase-admin-cmdline-cbrestore-locs"></a>
 
@@ -1724,6 +1737,17 @@ transfer tool that `cbbackup` and `cbrestore` are built upon. It is a
 lightweight extract-transform-load (ETL) tool that can move data from a source
 to a destination. The source and destination parameters are similar to URLs or
 file paths.
+
+`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+addresses for server nodes outside of a cluster. They can only communicate with
+nodes from a node list obtained within a cluster. You should perform backup,
+restore, or transfer to data from a node within a Couchbase cluster. This also
+means that if you install Couchbase Server with the default IP address, you
+cannot use an external hostname to access it. For general information about
+hostnames for the server, see [Using Hostnames with Couchbase
+Server](#couchbase-getting-started-hostnames).
+
+Locations for this tool are as follows:
 
 <a id="table-couchbase-admin-cmdline-cbtransfer-locs"></a>
 

@@ -779,75 +779,80 @@ reclaim disk space and reduce fragmentation.
 
 ### Compaction Process
 
-Compaction works as follows:
+**How it works**
 
- * For database compaction, a new file is created into which all the existing
-   active database information is written.
+Couchbase compacts views and data files. For database compaction, a new file is
+created into which the active index information is written. Meanwhile, the
+existing database files stay in place and continue to be used for storing
+information and updating the index data. This process ensures that the database
+continues to be available while compaction takes place. Once compaction is
+completed, the old database is disabled and saved. Then any incoming updates
+continue in the newly created database files. The old database is then deleted
+from the system.
 
- * For view compaction, a new index file is created for each active design
-   document, into which the active index information is written.
+View compaction occurs in the same way. Couchbase creates a new index file for
+each active design document. Then Couchbase takes this new index file and writes
+active index information into it. Old index files are handled in the same way
+old data files are handled during compaction. Once compaction is complete, the
+old index files are deleted from the system.
 
- * During the compaction process, the existing database files stay in place and
-   continue to be used for storing information and updating the index data. This
-   process ensures that the database is not unavailable while compaction takes
-   place.
+**How to use it**
 
- * Once compaction has been completed, the old database is disabled and written and
-   updates continue in the newly created database files.
+Compaction takes place as a background process while Couchbase Server is
+running. You do not need to shutdown or pause your database operation, and
+clients can continue to access and submit requests while the database is
+running. While compaction takes place in the background, you need to pay
+attention to certain factors.
 
- * The old database and index files are then deleted from the system.
+Make sure you perform compaction…
 
-Because of this process, the following precautions should be taken with the
-compaction process:
+ * **… on every server:** Compaction operates on only a single server within your
+   Couchbase Server cluster. You will need to perform compaction on each node in
+   your cluster, on each database in your cluster.
 
- * Compaction takes place as a background process while Couchbase Server is
-   running. You do not need to shutdown or pause your database operation, and
-   clients can continue to access and submit requests while the database is
-   running.
+ * **… during off-peak hours:** The compaction process is both disk and CPU
+   intensive. In heavy-write based databases where compaction is required, the
+   compaction should be scheduled during off-peak hours (use auto-compact to
+   schedule specific times).
 
- * Compaction operates on only a single server within your Couchbase Server
-   cluster. You will need to perform compaction on each node in your cluster, on
-   each database in your cluster.
-
- * The compaction process is both disk and CPU intensive. In heavy-write based
-   databases where compaction is required, the compaction should be scheduled
-   during off-peak hours. For auto-compaction you can schedule specific hours when
-   compaction can take place.
-
- * Because the compaction process can take a long to complete on large and busy
+   If compaction isn’t scheduled during off-peak hours, it can cause problems.
+   Because the compaction process can take a long to complete on large and busy
    databases, it is possible for the compaction process to fail to complete
    properly while the database is still active. In extreme cases, this can lead to
    the compaction process never catching up with the database modifications, and
-   eventually using up all the disk space.
+   eventually using up all the disk space. Schedule compaction during off-peak
+   hours to prevent this!
 
-   Compaction should be performed during off-peak hours to prevent this problem.
-
- * The compaction process can be stopped and restarted. However, you should be
-   aware that the if the compaction process is stopped, further updates to database
-   are completed, and then the compaction process is restarted, the updated
-   database may not be a clean compacted version. This is because any changes to
-   the portion of the database file that were processed before the compaction was
-   canceled and restarted have already been processed.
-
- * Because compaction occurs by creating new files and updating the information,
-   you may need as much as twice the disk space of your current database and index
-   files for compaction to take place.
+ * **… with adequate disk space:** Because compaction occurs by creating new files
+   and updating the information, you may need as much as twice the disk space of
+   your current database and index files for compaction to take place.
 
    However, it is important to keep in mind that the exact amount of the disk space
    required depends on the level of fragmentation, the amount of *dead* data and
    the activity of the database, as changes during compaction will also need to be
    written to the updated data files.
 
-   Before compaction takes place, the disk space is checked and the amount of
+   Before compaction takes place, the disk space is checked. If the amount of
    available disk space is less than twice the current database size, the
    compaction process does not take place and a warning is issued in the log. See
    [Log](#couchbase-admin-web-console-log).
 
- * Auto-compaction is available and will automatically trigger the compaction
-   process on your database
+**Compaction Behavior**
 
- * Compaction activity is reported in the Couchbase Server log. You will see
-   entries similar to following showing the compaction operation and duration:
+ * **Stop/Restart:** The compaction process can be stopped and restarted. However,
+   you should be aware that the if the compaction process is stopped, further
+   updates to database are completed, and then the compaction process is restarted,
+   the updated database may not be a clean compacted version. This is because any
+   changes to the portion of the database file that were processed before the
+   compaction was canceled and restarted have already been processed.
+
+ * **Auto-compaction:** Auto-compaction automatically triggers the compaction
+   process on your database. You can schedule specific hours when compaction can
+   take place.
+
+ * **Compaction activity log:** Compaction activity is reported in the Couchbase
+   Server log. You will see entries similar to following showing the compaction
+   operation and duration:
 
     ```
     Service couchbase_compaction_daemon exited on node 'ns_1@127.0.0.1' in 0.00s

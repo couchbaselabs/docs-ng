@@ -221,11 +221,6 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
 
       *Issues* : [MB-8461](http://www.couchbase.com/issues/browse/MB-8461)
 
-    * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
-      releases will address this issue.
-
-      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
-
     * If you edit a data bucket using the REST-API and you do not provide existing
       values for bucket properties, the server may reset existing bucket properties to
       the default value. To avoid this situation you should specify all existing
@@ -235,6 +230,11 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
       Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-creating-buckets.html).
 
       *Issues* : [MB-7897](http://www.couchbase.com/issues/browse/MB-7897)
+
+    * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
+      releases will address this issue.
+
+      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
 
  * **Cluster Operations**
 
