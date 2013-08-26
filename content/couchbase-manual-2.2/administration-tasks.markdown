@@ -3302,7 +3302,7 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-tasks-xdcr-configuration"></a>
 
-### Configuring Replication
+### About XDCR Replications
 
 You configure replications using the `XDCR` tab of the Administration Web
 Console. You configure replication on a bucket basis. If you want to replicate
@@ -3353,6 +3353,8 @@ Get](ttp://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-se
 For more information about creating buckets via the REST API, see [Creating and
 Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
 
+###Set Source and Destination Clusters
+
 To create a uni-directional replication (i.e. from cluster A to cluster B):
 
  1. Check and ensure that a destination bucket exists on the cluster to which you
@@ -3376,26 +3378,52 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
  3. Click Save to store new reference to the destination cluster. This cluster
     information will now be available when you configure replication for your source
     cluster.
+    
+###Create New Replication
 
- 4. Click `Create Replication` to configure a new XDCR replication. A panel appears
+After you create references to the source and destination, you can create a replication 
+between the clusters. 
+
+
+ 1. Click `Create Replication` to configure a new XDCR replication. A panel appears
     where you can configure a new replication from source to destination cluster.
 
- 5. In the `Replicate changes from` section select a from the current cluster that
+ 2. In the `Replicate changes from` section select a from the current cluster that
     is to be replicated. This is your source bucket.
 
- 6. In the `To` section, select a destination cluster and enter a bucket name from
+ 3. In the `To` section, select a destination cluster and enter a bucket name from
     the destination cluster:
 
 
     ![](images/xdcr-cluster-setup.png)
 
- 7. Click the `Replicate` button to start the replication process.
+ 4. Click the `Replicate` button to start the replication process.
 
 After you have configured and started replication, the web console will show the
 current status and list of replications in the `Ongoing Replications` section:
 
 
 ![](images/xdcr-cluster-monitor.png)
+
+###Providing Advanced Settings
+
+As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see 
+
+1. In the `Create Replication` panel, click `Advanced Settings`.
+    Additional options appear in the panel.
+    
+2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2 where the versions mean:
+
+    - Version 1 - uses the memcached protocol for replication. This increases XDCR throughput at destination clusters.
+    
+    - Version 2 - uses a REST protocol for replication. If you use the Elastic Search plugin which depends on XDCR, you must use this protocol.
+    
+    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
+    [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
+    
+3. Provide any changes for internal XDCR settings. You can also change these settings via the REST API, 
+
+
 
 **Configuring Bi-Directional Replication**
 
@@ -3461,7 +3489,7 @@ Settings](#couchbase-admin-restapi-xdcr-internal-settings).
 
 <a id="couchbase-admin-tasks-xdcr-cancellation"></a>
 
-### Cancelling Replication
+### Canceling Replication
 
 You can cancel replication at any time by clicking `Delete` next to the active
 replication that is to be canceled.
