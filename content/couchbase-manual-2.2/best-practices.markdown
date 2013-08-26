@@ -14,7 +14,7 @@ Cloud](#couchbase-bestpractice-cloud).
 
 ## Cluster Design Considerations
 
- * RAM: Memory is a key factor for smooth cluster performance. Couchbase best suits
+ * RAM: Memory is a key factor for smooth cluster performance. Couchbase best fits
    applications that want most of their active dataset in memory. It is very
    important that all the data you actively use (the working set) lives in memory.
    When there is not enough memory left, some data is ejected from memory and will

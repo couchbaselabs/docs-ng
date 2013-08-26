@@ -3,9 +3,9 @@
 The Couchbase Web Console is the main tool for managing your Couchbase
 installation. The Web Console provides the following tabs:
 
- * `Cluster Overview` : a qui status of your Couchbase cluster. 
- 
- 	See [Viewing Cluster
+ * `Cluster Overview` : a quick guide to the status of your Couchbase cluster.
+
+   For more information, read [Viewing Cluster
    Summary](#couchbase-admin-web-console-cluster-overview).
 
  * `Data Buckets` : view and update data bucket settings. You can create new
@@ -140,7 +140,7 @@ storage space across your cluster.
 
 ### Viewing Buckets
 
-The `Buckets` section provides `Operations per second`
+The `Buckets` section provides two graphs showing the `Operations per second`
 and `Disk fetches per second`.
 
 
@@ -156,7 +156,7 @@ to disk to retrieve information instead of using the information stored in RAM.
 
 ### Viewing Servers
 
-The `Servers` section has overall server information for the cluster:
+The `Servers` section indicates overall server information for the cluster:
 
 
 ![](images/web-console-cluster-overview-servers.png)
@@ -177,24 +177,24 @@ The `Servers` section has overall server information for the cluster:
 
 ## Viewing Server Nodes
 
-In addition to monitoring buckets over all the nodes in a cluster,
-Couchbase Web Console can monitor the statistics for an
+In addition to monitoring buckets over all the nodes within the cluster,
+Couchbase Server also includes support for monitoring the statistics for an
 individual node.
 
-The Server Nodes monitoring overview shows summary data for Swap Usage, RAM
+The Server Nodes monitoring overview shows summary data for the Swap Usage, RAM
 Usage, CPU Usage and Active Items across all the nodes in your cluster.
 
 
 ![](images/web-console-server-summary.png)
 
-Clicking the drop-down next to a server. This displays server node specific
+Clicking the triangle next to a server displays server node specific
 information, including the IP address, OS, Couchbase version and Memory and Disk
 allocation information.
 
 
 ![](images/web-console-server-node.png)
 
-The detail display shows the following:
+The detail display shows the following information:
 
  * **Node Information**
 
@@ -1547,7 +1547,7 @@ only notify you of your currently installed version, and no alert will be
 provided.
 
 
-![](images/web_con_update_note.png)
+![](images/web-console-server-settings-updatenotifications.png)
 
 For more information on how Update Notifications work, see [Updating
 Notifications](#couchbase-admin-web-console-update-notifications).
@@ -1564,7 +1564,7 @@ delay, in seconds, before auto-failover is started, enter the number of seconds
 it the `Timeout` box. The default timeout is 30 seconds.
 
 
-![](images/web-enable-autofail.png)
+![](images/web-console-server-settings-autofailover.png)
 
 For more information on Auto-Failover, see [Using Automatic
 Failover](#couchbase-admin-tasks-failover-automatic).
@@ -1573,12 +1573,10 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 ### Enabling Alerts
 
-You can enable email alerts to be raised when a significant error occurs on your
+You can enable email alerts to be raised when a signficant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
 to a configured SMTP server. Each alert email is send to the list of configured
 email recipients.
-
-![](images/web-enable-email.png)
 
 The available settings are:
 
@@ -1632,7 +1630,7 @@ The available settings are:
 
     * `Node was auto-failovered`
 
-      The sending node is set to auto failover.
+      The sending node has been auto-failovered.
 
     * `Maximum number of auto-failovered nodes was reached`
 
@@ -1676,7 +1674,7 @@ The available settings are:
       for a bucket.
 
 
-
+![](images/web-console-server-settings-alerts.png)
 
 For more information on Auto-Failover, see [Using Automatic
 Failover](#couchbase-admin-tasks-failover-automatic).
@@ -1731,7 +1729,7 @@ The settings tab sets the following default parameters:
    consistency of data between clusters. If you set this value too low, you may see
    more inconsistent results in views queries such as deleted items in a result
    set. You may also see inconsistent items in clusters with XDCR set up between
-   the clusters. If you set this value too low,  it will delay the server from
+   the clusters. If you set this value too low, it will delay the server from
    reclaiming disk space.
 
    You can also changes this setting with the REST API, see.
@@ -1750,51 +1748,13 @@ data has not already been loaded in the system. For more information on the
 sample data available, see [Couchbase Sample Buckets](#couchbase-sampledata).
 
 
-
-![add sample buckets](images/web-sample_buckets.png "add sample buckets")
+![](images/web-console-server-settings-sample.png)
 
 If the sample bucket data was not loaded during setup, select the sample buckets
 that you want to load using the checkboxes, and click the `Create` button.
 
 If the sample bucket data has already been loaded, it will be listed under the
 `Installed Samples` section of the page.
-
-<a id="couchbase-read-only-user"></a>
-
-##Create a Read-only User
-
-As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access 
-in Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR setup or create views. Any REST API calls which require an administrator will fail and return and error for this user. In Web Console a read-only user will be able to view:
-
-- Cluster Overview.
-- Design documents and views but no sample results for the views.
-- Bucket summaries including Cache Size and Storage Size, but no documents in the buckets.
-- List of XDCR replications and remote clusters.
-- Logs under the Log tab, but the user cannot Generate Diagnostic Report.
-- Current settings for node.
-
-To create a read-only user:
-
-1. In Couchbase Web Console, click Settings. A panel appears with several different sub-tabs.
-2. Click Account Management. A panel appears where you can add the user:
-
-	![create read-only user](images/create_read-only.png "read only user")
-3. Enter a Username, Password and verify the password.
-4. Click Create. The panel refreshes and has options for resetting the read-only user password or deleting the user:
-
-	![reset or delete read-only user](images/reset-delete-read-only.png "read only user created")
-
-The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only uses performs a REST requests that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
-
-        HTTP/1.1 401 Unauthorized
-        Authentication problem. Ignoring this.
-        WWW-Authenticate: Basic realm="Couchbase Server Admin / REST"
-        ....
-
-For more information about Web Console or REST API, see [Using the Web Console](#couchbase-admin-web-console) or [Using the REST API](#couchbase-admin-restapi).
-
-
-
 
 <a id="couchbase-admin-web-console-update-notifications"></a>
 
@@ -1816,7 +1776,7 @@ information to the Couchbase server:
  * Basic information about the size and configuration of your Couchbase cluster.
    This information will be used to help us prioritize our development efforts.
 
-You can enable/disable software update notifications
+You can enable/disable software updaate notifications
 
 The process occurs within the browser accessing the web console, not within the
 server itself, and no further configuration or internet access is required on

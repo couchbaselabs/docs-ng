@@ -100,15 +100,6 @@ customers are facing:
 
 **Known Issues in 2.2**
 
- * **XDCR and Installation and Upgrade**
-
-    * There is a scenario with bi-directional XDCR where you may see deletions sent to a destination then replicated back to the
-     source and persisted once again on the source cluster. If you are performing an online upgrade of a cluster on 2.1 or earlier to a 2.2 and are performing bidirectional XDCR from this cluster to a 2.2 cluster, you will see this behavior. 
-     
-   This results in no data loss but creates additional, unneeded re-deletions in XDCR. After you complete the online upgrade of your entire source cluster to 2.2, the behavior resolves. This issue will be fixed in future releases.
-
-      *Issues* : [MB-8825](http://www.couchbase.com/issues/browse/MB-8825)
-      
  * **Installation and Upgrade**
 
     * For Mac OSX, if you move the server after it is installed and configured, it
@@ -117,6 +108,13 @@ customers are facing:
       `/var/lib/couchbase/config`, start the server and configure it once again.
 
       *Issues* : [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
+
+ * **Database Operations**
+
+    * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
+      releases will address this issue.
+
+      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
 
  * **Cluster Operations**
 
@@ -357,11 +355,6 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
 
       *Issues* : [MB-8461](http://www.couchbase.com/issues/browse/MB-8461)
 
-    * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
-      releases will address this issue.
-
-      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
-
     * If you edit a data bucket using the REST-API and you do not provide existing
       values for bucket properties, the server may reset existing bucket properties to
       the default value. To avoid this situation you should specify all existing
@@ -371,6 +364,11 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
       Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-creating-buckets.html).
 
       *Issues* : [MB-7897](http://www.couchbase.com/issues/browse/MB-7897)
+
+    * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
+      releases will address this issue.
+
+      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
 
  * **Cluster Operations**
 

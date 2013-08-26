@@ -27,8 +27,6 @@ cluster. Administration is supported through three primary methods:
 
    For more information, read [Using the REST API](#couchbase-admin-restapi).
 
-
-
 <a id="couchbase-data-files"></a>
 
 ## Couchbase Data Files
