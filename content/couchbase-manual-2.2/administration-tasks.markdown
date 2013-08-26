@@ -3362,7 +3362,7 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
      curl -u Admin:password http://ip.for.destination.cluster:8091/pools/default/buckets
      ```
 
- 1. To set up a destination cluster reference, click the `Create Cluster Reference`
+ 2. To set up a destination cluster reference, click the `Create Cluster Reference`
     button. You will be prompted to enter a name used to identify this cluster, the
     IP address, and optionally the administration port number for the remote
     cluster.
@@ -3373,23 +3373,23 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     Enter the username and password for the administrator on the destination
     cluster.
 
- 1. Click Save to store new reference to the destination cluster. This cluster
+ 3. Click Save to store new reference to the destination cluster. This cluster
     information will now be available when you configure replication for your source
     cluster.
 
- 1. Click `Create Replication` to configure a new XDCR replication. A panel appears
+ 4. Click `Create Replication` to configure a new XDCR replication. A panel appears
     where you can configure a new replication from source to destination cluster.
 
- 1. In the `Replicate changes from` section select a from the current cluster that
+ 5. In the `Replicate changes from` section select a from the current cluster that
     is to be replicated. This is your source bucket.
 
- 1. In the `To` section, select a destination cluster and enter a bucket name from
+ 6. In the `To` section, select a destination cluster and enter a bucket name from
     the destination cluster:
 
 
     ![](images/xdcr-cluster-setup.png)
 
- 1. Click the `Replicate` button to start the replication process.
+ 7. Click the `Replicate` button to start the replication process.
 
 After you have configured and started replication, the web console will show the
 current status and list of replications in the `Ongoing Replications` section:
