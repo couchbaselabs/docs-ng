@@ -1097,8 +1097,7 @@ Both provides statistics about ongoing replication for the particular bucket.
 Under the `Outgoing XDCR` panel if you have multiple replication streams you
 will see statistics for each stream.
 
-
-![](images/outbound_xdcr_web_console.png)
+![outbound xdcr stats 2.2](images/outbound_xdcr_2.2.png)
 
 The statistics shown are:
 
@@ -1169,6 +1168,10 @@ The statistics shown are:
 
    Weighted average time for requesting document metadata. In milliseconds.
 
+ * `mutations replicated optimistically`
+
+   Total number of mutations replicated with optimistic XDCR setting.
+ 
  * `ms docs ops latency`
 
    Weighted average time for sending mutations to destination cluster. In

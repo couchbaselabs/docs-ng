@@ -3350,7 +3350,7 @@ any node in the cluster. See [Couchbase Developer Guide 2.0, Performing Connect,
 Set and
 Get](ttp://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
 
-For more information about creating buckets via the REST API, see [Creating and
+For more information about creating  buckets via the REST API, see [Creating and
 Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
 
 ###Set Source and Destination Clusters
@@ -3425,7 +3425,7 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
     See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
     [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
     
-3. Provide any changes for internal XDCR settings. You can also change these settings via the REST API, see 
+3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API, see 
     [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings). 
     
     How you adjust these variables differs based on what whether you want to perform
@@ -3435,16 +3435,16 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
     environment. Changing these parameters will impact performance of your clusters
     as well as XDCR replication performance.
     
-    Internal settings include:
+    Internal settings that you can update in Web Console include:
     
-    * `XDCR Max Replications per Bucket`
+    - `XDCR Max Replications per Bucket`
 
       Maximum concurrent replications per bucket, 8 to 256. This controls the number
       of parallel replication streams per node. If you are running your cluster on
       hardware with high-performance CPUs, you can increase this value to improve
       replication speed.
 
-    * `XDCR Checkpoint Interval`
+    - `XDCR Checkpoint Interval`
 
       Interval between checkpoints, 60 to 14400 (seconds). Default 1800. At this time
       interval, batches of data via XDCR replication will be placed in the front of
@@ -3464,7 +3464,7 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
       higher priority than the XDCR items will grow staler/older before they are
       persisted.
 
-    * `XDCR Batch Count`
+    - `XDCR Batch Count`
 
       Document batching count, 500 to 10000. Default 500. In general, increasing this
       value by 2 or 3 times will improve XDCR transmissions rates, since larger
@@ -3476,7 +3476,7 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
       bi-directional replication between two clusters and the destination already
       handles a significant volume of reads/writes.
 
-    * `XDCR Batch Size (KB)`
+    - `XDCR Batch Size (KB)`
 
       Document batching size, 10 to 100000 (kB). Default 2048. In general, increasing
       this value by 2 or 3 times will improve XDCR transmissions rates, since larger
@@ -3488,21 +3488,23 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
       bi-directional replication between two clusters and the destination already
       handles a significant volume of reads/writes.
 
-    * `XDCR Failure Retry Interval`
+    - `XDCR Failure Retry Interval`
 
       Interval for restarting failed XDCR, 1 to 300 (seconds). Default 30. If you
       expect more frequent network or server failures, you may want to set this to a
       lower value. This is the time that XDCR waits before it attempts to restart
       replication after a server or network failure.
 
-    * `XDCR Optimistic Replication Threshold`
+    - `XDCR Optimistic Replication Threshold`. This will improve latency for XDCR.
 
-      Document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
+      This is document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
       will get metadata for documents larger than this size on a single time before
       replicating the document to a destination cluster. For background information, see 
       ['Optimistic Replication' in XDCR](#xdcr-optimistic-replication)
 
+4. Click Replicate. 
 
+After you create the replication or update the setting, you can view or edit them once again by clicking Settings in Outgoing Replications.
 
 **Configuring Bi-Directional Replication**
 
