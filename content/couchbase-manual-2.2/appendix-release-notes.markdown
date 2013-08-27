@@ -38,14 +38,6 @@ customers are facing:
 
 **Fixes in 2.2**
 
- * **Database Operations**
-
-    * If you continuously perform numerous appends to a document, it may lead to
-      memory fragmentation and overuse. This is due to an underlying issue of
-      inefficient memory allocation and deallocation with third party software
-      `tcmalloc`. This has been fixed.
-
-      *Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
 
  * **Command-line Tools**
 
@@ -116,6 +108,14 @@ customers are facing:
 
       *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
 
+
+         * If you continuously perform numerous appends to a document, it may lead to
+           memory fragmentation and overuse. This is due to an underlying issue of
+           inefficient memory allocation and deallocation with third party software
+           `tcmalloc`.
+           
+           *Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
+           
  * **Cluster Operations**
 
     * The detailed rebalance report in Couchbase Web Console display numbers for
