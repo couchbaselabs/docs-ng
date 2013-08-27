@@ -163,7 +163,7 @@ Command                | Description
 `setting-autofailover` | Set auto failover settings                           
 `setting-xdcr`         | Set XDCR-related configuration which affect behavior.
 `xdcr-setup`           | Set up XDCR replication.                             
-`xdcr-replicate`       | Create and run replication via XDCR                  
+`xdcr-replicate`       | Create and run replication via XDCR       
 `help show longer`     | usage/help and examples                              
 
 The following are options which can be used with their respective commands.
@@ -258,7 +258,8 @@ Command                | Option                                     | Descriptio
 `xdcr-replicate`       | `--delete`                                 | Stop and cancel a replication                                           
 `xdcr-replicate`       | `--xdcr-from-bucket=BUCKET`                | Source bucket name to replicate from                                    
 `xdcr-replicate`       | `--xdcr-clucter-name=CLUSTERNAME`          | Remote cluster to replicate to                                          
-`xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to                                           
+`xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to   
+`xdcr-replicate`  | `--xdcr-replication-mode= PROTOCOL` | Select REST protocol or memcached for replication. `xmem` indicates memcached while `capi` indicates REST protocol.                                                    
 
 You can also perform many of these same settings using the REST-API, see [Using
 the REST API](#couchbase-admin-restapi).
@@ -404,9 +405,62 @@ Set data path for an unprovisioned cluster:
     couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
         --delete \
         --xdcr-replicator=f4eb540d74c43fd3ac6d4b7910c8c92f/default/default
+
+        Create a remote cluster reference named "RemoteCluster":
+        couchbase-cli xdcr-setup -c 10.3.121.121:8091 -u Administrator  -p password \
+         --create --xdcr-cluster-name=RemoteCluster  --xdcr-hostname=10.3.121.123:8091 \ 
+         --xdcr-username=Administrator  --xdcr-password=password
+    
+
 ```
 
-<a id="couchbase-admin-cli-flushing"></a>
+<a id="couchbase-admin-cli-xmem"></a>
+
+### Setting XDCR Protocol with couchbase-cli
+
+As of Couchbase Server 2.2+ you can select the protocol used by a replication in 
+XDCR. For information about this feature, see [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality). 
+
+First we create a destination cluster reference named "RemoteCluster":
+
+        couchbase-cli xdcr-setup -c 10.3.121.121:8091 -u Administrator  -p password \
+         --create --xdcr-cluster-name=RemoteCluster  --xdcr-hostname=10.3.121.123:8091 \ 
+         --xdcr-username=Administrator  --xdcr-password=password
+         
+Upon success, we get this response:
+
+        SUCCESS: init RemoteCluster
+        
+Now you can start replication to the remote cluster using memcached protocol as the existing default:
+
+        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
+        --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup
+
+If you changed the protocol, you can explicitly set it once again to memcached:
+
+        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
+        --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
+        --xdcr-replication-mode xmem
+
+To use REST for this replication:
+
+        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \ 
+        --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
+        --xdcr-replication-mode capi
+        
+If there is already an existing replication for a bucket, you will get an error when you 
+try to start the replication again with any new settings:
+
+        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
+        --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
+        --xdcr-replication-mode capi
+        
+Will result in  the error:
+
+        ERROR: unable to create replication (400) Bad Request
+        {u'errors': {u'_': u'Replication to the same remote cluster and bucket already exists'}}
+        ERROR: Replication to the same remote cluster and bucket already exists
+
 
 ### Flushing Buckets with couchbase-cli
 

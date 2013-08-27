@@ -3135,6 +3135,18 @@ For detailed information about these settings including the impact of changes to
  - `xdcrFailureRestartInterval` (Integer), equal to Web Console setting`XDCR Failure Retry Interval`.
 
  - `xdcrOptimisticReplicationThreshold` (Integer), same as to Web Console setting `XDCR Optimistic Replication Threshold`.
+ 
+There are additional internal settings for XDCR which are not yet exposed by Web Console, but are available 
+via the REST API. These parameters for *hostname:port/internalSettings* are as follows:
+
+| parameter        | Value           | Description  |
+| ------------- |:-------------:| -----:|
+| `workerProcesses` | Integer from 1 to 32. Default 32. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
+| `httpConnections` | Integer from 1 to 100. Default 2. | Number of maximum simultaneous HTTP connections used for REST protocol.
+| `xmemWorker` | Integer from 1 to 32. Default 1. | Used in memcached protocol for XDCR at the data transport layer. The number of work processes per vbucket replicator. A memcached work process is responsible for sending memcached operations to a remote node.
+| `enablePipelineOps`| Boolean. Defaults to true. | Used for memcached protocol with XDCR for backwards computability.  True indicates pipelined operations and false indicates non-pipelined memcached operations.
+| `localConflictResolution` | Boolean, default is false. | Used for backwards compatibility with pre-2.2 clusters. Perform conflict resolution on source cluster before replication to destination. 
+
 
 <a id="couchbase-admin-restapi-xdcr-stats"></a>
 

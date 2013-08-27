@@ -3411,12 +3411,12 @@ current status and list of replications in the `Ongoing Replications` section:
 
 ###Providing Advanced Settings
 
-As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see 
+As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings)
 
 1. In the `Create Replication` panel, click `Advanced Settings`.
     Additional options appear in the panel.
     
-2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2 where the versions mean:
+2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 1. You can also change this setting via the REST-API for  XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 
     - Version 1 - uses the memcached protocol for replication. This increases XDCR throughput at destination clusters.
     
@@ -3425,8 +3425,7 @@ As of Couchbase Server 2.2+, when you create a new replication, you can also pro
     See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
     [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
     
-3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API, see 
-    [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings). 
+3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API. 
     
     How you adjust these variables differs based on what whether you want to perform
     uni-directional or bi-directional replication between clusters. Other factors
