@@ -3124,17 +3124,14 @@ these settings in Web Console | XDCR | Ongoing Replications | Settings.
 
 For detailed information about these settings including the impact of changes to a setting, see [XDCR, Providing Advanced Settings](#admin-tasks-xdcr-advanced):
 
- - `xdcrMaxConcurrentReps` (Integer), equivalent to Web Console setting `XDCR Max Replications per Bucket`.
-
- - `xdcrCheckpointInterval` (Integer), same as Web Console setting`XDCR Checkpoint Interval`.
-
- - `xdcrWorkerBatchSize` (Integer), known as Web Console setting `XDCR Batch Count`.
-
- - `xdcrDocBatchSizeKb` (Integer), same as Web Console setting `XDCR Batch Size (KB)`.
-
- - `xdcrFailureRestartInterval` (Integer), equal to Web Console setting`XDCR Failure Retry Interval`.
-
- - `xdcrOptimisticReplicationThreshold` (Integer), same as to Web Console setting `XDCR Optimistic Replication Threshold`.
+| parameter        | Value           | Description  |
+| ------------- |:-------------:| -----:|
+| `xdcrMaxConcurrentReps` | Integer |  Equivalent to Web Console setting `XDCR Max Replications per Bucket`.
+ | `xdcrCheckpointInterval` | Integer | Same as Web Console setting`XDCR Checkpoint Interval`.
+ | `xdcrWorkerBatchSize` | Integer | Known as Web Console setting `XDCR Batch Count`.
+ | `xdcrDocBatchSizeKb` | Integer | Same as Web Console setting `XDCR Batch Size (KB)`.
+ | `xdcrFailureRestartInterval` | Integer | equal to Web Console setting`XDCR Failure Retry Interval`.
+ | `xdcrOptimisticReplicationThreshold` | Integer | Same as to Web Console setting `XDCR Optimistic Replication Threshold`.
  
 There are additional internal settings for XDCR which are not yet exposed by Web Console, but are available 
 via the REST API. These parameters for *hostname:port/internalSettings* are as follows:
