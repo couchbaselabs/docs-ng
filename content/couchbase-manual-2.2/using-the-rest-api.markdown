@@ -1,3 +1,4 @@
+<a id="couchbase-admin-restapi"></a>
 # Using the REST API
 
 The Couchbase REST API enables you to manage a Couchbase Server deployment as
@@ -177,6 +178,48 @@ The operation and interface for the console is described in [Using the Web
 Console](#couchbase-admin-web-console). For most of the administrative
 operations described in this chapter for the REST-API, you can perform the
 functional equivalent in Couchbase Web Console.
+
+<a id="couchbase-restapi-read-only-user"></a>
+## Creating Read-Only Users
+
+You can use the REST API as of Couchbase Server 2.2+ to create one read-only user. 
+for more information about this type of user, see [Read-Only Users](#couchbase-admin-tasks-read-only).
+
+To create a read-only user, you need administrative access:
+
+    curl -X POST -u admin:password /settings/readOnlyUser -d username=a_name  -d password=a_passwword 
+    
+Upon success, you will get this response:
+
+    success: 200 | []
+    
+The endpoint has one additional, optional parameter `just_validate=1`. If you provide this in 
+your request the server will validate the username and password for a read-only user but will not 
+actually create the user.
+
+The following are the endpoints, parameters, expected return values and possible errors:
+
+| Endpoint        | Parameters           | Returns  | Errors  |
+| ------------- |:-------------:| -----:| -----:|
+| \\/settings/readOnlyUser | username, password, just_validate |  success: 200 [] | error: 400 | {"errors":{field_name:error_message}}
+
+
+To change the password for a read-only user:
+
+    curl -X POST -u admin:password /settings/readOnlyUser -d password=new_password
+
+To delete this user:
+
+    curl -X DELETE -u admin:password /settings/readOnlyUser 
+
+To get the username, you can have administrative or read-only permissions:
+
+    curl -u username:password  /settings/readOnlyAdminName
+    
+This will return a response with the username as payload, `success: 200 | "username"`. If there is no 
+read-only user you will get this error `not found: 404`.
+
+
 
 <a id="couchbase-admin-restapi-node-management"></a>
 
@@ -3097,7 +3140,11 @@ For more information about XDCR, see [Cross Datacenter Replication
 
 There are internal settings for XDCR which are only exposed via the REST API.
 These settings will change the replication behavior, performance, and timing.
-The following updates an XDCR setting for parallel replication streams per node:
+As of Couchbase Server 2.2+, there are three endpoints for changing XDCR settings:
+
+- 
+
+The following example updates an XDCR setting for parallel replication streams per node:
 
 
 ```

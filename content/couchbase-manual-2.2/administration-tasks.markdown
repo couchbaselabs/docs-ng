@@ -74,6 +74,38 @@ These administration tasks include:
    More information on the available backup and restore methods are available in
    [Backup and Restore](#couchbase-backup-restore).
 
+<a id="couchbase-admin-tasks-read-only"></a>
+
+##Read-Only Users
+
+As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access in Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR setup, create views or see any stored data. Any REST API calls which require an administrator will fail and return an error for this user. In the Web Console a read-only user will be able to view:
+
+   - Cluster Overview.
+   - Design documents and views but cannot query views.
+   - Bucket summaries including Cache Size and Storage Size, but no documents in the buckets.
+   - List of XDCR replications and remote clusters.
+   - Logs under the Log tab, but the user cannot Generate Diagnostic Report.
+   - Current settings for a cluster.
+
+To create a read-only user:
+
+1. In Couchbase Web Console, click Settings. A panel appears with several different sub-tabs.
+2. Click Account Management. A panel appears where you can add the user:
+
+   ![](images/read_only_setup.png)
+
+3. Enter a Username, Password and verify the password.
+4. Click Create. The panel refreshes and has options for resetting the read-only user password or deleting the user:
+ ![](images/read_only_created.png)
+ 
+The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only performs a REST requests that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
+
+        HTTP/1.1 401 Unauthorized
+        WWW-Authenticate: Basic realm="Couchbase Server Admin / REST"
+        ....
+
+For more information about Web Console or REST API, see [Using the Web Console](#couchbase-admin-web-console) or [Using the REST API](#couchbase-admin-restapi). You can also create a read-only user with the REST API, see [Creating Read-Only Users](#couchbase-restapi-read-only-user).
+           
 <a id="couchbase-admin-tasks-mrw"></a>
 
 ## Using Multi- Readers and Writers
@@ -1003,6 +1035,9 @@ You want to consider the following:
    auto-compaction, you may want to schedule your auto-compaction time period for
    each bucket in a staggered fashion so that compaction on each bucket can take
    place within a it's own unique time period.
+
+
+
 
 <a id="couchbase-admin-tasks-failover"></a>
 

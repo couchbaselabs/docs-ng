@@ -47,8 +47,7 @@ CentOS                   | 6           | 32 and 64 bit   | Developer and Product
 Amazon Linux             | 2011.09     | 32 and 64 bit   | Developer and Production |                        
 Ubuntu Linux             | 10.04       | 32 and 64 bit   | Developer and Production |                        
 Ubuntu Linux             | 12.04       | 32 and 64 bit   | Developer and Production | Ubuntu 12.04           
-Windows 2008             | R2 with SP1 | 64 bit          | Developer and Production | Windows 2008           
-Windows 2012             |             | 64 bit          | Developer only           |                        
+Windows 2008             | R2 with SP1 | 64 bit          | Developer and Production | Windows 2008                              
 Windows 7                |             | 64 bit          | Developer only           |                        
 Windows 8                |             | 64 bit          | Developer only           |     
 Windows 2012            |             | 64 bit          | Developer and Production           |                     
@@ -318,7 +317,7 @@ user. To do so on Centos/RedHat:
  1. Run this password-related script:
 
      ```
-     ./bin/install/reloc.sh `pwd`
+     ./bin/install/reloc.sh \`pwd`
      ```
 
     This enables you to continue the install as a non-root, non-sudo user.
@@ -326,7 +325,7 @@ user. To do so on Centos/RedHat:
  1. To run the server:
 
      ```
-     ./bin/couchbase-server -- -noinput -detached
+     ./bin/couchbase-server \-- -noinput -detached
      ```
 
  1. To stop the server:
