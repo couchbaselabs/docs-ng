@@ -825,7 +825,7 @@ ep\_warmup\_min\_memory\_threshold  | Enable data traffic after filling this % o
 ep\_warmup\_oom                     | Number of out of memory failures during warmup               | Integer                            
 ep\_warmup\_state                   | What is current warmup state                                 | String, refer to *WarmupStateTable*
 ep\_warmup\_thread                  | Is warmup running?                                           | String ("running", "complete")     
-ep\_warmup\_time                    | Total time spent by loading data (warmup)                    | Integer (milliseconds)             
+ep\_warmup\_time                    | Total time spent by loading data (warmup)                    | Integer (microseconds)             
 
 There are also additional lower-level, detailed statistics returned by passing
 the keyword "warmup" for the command. For instance:
@@ -852,7 +852,7 @@ ep\_warmup\_min\_memory\_threshold  | Enable data traffic after filling this % o
 ep\_warmup\_oom                     | Number of out of memory failures during warmup               | Integer                            
 ep\_warmup\_state                   | What is current warmup state                                 | String, refer to *WarmupStateTable*
 ep\_warmup\_thread                  | Is warmup running?                                           | String ("running", "complete")     
-ep\_warmup\_time                    | Total time spent by loading data (warmup)                    | Integer (milliseconds)             
+ep\_warmup\_time                    | Total time spent by loading data (warmup)                    | Integer (microseconds)             
 
 <a id="couchbase-admin-cmdline-cbstats-TAP"></a>
 
