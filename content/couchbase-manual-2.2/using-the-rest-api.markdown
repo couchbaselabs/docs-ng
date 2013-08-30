@@ -199,10 +199,15 @@ actually create the user.
 
 The following are the endpoints, parameters, expected return values and possible errors:
 
-| Endpoint        | Parameters           | Returns  | Errors  |
-| ------------- |:-------------:| -----:| -----:|
-| \\/settings/readOnlyUser | username, password, just_validate |  success: 200 [] | error: 400 | {"errors":{field_name:error_message}}
+| Request       | Description  | Parameters           | Returns  | Errors  |
+| ------------- |:-------------:| :-------------:|-----:| -----:|
+| POST /settings/readOnlyUser | Create read-only user| username, password, just_validate |  success: 200 [] | error: 400 | {"errors":{field_name:error_message}}
+| PUT /settings/readOnlyUser | Change read-only user password | password |  success: 200 [] | error: 400 | {"errors":{field_name:error_message}}
+| DELETE /settings/readOnlyUser| Delete user | none |  success: 200 [] | error: 400 | {"errors":{field_name:error_message}}
+|GET /settings/readOnlyAdminName | Get username | none |  success: 200 "username" | not found: 404 
+|GET /settings/readOnlyAdminName | Get username | none |  success: 200 "username" | not found: 404 
 
+A `username` is a UTF-8 string that does not contain spaces, control characters or any of these characters: ()<>@,;:\\\"/[]?={} characters. Any `password` must be UTF-8 with no control characters and must be at least six characters long. 
 
 To change the password for a read-only user:
 
