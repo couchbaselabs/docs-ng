@@ -3101,7 +3101,7 @@ view an XDCR internal settings, for instance:
 http://10.4.2.4:8091/internalSettings
 ```
 
-You will recieve a response similar to the following. For the sake of brevity,
+You will receive a response similar to the following. For the sake of brevity,
 we are showing only the XDCR-related items:
 
 
@@ -3114,30 +3114,12 @@ we are showing only the XDCR-related items:
 "xdcrWorkerBatchSize":555,
 "xdcrDocBatchSizeKb":999,
 "xdcrFailureRestartInterval":44
+....
 }
 ```
 
-The the XDCR-related values are defined as follows:
-
- * (Number) xdcrMaxConcurrentReps: Maximum concurrent replications per bucket, 8 to
-   256. Default is 32. This controls the number of parallel replication streams per
-   node. If you are running your cluster on hardware with high-performance CPUs,
-   you can increase this value to improve replication speed.
-
- * (Number) xdcrCheckpointInterval: Interval between checkpoints, 60 to 14400
-   (seconds). Default 1800.
-
- * (Number) xdcrWorkerBatchSize: Document batching count, 500 to 10000. Default
-   500.
-
- * (Number) xdcrDocBatchSizeKb: Document batching size, 10 to 100000 (kB). Default
-   2048.
-
- * (Number) xdcrFailureRestartInterval: Interval for restarting failed XDCR, 1 to
-   300 (seconds). Default 30.
-
-For more information about XDCR, see [Cross Datacenter Replication
-(XDCR)](#couchbase-admin-tasks-xdcr).
+For more information about these settings and their usage, see [Cross Datacenter Replication
+(XDCR), Providing Advanced Settings](#admin-tasks-xdcr-advanced).
 
 <a id="couchbase-admin-restapi-xdcr-change-settings"></a>
 
@@ -3145,9 +3127,11 @@ For more information about XDCR, see [Cross Datacenter Replication
 
 There are internal settings for XDCR which are only exposed via the REST API.
 These settings will change the replication behavior, performance, and timing.
-As of Couchbase Server 2.2+, there are three endpoints for changing XDCR settings:
+As of Couchbase Server 2.2+, there are additional endpoints to change :
 
-- 
+- /settings/replications/ — global settings applied to all replications for a cluster
+- /settings/replications/<replication id> — settings for specific replication
+- /internalSettings - settings applied to all replications for a cluster. Endpoint exists in Couchbase 2.0 and onward.
 
 The following example updates an XDCR setting for parallel replication streams per node:
 
