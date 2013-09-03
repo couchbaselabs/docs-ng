@@ -14,21 +14,15 @@ You can install Sync Gateway from a [precompiled build](#using-a-precompiled-bui
 
 ### Using a Precompiled Build
 
-Download the latest stable build of Sync Gateway for your platform:
-<table style="text-align:left">
-<col style="width:15%">
-<thead>
-<tr><th>OS</th><th>URL</th></tr>
-<tr>
-</thead>
-<td>Mac </td>
-<td><a href="http://cbfs-ext.hq.couchbase.com/mobile/SyncGateway/SyncGateway-Mac.zip">http://cbfs-ext.hq.couchbase.com/mobile/SyncGateway/SyncGateway-Mac.zip</a></td>
-</tr>
-<tr><td>Ubuntu</td></tr>
-<tr><td>Windows</td></tr>
-</table>
+Download Sync Gateway for your platform:
 
-The unzipped folder contains an executable file called `sync_gateway`. Simply run it as you would any other command-line tool. For convenience, you can move it to a directory in your $PATH environment variable.
+|OS|URL|  
+| ------	| ------	|  
+|Mac | <http://cbfs-ext.hq.couchbase.com/mobile/SyncGateway/SyncGateway-Mac.zip> 
+|Linux |  
+|Ubuntu |  
+
+The unzipped folder contains an executable file called `sync_gateway`. You can run it as you would any other command-line tool. For convenience, you can move it to a directory that is included in your $PATH environment variable.
 
 ### Building From Source
 
