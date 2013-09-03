@@ -241,8 +241,25 @@ RedHat-based operating systems such as CentOS.
 
      ```
      root-> yum install openssl098e
+     
      ```
-
+     Some users will not be able to install `openssl098e` with this command without 
+     having administrative privileges. If you experience this issue, put the contents of the 
+     `lib64` directory into `opt/couchbase/lib`:
+     
+     - Download `openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm'.
+     
+     - Go to the directory where you extracted Couchbase Server: `cd opt/couchbase`.
+     
+     - Extract the openssl098e RPM: 
+     
+            rpm2cpio
+            openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+            --make-directories --no-absolute-filenames
+            
+    - Move the extracted files to the `/lib` directory for Couchbase Server: `mv usr/lib64/*
+            lib/`
+     
  1. To install Couchbase Server, use the `rpm` command-line tool with the RPM
     package that you downloaded. You must be logged in as root (Superuser) to
     complete the installation:
@@ -307,6 +324,22 @@ user. To do so on Centos/RedHat:
 
     In the directory where you extracted the files, you will see `opt` and `etc`
     subdirectories.
+    
+    There may be a case where you need to separately provide openssl098e. If you do, put the contents of 
+    this library into `opt/couchbase/lib`:
+     
+     - Download `openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm'.
+     
+     - Go to the directory where you extracted Couchbase Server: `cd opt/couchbase`.
+     
+     - Extract the openssl098e RPM: 
+     
+            rpm2cpio
+            openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+            --make-directories --no-absolute-filenames
+            
+    - Move the extracted files to the `/lib` directory for Couchbase Server: `mv usr/lib64/*
+            lib/`
 
  1. After you extract the Couchbase Server install files, go to the subdirectory:
 
