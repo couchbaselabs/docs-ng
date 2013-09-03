@@ -2,7 +2,7 @@
 
 If you need to debug or hack on Couchbase Lite, you can include the Couchbase Lite code directly in a project rather than using the Maven artifact dependencies.
 
-### Add submodules
+**Add the required submodules:**
 
 1. Move into the parent **MyProject** directory, which contains the **settings.gradle** file.
 
@@ -10,7 +10,7 @@ If you need to debug or hack on Couchbase Lite, you can include the Couchbase Li
 $ cd MyProject 
 ```
 
-2. Add the required submodules:
+2. Add the submodules:
 
 	```bash
 $ git submodule add https://github.com/couchbase/couchbase-lite-android-core.git CBLite
@@ -26,7 +26,7 @@ $ git submodule add https://github.com/couchbaselabs/couchbase-lite-android-ekto
 
 	You might need to do some extra steps to tell Android Studio about the optional submodules.
 
-### Update Gradle Files
+**Update the Gradle files:**
 
 1. Add the following line to the **settings.gradle** file:
 

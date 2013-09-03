@@ -3,7 +3,7 @@ This section contains information to help you troubleshoot the apps you develop 
 
 ## Logging
 
-There's a fair bit of logging in Couchbase Lite that can be enabled for troubleshooting purposes. Serious and unexpected problems are always logged with a message that starts with the text "WARNING:", but logging for serious problems needs to be enabled via the user defaults system or command-line arguments.
+Couchbase Lite includes some logging messages that you can enable for troubleshooting purposes. Serious and unexpected problems are always logged with a message that starts with the text "WARNING:", but logging for serious problems needs to be enabled via the user defaults system or command-line arguments.
 
 ### The Logging API ##
 

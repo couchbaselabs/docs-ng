@@ -8,12 +8,12 @@ If you want to play with a demonstration app, you can download and run [GroceryS
 
 1. Download and install [Android Studio](http://developer.android.com/sdk/installing/studio.html). 
 
-2. Open the [Android SDK Manager](http://developer.android.com/tools/help/sdk-manager.html) and install **Extras /Google Repository** and **Extras/Android Support Repository** (future versions of Android Studio might make this step unnecessary).
+2. Open the [Android SDK Manager](http://developer.android.com/tools/help/sdk-manager.html) and install **Extras/Google Repository** and **Extras/Android Support Repository** (future versions of Android Studio might make this step unnecessary).
 
 ## Adding Couchbase Lite to Your Project
 Follow the steps in this section to create a new Android project that uses Couchbase Lite.
 
-### Create a new project 
+**Create a new project:** 
 
 1. Open Android Studio.
 
@@ -21,23 +21,27 @@ Follow the steps in this section to create a new Android project that uses Couch
 
 	This example uses the name MyProject for the new project. 
 
-3. Enter the module name, package name, and project location. 
+3. In the New Project window, enter the application name, package name, and project location. 
 
-4. Set the API level to Android 3.0 Honeycomb (API level 11) or later.
+4. Set the minimum required SDK to **API 11: Android 3.0 (Honeycomb)** or later.
 
-### Add Couchbase Lite Dependencies 
+5. Click **Next**, and move through the remaining setup screens.
 
-<p style="border-style:solid;padding:10px;">
+6. Click **Finish**.
+
+**Add Couchbase Lite Dependencies:**
+
+<p style="border-style:solid;padding:10px;width:90%;margin:0 auto">
 <strong>Note</strong>: If you are an advanced user and need to hack or debug Couchbase Lite, you should add the Couchbase Lite dependencies by following the steps in 
 <a href="#adding-couchbase-lite-via-direct-code-dependency">Adding Couchbase Lite Via Direct Code Dependency</a> 
 rather than the steps in this section.
 </p>
 
-1. Open the **build.gradle** file. 
+1. Expand the **MyProject** folder, and then open the **build.gradle** file. 
 
-	You should see a directory called **MyProject** and a non-empty **build.gradle** file.  If your **build.gradle** file is empty, then you are looking at the wrong one.
+	If the **build.gradle** file is empty, then you are looking at the wrong one. Make sure you open the one in the **MyProject** folder.
 
-2. Add the following repositories section to your **build.gradle** file so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
+2. Add the following repositories section to the **build.gradle** file so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
 
 	```java
 repositories {
@@ -49,10 +53,10 @@ repositories {
 }
 ```
 
-3. If it does not already exist, create a **libs** subdirectory in the **MyProject/MyProject** directory.
+3. If it does not already exist, create a **libs** subdirectory in the **MyProject** directory.
 
 	```bash
-$ cd MyProject/MyProject
+$ cd MyProject
 $ mkdir libs
 $ cd libs
 ```
@@ -65,7 +69,7 @@ or
 $ curl -OL http://cl.ly/Pr1r/td_collator_so.jar
 ```
 
-5. Add the following dependencies to the top-level of the **build.gradle** file (not under the buildscript section).
+5. In the **build.gradle** file, add the following lines to the top-level dependencies section (not the one under the buildscript section).
 
 	```groovy
 dependencies {
@@ -82,19 +86,19 @@ dependencies {
 ```
 
 
-### Build the empty project
+**Build the empty project:**
 
 1. Run the following command to make sure the code builds:
 
-	```
+	```sh
 	$./gradlew clean && ./gradlew build
 	```
 
-2. Restart Android Studio so it knows about the new dependencies and features like autocomplete work.
+2. Restart Android Studio so it knows about the new dependencies and features such as autocomplete work.
 
-### Add code and verify that it works
+**Add code and verify the app runs:**
 
-1. Add the following code snippet to your `onCreate` method in the **MainActivity.java** file:
+1. Add the following code to your `onCreate` method in the **MainActivity.java** file:
 
 	```java
 String filesDir = getFilesDir().getAbsolutePath();

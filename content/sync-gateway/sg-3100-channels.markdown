@@ -39,6 +39,8 @@ function (doc) {
 
 ### Replicating Channels to Couchbase Lite
 
+if you don't specify any channels to replicate, the user gets all the channels to which they have access. Due to this behavior, most apps do not have to specify a channels filter—instead they can just do the default sync configuration on the client (that is, specify the Sync Gateway database URL with no filter) to replicate the channels of interest.
+
 To replicate channels to Couchbase Lite, you configure the replication to use a filter named `sync_gateway/bychannel` with a filter parameter named `channels`. The value of the `channels` parameter is a comma-separated list of channels to fetch. The replication from Sync Gateway now pulls only documents tagged with those channels.
 
 A document can be removed from a channel without being deleted. For example, this can happen when a new revision is not added to one or more channels that the previous revision was in. Subscribers (downstream databases pulling from this database) should know about this change, but it's not exactly the same as a deletion.
@@ -114,20 +116,7 @@ requireRole(["admin", "old-timer"]) // throw an error unless the user has one of
 requireAccess("events") // throw an error unless the user has access to read the "events" channel
 requireAccess(["events", "messages"]) // throw an error unless the can read one of these channels
 
-// The old validation:
-
-function (doc, oldDoc, userCtx) {
-  if (oldDoc) {
-    // this is the old version, see the current version below!
-    if (userCtx.user != oldDoc.owner) throw ({
-      "forbidden", "not the owner"
-    });
-  }
-}
-
-// The new validation:
-
-function (doc, oldDoc, userCtx) {
+function (doc, oldDoc) {
   if (oldDoc) {
     requireUser(oldDoc.owner); // may throw({forbidden: "wrong user"})
   }
