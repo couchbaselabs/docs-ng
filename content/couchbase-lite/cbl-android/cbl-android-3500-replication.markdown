@@ -1,14 +1,10 @@
 ## Working With Replication
-Replication is a key feature of Couchbase Lite and enables document syncing. Replication is conceptually simple&mdash;take everything that's changed in database A and copy it over to database B&mdash;but it comes with a sometimes confusing variety of options:
 
-* **Push versus pull.** This is really just a matter of whether A or B is the remote database.
-* **Continuous versus one-shot.** A one-shot replication proceeds until all the current changes have been copied, then finishes. A continuous replication keeps the connection open, idling in the background and watching for more changes. As soon as the continuous replication detects any changes, it copies them. Couchbase Lite's replicator is aware of connectivity changes. If the device goes offline, the replicator watches for the server to become reachable again and then reconnects.
-* **Persistent versus non-persistent.** Non-persistent replications, even continuous ones, are forgotten after the app quits. Persistent replications are remembered in a special `_replicator` database. This is most useful for continuous replications: by making them persistent, you ensure they are always ready and watching for changes every time your app launches.
-* **Filters.** Sometimes you want only particular documents to be replicated, or you want particular documents to be ignored. To do this, you can define a filter function. The function  takes a document's contents and returns `true` if it should be replicated.
+This section describes how to work with replication in an Android app. To learn more about replication, see [Replication](/couchbase-lite/cbl-concepts/#replication) in the *Couchbase Lite Concepts Guide*.
 
 ### Creating a Replication
 
-To create a replication:
+**To create a replication:**
 
 1.  Add the following static initializer block to the Application's main activity:
 
