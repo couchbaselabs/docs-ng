@@ -3,7 +3,7 @@
 
 The basic document API will get you pretty far, but real apps need to work with multiple documents. In a typical app, the top-level UI usually shows either all the documents or a relevant subset of them &mdash; in other words, the results of a query.
 
-As described in the section about [model objects](working-with-data-model-objects), querying a Couchbase Lite database involves first creating a *view* that indexes the keys you're interested in and then running a *query* to get the results of the view for the key or range of keys you're interested in. The view is persistent, like a SQL index.
+As described in the section about [model objects](#working-with-data-model-objects), querying a Couchbase Lite database involves first creating a *view* that indexes the keys you're interested in and then running a *query* to get the results of the view for the key or range of keys you're interested in. The view is persistent, like a SQL index.
 
 Because there's no fixed schema for the view engine to refer to and the interesting bits of a document that we want it to index could be located anywhere in the document (including nested values inside of arrays and sub-objects), the view engine has to let us pick through each document to identify the relevant key (or keys) and values. That's what the view's *map function* is for: it's an app-defined function that's given a document's contents and returns, or *emits*, zero or more key-value pairs. These key-value pairs get indexed, ordered by key, and can then be queried efficiently, again by key.
 
