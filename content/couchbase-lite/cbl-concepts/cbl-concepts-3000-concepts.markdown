@@ -58,9 +58,22 @@ Remember: a view is not a _query_, it's an _index_. Views are persistent, and ne
 
 ## Replication
 
+Replication is a key feature of Couchbase Lite and enables document syncing. Replication is conceptually simple&mdash;take everything that's changed in database A and copy it over to database B. 
+
 Replication is basically unidirectional. A replication from a remote to a local database is called a *pull*, and a replication from a local to a remote database is called a *push*. Bidirectional replication, or *sync*, is done by configuring both a pull and a push between the same two databases.
 
 Although any one replication involves only two databases, it's possible to set up chains of replications between any number of databases. This creates a directed graph, with databases as nodes and replications as arcs. Many topologies are possible, from a star with one master database and a number of replicas, to a mesh network where changes made at any node eventually propagate to all the others.
+
+When working with replication, you need to consider several factors: 
+
+* **Push versus pull.** This is really just a matter of whether A or B is the remote database.
+
+* **Continuous versus one-shot.** A one-shot replication proceeds until all the current changes have been copied, then finishes. A continuous replication keeps the connection open, idling in the background and watching for more changes. As soon as the continuous replication detects any changes, it copies them. Couchbase Lite's replicator is aware of connectivity changes. If the device goes offline, the replicator watches for the server to become reachable again and then reconnects.
+
+* **Persistent versus non-persistent.** Non-persistent replications, even continuous ones, are forgotten after the app quits. Persistent replications are remembered in a special `_replicator` database. This is most useful for continuous replications: by making them persistent, you ensure they are always ready and watching for changes every time your app launches.
+
+* **Filters.** Sometimes you want only particular documents to be replicated, or you want particular documents to be ignored. To do this, you can define a filter function. The function  takes a document's contents and returns `true` if it should be replicated.
+
 
 
 ### Replication Workflow
