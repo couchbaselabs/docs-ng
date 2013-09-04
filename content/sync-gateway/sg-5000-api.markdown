@@ -7,3 +7,4 @@ To interact with Couchbase Server Sync Gateway, you use the following APIs:
 * [Sync REST API](#sync-rest-protocol)
 
 For information about accessing Sync Gateway via the REST APIs, see [REST API Access](#rest-api-access).
+
