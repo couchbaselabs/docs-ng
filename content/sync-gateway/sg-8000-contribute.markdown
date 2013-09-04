@@ -10,21 +10,28 @@ On Mac or Unix systems, you can build Sync Gateway from source as follows:
 
 1. In a terminal window, clone the Sync Gateway GitHub repository:
 
-	$ git clone https://github.com/couchbase/sync_gateway.git
+	```sh
+$ git clone https://github.com/couchbase/sync_gateway.git
+```
 
 2. Change to the **sync_gateway** directory:
 
+	```sh
 	$ cd sync_gateway
+	```
 
 3. Set up the submodules:
 
-	$ git submodule init 
+	```sh
+	$ git submodule init   
 	$ git submodule update
-
+	```
+	
 4. Build Sync Gateway:
 
+		```sh
 	$ ./build.sh
-
+```
 
 Sync Gateway is a standalone, native executable located in `/bin`. You can run the executable from the build location or move it anywhere you want.
 
