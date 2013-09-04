@@ -133,7 +133,8 @@ versions:
     versions:
       - 1.0
       
-  couchbase-query-language:
+
+  query-language:
     name: "Query Language, N1QL"
     versions:
       - 1.0
@@ -141,7 +142,19 @@ versions:
 navbar:
   - label: Server
     href: /couchbase-manual-2.2/
+    subnav:
+      - label: Couchbase Server Manual
+        href: /couchbase-manual-2.2/
+      
+      - label: Couchbase Sync Gateway
+        href: /sync-gateway/
 
+      - label: ElasticSearch Plug-in
+        href: /couchbase-elastic-search/
+
+      - label: Hadoop Plug-in
+        href: /hadoop-plugin-1.1/
+          
   - label: Mobile
     subnav:
       - label: Couchbase Lite Concepts Guide
@@ -152,9 +165,6 @@ navbar:
 
       - label: Couchbase Lite Android Guide
         href: /couchbase-lite/cbl-android/
-
-      - label: Couchbase Lite REST API
-        href: /couchbase-sdk-php-1.1/
 
   - label: Developer
     href: /couchbase-devguide-2.2/
