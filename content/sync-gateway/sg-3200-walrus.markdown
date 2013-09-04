@@ -1,6 +1,6 @@
 ## Using Walrus
 
-[Walrus](https://github.com/couchbaselabs/walrus) is a simple, in-memory database that you can use in place of Couchbase Server for unit testing during development.
+[Walrus](https://github.com/couchbaselabs/walrus) is a simple, limited, in-memory database that you can use in place of Couchbase Server for unit testing during development.
 
 Use the following command to start a Sync Gateway that connects to a single Walrus database called `sync_gateway` and listens on the default ports:
 
