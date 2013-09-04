@@ -1525,77 +1525,6 @@ the request:
     http://localhost:8091/pools/default/buckets/acache
 ```
 
-<a id="couchbase-admin-rest-compacting-bucket"></a>
-
-### Compacting Bucket Data and Indexes
-
-Couchbase Server will write all data that you append, update and delete as files
-on disk. This process can eventually lead to gaps in the data file, particularly
-when you delete data. Be aware the server also writes index files in a
-sequential format based on appending new results in the index. You can reclaim
-the empty gaps in all data files by performing a process called compaction. In
-both the case of data files and index files, you will want to perform frequent
-compaction of the files on disk to help reclaim disk space and reduce disk
-fragmentation. For more general information on this administrative task, see
-[Database and View Compaction](#couchbase-admin-tasks-compaction).
-
-**Compacting Data Buckets and Indexes**
-
-To compact data files for a given bucket as well as any indexes associated with
-that bucket, you perform a request as follows:
-
-
-```
-> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/compactBucket
-```
-
-Where you provide the ip and port for a node that accesses the bucket as well as
-the bucket name. You will also need to provide administrative credentials for
-that node in the cluster. To stop bucket compaction, you issue this request:
-
-
-```
-> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/cancelBucketCompaction
-```
-
-**Compacting Spatial Views**
-
-If you have spatial views configured within your dataset, these are not
-automatically compacted for you. Instead, you must manually compact each spatial
-view through the REST API.
-
-To do this, you must call the spatial compaction routine at the URL format:
-
-
-```
-http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
-```
-
-This URL contains the following special information:
-
- * `127.0.0.1:9500`
-
-   The port number, 9500, is unique to the spatial indexing system.
-
- * `BUCKETNAME`
-
-   The `BUCKETNAME` is the name of the bucket in which the design document is
-   configured.
-
- * `DDOCNAME`
-
-   The name of the design document that contains the spatial index or indexes that
-   you want to compact.
-
-For example, you can send a request using `curl` :
-
-
-```
-> curl -X POST \
-    'http://127.0.0.1:9500/default/_design/dev_test_spatial_compaction/_spatial/_compact'
-    -H 'Content-type: application/json'
-```
-
 <a id="couchbase-admin-restapi-deleting-bucket"></a>
 
 ### Deleting a Bucket
@@ -2751,6 +2680,118 @@ Content-Type: application/json
 
 For more information about views and how they function within a cluster, see
 [View Operation](#couchbase-views-operation).
+
+<a id="couchbase-admin-restapi-compaction"></a>
+
+## Set Data and Index Compaction
+
+Couchbase Server will write all data that you append, update and delete as files
+on disk. This process can eventually lead to gaps in the data file, particularly
+when you delete data. Be aware the server also writes index files in a
+sequential format based on appending new results in the index. You can reclaim
+the empty gaps in all data files by performing a process called compaction. In
+both the case of data files and index files, you will want to perform frequent
+compaction of the files on disk to help reclaim disk space and reduce disk
+fragmentation. For more general information on this administrative task, see
+[Database and View Compaction](#couchbase-admin-tasks-compaction).
+
+<a id="couchbase-admin-rest-compacting-bucket"></a>
+
+### Compacting Bucket Data and Indexes
+
+To compact data files for a given bucket as well as any indexes associated with
+that bucket, you make this request:
+
+```
+> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/compactBucket
+```
+
+Where you provide the ip and port for a node that accesses the bucket as well as
+the bucket name. You need to provide administrative credentials for
+that node in the cluster. To stop bucket compaction, issue this request:
+
+```
+> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/cancelBucketCompaction
+```
+
+**Compacting Spatial Views**
+
+If you have spatial views in your dataset, these are not
+automatically compacted with data and indexes. Instead, you must manually compact each spatial
+view through the REST API.
+
+To do this, you must call the spatial compaction endpoint:
+
+```
+http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
+```
+
+This URL contains the following special information:
+
+ * `127.0.0.1:9500`
+
+   The port number, 9500, is unique to the spatial indexing system.
+
+ * `BUCKETNAME`
+
+   The `BUCKETNAME` is the name of the bucket in which the design document is
+   configured.
+
+ * `DDOCNAME`
+
+   The name of the design document that contains the spatial index or indexes that
+   you want to compact.
+
+For example, you can send a request using `curl` :
+
+
+```
+> curl -X POST \
+    'http://127.0.0.1:9500/default/_design/dev_test_spatial_compaction/_spatial/_compact'
+    -H 'Content-type: application/json'
+```
+
+<a id="couchbase-admin-rest-auto-compaction"></a>
+
+###Setting Auto-Compaction
+
+In Couchbase Server you can also provide auto-compaction settings which will 
+trigger data and view compaction based on certain settings. These settings can be 
+made for an entire cluster or for a bucket in a cluster. 
+For background information on compaction see [Admin Tasks, Compaction Process](#couchbase-admin-tasks-compaction-process). 
+For instructions on changing these settings in Couchbase Web Console, see 
+[Admin Tasks, Auto-Compaction Configuration](#couchbase-admin-tasks-compaction-autocompaction)
+
+To read current auto-compaction settings for a cluster:
+
+        curl -u admin:password /settings/autoCompaction
+        
+This will result in JSON response as follows:
+
+        {
+           "purgeInterval": 3,
+           "autoCompactionSettings": {
+               "viewFragmentationThreshold": {
+                   "size": "undefined",
+                   "percentage": "undefined"
+                },
+                "databaseFragmentationThreshold": {
+                    "size": "undefined",
+                    "percentage": "undefined"
+                },
+             "parallelDBAndViewCompaction": false
+           }
+        }
+        
+This tells us we have no current thresholds set for data or index compaction. The field `parallelDBAndViewCompaction` set to 'false' indicates the 
+cluster will not perform data and index compaction in parallel. To see auto-compaction settings for a single bucket, 
+use this request:
+
+        curl -u admin:password /pools/default/buckets/<bucket_name>
+        
+
+
+
 
 <a id="couchbase-admin-restapi-views"></a>
 

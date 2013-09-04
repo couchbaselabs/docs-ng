@@ -1000,7 +1000,8 @@ Configuration of auto-compaction is through Couchbase Web Console. For more
 information on the settings, see
 [Settings](#couchbase-admin-web-console-settings). Information on per-bucket
 settings is through the Couchbase Bucket create/edit screen. See [Creating and
-Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit).
+Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit). You can also view 
+and change these settings using the REST API, see [Using REST, Setting Auto-Compaction](#couchbase-admin-rest-auto-compaction).
 
 <a id="couchbase-admin-tasks-compaction-strategies"></a>
 
