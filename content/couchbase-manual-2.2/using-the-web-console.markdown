@@ -1690,7 +1690,9 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 The `Auto-Compaction` tab configures the default auto-compaction settings for
 all the databases. These can be overridden using per-bucket settings available
 within [Creating and Editing Data
-Buckets](#couchbase-admin-web-console-data-buckets-createedit).
+Buckets](#couchbase-admin-web-console-data-buckets-createedit). For 
+information about changing these settings with the REST API, see 
+[Using the REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
 
 ![](images/web-console-server-settings-autocompact.png)

@@ -142,6 +142,20 @@ navbar:
   - label: Server
     href: /couchbase-manual-2.2/
 
+  - label: Mobile
+    subnav:
+      - label: Couchbase Lite Concepts Guide
+        href: /couchbase-lite/cbl-concepts/
+
+      - label: Couchbase Lite iOS Guide
+        href: /couchbase-lite/cbl-ios/
+
+      - label: Couchbase Lite Android Guide
+        href: /couchbase-lite/cbl-android/
+
+      - label: Couchbase Lite REST API
+        href: /couchbase-sdk-php-1.1/
+
   - label: Developer
     href: /couchbase-devguide-2.2/
 

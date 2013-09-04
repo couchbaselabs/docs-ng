@@ -2759,7 +2759,7 @@ In Couchbase Server you can also provide auto-compaction settings which will
 trigger data and view compaction based on certain settings. These settings can be 
 made for an entire cluster or for a bucket in a cluster. 
 For background information on compaction see [Admin Tasks, Compaction Process](#couchbase-admin-tasks-compaction-process). 
-For instructions on changing these settings in Couchbase Web Console, see 
+To change these settings, see 
 [Admin Tasks, Auto-Compaction Configuration](#couchbase-admin-tasks-compaction-autocompaction)
 
 To read current auto-compaction settings for a cluster:
@@ -2783,15 +2783,30 @@ This will result in JSON response as follows:
            }
         }
         
-This tells us we have no current thresholds set for data or index compaction. The field `parallelDBAndViewCompaction` set to 'false' indicates the 
+This tells us we have a `purgeInterval` of three days and no current thresholds set for data or index compaction. The field `parallelDBAndViewCompaction` set to 'false' indicates the 
 cluster will not perform data and index compaction in parallel. To see auto-compaction settings for a single bucket, 
 use this request:
 
         curl -u admin:password /pools/default/buckets/<bucket_name>
         
+Couchbase Server sends a JSON response with auto-compaction settings for the `bucket_name`:
 
+    {
+        "purgeInterval": 2,
+        "autoCompactionSettings": {
+            "viewFragmentationThreshold": {
+                "size": "undefined",
+                "percentage": 30
+            },
+            "databaseFragmentationThreshold": {
+                "size": "undefined",
+                "percentage": 30
+            },
+            "parallelDBAndViewCompaction": true
+        }
+    }
 
-
+This indicates a `purgeInterval` of two days
 
 <a id="couchbase-admin-restapi-views"></a>
 
