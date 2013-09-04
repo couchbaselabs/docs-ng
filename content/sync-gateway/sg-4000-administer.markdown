@@ -91,15 +91,15 @@ $ sync_gateway -log=HTTP+,CRUD config.json
 
 Sync Gateway provides the following REST APIs:
 
-* The [Sync API](#sync-rest-api) is used for client replication. The default port for the Sync API is 4984.
+* The [Sync REST API](#sync-rest-api) is used for client replication. The default port for the Sync API is 4984.
 
-* The [Admin API](#admin-rest-api) is used mostly to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin API is 4985.
+* The [Admin REST API](#admin-rest-api) is used mostly to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin API is 4985.
 
 ### Managing API Access
 
-The APIs are accessed on different TCP ports, which makes it easy to expose the Sync API on port 4984 to clients while keeping the Admin API on port 4985 secure behind your firewall. 
+The APIs are accessed on different TCP ports, which makes it easy to expose the Sync REST API on port 4984 to clients while keeping the Admin REST API on port 4985 secure behind your firewall. 
 
-If you want to change the ports, you can do that in the configuration file. To change the Sync API port, set the `interface` property in the configuration file. To change the Admin API port, set the `adminInterface`  property in the configuration file. The value of the property is a string consisting of a colon followed by a port number (for example, `:4985`). You can also prepend a host name or numeric IP address before the colon to bind only to the network interface with that address.
+If you want to change the ports, you can do that in the configuration file. To change the Sync REST API port, set the `interface` property in the configuration file. To change the Admin REST API port, set the `adminInterface`  property in the configuration file. The value of the property is a string consisting of a colon followed by a port number (for example, `:4985`). You can also prepend a host name or numeric IP address before the colon to bind only to the network interface with that address.
 
 ### Enabling API Access
 

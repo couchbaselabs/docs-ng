@@ -3,9 +3,10 @@
 Sync Gateway is compatible with the following operating systems:
 
 * Mac OS X 10.6 or later and a 64-bit CPU
-* Windows
-* Ubuntu Linux
+
 * RedHat Linux
+
+* Ubuntu Linux
 
 
 ## Installing Sync Gateway
@@ -18,39 +19,11 @@ Download Sync Gateway for your platform:
 
 |OS|URL|  
 | ------	| ------	|  
-|Mac | <http://cbfs-ext.hq.couchbase.com/mobile/SyncGateway/SyncGateway-Mac.zip> 
-|Linux |  
-|Ubuntu |  
+|Mac OS X | <http://cbfs-ext.hq.couchbase.com/mobile/SyncGateway/SyncGateway-Mac.zip> 
+|RedHat Linux |  
+|Ubuntu Linux |  
 
 The unzipped folder contains an executable file called `sync_gateway`. You can run it as you would any other command-line tool. For convenience, you can move it to a directory that is included in your $PATH environment variable.
-
-### Building From Source
-
-If you want to build Sync Gateway from source, you must have [GO](http://golang.org) 1.1 or later installed on your computer before you can build Sync Gateway. 
-
-On Mac or Unix systems, you can build Sync Gateway from source as follows:
-
-1. In a terminal window, clone the Sync Gateway GitHub repository:
-
-	$ git clone https://github.com/couchbase/sync_gateway.git
-
-2. Change to the **sync_gateway** directory:
-
-	$ cd sync_gateway
-
-3. Set up the submodules:
-
-	$ git submodule init 
-	$ git submodule update
-
-4. Build Sync Gateway:
-
-	$ ./build.sh
-
-
-The compiled gateway is a standalone, native executable located in `/bin`. You can run the executable from the build location or move it anywhere you want.
-
-To update your build later, just pull the latest updates from GitHub and run `./build.sh` again.
 
 
 ## Connecting Sync Gateway to Couchbase Server

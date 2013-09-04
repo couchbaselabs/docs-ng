@@ -4,7 +4,7 @@ You can authorize users and control their access to your database by creating us
 
 ### Accounts
 
-You manage accounts by using the Admin API.This interface is privileged and for administrator use only. To allow clients to manage accounts, you need to have some other server-side mechanism that calls through to this API.
+You manage accounts by using the Admin REST API.This interface is privileged and for administrator use only. To allow clients to manage accounts, you need to have some other server-side mechanism that calls through to this API.
 
 The URL for a user account is `/databasename/_user/name`, where databasename is the configured name of the database and name is the user name. The content of the resource is a JSON document with the following properties:
 
@@ -24,7 +24,7 @@ A note on changing a user's `admin_channels` property: If you add channels to th
 
 ### Anonymous Access
 
-A special user account named `GUEST` applies to unauthenticated requests. Any request to the Sync API that does not have an `Authorization` header or a session cookie is treated as coming from the `GUEST` account. This account and all anonymous access is disabled by default. 
+A special user account named `GUEST` applies to unauthenticated requests. Any request to the Sync REST API that does not have an `Authorization` header or a session cookie is treated as coming from the `GUEST` account. This account and all anonymous access is disabled by default. 
 
 To enable the GUEST account,  set its `disabled` property to false. You might also want to give it access to some channels. If you don't assign some channels to the GUEST account, anonymous requests won't be able to access any documents. The following sample command enables the GUEST account and allows it access to a channel named public:
 
@@ -90,9 +90,9 @@ The user name for the new account is the same as the authenticated email address
 An app server can create a session for a user by sending a POST request to `/dbname/_session`. This allows the app server to optionally do its own authentication using the following control flow:
 
 1. Client sends credentials to your app server.
-2. App server's handler authenticates the credentials however it wants (LDAP, OAuth, ...)
+2. App server's handler authenticates the credentials however it wants (LDAP, OAuth, and so on).
 3. App server sends a POST request with the user name to gateway admin's `/dbname/_session` endpoint.
-4. If the request fails with a 401 status, there is no gateway user account with that name. The app server can then create one (also using the admin API) and  repeat the `_session` request.
+4. If the request fails with a 401 status, there is no Sync Gateway user account with that name. The app server can then create one (also using the Admin REST API) and  repeat the `_session` request.
 4. The app server adds a `Set-Cookie:` HTTP header to its response to the client, using the session cookie name and value received from the gateway.
 
 Subsequent client requests to the gateway will now include the session in a cookie, which the gateway will recognize. For the cookie to be recognized, your site must be configured so that your app's API and the gateway appear on the same public host name and port.
