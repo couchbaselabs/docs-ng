@@ -5,4 +5,8 @@
 
 [Couchbase Lite Android Guide](cbl-android)  
 
+[Couchbase Lite PhoneGap Plug-in Guide](cbl-phonegap)
+
+<!--
 [Couchbase Lite REST API Reference](cbl-api)  
+--> 
