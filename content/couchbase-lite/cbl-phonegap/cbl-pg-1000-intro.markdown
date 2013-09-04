@@ -28,7 +28,14 @@ Before you can build apps with PhoneGap, you need to install PhoneGap and severa
 	$ brew install ios-sim
 	```
 
-3. If you want to build apps for Android devices, install [Android Studio](http://developer.android.com/sdk/installing/studio.html). 
+3. If you want to build apps for Android devices: 
+
+	* Install [Android Studio](http://developer.android.com/sdk/installing/studio.html). 
+
+	* Install the Android SDK by using the Android SDK Manager. If you have a project open in Android Studio, you can run the SDK Manager by selecting **Tools > Android > SDK Manager**.
+
+	* Set up an Android emulator by using the Android AVD Manager. If you have a project open in Android Studio, you can run the AVD Manager by selecting **Tools > Android > AVD Manager**.
+
 
 4. Install [Node.js](http://nodejs.org/download), which is a JavaScript network application platform. 
 
@@ -89,7 +96,7 @@ $ git clone https://github.com/couchbaselabs/TodoLite-PhoneGap.git www
 
 	The app opens in the iOS simulator.
 
-7. Build and run the ToDo Lite Android app:
+7. Build and run the Todo Lite Android app:
 
 	```sh
 	$ phonegap run android
