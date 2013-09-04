@@ -92,6 +92,15 @@ customers are facing:
 
 **Known Issues in 2.2**
 
+* **XDCR and Elastic Search**
+
+   * If you are using Elastic Search with Couchbase Server 2.2, you must use 
+   the REST protocol for XDCR replication to Elastic Search. Otherwise 
+   Elastic Search will fail and return the error code 500. For more 
+   information about XDCR protocols, see [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
+
+     *Issues* : [MB-9049](https://www.couchbase.com/issues/browse/MB-9049)
+
  * **Installation and Upgrade**
 
     * For Mac OSX, if you move the server after it is installed and configured, it
