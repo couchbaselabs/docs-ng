@@ -70,7 +70,7 @@ $ phonegap local plugin add https://github.com/apache/cordova-plugin-inappbrowse
 $ phonegap local plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git
 ```
 
-These plug-ins activate Couchbase Lite, the camera, the InAppBrowser, and network information.
+	These plug-ins activate Couchbase Lite, the camera, the InAppBrowser, and network information.
 
 5. Replace the default application in the **www** directory with the Todo Lite source code:
 
@@ -79,7 +79,7 @@ These plug-ins activate Couchbase Lite, the camera, the InAppBrowser, and networ
 $ git clone https://github.com/couchbaselabs/TodoLite-PhoneGap.git www
 ```
 
-When you develop your own app, replace the default application  in the **www** directory with your source code.
+	When you develop your own app, replace the default application  in the **www** directory with your source code.
 
 6. Build and run the Todo Lite iOS app:
 
@@ -118,7 +118,7 @@ To make sure PhoneGap and your IDEs are set up correctly, try building the defau
 ```sh
 $ phonegap create my-app
 $ cd my-app
-$ phonegap run iOS
+$ phonegap run ios
 $ phongap run android
 ```
 
