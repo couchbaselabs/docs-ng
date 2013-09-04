@@ -1336,6 +1336,8 @@ Stats =warmup= shows statistics related to warmup logic
 |                                 | before we enable traffic                   
 | ep_warmup_min_memory_threshold  | Percentage of max mem warmed up before     
 |                                 | we enable traffic
+| ep_warmup_estimate_time       | Estimated time in microseconds to do warmup
+
 
 
 ###KV Store Stats
