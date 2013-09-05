@@ -886,13 +886,24 @@ Make sure you perform compaction…
    Server log. You will see entries similar to following showing the compaction
    operation and duration:
 
-    ```
-    Service couchbase_compaction_daemon exited on node 'ns_1@127.0.0.1' in 0.00s
-    (repeated 1 times)
-    ```
+   * **Compaction activity log:** Compaction activity is reported in the Couchbase
+     Server log. You can see the following items for compaction:
 
-   For information on accessing the log, see
-   [Log](#couchbase-admin-web-console-log).
+      - **Autocompaction** Indicates compaction cannot be performed because of inadequate disk space
+
+     - **Manually triggered compaction**
+
+       - Compaction completed successfully
+       - Compaction failed
+
+     - **Purge deletes compaction**
+
+       - Compaction started/completed
+       - Compaction failed
+
+     For information on accessing the log, see
+     [Log](#couchbase-admin-web-console-log).
+
 
 <a id="couchbase-admin-tasks-compaction-autocompaction"></a>
 
