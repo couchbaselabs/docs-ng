@@ -77,7 +77,7 @@ There is a script which pulls the content and stages it and a cron job that runs
         git pull
         bundle exec nanoc
         
-
+This script will pull from a local mirror site containing all github repos for couchbase and couchbaselabs.
 
 
 
