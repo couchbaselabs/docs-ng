@@ -593,7 +593,7 @@ command-line tool, `cbepctl` to change this configuration:
 
 
 ```
-shell> ./cbepctl 10.5.2.31:11210 -b bucketname -p bucketpassword set tap_param tap_throttle_queue_cap 2000000
+shell> ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
 ```
 
 In this example we specify that a node sends replication backoff requests when
@@ -611,7 +611,7 @@ percentage or a specified number of items, replication requests will slow down:
 
 
 ```
-shell> ./cbepctl  10.5.2.31:11210 set -b bucketname tap_param tap_throttle_cap_pcnt 15
+shell> ./cbepctl  10.5.2.31:11210 set -b bucket_name tap_param tap_throttle_cap_pcnt 15
 ```
 
 In this example, we set the threshold to 15% of all items at a replica node.

@@ -467,7 +467,7 @@ You can find values for these important stats with the following command:
 
 
 ```
-shell> cbstats IP:11210 all | \
+shell> cbstats IP:11210 -b bucket_name -p bucket_password all | \
     egrep "todo|ep_queue_size|_eject|mem|max_data|hits|misses"
 ```
 
