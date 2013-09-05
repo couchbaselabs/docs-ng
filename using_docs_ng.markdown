@@ -70,6 +70,15 @@ Open your web browser to  localhost:3000/guide_name/
 
 When you content is ready to stage, commit it and send a pull request to have it added to the master branch in GitHub. This will get picked up by the staging server automatically.
 
+##Staging Server
+
+There is a script which pulls the content and stages it and a cron job that runs it. To run it, ssh to docs@docs.pub.couchbase.com with the correct key and run ./pull_publish.sh. Alternately you can perform:
+
+        git pull
+        bundle exec nanoc
+        
+
+
 
 
 

@@ -167,6 +167,9 @@ navbar:
 
       - label: Couchbase Lite Android Guide
         href: /couchbase-lite/cbl-android/
+        
+      - label: Couchbase Lite PhoneGap Guide
+        href: /couchbase-lite/cbl-phonegap/
 
   - label: Developer
     href: /couchbase-devguide-2.2/
