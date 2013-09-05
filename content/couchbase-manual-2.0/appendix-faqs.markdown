@@ -79,7 +79,7 @@
  * How do I change the per-node RAM quota?
 
     ```
-    shell> couchbase cluster-init -c \
+    shell> couchbase-cli cluster-init -c \
                cluster_IP:8091 -u username-p password
                 --cluster-init-ramsize=RAM_in_MB
     ```

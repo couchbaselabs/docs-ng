@@ -43,14 +43,14 @@ Your system should meet the following system requirements.
 Red Hat Enterprise Linux | 5           | 32 and 64 bit   | Developer and Production | RHEL 5.8               
 Red Hat Enterprise Linux | 6           | 32 and 64 bit   | Developer and Production | RHEL 6.3               
 CentOS                   | 5           | 32 and 64 bit   | Developer and Production | CentOS 5.8             
-CentOS                   | 6           | 32 and 64 bit   | Developer and Production | CentOS6.3              
+CentOS                   | 6           | 32 and 64 bit   | Developer and Production | CentOS 6.3              
 Amazon Linux             | 2011.09     | 32 and 64 bit   | Developer and Production |                        
 Ubuntu Linux             | 10.04       | 32 and 64 bit   | Developer and Production |                        
 Ubuntu Linux             | 12.04       | 32 and 64 bit   | Developer and Production | Ubuntu 12.04           
 Windows 2008             | R2 with SP1 | 64 bit          | Developer and Production | Windows 2008                              
-Windows 7                |             | 64 bit          | Developer only           |                        
-Windows 8                |             | 64 bit          | Developer only           |     
-Windows 2012            |             | 64 bit          | Developer and Production           |                     
+Windows 2012            |             | 64 bit          | Developer only           |  
+Windows 7                |             | 32 and 64 bit          | Developer only           |                        
+Windows 8                |             | 32 and 64 bit          | Developer only           |                        
 MacOS                    | 10.7        | 64 bit          | Developer only           |                        
 MacOS                    | 10.8        | 64 bit          | Developer only           | MacOS 10.8             
 
