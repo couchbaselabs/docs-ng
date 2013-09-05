@@ -52,7 +52,7 @@ $ npm install -g phonegap
 
 Get out a stopwatch, your 5 minutes starts now!
 
-1. Open a terminal window and change to the directory that you want to store your project in.
+1. Open a terminal window and change to the directory that you want to store the Todo Lite project in.
 
 2. Create a new PhoneGap project and change to its directory:
 
