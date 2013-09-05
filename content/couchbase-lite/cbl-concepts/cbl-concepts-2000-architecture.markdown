@@ -14,9 +14,9 @@ The mobile technology stack consists of:
 
 The following diagram illustrates the mobile technology stack:
 
-<img src="images/architecture.png" width="75%" />
+<img src="images/mobile-solution.png" width="100%" />
 
 Couchbase Server should be deployed behind your firewall (as databases normally are). Sync Gateway should be deployed on a server that can be accessed by mobile devices over the Internet and can also reach Couchbase Server. Mobile devices connect to Sync Gateway, which enforces access control and update validation policies.
 
-## Scaling the Architecture
+
 
