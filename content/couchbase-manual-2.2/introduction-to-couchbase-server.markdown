@@ -495,12 +495,13 @@ that document on disk. For more information about document expiration and
 deletion, see [Couchbase Developer Guide, About Document
 Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
 
+<a id="couchbase-introduction-tombstone-purge"></a>
 **Tombstone Purging**
 
 Couchbase Server and other distributed databases maintain tombstones in order to
 provide eventual consistency between nodes and between clusters. Tombstones are
 records of expired or deleted items and they include the key for the item as
-well as metadata. As of Couchbase Server 2.0, we stored the key plus 60 bytes of
+well as metadata. As of Couchbase Server 2.0+, we stored the key plus several bytes of
 metadata per deleted item in two structures per node. With millions of
 mutations, the space taken up by tombstones can grow quickly. This is especially
 the case if you have a large number of deletions or expired documents.
@@ -509,11 +510,11 @@ As of Couchbase Server 2.2+ you can now permanently remove tombstones from a
 data bucket during compaction by setting a timed interval. For setting the purge
 interval:
 
- * In Web Console, see [Enabling
+ * In Web Console, see [Using Web Console, Enabling
    Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).
 
- * You can also change this interval via REST, see [Enabling
-   Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).
+ * You can also change this interval via REST, see [Using REST API, Setting 
+   Auto-Compaction](#couchbase-admin-rest-auto-compaction).
 
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
 

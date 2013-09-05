@@ -2758,9 +2758,44 @@ For example, you can send a request using `curl` :
 In Couchbase Server you can also provide auto-compaction settings which will 
 trigger data and view compaction based on certain settings. These settings can be 
 made for an entire cluster or for a bucket in a cluster. 
-For background information on compaction see [Admin Tasks, Compaction Process](#couchbase-admin-tasks-compaction-process). 
-To change these settings, see 
+For background information, see [Admin Tasks, Compaction Process](#couchbase-admin-tasks-compaction-process). 
+To details about each setting, see 
 [Admin Tasks, Auto-Compaction Configuration](#couchbase-admin-tasks-compaction-autocompaction)
+
+
+
+**Auto-Compaction API**
+
+| REST API   | Description           
+| ------------- |:-------------:| 
+| POST /controller/setAutoCompaction   | Set cluster-wise auto-compaction intervals and thresholds
+| GET /settings/autoCompaction  | Read cluster-wise settings for auto-compaction    
+| GET /pools/default/buckets/<bucket_name> | Read auto-compaction settings for named bucket   
+| POST/pools/default/buckets/<bucket_name>| Set auto-compaction interval or thresholds for named bucket
+
+**Auto-Compaction Parameters**
+
+You can use the following parameters for global auto-compaction settings which apply to all buckets in a cluster at `/controller/setAutoCompaction`. You also use these at `/pools/default/buckets/<bucket_name>`  
+for bucket-level auto-compaction. You will need to provide administrative credentials to change these settings.
+
+As of Couchbase Server 2.2+ you can provide a purge interval to remove the key and metadata 
+for items that have been deleted or are expired. This is known as 'tombstone purging'. 
+For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
+
+| Parameter   | Value | Notes
+| ------------- |:-------------:|-------------:|
+| databaseFragmentationThreshold[percentage]  |  Integer between 2 and 100 | Percentage disk fragmentation for data
+| databaseFragmentationThreshold[size] | Integer greater than 1 | MB of disk fragmentation for data
+| viewFragmentationThreshold[percentage] | Integer between 2 and 100 |  Percentage disk fragmentation for index
+| viewFragmentationThreshold[size] | Integer greater than 1 |  MB of disk fragmentation for index
+| parallelDBAndViewCompaction | True or false | Run index and data compaction in parallel
+| allowedTimePeriod[fromHour] | Integer between 0 and 23 | Compaction can occur from this hour onward
+| allowedTimePeriod[toHour] | Integer between 0 and 23 | Compaction can occur up to this hour
+| allowedTimePeriod[fromMinute] | Integer between 0 and 59 | Compaction can occur from this minute onward
+| allowedTimePeriod[toMinute] | Integer between 0 and 59 | Compaction can occur up to this minute
+| allowedTimePeriod[abortOutside] | True or false | Terminate compaction if process takes longer than allowed time
+| purgeInterval | Integer between 1 and 60 | Number of days a item is deleted or expired. The key and metadata for that item will be purged by auto-compaction
+
 
 To read current auto-compaction settings for a cluster:
 
@@ -2806,7 +2841,9 @@ Couchbase Server sends a JSON response with auto-compaction settings for the `bu
         }
     }
 
-This indicates a `purgeInterval` of two days
+This indicates a tombstone `purgeInterval` of two days with a threshold of 30% disk fragmentation for data and views. This means items can be expired for two days or deleted two ago and their tombstones will be purged during the next auto-compaction run.
+
+
 
 <a id="couchbase-admin-restapi-views"></a>
 

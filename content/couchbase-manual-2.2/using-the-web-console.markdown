@@ -1694,6 +1694,9 @@ Buckets](#couchbase-admin-web-console-data-buckets-createedit). For
 information about changing these settings with the REST API, see 
 [Using the REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
+As of Couchbase Server 2.2+ you can provide a purge interval to remove the key and metadata 
+for items that have been deleted or are expired. This is known as 'tombstone purging'. 
+For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 
 ![](images/web-console-server-settings-autocompact.png)
 
