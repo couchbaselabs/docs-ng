@@ -41,7 +41,7 @@ Note: the format of `admin_channels` is likely to change in the future, probably
 
 *Roles* are named collections of channels. A user account can be assigned to zero or more roles. A user inherits the channel access of all roles it belongs to. This is very much like Unix groups, except that roles do not form a hierarchy.
 
-You access roles through the Admin API much like users are, through URLs of the form "/_database_/_role/_name_". Role resources have a subset of the properties that users do: `name`, `admin_channels`, `all_channels`.
+You access roles through the Admin REST API much like users are accessed, through URLs of the form "/_database_/_role/_name_". Role resources have a subset of the properties that users do: `name`, `admin_channels`, `all_channels`.
 
 Roles have a separate namespace from users, so it's legal to have a user and a role with the same name.
 

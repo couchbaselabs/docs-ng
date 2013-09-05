@@ -91,9 +91,9 @@ $ sync_gateway -log=HTTP+,CRUD config.json
 
 Sync Gateway provides the following REST APIs:
 
-* The [Sync REST API](#sync-rest-api) is used for client replication. The default port for the Sync API is 4984.
+* The [Sync REST API](#sync-rest-api) is used for client replication. The default port for the Sync REST API is 4984.
 
-* The [Admin REST API](#admin-rest-api) is used mostly to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin API is 4985.
+* The [Admin REST API](#admin-rest-api) is used mostly to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin REST API is 4985.
 
 ### Managing API Access
 
@@ -103,7 +103,7 @@ If you want to change the ports, you can do that in the configuration file. To c
 
 ### Enabling API Access
 
-Sync Gateway does not allow anonymous or guest access by default. A new server is accessible through the Sync API only after you enable guest access or create some user accounts. You can do this either by editing the configuration file before starting the server or by using the Admin API.
+Sync Gateway does not allow anonymous or guest access by default. A new server is accessible through the Sync REST API only after you enable guest access or create some user accounts. You can do this either by editing the configuration file before starting the server or by using the Admin REST API.
 
 <p style="border-style:solid;padding:10px;">
 <strong>Warning</strong>: If you enable guest access, all data is accessible to any client without authentication. If you need to enable guest access temporarily, be sure to disable it later.
@@ -129,7 +129,7 @@ To enable guest access via a configuration file,  add a guest user to a `users` 
 }
 ```
 
-The following sample command shows how to modify the guest account through the Admin API:
+The following sample command shows how to modify the guest account through the Admin REST API:
 
 ```
 $ curl -X PUT localhost:4985/$DB/_user/GUEST --data '{"disabled":false, "admin_channels":["*"]}'
