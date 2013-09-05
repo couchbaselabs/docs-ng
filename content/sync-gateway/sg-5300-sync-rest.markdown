@@ -1,8 +1,45 @@
-## Sync REST Protocol
+## Sync REST API
 
-The sync takes place over HTTP and JSON. [Perhaps the best documentation of the protocol is on the Couchbase Lite wiki](https://github.com/couchbase/couchbase-lite-ios/wiki/Replication-Algorithm). 
+You use the Sync REST API to synchronize a local database with a remote database. The sync takes place over HTTP and uses JSON documents in the message bodies. For more information about the synchronization protocol, see [Replication Algorithm](https://github.com/couchbase/couchbase-lite-ios/wiki/Replication-Algorithm).
 
-Using web standards means mobile networks are built to handle our sync protocol. 
+To access the Sync REST API, you need to have a user account.
 
-Click here if you want to see [the URL mappings in the Sync Gateway source code.](https://github.com/couchbaselabs/sync_gateway/blob/master/rest/rest.go#L704)
 
+### HTTP Requests
+
+You can use the following requests on the remote database. Replace *db* with the dame of your database.
+
+**Push or Pull Requests:**
+
+* Read the last checkpoint  
+		GET /*db*/_local/*checkpointid*
+
+* Save a new checkpoint  
+		PUT /*db*/_local/*checkpointid*
+
+
+**Push Requests:**
+
+* Create remote database  
+		PUT /*db*
+
+* Find revisions that are not known to the remote database  
+		POST /*db* /_revs_diff
+
+* Upload revisions  
+		POST /*db*/_bulk_docs
+
+* Upload a single document with attachments  
+		POST /*db*/_docid_?new_edits=false 
+
+
+**Pull Requests:**
+
+* Find changes since the last pull (_feed_ will be normal or longpoll)  
+		GET /*db*/_changes?style=all_docs&feed=*feed*&since=*since*&limit=*limit*&heartbeat=*heartbeat*
+
+* Download a single document with attachments  
+		GET /*db*/*docid*?rev=*revid*&revs=true&attachments=true&atts_since=*lastrev* 
+
+* Download first-generation revisions in bulk  
+POST /*db*/_all_docs?include_docs=true
