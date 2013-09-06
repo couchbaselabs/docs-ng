@@ -52,14 +52,14 @@ When your app launches, after creating a `CBLDatabase` instance for its database
 
 
     CBLManager* dbManager = [[CBLManager sharedInstance] init];
-    CBLDatabase* database = [dbManager databaseNamed: @"Catalog"
+    CBLDatabase* database = [dbManager databaseNamed: @"catalog"
                                                error: &error];
     if (!database) {
-        NSString* cannedDbPath = [[NSBundle mainBundle] pathForResource: @"Catalog"
+        NSString* cannedDbPath = [[NSBundle mainBundle] pathForResource: @"catalog"
                                                                  ofType: @"touchdb"];
         NSString* cannedAttPath = [[NSBundle mainBundle] pathForResource: @"Catalog attachments"
                                                                   ofType: @""];
-        BOOL ok = [dbManager replaceDatabaseNamed: @"Catalog"
+        BOOL ok = [dbManager replaceDatabaseNamed: @"catalog"
                                  withDatabaseFile: cannedDbPath
                                   withAttachments: cannedAttPath
                                             error: &error];

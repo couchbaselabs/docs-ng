@@ -24,7 +24,7 @@ If you want to add or modify source code in Couchbase Lite, please read and foll
 
 In general, go with Apple's style. However, we have idiosyncrasies and would prefer that you:
 
-* Put spaces after the colons in messages-sends. For example:  
+* Put spaces after the colons in messages. For example:  
 
         [foo bar: 1 baz: 0]
         
@@ -48,11 +48,18 @@ The following guidelines are mandatory:
 
 ### Name Prefixes
 
+Use the following object naming conventions:
+
 * Classes: `CBL` (`CBL_` is used for some private classes to prevent name conflicts with public classes.)
+
 * Instance variables: `_`
+
 * Category methods on external classes: `cbl_`
+
 * Constants: `kCBL` (do not use `ALL_CAPS`)
+
 * Static variables: `s` (even if defined inside a function/method!)
+
 * Static functions: No prefix, just lowercase.
 
 

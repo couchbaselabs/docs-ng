@@ -29,7 +29,7 @@ A replication object has several properties you can observe to track its progres
  * **error**—set to an `NSError` if the replication fails
  * **mode**—an enumeration that tells you whether the replication is stopped, offline, idle or active. Offline means the server is unreachable over the network. Idle means the replication is continuous but there is currently nothing left to be copied.
 
-Generally you can get away with just observing `completed`:
+Generally you can just observing `completed`:
 
     [self.pull addObserver: self forKeyPath: @"completed" options: 0 context: NULL];
     [self.push addObserver: self forKeyPath: @"completed" options: 0 context: NULL];

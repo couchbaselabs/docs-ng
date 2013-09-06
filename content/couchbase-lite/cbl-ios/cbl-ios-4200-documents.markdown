@@ -9,11 +9,11 @@ You create a new document when the user creates a persistent data item in your a
 Here's an example from the Grocery Sync demo app:
 
 ```
-	NSDictionary *contents = [NSDictionary dictionaryWithObjectsAndKeys:
-								text, @"text",
-                                [NSNumber numberWithBool:NO], @"check",
-                                [RESTBody JSONObjectWithDate: [NSDate date]], @"created_at",
-                                nil];
+NSDictionary *contents = 
+     @{@"text"       : text,
+       @"check"      : [NSNumber numberWithBool:NO],
+       @"created_at" : [CBLJSON JSONObjectWithDate: [NSDate date]]};
+
 ```
 
 Next, ask the `CBLDatabase` object, which you instantiated when you initialized Couchbase Lite, for a new document. This doesn't add anything to the database yet &mdash; just like the **New** command in a typical Mac or Windows app, the document is not stored on disk until you save some data into it. Continuing from the previous example:
