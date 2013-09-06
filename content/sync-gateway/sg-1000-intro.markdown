@@ -7,5 +7,6 @@ Couchbase Server Sync Gateway is an add-on that enables Couchbase Server 2.0 and
 
 Sync Gateway provides an HTTP front-end for Couchbase Server that syncs with Couchbase Lite. The following figure shows how Sync Gateway interacts with mobile apps and Couchbase Server.
 
-![](images/architecture.png)
+<img src="images/mobile-solution.png" width="100%" />
+
 
