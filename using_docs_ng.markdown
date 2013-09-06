@@ -20,7 +20,7 @@ The entire new site as well as new content are in a public GitHub repo you can b
 - To check the branch you are on use `git branch`
 - Commit your changes, `git add` and `git commit`
 - Push change to staging repo: `git push`
-- When you are ready, send a pull request so your changes can be merged and published
+- When you areready, send a pull request so your changes can be merged and published
 
 - Tech Pubs will elevate any content from the stage repo to the master repo, resolving any merge conflicts if needed:
 
@@ -37,7 +37,7 @@ The entire new site as well as new content are in a public GitHub repo you can b
 TechPubs will set up your new folder for new guides or new major versions, for example this_guide_name-X.X. TechPubs will also set up the YAML file to include menu options and navigation to your guide. Follow these guidelines once your file is set up:
 
 - Create .markdown files for each chapter in your guide.
-- Create an index.erb file at the root of your guide. In this file add an include statement for each .markdown chapter, for instance: 
+- Create an index.erb file at the root of the content folder. In this file add an include statement for each .markdown chapter, for instance: 
 
     <%= include_item 'couchbase-devguide-2.0/couchbase-developer-s-guide-2.0' %>
     
@@ -69,6 +69,15 @@ nanoc view
 Open your web browser to  localhost:3000/guide_name/
 
 When you content is ready to stage, commit it and send a pull request to have it added to the master branch in GitHub. This will get picked up by the staging server automatically.
+
+##Staging Server
+
+There is a script which pulls the content and stages it and a cron job that runs it. To run it, ssh to docs@docs.pub.couchbase.com with the correct key and run ./pull_publish.sh. Alternately you can perform:
+
+        git pull
+        bundle exec nanoc
+        
+This script will pull from a local mirror site containing all github repos for couchbase and couchbaselabs.
 
 
 

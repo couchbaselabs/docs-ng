@@ -182,12 +182,12 @@ working\_set\_percentage | 20%
 
 <a id="couchbase-bestpractice-sizing-ram-sample-constants"></a>
 
-Constants               | value
-------------------------|------
-Type of Storage         | SSD  
-overhead\_percentage    | 25%  
-metadata\_per\_document | 120  
-high\_water\_mark       | 70%  
+Constants               | value                   
+------------------------|-------------------------
+Type of Storage         | SSD                     
+overhead\_percentage    | 25%                     
+metadata\_per\_document | 56 for 2.1, 64 for 2.0.X
+high\_water\_mark       | 70%                     
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>
 
@@ -467,7 +467,7 @@ You can find values for these important stats with the following command:
 
 
 ```
-shell> cbstats IP:11210 all | \
+shell> cbstats IP:11210 -b bucket_name -p bucket_password all | \
     egrep "todo|ep_queue_size|_eject|mem|max_data|hits|misses"
 ```
 
@@ -605,6 +605,22 @@ When deploying within the cloud, consider the following areas:
  * Security groups/firewall settings
 
  * Swap Space
+
+**How to Handle Instance Reboot in Cloud**
+
+Many cloud providers warn users that they need to reboot certain instances for
+maintenance. Couchbase Server ensures these reboots won't disrupt your
+application. Take the following steps to make that happen:
+
+ 1. Install Couchbase on the new node.
+
+ 1. From the user interface, add the new node to the cluster.
+
+ 1. From the user interface, remove the node that you wish to reboot.
+
+ 1. Rebalance the cluster.
+
+ 1. Shut down the instance.
 
 <a id="couchbase-bestpractice-cloud-localstorage"></a>
 

@@ -951,7 +951,7 @@ known as the *high water mark*. The server determines that items are not
 frequently used based on a boolean for each item known as NRU
 (Not-Recently-used). There a few settings you can adjust to change server
 behavior during the ejection process. In general, we do not recommend you change
-ejection defaults for Couchbase Server 2.0 unless you are required to do so.
+ejection defaults for Couchbase Server 2.0+ unless you are required to do so.
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -961,8 +961,8 @@ node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster.
 
-For technical information about the ejection process, the role of NRU and server
-processes related to ejection, see [Ejection and Working Set
+For background information about the ejection process, the role of NRU and
+server processes related to ejection, see [Ejection and Working Set
 Management](#couchbase-admin-tasks-working-set-mgmt).
 
 **Setting the Low Water Mark**
@@ -973,7 +973,7 @@ written to disk. To change this percentage for instance:
 
 
 ```
-shell>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 65
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 70
 ```
 
 You can also provides an absolute number of bytes when you change this setting.
@@ -986,11 +986,11 @@ Couchbase command-line tool, `cbepctl` :
 
 
 ```
-shell>    ./cbepctl 10.5.2.31:11210 -b bucket_name -b bucket_password set flush_param mem_high_wat 70
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -b bucket_password set flush_param mem_high_wat 80
 ```
 
-Here we set the high water mark to be 70% of RAM for a specific data bucket on a
-given node. This means that items in RAM on this node can consume up to 70% of
+Here we set the high water mark to be 80% of RAM for a specific data bucket on a
+given node. This means that items in RAM on this node can consume up to 80% of
 RAM before the item pager begins ejecting items. You can also specify an
 absolute number of bytes when you set this threshold.
 
@@ -998,16 +998,13 @@ absolute number of bytes when you set this threshold.
 
 After Couchbase Server removes all infrequently-used items and the high water
 mark is still breached, the server will then eject replicated data and active
-data from a node whether or not the data is frequently or infrequently used. By
-default, the server is configured to eject 40% random active items and will
-eject 60% random replica data from a node.
-
-You change also the default percentage for ejection of active items versus
-replica items using the Couchbase command-line tool, `cbepctl` :
+data from a node whether or not the data is frequently or infrequently used. You
+change also the default percentage for ejection of active items versus replica
+items using the Couchbase command-line tool, `cbepctl` :
 
 
 ```
-shell>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
 ```
 
 This increases the percentage of active items that can be ejected from a node to
@@ -1021,10 +1018,6 @@ replica data will not be immediately available. In that case, Couchbase Server
 has to retrieve the items from disk back into RAM and then it can respond to the
 requests. For Couchbase Server 2.0 we generally recommend that you do not change
 these defaults.
-
-For technical information about the ejection process, the role of NRU and server
-processes related to ejection, see [Ejection and Working Set
-Management](#couchbase-admin-tasks-working-set-mgmt).
 
 <a id="couchbase-admin-cbepctl-mutation_mem"></a>
 

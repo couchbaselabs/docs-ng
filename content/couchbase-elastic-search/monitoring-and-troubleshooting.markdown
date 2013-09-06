@@ -396,4 +396,4 @@ some additional resources:
    than one way, and to provide custom mappings which influence your search
    results.
 
-<a id="licenses"></a>
+<a id="elasticsearch-release-notes"></a>

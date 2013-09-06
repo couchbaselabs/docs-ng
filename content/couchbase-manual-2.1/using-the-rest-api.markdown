@@ -785,19 +785,34 @@ bucket response. By default this request returns stats samples for the last
 minute and for heavily used keys. You use provide additional query parameters in
 a request to get a more detailed level of information:
 
- * zoom - stats zoom level (minute | hour | day | week | month | year)
+ * **zoom** - provide statistics sampling for that bucket stats at a particular
+   interval (minute | hour | day | week | month | year). For example zoom level of
+   minute will provide bucket statistics from the past minute, a zoom level of day
+   will provide bucket statistics for the past day, and so on. If you provide no
+   zoom level, the server returns samples from the past minute.
 
- * resampleForUI - pass 1 if you need 60 samples
+ * **haveTStamp** - request statistics from this timestamp until now. You provide
+   the timestamp as UNIX epoch time. You can get a timestamp for a timeframe by
+   making a REST request to the endpoint with a zoom level.
 
- * haveTStamp - request sending only samples newer than given timestamp
+The following is a sample request to the endpoint with no parameters:
 
 
 ```
-GET /pools/default/stats
+curl -u user:password http://hostname:8091/pools/default/buckets/bucket_name/stats
+```
+
+The actual request appears as follows:
+
+
+```
+GET /pools/default/buckets/<bucket name>/stats
 Host: localhost:8091
 Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
+
+Upon success, you will see output similar to the following:
 
 
 ```
@@ -869,6 +884,222 @@ Content-Length: nnn
             }
         ]
     }
+}
+```
+
+The follow are sample requests at this endpoint with optional parameters:
+
+ *  ```
+    curl -u user:password  -d zoom=minute http://hostname:8091/pools/default/buckets/bucket_name/stats
+    ```
+
+   This will sample statistics from a bucket for the last minute.
+
+ *  ```
+    curl -u user:password  -d zoom=day http://hostname:8091/pools/default/buckets/bucket_name/stats
+    ```
+
+   This will sample statistics from a bucket for the past day.
+
+ * Using zoom level of a month:
+
+    ```
+    curl -u user:password  -d zoom=month http://hostname:8091/pools/default/buckets/bucket_name/stats
+    ```
+
+   This will sample statistics from a bucket for the last month.
+
+ * Using zoom level of an hour from a specific timestamp:
+
+    ```
+    curl -u user:password  -d zoom=hour&haveTStamp=1376963720000 http://hostname:8091/pools/default/buckets/bucket_name/stats
+    ```
+
+   This will sample statistics from a bucket from the timestamp until the server
+   receives the REST request.
+
+Sample output for each of these requests appears in the same format and with the
+same fields. Depending on the level of bucket activity, there may be more detail
+for each field or less. We the sake of brevity we have omitted sample output for
+each category.
+
+
+```
+{
+  "hot_keys": [],
+  "op": {
+    "interval": 1000,
+    "lastTStamp": 1376963580000,
+    "isPersistent": true,
+    "samplesCount": 1440,
+    "samples": {
+      "timestamp": [1376955060000, 1376955120000, 1376955180000, 1376955240000, ... ],
+      "xdc_ops": [0, 0, 0, 0, ... ],
+      "vb_total_queue_age": [0, 0, 0, 0, ... ],
+      "vb_replica_queue_size": [0, 0, 0, 0, ... ],
+      "vb_replica_queue_fill": [0, 0, 0, 0, ... ],
+      "vb_replica_queue_drain": [0, 0, 0, 0, ... ],
+      "vb_replica_queue_age": [0, 0, 0, 0, ... ],
+      "vb_replica_ops_update": [0, 0, 0, 0, ... ],
+      "vb_replica_ops_create": [0, 0, 0, 0, ... ],
+      "vb_replica_num_non_resident": [0, 0, 0, 0, ... ],
+      "vb_replica_num": [0, 0, 0, 0, ... ],
+      "vb_replica_meta_data_memory": [0, 0, 0, 0, ... ],
+      "vb_replica_itm_memory": [0, 0, 0, 0, ... ],
+      "vb_replica_eject": [0, 0, 0, 0, ... ],
+      "vb_replica_curr_items": [0, 0, 0, 0, ... ],
+      "vb_pending_queue_size": [0, 0, 0, 0, ... ],
+      "vb_pending_queue_fill": [0, 0, 0, 0, ... ],
+      "vb_pending_queue_drain": [0, 0, 0, 0, ... ],
+      "vb_pending_queue_age": [0, 0, 0, 0, ... ],
+      "vb_pending_ops_update": [0, 0, 0, 0, ... ],
+      "vb_pending_ops_create": [0, 0, 0, 0, ... ],
+      "vb_pending_num_non_resident": [0, 0, 0, 0, ... ],
+      "vb_pending_num": [0, 0, 0, 0, ... ],
+      "vb_pending_meta_data_memory": [0, 0, 0, 0, ... ],
+      "vb_pending_itm_memory": [0, 0, 0, 0, ... ],
+      "vb_pending_eject": [0, 0, 0, 0, ... ],
+      "vb_pending_curr_items": [0, 0, 0, 0, ... ],
+      "vb_active_queue_size": [0, 0, 0, 0, ... ],
+      "vb_active_queue_fill": [0, 0, 0, 0, ... ],
+      "vb_active_queue_drain": [0, 0, 0, 0, ... ],
+      "vb_active_queue_age": [0, 0, 0, 0, ... ],
+      "vb_active_ops_update": [0, 0, 0, 0, ... ],
+      "vb_active_ops_create": [0, 0, 0, 0, ... ],
+      "vb_active_num_non_resident": [0, 0, 0, 0, ... ],
+      "vb_active_num": [1024, 1024, 1024, 1024, ... ],
+      "vb_active_meta_data_memory": [0, 0, 0, 0, ... ],
+      "vb_active_itm_memory": [0, 0, 0, 0, ... ],
+      "vb_active_eject": [0, 0, 0, 0, ... ],
+      "ep_ops_create": [0, 0, 0, 0, ... ],
+      "ep_oom_errors": [0, 0, 0, 0, ... ],
+      "ep_num_value_ejects": [0, 0, 0, 0, ... ],
+      "ep_num_ops_set_ret_meta": [0, 0, 0, 0, ... ],
+      "ep_num_ops_set_meta": [0, 0, 0, 0, ... ],
+      "ep_num_ops_get_meta": [0, 0, 0, 0, ... ],
+      "ep_num_ops_del_ret_meta": [0, 0, 0, 0, ... ],
+      "ep_num_ops_del_meta": [0, 0, 0, 0, ... ],
+      "ep_num_non_resident": [0, 0, 0, 0, ... ],
+      "ep_meta_data_memory": [0, 0, 0, 0, ... ],
+      "ep_mem_low_wat": [402653184, 402653184, 402653184, 402653184, ... ],
+      "ep_mem_high_wat": [456340275, 456340275, 456340275, 456340275, ... ],
+      "ep_max_data_size": [536870912, 536870912, 536870912, 536870912, ... ],
+      "ep_kv_size": [0, 0, 0, 0, ... ],
+      "ep_item_commit_failed": [0, 0, 0, 0, ... ],
+      "ep_flusher_todo": [0, 0, 0, 0, ... ],
+      "ep_diskqueue_items": [0, 0, 0, 0, ... ],
+      "ep_diskqueue_fill": [0, 0, 0, 0, ... ],
+      "ep_diskqueue_drain": [0, 0, 0, 0, ... ],
+      "ep_bg_fetched": [0, 0, 0, 0, ... ],
+      "disk_write_queue": [0, 0, 0, 0, ... ],
+      "disk_update_total": [0, 0, 0, 0, ... ],
+      "disk_update_count": [0, 0, 0, 0, ... ],
+      "disk_commit_total": [0, 0, 0, 0, ... ],
+      "disk_commit_count": [0, 0, 0, 0, ... ],
+      "delete_misses": [0, 0, 0, 0, ... ],
+      "delete_hits": [0, 0, 0, 0, ... ],
+      "decr_misses": [0, 0, 0, 0, ... ],
+      "decr_hits": [0, 0, 0, 0, ... ],
+      "curr_items_tot": [0, 0, 0, 0, ... ],
+      "curr_items": [0, 0, 0, 0, ... ],
+      "curr_connections": [9, 9, 9, 9, ... ],
+      "avg_bg_wait_time": [0, 0, 0, 0, ... ],
+      "avg_disk_commit_time": [0, 0, 0, 0, ... ],
+      "avg_disk_update_time": [0, 0, 0, 0, ... ],
+      "vb_pending_resident_items_ratio": [0, 0, 0, 0, ... ],
+      "vb_replica_resident_items_ratio": [0, 0, 0, 0, ... ],
+      "vb_active_resident_items_ratio": [0, 0, 0, 0, ... ],
+      "vb_avg_total_queue_age": [0, 0, 0, 0, ... ],
+      "vb_avg_pending_queue_age": [0, 0, 0, 0, ... ],
+      "couch_total_disk_size": [8442535, 8449358, 8449392, 8449392, ... ],
+      "couch_docs_fragmentation": [0, 0, 0, 0, ... ],
+      "couch_views_fragmentation": [0, 0, 0, 0, ... ],
+      "hit_ratio": [0, 0, 0, 0, ... ],
+      "ep_cache_miss_rate": [0, 0, 0, 0, ... ],
+      "ep_resident_items_rate": [100, 100, 100, 100, ... ],
+      "vb_avg_active_queue_age": [0, 0, 0, 0, ... ],
+      "vb_avg_replica_queue_age": [0, 0, 0, 0, ... ],
+      "bg_wait_count": [0, 0, 0, 0, ... ],
+      "bg_wait_total": [0, 0, 0, 0, ... ],
+      "bytes_read": [103.5379762658911, 103.53627151841438, 103.53627262555834, 103.53739884434893, ... ],
+      "bytes_written": [20793.105529503482, 20800.99759272974, 20802.109356966503, 20803.59949917707, ... ],
+      "cas_badval": [0, 0, 0, 0, ... ],
+      "cas_hits": [0, 0, 0, 0, ... ],
+      "cas_misses": [0, 0, 0, 0, ... ],
+      "cmd_get": [0, 0, 0, 0, ... ],
+      "cmd_set": [0, 0, 0, 0, ... ],
+      "couch_docs_actual_disk_size": [8442535, 8449358, 8449392, 8449392, ... ],
+      "couch_docs_data_size": [8435712, 8435712, 8435712, 8435712, ... ],
+      "couch_docs_disk_size": [8435712, 8435712, 8435712, 8435712, ... ],
+      "couch_views_actual_disk_size": [0, 0, 0, 0, ... ],
+      "couch_views_data_size": [0, 0, 0, 0, ... ],
+      "couch_views_disk_size": [0, 0, 0, 0, ... ],
+      "couch_views_ops": [0, 0, 0, 0, ... ],
+      "ep_ops_update": [0, 0, 0, 0, ... ],
+      "ep_overhead": [27347928, 27347928, 27347928, 27347928, ... ],
+      "ep_queue_size": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_count": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_qlen": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_queue_backfillremaining": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_queue_backoff": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_queue_drain": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_queue_fill": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_queue_itemondisk": [0, 0, 0, 0, ... ],
+      "ep_tap_rebalance_total_backlog_size": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_count": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_qlen": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_queue_backfillremaining": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_queue_backoff": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_queue_drain": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_queue_fill": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_queue_itemondisk": [0, 0, 0, 0, ... ],
+      "ep_tap_replica_total_backlog_size": [0, 0, 0, 0, ... ],
+      "ep_tap_total_count": [0, 0, 0, 0, ... ],
+      "ep_tap_total_qlen": [0, 0, 0, 0, ... ],
+      "ep_tap_total_queue_backfillremaining": [0, 0, 0, 0, ... ],
+      "ep_tap_total_queue_backoff": [0, 0, 0, 0, ... ],
+      "ep_tap_total_queue_drain": [0, 0, 0, 0, ... ],
+      "ep_tap_total_queue_fill": [0, 0, 0, 0, ... ],
+      "ep_tap_total_queue_itemondisk": [0, 0, 0, 0, ... ],
+      "ep_tap_total_total_backlog_size": [0, 0, 0, 0, ... ],
+      "ep_tap_user_count": [0, 0, 0, 0, ... ],
+      "ep_tap_user_qlen": [0, 0, 0, 0, ... ],
+      "ep_tap_user_queue_backfillremaining": [0, 0, 0, 0, ... ],
+      "ep_tap_user_queue_backoff": [0, 0, 0, 0, ... ],
+      "ep_tap_user_queue_drain": [0, 0, 0, 0, ... ],
+      "ep_tap_user_queue_fill": [0, 0, 0, 0, ... ],
+      "ep_tap_user_queue_itemondisk": [0, 0, 0, 0, ... ],
+      "ep_tap_user_total_backlog_size": [0, 0, 0, 0, ... ],
+      "ep_tmp_oom_errors": [0, 0, 0, 0, ... ],
+      "ep_vb_total": [1024, 1024, 1024, 1024, ... ],
+      "evictions": [0, 0, 0, 0, ... ],
+      "get_hits": [0, 0, 0, 0, ... ],
+      "get_misses": [0, 0, 0, 0, ... ],
+      "incr_hits": [0, 0, 0, 0, ... ],
+      "incr_misses": [0, 0, 0, 0, ... ],
+      "mem_used": [27347928, 27347928, 27347928, 27347928, ... ],
+      "misses": [0, 0, 0, 0, ... ],
+      "ops": [0, 0, 0, 0, ... ],
+      "replication_active_vbreps": [0, 0, 0, 0, ... ],
+      "replication_bandwidth_usage": [0, 0, 0, 0, ... ],
+      "replication_changes_left": [0, 0, 0, 0, ... ],
+      "replication_commit_time": [0, 0, 0, 0, ... ],
+      "replication_data_replicated": [0, 0, 0, 0, ... ],
+      "replication_docs_checked": [0, 0, 0, 0, ... ],
+      "replication_docs_latency_aggr": [0, 0, 0, 0, ... ],
+      "replication_docs_latency_wt": [0, 0, 0, 0, ... ],
+      "replication_docs_rep_queue": [0, 0, 0, 0, ... ],
+      "replication_docs_written": [0, 0, 0, 0, ... ],
+      "replication_meta_latency_aggr": [0, 0, 0, 0, ... ],
+      "replication_meta_latency_wt": [0, 0, 0, 0, ... ],
+      "replication_num_checkpoints": [0, 0, 0, 0, ... ],
+      "replication_num_failedckpts": [0, 0, 0, 0, ... ],
+      "replication_rate_replication": [0, 0, 0, 0, ... ],
+      "replication_size_rep_queue": [0, 0, 0, 0, ... ],
+      "replication_waiting_vbreps": [0, 0, 0, 0, ... ],
+      "replication_work_time": [0, 0, 0, 0, ... ]
+    }
+  }
 }
 ```
 
@@ -1201,9 +1432,10 @@ You cannot change the name of a bucket via the REST API.
 
 ### Increasing the Memory Quota for a Bucket
 
-Increasing a bucket's ramQuotaMB from the current level. Note, the system will
-not let you decrease the ramQuotaMB for a couchbase bucket type and memcached
-bucket types will be flushed when the ramQuotaMB is changed:
+You can increase and decrease a bucket's ramQuotaMB from its current level.
+However, while increasing will do no harm, decreasing should be done with proper
+sizing. Decreasing the bucket's ramQuotaMB lowers the watermark, and some items
+may be unexpectedly ejected if the ramQuotaMB is set too low.
 
 As of 1.6.0, there are some known issues with changing the ramQuotaMB for
 memcached bucket types.
@@ -2074,7 +2306,7 @@ this value. No parameters are required:
 
 
 ```
-shell> curl -i -u Administrator:letmein \
+shell> curl -X POST -i -u Administrator:letmein \
     http://localhost:8091/settings/autoFailover/resetCount
 ```
 

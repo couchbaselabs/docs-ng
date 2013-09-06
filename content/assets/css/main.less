@@ -1,12 +1,23 @@
 @import "bootstrap/bootstrap.less";
 @import "bootstrap/responsive.less";
 @import "tomorrow.less";
-@import "print.less";
 
 h1, h2, h3, h4 {
   color: @cbred;
-  size: .5em;
 }
+
+h1 {
+size: 14px;
+}
+
+h2 {
+size: 13px;
+}
+
+h3, h4 {
+size: 12px;
+}
+
 
 .sub-menu {
   height: 0px;
@@ -33,12 +44,12 @@ h1, h2, h3, h4 {
 
 #sidenav.affix {
     bottom: 0;
-    top: 120px;
+    top: 125px;
     overflow: auto;
 }
 #sidenav.affix-top {
     position: absolute;
-    top: 120px;
+    top: 125px;
 }
 
 .mdcontent {
@@ -160,3 +171,171 @@ h1:hover, h2:hover, h3:hover, h4:hover {
     margin-bottom: -20px;
 }
 
+// header styles from Linda start here
+
+
+.guide_title {
+  margin-top: 0;
+}
+.jumptarget:before {
+  height: 155px;
+  font-size: 80%;
+}
+#header-main {
+  text-align: center;
+}
+#header-main .block-menu_block,
+#header-main .block-google_cse {
+  display: none;
+}
+#sidenav.affix-top {
+  top: 160px;
+}
+.gsc-search-box input.gsc-input {
+  width: 95%;
+  margin-bottom: 0;
+}
+.gsc-clear-button {
+  display: none;
+}
+#header {
+  font-family: "ff-kievit-web", sans-serif;
+  background: #fff;
+}
+#header .block-menu_block {
+  position: absolute;
+  left: 158px;
+  top: 0px;
+}
+#header .block-menu_block ul {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+#header .block-menu_block li {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  list-style: none;
+  height: 72px;
+}
+#header .block-menu_block li a {
+  padding: 0 8px;
+  color: #333;
+  height: 72px;
+  line-height: 64px;
+  display: block;
+}
+#header .block-menu_block li a:hover {
+  color: #99549f;
+}
+#header .block-menu_block li.active,
+#header .block-menu_block li.active-trail {
+  background: url(/assets/img/nav_active_bg.png) no-repeat top right;
+}
+#header .block-menu_block li.active a,
+#header .block-menu_block li.active-trail a {
+  background: url(/assets/img/nav_active_arrow.png) no-repeat bottom center;
+}
+#header .block-google_cse {
+  position: absolute;
+  right: 10px;
+  top: 16px;
+  width: 225px;
+}
+#header .block-google_cse form {
+  margin: 0;
+}
+#header .block-google_cse .form-text {
+  /*background: url(/assets/img/search_input.jpg) no-repeat top left;*/
+
+  border: 1px solid #bfc7cb;
+  width: 172px;
+  height: 27px;
+  padding: 0 5px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ccc;
+}
+@include border-radius(3px);
+@include box-shadow(#bfc7cb 0 1px 1px inset);
+#header .block-google_cse .form-text:focus {
+  border: 1px solid #51aa43;
+  color: #666;
+}
+#header .block-google_cse .form-submit,
+#header .block-google_cse input.gsc-search-button {
+  background: url(/assets/img/search_button.png) no-repeat bottom left;
+  border: none;
+  width: 34px;
+  min-width: 34px;
+  height: 29px;
+  display: block;
+  text-indent: -9900px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#header .block-google_cse .form-submit:hover,
+#header .block-google_cse input.gsc-search-button:hover {
+  background: url(/assets/img/search_button_hover.png) no-repeat bottom left;
+}
+@media only screen and (min-width: 768px) {
+  #header-nav {
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+  #header-main {
+    background: url(/assets/img//header_inner.png) no-repeat top right;
+    padding-right: 15px;
+    height: 64px;
+    margin: 0 auto;
+  }
+  #header-main .block-menu_block,
+  #header-main .block-google_cse {
+    display: block;
+  }
+  .front #header-main {
+    background: url(/assets/img/header.jpg) no-repeat top right;
+  }
+  #header-inner {
+    background: url(/assets/img/header_inner.png) no-repeat top left;
+    height: 64px;
+    position: relative;
+  }
+  #header-shadow-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  #header-shadow {
+    height: 10px;
+    background: url(/assets/img/header_shadow_inner.png) no-repeat top right;
+    padding-right: 50%;
+  }
+  #header-shadow div {
+    background: url(/assets/img/header_shadow_inner.png) no-repeat top left;
+    height: 10px;
+  }
+  #logo {
+    width: 135px;
+    height: 63px;
+    background: url(/assets/img/header_sep.png) no-repeat top right;
+    position: relative;
+  }
+  #logo img {
+    position: absolute;
+    top: 13px;
+    left: 25px;
+  }
+  .show-for-small {
+    display: none;
+  }
+}
+
+
+@import "print.less";

@@ -1,11 +1,11 @@
 # Indexing and Querying Data
 
 The Couchbase Plug-in for Elasticsearch uses Cross Datacenter Replication (XDCR)
-feature in Couchbase Server 2.0. This feature can transmit all documents from a
+feature in Couchbase Server. This feature can transmit all documents from a
 Couchbase data bucket or server cluster to another cluster. In this case we
 transmit documents from Couchbase to Elasticsearch using XDCR and as soon and
 these documents have been transmitted, the Elasticsearch engine will index them.
-For more information about XDCR in Couchbase Server 2.0, see [Couchbase Server
+For more information about XDCR in Couchbase Server, see [Couchbase Server
 Manual, Cross Datacenter
 Replication](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-xdcr.html)
 :

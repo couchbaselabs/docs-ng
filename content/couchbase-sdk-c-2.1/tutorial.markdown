@@ -2,13 +2,13 @@
 
 This tutorial assumes you have installed libcouchbase on your systems per the
 installation instructions in the Getting Started section of this guide. Because
-the method of building a program based on libcouchbase may vary between
+the approach for building a program based on libcouchbase may vary between
 Linux/Mac OS and Windows, this tutorial will focus on the components of the
 program rather than how to build it.
 
-If you need to set up a server node or data bucket, you can do with the
-Couchbase Administrative Console, or Couchbase Command-Line Interface (CLI), or
-the Couchbase REST-API. For information and instructions, see:
+If you need to set up a server node or data bucket, you can do so with Couchbase
+Administrative Console, Couchbase Command-Line Interface (CLI), or Couchbase
+REST-API. For information and instructions, see:
 
  * [Using the Couchbase Web
    Console](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-introduction.html),
@@ -22,16 +22,16 @@ the Couchbase REST-API. For information and instructions, see:
    API](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-restapi.html),
    for creating and managing Couchbase resources.
 
-After you have your Couchbase Server set up and you have installed the needed
-client libraries, you can compile and run the following basic program.
+After you've set up your Couchbase Server and installed the needed client
+libraries, you can compile and run the following basic program.
 
 <a id="simple_example"></a>
 
 ## Simple Example
 
 Before getting into a more complex example of the programming model to this
-library, we will walk through simple, straightforward example of a program which
-builds with libcouchbase, connects to a server, sets and gets a value:
+library, we will walk through a straightforward example of a program which
+builds with libcouchbase, connects to a server, and sets and gets a value:
 
 
 ```
@@ -208,11 +208,11 @@ int main(int argc, char *argv[])
 
 ## Additional Resources
 
-In addition to the other sections of this manual, namely the Getting Started
-guide and the API reference, a libcouchbase distribution includes an examples
-directory and a tools directory, each of which show simple Couchbase tools and
-and example libcouchbase programs.
+In addition to the other sections of this manual, such as the Getting Started
+guide and the API reference, the libcouchbase package includes an examples
+directory and a tools directory. Each of these show simple Couchbase tools and
+an example libcouchbase programs.
 
 On Linux you may find these examples in TODO...
 
-<a id="couchbase-sdk-c-api-introduction"></a>
+<a id="tutorial_integration"></a>

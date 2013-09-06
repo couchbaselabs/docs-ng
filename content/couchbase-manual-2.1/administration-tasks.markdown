@@ -593,7 +593,7 @@ command-line tool, `cbepctl` to change this configuration:
 
 
 ```
-shell> ./cbepctl 10.5.2.31:11210 -b bucketname -p bucketpassword set tap_param tap_throttle_queue_cap 2000000
+shell> ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
 ```
 
 In this example we specify that a node sends replication backoff requests when
@@ -611,7 +611,7 @@ percentage or a specified number of items, replication requests will slow down:
 
 
 ```
-shell> ./management/cbepctl 10.5.2.31:11210 set -b bucketname tap_param tap_throttle_cap_pcnt 15
+shell> ./cbepctl  10.5.2.31:11210 set -b bucket_name tap_param tap_throttle_cap_pcnt 15
 ```
 
 In this example, we set the threshold to 15% of all items at a replica node.
@@ -664,6 +664,54 @@ serves three important purposes in a system:
    more information about the pager, and changing the setting for it, see [Changing
    the Disk Cleanup Interval](#couchbase-admin-cbepctl-disk-cleanup).
 
+**Not-Frequently-Used Items**
+
+All items in the server contain metadata indicating whether the item has been
+recently accessed or not; this metadata is known as NRU, which is an
+abbreviation for *not-recently-used*. If an item has not been recently used then
+the item is a candidate for ejection if the high water mark has been exceeded.
+When the high water mark has been exceeded, the server evicts items from RAM.
+
+As of Couchbase Server 2.0.1+ we provide two NRU bits per item and also provide
+a replication protocol that can propagate items that are frequently read, but
+not mutated often. For earlier versions of Couchbase Server, we had provided
+only a single bit for NRU and a different replication protocol which resulted in
+two issues: metadata could not reflect how frequently or recently an item had
+been changed, and the replication protocol only propagated NRUs for mutation
+items from an active vBucket to a replica vBucket. This second behavior meant
+that the working set on an active vBucket could be quite different than the set
+on a replica vBucket. By changing the replication protocol in 2.0.1+ the working
+set in replica vBuckets will be closer to the working set in the active vBucket.
+
+NRUs will be decremented or incremented by server processes to indicate an item
+is more frequently used, or less frequently used. Items with lower bit values
+will have lower scores and will be considered more frequently used. The bit
+values, corresponding scores and status are as follows:
+
+<a id="table-couchbase-admin-NRU"></a>
+
+**Binary NRU** | **Score** | **Working Set Replication Status (WSR)** | **Access Pattern**                                                  | **Description**           
+---------------|-----------|------------------------------------------|---------------------------------------------------------------------|---------------------------
+00             | 0         | TRUE                                     | Set by write access to 00. Decremented by read access or no access. | Most heavily used item.   
+01             | 1         | Set to TRUE                              | Decremented by read access.                                         | Frequently access item.   
+10             | 2         | Set to FALSE                             | Initial value or decremented by read access.                        | Default for new items.    
+11             | 3         | Set to FALSE                             | Incremented by item pager for eviction.                             | Less frequently used item.
+
+When WSR is set to TRUE it means that an item should be replicated to a replica
+vBucket. There are two processes which change the NRU for an item: 1) if a
+client reads or writes an item, the server decrements NRU and lowers the item's
+score, 2) Couchbase Server also has a daily process which creates a list of
+frequently-used items in RAM. After this process runs, the server increment one
+of the NRU bits. Because two processes will change NRUs, they will also affect
+which items are candidates for ejection. For more information about the access
+scanner, see [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
+
+You can adjust settings for Couchbase Server which change behavior during
+ejection. You can indicate the percentage of RAM you are willing to consume
+before items are ejected, or you can indicate whether ejection should occur more
+frequently on replicated data than on original data. Be aware that for Couchbase
+Server 2.0+, we recommend that you remain using the defaults provided.
+
 **Understanding the Item Pager**
 
 The process that periodically runs and removes documents from RAM is known as
@@ -676,46 +724,39 @@ consumed is below the *low water mark*. Both the high water mark and low water
 mark are expressed as an absolute amount of RAM, such as 5577375744 bytes.
 
 When you change either of these settings, you can provide a percentage of total
-RAM for a node such as 60% or as an absolute number of bytes. For Couchbase
-Server 2.0, we recommend you remain using the default settings provided, which
-are 60% for the low water mark and 75% for the high water mark. For more
-information about changing this setting, see [Changing Thresholds for
+RAM for a node such as 80% or as an absolute number of bytes. For Couchbase
+Server 2.0 and above, we recommend you remain using the default settings
+provided. Defaults for these two settings are listed below.
+
+<a id="table-couchbase-admin-watermark-defaults"></a>
+
+**Version** | **High Water Mark** | **Low Water Mark**
+------------|---------------------|-------------------
+2.0         | 75%                 | 60%               
+2.0.1+      | 85%                 | 75%               
+
+The item pager ejects items from RAM in two phases:
+
+ * **Phase 1: Eject based on NRU**. Scan NRU for items and create list of all items
+   with score of 3. Eject all items with a NRU score of 3. Check RAM usage and
+   repeat this process if usage is still above the low water mark.
+
+ * **Phase 2: Eject based on Algorithm**. Increment all item NRUs by 1. If an NRU
+   is equal to 3, generate a random number and eject that item if the random number
+   is greater than a specified probability. The probability is based on current
+   memory usage, low water mark, and whether a vBucket is in an active or replica
+   state. If a vBucket is in active state the probability of ejection is lower than
+   if the vBucket is in a replica state. The default probabilities for ejection
+   from active of replica vBuckets is as follows:
+
+<a id="table-couchbase-admin-ejection-defaults"></a>
+
+**Version** | **Probability for Active vBucket** | **Probability for Replica vBucket**
+------------|------------------------------------|------------------------------------
+2.0+        | 60%                                | 40%                                
+
+For instructions to change this setting, see [Changing Thresholds for
 Ejection](#couchbase-admin-cbepctl-ejection).
-
-**Understanding Not-Frequently-Used Items**
-
-All items in the server contain 1 bit of metadata indicating whether the item
-has been recently accessed or not; this metadata is known as NRU, which is an
-abbreviation for *not-recently-used*. If an item has not been recently used then
-the item is a candidate for ejection if the high water mark has been exceeded.
-When the high water mark has been exceeded, the item pager evicts items from RAM
-in two phases:
-
- * **Eject based on NRU**. Scan NRU for items and eject all items where the item is
-   not frequently used.
-
- * **Eject based on Algorithm**. If the item pager has removed all
-   infrequently-used items but the high water mark is still exceeded, the pager
-   will begin to remove even active items from RAM. The pager will try to eject 60%
-   of random replica data from the node, and only 40% from active data.
-
-There are two processes which change the NRU for an item: 1) if a client reads
-or writes an item, the server will specify that the item is frequently used, 2)
-Couchbase Server also has a daily process which creates a list of
-frequently-used items in RAM. After the process runs, the server will specify
-that all items are not frequently used. So be aware that these two processes
-will change NRUs and therefore will affect which items are candidates for
-ejection. For more information about the access scanner, see [Handling Server
-Warmup](#couchbase-admin-tasks-warmup-access).
-
-You can adjust settings for Couchbase Server which affect the ejection process.
-In doing so, you can indicate the percentage of RAM you are willing to consume
-before items are ejected, or you can indicate whether ejection should occur more
-frequently on replica data than on original, source data. Be aware that for
-Couchbase Server 2.0, we recommend that you remain using the defaults provided.
-
-For information about changing settings for ejection, see [Changing Thresholds
-for Ejection](#couchbase-admin-cbepctl-ejection).
 
 <a id="couchbase-admin-tasks-compaction"></a>
 
@@ -738,80 +779,91 @@ reclaim disk space and reduce fragmentation.
 
 ### Compaction Process
 
-Compaction works as follows:
+**How it works**
 
- * For database compaction, a new file is created into which all the existing
-   active database information is written.
+Couchbase compacts views and data files. For database compaction, a new file is
+created into which the active index information is written. Meanwhile, the
+existing database files stay in place and continue to be used for storing
+information and updating the index data. This process ensures that the database
+continues to be available while compaction takes place. Once compaction is
+completed, the old database is disabled and saved. Then any incoming updates
+continue in the newly created database files. The old database is then deleted
+from the system.
 
- * For view compaction, a new index file is created for each active design
-   document, into which the active index information is written.
+View compaction occurs in the same way. Couchbase creates a new index file for
+each active design document. Then Couchbase takes this new index file and writes
+active index information into it. Old index files are handled in the same way
+old data files are handled during compaction. Once compaction is complete, the
+old index files are deleted from the system.
 
- * During the compaction process, the existing database files stay in place and
-   continue to be used for storing information and updating the index data. This
-   process ensures that the database is not unavailable while compaction takes
-   place.
+**How to use it**
 
- * Once compaction has been completed, the old database is disabled and written and
-   updates continue in the newly created database files.
+Compaction takes place as a background process while Couchbase Server is
+running. You do not need to shutdown or pause your database operation, and
+clients can continue to access and submit requests while the database is
+running. While compaction takes place in the background, you need to pay
+attention to certain factors.
 
- * The old database and index files are then deleted from the system.
+Make sure you perform compaction…
 
-Because of this process, the following precautions should be taken with the
-compaction process:
+ * **… on every server:** Compaction operates on only a single server within your
+   Couchbase Server cluster. You will need to perform compaction on each node in
+   your cluster, on each database in your cluster.
 
- * Compaction takes place as a background process while Couchbase Server is
-   running. You do not need to shutdown or pause your database operation, and
-   clients can continue to access and submit requests while the database is
-   running.
+ * **… during off-peak hours:** The compaction process is both disk and CPU
+   intensive. In heavy-write based databases where compaction is required, the
+   compaction should be scheduled during off-peak hours (use auto-compact to
+   schedule specific times).
 
- * Compaction operates on only a single server within your Couchbase Server
-   cluster. You will need to perform compaction on each node in your cluster, on
-   each database in your cluster.
-
- * The compaction process is both disk and CPU intensive. In heavy-write based
-   databases where compaction is required, the compaction should be scheduled
-   during off-peak hours. For auto-compaction you can schedule specific hours when
-   compaction can take place.
-
- * Because the compaction process can take a long to complete on large and busy
+   If compaction isn’t scheduled during off-peak hours, it can cause problems.
+   Because the compaction process can take a long to complete on large and busy
    databases, it is possible for the compaction process to fail to complete
    properly while the database is still active. In extreme cases, this can lead to
    the compaction process never catching up with the database modifications, and
-   eventually using up all the disk space.
+   eventually using up all the disk space. Schedule compaction during off-peak
+   hours to prevent this!
 
-   Compaction should be performed during off-peak hours to prevent this problem.
-
- * The compaction process can be stopped and restarted. However, you should be
-   aware that the if the compaction process is stopped, further updates to database
-   are completed, and then the compaction process is restarted, the updated
-   database may not be a clean compacted version. This is because any changes to
-   the portion of the database file that were processed before the compaction was
-   canceled and restarted have already been processed.
-
- * Because compaction occurs by creating new files and updating the information,
-   you may need as much as twice the disk space of your current database and index
-   files for compaction to take place.
+ * **… with adequate disk space:** Because compaction occurs by creating new files
+   and updating the information, you may need as much as twice the disk space of
+   your current database and index files for compaction to take place.
 
    However, it is important to keep in mind that the exact amount of the disk space
    required depends on the level of fragmentation, the amount of *dead* data and
    the activity of the database, as changes during compaction will also need to be
    written to the updated data files.
 
-   Before compaction takes place, the disk space is checked and the amount of
+   Before compaction takes place, the disk space is checked. If the amount of
    available disk space is less than twice the current database size, the
    compaction process does not take place and a warning is issued in the log. See
    [Log](#couchbase-admin-web-console-log).
 
- * Auto-compaction is available and will automatically trigger the compaction
-   process on your database
+**Compaction Behavior**
 
- * Compaction activity is reported in the Couchbase Server log. You will see
-   entries similar to following showing the compaction operation and duration:
+ * **Stop/Restart:** The compaction process can be stopped and restarted. However,
+   you should be aware that the if the compaction process is stopped, further
+   updates to database are completed, and then the compaction process is restarted,
+   the updated database may not be a clean compacted version. This is because any
+   changes to the portion of the database file that were processed before the
+   compaction was canceled and restarted have already been processed.
 
-    ```
-    Service couchbase_compaction_daemon exited on node 'ns_1@127.0.0.1' in 0.00s
-    (repeated 1 times)
-    ```
+ * **Auto-compaction:** Auto-compaction automatically triggers the compaction
+   process on your database. You can schedule specific hours when compaction can
+   take place.
+
+ * **Compaction activity log:** Compaction activity is reported in the Couchbase
+   Server log. You can see the following items for compaction:
+   
+    - **Autocompaction** Indicates compaction cannot be performed because of inadequate disk space
+
+   - **Manually triggered compaction**
+
+     - Compaction completed successfully
+     - Compaction failed
+
+   - **Purge deletes compaction**
+
+     - Compaction started/completed
+     - Compaction failed
 
    For information on accessing the log, see
    [Log](#couchbase-admin-web-console-log).

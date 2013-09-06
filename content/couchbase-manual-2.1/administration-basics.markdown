@@ -255,4 +255,4 @@ The individual menu options perform the following actions:
    close the menubar interface. To restart, you must open the Couchbase Server
    application from the installation folder.
 
-<a id="couchbase-bestpractice"></a>
+<a id="couchbaseserverestpractice"></a>
