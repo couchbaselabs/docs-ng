@@ -92,6 +92,26 @@ customers are facing:
 
 **Known Issues in 2.2**
 
+* **External IP Addresses and EC2**
+
+   * In the past you were able to add a node to a cluster in EC2 with an external IP address. If this address 
+   did not resolve, any error was ignored and the server used a local IP address for the node. The server now  
+   displays this error, "54.241.121.223": eaddrnotavail". If you using Couchbase on Amazon EC2 we recommend 
+   you use Amazon-generated hostnames which then will automatically resolve to either the internal or external address. 
+   For more information, see [Handling Changes in IP Addresses](#couchbase-bestpractice-cloud-ip)
+
+     *Issues* : [MB-8981](https://www.couchbase.com/issues/browse/MB-8981)
+
+* **XDCR and Tombstone Purging**
+
+   * If you are using XDCR, Couchbase Server 2.2 introduces new functionality 
+   known as tombstone purging. This functionality runs as part of auto-compaction. If you set the purge interval to a fairly low number, such 
+   as less than one day, you may experience significant mismatch in data replicated from a 
+   source to destination cluster. For more information 
+   about tombstone purging see [Enabling Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).
+
+     *Issues* : [MB-9019](https://www.couchbase.com/issues/browse/MB-9019)
+
 * **XDCR and Elastic Search**
 
    * If you are using Elastic Search with Couchbase Server 2.2, you must use 
@@ -109,6 +129,12 @@ customers are facing:
       `/var/lib/couchbase/config`, start the server and configure it once again.
 
       *Issues* : [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
+      
+     * If you upgrade to 2.1.1 or later from 2.1.0 or earlier the server may not automatically 
+     start after you reboot the machine. You may need to check your firewall settings 
+     and flush any iptables before the server will automatically restart after upgrade.
+     
+        *Issues* : [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
 
  * **Database Operations**
 
@@ -152,6 +178,12 @@ customers are facing:
       Tool](#couchbase-admin-cmdline-cbbackup),
 
       *Issues* : [MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
+      
+    * Several incidents have been reported that after using flush on nodes, Couchbase 
+      Server returns TMPFAIL even after a successful flush. This may occur for Couchbase 
+      Server 2.0 and above.
+
+    *Issues* : [MB-7160](http://www.couchbase.com/issues/browse/MB-7160)
 
 <a id="couchbase-server-rn_2-1-1a"></a>
 
@@ -196,6 +228,14 @@ The Enterprise Edition of Couchbase Server is now available on Mac OSX. See
       Couchbase Server](#couchbase-getting-started-hostnames).
 
       *Issues* : [MB-8545](http://www.couchbase.com/issues/browse/MB-8545)
+      
+**Known Issues in 2.1.1**
+
+- If you upgrade to 2.1.1 or later from 2.1.0 or earlier the server may not automatically 
+    start after you reboot the machine. You may need to check your firewall settings 
+    and flush any iptables before the server will automatically restart after upgrade.
+
+    *Issues* : [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
 
 <a id="couchbase-server-rn_2-1-0a"></a>
 
