@@ -90,7 +90,7 @@ When starting up a node, there are a few statistics to monitor. Use the
 
 
 ```
-> cbstats localhost:11210 -b bucket_name warmup | »
+> cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
     egrep "warm|curr_items"
 ```
 
@@ -110,7 +110,7 @@ And when it is complete:
 
 
 ```
-> cbstats localhost:11210 -b bucket_name warmup | »
+> cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
     egrep "warm|curr_items"
 ```
 

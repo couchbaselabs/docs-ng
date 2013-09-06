@@ -497,7 +497,7 @@ the access scanner process runs to every 20 minutes:
 
 
 ```
-> ./cbepctl localhost:11210 -b beer-sample set flush_param alog_sleep_time 20
+> ./cbepctl localhost:11210 -b beer_sample set flush_param alog_sleep_time 20
 ```
 
 This updates the parameter for the named bucket, beer-sample on the given node
@@ -506,7 +506,7 @@ from the default of 2:00 AM UTC:
 
 
 ```
-> ./cbepctl hostname:11210 -b beer-sample -p beer-password set flush_param alog_task_time 13
+> ./cbepctl hostname:11210 -b beer_sample -p beer_password set flush_param alog_task_time 13
 ```
 
 In this example we set the initial time to 1:00 PM UTC.
@@ -625,7 +625,7 @@ command-line tool, `cbepctl` to change this configuration:
 
 
 ```
-> ./cbepctl 10.5.2.31:11210 -b bucketname -p bucketpassword set tap_param tap_throttle_queue_cap 2000000
+> ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
 ```
 
 In this example we specify that a node sends replication backoff requests when
@@ -643,7 +643,7 @@ percentage or a specified number of items, replication requests will slow down:
 
 
 ```
-> ./cbepctl  10.5.2.31:11210 set -b bucketname tap_param tap_throttle_cap_pcnt 15
+> ./cbepctl  10.5.2.31:11210 set -b bucket_name tap_param tap_throttle_cap_pcnt 15
 ```
 
 In this example, we set the threshold to 15% of all items at a replica node.

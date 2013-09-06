@@ -571,7 +571,7 @@ sort and filter the data.
 
 ```
 > watch --diff "cbstats \
-    ip-10-12-19-81:11210 -b bucket1 -p password all | egrep 'item|mem|flusher|ep_queue|bg|eje|resi|warm'"
+    ip-10-12-19-81:11210 -b bucket_name -p bucket_password all | egrep 'item|mem|flusher|ep_queue|bg|eje|resi|warm'"
 ```
 
 The following provides the stats that are created by `cbstats`:
@@ -1550,9 +1550,9 @@ to filter for the information:
 
 
 ```
-cbstats hostname:port -b bucket1 -p bucket_password | grep 'warmup'
+cbstats hostname:port -b bucket_name -p bucket_password | grep 'warmup'
 
-cbstats hostname:port -b bucket1 -p bucket_password raw warmup
+cbstats hostname:port -b bucket_name -p bucket_password raw warmup
 ```
 
 ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
@@ -1579,7 +1579,7 @@ the keyword "warmup" for the command. For instance:
 
 
 ```
-cbstats hostname:port -p bucketname -b bucket_password raw warmup
+cbstats hostname:port -b bucket_name -p bucket_password raw warmup
 ```
 
 The additional lower-level stats are as follows. Note that some of these items
@@ -1698,9 +1698,9 @@ cluster.
 
 
 ```
-cbepctl host:11210 -b bucket1 -p bucket_password start
-cbepctl host:11210 -b bucket1 -p bucket_password stop
-cbepctl host:11210 -b bucket1 -p bucket_password set type param value
+cbepctl host:11210 -b bucket_name -p bucket_password start
+cbepctl host:11210 -b bucket_name -p bucket_password stop
+cbepctl host:11210 -b bucket_name -p bucket_password set type param value
 ```
 
 For this command, `host` is the IP address for your Couchbase cluster, or node
@@ -1746,7 +1746,7 @@ process to run every 10 minutes:
 
 
 ```
-./cbepctl localhost:11210 -b bucket1 -p bucket_password set flush_param exp_pager_stime 600
+./cbepctl localhost:11210 -b bucket_name -p bucket_password set flush_param exp_pager_stime 600
 ```
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
@@ -1779,7 +1779,7 @@ you specify. For instance:
 
 
 ```
-> ./cbepctl 10.5.2.31:11210 -b bucket1 -p bucket_password set tap_param tap_throttle_queue_cap 2000000
+> ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
 ```
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
@@ -1805,7 +1805,7 @@ percentage or a specified number of items, replication requests will slow down:
 
 
 ```
-> ./cbepctl 10.5.2.31:11210 -b bucket1 -p bucket_password set tap_param tap_throttle_cap_pcnt 15
+> ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_cap_pcnt 15
 ```
 
 In this example, we set the threshold to 15% of all items at a replica node.
@@ -1852,7 +1852,7 @@ the time interval when the access scanner process runs to every 20 minutes:
 
 
 ```
-> ./cbepctl hostname:port -b bucket1 -p bucket_password set flush_param alog_sleep_time 20
+> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param alog_sleep_time 20
 ```
 
 To change the initial time that the access scanner process runs from the default
@@ -1860,7 +1860,7 @@ of 2:00 AM UTC:
 
 
 ```
-> ./cbepctl hostname:port -b bucket1 -p bucket_password set flush_param alog_task_time 23
+> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param alog_task_time 23
 ```
 
 In this example we set the initial time to 11:00 PM UTC.
@@ -1915,7 +1915,7 @@ Couchbase command-line tool, `cbepctl` :
 
 
 ```
->    ./cbepctl 10.5.2.31:11210 -b bucket_name -b bucket_password set flush_param mem_high_wat 80
+>    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_high_wat 80
 ```
 
 Here we set the high water mark to be 80% of RAM for a specific data bucket on a
