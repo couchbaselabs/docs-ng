@@ -904,7 +904,6 @@ Make sure you perform compaction…
      For information on accessing the log, see
      [Log](#couchbase-admin-web-console-log).
 
-
 <a id="couchbase-admin-tasks-compaction-autocompaction"></a>
 
 ### Auto-Compaction Configuration

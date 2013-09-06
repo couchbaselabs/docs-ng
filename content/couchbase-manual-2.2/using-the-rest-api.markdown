@@ -2768,10 +2768,10 @@ To details about each setting, see
 
 | REST API   | Description           
 | ------------- |:-------------:| 
-| POST /controller/setAutoCompaction   | Set cluster-wise auto-compaction intervals and thresholds
-| GET /settings/autoCompaction  | Read cluster-wise settings for auto-compaction    
-| GET /pools/default/buckets/<bucket_name> | Read auto-compaction settings for named bucket   
-| POST/pools/default/buckets/<bucket_name>| Set auto-compaction interval or thresholds for named bucket
+| POST /controller/setAutoCompaction   | Set cluster-wide auto-compaction intervals and thresholds
+| GET /settings/autoCompaction  | Read cluster-wide settings for auto-compaction    
+| GET /pools/default/buckets/*bucket_name* | Read auto-compaction settings for named bucket   
+| POST/pools/default/buckets/*bucket_name* | Set auto-compaction interval or thresholds for named bucket
 
 **Auto-Compaction Parameters**
 
@@ -2785,9 +2785,9 @@ For background information, see [Introduction, Tombstone Purging](#couchbase-int
 | Parameter   | Value | Notes
 | ------------- |:-------------:|-------------:|
 | databaseFragmentationThreshold[percentage]  |  Integer between 2 and 100 | Percentage disk fragmentation for data
-| databaseFragmentationThreshold[size] | Integer greater than 1 | MB of disk fragmentation for data
+| databaseFragmentationThreshold[size] | Integer greater than 1 | Bytes of disk fragmentation for data
 | viewFragmentationThreshold[percentage] | Integer between 2 and 100 |  Percentage disk fragmentation for index
-| viewFragmentationThreshold[size] | Integer greater than 1 |  MB of disk fragmentation for index
+| viewFragmentationThreshold[size] | Integer greater than 1 |  Bytes of disk fragmentation for index
 | parallelDBAndViewCompaction | True or false | Run index and data compaction in parallel
 | allowedTimePeriod[fromHour] | Integer between 0 and 23 | Compaction can occur from this hour onward
 | allowedTimePeriod[toHour] | Integer between 0 and 23 | Compaction can occur up to this hour
@@ -2841,7 +2841,7 @@ Couchbase Server sends a JSON response with auto-compaction settings for the `bu
         }
     }
 
-This indicates a tombstone `purgeInterval` of two days with a threshold of 30% disk fragmentation for data and views. This means items can be expired for two days or deleted two ago and their tombstones will be purged during the next auto-compaction run.
+This indicates a tombstone `purgeInterval` of two days with a threshold of 30% disk fragmentation for data and views. This means items can be expired for two days or deleted two ago and their tombstones will be purged during the next auto-compaction run.cluster-wide
 
 
 
@@ -3344,6 +3344,10 @@ replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_wt
 
 # bytes replicated per second
 replications/[UUID]/[source_bucket]/[destination_bucket]/rate_replication
+
+# number of docs sent optimistically 
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
+
 ```
 
 You need to provide properly URL-encoded
@@ -3399,10 +3403,41 @@ This will produce this output:
 "nodeStats":{"127.0.0.1:9000":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
 ```
 
+To get `docs_opt_repd` you first get the replication id for a source and destination bucket. First get a list active tasks for a cluster:
+
+        curl -s -X GET -u Administrator:password \
+        http://10.3.121.119:8091/pools/default/tasks
+        
+This will result in output as follows:
+
+        ....
+        "id": "def03dbf5e968a47309194ebe052ed21\/bucket_source\/bucket_destination", 
+        "source": "bucket_source",
+        "target":"\/remoteClusters\/def03dbf5e968a47309194ebe052ed21\/buckets\/bucket_name", 
+        "continuous": true, 
+        "type": "xdcr", 
+        ....
+
+With this replication id you can get a sampling of stats for `docs_opt_repd`:
+
+http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
+replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destination%2fdocs_opt_repd 
+
+This will result in output similar to the following:
+
+        { 
+           "samplesCount":60, 
+           "isPersistent":true, 
+           "lastTStamp":1378398438975, 
+           "interval":1000, 
+           "timestamp":[ 
+              1378398380976, 
+              1378398381976,
+              ....
+              
 You can also see the incoming write operations that occur on a destination
 cluster due to replication via XDCR. For this REST request, you need to make the
 request on your destination cluster at the following endpoint:
-
 
 ```
 http://[Destination_IP]:8091/pools/default/buckets/[bucket_name]/stats
