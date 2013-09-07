@@ -1,0 +1,93 @@
+#N1QL Query Language: Proposed Structures
+
+##Couchbase Query Language TOC - Heavy Conceptual
+
+Introduction   --IN
+  - Goals of language
+  - Types of Query Languages (different models, approaches, how this one fits in)  
+  - Who is the language for?
+  - What should you be able to do with it?
+        -Types of information you can find
+        -Types of logical expressions you can create
+  - Where to Start Learning (list of sections/chapters for different types of learning)
+  
+Concepts  --IN
+  - Documents and Data Sources
+  - Attributes and Relations
+  - Paths
+  - Queries and Result Sets
+  - Expressions and Nested Expressions
+  - NiQL and SQL (how N1QL relates to SQL)
+  - Types of Operations
+  - Expression Evaluation
+  - How NiQL works in a Distributed System
+  - Other Language Bindings
+
+Tutorial
+  - Reference Dataset
+  - Sample Queries and Behavior/Results
+    (provide interactive examples/hosted-console here)
+
+Data Modeling for Queries
+  - Natural Form for Data
+  - The Business Normal Form
+
+Advanced Topics
+  - Complex Queries 
+    (provide interactive examples/hosted-console here)
+  - SQL Queries as N1QL
+    (Common SQL complex queries, how they translate to N1QL)
+  - Performance
+  - Troubleshooting
+  
+Language Reference --IN TODO 7/10/13: Karen to investigate structure/common elements
+  - Syntax
+  - Statements
+  
+##Couchbase Query Language TOC - "W3C-Inspired"
+
+Overview
+    -What is N1QL
+    -What can N1QL do
+    -Prerequisites
+Semantics
+    -Documents and Document Modeling
+    -Attributes and Relations
+    -NiQL Statements
+    (simple reference documents, console with basic examples of how statement works)
+    -Important Expressions/Statements
+NiQL Basics
+     (reference document, console with examples of how statements work for selected subsection)
+    -Select
+    -From and Where
+    -Group-by and Having
+    -Path
+NiQL Advanced
+     (reference document, console with examples of how statements work for selected subsection)
+    -Ordering, Limiting, Offset
+    -Expressions
+        -Literal
+        -Identifiers
+        -Case
+        -Collection
+        -Logical Term
+        -Comparison
+        -Arithmetic Term
+        -String Term
+        -Nested Expression
+    -Four-Valued Logic
+    -Null and Missing Values
+    
+N1QL Functions
+    
+##Language Reference
+
+-Summary (1-2 sentences, high level description)
+-Compatibility (which versions of server support this)
+-Syntax (command, options, clauses)
+-Description (major use cases)
+-Parameters
+    -Clauses
+    -Commands
+-Examples (7-8 top examples, variations)
+-See Also (related commands, related references)
