@@ -26,8 +26,8 @@ You can  use a relative path when specifying the directory for persistent data s
 ```
 $ mkdir data
 $ ./sync_gateway -url walrus:data
-```    
- 
+```
+
 You can also specify the directory for persistent data storage in a configuration file. The config.json file would look similar to the following JSON fragment:
 
 ```json
