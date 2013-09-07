@@ -139,6 +139,26 @@ cd ~/Desktop/docs-ng/
 mkdir content/couchbase-sdk-c-2.1
 java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.1/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.1
 
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.2
+make depend
+make validate
+make reformat
+make couchbase-sdk-c.xml
+cd ~/Desktop/docs-ng/
+mkdir content/couchbase-sdk-c-2.2
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-c-2.2/couchbase-sdk-c-ready.xml couchbase-sdk-c-2.2
+
+cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-node-1.0
+make depend
+make validate
+make reformat
+make couchbase-sdk-node.xml
+cd ~/Desktop/docs-ng/
+mkdir content/couchbase-sdk-node-1.0
+java -jar ~/Desktop/throwdown.jar /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-node-1.0/couchbase-sdk-node-ready.xml couchbase-sdk-node-1.0
+
+
+
 cd /Users/kzeller/Couchbase_docs/docs/Couchbase/products/couchbase/couchbase-sdk-net-1.0
 make depend
 make validate
