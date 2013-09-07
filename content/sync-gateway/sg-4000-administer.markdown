@@ -3,43 +3,46 @@
 This section describes how to administer Sync Gateway.
 
 ## Command Line Tool
-For quick-and-dirty configuration you can launch the `sync_gateway` tool with command-line options. In the long run, it's better to use JSON configuration files, which are the only way to serve multiple databases.
+You can launch the `sync_gateway` with command-line options. However, in the long run, it's better to use JSON configuration files, which are the only way to serve multiple databases. You can also combine command-line options with configuration files. 
 
 The format of the `sync_gateway` command is:
 
 ```
-sync_gateway [ConfigurationFile...] [Options]
+sync_gateway [Options] [ConfigurationFile...] 
 ```
 
-### Command-Line Options
+**Options**
 
-* `-adminInterface` (default `:4985`): The port the admin REST API should listen on.
-* `-bucket` (default `sync_gateway`): The name of the Couchbase bucket to use.
-* `-dbname` (defaults to bucket name): The name of the database to serve on the regular REST API.
-* `-help`: Lists the available flags and exits.
-* `-interface` (default `:4984`): The port the REST API should listen on.
-* `-log` (no default): A comma-separated list of logging keywords to enable. The `HTTP` keyword is always enabled, which means HTTP requests and error responses  are always logged.
-* `-personaOrigin` (no default): The server's base URL for purposes of Persona authentication. This should be the same as the URL the client reaches the server at.
-* `pool` (default `default`): The Couchbase Server pool name to find buckets in.
-* `pretty` (default: false): Pretty-print the JSON responses. This is useful for debugging, but reduces performance.
-* `-url` (default `http://localhost:8091`) The URL of the database server. An HTTP URL implies Couchbase Server, a `walrus:` URL implies the built-in Walrus database.
-* `-verbose` (default: false): Logs more information about requests
+|Option | Default |Description|  
+| ------	| ------	| ------	|  
+| `-adminInterface` | 4985| Port the Admin REST API  listens on
+| `-bucket` | sync_gateway| Name of the Couchbase bucket to use
+| `-dbname` |bucket name| Name of the database to serve via the Sync REST API
+| `-help`| None | Lists the available options and exits.
+| `-interface` | 4984| Port the Sync REST API listens on
+| `-log` |None | Comma-separated list of logging keywords to enable. The `HTTP` keyword is always enabled, which means HTTP requests and error responses  are always logged.
+| `-personaOrigin` |None| Base URL for Persona authentication. It should be the same URL that the client uses to reach the server.
+| `pool` | default | Couchbase Server pool name in which to find buckets
+|`pretty` | false | Pretty-print JSON responses. This is useful for debugging, but reduces performance.
+| `-url` | http://localhost:8091 | URL of the database server. An HTTP URL implies Couchbase Server, a `walrus:` URL implies the built-in Walrus database.
+|`-verbose`| false | Logs more information about requests.
 
-The tool uses the regular Go flag parser, so options can be prefixed with one or two `-` characters, and option values can be given either as a following argument or in the same argument after an equal sign (=). 
 
-The following command  does not include any parameters and just uses the default values. It connects to bucket `sync_gateway` of pool `default` of a Couchbase Server at localhost:8091. The database is called `sync_gateway` and is served from port 4984, with the admin interface on port 4985.
+The command-line tool uses the regular Go flag parser, so you can prefix options with one or two `-` characters, and give option values either as a following argument or in the same argument after an equal sign (=). 
+
+The following command  does not include any parameters and just uses the default values. It connects to the bucket named `sync_gateway` in the pool named `default` on a Couchbase Server at localhost:8091. The database is called `sync_gateway` and is served from port 4984, with the admin interface on port 4985.
 
 ```sh
 $ sync_gateway
 ```
 
-The following command creates an ephemeral, in-memory Walrus database, served as `db`. JSON responses are pretty-printed.
+The following command creates an ephemeral, in-memory Walrus database, served as `db` and specifies pretty-printed JSON responses.
 
 ```sh
 $ sync_gateway -url=walrus: -bucket=db -pretty
 ```
 
-The following command uses a Walrus database that will be persisted to a file named /tmp/walrus/db.walrus.
+The following command uses a Walrus database that is persisted to a file named /tmp/walrus/db.walrus.
 
 ```sh
 $ sync_gateway -url=walrus:///tmp/walrus -bucket=db -pretty
@@ -79,7 +82,7 @@ The following command starts Sync Gateway with the parameters specified in a con
 $ sync_gateway config.json
 ```
 
-You can combine command-line options with configuration files. The following command starts Sync Gateway with the parameters specified in a configuration file named config.json and adds additional logging by including the -log option on the command line:
+The following command starts Sync Gateway with the parameters specified in a configuration file named config.json and adds additional logging by including the -log option on the command line:
 
 ```sh
 $ sync_gateway -log=HTTP+,CRUD config.json
