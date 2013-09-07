@@ -94,6 +94,11 @@ versions:
       - 2.0
       - 1.8
 
+  couchbase-query-language:
+    name: "Query Language, N1QL"
+    versions:
+      - 1.0
+      
   couchbase-sdk-c:
     name: "C SDK"
     versions:
@@ -114,6 +119,11 @@ versions:
       - 1.2
       - 1.1
       - 1.0
+      
+  couchbase-sdk-node:
+    name: "NodeJS SDK"
+    versions:
+      - 1.0
 
   couchbase-sdk-php:
     name: "PHP SDK"
@@ -133,10 +143,7 @@ versions:
     versions:
       - 1.0
       
-  couchbase-query-language:
-    name: "Query Language, N1QL"
-    versions:
-      - 1.0
+
 
 navbar:
   - label: Server
@@ -184,7 +191,10 @@ navbar:
 
       - label: .NET
         href: /couchbase-sdk-net-1.2/
-
+      
+      - label: NodeJS
+        href: /couchbase-sdk-node-1.0/
+        
       - label: PHP
         href: /couchbase-sdk-php-1.1/
         
