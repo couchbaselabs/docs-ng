@@ -13,7 +13,7 @@ You can run Sync Gateway on the following operating systems:
 
 Download Sync Gateway for your platform at <http://www.couchbase.com/communities/couchbase-mobile-solution>.
 
-The download contains an executable file called `sync_gateway`. You can run it as you would any other command-line tool. For convenience, you can move it to a directory that is included in your $PATH environment variable.
+The download contains an executable file called `sync_gateway` that you run as a command-line tool. For convenience, you can move it to a directory that is included in your $PATH environment variable.
 
 
 ## Connecting Sync Gateway to Couchbase Server
