@@ -8,7 +8,7 @@ The other advantage to the flexible, document-based data model is that it is wel
 
 Couchbase Server is also a distributed system. You store your data as documents in *data buckets*, which are the functional equivalents of databases. Each data bucket can contain more than one type of document, such as documents for products and documents for orders. You operate Couchbase Server as a single instance or multiple instances grouped as a cluster. Items in a data bucket are spread out among multiple servers so that the data is highly available. This also means when you query the database, the query will be distributed to the different server instances in the cluster and results are aggregated before they are returned..
 
-To find information in a document-oriented database you need a language that provides the correct logic and algorithms for navigating documents and document structures. This section describes the key concepts to understand about querying a distributed, document-oriented database.
+To find information in a document-oriented database you need a language that provides the correct logic for navigating documents and document structures. This section describes the key concepts to understand about querying a distributed, document-oriented database.
 
 
 ##Data Modeling
