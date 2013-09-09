@@ -1738,7 +1738,7 @@ The settings tab sets the following default parameters:
    consistency of data between clusters. If you set this value too low, you may see
    more inconsistent results in views queries such as deleted items in a result
    set. You may also see inconsistent items in clusters with XDCR set up between
-   the clusters. If you set this value too low, it will delay the server from
+   the clusters. If you set this value too high, it will delay the server from
    reclaiming disk space.
 
    You can also changes this setting with the REST API, see.
