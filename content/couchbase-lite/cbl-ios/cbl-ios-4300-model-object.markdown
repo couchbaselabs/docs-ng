@@ -12,7 +12,7 @@ To create a model class, you subclass `CBLModel`. Here's an example:
 	@interface ShoppingItem : CBLModel
 	@property bool check;
 	@property (copy) NSString* text;
-	@property (retain) NSDate* created_at;
+	@property (strong) NSDate* created_at;
 	@end
 
 Here's the implementation:
@@ -44,7 +44,7 @@ You can access the document properties natively:
 	NSLog(@"Text is %@", item.text);
 	item.check = true;
 
-Model properties are observable, so you can bind them to UI controls.
+Model properties support key-value coding and key-value observing.
 
 You can access any document property whether or not you've declared an Objective-C property for it. Just be aware that these values are always accessed in object form, without automatic conversion to and from scalar types:
 
@@ -75,7 +75,7 @@ The automatic mapping from Objective-C types to JSON document properties is very
 
 There are also some non-JSON-compatible classes you can use, for convenience:
 
-* **NSData:** CBLModel saves an NSData property value by [base64][BASE64]-encoding it into a JSON string, and read it by base64-decoding the string. Note: This is inefficient and expands the data size by about 50%. If you want to store large data blobs in a document, you should use attachments instead.
+* **NSData:** CBLModel saves an NSData property value by [base64](https://tools.ietf.org/html/rfc4648)-encoding it into a JSON string, and reads it by base64-decoding the string. Note: This is inefficient and expands the data size by about 50%. If you want to store large data blobs in a document, you should use attachments instead.
 * **NSDate:** `NSDate`-valued properties are converted to and from JSON strings using the [ISO-8601][ISO8601] date format. Be aware that if you're reading documents generated externally that didn't store dates in ISO-8601, CBLModel won't be able to parse them. You have to change the property type to `NSString`, and use an `NSDateFormatter` to do the parsing yourself.
 * **NSDecimalNumber:** This is a lesser-known Foundation class used for high-precision representation of decimal numbers, without the round-off errors of floating-point. It's used primarily for financial data. A property of this type is stored in JSON as a decimal numeric string.
 * **CBLModel:** You can have a property that points to another model object: a _relation_ in database terminology. The value stored in the document is the other model's document ID string. There are a lot of subtleties to this, so it's explored in more detail later on.
@@ -113,15 +113,17 @@ Let's say you have documents for blog comments, and each has a "post" property w
     @property (assign) BlogPost* post;
     @end
 
-In the implementation of `BlogComment` you simply declare the property as `@dynamic`, like any other model property.
+In the implementation of `BlogComment` you declare the property as `@dynamic`, like any other model property.
 
-Note that the declaration uses `(assign)` instead of the more typical `(retain)`. This is because a relationship to another model doesn't retain it, to avoid creating reference-loops that can lead to memory leaks.
+Note that the declaration uses `(assign)` instead of the more typical `(retain)`. This is because a relationship to another model doesn't retain it, to avoid creating reference-loops that can lead to memory leaks. Couchbase Lite takes care of reloading the destination model if necessary when you access the property. Also, Couchbase Lite does not deallocate models with unsaved changes.
 
 #### Dynamic Subclassing and the CBLModelFactory
 
 So far, if you declare a property's type as being `BlogPost*`, the instantiated object is a BlogPost. But what if BlogPost has subclasses? In a tumblr-style app, there might be different types of posts, such as text, image, and video, differentiated by the value of a `type` property, and you want these to be instantiated as subclasses like `TextPost`, `ImagePost` and `VideoPost`. How do you tell the property which class to instantiate for which document when the property type doesn't narrow it down to one class?
 
 Enter the `CBLModelFactory`. This singleton object keeps a registry that maps document `type` property values to classes. If at launch time you register the type strings and the corresponding `BlogPost` subclasses, then CBLModel will consult this when instantiating model-reference properties. So the value of the `post` property of a comment will be a `TextPost`, `ImagePost` or `VideoPost` depending on the document's type.
+
+<!-- Add an example of registering a document type here -->
 
 Once you've started using the `CBLModelFactory`, you'll probably want to start instantiating models for existing documents by calling `+modelForDocument:` on CBLModel itself, rather than a subclass. This is because
 
