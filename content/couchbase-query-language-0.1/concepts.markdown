@@ -2,9 +2,9 @@
 #Concepts
 
 Document-oriented databases, such as Couchbase Server, use documents to store information as well 
-as the relationships between application objects. This model is flexible enough so that you can change application objects without having to migrate the database schema or plan for significant application downtime. Even the same type of object in your application can have a different data structures. For instance, you can initially represent a user name as a single document field. You can later structure a user document so that the first name and last name are separate fields in the document. You can make these changes without any application downtime, and without having to update all user documents in the system. 
+as relationships among documents. This model is flexible enough so that you can change application objects without having to migrate the database schema or plan for significant application downtime. Even the same type of object in your application can have a different data structures. For instance, you can initially represent a user name as a single document field. You can later structure a user document so that the first name and last name are separate fields in the document. You can make these changes without any application downtime, and without having to update all user documents in the system. 
 
-The other advantage to the flexible, document-based data model is that it is well suited to representing real-world items. Documents support nested structures, as well as fields representing relationships between items. Both of these attributes enable you to realistically represent objects in your application. 
+The other advantage to the flexible, document-based data model is that it is well suited to representing real-world items. Documents support nested structures, as well as fields representing object properties. Both of these attributes enable you to realistically represent objects in your application. 
 
 Couchbase Server is also a distributed system. You store your data as documents in *data buckets*, which are the functional equivalents of databases. Each data bucket can contain more than one type of document, such as documents for products and documents for orders. You operate Couchbase Server as a single instance or multiple instances grouped as a cluster. Items in a data bucket are spread out among multiple servers so that the data is highly available. This also means when you query the database, the query will be distributed to the different server instances in the cluster and results are aggregated before they are returned..
 
@@ -32,7 +32,7 @@ In traditional relational databases, each record is represented by a table row a
         ....
     }
 
-A document field can contain nested data structures such as arrays and hashes; within an array or hash, you can further nest data. For example, consider a more complex document representing a customer order:
+A document field can contain nested data structures such as arrays and objects; within an array or object, you can further nest data. For example, consider a more complex document representing a customer order:
 
     {
       "type": "customer-order",
@@ -51,11 +51,11 @@ A document field can contain nested data structures such as arrays and hashes; w
       ]
     }
 
-This makes N1QL a unique querying language compared to SQL. In order to navigate nested data in document arrays and hashes, N1QL supports the concept of *paths*. A path uses a *dot notation* syntax and provides the logical location of an attribute within a document. For example to get the street from a customer order, we use this path:
+This makes N1QL a unique querying language compared to SQL. In order to navigate nested data in document arrays and objects, N1QL supports the concept of *paths*. A path uses a *dot notation* syntax and provides the logical location of an attribute within a document. For example to get the street from a customer order, we use this path:
 
     orders.shipTo.street
 
-This path refers to the value for 'street' in the 'billTo' hash. You use a path with a arrays or nested objects in order to get to attributes within the data structure. You can also use array syntax in your path to get to information:
+This path refers to the value for 'street' in the 'billTo' object. You use a path with a arrays or nested objects in order to get to attributes within the data structure. You can also use array syntax in your path to get to information:
 
     orders.items[0].productId
     

@@ -2,19 +2,24 @@
 
 Couchbase Query Language, known as N1QL or 'Nickel', helps you to find and change data in Couchbase Server. 
 We designed the language to be human -readable and -writable; it is an extensible language designed for 
-ad-hoc querying. The query language is a standard semantic you use to build querying ability in other programming languages. 
+ad-hoc querying. The query language is a standard semantic you use to build querying ability in other programming languages.
+
+The N1QL Developer Preview is a pre-beta release of the language. It provides a subset of functionality from the 
+full query language. 
 
 N1QL is similar to the standard SQL language for relational databases, but it is also includes some additional 
 features which are suited for document-oriented databases. This guide describes 
 key concepts about the language, provides tutorials describing how to use the language, discusses advanced operations 
-you can perform with the language, and includes a language reference for a complete description of syntax and language elements.
+you can perform with the language, and includes a language reference for language syntax and language elements.
+
+ 
 
 ##Goals of Language
 
 N1QL is designed to be a concise, intuitive, expressive language for building complex queries.
  It is designed for document-oriented databases which store application objects as well as their relationships in 
 documents instead of tables. Application data can be expressed as atomic values or in 
-nested structures within the document, such as hashes or arrays. Relationships between documents can be expressed as values or values in nested structures.  To find information in a document-oriented database, you need the correct logic and algorithms for navigating documents and document structures. N1QL provides a clear, easy-to-understand abstraction layer to query and retrieve information in your document-database.
+nested structures within the document, such as objects or arrays. Relationships between documents can be expressed as values or values in nested structures.  To find information in a document-oriented database, you need the correct logic and algorithms for navigating documents and document structures. N1QL provides a clear, easy-to-understand abstraction layer to query and retrieve information in your document-database.
 
 ##Who Uses It
 
