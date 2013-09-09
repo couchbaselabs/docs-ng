@@ -1,5 +1,7 @@
 ## Validating JSON Objects
-[JSON-Schema][JSON-SCHEMA] is a way of defining the allowed structure and content of a JSON object in a machine-readable format, which is itself JSON. If you have a schema, you can programmatically validate JSON objects against the schema to find out if they match it.
+
+<!-- Needs a general high-level overview of validation blocks and what they do -->
+[JSON-Schema](http://json-schema.org) is a way of defining the allowed structure and content of a JSON object in a machine-readable format, which is itself JSON. If you have a schema, you can programmatically validate JSON objects against the schema to find out if they match it.
 
 Couchbase Lite includes a JSON-Schema validator class. However, to keep code size down, it's not a built-in part of the framework, but the source code is included in the distribution so you can compile it into your app.
 
@@ -25,7 +27,7 @@ Couchbase Lite includes a JSON-Schema validator class. However, to keep code siz
 
 You probably want to store the schema in a JSON file, so create a new empty file in your target and give it the extension `.json`. Double-check that the file has been added to the target's "Copy Bundle Resources" file list.
 
-Now fill in your schema. Note that the current implementation of the validator class follows [draft 3][JSON-SCHEMA-03] of the standard, not the upcoming draft 4. (The biggest difference is the interpretation of `required`.)
+Now fill in your schema. Note that the current implementation of the validator class follows [JSON Schema Draft 4](http://tools.ietf.org/html/draft-zyp-json-schema-04).
 
 ### Validating Objects
 

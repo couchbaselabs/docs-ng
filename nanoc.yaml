@@ -93,7 +93,7 @@ versions:
       - 2.1
       - 2.0
       - 1.8
-
+  
   couchbase-query-language:
     name: "Query Language, N1QL"
     versions:
@@ -152,8 +152,8 @@ navbar:
       - label: Couchbase Server Manual
         href: /couchbase-manual-2.2/
       
-      - label: Query Language DP
-        href: /query-language/
+      - label: Query Language Developer Preview
+        href: /couchbase-query-language-0.1/
           
       - label: Couchbase Sync Gateway
         href: /sync-gateway/

@@ -104,12 +104,15 @@ Filtered pulls are how Couchbase Lite can encode the list of [channels](https://
 
 During a push, on the other hand, the filter function runs locally in Couchbase Lite. As with MapReduce functions, the filter function is specified at runtime as a native block pointer. Here's an example of defining a filter function that passes only documents with a `"shared"` property with a value of `true`:
 
-	[database defineFilterNamed: @"sharedItems"
-	                      block: FILTERBLOCK({
-							return [[doc objectForKey: @"shared"] booleanValue];
-					      })];
 
-This function can then be plugged into a push replication by name:
+```
+database defineFilter: @"sharedItems"
+              asBlock: FILTERBLOCK({
+                 return [[doc objectForKey: @"shared"] booleanValue];
+              })];
+```
+
+					      This function can then be plugged into a push replication by name:
 
 	push.filter = @"sharedItems";
 
