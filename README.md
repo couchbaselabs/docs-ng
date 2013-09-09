@@ -135,12 +135,12 @@ When you content is ready to stage, commit it and send a pull request to have it
 How to Convert on Docs Staging
 ==================
 
-1) Manually:
+1. Manually:
 
-cd /home/docs/docs-ng
-./pull_publish.sh
+        cd /home/docs/docs-ng  
+        ./pull_publish.sh  
 
-2) Automatically
+2. Automatically
 
-The ./pull_publish.sh is running automatically as a cron job every 60 minutes and will pull from git, convert with nanoc.
+    The ./pull_publish.sh is running automatically as a cron job every 60 minutes and will pull from git, convert with nanoc.
 
