@@ -10,7 +10,7 @@ Tracker](http://www.couchbase.com/issues/browse/MB).
 
 This release is our second minor release for Couchbase Server 2.0 after a 2.1
 release. In 2.1, we added some major enhancements for Disk IO optimization, XDCR
-optimization, hostname management and also fixed some critical bugs. The 2.2
+optimization, hostname management and also fixed some critical bugs. The 2.2 release 
 enhances some key areas which include:
 
  * XDCR protocol update to use memcached, see [Behavior and
@@ -22,17 +22,17 @@ enhances some key areas which include:
 
  * Read-only admin user and ability to reset password for administrators.
 
-In addition, this release will try to address some existing issues that
+In addition, this release will address some existing issues that
 customers are facing:
 
- * Hash passwords on the wire for SASL buckets from an SDK, see [Couchbase
+ * Hash passwords for memcached protocol connections for SASL buckets. See [Couchbase
    Developer Guide 2.2, Providing SASL
    Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication).
 
- * Support installing Couchbase as a non-root and non-sudo user, see [Installing
+ * Support installing Couchbase as a non-root and non-sudo user on Linux, see [Installing
    Couchbase Server](#couchbase-getting-started-install).
 
- * Efficiently support "Append" patterns with tcmalloc upgrade.
+ * Efficiently support "Append" operations with tcmalloc upgrade.
 
  * Improved rebalance speeds for smaller number datasets and node counts.
 
@@ -72,21 +72,15 @@ customers are facing:
       *Issues* : [MB-8460](http://www.couchbase.com/issues/browse/MB-8460)
 
     * Non-UTF-8 encoded keys will not be replicated to destination clusters via XDCR
-      by design. If any non-UTF-8 key is detected at a source cluster, a warning
-      message will appear in the `xdcr_error.*` log files along with a list of
-      non-UTF-8 keys. The message you will see is "Warning! These non-UTF-8 keys are
-      filtered out and will not be replicated:" followed by a list of keys. See
-      [Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
+      by design. See [Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
 
-      *Issues* : [MB-8727](http://www.couchbase.com/issues/browse/MB-8727)
+      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8727)
 
  * **Performance**
 
     * Users experienced higher latency rates when they performed `observe` for
-      replicated data. This was due to a one-second sleep interval which occurred when
-      Couchbase server was idle. This sleep interval has been significantly reduced
-      and has improved latency so that it is at least 5 times faster for this use
-      case.
+      replicated data. We have now fixed the issue.  
+       Latency is now at least 5 times faster for this use case for Couchbase Server 2.2.
 
       *Issues* : [MB-8453](http://www.couchbase.com/issues/browse/MB-8453)
 
@@ -126,7 +120,7 @@ customers are facing:
     * For Mac OSX, if you move the server after it is installed and configured, it
       will fail. If you must move a configured server on this platform, you should
       first stop the server, delete the config.dat file found at
-      `/var/lib/couchbase/config`, start the server and configure it once again.
+      `*install_directory*/var/lib/couchbase/config`, start the server and configure it once again.
 
       *Issues* : [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
       
