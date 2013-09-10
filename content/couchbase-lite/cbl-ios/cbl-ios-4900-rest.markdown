@@ -32,7 +32,7 @@ If you want external clients to be able to connect to the REST API, to enable pe
     BOOL ok = [_listener start];
     UInt16 actualPort = _listener.port;  // the actual TCP port it's listening on
 
-Congratulations, you're now running a real live HTTP server. Other devices can connect to it and replicate with your databases. You will definitely want to lock this down to prevent anything malicious from reading or changing your app's data! Note how the above snippet makes the listener read-only, so remote clients can only pull from, not push to, your databases; it then sets a username and password, which implicitly disables anonymous access.
+You're now running a live HTTP server. Other devices can connect to it and replicate with your databases. You will definitely want to lock this down to prevent anything malicious from reading or changing your app's data! Note how the above snippet makes the listener read-only, so remote clients can only pull from, not push to, your databases; it then sets a username and password, which implicitly disables anonymous access.
 
 ### Being a Client
 

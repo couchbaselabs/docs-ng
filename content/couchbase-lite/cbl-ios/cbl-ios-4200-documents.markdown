@@ -99,13 +99,13 @@ In the example, the document is copied to a mutable dictionary object called `co
 
 #### Handling Update Conflicts
 
-Now let's look at the messy reality of concurrent programming. The above example code is vulnerable to a race condition. If something else updates the document in between the calls to `properties` and `putProperties:error` methods, the operation will fail. (The error domain is `CBLHTTPErrorDomain` and the error code is 409, which is the HTTP status code for "Conflict".)
+Due to the realities of concurrent programming, the previous example code is vulnerable to a race condition. If something else updates the document in between the calls to the `properties` and `putProperties:error` methods, the operation will fail. (The error domain is `CBLHTTPErrorDomain` and the error code is 409, which is the HTTP status code for "Conflict".)
 
-"So what?" you might object. "My app is single-threaded, so it can't make any other changes in between." Ah, but most Couchbase Lite apps use replication, and replication runs in the background. So it's possible that one of your users might get unlucky and find that Couchbase Lite got a remote update to that very document, and inserted it a moment before he tried to save his own update. He'll get some weird error about a conflict. Then he'll try the operation again, and this time it'll work because by now your `CBLDocument` has updated itself to the latest revision. This will annoy him and he'll go and lower his App Store rating of your app.
+Even if your app is single-threaded, most Couchbase Lite apps use replication, which runs in the background. So it's possible that one of your users might get unlucky and find that Couchbase Lite received a remote update to that very document, and inserted it a moment before he tried to save his own update. He'll get an error about a conflict. Then he'll try the operation again, and this time it'll work because by now your `CBLDocument` has updated itself to the latest revision.
 
-This is, admittedly, unlikely to happen in the above example, because the elapsed time between getting and putting the properties is so short (microseconds, probably). It's more likely in a situation where it takes the user a while to make a change. For example, in a fancier to-do list app the user might open an inspector view, make multiple changes, then commit them. The app would probably fetch the document properties when the user presses the edit button, let the user take as long as she wants to modify the UI controls, and then save when she returns to the main UI. In this situation, minutes might have gone by, and it's much more likely that in the meantime the replicator pulled down someone else's update to that same document.
+This is, admittedly, unlikely to happen in the above example because the elapsed time between getting and putting the properties is so short (microseconds, probably). It's more likely in a situation where it takes the user a while to make a change. For example, in a fancier to-do list app the user might open an inspector view, make multiple changes, then commit them. The app would probably fetch the document properties when the user presses the edit button, let the user take as long as she wants to modify the UI controls, and then save when she returns to the main UI. In this situation, minutes might have gone by, and it's much more likely that in the meantime the replicator pulled down someone else's update to that same document.
 
-We'll show you how to deal with this, but for simplicity we'll do it in the context of our rather trivial example. The easiest way to deal with this is to respond to a conflict by starting over and trying again. By now the `CBLDocument` will have updated itself to the latest revision, so you'll be making your changes to current content and won't get a conflict.
+We'll show you how to deal with this, but for simplicity we'll do it in the context of our  example. The easiest way to deal with this is to respond to a conflict by starting over and trying again. By now the `CBLDocument` will have updated itself to the latest revision, so you'll be making your changes to current content and won't get a conflict.
 
 First we figure out what change we want to make. In this case, we want to save the new setting of the checkbox:
 
@@ -131,7 +131,7 @@ The example shows a second call to `doc.properties`, but it's in the loop. The f
 
 ### Deleting A Document
 
-Deleting is a lot like updating. Instead of calling `putProperties:` you call `deleteDocument:`. Here's the sample code, which should be familiar looking by now:
+Deleting is a lot like updating. Instead of calling `putProperties:` you call `deleteDocument:`. Here's an example:
 
 ```
     NSError* error;

@@ -1,10 +1,10 @@
 # Contributing to Couchbase Lite iOS
 
-You can find the [latest source code for Couchbase Lite iOS](https://github.com/couchbase/couchbase-lite-ios) on GitHub.
+If you want to contribute, please follow the guidelines for coding and testing described in this section. You can find the [latest source code for Couchbase Lite iOS](https://github.com/couchbase/couchbase-lite-ios) on GitHub.
  
 ## Coding Style
 
-If you want to add or modify source code in Couchbase Lite, please read and follow these guidelines. Thanks!
+Please use the coding style guidelines and naming conventions described in this section.
 
 ### Source Files
 
@@ -124,7 +124,7 @@ Before committing any code:
 
 * Build both the Mac and iOS demo app targets, to catch platform- or architecture-specific code.
 
-* Run the static analyzer (Cmd-Shift-B). There should be no issues with our code (there may be one or two with third-party code.)
+* Run the static analyzer (Cmd-Shift-B). There should be no issues with our code (there might be one or two issues with third-party code.)
 
 * Run the unit tests on both platforms: run the demo app with custom arguments `Test_All` and `Test_Only`. (This is really easy to do using Cmd-Opt-R.) All the tests must pass.
 

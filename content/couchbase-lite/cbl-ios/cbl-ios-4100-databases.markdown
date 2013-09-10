@@ -1,31 +1,57 @@
 ## Working With Databases
-In your app, you need to [set up an initial database](#setting-up-the-initial-database) the first time a user launches your app and [connect to the existing database](#connecting-to-an-existing-database) upon subsequent launches. Each time the app launches, you must check whether the database exists in Couchbase Lite.
+Depending on your app design, you might need to [set up an initial database](#setting-up-the-initial-database) the first time a user launches your app and then [connect to the existing database](#connecting-to-an-existing-database) upon subsequent launches. Each time the app launches, you must check whether the database exists in Couchbase Lite.
+
+When your app is launched for the first time, you need to set up a database. 
 
 ### Setting Up the Initial Database
-When your app is launched for the first time, you need to set up a database. You can set up the initial database in your app by using any of the following methods:
+You can set up the initial database in your app by using any of the following methods:
 
 * [Create a database in your app](#creating-a-database-in-your-app)
 * [Pull a database from a server](#pulling-a-database-from-a-server)
 * [Install a prebuilt database](#installing-a-prebuilt-database)
 
 #### Creating a Database in Your App
-To create a database in your app, you need to create a `CBLDatabase` instance.
+To create a database in your app, you need to create a `CBLDatabase` instance by using the `createDatabaseNamed:error` method provided in the `CBLManager` class. Typically, this is done in the app delegate. The following code fragments show an example.
+
+In the **AppDelegate.h** file:
+
+```
+	// AppDelegate.h file
+	
+	#import <CouchbaseLite/CouchbaseLite.h>
+	...
+    @property (strong, nonatomic) CBLDatabase *database;
+```
+
+In the `application:didFinishLaunchingWithOptions:` method in the **AppDelegate.m** file:
+
+```
+        // create a shared instance of CBLManager
+        CBLManager *manager = [CBLManager sharedInstance];
+        
+        // create a database
+        NSError *error;
+        self.database = [manager createDatabaseNamed: @"my-database" error: &error];
+```
+   
 
 #### Pulling a Database From a Server
 
+TBD
+
 #### Installing a Prebuilt Database
-In some use cases you might want to install a database along with your app. Consider the following pros and cons when deciding whether to include a database with your app.
+For some use cases you might want to install a database along with your app. Consider the following pros and cons when deciding whether to include a database with your app.
 
 Pros:
 
 * Generally, it's faster to download a database as part of the app, rather than creating one through the replication protocol. 
-* Shifts bandwidth from your servers to Apple's.
-* Improves the first-launch user experience to not have a lengthy "Downloading additional data..." screen.
+* Shifts bandwidth away from your servers.
+* Improves the first-launch user experience.
 
 Cons:
 
-* Changing the initial contents requires resubmitting the app to Apple.
-* Including the database with the app increases its disk usage on the device because after the database is copied, the initial version remains inside the app bundle.
+* Changing the initial contents requires resubmitting the app to the App Store.
+* Including the database with the app increases its disk usage on the device.
 
 To use a prebuilt database, you need to set up the database, build the database into your app bundle as a resource, and install the database during the initial launch.
 
@@ -42,13 +68,13 @@ The Couchbase Lite Xcode project has a target called LiteServ that builds a smal
 
 ##### Extracting and Building the Database
 
-By default, the local database is in the `Application Support` directory tree of the app you used to create the database. The main database file has a `.touchdb` extension. If your database has attachments, you also need the **_databasename_ attachments** directory that's adjacent to it.
+By default, the local database is in the `Application Support` directory tree of the app you used to create the database. The main database file has a `.cblite` extension. If your database has attachments, you also need the **_databasename_ attachments** directory that's adjacent to it.
 
 Add the database file and the corresponding attachments directory to your Xcode project. If you add the attachments folder, make sure that in the **Add Files** sheet you select the **Create folder references for any added folders** radio button, so that the folder structure is preserved; otherwise, the individual attachment files are all added as top-level bundle resources.
 
 ##### Installing the Database
 
-When your app launches, after creating a `CBLDatabase` instance for its database, it needs to check whether the database exists. If the database does not exist,  copy it from the app bundle. The code looks like this:
+After your app launches and creates a `CBLDatabase` instance for its database, it needs to check whether the database exists. If the database does not exist, copy it from the app bundle. The code looks like this:
 
 
     CBLManager* dbManager = [[CBLManager sharedInstance] init];
@@ -56,7 +82,7 @@ When your app launches, after creating a `CBLDatabase` instance for its database
                                                error: &error];
     if (!database) {
         NSString* cannedDbPath = [[NSBundle mainBundle] pathForResource: @"catalog"
-                                                                 ofType: @"touchdb"];
+                                                                 ofType: @"cblite"];
         NSString* cannedAttPath = [[NSBundle mainBundle] pathForResource: @"Catalog attachments"
                                                                   ofType: @""];
         BOOL ok = [dbManager replaceDatabaseNamed: @"catalog"
@@ -64,7 +90,7 @@ When your app launches, after creating a `CBLDatabase` instance for its database
                                   withAttachments: cannedAttPath
                                             error: &error];
         NSAssert(ok, @"Failed to install database: %@", error);
-        CBLDatabase* database = [dbManager databaseNamed: @"Catalog"
+        CBLDatabase* database = [dbManager databaseNamed: @"catalog"
                                                    error: &error];
         NSAssert(database, @"Failed to open database");
     }

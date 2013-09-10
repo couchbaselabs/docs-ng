@@ -1,6 +1,6 @@
 ## Working With Data Model Objects
 
-Couchbase Lite has an object modeling layer that can make it easier to integrate its documents into your code. It's similar to, though simpler than, the Core Data `NSManagedObject`. The idea is the same: to create Objective-C classes whose instances represent documents in the database and whose native properties map to document properties.
+Couchbase Lite has an object modeling layer that can make it easier to integrate its documents into your code. It's similar to, though simpler than, the Core Data `NSManagedObject`. The idea is to create Objective-C classes whose instances represent documents in the database and whose native properties map to document properties.
 
 ### Defining A Model Class
 
@@ -103,9 +103,8 @@ In the actual document, a relationship is expressed by a **property whose value 
 
     Objective-C property --> document property --> database (by ID) --> document --> model
 
-#### Example
 
-Let's say you have documents for blog comments, and each has a "post" property whose value is the document ID of the blog post it refers to. You can model that like this:
+For example, you might have documents for blog comments and each blog comment has a "post" property whose value is the document ID of the blog post it refers to. You can model that like this:
 
     @class BlogPost;
 	
@@ -119,9 +118,9 @@ Note that the declaration uses `(assign)` instead of the more typical `(retain)`
 
 #### Dynamic Subclassing and the CBLModelFactory
 
-So far, if you declare a property's type as being `BlogPost*`, the instantiated object is a BlogPost. But what if BlogPost has subclasses? In a tumblr-style app, there might be different types of posts, such as text, image, and video, differentiated by the value of a `type` property, and you want these to be instantiated as subclasses like `TextPost`, `ImagePost` and `VideoPost`. How do you tell the property which class to instantiate for which document when the property type doesn't narrow it down to one class?
+So far, if you declare a property's type as being `BlogPost*`, the instantiated object is a BlogPost. But what if BlogPost has subclasses? In a Tumblr-style app, there might be different types of posts, such as text, image, and video, differentiated by the value of a `type` property, and you want these to be instantiated as subclasses like `TextPost`, `ImagePost` and `VideoPost`. How do you tell the property which class to instantiate for which document when the property type doesn't narrow it down to one class?
 
-Enter the `CBLModelFactory`. This singleton object keeps a registry that maps document `type` property values to classes. If at launch time you register the type strings and the corresponding `BlogPost` subclasses, then CBLModel will consult this when instantiating model-reference properties. So the value of the `post` property of a comment will be a `TextPost`, `ImagePost` or `VideoPost` depending on the document's type.
+The `CBLModelFactory` is singleton object keeps a registry that maps document `type` property values to classes. If at launch time you register the type strings and the corresponding `BlogPost` subclasses, then CBLModel will consult this when instantiating model-reference properties. So the value of the `post` property of a comment will be a `TextPost`, `ImagePost` or `VideoPost` depending on the document's type.
 
 <!-- Add an example of registering a document type here -->
 
