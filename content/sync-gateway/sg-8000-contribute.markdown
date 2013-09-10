@@ -31,11 +31,11 @@ $ git clone https://github.com/couchbase/sync_gateway.git
 	
 5. Build Sync Gateway:
 
-		```sh
+	```sh
 	$ ./build.sh
 ```
 
-Sync Gateway is a standalone, native executable located in `/bin`. You can run the executable from the build location or move it anywhere you want.
+Sync Gateway is a standalone, native executable located in `./bin`. You can run the executable from the build location or move it anywhere you want.
 
 To update your build later, pull the latest updates from GitHub, update the submodules, and run `./build.sh` again.
 

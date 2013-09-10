@@ -9,18 +9,20 @@ You manage accounts by using the Admin REST API.This interface is privileged and
 The URL for a user account is `/databasename/_user/name`, where databasename is the configured name of the database and name is the user name. The content of the resource is a JSON document with the following properties:
 
 * `name`: The user name (same as in the URL path). Names must consist only of alphanumeric ASCII characters or underscores.
-* `admin_channels`: Describes the channels that the user is granted access to by the administrator. Its format is a dictionary object whose keys are channel names and values are integers. Each value represents the database sequence number at which the user got access to that channel.
+
+* `admin_channels`: Describes the channels that the user is granted access to by the administrator. The value is an array of channel-name strings.
+
 * `all_channels`: Like `admin_channels` but also includes channels the user is given access to by other documents via a sync function. This is a derived property and changes to it will be ignored.
+
 * `roles`: An optional array of strings that contain the roles the user belongs to.
-* `password`: In a PUT or POST request, include the user's password in this property. It is not returned by a GET request.
+
+* `password`: In a PUT or POST request, you can set the user's password with this property. It is not returned by a GET request.
+
 * `disabled`: This property is usually not included. if the value is set to `true`, disables access for that account.
+
 * `email`: The user's email address. This property is optional, but Persona login needs it.
 
 You can create a new user by sending a PUT request to its URL, or by sending a POST request to `/$DB/_user/`. 
-
-If you add channels to a user's `admin_channels` property, set the associated sequence identifier to 0. When the sequence identifier is saved, it is changed to the database's current maximum value.
-
-A note on changing a user's `admin_channels` property: If you add channels to the dictionary, set the associated sequence number to 0. When saved it will be changed to the database's current maximum sequence. This ensures that the user's changes feed will correctly send the documents with that channel.
 
 ### Anonymous Access
 
@@ -30,10 +32,8 @@ To enable the GUEST account,  set its `disabled` property to false. You might al
 
 ```sh
 $ curl -X PUT localhost:4985/$DB/_user/GUEST --data \
-   '{"disabled":false, "admin_channels":{"public":1}}'
+   '{"disabled":false, "admin_channels":[“public”]}'
 ```
-
-Note: the format of `admin_channels` is likely to change in the future, probably to a simple array like `["public"]`. If the above example doesn't work, it's likely that we changed the format but haven't updated this page yet, so try the array and complain to us!
 
 
 ### Roles
@@ -41,7 +41,7 @@ Note: the format of `admin_channels` is likely to change in the future, probably
 
 *Roles* are named collections of channels. A user account can be assigned to zero or more roles. A user inherits the channel access of all roles it belongs to. This is very much like Unix groups, except that roles do not form a hierarchy.
 
-You access roles through the Admin REST API much like users are accessed, through URLs of the form "/_database_/_role/_name_". Role resources have a subset of the properties that users do: `name`, `admin_channels`, `all_channels`.
+You access roles through the Admin REST API much like users are accessed, through URLs of the form `/dbname/_role/name`. Role resources have a subset of the properties that users do: `name`, `admin_channels`, `all_channels`.
 
 Roles have a separate namespace from users, so it's legal to have a user and a role with the same name.
 
@@ -51,13 +51,13 @@ You can authenticate users by using the methods described in the following secti
 
 ### HTTP
 
- Sync Gateway allows clients to authenticate using either HTTP Basic Auth or cookie-based sessions. The only difference is that we've moved the session URL from `/_session` to `/dbname/_session`, because Sync Gateway user accounts are per database, rather than global to the server.
+ Sync Gateway allows clients to authenticate by using either HTTP Basic Auth or cookie-based sessions. The session URL is `/dbname/_session`.
 
 ### Persona
 
-Sync Gateway supports [Mozilla Persona](https://developer.mozilla.org/en-US/docs/persona), a sign-in system for the web that allows users to sign in to  websites using an email address. You can enable Persona either by modifying your server configuration file or by starting Sync Gateway with an additional command-line option.
+Sync Gateway supports [Mozilla Persona](https://developer.mozilla.org/en-US/docs/persona), a sign-in system for the web that allows clients to authenticate by using an email address. You can enable Persona either by modifying your server configuration file or by starting Sync Gateway with an additional command-line option.
 
-To enable Persona by modifying the configuration file, add a top-level `persona` property to the file. The value of the `persona` property is an object with an `origin` property that contains your server's canonical root URL. For example:
+To enable Persona by modifying the configuration file, add a top-level `persona` property to the file. The value of the `persona` property is an object with an `origin` property that contains your server's canonical root URL as seen by clients. For example:
 
 ```
 
@@ -87,13 +87,33 @@ The user name for the new account is the same as the authenticated email address
 
 ### Custom (Indirect) Authentication
 
-An app server can create a session for a user by sending a POST request to `/dbname/_session`. This allows the app server to optionally do its own authentication using the following control flow:
+An app server can create a session for a user by sending a POST request to `/dbname/_session`. This works only on the admin port. 
+
+The request body is a JSON document with the following properties:
+
+* `name`: User name
+
+* `ttl`: Number of seconds until the session expires. This is an optional parameter. If `ttl` is not provided, the default value of 24 hours is used.
+
+The response body is a JSON document that contains the following properties:
+
+ * `session_id`: Session string 
+ 
+* `cookie_name`: Name of the cookie the client should send 
+ 
+* `expires` : Date and time that the session expires
+
+This allows the app server to optionally do its own authentication using the following control flow:
 
 1. Client sends credentials to your app server.
-2. App server's handler authenticates the credentials however it wants (LDAP, OAuth, and so on).
-3. App server sends a POST request with the user name to gateway admin's `/dbname/_session` endpoint.
+
+2. App server authenticates the credentials however it wants (LDAP, OAuth, and so on).
+
+3. App server sends a POST request with the user name to the Sync Gateway Admin REST API server `/dbname/_session` endpoint.
+
 4. If the request fails with a 401 status, there is no Sync Gateway user account with that name. The app server can then create one (also using the Admin REST API) and  repeat the `_session` request.
-4. The app server adds a `Set-Cookie:` HTTP header to its response to the client, using the session cookie name and value received from the gateway.
+
+5. The app server adds a `Set-Cookie:` HTTP header to its response to the client, using the session cookie name and value received from the gateway.
 
 Subsequent client requests to the gateway will now include the session in a cookie, which the gateway will recognize. For the cookie to be recognized, your site must be configured so that your app's API and the gateway appear on the same public host name and port.
 

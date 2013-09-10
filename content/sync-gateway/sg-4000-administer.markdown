@@ -15,7 +15,7 @@ sync_gateway [Options] [ConfigurationFile...]
 
 |Option | Default |Description|  
 | ------	| ------	| ------	|  
-| `-adminInterface` | 4985| Port the Admin REST API  listens on
+| `-adminInterface` | 127.0.0.1:4985| Port the Admin REST API  listens on
 | `-bucket` | sync_gateway| Name of the Couchbase bucket to use
 | `-dbname` |bucket name| Name of the database to serve via the Sync REST API
 | `-help`| None | Lists the available options and exits.
@@ -24,13 +24,13 @@ sync_gateway [Options] [ConfigurationFile...]
 | `-personaOrigin` |None| Base URL for Persona authentication. It should be the same URL that the client uses to reach the server.
 | `pool` | default | Couchbase Server pool name in which to find buckets
 |`pretty` | false | Pretty-print JSON responses. This is useful for debugging, but reduces performance.
-| `-url` | http://localhost:8091 | URL of the database server. An HTTP URL implies Couchbase Server, a `walrus:` URL implies the built-in Walrus database.
+| `-url` | walrus: | URL of the database server. An HTTP URL implies Couchbase Server, a `walrus:` URL implies the built-in Walrus database.
 |`-verbose`| false | Logs more information about requests.
 
 
 The command-line tool uses the regular Go flag parser, so you can prefix options with one or two `-` characters, and give option values either as a following argument or in the same argument after an equal sign (=). 
 
-The following command  does not include any parameters and just uses the default values. It connects to the bucket named `sync_gateway` in the pool named `default` on a Couchbase Server at localhost:8091. The database is called `sync_gateway` and is served from port 4984, with the admin interface on port 4985.
+The following command  does not include any parameters and just uses the default values. It connects to the bucket named `sync_gateway` in the pool named `default` of the build-in Walrus database. The database is called `sync_gateway` and is served from port 4984, with the admin interface on port 4985.
 
 ```sh
 $ sync_gateway
@@ -54,7 +54,7 @@ Instead of entering the settings on the command-line, you can store them in a JS
 
 If you want to run multiple databases you can either add more entries to the `databases` property in the configuration file, or you can define each database in its own configuration file and list each of the configuration files on the command line.
 
-Configuration files have one syntactic feature that's not standard JSON: any text between backticks (\`) is treated as a string, even if it spans multiple lines. This makes it easy to embed JavaScript code, such as the sync function.
+Configuration files have one syntactic feature that's not standard JSON: any text between backticks (\`) is treated as a string, even if it spans multiple lines or contains double-quotes. This makes it easy to embed JavaScript code , such as the sync function.
 
 The following sample configuration file starts a server with the default settings:
 
@@ -95,7 +95,7 @@ Sync Gateway provides the following REST APIs:
 
 * The [Sync REST API](#sync-rest-api) is used for client replication. The default port for the Sync REST API is 4984.
 
-* The [Admin REST API](#admin-rest-api) is used to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin REST API is 4985.
+* The [Admin REST API](#admin-rest-api) is used to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin REST API is 4985. By default, the Admin REST API is reachable only from localhost for safety reasons.
 
 ### Managing API Access
 
@@ -107,38 +107,11 @@ If you want to change the ports, you can do that in the configuration file.
 
 * To change the Admin REST API port, set the `adminInterface`  property in the configuration file. 
 
-The value of the property is a string consisting of a colon followed by a port number (for example, `:4985`). You can also prepend a host name or numeric IP address before the colon to bind only to the network interface with that address.
+The value of the property is a string consisting of a colon followed by a port number (for example, `:4985`). You can also prepend a host name or numeric IP address before the colon to bind only to the network interface with that address. 
 
-### Enabling Guest Access
+As a useful special case, the IP address 127.0.0.1 binds to the loopback interface, making the port unreachable from any other host. This is the default setting for the admin interface.
 
-Sync Gateway does not allow anonymous or guest access by default. A new server is accessible through the Sync REST API only after you enable guest access or create some user accounts. You can do this either by editing the configuration file before starting the server or by using the Admin REST API.
+### Managing Guest Access
 
-<p style="border-style:solid;padding:10px;">
-<strong>Warning</strong>: If you enable guest access, all data is accessible to any client without authentication. If you need to enable guest access temporarily, be sure to disable it later.
-</p>
+Sync Gateway does not allow anonymous or guest access by default. A new server is accessible through the Sync REST API only after you enable guest access or create some user accounts. You can do this either by editing the configuration file before starting the server or by using the Admin REST API. For more information, see [Anonymous Access](#anonymous-access).
 
-You can enable guest access by modifying a configuration file or by sending a REST request. The reserved user name `GUEST` is used for all anonymous or unauthenticated access.
-
-To enable guest access via a configuration file,  add a guest user to a `users` property inside a database object. Here's an example of a configuration file that gives full access to unauthenticated requests by enabling guest access:
-
-```
-{
-   "log":["CRUD","REST+"],
-   "databases":{
-      "db":{
-         "users":{
-            "GUEST":{
-               "disabled":false,
-               "admin_channels":["*"]
-            }
-         }
-      }
-   }
-}
-```
-
-The following sample command shows how to modify the guest account through the Admin REST API:
-
-```
-$ curl -X PUT localhost:4985/$DB/_user/GUEST --data '{"disabled":false, "admin_channels":["*"]}'
-```

@@ -30,7 +30,7 @@ function (doc, oldDoc) {
 
 * `oldDoc`
 
-  If the document has been saved before, the revision that is being replaced is available here. In the case of a document with a conflicting revision, the provisional winning revision is passed as the `oldDoc` parameter. 
+If the document has been saved before, the revision that is being replaced is available here. In the case of a document with a conflicting revision, the provisional winning revision is passed as the `oldDoc` parameter. If the document is being deleted, there is a `_deleted` property whose value is true. 
 
 
 ### Sync Function Calls
@@ -67,8 +67,7 @@ function (doc, oldDoc) {
 As a convenience, it is legal to call `channel` with a `null` or `undefined` argument; it simply does nothing. This allows you to do something like `channel(doc.channels)` without having to first check whether `doc.channels` exists.
 
 
-#### Grant access to a channel, to a user
-
+#### Grant a user access to a channel
 The `access` call grants access to channel to a given user or list of users. It can be called multiple times from a sync function.
 
 The effects of the `access` call last as long as this revision is current. If a new revision is saved, the `access` calls made by the `sync` function will replace the original access. If the document is deleted, the access is revoked. The effects of all access calls by all active documents are effectively unioned together, so if any document grants a user access to a channel, that user has access to the channel. Note that revoking access to a channel will not delete the documents which have already been synced to a user's device.
@@ -88,9 +87,9 @@ Here is an example function that grants access to a channel for all the users li
 
 ```javascript
 function (doc, oldDoc) {
-  if (doc.members && doc.channel_name) {
-    access(doc.members, doc.channel_name);
-  }
+
+  access(doc.members, doc.channel_name);
+  
   // we should also put this document on the channel it manages
   channel(doc.channel_name)
 }

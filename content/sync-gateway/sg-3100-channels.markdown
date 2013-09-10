@@ -10,7 +10,7 @@ A replication from Sync Gateway specifies a set of channels to replicate. Docume
 
 You do not need to register or preassign channels. Channels come into existence as documents are assigned to them. Channels with no documents assigned to them are empty.
 
-Valid channel names consist of Unicode letters (A&ndash;Z, a&ndash;z), digits (0&ndash;9), and ".", "_", and "-" characters. The empty string is not allowed. The special channel name `*` denotes all channels. Channel names are compared literally—the comparison is case and diacritical sensitive.
+Valid channel names consist of text letters \[A&ndash;Z, a&ndash;z], digits [0&ndash;9], and a few special characters \[= + / . , _ @] . The empty string is not allowed. The special channel name `*` denotes all channels. Channel names are compared literally—the comparison is case and diacritical sensitive.
 
 ### Mapping documents to channels
 
@@ -39,23 +39,23 @@ function (doc) {
 
 ### Replicating Channels to Couchbase Lite
 
-if you don't specify any channels to replicate, the user gets all the channels to which they have access. Due to this behavior, most apps do not have to specify a channels filter—instead they can just do the default sync configuration on the client (that is, specify the Sync Gateway database URL with no filter) to replicate the channels of interest.
+if a client doesn't specify any channels to replicate, it gets all the channels to which its user account has access. Due to this behavior, most apps do not have to specify a channels filter—instead they can just do the default sync configuration on the client (that is, specify the Sync Gateway database URL with no filter) to replicate the channels of interest.
 
 To replicate channels to Couchbase Lite, you configure the replication to use a filter named `sync_gateway/bychannel` with a filter parameter named `channels`. The value of the `channels` parameter is a comma-separated list of channels to fetch. The replication from Sync Gateway now pulls only documents tagged with those channels.
 
 A document can be removed from a channel without being deleted. For example, this can happen when a new revision is not added to one or more channels that the previous revision was in. Subscribers (downstream databases pulling from this database) should know about this change, but it's not exactly the same as a deletion.
 
-Sync Gateway's `_changes` feed includes one more revision of a document after it stops matching a channel. It adds a `removed` property to the entry where this happens. (No client yet recognizes this property, though.) The value of  the`removed` property is an array of strings, each string names a channel in which this revision no longer appears.
+Sync Gateway's `_changes` feed includes one more revision of a document after it stops matching a channel. It adds a `removed` property to the entry where this happens. (No client yet recognizes this property, though.) The value of  the `removed` property is an array of strings where each string names a channel in which this revision no longer appears. Also, the body of the document appears to be empty to the client.
 
 The effect on the client is that after a replication it sees the next revision of the document (the one that causes it to no longer match the channel). It won't get any further revisions until the next one that makes the document match again.
 
 This algorithm ensures that any views running in the client do not include an obsolete revision. The app code should use views to filter the results rather than just assuming that all documents in its local database are relevant.
 
-If the user's access to a channel is revoked, documents that have already been synced are not removed from the user's device.
+If a user's access to a channel is revoked or a client stops syncing with a channel, documents that have already been synced are not removed from the user's device.
 
 ### Authorization
 
-Sync Gateway can control only the data it shares with a client, not what clients do with the data after they have it. The `all_channels` property of a user account determines what channels that user can access. Its value is derived from the union of:
+The `all_channels` property of a [user account](#accounts) determines what channels that user can access.  Its value is derived from the union of:
 
 * The user's `admin_channels` property, which is settable via the admin REST API.
 * The channels that user has been given access to by `access()` calls from sync functions invoked for current revisions of documents (see [Programmatic Authorization](#programmatic-authorization)).
@@ -63,7 +63,7 @@ Sync Gateway can control only the data it shares with a client, not what clients
 
 The only documents a user can access are those whose current revisions are assigned to one or more channels the user has access to:
 
-* Any GET, PUT, or DELETE request to a document not assigned to one or more of the user's available channels fail with a 403 error.
+* A GET request to a document not assigned to one or more of the user's available channels fails with a 403 error.
 * The `_all_docs` property is filtered to return only documents that are visible to the user.
 * The `_changes` property ignores requests (via the `channels` parameter) for channels not visible to the user.
 
@@ -101,21 +101,37 @@ Sync functions can also authorize document updates. A sync function can reject t
 
 A 403 Forbidden status and the given error string is returned to the client.
 
-To validate a document you often need to know which user is changing it, and sometimes you need to compare the old and new revisions. For those reasons the sync function actually takes up to three parameters. To get access to the old revision, declare it like this:
+To validate a document you often need to know which user is changing it, and sometimes you need to compare the old and new revisions. To get access to the old revision, declare the sync function like this:
 
     function(doc, oldDoc) { ... }
 
-`oldDoc` is the old revision of the document (or empty if this is a new document). `user` is an object with helper functions on it to validate updates.
+`oldDoc` is the old revision of the document (or empty if this is a new document). 
 
+You can validate user privileges by using the helper functions: `requireUser`, `requireRole`, or `requireAccess`. Here's some examples of how you can use the helper functions:
 
 ```javascript
-requireUser("snej") // throw if username is not "snej"
-requireUser(["snej", "jchris", "tleyden"]) // throw if username is not in the list
-requireRole("admin") // throw an error unless the user has the "admin" role
-requireRole(["admin", "old-timer"]) // throw an error unless the user has one of those roles
-requireAccess("events") // throw an error unless the user has access to read the "events" channel
-requireAccess(["events", "messages"]) // throw an error unless the can read one of these channels
+// throw an error if username is not "snej"
+requireUser("snej")
+ 
+// throw if username is not in the list
+requireUser(["snej", "jchris", "tleyden"]) 
 
+// throw an error unless the user has the "admin" role
+requireRole("admin") 
+
+// throw an error unless the user has one of those roles
+requireRole(["admin", "old-timer"]) 
+
+// throw an error unless the user has access to read the "events" channel
+requireAccess("events") 
+
+// throw an error unless the can read one of these channels
+requireAccess(["events", "messages"]) 
+```
+
+Here's a simple sync function that validates whether the user is modifying a document in the old document's `owner` list:
+
+```javascript
 function (doc, oldDoc) {
   if (oldDoc) {
     requireUser(oldDoc.owner); // may throw({forbidden: "wrong user"})

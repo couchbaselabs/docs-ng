@@ -1,6 +1,6 @@
 ## Sync REST API
 
-You use the Sync REST API to synchronize a local database with a remote database. The sync takes place over HTTP and uses JSON documents in the message bodies. For more information about the synchronization protocol, see [Replication Algorithm](https://github.com/couchbase/couchbase-lite-ios/wiki/Replication-Algorithm).
+You use the Sync REST API to synchronize a local database with a remote database. The sync takes place over HTTP and uses JSON documents in the message bodies. For more information about the synchronization protocol, see [Replication Algorithm](https://github.com/couchbase/couchbase-lite-ios/wiki/Replication-Algorithm). You can also see the [URL mappings in the Sync Gateway source code](https://github.com/couchbase/sync_gateway/blob/master/src/github.com/couchbaselabs/sync_gateway/rest/routing.go).
 
 To access the Sync REST API, you need to have a user account.
 
@@ -35,7 +35,7 @@ You can use the following requests on the remote database. Replace *db* with the
 
 **Pull Requests:**
 
-* Find changes since the last pull (_feed_ will be normal or longpoll)  
+* Find changes since the last pull (_feed_ can be normal or longpoll)  
 		GET /*db*/_changes?style=all_docs&feed=*feed*&since=*since*&limit=*limit*&heartbeat=*heartbeat*
 
 * Download a single document with attachments  

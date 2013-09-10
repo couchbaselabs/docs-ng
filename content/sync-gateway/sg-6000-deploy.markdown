@@ -6,9 +6,9 @@ This section contains information about Sync Gateway deployments.
 
 Sync Gateway has the following limitations:
 
-* It cannot operate on pre-existing Couchbase buckets with app data in them because Sync Gateway has its own document schema and needs to create and manage documents itself. You can migrate existing data by creating a new bucket for the gateway and then using the Sync REST API to move your documents into it via PUT requests.
+* It cannot operate on pre-existing Couchbase buckets with app data in them because Sync Gateway has its own document schema and needs to create and manage documents itself. You can migrate existing data by creating a new bucket for the gateway and then using the Sync REST API to move your documents into it via PUT requests. You can’t make changes to the Couchbase bucket directly. You have to go through the Sync Gateway API.
 
-* Explicit garbage collection is required to free up space, via a REST call to `/_vacuum`. Garbage collection is not scheduled automatically, so you have to call it yourself.
+* Explicit garbage collection is required to free up space, via a REST call to `/$DB/_compact`. Garbage collection is not scheduled automatically, so you have to call it yourself.
 
 * Document IDs longer than 180 characters overflow the Couchbase Server maximum key length and cause an HTTP error.
 
