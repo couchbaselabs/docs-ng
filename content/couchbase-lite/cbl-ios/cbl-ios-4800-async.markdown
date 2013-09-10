@@ -1,4 +1,5 @@
-## Asynchronous Operations
+## Concurrency Support
+
 
 Couchbase Lite's API is mostly synchronous. That makes it simpler and more efficient. Most of the API calls are quick enough that it's not a problem to run them on the main thread, but some things might become too slow, especially with large databases, so you'd like to offload the processing to a background thread. You have a couple of options.
 

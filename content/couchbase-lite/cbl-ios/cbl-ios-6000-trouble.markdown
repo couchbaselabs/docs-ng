@@ -57,6 +57,9 @@ The breakpoint is persistent, so you need to do this only once per project.
 
 From now on, when an exception is thrown in this project, you drop into the Xcode debugger. You can of course look at the stack in the debugger GUI, but to report the exception it's best to get a textual form of the stack backtrace. To do this, make the debugger console visible (the right-hand pane of the debugger) and enter "bt" at the "(gdb)" or "(lldb)" prompt. Then copy the output.
 
+<!--
 ## Diagnosing Connection Problems
 
 ## Inspecting Your Data
+
+-->

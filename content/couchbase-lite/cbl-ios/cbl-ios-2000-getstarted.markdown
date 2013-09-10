@@ -11,6 +11,46 @@ To develop Couchbase Lite apps for iOS, you need:
 
 ## Getting Started in 5 Minutes
 
+This section shows you how to download and build a sample app called ToDo Lite. ToDo Lite is a shared to-do list app that demonstrates many Couchbase Lite features.
+
+### Before You Begin
+
+To get set up before you begin building the Todo Lite app:
+
+1. Download [Xcode](https://developer.apple.com/xcode/).
+
+2. Download [Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-mobile-solution) and move it to a permanent location.
+
+
+### Building Todo Lite
+
+To build the Todo Lite app:
+
+1. Open the Terminal application.
+
+	Terminal is usually located in the Applications > Utilities folder.
+
+2. Change to the directory that you want to store the ToDo Lite app in.
+
+	```sh
+	$ cd ~/dev
+	```
+
+3. Clone the Todo Lite app:
+
+	```sh
+	$ git clone https://github.com/couchbaselabs/ToDoLite-iOS.git
+```
+
+4. In the Couchbase Lite for iOS folder, find the **CouchbaseLite.framework** folder.
+
+5. Copy the **CouchbaseLite.framework** folder to the **Frameworks** folder inside the **ToDoLite-iOS** folder.
+
+6. In Xcode, select an iOS simulator build scheme.
+
+7. Click **Run**.
+
+	The ToDo Lite app opens in the iOS simulator.
 
 ## Adding Couchbase Lite To Your App
 

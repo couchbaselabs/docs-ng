@@ -61,7 +61,7 @@ Your schema needs to recognize a tombstone as a special case, otherwise it will 
 
 #### Detecting Invalid Changes
 
-Using schema isn't a silver bullet. A schema can only identify whether a document is structurally invalid, it can't identify an invalid _change_ in a document, or a valid change that the user doesn't have permission to make. Such invalid changes are usually crucial to detect for security reasons. Some examples:
+A schema can only identify whether a document is structurally invalid, it can't identify an invalid _change_ in a document, or a valid change that the user doesn't have permission to make. Such invalid changes are usually crucial to detect for security reasons. Some examples of invalid changes:
 
 * A new expense report, created by a user account that doesn't have permission to file expense reports.
 * A revision that changes the dollar value of an existing expense report, which is supposed to be immutable.

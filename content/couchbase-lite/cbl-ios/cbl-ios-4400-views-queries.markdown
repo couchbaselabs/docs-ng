@@ -1,7 +1,7 @@
 ## Working With Views and Queries
 
 
-The basic document API will get you pretty far, but real apps need to work with multiple documents. In a typical app, the top-level UI usually shows either all the documents or a relevant subset of them &mdash; in other words, the results of a query.
+The basic document API gets you pretty far, but most apps need to work with multiple documents. In a typical app, the top-level UI usually shows either all the documents or a relevant subset of them &mdash; in other words, the results of a query.
 
 Querying a Couchbase Lite database involves first creating a *view* that indexes the keys you're interested in and then running a *query* to get the results of the view for the key or range of keys you're interested in. The view is persistent, like a SQL index.
 
