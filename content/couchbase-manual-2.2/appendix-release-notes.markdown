@@ -80,8 +80,6 @@ Additional enhancements in 2.2 include:
     
     	With a similar workload and limited hardware, synchronization delays in I/O may occur resulting in a segmentation fault. This may result in data-loss. We therefore recommend you have adequate cluster capacity and monitor operations per second on your cluster.
 
-
-
       *Issues* : [MB-9098](http://www.couchbase.com/issues/browse/MB-9098)
 
 **Known Issues in 2.2**
@@ -138,12 +136,12 @@ Additional enhancements in 2.2 include:
       *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
 
 
-         * If you continuously perform numerous appends to a document, it may lead to
+     * If you continuously perform numerous appends to a document, it may lead to
            memory fragmentation and overuse. This is due to an underlying issue of
            inefficient memory allocation and deallocation with third party software
            `tcmalloc`.
            
-           *Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
+      	*Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
            
  * **Cluster Operations**
 
@@ -159,7 +157,7 @@ Additional enhancements in 2.2 include:
       
      * A cluster rebalance may exit and produce the error {not_all_nodes_are_ready_yet} if you perform the rebalance right after failing over a node in the cluster. You may need to wait 60 seconds after the node failover before you attempt the cluster rebalance.
 
-      This is because the failover REST API is a synchronous operation with a timeout. If it fails to complete the failover process by the timeout, the operation internally switches into a asynchronous operation. It will immediately return and re-attempt failover in the background which will cause rebalance to fail since the failover operation is still running.
+      	This is because the failover REST API is a synchronous operation with a timeout. If it fails to complete the failover process by the timeout, the operation internally switches into a asynchronous operation. It will immediately return and re-attempt failover in the background which will cause rebalance to fail since the failover operation is still running.
 
       *Issues* : [MB-7168](http://www.couchbase.com/issues/browse/MB-7168)
 
