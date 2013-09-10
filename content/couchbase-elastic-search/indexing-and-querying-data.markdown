@@ -46,15 +46,21 @@ Replication](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-
  1. For Bucket: enter `beer-sample`. This is actually the Elasticsearch index where
     the data will be sent for indexing.
 
+ 1. If you are using Couchbase Server 2.2 or later, click Advanced settings and
+    change the XDCR Protocol setting to Version 1.
+
  1. Finally click Replicate to start replication of documents to Elasticsearch.
     Couchbase Server will begin sending data from the beer-sample bucket to your
     Elasticsearch cluster.
 
+    Under the Ongoing Replications section, you will see the replication and status
+    of replication.
+
 
     ![](images/elastic_replicate.png)
 
-    Under the Ongoing Replications section, you will see the replication and status
-    of replication.
+
+    ![](images/elastic_replicate_2.png)
 
  1. You can also view the data transfer by clicking the Overview tab of
     Elasticsearch head:
