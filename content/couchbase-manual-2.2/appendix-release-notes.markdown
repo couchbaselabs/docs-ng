@@ -8,33 +8,25 @@ Tracker](http://www.couchbase.com/issues/browse/MB).
 
 ## Release Notes for Couchbase Server 2.2 GA (September 2013)
 
-This release is our second minor release for Couchbase Server 2.0 after a 2.1
-release. In 2.1, we added some major enhancements for Disk IO optimization, XDCR
-optimization, hostname management and also fixed some critical bugs. The 2.2 release 
-enhances some key areas which include:
-
- * XDCR protocol update to use memcached, see [Behavior and
+Couchbase Server 2.2 is our minor update release for Couchbase Server 2.0. This includes some major enhancements, new features and important bug fixes.  Also with this we have extended our platform support for Windows 2012 and provide separate packages for Ubuntu 12.04 and CentOS 6.
+ 
+The **major enhancements** available in Couchbase Server 2.2 include:
+ 
+- XDCR performance optimization through new mode of replication which utilizes highly efficient memcached protocol on the destination cluster for replicating changes. See [Behavior and
    Limitations](#couchbase-admin-tasks-xdcr-functionality).
-
- * Managing expired and deleted data efficiently. Better handling of persisted
-   delete tombstones and automated purging of tombstones. See [Disk
+- Disk storage optimization through new metadata purge settings for permanently purge metadata on deleted items. See [Disk
    Storage](#couchbase-introduction-architecture-diskstorage).
-
- * Read-only admin user and ability to reset password for administrators.
-
-In addition, this release will address some existing issues that
-customers are facing:
-
- * Hash passwords for memcached protocol connections for SASL buckets. See [Couchbase
-   Developer Guide 2.2, Providing SASL
-   Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication).
-
- * Support installing Couchbase as a non-root and non-sudo user on Linux, see [Installing
+- New read-only admin user to Couchbase Server. This user will have access to Couchbase Server and its Admin UI, tools and REST APIs but only in read-only mode. See Account Management.
+- New addition to our toolset CBRecovery tool that provides additional durability from remote cluster. See [CLI Tools](#couchbase-cli-tool).
+ 
+Additional enhancements in 2.2 include:
+ 
+- Instructions for non-root, non-sudo installation and running of Couchbase Server and its tools. See [Installing
    Couchbase Server](#couchbase-getting-started-install).
-
- * Efficiently support "Append" operations with tcmalloc upgrade.
-
- * Improved rebalance speeds for smaller number datasets and node counts.
+- CRAM-MD5 support for SASL authentication on Couchbase Server. See Providing SASL Authentication. See [Couchbase
+   Developer Guide 2.2, Providing SASL
+   Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication)
+- Ability to reset password for Administrator using the CLI command. See [CLI Tools](#couchbase-cli-tool).
 
 **Fixes in 2.2**
 
@@ -83,6 +75,14 @@ customers are facing:
        Latency is now at least 5 times faster for this use case for Couchbase Server 2.2.
 
       *Issues* : [MB-8453](http://www.couchbase.com/issues/browse/MB-8453)
+      
+    * Users may experience segmentation faults if a cluster is under heavy stress. For example if your cluster has a very high disk write queue such as 2 million items per node, several XDCR replications, plus thousands of writes per second, the disks will drain slower. 
+    
+    	With a similar workload and limited hardware, synchronization delays in I/O may occur resulting in a segmentation fault. This may result in data-loss. We therefore recommend you have adequate cluster capacity and monitor operations per second on your cluster.
+
+
+
+      *Issues* : [MB-9098](http://www.couchbase.com/issues/browse/MB-9098)
 
 **Known Issues in 2.2**
 
