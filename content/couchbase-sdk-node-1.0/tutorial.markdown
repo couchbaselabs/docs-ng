@@ -28,9 +28,11 @@ tutorial, but it should be simple to navigate while reading this tutorial.
    'beersample-node' #... shell> cd beersample-node shell> npm install`
 
  * Some views need to be set up. You can set up the views manually via the Web UI,
-   or invoke the design\_setup.js script located in the beersample-node directory.
+   or invoke the beer.js script located in the beersample-node directory with the
+   --setup parameter.
 
-   In the beer design document, create a view called by\_name:
+   In the beer design document, create a development view called by\_name, then
+   promote it to a production view (more details later on why this is neccessary):
 
     ```
     function (doc, meta) {
@@ -40,7 +42,8 @@ tutorial, but it should be simple to navigate while reading this tutorial.
     }
     ```
 
-   Create a design document called brewery and add a view called by\_name:
+   Create another design document called brewery and add a view called by\_name
+   (dont forget to promote it to a production view as above!):
 
     ```
     function (doc, meta) {
@@ -54,7 +57,7 @@ tutorial, but it should be simple to navigate while reading this tutorial.
 
    `shell> node beer.js Server running at http://127.0.0.1:1337/`
 
- * Navigate to localhost:1337 and enjoy the application!
+ * Navigate to http://localhost:1337/welcome and enjoy the application!
 
 <a id="preparations"></a>
 
@@ -132,7 +135,7 @@ beer. We don’t need to emit a value — that’s why we are using null here. I
 always advisable to keep the index as small as possible. Resist the urge to
 include the full document through emit(meta.id, doc), because it will increase
 the size of your view indexes. If you need to access the full document you can
-call bucket.get(result.key) to get the individual doc for a single row. The
+call db.get(result.key) to get the individual doc for a single row. The
 resulting retrieval of the document might be slightly out of sync with your
 view, but it will be fast and efficient.
 
@@ -154,10 +157,10 @@ Now we need to define a view for our breweries. You already know how to do this
     ```
 
 The final step is to push the design documents in production. While the design
-documents are in development, the index is applied only on the local node.
-Because we want to have the index on the whole dataset, click the Publish button
-on both design documents (and accept any pop-up windows that warn you about
-overriding the old design documents).
+documents are in development, the index is applied only to a deterministic
+subset of the data. Because we want to have the index on the whole dataset,
+click the Publish button on both design documents (and accept any pop-up windows
+that warn you about overriding the old design documents).
 
 For more information about using views for indexing and querying from Couchbase
 Server, see the following helpful resources in the Couchbase Server Manual:
@@ -277,9 +280,9 @@ The template simply provides some links to the brewery and beer pages (which are
 shown later).
 
 If you start your app now, you should be able to navigate to
-http://localhost:1337 and see the welcome page. You’ll get a 404 error if you
-try to visit any links though - this is because we haven’t implemented them yet.
-Let’s do that now!
+http://localhost:1337/welcome and see the welcome page. You’ll get a 404 error
+if you try to visit any links though - this is because we haven’t implemented
+them yet. Let’s do that now!
 
 <a id="managing_beers"></a>
 

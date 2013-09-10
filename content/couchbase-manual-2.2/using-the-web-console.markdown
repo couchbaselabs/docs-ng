@@ -1171,7 +1171,7 @@ The statistics shown are:
 
  * `mutations replicated optimistically`
 
-   Total number of mutations replicated with optimistic XDCR setting for replication.
+   Total number of mutations replicated with optimistic XDCR.
  
  * `ms docs ops latency`
 
