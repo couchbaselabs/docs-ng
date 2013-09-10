@@ -26,7 +26,7 @@ transcoder for serialization of the object.
 For example:
 
 
-```
+```java
 Object myObject = client.get("someKey");
 ```
 
