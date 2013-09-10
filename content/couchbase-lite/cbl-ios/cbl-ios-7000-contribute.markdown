@@ -1,6 +1,6 @@
-# Contributing to Couchbase Lite iOS
+# Contributing
 
-If you want to contribute, please follow the guidelines for coding and testing described in this section. You can find the [latest source code for Couchbase Lite iOS](https://github.com/couchbase/couchbase-lite-ios) on GitHub.
+If you want to contribute to Couchbase Lite for iOS, please follow the guidelines for coding and testing described in this section. You can find the [latest source code for Couchbase Lite iOS](https://github.com/couchbase/couchbase-lite-ios) on GitHub.
  
 ## Coding Style
 
