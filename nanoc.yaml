@@ -163,6 +163,9 @@ navbar:
 
       - label: Hadoop Plug-in
         href: /hadoop-plugin-1.1/
+        
+      - label: Moxi
+        href: /moxi-manual-1.8/
           
   - label: Mobile
     subnav:
