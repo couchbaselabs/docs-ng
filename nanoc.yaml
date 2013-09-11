@@ -204,7 +204,7 @@ navbar:
       - label: Ruby
         href: /couchbase-sdk-ruby-1.3/
         
-  - label: Language Refs
+  - label: SDK API References
     subnav:
       - label: C
         href: http://www.couchbase.com/autodocs/couchbase-c-client-2.1.2/index.html
