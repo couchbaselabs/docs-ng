@@ -36,6 +36,8 @@ Your system should meet the following system requirements.
 
 ### Supported Platforms
 
+With Couchbase Server 2.2 we have extended our platform support for Windows 2012 and provide separate packages for Ubuntu 12.04 and CentOS 6.
+
 <a id="table-couchbase-platform-support"></a>
 
 **Platform**             | **Version** | **32 / 64 bit** | **Supported**            | **Recommended Version**
