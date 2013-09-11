@@ -3459,7 +3459,7 @@ current status and list of replications in the `Ongoing Replications` section:
 
 <a id="admin-tasks-xdcr-advanced"></a>
 
-###Providing Advanced Settings
+###Providing XDCR Advanced Settings
 
 As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
@@ -3707,6 +3707,35 @@ active will be displayed within the `Past Replications` section of the
    remote cluster. Performing a flush operation will only delete data on the local
    cluster. Flush is disabled if there is an active outbound replica stream
    configured.
+   
+<a id="couchbase-admin-tasks-xdcr-upgrades"></a>
+
+### Upgrading with XDCR
+
+As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem` which performs
+ replication on a destination cluster with the memcached prototocol. This is the default mode for 
+ replications for Couchbase Server 2.2+. The other mode which exists is known as `capi` and is over 
+ a REST protocol. When you upgrade Couchbase Server you need to make sure that both 
+ your source and destination clusters support the replication mode you want to use. You may also need to delete the replication, complete the upgrade, then recreate the replication. If you do not, you could experience data loss during replication:
+ 
+ - `xmem` - only 2.2 servers and above support it.
+ - `capi` - both 2.2 and pre-2.2 servers support it.
+
+Consider the following upgrade scenarios:
+
+1. Both source and destination clusters are pre-2.2 and you upgrade both to pre-2.2 versions. This scenario is supported since both clusters will use `capi`.
+2. Both source and destination clusters are pre-2.2 and you upgrade the destination to 2.2. 
+This is a safe upgrade path since the source cluster will still communicate by default via `capi` to the destination.
+3. You upgrade only the source cluster to 2.2 and the destination is pre-2.2. This is not a safe upgrade path because the destination cannot receive replication via `xmem`. This will result in incorrect data replication and failures in conflict resolution.
+4. You upgrade both source and destination clusters from pre-2.2 to 2.2. This is also not a safe upgrade path because the cluster upgrades are not synchronized. You may complete source upgrade prior to destination upgrade. This may lead to incorrect data replication and failures in conflict resolution.
+5. Source is pre-2.2 an destination is Elastic Search. If you upgrade your source cluster to 2.2, you need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
+
+For these scenarios 3-4 you should follow this process:
+
+1. Delete all XDCR replications on your source cluster.
+2. Upgrade the source cluster.
+3. Upgrade the destination cluster.
+4. Re-create your XDCR replications and select the correct mode for your clusters. If both clusters are upgraded to 2.2 you can use `xmem` otherwise you should use `capi` mode.
 
 <a id="couchbase-xdcr-conflict-resolution"></a>
 
