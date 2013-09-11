@@ -506,9 +506,7 @@ metadata per deleted item in two structures per node. With millions of
 mutations, the space taken up by tombstones can grow quickly. This is especially
 the case if you have a large number of deletions or expired documents.
 
-As of Couchbase Server 2.2+ you can now permanently remove tombstones from a
-data bucket during compaction by setting a timed interval. For setting the purge
-interval:
+You can now configure the Metadata Purge Interval which sets how frequently a node will permanently purge metadata on deleted and expired items. This new setting will run as part of auto-compaction. This helps reduce the storage requirement by roughly 3x times lower than before and also frees up space much faster:
 
  * In Web Console, see [Using Web Console, Enabling
    Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).
