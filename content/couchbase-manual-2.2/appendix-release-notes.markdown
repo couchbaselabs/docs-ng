@@ -176,6 +176,11 @@ Additional enhancements in 2.2 include:
       Server 2.0 and above.
 
     *Issues* : [MB-7160](http://www.couchbase.com/issues/browse/MB-7160)
+    
+    * For Mac OSX there is a bug in `cbcollect_info` and the tool will not 
+    include system log files, syslog.tar.gz. This will be fixed in future releases.
+
+    *Issues* : [MB-8777](http://www.couchbase.com/issues/browse/MB-8777)
 
 <a id="couchbase-server-rn_2-1-1a"></a>
 
