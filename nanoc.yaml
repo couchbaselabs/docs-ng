@@ -203,6 +203,23 @@ navbar:
 
       - label: Ruby
         href: /couchbase-sdk-ruby-1.3/
+        
+  - label: Language Refs
+    subnav:
+      - label: C
+        href: http://www.couchbase.com/autodocs/couchbase-c-client-2.1.2/index.html
+
+      - label: Java
+        href: http://www.couchbase.com/autodocs/couchbase-java-client-1.1.9/index.html
+
+      - label: Node.js
+        href: http://www.couchbase.com/autodocs/couchbase-node-client-1.0.0-beta/index.html
+
+      - label: Python
+        href: http://www.couchbase.com/autodocs/couchbase-python-client-0.9/index.html
+
+      - label: Ruby
+        href: http://www.couchbase.com/autodocs/couchbase-ruby-client-1.3.2/index.html
 
   - label: Library
     href: http://www.couchbase.com/documentation-archives
