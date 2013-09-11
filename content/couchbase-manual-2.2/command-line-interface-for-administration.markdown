@@ -2965,7 +2965,9 @@ The following figure shows the report header:
 
    ![](images/health-report-warnings.png)
 
+<a id="couchbase-admin-cbreset_password"></a>
 
+## cbreset_password Tool
 
 <a id="couchbase-admin-cmdline-cbdocloader"></a>
 

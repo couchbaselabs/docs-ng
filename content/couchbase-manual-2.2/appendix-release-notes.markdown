@@ -26,7 +26,7 @@ Additional enhancements in 2.2 include:
 - CRAM-MD5 support for SASL authentication on Couchbase Server. See Providing SASL Authentication. See [Couchbase
    Developer Guide 2.2, Providing SASL
    Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication)
-- Ability to reset password for Administrator using the CLI command. See [CLI Tools](#couchbase-cli-tool).
+- Ability to reset password for Administrator using the CLI command. See [cbreset_password Tool](#couchbase-admin-cbreset_password).
 
 **Fixes in 2.2**
 

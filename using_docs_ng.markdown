@@ -9,6 +9,18 @@ Welcome to the new static website for Couchbase TechPubs. To create content, you
 
 The Staging server is setup to get and produce content in stage branch of docs-ng. There is a second copy of the repo that will produce and publish the master branch of docs-ng to the public system at S3.
 
+##Prerequisites
+
+To run and preview the site locally, you need:
+
+- xCode with Command Line Tools installed
+- Current version of Java
+- [Ruby 1.9.3](https://www.ruby-lang.org/en/downloads/) or higher
+- [Bundler](http://bundler.io/)
+- [Nanoc](http://nanoc.ws/install/)
+
+Once you get the repo, you will need to run `bundle install`.
+
 ##Source Control
 
 The entire new site as well as new content are in a public GitHub repo you can branch:
@@ -60,7 +72,7 @@ After you are done making your changes, make sure you make a pull request so the
 
 To preview your content locally, in the docs-ng repo convert your Markdown to HTML:
 
-nanoc
+nanoc or bundle exec nanoc
 
 Then you can preview it:
 
