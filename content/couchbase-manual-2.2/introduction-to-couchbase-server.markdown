@@ -486,9 +486,9 @@ Writers](#couchbase-admin-tasks-mrw).
 
 **Document Deletion from Disk**
 
-[Couchbase Server will never delete entire items from disk unless a client
+For Couchbase Server will never delete entire items from disk unless a client
 explicitly deletes the item from the database or
-theexpiration](#couchbase-introduction-architecture-expiration) value for the
+the [expiration](#couchbase-introduction-architecture-expiration) value for the
 item is reached. The ejection mechanism removes an item from RAM, while keeping
 a copy of the key and metadata for that document in RAM and also keeping copy of
 that document on disk. For more information about document expiration and
