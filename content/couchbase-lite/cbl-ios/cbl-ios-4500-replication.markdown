@@ -22,14 +22,14 @@ Newly created replications are non-persistent and non-continuous. To change that
 It's not strictly necessary to keep references to the replication objects, but you need them if you want to monitor their progress.
 
 ### Monitoring Replication Progress
-A replication object has several properties you can observe to track its progress. The most useful are:
+A replication object has several properties you can observe to track its progress. The most useful properties are:
 
  * **completed**—the number of documents copied so far in the current batch
  * **total**—the total number of documents to be copied
  * **error**—set to an `NSError` if the replication fails
  * **mode**—an enumeration that tells you whether the replication is stopped, offline, idle or active. Offline means the server is unreachable over the network. Idle means the replication is continuous but there is currently nothing left to be copied.
 
-Generally you can just observing `completed`:
+In general, you can just observe the `completed` property:
 
     [self.pull addObserver: self forKeyPath: @"completed" options: 0 context: NULL];
     [self.push addObserver: self forKeyPath: @"completed" options: 0 context: NULL];
@@ -51,17 +51,17 @@ Your observation method might look like this:
 	    }
 	}
 
-Here `progressView` is a `UIProgressView` that shows a bar-graph of the current progress. The progress view is shown only while replication is active, that is, when `total` is nonzero.
+In the example, `progressView` is a `UIProgressView` object that shows a bar graph of the current progress. The progress view is shown only while replication is active, that is, when `total` is nonzero.
 
-Don't expect the progress indicator to be completely accurate. It might jump around because the `total` property changes as the replicator figures out how many documents need to be copied. It might not advance smoothly, because some documents, such as those with large attachments, take longer to transfer than others. In practice, the progress indicator is accurate enough to give the user an idea of what's going on.
+Don't expect the progress indicator to be completely accurate. It might jump around because the `total` property changes as the replicator figures out how many documents need to be copied. It might not advance smoothly because some documents, such as those with large attachments, take longer to transfer than others. In practice, the progress indicator is accurate enough to give the user an idea of what's going on.
 
 ### Document Validation
 
 Pulling from another database requires some trust because you are importing documents and changes that were created elsewhere. Aside from issues of security and authentication, how can you be sure the documents are even formatted correctly? Your application logic probably makes assumptions about what properties and values documents have, and if you pull down a document with invalid properties it might confuse your code.
 
-The solution to this is to add a validation function to your database. The validation function is called on every document being added or updated. The function decides whether the document should be accepted, and can even decide which HTTP error code to return ()most commonly 403 Forbidden, but possibly 401 Unauthorized).
+The solution to this is to add a validation function to your database. The validation function is called on every document being added or updated. The function decides whether the document should be accepted, and can even decide which HTTP error code to return (most commonly 403 Forbidden, but possibly 401 Unauthorized).
 
-Validation functions aren't just called during replication&mdash;they see _every_ insertion or update, so they can also be used as a sanity check for your own application code. If you forget this, you might occasionally be surprised by getting a 403 Forbidden error from a document update when a change is rejected by one of your own validation functions.
+Validation functions aren't just called during replication&mdash;they see every insertion or update, so they can also be used as a sanity check for your own application code. If you forget this, you might occasionally be surprised by getting a 403 Forbidden error from a document update when a change is rejected by one of your own validation functions.
 
 Here's an example validation function definition from the Grocery Sync sample code. This is a real-life example of self-protection from bad data. At one point during development the Android Grocery Sync app was generating dates in the wrong format, which confused the iOS app when it pulled down the documents created on Android. After the bug was fixed, the affected docs were still in server-side databases. The following validation function was added to reject  documents that had incorrect dates:
 
