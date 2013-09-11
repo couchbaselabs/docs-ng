@@ -3447,7 +3447,7 @@ between the clusters in Couchbase Web Console.
     the destination cluster:
 
 
-    ![](images/xdcr-cluster-setup.png)
+    ![](images/create_xdcr_rep2.2.png)
 
  4. Click the `Replicate` button to start the replication process.
 
@@ -3468,6 +3468,8 @@ If you change want the replication protocol for an existing XDCR replication, yo
 1. In the `Create Replication` panel, click `Advanced Settings`.
     Additional options appear in the panel.
     
+![](images/create_rep_xdcr_advance2.2.png)
+        
 2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 
     - Version 1 - uses the REST protocol for replication. This increases XDCR throughput at destination clusters.
