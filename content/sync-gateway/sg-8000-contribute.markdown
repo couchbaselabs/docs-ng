@@ -13,8 +13,8 @@ On Mac or Unix systems, you can build Sync Gateway from source as follows:
 2. Clone the Sync Gateway GitHub repository:
 
 	```sh
-$ git clone https://github.com/couchbase/sync_gateway.git
-```
+	$ git clone https://github.com/couchbase/sync_gateway.git
+	```
 
 3. Change to the **sync_gateway** directory:
 
@@ -25,7 +25,7 @@ $ git clone https://github.com/couchbase/sync_gateway.git
 4. Set up the submodules:
 
 	```sh
-	$ git submodule init   
+	$ git submodule init
 	$ git submodule update
 	```
 	
