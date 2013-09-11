@@ -53,6 +53,22 @@ You can authenticate users by using the methods described in the following secti
 
  Sync Gateway allows clients to authenticate by using either HTTP Basic Auth or cookie-based sessions. The session URL is `/dbname/_session`.
 
+### Facebook
+
+Sync Gateway supports [Facebook Login](http://developers.facebook.com/docs/facebook-login/), which allows users to log in by using their Facebook account. To enable it, you need to add a top-level `facebook` property to your server config file: 
+
+    {
+        "facebook": { "register": true },
+        ...
+
+Clients log in by sending a POST request to `/dbname/_facebook`, with a JSON body that contains the following objects:
+
+* `access_token`—Access token returned by Facebook
+* `email`—Email address of the user
+* `remote_url`—Sync Gateway replication endpoint URL
+
+Just as with a `_session` login, the response sets a session cookie.
+
 ### Persona
 
 Sync Gateway supports [Mozilla Persona](https://developer.mozilla.org/en-US/docs/persona), a sign-in system for the web that allows clients to authenticate by using an email address. You can enable Persona either by modifying your server configuration file or by starting Sync Gateway with an additional command-line option.
@@ -79,11 +95,11 @@ After that's set up, you need to set the `email` property of the user accounts, 
 
 Clients log in by sending a POST request to `/dbname/_persona`. The request body is a JSON document that contains an `assertion` property whose value is the signed assertion received from the identity provider. Just as with a `_session` login, the response sets a session cookie.
 
-#### Persona Account Registration
+### Facebook and Persona Account Registration
 
-If the `register` property of the Persona configuration is true, then clients can implicitly register new user accounts by authenticating through Persona. If the gateway verifies the client's assertion, but no existing user account has that email address, it creates a new user account for that email and returns a session cookie.
+If the `register` property of the Facebook or Persona configuration is true, then clients can implicitly register new user accounts by authenticating through Facebook or Persona. If Sync Gateway verifies the client's assertion, but no existing user account has that email address, it creates a new user account for that email and returns a session cookie.
 
-The user name for the new account is the same as the authenticated email address and has a random password. There is no way to retrieve the password, so in the future the client must continue to log in using Persona, unless the app server replaces the password with one known to the client.
+The user name for the new account is the same as the authenticated email address and has a random password. There is no way to retrieve the password, so in the future the client must continue to log in by using Facebook or Persona, unless the app server replaces the password with one known to the client.
 
 ### Custom (Indirect) Authentication
 
