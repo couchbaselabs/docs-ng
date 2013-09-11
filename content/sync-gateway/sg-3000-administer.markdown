@@ -22,15 +22,15 @@ sync_gateway [Options] [ConfigurationFile...]
 | `-interface` | 4984| Port the Sync REST API listens on
 | `-log` |None | Comma-separated list of logging keywords to enable. The `HTTP` keyword is always enabled, which means HTTP requests and error responses  are always logged.
 | `-personaOrigin` |None| Base URL for Persona authentication. It should be the same URL that the client uses to reach the server.
-| `pool` | default | Couchbase Server pool name in which to find buckets
-|`pretty` | false | Pretty-print JSON responses. This is useful for debugging, but reduces performance.
+| `-pool` | default | Couchbase Server pool name in which to find buckets
+|`-pretty` | false | Pretty-print JSON responses. This is useful for debugging, but reduces performance.
 | `-url` | walrus: | URL of the database server. An HTTP URL implies Couchbase Server, a `walrus:` URL implies the built-in Walrus database.
 |`-verbose`| false | Logs more information about requests.
 
 
 The command-line tool uses the regular Go flag parser, so you can prefix options with one or two `-` characters, and give option values either as a following argument or in the same argument after an equal sign (=). 
 
-The following command  does not include any parameters and just uses the default values. It connects to the bucket named `sync_gateway` in the pool named `default` of the build-in Walrus database. The database is called `sync_gateway` and is served from port 4984, with the admin interface on port 4985.
+The following command  does not include any parameters and just uses the default values. It connects to the bucket named `sync_gateway` in the pool named `default` of the built-in Walrus database. It is served from port 4984, with the admin interface on port 4985.
 
 ```sh
 $ sync_gateway
