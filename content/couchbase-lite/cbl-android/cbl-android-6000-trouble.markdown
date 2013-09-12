@@ -95,22 +95,16 @@ replicationPort=4984
 
 _Note:_ this step below of copying local-test.properties will need to be repeated for the all of the library projects that contain tests (eg, CBLite, CBLiteEktorp, CBLiteJavascript)
 
-_Note:_ If you are running the tests on the android emulator, then you can use the special `10.0.2.2` address, which will have it use the IP address of the workstation which launched the emulator.  (assuming that's where your server is)
+_Note:_ If you are running the tests on the android emulator, then you can use the special `10.0.2.2` address, which will have it use the IP address of the workstation which launched the emulator (assuming that's where your server is).
 
 ### Start Emulator
 
-This can be done via Android Studio / Tools / Android / AVD Manager
+In Android Studio,  select **Tools>Android>AVD Manager**.
 
 ### Launch Test Suite
-
-
-#### Tell Gradle to Run Tests
 
 ```
 $ ./gradlew clean && ./gradlew :CBLite:connectedInstrumentTest && ./gradlew :CBLiteJavascript:connectedInstrumentTest
 ```
 
-_Note:_ the CBLiteListener tests are currenlty having an issue with dependencies.
-
-_Note:_ unfortunately running the tests via Android Studio does not currently seem to work.  If anyone knows a fix please post to the CouchbaseMobile Google Group or a github pull request.
 
