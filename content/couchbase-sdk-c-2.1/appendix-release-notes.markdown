@@ -4,6 +4,87 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library C. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-c-rn_2-1-3"></a>
+
+## Release Notes for Couchbase Client Library C 2.1.3 GA (10 September 2013)
+
+**New Features and Behaviour Changes in 2.1.3**
+
+* Use cluster type connection for cbc-bucket-flush. Although
+  flush command is accessible for bucket type connections,
+  cbc-bucket-flush doesn't use provided bucket name to connect to,
+  therefore it will fail if the bucket name isn't "default".
+
+* Allow to make connect order deterministic. It allows the
+  user to toggle between deterministic and random connect order for
+  the supplied nodes list. By default it will randomize the list.
+
+**Fixes in 2.1.3**
+
+* Updated gtest to version 1.7.0. Fixes issue with building
+  test suite with new XCode 5.0 version being released later this
+  month.
+
+* Do not try to parse config for `LCB_TYPE_CLUSTER`
+  handles. It fixes timouts for management operations (like 'cbc
+  bucket-create', 'cbc bucket-flush', 'cbc bucket-delete' and 'cbc
+  admin')
+
+   *Issues* :
+   [CCBC-265](http://www.couchbase.com/issues/browse/CCBC-265)
+
+* Skip unfinished SASL commands on rebalance. During
+  rebalance, it is possible that the newly added server doesn't have
+  chance to finish SASL auth before the cluster will push config
+  update, in this case packet relocator messing cookies. Also the
+  patch makes sure that SASL command/cookie isn't mixing with other
+  commands
+
+   *Issues* :
+   [CCBC-263](http://www.couchbase.com/issues/browse/CCBC-263)
+
+* Do not allow to use Administrator account for
+  `LCB_TYPE_BUCKET`
+
+* Fig segmentation faults during tests load of
+  node.js. Sets `inside_handler` on `socket_connected`. Previously we
+  were always using SASL auth, and as such, we wouldn't flush packets
+  from the `cmd_log` using `server_send_packets` (which calls
+  `apply_want`). `apply_want` shouldn't be called more than once per
+  event loop entry -- so this sets and unsets the `inside_handler`
+  flag.
+
+   *Issues* :
+   [CCBC-258](http://www.couchbase.com/issues/browse/CCBC-258)
+
+* Added support of libuv 0.8
+
+* Close config connection before trying next node. It will fix
+  asserts in case of the config node becomes unresponsive, and the
+  threshold controlled by `LCB_CNTL_CONFERRTHRESH` and `lcb_cntl(3)`
+
+<a id="couchbase-sdk-c-rn_2-1-2"></a>
+
+## Release Notes for Couchbase Client Library C 2.1.2 GA (27 August 2013)
+
+**Fixes in 2.1.2**
+
+ * Use bucket name in SASL if username omitted. Without this fix, you
+   can may encounter a segmentation faults for buckets, which are not
+   protected by a password.
+
+   *Issues* :
+   [CCBC-253](http://www.couchbase.com/issues/browse/CCBC-253)
+   [CCBC-254](http://www.couchbase.com/issues/browse/CCBC-254)
+
+ * Preserve IO cookie in `options_from_info` when using v0 plugins
+   with user-provided IO loop instance. This issue was introduced in
+   2.1.0.
+
+ * Display the effective IO backend in `cbc-version`. This is helpful
+   to quickly detect what is the effective IO plugin on a given
+   system.
+
 <a id="couchbase-sdk-c-rn_2-1-1"></a>
 
 ## Release Notes for Couchbase Client Library C 2.1.1 GA (22 August 2013)
