@@ -61,20 +61,19 @@ rather than the steps in this section.
 
 2. Add the following repositories section to the **build.gradle** file so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
 
-	```java
-repositories {
-    mavenCentral()
-    maven {
-        url "http://files.couchbase.com/maven2/"
-    }
-    mavenLocal()
-}
-```
+		repositories {
+		    mavenCentral()
+		    maven {
+		        url "http://files.couchbase.com/maven2/"
+		    }
+		    mavenLocal()
+	}
+
 
 3. If there is no **libs** directory in the **MyProject** directory, open a Terminal window, create a **libs** directory, and then change to the new directory. For example:
 
 	```bash
-$ cd $ ~/AndroidStudioProjects/MyProjectProject/MyProject
+$ cd ~/AndroidStudioProjects/MyProjectProject/MyProject
 $ mkdir libs
 $ cd libs
 ```
@@ -112,9 +111,7 @@ dependencies {
 
 In a Terminal window, run the following command to make sure the code builds:
 
-	```sh
-	$./gradlew clean && ./gradlew build
-	```
+	$ ./gradlew clean && ./gradlew build
 
 
 **Add code and verify the app runs:**
