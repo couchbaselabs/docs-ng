@@ -700,6 +700,8 @@ You can also use parenthesis to combine expressions and operators and the parent
 
 N1QL provides several built-in functions for performing calculations on data. You can find both aggregate and scalar functions. Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.
 
+Aggregate functions include SUM, AVG, COUNT, MIN, MAX and ARRAY_AGG. Aggregate functions can only be used in SELECT, HAVING, and ORDER BY clauses. When aggregate functions are used in expressions in these clauses, the query will operate as an aggregate query. Aggregate functions take one argument, the value over which to compute the aggregate function. The COUNT function can also take '*' or 'path.*' as its argument.
+
 ###Aggregate Functions
 
 You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you use an aggregate function in a clause with these commands, the query will act as an aggregate query. 
@@ -719,19 +721,30 @@ These functions will return a single value based on the items in a result set. T
 
 |Function | Description | Returns | Example |
 |--------- |:------------:| -----:|--------:|
+| BASE64_VALUE(value) | Return the value encoded in base64. can be used on work with non-JSON values stored in the bucket. | value | 
 | CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
+| FIRSTNUM(expr1, expr2, ...) | 
+returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric value | NULL or integer |  
 | FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
 | GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value |  
+| IFINF(expr1, expr2, ...)  | returns the first non-infinite value (+ or -) | value |
 | IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value |  
-| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value |  
+| IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value | 
+| IFNAN(expr1, expr2, ...) | Returns the first non-NaN value | value | 
+| IFNANORINF(expr1, expr2, ...) |  returns the first non-NaN, non-infinite value | value | 
+| IFNEGINF(expr1, expr2, ...) |  Returns the first non-infinite value | value |  
 | IFNULL(expr, expr, ....) | Returns the first non-NULL value | value | 
-| META() | Returns metadata for the document | value | 
-| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value |  
+| IFPOSINF(expr1, expr2, ...) | Returns the first positive non-infinite value | value |  
 | LEAST(expr, expr, ... ) | Returns the smallest non-NULL, non-MISSING VALUE after evaluating all expressions. If all values are NULL or MISSING, returns NULL | value or NULL |  
 |   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | length(orders.items)
 |   LOWER(expr) | If expr is a string, returns string in all lowercase, otherwise NULL | string or NULL |  
-|   LTRIM(expr, charset) | Remove the longest string containing the characters in `charset` from start of string. | string or NULL |  
-|   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL |   
+|   LTRIM(expr, charset) | Remove the longest string containing the characters in `charset` from start of string. | string or NULL | 
+| META() | Returns metadata for the document | value | 
+| MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | 
+| NANIF(value1, value2) | If value1 equals value2, return NaN, otherwise value1 | value1 or NaN |  
+|   NEGINFIF(value1, value2) | If value1 equals value2, return negative infinity, otherwise value1 | value1 or -infinity |  
+|   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | 
+|  POSINFIF(value1, value2) | If value1 equals value2, return positive infinity, otherwise value1 | value1 or +infinity |  
 |   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL |   
 |   ROUND( value, digits ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL |   
 |   RTRIM( expr, charset ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL |   
