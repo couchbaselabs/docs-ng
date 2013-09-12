@@ -6,6 +6,8 @@ If you want to play with a demonstration app, you can download and run [GroceryS
 
 ## Prerequisites
 
+Before you can build an app, you need to set up your development environment:
+
 1. Download and install [Android Studio](http://developer.android.com/sdk/installing/studio.html). 
 
 2. Launch Android Studio.
@@ -27,10 +29,10 @@ If you want to play with a demonstration app, you can download and run [GroceryS
 
 	
 
-## Adding Couchbase Lite to a Project
+## Building Your First App
 This section shows how to create a simple Hello World app with Couchbase Lite. It uses Maven to add the Couchbase Lite dependencies.
 
-**Create a new project** 
+####Create a new project 
 
 1. Launch Android Studio.
 
@@ -47,7 +49,7 @@ This section shows how to create a simple Hello World app with Couchbase Lite. I
 
 6. Click **Finish**.
 
-**Add Couchbase Lite Dependencies**
+#### Add Couchbase Lite Dependencies via Maven
 
 1. Expand the **MyProject** folder, and then open the **build.gradle** file. 
 
@@ -61,7 +63,7 @@ This section shows how to create a simple Hello World app with Couchbase Lite. I
 		        url "http://files.couchbase.com/maven2/"
 		    }
 		    mavenLocal()
-	}
+		}
 
 
 3. If there is no **libs** directory in the **MyProject** directory, open a Terminal window, create a **libs** directory, and then change to the new directory. For example:
@@ -87,7 +89,8 @@ $ curl -OL http://cl.ly/Pr1r/td_collator_so.jar
 	```groovy
 dependencies {
     ...
-    compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  // hack to add .so objects (bit.ly/17pUlJ1)
+	// hack to add .so objects (bit.ly/17pUlJ1)
+    compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
     compile 'com.couchbase.cblite:CBLite:1.0.0-beta'
 }
 ```
@@ -101,14 +104,14 @@ dependencies {
 	You can also use com.android.support:support-v4:18.0.0.
 
 
-**(Optional) Build the empty project**
+#### Build the empty project
 
 In a Terminal window, run the following command to make sure the code builds:
 
 	$ ./gradlew clean && ./gradlew build
 
 
-**Add code and run the app**
+#### Add code and run the app
 
 1. Add the following code to your `onCreate` method in the **MainActivity.java** file.
 

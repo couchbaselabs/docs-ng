@@ -26,15 +26,20 @@ None.
 
 * Changes Feed
 
-	Change Tracker not using streaming JSON parser for parsing the changes feed for continuous replications.
-Issues: #97
+	Change Tracker is not using streaming JSON parser for parsing the changes feed for continuous replications.
+
+	Issue: #97
 
 * REST APIs
 
 	Saving large documents with REST often returns an HTTP error 400 due to an incorrect check stop in a method. The method checks to see if there is data to be read in the InputStream, rather than checking whether the stream is empty. 
-Issues: #95
+
+	Issue: #95
 
 * Attachment support on device and in the cloud
 
 	Updates to documents with attachments are resending attachments even when the attachment data hasn't been updated. This causes performance issues.
-Issues: #66
+
+	Issue: #66
+
+
