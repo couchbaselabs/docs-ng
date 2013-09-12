@@ -6,14 +6,12 @@ as relationships among documents. This model is flexible enough so that you can 
 
 The other advantage to the flexible, document-based data model is that it is well suited to representing real-world items. Documents support nested structures, as well as fields representing object properties. Both of these attributes enable you to realistically represent objects in your application. 
 
-Couchbase Server is also a distributed system. You store your data as documents in *data buckets*, which are the functional equivalents of databases. Each data bucket can contain more than one type of document, such as documents for products and documents for orders. You operate Couchbase Server as a single instance or multiple instances grouped as a cluster. Items in a data bucket are spread out among multiple servers so that the data is highly available. This also means when you query the database, the query will be distributed to the different server instances in the cluster and results are aggregated before they are returned..
-
 To find information in a document-oriented database you need a language that provides the correct logic for navigating documents and document structures. This section describes the key concepts to understand about querying a distributed, document-oriented database.
 
 
 ##Data Modeling
 
-Couchbase Server is a document database: you store information in documents rather store it in table rows. Couchbase has a much more flexible data format; documents generally contain all the information about a data entity, including compound data. In the case of traditional, relational databases, you may need to spread data from a single object across multiple tables, in a process known as *normalization*. Imagine we have an application for beers and breweries around the world. We could store beers in tables, or we can choose the equivalent document-based model with an individual document per beer:
+Couchbase Server is a document database: you store information in documents rather store it in table rows. Couchbase has a much more flexible data format; documents generally contain all the information about a data entity, including compound data. In the case of traditional, relational databases, you may need to spread data from a single object across multiple tables, in a process known as *normalization*. Imagine we have an application for contacts and their families. We could store each contact in a table row, or we can choose the equivalent document-based model with an individual document per contact:
 
 ![document model compared to table](images/rel_vs_doc_model.png "Document-model compared to table")
 

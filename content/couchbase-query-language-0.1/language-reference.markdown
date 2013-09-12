@@ -17,16 +17,11 @@ You can use this keyword before any N1QL statement and get information about how
 
 ###Syntax
 
-    EXPLAIN select-statement
+    EXPLAIN statement
     
 ###Compatibility
 
-Available in Couchbase Server X.X
-
-###Description
-
-The EXPLAIN statement can precede any N1QL statement. The statement will be evaluated and will return information about how the statement 
-operates. The output from this statement is for analysis and troubleshooting queries only.
+Compatible with Couchbase Server 2.2
 
 ###Example
 
@@ -91,9 +86,6 @@ Will return the following output:
 
 The 'type' of 'limit' indicate we are performing a limit clause on our result set in the bucket named 'contacts.' The 'scanner' field tells us the server has scanned everything in the data bucket.
 
-###See Also
-- [Errors and Response Codes](#errors_responses)
-
 <a href="#select"></a>    
 ##Select
 
@@ -142,7 +134,7 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
         
 ###Compatibility
 
-Available in Couchbase Server X.X
+Compatible with Couchbase Server 2.2
 
 ###Description
 
@@ -211,7 +203,7 @@ The following describes optional clauses you can use in your select statement:
     
     The `OVER` clause iterates over the 'reviews' array and collects 'reviewerName' and 'publication' from each element in the array. This collection of objects can be used as input for other query operations.
     
-* **`WHERE`** - Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is included in a results array. For example:
+* **`WHERE`** - Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is the object is included in the remainder of the query. For example:
 
         select * FROM players WHERE score > 100
 
@@ -219,7 +211,7 @@ The following describes optional clauses you can use in your select statement:
 
         select title, type, COUNT(*) AS count FROM catalog GROUP BY type
         
-    Any books in the result set will grouped together and returned in an object while all fils will be grouped and returned in another object.
+    Any books in the result set will grouped together and returned in an object while all films will be grouped and returned in another object.
 
 * **`HAVING`** - This clause can optionally follow a `GROUP BY` clause. It can filter result objects from the `GROUP BY` clause with a given expression.
 
@@ -461,7 +453,7 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
 ###Compatibility
 
-Available in Couchbase Server X.X
+Compatible with Couchbase Server 2.2
 
 ###Description
 
@@ -574,7 +566,7 @@ Given a customer order document with the following information:
             "name": "ian"
         }
 
-    This tell us that out of all of the contacts only 'ian' has children who are both over the age 10.
+    This tells us that out of all of the contacts only 'ian' has children who are both over the age 10.
     
 - `LIKE` will return contacts are similar to a given string. For example, to get all contacts with an email ending with '@yahoo':
 
