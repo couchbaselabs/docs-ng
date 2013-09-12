@@ -1,8 +1,10 @@
-## Adding Couchbase Lite via Direct Code Dependency
+## Adding Couchbase Lite Directly
 
-If you need to debug or hack on Couchbase Lite, you can include the Couchbase Lite code directly in a project rather than using the Maven artifact dependencies.
+If you need to debug Couchbase Lite, you can optionally include the Couchbase Lite code directly to your project rather than using the Maven artifact dependencies (as described previously in [Adding Couchbase Lite to a Project](#adding-couchbase-lite-to-a-project)). If you choose to  add Couchbase Lite directly to your project, remove the Maven dependencies.
 
-**Add submodules:**
+Follow these steps to add Couchbase Lite directly to your project:
+
+**Add submodules**
 
 1. Change to the parent **MyProject** directory, which contains the **settings.gradle** file.
 
@@ -12,21 +14,18 @@ $ cd MyProject
 
 2. Add the required submodule:
 
-	```bash
+	```sh
 $ git submodule add https://github.com/couchbase/couchbase-lite-android-core.git CBLite
 ```
 
 3. Add any optional submodules that you need:
 
-	```bash
-$ git submodule add https://github.com/couchbase/couchbase-lite-android-listener.git CBLiteListener
-$ git submodule add https://github.com/couchbase/couchbase-lite-android-javascript.git CBLiteJavascript
-
-```
+		$ git submodule add https://github.com/couchbase/couchbase-lite-android-listener.git CBLiteListener
+		$ git submodule add https://github.com/couchbase/couchbase-lite-android-javascript.git CBLiteJavascript
 
 	You might need to do some extra steps to tell Android Studio about the optional submodules.
 
-**Update Gradle files:**
+**Update Gradle files**
 
 1. Add the following line to the **settings.gradle** file:
 

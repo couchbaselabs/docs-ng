@@ -27,10 +27,10 @@ If you want to play with a demonstration app, you can download and run [GroceryS
 
 	
 
-## Adding Couchbase Lite to Your Project
-Follow the steps in this section to create a new Android project that uses Couchbase Lite.
+## Adding Couchbase Lite to a Project
+This section shows how to create a simple Hello World app with Couchbase Lite. It uses Maven to add the Couchbase Lite dependencies.
 
-**Create a new project:** 
+**Create a new project** 
 
 1. Launch Android Studio.
 
@@ -47,13 +47,7 @@ Follow the steps in this section to create a new Android project that uses Couch
 
 6. Click **Finish**.
 
-**Add Couchbase Lite Dependencies:**
-
-<p style="border-style:solid;padding:10px;width:90%;margin:0 auto">
-<strong>Note</strong>: If you are an advanced user and need to hack or debug Couchbase Lite, you should add the Couchbase Lite dependencies by following the steps in 
-<a href="#adding-couchbase-lite-via-direct-code-dependency">Adding Couchbase Lite Via Direct Code Dependency</a> 
-rather than the steps in this section.
-</p>
+**Add Couchbase Lite Dependencies**
 
 1. Expand the **MyProject** folder, and then open the **build.gradle** file. 
 
@@ -107,14 +101,14 @@ dependencies {
 	You can also use com.android.support:support-v4:18.0.0.
 
 
-**(Optional) Build the empty project:**
+**(Optional) Build the empty project**
 
 In a Terminal window, run the following command to make sure the code builds:
 
 	$ ./gradlew clean && ./gradlew build
 
 
-**Add code and verify the app runs:**
+**Add code and run the app**
 
 1. Add the following code to your `onCreate` method in the **MainActivity.java** file.
 
