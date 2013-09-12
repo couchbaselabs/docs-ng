@@ -711,7 +711,7 @@ You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you
 | MAX(expr) | Returns maximum value of all values in a result set. This is the last non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer |  |
 | AVG(expr) | Returns average value of all values in a result set. Non-numeric values in a result set are ignored. | Integer |  |
 | SUM(expr) | Returns sum of all numeric values in a result set. Non-numeric values in a result set are ignored | Integer |  |
-| SUM(expr) | Returns sum of all numeric values in a result set. Non-numeric values in a result set are ignored | Integer |  |
+| ARRAY_AGG(expr) | Evaluate the expression for each member of the group and return an array containing these values | Array |  |
 
 ### Scalar Functions
 
@@ -725,7 +725,7 @@ These functions will return a single value based on the items in a result set. T
 | IFMISSING(expr, expr, ....) | Returns the first non-MISSING value | value |  
 | IFMISSINGORNULL(expr, expr, ....) | Returns the first non-MISSING, non-NULL value | value |  
 | IFNULL(expr, expr, ....) | Returns the first non-NULL value | value | 
-| META() | Returns metadata for the document | value | |
+| META() | Returns metadata for the document | value | 
 | MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value |  
 | LEAST(expr, expr, ... ) | Returns the smallest non-NULL, non-MISSING VALUE after evaluating all expressions. If all values are NULL or MISSING, returns NULL | value or NULL |  
 |   LENGTH(expr) | Returns the length of the value after evaluating the expression. If string, length of string. For arrays, length of array. For objects returns the number of pairs in object. For all others returns NULL | value or NULL | length(orders.items)
