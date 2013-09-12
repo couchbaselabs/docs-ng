@@ -6,7 +6,6 @@ This reference section describes the syntax and general semantics of N1QL. This 
 We use the following typographical conventions to mark different parts of the command syntax:
 
 - Square brackets [] indicate optional parts
-- Curled braces {} indicate you must provide this clause
 - Separator | indicates you choose one alternative
 - Dots ... mean that you can repeat the preceding element in a query
 
@@ -93,17 +92,16 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
 
 ###Syntax
 
-    SELECT [ DISTINCT ]
-        { result-expr-list }
+    SELECT [ DISTINCT ] result-expr-list 
         [ FROM data-source ]
         [ WHERE expr ]
         [ GROUP BY expr [, ...] ]
         [ HAVING expr ]
         [ ORDER BY ordering-term [, ...] ]
-        [ LIMIT { int } [ OFFSET { int } ] ]
+        [ LIMIT non_neg_int [ OFFSET non_neg_int  ] ]
 
         
-    where result-expr-list can be:
+    where result-expr-list is:
     
         result-expr [, result-expr-list] ...
         
@@ -114,20 +112,19 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
         path.*
         expr [ AS identifier ]
     
-    where data_source can be:
+    where data_source is:
     
-        path [ [AS] identifier ] [ OVER data-source] 
+        path [ [ AS ] identifier ] [ OVER data-source] 
         
-    where path can be:
+    where path is:
     
         identifier [int] [ .path ]
     
-    where identifier can be:
+    where identifier is:
     
         bucket_name
-        database_name
     
-    where ordering-term can be:
+    where ordering-term is:
     
         expr [ ASC | DESC ]
         
@@ -144,6 +141,8 @@ The SELECT statement queries a data source. It returns a JSON array containing z
 
 * **Filtering** - Results objects from the SELECT can be filtered by adding a WHERE clause.
 
+* **Sorting** - You can order objects in a result set and provide range limits by using ORDER BY, LIMIT, and OFFSET.
+
 * **Result Set** - You generate a set of result objects with GROUP BY or HAVING clauses along with a result expression list, `result-expr-list`.
 
 * **Duplicate Removal** Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
@@ -154,7 +153,7 @@ The following describes optional clauses you can use in your select statement:
 
 * **`DISTINCT`** - If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`, the query will return all objects that meet the query conditions in a result set.
 
-* **`FROM`** - This is an optional clause for your query. If you omit this clause, the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket, database name, or path. Alternately you can provide the database, data bucket, or path as an alias using the `AS` clause with `FROM.` For example, if you have contact documents as follows:
+* **`FROM`** - This is an optional clause for your query. If you omit this clause, the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket or path. Alternately you can provide the data bucket or path as an alias using the `AS` clause with `FROM.` For example, if you have contact documents as follows:
 
         {"type":"contact",
          "name":"earl",
@@ -228,9 +227,9 @@ The following describes optional clauses you can use in your select statement:
     * arrays, where each element in the array is compared with the corresponding element in another array. A longer array will sort after a shorter array.
     * object, where key-values from one object are compared to key-values from another object. Keys are evaluated in sorted order for strings. Larger objects will sort after smaller objects.
     
-*  **`LIMIT`** - Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have an integer as upper bound.
+*  **`LIMIT`** - Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have a non-negative integer as upper bound.
 
-* **`OFFSET`** - This clause can optionally follow a `LIMIT` clause. If you specify an offset, this many number of objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be an integer.
+* **`OFFSET`** - This clause can optionally follow a `LIMIT` clause. If you specify an offset, this many number of objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be a non-negative integer.
 
 
 
@@ -427,19 +426,19 @@ These are the different symbols and operators in N1QL you can use to manipulate 
 
         where unescaped-identifier is:
 
-        { a-z | A-Z | _ | & } [ 0-9 | a-z | a-Z | _ | $ ]
+         a-z | A-Z | _ | &  [ 0-9 | a-z | a-Z | _ | $ ]
 
         where escaped-identifier is:
 
-        { `chars` }
+         `chars`
         
         where case-expr is as follows:
         
-        { CASE WHEN expr THEN expr [, ...] } [ ELSE expr ] { END }
+        CASE WHEN expr THEN expr [, ...] [ ELSE expr ] END
         
         where collection-expr is as follows
         
-        { ANY | ALL } { expr OVER path AS identifier }
+        ANY | ALL expr OVER path AS identifier
         
         where nested-expr can be one of:
         
@@ -448,7 +447,7 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
         where function is a follows:
         
-        function-name( path. | path.* | DISTINCT { expr [, ... ] } | UNIQUE { expr [ , ... ] } )
+        function-name( path. | path.* | DISTINCT expr [, ... ] )
         
         
 ###Compatibility
@@ -514,7 +513,7 @@ symbols and values you can use to evaluate and filter result objects.
 
 - `string-term`, or `||` - If both operands are strings, the `||` operator will concatenate the strings, otherwise evaluates to NULL.
 
-- `function-name` - used to apply a function to values, to values at a specified path, or to values derived from a `DISTINCT` or `UNIQUE` clause. For a full list of 
+- `function-name` - used to apply a function to values, to values at a specified path, or to values derived from a `DISTINCT` clause. For a full list of 
 functions, see [Functions](#functions).
          
 ###Examples
@@ -743,17 +742,74 @@ These functions will return a single value based on the items in a result set. T
 |   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL | xxxx 
 |   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL | xxxx 
 
-<a id="errors_responses"></a>
-## Error and Response Codes
+<a id="reserved_words"></a>
+## Reserved Words
 
-There are several numeric return codes in N1QL which indicate a query has successfully completed or 
-there are issues with the query:
+The following keywords are reserved and cannot be used as identifiers. All keywords are case-insensitive.
 
-| Code | Description | Resolution |
-|----- |:------:| -----:|
-| 100: Successful run | Query ran successfully | N/A 
-| 101 | Total elapsed time to run query in milliseconds | N/A 
-| 4200: Semantic Error | Incorrect of query clauses or expressions | Fix query statement
-| 4100: Parse Error | Error in query syntax | Make sure query syntax correct
-| 5000: Internal Error | Server error | xxxx
+There will be more reserved words in the future to support DDL, DML, compound statements, and others. To ensure that an identifier does not conflict with a future reserved word, you can escape the identifier with back ticks.
+
+- ALL
+- ALTER
+- AND
+- ANY
+- ARRAY
+- AS
+- ASC
+- BETWEEN
+- BUCKET
+- BY
+- CASE
+- CAST
+- COLLATE
+- CREATE
+- DATABASE
+- DELETE
+- DESC
+- DISTINCT
+- DROP
+- EACH
+- ELSE
+- END
+- EXCEPT
+- EXISTS
+- EXPLAIN
+- FALSE
+- FIRST
+- FROM
+- GROUP
+- HAVING
+- IF
+- IN
+- INDEX
+- INLINE
+- INSERT
+- INTERSECT
+- INTO
+- IS
+- JOIN
+- LIKE
+- LIMIT
+- MISSING
+- NOT
+- NULL
+- OFFSET
+- ON
+- OR
+- ORDER
+- OVER
+- PATH
+- POOL
+- PRIMARY
+- SELECT
+- THEN
+- TRUE
+- UNION
+- UNIQUE
+- UPDATE
+- USING
+- VALUED
+- VIEW
+- WHEN
+- WHERE
 
