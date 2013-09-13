@@ -60,7 +60,7 @@ To add Couchbase Lite to your own app, you need to add the Couchbase Lite framew
  
 **To add the frameworks:** 
 
-1. Download the [latest release of Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-mobile-solution) and move it to a permanent location.
+1. Download the [latest release of Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-lite) and move it to a permanent location.
 
 2. From the **Couchbase Lite** folder, drag the **CouchbaseLite.framework** folder to the **Frameworks** group in the Xcode Project Navigator.
 
