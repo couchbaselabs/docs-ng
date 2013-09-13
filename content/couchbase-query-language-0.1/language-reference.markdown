@@ -723,8 +723,7 @@ These functions will return a single value based on the items in a result set. T
 |--------- |:------------:| -----:|--------:|
 | BASE64_VALUE(value) | Return the value encoded in base64. can be used on work with non-JSON values stored in the bucket. | value | 
 | CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
-| FIRSTNUM(expr1, expr2, ...) | 
-returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric value | NULL or integer |  
+| FIRSTNUM(expr1, expr2, ...) | Returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric value | NULL or integer |  
 | FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
 | GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value |  
 | IFINF(expr1, expr2, ...)  | returns the first non-infinite value (+ or -) | value |
