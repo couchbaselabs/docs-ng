@@ -26,7 +26,7 @@ Compatible with Couchbase Server 2.2
 
 Perform any N1QL statement preceding by they keyword `EXPLAIN` to get JSON output describing how the query would execute. For example:
 
-    EXPLAIN select name, age from contacts limit 2
+    EXPLAIN SELECT name, age FROM contacts LIMIT 2
     
 Will return the following output:
 
@@ -478,7 +478,7 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
         CASE WHEN expr THEN expr [, ...] [ ELSE expr ] END
         
-        where collection-expr is as follows
+        where collection-expr is as follows:
         
         ANY | ALL expr OVER identifier IN path END
         
