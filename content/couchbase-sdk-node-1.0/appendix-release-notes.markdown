@@ -12,7 +12,8 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 **New Features and Behaviour Changes in 0.1.0**
 
  * Complete rewrite of the 0.0.x series of couchnode.
- * Brand new libcouchbase binding layer, which brings huge performance and stability benefits.
+ * Brand new libcouchbase binding layer, which brings huge performance and stability 
+   benefits.
  * Refactored user-facing API to provide a cleaner and easier to use.
 
 <a id="couchbase-sdk-node-rn_1-0-0-beta”></a>
@@ -24,3 +25,15 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
  * Implemented ability to specify durability requirements to all storage operations.
  * Fixed various minor bugs.
 
+<a id="couchbase-sdk-node-rn_1-0-0"></a>
+
+## Release Notes for Couchbase Node.js Client Library 1.0.0 GA (12 September 2013)
+
+**New Features and Behaviour Changes in 1.0.0**
+
+ * Various bug fixes.
+
+**Known Issues in 1.0.0**
+
+ * Durability requirements on storage operations may fail and could time out even
+   though the durability requirements were successfully verified.
