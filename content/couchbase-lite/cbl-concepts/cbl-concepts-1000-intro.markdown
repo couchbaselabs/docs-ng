@@ -1,15 +1,6 @@
-This guide provides a platform-independent overview of Couchbase Lite. The overview  focuses on what Couchbase Lite is and how it works with your data.
-
-The guide contains the following sections:
-
-* [Introduction](#introduction)
-* [Couchbase Lite Architecture](#couchbase-lite-architecture)
-* [Couchbase Lite Concepts](#couchbase-lite-concepts)
-* [Where to Go From Here](#where-to-go-from-here)
-
-
 # Introduction
 
+This guide provides a platform-independent overview of Couchbase Lite that  focuses on what it is is and how it works with your data.
 
 **Couchbase Lite** is a lightweight, document-oriented (NoSQL), syncable database engine suitable for embedding into mobile apps.
 
