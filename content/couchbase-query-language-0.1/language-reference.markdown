@@ -30,7 +30,7 @@ Perform any N1QL statement preceding by they keyword `EXPLAIN` to get JSON outpu
     
 Will return the following output:
 
-{
+    {
     "resultset": [
         {
             "root": {
@@ -81,7 +81,7 @@ Will return the following output:
             "message": "38.192789ms"
         }
     ]
-}
+    }
 
 <a href="#select"></a>    
 ##Select
@@ -105,11 +105,11 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
     
     where data_source is:
     
-        [ : pool-name . ] bucket-name [ . path ] [ [ AS ] identifier ] [ OVER identifier IN path ]
+        [ :pool-name. ] bucket-name [ .path ] [ [ AS ] identifier ] [ OVER identifier IN path ]
         
     where path is:
     
-        identifier [ '['non-neg-int']' ] [ . path ]
+        identifier [ '['non-neg-int']' ] [ .path ]
     
     where ordering-term is:
     
@@ -132,15 +132,21 @@ The SELECT statement queries a data source. It returns a JSON array containing z
 
 * **Result Set** - You generate a set of result objects with GROUP BY or HAVING clauses along with a result expression list, `result-expr-list`.
 
-* **Duplicate Removal** Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
+* **Duplicate Removal** - Remove duplicate result objects from the result set. To do so you use a DISTINCT query.
+
+* **Ordering** - Items are placed in the order specified by the ORDER BY expression list
+
+* **Skipping** - The first N items are skipped as specified by the OFFSET clause
+
+* **Limiting** - No more than M items are returned as specified by the LIMIT clause
 
 ###Options
 
 The following describes optional clauses you can use in your select statement:
 
-* **`DISTINCT`** - If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`, the query will return all objects that meet the query conditions in a result set.
+* **DISTINCT** - If you use the `DISTINCT` in your query, any duplicate result objects will be removed from the result set. If you do not use `DISTINCT`, the query will return all objects that meet the query conditions in a result set.
 
-* **`FROM`** - This is an optional clause for your query. If you omit this clause, the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket or path. Alternately you can provide the data bucket or path as an alias using the `AS` clause with `FROM.` For example, if you have contact documents as follows:
+* **FROM** - This is an optional clause for your query. If you omit this clause, the input for the query is a single empty object. The most common way to use the FROM clause is to provide a `data-source` which is a named data bucket or path. Alternately you can provide the data bucket or path as an alias using the `AS` clause with `FROM.` For example, if you have contact documents as follows:
 
         {"type":"contact",
          "name":"earl",
@@ -151,12 +157,12 @@ The following describes optional clauses you can use in your select statement:
          "hobbies":["surfing"]
         }
         
-    You can perform query with `FROM` and `AS` to get any children from the first contact retrieved:
+You can perform query with `FROM` and `AS` to get any children from the first contact retrieved:
 
         SELECT children[0].name AS kid
         	FROM contacts
         	
-    This will return a result as follows:
+This will return a result as follows:
     
     "resultset": [
        {
@@ -171,7 +177,7 @@ The following describes optional clauses you can use in your select statement:
 
     This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, that contact will not be part of the query input.    
 
-* **`OVER`** - This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will then become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
+* **OVER** - This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will then become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
 
         { "id": "7983345",
         "name": "Takayama Pale Ale",
@@ -189,19 +195,19 @@ The following describes optional clauses you can use in your select statement:
     
     The `OVER` clause iterates over the 'reviews' array and collects 'reviewerName' and 'publication' from each element in the array. This collection of objects can be used as input for other query operations.
     
-* **`WHERE`** - Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is the object is included in the remainder of the query. For example:
+* **WHERE** - Any expression in the clause is evaluated for objects in a result set. If it evaluates as TRUE for an object, the object is the object is included in the remainder of the query. For example:
 
         select * FROM players WHERE score > 100
 
-* **`GROUP BY`** - Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. For example, if you have json documents for books and films and all films have a field "type": "movie" while books have a field "type": "book" you can perform this query:
+* **GROUP BY** - Collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. For example, if you have json documents for books and films and all films have a field "type": "movie" while books have a field "type": "book" you can perform this query:
 
         select title, type, COUNT(*) AS count FROM catalog GROUP BY type
         
     Any books in the result set will grouped together and returned in an object while all films will be grouped and returned in another object.
 
-* **`HAVING`** - This clause can optionally follow a `GROUP BY` clause. It can filter result objects from the `GROUP BY` clause with a given expression.
+* **HAVING** - This clause can optionally follow a `GROUP BY` clause. It can filter result objects from the `GROUP BY` clause with a given expression.
 
-* **`ORDER BY`** - The order of items in the result set is determined by expression in this clause. Objects are sorted first by the left-most expression in the list of expressions. Any items with the same sort value will be sorted with the next expression in the list. This process repeats until all items are sorted and all expressions in the list are evaluated. 
+* **ORDER BY** - The order of items in the result set is determined by expression in this clause. Objects are sorted first by the left-most expression in the list of expressions. Any items with the same sort value will be sorted with the next expression in the list. This process repeats until all items are sorted and all expressions in the list are evaluated. 
 
     The `ORDER BY` clause can evaluate any JSON value. This means it can compare values of different types. For instance 'four' and 4 and will order by type. The following describes order by type from highest to lowest precedence:
     
@@ -214,9 +220,9 @@ The following describes optional clauses you can use in your select statement:
     * arrays, where each element in the array is compared with the corresponding element in another array. A longer array will sort after a shorter array.
     * object, where key-values from one object are compared to key-values from another object. Keys are evaluated in sorted order for strings. Larger objects will sort after smaller objects.
     
-*  **`LIMIT`** - Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have a non-negative integer as upper bound.
+*  **LIMIT** - Imposes a specific number of objects returned in a result set by `SELECT`. This clause must have a non-negative integer as upper bound.
 
-* **`OFFSET`** - This clause can optionally follow a `LIMIT` clause. If you specify an offset, this many number of objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be a non-negative integer.
+* **OFFSET** - This clause can optionally follow a `LIMIT` clause. If you specify an offset, this many number of objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be a non-negative integer.
 
 
 ###Examples
@@ -247,7 +253,7 @@ Given customer order that appear as follows:
 
         SELECT * FROM orders.billToAddress.state
 
-    Will return a list of all billing states from the orders data bucket. Sample output would appears as follows:
+Will return a list of all billing states from the orders data bucket. Sample output would appears as follows:
     
        "results": [
         {
@@ -386,7 +392,7 @@ You use this statement to create an index on fields and nested paths. The index 
 
 ###Syntax
 
-    CREATE INDEX index-name ON [ : pool-name . ] bucket-name( path [ , ... ] )
+    CREATE INDEX index-name ON [ :pool-name. ] bucket-name( path [ , ... ] )
     
 ###Compatibility
 
@@ -400,11 +406,11 @@ Compatible with Couchbase Server 2.2
 <a href="#create-primary-index"></a>
 ##Create Primary Index
 
-You use this statement to ensure an optimized primary key index. If the primary key index already exists, the statement will quietly recognize it.
+You use this statement to ensure an optimized primary key index. If the primary key index already exists, the statement will recognize it and not create a duplicate index.
 
 ###Syntax
 
-    CREATE PRIMARY INDEX ON [ : pool-name . ] bucket-name
+    CREATE PRIMARY INDEX ON [ :pool-name. ] bucket-name
     
 ###Compatibility
 
@@ -422,7 +428,7 @@ You use this statement to remove a named index in the given bucket.
 
 ###Syntax
 
-    DROP INDEX [ : pool-name . ] bucket-name . index-name
+    DROP INDEX [ :pool-name. ] bucket-name . index-name
     
 ###Compatibility
 
