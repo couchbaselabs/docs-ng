@@ -83,8 +83,6 @@ Will return the following output:
     ]
 }
 
-The 'type' of 'limit' indicate we are performing a limit clause on our result set in the bucket named 'contacts.' The 'scanner' field tells us the server has scanned everything in the data bucket.
-
 <a href="#select"></a>    
 ##Select
 
@@ -92,37 +90,26 @@ You use the SELECT statement to extract data from Couchbase Server. The result o
 
 ###Syntax
 
-    SELECT [ DISTINCT ] result-expr-list 
+    SELECT [ DISTINCT ] result-expr [ , ... ]
         [ FROM data-source ]
         [ WHERE expr ]
-        [ GROUP BY expr [, ...] ]
-        [ HAVING expr ]
-        [ ORDER BY ordering-term [, ...] ]
-        [ LIMIT non_neg_int [ OFFSET non_neg_int  ] ]
-
-        
-    where result-expr-list is:
-    
-        result-expr [, result-expr-list] ...
+        [ GROUP BY expr [ , ... ] [ HAVING expr ] ]
+        [ ORDER BY ordering-term [ , ... ] ]
+        [ LIMIT non-neg-int [ OFFSET non-neg-int  ] ]
         
     where result-expr can be:
         
         *
-        path
         path.*
         expr [ AS identifier ]
     
     where data_source is:
     
-        path [ [ AS ] identifier ] [ OVER data-source] 
+        [ : pool-name . ] bucket-name [ . path ] [ [ AS ] identifier ] [ OVER identifier IN path ]
         
     where path is:
     
-        identifier [int] [ .path ]
-    
-    where identifier is:
-    
-        bucket_name
+        identifier [ '['non-neg-int']' ] [ . path ]
     
     where ordering-term is:
     
@@ -182,7 +169,7 @@ The following describes optional clauses you can use in your select statement:
 
         FROM contacts.address
 
-    This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, it will not be part of the query input.    
+    This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, that contact will not be part of the query input.    
 
 * **`OVER`** - This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will then become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
 
@@ -197,8 +184,8 @@ The following describes optional clauses you can use in your select statement:
     
     In this case you would provide a statement containing `OVER` as follows:
 
-        SELECT reviews.reviewerName, reviews.publication
-        FROM beers OVER reviews
+        SELECT review.reviewerName, review.publication
+        FROM beers AS b OVER review IN b.reviews
     
     The `OVER` clause iterates over the 'reviews' array and collects 'reviewerName' and 'publication' from each element in the array. This collection of objects can be used as input for other query operations.
     
@@ -232,7 +219,6 @@ The following describes optional clauses you can use in your select statement:
 * **`OFFSET`** - This clause can optionally follow a `LIMIT` clause. If you specify an offset, this many number of objects are omitted from the result set before enforcing a specified `LIMIT`. This clause must be a non-negative integer.
 
 
-
 ###Examples
 
 Given customer order that appear as follows:
@@ -259,16 +245,13 @@ Given customer order that appear as follows:
 
 - `FROM` will return any values from the `orders` data bucket. For example:
 
-        SELECT * FROM orders.items.productId
+        SELECT * FROM orders.billToAddress.state
 
-    Will return a list of all product ids from the orders data bucket. Sample output would appears as follows:
+    Will return a list of all billing states from the orders data bucket. Sample output would appears as follows:
     
        "results": [
         {
-            "productId": "coffee"
-        },
-        {
-            "productId": "tea"
+            "state": "CA"
         }
     ]
 
@@ -396,6 +379,59 @@ Given customer order that appear as follows:
 - [Errors and Response Codes](#errors_responses)
 
 
+<a href="#create-index"></a>
+##Create Index
+
+You use this statement to create an index on fields and nested paths. The index provides an optimized access path for N1QL queries.
+
+###Syntax
+
+    CREATE INDEX index-name ON [ : pool-name . ] bucket-name( path [ , ... ] )
+    
+###Compatibility
+
+Compatible with Couchbase Server 2.2
+
+###Example
+
+    CREATE INDEX contact_name ON contacts(name)
+
+
+<a href="#create-primary-index"></a>
+##Create Primary Index
+
+You use this statement to ensure an optimized primary key index. If the primary key index already exists, the statement will quietly recognize it.
+
+###Syntax
+
+    CREATE PRIMARY INDEX ON [ : pool-name . ] bucket-name
+    
+###Compatibility
+
+Compatible with Couchbase Server 2.2
+
+###Example
+
+    CREATE PRIMARY INDEX ON contacts
+
+
+<a href="#drop-index"></a>
+##Drop Index
+
+You use this statement to remove a named index in the given bucket.
+
+###Syntax
+
+    DROP INDEX [ : pool-name . ] bucket-name . index-name
+    
+###Compatibility
+
+Compatible with Couchbase Server 2.2
+
+###Example
+
+    DROP INDEX contacts.contact_name
+
 
 <a href="#expressions"></a>
 ##Expressions
@@ -438,7 +474,9 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
         where collection-expr is as follows
         
-        ANY | ALL expr OVER path AS identifier
+        ANY | ALL expr OVER identifier IN path END
+        
+        FIRST | ARRAY expr OVER identifier IN path [ WHEN expr ] END
         
         where nested-expr can be one of:
         
@@ -447,7 +485,7 @@ These are the different symbols and operators in N1QL you can use to manipulate 
         
         where function is a follows:
         
-        function-name( path. | path.* | DISTINCT expr [, ... ] )
+        function-name( [ [ DISTINCT ] * | path.* | expr [, ... ] ] )
         
         
 ###Compatibility
@@ -489,11 +527,15 @@ symbols and values you can use to evaluate and filter result objects.
     
 - `case-expr` - You can do conditional logic in an expression. If the first `WHEN` expression evaluates to TRUE, the result for this expression is the `THEN` expression. If the first `WHEN` evaluates to FALSE, then the next `WHEN` clauses will be evaluated. If no `WHEN` clause evaluates to `TRUE` the result is the `ELSE` expression. If no `ELSE` expression is provided in the clause, the result is NULL.
 
-- `collection-expr` - Enables you to use boolean expressions for nested collections. The two different ways to provide this expression is through either `ANY` or `ALL`. You provide an array to evaluate as a `path` in an `OVER` clause. The server will iterate through each element in the array and assign each item an `identifier` from the `AS` clause. The `identifier` is only used as a identifier within the `ANY` or `ALL` clause and is distinct from identifiers provided in other clauses.
+- `collection-expr` - Enables you to evaluate expressions using nested collections. The different forms of collection expressions are specified using `ANY`, `ALL`, `FIRST`, or `ARRAY`. You provide an array to evaluate as a `path` in an `OVER` clause. The server will iterate through each element in the array and assign each item an `identifier` from the `IN` clause. The `identifier` is only used as a identifier within the collection expression and is distinct from identifiers provided in other clauses.
 
-    `ANY` If an expression evaluates to an array and at least one item in the array satisfies the `ANY` expression, then return `TRUE`, otherwise return `FALSE`.
+    `ANY` If at least one item in the array satisfies the `ANY` expression, then return `TRUE`, otherwise return `FALSE`.
     
-    `ALL` If an expression evaluates to an array and all array elements satisfy the `ALL` expression, return TRUE. Otherwise return `FALSE.` If an array is empty, return `TRUE`.
+    `ALL` If all array elements satisfy the `ALL` expression, return TRUE. Otherwise return `FALSE.` If the array is empty, return `TRUE`.
+
+    `FIRST` Return the evaluated expression using the first array element (that satisifies the `WHEN` clause, if provided).
+
+    `ARRAY` Returns a new array of the evaluated expression using each element of the `OVER` array (that satisifies the `WHEN` clause, if provided).
     
 - `logical-term` - Enables you to combine other expression with boolean logic. Includes `AND`, `OR`, and `NOT`.
 
