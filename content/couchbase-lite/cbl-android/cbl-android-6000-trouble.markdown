@@ -14,7 +14,7 @@ This section contains information to help you troubleshoot the apps you develop 
 
 5. Choose it in the "Choose Process" window (it will look something like [this](http://cl.ly/image/0v313G320T3B))
 
-6. Wait until it hits your breakpoint
+6. Wait until it reaches your breakpoint
 
 
 ## Running and Debugging a Single Test From Android Studio
@@ -43,68 +43,56 @@ These instructions work with either your own application unit tests or the Couch
 
 ## Running the Test Suite
 
-### Prerequisites
+1. If Sync Gateway is not already installed, install it by following the instructions in [Installing Sync Gateway](/sync-gateway/#getting-started-with-sync-gateway).
 
-The tests require Sync Gateway to be installed and running.
+2. Create a file named **config.json** and copy the following JSON-formatted configuration data into it:
 
-* Follow the instructions on the [Sync Gateway](https://github.com/couchbase/sync_gateway) github page to install it.
+	```json
+	{
+	   "log": ["CRUD", "REST+"],
+	   "databases": {
+	      "cblite-test": {
+	         "server": "walrus:data",
+	         "sync": `function(doc){channel(doc.channels);}`,
+	         "users": {
+	            "GUEST": {"disabled": false, 	"admin_channels": ["*"]}
+	         }
+	      }
+	   }
+	}
+	```
 
-### Configure Sync Gateway
+3. Start Sync Gateway:
 
-* Use the following configuration stored in config.json:
+		$ ./bin/sync-gateway config.json
 
-```json
-{
-        "log": ["CRUD", "REST+"],
-        "databases": {
-                "cblite-test": {
-                        "server": "walrus:data",
-                        "sync": `
-function(doc){
-        channel(doc.channels);
-}`,
-                        "users": {
-                                "GUEST": {"disabled": false, "admin_channels": ["*"]}
-                        }
 
-                }
+4. Create a copy of the **test.properties** file and name it **local-test.properties**:
 
-        }
-}
-```
+	```
+	$ cd CBLite/src/instrumentTest/assets/
+	$ cp test.properties local-test.properties
+	```
 
-### Start Sync Gateway
+5. Customize the **local-test.properties** file to point to your database (URL and database name).  For example:
 
-```bash
-$ ./bin/sync-gateway config.json
-```
+	```
+	replicationServer=10.0.2.2
+	replicationPort=4984
+	```
 
-### Update Test Properties
+	**Note**: You need to create a **local-test.properties** file for each of the library projects that contain tests (for example, CBLite, CBLiteEktorp, and CBLiteJavascript).
 
-```
-$ cd CBLite/src/instrumentTest/assets/
-$ cp test.properties local-test.properties 
-```
+	**Note**: If you are running the tests on the android emulator, then you can use the special `10.0.2.2` address, which has use the IP address of the workstation that launched the emulator (assuming that's where your server is).
 
-Now customize local-test.properties to point to your database (URL and db name).  For example:
+6. In Android Studio,  select **Tools > Android > AVD Manager**.
 
-```
-replicationServer=10.0.2.2
-replicationPort=4984
-```
+	The Android emulator starts.
 
-_Note:_ this step below of copying local-test.properties will need to be repeated for the all of the library projects that contain tests (eg, CBLite, CBLiteEktorp, CBLiteJavascript)
+7. Launch the test suite:
 
-_Note:_ If you are running the tests on the android emulator, then you can use the special `10.0.2.2` address, which will have it use the IP address of the workstation which launched the emulator (assuming that's where your server is).
-
-### Start Emulator
-
-In Android Studio,  select **Tools>Android>AVD Manager**.
-
-### Launch Test Suite
-
-```
-$ ./gradlew clean && ./gradlew :CBLite:connectedInstrumentTest && ./gradlew :CBLiteJavascript:connectedInstrumentTest
+	```
+	$ ./gradlew clean && ./gradlew :CBLite:connectedInstrumentTest && ./gradlew :CBLiteJavascript:connectedInstrumentTest
 ```
 
 
