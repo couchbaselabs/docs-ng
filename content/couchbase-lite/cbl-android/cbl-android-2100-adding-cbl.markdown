@@ -99,7 +99,6 @@ Follow these steps to add Couchbase Lite source files directly to your project:
 		$ git submodule add https://github.com/couchbase/couchbase-lite-android-listener.git CBLiteListener
 		$ git submodule add https://github.com/couchbase/couchbase-lite-android-javascript.git CBLiteJavascript
 
-	You might need to do some extra steps to tell Android Studio about the optional submodules.
 
 #### Update Gradle files
 
