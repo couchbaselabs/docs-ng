@@ -68,38 +68,36 @@ This section shows how to create a simple Hello World app with Couchbase Lite. I
 
 3. If there is no **libs** directory in the **MyProject** directory, open a Terminal window, create a **libs** directory, and then change to the new directory. For example:
 
-	```bash
-$ cd ~/AndroidStudioProjects/MyProjectProject/MyProject
-$ mkdir libs
-$ cd libs
-```
+
+		$ cd ~/AndroidStudioProjects/MyProjectProject/MyProject
+		$ mkdir libs
+		$ cd libs
+
 
 4. Download [td_collator_so.jar](http://cl.ly/Pr1r/td_collator_so.jar) into the **libs** directory.  
 
 	You can use wget or curl to download the file:
 	
-	```bash
-$ wget http://cl.ly/Pr1r/td_collator_so.jar
-or
-$ curl -OL http://cl.ly/Pr1r/td_collator_so.jar
-```
 
-5. In the **build.gradle** file, add the following lines to the top-level dependencies section (not the one under the buildscript section).
+		$ wget http://cl.ly/Pr1r/td_collator_so.jar
+		or
+		$ curl -OL http://cl.ly/Pr1r/td_collator_so.jar
 
-	```groovy
-dependencies {
-    ...
-	// hack to add .so objects (bit.ly/17pUlJ1)
-    compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
-    compile 'com.couchbase.cblite:CBLite:1.0.0-beta'
-}
-```
+
+5. In the **build.gradle** file, add the following lines to the top-level dependencies section (not the one under the `buildscript` section).
+
+
+		dependencies {
+		...
+			// hack to add .so objects (bit.ly/17pUlJ1)
+			compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
+			compile 'com.couchbase.cblite:CBLite:1.0.0-beta'
+		}
+
 
 6. Make sure that your dependency on the Android Support library looks like this:
 
-	```
-    compile 'com.android.support:support-v4:13.0.+'
-```
+		compile 'com.android.support:support-v4:13.0.+'
 
 	You can also use com.android.support:support-v4:18.0.0.
 
@@ -120,12 +118,12 @@ In a Terminal window, run the following command to make sure the code builds:
 	```java
 String filesDir = getFilesDir().getAbsolutePath();
 try {
-    CBLServer server = new CBLServer(filesDir);
-    server.getDatabaseNamed("hello-cblite");
+    CBLServer server = new CBLServer (filesDir);
+    server.getDatabaseNamed ("hello-cblite");
 } catch (IOException e) {
-    Log.e("MainActivity", "Error starting TDServer", e);
+    Log.e ("MainActivity", "Error starting TDServer", e);
 }
-Log.d("MainActivity", "Got this far, woohoo!");        
+Log.d ("MainActivity", "Got this far, woohoo!");
 ```
 
 2. Select **Run > MyProject** to run the app.
