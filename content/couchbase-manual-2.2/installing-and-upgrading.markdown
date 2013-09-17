@@ -50,9 +50,9 @@ Amazon Linux             | 2011.09     | 32 and 64 bit   | Developer and Product
 Ubuntu Linux             | 10.04       | 32 and 64 bit   | Developer and Production |                        
 Ubuntu Linux             | 12.04       | 32 and 64 bit   | Developer and Production | Ubuntu 12.04           
 Windows 2008             | R2 with SP1 | 64 bit          | Developer and Production | Windows 2008                              
-Windows 2012            |             | 64 bit          | Developer only           |  
-Windows 7                |             | 32 and 64 bit          | Developer only           |                        
-Windows 8                |             | 32 and 64 bit          | Developer only           |                        
+Windows 2012             |             | 64 bit          | Developer and Production |  
+Windows 7                |             | 32 and 64 bit   | Developer only           |                        
+Windows 8                |             | 32 and 64 bit   | Developer only           |                        
 MacOS                    | 10.7        | 64 bit          | Developer only           |                        
 MacOS                    | 10.8        | 64 bit          | Developer only           | MacOS 10.8             
 
