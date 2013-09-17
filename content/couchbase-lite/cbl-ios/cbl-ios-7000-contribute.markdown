@@ -12,7 +12,7 @@ Please use the coding style guidelines and naming conventions described in this 
 
 * For indents, use 4 spaces (do not use tabs).
 
-* Name category files like this: `CBLClassName+CategoryName.m`.
+* Use the following pattern for naming category files: `CBLClassName+CategoryName.m`.
 
 * In headers, use `@class` or `@protocol` forward declarations, when possible, instead of importing the class headers.
 
