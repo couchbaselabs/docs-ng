@@ -52,7 +52,7 @@ To get set up to use PhoneGap, install the following tools:
 $ npm install -g phonegap
 ```
 
-	If you can't install PhoneGap with this command, try `sudo install -g phonegap` instead.
+	If you can't install PhoneGap with this command, try `sudo npm install -g phonegap` instead.
 
 ## Building Todo Lite
 
