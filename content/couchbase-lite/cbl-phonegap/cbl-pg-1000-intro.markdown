@@ -52,7 +52,7 @@ To get set up to use PhoneGap, install the following tools:
 $ npm install -g phonegap
 ```
 
-	If you can't install PhoneGap with this command, try `sudo install -g phonegap` instead.
+	If you can't install PhoneGap with this command, try `sudo npm install -g phonegap` instead.
 
 ## Building Todo Lite
 
@@ -170,7 +170,7 @@ To install Cordova on your computer:
 $ npm install -g cordova
 ```
 
-If you can't install Cordova with this command, try `sudo install -g cordova` instead.
+If you can't install Cordova with this command, try `sudo npm install -g cordova` instead.
 
 To use Cordova to add the Couchbase Lite Plug-in for PhoneGap to your app:
 
