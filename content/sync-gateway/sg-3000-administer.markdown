@@ -28,7 +28,7 @@ sync_gateway [Options] [ConfigurationFile...]
 |`-verbose`| false | Logs more information about requests.
 
 
-The command-line tool uses the regular Go flag parser, so you can prefix options with one or two `-` characters, and give option values either as a following argument or in the same argument after an equal sign (=). 
+The command-line tool uses the regular Go flag parser, so you can prefix options with one or two hyphen (-) characters and give option values either as a following argument or in the same argument after an equal sign (=). 
 
 The following command  does not include any parameters and just uses the default values. It connects to the bucket named `sync_gateway` in the pool named `default` of the built-in Walrus database. It is served from port 4984, with the admin interface on port 4985.
 
@@ -71,7 +71,6 @@ The following sample configuration file starts a server with the default setting
       }
    }
 }
-
 ```
 
 You can see an example of a more complex configuration file in the [CouchChat-iOS sample app](https://github.com/couchbaselabs/CouchChat-iOS/blob/master/sync-gateway-config.json).
