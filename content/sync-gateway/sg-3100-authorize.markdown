@@ -55,11 +55,13 @@ You can authenticate users by using the methods described in the following secti
 
 ### Facebook
 
-Sync Gateway supports [Facebook Login](http://developers.facebook.com/docs/facebook-login/), which allows users to log in by using their Facebook account. To enable it, you need to add a top-level `facebook` property to your server config file: 
+Sync Gateway supports [Facebook Login](http://developers.facebook.com/docs/facebook-login/), which allows users to log in by using their Facebook account. To enable it, add a top-level `facebook` property to your server configuration file. For example:
 
-    {
-        "facebook": { "register": true },
-        ...
+```json
+"facebook" : {
+   "register" : true
+}
+```
 
 Clients log in by sending a POST request to `/dbname/_facebook`, with a JSON body that contains the following objects:
 
@@ -73,19 +75,18 @@ Just as with a `_session` login, the response sets a session cookie.
 
 Sync Gateway supports [Mozilla Persona](https://developer.mozilla.org/en-US/docs/persona), a sign-in system for the web that allows clients to authenticate by using an email address. You can enable Persona either by modifying your server configuration file or by starting Sync Gateway with an additional command-line option.
 
-To enable Persona by modifying the configuration file, add a top-level `persona` property to the file. The value of the `persona` property is an object with an `origin` property that contains your server's canonical root URL as seen by clients. For example:
+To enable Persona by modifying the configuration file, add a top-level `persona` property to the **config.json** file. The value of the `persona` property is an object with an `origin` property that contains your server's canonical root URL as seen by clients. For example:
 
-```
-
-"persona": {
-   "origin": "http://example.com/",
-   "register": true
+```json
+"persona" : {
+   "origin" : "http://example.com/",
+   "register" : true
 }
 ```
 
 To enable Persona when you start Sync Gateway, add the `-personaOrigin` option to the command line and specify the server's canonical root URL. For example:
 
-```
+```bash
 $ sync_gateway -personaOrigin http://example.com
 ```
 
