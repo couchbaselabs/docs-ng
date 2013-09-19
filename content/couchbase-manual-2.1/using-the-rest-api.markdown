@@ -3189,7 +3189,7 @@ can adjust are defined as follows:
 
  * `xdcrOptimisticReplicationThreshold` (Integer)
 
-   Document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
+   Document size in bytes, 0 to 20,971,520 bytes (20 MB). Default is 256 bytes. XDCR
    will get metadata for documents larger than this size on a single time before
    replicating the document to a destination cluster.
 
