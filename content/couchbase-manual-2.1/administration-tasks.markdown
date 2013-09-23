@@ -1498,6 +1498,7 @@ Where the arguments are as described below:
     * `--bucket-source` or `-b`
 
       Backup only the specified bucket name.
+        
 
  * `[source]`
 
@@ -1790,7 +1791,7 @@ with the backed up version of the data files, and then re-starting the cluster
 with the saved version of the cluster files.
 
 Make sure that any restoration of files also sets the proper ownership of those
-files to the couchbase user
+files to the couchbase user.
 
 When restoring data back in to the same cluster, then the following must be true
 before proceeding:
@@ -1863,6 +1864,10 @@ Where:
       Specify the name of the bucket the data will be written to. If this option is
       not specified, the data will be written to a bucket with the same name as the
       source bucket.
+    
+    * `--add`
+      
+      Use `--add` instead of `--set` in order to not overwrite existing items in the destination.
 
    For information on all the options available when using `cbrestore`, see
    [cbrestore Tool](#couchbase-admin-cmdline-cbrestore)
