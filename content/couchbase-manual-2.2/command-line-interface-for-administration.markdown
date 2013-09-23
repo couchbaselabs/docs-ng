@@ -418,12 +418,14 @@ Set data path for an unprovisioned cluster:
 
 ### Setting XDCR Protocol with couchbase-cli
 
-As of Couchbase Server 2.2+ you can select the protocol used by a replication in 
+As of Couchbase Server 2.2+ you can select the mode of replication for 
 XDCR. For information about this feature, see [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality). 
+
+If you change want the replication protocol for an existing XDCR replication, you need to delete the replication, then re-create the replication with your preference.
 
 First we create a destination cluster reference named "RemoteCluster":
 
-        couchbase-cli xdcr-setup -c 10.3.121.121:8091 -u Administrator  -p password \
+        couchbase-cli xdcr-setup -c hostname_:8091 -u Administrator  -p password \
          --create --xdcr-cluster-name=RemoteCluster  --xdcr-hostname=10.3.121.123:8091 \ 
          --xdcr-username=Administrator  --xdcr-password=password
          
@@ -433,27 +435,27 @@ Upon success, we get this response:
         
 Now you can start replication to the remote cluster using memcached protocol as the existing default:
 
-        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
+        couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \
         --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup
 
 If you changed the protocol, you can explicitly set it once again to memcached:
 
-        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
+        couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \
         --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
         --xdcr-replication-mode xmem
 
 To use REST for this replication:
 
-        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \ 
+        couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \ 
         --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
         --xdcr-replication-mode capi
         
 If there is already an existing replication for a bucket, you will get an error when you 
 try to start the replication again with any new settings:
 
-        couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
-        --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
-        --xdcr-replication-mode capi
+    couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password \
+    --xdcr-cluster-name RemoteCluster --xdcr-from-bucket default --xdcr-to-bucket backup \
+    --xdcr-replication-mode capi
         
 Will result in  the error:
 
@@ -2963,8 +2965,46 @@ The following figure shows the report header:
 
    ![](images/health-report-warnings.png)
 
+<a id="couchbase-admin-cbreset_password"></a>
 
+## cbreset_password Tool
 
+You use this tool to reset an administrative or read-only password. You can find this tool in the following locations, depending upon your platform:
+
+<a id="table-couchbase-admin-cmdline-cbdocloader-locs"></a>
+
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+-------------|----------------------------------------------------------------------------------
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
+
+To reset the administrative password:
+
+    ./cbreset_password hostname:port
+    
+This will result in output as follows:
+
+    Please enter the new administrative password (or <Enter> for system generated password):
+    
+Enter a password of six characters or more or you can have the system generate one for you. After you enter a password or accept a generated one, the system will prompt you for confirmation:
+
+    Running this command will reset administrative password.
+    Do you really want to do it? (yes/no)yes
+
+Upon success you will see this output:
+
+    Resetting administrative password...
+    Password for user Administrator was successfully replaced. New password is Uxye76FJ
+    
+There are a few possible errors from this command:
+
+    {error,<<"The password must be at least six characters.">>}
+    
+    {error,<<"Failed to reset administrative password. Node is not initialized.">>}
+    
+The first one indicates you have not provided a password of adequate length. The second one indicates that Couchbase Server is not yet configured and running.
+
+    
 <a id="couchbase-admin-cmdline-cbdocloader"></a>
 
 ## cbdocloader Tool

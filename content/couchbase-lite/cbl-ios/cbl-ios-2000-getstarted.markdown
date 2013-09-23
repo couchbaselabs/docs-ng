@@ -1,16 +1,58 @@
 # Getting Started
-This section contains the information you need to start developing iOS apps with Couchbase Lite. It lists the system requirements, explains how to add the Couchbase Lite iOS framework to your project, and walks through a very simple Couchbase Lite iOS app.
+This section contains the information you need to start developing iOS apps with Couchbase Lite. It lists the system requirements, shows how to build a sample app, and explains how to add the Couchbase Lite iOS framework to your project.
 
 ## System Requirements
 
 To develop Couchbase Lite apps for iOS, you need:
 
-* [Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-mobile-solution)
+* [Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-lite)
 * [Xcode 4.6 or later](https://developer.apple.com/xcode/index.php)
 * iOS SDK 6.0 or later
 
 ## Getting Started in 5 Minutes
 
+This section shows you how to download and build a sample app named ToDo Lite. ToDo Lite is a shared to-do list app that demonstrates many Couchbase Lite features.
+
+### Before You Begin
+
+Before you can build the ToDo Lite app, make sure you have the following tools installed on your computer. You might already have  some of them installed.
+
+1. Download [Xcode](https://developer.apple.com/xcode/).
+
+2. Download [Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-lite) and move it to a permanent location.
+
+3. Download and install [Git](http://git-scm.com).
+
+
+### Building Todo Lite
+
+To build the Todo Lite app:
+
+1. Open the Terminal application.
+
+	Terminal is usually located in the **Applications/Utilities** folder.
+
+2. Change to the directory that you want to store the ToDo Lite app in. For example:
+
+	```sh
+	$ cd ~/dev
+	```
+
+3. Clone the Todo Lite app:
+
+	```sh
+	$ git clone https://github.com/couchbaselabs/ToDoLite-iOS.git
+```
+
+4. In the downloaded Couchbase Lite for iOS folder, find the **CouchbaseLite.framework** folder.
+
+5. Copy the **CouchbaseLite.framework** folder to the **Frameworks** folder inside the **ToDoLite-iOS** folder.
+
+6. In Xcode, select an iOS simulator build scheme.
+
+7. Click **Run**.
+
+	The ToDo Lite app opens in the iOS simulator.
 
 ## Adding Couchbase Lite To Your App
 
@@ -18,7 +60,7 @@ To add Couchbase Lite to your own app, you need to add the Couchbase Lite framew
  
 **To add the frameworks:** 
 
-1. Download the [latest release of Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-mobile-solution) and move it to a permanent location.
+1. Download the [latest release of Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-lite) and move it to a permanent location.
 
 2. From the **Couchbase Lite** folder, drag the **CouchbaseLite.framework** folder to the **Frameworks** group in the Xcode Project Navigator.
 
@@ -62,6 +104,6 @@ You initialize Couchbase Lite in your app delegate, which is usually named ***Yo
     
     You should also add appropriate error checking code after each call. If either call fails, you might need to display an error message and exit.
     
-    The legal characters for the database name are: lowercase letters (`a-z`), digits (`0-9`), and `_$()+-/`.
+    The legal characters for the database name are: lowercase letters \[`a-z`], digits \[`0-9`], and special characters \[`$_()+-/`].
 
 

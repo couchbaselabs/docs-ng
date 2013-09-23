@@ -1,10 +1,10 @@
-# Contributing to Couchbase Lite iOS
+# Contributing
 
-You can find the [latest source code for Couchbase Lite iOS](https://github.com/couchbase/couchbase-lite-ios) on GitHub.
+If you want to contribute to Couchbase Lite for iOS, please follow the guidelines for coding and testing described in this section. You can find the [latest source code for Couchbase Lite iOS](https://github.com/couchbase/couchbase-lite-ios) on GitHub.
  
 ## Coding Style
 
-If you want to add or modify source code in Couchbase Lite, please read and follow these guidelines. Thanks!
+Please use the coding style guidelines and naming conventions described in this section.
 
 ### Source Files
 
@@ -12,7 +12,7 @@ If you want to add or modify source code in Couchbase Lite, please read and foll
 
 * For indents, use 4 spaces (do not use tabs).
 
-* Name category files like this: `CBLClassName+CategoryName.m`.
+* Use the following pattern for naming category files: `CBLClassName+CategoryName.m`.
 
 * In headers, use `@class` or `@protocol` forward declarations, when possible, instead of importing the class headers.
 
@@ -124,7 +124,7 @@ Before committing any code:
 
 * Build both the Mac and iOS demo app targets, to catch platform- or architecture-specific code.
 
-* Run the static analyzer (Cmd-Shift-B). There should be no issues with our code (there may be one or two with third-party code.)
+* Run the static analyzer (Cmd-Shift-B). There should be no issues with our code (there might be one or two issues with third-party code.)
 
 * Run the unit tests on both platforms: run the demo app with custom arguments `Test_All` and `Test_Only`. (This is really easy to do using Cmd-Opt-R.) All the tests must pass.
 

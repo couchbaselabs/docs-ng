@@ -8,33 +8,25 @@ Tracker](http://www.couchbase.com/issues/browse/MB).
 
 ## Release Notes for Couchbase Server 2.2 GA (September 2013)
 
-This release is our second minor release for Couchbase Server 2.0 after a 2.1
-release. In 2.1, we added some major enhancements for Disk IO optimization, XDCR
-optimization, hostname management and also fixed some critical bugs. The 2.2
-enhances some key areas which include:
-
- * XDCR protocol update to use memcached, see [Behavior and
+Couchbase Server 2.2 is our minor update release for Couchbase Server 2.0. This includes some major enhancements, new features and important bug fixes.  Also with this we have extended our platform support for Windows 2012 and provide separate packages for Ubuntu 12.04 and CentOS 6.
+ 
+The **major enhancements** available in Couchbase Server 2.2 include:
+ 
+- XDCR performance optimization through new mode of replication which utilizes highly efficient memcached protocol on the destination cluster for replicating changes. See [Behavior and
    Limitations](#couchbase-admin-tasks-xdcr-functionality).
-
- * Managing expired and deleted data efficiently. Better handling of persisted
-   delete tombstones and automated purging of tombstones. See [Disk
+- Disk storage optimization through new metadata purge settings for permanently purge metadata on deleted items. See [Disk
    Storage](#couchbase-introduction-architecture-diskstorage).
-
- * Read-only admin user and ability to reset password for administrators.
-
-In addition, this release will try to address some existing issues that
-customers are facing:
-
- * Hash passwords on the wire for SASL buckets from an SDK, see [Couchbase
-   Developer Guide 2.2, Providing SASL
-   Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication).
-
- * Support installing Couchbase as a non-root and non-sudo user, see [Installing
+- New read-only admin user to Couchbase Server. This user will have access to Couchbase Server and its Admin UI, tools and REST APIs but only in read-only mode. See Account Management.
+- New addition to our toolset CBRecovery tool that provides additional durability from remote cluster. See [CLI Tools](#couchbase-cli-tool).
+ 
+Additional enhancements in 2.2 include:
+ 
+- Instructions for non-root, non-sudo installation and running of Couchbase Server and its tools. See [Installing
    Couchbase Server](#couchbase-getting-started-install).
-
- * Efficiently support "Append" patterns with tcmalloc upgrade.
-
- * Improved rebalance speeds for smaller number datasets and node counts.
+- CRAM-MD5 support for SASL authentication on Couchbase Server. See Providing SASL Authentication. See [Couchbase
+   Developer Guide 2.2, Providing SASL
+   Authentication](http://docs.couchbase.com/couchbase-devguide-2.2/#providing-sasl-authentication)
+- Ability to reset password for Administrator using the CLI command. See [cbreset_password Tool](#couchbase-admin-cbreset_password).
 
 **Fixes in 2.2**
 
@@ -72,25 +64,45 @@ customers are facing:
       *Issues* : [MB-8460](http://www.couchbase.com/issues/browse/MB-8460)
 
     * Non-UTF-8 encoded keys will not be replicated to destination clusters via XDCR
-      by design. If any non-UTF-8 key is detected at a source cluster, a warning
-      message will appear in the `xdcr_error.*` log files along with a list of
-      non-UTF-8 keys. The message you will see is "Warning! These non-UTF-8 keys are
-      filtered out and will not be replicated:" followed by a list of keys. See
-      [Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
+      by design. See [Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality).
 
-      *Issues* : [MB-8727](http://www.couchbase.com/issues/browse/MB-8727)
+      *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8727)
 
  * **Performance**
 
     * Users experienced higher latency rates when they performed `observe` for
-      replicated data. This was due to a one-second sleep interval which occurred when
-      Couchbase server was idle. This sleep interval has been significantly reduced
-      and has improved latency so that it is at least 5 times faster for this use
-      case.
+      replicated data. We have now fixed the issue.  
+       Latency is now at least 5 times faster for this use case for Couchbase Server 2.2.
 
       *Issues* : [MB-8453](http://www.couchbase.com/issues/browse/MB-8453)
+      
+    * Users may experience segmentation faults if a cluster is under heavy stress. For example if your cluster has a very high disk write queue such as 2 million items per node, several XDCR replications, plus thousands of writes per second, the disks will drain slower. 
+    
+    	With a similar workload and limited hardware, synchronization delays in I/O may occur resulting in a segmentation fault. This may result in data-loss. We therefore recommend you have adequate cluster capacity and monitor operations per second on your cluster.
+
+      *Issues* : [MB-9098](http://www.couchbase.com/issues/browse/MB-9098)
 
 **Known Issues in 2.2**
+
+* **External IP Addresses and EC2**
+
+   * In the past you were able to add a node to a cluster in EC2 with an external IP address. If this address 
+   did not resolve, any error was ignored and the server used a local IP address for the node. The server now  
+   displays this error, "54.241.121.223": eaddrnotavail". If you using Couchbase on Amazon EC2 we recommend 
+   you use Amazon-generated hostnames which then will automatically resolve to either the internal or external address. 
+   For more information, see [Handling Changes in IP Addresses](#couchbase-bestpractice-cloud-ip)
+
+     *Issues* : [MB-8981](https://www.couchbase.com/issues/browse/MB-8981)
+
+* **XDCR and Tombstone Purging**
+
+   * If you are using XDCR, Couchbase Server 2.2 introduces new functionality 
+   known as tombstone purging. This functionality runs as part of auto-compaction. If you set the purge interval to a fairly low number, such 
+   as less than one day, you may experience significant mismatch in data replicated from a 
+   source to destination cluster. For more information 
+   about tombstone purging see [Enabling Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).
+
+     *Issues* : [MB-9019](https://www.couchbase.com/issues/browse/MB-9019)
 
 * **XDCR and Elastic Search**
 
@@ -106,9 +118,15 @@ customers are facing:
     * For Mac OSX, if you move the server after it is installed and configured, it
       will fail. If you must move a configured server on this platform, you should
       first stop the server, delete the config.dat file found at
-      `/var/lib/couchbase/config`, start the server and configure it once again.
+      `*install_directory*/var/lib/couchbase/config`, start the server and configure it once again.
 
       *Issues* : [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
+      
+     * If you upgrade to 2.1.1 or later from 2.1.0 or earlier the server may not automatically 
+     start after you reboot the machine. You may need to check your firewall settings 
+     and flush any iptables before the server will automatically restart after upgrade.
+     
+        *Issues* : [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
 
  * **Database Operations**
 
@@ -118,12 +136,12 @@ customers are facing:
       *Issues* : [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
 
 
-         * If you continuously perform numerous appends to a document, it may lead to
+     * If you continuously perform numerous appends to a document, it may lead to
            memory fragmentation and overuse. This is due to an underlying issue of
            inefficient memory allocation and deallocation with third party software
            `tcmalloc`.
            
-           *Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
+      	*Issues* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
            
  * **Cluster Operations**
 
@@ -139,7 +157,7 @@ customers are facing:
       
      * A cluster rebalance may exit and produce the error {not_all_nodes_are_ready_yet} if you perform the rebalance right after failing over a node in the cluster. You may need to wait 60 seconds after the node failover before you attempt the cluster rebalance.
 
-      This is because the failover REST API is a synchronous operation with a timeout. If it fails to complete the failover process by the timeout, the operation internally switches into a asynchronous operation. It will immediately return and re-attempt failover in the background which will cause rebalance to fail since the failover operation is still running.
+      	This is because the failover REST API is a synchronous operation with a timeout. If it fails to complete the failover process by the timeout, the operation internally switches into a asynchronous operation. It will immediately return and re-attempt failover in the background which will cause rebalance to fail since the failover operation is still running.
 
       *Issues* : [MB-7168](http://www.couchbase.com/issues/browse/MB-7168)
 
@@ -152,6 +170,17 @@ customers are facing:
       Tool](#couchbase-admin-cmdline-cbbackup),
 
       *Issues* : [MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
+      
+    * Several incidents have been reported that after using flush on nodes, Couchbase 
+      Server returns TMPFAIL even after a successful flush. This may occur for Couchbase 
+      Server 2.0 and above.
+
+    *Issues* : [MB-7160](http://www.couchbase.com/issues/browse/MB-7160)
+    
+    * For Mac OSX there is a bug in `cbcollect_info` and the tool will not 
+    include system log files, syslog.tar.gz. This will be fixed in future releases.
+
+    *Issues* : [MB-8777](http://www.couchbase.com/issues/browse/MB-8777)
 
 <a id="couchbase-server-rn_2-1-1a"></a>
 
@@ -196,6 +225,14 @@ The Enterprise Edition of Couchbase Server is now available on Mac OSX. See
       Couchbase Server](#couchbase-getting-started-hostnames).
 
       *Issues* : [MB-8545](http://www.couchbase.com/issues/browse/MB-8545)
+      
+**Known Issues in 2.1.1**
+
+- If you upgrade to 2.1.1 or later from 2.1.0 or earlier the server may not automatically 
+    start after you reboot the machine. You may need to check your firewall settings 
+    and flush any iptables before the server will automatically restart after upgrade.
+
+    *Issues* : [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
 
 <a id="couchbase-server-rn_2-1-0a"></a>
 

@@ -14,7 +14,7 @@ This section contains information to help you troubleshoot the apps you develop 
 
 5. Choose it in the "Choose Process" window (it will look something like [this](http://cl.ly/image/0v313G320T3B))
 
-6. Wait until it hits your breakpoint
+6. Wait until it reaches your breakpoint
 
 
 ## Running and Debugging a Single Test From Android Studio
@@ -43,74 +43,56 @@ These instructions work with either your own application unit tests or the Couch
 
 ## Running the Test Suite
 
-### Prerequisites
+1. If Sync Gateway is not already installed, install it by following the instructions in [Installing Sync Gateway](/sync-gateway/#getting-started-with-sync-gateway).
 
-The tests require Sync Gateway to be installed and running.
+2. Create a file named **config.json** and copy the following JSON-formatted configuration data into it:
 
-* Follow the instructions on the [Sync Gateway](https://github.com/couchbase/sync_gateway) github page to install it.
+	```json
+	{
+	   "log": ["CRUD", "REST+"],
+	   "databases": {
+	      "cblite-test": {
+	         "server": "walrus:data",
+	         "sync": `function(doc){channel(doc.channels);}`,
+	         "users": {
+	            "GUEST": {"disabled": false, 	"admin_channels": ["*"]}
+	         }
+	      }
+	   }
+	}
+	```
 
-### Configure Sync Gateway
+3. Start Sync Gateway:
 
-* Use the following configuration stored in config.json:
+		$ ./bin/sync-gateway config.json
 
-```json
-{
-        "log": ["CRUD", "REST+"],
-        "databases": {
-                "cblite-test": {
-                        "server": "walrus:data",
-                        "sync": `
-function(doc){
-        channel(doc.channels);
-}`,
-                        "users": {
-                                "GUEST": {"disabled": false, "admin_channels": ["*"]}
-                        }
 
-                }
+4. Create a copy of the **test.properties** file and name it **local-test.properties**:
 
-        }
-}
+	```
+	$ cd CBLite/src/instrumentTest/assets/
+	$ cp test.properties local-test.properties
+	```
+
+5. Customize the **local-test.properties** file to point to your database (URL and database name).  For example:
+
+	```
+	replicationServer=10.0.2.2
+	replicationPort=4984
+	```
+
+	**Note**: You need to create a **local-test.properties** file for each of the library projects that contain tests (for example, CBLite, CBLiteEktorp, and CBLiteJavascript).
+
+	**Note**: If you are running the tests on the android emulator, then you can use the special `10.0.2.2` address, which has use the IP address of the workstation that launched the emulator (assuming that's where your server is).
+
+6. In Android Studio,  select **Tools > Android > AVD Manager**.
+
+	The Android emulator starts.
+
+7. Launch the test suite:
+
+	```
+	$ ./gradlew clean && ./gradlew :CBLite:connectedInstrumentTest && ./gradlew :CBLiteJavascript:connectedInstrumentTest
 ```
 
-### Start Sync Gateway
-
-```bash
-$ ./bin/sync-gateway config.json
-```
-
-### Update Test Properties
-
-```
-$ cd CBLite/src/instrumentTest/assets/
-$ cp test.properties local-test.properties 
-```
-
-Now customize local-test.properties to point to your database (URL and db name).  For example:
-
-```
-replicationServer=10.0.2.2
-replicationPort=4984
-```
-
-_Note:_ this step below of copying local-test.properties will need to be repeated for the all of the library projects that contain tests (eg, CBLite, CBLiteEktorp, CBLiteJavascript)
-
-_Note:_ If you are running the tests on the android emulator, then you can use the special `10.0.2.2` address, which will have it use the IP address of the workstation which launched the emulator.  (assuming that's where your server is)
-
-### Start Emulator
-
-This can be done via Android Studio / Tools / Android / AVD Manager
-
-### Launch Test Suite
-
-
-#### Tell Gradle to Run Tests
-
-```
-$ ./gradlew clean && ./gradlew :CBLite:connectedInstrumentTest && ./gradlew :CBLiteJavascript:connectedInstrumentTest
-```
-
-_Note:_ the CBLiteListener tests are currenlty having an issue with dependencies.
-
-_Note:_ unfortunately running the tests via Android Studio does not currently seem to work.  If anyone knows a fix please post to the CouchbaseMobile Google Group or a github pull request.
 

@@ -645,8 +645,11 @@ configuring Couchbase to point to wherever you have mounted an external volume.
 
 When you use Couchbase Server in the cloud, server nodes can use internal or
 public IP addresses. Because IP addresses in the cloud may change quite
-frequently, you should configure Couchbase to use a hostname instead of an IP
+frequently, you can configure Couchbase to use a hostname instead of an IP
 address.
+
+For Amazon EC2 we recommend you use Amazon-generated hostnames 
+which then will automatically resolve to either the internal or external address.
 
 By default Couchbase Servers use specific IP addresses as a unique identifier.
 If the IP changes, an individual node will not be able to identify its own

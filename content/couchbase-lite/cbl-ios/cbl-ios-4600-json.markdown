@@ -1,5 +1,7 @@
 ## Validating JSON Objects
-[JSON-Schema][JSON-SCHEMA] is a way of defining the allowed structure and content of a JSON object in a machine-readable format, which is itself JSON. If you have a schema, you can programmatically validate JSON objects against the schema to find out if they match it.
+
+<!-- Needs a general high-level overview of validation blocks and what they do -->
+[JSON-Schema](http://json-schema.org) is a way of defining the allowed structure and content of a JSON object in a machine-readable format, which is itself JSON. If you have a schema, you can programmatically validate JSON objects against the schema to find out if they match it.
 
 Couchbase Lite includes a JSON-Schema validator class. However, to keep code size down, it's not a built-in part of the framework, but the source code is included in the distribution so you can compile it into your app.
 
@@ -25,7 +27,7 @@ Couchbase Lite includes a JSON-Schema validator class. However, to keep code siz
 
 You probably want to store the schema in a JSON file, so create a new empty file in your target and give it the extension `.json`. Double-check that the file has been added to the target's "Copy Bundle Resources" file list.
 
-Now fill in your schema. Note that the current implementation of the validator class follows [draft 3][JSON-SCHEMA-03] of the standard, not the upcoming draft 4. (The biggest difference is the interpretation of `required`.)
+Now fill in your schema. Note that the current implementation of the validator class follows [JSON Schema Draft 4](http://tools.ietf.org/html/draft-zyp-json-schema-04).
 
 ### Validating Objects
 
@@ -59,7 +61,7 @@ Your schema needs to recognize a tombstone as a special case, otherwise it will 
 
 #### Detecting Invalid Changes
 
-Using schema isn't a silver bullet. A schema can only identify whether a document is structurally invalid, it can't identify an invalid _change_ in a document, or a valid change that the user doesn't have permission to make. Such invalid changes are usually crucial to detect for security reasons. Some examples:
+A schema can only identify whether a document is structurally invalid, it can't identify an invalid _change_ in a document, or a valid change that the user doesn't have permission to make. Such invalid changes are usually crucial to detect for security reasons. Some examples of invalid changes:
 
 * A new expense report, created by a user account that doesn't have permission to file expense reports.
 * A revision that changes the dollar value of an existing expense report, which is supposed to be immutable.

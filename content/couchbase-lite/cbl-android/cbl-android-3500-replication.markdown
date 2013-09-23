@@ -16,32 +16,31 @@ This section describes how to work with replication in an Android app. To learn 
 
 2.  Add the following code to the `onCreate()` method of the Application's main activity:
 
-	```java
-      // start Couchbase Lite
-      CBLServer server = null;
-      String filesDir = getFilesDir().getAbsolutePath();
-      try {
-        server = new CBLServer(filesDir);
-      } catch (IOException e) {
-        Log.e(TAG, "Error starting CBLServer", e);
-      }
+	      // start Couchbase Lite
+	      CBLServer server = null;
+	      String filesDir = getFilesDir().getAbsolutePath();
+	      try {
+	        server = new CBLServer(filesDir);
+	      } catch (IOException e) {
+	        Log.e(TAG, "Error starting CBLServer", e);
+	      }
+	
+	      // start Ektorp adapter
+	      HttpClient httpClient = new CBLiteDBHttpClient(server);
+	      CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
 
-      // start Ektorp adapter
-      HttpClient httpClient = new CBLiteDBHttpClient(server);
-      CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
+	      // create a local database
+	      CouchDbConnector dbConnector = dbInstance.createConnector("testdb", true);
+	
+	      // pull this database to the test replication server
+	      ReplicationCommand pullCommand = new ReplicationCommand.Builder()
+	          .source("https://sync.example.com/example_db")
+	          .target("testdb")
+	          .continuous(true)
+	          .build();
+	
+	      ReplicationStatus status = dbInstance.replicate(pullCommand);
 
-      // create a local database
-      CouchDbConnector dbConnector = dbInstance.createConnector("testdb", true);
-
-      // pull this database to the test replication server
-      ReplicationCommand pullCommand = new ReplicationCommand.Builder()
-          .source("https://sync.example.com/example_db")
-          .target("testdb")
-          .continuous(true)
-          .build();
-
-      ReplicationStatus status = dbInstance.replicate(pullCommand);
-```
 
 
 ### Creating a Replication Without Credentials in the URL
@@ -54,17 +53,16 @@ You can perform authenticated replications *without* having to expose the creden
 
 3.  Start a replication and do not include the credentials in the URL.
 
-<p />
+
 
 Here's an example:
 
-```java
-// start Couchbase Lite
-String filesDir = getContext().getFilesDir().getAbsolutePath();
-CBLServer cblserver = new CBLServer(filesDir);
-
-// register our own custom HttpClientFactory
-cblserver.setDefaultHttpClientFactory(new HttpClientFactory() {
+	// start Couchbase Lite
+	String filesDir = getContext().getFilesDir().getAbsolutePath();
+	CBLServer cblserver = new CBLServer(filesDir);
+	
+	// register our own custom HttpClientFactory
+	cblserver.setDefaultHttpClientFactory(new HttpClientFactory() {
 
 	@Override
 	public org.apache.http.client.HttpClient getHttpClient() {
@@ -108,26 +106,26 @@ cblserver.setDefaultHttpClientFactory(new HttpClientFactory() {
 
 		return httpClient;
 	}
-});
-
-// start Ektorp adapter
-HttpClient httpClient = new CBLiteHttpClient(cblserver);
-CouchDbInstance server = new StdCouchDbInstance(httpClient);
-
-// create a local database
-CouchDbConnector db = server.createConnector("testdb", true);
-
-// push this database to the test replication server
-ReplicationCommand pushCommand = new ReplicationCommand.Builder()
+	});
+	
+	// start Ektorp adapter
+	HttpClient httpClient = new CBLiteHttpClient(cblserver);
+	CouchDbInstance server = new StdCouchDbInstance(httpClient);
+	
+	// create a local database
+	CouchDbConnector db = server.createConnector("testdb", true);
+	
+	// push this database to the test replication server
+	ReplicationCommand pushCommand = new ReplicationCommand.Builder()
 	.source("https://sync.example.com/ektorp_replication_test")
 	.target("testdb")
 	.continuous(false)
 	.build();
+	
+	ReplicationStatus status = server.replicate(pushCommand);
+	
+	// ...
 
-ReplicationStatus status = server.replicate(pushCommand);
-
-// ...
-```
 
 
 ### Using Filtered Replication
@@ -136,50 +134,50 @@ The following example shows how you can define a filter function, and then use t
 
  This filter function only return strue for documents with an even value for the field "foo".
 
-```java
-        String filesDir = getContext().getFilesDir().getAbsolutePath();
-        CBLServer tdserver = new CBLServer(filesDir);
 
-        // install the filter
-        CBLDatabase database = tdserver.getDatabaseNamed("ektorp_filter_test");
-        database.defineFilter("evenFoo", new CBLFilterBlock() {
+	        String filesDir = getContext().getFilesDir().getAbsolutePath();
+	        CBLServer tdserver = new CBLServer(filesDir);
+	
+	        // install the filter
+	        CBLDatabase database = tdserver.getDatabaseNamed("ektorp_filter_test");
+	        database.defineFilter("evenFoo", new CBLFilterBlock() {
+	
+	            @Override
+	            public boolean filter(CBLRevision revision) {
+	                Integer foo = (Integer)revision.getProperties().get("foo");
+	                if(foo != null && foo.intValue() % 2 == 0) {
+	                    return true;
+	                }
+	                return false;
+	            }
+	        });
+	
+	        HttpClient httpClient = new CBLiteHttpClient(tdserver);
+	        CouchDbInstance server = new StdCouchDbInstance(httpClient);
+	
+	        // create a local database
+	        CouchDbConnector db = server.createConnector("ektorp_filter_test", true);
+	
+	        // create 3 objects
+	        TestObject test1 = new TestObject(1, false, "ektorp-1");
+	        TestObject test2 = new TestObject(2, false, "ektorp-2");
+	        TestObject test3 = new TestObject(3, false, "ektorp-3");
+	
+	        // save these objects in the database
+	        db.create(test1);
+	        db.create(test2);
+	        db.create(test3);
+	
+	        // push this database to the test replication server
+	        ReplicationCommand pushCommand = new ReplicationCommand.Builder()
+	            .source("ektorp_filter_test")
+	            .target("http://@10.0.2.2:5984" + "/ektorp_filter_test")
+	            .continuous(false)
+	            .filter("evenFoo")
+	            .build();
+	
+	        ReplicationStatus status = server.replicate(pushCommand);
 
-            @Override
-            public boolean filter(CBLRevision revision) {
-                Integer foo = (Integer)revision.getProperties().get("foo");
-                if(foo != null && foo.intValue() % 2 == 0) {
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        HttpClient httpClient = new CBLiteHttpClient(tdserver);
-        CouchDbInstance server = new StdCouchDbInstance(httpClient);
-
-        // create a local database
-        CouchDbConnector db = server.createConnector("ektorp_filter_test", true);
-
-        // create 3 objects
-        TestObject test1 = new TestObject(1, false, "ektorp-1");
-        TestObject test2 = new TestObject(2, false, "ektorp-2");
-        TestObject test3 = new TestObject(3, false, "ektorp-3");
-
-        // save these objects in the database
-        db.create(test1);
-        db.create(test2);
-        db.create(test3);
-
-        // push this database to the test replication server
-        ReplicationCommand pushCommand = new ReplicationCommand.Builder()
-            .source("ektorp_filter_test")
-            .target("http://@10.0.2.2:5984" + "/ektorp_filter_test")
-            .continuous(false)
-            .filter("evenFoo")
-            .build();
-
-        ReplicationStatus status = server.replicate(pushCommand);
-```
 
 Using this replication only one record will be replicated, the one where the "foo" value is 2.
 

@@ -486,9 +486,9 @@ Writers](#couchbase-admin-tasks-mrw).
 
 **Document Deletion from Disk**
 
-[Couchbase Server will never delete entire items from disk unless a client
+For Couchbase Server will never delete entire items from disk unless a client
 explicitly deletes the item from the database or
-theexpiration](#couchbase-introduction-architecture-expiration) value for the
+the [expiration](#couchbase-introduction-architecture-expiration) value for the
 item is reached. The ejection mechanism removes an item from RAM, while keeping
 a copy of the key and metadata for that document in RAM and also keeping copy of
 that document on disk. For more information about document expiration and
@@ -506,9 +506,7 @@ metadata per deleted item in two structures per node. With millions of
 mutations, the space taken up by tombstones can grow quickly. This is especially
 the case if you have a large number of deletions or expired documents.
 
-As of Couchbase Server 2.2+ you can now permanently remove tombstones from a
-data bucket during compaction by setting a timed interval. For setting the purge
-interval:
+You can now configure the Metadata Purge Interval which sets how frequently a node will permanently purge metadata on deleted and expired items. This new setting will run as part of auto-compaction. This helps reduce the storage requirement by roughly 3x times lower than before and also frees up space much faster:
 
  * In Web Console, see [Using Web Console, Enabling
    Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).

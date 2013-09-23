@@ -1171,7 +1171,7 @@ The statistics shown are:
 
  * `mutations replicated optimistically`
 
-   Total number of mutations replicated with optimistic XDCR setting for replication.
+   Total number of mutations replicated with optimistic XDCR.
  
  * `ms docs ops latency`
 
@@ -1698,7 +1698,7 @@ As of Couchbase Server 2.2+ you can provide a purge interval to remove the key a
 for items that have been deleted or are expired. This is known as 'tombstone purging'. 
 For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 
-![](images/web-console-server-settings-autocompact.png)
+![](images/purge_interval2.2.png)
 
 The settings tab sets the following default parameters:
 
@@ -1731,17 +1731,18 @@ The settings tab sets the following default parameters:
 
  * `Metadata Purge Interval`
 
-   Defaults to three days. The number of days an item is deleted or expired before
-   the tombstone for the item is removed during compaction. Tombstones are records
-   of expired or deleted items and they include the key for the item as well as
-   metadata. Tombstones are used in Couchbase Server to provide eventual
-   consistency of data between clusters. If you set this value too low, you may see
+   Defaults to three days. Tombstones are records of expired or deleted items and they include the key and metadata. Tombstones are used in Couchbase Server to provide eventual consistency of data between clusters.
+   
+   The auto-compaction process waits this number of days before it permanently 
+   deletes tombstones for expired or deleted items.  
+   
+   If you set this value too low, you may see
    more inconsistent results in views queries such as deleted items in a result
    set. You may also see inconsistent items in clusters with XDCR set up between
-   the clusters. If you set this value too low, it will delay the server from
+   the clusters. If you set this value too high, it will delay the server from
    reclaiming disk space.
 
-   You can also changes this setting with the REST API, see.
+   You can also change this setting with the REST API, see [Using REST, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
 For more information on compaction, see [Database and View
 Compaction](#couchbase-admin-tasks-compaction). For information on how

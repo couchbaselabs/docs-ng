@@ -78,19 +78,23 @@ These administration tasks include:
 
 ##Read-Only Users
 
-As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access in Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR setup, create views or see any stored data. Any REST API calls which require an administrator will fail and return an error for this user. In the Web Console a read-only user will be able to view:
+As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access in the Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR settings, create views or see any stored data. Any REST API calls which require an administrator will fail and return an error for this user. In the Web Console a read-only user will be able to view:
 
    - Cluster Overview.
-   - Design documents and views but cannot query views.
-   - Bucket summaries including Cache Size and Storage Size, but no documents in the buckets.
+   - Design documents and view definitions but cannot query views.
+   - Bucket summaries including Cache Size and Storage Size, but cannot view documents.
    - List of XDCR replications and remote clusters.
-   - Logs under the Log tab, but the user cannot Generate Diagnostic Report.
-   - Current settings for a cluster.
+   - Logged events under the Log tab, but the user cannot Generate Diagnostic Report.
+   - Settings for a cluster.
+   
+The read-only user will not be able to set up a Couchbase SDK to connect to the server. All SDKs require 
+that a client connect with bucket-level credentials. For more information about Couchbase SDKs, see 
+[Couchbase, All Client Libraries](http://www.couchbase.com/communities/all-client-libraries). 
 
 To create a read-only user:
 
 1. In Couchbase Web Console, click Settings. A panel appears with several different sub-tabs.
-2. Click Account Management. A panel appears where you can add the user:
+2. Click Account Management. A panel appears where you can add a read-only user:
 
    ![](images/read_only_setup.png)
 
@@ -98,7 +102,7 @@ To create a read-only user:
 4. Click Create. The panel refreshes and has options for resetting the read-only user password or deleting the user:
  ![](images/read_only_created.png)
  
-The new user can now log into Couchbase Web Console in read-only mode or perform REST API requests that do not require administrative credentials. If a read-only performs a REST requests that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
+This read-only user can now log into Couchbase Web Console in read-only mode or perform REST API GET requests that do not require administrative credentials. If a read-only user performs a REST POST or DELETE request that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
 
         HTTP/1.1 401 Unauthorized
         WWW-Authenticate: Basic realm="Couchbase Server Admin / REST"
@@ -3448,7 +3452,7 @@ between the clusters in Couchbase Web Console.
     the destination cluster:
 
 
-    ![](images/xdcr-cluster-setup.png)
+    ![](images/create_xdcr_rep2.2.png)
 
  4. Click the `Replicate` button to start the replication process.
 
@@ -3460,18 +3464,22 @@ current status and list of replications in the `Ongoing Replications` section:
 
 <a id="admin-tasks-xdcr-advanced"></a>
 
-###Providing Advanced Settings
+###Providing XDCR Advanced Settings
 
-As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings)
+As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
+
+If you change want the replication protocol for an existing XDCR replication, you need to delete the replication, then re-create the replication with your preference.
 
 1. In the `Create Replication` panel, click `Advanced Settings`.
     Additional options appear in the panel.
     
-2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 1. You can also change this setting via the REST-API for  XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+![](images/create_rep_xdcr_advance2.2.png)
+        
+2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 
-    - Version 1 - uses the memcached protocol for replication. This increases XDCR throughput at destination clusters.
+    - Version 1 - uses the REST protocol for replication. This increases XDCR throughput at destination clusters.
     
-    - Version 2 - uses a REST protocol for replication. If you use the Elastic Search plugin which depends on XDCR, you must use this protocol.
+    - Version 2 - uses memcached REST protocol for replication. If you use the Elastic Search plugin which depends on XDCR, you must use this protocol.
     
     See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
     [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
@@ -3638,18 +3646,19 @@ active will be displayed within the `Past Replications` section of the
 ### Behavior and Limitations
 
  * **Replication via Memcached Protocol** As of Couchbase Server 2.2+, XDCR can
-   replicate data through the memcached protocol. By using this protocol for XDCR
-   replication you can significantly reduce overhead and improve latency. In the
-   past, XDCR supported a single internal REST protocol for replicating data from
-   one cluster to another. On a source cluster a work process batched multiple
+   replicate data through the memcached protocol at a destination cluster. 
+   This new mode utilizes highly efficient memcached protocol on the destination cluster for replicating changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination cluster and also improves XDCR scalability. 
+   
+   In earlier versions of Couchbase Server only the REST protocol could be used for replication. 
+   On a source cluster a work process batched multiple
    mutations and sent the batch to a destination cluster using a REST interface.
    The REST interface at the destination node unpacked the batch of mutations and
    sent each mutation via a single memcached command. The destination cluster then
    stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies
    on the REST API known as CAPI.
 
-   This additional mode available for XDCR is known as *XMEM mode XDCR* and will
-   bypass the REST interface and replicate mutations via the memcached protocol at
+   This second mode available for XDCR is known as *XMEM mode XDCR* and will
+   bypass the REST interface and replicates mutations via the memcached protocol at
    the destination cluster:
 
 
@@ -3663,8 +3672,8 @@ active will be displayed within the `Past Replications` section of the
    performance: this will increase XDCR throughput, improve XDCR scalability, and
    reduce CPU usage at destination clusters during replication.
 
-   You can configure XDCR to operate via the new XMEM mode or remain using the CAPI
-   mode. To do so, you use the REST-API and change the setting for
+   You can configure XDCR to operate via the new XMEM mode, which is the default or use CAPI
+   mode. To do so, you use Couchbase Web Console or the REST-API and change the setting for
    `xdcr_replication_mode`, see [Changing Internal XDCR
    Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
@@ -3703,6 +3712,35 @@ active will be displayed within the `Past Replications` section of the
    remote cluster. Performing a flush operation will only delete data on the local
    cluster. Flush is disabled if there is an active outbound replica stream
    configured.
+   
+<a id="couchbase-admin-tasks-xdcr-upgrades"></a>
+
+### Upgrading with XDCR
+
+As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem` which performs
+ replication on a destination cluster with the memcached prototocol. This is the default mode for 
+ replications for Couchbase Server 2.2+. The other mode which exists is known as `capi` and is over 
+ a REST protocol. When you upgrade Couchbase Server you need to make sure that both 
+ your source and destination clusters support the replication mode you want to use. You may also need to delete the replication, complete the upgrade, then recreate the replication. If you do not, you could experience data loss during replication:
+ 
+ - `xmem` - only 2.2 servers and above support it.
+ - `capi` - both 2.2 and pre-2.2 servers support it.
+
+Consider the following upgrade scenarios:
+
+1. Both source and destination clusters are pre-2.2 and you upgrade both to pre-2.2 versions. This scenario is supported since both clusters will use `capi`.
+2. Both source and destination clusters are pre-2.2 and you upgrade the destination to 2.2. 
+This is a safe upgrade path since the source cluster will still communicate by default via `capi` to the destination.
+3. You upgrade only the source cluster to 2.2 and the destination is pre-2.2. This is not a safe upgrade path because the destination cannot receive replication via `xmem`. This will result in incorrect data replication and failures in conflict resolution.
+4. You upgrade both source and destination clusters from pre-2.2 to 2.2. This is also not a safe upgrade path because the cluster upgrades are not synchronized. You may complete source upgrade prior to destination upgrade. This may lead to incorrect data replication and failures in conflict resolution.
+5. Source is pre-2.2 an destination is Elastic Search. If you upgrade your source cluster to 2.2, you need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
+
+For these scenarios 3-4 you should follow this process:
+
+1. Delete all XDCR replications on your source cluster.
+2. Upgrade the source cluster.
+3. Upgrade the destination cluster.
+4. Re-create your XDCR replications and select the correct mode for your clusters. If both clusters are upgraded to 2.2 you can use `xmem` otherwise you should use `capi` mode.
 
 <a id="couchbase-xdcr-conflict-resolution"></a>
 

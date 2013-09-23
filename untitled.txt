@@ -1,0 +1,11 @@
+Web Systems:
+
+1) autodocs live at www.couchbase.com 
+
+External URL: http://www.couchbase.com/autodocs/
+Username: mccouch
+Key: 
+
+The index page, zips and folders are at /var/www/domains/www/htdocs/autodocs
+
+

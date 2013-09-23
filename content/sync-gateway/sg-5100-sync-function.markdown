@@ -16,7 +16,7 @@ function (doc) {
 
 ### Sync Function Arguments
 
-The sync function arguments allow it to be used for validation as well as data routing. Your implementation can omit the `oldDoc` parameter if it is uneeded because JavaScript simply ignores extra parameters passed to a function.
+The arguments enable the sync function to be used for validation as well as data routing. Your implementation can omit the `oldDoc` parameter if you do not need it (JavaScript ignores extra parameters passed to a function).
 
 ```javascript
 function (doc, oldDoc) {
@@ -24,14 +24,11 @@ function (doc, oldDoc) {
 }
 ```
 
-* `doc`
+The sync function arguments are:
 
-  The first argument is the document that is being saved. This matches the JSON that was saved by the mobile client and replicated to Sync Gateway. There are no metadata or other fields added, although the `_id` and `_rev` fields are available.
+* `doc`—The document that is being saved. This matches the JSON that was saved by the mobile client and replicated to Sync Gateway. No metadata or other fields are added, although the `_id` and `_rev` fields are available.
 
-* `oldDoc`
-
-  If the document has been saved before, the revision that is being replaced is available here. In the case of a document with a conflicting revision, the provisional winning revision is passed as the `oldDoc` parameter. 
-
+* `oldDoc`—If the document has been saved before, the revision that is being replaced is available in this argument. In the case of a document with a conflicting revision, the provisional winning revision is passed in `oldDoc`. If the document is being deleted, there is a `_deleted` property whose value is true. 
 
 ### Sync Function Calls
 
@@ -44,7 +41,7 @@ The sync function can prevent a document from persisting or syncing to any other
 
 ```javascript
 function (doc) {
-  throw({forbidden : "read only!"})
+  throw ({forbidden : "read only!"})
 }
 ```
 
@@ -59,7 +56,7 @@ The `channel` call routes the document to the named channel. It accepts either a
 ```javascript
 function (doc, oldDoc) {
   if (doc.published) {
-    channel("public");
+    channel ("public");
   } 
 }
 ```
@@ -67,8 +64,7 @@ function (doc, oldDoc) {
 As a convenience, it is legal to call `channel` with a `null` or `undefined` argument; it simply does nothing. This allows you to do something like `channel(doc.channels)` without having to first check whether `doc.channels` exists.
 
 
-#### Grant access to a channel, to a user
-
+#### Grant a user access to a channel
 The `access` call grants access to channel to a given user or list of users. It can be called multiple times from a sync function.
 
 The effects of the `access` call last as long as this revision is current. If a new revision is saved, the `access` calls made by the `sync` function will replace the original access. If the document is deleted, the access is revoked. The effects of all access calls by all active documents are effectively unioned together, so if any document grants a user access to a channel, that user has access to the channel. Note that revoking access to a channel will not delete the documents which have already been synced to a user's device.
@@ -76,10 +72,10 @@ The effects of the `access` call last as long as this revision is current. If a 
 The access call takes two arguments, the user (or users) and the channel (or channels). These are all valid ways to call it:
 
 ```javascript
-  access("jchris", "mtv")
-  access("jchris", ["mtv", "mtv2", "vh1"])
-  access(["snej", "jchris", "role:admin"], "vh1")
-  access(["snej", "jchris"], ["mtv", "mtv2", "vh1"])
+access ("jchris", "mtv")
+access ("jchris", ["mtv", "mtv2", "vh1"])
+access (["snej", "jchris", "role:admin"], "vh1")
+access (["snej", "jchris"], ["mtv", "mtv2", "vh1"])
 ```
 
 As a convenience, either argument may be `null` or `undefined`, in which case nothing happens.
@@ -88,11 +84,12 @@ Here is an example function that grants access to a channel for all the users li
 
 ```javascript
 function (doc, oldDoc) {
-  if (doc.members && doc.channel_name) {
-    access(doc.members, doc.channel_name);
-  }
+
+  access (doc.members, doc.channel_name);
+  
   // we should also put this document on the channel it manages
-  channel(doc.channel_name)
+  channel (doc.channel_name)
+
 }
 ```
 
@@ -108,16 +105,16 @@ Its use is similar to `access`:
 
     role(user_or_users, role_or_roles);
 
-where either parameter may be a string or an array of strings. (Or null, in which case the call is a no-op.)
+The value of either parameter can be a string, an array of strings, or null. If the value is null,  the call is a no-op.
 
 For consistency with the `access` call, role names must always be prefixed with `role:`. An exception is thrown if a role name doesn't match this.
 
 Some examples:
 
 ```javascript
-  role("jchris", "role:admin")
-  role("jchris", ["role:portlandians", "role:portlandians-owners"])
-  role(["snej", "jchris", "traun"], "role:mobile")
+role ("jchris", "role:admin")
+role ("jchris", ["role:portlandians", "role:portlandians-owners"])
+role (["snej", "jchris", "traun"], "role:mobile")
 ```
 
 **NOTE:** Roles, like users, have to be explicitly created by an administrator. So _unlike_ channels, which come into existence simply by being named, you can't create new roles with a `role()` call. Nonexistent roles won't cause an error, but have no effect on the user's access privileges. (It is possible to create a role after the fact; as soon as it's created, any pre-existing references to it take effect.)
