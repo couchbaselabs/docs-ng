@@ -56,6 +56,7 @@ Windows 8                |             | 32 and 64 bit   | Developer only       
 MacOS                    | 10.7        | 64 bit          | Developer only           |                        
 MacOS                    | 10.8        | 64 bit          | Developer only           | MacOS 10.8             
 
+
 **Couchbase clusters with mixed platforms are not supported.** Specifically,
 Couchbase Server on MacOSX uses 64 vBuckets as opposed to the 1024 vBuckets used
 by other platforms. Due to this difference, if you need to move data between a
@@ -603,7 +604,7 @@ and the `your_file_name.iss` file to the same directory on each machine.
 ### Mac OS X Installation
 
 Before you install, make sure you check the supported platforms, see [Supported
-Platforms](#couchbase-getting-started-prepare-platforms).Couchbase Server on Mac
+Platforms](#couchbase-getting-started-prepare-platforms). Couchbase Server on Mac
 OS X is for development purposes only. The Mac OS X installation uses a Zip file
 which contains a standalone application that can be copied to the `Applications`
 folder or to any other location you choose. The installation location is not the
@@ -618,7 +619,7 @@ Due to limitations within the Mac OS X operating system, the Mac OS X
 implementation is incompatible with other operating systems. It is not possible
 either to mix operating systems within the same cluster, or configure XDCR
 between a Mac OS X and Windows or Linux cluster. If you need to move data
-between a Mac OS X cluster and a cluster hosted on another platform, please use
+between a Mac OS X cluster and a cluster hosted on another platform, use
 `cbbackup` and `cbrestore`. For more information, see [Backup and Restore
 Between Mac OS X and Other Platforms](#couchbase-backup-restore-mac).
 
@@ -629,13 +630,12 @@ To install:
 
  1. Remove remaining files from previous installations:
 
-     ```
-     > rm -rf ~/Library/Application Support/Couchbase
+	```
+     	> rm -rf ~/Library/Application Support/Couchbase
+     	> rm -rf ~/Library/Application Support/Membase
+	```
 
-     >rm -rf ~/Library/Application Support/Membase
-     ```
-
- 1. Download the Mac OS X Zip file.
+ 1. Download the Mac OS X zip file.
 
  1. Double-click the downloaded Zip installation file to extract the server. This
     will create a single folder, the `Couchbase Server.app` application.
@@ -643,7 +643,7 @@ To install:
  1. Drag and Drop `Couchbase Server.app` to your chosen installation folder, such as
     the system `Applications` folder.
 
-Once the install completes, you can double-click on `Couchbase Server.app` to
+After the installation completes, you can double-click on `Couchbase Server.app` to
 start it. The Couchbase Server icon appears in the menu bar on the right-hand
 side. If you have not yet configured your server, then the Couchbase Web Console
 opens and you should to complete the Couchbase Server setup process. See
@@ -657,7 +657,8 @@ directory. You can access them in Terminal by using the full path of the
 Couchbase Server installation. By default, this is
 `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`.
 
-###Installing on Mac OSX as Non-Root, Non-Sudo
+
+### Installing on Mac OSX as Non-Root, Non-Sudo
 
 **This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OSX:
 
