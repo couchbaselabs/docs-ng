@@ -1,7 +1,7 @@
 .span3.hidden-phone
   - unless @item.toc.empty?
     %ul#sidenav.span3.nav.nav-list
-      %li =section_title
+      %li =@section_title
       - @item.toc.each do |entry|
         %li
           %a{:href => entry[:href]}= entry[:title]
