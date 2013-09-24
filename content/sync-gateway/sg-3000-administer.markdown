@@ -20,7 +20,7 @@ sync_gateway [Options] [ConfigurationFile...]
 | `-dbname` |bucket name| Name of the database to serve via the Sync REST API
 | `-help`| None | Lists the available options and exits.
 | `-interface` | 4984| Port the Sync REST API listens on
-| `-log` |None | Comma-separated list of logging keywords to enable. The `HTTP` keyword is always enabled, which means HTTP requests and error responses  are always logged.
+| `-log` |None | Comma-separated list of logging keywords to enable. The `HTTP` keyword is always enabled, which means HTTP requests and error responses are always logged.
 | `-personaOrigin` |None| Base URL for Persona authentication. It should be the same URL that the client uses to reach the server.
 | `-pool` | default | Couchbase Server pool name in which to find buckets
 |`-pretty` | false | Pretty-print JSON responses. This is useful for debugging, but reduces performance.
