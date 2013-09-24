@@ -317,13 +317,12 @@ Setup](#couchbase-getting-started-setup).
 user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all 
 Couchbase command-line tools. To do so on Centos/RedHat:
 
- 1. After you download the Couchbase RPM, go to the directory where it is located
-    and extract it:
+ 1. After you download the Couchbase RPM, go to the directory where it is located and extract it:
 
-     ```
-     > rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
-     --no-absolute-filenames
-     ```
+
+		rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
+		--no-absolute-filenames
+
 
     In the directory where you extracted the files, you will see `opt` and `etc`
     subdirectories.
