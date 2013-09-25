@@ -3473,7 +3473,7 @@ If you change want the replication protocol for an existing XDCR replication, yo
 1. In the `Create Replication` panel, click `Advanced Settings`.
     Additional options appear in the panel.
     
-![](images/create_rep_xdcr_advance2.2.png)
+     ![](images/create_rep_xdcr_advance2.2.png)
        
 2. The `XDCR Protocol` defaults to Version 2. However, if you are using Couchbase Server 2.2 or later, select Version 1. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 
@@ -3575,7 +3575,7 @@ configure a bidirectional replication:
 
  1. Create a replication from Cluster A to Cluster B on Cluster A.
 
- 1. Create a replication from Cluster B to Cluster A on Cluster B.
+ 2. Create a replication from Cluster B to Cluster A on Cluster B.
 
 You do not need identical topologies for both clusters; you can have a different
 number of nodes in each cluster, and different RAM and persistence
