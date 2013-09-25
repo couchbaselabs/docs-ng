@@ -49,7 +49,7 @@ Additional enhancements in 2.2 include:
       `xdcr_optimistic_replication_threshold`, `xdcr_worker_batch_size`,
       `xdcr_connection_timeout`, `xdcr_num_worker_process`,
       `xdcr_num_http_connections`, and `xdcr_num_retries_per_request`. You can now
-      change these settings and they will immeidately apply to the existing XDCR
+      change these settings and they will immediately apply to the existing XDCR
       replication. For more information, see [Changing Internal XDCR
       Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
