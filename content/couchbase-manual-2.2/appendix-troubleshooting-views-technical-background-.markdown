@@ -539,7 +539,7 @@ The documents included in each row don't match the value field of each row, that
 is, the documents included are the latest (updated) versions but the index row
 values still reflect the previous (first) version of the documents.
 
-Why this behaviour? Well, `include_docs=true` works by at query time, for each
+Why this behavior? Well, `include_docs=true` works by at query time, for each
 row, to fetch from disk the latest revision of each document. There's no way to
 include a previous revision of a document. Previous revisions are not accessible
 through the latest vbucket databases MVCC snapshots (
@@ -553,7 +553,7 @@ The only way to ensure full consistency here is to include the documents
 themselves in the values emitted by the map function. Queries with `stale=false`
 are not 100% reliable either, as just after the index is updated and while rows
 are being streamed from disk to the client, document updates and deletes can
-still happen, resulting in the same behaviour as in the given example.
+still happen, resulting in the same behavior as in the given example.
 
 <a id="couchbase-views-debugging-expired"></a>
 
@@ -882,7 +882,7 @@ as `couch_dbinfo` and `couch_dbdump` to analyze active vbucket database files.
 Before looking at those tools, lets first know what database sequence numbers
 are.
 
-When a couchdb database (remember, each corresponds to a vbucket) is created,
+When a CouchDB database (remember, each corresponds to a vbucket) is created,
 its update\_seq (update sequence number) is 0. When a document is created,
 updated or deleted, its current sequence number is incremented by 1. So all the
 following sequence of actions result in the final sequence number of 5:
@@ -2104,7 +2104,7 @@ the following information to JIRA issues:
  * If you generated the data with any tool, mention its name and all the parameters
    given to it (full command line)
 
- * Show what queries you were doing (include all query parameters, full url), use
+ * Show what queries you were doing (include all query parameters, full URL), use
    curl with option -v and show the full output, example:
 
 
