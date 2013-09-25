@@ -149,7 +149,7 @@ Constant                                                                        
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
-headroomThe cluster needs additonal overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
+headroom The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
 High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 70%.                                                                                                                                                                                                  
 
 This is a rough guideline to size your cluster:
@@ -360,7 +360,7 @@ primary concerns for your servers, here is what we recommend:
       throughput.
 
  * Network: Most configurations will work with Gigabit Ethernet interfaces. Faster
-   solutions such as 10GBit and Inifiniband will provide spare capacity.
+   solutions such as 10GBit and Infiniband will provide spare capacity.
 
 <a id="couchbase-bestpractice-sizing-cloud"></a>
 
@@ -449,7 +449,7 @@ following:
 [The water mark is another key statistic to monitor cluster performance. The
 'water mark' determines when it is necessary to start freeing up available
 memory. Read more about this
-concepthere](#couchbase-introduction-architecture-diskstorage). Here are two
+concept here](#couchbase-introduction-architecture-diskstorage). Here are two
 important statistics related to water marks:
 
  * High Water Mark ( `ep_mem_high_wat` )
@@ -713,7 +713,7 @@ are moved to the swap space. From a range of 0 to 100, swappiness indicates how
 frequently a system should use swap space based on RAM usage. We recommend the
 following for swap space:
 
- * By default on most Linux platforms, swapiness is set to 60. However this will
+ * By default on most Linux platforms, swappiness is set to 60. However this will
    make a system go into swap too frequently for Couchbase Server.
 
  * If you use Couchbase Server 2.0+ without views, we recommend setting swappiness
@@ -806,7 +806,7 @@ communicate with Couchbase Cluster without installing another piece of proxy
 software. The downside to this approach is performance.
 
 In this deployment option versus a typical memcached deployment, in a worse-case
-scenario, server mapping will happen twice (e.g. using ketama hashing to a
+scenario, server mapping will happen twice (e.g. using Ketama hashing to a
 server list on the client, then using vBucket hashing and server mapping on the
 proxy) with an additional round trip network hop introduced.
 

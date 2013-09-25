@@ -23,7 +23,7 @@ To start using Couchbase Server, you need to follow these steps:
 ## Preparation
 
 Mixed deployments, such as cluster with both Linux and Windows server nodes are
-not supported. This incomparability is due to differences in the number of
+not supported. This incompatibility is due to differences in the number of
 shards between platforms. It is not possible either to mix operating systems
 within the same cluster, or configure XDCR between clusters on different
 platforms. You should use same operating system on all machines within a cluster
@@ -53,12 +53,12 @@ Windows 2008             | R2 with SP1 | 64 bit          | Developer and Product
 Windows 2012             |             | 64 bit          | Developer and Production |  
 Windows 7                |             | 32 and 64 bit   | Developer only           |                        
 Windows 8                |             | 32 and 64 bit   | Developer only           |                        
-MacOS                    | 10.7        | 64 bit          | Developer only           |                        
-MacOS                    | 10.8        | 64 bit          | Developer only           | MacOS 10.8             
+Mac OS                    | 10.7        | 64 bit          | Developer only           |                        
+Mac OS                    | 10.8        | 64 bit          | Developer only           | Mac OS 10.8             
 
 
 **Couchbase clusters with mixed platforms are not supported.** Specifically,
-Couchbase Server on MacOSX uses 64 vBuckets as opposed to the 1024 vBuckets used
+Couchbase Server on Mac OS X uses 64 vBuckets as opposed to the 1024 vBuckets used
 by other platforms. Due to this difference, if you need to move data between a
 Mac OS X cluster and a cluster hosted on another platform use `cbbackup` and
 `cbrestore`. For more information, see [Backup and Restore Between Mac OS X and
@@ -120,7 +120,7 @@ Guidelines](#couchbase-bestpractice-sizing).
 
 ### Supported Web Browsers
 
-The Couchbase Web Console runs on the following browsers, with Javascript
+The Couchbase Web Console runs on the following browsers, with JavaScript
 support enabled:
 
  * Mozilla Firefox 3.6 or higher
@@ -217,9 +217,9 @@ To perform an upgrade installation while retaining your existing dataset, see
 ### Red Hat Linux Installation
 
 Before you install, make sure you check the supported platforms, see [Supported
-Platforms](#couchbase-getting-started-prepare-platforms). The RedHat
-installation uses the RPM package. Installation is supported on RedHat and
-RedHat-based operating systems such as CentOS.
+Platforms](#couchbase-getting-started-prepare-platforms). The Red Hat
+installation uses the RPM package. Installation is supported on Red Hat and
+Red Hat-based operating systems such as CentOS.
 
  1. For Red Hat Enterprise Linux version 6.0, Couchbase Server 2.2 RPM will do
     dependency checks for OpenSSL using `pkg-config`. Therefore you need to check
@@ -275,7 +275,7 @@ RedHat-based operating systems such as CentOS.
 
     Once the `rpm` command completes, Couchbase Server starts automatically, and is
     configured to automatically start during boot under the 2, 3, 4, and 5
-    runlevels. Refer to the RedHat RPM documentation for more information about
+    runlevels. Refer to the Red Hat RPM documentation for more information about
     installing packages using RPM.
 
     After installation finishes, the installation process will display a message
@@ -283,7 +283,7 @@ RedHat-based operating systems such as CentOS.
 
      ```
      Minimum RAM required  : 4 GB
-     System RAM configured : 8174464 kB
+     System RAM configured : 8174464 KB
 
      Minimum number of processors required : 4 cores
      Number of processors on the system    : 4 cores
@@ -302,9 +302,9 @@ RedHat-based operating systems such as CentOS.
      See /opt/couchbase/LICENSE.txt.
      ```
 
-Once installed, you can use the RedHat `chkconfig` command to manage the
+Once installed, you can use the Red Hat `chkconfig` command to manage the
 Couchbase Server service, including checking the current status and creating the
-links to enable and disable automatic start-up. Refer to the [RedHat
+links to enable and disable automatic start-up. Refer to the [Red Hat
 documentation](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-services-chkconfig.html)
 for instructions.
 
@@ -312,11 +312,11 @@ To do the initial setup for Couchbase, open a web browser and access the
 Couchbase Web Console. See [Initial Server
 Setup](#couchbase-getting-started-setup).
 
-###Installing on Centos/RHEL as Non-Root, Non-Sudo 
+###Installing on CentOS/RHEL as Non-Root, Non-Sudo 
 
 **This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo
 user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all 
-Couchbase command-line tools. To do so on Centos/RedHat:
+Couchbase command-line tools. To do so on CentOS/Red Hat:
 
  1. After you download the Couchbase RPM, go to the directory where it is located and extract it:
 
@@ -411,7 +411,7 @@ Platforms](#couchbase-getting-started-prepare-platforms).
      Unpacking couchbase-server (from couchbase-server_x86_64_2.1.0-xxx-rel.deb) ...
      libssl0.9.8 is installed. Continue installing
      Minimum RAM required  : 4 GB
-     System RAM configured : 4058708 kB
+     System RAM configured : 4058708 KB
 
      Minimum number of processors required : 4 cores
      Number of processors on the system    : 4 cores
@@ -610,7 +610,7 @@ which contains a standalone application that can be copied to the `Applications`
 folder or to any other location you choose. The installation location is not the
 same as the location of the Couchbase data files.
 
-Please use the default archive file hander in Mac OS X, Archive Utility, when
+Please use the default archive file handler in Mac OS X, Archive Utility, when
 you unpack the Couchbase Server distribution. It is more difficult to diagnose
 non-functioning or damaged installations after extraction by other third party
 archive extraction tools.
@@ -657,10 +657,9 @@ directory. You can access them in Terminal by using the full path of the
 Couchbase Server installation. By default, this is
 `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`.
 
+###Installing on Mac OS X as Non-Root, Non-Sudo
 
-### Installing on Mac OSX as Non-Root, Non-Sudo
-
-**This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OSX:
+**This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OS X:
 
  1. After you download Couchbase Server, open Terminal and go to the Downloads
     directory:
@@ -787,7 +786,7 @@ port other than `8091`, go to that port.
     When you provide an email address we will add it to the Couchbase community
     mailing list for news and update information about Couchbase and related
     products. You can unsubscribe from the mailing list at any time using the
-    unsubscribe link provided in each newletter. Web Console communicates the
+    unsubscribe link provided in each newsletter. Web Console communicates the
     following information:
 
      * The current version. When a new version of Couchbase Server exists, you get
@@ -1384,7 +1383,7 @@ an individual nodes in a cluster remain the same:
 
  1. Perform the installation upgrade for your platform:
 
-    **RHEL/Centos**
+    **RHEL/CentOS**
 
     You can perform an upgrade install using the RPM package — this will keep the
     data and existing configuration.
@@ -1436,7 +1435,7 @@ rebalance may fail.
 When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1+ on Linux,
 you should be aware of the **OpenSSL** requirement. OpenSSL is a required
 component and you will get an error message during upgrade if it is not
-installed. To install it RedHat-based systems, use `yum` :
+installed. To install it Red Hat-based systems, use `yum` :
 
 
 ```
@@ -1458,10 +1457,10 @@ the IP and hostname configuration is correct both before the upgrade and after
 upgrading the software. See [Hostnames for Couchbase Server 2.0.1 and
 Earlier](#couchbase-getting-started-hostnames-pre2.0).
 
-**Mac OSX Notes for 1.8.1 to 2.1+**
+**Mac OS X Notes for 1.8.1 to 2.1+**
 
-There is currently no officially supported upgrade installer for Mac OSX. If you
-want to migrate to 1.8.1 to 2.1+ on OSX, you must make a backup of your data
+There is currently no officially supported upgrade installer for Mac OS X. If you
+want to migrate to 1.8.1 to 2.1+ on OS X, you must make a backup of your data
 files with `cbbackup`, install the latest version, then restore your data with
 `cbrestore`. For more information, see [cbbackup
 Tool](#couchbase-admin-cmdline-cbbackup) and [cbrestore

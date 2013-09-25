@@ -162,7 +162,7 @@ The `Servers` section indicates overall server information for the cluster:
 
 ![](images/web-console-cluster-overview-servers.png)
 
- * `Active Servers` is the number of active servers within the current clsuter
+ * `Active Servers` is the number of active servers within the current cluster
    configuration.
 
  * `Servers Failed Over` is the number of servers that have failed over due to an
@@ -171,7 +171,7 @@ The `Servers` section indicates overall server information for the cluster:
  * `Servers Down` shows the number of servers that are down and not-contactable.
 
  * `Servers Pending Rebalance` shows the number of servers that are currently
-   waiting to be rebalanced after joiining a cluster or being reactivated after
+   waiting to be rebalanced after joining a cluster or being reactivated after
    failover.
 
 <a id="couchbase-admin-web-console-server-nodes"></a>
@@ -349,7 +349,7 @@ and the cluster as a whole.
 
 The `Data Buckets` page displays a list of all the configured buckets on your
 system (of both Couchbase and memcached types). The page provides a quick
-overview of your cluser health from the perspective of the configured buckets,
+overview of your cluster health from the perspective of the configured buckets,
 rather than whole cluster or individual servers.
 
 The information is shown in the form of a table, as seen in the figure below.
@@ -603,7 +603,7 @@ all the graphs and statistics display within the web console.
 
    The `Data Buckets` selection list allows you to select which of the buckets
    configured on your cluster is to be used as the basis for the graph display. The
-   statistics shown are agregated over the whole cluster for the selected bucket.
+   statistics shown are aggregated over the whole cluster for the selected bucket.
 
  * `Server Selection`
 
@@ -631,7 +631,7 @@ all the graphs and statistics display within the web console.
  * `Individual Server Selection`
 
    Clicking the blue triangle next to any of the smaller statistics graphs enables
-   you to show the selected statistic individuall for each server within the
+   you to show the selected statistic individual for each server within the
    cluster, instead of aggregating the information for the entire cluster.
 
 <a id="couchbase-admin-web-console-data-buckets-individual"></a>
@@ -1077,7 +1077,7 @@ configuration. Possible include:
  * **Starting Up**
 
    The replication process has just started, and the clusters are determining what
-   data needs to be sent from the originatin cluster to the destination cluster.
+   data needs to be sent from the originating cluster to the destination cluster.
 
  * **Replicating**
 
@@ -1211,7 +1211,7 @@ The statistics shown are:
 
  * `sets per sec.`
 
-   Set operations per second for incoming XDRC data.
+   Set operations per second for incoming XDCR data.
 
  * `deletes per sec.`
 
@@ -1377,7 +1377,7 @@ Once you have edited your `map()` and `reduce()` functions, you must use the
 `Save` button to save the view definition.
 
 The design document will be validated before it is created or updated in the
-system. The validation checks for valid Javascript and for the use of valid
+system. The validation checks for valid JavaScript and for the use of valid
 built-in reduce functions. Any validation failure is reported as an error.
 
 You can also save the modified version of your view as a new view using the
@@ -1577,7 +1577,7 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 ### Enabling Alerts
 
-You can enable email alerts to be raised when a signficant error occurs on your
+You can enable email alerts to be raised when a significant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
 to a configured SMTP server. Each alert email is send to the list of configured
 email recipients.
@@ -1674,7 +1674,7 @@ The available settings are:
 
     * `Writing data to disk for a specific bucket has failed`
 
-      The disk or device used for persisting data has failed to store persitent data
+      The disk or device used for persisting data has failed to store persistent data
       for a bucket.
 
 
@@ -1786,7 +1786,7 @@ information to the Couchbase server:
  * Basic information about the size and configuration of your Couchbase cluster.
    This information will be used to help us prioritize our development efforts.
 
-You can enable/disable software updaate notifications
+You can enable/disable software update notifications
 
 The process occurs within the browser accessing the web console, not within the
 server itself, and no further configuration or internet access is required on

@@ -15,7 +15,7 @@ more detailed investigations:
 
  * Try connecting to the Couchbase Server Web Console on the node.
 
- * [Try to use telnet to connect to the variousports](#couchbase-network-ports)
+ * [Try to use telnet to connect to the various ports](#couchbase-network-ports)
    that Couchbase Server uses.
 
  * Try reloading the web page.
@@ -116,14 +116,14 @@ File               | Log Contents
 `info`             | Information level error messages related to the core server management subsystem, excluding information included in the `couchdb`, `xdcr` and `stats` logs.
 `error`            | Error level messages for all subsystems excluding `xdcr`.                                                                                                  
 `xcdr_error`       | XDCR error messages.                                                                                                                                       
-`xdcr`             | XSCR information messages.                                                                                                                                 
+`xdcr`             | XDCR information messages.                                                                                                                                 
 `mapreduce_errors` | JavaScript and other view-processing errors are reported in this file.                                                                                     
 `views`            | Errors relating to the integration between the view system and the core server subsystem.                                                                  
 `stats`            | Contains periodic reports of the core statistics.                                                                                                          
 `memcached.log`    | Contains information relating to the core memcache component, including vBucket and replica and rebalance data streams requests.                           
 
-Each logfile group will also include a `.idx` and `.siz` file which holds meta
-information about the logfile group. These files are automatically updated by
+Each log file group will also include a `.idx` and `.siz` file which holds meta
+information about the log file group. These files are automatically updated by
 the logging system.
 
 <a id="couchbase-troubleshooting-common-errors"></a>

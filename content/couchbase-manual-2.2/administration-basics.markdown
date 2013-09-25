@@ -113,7 +113,7 @@ On Linux, Couchbase Server is installed as a standalone application with support
 for running as a background (daemon) process during startup through the use of a
 standard control script, `/etc/init.d/couchbase-server`. The startup script is
 automatically installed during installation from one of the Linux packaged
-releases (Debian/Ubuntu or RedHat/CentOS). By default Couchbase Server is
+releases (Debian/Ubuntu or Red Hat/CentOS). By default Couchbase Server is
 configured to be started automatically at run levels 2, 3, 4, and 5, and
 explicitly shutdown at run levels 0, 1 and 6.
 
@@ -187,7 +187,7 @@ To stop the server using the supplied script:
 
 On Mac OS X, Couchbase Server is supplied as a standard application. You can
 start Couchbase Server by double clicking on the application. Couchbase Server
-runs as a background application which installs a menubar item through which you
+runs as a background application which installs a menu bar item through which you
 can control the server.
 
 
@@ -252,7 +252,7 @@ The individual menu options perform the following actions:
  * `Quit Couchbase`
 
    Selecting this menu option will shut down your running Couchbase Server, and
-   close the menubar interface. To restart, you must open the Couchbase Server
+   close the menu bar interface. To restart, you must open the Couchbase Server
    application from the installation folder.
 
 <a id="couchbase-bestpractice"></a>

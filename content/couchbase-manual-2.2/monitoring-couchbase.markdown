@@ -147,7 +147,7 @@ the system is understanding how we interact with the disk subsystem.
 
 Since Couchbase Server is an asynchronous system, any mutation operation is
 committed first to DRAM and then queued to be written to disk. The client is
-returned an acknowledgement almost immediately so that it can continue working.
+returned an acknowledgment almost immediately so that it can continue working.
 There is replication involved here too, but we're ignoring it for the purposes
 of this discussion.
 
@@ -183,7 +183,7 @@ gathering node-level stats). There are two statistics to watch here:
 ep\_queue\_size (where new mutations are placed) flusher\_todo (the queue of
 items currently being written to disk)
 
-[SeeThe Dispatcher](#couchbase-monitoring-nodestats-dispatcher) for more
+[See The Dispatcher](#couchbase-monitoring-nodestats-dispatcher) for more
 information about monitoring what the disk subsystem is doing at any given time.
 
 <a id="couchbase-monitoring-stats"></a>
@@ -217,7 +217,7 @@ can be found in the repository.
 
 [Along with stats at the REST and UI level, individual nodes can also be queried
 for statistics either through a client which uses binary protocol or through
-thecbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
+the cbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
 Server.
 
 For example:

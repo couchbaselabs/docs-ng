@@ -167,7 +167,7 @@ you would use for a REST API request. This is especially for administrative
 tasks such as creating a new bucket, adding a node to a cluster, or changing
 cluster settings.
 
-[For a list of supported browsers, seeSystem
+[For a list of supported browsers, see System
 Requirements](#couchbase-getting-started-prepare). For the Couchbase Web
 Console, a separate UI hierarchy is served from each node of the system (though
 asking for the root "/" would likely return a redirect to the user agent). To
@@ -368,7 +368,7 @@ Host: 10.4.2.4:8091
 Accept: */*
 ```
 
-If Couchbase Server successfully handles the reuqest, you will get a response
+If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
 
 
@@ -1468,7 +1468,7 @@ For example, to edit the bucket `customer` :
 ```
 
 [Available parameters are identical to those available when creating a bucket.
-Seebucket parameters](#table-couchbase-admin-restapi-creating-buckets).
+See bucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
@@ -2566,7 +2566,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 
 200 OK
 
-Possible errrors include:
+Possible errors include:
 
 
 ```

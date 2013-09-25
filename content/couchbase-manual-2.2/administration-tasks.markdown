@@ -1236,7 +1236,7 @@ failover is not without potential problems.
 
  * **External monitoring**
 
-   [Another option is to have a system monitoring the cluster via theManagement
+   [Another option is to have a system monitoring the cluster via the Management
    REST API](#couchbase-admin-restapi). Such an external system is in a good
    position to failover nodes because it can take into account system components
    that are outside the scope of Couchbase Server.
@@ -1697,7 +1697,7 @@ There are a number of methods for performing a backup:
    For more information, see [Backing Up Using File
    Copies](#couchbase-backup-restore-backup-filecopy).
 
-   [To restore, you need to use thefile copy](#couchbase-backup-restore-filecopy)
+   [To restore, you need to use the file copy](#couchbase-backup-restore-filecopy)
    method.
 
 Due to the active nature of Couchbase Server it is impossible to create a
@@ -2727,7 +2727,7 @@ be updated or upgraded.
 
 Before you remove a node from the cluster, you should ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, seeChoosing when to shrink your cluster.
+more information on the considerations, see Choosing when to shrink your cluster.
 For the best results, use swap rebalance to swap the node you want to remove
 out, and swap in a replacement node. For more information on swap rebalance, see
 [Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
@@ -2906,7 +2906,7 @@ The benefits of swap rebalance are:
    the capacity of the cluster remains unchanged during the rebalance operation,
    helping to ensure performance and failover support.
 
-The behaviour of the cluster during a failover and rebalance operation with the
+The behavior of the cluster during a failover and rebalance operation with the
 swap rebalance functionality affects the following situations:
 
  * **Stopping a rebalance**
@@ -3473,16 +3473,17 @@ If you change want the replication protocol for an existing XDCR replication, yo
 1. In the `Create Replication` panel, click `Advanced Settings`.
     Additional options appear in the panel.
     
-![](images/create_rep_xdcr_advance2.2.png)
-        
-2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+     ![](images/create_rep_xdcr_advance2.2.png)
+       
+2. The `XDCR Protocol` defaults to Version 2. However, if you are using Couchbase Server 2.2 or later, select Version 1. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 
     - Version 1 - uses the REST protocol for replication. This increases XDCR throughput at destination clusters.
     
-    - Version 2 - uses memcached REST protocol for replication. If you use the Elastic Search plugin which depends on XDCR, you must use this protocol.
+    - Version 2 - uses memcached REST protocol for replication. If you use the Elasticsearch plugin which depends on XDCR, you must use this protocol.
     
-    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
-    [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
+    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elasticsearch, see 
+    [Couchbase Elasticsearch Guide](http://docs.couchbase.com/couchbase-elastic-search/).
+    
     
 3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API. 
     
@@ -3536,7 +3537,7 @@ If you change want the replication protocol for an existing XDCR replication, yo
 
     - `XDCR Batch Size (KB)`
 
-      Document batching size, 10 to 100000 (kB). Default 2048. In general, increasing
+      Document batching size, 10 to 100000 (KB). Default 2048. In general, increasing
       this value by 2 or 3 times will improve XDCR transmissions rates, since larger
       batches of data will be sent in the same timed interval. For unidirectional
       replication from a source to a destination cluster, adjusting this setting by 2
@@ -3574,7 +3575,7 @@ configure a bidirectional replication:
 
  1. Create a replication from Cluster A to Cluster B on Cluster A.
 
- 1. Create a replication from Cluster B to Cluster A on Cluster B.
+ 2. Create a replication from Cluster B to Cluster A on Cluster B.
 
 You do not need identical topologies for both clusters; you can have a different
 number of nodes in each cluster, and different RAM and persistence
@@ -3718,7 +3719,7 @@ active will be displayed within the `Past Replications` section of the
 ### Upgrading with XDCR
 
 As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem` which performs
- replication on a destination cluster with the memcached prototocol. This is the default mode for 
+ replication on a destination cluster with the memcached protocol. This is the default mode for 
  replications for Couchbase Server 2.2+. The other mode which exists is known as `capi` and is over 
  a REST protocol. When you upgrade Couchbase Server you need to make sure that both 
  your source and destination clusters support the replication mode you want to use. You may also need to delete the replication, complete the upgrade, then recreate the replication. If you do not, you could experience data loss during replication:
@@ -4049,7 +4050,7 @@ To change the disk path of the existing node, the recommended sequence is:
 
  1. Configure the new disk path, either by using the REST API (see [Configuring
     Index Path for a Node](#couchbase-admin-restapi-provisioning-diskpath) ), using
-    the command-line (seecluster initializationfor more information).
+    the command-line (see cluster initialization for more information).
 
     Alternatively, connect to the Web UI of the new node, and follow the setup
     process to configure the disk path (see [Initial Server
