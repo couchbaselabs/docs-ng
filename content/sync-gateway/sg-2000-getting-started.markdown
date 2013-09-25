@@ -4,14 +4,14 @@ You can run Sync Gateway on the following operating systems:
 
 * Mac OS X 10.6 or later with a 64-bit CPU
 
-* RedHat Linux
+* Red Hat Linux
 
 * Ubuntu Linux
 
 
 ## Installing Sync Gateway
 
-Download Sync Gateway for your platform at <http://www.couchbase.com/communities/couchbase-sync-gateway>.
+You can download Sync Gateway for your platform from <http://www.couchbase.com/communities/couchbase-sync-gateway>.
 
 The download contains an executable file called `sync_gateway` that you run as a command-line tool. For convenience, you can move it to a directory that is included in your $PATH environment variable.
 

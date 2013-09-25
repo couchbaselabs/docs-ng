@@ -2146,6 +2146,11 @@ Where:
       Specify the name of the bucket the data will be written to. If this option is
       not specified, the data will be written to a bucket with the same name as the
       source bucket.
+    
+    * `--add`
+      
+      Use `--add` instead of `--set` in order to not overwrite existing items in the destination.
+
 
    For information on all the options available when using `cbrestore`, see
    [cbrestore Tool](#couchbase-admin-cmdline-cbrestore)
