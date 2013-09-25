@@ -3474,15 +3474,16 @@ If you change want the replication protocol for an existing XDCR replication, yo
     Additional options appear in the panel.
     
 ![](images/create_rep_xdcr_advance2.2.png)
-        
-2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+       
+2. The `XDCR Protocol` defaults to Version 2. However, if you are using Couchbase Server 2.2 or later, select Version 1. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 
     - Version 1 - uses the REST protocol for replication. This increases XDCR throughput at destination clusters.
     
-    - Version 2 - uses memcached REST protocol for replication. If you use the Elastic Search plugin which depends on XDCR, you must use this protocol.
+    - Version 2 - uses memcached REST protocol for replication. If you use the Elasticsearch plugin which depends on XDCR, you must use this protocol.
     
-    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
-    [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
+    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elasticsearch, see 
+    [Couchbase Elasticsearch Guide](http://docs.couchbase.com/couchbase-elastic-search/).
+    
     
 3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API. 
     
