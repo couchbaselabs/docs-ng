@@ -531,7 +531,7 @@ node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster.
 
-[You use this tool to get thecouchbase node
+[You use this tool to get the couchbase node
 statistics](#couchbase-monitoring-nodestats). The general format for the command
 is:
 
@@ -680,7 +680,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_num_expiry_pager_runs           | Number of times we ran expiry pager    
 |                                    | loops to purge expired items from      
 |                                    | memory/disk                            
-| ep_num_access_scanner_runs         | Number of times we ran accesss scanner 
+| ep_num_access_scanner_runs         | Number of times we ran access scanner 
 |                                    | to snapshot working set                
 | ep_access_scanner_num_items        | Number of items that last access       
 |                                    | scanner task swept to access log.      
@@ -710,7 +710,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_pending_ops_max_duration        | Max time (µs) used waiting on pending  
 |                                    | vbuckets                               
 | ep_bg_num_samples                  | The number of samples included in the  
-|                                    | avgerage                               
+|                                    | average                               
 | ep_bg_min_wait                     | The shortest time (µs) in the wait     
 |                                    | queue                                  
 | ep_bg_max_wait                     | The longest time (µs) in the wait      
@@ -751,14 +751,14 @@ The following provides the stats that are created by `cbstats`:
 | ep_config_file                     | The location of the ep-engine config   
 |                                    | file                                   
 | ep_couch_bucket                    | The name of this bucket                
-| ep_couch_host                      | The hostname that the couchdb views    
+| ep_couch_host                      | The hostname that the CouchDB views    
 |                                    | server is listening on                 
-| ep_couch_port                      | The port the couchdb views server is   
+| ep_couch_port                      | The port the CouchDB views server is   
 |                                    | listening on                           
 | ep_couch_reconnect_sleeptime       | The amount of time to wait before      
-|                                    | reconnecting to couchdb                
+|                                    | reconnecting to CouchDB                
 | ep_couch_response_timeout          | Length of time to wait for a response  
-|                                    | from couchdb before reconnecting       
+|                                    | from CouchDB before reconnecting       
 | ep_data_traffic_enabled            | Whether or not data traffic is enabled 
 |                                    | for this bucket                        
 | ep_degraded_mode                   | True if the engine is either warming   
@@ -843,7 +843,7 @@ The following provides the stats that are created by `cbstats`:
 |                                    | before we enable traffic               
 | ep_warmup_min_memory_threshold     | Percentage of max mem warmed up before 
 |                                    | we enable traffic                      
-| ep_warmup_oom                      | The amount of oom errors that occured  
+| ep_warmup_oom                      | The amount of oom errors that occurred  
 |                                    | during warmup                          
 | ep_warmup_thread                   | The status of the warmup thread        
 | ep_warmup_time                     | The amount of time warmup took
@@ -1186,7 +1186,7 @@ and performance will suffer.
 | largest_min  | The the largest minimum hash table depth of all vbuckets 
 | max_count    | The largest number of items in a vbucket                 
 | min_count    | The smallest number of items in a vbucket                
-| total_counts | The total numer of items in all vbuckets
+| total_counts | The total number of items in all vbuckets
 
 It is also possible to get more detailed hash tables stats by using
 'hash detail'. This will print per-vbucket stats.
@@ -1213,7 +1213,7 @@ vbucket 0 is =vb_0:size=.
 ###Checkpoint Stats
 
 Checkpoint stats provide detailed information on per-vbucket checkpoint
-datastructure.
+data structure.
 
 Like Hash stats, requesting these stats has some impact on performance.
 Therefore, please do not poll them from the server frequently.
@@ -1227,17 +1227,17 @@ each stat name.
 | open_checkpoint_id               | ID of the current open checkpoint         
 | num_tap_cursors                  | Number of referencing TAP cursors         
 | num_checkpoint_items             | Number of total items in a checkpoint     
-|                                  | datastructure                             
+|                                  | data structure                             
 | num_open_checkpoint_items        | Number of items in the open checkpoint    
 | num_checkpoints                  | Number of checkpoints in a checkpoint     
-|                                  | datastructure                             
+|                                  | data structure                             
 | num_items_for_persistence        | Number of items remaining for persistence 
 | checkpoint_extension             | True if the open checkpoint is in the     
 |                                  | extension mode                            
 | state                            | The state of the vbucket this checkpoint  
 |                                  | contains data for                         
 | last_closed_checkpoint_id        | The last closed checkpoint number         
-| persisted_checkpoint_id          | The slast persisted checkpoint number
+| persisted_checkpoint_id          | The last persisted checkpoint number
 
 ###Memory Stats
 
@@ -1304,7 +1304,7 @@ Note that tcmalloc stats are not available on some operating systems
 
 - length_mismatch - The key length in memory doesn't match the length on disk.
 
-- data_mismatch - The data in memroy doesn't match the data on disk.
+- data_mismatch - The data in memory doesn't match the data on disk.
 
 - flags_mismatch - The flags in memory don't match the flags on disk.
 
@@ -2048,7 +2048,7 @@ Parameter                       | Description
 **alog\_sleep\_time**           | Access scanner interval (minute)                                                                                                   
 **alog\_task\_time**            | Access scanner next task time (UTC)                                                                                                
 **bg\_fetch\_delay**            | Delay before executing a bg fetch (test feature).                                                                                  
-**couch\_response\_timeout**    | timeout in receiving a response from couchdb.                                                                                      
+**couch\_response\_timeout**    | timeout in receiving a response from CouchDB.                                                                                      
 **exp\_pager\_stime**           | Expiry Pager interval. Time interval that Couchbase Server waits before it performs cleanup and removal of expired items from disk.
 **flushall\_enabled**           | Enable flush operation.                                                                                                            
 **klog\_compactor\_queue\_cap** | queue cap to throttle the log compactor.                                                                                           
@@ -2450,7 +2450,7 @@ Where:
 
  * `[destination]`
 
-   The destination bucket for the restored information. This is a bucker in an
+   The destination bucket for the restored information. This is a bucket in an
    existing cluster. If you restore the data to a single node in a cluster, provide
    the hostname and port for the node you want to restore to. If you restore an
    entire data bucket, provide the URL of one of the nodes within the cluster.
@@ -2522,7 +2522,7 @@ default port of `8091`. The default number of vBuckets for Couchbase 2.0 is
 1024; in earlier versions of Couchbase, you may have a different number of
 vBuckets. If you do want to restore data to a cluster with a different number of
 vBuckets, you should perform this command with port `11211`, which will
-accomodate the difference in vBuckets:
+accommodate the difference in vBuckets:
 
 
 ```
@@ -2790,7 +2790,7 @@ that must be addressed immediately.
 [The tool retrieves data from the Couchbase Server monitoring system, aggregates
 it over a time scale, analyzes the statistics against thresholds, and generates
 a report. Unlike other command line tools such as `cbstats` and `cbtransfer`
-that use theTAP protocol](#couchbase-introduction-architecture-tap) to obtain
+that use the TAP protocol](#couchbase-introduction-architecture-tap) to obtain
 data from the monitoring system, `cbhealthchecker` obtains data by using the
 REST API and the memcached protocol. For more information about the statistics
 provided by Couchbase Server, see [Statistics and

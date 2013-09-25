@@ -236,7 +236,7 @@ The primary document type is the 'beer' document:
 ```
 
 Beer documents contain core information about different beers, including the
-name, alcohol by volume ( `abv` ) and categorisation data.
+name, alcohol by volume ( `abv` ) and categorization data.
 
 Individual beer documents are related to brewery documents using the
 `brewery_id` field, which holds the information about a specific brewery for the
@@ -265,8 +265,8 @@ beer:
 }
 ```
 
-The brewery reconrd includes basic contact and address information for the
-brewery, and contains a spatial record consisting of the latitute and longitude
+The brewery record includes basic contact and address information for the
+brewery, and contains a spatial record consisting of the latitude and longitude
 of the brewery location.
 
 To demonstrate the view functionality in Couchbase Server, three views are
