@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase .NET SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 This chapter will get you started with using Couchbase Server and the.NET (C\#)
