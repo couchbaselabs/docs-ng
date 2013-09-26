@@ -13,7 +13,7 @@ This release includes some major bug fixes and enhancements:
 
 **New Edition in 2.1.1**
 
-The Enterprise Edition of Couchbase Server is now available on Mac OSX. See
+The Enterprise Edition of Couchbase Server is now available on Mac OS X. See
 [Couchbase, Downloads](http://www.couchbase.com/download).
 
 **Fixes in 2.1.1**
