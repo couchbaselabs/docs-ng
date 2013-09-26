@@ -815,7 +815,7 @@ Make sure you perform compaction…
    compaction should be scheduled during off-peak hours (use auto-compact to
    schedule specific times).
 
-   If compaction isn’t scheduled during off-peak hours, it can cause problems.
+   If compaction isn't scheduled during off-peak hours, it can cause problems.
    Because the compaction process can take a long to complete on large and busy
    databases, it is possible for the compaction process to fail to complete
    properly while the database is still active. In extreme cases, this can lead to
@@ -907,7 +907,7 @@ specific settings are identical:
 
    For example, if you set the fragmentation percentage at 10%, the moment the
    fragmentation level has been identified, the compaction process will be started,
-   unless you have time limited auto-compaction. SeeTime Period.
+   unless you have time limited auto-compaction. See Time Period.
 
  * **View Fragmentation**
 
@@ -1186,7 +1186,7 @@ failover is not without potential problems.
 
  * **External monitoring**
 
-   [Another option is to have a system monitoring the cluster via theManagement
+   [Another option is to have a system monitoring the cluster via the Management
    REST API](#couchbase-admin-restapi). Such an external system is in a good
    position to failover nodes because it can take into account system components
    that are outside the scope of Couchbase Server.
@@ -1414,7 +1414,7 @@ There are a number of methods for performing a backup:
    For more information, see [Backing Up Using File
    Copies](#couchbase-backup-restore-backup-filecopy).
 
-   [To restore, you need to use thefile copy](#couchbase-backup-restore-filecopy)
+   [To restore, you need to use the file copy](#couchbase-backup-restore-filecopy)
    method.
 
 Due to the active nature of Couchbase Server it is impossible to create a
@@ -2444,7 +2444,7 @@ be updated or upgraded.
 
 Before you remove a node from the cluster, you should ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, seeChoosing when to shrink your cluster.
+more information on the considerations, see Choosing when to shrink your cluster.
 For the best results, use swap rebalance to swap the node you want to remove
 out, and swap in a replacement node. For more information on swap rebalance, see
 [Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
@@ -2623,7 +2623,7 @@ The benefits of swap rebalance are:
    the capacity of the cluster remains unchanged during the rebalance operation,
    helping to ensure performance and failover support.
 
-The behaviour of the cluster during a failover and rebalance operation with the
+The behavior of the cluster during a failover and rebalance operation with the
 swap rebalance functionality affects the following situations:
 
  * **Stopping a rebalance**
@@ -2987,7 +2987,7 @@ each Couchbase Server node.
 
 ### XDCR Architecture
 
-There are a number of key elements in Couchbase Server’s XDCR architecture
+There are a number of key elements in Couchbase Server's XDCR architecture
 including:
 
 **Continuous Replication.** XDCR in Couchbase Server provides continuous
@@ -3027,12 +3027,12 @@ replicated.
 **Active-Active Conflict Resolution.** Within a cluster, Couchbase Server
 provides strong consistency at the document level. On the other hand, XDCR also
 provides eventual consistency across clusters. Built-in conflict resolution will
-pick the same “winner” on both the clusters if the same document was mutated on
+pick the same "winner" on both the clusters if the same document was mutated on
 both the clusters. If a conflict occurs, the document with the most updates will
-be considered the “winner.” If the same document is updated the same number of
+be considered the "winner." If the same document is updated the same number of
 times on the source and destination, additional metadata such as numerical
 sequence, CAS value, document flags and expiration TTL value are used to pick
-the “winner.” XDCR applies the same rule across clusters to make sure document
+the "winner." XDCR applies the same rule across clusters to make sure document
 consistency is maintained:
 
 
@@ -3233,7 +3233,7 @@ Settings](#couchbase-admin-restapi-xdcr-internal-settings).
 
 <a id="couchbase-admin-tasks-xdcr-cancellation"></a>
 
-### Cancelling Replication
+### Canceling Replication
 
 You can cancel replication at any time by clicking `Delete` next to the active
 replication that is to be canceled.
@@ -3591,7 +3591,7 @@ To change the disk path of the existing node, the recommended sequence is:
 
  1. Configure the new disk path, either by using the REST API (see [Configuring
     Index Path for a Node](#couchbase-admin-restapi-provisioning-diskpath) ), using
-    the command-line (seecluster initializationfor more information).
+    the command-line (see cluster initialization for more information).
 
     Alternatively, connect to the Web UI of the new node, and follow the setup
     process to configure the disk path (see [Initial Server

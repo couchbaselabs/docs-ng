@@ -166,7 +166,7 @@ you would use for a REST API request. This is especially for administrative
 tasks such as creating a new bucket, adding a node to a cluster, or changing
 cluster settings.
 
-[For a list of supported browsers, seeSystem
+[For a list of supported browsers, see System
 Requirements](#couchbase-getting-started-prepare). For the Couchbase Web
 Console, a separate UI hierarchy is served from each node of the system (though
 asking for the root "/" would likely return a redirect to the user agent). To
@@ -321,7 +321,7 @@ Host: 10.4.2.4:8091
 Accept: */*
 ```
 
-If Couchbase Server successfully handles the reuqest, you will get a response
+If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
 
 
@@ -1421,7 +1421,7 @@ shell> curl -v -X POST -u Administrator:Password -d name=customer \
 ```
 
 [Available parameters are identical to those available when creating a bucket.
-Seebucket parameters](#table-couchbase-admin-restapi-creating-buckets).
+See bucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
@@ -2591,7 +2591,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 
 200 OK
 
-Possible errrors include:
+Possible errors include:
 
 
 ```
@@ -2742,7 +2742,7 @@ many simultaneous views requests resulted in a node being overwhelmed. For
 general information about this endpoint, see [Managing Internal Cluster
 Settings](#couchbase-admin-restapi-settings-max_bucket_count).
 
- When Couchbase Server rejects an incoming connection because one of these
+When Couchbase Server rejects an incoming connection because one of these
 limits is exceeded, it responds with an HTTP status code of 503. The HTTP
 Retry-After header will be set appropriately. If the request is made to a REST
 port, the response body will provide the reason why the request was rejected. If
@@ -2762,7 +2762,7 @@ which can be made on a port. The following are all the port-related request
 parameters you can set:
 
  * **restRequestLimit** : Maximum number of simultaneous connections each node
-   should accept on a REST port. Diagnostic-related requests and 
+   should accept on a REST port. Diagnostic-related requests and 
    `/internalSettings` requests are not counted in this limit.
 
  * **capiRequestLimit** : Maximum number of simultaneous connections each node
@@ -3054,7 +3054,7 @@ shell> curl -u Administrator:password1  \
 http://10.4.2.4:8091/internalSettings
 ```
 
-You will recieve a response similar to the following. For the sake of brevity,
+You will receive a response similar to the following. For the sake of brevity,
 we are showing only the XDCR-related items:
 
 
@@ -3083,7 +3083,7 @@ The the XDCR-related values are defined as follows:
  * (Number) xdcrWorkerBatchSize: Document batching count, 500 to 10000. Default
    500.
 
- * (Number) xdcrDocBatchSizeKb: Document batching size, 10 to 100000 (kB). Default
+ * (Number) xdcrDocBatchSizeKb: Document batching size, 10 to 100000 (KB). Default
    2048.
 
  * (Number) xdcrFailureRestartInterval: Interval for restarting failed XDCR, 1 to
@@ -3170,7 +3170,7 @@ can adjust are defined as follows:
 
  * `xdcrDocBatchSizeKb` (Integer)
 
-   Document batching size, 10 to 100000 (kB). Default 2048. In general, increasing
+   Document batching size, 10 to 100000 (KB). Default 2048. In general, increasing
    this value by 2 or 3 times will improve XDCR transmissions rates, since larger
    batches of data will be sent in the same timed interval. For unidirectional
    replication from a source to a destination cluster, adjusting this setting by 2
