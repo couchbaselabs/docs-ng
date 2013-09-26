@@ -158,7 +158,7 @@ navbar:
       - label: Couchbase Sync Gateway
         href: /sync-gateway/
 
-      - label: ElasticSearch Plug-in
+      - label: Elasticsearch Plug-in
         href: /couchbase-elastic-search/
 
       - label: Hadoop Plug-in
@@ -213,7 +213,7 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-c-client-2.1.2/index.html
 
       - label: Java
-        href: http://www.couchbase.com/autodocs/couchbase-java-client-1.1.9/index.html
+        href: http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html
 
       - label: Node.js
         href: http://www.couchbase.com/autodocs/couchbase-node-client-1.0.0-beta/index.html
