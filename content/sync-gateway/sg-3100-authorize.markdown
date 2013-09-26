@@ -8,21 +8,23 @@ You manage accounts by using the Admin REST API.This interface is privileged and
 
 The URL for a user account is `/databasename/_user/name`, where databasename is the configured name of the database and name is the user name. The content of the resource is a JSON document with the following properties:
 
-* `name`: The user name (same as in the URL path). Names must consist only of alphanumeric ASCII characters or underscores.
+* `admin_channels`: Lists the channels that the user is granted access to by the administrator. The value is an array of channel name strings.
 
-* `admin_channels`: Describes the channels that the user is granted access to by the administrator. The value is an array of channel-name strings.
+* `admin_roles`: An array of strings that contains a list of roles that the user is explicitly granted access to through the Admin REST API.
 
 * `all_channels`: Like `admin_channels` but also includes channels the user is given access to by other documents via a sync function. This is a derived property and changes to it will be ignored.
 
-* `roles`: An optional array of strings that contain the roles the user belongs to.
-
-* `password`: In a PUT or POST request, you can set the user's password with this property. It is not returned by a GET request.
-
-* `disabled`: This property is usually not included. if the value is set to `true`, disables access for that account.
+* `disabled`: This property is usually not included. if the value is set to `true`, access for the account is disabled.
 
 * `email`: The user's email address. This property is optional, but Persona login needs it.
 
-You can create a new user by sending a PUT request to its URL, or by sending a POST request to `/$DB/_user/`. 
+* `name`: The user name (the same name used in the URL path). Names must consist only of alphanumeric ASCII characters or underscores.
+
+* `password`: In a PUT or POST request, you can set the user's password with this property. It is not returned by a GET request.
+
+* `roles`: An optional array of strings that contain the roles the user belongs to.
+
+You can create a new user by sending a PUT request to its URL or by sending a POST request to `/$DB/_user/`. 
 
 ### Anonymous Access
 
