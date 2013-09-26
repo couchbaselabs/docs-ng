@@ -3410,9 +3410,9 @@ Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
 
 ###Set Source and Destination Clusters
 
-To create a uni-directional replication (i.e. from cluster A to cluster B):
+To create a unidirectional replication (from cluster A to cluster B):
 
- 1. Check and ensure that a destination bucket exists on the cluster to which you
+ 1. Check to ensure that a destination bucket exists on the cluster to which you
     will be replicating. To do so, perform this REST API request:
 
      ```
@@ -3466,29 +3466,32 @@ current status and list of replications in the `Ongoing Replications` section:
 
 ###Providing XDCR Advanced Settings
 
-As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
+As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
-If you change want the replication protocol for an existing XDCR replication, you need to delete the replication, then re-create the replication with your preference.
+If you want to change the replication protocol for an existing XDCR replication, you need to delete the replication and then re-create the replication with your preference.
 
-1. In the `Create Replication` panel, click `Advanced Settings`.
-    Additional options appear in the panel.
+1. In the Create Replication panel, click **Advanced settings**.  
     
      ![](images/create_rep_xdcr_advance2.2.png)
        
-2. The `XDCR Protocol` defaults to Version 2. However, if you are using Couchbase Server 2.2 or later, select Version 1. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+2. Under Advanced settings, choose an XDCR Protocol version.
 
-    - Version 1 - uses the REST protocol for replication. This increases XDCR throughput at destination clusters.
+	Beginning with Couchbase Server 2.2, the XDCR Protocol defaults to version 2. 
+	
+	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plugin, which depends on XDCR, use version 1.
     
-    - Version 2 - uses memcached REST protocol for replication. If you use the Elasticsearch plugin which depends on XDCR, you must use this protocol.
-    
-    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elasticsearch, see 
+	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Use version 2 when setting up a new replication with Couchbase Server 2.2 or later.
+
+	You can also change this setting via the REST API for XDCR internal settings or the  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+	
+	For more information about XDCR, see [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality). For more information about Elasticsearch, see 
     [Couchbase Elasticsearch Guide](http://docs.couchbase.com/couchbase-elastic-search/).
     
     
 3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API. 
     
     How you adjust these variables differs based on what whether you want to perform
-    uni-directional or bi-directional replication between clusters. Other factors
+    unidirectional or bidirectional replication between clusters. Other factors
     for consideration include intensity of read/write operations on your clusters,
     the rate of disk persistence on your destination cluster, and your system
     environment. Changing these parameters will impact performance of your clusters
@@ -3565,7 +3568,7 @@ If you change want the replication protocol for an existing XDCR replication, yo
 
 After you create the replication or update the setting, you can view or edit them once again by clicking Settings in Outgoing Replications.
 
-**Configuring Bi-Directional Replication**
+**Configuring Bidirectional Replication**
 
 Replication is unidirectional from one cluster to another. To configure
 bidirectional replication between two clusters, you need to provide settings for
