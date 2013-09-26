@@ -3478,9 +3478,9 @@ If you want to change the replication protocol for an existing XDCR replication,
 
 	Beginning with Couchbase Server 2.2, the XDCR Protocol defaults to version 2. 
 	
-	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plugin, which depends on XDCR, use version 1.
+	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plug-in, which depends on XDCR, choose version 1.
     
-	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Use version 2 when setting up a new replication with Couchbase Server 2.2 or later.
+	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
 
 	You can also change this setting via the REST API for XDCR internal settings or the  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 	
@@ -3518,7 +3518,7 @@ If you want to change the replication protocol for an existing XDCR replication,
 
       Changing this to a smaller value could impact cluster operations when you have
       significant amount of write operations on a destination cluster and you are
-      performing bi-directional replication with XDCR. For instance, if you set this
+      performing bidirectional replication with XDCR. For instance, if you set this
       to 5 minutes, the incoming batches of data via XDCR replication will take
       priority in the disk write queue over incoming write workload for a destination
       cluster. This may result in the problem of having an ever growing disk-write
@@ -3535,7 +3535,7 @@ If you want to change the replication protocol for an existing XDCR replication,
       or 3 times will improve overall replication performance as long as persistence
       to disk is fast enough on the destination cluster. Note however that this can
       have a negative impact on the destination cluster if you are performing
-      bi-directional replication between two clusters and the destination already
+      bidirectional replication between two clusters and the destination already
       handles a significant volume of reads/writes.
 
     - `XDCR Batch Size (KB)`
@@ -3547,7 +3547,7 @@ If you want to change the replication protocol for an existing XDCR replication,
       or 3 times will improve overall replication performance as long as persistence
       to disk is fast enough on the destination cluster. Note however that this can
       have a negative impact on the destination cluster if you are performing
-      bi-directional replication between two clusters and the destination already
+      bidirectional replication between two clusters and the destination already
       handles a significant volume of reads/writes.
 
     - `XDCR Failure Retry Interval`
@@ -3607,7 +3607,7 @@ to. Therefore, when you view the console from a particular cluster, it will
 display any replications configured, or replications in progress for that
 particular source cluster. If you want to view information about replications at
 a destination cluster, you need to open the console at that cluster. Therefore,
-when you configure bi-directional you should use the web consoles that belong to
+when you configure bidirectional you should use the web consoles that belong to
 source and destination clusters to monitor both clusters.
 
 To see statistics on incoming and outgoing replications via XDCR see the
