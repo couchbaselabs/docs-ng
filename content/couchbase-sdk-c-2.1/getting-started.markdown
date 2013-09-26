@@ -1,3 +1,7 @@
+#Introduction
+
+This guide provides information for developers who want to use the Couchbase C SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 Now that you've installed Couchbase and have created a cluster of servers, you
