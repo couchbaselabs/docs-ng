@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase PHP SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 We will use PHP and access the Couchbase server as part of this exercise; the

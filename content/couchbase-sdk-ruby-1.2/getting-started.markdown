@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase Ruby SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 Awesome that you want to learn more about Couchbase! This is the right place to

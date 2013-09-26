@@ -1,3 +1,7 @@
+#Introduction
+
+This guide provides information for developers who want to use the Couchbase Java SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 This chapter will teach you the basics of Couchbase Server and how to interact
