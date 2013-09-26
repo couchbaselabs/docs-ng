@@ -16,14 +16,14 @@
 
    A TAP stream is a when a client requests a stream of item updates from the
    server. That is, as other clients are requesting item mutations (for example,
-   SET's and DELETE's), a TAP stream client can "wire-tap" the server to receive a
+   SETs and DELETEs), a TAP stream client can "wire-tap" the server to receive a
    stream of item change notifications.
 
    When a TAP stream client starts its connection, it may also optionally request a
    stream of all items stored in the server, even if no other clients are making
    any item changes. On the TAP stream connection setup options, a TAP stream
    client may request to receive just current items stored in the server (all items
-   until "now"), or all item changes from now onwards into in the future, or both.
+   until "now"), or all item changes from now onward into in the future, or both.
 
    Trond Norbye's written a blog post about the TAP interface. See [Blog
    Entry](http://blog.couchbase.com/want-know-what-your-memcached-servers-are-doing-tap-them).

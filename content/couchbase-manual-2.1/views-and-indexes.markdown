@@ -799,7 +799,7 @@ The `meta` structure contains the following fields and associated information:
  * `expiration`
 
    The expiration value for the stored object. The stored expiration time is always
-   sotred as an absolute Unix epoch time value.
+   stored as an absolute Unix epoch time value.
 
 These additional fields are only exposed when processing the documents within
 the view server. These fields are not returned when you access the object
@@ -1035,7 +1035,7 @@ two parts, a map function and a reduce function:
 The combination of the map and the reduce function produce the corresponding
 view. The two functions work together, with the map producing the initial
 material based on the content of each JSON document, and the reduce function
-summarising the information generated during the map phase. The reduction
+summarizing the information generated during the map phase. The reduction
 process is selectable at the point of accessing the view, you can choose whether
 to the reduce the content or not, and, by using an array as the key, you can
 specifying the grouping of the reduce information.
@@ -1168,8 +1168,8 @@ record in the generated view:
    The key content is used for querying by using a combination of this sorting
    process and the specification of either an explicit key or key range within the
    query specification. For example, if a view outputs the `RECIPE TITLE` field as
-   a key, you could obtain all the records matching 'Lasagne' by specifying that
-   only the keys matching 'Lasagne' are returned.
+   a key, you could obtain all the records matching 'Lasagna' by specifying that
+   only the keys matching 'Lasagna' are returned.
 
    For more information on querying and extracting information using the key value,
    see [Querying Views](#couchbase-views-writing-querying).
@@ -1232,8 +1232,8 @@ This is because the value specified by `emit()` is used as one of the input
 parameters to the reduce function. The reduce function is designed to reduce a
 group of values emitted by the corresponding `map()` function.
 
-Alternatively, reduce can be used for performing sums, for example totalling all
-the invoice values for a single client, or totalling up the preparation and
+Alternatively, reduce can be used for performing sums, for example totaling all
+the invoice values for a single client, or totaling up the preparation and
 cooking times in a recipe. Any calculation that can be performed on a group of
 the emitted data.
 
@@ -1281,7 +1281,7 @@ When using a reduce function the reduction is applied as follows:
     ```
 
    In each case the values for the common keys (John, Adam, James), have been
-   totalled, and the six input rows reduced to the 3 rows shown here.
+   totaled, and the six input rows reduced to the 3 rows shown here.
 
  * Results are grouped on the key from the call to `emit()` if grouping is selected
    during query time. As shown in the previous example, the reduction operates by
@@ -1308,7 +1308,7 @@ computed reduction value.
 `_count`](#couchbase-views-writing-reduce-count),
 `_sum`](#couchbase-views-writing-reduce-sum), and
 `_stats`](#couchbase-views-writing-reduce-stats). You can also write your
-owncustom reduction functions](#couchbase-views-writing-reduce-custom).
+own custom reduction functions](#couchbase-views-writing-reduce-custom).
 
 The reduce function also has a final additional benefit. The results of the
 computed reduction are stored in the index along with the rest of the view
@@ -1502,7 +1502,7 @@ The `reduce()` function has to work slightly differently to the `map()`
 function. In the primary form, a `reduce()` function must convert the data
 supplied to it from the corresponding `map()` function.
 
-The core structure of the reduce function execution is shown the figurebelow.
+The core structure of the reduce function execution is shown the figure below.
 
 
 ![](images/custom-reduce.png)
@@ -1630,7 +1630,7 @@ This can be explicitly written as follows:
 f(keys, values) = f(keys, [ f(keys, values) ])
 ```
 
-This can been seen graphically in the illustrationbelow, where previous
+This can been seen graphically in the illustration below, where previous
 reductions are included within the array of information are re-supplied to the
 reduce function as an element of the array of values supplied to the reduce
 function.
@@ -1859,7 +1859,7 @@ You should keep the following in mind while developing and deploying your views:
    combination of the update frequency requirements on the included views and
    grouping of the view definitions. For example, if you have a view that needs to
    be updated with a high frequency (for example, comments on a blog post), and
-   another view that needs to be updated less frequently (e.g. top blogposts),
+   another view that needs to be updated less frequently (e.g. top blog posts),
    separate the views into two design documents so that the comments view can be
    updated frequently, and independently, of the other view.
 
@@ -2206,7 +2206,7 @@ In the above example:
    The view being accessed in this case is a development view. To create a
    development view, you *must* use the `dev_` prefix to the view name.
 
-   As a `PUT` command, the URL is also significant, in that the location designes
+   As a `PUT` command, the URL is also significant, in that the location designates
    the name of the design document. In the example, the URL includes the name of
    the bucket ( `sales` ) and the name of the design document that will be created
    `dev_byfield`.
@@ -2227,7 +2227,7 @@ will contain the field `ok` and the ID of the design document created:
 ```
 
 The design document will be validated before it is created or updated in the
-system. The validation checks for valid Javascript and for the use of valid
+system. The validation checks for valid JavaScript and for the use of valid
 built-in reduce functions. Any validation failure is reported as an error.
 
 In the event of an error, the returned JSON will include the field `error` with
@@ -2436,7 +2436,7 @@ sequence and precedence of the different parameters during queries is shown in
 ![](images/views-query-flow.png)
 
 The core arguments and selection systems are the same through both the REST API
-interface, and the client libraries. The setting of these values differes
+interface, and the client libraries. The setting of these values differs
 between different client libraries, but the argument names and expected and
 supported values are the same across all environments.
 
@@ -2768,7 +2768,7 @@ records, including "aa":
 ```
 
 Specifying a partial string to `startkey` will trigger output of the selected
-values as soon as the first value or value greather than the specified value is
+values as soon as the first value or value greater than the specified value is
 identified. For strings, this partial match (from left to right) is identified.
 For example, specifying a `startkey` of "d" will return:
 
@@ -2789,7 +2789,7 @@ used. For example, searching a database of ingredients and specifying a
 To match all of the records for a given word or value across the entire range,
 you can use the null value in the `endkey` parameter. For example, to search for
 all records that start only with the word "almond", you specify a `startkey` of
-"almond", and an endkey of "almond\u02ad" (i.e. with the last latin character at
+"almond", and an endkey of "almond\u02ad" (i.e. with the last Latin character at
 the end). If you are using Unicode strings, you may want to use "\uefff".
 
 
@@ -3232,7 +3232,7 @@ responses during a view query.
     }
     ```
 
-   You can alter this behaviour by using the `on_error` argument. The default value
+   You can alter this behavior by using the `on_error` argument. The default value
    is `continue`. If you set this value to `stop` then the view response will cease
    the moment an error occurs. The returned JSON will contain the error information
    for the node that returned the first error. For example:
@@ -3460,7 +3460,7 @@ be created and then used to find recipes by ingredient.
 
 ```
 {
-    "title": "Fried chilli potatoes",
+    "title": "Fried chili potatoes",
     "preptime": "5"
     "servings": "4",
     "totaltime": "10",
@@ -3468,8 +3468,8 @@ be created and then used to find recipes by ingredient.
     "cooktime": "5",
     "ingredients": [
         {
-            "ingredtext": "chilli powder",
-            "ingredient": "chilli powder",
+            "ingredtext": "chili powder",
+            "ingredient": "chili powder",
             "meastext": "3-6 tsp"
         },
         {
@@ -3511,11 +3511,11 @@ To query for a specific ingredient, specify the ingredient as a key:
 
 The `keys` parameter can also be used in this situation to look for recipes that
 contain multiple ingredients. For example, to look for recipes that contain
-either "potatoes" or "chilli powder" you would use:
+either "potatoes" or "chili powder" you would use:
 
 
 ```
-?keys=["potatoes","chilli powder"]
+?keys=["potatoes","chili powder"]
 ```
 
 This will produce a list of any document containing either ingredient. A simple
@@ -3668,7 +3668,7 @@ function(doc, meta) {
 ```
 
 For convenience, you may wish to use the `dateToArray()` function, which
-convertes a date object or string into an array. For example, if the date has
+converts a date object or string into an array. For example, if the date has
 been stored within the document as a single field:
 
 
@@ -4834,7 +4834,7 @@ request. The full list is provided in the following summary table.
                             | `ok` : Allow stale views                                            
                             | `update_after` : Allow stale view, update view after access         
 
-Bounding Box QueriesIf you do not supply a bounding box, the full dataset is
+Bounding Box Queries: If you do not supply a bounding box, the full dataset is
 returned. When querying a spatial index you can use the bounding box to specify
 the boundaries of the query lookup on a given value. The specification should be
 in the form of a comma-separated list of the coordinates to use during the
