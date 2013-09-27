@@ -769,8 +769,10 @@ breweries. There is also some additional code not covered here. We recommend you
 look through it to become more familiar with it. Then move on to the API
 documentation and further examples.
 
+If you wish to view further samples using the PHP client, please take a look at
+some of our
+[DeveloperDay samples](https://github.com/couchbaselabs/DeveloperDay/tree/master/PHP)!
+
 Couchbase Server and the PHP SDK provids a boatload of useful methods that you
 can use in your day-to-day work. You should now be ready to explore thos on your
 own, so have fun coding with Couchbase!
-
-<a id="api-reference-summary"></a>
