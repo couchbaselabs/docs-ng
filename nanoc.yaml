@@ -141,6 +141,7 @@ versions:
   couchbase-sdk-python:
     name: "Python SDK"
     versions:
+      - 1.1
       - 1.0
       
 
@@ -202,7 +203,7 @@ navbar:
         href: /couchbase-sdk-php-1.1/
         
       - label: Python
-        href: /couchbase-sdk-python-1.0/
+        href: /couchbase-sdk-python-1.1/
 
       - label: Ruby
         href: /couchbase-sdk-ruby-1.3/
