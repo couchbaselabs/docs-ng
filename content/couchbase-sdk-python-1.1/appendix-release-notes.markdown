@@ -1,9 +1,80 @@
 # Appendix: Release Notes
-
 The following sections provide release notes for individual release versions of
 Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
 Client Library Python Issues
 Tracker](http://www.couchbase.com/issues/browse/PYCBC).
+
+<a id="couchbase-sdk-python-rn_1-1-0g"></a>
+
+## Release Notes for Couchbase Python SDK 1.1.0 GA (1 October 2013)
+
+This is the second release. This adds API additions and improvements
+on top of the 1.0.0 release.
+
+**Fixes In 1.1.0**
+
+ * Minor documentation errata fixes
+
+ * Add `OBS_LOGICALLY_DELETED` which was referenced but not defined.
+   Used by 'observe'
+
+ * Fix potential crash if HTTP view request cannot be scheduled
+
+
+**New Features In 1.1.0**
+
+ * Durability/Persistence requirements.
+   This feature allows the application to wait until key(s) have been
+   stored to more than one node. This is done through the additional
+   `persist_to`/`replicate_to` parameters in the `set()` family of methods.
+   A standalone method, `endure()` is provided as well.
+   These features use the new Durability API implemented in libcouchbase
+   
+   *Issues*: [PYCBC-37](http://www.couchbase.com/issues/browse/PYCBC-37)
+
+ * Experimental GEvent support
+   Gevent is a cooperative multi tasking framework which allows
+   the creation of "greenlets" which are cooperatively scheduled
+   entities. This feature allows the couchbase.Connection object
+   to optionally use a different pure-python non-blocking I/O
+   implementation which can cooperatively yield to other greenlets
+   when needed.
+    
+ * Item API
+   Item API allows an application to use its own objects and pass
+   them into the various methods of couchbase.Connection where they
+   will be populated with the relevant key status/value information.
+   This allows an application developer to create custom subclasses
+   of the Item object which can be seamlessly used across both the SDK
+   and the application code.
+
+   *Issues*: [PYCBC-156](http://www.couchbase.com/issues/browse/PYCBC-156)
+
+ * Automatic storage formatting via `FMT_AUTO`
+   New format specifier which allows the SDK to guess the appropriate
+   value storage format depending on the value type.
+
+   *Issues*: [PYCBC-157](http://www.couchbase.com/issues/browse/PYCBC-157)
+
+
+ * `no_format` argument for `get()`
+   Allows a value to be retrieved in its raw representation; i.e. as it
+   is stored on the server without any conversion applied. This feature
+   is provided as an additional keyword argument (`no_format`) to the
+   `get()` family of methods
+
+ * Replica Read
+   Allow reading from a replica server. This may be used if a normal
+   `get()` fails. This functionality is exposed via the `replica` parameter
+   to the 'get()' method as well as the 'rget()' method.
+
+**Known Issues in 1.1.0**
+
+ * 'syncwait' parameter for view creation will time out if new design
+   document only contains spatial views
+   
+   *Issues*: [PYCBC-173](http://www.couchbase.com/issues/browse/PYCBC-173)
+
 
 <a id="couchbase-sdk-python-rn_1-0-0g"></a>
 
