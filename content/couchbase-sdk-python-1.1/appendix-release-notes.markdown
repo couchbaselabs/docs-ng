@@ -1,4 +1,5 @@
 # Appendix: Release Notes
+
 The following sections provide release notes for individual release versions of
 Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
 Client Library Python Issues
@@ -29,7 +30,7 @@ on top of the 1.0.0 release.
    `persist_to`/`replicate_to` parameters in the `set()` family of methods.
    A standalone method, `endure()` is provided as well.
    These features use the new Durability API implemented in libcouchbase
-   
+
    *Issues*: [PYCBC-37](http://www.couchbase.com/issues/browse/PYCBC-37)
 
  * Experimental GEvent support
@@ -39,7 +40,7 @@ on top of the 1.0.0 release.
    to optionally use a different pure-python non-blocking I/O
    implementation which can cooperatively yield to other greenlets
    when needed.
-    
+
  * Item API
    Item API allows an application to use its own objects and pass
    them into the various methods of couchbase.Connection where they
