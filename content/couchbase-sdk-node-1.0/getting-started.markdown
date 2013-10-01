@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase Node.js SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 The following sections demonstrate how to get started using Couchbase with the
