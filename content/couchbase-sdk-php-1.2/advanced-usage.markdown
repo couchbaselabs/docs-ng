@@ -35,3 +35,22 @@ would like to store the cached data.
 
 See the [example couchbase ini](https://github.com/couchbase/php-ext-couchbase/blob/master/example/couchbase.ini#L96)
 for further information.
+
+
+## Replica Read
+
+As of version 1.2.0 of the PHP client library, we now support an operation known as ‘replica read’.  This functionality allows you to read data from your cluster when the node holding the active copy of your document is inaccessible.  This is not a replacement for node failover, but instead provides a stop-gap for gracefully handling situations where a particular document is inaccessible but available through one of its replicas.  It is worth noting that this feature does not guarantee consistency as any pending writes on the primary node may not have been replicated yet.
+
+Using this feature is similar to executing a get request, however there is no Multi variant of replica reads.  Here is an simple example of reading a document from a replica:
+
+    <?php
+
+    // Connect to our cluster
+    $cb = new Couchbase("192.168.1.200:8091”);
+
+    // Add a document and ensure replication to another node
+    $cb->add("replica_read", "this_is_a_test", 0, 1, 1);
+
+    // Read from our replica
+    $replica_cas = "";
+    $cb->getReplica("replica_read", NULL, $replica_cas);
