@@ -25,6 +25,7 @@ Install the following packages to get started using the Python SDK:
     If you already have the C SDK installed, ensure the installed version is
     at least 2.1.0. To determine the version, either query your package version,
     or run the `cbc` command:
+
     ```
     shell> cbc version
     cbc built from: libcouchbase 2.1.3_14_g7684ab7 (rev. 7684ab7832628d520cd2803f3a3d0822e993c3f3)
@@ -77,7 +78,7 @@ with the default install.
 ### hello-couchbase.py
 
 
-```
+```python
 from couchbase import Couchbase
 from couchbase.exceptions import CouchbaseError
 
@@ -252,7 +253,7 @@ to the *CRUD* model:
 The following code demonstrates the store operations.
 
 
-```
+```python
 from couchbase import Couchbase
 from couchbase.exceptions import CouchbaseError
 
@@ -312,22 +313,33 @@ print "...", result
 
 Output:
 
-`Setting key demo_key with value demo_value... OperationResult<RC=0x0,
-Key=demo_key, CAS=0x3222e0f096e80000>  Getting value for key demo_key...
-ValueResult<RC=0x0, Key=demo_key, Value=u'demo_value', CAS=0x3222e0f096e80000,
-Flags=0x0>  Creating new key demo_key with value 'new_value' This will fail as
-'demo_key' already exists <Key=u'demo_key', RC=0xC[Key exists (with a different
-CAS value)], Operational Error, Results=1, C Source=(src/multiresult.c,147)>
-Replacing existing key demo_key with new value... result  Getting new value for
-key demo_key... ValueResult<RC=0x0, Key=demo_key, Value=u'new value',
-CAS=0xbff8f2f096e80000, Flags=0x0>  Deleting key demo_key...
-OperationResult<RC=0x0, Key=demo_key, CAS=0xc0f8f2f096e80000>  Getting value for
-key demo_key. This will fail as it has been deleted <Key=u'demo_key', RC=0xD[No
-such key], Operational Error, Results=1, C Source=(src/multiresult.c,147)>
-Creating new key demo_key with value 'added_value'... OperationResult<RC=0x0,
-Key=demo_key, CAS=0x366a05f196e80000> Getting the new value...
-ValueResult<RC=0x0, Key=demo_key, Value=u'added_value', CAS=0x366a05f196e80000,
-Flags=0x0>`<a id="_getting_documents_by_key"></a>
+```
+Setting key demo_key with value demo_value
+... OperationResult<RC=0x0, Key=demo_key, CAS=0x2fbbf239b45e0400>
+
+Getting value for key demo_key
+... ValueResult<RC=0x0, Key=demo_key, Value=u'demo_value', CAS=0x2fbbf239b45e0400, Flags=0x0>
+
+Creating new key demo_key with value 'new_value'
+This will fail as 'demo_key' already exists
+<Key=u'demo_key', RC=0xC[Key exists (with a different CAS value)], Operational Error, Results=1, C Source=(src/multiresult.c,148)>
+Replacing existing key demo_key with new value
+... result
+
+Getting new value for key demo_key
+... ValueResult<RC=0x0, Key=demo_key, Value=u'new value', CAS=0xa047003ab45e0400, Flags=0x0>
+
+Deleting key demo_key
+... OperationResult<RC=0x0, Key=demo_key, CAS=0xa147003ab45e0400>
+
+Getting value for key demo_key. This will fail as it has been deleted
+<Key=u'demo_key', RC=0xD[No such key], Operational Error, Results=1, C Source=(src/multiresult.c,148)>
+
+Creating new key demo_key with value 'added_value'
+... OperationResult<RC=0x0, Key=demo_key, CAS=0xe91f0c3ab45e0400>
+Getting the new value
+... ValueResult<RC=0x0, Key=demo_key, Value=u'added_value', CAS=0xe91f0c3ab45e0400, Flags=0x0>
+```
 
 ### Getting Documents By Key
 
@@ -343,7 +355,7 @@ extract the value.
 ### Getting A Single Document
 
 
-```
+```python
 client.store("my list", [])
 result = client.get("my list")
 doc = result.value
@@ -359,7 +371,7 @@ object for the result of each key. `MultiResult` is a subclass of `dict`.
 ### Getting Multiple Documents
 
 
-```
+```python
 client.set_multi({
     'sheep_counting' : ['first sheep', 'second sheep'],
     'famous_sheep' : {'sherry lewis' : 'Lamb Chop'}
@@ -389,7 +401,7 @@ by examining the `success` property of the value object.
 ### Passing quiet to get
 
 
-```
+```python
 result = client.get("non-exist-key", quiet=True)
 if result.success:
     print "Got document OK"
@@ -403,7 +415,7 @@ else:
 ### Setting quiet in the constructor
 
 
-```
+```python
 client = Couchbase.connect(bucket='default', quiet=True)
 result = client.get("non-exist-key")
 if result.success:
@@ -419,7 +431,7 @@ failure (on success, its value is `0` ). You can also obtain the exception class
 which would have been thrown by using
 
 
-```
+```python
 >>> CouchbaseError.rc_to_exctype(result.rc)
 <class 'couchbase.exceptions.NotFoundError'>
 ```
@@ -432,7 +444,7 @@ determine whether all the keys were fetched successfully by examining the
 `all_ok` property of the returned `MultiResult` object.
 
 
-```
+```python
 results = client.get_multi(("i exist", "but i don't"), quiet=True)
 if not results.all_ok:
     print "Couldn't get all keys"
@@ -455,7 +467,7 @@ You can then query the view results by calling the `query` method on the
 `Connection` object. Simply pass it the design and view name.
 
 
-```
+```python
 view_results = client.query("beer", "brewery_beers")
 for result in view_results:
     print "Mapped key: %r" % (result.key,)
@@ -474,7 +486,7 @@ keyword arguments that control the behavior of the results returned. You can
 thus use it as follows:
 
 
-```
+```python
 results = client.query("beer", "brewery_beers", opt1=value1, opt2=value2, ...)
 for result in results:
     # do something with result..
@@ -527,7 +539,7 @@ can be found in the API documentation.
    the entire view from being buffered in memory.
 
 
-```
+```python
 results = client.query("beer", "brewery_beers",
                        include_docs=True, limit=5)
 
@@ -547,7 +559,7 @@ any valid object that is accepted by the standard `json.dumps` library function
 and you will receive it back when you retrieve it.
 
 
-```
+```python
 # -*- coding: utf-8 -*-
 
 import pprint
@@ -574,11 +586,20 @@ print result.value['unicode']
 
 Which then prints
 
-`{u'and this is a list': [u'with', u'some', u'elements'], u'and this is a
-tuple': [u'with', u'more', u'elements'], u'blobs': u'\x00', u'integers': 42,
-u'or a None': None, u'strings': u'hello', u'this is a': u'dictionary',
-u'unicode': u'\u05e9\u05dc\u05d5\u05dd!', u'you can also use floats': 3.14}
-שלום!` To view the document that you just created, go to `localhost:8091` in
+```
+{u'and this is a list': [u'with', u'some', u'elements'],
+ u'and this is a tuple': [u'with', u'more', u'elements'],
+ u'blobs': u'\x00',
+ u'integers': 42,
+ u'or a None': None,
+ u'strings': u'hello',
+ u'this is a': u'dictionary',
+ u'unicode': u'\u05e9\u05dc\u05d5\u05dd!',
+ u'you can also use floats': 3.14}
+שלום!
+```
+
+To view the document you just created, go to `localhost:8091` in
 your browser, type in your administrative credentials, go over to the *Data
 Buckets* pane, click on the *Documents* button for the `default` bucket, and
 type in the ID for the document (in this case, it’s `a_key` )). The document can
@@ -597,7 +618,7 @@ serialization format. It allows you to store types that are not accepted by
 JSON:
 
 
-```
+```python
 import pprint
 
 from couchbase import Couchbase, FMT_PICKLE
@@ -621,7 +642,7 @@ In Python 2.6 and above `bytes` and `str` are the same type; however in Python
 used with text operations.
 
 
-```
+```python
 import pprint
 
 from couchbase import Couchbase, FMT_BYTES
@@ -648,7 +669,7 @@ default. If you need a different encoding, consider using the `Transcoder`
 interface.
 
 
-```
+```python
 from couchbase import Couchbase, FMT_UTF8
 
 c = Couchbase.connect(bucket='default')
@@ -658,6 +679,11 @@ print c.get("EXCALIBUR")
 
 Outputs
 
+```
+ValueResult<RC=0x0, Key=EXCALIBUR, Value=u'\u03ee', CAS=0x6552956a925e0400, Flags=0x4>
+```
+
+
 ### Setting The Default Format
 
 You can set the default format for the value type you use most by setting the
@@ -665,14 +691,14 @@ You can set the default format for the value type you use most by setting the
 or afterwards:
 
 
-```
+```python
 c = Couchbase.connect(bucket='default', default_format=FMT_UTF8)
 ```
 
 Or
 
 
-```
+```python
 c.default_format = FMT_PICKLE
 ```
 

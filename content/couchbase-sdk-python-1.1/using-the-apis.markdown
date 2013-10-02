@@ -14,7 +14,7 @@ the aspects of the APIs offered by the SDK.
 You can connect to a bucket using the simple `Couchbase.connect()` class method:
 
 
-```
+```python
 from couchbase import Couchbase
 
 client = Couchbase.connect(bucket='default')
@@ -33,15 +33,12 @@ is reached.
 
 ### Using Multiple Nodes
 
-
-```
+```python
 c = Couchbase.connect(
     bucket='default',
     host=['foo.com', 'bar.com', 'baz.com']
 )
 ```
-
-
 
 <a id="_timeouts"></a>
 
@@ -52,16 +49,12 @@ cluster is overloaded or there are connectivity issues. By default, this timeout
 value is 2.5 seconds.
 
 You can adjust this value by setting it in the constructor.:
-
-
-```
+```python
 c = Couchbase.connect(bucket='default', timeout=5.5)
 ```
 
 Or by setting the `timeout` property:
-
-
-```
+```python
 c.timeout = 4.2
 ```
 
@@ -72,7 +65,6 @@ c.timeout = 4.2
 If your bucket is password protected, you can pass the Simple Authentication and
 Security Layer (SASL) password by using the `password` keyword parameter in the
 constructor:
-
 
 ```
 c = Couchbase.connect(bucket='default', password='s3cr3t')
@@ -108,7 +100,7 @@ All `Result` objects have the following properties:
    layer. This is 0 on success and nonzero on failure. Typically this is useful on
    operations in which `quiet` was set to `True`. Normally you’d use it like this:
 
-    ```
+    ```python
     result = client.get("key", quiet=True)
     if not result.success:
         print "Got error code", result.rc
@@ -166,7 +158,7 @@ of methods when working with numeric values. For example:
 ### Using set
 
 
-```
+```python
 key = "counter"
 try:
     result = c.get("counter")
@@ -175,17 +167,12 @@ except KeyNotFoundError:
     c.add(key, 10)
 ```
 
-
-
 ### Using incr
 
-
-```
+```python
 key = "counter"
 c.incr(key, initial=10)
 ```
-
-
 
 These methods accept the `ttl` argument to set the expiration time for their
 values, as well as an `amount` value that indicates by what amount to modify
@@ -227,7 +214,7 @@ The `format` argument is still available, but the value must be either
 Otherwise, they are part of the `set` family of methods:
 
 
-```
+```python
 c.set("greeting", "Hello", format=FMT_UTF8)
 c.append("greeting", " World!")
 c.get("greeting").value == "Hello World!"
@@ -249,8 +236,7 @@ Ensure that you only append or prepend to values that were initially stored as
 
 Consider:
 
-
-```
+```python
 c.set("a_dict", { "key for" : "a dictionary" })
 ```
 
@@ -258,8 +244,7 @@ The key `a_dict` now looks like this on the server:
 
 Now, prepend the following to it:
 
-
-```
+```python
 c.prepend("a dict", "blah blah blah")
 ```
 
@@ -267,19 +252,25 @@ The value for `a_dict` looks like this now:
 
 Now, when you try to get it back, you see this happen:
 
-`>>> c.get("a_dict") Traceback (most recent call last): File "<stdin>", line 1,
-in <module> File "couchbase/connection.py", line 325, in get return
-_Base.get(self, key, ttl, quiet) File "/usr/lib/python2.7/json/__init__.py",
-line 326, in loads return _default_decoder.decode(s) File
-"/usr/lib/python2.7/json/decoder.py", line 365, in decode obj, end =
-self.raw_decode(s, idx=_w(s, 0).end()) File
-"/usr/lib/python2.7/json/decoder.py", line 383, in raw_decode raise
-ValueError("No JSON object could be decoded")
-couchbase.exceptions.ValueFormatError: <Failed to decode bytes, Results=1,
-inner_cause=No JSON object could be decoded, C Source=(src/convert.c,215),
-OBJ='blah blah blah{"key for": "a dictionary"}'>` Unfortunately, the SDK has no
-way to pre-emptively determine whether the existing value is a string, and the
-server does not enforce this.
+```
+>>> c.get("a_dict")
+```
+
+```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "couchbase/connection.py", line 376, in get
+    return _Base.get(self, key, ttl, quiet, replica, no_format)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 365, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 383, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+couchbase.exceptions.ValueFormatError:
+    <Failed to decode bytes, Results=1, inner_cause=No JSON object could be decoded,
+    C Source=(src/convert.c,215), OBJ='blah blah blah{"key for": "a dictionary"}'>
+```
 
 <a id="_expiration_operations"></a>
 
@@ -340,8 +331,7 @@ overidden.
 
 Consider this code:
 
-
-```
+```python
 def add_friend(user_id, friend):
     result = c.get("user_id-" + user_id)
     result.value['friends'][friend] = { 'added' : time.time() }
@@ -380,8 +370,7 @@ property of the `Result` object returned by any of the API functions.
 We can now modify the `add_friend` example so that it handles concurrent
 modifications gracefully:
 
-
-```
+```python
 def add_friend(user_id, friend):
 
     while True:
@@ -435,8 +424,7 @@ key that is not currently locked raises an exception.
 
 We can rewrite our `add_friend` example using the lock functions:
 
-
-```
+```python
 def add_friend(user_id, friend):
     while True:
         try:
@@ -521,16 +509,23 @@ does not have a `__len__` or `items()` method). You can convert it to a list by
 using *list comprehension* :
 
 
-```
+```python
 rows_as_list = [ c.query("beer", "brewery_beers") ]
 ```
 
 You can also pass options to the `query` method. The list of available options
 is documented in the `Query` class in the API documentation.
 
-`from couchbase.views.params import Query  client.query(design_name, view_name,
-limit=3, mapkey_range = ["abbaye", "abbaye" + Query.STRING_RANGE_END],
-descending=True)` The `include_docs` directive can be used to fetch the
+```python
+from couchbase.views.params import Query
+client.query(design_name,
+             view_name,
+             limit=3,
+             mapkey_range = ["abbaye", "abbaye" + Query.STRING_RANGE_END],
+             descending=True)`
+```
+
+The `include_docs` directive can be used to fetch the
 documents along with each `ViewRow` object. Note that while it is possible to
 simply call `c.get(vr.id)`, the client handles the `include_docs` directive by
 actually performing a batched ( `get_multi` ) operation.
@@ -542,11 +537,9 @@ passed as either an encoded query string, a list of key-value parameters, or a
 ### Using encoded query strings
 
 
-```
+```python
 client.query("beer", "brewery_beers", query="limit=3&skip=1&stale=false")
 ```
-
-
 
 Note that this is the most efficient way to pass options because they do not
 need to be re-encoded for each invocation.
@@ -558,18 +551,16 @@ optimized.
 ### Using key-value pairs
 
 
-```
+```python
 client.query("beer", "brewery_beers", limit=3, skip=1, stale=False)
 ```
-
-
 
 This allows simple and idiomatic construction of query options.
 
 ### Using a Query object
 
 
-```
+```python
 from couchbase.views.params import Query
 
 q = Query

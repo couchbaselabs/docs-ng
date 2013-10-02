@@ -1,3 +1,5 @@
+<a id="_contributing"></a>
+
 # Contributing
 
 This section describes how you can contribute to this SDK.
@@ -184,27 +186,28 @@ C-Specific:
 
    For example, use the following format
 
-    ```
-    static PyObject*
-    do_something(PyObject *self, PyObject *args, ...)
-    {
-        /** ... **/
-    }
-    ```
+    ```c
+static PyObject\*
+do_something(PyObject \*self, PyObject \*args, ...)
+{
+    /\*\* ... \*\*/
+}
+```
 
    rather than this format
 
-    ```
-    static PyObject *do_something(PyObject *self, PyObject *args)
-    {
-        /** ... **/
-    }
-    ```
+    ```c
+static PyObject \*do_something(PyObject \*self, PyObject \*args)
+{
+    /\*\* ... \*\*/
+}
+```
 
  * Code must compile with the following flags (for GCC or clang):
 
-   `-std=c89 -pedantic -Wall -Wextra -Werror \ -Wno-long-long
-   -Wno-missing-field-initializers`
+    ```
+-std=c89 -pedantic -Wall -Wextra -Werror -Wno-long-long -Wno-missing-field-initializers
+```
 
  * Non-static functions must have a `pycbc_` prefix.
 
