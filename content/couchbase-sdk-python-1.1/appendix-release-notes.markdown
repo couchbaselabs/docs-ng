@@ -21,6 +21,18 @@ on top of the 1.0.0 release.
 
  * Fix potential crash if HTTP view request cannot be scheduled
 
+ * Fix view queries with many keys.
+   Previously this would return a server error indidcating the URI was too
+   long.
+
+   *Issues*: [PYCBC-193](http://www.couchbase.com/issues/browse/PYCBC-193)
+
+ * `lockmode` parameter not being propagated from `Couchbase.connect`
+   constructor. This would result in the `lockmode` always being set to
+   `LOCKMODE_EXC` despite it being overidden in the arguments
+
+   *Issues*: [PYCBC-192](http://www.couchbase.com/issues/browse/PYCBC-192)
+
 
 **New Features In 1.1.0**
 
@@ -69,11 +81,13 @@ on top of the 1.0.0 release.
    `get()` fails. This functionality is exposed via the `replica` parameter
    to the 'get()' method as well as the 'rget()' method.
 
+   *Issues*: [PYCBC-38](http://www.couchbase.com/issues/browse/PYCBC-38)
+
 **Known Issues in 1.1.0**
 
  * 'syncwait' parameter for view creation will time out if new design
    document only contains spatial views
-   
+
    *Issues*: [PYCBC-173](http://www.couchbase.com/issues/browse/PYCBC-173)
 
 
