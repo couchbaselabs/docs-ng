@@ -18,7 +18,7 @@ Batched operations tend to accept an iterable of keys (or a dict of keys,
 depending on the method) and return a dictionary of the following format:
 
 
-```
+```python
 c.foo_multi(["key1", "key2", "key3"])
 
 {
@@ -38,7 +38,7 @@ operation by using the `all_results` property of the thrown exception (assuming
 it is of type `CouchbaseError` ).
 
 
-```
+```python
 c.set("foo", "foo value")
 
 try:
@@ -72,7 +72,7 @@ If you are not using threads in your application (at all), you can pass the
 `unlock_gil=False` option to the `connect` method like so:
 
 
-```
+```python
 c = Couchbase.connect(unlock_gil=False, bucket='default')
 ```
 
@@ -97,7 +97,7 @@ You may disable this behavior with the following two options:
    If you’re sure you’re not going to use it from more than one thread, you can use
    the `lockmode = LOCKMODE_NONE` in the constructor:
 
-    ```
+    ```python
     from couchbase import Couchbase, LOCKMODE_NONE
     c = Couchbase.connect(bucket='default', lockmode=LOCKMODE_NONE)
     ```
@@ -108,7 +108,7 @@ You may disable this behavior with the following two options:
    be accessing the `Connection` object (but for some reason, they are). You can
    use the `lockmode = LOCKMODE_EXC` for this:
 
-    ```
+    ```python
     from couchbase import Couchbase, LOCKMODE_EXC
     c = Couchbase.connect(bucket='default', lockmode=LOCKMODE_EXC)
     ```
@@ -157,7 +157,7 @@ You can write a custom transcoder that allows *Zlib* compression. Here’s a
 snippet:
 
 
-```
+```python
 import zlib
 
 from couchbase.transcoder import Transcoder
@@ -213,7 +213,7 @@ the default `decode_value` to handle any further encapsulation formats.
 This can all be used like so from Python:
 
 
-```
+```python
 # assuming the ZlibTrancoder class is defined above
 
 c = Couchbase.connect(transcoder=ZlibTranscoder(), bucket='default')
@@ -234,7 +234,7 @@ but simply interprets the value as a sequence of bytes and returns them as part
 of the `Result` object’s `value` property.
 
 
-```
+```python
 c.set("a_dict", {"foo":"bar"})
 c.data_passthrough = True
 c.get("a_dict").value == b'{"foo":"bar"}'
@@ -262,7 +262,7 @@ collections must be the special classes of either an `ItemOptionDict` or an
 each individual item (such as `CAS`, `format`, and the like), while the latter
 may be used if no specific options are required.
 
-```
+```python
 #!/usr/bin/python
 from pprint import pprint
 
@@ -356,7 +356,7 @@ in `get` or `get_multi`. Typically this is done in a `try`-`except` loop, where
 the `try` block attempts to fetch a key through normal means, and the `except`
 block attempts to use the replica:
 
-```
+```python
 try:
     rv = cb.get(key)
 except CouchbaseError:
@@ -416,7 +416,7 @@ The exception object contains a lot of information that can be used to find out
 what went wrong.
 
 
-```
+```python
 from couchbase import Couchbase
 from couchbase.exceptions import CouchbaseError
 
@@ -429,7 +429,6 @@ except CouchbaseError as e:
 ```
 
 Printing the exception object typically produces something like this:
-
 
 ```
 # line breaks inserted for clarity
@@ -616,5 +615,3 @@ reproduce, if possible) to your desired support venue.
 You can also debug a crash using *Valgrind*, but the process is significantly
 more involved and requires a slightly modified build of Python. See
 [Contributing](#_contributing) for more details.
-
-<a id="_contributing"></a>
