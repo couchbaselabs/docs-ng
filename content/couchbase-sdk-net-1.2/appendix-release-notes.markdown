@@ -4,6 +4,21 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library.NET. To browse or submit new issaues, see [Couchbase
 Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+<a id="couchbase-sdk-net-rn_1-2-8a"></a>
+
+## Release Note for Couchbase Client Library.NET 1.2.8 GA (01 October 2013)
+
+.NET Couchbase Client 1.2.8 release is a fixes the following issues:
+
+* NCBC-301: added a new StatusCode enumeration for unifying client and server
+status results of operations across all clients. This also fixes a bug where
+socket time-out messages on the client were not returned with the operation
+result.
+* NCBC-250: unit test improvements.
+* NCBC-257: Improvements to ensure that Disposed objects do not make it through 
+to the finalization phase of garbage collection. This should improve issues with
+socket time-outs and generally improve client stability and performance.
+
 <a id="couchbase-sdk-net-rn_1-2-6a"></a>
 
 ## Release Notes for Couchbase Client Library.NET 1.2.6 GA (07 May 2013)
