@@ -218,6 +218,9 @@ navbar:
 
       - label: Node.js
         href: http://www.couchbase.com/autodocs/couchbase-node-client-1.0.0-beta/index.html
+        
+      - label: PHP
+        href: http://www.couchbase.com/autodocs/couchbase-php-client-1.1.5/index.html
 
       - label: Python
         href: http://www.couchbase.com/autodocs/couchbase-python-client-0.9/index.html
