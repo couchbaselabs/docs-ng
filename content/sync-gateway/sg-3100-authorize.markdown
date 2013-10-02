@@ -8,21 +8,23 @@ You manage accounts by using the Admin REST API.This interface is privileged and
 
 The URL for a user account is `/databasename/_user/name`, where databasename is the configured name of the database and name is the user name. The content of the resource is a JSON document with the following properties:
 
-* `name`: The user name (same as in the URL path). Names must consist only of alphanumeric ASCII characters or underscores.
+* `admin_channels`: Lists the channels that the user is granted access to by the administrator. The value is an array of channel name strings.
 
-* `admin_channels`: Describes the channels that the user is granted access to by the administrator. The value is an array of channel-name strings.
+* `admin_roles`: The roles that the user is explicitly granted access to through the Admin REST API. It contains an array of role name strings. 
 
-* `all_channels`: Like `admin_channels` but also includes channels the user is given access to by other documents via a sync function. This is a derived property and changes to it will be ignored.
+* `all_channels`: Like the `admin_channels` property, but also includes channels the user is given access to by other documents via a sync function. This is a derived property and changes to it are ignored.
 
-* `roles`: An optional array of strings that contain the roles the user belongs to.
-
-* `password`: In a PUT or POST request, you can set the user's password with this property. It is not returned by a GET request.
-
-* `disabled`: This property is usually not included. if the value is set to `true`, disables access for that account.
+* `disabled`: This property is usually not included. if the value is set to `true`, access for the account is disabled.
 
 * `email`: The user's email address. This property is optional, but Persona login needs it.
 
-You can create a new user by sending a PUT request to its URL, or by sending a POST request to `/$DB/_user/`. 
+* `name`: The user name (the same name used in the URL path). The valid characters for a user name are alphanumeric ASCII characters and the underscore character. The name property is required  in a POST request. You don't need to include it in a PUT request because the user name is specified in the URL.
+
+* `password`: In a PUT or POST request, you can set the user's password with this property. It is not returned by a GET request.
+
+* `roles`: Like the `admin_roles` property, but also includes roles the user is given access to by other documents via a sync function. This is a derived property and changes to it are ignored. It contains an array of role name strings.
+
+You can create a new user by sending a PUT request to its URL or by sending a POST request to `/$DB/_user/`. 
 
 ### Anonymous Access
 
