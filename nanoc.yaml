@@ -128,6 +128,7 @@ versions:
   couchbase-sdk-php:
     name: "PHP SDK"
     versions:
+      - 1.2
       - 1.1
       - 1.0
 
@@ -200,7 +201,7 @@ navbar:
         href: /couchbase-sdk-node-1.0/
         
       - label: PHP
-        href: /couchbase-sdk-php-1.1/
+        href: /couchbase-sdk-php-1.2/
         
       - label: Python
         href: /couchbase-sdk-python-1.1/
