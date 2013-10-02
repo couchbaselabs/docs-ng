@@ -26,9 +26,12 @@ tutorial, but it should be simple to navigate while reading this tutorial.
    this tutorial application works with it.
 
  * Clone the repository and `cd` into the directory:
-
-   `shell> git clone git://github.com/couchbaselabs/beersample-python Cloning into
-   'beersample-python' #... shell> cd beersample-python`
+   ```
+shell> git clone git://github.com/couchbaselabs/beersample-python
+Cloning into 'beersample-python''
+\#...
+shell> cd beersample-python
+```
 
  * Some views need to be set up. You can set up the views manually via the Web UI,
    or invoke the `design_setup.py` script located in the `beersample-python`
@@ -36,7 +39,7 @@ tutorial, but it should be simple to navigate while reading this tutorial.
 
    In the `beer` design document, create a view called `by_name` :
 
-    ```
+    ```javascript
     function (doc, meta) {
         if (doc.type && doc.type == "beer") {
             emit(doc.name, null);
@@ -46,7 +49,7 @@ tutorial, but it should be simple to navigate while reading this tutorial.
 
    Create a design document called `brewery` and add a view called `by_name` :
 
-    ```
+    ```javascript
     function (doc, meta) {
         if (doc.type && doc.type == "brewery") {
             emit(doc.name, null);
@@ -54,10 +57,12 @@ tutorial, but it should be simple to navigate while reading this tutorial.
     }
     ```
 
- * Invoke the `beer.py` script:
-
-   `shell> python beer.py * Running on http://0.0.0.0:5000/ * Restarting with
-   reloader`
+ * Invoke the `beer.py` script:&nbsp;
+    ```
+shell> python beer.py
+\* Running on http://0.0.0.0:5000/
+\* Restarting with reloader
+```
 
  * Navigate to `localhost:5000` and enjoy the application!
 
@@ -75,13 +80,29 @@ Flask itself.
 
 Create a project directory named `beer` :
 
-`shell> mkdir beer shell> cd beer shell> mkdir templates shell> mkdir
-templates/beer shell> mkdir templates/brewery shell> mkdir static shell> mkdir
-static/js shell> mkdir static/css` Showing your directory contents displays
-something like this:
+```
+shell> mkdir beer
+shell> cd beer
+shell> mkdir templates
+shell> mkdir templates/beer
+shell> mkdir templates/brewery
+shell> mkdir static
+shell> mkdir static/js
+shell> mkdir static/css
+```
 
-`shell> find. -type
-d./static./static/js./static/css./templates./templates/brewery./templates/beer`
+Showing your directory contents displays something like this:
+
+```
+shell> find. -type d
+./static
+./static/js
+./static/css
+./templates
+./templates/brewery
+./templates/beer
+```
+
 To make the application look pretty, we’re incorporating jQuery and Twitter
 Bootstrap. You can either download the libraries and put them in their
 appropriate `css` and `js` directories (under `static` ), or clone the project
@@ -129,7 +150,7 @@ see what happens. Insert the following map function (that’s JavaScript) and
 click `Save`.
 
 
-```
+```javascript
 function (doc, meta) {
   if(doc.type && doc.type == "beer") {
     emit(doc.name, null);
@@ -159,7 +180,7 @@ Now we need to define a view for our breweries. You already know how to do this
 
  * Map Function:
 
-    ```
+    ```javascript
     function (doc, meta) {
       if(doc.type && doc.type == "brewery") {
         emit(doc.name, null);
@@ -201,7 +222,7 @@ properly and let us build better view queries.
 ### beer.py (imports)
 
 
-```
+```python
 from collections import namedtuple
 import json
 
@@ -212,8 +233,6 @@ from couchbase.exceptions import KeyExistsError, NotFoundError
 from couchbase.views.iterator import RowProcessor
 from couchbase.views.params import UNSPEC, Query
 ```
-
-
 
 Then, we want to set some constants for our application:
 
@@ -228,13 +247,10 @@ Now, we’re ready to create our Flask application instance:
 
 ### beer.py (creating the application)
 
-
-```
+```python
 app = Flask(__name__, static_url_path='')
 app.config.from_object(__name__)
 ```
-
-
 
 The first line creates a new Flask application. The first argument is the module
 in which the application is defined. Because we’re using only a single file as
@@ -254,8 +270,7 @@ Then, define a function to give us a database connection:
 
 ### beer.py (generating a Connection object)
 
-
-```
+```python
 def connect_db():
     return Couchbase.connect(
         bucket=app.config['DATABASE'],
@@ -284,15 +299,13 @@ is no Couchbase interaction involved, we just tell Flask to render the template.
 ### beer.py (welcome page)
 
 
-```
+```python
 @app.route('/')
 def welcome():
     return render_template('welcome.html')
 
 app.add_url_rule('/welcome', view_func=welcome)
 ```
-
-
 
 The `welcome.html` template is actually a *Jinja* template inside the
 `templates` directory. It looks like this:
@@ -328,8 +341,6 @@ The `welcome.html` template is actually a *Jinja* template inside the
 {% endblock %}
 ```
 
-
-
 The template simply provides some links to the brewery and beer pages (which are
 shown later).
 
@@ -339,7 +350,6 @@ footer to them — with only their `body` differing. This is the `layout.htm
 template.
 
 ### templates/layout.html
-
 
 ```
 <!DOCTYPE HTML>
@@ -390,8 +400,6 @@ template.
 </html>
 ```
 
-
-
 If you start your app now, you should be able to navigate to `localhost:5000`
 and see the welcome page. You’ll get a 404 error if you try to visit any links
 though - this is because we haven’t implemented them yet. Let’s do that now!
@@ -413,8 +421,7 @@ implement several classes for our pages to use.
 
 ### beer.py (custom Beer row class and processing)
 
-
-```
+```python
 class Beer(object):
     def __init__(self, id, name, doc=None):
         self.id = id
@@ -454,8 +461,6 @@ class BeerListRowProcessor(object):
 
         return ret
 ```
-
-
 
 First, we declare a simple `Beer` object. This app isn’t too fancy and we
 could’ve just used a simple `dict`. However, it allows us to demonstrate the use
@@ -503,8 +508,7 @@ Before we forget, let’s put this all together:
 
 ### beer.py (showing beer listings)
 
-
-```
+```python
 @app.route('/beers')
 def beers():
     rp = BeerListRowProcessor()
@@ -514,8 +518,6 @@ def beers():
 
     return render_template('beer/index.html', results=rows)
 ```
-
-
 
 We tell Flask to route requests to `/beers` to this function. We create an
 instance of the `BeerListRowProcessor` function we just defined.
@@ -536,7 +538,6 @@ function.
 Here is the `beer/index.html` template:
 
 ### templates/beer/index.html
-
 
 ```
 {% extends "layout.html" %}
@@ -577,8 +578,6 @@ Here is the `beer/index.html` template:
 {% endblock %}
 ```
 
-
-
 We’re using *Jinja*  `{% for %}` blocks to iterate and emit a fragment of HTML
 for each `Beer` object returned by the query.
 
@@ -599,8 +598,7 @@ to delete both beers and breweries.
 
 ### beer.py (deleting a beer)
 
-
-```
+```python
 @app.route('<otype>/delete/<id>')
 def delete_object(otype, id):
     try:
@@ -610,8 +608,6 @@ def delete_object(otype, id):
     except NotFoundError:
         return "No such {0} '{1}'".format(otype, id), 404
 ```
-
-
 
 Here we tell Flask to route any URL that has as its second component the string
 `delete` to this method. The paths in `<angle brackets>` are routing tokens that
@@ -641,8 +637,7 @@ page showing all the fields and values of a given beer.
 
 ### beer.py (showing a single beer)
 
-
-```
+```python
 @app.route('/beers/show/<beer_id>')
 def show_beer(beer_id):
     doc = db.get(beer_id, quiet=True)
@@ -654,8 +649,6 @@ def show_beer(beer_id):
         'beer/show.html',
         beer=Beer(beer_id, doc.value['name'], doc.value))
 ```
-
-
 
 Like for the `delete` action, we first check to see that the beer exists. We are
 passed the beer ID as the last part of the URL - this is passed to us as the
@@ -675,7 +668,6 @@ We then pass this beer to the `templates/beer/show.html` template which we’ll
 show here:
 
 ### templates/beer/show.html
-
 
 ```
 {% extends "layout.html" %}
@@ -708,8 +700,6 @@ show here:
 {% endblock %}
 ```
 
-
-
 Here we make the `display` variable in a special `{% set %}` directive. This
 makes dealing with the rest of the code simpler.
 
@@ -727,8 +717,7 @@ Finally, we provide links at the bottom to `Edit` and `Delete` the beer.
 
 ### beer.py (beer edit page)
 
-
-```
+```python
 def normalize_beer_fields(form):
     doc = {}
     for k, v in form.items():
@@ -772,8 +761,6 @@ def edit_beer_submit(beer):
     return redirect('/beers/show/' + beer)
 ```
 
-
-
 We define two handlers for editing. The first handler is the `GET` method for
 `/beers/edit/<beer>`, which displays a nice HTML form that we can use to edit
 the beer. It passes the following parameters to the template: the `Beer` object
@@ -794,7 +781,6 @@ The template is rather wordy because we enumerate all the possible fields with a
 nice description.
 
 ### templates/beer/edit.html
-
 
 ```
 {% extends "layout.html" %}
@@ -862,8 +848,6 @@ nice description.
 {% endblock %}
 ```
 
-
-
 The template first checks the `is_create` variable. If it’s `False`, then we’re
 editing an existing beer, and the caption is filled with that name. Otherwise,
 it’s titled as `Create Beer`.
@@ -876,8 +860,7 @@ Creating beers is largely the same as editing beers:
 
 ### beer.py (create beer page)
 
-
-```
+```python
 @app.route('/beers/create')
 def create_beer_display():
     return render_template('beer/edit.html', beer=Beer('', ''), is_create=True)
@@ -900,8 +883,6 @@ def create_beer_submit():
     except KeyExistsError:
         return "Beer already exists!", 400
 ```
-
-
 
 Here we display the same form as the one for editing beers, except we set the
 `is_create` parameter to True, and pass an empty `Beer` object. This is
@@ -933,7 +914,6 @@ search box changes and update the table with the resulting JSON (which is
 returned from the search method):
 
 ### static/js/beersample.js (snippet)
-
 
 ```
 $(document).ready(function() {
@@ -974,8 +954,7 @@ The search handler looks like this:
 
 ### beer.py (ajax search response)
 
-
-```
+```python
 def return_search_json(ret):
     response = app.make_response(json.dumps(ret))
     response.headers['Content-Type'] = 'application/json'
@@ -1004,8 +983,6 @@ def beer_search():
     return return_search_json(ret)
 ```
 
-
-
 The `beer_search` function first extracts the user input by examining the query
 string from the request.
 
@@ -1029,7 +1006,7 @@ page.
 However we need to return a JSON array of
 
 
-```
+```python
 { "id" : "beer_id", "name" : "beer_name", "brewery" : "the_brewery_id" }
 ```
 
