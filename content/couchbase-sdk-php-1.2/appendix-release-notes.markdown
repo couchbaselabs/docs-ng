@@ -4,6 +4,18 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library PHP. To browse or submit new issaues, see [Couchbase
 Client Library PHP Issues Tracker](http://www.couchbase.com/issues/browse/PCBC).
 
+
+<a id="couchbase-sdk-php-rn_1-2-0"></a>
+
+## Release Notes for Couchbase Client Library PHP 1.2.0 GA (1 October 2013)
+
+**New Features and Behaviour Changes in 1.2.0**
+ 
+ * Various bug fixes.
+ * Added Support for replica-read.
+ * Added further examples.
+
+
 <a id="couchbase-sdk-php-rn_1-1-0c"></a>
 
 ## Release Notes for Couchbase Client Library PHP 1.1.0 GA (12 December 2012)
@@ -92,6 +104,7 @@ Tracking](http://www.couchbase.com/issues/browse/PCBC).
    and preview on a development system.
 
    *Issues* : PCBC-53
+
 
 <a id="couchbase-sdk-php-rn_1-1-0b"></a>
 
