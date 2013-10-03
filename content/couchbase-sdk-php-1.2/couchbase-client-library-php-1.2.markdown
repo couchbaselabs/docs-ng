@@ -1,5 +1,5 @@
-<a id="couchbase-sdk-php-1-1"></a>
+<a id="couchbase-sdk-php-1-2"></a>
 
-# Couchbase Client Library: PHP 1.1
+# Couchbase Client Library: PHP 1.2
 
 <a id="getting-started"></a>

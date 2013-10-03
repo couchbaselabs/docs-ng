@@ -8,48 +8,39 @@ We will use PHP and access the Couchbase server as part of this exercise; the
 Couchbase Server can be part of a cluster or it can be stand-alone. This
 exercise will show you how to:
 
- * Download, install and configure the Couchbase PHP SDK
+ * Download, install, and configure the Couchbase PHP SDK.
 
- * How to use Couchbase and PHP to generate a general page access counter and
-   last-accessed date indicator script
+ * Use Couchbase and PHP to generate a general page access counter and
+   last-accessed date indicator script.
 
 This section assumes that you have the following items set up for your
 development environment:
 
- * PHP 5.3 and above installed. For more information, see [PHP
-   Manual](http://php.net/manual/en/install.php),
+ * PHP 5.3 or later installed. For more information, see the [PHP
+   Manual](http://php.net/manual/en/install.php).
 
- * Web server installed and configured to serve PHP pages,
+ * Web server installed and configured to serve PHP pages.
 
- * Couchbase Server 2.0 installed, and available from your development environment.
-   See [Couchbase Downloads](http://www.couchbase.com/download)
+ * Couchbase Server 2.0 installed and available from your development environment.
+   For more information, see [Couchbase Downloads](http://www.couchbase.com/download).
 
 This section also assumes you have downloaded and set up a compatible version of
 Couchbase Server and have at least one instance of Couchbase Server and one data
-bucket established. If you need to set up these items, you can do with the
-Couchbase Administrative Console, or Couchbase Command-Line Interface (CLI), or
-the Couchbase REST-API. For information and instructions, see:
+bucket established. If you need to set up these items, you can do that by using the
+Couchbase Web Console, the Couchbase Command-Line Interface (CLI), or
+the Couchbase REST API. For information and instructions, see:
 
  * [Using the Couchbase Web
-   Console](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-introduction.html),
-   for information on using the Couchbase Administrative Console,
+   Console](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-introduction.html) for information about using the Couchbase Administrative Console.
 
  * [Couchbase
-   CLI](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-web-console.html),
-   for the command line interface,
+   CLI](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-web-console.html) for information about the command line interface.
 
  * [Couchbase REST
-   API](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-restapi.html),
-   for creating and managing Couchbase resources.
+   API](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-admin-restapi.html) for information about creating and managing Couchbase resources.
 
 The TCP/IP port allocation on Windows by default includes a restricted number of
-ports available for client communication. For more information on this issue,
-including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
-
-After you have your Couchbase Server set up and you have installed the Couchbase
-SDK, you can compile and run the following basic program.
+ports available for client communication. For more information about adjusting the configuration and increasing the number of available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx>MSDN: Avoiding TCP/IP Port Exhaustion</a>. After you have your Couchbase Server set up and you have installed the Couchbase SDK, you can compile and run the following basic program.
 
 <a id="download"></a>
 
@@ -57,7 +48,7 @@ SDK, you can compile and run the following basic program.
 
 Follow these steps to install and set up the PHP SDK:
 
- 1. [Get, Install and Start Couchbase Server](http://www.couchbase.com/download).
+ 1. [Get, install and start Couchbase Server](http://www.couchbase.com/download).
     Come back when you are done.
 
  1. [Get and install the C Library](http://www.couchbase.com/develop/c/next). The C
