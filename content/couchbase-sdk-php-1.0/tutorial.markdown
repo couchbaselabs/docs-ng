@@ -19,7 +19,7 @@ server is properly configured to serve PHP pages and that you've installed the
 Couchbase server on your development machine. We assume you have at least one
 instance of Couchbase Server and one data bucket established. If you need to set
 up these items in Couchbase Server, you can do with the Couchbase Administrative
-Console, or Couchbase Command-Line Interface (CLI), or the Couchbase REST-API.
+Console, or Couchbase Command-Line Interface (CLI), or the Couchbase REST API.
 For information and instructions, see:
 
  * [Using the Couchbase Web

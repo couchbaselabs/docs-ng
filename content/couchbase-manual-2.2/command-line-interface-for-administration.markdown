@@ -261,7 +261,7 @@ Command                | Option                                     | Descriptio
 `xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to   
 `xdcr-replicate`  | `--xdcr-replication-mode= PROTOCOL` | Select REST protocol or memcached for replication. `xmem` indicates memcached while `capi` indicates REST protocol.                                                    
 
-You can also perform many of these same settings using the REST-API, see [Using
+You can also perform many of these same settings using the REST API, see [Using
 the REST API](#couchbase-admin-restapi).
 
 Some examples of commonly-used `couchbase-cli` commands:
@@ -2031,7 +2031,7 @@ To disable flushing a data bucket:
 > ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
 ```
 
-You can initiate the flush via the REST-API. For information about changing this
+You can initiate the flush via the REST API. For information about changing this
 setting in the Web Console, see [Viewing Data
 Buckets](#couchbase-admin-web-console-data-buckets). For information about
 flushing data buckets via REST, see [Flushing a

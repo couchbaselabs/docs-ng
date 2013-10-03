@@ -39,7 +39,7 @@ affiliates will not be responsible for any loss, costs, or damages incurred due
 to your access to or use of third-party content, products, or services.
 
 The information contained herein is subject to change without notice and is not
-warranted to be error-free. If you find any errors, please report them to us in
+warranted to be error free. If you find any errors, please report them to us in
 writing.
 
 <a id="licenses-community"></a>
@@ -195,7 +195,7 @@ OTHERWISE INSTALL, DOWNLOAD OR USE THE SOFTWARE.
     PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. COUCHBASE INC. DOES NOT WARRANT
     THAT THE SOFTWARE OR THE SERVICES PROVIDED HEREUNDER WILL MEET LICENSEE'S
     REQUIREMENTS, THAT THE SOFTWARE WILL OPERATE IN THE COMBINATIONS LICENSEE MAY
-    SELECT FOR USE, THAT THE OPERATION OF THE SOFTWARE WILL BE ERROR-FREE OR
+    SELECT FOR USE, THAT THE OPERATION OF THE SOFTWARE WILL BE ERROR FREE OR
     UNINTERRUPTED OR THAT ALL SOFTWARE ERRORS WILL BE CORRECTED. COUCHBASE INC.
     HEREBY DISCLAIMS ALL WARRANTIES, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT
     LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR

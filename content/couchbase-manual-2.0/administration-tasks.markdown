@@ -3072,7 +3072,7 @@ independently reach a consistent decision on which document wins.
 
 ### Changing XDCR Settings
 
-Besides Couchbase Web Console, you can use several Couchbase REST-API endpoints
+Besides Couchbase Web Console, you can use several Couchbase REST API endpoints
 to modify XDCRsettings. Some of these settings are references used in XDCR and
 some of these settings will change XDCR behavior or performance:
 

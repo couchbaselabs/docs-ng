@@ -267,7 +267,7 @@ resources:
  * Creating and Managing Buckets with Couchbase Web Console: see [Viewing Data
    Buckets](#couchbase-admin-web-console-data-buckets).
 
- * Creating and Managing Buckets with Couchbase REST-API: see [Managing
+ * Creating and Managing Buckets with Couchbase REST API: see [Managing
    Buckets](#couchbase-admin-restapi-bucketops).
 
  * Creating and Managing Buckets with Couchbase CLI (Command-Line Tool): see

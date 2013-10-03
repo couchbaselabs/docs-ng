@@ -845,7 +845,7 @@ once again.
 
 There are several ways you can provide hostnames for Couchbase 2.1+. You can
 provide a hostname when you install a Couchbase Server 2.1 on a machine, when
-you add the node to an existing cluster for online upgrade, or via a REST-API
+you add the node to an existing cluster for online upgrade, or via a REST API
 call. Couchbase Server stores this in a config file on disk. For earlier
 versions of Couchbase Server you must follow a manual process where you edit
 config files for each node which we describe below.
@@ -869,7 +869,7 @@ address under **Add Server**. You provide it in the **Server IP Address** field:
 
 ![](images/hostname_add_node.png)
 
-**Providing Hostnames via REST-API**
+**Providing Hostnames via REST API**
 
 The third way you can provide a node a hostname is to do a REST request at the
 endpoint `http://127.0.0.1:9000/node/controller/rename`. If you use this method,

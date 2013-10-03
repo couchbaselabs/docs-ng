@@ -8,7 +8,7 @@ constraints, in other words, the REST API follows a **RESTful** architecture.
 You use the REST API to manage clusters, server nodes, and buckets, and to
 retrieve run-time statistics within your Couchbase Server deployment. If you
 want to develop your own Couchbase-compatible SDK, you will also use the
-REST-API within your library to handle *views*. Views enable you to index and
+REST API within your library to handle *views*. Views enable you to index and
 query data based on functions you define. For more information about views, see
 [Views and Indexes](#couchbase-views).
 
@@ -176,7 +176,7 @@ port, for instance on your development machine: `http://localhost:8091`
 
 The operation and interface for the console is described in [Using the Web
 Console](#couchbase-admin-web-console). For most of the administrative
-operations described in this chapter for the REST-API, you can perform the
+operations described in this chapter for the REST API, you can perform the
 functional equivalent in Couchbase Web Console.
 
 <a id="couchbase-restapi-read-only-user"></a>
@@ -552,7 +552,7 @@ Content-Length: 0
 
 There are several ways you can provide hostnames for Couchbase 2.1+. You can
 provide a hostname when you install a Couchbase Server 2.1 node, when you add it
-to an existing cluster for online upgrade, or via a REST-API call. If a node
+to an existing cluster for online upgrade, or via a REST API call. If a node
 restarts, any hostname you establish will be used. You cannot provide a hostname
 for a node that is already part of a Couchbase cluster; the server will reject
 the request and return `error 400 reason: unknown ["Renaming is disallowed for
@@ -577,7 +577,7 @@ perform node failover using the Web Console, for more information, see
 [Couchbase Server Manual, Initiating Node
 Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-failover-manual.html).
 
-Using the REST-API endpoint `host:port/controller/failOver`, provide your
+Using the REST API endpoint `host:port/controller/failOver`, provide your
 administrative credentials and the parameter `optNode` which is an internal name
 for the node:
 
@@ -2145,7 +2145,7 @@ If you rebalance fails, you will see this response:
 ### Adjusting Rebalance during Compaction
 
 If you perform a rebalance while a node is undergoing index compaction, you may
-experience delays in rebalance. There is REST-API parameter as of Couchbase
+experience delays in rebalance. There is REST API parameter as of Couchbase
 Server 2.0.1 you can use to improve rebalance performance. If you do make this
 selection, you will reduce the performance of index compaction which can result
 in larger index file size.
@@ -2856,7 +2856,7 @@ an index to efficiently find documents by a particular value or by a particular
 structure in the document, represent relationships between documents, and
 perform calculations on data contained in documents.
 
-You store view functions in a design document as JSON and can use the REST-API
+You store view functions in a design document as JSON and can use the REST API
 to manage your design documents. Please refer to the following resources:
 
  * [Storing a Design
@@ -2868,7 +2868,7 @@ to manage your design documents. Please refer to the following resources:
  * [Deleting a Design
    Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
 
- * Querying Views via the REST-API. [Querying Using the REST
+ * Querying Views via the REST API. [Querying Using the REST
    API](#couchbase-views-querying-rest-api).
 
 <a id="couchbase-restapi-request-limits"></a>
@@ -3273,10 +3273,10 @@ Cache-Control: no-cache
 
 ### Getting XDCR Stats via REST
 
-You can get XDCR statistics from either Couchbase Web Console, or the REST-API.
+You can get XDCR statistics from either Couchbase Web Console, or the REST API.
 You perform all of these requests on a source cluster to get information about a
 destination cluster. All of these requests use the UUID, a unique identifier for
-destination cluster. You can get this ID by using the REST-API if you do not
+destination cluster. You can get this ID by using the REST API if you do not
 already have it. For instructions, see [Getting a Destination Cluster
 Reference](#couchbase-admin-restapi-xdcr-destination). The endpoints are as
 follows:

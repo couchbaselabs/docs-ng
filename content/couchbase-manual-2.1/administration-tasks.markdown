@@ -191,7 +191,7 @@ Monitoring](#couchbase-admin-web-console-data-buckets-individual).
 **Changing Readers and Writers for Existing Buckets**
 
 You can change this setting after you create a data bucket in Web Console or
-REST-API. If you do so, the bucket will be re-started and will go through server
+REST API. If you do so, the bucket will be re-started and will go through server
 warmup before it becomes available. For more information about warmup, see
 [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
 
@@ -3415,7 +3415,7 @@ Replication (XDCR)](#couchbase-admin-tasks-xdcr).
 
 ### Changing XDCR Settings
 
-Besides Couchbase Web Console, you can use several Couchbase REST-API endpoints
+Besides Couchbase Web Console, you can use several Couchbase REST API endpoints
 to modify XDCRsettings. Some of these settings are references used in XDCR and
 some of these settings will change XDCR behavior or performance:
 

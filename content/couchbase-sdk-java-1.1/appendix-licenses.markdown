@@ -39,5 +39,5 @@ affiliates will not be responsible for any loss, costs, or damages incurred due
 to your access to or use of third-party content, products, or services.
 
 The information contained herein is subject to change without notice and is not
-warranted to be error-free. If you find any errors, please report them to us in
+warranted to be error free. If you find any errors, please report them to us in
 writing.

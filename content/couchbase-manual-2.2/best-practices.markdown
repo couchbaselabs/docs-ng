@@ -679,7 +679,7 @@ your host.
 
 As a rule, you should set the hostname before you add a node to a cluster. You
 can also provide a hostname in these ways: when you install a Couchbase Server
-2.1 node or when you do a REST-API call before the node is part of a cluster.
+2.1 node or when you do a REST API call before the node is part of a cluster.
 You can also add a hostname to an existing cluster for an online upgrade. If you
 restart, any hostname you establish with one of these methods will be used. For
 instructions, see [Using Hostnames with Couchbase

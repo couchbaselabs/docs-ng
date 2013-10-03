@@ -149,7 +149,7 @@ the document using Couchbase Web Console:
 
     ![](images/elastic_get_doc.png)
 
-Elasticsearch supports more complex queries using their REST-API; for instance
+Elasticsearch supports more complex queries using their REST API; for instance
 you can search the beer database for a style 'lambic' and for 'blueberry' in the
 description. In this case you send a HTTP POST request. The JSON request will
 appear as follows:

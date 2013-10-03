@@ -77,7 +77,7 @@ cluster. You must take the node out of the cluster then follow the steps below:
  1. [Change the path on a running node either via theREST
     API](#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
     change will not actually take effect until the node is restarted. For more
-    information about using a REST-API request for ejecting nodes from clusters, see
+    information about using a REST API request for ejecting nodes from clusters, see
     [Removing a Node from a
     Cluster](#couchbase-admin-restapi-remove-node-from-cluster).
 

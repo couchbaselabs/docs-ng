@@ -1185,7 +1185,7 @@ The statistics shown are:
 Be aware that if you use an earlier version of Couchbase Server, such as
 Couchbase Server 2.0, only the first three statistics appear and have the labels
 **changes queue, documents checked, and documents replicated** respectively. You
-can also get XDCR statistics using the Couchbase REST-API. All of the statistics
+can also get XDCR statistics using the Couchbase REST API. All of the statistics
 in Web Console are based on statistics via the REST API or values derived from
 them. For more information including a full list of available statistics, see
 [Getting XDCR Stats via REST](#couchbase-admin-restapi-xdcr-stats).
