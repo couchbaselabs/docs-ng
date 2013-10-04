@@ -4,6 +4,15 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library.NET. To browse or submit new issaues, see [Couchbase
 Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+<a id="couchbase-sdk-net-rn_1-2-9a"></a>
+
+## Release Note for Couchbase Client Library.NET 1.2.9 GA (04 October 2013)
+
+.NET Couchbase Client 1.2.9 is a follow up release to 1.2.8 
+and fixes the following issue:
+
+* NCBC-308: KeyExists does not release socket pool if not found
+
 <a id="couchbase-sdk-net-rn_1-2-8a"></a>
 
 ## Release Note for Couchbase Client Library.NET 1.2.8 GA (01 October 2013)
