@@ -8,7 +8,7 @@ Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
 ## Release Notes for Couchbase Client Library.NET 1.0.0 GA (23 January 2012)
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * Also updated in 1.0, classes, namespaces and the assembly have been renamed from
    Membase to Couchbase to reflect the server product name change.

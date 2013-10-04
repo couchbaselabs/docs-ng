@@ -265,7 +265,7 @@ The major new features available in Couchbase Server 2.0 include:
    data for disaster recovery and can help you bring your data closer to your end
    users for better application performance.
 
-**New Features and Behaviour Changes in 2.0.0**
+**New Features and Behavior Changes in 2.0.0**
 
  * **XDCR (Cross Data-Center Replication) Enhancements.**
 
@@ -864,7 +864,7 @@ more information about Couchbase Server 2.0, visit [Couchbase Server
 The major improvements made between build \#1870 and build \#1941 are described
 below:
 
-**New Features and Behaviour Changes in 2.0.0 \#1941**
+**New Features and Behavior Changes in 2.0.0 \#1941**
 
  * The default node quota percentage has been reduced from 80% to 60% to provide
    capacity in the operating system for the view and indexing data to be cached.
@@ -1227,7 +1227,7 @@ The major improvements made between Beta and build \#1870 include:
    easier for you to spot or diagnose server issues. For more information, see
    [Logs and Logging](#couchbase-troubleshooting-logs).
 
-**New Features and Behaviour Changes in 2.0.0 build \#1870**
+**New Features and Behavior Changes in 2.0.0 build \#1870**
 
  * There is also now a new REST API in Couchbase Server 2.0 where you can enable or
    disable flush for each data bucket in a cluster. This also enables you to flush
@@ -1580,7 +1580,7 @@ enterprise- and community-edition customers. For more information about
 Couchbase Server 2.0, visit [Couchbase Server
 2.0](http://www.couchbase.com/couchbase-server/next).
 
-**New Features and Behaviour Changes in 2.0.0**
+**New Features and Behavior Changes in 2.0.0**
 
  * Two sample databases can be loaded either during setup or in the setting panel.
 
@@ -1865,7 +1865,7 @@ Couchbase Server 2.0, visit [Couchbase Server
 
 ## Release Notes for Couchbase Server 2.0.0 Build #1672 Developer Preview (10 September 2012)
 
-**New Features and Behaviour Changes in 2.0.0 Build \#1672**
+**New Features and Behavior Changes in 2.0.0 Build \#1672**
 
  * New statistics have been added to understand the cross data center replication
    streams. The source cluster will show information about each XDCR including
@@ -2241,7 +2241,7 @@ data type.
 Existing client libraries continue to work with the new release without
 modification to the View or document update mechanisms and information.
 
-**New Features and Behaviour Changes in 2.0.0 Build \#1554**
+**New Features and Behavior Changes in 2.0.0 Build \#1554**
 
  * Behavior Change: Identifying the content type of the document can no longer be
    achieved by using the `doc._bin` field of the document object. Instead, you
@@ -2466,7 +2466,7 @@ functionality.
 
    For more information, see [Couchbase Sample Buckets](#couchbase-sampledata).
 
-**New Features and Behaviour Changes in 2.0.0DP4**
+**New Features and Behavior Changes in 2.0.0DP4**
 
  * The index/view related improvements are for production views or development
    views with `full_set=true`.
@@ -2474,7 +2474,7 @@ functionality.
  * The indexes created by the view system are now replicated among nodes to ensure
    that indexes do not need to be rebuilt in the event of a failover.
 
- * A new option, `on_error` has been added to control the behaviour of the view
+ * A new option, `on_error` has been added to control the behavior of the view
    engine when returning a request. By default the value is `continue`, which
    indicates that the view engine should continue to return results in the event of
    an error. You can also set the option to `stop` to stop the view results being
@@ -2776,7 +2776,7 @@ functionality.
 
 This is the 3rd 'developer preview' edition of Couchbase Server 2.0.
 
-**New Features and Behaviour Changes in 2.0.0DP3**
+**New Features and Behavior Changes in 2.0.0DP3**
 
  * Status bars have been added to show view building and rebalance progress.
 

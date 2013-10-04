@@ -9,7 +9,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.0.0 GA (23 January 2012)
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * The library supports three different formats for representing values:
 

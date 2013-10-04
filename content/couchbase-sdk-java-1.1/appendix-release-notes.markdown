@@ -13,7 +13,7 @@ This 1.1.8 release is the eighth bugfix release for the 1.1 series. The main
 additions (aside from the regular bugfixes) are support for "replica read" and
 "delete with CAS" through the upgrade of spymemcached to 2.9.1.
 
-**New Features and Behaviour Changes in 1.1.8**
+**New Features and Behavior Changes in 1.1.8**
 
  * Spymemcached has been upgraded to 2.9.1, which adds the capability to use delete
    with CAS. This allows better handling of concurrent deletes.
@@ -99,7 +99,7 @@ mostly brings better stability during rebalance and failover phases. Also,
 fail-fast exceptions have been implemented to disallow certain operations on
 memcache buckets.
 
-**New Features and Behaviour Changes in 1.1.7**
+**New Features and Behavior Changes in 1.1.7**
 
  * For lots of HTTP responses (Views, DesignDocuments) we now retry until timeout
    when its not a 200 success. This especially helps for transient errors and
@@ -147,7 +147,7 @@ The 1.1.6 release is the sixth bugfix release for the 1.1 series. Improvements
 have been made around view query handling and pagination. Also, new operations
 without the need to provide a TTL have been added for convenience.
 
-**New Features and Behaviour Changes in 1.1.6**
+**New Features and Behavior Changes in 1.1.6**
 
  * It is now possible to pass a single "null" value in when using the
    ComplexKey.of() method. This will be translated to a "null" (without the quotes)
@@ -209,7 +209,7 @@ The 1.1.5 release is the fifth bugfix release for the 1.1 series. It fixes a bug
 around the ConnectionFactoryBuilder and includes better interoperability with
 Netty.
 
-**New Features and Behaviour Changes in 1.1.5**
+**New Features and Behavior Changes in 1.1.5**
 
  * The distributed javadoc jar file has been renamed from "javadocs" to "javadoc"
    for better standard compliance and IDE compatibility.
@@ -283,7 +283,7 @@ CouchbaseClient object. Regular "couchbase" buckets are not affected and we
 recommend all deployments on the 1.1-branch to upgrade. A proper fix for this
 known issue is under way and a 1.1.4 release is due shortly.
 
-**New Features and Behaviour Changes in 1.1.3**
+**New Features and Behavior Changes in 1.1.3**
 
  * Spymemcached has been updated to 2.8.12. This version includes corresponding
    enhancements and bugfixes that are needed by this release.
@@ -341,7 +341,7 @@ constraints and replicas has been fixed. Spymemcached has been upgraded to
 2.8.11, which now does not try to reconnect when the node is not part of the
 cluster anymore.
 
-**New Features and Behaviour Changes in 1.1.2**
+**New Features and Behavior Changes in 1.1.2**
 
  * Spymemcached has been upgraded to 2.8.11. 2.8.11 fixes a important bug that can
    happen when using commands like "stats" and memcached-buckets together, where
@@ -395,7 +395,7 @@ The 1.1.1 release is the first bugfix release for the 1.1 series. It brings more
 resiliency on failover, adds more flexibility for view query params and adds a
 (by default disabled) stats-based throttling mechanism.
 
-**New Features and Behaviour Changes in 1.1.1**
+**New Features and Behavior Changes in 1.1.1**
 
  * An adaptive throttling mechanism has been implemented that is particularily
    useful when running bulk load operations while maintaining a healthy throughput
@@ -472,7 +472,7 @@ and the
 [Tutorial](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/tutorial.html)
 have been updated and can be used together with the 1.1.0 release.
 
-**New Features and Behaviour Changes in 1.1.0**
+**New Features and Behavior Changes in 1.1.0**
 
  * This release adds the possibility of providing a durability setting that allows
    to make sure data is replicated but not persisted. This may speed up operations
@@ -680,7 +680,7 @@ have been updated and can be used together with the 1.1.0 release.
 
 ## Release Notes for Couchbase Client Library Java 1.1-beta Beta (3 December 2012)
 
-**New Features and Behaviour Changes in 1.1-beta**
+**New Features and Behavior Changes in 1.1-beta**
 
  * The "delete" command now also supports persitence constraints like set, add,
    replace or CAS do.
@@ -844,7 +844,7 @@ have been updated and can be used together with the 1.1.0 release.
 
 ## Release Notes for Couchbase Client Library Java 1.1-dp4 Developer Preview (29 October 2012)
 
-**New Features and Behaviour Changes in 1.1-dp4**
+**New Features and Behavior Changes in 1.1-dp4**
 
  * It is now possible to create and delete buckets from the client directly,
    without the need to switch to the UI or use the REST API. The functionality is
@@ -999,7 +999,7 @@ have been updated and can be used together with the 1.1.0 release.
 
 ## Release Notes for Couchbase Client Library Java 1.1-dp2 Developer Preview (23 August 2012)
 
-**New Features and Behaviour Changes in 1.1-dp2**
+**New Features and Behavior Changes in 1.1-dp2**
 
  * The `set()` and `delete()` methods now support the ability to observe the
    persistence on the master and replicas. Using these methods, it's possible to
@@ -1104,7 +1104,7 @@ have been updated and can be used together with the 1.1.0 release.
 
 ## Release Notes for Couchbase Client Library Java 1.1-dp Developer Preview (16 March 2012)
 
-**New Features and Behaviour Changes in 1.1-dp**
+**New Features and Behavior Changes in 1.1-dp**
 
  * The Views functionality has been added to the Couchbase-client library. Views is
    available starting with Couchbase Server 2.0. For more details on this feature

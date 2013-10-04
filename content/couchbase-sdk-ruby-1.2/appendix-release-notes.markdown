@@ -21,7 +21,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.2 GA (11 February 2013)
 
-**New Features and Behaviour Changes in 1.2.2**
+**New Features and Behavior Changes in 1.2.2**
 
  * EventMachine plugin to integrate with EventMachine library. Note that the engine
    is experimental at this stage. Example:
@@ -125,7 +125,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0 GA (12 December 2012)
 
-**New Features and Behaviour Changes in 1.2.0**
+**New Features and Behavior Changes in 1.2.0**
 
  * Specialized io plugin for releasing Ruby GVL:
 
@@ -203,7 +203,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.z.beta5 Beta (29 November 2012)
 
-**New Features and Behaviour Changes in 1.2.0.z.beta5**
+**New Features and Behavior Changes in 1.2.0.z.beta5**
 
  * Allow to setup default initial value for INCR/DECR on per connection level.
 
@@ -221,7 +221,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.z.beta4 Beta (21 November 2012)
 
-**New Features and Behaviour Changes in 1.2.0.z.beta4**
+**New Features and Behavior Changes in 1.2.0.z.beta4**
 
  * Do not expose docs embedded in HTTP response. Use binary protocol for it.
 
@@ -256,7 +256,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.z.beta3 Beta (16 October 2012)
 
-**New Features and Behaviour Changes in 1.2.0.z.beta3**
+**New Features and Behavior Changes in 1.2.0.z.beta3**
 
  * Implement bucket create/delete operations
 
@@ -308,7 +308,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.beta Beta (18 September 2012)
 
-**New Features and Behaviour Changes in 1.2.0.beta**
+**New Features and Behavior Changes in 1.2.0.beta**
 
  * Implement Bucket\#unlock
 
@@ -346,7 +346,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.dp6 Developer Preview (28 June 2012)
 
-**New Features and Behaviour Changes in 1.2.0.dp6**
+**New Features and Behavior Changes in 1.2.0.dp6**
 
  * Allow to read keys from replica
 
@@ -394,7 +394,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **Fixes in 1.2.0.dp6**
 
- * Fix Bucket\#cas operation behaviour in async mode. The callback of the
+ * Fix Bucket\#cas operation behavior in async mode. The callback of the
    Bucket\#cas method is triggered only once, when it fetches old value, and it
    isn¿t possible to receive notification if the next store operation was
    successful. Example, append JSON encoded value asynchronously:
@@ -445,7 +445,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.dp5 Developer Preview (15 June 2012)
 
-**New Features and Behaviour Changes in 1.2.0.dp5**
+**New Features and Behavior Changes in 1.2.0.dp5**
 
  * Implement key prefix (simple namespacing)
 
@@ -533,7 +533,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.dp2 Developer Preview (06 June 2012)
 
-**New Features and Behaviour Changes in 1.2.0.dp2**
+**New Features and Behavior Changes in 1.2.0.dp2**
 
  * Allow to stop event loop from ruby
 
@@ -638,7 +638,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.2.0.dp Developer Preview (10 April 2012)
 
-**New Features and Behaviour Changes in 1.2.0.dp**
+**New Features and Behavior Changes in 1.2.0.dp**
 
  * [Couchbase Server
    Views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html)

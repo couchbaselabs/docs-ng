@@ -97,7 +97,7 @@ on top of the 1.0.0 release.
 
 This is the first general availability (GA) release.
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * Enable `Transcoder` to be a class as well as an instance. Fixes some common
    misuses. If a class, a new instance is created.
@@ -122,7 +122,7 @@ This is the first general availability (GA) release.
 This version builds upon previous APIs. It provides new APIs for querying views
 and managing design documents.
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * New `query` method and paginated view iterator. View querying is now more
    efficient and streamlined with the new `query` method. The older `_view` method
@@ -207,7 +207,7 @@ and managing design documents.
 This version maintains the 0.10.0 API, while adding some new features and fixing
 some additional bugs.
 
-**New Features and Behaviour Changes in 0.11.1**
+**New Features and Behavior Changes in 0.11.1**
 
  * Basic HTTP/Views support (experimental): `view` and `design` methods are now
    available.
@@ -305,7 +305,7 @@ The rewrite is filed as PYCBC-103.
 This version is the initial rewrite of the Python library using `libcouchbase`.
 The installation now requires a C compiler and `libcouchbase`.
 
-**New Features and Behaviour Changes in 0.9.0**
+**New Features and Behavior Changes in 0.9.0**
 
  * Basic key-value functionality, including:
 
@@ -414,7 +414,7 @@ ground up based on the Couchbase C library, libcouchbase.
 This release is considered beta software, use it at your own risk; let us know
 if you run into any problems, so we can fix them.
 
-**New Features and Behaviour Changes in 0.7.1**
+**New Features and Behavior Changes in 0.7.1**
 
  * SDK now installable via python setup.py install from source or via pip install
    couchbase.
@@ -437,7 +437,7 @@ ground up based on the Couchbase C library, libcouchbase.
 This release is considered beta software, use it at your own risk; let us know
 if you run into any problems, so we can fix them.
 
-**New Features and Behaviour Changes in 0.7.0**
+**New Features and Behavior Changes in 0.7.0**
 
  * SDK now requires Python 2.6.
 

@@ -9,12 +9,12 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.3.2 GA (10 July 2013)
 
-**New Features and Behaviour Changes in 1.3.2**
+**New Features and Behavior Changes in 1.3.2**
 
  * Allow application to select the strategy of reading from replica nodes. *This
    version requires libcouchbase >= 2.0.7.* Now three strategies are available:
 
-    1. `:first` - synonym to `true`, previous behaviour now the default. It means that
+    1. `:first` - synonym to `true`, previous behavior now the default. It means that
        the library will sequentially iterate over all replicas in the configuration
        supplied by the cluster and will return as soon as it finds a successful
        response, or report an error.
@@ -79,7 +79,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.3.0 GA (07 May 2013)
 
-**New Features and Behaviour Changes in 1.3.0**
+**New Features and Behavior Changes in 1.3.0**
 
  * Introduce Transcoders. This mechanism is more flexible, and similar to how other
    clients encode values.

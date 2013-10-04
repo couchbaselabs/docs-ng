@@ -99,7 +99,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 ## Release Notes for Couchbase Client Library Ruby 1.1.0 GA (07 March 2012)
 
-**New Features and Behaviour Changes in 1.1.0**
+**New Features and Behavior Changes in 1.1.0**
 
  * With the usage of the URI parser from stdlib it is possible to validate the
    bucket URI more strictly. Also, it is possible to specify credentials in the URI

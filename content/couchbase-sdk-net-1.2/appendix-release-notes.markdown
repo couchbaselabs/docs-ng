@@ -43,7 +43,7 @@ was not affected.
 .NET Couchbase Client 1.2.5 removes the RestSharp and Hammock dependencies, adds
 support for.NET 3.5, along with new features and bug fixes.
 
-**New Features and Behaviour Changes in 1.2.5**
+**New Features and Behavior Changes in 1.2.5**
 
  * NCBC-231: Support for Unlock without CAS operation
 
@@ -118,7 +118,7 @@ support for.NET 3.5, along with new features and bug fixes.
 .NET Couchbase Client 1.2.4 adds support for Get with Lock feature, along with
 bug fixes.
 
-**New Features and Behaviour Changes in 1.2.4**
+**New Features and Behavior Changes in 1.2.4**
 
  * NCBC-238: Support for key exists check without getting value.
 
@@ -166,7 +166,7 @@ Enyim.Caching in release 1.2.2.
 
 .NET Couchbase Client 1.2.2 GA provides stability fixes and new API methods.
 
-**New Features and Behaviour Changes in 1.2.2**
+**New Features and Behavior Changes in 1.2.2**
 
  * NCBC-229: Support Remove with CAS operation.
 
@@ -193,7 +193,7 @@ Enyim.Caching in release 1.2.2.
 
 .NET Couchbase Client 1.2.1 GA provides stability fixes and new API methods.
 
-**New Features and Behaviour Changes in 1.2.1**
+**New Features and Behavior Changes in 1.2.1**
 
  * NCBC-165: IView now includes a `CheckExists` method, which will allow callers to
    verifiy that a view exists in a design document prior to executing a view query.
@@ -346,7 +346,7 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 ## Release Notes for Couchbase Client Library .NET 1.2.0-BETA-3 Beta (28 November 2012)
 
-**New Features and Behaviour Changes in 1.2.0-BETA-3**
+**New Features and Behavior Changes in 1.2.0-BETA-3**
 
  * New CouchbaseCluster GetItemCount method (NCBC-92)
 
@@ -413,7 +413,7 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 ## Release Notes for Couchbase Client Library .NET 1.2.0-DP4 Alpha (27 August 2012)
 
-**New Features and Behaviour Changes in 1.2.0-DP4**
+**New Features and Behavior Changes in 1.2.0-DP4**
 
  * New bucket administration methods
 
@@ -460,7 +460,7 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 ## Release Notes for Couchbase Client Library .NET 1.2.0-DP3 Alpha (27 August 2012)
 
-**New Features and Behaviour Changes in 1.2.0-DP3**
+**New Features and Behavior Changes in 1.2.0-DP3**
 
  * Initial implementation of Observe and Store with durability checks.
 
@@ -495,7 +495,7 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 ## Release Notes for Couchbase Client Library .NET 1.2-DP Alpha (27 March 2012)
 
-**New Features and Behaviour Changes in 1.2-DP**
+**New Features and Behavior Changes in 1.2-DP**
 
  * Initial support for Couchbase Server 2.0 view API.
 

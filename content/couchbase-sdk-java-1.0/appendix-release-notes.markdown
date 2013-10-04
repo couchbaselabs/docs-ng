@@ -81,7 +81,7 @@ Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.0.0 GA (23 January 2012)
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * The `spymemcached` library functionality is now avaliable via `Couchbase-client`
    and `spymemcached` libraries. Couchbase Connections, Connection Factory and the

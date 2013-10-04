@@ -13,7 +13,7 @@ backwards compatible new features. The underlying spymemcached library has also
 been upgraded to 2.10.0, which builds the foundation for lots of those features.
 
 
-**New Features and Behaviour Changes in 1.2.0**
+**New Features and Behavior Changes in 1.2.0**
 
  * The jars are now served from maven central, which required a change of
    the groupId from `couchbase` to `com.couchbase.client`. A list of packages

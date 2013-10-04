@@ -9,7 +9,7 @@ Client Library PHP Issues Tracker](http://www.couchbase.com/issues/browse/PCBC).
 
 ## Release Notes for Couchbase Client Library PHP 1.2.0 GA (1 October 2013)
 
-**New Features and Behaviour Changes in 1.2.0**
+**New Features and Behavior Changes in 1.2.0**
  
  * Various bug fixes.
  * Added Support for replica-read.
@@ -37,7 +37,7 @@ with version 1.0 of the SDK. New features for this SDK include:
 To browse existing issues and fixes in this release, see [PHP SDK Issues
 Tracking](http://www.couchbase.com/issues/browse/PCBC).
 
-**New Features and Behaviour Changes in 1.1.0**
+**New Features and Behavior Changes in 1.1.0**
 
  * Warn for incorrect view parameters.
 
@@ -116,7 +116,7 @@ not mentioned here.
 
 This versions includes all fixes of the 1.0.x branch, up to the 1.0.4 release.
 
-**New Features and Behaviour Changes in 1.1.0-dp2**
+**New Features and Behavior Changes in 1.1.0-dp2**
 
  * Implement Couchbase::View.
 

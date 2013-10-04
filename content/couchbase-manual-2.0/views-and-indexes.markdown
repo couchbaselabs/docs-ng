@@ -3223,7 +3223,7 @@ responses during a view query.
     }
     ```
 
-   You can alter this behaviour by using the `on_error` argument. The default value
+   You can alter this behavior by using the `on_error` argument. The default value
    is `continue`. If you set this value to `stop` then the view response will cease
    the moment an error occurs. The returned JSON will contain the error information
    for the node that returned the first error. For example:

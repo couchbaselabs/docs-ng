@@ -9,7 +9,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
 ## Release Notes for Couchbase Node.js Client Library 0.1.0 GA (30 August 2013)
 
-**New Features and Behaviour Changes in 0.1.0**
+**New Features and Behavior Changes in 0.1.0**
 
  * Complete rewrite of the 0.0.x series of couchnode.
  * Brand new libcouchbase binding layer, which brings huge performance and stability 
@@ -20,7 +20,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
 ## Release Notes for Couchbase Node.js Client Library 1.0.0 Beta (6 September 2013)
 
-**New Features and Behaviour Changes in 1.0.0-beta**
+**New Features and Behavior Changes in 1.0.0-beta**
 
  * Implemented ability to specify durability requirements to all storage operations.
  * Fixed various minor bugs.
@@ -29,7 +29,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
 ## Release Notes for Couchbase Node.js Client Library 1.0.0 GA (12 September 2013)
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * Various bug fixes.
 
@@ -40,7 +40,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
 ## Release Notes for Couchbase Node.js Client Library 1.0.1 GA (1 October 2013)
 
-**New Features and Behaviour Changes in 1.0.1**
+**New Features and Behavior Changes in 1.0.1**
 
  * Various bug fixes.
  * Added support for specifying hashkeys.
