@@ -128,6 +128,12 @@ Additional enhancements in 2.2 include:
      
         *Issues* : [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
 
+	* If you upgrade an Ubuntu system from 1.81 to 2.2.0, the node referenced by the host name is reset during the upgrade. 
+
+		Workaround: Before upgrading, make sure you put the host name under  /opt/couchbase/var/lib/couchbase/ip so the installer can back it up as ip.debsave and determine the host name after the upgrade.
+
+		Issues: [MB-8932](http://www.couchbase.com/issues/browse/MB-8932), [MB-9109](http://www.couchbase.com/issues/browse/MB-9109)
+	
  * **Database Operations**
 
     * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
