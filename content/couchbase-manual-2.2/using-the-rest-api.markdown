@@ -187,7 +187,7 @@ For more information about this type of user, see [Read-Only Users](#couchbase-a
 
 To create a read-only user, you need administrative access:
 
-    curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name  -d password=a_passwword 
+    curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=a_password 
     
 Replace the *admin*, *password*, *localhost*, *a_name*, and *a_password*
 values in the above example with your actual values.
@@ -213,20 +213,21 @@ A `username` is a UTF-8 string that does not contain spaces, control characters 
 
 To change the password for a read-only user:
 
-    curl -X POST -u admin:password /settings/readOnlyUser -d password=new_password
+    curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=new_password
 
 To delete this user:
 
-    curl -X DELETE -u admin:password /settings/readOnlyUser 
+    curl -X DELETE -u admin:password http://localhost:8091/settings/readOnlyUser 
 
 To get the read-only username, you can have administrative or read-only permissions:
 
-    curl -u username:password  /settings/readOnlyAdminName
-    
+    curl -u username:password  http://localhost:8091/settings/readOnlyAdminName
+
+Replace the *admin*, *password*, *localhost*, *username*, *a_name*, and
+*new_password* values in the above examples with your actual values.
+
 This will return a response with the read-only username as payload, `success: 200 | "username"`. If there is no 
 read-only user you will get this error `not found: 404`.
-
-
 
 <a id="couchbase-admin-restapi-node-management"></a>
 
@@ -235,13 +236,13 @@ read-only user you will get this error `not found: 404`.
 A Couchbase Server instance, also known as 'node', is a physical or virtual
 machine running Couchbase Server. Each node is as a member of a cluster.
 
-To view information about nodes that exist in a Couchbase Cluster, you use this
-request:
+To view information about nodes that exist in a Couchbase Cluster, you use
+this request:
 
+    curl -u admin:password http://localhost:8091/pools/nodes
 
-```
-> curl -u admin:password 10.4.2.4:8091/pools/nodes
-```
+Replace *admin*, *password*, and *localhost* values in the above example with
+your actual values.
 
 Couchbase server returns this response in JSON:
 
@@ -324,14 +325,13 @@ Couchbase server returns this response in JSON:
 To retrieve statistics about a node, you can first retrieve a list of nodes in a
 cluster with this request:
 
+    curl -u admin:password http://localhost:8091/pools/default/buckets/default/nodes
 
-```
-> curl -u Admin:password http://10.4.2.4:8091/pools/default/buckets/default/nodes
-```
-
+Replace the *admin*, *password*, and values in the above example with your
+actual values.
+    
 You can send this request using the IP address and port for any node in the
 cluster. This sends the following HTTP request:
-
 
 ```
 GET /pools/default/buckets/default/nodes HTTP/1.1
@@ -342,7 +342,6 @@ Accept: */*
 
 If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
-
 
 ```
 {"servers":[
@@ -356,13 +355,12 @@ similar to the following example:
 You can then make a REST request to the specific IP address and port of given
 node shown in the response and add `/stats` as the endpoint:
 
+    curl -u admin:password http://10.4.2.4:8091/pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats
 
-```
-> curl -u Administrator:password http://10.4.2.4:8091/pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats
-```
-
+Replace the *admin*, *password*, and *10.4.2.4* values in the above example
+with your actual values.
+    
 This sends the following HTTP request:
-
 
 ```
 GET /pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats HTTP/1.1
@@ -373,7 +371,6 @@ Accept: */*
 
 If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
-
 
 ```
 {"hostname":"10.4.2.4:8091","hot_keys":[{"name":"[2012-11-05::3:47:01]"
