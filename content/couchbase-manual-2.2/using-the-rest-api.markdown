@@ -187,8 +187,11 @@ For more information about this type of user, see [Read-Only Users](#couchbase-a
 
 To create a read-only user, you need administrative access:
 
-    curl -X POST -u admin:password /settings/readOnlyUser -d username=a_name  -d password=a_passwword 
+    curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name  -d password=a_passwword 
     
+Replace the *admin*, *password*, *localhost*, *a_name*, and *a_password*
+values in the above example with your actual values.
+
 Upon success, you will get this response:
 
     success: 200 | []
