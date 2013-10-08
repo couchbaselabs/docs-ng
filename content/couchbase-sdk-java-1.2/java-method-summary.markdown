@@ -64,7 +64,7 @@ Method                                                                          
 
 ## Asynchronous Method Calls
 
-In addition, the librares also support a range of asynchronous methods that can
+In addition, the libraries also support a range of asynchronous methods that can
 be used to store, update and retrieve values without having to explicitly wait
 for a response.
 
