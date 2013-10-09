@@ -29,8 +29,8 @@ For now you probably need only one instance of Couchbase Server running in
 a cluster and one instance of the Elasticsearch engine. Later as you test your
 integration under load and deploy your implementation, you will need to add more
 servers to handle the workload. At this phase, the most important point about
-the Couchbase Server installation is to *make sure that you include the beer-sample
-data, which is available as an installation option.* The examples in this guide build on data contained in the sample database. For more information about using
+the Couchbase Server installation is to make sure that you include the beer-sample
+data, which is available as an installation option. The examples in this guide build on data contained in the sample database. For more information about using
 sample buckets, see [Couchbase Web Console, Installing Sample
 Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console-settings-samplebuckets.html).
 
