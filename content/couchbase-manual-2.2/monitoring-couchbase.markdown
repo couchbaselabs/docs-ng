@@ -200,8 +200,8 @@ the proxy and individual nodes have directly accessible statistics interfaces.
 
 ### REST Interface Statistics
 
-The easiest to use interface into the statistics provided by REST is to use the
-[Web Console](#couchbase-admin-web-console). This GUI gathers
+To interact with statistics provided by REST, use the
+[Couchbase Web Console](#couchbase-admin-web-console). This GUI gathers
 statistics via REST and displays them to your browser. The REST interface has a
 set of resources that provide access to the current and historic statistics the
 cluster gathers and stores. See the [REST documentation](#couchbase-admin-restapi)
