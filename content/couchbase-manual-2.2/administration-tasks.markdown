@@ -3715,8 +3715,16 @@ active will be displayed within the `Past Replications` section of the
 As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem` which performs
  replication on a destination cluster with the memcached prototocol. This is the default mode for 
  replications for Couchbase Server 2.2+. The other mode which exists is known as `capi` and is over 
- a REST protocol. When you upgrade Couchbase Server you need to make sure that both 
- your source and destination clusters support the replication mode you want to use. You may also need to delete the replication, complete the upgrade, then recreate the replication. If you do not, you could experience data loss during replication:
+ a REST protocol. 
+ 
+ These are pre-requistes that needs to be considered:
+ 
+ 1. When you upgrade Couchbase Server you need to make sure that both 
+ your source and destination clusters support the replication mode you want to use. 
+ 2. Network port 11210 needs to be open between nodes for 'xmem' mode of replication to work.
+ 3. You may also need to delete the replication, complete the upgrade, then recreate the replication. 
+ 
+ If you do not, you could experience data loss during replication:
  
  - `xmem` - only 2.2 servers and above support it.
  - `capi` - both 2.2 and pre-2.2 servers support it.

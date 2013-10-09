@@ -183,15 +183,15 @@ with Couchbase Server, as follows:
 
 <a id="table-couchbase-network-ports"></a>
 
-Port                       | Description                   | Node to Node | Node to Client | Cluster Administration | XDCR
----------------------------|-------------------------------|--------------|----------------|------------------------|-----
-8091                       | Web Administration Port       | Yes          | Yes            | Yes                    | Yes 
-8092                       | Couchbase API Port            | Yes          | Yes            | No                     | Yes 
-11209                      | Internal Cluster Port         | Yes          | No             | No                     | No  
-11210                      | Internal Cluster Port         | Yes          | Yes            | No                     | No  
-11211                      | Client interface (proxy)      | No           | Yes            | No                     | No  
-4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No  
-21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No  
+Port                       | Description                   | Node to Node | Node to Client | Cluster Administration | XDCR (version 1) | XDCR (version 2)
+---------------------------|-------------------------------|--------------|----------------|------------------------|------------------|-----------------
+8091                       | Web Administration Port       | Yes          | Yes            | Yes                    | Yes              | Yes 
+8092                       | Couchbase API Port            | Yes          | Yes            | No                     | Yes              | Yes 
+11209                      | Internal Bucket Port          | Yes          | No             | No                     | No               | No 
+11210                      | Internal/External Bucket Port | Yes          | Yes            | No                     | No               | Yes  
+11211                      | Client interface (proxy)      | No           | Yes            | No                     | No               | No  
+4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No               | No 
+21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No               | No  
 
 <a id="couchbase-getting-started-install"></a>
 
