@@ -1401,7 +1401,7 @@ Ranges](#couchbase-views-writing-querying-selection-partial).
 
 ## Using the Document Editor
 
-The Document Viewer and Editor enables you to browser, view and edit individual
+The Document Viewer and Editor enables you to browse, view, and edit individual
 documents stored in Couchbase Server buckets. To get to the `Documents` editor,
 click on the `Documents` button within the `Data Buckets` view. This will open a
 list of available documents. You are shown only a selection of the available
