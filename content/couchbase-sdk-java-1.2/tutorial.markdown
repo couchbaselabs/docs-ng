@@ -1,7 +1,7 @@
 # Tutorial
 
 In this chapter we build on the foundations introduced in the [Getting
-Started](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/getting-started.html)
+Started](http://docs.couchbase.com/couchbase-sdk-java-1.2/#getting-started)
 section and build a complete web application. Make sure to have the
 `beer-sample` bucket installed, because the application will allow you to
 display and manage beers and breweries. If you still need to get the sample
@@ -23,21 +23,21 @@ MacOS or Linux. If you use Windows, you will need to modify the paths
 accordingly. Also, make sure to have at least [Maven](http://maven.apache.org/)
 installed on your machine.
 
- 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.0 and
-    [install](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install.html)
+ 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.2 and
+    [install](http://docs.couchbase.com/couchbase-manual-2.2/#installing-and-upgrading)
     it. Make sure you install the
-    [beer-sample](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-sampledata-beer.html)
+    [beer-sample](http://docs.couchbase.com/couchbase-manual-2.2/#beer-sample-bucket)
     dataset when you run the wizard, because this tutorial will use it.
 
  1. Add the following views and design documents to the `beer-sample` bucket. Views
     and design documents enable us to index and query data from our database. Later
     we will publish the views as production views. For more information about using
     views from an SDK, see [Couchbase Developer Guide, Finding Data with
-    Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html).
+    Views](http://docs.couchbase.com/couchbase-manual-2.2/#querying-views).
 
     The first design document name is `beer` and view name is `by_name` :
 
-     ```
+     ```javascript
      function (doc, meta) {
        if(doc.type && doc.type == "beer") {
          emit(doc.name, null);
@@ -47,7 +47,7 @@ installed on your machine.
 
     The other design document name is `brewery` and view name is `by_name` :
 
-     ```
+     ```javascript
      function (doc, meta) {
        if(doc.type && doc.type == "brewery") {
          emit(doc.name, null);
@@ -96,7 +96,7 @@ installed on your machine.
 
 ## Preparing Your Project
 
-This tutorial uses Servlets and JSPs in combination with Couchbase Server 2.0 to
+This tutorial uses Servlets and JSPs in combination with Couchbase Server 2.2 to
 display and manage beers and breweries found in the `beer-sample` dataset. The
 easiest way is to develop it with your IDE such as Eclipse or NetBeans. Then you
 can use your IDE to publish it automatically to an application server such as
@@ -147,7 +147,7 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full `pom.xml`
 :
 
 
-```
+```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -159,23 +159,11 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full `pom.xml`
 
     <name>beersample-java</name>
 
-    <repositories>
-        <repository>
-            <id>couchbase</id>
-            <name>Couchbase Maven Repository</name>
-            <layout>default</layout>
-            <url>http://files.couchbase.com/maven2/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.1.4</version>
+            <version>1.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -224,9 +212,9 @@ application function correctly we need some more views. This is also a very good
 chance for you to see how you can manage views inside Couchbase Web Console. For
 more information on the topics, see [Couchbase Developer Guide, Finding Data
 with
-Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html)
+Views](http://docs.couchbase.com/couchbase-manual-2.2/#querying-views)
 and [Couchbase Manual, Using the Views
-Editor](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-editor.html).
+Editor](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-views-editor).
 
 Since we want to list beers and breweries by their name, we need to define one
 view function for each type of result that we want.
@@ -250,13 +238,13 @@ view function for each type of result that we want.
     results. In our example, we do not use the `reduce` functions at all but you can
     play around with reduce functions and see how they work. See, Couchbase
     Developer Guide, [Using Built-in Reduce
-    Functions](http://www.couchbase.com/docs/couchbase-devguide-2.0/using-built-in-reduces.html)
+    Functions](http://docs.couchbase.com/couchbase-devguide-2.2/#using-built-in-reduces)
     and [Creating Custom
-    Reduces](http://www.couchbase.com/docs/couchbase-devguide-2.0/creating-custom-reduces.html).
+    Reduces](http://docs.couchbase.com/couchbase-devguide-2.2/#creating-custom-reduces).
 
  1. Insert the following `map` function (that's JavaScript) and click `Save`.
 
-     ```
+     ```javascript
      function (doc, meta) {
        if(doc.type && doc.type == "beer") {
          emit(doc.name, null);
@@ -289,7 +277,7 @@ already know how to do this, here is all the information you need to create it:
 
  * Map Function:
 
-    ```
+    ```javascript
     function (doc, meta) {
       if(doc.type && doc.type == "brewery") {
         emit(doc.name, null);
@@ -301,7 +289,7 @@ The final step that you need to do is to push the design documents in production
 mode for Couchbase Server. While the design documents are in `development`, the
 index is only applied on the local node. See, [Couchbase Manual, Development and
 Production
-Views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-types.html).
+Views](http://docs.couchbase.com/couchbase-manual-2.2/#view-basics).
 Since we want to have the index on the whole dataset:
 
  1. In Couchbase Web Console, click the Views Tab.
@@ -314,15 +302,15 @@ For more information about using views for indexing and querying from Couchbase
 Server, here are some useful resources:
 
  * General Information: [Couchbase Server Manual: Views and
-   Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+   Indexes](http://docs.couchbase.com/couchbase-manual-2.2/#view-basics).
 
  * Sample Patterns: to see examples and patterns you can use for views, see
    [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.2/#view-and-query-pattern-samples).
 
  * Timestamp Pattern: many developers frequently ask about extracting information
    based on date or time. To find out more, see [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns-timestamp.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.2/#date-and-time-selection).
 
 <a id="preps-webxml"></a>
 
@@ -333,7 +321,7 @@ be routed, we need to define a `web.xml` inside the `WEB-INF` directory of our
 project:
 
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <listener>
@@ -396,7 +384,7 @@ startup and closes the connection when the application shuts down. Here is the
 full class:.
 
 
-```
+```java
 package com.couchbase.beersample;
 
 public class ConnectionManager implements ServletContextListener {
@@ -472,7 +460,7 @@ Since there is no Couchbase Server interaction involved, we just tell it to
 render the JSP template:
 
 
-```
+```java
 package com.couchbase.beersample;
 
 public class WelcomeServlet extends HttpServlet {
@@ -492,7 +480,7 @@ Aside from that, it shows a nice greeting and links to the servlets that provide
 the actual functionality:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -530,7 +518,7 @@ we do so now. Create a `layout.tag` file in the `/WEB-INF/tags` directory that
 looks like this:
 
 
-```
+```xml
 <%@tag description="Page Layout" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -599,7 +587,7 @@ Here is the bare structure of our `BeerServlet`, which will be filled with live
 data soon. Once again, we removed comments and imports for the sake of brevity:
 
 
-```
+```java
 package com.couchbase.beersample;
 
 public class BeerServlet extends HttpServlet {
@@ -675,7 +663,7 @@ all beers. The following code belongs to the `handleIndex` method and will build
 the list:
 
 
-```
+```java
 // Fetch the View
 View view = client.getView("beer", "by_name");
 
@@ -718,7 +706,7 @@ At this point we can implement the `index.jsp` template which will iterate over
 the `ArrayList` and print the beers out in a nicely-formatted table:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -763,7 +751,7 @@ link to the associated brewery that you can click on. Now we implement the
 delete action for each beer, since its very easy to do with Couchbase:
 
 
-```
+```java
 private void handleDelete(HttpServletRequest request,
   HttpServletResponse response) throws IOException, ServletException, InterruptedException, ExecutionException {
 
@@ -793,7 +781,7 @@ into a Java structure, so we can use it in the template. We again make use of
 the excellent Google GSON library to handle this for us:
 
 
-```
+```java
 private void handleEdit(HttpServletRequest request,
     HttpServletResponse response) throws ServletException, IOException {
 
@@ -832,7 +820,7 @@ new beers as opposed to editing an existing beer anytime we pass no Beer ID to
 the edit method. Here is the corresponding edit.jsp template:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -906,7 +894,7 @@ parsing and storing itself. Since we do form submission through a POST request,
 we need to implement the `doPost()` method on our servlet:
 
 
-```
+```java
 @Override
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -949,7 +937,7 @@ The last line redirects to a show method, which just shows all fields of the
 document. Since the patterns are the same as before, here is the show method:
 
 
-```
+```java
 private void handleShow(HttpServletRequest request,
   HttpServletResponse response) throws IOException, ServletException {
 
@@ -974,7 +962,7 @@ finds no document, we get a return of null in the Java SDK. The template then
 just prints out all keys and values in a table:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -1000,7 +988,7 @@ it to dynamically filter our table results based on the user input. We will use
 nearly the same code for the filter as in the index method; except this time we
 make use of range queries to define a beginning and end to search for. For more
 information about performing range queries, see
-[Ordering](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-querying-ordering.html).
+[Ordering](http://docs.couchbase.com/couchbase-manual-2.2/#view-and-query-pattern-samples).
 
 Before we implement the actual Java method, we need to put the following snippet
 in the `js/beersample.js` file. You may have already done this at the beginning
@@ -1008,13 +996,13 @@ of the tutorial, and if so skip this step. This code takes any searchbox changes
 from the UI and updates the table with the JSON returned from the search method:
 
 
-```
+```javasript
 $("#beer-search").keyup(function() {
    var content = $("#beer-search").val();
    if(content.length >= 0) {
        $.getJSON("/beers/search", {"value": content}, function(data) {
            $("#beer-table tbody tr").remove();
-           for(var i=0;i<data.length;i++) {
+           for(var i=0;i < data.length; i++) {
                var html = "<tr>";
                html += "<td><a href=\"/beers/show/"+data[i].id+"\">"+data[i].name+"</a></td>";
                html += "<td><a href=\"/breweries/show/"+data[i].brewery+"\">To Brewery</a></td>";
@@ -1037,7 +1025,7 @@ and creates new rows with the new JSON results. The search method looks like
 this:
 
 
-```
+```java
 private void handleSearch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
   // Exctract the searched value
@@ -1090,7 +1078,7 @@ this convention, but its very fast and efficient when accessing the view.
 ## Wrapping Up
 
 The tutorial presents an easy approach to start a web application with Couchbase
-Server 2.0 as the underlying data source. If you want to dig a little bit
+Server 2.2 as the underlying data source. If you want to dig a little bit
 deeper, see the full source code on [couchbaselabs on
 GitHub](http://github.com/couchbaselabs/beersample-java). This contains more
 servlets and code to learn from. This may be extended and updated from time to
