@@ -1,4 +1,4 @@
-# Java Troubleshooting
+# Advanced Usage
 
 This Couchbase SDK Java provides a complete interface to Couchbase Server
 through the Java programming language. For more on Couchbase Server and Java
