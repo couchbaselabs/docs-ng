@@ -178,11 +178,11 @@ the proxy and individual nodes have directly accessible statistics interfaces.
 
 ### REST Interface Statistics
 
-[The easiest to use interface into the statistics provided by REST is to use the
-[Using the Web Console](#couchbase-admin-web-console). This GUI gathers
+To interact with statistics provided by REST, use the
+[Couchbase Web Console](#couchbase-admin-web-console). This GUI gathers
 statistics via REST and displays them to your browser. The REST interface has a
 set of resources that provide access to the current and historic statistics the
-cluster gathers and stores. See theREST documentation](#couchbase-admin-restapi)
+cluster gathers and stores. See the [REST documentation](#couchbase-admin-restapi)
 for more information.
 
 <a id="couchbase-monitoring-nodestats"></a>
@@ -193,9 +193,9 @@ for more information.
 documentation](http://github.com/membase/ep-engine/blob/master/docs/stats.org)
 can be found in the repository.
 
-[Along with stats at the REST and UI level, individual nodes can also be queried
+Along with stats at the REST and UI level, individual nodes can also be queried
 for statistics either through a client which uses binary protocol or through
-thecbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
+the [cbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
 Server.
 
 For example:
