@@ -24,15 +24,15 @@ you have the "beer-sample" bucket configured. If you need any help on setting up
 everything, see the following documents:
 
  * [Using the Couchbase Web
-   Console](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-introduction.html),
+   Console](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-web-console),
    for information on using the Couchbase Administrative Console,
 
  * [Couchbase
-   CLI](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console.html),
+   CLI](http://docs.couchbase.com/couchbase-manual-2.2/#command-line-interface-for-administration),
    for the command line interface,
 
  * [Couchbase REST
-   API](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi.html),
+   API](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-rest-api),
    for creating and managing Couchbase resources.
 
 The TCP/IP port allocation on Windows by default includes a restricted number of
@@ -48,13 +48,13 @@ Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
 **Installing Couchbase Server**
 
 You will need the latest version of Couchbase Server. You can get [the latest
-Couchbase Server 2.0](http://couchbase.com/download) release and install it.
+Couchbase Server 2.2](http://couchbase.com/download) release and install it.
 
 As you follow the download instructions and setup wizard, make sure install the
 `beer-sample` default bucket. It contains sample data of beers and breweries,
 which that you will use with the examples here.
 
-If you already have Couchbase Server 2.0 and but do not have the `beer-sample`
+If you already have Couchbase Server 2.2 and but do not have the `beer-sample`
 bucket or you deleted it, open the Couchbase Web Console and navigate to
 `Settings/Sample Buckets`. Activate the `beer-sample` checkbox and click
 `Create`. In the right hand corner you will see a notification box that will
@@ -64,17 +64,18 @@ disappear once the bucket is ready to be used.
 
 There are two options to include the Client SDK in your project. You can either
 manually include all dependencies in your `CLASSPATH` or if you want it to be
-easier, you can use [Maven](http://maven.apache.org/).
+easier, you can use [Maven](http://maven.apache.org/). Since the `1.2.0` release,
+all couchbase related dependencies get published to [Maven Central](http://search.maven.org/).
 
 To include the libraries directly in your project,
-[download](http://www.couchbase.com/develop/java/current) the archive and add
+[download](http://www.couchbase.com/communities/java/getting-started) the archive and add
 all `jar` files to your `CLASSPATH` of the system/project. Most IDEs also enable
 you add specific `jar` files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.1.5.jar, or latest version available
+ * couchbase-client-1.2.1.jar, or latest version available
 
- * spymemcached-2.8.12.jar
+ * spymemcached-2.10.1.jar
 
  * commons-codec-1.5.jar
 
@@ -86,49 +87,42 @@ dependencies in your `CLASSPATH` :
 
  * jettison-1.1.jar
 
-Alternatively, you can use a build manager to handle them for you. Couchbase
-provides a [Maven](http://maven.apache.org/) repository that you can use which
-automatically includes the SDK dependencies. The root URL of the repository is
-located under
-[http://files.couchbase.com/maven2/](http://files.couchbase.com/maven2/).
-Depending on your build manager, the exact syntax you use to include it may
+Alternatively, you can use a dependency manager to handle them for you.
+Depending on your tool of choice, the exact syntax you use to include it may
 vary. Here is an example on how to do it in Maven by updating your `pom.xml` :
 
 
-```
-<repositories>
-  <repository>
-    <id>couchbase</id>
-    <name>Couchbase Maven Repository</name>
-    <layout>default</layout>
-    <url>http://files.couchbase.com/maven2/</url>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
-  </repository>
-</repositories>
-
+```xml
 <dependency>
-    <groupId>couchbase</groupId>
+    <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.1.4</version>
-    <scope>provided</scope>
+    <version>1.2.1</version>
 </dependency>
 ```
 
-If you have a background in Scala and want to manage your dependencies through
-[sbt](http://www.scala-sbt.org/), then you can do it with these additions to
+If you program in [Scala](http://scala-lang.org/) and want to manage your dependencies 
+through [sbt](http://www.scala-sbt.org/), then you can do it with these additions to
 your `build.sbt` :
 
 
 ```
-resolvers += "Couchbase Maven Repository" at "http://files.couchbase.com/maven2"
-
-libraryDependencies += "couchbase" % "couchbase-client" % "1.1.4"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.2.1"
 ```
 
-Now that you have the Java SDK third party dependencies set up in your classpath
-or via a build manager, you can set up your IDE to use the SDK.
+Finally, for [gradle](http://www.gradle.org/) you can use the following snippet:
+
+```groovy
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile "com.couchbase.client:couchbase-client:1.2.1"
+}
+```
+
+Now that we have all needed dependencies in the `CLASSPATH`, we cen set up our
+IDE.
 
 **Setting up your IDE**
 
@@ -158,29 +152,16 @@ IDE and open it:
     Now that your project, you can add the Couchbase Maven repository to use the
     Java SDK.
 
- 1. Select `Window -> Services` to open a list of available services.
-
- 1. Under the `Maven Repositories` tree, right click on the Couchbase Java SDK and
-    click `Add Repository`.
-
- 1. Use the following settings for the repository:
-
-     * ID: couchbase
-
-     * Name: Couchbase Maven Repository
-
-     * URL: http://files.couchbase.com/maven2/
-
  1. Go back to your new project and right click on `Dependencies`, and then `Add
     Dependency`. For now, we only need to add the Couchbase SDK itself, because the
     transitive dependencies will be fetched automatically. Use the following
     settings:
 
-     * Group ID: couchbase
+     * Group ID: com.couchbase.client
 
      * Artifact ID: couchbase-client
 
-     * Version: 1.1.4
+     * Version: 1.2.1
 
 Now all the dependencies are in place and we can move forward to our first
 application with Couchbase.
@@ -198,7 +179,7 @@ statements and also assume an existing connection to the cluster.
 Listing 1: Hello Couchbase!
 
 
-```
+```java
 package com.couchbase.examples;
 
 import com.couchbase.client.CouchbaseClient;
@@ -222,11 +203,10 @@ public class App {
     }
 
     // Set your first document with a key of "hello" and a value of "couchbase!"
-    int timeout = 0; // 0 means store forever
-    client.set("hello", timeout, "couchbase!");
+    client.set("hello", "couchbase!").get();
 
     // Return the result and cast it to string
-    String result = (String)client.get("hello");
+    String result = (String) client.get("hello");
     System.out.println(result);
 
     // Shutdown the client
@@ -281,7 +261,7 @@ little more discussion:
 Be aware that by default, the logger for the Java SDK will log from `INFO`
 upwards by default. This means the Java SDK will log a good amount of
 information about server communications. From our Hello Couchbase example the
-log look likes this:
+log looks like this:
 
 
 ```
@@ -310,7 +290,7 @@ more complex we will discuss them later in this guide. In the meantime, we show
 `get` first:
 
 
-```
+```java
 Object get = client.get("mykey");
 ```
 
@@ -319,7 +299,7 @@ get a `Object` back. If you store JSON documents the actual document will be a
 String, so you can safely convert it to a string:
 
 
-```
+```java
 String json = (String) client.get("mykey");
 ```
 
@@ -327,15 +307,15 @@ If the server finds no document for that key it will return a `null`. It is
 important that you check for `null` in your code, to prevent
 `NullPointerExceptions` later down the stack.
 
-With Couchbase Server 2.0, you can also query for documents with secondary
+With Couchbase Server 2.0 and later, you can also query for documents with secondary
 indexes, which we collectively call
-[Views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+[Views](http://docs.couchbase.com/couchbase-manual-2.2/#views-and-indexes).
 This feature enables you to provide *map functions* to extract information and
 you can optionally provide *reduce functions* to perform calculations on
 information. This guide gets you started on how to use them through the Java
 SDK, if you want to learn more, including how to set up views with Couchbase Web
 Console please see [Couchbase Server Manual,
-Views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+Views](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-views-editor).
 
 This next example assumes you already have a views function set up with
 Couchbase Web Console. Once you create your View in the Web Console, you can
@@ -345,7 +325,7 @@ query the cluster with both the `View` and the `Query` objects. In its simplest
 form, it looks like this:
 
 
-```
+```java
 // 1: Get the View definition from the cluster
 View view = client.getView("beer", "brewery_beers");
 
@@ -387,7 +367,7 @@ object. We can use it to iterate over the results and print out some details
 fetches the first five results):
 
 
-```
+```java
 View view = client.getView("beer", "brewery_beers");
 Query query = new Query();
 query.setIncludeDocs(true).setLimit(5); // include all docs and limit to 5
@@ -402,7 +382,6 @@ for(ViewRow row : result) {
 
 In the logs, you can see the corresponding document keys automatically sorted in
 ascending order:
-
 
 ```
 21st_amendment_brewery_cafe
@@ -419,7 +398,7 @@ ascending order:
 If you want to get delete documents, you can use the `delete` operation:
 
 
-```
+```java
 OperationFuture<Boolean> delete = client.delete("key");
 ```
 
@@ -431,7 +410,7 @@ immediately remove a copy of that document from disk, instead it performs lazy
 deletion for items that expired or deleted items. For more information about how
 the server handles lazy expiration, see [Couchbase Developer Guide, About
 Document
-Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
+Expiration](http://docs.couchbase.com/couchbase-devguide-2.2/#about-document-expiration).
 
 <a id="next-steps"></a>
 
@@ -439,16 +418,14 @@ Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-value
 
 You are now ready start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.0, go to to the [Web Application
-Tutorial](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/tutorial.html).
+Server 2.2, go to to the [Web Application
+Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial).
 Also, the [server
-documentation](http://www.couchbase.com/docs/couchbase-manual-2.0/) and the
+documentation](http://docs.couchbase.com/couchbase-manual-2.2/) and the
 [developer
-documentation](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html)
+documentation](http://docs.couchbase.com/couchbase-devguide-2.2/)
 provide useful information for your day-to-day work with Couchbase. Finally, the
 API docs of the Java SDK can be found
-[here](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/api-reference-summary.html).
-And JavaDoc is also
-[available](http://www.couchbase.com/autodocs/couchbase-java-client-1.1.4/index.html).
+[here](http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html).
 
 <a id="tutorial"></a>
