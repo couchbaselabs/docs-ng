@@ -4,6 +4,54 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-2-1a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.2.1 GA (11 October 2013)
+
+This 1.2.1 release is the first bugfix release for the 1.2 series. It fixes some
+issues for newly added features in 1.2.0. Everyone on 1.2.0 is encouraged to
+upgrade to this release.
+
+
+**New Features and Behavior Changes in 1.2.1**
+
+ * [SPY-135](http://www.couchbase.com/issues/browse/SPY-135): In addition to the 
+   exposed syncrhonous CAS with expiration methods, there is now also the asynchronous
+   overloaded method exposed.
+
+   ```java
+   OperationFuture<CASResponse> casFuture = client.asyncCAS(key, future.getCas(), 2, value);
+   ```
+
+**Fixes in 1.2.1**
+
+ * [SPY-137](http://www.couchbase.com/issues/browse/SPY-137): If the `ExecutorService` was not
+   overriden through the factory, it is now properly shut down on `client.shutdown()`. This is
+   not the case in 1.2.0 which results in some threads still running and preventing the app
+   from halting completely.
+ * [SPY-138](http://www.couchbase.com/issues/browse/SPY-138): The default `ExecutorService`
+   can now be overriden properly through the `setListenerExecutorService(ExecutorService executorService)`
+   method.
+
+   Please note that if you do this, you are also responsible for shutting it down properly 
+   afterwards (since it can be shared across many application scopes, the CouchbaseClient can
+   not shut it down on your behalf).
+
+   ```java
+   CouchbaseConnectionFactoryBuilder builder = new CouchbaseConnectionFactoryBuilder();
+   ExecutorService service = Executors.newFixedThreadPool(1);
+   CouchbaseConnectionFactory cf = builder.buildCouchbaseConnection(/*...*/);
+   ```
+ * [JCBC-366](http://www.couchbase.com/issues/browse/JCBC-366): Enabling metrics is now easier
+   and works as originally designed. Now it is enough to enable it through the builder and not
+   in addition also set the property.
+
+   ```java
+   CouchbaseConnectionFactoryBuilder builder = new CouchbaseConnectionFactoryBuilder();
+   builder.setEnableMetrics(MetricType.DEBUG);
+   CouchbaseConnectionFactory cf = builder.buildCouchbaseConnection();
+   ```
+
 <a id="couchbase-sdk-java-rn_1-2-0a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.2.0 GA (13 September 2013)
