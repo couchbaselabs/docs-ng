@@ -1,9 +1,9 @@
-# Java Troubleshooting
+# Advanced Usage
 
 This Couchbase SDK Java provides a complete interface to Couchbase Server
 through the Java programming language. For more on Couchbase Server and Java
 read our [Java SDK Getting Started
-Guide](http://www.couchbase.com/develop/java/current) followed by our in-depth
+Guide](http://www.couchbase.com/communities/java) followed by our in-depth
 Couchbase and Java tutorial. We recommended Java SE 6 (or higher) for running
 the Couchbase Client Library.
 
@@ -38,14 +38,14 @@ to set up Java SDK logging:
 To provide logging via spymemcached:
 
 
-```
+```java
 System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.SunLogger");
 ```
 
 or
 
 
-```
+```java
 System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.Log4JLogger");
 ```
 
@@ -54,7 +54,7 @@ provide logging via the JDK, if you are running a command-line Java program, you
 can run the program with logging by setting a property:
 
 
-```
+```java
 -Djava.util.logging.config.file=logging.properties
 ```
 
@@ -78,38 +78,38 @@ you, it may be easier if you express logging in your application code. Here is
 an example:
 
 
-```
+```java
 // Tell things using spymemcached logging to use internal SunLogger API
-        Properties systemProperties = System.getProperties();
-        systemProperties.put("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.SunLogger");
-        System.setProperties(systemProperties);
+Properties systemProperties = System.getProperties();
+systemProperties.put("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.SunLogger");
+System.setProperties(systemProperties);
 
-        Logger.getLogger("net.spy.memcached").setLevel(Level.FINEST);
-        Logger.getLogger("com.couchbase.client").setLevel(Level.FINEST);
-        Logger.getLogger("com.couchbase.client.vbucket").setLevel(Level.FINEST);
+Logger.getLogger("net.spy.memcached").setLevel(Level.FINEST);
+Logger.getLogger("com.couchbase.client").setLevel(Level.FINEST);
+Logger.getLogger("com.couchbase.client.vbucket").setLevel(Level.FINEST);
 
-        //get the top Logger
-        Logger topLogger = java.util.logging.Logger.getLogger("");
+//get the top Logger
+Logger topLogger = java.util.logging.Logger.getLogger("");
 
-        // Handler for console (reuse it if it already exists)
-        Handler consoleHandler = null;
-        //see if there is already a console handler
-        for (Handler handler : topLogger.getHandlers()) {
-            if (handler instanceof ConsoleHandler) {
-                //found the console handler
-                consoleHandler = handler;
-                break;
-            }
-        }
+// Handler for console (reuse it if it already exists)
+Handler consoleHandler = null;
+//see if there is already a console handler
+for (Handler handler : topLogger.getHandlers()) {
+    if (handler instanceof ConsoleHandler) {
+        //found the console handler
+        consoleHandler = handler;
+        break;
+    }
+}
 
-        if (consoleHandler == null) {
-            //there was no console handler found, create a new one
-            consoleHandler = new ConsoleHandler();
-            topLogger.addHandler(consoleHandler);
-        }
+if (consoleHandler == null) {
+    //there was no console handler found, create a new one
+    consoleHandler = new ConsoleHandler();
+    topLogger.addHandler(consoleHandler);
+}
 
-        //set the console handler to fine:
-        consoleHandler.setLevel(java.util.logging.Level.FINEST);
+//set the console handler to fine:
+consoleHandler.setLevel(java.util.logging.Level.FINEST);
 ```
 
 <a id="java-sdk-handling-timeouts"></a>
@@ -163,14 +163,14 @@ do this for a bulk load of data so that you do not overwhelm your JVM. The
 following is an example:
 
 
-```
+```java
 List<URI> baselist = new ArrayList<URI>();
-        baselist.add(new URI("http://localhost:8091/pools"));
+baselist.add(new URI("http://localhost:8091/pools"));
 
-        CouchbaseConnectionFactoryBuilder cfb = new CouchbaseConnectionFactoryBuilder();
-        cfb.setOpQueueMaxBlockTime(5000); // wait up to 5 seconds when trying to enqueue an operation
+CouchbaseConnectionFactoryBuilder cfb = new CouchbaseConnectionFactoryBuilder();
+cfb.setOpQueueMaxBlockTime(5000); // wait up to 5 seconds when trying to enqueue an operation
 
-        CouchbaseClient myclient = new CouchbaseClient(cfb.buildCouchbaseConnection(baselist, "default", "default", ""));
+CouchbaseClient myclient = new CouchbaseClient(cfb.buildCouchbaseConnection(baselist, "default", "default", ""));
 ```
 
 <a id="java-sdk-bulk-load-and-backoff"></a>
@@ -192,7 +192,7 @@ bulk load. The backoff essentially reduces the number of requests sent to
 Couchbase Server as it receives OOM errors:
 
 
-```
+```java
 package com.couchbase.sample.dataloader;
 
 import com.couchbase.client.CouchbaseClient;
@@ -204,9 +204,9 @@ import net.spy.memcached.ops.OperationStatus;
 
 /**
  *
-   * The StoreHandler exists mainly to abstract the need to store things
-   * to the Couchbase Cluster even in environments where we may receive
-   * temporary failures.
+ * The StoreHandler exists mainly to abstract the need to store things
+ * to the Couchbase Cluster even in environments where we may receive
+ * temporary failures.
  *
  * @author ingenthr
  */
@@ -230,8 +230,6 @@ public class StoreHandler {
     this.baselist = baselist; // TODO: maybe copy this?
     this.bucketname = bucketname;
     this.password = password;
-
-
   }
 
   /**
@@ -325,16 +323,15 @@ public class StoreHandler {
 There is also a setting you can provide at the connection-level for Couchbase
 Java SDK that will also help you avoid too many asynchronous requests:
 
-
-```
+```java
 List<URI> baselist = new ArrayList<URI>();
-        baselist.add(new URI("http://localhost:8091/pools"));
+baselist.add(new URI("http://localhost:8091/pools"));
 
-        CouchbaseConnectionFactoryBuilder cfb = new CouchbaseConnectionFactoryBuilder();
-        cfb.setOpTimeout(10000);  // wait up to 10 seconds for an operation to succeed
-        cfb.setOpQueueMaxBlockTime(5000); // wait up to 5 seconds when trying to enqueue an operation
+CouchbaseConnectionFactoryBuilder cfb = new CouchbaseConnectionFactoryBuilder();
+cfb.setOpTimeout(10000);  // wait up to 10 seconds for an operation to succeed
+cfb.setOpQueueMaxBlockTime(5000); // wait up to 5 seconds when trying to enqueue an operation
 
-        CouchbaseClient myclient = new CouchbaseClient(cfb.buildCouchbaseConnection(baselist, "default", "default", ""));
+CouchbaseClient myclient = new CouchbaseClient(cfb.buildCouchbaseConnection(baselist, "default", "default", ""));
 ```
 
 <a id="java-sdk-retry"></a>
@@ -382,7 +379,7 @@ try to shorten pause times. Given the Couchbase client's 2.5 second default
 timeout, with our basic testing we found the following to be useful:
 
 
-```
+```java
 -XX:+UseConcMarkSweepGC -XX:MaxGCPauseMillis=850
 ```
 
