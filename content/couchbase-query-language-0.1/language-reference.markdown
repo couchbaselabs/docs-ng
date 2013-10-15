@@ -157,25 +157,27 @@ The following describes optional clauses you can use in your select statement:
          "hobbies":["surfing"]
         }
         
-You can perform query with `FROM` and `AS` to get any children from the first contact retrieved:
+    You can perform a query with `FROM` and `AS` to get any children from the first contact retrieved:
 
         SELECT children[0].name AS kid
         	FROM contacts
         	
-This will return a result as follows:
+    This will return a result as follows:
     
-    "resultset": [
-       {
-         "kid": "bill"
-       },
-       ....
-       ]
+        "resultset": [
+           {
+             "kid": "xena"
+           },
+           ....
+           ]
+
 
     Another way to use the `FROM` clause is to specify a path within a bucket as `data-source`. The path refers to an array in the your documents. With this option, the server evaluates the path for each document in the data bucket and the value at that path becomes an input for the query. For example, you have a data bucket named `contacts` which has documents that describes each contact in a system. Each document has an array called `address`. To get all addresses as input for a query, you use this clause:
 
         FROM contacts.address
 
-    This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, that contact will not be part of the query input.    
+
+	This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, that contact will not be part of the query input.    
 
 * **OVER** - This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will then become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
 
