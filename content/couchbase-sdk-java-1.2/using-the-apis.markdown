@@ -23,16 +23,16 @@ object.
 For example, to connect to the local host and the `default` bucket:
 
 
-```
+```java
 List<URI> uris = new LinkedList<URI>();
+uris.add(URI.create("http://127.0.0.1:8091/pools"));
 
-    uris.add(URI.create("http://127.0.0.1:8091/pools"));
-    try {
-      client = new CouchbaseClient(uris, "default", "");
-    } catch (Exception e) {
-      System.err.println("Error connecting to Couchbase: " + e.getMessage());
-      System.exit(0);
-    }
+try {
+  client = new CouchbaseClient(uris, "default", "");
+} catch (Exception e) {
+  System.err.println("Error connecting to Couchbase: " + e.getMessage());
+  System.exit(0);
+}
 ```
 
 The format of this constructor is:
@@ -68,14 +68,12 @@ similar to the earlier example except that we use the
 `CouchbaseConnectionFactory`.
 
 
-```
+```java
 List<URI> baseURIs = new ArrayList<URI>();
-        baseURIs.add(base);
-        CouchbaseConnectionFactory cf = new
-                CouchbaseConnectionFactory(baseURIs,
-                    "userbucket", "password");
+baseURIs.add(base);
 
-        client = new CouchbaseClient((CouchbaseConnectionFactory) cf);
+CouchbaseConnectionFactory cf = new CouchbaseConnectionFactory(baseURIs, "userbucket", "password");
+client = new CouchbaseClient((CouchbaseConnectionFactory) cf);
 ```
 
 <a id="couchbase-sdk-ccfb"></a>
@@ -98,29 +96,26 @@ We subsequently use the `buildCouchbaseConnection` specifying the bucket name,
 password and an username (which is not being used any more) to get a
 `CouchbaseConnectionFactory` object. We then create a `CouchbaseClient` object.
 
-
-```
+```java
 List<URI> baseURIs = new ArrayList<URI>();
-        baseURIs.add(base);
-        CouchbaseConnectionFactoryBuilder cfb = new
-            CouchbaseConnectionFactoryBuilder();
+baseURIs.add(base);
+CouchbaseConnectionFactoryBuilder cfb = new CouchbaseConnectionFactoryBuilder();
 
-        // Ovveride default values on CouchbaseConnectionFactoryBuilder
+// Ovveride default values on CouchbaseConnectionFactoryBuilder
 
-        // For example - wait up to 10 seconds for an operation to succeed
-        cfb.setOpTimeout(10000);
+// For example - wait up to 10 seconds for an operation to succeed
+cfb.setOpTimeout(10000);
 
-        CouchbaseConnectionFactory cf =
-            cfb.buildCouchbaseConnection(baseURIs, "default", "", "");
+CouchbaseConnectionFactory cf = cfb.buildCouchbaseConnection(baseURIs, "default", "", "");
 
-        client = new CouchbaseClient((CouchbaseConnectionFactory) cf);
+client = new CouchbaseClient((CouchbaseConnectionFactory) cf);
 ```
 
 For example, the following code snippet will set the OpTimeOut value to 10000
 secs. before creating the connection as we saw in the code above.
 
 
-```
+```java
 cfb.setOpTimeout(10000);
 ```
 
@@ -154,7 +149,7 @@ period and unit specification. The following will shutdown the active connection
 to all the configured servers after 60 seconds:
 
 
-```
+```java
 client.shutdown(60, TimeUnit.SECONDS);
 ```
 
@@ -175,7 +170,7 @@ You also can shutdown an active connection immediately by using the `shutdown()`
 method to your Couchbase object instance. For example:
 
 
-```
+```java
 client.shutdown();
 ```
 
