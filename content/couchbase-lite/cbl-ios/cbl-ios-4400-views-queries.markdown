@@ -42,7 +42,7 @@ As a side effect you get the documents in reverse order, but you can compensate 
 		NSLog(@"Doc ID = %@", row.key);
 	}
 
-`query.rows` evaluates the query and returns an NSEnumerator that can be used with a `for...in` loop to iterate over the results. Each result is a `CBLQueryRow` object. You might expect the result to be a CBLDocument, but the key-value pairs emitted in views don't necessarily correspond one-to-one to documents and a document might be present multiple times under different keys. If you want the document that emitted a row, you can get it from its `document` property.
+`query.rows` evaluates the query and returns an `NSEnumerator` object that you can   use with a `for...in` loop to iterate over the results. Each result is a `CBLQueryRow` object. You might expect the result to be a CBLDocument, but the key-value pairs emitted in views don't necessarily correspond one-to-one to documents and a document might be present multiple times under different keys. If you want the document that emitted a row, you can get it from the row's `document` property.
 
 ### Creating A View
 
