@@ -24,24 +24,25 @@ No problem: the map function just needs to loop over the phone numbers and emit 
 
 ### Getting All Documents
 
-To start off with, for simplicity we'll look at a very useful predefined view called `_all_docs`. This is equivalent to a view with a map function that simply emits the `_id` field as the key. Its index contains all documents in the database, sorted by ID.
+To start off, for simplicity we'll look at how you can retrieve all documents in the database without using a view.
 
-To query an existing view, get a `CBLQuery` object for it. The built-in `_all_docs` view is accessed directly from the CBLDatabase:
+To retrieve all the documents in the database, you need to create a `CBLQuery` object.
+The  `queryAllDocuments` method in the `CBLDatabase` class returns a new `CBLQuery` object that contains all documents in the database:
 
-	CBLQuery* query = database.getAllDocuments;
+	CBLQuery* query = database.queryAllDocuments;
 
-This creates a new query object. Before running the query, you can customize it &mdash; this is much like the SQL `SELECT` statement's `ORDER BY`, `OFFSET` and `LIMIT` clauses. Let's say you want the ten documents with the highest keys:
+After you obtain the new `CBLQuery` object, you can customize it (this is similar to the SQL `SELECT` statement `ORDER BY`, `OFFSET` and `LIMIT` clauses). The following example shows how to retrieve the ten documents with the highest keys:
 
 	query.limit = 10;
 	query.descending = YES;
 
-As a side effect you get the documents in reverse order, but that's easy to compensate for if it's not appropriate. Now you can iterate over the results:
+As a side effect you get the documents in reverse order, but you can compensate for that if it's not appropriate. Now you can iterate over the results:
 
 	for (CBLQueryRow* row in query.rows) {
 		NSLog(@"Doc ID = %@", row.key);
 	}
 
-`query.rows` evaluates the query and returns an NSEnumerator that can be used with a `for...in` loop to iterate over the results. Each result is a `CBLQueryRow` object&mdash;you might expect it to be a CBLDocument, but the key-value pairs emitted in views don't necessarily correspond one-to-one to documents, so a document might be present multiple times under different keys. If you want the document that emitted a row, you can get it from its `document` property.
+`query.rows` evaluates the query and returns an NSEnumerator that can be used with a `for...in` loop to iterate over the results. Each result is a `CBLQueryRow` object. You might expect the result to be a CBLDocument, but the key-value pairs emitted in views don't necessarily correspond one-to-one to documents and a document might be present multiple times under different keys. If you want the document that emitted a row, you can get it from its `document` property.
 
 ### Creating A View
 
