@@ -40,7 +40,7 @@ To get ready to build your first app, you need to install Couchbase Server, down
 
 **Installing Couchbase Server**
 
-You need the latest version of Couchbase Server. You can get [the latest
+Get the [latest
 Couchbase Server 2.2](http://couchbase.com/download) release and install it.
 
 As you follow the download instructions and setup wizard, make sure you install the
@@ -56,7 +56,7 @@ bucket installed, open the Couchbase Web Console and select
 
 To include the Client SDK in your project, you can either
 manually include all dependencies in your `CLASSPATH`, or if you want it to be
-easier, you can use a dependency manager such as [Maven](http://maven.apache.org/). Since the `1.2.0` release,
+easier, you can use a dependency manager such as [Maven](http://maven.apache.org/). Since the Java SDK 1.2.0 release,
 all Couchbase-related dependencies are published in the [Maven Central Repository](http://search.maven.org/).
 
 To include the libraries directly in your project,
@@ -113,8 +113,7 @@ dependencies {
 }
 ```
 
-Now that we have all needed dependencies in the `CLASSPATH`, we can set up our
-IDE.
+Now that you have all needed dependencies in the `CLASSPATH` environment variable, you can set up your IDE.
 
 **Setting up your IDE**
 
@@ -158,7 +157,7 @@ NetBeans IDE and open it:
 
 1. Click **Add**.
 
-Now all the dependencies are in place and we can move forward to our first
+Now all the dependencies are in place and you can move forward to your first
 application with Couchbase.
 
 <a id="hello-world"></a>
@@ -212,16 +211,15 @@ public class App {
 The code in Listing 1 is very straightforward, but there is a lot going on that is worth a
 little more discussion:
 
- * **Connect**. The `CouchbaseClient` class accepts a list of URIs that point to nodes in the cluster. You can provide only one URI, however we strongly recommend that you add two or three if your cluster has more than one node. This list does not have to contain all nodes in the cluster, but you do need to provide a few nodes so that during the initial connection phase your client can connect to the cluster even if one or more nodes fail.
+ * **Connect**. The `CouchbaseClient` class accepts a list of URIs that point to nodes in the cluster. If your cluster has more than one node, Couchbase strongly recommends that you add at least two or three URIs to the list. The list does not have to contain all nodes in the cluster, but you do need to provide a few nodes so that during the initial connection phase your client can connect to the cluster even if one or more nodes fail.
 
-    After the initial connection, the Client automatically fetches cluster configuration
-    and keeps it up to date, even when the cluster topology changes. This means that
-    you do not need to change your application configuration at all when you add
+    After the initial connection, the client automatically fetches cluster configuration
+    and keeps it up-to-date, even when the cluster topology changes. This means that you do not need to change your application configuration at all when you add
     nodes to your cluster or when nodes fail. Also make sure you use a URI in this
     format: `http://[YOUR-NODE]:8091/pools`. If you provide only the IP address, your client will fail to connect. We call this initial URI the *bootstrap URI*.
 
     The next two arguments are for the `bucket` and the `password`. The bucket is
-    the container for all your documents. Inside a bucket, a key &mdash; the identifier for a document &mdash; must be unique. In production environments, it is recommended to use a password on a bucket (this can be configured during bucket creation), but when you are just starting out using the `default` bucket without a password is fine. Note that the **beer-sample** bucket also doesn't have a password, so just change the bucket name and you're set.
+    the container for all your documents. Inside a bucket, a key &mdash; the identifier for a document &mdash; must be unique. In production environments, Couchbase recommends that you use a password on the bucket (this can be configured during bucket creation), but when you are just starting out using the `default` bucket without a password is fine. The **beer-sample** bucket also doesn't have a password, so just change the bucket name and you're set.
 
 * **Set and get.** These two operations are the most important ones you will use
     from a Couchbase SDK. You use `set` to create or overwrite a document and you
@@ -395,5 +393,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.2/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also read the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html).
+Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html).
 
