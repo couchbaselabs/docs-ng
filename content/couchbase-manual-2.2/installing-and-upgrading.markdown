@@ -1050,7 +1050,7 @@ Tool](#couchbase-admin-cmdline-cbbackup).
 
 <a id="couchbase-getting-started-upgrade"></a>
 
-## Upgrading to Couchbase Server 2.1
+## Upgrading Couchbase Server
 
 The following are officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
@@ -1153,7 +1153,7 @@ Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
 
 You will need at least one extra node to perform a swap rebalance.
 
- 1. Install Couchbase Server 2.0 on one extra machine that is not yet in the
+ 1. Install Couchbase Server on one extra machine that is not yet in the
     cluster. For install instructions, see [Installing Couchbase
     Server](#couchbase-getting-started-install).
 
