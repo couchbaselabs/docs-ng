@@ -12,83 +12,89 @@ Tracker](http://www.couchbase.com/issues/browse/PYCBC).
 This is the second release. This adds API additions and improvements
 on top of the 1.0.0 release.
 
-**Fixes In 1.1.0**
 
- * Minor documentation errata fixes
+**New Features and Behavior Changes in 1.1.0**
 
- * Add `OBS_LOGICALLY_DELETED` which was referenced but not defined.
-   Used by 'observe'
+ * Durability/Persistence requirements
 
- * Fix potential crash if HTTP view request cannot be scheduled
-
- * Fix view queries with many keys.
-   Previously this would return a server error indidcating the URI was too
-   long.
-
-   *Issues*: [PYCBC-193](http://www.couchbase.com/issues/browse/PYCBC-193)
-
- * `lockmode` parameter not being propagated from `Couchbase.connect`
-   constructor. This would result in the `lockmode` always being set to
-   `LOCKMODE_EXC` despite it being overidden in the arguments
-
-   *Issues*: [PYCBC-192](http://www.couchbase.com/issues/browse/PYCBC-192)
-
-
-**New Features In 1.1.0**
-
- * Durability/Persistence requirements.
-   This feature allows the application to wait until key(s) have been
+	This feature allows the application to wait until keys have been
    stored to more than one node. This is done through the additional
-   `persist_to`/`replicate_to` parameters in the `set()` family of methods.
+   `persist_to` and `replicate_to` parameters in the `set()` family of methods.
    A standalone method, `endure()` is provided as well.
-   These features use the new Durability API implemented in libcouchbase
+   These features use the new Durability API implemented in libcouchbase.
 
-   *Issues*: [PYCBC-37](http://www.couchbase.com/issues/browse/PYCBC-37)
+	*Issues*: [PYCBC-37](http://www.couchbase.com/issues/browse/PYCBC-37)
 
- * Experimental GEvent support
-   Gevent is a cooperative multi tasking framework which allows
-   the creation of "greenlets" which are cooperatively scheduled
+ * Experimental gevent support
+
+	gevent is a cooperative multitasking framework that allows
+   the creation of greenlets, which are cooperatively scheduled
    entities. This feature allows the couchbase.Connection object
    to optionally use a different pure-python non-blocking I/O
-   implementation which can cooperatively yield to other greenlets
+   implementation that can cooperatively yield to other greenlets
    when needed.
 
  * Item API
-   Item API allows an application to use its own objects and pass
+
+	Item API allows an application to use its own objects and pass
    them into the various methods of couchbase.Connection where they
    will be populated with the relevant key status/value information.
    This allows an application developer to create custom subclasses
    of the Item object which can be seamlessly used across both the SDK
    and the application code.
 
-   *Issues*: [PYCBC-156](http://www.couchbase.com/issues/browse/PYCBC-156)
+	*Issues*: [PYCBC-156](http://www.couchbase.com/issues/browse/PYCBC-156)
 
  * Automatic storage formatting via `FMT_AUTO`
-   New format specifier which allows the SDK to guess the appropriate
+
+	New format specifier that allows the SDK to guess the appropriate
    value storage format depending on the value type.
 
-   *Issues*: [PYCBC-157](http://www.couchbase.com/issues/browse/PYCBC-157)
-
+	*Issues*: [PYCBC-157](http://www.couchbase.com/issues/browse/PYCBC-157)
 
  * `no_format` argument for `get()`
-   Allows a value to be retrieved in its raw representation; i.e. as it
-   is stored on the server without any conversion applied. This feature
-   is provided as an additional keyword argument (`no_format`) to the
-   `get()` family of methods
+
+	Allows a value to be retrieved in its raw representation (that is, as it
+   is stored on the server without any conversion applied). This feature
+   is provided as an additional keyword argument, `no_format`, to the
+   `get()` family of methods.
 
  * Replica Read
-   Allow reading from a replica server. This may be used if a normal
-   `get()` fails. This functionality is exposed via the `replica` parameter
-   to the 'get()' method as well as the 'rget()' method.
 
-   *Issues*: [PYCBC-38](http://www.couchbase.com/issues/browse/PYCBC-38)
+	Allow reading from a replica server. This can be used if a normal
+   `get()` fails. This functionality is exposed via the `replica` parameter
+   to the `get()` method and the `rget()` method.
+
+	*Issues*: [PYCBC-38](http://www.couchbase.com/issues/browse/PYCBC-38)
+
+**Fixes In 1.1.0**
+
+ * Minor documentation errata fixes
+
+ * Add `OBS_LOGICALLY_DELETED`, which was referenced but not defined.
+   Used by `observe`.
+
+ * Fix potential crash if HTTP view request cannot be scheduled
+
+ * Fix view queries with many keys.
+   Previously this would return a server error indicating the URI was too
+   long.
+
+	*Issues*: [PYCBC-193](http://www.couchbase.com/issues/browse/PYCBC-193)
+
+ * `lockmode` parameter not propagated from `Couchbase.connect`
+   constructor. This would result in the `lockmode` always being set to
+   `LOCKMODE_EXC` despite it being overridden in the arguments.
+
+	*Issues*: [PYCBC-192](http://www.couchbase.com/issues/browse/PYCBC-192)
+
 
 **Known Issues in 1.1.0**
 
- * 'syncwait' parameter for view creation will time out if new design
+ * `syncwait` parameter for view creation will time out if new design
    document only contains spatial views
 
-   *Issues*: [PYCBC-173](http://www.couchbase.com/issues/browse/PYCBC-173)
+	*Issues*: [PYCBC-173](http://www.couchbase.com/issues/browse/PYCBC-173)
 
 
 <a id="couchbase-sdk-python-rn_1-0-0g"></a>
