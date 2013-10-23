@@ -1,6 +1,6 @@
 .span3.hidden-phone
   - unless @item.toc.empty?
-    %ul#sidenav.span3.nav.nav-list
+    %ul#sidenav.span3.nav.nav-list.affix
       -unless section_name().empty?
         %li
           %h3= section_name()
