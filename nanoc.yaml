@@ -102,6 +102,7 @@ versions:
   couchbase-sdk-c:
     name: "C SDK"
     versions:
+	  - 2.2
       - 2.1
       - 2.0
       - 1.0
