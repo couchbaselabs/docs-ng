@@ -20,7 +20,7 @@ Couchbase Lite was originally known as TouchDB. In January 2013 we changed the n
 
 ### What does Couchbase Lite run on?
 
-The reference Objective-C implementation runs on iOS 6+ and Mac OS X 10.7+. There is also a [Java version](https://github.com/couchbase/couchbase-lite-android) for Android devices.
+The reference Objective-C implementation runs on iOS 6.0 or later and Mac OS X 10.7 or later. There is also a Java version for Android devices. You can also build HTML5 apps with the Couchbase Lite PhoneGap plug-in.
 
 (The Objective-C implementation was at one point partially adapted to run in the [GNUstep](http://gnustep.org) environment, which is portable to systems such as Linux, BSD, and Solaris, and even Microsoft Windows; but it hasn't been built or run in that environment for a long time, so there would certainly be more work to do to bring it back up to speed.)
 
@@ -62,18 +62,18 @@ Yes! You can see a list on the [Couchbase Lite In The Wild](https://github.com/c
 
 ### Can I ask more questions?
 
-Sure. The [Mobile Couchbase Google Group](https://groups.google.com/forum/?fromgroups#!forum/mobile-couchbase) is the best place to ask questions. You can access it on the web or subscribe to it as a mailing list.
+Yes! The [Mobile Couchbase Google Group](https://groups.google.com/forum/?fromgroups#!forum/mobile-couchbase) is the best place to ask questions. You can access it on the web or subscribe to it as a mailing list.
 
 
 ## Performance & Size
 
 ### How big is Couchbase Lite?
 
-As of October 2013, it compiles to about 550k bytes of optimized ARM7 code.
+As of October 2013, the iOS version of Couchbase Lite compiles to about 550 KB of optimized ARM7 code.
 
 ### How long does Couchbase Lite take to start up?
 
-A: For a cold launch, it takes bout 100 ms to initialize the library and open a small database. If the app has been launched and quit recently, leaving stuff in cache, it's more like 60 ms. This is on an iPad 2&mdash;older devices will be a bit slower.
+A: For a cold launch, it takes about 100 ms to initialize the library and open a small database. If the app has been launched and quit recently, leaving stuff in cache, it's about 60 ms. This is on an iPad 2&mdash;older devices are a bit slower.
 
 ### How fast is Couchbase Lite?
 
@@ -81,9 +81,7 @@ A: Couchbase Lite is fast enough for the kinds of data sets mobile apps use. It'
 
 ### How much data can Couchbase Lite handle?
 
-There aren't any hard limits in Couchbase Lite itself. The most likely practical limit is the available disk and flash storage on the device, and of course app responsiveness as query times increase. For information about limitations in SQLite, see [Implementation Limits for SQLite](http://www.sqlite.org/limits.html).
-
-I've heard that Android has a 2 GB file size limit; but this should be less of a problem for Couchbase Lite, because the database file doesn't grow as fast (it doesn't need explicit compaction) and because it doesn't store attachments inside the database file.
+There aren't any hard limits in Couchbase Lite itself. The most likely practical limit is the available disk and flash storage on the device, and of course app responsiveness as query times increase. Couchbase Lite does not store attachments inside the database file. For information about limitations in SQLite, see [Implementation Limits for SQLite](http://www.sqlite.org/limits.html).
 
 
 ## Compatibility
@@ -110,7 +108,7 @@ Yes, although for size reasons it doesn't include a JavaScript interpreter, so v
 
 ### Can you access Couchbase Lite over HTTP?
 
-There's an HTTP server extension called CouchbaseLiteListener. It's mostly there to enable Couchbase Lite-to-Couchbase Lite (P2P) replication,  make testing easier, and, support PhoneGap-style HTML5 development.
+There's an HTTP server extension called CouchbaseLiteListener. It's mostly there to enable Couchbase Lite-to-Couchbase Lite (peer-to-peer) replication,  make testing easier, and support PhoneGap-style HTML5 development.
 
 
 ### What about CouchApps?
@@ -121,7 +119,7 @@ There's an HTTP server extension called CouchbaseLiteListener. It's mostly there
 
 ### Why SQLite instead of a B-tree engine like Berkeley DB or Kyoto Cabinet?
 
-Largely because SQLite is already available as a shared library on every platform we're interested in. This keeps our code size down and simplifies the build process. It also comes with useful extensions like full-text indexing and R-trees (for geo-queries.)
+Largely because SQLite is already available as a shared library on every platform we're interested in. This keeps our code size down and simplifies the build process. It also comes with useful extensions like full-text indexing and R-trees (for geo-queries).
 
 Additionally, both Berkeley and Kyoto have GPL-like licenses that are less friendly to commercial developers (especially iOS developers) and incompatible with the Apache license of Couchbase Lite itself.
 
@@ -130,7 +128,7 @@ Additionally, both Berkeley and Kyoto have GPL-like licenses that are less frien
 
 ### Why would I use Couchbase Lite instead of earlier generations of Couchbase technology for mobile?
 
-Because it's a lot smaller, starts up a lot more quickly, and is easily embeddable into an app. Those are important factors for mobile app developers (and some desktop app developers too). If you're working on server-side software those factors probably don't matter to you, or at least don't outweigh the drawbacks.
+Because Couchbase Lite is a lot smaller, starts up a lot more quickly, and is easily embedded into an app. Those are important factors for mobile app developers (and some desktop app developers too). If you're working on server-side software, those factors probably don't matter to you or at least don't outweigh the drawbacks.
 
 ### Why would I use Couchbase Lite instead of the Apple Core Data framework?
 
@@ -160,4 +158,6 @@ It sends the whole document. Typically documents aren't that big. If a document 
 
 ### Can you trigger an update from the network side?
 
-If the client has an active replication, changes from the server are pushed to it within a second or two. On iOS 7, your server can send push notifications that will invisibly wake up the app and let it replicate the new changes.
+If the client has an active replication, changes from the server are pushed to it within a second or two. On iOS 7, your server can send push notifications that invisibly wake up the app and let it replicate the new changes.
+
+
