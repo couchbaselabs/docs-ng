@@ -20,9 +20,9 @@ Couchbase Lite was originally known as TouchDB. In January 2013 we changed the n
 
 ### What does Couchbase Lite run on?
 
-The reference Objective-C implementation runs on iOS 5+ and Mac OS X 10.7+. There is also a[ Java port](https://github.com/couchbase/couchbase-lite-android) for Android devices.
+The reference Objective-C implementation runs on iOS 6+ and Mac OS X 10.7+. There is also a [Java version](https://github.com/couchbase/couchbase-lite-android) for Android devices.
 
-The Objective-C implementation was partially adapted to run in the [GNUstep](http://gnustep.org) environment, which makes it portable to systems such as Linux, BSD, and Solaris, and even Microsoft Windows; but it hasn't been built or run in that environment for a while, so there would certainly be more work to do to bring it back up to speed.
+(The Objective-C implementation was at one point partially adapted to run in the [GNUstep](http://gnustep.org) environment, which is portable to systems such as Linux, BSD, and Solaris, and even Microsoft Windows; but it hasn't been built or run in that environment for a long time, so there would certainly be more work to do to bring it back up to speed.)
 
 ### How mature is Couchbase Lite?
 
@@ -69,7 +69,7 @@ Sure. The [Mobile Couchbase Google Group](https://groups.google.com/forum/?fromg
 
 ### How big is Couchbase Lite?
 
-Right now (January 2013) it compiles to about 400k bytes of optimized ARM7 code.
+As of October 2013, it compiles to about 550k bytes of optimized ARM7 code.
 
 ### How long does Couchbase Lite take to start up?
 
@@ -110,7 +110,7 @@ Yes, although for size reasons it doesn't include a JavaScript interpreter, so v
 
 ### Can you access Couchbase Lite over HTTP?
 
-There's an experimental HTTP server extension called CouchbaseLiteListener. It's mostly there to enable Couchbase Lite-to-Couchbase Lite (P2P) replication,  make testing easier, and, support PhoneGap-style HTML5 development.
+There's an HTTP server extension called CouchbaseLiteListener. It's mostly there to enable Couchbase Lite-to-Couchbase Lite (P2P) replication,  make testing easier, and, support PhoneGap-style HTML5 development.
 
 
 ### What about CouchApps?
@@ -121,7 +121,7 @@ There's an experimental HTTP server extension called CouchbaseLiteListener. It's
 
 ### Why SQLite instead of a B-tree engine like Berkeley DB or Kyoto Cabinet?
 
-Largely because SQLite is already available as a shared library on every platform we're interested in. This keeps our code size down and simplifies the build process.
+Largely because SQLite is already available as a shared library on every platform we're interested in. This keeps our code size down and simplifies the build process. It also comes with useful extensions like full-text indexing and R-trees (for geo-queries.)
 
 Additionally, both Berkeley and Kyoto have GPL-like licenses that are less friendly to commercial developers (especially iOS developers) and incompatible with the Apache license of Couchbase Lite itself.
 
@@ -146,7 +146,7 @@ As with the previous comparison to Core Data, the big reason is sync. If your us
 
 For an iOS example, see [Deleting Replications](/couchbase-lite/cbl-ios/#deleting-replications).
 
-### Is the sync channel always open?
+### Does replication create an always-open socket to the server?
 
 It depends on how you configure the replication. You can set up a continuous replication that is always active when the device is online, or you can trigger a one-shot replication whenever you want.
 
@@ -154,10 +154,10 @@ It depends on how you configure the replication. You can set up a continuous rep
 
 Yes, by using regular HTTP gzip transfer encoding. A proxy like nginx or Apache can apply this encoding transparently.
 
-### Do you send the whole changed document or just an update that contains only the changes?
+### Does replication transfer the whole changed document or just an update that contains only the changes?
 
-You send the whole document. Typically documents aren't that big. If a document has attachments, you send only the changed attachments.
+It sends the whole document. Typically documents aren't that big. If a document contains attachments, only the ones that have changed are transferred.
 
 ### Can you trigger an update from the network side?
 
-If the client has an active replication, changes from the server are pushed immediately. On iOS 7, you can remotely tell a device to wake up invisibly and sync by using push notifications.
+If the client has an active replication, changes from the server are pushed to it within a second or two. On iOS 7, your server can send push notifications that will invisibly wake up the app and let it replicate the new changes.
