@@ -482,7 +482,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
        For more information, see [RAM Sizing](#couchbase-bestpractice-sizing-ram).
 
-       Changing the size of a memcached bucket will erase all the data in the bucket
+       **Warning**: Changing the size of a memcached bucket will erase all the data in the bucket
        and recreate it, resulting in loss of all stored data for existing buckets.
 
      * **Auto-Compaction**
@@ -564,8 +564,7 @@ You can delete the bucket entirely by clicking the `Delete` button.
 You can empty a Memcached bucket of all the cached information that it stores by
 using the `Flush` button.
 
-Using the `Flush` button removes all the objects stored in the Memcached bucket.
-Using this button on active Memcached buckets may delete important information.
+**Warning**: Using the `Flush` button removes all the objects stored in the Memcached bucket. Using this button on active Memcached buckets may delete important information.
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
