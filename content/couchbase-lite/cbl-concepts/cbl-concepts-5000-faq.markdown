@@ -22,8 +22,6 @@ Couchbase Lite was originally known as TouchDB. In January 2013 we changed the n
 
 The reference Objective-C implementation runs on iOS 6.0 or later and Mac OS X 10.7 or later. There is also a Java version for Android devices. You can also build HTML5 apps with the Couchbase Lite PhoneGap plug-in.
 
-(The Objective-C implementation was at one point partially adapted to run in the [GNUstep](http://gnustep.org) environment, which is portable to systems such as Linux, BSD, and Solaris, and even Microsoft Windows; but it hasn't been built or run in that environment for a long time, so there would certainly be more work to do to bring it back up to speed.)
-
 ### How mature is Couchbase Lite?
 
 The released 1.0-beta version of Couchbase Lite is ready to use in apps. As with any open source project, the latest GitHub commits do represent bleeding-edge functionality and should be used with caution.
