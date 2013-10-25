@@ -416,12 +416,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
  1. Select a name for the new bucket. The bucket name can only contain characters in
     range A-Z, a-z, 0-9 as well as underscore, period, dash and percent symbols.
 
-    ### Default Bucket Should Only for Testing
-
-    Any default bucket you initially set up with Couchbase Server should not be used
-    for storing live application data; you should create a named bucket specifically
-    for your application. The default bucket you create when you first install
-    Couchbase Server should only be used for testing.
+	**Best Practice**: Create a named bucket specifically for your application. Any default bucket you initially set up with Couchbase Server should not be used for storing live application data. The default bucket you create when you first install Couchbase Server should be used only for testing.
 
  1. Select a Bucket Type, either `Memcached` or `Couchbase`. See [Data
     Storage](#couchbase-introduction-architecture-buckets) for more information. The
