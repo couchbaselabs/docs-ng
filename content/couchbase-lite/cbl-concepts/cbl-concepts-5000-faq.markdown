@@ -6,7 +6,7 @@ This section provides answers to questions frequently asked about Couchbase Lite
 * [Compatibility](#compatibility)
 * [Implementation and Design](implementation-and-design)
 * [Choices, Choices](#choices-choices)
-* [Usage Issues](#usage-issues)
+* [Usage](#usage)
 
 ## What Is This?
 
@@ -136,7 +136,7 @@ World-class, highly-flexible data sync capabilities that go way beyond what you 
 
 As with the previous comparison to Core Data, the big reason is sync. If your users want to work with their data on multiple devices or platforms (including the Web) or have it transparently backed up, the replication capabilities in Couchbase Lite make it very easy compared to the pain of implementing sync yourself or trying to duct-tape your custom SQLite database to the iCloud APIs.
 
-## Usage Issues
+## Usage
 
 ### How do I cancel a persistent, continuous replication?
 
