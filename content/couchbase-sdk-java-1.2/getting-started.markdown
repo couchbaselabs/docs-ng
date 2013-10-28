@@ -33,7 +33,6 @@ including information about how to adjust the configuration and increase the num
 available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx>MSDN: Avoiding TCP/IP Port Exhaustion</a>.
 
 <a id="getting-started-preparations"></a>
-
 ## Preparation
 
 To get ready to build your first app, you need to install Couchbase Server, download the Couchbase Java SDK, and set up your IDE.
