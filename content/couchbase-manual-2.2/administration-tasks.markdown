@@ -817,8 +817,7 @@ reclaim disk space and reduce fragmentation.
 
 **How it works**
 
-Couchbase compacts views and data files. For database compaction, a new file is
-created into which the active index information is written. Meanwhile, the
+Couchbase compacts views and data files. For database compaction, a new file is created into which the active (non-stale) information is written. Meanwhile, the
 existing database files stay in place and continue to be used for storing
 information and updating the index data. This process ensures that the database
 continues to be available while compaction takes place. Once compaction is
