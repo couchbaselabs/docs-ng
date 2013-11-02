@@ -1556,9 +1556,15 @@ cbstats hostname:port -b bucket_name -p bucket_password | grep 'warmup'
 cbstats hostname:port -b bucket_name -p bucket_password raw warmup
 ```
 
-ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ep\_warmup\_state  | * Indicates the current progress of the warmup: **Initial**. Start warmup processes.  * **EstimateDatabaseItemCount**. Estimating database item count.  * **KeyDump**. Begin loading keys and metadata, but not documents, into RAM.  * **CheckForAccessLog**. Determine if an access log is available. This log indicates which keys have been frequently read or written.  * **LoadingAccessLog**. Load information from access log.  * **LoadingData**. This indicates the server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  * **Done**. Server is ready to handle read and write requests.
+* **ep\_warmup\_thread** - Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+* **ep\_warmup\_state** - Indicates the current progress of the warmup:
+	* Initial - Start warmup processes.
+	* EstimateDatabaseItemCount - Estimating database item count.
+	* KeyDump - Begin loading keys and metadata, but not documents, into RAM.
+	* CheckForAccessLog - Determine if an access log is available. This log indicates which keys have been frequently read or written.
+	* LoadingAccessLog - Load information from access log.
+	* LoadingData - The server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.
+	* Done - The server is ready to handle read and write requests.
 
 High-level warmup statistics that are available are as follows:
 
