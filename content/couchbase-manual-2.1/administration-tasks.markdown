@@ -405,9 +405,15 @@ given node and `beer_sample` is a named bucket for the node. If you do not
 specify a bucket name, the command will apply to any existing default bucket for
 the node.
 
-ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ep\_warmup\_state  | * Indicates the current progress of the warmup: **Initial**. Start warmup processes.  * **EstimateDatabaseItemCount**. Estimating database item count.  * **KeyDump**. Begin loading keys and metadata based, but not documents, into RAM.  * **CheckForAccessLog**. Determine if an access log is available. This log indicates which keys have been frequently read or written.  * **LoadingAccessLog**. Load information from access log.  * **LoadingData**. This indicates the server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  * **Done**. Server is ready to handle read and write requests.
+* **ep\_warmup\_thread** - Indicates whether the warmup completed or is still running. Returns "running" or "complete". 
+* **ep\_warmup\_state** - Indicates the current progress of the warmup:   
+	* Initial - Start warmup processes.  
+	* EstimateDatabaseItemCount - Estimate database item count.  
+	* KeyDump - Begin loading keys and metadata based, but not documents, into RAM.  
+	* CheckForAccessLog - Determine if an access log is available. This log indicates which keys have been frequently read or written.  
+	* LoadingAccessLog - Load information from access log.  
+	* LoadingData* - The server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  
+	* Done - The server is ready to handle read and write requests.
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
