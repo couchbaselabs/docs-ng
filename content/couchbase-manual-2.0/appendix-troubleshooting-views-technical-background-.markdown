@@ -159,7 +159,7 @@ for the later is 2. They can be queried like this:
 
 
 ```
-shell> curl -s 'http://Administrator:asdasd@localhost:9000/settings/maxParallelIndexers'
+shell> curl -s 'http://Administrator:asdasd@localhost:8091/settings/maxParallelIndexers'
 {"globalValue":4,"nodes":{"n_0@192.168.1.80":4}}
 ```
 
@@ -747,7 +747,7 @@ following URL:
 
 
 ```
-shell> curl -s http://localhost:9000/pools/default/buckets |
+shell> curl -s http://localhost:8091/pools/default/buckets |
   json_xs
  [
     {

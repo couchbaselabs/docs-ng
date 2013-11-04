@@ -3464,7 +3464,7 @@ operation on every node in the cluster.
  * By server setting:
 
     ```
-    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:9000/diag/eval \
+    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
                           -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
     ```
 

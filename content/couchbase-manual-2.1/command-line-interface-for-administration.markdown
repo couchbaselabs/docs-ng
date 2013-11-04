@@ -2258,7 +2258,7 @@ that node:
 
 
 ```
-> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
+> ./cbworkloadgen -n 10.17.30.161:8091 -u Administrator -p password
 ```
 
 Will produce a result similar to the following if successful:

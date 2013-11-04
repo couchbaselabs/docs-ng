@@ -221,7 +221,7 @@ Query the server for a single message:
 
 
 ```
-$ curl -X POST -Fmessage="Hello world" http://localhost:9000/messages
+$ curl -X POST -Fmessage="Hello world" http://localhost:8091/messages
 {"ok":true,"id":"msg:1","cas":11880713153673363456}
 ```
 
@@ -229,7 +229,7 @@ Query for all messages with this command:
 
 
 ```
-$ curl -X GET http://localhost:9000/messages
+$ curl -X GET http://localhost:8091/messages
 {"ok":true,"messages":[{"id":"msg:1","key":"msg:1","value":{"timestamp":"2013-04-11T12:43:42+03:00","message":"Hello world"},"cas":11880713153673363456}]}
 ```
 
