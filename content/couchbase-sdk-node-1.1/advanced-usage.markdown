@@ -4,11 +4,11 @@
 
 ## Replica Reads
 
-In addition to the default methods for you to retrieve documents from the cluster (get), we additionally provide the ability to request documents from replica sets (via the getReplica and getReplicaMulti functions).  This allows you to gracefully handle instances where the active node holding your document goes offline, but accessing the document from a replica node may still be acceptable.  Keep in mind that doing storage operations directly to replica nodes is not possible.  Additionally, replica-reads are not meant to provide load balancing capabilities, the cluster handles mapping of keys to individual nodes and using explicit replica-reads to attempt additional load balancing could easily create hot-spots in your cluster.
+In addition to the default methods for you to retrieve documents from the cluster (get), we additionally provide the ability to request documents from replica sets (via the getReplica and getReplicaMulti functions).  This allows you to gracefully handle instances where the active node holding your document goes offline, but accessing the document from a replica node may still be acceptable.  Keep in mind that doing storage operations directly to replica nodes is not possible.  Additionally, replica-reads are not meant to provide load balancing capabilities, the cluster handles mapping of keys to individual nodes to provide load balancing accross all available nodes.
 
 Note that retrieving data from a replica node could return potentially stale document contents if the replica did not recieve a newer mutation of the document.
 
-The replica read function works nearly identically to a normal get request, though it does not provide the ability to do getAndTouch operations.  Additionally, replica-reads allow you to specify which replica you wish to retrieve the document from which can be any number from 0 to `num_replicas`, you may also specify -1 (the default) to retrieve from the fastest responding replica node.
+The replica read function works nearly identically to a normal get request, though it does not provide the ability to do getAndTouch operations.  Additionally, replica-reads allow you to specify which replica you wish to retrieve the document from which can be any number from `0` to `num_replicas-1`, you may also specify `-1` (the default) to retrieve from the fastest responding replica node.
 
 <a id="bulk_loading"></a>
 
