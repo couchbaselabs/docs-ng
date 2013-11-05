@@ -4,12 +4,63 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-2-2a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.2.2 GA (5 November 2013)
+
+The 1.2.2 release is the second bug fix release for the 1.2 series. It has important
+fixes for the replica read functionality and in general stabilizes the 1.2 release branch. Couchbase recommends that all 1.2.x users upgrade to the 1.2.2 release.
+
+**New Features and Behavior Changes in 1.2.2**
+
+ * [JCBC-371](http://www.couchbase.com/issues/browse/JCBC-371): In this and a series of
+   other changes, the overhead for vBucket objects during rebalance and in general has
+   been reduced. During a rebalance process, existing Configurations are reused, leading
+   to less garbage collection (especially when more than one `CouchbaseClient` object
+   is used). The internal implementation has also been changed to be more memory efficient.
+
+	This change is completely opaque. You just see less memory usage and garbage collector pressure in a profiler during rebalance.
+
+ * [JCBC-369](http://www.couchbase.com/issues/browse/JCBC-369): A small bug in the observe
+   logic used for `ReplicateTo` and `PersistTo` operations has been fixed, but more
+   importantly, the performance has been improved. The constant time for an operation that
+   uses persistence or replication constraints has been reduced by exactly one observe interval,
+   which defaults to 10&nbsp;ms.
+
+	Previously, the loop waited an interval at the end, even when the result was already
+   correctly fetched. For applications making heavy use of `PersistTo` and `ReplicateTo`,
+   this should be a good performance enhancement. Also make sure to use Couchbase Server
+   version 2.2 to benefit from server-side optimizations in that area.
+   
+
+**Fixes in 1.2.2**
+
+ * [JCBC-373](http://www.couchbase.com/issues/browse/JCBC-373), 
+   [JCBC-374](http://www.couchbase.com/issues/browse/JCBC-374): In a series of changes, the stability and performance of replica read operations has been greatly improved. The code now also multicasts to the active node, increasing the chance that a replica read operation returns successfully, even when a replica node goes down. Also, thread-safety issues have been fixed and the actual calls are optimized to go only to the nodes that can (based on the configuration) answer such a get request.
+
+ * [JCBC-368](http://www.couchbase.com/issues/browse/JCBC-368): During bootstrap, a deadlock with the [Netty](http://netty.io) IO provider has been resolved. Now, the deadlock is avoided and an exception is thrown to indicate what went wrong during streaming connection setup.
+
+ * [JCBC-375](http://www.couchbase.com/issues/browse/JCBC-375): In some cases, when a 
+   streaming connection was dropped because of a race condition, the new connection
+   could not be established. This change fixes the condition and makes sure there is
+   always a valid state.
+
+ * [SPY-141](http://www.couchbase.com/issues/browse/SPY-141): Wrong assertions  that would incorrectly throw an exception when a negative CAS value 
+   is received have 
+   been removed. Because this is a valid CAS identifier, the assumption can lead to false 
+   positives.
+ 
+ * [SPY-140](http://www.couchbase.com/issues/browse/SPY-140): The correct queue is now 
+   used for the listener callbacks. Previously, the underlying queue was bounded and
+   therefore threw exceptions in the wrong places (the IO thread). Because the number
+   of threads is bounded, the queue needs to buffer incoming listener callbacks accordingly.
+
 <a id="couchbase-sdk-java-rn_1-2-1a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.2.1 GA (11 October 2013)
 
 The 1.2.1 release is the first bug fix release for the 1.2 series. It fixes some
-issues for newly added features in 1.2.0. Couchbase recommends that all 1.2.0 users  upgrade to the 1.2.1 release. 
+issues for newly added features in 1.2.0. Couchbase recommends that all 1.2.0 users upgrade to the 1.2.1 release. 
 
 **New Features and Behavior Changes in 1.2.1**
 
@@ -17,8 +68,8 @@ issues for newly added features in 1.2.0. Couchbase recommends that all 1.2.0 us
    exposed synchronous CAS with expiration methods, the asynchronous
    overloaded method is also exposed.
 
-   	```java
-   	OperationFuture<CASResponse> casFuture = client.asyncCAS(key, future.getCas(), 2, value);
+   ```java
+   OperationFuture<CASResponse> casFuture = client.asyncCAS(key, future.getCas(), 2, value);
    ```
 
 **Fixes in 1.2.1**

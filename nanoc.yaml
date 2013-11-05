@@ -146,8 +146,6 @@ versions:
     versions:
       - 1.1
       - 1.0
-      
-
 
 navbar:
   - label: Server
@@ -231,5 +229,5 @@ navbar:
       - label: Ruby
         href: http://www.couchbase.com/autodocs/couchbase-ruby-client-1.3.2/index.html
 
-  - label: Library
+  - label: All Documentation
     href: http://www.couchbase.com/documentation-archives
