@@ -1,38 +1,20 @@
 # Tutorial
 
-This tutorial builds on the foundation introduced in the [Getting
-Started](http://docs.couchbase.com/couchbase-sdk-java-1.2/#getting-started)
-section and uses a complete web application. Make sure you have the
-`beer-sample` bucket installed because the application allows you to
-display and manage beers and breweries. If you still need to get the sample
-database, see [Preparation](#getting-started-preparations).
+This tutorial builds on the foundation introduced in the [Getting Started](http://docs.couchbase.com/couchbase-sdk-java-1.2/#getting-started) section and uses a complete web application. Make sure you have the `beer-sample` bucket installed because the application allows you to display and manage beers and breweries. If you still need to get the sample database, see [Preparation](#getting-started-preparations).
 
-The full source code for the examplen;kig                                                                                  is available at [couchbaselabs
-on GitHub](http://github.com/couchbaselabs/beersample-java). The
-sample application that you can download actually provides more content than we
-describe in this tutorial; but it should be easy for you to look around and
-understand how it functions if you first start reading this tutorial here.
+The full source code for the example is available at [couchbaselabs on GitHub](http://github.com/couchbaselabs/beersample-java). The sample application that you can download actually provides more content than we describe in this tutorial; but it should be easy for you to look around and understand how it functions if you first start reading this tutorial here.
 
 <a id="quickstart"></a>
 
 ## Preview the Application
 
-If you want to get up and running really quickly, here is how to do it with
-[Jetty](http://jetty.codehaus.org/jetty/). This guide assumes you are using
- OS  X or Linux. If you are using Windows, you need to modify the paths
-accordingly. Also, make sure you have [Maven](http://maven.apache.org/)
-installed on your machine.
+If you want to get up and running really quickly, here is how to do it with [Jetty](http://jetty.codehaus.org/jetty/). This guide assumes you are using  OS X or Linux. If you are using Windows, you need to modify the paths accordingly. Also, make sure you have [Maven](http://maven.apache.org/) installed on your machine.
 
- 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.2 and
-    [install](http://docs.couchbase.com/couchbase-manual-2.2/#installing-and-upgrading)
-    it. Make sure you install the
-    [beer-sample](http://docs.couchbase.com/couchbase-manual-2.2/#beer-sample-bucket)
-    data set when you run the wizard because this tutorial uses it.
+ 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.2 and [install](http://docs.couchbase.com/couchbase-manual-2.2/#installing-and-upgrading) it. Make sure you install the     [beer-sample](http://docs.couchbase.com/couchbase-manual-2.2/#beer-sample-bucket) data set when you run the wizard because this tutorial uses it.
 
  1. Add the following views and design documents to the `beer-sample` bucket. 
 
-	Views
-    and design documents enable you to index and query data from the database. Later we will publish the views as production views. For more information about using views from an SDK, see [Couchbase Developer Guide, Finding Data with
+	Views and design documents enable you to index and query data from the database. Later we will publish the views as production views. For more information about using views from an SDK, see [Couchbase Developer Guide, Finding Data with
     Views](http://docs.couchbase.com/couchbase-manual-2.2/#querying-views).
 
     The first design document name is `beer` and view name is `by_name`:
@@ -89,8 +71,7 @@ installed on your machine.
      [INFO] Started Jetty Server
      ```
 
- 1. Navigate to [http://localhost:8080/welcome](http://localhost:8080/welcome)
-    and enjoy the application.
+ 1. Navigate to [http://localhost:8080/welcome](http://localhost:8080/welcome) and enjoy the application.
 
 <a id="preparations"></a>
 
