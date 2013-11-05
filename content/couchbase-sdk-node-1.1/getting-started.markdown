@@ -17,12 +17,11 @@ Install the following packages to get started using the Node.js SDK:
  1. [Download, install and start Couchbase
     server](http://www.couchbase.com/download). Come back here when you are done.
 
- 1. [Download and install the C
-    library](http://www.couchbase.com/develop/c/current).
-
  1. Install the Node.js SDK. The easiest way to do this is via the npm tool: `shell>
     npm install couchbase` If all went well, you should not see any errors printed
-    to the screen.
+    to the screen.  Keep in mind because the Node.js SDK has a C++ component, you 
+    will need a C++ compiler and associate build tools, though on Windows, the package
+    ships with prebuilt binaries.
 
 <a id="hello_couchbase"></a>
 
