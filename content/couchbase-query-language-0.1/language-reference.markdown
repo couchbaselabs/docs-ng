@@ -157,8 +157,8 @@ The following describes optional clauses you can use in your select statement:
          "hobbies":["surfing"]
         }
         
-    You can perform a query with `FROM` and `AS` to get any children from the first contact retrieved:
-
+    You can perform a query with `FROM` and `AS` to get the name of the first child listed in each document in the contacts bucket:
+    
         SELECT children[0].name AS kid
         	FROM contacts
         	
@@ -692,7 +692,7 @@ Given a customer order document with the following information:
 The following comparison terms are available in N1QL:
 
 | Comparison | Description | Returns | 
-| -------- |:----:| -----:|
+| -------- |----| -----|
 | = | Equals to | TRUE or FALSE |
 | == | Equals to | TRUE or FALSE |
 | != | Not equal to | TRUE or FALSE |
@@ -716,7 +716,7 @@ The following comparison terms are available in N1QL:
 The following are the arithmetic operations in N1QL. These operators only function on numeric values. If either operand is non-numeric, and expression will evaluate to NULL.
 
 | Operator | Description |
-| -------- | -----:|
+| -------- | -----|
 | + | Add items 
 | - | Subtract right value from left 
 | * | Multiply values 
@@ -757,7 +757,7 @@ Aggregate functions include SUM, AVG, COUNT, MIN, MAX and ARRAY_AGG. Aggregate f
 You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you use an aggregate function in a clause with these commands, the query will act as an aggregate query. 
 
 | Function | Description | Returns | Example | 
-| ------------- |:-------------:| -----:|-----:|
+| ------------- |-------------| -----|-----|
 | COUNT(expr) | Returns the number items in a result set | 0 or positive integer |  |
 | MIN(expr) | Returns minimum value of all values in a result set. This is the first non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer, NULL if no non-NULL, non-MISSING items in result set |  |
 | MAX(expr) | Returns maximum value of all values in a result set. This is the last non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer |  |
@@ -770,7 +770,7 @@ You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you
 These functions will return a single value based on the items in a result set. The following are scalar functions in N1QL:
 
 |Function | Description | Returns | Example |
-|--------- |:------------:| -----:|--------:|
+|--------- |------------| -----|--------|
 | BASE64_VALUE(value) | Return the value encoded in base64. can be used on work with non-JSON values stored in the bucket. | value | 
 | CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
 | FIRSTNUM(expr1, expr2, ...) | Returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric value | NULL or integer |  
