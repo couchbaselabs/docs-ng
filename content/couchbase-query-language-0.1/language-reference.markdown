@@ -157,8 +157,8 @@ The following describes optional clauses you can use in your select statement:
          "hobbies":["surfing"]
         }
         
-    You can perform a query with `FROM` and `AS` to get any children from the first contact retrieved:
-
+    You can perform a query with `FROM` and `AS` to get the name of the first child listed in each document in the contacts bucket:
+    
         SELECT children[0].name AS kid
         	FROM contacts
         	
