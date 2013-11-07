@@ -40,8 +40,8 @@ Linux    | `/opt/couchbase/var/lib/couchbase/data`
 Windows  | `C:\Program Files\couchbase\server\var\lib\couchbase\data`      
 Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
 
-[This path can be changed for each node at setup either via the Web UI setup
-wizard, using theREST API](#couchbase-admin-restapi) or using the Couchbase CLI:
+This path can be changed for each node at setup either via the Web UI setup
+wizard, using the [REST API](#couchbase-admin-restapi) or using the Couchbase CLI:
 
 Changing the data path for a node that is already part of a cluster will
 permanently delete the data stored.
@@ -74,7 +74,7 @@ For Couchbase Server 2.0, once a node or cluster has already been setup and is
 storing data, you cannot change the path while the node is part of a running
 cluster. You must take the node out of the cluster then follow the steps below:
 
- 1. [Change the path on a running node either via theREST
+ 1. [Change the path on a running node either via the REST
     API](#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
     change will not actually take effect until the node is restarted. For more
     information about using a REST API request for ejecting nodes from clusters, see

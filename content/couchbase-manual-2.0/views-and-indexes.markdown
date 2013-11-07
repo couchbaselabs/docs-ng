@@ -2419,9 +2419,7 @@ results matching the following:
    number order)
 
 View results and the parameters operate and interact in a specific order. The
-interaction directly affects how queries are written and data is selected. The
-sequence and precedence of the different parameters during queries is shown in
-**Couldn't resolve xref tag: fig-couchbase-views-querying-flow**.
+interaction directly affects how queries are written and data is selected.
 
 
 ![](images/views-query-flow.png)
@@ -2924,8 +2922,7 @@ can specify the group level to be applied to the query output when using a
 When grouping is enabled, the view output is grouped according to the key array,
 and you can specify the level within the defined array that the information is
 grouped by. You do this by specifying the index within the array by which you
-want the output grouped using the `group_level` parameter. You can see described
-in **Couldn't resolve xref tag: fig-couchbase-views-writing-querying-grouping**.
+want the output grouped using the `group_level` parameter.
 
 
 ![](images/views-grouping.png)

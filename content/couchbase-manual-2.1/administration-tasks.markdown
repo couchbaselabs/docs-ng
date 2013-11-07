@@ -882,8 +882,7 @@ both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
 Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually. For more information, see **Couldn't resolve xref tag:
-couchbase-admin-tasks-compaction-spatial**.
+compacted manually.
 
 Auto-compaction can be configured in two ways:
 
@@ -3464,7 +3463,7 @@ operation on every node in the cluster.
  * By server setting:
 
     ```
-    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:9000/diag/eval \
+    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
                           -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
     ```
 

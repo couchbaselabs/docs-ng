@@ -278,10 +278,7 @@ resources:
 ### RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
-the `Server Quota` and `Bucket Quota`. For more information about creating and
-changing these two settings, see **Couldn't resolve xref tag:
-couchbase-cli-other-examples** and [Creating and Editing Data
-Buckets](#couchbase-admin-web-console-data-buckets-createedit).
+the `Server Quota` and `Bucket Quota`.
 
  * **Server Quota**
 
@@ -320,9 +317,6 @@ cope with your required caching RAM allocation requirements.
 The Server Quota is also dynamically configurable, but care must be taken to
 ensure that the nodes in your cluster have the available RAM to support your
 chosen RAM quota configuration.
-
-For more information on changing Couchbase Quotas, see **Couldn't resolve xref
-tag: couchbase-admin-tasks-quotas**.
 
 <a id="couchbase-introduction-architecture-vbuckets"></a>
 

@@ -506,9 +506,7 @@ opens and you should to complete the Couchbase Server setup process. See
 [Initial Server Setup](#couchbase-getting-started-setup) for more details.
 
 The Couchbase application runs as a background application. If you click on the
-icon in the menu bar you see a list of operations that can be performed, as
-shown in **Couldn't resolve xref tag:
-fig-couchbase-getting-started-macosx-menubar**.
+icon in the menu bar you see a list of operations that can be performed.
 
 The command line tools are included in the Couchbase Server application
 directory. You can access them in Terminal by using the full path of the
@@ -693,7 +691,7 @@ address under **Add Server**. You provide it in the **Server IP Address** field:
 **Providing Hostnames via REST API**
 
 The third way you can provide a node a hostname is to do a REST request at the
-endpoint `http://127.0.0.1:9000/node/controller/rename`. If you use this method,
+endpoint `http://127.0.0.1:8091/node/controller/rename`. If you use this method,
 you should provide the hostname before you add a node to a cluster. If you
 provide a hostname for a node that is already part of a Couchbase cluster; the
 server will reject the request and return `error 400 reason: unknown ["Renaming
@@ -702,7 +700,7 @@ is disallowed for nodes that are already part of a cluster"]`.:
 
 ```
 curl -v -X POST -u Administrator:asdasd \
-http://127.0.0.1:9000/node/controller/rename -d hostname=shz.localdomain
+http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
 ```
 
 Where you provide the IP address and port for the node and administrative

@@ -114,7 +114,7 @@ For more information about Web Console or REST API, see [Using the Web Console](
 
 ## Using Multi- Readers and Writers
 
-As of Couchbase Server 2.1, we support multiple readers and writers to persist
+Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each bucket instance
 had only single disk reader and writer workers. By default this is set to three
 total workers per data bucket, with two reader workers and one writer worker for
@@ -581,7 +581,7 @@ fetched from disk. Once replica data is enabled at the second node, Couchbase
 Server updates a map indicating where the data should be retrieved, and the
 server shares this information with client applications. Client applications can
 then get the replica data from the functioning node. For more information about
-node failure and failover, see [Failing Over
+node failure and failover, see [Failover
 Nodes](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-admin-creating-replicas-for-buckets"></a>
@@ -921,8 +921,7 @@ both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
 Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually. For more information, see **Couldn't resolve xref tag:
-couchbase-admin-tasks-compaction-spatial**.
+compacted manually.
 
 Auto-compaction can be configured in two ways:
 
@@ -1060,7 +1059,7 @@ You want to consider the following:
 
 <a id="couchbase-admin-tasks-failover"></a>
 
-## Failing Over Nodes
+## Failover Nodes
 
 If a node in a cluster is unable to serve data you can *failover* that node.
 Failover means that Couchbase Server removes the node from a cluster and makes
@@ -1105,9 +1104,7 @@ completes. At this point, other nodes in the cluster will handle data requests.
 There is therefore no disruption in data service or no loss of data that can
 occur when you remove a node then rebalance the cluster. If you need to remove a
 functioning node for administration purposes, you should use the remove and
-rebalance functionality not failover. See [Performing a Rebalance, Adding a Node
-to a
-Cluster](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-addremove-rebalance.html).
+rebalance functionality not failover.
 
 If you try to failover a functioning node it may result in data loss. This is
 because failover will immediately remove the node from the cluster and any data
@@ -2940,7 +2937,7 @@ swap rebalance functionality affects the following situations:
 You should monitor the system during and immediately after a rebalance operation
 until you are confident that replication has completed successfully.
 
-As of Couchbase Server 2.1+ we provide a detailed rebalance report in Web
+A detailed rebalance report is available in the Web
 Console. As the server moves vBuckets within the cluster, Web Console provides a
 detailed report. You can view the same statistics in this report via a REST API
 call, see [Getting Rebalance
@@ -3810,8 +3807,8 @@ independently reach a consistent decision on which document wins.
 
 ### 'Optimistic Replication' in XDCR
 
-In Couchbase 2.1 you can also tune the performance of XDCR with a new parameter,
-`xdcrOptimisticReplicationThreshold`. By default XDCR gets metadata twice for
+XDCR can be tuned the performance of XDCR with the
+`xdcrOptimisticReplicationThreshold` parameter. By default, XDCR gets metadata twice for
 documents over 256 bytes before it performs conflict resolution for at a
 destination cluster. If the document fails conflict resolution it will be
 discarded at the destination cluster.
@@ -3841,7 +3838,7 @@ number of parallel replicators. This may increase the number of documents sent
 by XDCR which ultimately 'lose' conflicts at the destination which wastes
 network bandwidth.
 
-As of Couchbase Server 2.1, XDCR will not fetch metadata for documents that are
+**Note**: XDCR does not fetch metadata for documents that are
 deleted.
 
 **Changing the Document Threshold**
@@ -3933,7 +3930,7 @@ operation on every node in the cluster.
  * By server setting:
 
     ```
-    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:9000/diag/eval \
+    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
                           -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
     ```
 

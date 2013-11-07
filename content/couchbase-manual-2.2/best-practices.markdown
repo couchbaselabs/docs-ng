@@ -33,13 +33,13 @@ Cloud](#couchbase-bestpractice-cloud).
 
     * It is a trade off between reliability and efficiency.
 
- * [Moxi: We always prefer a client-side moxi (or a smart client) over a
+ * Couchbase prefers a client-side moxi (or a smart client) over a
    server-side moxi. However, for development environments or for faster, easier
-   deployments, you can use server-side moxis. We don't recommend server-side moxi
-   because of the drawback: if a server receives a client request and doesn't have
-   the requested data, there's an additional hop. Read more about clients
-   [here](http://www.couchbase.com/develop). Read more about different Deployment
-   Strategieshere](#couchbase-deployment).
+   deployments, you can use server-side moxis. A server-side moxi is not recommended
+   because of the following drawback: if a server receives a client request and doesn't have
+   the requested data, there's an additional hop. See 
+   [client development](http://www.couchbase.com/develop) and [Deployment
+   Strategies](#couchbase-deployment) for more information.
 
  * Number of cores: Couchbase is relatively more memory or I/O bound than is CPU
    bound. However, Couchbase is more efficient on machines that have at least two
@@ -446,11 +446,10 @@ following:
    high values mean that data that your application expects to be stored is not in
    memory.
 
-[The water mark is another key statistic to monitor cluster performance. The
+The water mark is another key statistic to monitor cluster performance. The
 'water mark' determines when it is necessary to start freeing up available
-memory. Read more about this
-concept here](#couchbase-introduction-architecture-diskstorage). Here are two
-important statistics related to water marks:
+memory. See [disk storage](#couchbase-introduction-architecture-diskstorage) 
+for more information. Two important statistics related to water marks include:
 
  * High Water Mark ( `ep_mem_high_wat` )
 
@@ -707,42 +706,29 @@ taken to restrict access.
 
 ### Swap Space
 
-Swap space in Linux is used when the physical memory (RAM) is full. If the
+On Linux, swap space is used when the physical memory (RAM) is full. If the
 system needs more memory resources and the RAM is full, inactive pages in memory
-are moved to the swap space. From a range of 0 to 100, swappiness indicates how
-frequently a system should use swap space based on RAM usage. We recommend the
-following for swap space:
+are moved to the swap space. Swappiness indicates how
+frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
- * By default on most Linux platforms, swappiness is set to 60. However this will
-   make a system go into swap too frequently for Couchbase Server.
-
- * If you use Couchbase Server 2.0+ without views, we recommend setting swappiness
-   of 10 to avoid going into swap too frequently.
-
- * If you use Couchbase Server 2.0+ with views, we recommend setting swappiness to
-   0 or else your system swap usage will be far too high.
-
- * Certain cloud systems by default do not have a swap partition configured. If you
-   are using views, we recommend setting swappiness to 0. If you are not using
-   views, you can set this to 10.
-
-To view the currently set swappiness on your system, enter this:
+<p style="border-style:solid;padding:10px;width:90%;margin:0 auto;border-color:red">
+<strong>Recommendation</strong>:
+For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
+</p>  
 
 
-```
-sysctl vm.swappiness
-```
+To change the swap configuration:
 
-Or you can use this command:
+1. Execute ```cat /proc/sys/vm/swappiness``` on each node to determine the current swap usage configuration.
+2. Execute ```sudo sysctl vm.swappiness=0``` to immediately change the swap configuration and ensure that it persists through server restarts.
+3.  Using sudo or root user privileges, edit the kernel parameters configuration file, ```/etc/sysctl.conf```, so that the change is always in effect.
+4. Append ```vm.swappiness = 0``` to the file.
+5. Reboot your system.
+
+**Note**: 
+Executing ```sudo sysctl vm.swappiness=0``` ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, ```sysctl.conf```, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.
 
 
-```
-cat /proc/sys/vm/swappiness
-```
-
-To change the swappiness, edit `/etc/sysctl.conf` and add `vm.swappiness` at the
-end of the file. After you save this and reboot your system, this setting will
-be used.
 
 <a id="couchbase-deployment"></a>
 

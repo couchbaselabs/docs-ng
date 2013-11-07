@@ -1842,7 +1842,7 @@ To make this request:
 
 ```
 wget --post-data='rebalanceMovesBeforeCompaction=256'
---user=Administrator --password=pass http://lh:9000/internalSettings
+--user=Administrator --password=pass http://lh:8091/internalSettings
 ```
 
 This needs to be made as POST request to the `/internalSettings` endpoint. By

@@ -23,8 +23,9 @@ each platform:
 
 <a id="table-couchbase-admin-cmdline-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin`, `/opt/couchbase/bin/install`, `/opt/couchbase/bin/tools`, `/opt/couchbase/bin/tools/unsupported`                      
+Operating System | Directory Locations
 -------------|---------------------------------------------------------------------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin`, `/opt/couchbase/bin/install`, `/opt/couchbase/bin/tools`, `/opt/couchbase/bin/tools/unsupported`                      
 **Windows**  | `C:\Program Files\couchbase\server\bin`, `C:\Program Files\couchbase\server\bin\install`, and `C:\Program Files\couchbase\server\bin\tools`.
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin`                                                                  
 
@@ -97,8 +98,9 @@ cluster have access to.
 
 <a id="table-couchbase-admin-cmdline-couchbase-cli-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/couchbase-cli`                                                      
+Operating System | Directory Locations
 -------------|-----------------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/couchbase-cli`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\couchbase-cli.exe`                               
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/couchbase-cli`
 
@@ -129,9 +131,10 @@ Where:
  * `OPTIONS` are zero or more options as follows:
 
    <a id="table-couchbase-admin-couchbase-cli-otpions"></a>
-
-   `-u USERNAME, --user=USERNAME`     | Admin username of the cluster
+   
+	Option | Description
    -----------------------------------|-----------------------------------
+   `-u USERNAME, --user=USERNAME`     | Admin username of the cluster
    `-p PASSWORD, --password=PASSWORD` | Admin password of the cluster
    `-o KIND, --output=KIND`           | Type of document: JSON or standard
    `-d, --debug`                      | Output debug information
@@ -2079,8 +2082,9 @@ platform:
 
 <a id="table-couchbase-admin-cmdline-cbcollect_info-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/cbcollect_info`                                                      
+Operating System | Location
 -------------|------------------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/cbcollect_info`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\cbcollect_info`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info`
 
@@ -2088,7 +2092,7 @@ platform:
 operation for an entire cluster, you will need to perform the command for every
 node that exists for that cluster.
 
-As of Couchbase Server 2.1+ you will need a root account to run this command and
+You will need a root account to run this command and
 collect all the server information needed. There are internal server files and
 directories that this tool accesses which require root privileges.
 
@@ -2290,7 +2294,7 @@ and best practices for backup and restore of data with Couchbase Server, see
 
 **Backing Up Design Documents Only**
 
-As of Couchbase Server 2.1 you can backup only design documents from a cluster
+You can backup only design documents from a cluster
 or bucket with the option, `design_doc_only=1`. You can later restore the design
 documents only with `cbrestore`, see [cbrestore
 Tool](#couchbase-admin-cmdline-cbrestore) :
@@ -2466,7 +2470,7 @@ Tool](#couchbase-admin-cmdline-cbtransfer).
 
 **Using cbrestore for Design Documents Only**
 
-As of Couchbase Server 2.1 you can restore design documents to a server node
+You can restore design documents to a server node
 with the option, `design_doc_only=1`. You can restore from a backup file you
 create with `cbbackup`, see [cbbackup Tool](#couchbase-admin-cmdline-cbbackup) :
 
@@ -2689,7 +2693,7 @@ not the associated design documents. To to so, you should explicitly use
 
 **Exporting and Importing CSV Files**
 
-As of Couchbase Server 2.1 you can import and export well-formed.csv files with
+You can import and export well-formed.csv files with
 `cbtransfer`. This will import data into Couchbase Server as documents and will
 export documents from the server into comma-separated values. This does not
 include any design documents associated with a bucket in the cluster.
@@ -2767,7 +2771,7 @@ w0 error: fails to read from csv file, .....
 
 **Transferring Design Documents Only**
 
-As of Couchbase Server 2.1 you can transfer design documents from one cluster to
+You can transfer design documents from one cluster to
 another one with the option, `design_doc_only=1` :
 
 
@@ -2809,14 +2813,14 @@ the format of the information. All `cbhealthchecker` output is stored in a
 delete files manually if the `reports` folder becomes too large. The path to the
 output files is displayed when the run finishes.
 
-`cbhealthchecker` is automatically installed with Couchbase Server 2.1 and
-later. You can find the tool in the following locations, depending upon your
+`cbhealthchecker` is automatically installed with Couchbase Server. You can find the tool in the following locations, depending upon your
 platform:
 
 <a id="table-couchbase-admin-cmdline-cbhealthchecker-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
@@ -2827,42 +2831,21 @@ The format of the `cbhealthchecker` command is:
 cbhealthchecker CLUSTER USERNAME PASSWORD OPTIONS
 ```
 
-Where:
-
- * `CLUSTER`
-
-   The cluster for which you want a report:
-
-   `-c HOST[:PORT]`  `--cluster=HOST[:PORT]` | Hostname and port of a node in the cluster. The default port is 8091.
-   ------------------------------------------|----------------------------------------------------------------------
-
- * `USERNAME`
-
-   Username of the cluster administrator account:
-
-   `-u USERNAME`  `--user=USERNAME` | Admin username of the cluster.
-   ---------------------------------|-------------------------------
-
- * `PASSWORD`
-
-   Password of the cluster administrator account:
-
-   `-p PASSWORD`  `--password=PASSWORD` | Admin password of the cluster.
-   -------------------------------------|-------------------------------
-
- * `OPTIONS`
-
-   Command options:
-
    <a id="table-couchbase-admin-cmdline-cbhealthchecker-options"></a>
 
-   `-b BUCKETNAME`  `--bucket=BUCKETNAME` | Specific bucket on which to report. The default is all buckets.
-   ---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------
-   `-i FILENAME`  `--input=FILENAME`      | Generate an analysis report from an input JSON file.
-   `-o FILENAME`  `--output=FILENAME`     | File name for the HTML report. The default output file name is the report time stamp, for example: `2013-07-26_13-26-23.html`.
-   `-h`  `--help`                         | Show the help message and exit.
-   `-s SCALE`  `--scale=SCALE`            | Time span (scale) for the statistics: minute, hour, day, week, month or year. The default time span is day.
-   `-j`  `--jsononly`                     | Collect data and output only a JSON file. When you use this option, the analysis report is not generated.
+
+Option   | Syntax | Description
+---------|-------------------------------------------|-------------------------------------------------
+CLUSTER  | `-c HOST[:PORT]`  `--cluster=HOST[:PORT]` | Hostname and port of a node in the cluster. The default port is 8091.
+USERNAME | `-u USERNAME`  `--user=USERNAME`          | Admin username of the cluster.
+PASSWORD | `-p PASSWORD`  `--password=PASSWORD`      | Admin password of the cluster.
+OPTIONS  | `-b BUCKETNAME`  `--bucket=BUCKETNAME`    | Specific bucket on which to report. The default is all buckets.
+         | `-i FILENAME`  `--input=FILENAME`         | Generate an analysis report from an input JSON file.
+         | `-o FILENAME`  `--output=FILENAME`        | File name for the HTML report. The default output file name is the report time stamp, for example: `2013-07-26_13-26-23.html`.
+         | `-h`  `--help`                            | Show the help message and exit.
+         | `-s SCALE`  `--scale=SCALE`               | Time span (scale) for the statistics: minute, hour, day, week, month or year. The default time span is day.
+         | `-j`  `--jsononly`                        | Collect data and output only a JSON file. When you use this option, the analysis report is not generated.
+
 
 **Sample Commands**
 
@@ -2979,8 +2962,9 @@ You use this tool to reset an administrative or read-only password. You can find
 
 <a id="table-couchbase-admin-cmdline-cbdocloader-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3023,8 +3007,9 @@ depending upon your platform:
 
 <a id="table-couchbase-admin-cmdline-cbdocloader-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3068,8 +3053,7 @@ The following is an example of uploading JSON from a.zip file:
 Be aware that there are typically three types of errors that can occur: 1) the
 files are not well-formatted, 2) credentials are incorrect, or 3) the RAM quota
 for a new bucket to contain the JSON is too large given the current quota for
-Couchbase Server. For more information about changing RAM quotas for Couchbase
-Server nodes, see **Couldn't resolve xref tag: couchbase-admin-tasks-quotas**.
+Couchbase Server.
 
 <a id="couchbase-admin-cmdline-cbworkloadgen"></a>
 
@@ -3080,8 +3064,9 @@ This is useful for testing your Couchbase node.
 
 <a id="table-couchbase-admin-cmdline-cbworkloadgen-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3107,7 +3092,7 @@ that node:
 
 
 ```
-> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
+> ./cbworkloadgen -n 10.17.30.161:8091 -u Administrator -p password
 ```
 
 Will produce a result similar to the following if successful:
@@ -3140,8 +3125,9 @@ upon your platform, this tool is at the following locations:
 
 <a id="table-couchbase-admin-cmdline-cbanalyze-core-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | Not Available on this platform.                                                  
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3155,8 +3141,9 @@ values based on Couchbase Server internal hashing algorithm. Moved as of 1.8 to
 
 <a id="table-couchbase-admin-cmdline-vbuckettool-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
