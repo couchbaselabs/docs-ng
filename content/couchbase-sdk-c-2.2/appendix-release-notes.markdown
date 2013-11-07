@@ -24,7 +24,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 * Replace isasl with cbsasl. cbsasl implements both PLAIN and CRAM-MD5 authentication mechanisms.
 
-  * `LCB_CNTL_MEMDNODE_INFO` command updated to include effective
+* `LCB_CNTL_MEMDNODE_INFO` command updated to include effective
     SASL mechanism:
 
         cb_cntl_server_t node;
@@ -37,12 +37,12 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
         }
 
 
-  * You can force a specific authentication mechanism for
+* You can force a specific authentication mechanism for
     the connection handle by using the `LCB_CNTL_FORCE_SASL_MECH` command:
 
         lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_FORCE_SASL_MECH, "PLAIN");
 
-	*Issues* :
+	*Issues*:
    [CCBC-243](http://www.couchbase.com/issues/browse/CCBC-243)
 
 * Stricter, more inspectable behavior for the configuration cache. This provides a
@@ -58,7 +58,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
             printf("We had to contact the configuration server for some reason\n");
         }
 
-	*Issues* :
+	*Issues*:
    [CCBC-204](http://www.couchbase.com/issues/browse/CCBC-204)
    [CCBC-205](http://www.couchbase.com/issues/browse/CCBC-205)
 
@@ -66,12 +66,12 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 **Fixes in 2.2.0**
 
-* libuv plugin: use same CRT for free/malloc
+* libuv plugin: use the same CRT for free and malloc.
 
 	*Issues* :
    [CCBC-286](http://www.couchbase.com/issues/browse/CCBC-286)
 
-* Fail `NOT_MY_VBUCKET` responses on timeout
+* Fail `NOT_MY_VBUCKET` responses on time-out.
 
    *Issues* :
    [CCBC-288](http://www.couchbase.com/issues/browse/CCBC-288)
@@ -86,21 +86,21 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 * Reset the server's buffers upon reconnection. This fixes a crash
   experienced when requesting a new read with the previous buffer
-  still in tact. This was exposed by calling `lcb_failout_server` on a
-  timeout error while maintaining the same server struct.
+  still intact. This was exposed by calling `lcb_failout_server` on a
+  time-out error while maintaining the same server struct.
 
    *Issues* :
    [CCBC-275](http://www.couchbase.com/issues/browse/CCBC-275)
 
 * Make server buffers reentrant-safe. When purging implicit commands,
-  we invoke callbacks which may in turn cause other LCB entry points
-  to be invoked which can shift the contents and/or positions of the
-  ringbuffers we're reading from.
+  we invoke callbacks that might in turn cause other LCB entry points
+  to be invoked, which can shift the contents or positions of the
+  ring buffers that we're reading from.
 
    *Issues* :
    [CCBC-282](http://www.couchbase.com/issues/browse/CCBC-282)
 
-* Use common config retry mechanism for bad configcache. This uses the
+* Use common config retry mechanism for bad configuration cache. This uses the
   same error handling mechanism as when a bad configuration has been
   received from the network. New `LCB_CONFIG_CACHE_INVALID` error code
   to notify the user of such a situation
@@ -108,16 +108,16 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
    *Issues* :
    [CCBC-278](http://www.couchbase.com/issues/browse/CCBC-278)
 
-* Handle getl/unl when purging the server (thanks Robert Groenenberg)
+* Handle getl and unl when purging the server (thanks Robert Groenenberg).
 
    *Issues* :
    [CCBC-274](http://www.couchbase.com/issues/browse/CCBC-274)
 
-* Don't failout all commands on a timeout. Only fail those commands
-  which are old enough to have timed out already.
+* Don't fail out all commands on a time-out. Only fail those commands
+  that are old enough to have timed out already.
 
 * Don't record and use TTP/TTR from observe. Just poll at a fixed
-  interval, as the responses from the server side can be unreliable.
+  interval, because the responses from the server side can be unreliable.
 
    *Issues* :
    [CCBC-269](http://www.couchbase.com/issues/browse/CCBC-269)
