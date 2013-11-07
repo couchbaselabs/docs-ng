@@ -125,6 +125,7 @@ versions:
   couchbase-sdk-node:
     name: "Node.js SDK"
     versions:
+      - 1.1
       - 1.0
 
   couchbase-sdk-php:
@@ -198,7 +199,7 @@ navbar:
         href: /couchbase-sdk-net-1.2/
       
       - label: Node.js
-        href: /couchbase-sdk-node-1.0/
+        href: /couchbase-sdk-node-1.1/
         
       - label: PHP
         href: /couchbase-sdk-php-1.2/
