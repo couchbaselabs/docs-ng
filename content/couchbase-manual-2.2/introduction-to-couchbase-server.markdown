@@ -278,10 +278,7 @@ resources:
 ### RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
-the `Server Quota` and `Bucket Quota`. For more information about creating and
-changing these two settings, see **Couldn't resolve xref tag:
-couchbase-cli-other-examples** and [Creating and Editing Data
-Buckets](#couchbase-admin-web-console-data-buckets-createedit).
+the `Server Quota` and `Bucket Quota`.  
 
  * **Server Quota**
 
@@ -310,8 +307,8 @@ From this description and diagram, you can see that adding new nodes to the
 cluster expands the overall RAM quota, and the bucket quota, increasing the
 amount of information that can be kept in RAM.
 
-[The Bucket Quota is used by the system to determine when data should
-beejected](#couchbase-introduction-architecture-ejection-eviction) from memory.
+The Bucket Quota is used by the system to determine when [data should
+be ejected](#couchbase-introduction-architecture-ejection-eviction) from memory.
 Bucket Quotas are dynamically configurable within the limit of your Server
 Quota, and enable you to individually control the caching of information in
 memory on a per bucket basis. You can therefore configure different buckets to
@@ -321,8 +318,6 @@ The Server Quota is also dynamically configurable, but care must be taken to
 ensure that the nodes in your cluster have the available RAM to support your
 chosen RAM quota configuration.
 
-For more information on changing Couchbase Quotas, see **Couldn't resolve xref
-tag: couchbase-admin-tasks-quotas**.
 
 <a id="couchbase-introduction-architecture-vbuckets"></a>
 
@@ -375,8 +370,8 @@ node, Server D is added to the cluster and the vBucket Map is updated.
 
 ![](images/vbuckets-after.png)
 
-[The vBucket map is updated during
-the rebalance](#couchbase-introduction-architecture-rebalancing) operation; the
+The vBucket map is updated during
+the [rebalance](#couchbase-introduction-architecture-rebalancing) operation; the
 updated map is then sent the cluster to all the cluster participants, including
 the other nodes, any connected "smart" clients, and the Moxi proxy service.
 
@@ -455,7 +450,7 @@ memory before the information is returned.
 
 **Multiple Readers and Writers**
 
-As of Couchbase Server 2.1, we support multiple readers and writers to persist
+Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each server instance
 had only single disk reader and writer threads. Disk speeds have now increased
 to the point where single read/write threads do not efficiently keep up with the

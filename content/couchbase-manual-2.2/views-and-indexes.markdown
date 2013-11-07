@@ -277,12 +277,7 @@ are guidelines on handling expiration with views:
    node.
 
 For more information about setting intervals for the maintenance process, refer
-to the Couchbase Manual command line tool, [Couchbase Server Manual 2.0,
-Specifying Disk Cleanup
-Interval](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-cbepctl-disk-cleanup.html)
-and refer to the examples on `exp_pager_stime`. For more information about views
-and view query parameters, see [Finding Data with
-Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html).
+to the Couchbase command line tool and review the examples on `exp_pager_stime`.
 
 <a id="couchbase-views-operation-cluster"></a>
 
@@ -330,9 +325,7 @@ to all other nodes in the cluster. Depending on the parameter you send in your
 query, each node will either send the most current partial index at that node,
 will update the partial index and send it, or send the partial index and update
 it on disk. Couchbase Server will collect and collate these partial indexes and
-sent this aggregate result to a client. For more information about controlling
-index updates using query parameters, see [Index Updates and the stale
-Parameter](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-stale.html).
+sent this aggregate result to a client.
 
 To handle errors when you perform a query, you can configure how the cluster
 behaves when errors occur. See [Error
@@ -351,8 +344,7 @@ node to another. In other words, this feature ensures you get query results from
 a node during rebalance that are consistent with the query results you would
 have received from the node before rebalance started. This functionality
 operates by default in Couchbase Server, however you can optionally choose to
-disable it. For more information, see [Disabling Consistent Query Results on
-Rebalance](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-consistent-query.html).
+disable it.
 Be aware that while this functionality, when enabled, will cause cluster
 rebalance to take more time; however we do not recommend you disable this
 functionality in production without thorough testing otherwise you may observe
@@ -459,9 +451,7 @@ deletion because the deleted document has not yet been removed from the index.
 For both scenarios, you should use an `observe` command from a client with the
 `persistto` argument to verify the persistent state for the document, then force
 an update of the view using `stale=false`. This will ensure that the document is
-correctly updated in the view index. For more information, see [Couchbase
-Developer Guide, Using
-Observe](http://www.couchbase.com/docs/couchbase-devguide-2.0/monitoring-data.html).
+correctly updated in the view index. 
 
 When you have multiple clients accessing an index, the index update process and
 results returned to clients depend on the parameters passed by each client and
@@ -1304,11 +1294,14 @@ same key and value fields for each row, but the key is the selected group (or an
 array of the group elements according to the group level), and the value is the
 computed reduction value.
 
-[[[[Couchbase includes three built-in reduce functions,
-`_count`](#couchbase-views-writing-reduce-count),
-`_sum`](#couchbase-views-writing-reduce-sum), and
-`_stats`](#couchbase-views-writing-reduce-stats). You can also write your
-owncustom reduction functions](#couchbase-views-writing-reduce-custom).
+Couchbase includes three built-in reduce functions: 
+
+* [`_count`](#couchbase-views-writing-reduce-count)
+* [`_sum`](#couchbase-views-writing-reduce-sum)
+* [`_stats`](#couchbase-views-writing-reduce-stats). 
+
+You can also write your
+own [custom reduction functions](#couchbase-views-writing-reduce-custom).
 
 The reduce function also has a final additional benefit. The results of the
 computed reduction are stored in the index along with the rest of the view
@@ -2157,8 +2150,9 @@ The format of this command is as shown in the table below:
 
 <a id="couchbase-views-designdoc-api-put"></a>
 
+Put Design Document | Description
+----------------------------|---------------------------------------------------------------
 **Method**                  | `PUT /bucket/_design/design-doc`                                                                         
-----------------------------|----------------------------------------------------------------------------------------------------------
 **Request Data**            | Design document definition (JSON)                                                                        
 **Response Data**           | Success and stored design document ID                                                                    
 **Authentication Required** | optional                                                                                                 
@@ -2269,8 +2263,9 @@ detailed in the table below.
 
 <a id="couchbase-views-designdoc-api-get"></a>
 
+Get Design Document | Description 
+----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Method**                  | `GET /bucket/_design/design-doc`                                                                                                
-----------------------------|---------------------------------------------------------------------------------------------------------------------------------
 **Request Data**            | Design document definition (JSON)                                                                                               
 **Response Data**           | Success and stored design document ID                                                                                           
 **Authentication Required** | optional                                                                                                                        
@@ -2355,8 +2350,9 @@ shown in the table below:
 
 <a id="couchbase-views-designdoc-api-delete"></a>
 
+Delete Design Document | Description 
+----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Method**                  | `DELETE /bucket/_design/design-doc`                                                                                             
-----------------------------|---------------------------------------------------------------------------------------------------------------------------------
 **Request Data**            | Design document definition (JSON)                                                                                               
 **Response Data**           | Success and confirmed design document ID                                                                                        
 **Authentication Required** | optional                                                                                                                        
@@ -2428,9 +2424,7 @@ results matching the following:
    number order)
 
 View results and the parameters operate and interact in a specific order. The
-interaction directly affects how queries are written and data is selected. The
-sequence and precedence of the different parameters during queries is shown in
-**Couldn't resolve xref tag: fig-couchbase-views-querying-flow**.
+interaction directly affects how queries are written and data is selected.
 
 
 ![](images/views-query-flow.png)
@@ -2497,8 +2491,9 @@ The additional supported arguments are detailed in the table below.
 
 <a id="table-couchbase-querying-arguments"></a>
 
-**Method**                  | `GET /bucket/_design/design-doc/_view/view-name`                                                                                                                     
+Get View Name | Description 
 ----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Method**                  | `GET /bucket/_design/design-doc/_view/view-name`                                                                                                                     
 **Request Data**            | None                                                                                                                                                                 
 **Response Data**           | JSON of the rows returned by the view                                                                                                                                
 **Authentication Required** | no                                                                                                                                                                   
@@ -2933,9 +2928,7 @@ can specify the group level to be applied to the query output when using a
 When grouping is enabled, the view output is grouped according to the key array,
 and you can specify the level within the defined array that the information is
 grouped by. You do this by specifying the index within the array by which you
-want the output grouped using the `group_level` parameter. You can see described
-in **Couldn't resolve xref tag: fig-couchbase-views-writing-querying-grouping**.
-
+want the output grouped using the `group_level` parameter.
 
 ![](images/views-grouping.png)
 
@@ -4352,7 +4345,7 @@ than one needed to support selection by the author.
 
 <a id="couchbase-views-writing-sql-select"></a>
 
-### Translating SQL Field Selection (SELECT) to Map/Reduce
+### Translating SQL SELECT to Map/Reduce
 
 The field selection within an SQL query can be translated into a corresponding
 view definition, either by adding the fields to the emitted key (if the value is
@@ -4815,8 +4808,9 @@ request. The full list is provided in the following summary table.
 
 <a id="couchbase-querying-arguments-geo"></a>
 
-**Method**                  | `GET /bucket/_design/design-doc/_spatial/spatial-name`              
+Get Spatial Name | Description 
 ----------------------------|---------------------------------------------------------------------
+**Method**                  | `GET /bucket/_design/design-doc/_spatial/spatial-name`              
 **Request Data**            | None                                                                
 **Response Data**           | JSON of the documents returned by the view                          
 **Authentication Required** | no                                                                  

@@ -23,7 +23,7 @@ are running on your node:
    all server processes. This resulted in server disruption and crashes due to lack
    of memory.
 
-   As of Couchbase Server 2.1+ there is a separate monitoring/babysitting process
+   There is a separate monitoring/babysitting process
    running on each node. The process is small and simple and therefore unlikely to
    crash due to lack of memory. It is responsible for spawning and monitoring the
    second, larger process for cluster management, XDCR and views. It also spawns
@@ -171,10 +171,13 @@ essentially sleep until there are more items to write.
 There are basically two ways to monitor the disk queue, at a high-level from the
 Web UI or at a low-level from the individual node statistics.
 
-From the Web UI, click on Monitor Data Buckets and select the particular bucket
-that you want to monitor. Click "Configure View" in the top right corner and
-select the "Disk Write Queue" statistic. Closing this window will show that
-there is a new mini-graph. This graph is showing the Disk Write Queue for all
+1. From the Web UI, click on Monitor Data Buckets and select the particular bucket
+that you want to monitor. 
+1. Click "Configure View" in the top right corner and
+select the "Disk Write Queue" statistic. Closing this window shows that
+there is a new mini-graph. 
+
+This graph is showing the Disk Write Queue for all
 nodes in the cluster. To get a deeper view into this statistic, you can monitor
 each node individually using the 'stats' output (see [Viewing Server
 Nodes](#couchbase-admin-web-console-server-nodes) for more information about

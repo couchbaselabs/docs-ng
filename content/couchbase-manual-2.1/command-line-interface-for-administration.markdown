@@ -2219,8 +2219,7 @@ The following is an example of uploading JSON from a.zip file:
 Be aware that there are typically three types of errors that can occur: 1) the
 files are not well-formatted, 2) credentials are incorrect, or 3) the RAM quota
 for a new bucket to contain the JSON is too large given the current quota for
-Couchbase Server. For more information about changing RAM quotas for Couchbase
-Server nodes, see **Couldn't resolve xref tag: couchbase-admin-tasks-quotas**.
+Couchbase Server.
 
 <a id="couchbase-admin-cmdline-cbworkloadgen"></a>
 

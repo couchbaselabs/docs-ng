@@ -456,7 +456,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
      * **Disk Read-Write Concurrency**
 
-       As of Couchbase Server 2.1, we support multiple readers and writers to persist
+       Multiple readers and writers are supported to persist
        data onto disk. For earlier versions of Couchbase Server, each server instance
        had only single disk reader and writer threads. By default this is set to three
        total threads per data bucket, with two reader threads and one writer thread for
@@ -1688,7 +1688,7 @@ Buckets](#couchbase-admin-web-console-data-buckets-createedit). For
 information about changing these settings with the REST API, see 
 [Using the REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
-As of Couchbase Server 2.2+ you can provide a purge interval to remove the key and metadata 
+You can provide a purge interval to remove the key and metadata 
 for items that have been deleted or are expired. This is known as 'tombstone purging'. 
 For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 

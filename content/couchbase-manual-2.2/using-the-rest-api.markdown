@@ -543,8 +543,8 @@ Content-Length: 0
 
 ### Providing Hostnames for Nodes
 
-There are several ways you can provide hostnames for Couchbase 2.1+. You can
-provide a hostname when you install a Couchbase Server 2.1 node, when you add it
+There are several ways you can provide hostnames for Couchbase. You can
+provide a hostname when you install a Couchbase Server node, when you add it
 to an existing cluster for online upgrade, or via a REST API call. If a node
 restarts, any hostname you establish will be used. You cannot provide a hostname
 for a node that is already part of a Couchbase cluster; the server will reject
@@ -566,9 +566,7 @@ Server](#couchbase-getting-started-hostnames).
 You can use this request to failover a node in the cluster. When you failover a
 node, it indicates the node is no longer available in a cluster and replicated
 data at another node should be available to clients. You can also choose to
-perform node failover using the Web Console, for more information, see
-[Couchbase Server Manual, Initiating Node
-Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-failover-manual.html).
+perform node failover using the Web Console.
 
 Using the REST API endpoint `host:port/controller/failOver`, provide your
 administrative credentials and the parameter `optNode` which is an internal name
@@ -595,8 +593,7 @@ HTTP/1.1 200 OK
 
 If you try to failover a node that does not exist in the cluster, you will get a
 HTTP 404 error. To learn more about how to retrieve `optNode` information for
-the nodes in a cluster, see [Viewing Cluster
-Details](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-viewing-pool-info.html).
+the nodes in a cluster, see [Managing Clusters](#couchbase-admin-restapi-clusterops).
 
 <a id="couchbase-admin-restapi-bucketops"></a>
 
@@ -1280,18 +1277,19 @@ operations immediately after this REST call successful returns.
 To ensure a bucket is available the recommended approach is try to read a key
 from the bucket. If you receive a 'key not found' error, or the document for the
 key, the bucket exists and is available to all nodes in a cluster. You can do
-this via a Couchbase SDK with any node in the cluster. See [Couchbase Developer
-Guide 2.0, Performing Connect, Set and
-Get](http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
+this via a Couchbase SDK with any node in the cluster.
 
 <a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
-**Method**                    | `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Request Data**              | List of payload parameters for the new bucket                                                                                                                                                                                                                                                                                                             
-**Response Data**             | JSON of the bucket confirmation or error condition                                                                                                                                                                                                                                                                                                        
-**Authentication Required**   | yes                                                                                                                                                                                                                                                                                                                                                       
-**Payload Arguments**         |                                                                                                                                                                                                                                                                                                                                                           
+
+**Method** - `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
+**Request Data** - List of payload parameters for the new bucket                                                                                                                                                                                                                                                                                                             
+**Response Data** - JSON of the bucket confirmation or error condition                                                                                                                                                                                                                                                                                                        
+**Authentication Required** - yes  
+
+                                                                                                                                                                                                                                                                                                                                                    
+Payload Arguments        |  Description   
+------------------------------|----------------------------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                    
 `authType`                    | Required parameter. Type of authorization to be enabled for the new bucket as a string. Defaults to blank password if not specified. "sasl" enables authentication. "none" disables authentication.                                                                                                                                                       
 `bucketType`                  | Required parameter. Type of bucket to be created. String value. "memcached" configures as Memcached bucket. "couchbase" configures as Couchbase bucket                                                                                                                                                                                                    
 `flushEnabled`                | Optional parameter. Enables the 'flush all' functionality on the specified bucket. Boolean. 1 enables flush all support, 0 disables flush all support. Defaults to 0.                                                                                                                                                                                     
@@ -2313,8 +2311,9 @@ indexers, use a `GET` request.
 
 <a id="table-couchbase-admin-restapi-settings-maxparallelindexers-get"></a>
 
+Get Maximum Parallel Indexers | Description
+----------------------------|------------------------------------------------------------------------------------------------------
 **Method**                  | `GET /settings/maxParallelIndexers`                                
-----------------------------|--------------------------------------------------------------------
 **Request Data**            | None                                                               
 **Response Data**           | JSON of the global and node-specific parallel indexer configuration
 **Authentication Required** | no                                                                 
@@ -2343,8 +2342,9 @@ To set the value, `POST` to the URL specifying a URL-encoded value to the
 
 <a id="table-couchbase-admin-restapi-settings-maxparallelindexers-post"></a>
 
-**Method**                  | `POST /settings/maxParallelIndexers`                                                                 
+Set Maximum Parallel Indexers | Description
 ----------------------------|------------------------------------------------------------------------------------------------------
+**Method**                  | `POST /settings/maxParallelIndexers`                                                                 
 **Request Data**            | None                                                                                                 
 **Response Data**           | JSON of the global and node-specific parallel indexer configuration                                  
 **Authentication Required** | yes                                                                                                  
@@ -2522,8 +2522,9 @@ number of parallel indexers, use a `GET` request.
 
 <a id="table-couchbase-admin-restapi-settings-maxbucketcount-get"></a>
 
-**Method**                  | `GET /internalSettings`          
+Get Internal Settings | Description
 ----------------------------|----------------------------------
+**Method**                  | `GET /internalSettings`          
 **Request Data**            | None                             
 **Response Data**           | JSON of current internal settings
 **Authentication Required** | no                               
@@ -2555,8 +2556,9 @@ values.
 
 <a id="table-couchbase-admin-restapi-settings-maxparallelindexers"></a>
 
+Set Configuration Value | Description
+----------------------------|---------------------------------------------------------------
 **Method**                  | `POST /settings/maxParallelIndexers`                                                                 
-----------------------------|------------------------------------------------------------------------------------------------------
 **Request Data**            | None                                                                                                 
 **Response Data**           | JSON of the global and node-specific parallel indexer configuration                                  
 **Authentication Required** | yes                                                                                                  
@@ -2702,7 +2704,7 @@ To details about each setting, see
 **Auto-Compaction API**
 
 | REST API   | Description           
-| ------------- |:-------------:| 
+| ------------- |-------------| 
 | POST /controller/setAutoCompaction   | Set cluster-wide auto-compaction intervals and thresholds
 | GET /settings/autoCompaction  | Read cluster-wide settings for auto-compaction    
 | GET /pools/default/buckets/*bucket_name* | Read auto-compaction settings for named bucket   
@@ -2718,7 +2720,7 @@ for items that have been deleted or are expired. This is known as 'tombstone pur
 For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 
 | Parameter   | Value | Notes
-| ------------- |:-------------:|-------------:|
+| ------------- |-------------|-------------|
 | databaseFragmentationThreshold[percentage]  |  Integer between 2 and 100 | Percentage disk fragmentation for data
 | databaseFragmentationThreshold[size] | Integer greater than 1 | Bytes of disk fragmentation for data
 | viewFragmentationThreshold[percentage] | Integer between 2 and 100 |  Percentage disk fragmentation for index
@@ -2797,19 +2799,7 @@ structure in the document, represent relationships between documents, and
 perform calculations on data contained in documents.
 
 You store view functions in a design document as JSON and can use the REST API
-to manage your design documents. Please refer to the following resources:
-
- * [Storing a Design
-   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-storing.html).
-
- * [Retrieving a Design
-   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-retrieving.html).
-
- * [Deleting a Design
-   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
-
- * Querying Views via the REST API. [Querying Using the REST
-   API](#couchbase-views-querying-rest-api).
+to manage your design documents.
 
 <a id="couchbase-restapi-request-limits"></a>
 
@@ -3151,8 +3141,7 @@ For more information about these settings and their usage, see [Cross Datacenter
 ### Changing Internal XDCR Settings
 
 There are internal settings for XDCR which will change the replication behavior, performance, and timing.
-As of Couchbase Server 2.2+, there new endpoints. One can change global settings for replications for a cluster and the other 
-endpoint will change settings for a specific replication ID:
+With the Couchbase Server, endpoints are available to change global settings for replications for a cluster and to change settings for a specific replication ID:
 
 - `/settings/replications/` — global settings applied to all replications for a cluster
 - `/settings/replications/<replication_id>` — settings for specific replication for a bucket
@@ -3160,25 +3149,25 @@ endpoint will change settings for a specific replication ID:
 
 As of Couchbase Server 2.2+ you can change settings for a specific replication ID in Web Console | XDCR | Ongoing Replications | Settings. In the REST API you can change these settings globally for all replications for a cluster or for a specific replication ID. For detailed information about these settings including the impact of changes to a setting, see [XDCR, Providing Advanced Settings](#admin-tasks-xdcr-advanced):
 
-| parameter        | Value           | Description  |
-| ------------- |:-------------:| -----:|
-| `xdcrMaxConcurrentReps` | Integer |  Equivalent to Web Console setting `XDCR Max Replications per Bucket`.
- | `xdcrCheckpointInterval` | Integer | Same as Web Console setting`XDCR Checkpoint Interval`.
- | `xdcrWorkerBatchSize` | Integer | Known as Web Console setting `XDCR Batch Count`.
- | `xdcrDocBatchSizeKb` | Integer | Same as Web Console setting `XDCR Batch Size (KB)`.
- | `xdcrFailureRestartInterval` | Integer | equal to Web Console setting`XDCR Failure Retry Interval`.
- | `xdcrOptimisticReplicationThreshold` | Integer | Same as to Web Console setting `XDCR Optimistic Replication Threshold`.
+Parameter        | Value           | Description 
+------------- |-------------| --------
+`xdcrMaxConcurrentReps` | Integer |  Equivalent to Web Console setting `XDCR Max Replications per Bucket`.
+`xdcrCheckpointInterval` | Integer | Same as Web Console setting`XDCR Checkpoint Interval`.
+`xdcrWorkerBatchSize` | Integer | Known as Web Console setting `XDCR Batch Count`.
+`xdcrDocBatchSizeKb` | Integer | Same as Web Console setting `XDCR Batch Size (KB)`.
+`xdcrFailureRestartInterval` | Integer | equal to Web Console setting`XDCR Failure Retry Interval`.
+`xdcrOptimisticReplicationThreshold` | Integer | Same as to Web Console setting `XDCR Optimistic Replication Threshold`.
  
 There are additional internal settings for XDCR which are not yet exposed by Web Console, but are available 
 via the REST API. These parameters are as follows:
 
-| parameter        | Value           | Description  |
-| ------------- |:-------------:| -----:|
-| `workerProcesses` | Integer from 1 to 32. Default 32. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
-| `httpConnections` | Integer from 1 to 100. Default 2. | Number of maximum simultaneous HTTP connections used for REST protocol.
-| `xmemWorker` | Integer from 1 to 32. Default 1. | Used in memcached protocol for XDCR at the data transport layer. The number of work processes per vbucket replicator. A memcached work process is responsible for sending memcached operations to a remote node.
-| `enablePipelineOps`| Boolean. Defaults to true. | Used for memcached protocol with XDCR for backwards computability.  True indicates pipelined operations and false indicates non-pipelined memcached operations.
-| `localConflictResolution` | Boolean, default is false. | Used for backwards compatibility with pre-2.2 clusters. Perform conflict resolution on source cluster before replication to destination. 
+Parameter        | Value           | Description 
+------------- |-------------| --------
+`workerProcesses` | Integer from 1 to 32. Default 32. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
+`httpConnections` | Integer from 1 to 100. Default 2. | Number of maximum simultaneous HTTP connections used for REST protocol.
+`xmemWorker` | Integer from 1 to 32. Default 1. | Used in memcached protocol for XDCR at the data transport layer. The number of work processes per vbucket replicator. A memcached work process is responsible for sending memcached operations to a remote node.
+`enablePipelineOps`| Boolean. Defaults to true. | Used for memcached protocol with XDCR for backwards computability.  True indicates pipelined operations and false indicates non-pipelined memcached operations.
+`localConflictResolution` | Boolean, default is false. | Used for backwards compatibility with pre-2.2 clusters. Perform conflict resolution on source cluster before replication to destination. 
 
 The following example updates an XDCR setting for parallel replication streams per node:
 
