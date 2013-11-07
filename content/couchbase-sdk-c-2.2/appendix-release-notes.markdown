@@ -10,21 +10,19 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 **New Features and Behavior Changes in 2.2.0**
 
-* Handle 302 redirects in HTTP (views, administrative requests). By
-  default the library will follow up to three redirects.  Once the
-  limit reached the request will be terminated with code
-  `LCB_TOO_MANY_REDIRECTS`. Limit is configurable through
-  `LCB_CNTL_MAX_REDIRECTS`. If set to -1, it will disable redirect
-  limit.
+* Handle 302 redirects in HTTP (views and administrative requests). By
+  default the library follows up to three redirects.  After the
+  limit is reached, the request is terminated with code
+  `LCB_TOO_MANY_REDIRECTS`. The limit is configurable through
+  `LCB_CNTL_MAX_REDIRECTS`. If it is set to -1, it disables the redirect
+  limit. The following example shows how to set the limit:
 
         int new_value = 5;
         lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_MAX_REDIRECTS, &new_value);
 
-   *Issues* :
-   [CCBC-169](http://www.couchbase.com/issues/browse/CCBC-169)
+	*Issues*: [CCBC-169](http://www.couchbase.com/issues/browse/CCBC-169)
 
-* Replace isasl with cbsasl, the latter has implemented both PLAIN and
-  CRAM-MD5 authentication mechanisms.
+* Replace isasl with cbsasl. cbsasl implements both PLAIN and CRAM-MD5 authentication mechanisms.
 
   * `LCB_CNTL_MEMDNODE_INFO` command updated to include effective
     SASL mechanism:
@@ -39,17 +37,17 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
         }
 
 
-  * It is also possible to force specific authentication mechanism for
-    the connection handle using `LCB_CNTL_FORCE_SASL_MECH` command:
+  * You can force a specific authentication mechanism for
+    the connection handle by using the `LCB_CNTL_FORCE_SASL_MECH` command:
 
         lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_FORCE_SASL_MECH, "PLAIN");
 
-   *Issues* :
+	*Issues* :
    [CCBC-243](http://www.couchbase.com/issues/browse/CCBC-243)
 
-* Stricter/More inspectable behavior for config cache. This provides a
+* Stricter, more inspectable behavior for the configuration cache. This provides a
   test and an additional `lcb_cntl` operation to check the status of
-  the configuration cache. Also it switches off config cache with
+  the configuration cache. Also, it switches off the configuration cache with
   memcached buckets.
 
         int is_loaded;
@@ -60,7 +58,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
             printf("We had to contact the configuration server for some reason\n");
         }
 
-   *Issues* :
+	*Issues* :
    [CCBC-204](http://www.couchbase.com/issues/browse/CCBC-204)
    [CCBC-205](http://www.couchbase.com/issues/browse/CCBC-205)
 
@@ -70,7 +68,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 * libuv plugin: use same CRT for free/malloc
 
-   *Issues* :
+	*Issues* :
    [CCBC-286](http://www.couchbase.com/issues/browse/CCBC-286)
 
 * Fail `NOT_MY_VBUCKET` responses on timeout
