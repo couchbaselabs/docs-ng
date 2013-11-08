@@ -213,7 +213,7 @@ navbar:
   - label: SDK API References
     subnav:
       - label: C
-        href: http://www.couchbase.com/autodocs/couchbase-c-client-2.1.2/index.html
+        href: http://www.couchbase.com/autodocs/couchbase-c-client-2.2.0/index.html
 
       - label: Java
         href: http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html
