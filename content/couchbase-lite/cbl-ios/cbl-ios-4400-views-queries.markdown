@@ -13,13 +13,17 @@ For example, if you have an address book in a database, you might want to query 
 
 You might also want to be able to look up people's names from phone numbers, so you can do Caller ID on incoming calls. For this you'd make a view whose keys are phone numbers. Now, a document might have multiple phone numbers in it, like so:
 
-	{ "first": "Bob",
-	  "last": "Dobbs"
-	  "phone": {
-	  		"home": "408-555-1212",
-			"cell": "408-555-3774",
-			"work": "650-555-8333"} }
-
+```json
+{
+   "first":"Bob",
+   "last":"Dobbs",
+   "phone":{
+      "home":"408-555-1212",
+      "cell":"408-555-3774",
+      "work":"650-555-8333"
+   }
+}
+```
 No problem&mdash;the map function just needs to loop over the phone numbers and emit each one. You then have a view index that contains each phone number, even if several of them map to the same document.
 
 ### Getting All Documents
