@@ -579,7 +579,7 @@ sort and filter the data.
 ```
 
 The following provides the stats that are created by `cbstats`:
-###Toplevel Stats
+### Toplevel Stats
 
 | Stat                               | Description                            |
 | ------------- |:-------------:| 
@@ -851,7 +851,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_warmup_time                     | The amount of time warmup took
 
 
-###vBucket Total Stats
+### vBucket Total Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -869,7 +869,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_meta_data_memory           | Total memory used by meta data
 
 
-###Active vBucket Class Stats
+### Active vBucket Class Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -893,7 +893,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_active_queue_fill          | Total enqueued items                       
 | vb_active_queue_drain         | Total drained items
 
-###Replica vBucket Stats
+### Replica vBucket Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -917,7 +917,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_replica_queue_fill         | Total enqueued items                       
 | vb_replica_queue_drain        | Total drained items
 
-###Pending vBucket Stats
+### Pending vBucket Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -941,7 +941,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_pending_queue_fill         | Total enqueued items                       
 | vb_pending_queue_drain        | Total drained items
 
-###Tap Stats
+### Tap Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:|
@@ -997,7 +997,7 @@ The following provides the stats that are created by `cbstats`:
 |                                | tap streams
 
 
-###Per Tap Client Stats
+### Per Tap Client Stats
 
 Each stat begins with =ep_tapq:= followed by a unique /client_id/ and
 another colon.  For example, if your client is named, =slave1=, the
@@ -1070,7 +1070,7 @@ another colon.  For example, if your client is named, =slave1=, the
 | num_vbucket_set_failed      | Number of failed vbucket set operations  |  C 
 | num_unknown                 | Number of unknown operations             |  C
 
-###Tap Aggregated Stats
+### Tap Aggregated Stats
 
 Aggregated tap stats allow named tap connections to be logically
 grouped and aggregated together by prefixes.
@@ -1093,7 +1093,7 @@ for =rebalance= and a set for =replication=.
 | [prefix]:itemondisk         | Number of items remaining on disk          
 | [prefix]:total_backlog_size | Num of remaining items for replication
 
-###Timing Stats
+### Timing Stats
 
 Timing stats provide histogram data from high resolution timers over
 various operations within the system.
@@ -2796,10 +2796,10 @@ administrators, developers, and testers determine whether a cluster is healthy,
 has issues that must be addressed soon to prevent future problems, or has issues
 that must be addressed immediately.
 
-[The tool retrieves data from the Couchbase Server monitoring system, aggregates
+The tool retrieves data from the Couchbase Server monitoring system, aggregates
 it over a time scale, analyzes the statistics against thresholds, and generates
 a report. Unlike other command line tools such as `cbstats` and `cbtransfer`
-that use the TAP protocol](#couchbase-introduction-architecture-tap) to obtain
+that use the [TAP protocol](#couchbase-introduction-architecture-tap) to obtain
 data from the monitoring system, `cbhealthchecker` obtains data by using the
 REST API and the memcached protocol. For more information about the statistics
 provided by Couchbase Server, see [Statistics and

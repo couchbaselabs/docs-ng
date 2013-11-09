@@ -3409,7 +3409,7 @@ Get](ttp://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-se
 For more information about creating  buckets via the REST API, see [Creating and
 Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
 
-###Set Source and Destination Clusters
+### Set Source and Destination Clusters
 
 To create a unidirectional replication (from cluster A to cluster B):
 
@@ -3437,7 +3437,7 @@ To create a unidirectional replication (from cluster A to cluster B):
     
 <a id="admin-tasks-xdcr-new-replication"></a>
     
-###Create New Replication
+### Create New Replication
 
 After you create references to the source and destination, you can create a replication 
 between the clusters in Couchbase Web Console. 
@@ -3465,7 +3465,7 @@ current status and list of replications in the `Ongoing Replications` section:
 
 <a id="admin-tasks-xdcr-advanced"></a>
 
-###Providing XDCR Advanced Settings
+### Providing XDCR Advanced Settings
 
 As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
 

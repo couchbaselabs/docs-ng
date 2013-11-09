@@ -303,8 +303,7 @@ Moxi, as part of it's support of memcached protocol, has support for the
 memcached `stats` command. Regular memcached clients can request statistics
 through the memcached stats command. The stats command accepts optional
 arguments, and in the case of Moxi, there is a stats proxy sub-command. A
-detailed description of statistics available through Moxi can be found
-[here](http://www.couchbase.com/docs/moxi-manual-1.7/index.html).
+detailed description of statistics available through Moxi can be found in the [Moxi 1.8 Manual](http://docs.couchbase.com/moxi-manual-1.8).
 
 For example, one simple client one may use is the commonly available netcat
 (output elided with ellipses):

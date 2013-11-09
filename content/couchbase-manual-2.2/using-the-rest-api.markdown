@@ -503,8 +503,9 @@ every node within the cluster.
 
 <a id="table-couchbase-admin-restapi-settings-cluster-set-param-post"></a>
 
-**Method**                  | `POST /pools/default`                              
+Set Memory | Description 
 ----------------------------|----------------------------------------------------
+**Method**                  | `POST /pools/default`                              
 **Request Data**            | Payload with memory quota setting                  
 **Response Data**           | Empty                                              
 **Authentication Required** | yes                                                
@@ -2692,7 +2693,7 @@ with your actual values.
     
 <a id="couchbase-admin-rest-auto-compaction"></a>
 
-###Setting Auto-Compaction
+### Setting Auto-Compaction
 
 In Couchbase Server you can also provide auto-compaction settings which will 
 trigger data and view compaction based on certain settings. These settings can be 
@@ -2790,7 +2791,7 @@ This indicates a tombstone `purgeInterval` of two days with a threshold of 30% d
 
 ## Managing Views with REST
 
-In Couchbase 2.0 you can index and query JSON documents using views. Views are
+You can index and query JSON documents using views. Views are
 functions written in JavaScript that can serve several purposes in your
 application. You can use them to: find all the documents in your database,
 create a copy of data in a document and present it in a specific order, create

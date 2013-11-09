@@ -210,7 +210,7 @@ machine before you start the installation. For more information on uninstalling
 Couchbase Server, see [Uninstalling Couchbase Server](#couchbase-uninstalling).
 
 To perform an upgrade installation while retaining your existing dataset, see
-[Upgrading to Couchbase Server 2.1](#couchbase-getting-started-upgrade).
+[Upgrading to Couchbase Server](#couchbase-getting-started-upgrade).
 
 <a id="couchbase-getting-started-install-redhat"></a>
 
@@ -1412,9 +1412,7 @@ an individual nodes in a cluster remain the same:
 ## Upgrades Notes 1.8.1 to 2.1
 
 You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+ using
-either the online or offline upgrade method. See [Upgrading to Couchbase Server
-1.8](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-getting-started-upgrade.html)
-for more information.
+either the online or offline upgrade method.
 
 **Use Online Upgrades for Couchbase Server 1.8.1 to Couchbase Server 2.1+**
 
