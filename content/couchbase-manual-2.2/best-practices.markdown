@@ -711,7 +711,7 @@ system needs more memory resources and the RAM is full, inactive pages in memory
 are moved to the swap space. Swappiness indicates how
 frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
-<p style="border-style:solid;padding:10px;width:90%;margin:0 auto;border-color:red">
+<p style="border-style:solid;padding:10px;width:90%;margin:0 auto;border-color:#a30a0a">
 <strong>Recommendation</strong>:
 For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
 </p>  
@@ -729,6 +729,127 @@ To change the swap configuration:
 Executing ```sudo sysctl vm.swappiness=0``` ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, ```sysctl.conf```, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.
 
 
+### Using Couchbase Server on RightScale
+
+Couchbase partners with [RightScale](http://www.rightscale.com) to provide preconfigured RightScale ServerTemplates that you can use to create an individual or array of servers and start them as a cluster. Couchbase Server RightScale ServerTemplates enable you to quickly set up Couchbase Server on [Amazon Elastic Compute Cloud](http://aws.amazon.com/ec2/) (Amazon EC2) servers in the [Amazon Web Services](http://aws.amazon.com)  (AWS) cloud through RightScale. 
+
+The templates also provide support for [Amazon Elastic Block Store](http://aws.amazon.com/ebs/) (Amazon EBS) standard volumes and Provisioned IOPS volumes. (IOPS is an acronym for input/output operations per second.) For more information about Amazon EBS volumes and their capabilities and limitations, see [Amazon EBS Volume Types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html#EBSVolumeTypes). 
+
+Couchbase provides RightScale ServerTemplates based on [Chef](http://www.opscode.com/chef/) and, for compatibility with existing systems, non-Chef-based ServerTemplates. 
+
+<p style="border-style:solid;padding:10px;width:90%;margin:10px auto;border-color:#a30a0a">
+<strong>Note</strong>: Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
+</p>
+
+Before you can set up Couchbase Server on RightScale, you need a RightScale account and an AWS account that is connected to your RightScale account. For information about connecting the accounts, see [Add AWS Credentials to RightScale](http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard). 
+
+At a minimum, you need the following [RightScale user role privileges](http://support.rightscale.com/15-References/Tables/User_Role_Privileges) to work with the Couchbase RightScale ServerTemplates: actor, designer, library, observer, and server_login. To add privileges: from the RightScale menu bar, click **Settings > Account Settings > Users** and modify the permission list.
+
+To set up Couchbase Server on RightScale, you need to import and customize a  ServerTemplate. After the template is customized, you can launch server and cluster instances. The following figure illustrates the workflow:
+
+<img src="images/rightscale-workflow.png" style="width:50%;display:block;margin-left:auto;margin-right:auto">
+
+The following procedures do not describe every parameter that you can modify when working with the RightScale ServerTemplates. If you need more information about a parameter, click the info button located near the parameter name.
+
+**To import the Couchbase Server RightScale ServerTemplate:**
+
+1. From the RightScale menu bar, select **Design > MultiCloud Marketplace > ServerTemplates**.
+2. In the **Keywords** box on the left under Search, type **couchbase**, and then click **Go**.
+3. In the search results list, click on the latest version of the Couchbase Server ServerTemplate.
+
+    The name of each Couchbase template in the list contains the Couchbase Server version number.
+    
+4. Click **Import**.
+5. Review each page of the end user license agreement, and then click **Finish** to accept the agreement.
+
+**To create a new deployment:**
+
+1. From the RightScale menu bar, select **Manage > Deployments > New**.
+2. Enter a Nickname and Description for the new deployment.
+3. Click **Save**.
+
+**To add a server or cluster to a deployment:**
+
+1. From the RightScale menu bar, select **Manage > Deployments**.
+2. Click the nickname of the deployment that you want to place the server or cluster in.
+3. From the deployment page menu bar, add the server or cluster:
+    * To add a server, click **Add Server**.
+    * To add a cluster, click **Add Array**.
+4. In the Add to Deployment window, select a cloud and click **Continue**.
+5. On the Server Template page, select a template from the list.
+    
+    If you have many server templates in your account, you can reduce the number of entries in the list by typing a keyword from the template name into the Server Template Name box under Filter Options.
+    
+6. Click **Server Details**.
+7. On the **Server Details** page, choose settings for Hardware:
+
+	**Server Name** or **Array Name**—Enter a name for the new server or array.
+	
+	**Instance Type**—The default is extra large. The template supports only large or extra large instances and requires a minimum of 4 cores.
+	
+	**EBS Optimized**—Select the check box to enable EBS-optimized volumes for Provisioned IOPS.
+	
+8. Choose settings for Networking:
+
+	* **SSH Key**—Choose an SSH key.
+
+	* **Security Groups**—Choose one or more security groups.
+
+9. If you are adding a cluster, click **Array Details**, and then choose settings for Autoscaling Policy and Array Type Details.
+
+    Under Autoscaling Policy, you can set the minimum and maximum number of active servers in the cluster by modifying the **Min Count** and **Max Count** parameters. If you want a specific number of servers, set both parameters to the same value.
+    
+10. Click **Finish**.
+ 
+**To customize the template for a server or a cluster:**
+
+1. From the RightScale menu bar, select **Manage > Deployments**.
+2. Click the nickname of the deployment that the server or cluster is in.
+3. Click the nickname of the server or cluster.
+4. On the Server or Server Array page, click the **Inputs** tab, and then click **edit**.
+5. Expand the **BLOCK_DEVICE** category and modify inputs as needed.
+
+	The BLOCK_DEVICE category contains input parameters that are specific to storage. Here's a list of some advanced inputs that you might want to modify:
+
+	* **I/O Operations per Second**—Number of input/output operations per second (IOPS) that the volume can support
+	* **Volume Type**—Type of storage device
+
+6. Expand the **DB_COUCHBASE** category and modify inputs as needed.
+
+	The DB_COUCHBASE category contains input parameters that are specific to Couchbase Server. In general, the default values are suitable for one server. If you want to create a cluster, you need to modify the input parameter values. Here's a list of the advanced inputs that you can modify:
+
+	* **Bucket Name**—Name of the bucket. The default bucket name is `default`.
+
+	* **Bucket Password**—Password for the bucket.
+
+	* **Bucket RAM Quota**—RAM quota for the bucket in MB.
+
+	* **Bucket Replica Count**—Bucket replica count.
+
+	* **Cluster REST/Web Password**—Password for the administrator account. The default is `password`.
+	
+	* **Cluster REST/Web Username**—Administrator account user name for access to the cluster via the REST or web interface. The default is `Administrator`.
+
+	* **Cluster Tag**—Tag for nodes in the cluster that are automatically joined.
+
+    * **Couchbase Server Edition**—The edition of Couchbase Server. The default is `enterprise`.
+    
+	* **Rebalance Count**—The number of servers to launch before doing a rebalance. Set this value to the total number of target servers you plan to have in the cluster. If you set the value to 0, Couchbase Server does a rebalance after each server joins the cluster.
+	
+7. Click **Save**.
+8. If you are ready to launch the server or cluster right now, click **Launch**.
+
+**To launch servers or clusters:**
+
+1. From the RightScale menu bar, select **Manage > Deployments**.
+2. Click the nickname of the deployment that the server or cluster is in.
+3. Click the nickname of the server or cluster.
+4. On the Server or Server Array page, click **Launch**.
+
+
+**To log in to the Couchbase Web Console:**
+
+ You can log in to the Couchbase Web Console by using your web browser to connect to the the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
 
 <a id="couchbase-deployment"></a>
 

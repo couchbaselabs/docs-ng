@@ -63,7 +63,7 @@ concepts discussed in the following sections.
 
 ## Types of Resources
 
-There are a number of different resources within the Couchbase Server and these
+There are a number of different resources within the Couchbase Server, and these
 resources will require a different URI/RESTful-endpoint in order to perform an
 operations:
 

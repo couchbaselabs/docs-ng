@@ -159,9 +159,9 @@ public class Brewery : ModelBase
 
 After creating the Brewery class, the next step is to create the data access
 classes that will encapsulate our Couchbase CRUD and View operations. Create a
-new file in “Models” named “RepositoryBase`1.cs” with a class name of
+new file in “Models” named "RepositoryBase\`1.cs" with a class name of
 “RepositoryBase.” This will be an abstract class, generically constrained to
-work with `ModelBase` instances. Note the “`1” suffix on the file name is a
+work with `ModelBase` instances. The \`1 suffix on the file name is a
 convention used for generic classes in C\# projects.
 
 

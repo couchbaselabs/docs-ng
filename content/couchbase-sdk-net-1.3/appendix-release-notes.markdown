@@ -4,6 +4,65 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+<a id="couchbase-sdk-net-rn_1-3-0"></a>
+
+## Release Notes for Couchbase Client Library .NET 1.3.0 GA (6 November 2013)
+
+.NET Couchbase Client 1.3.0 includes the following features and fixes:
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-310">NCBC-310: Refactor Connection Pool:</a>
+
+	Refactor the CouchbaseNode class so it depends upon a different
+	implementation of the internal socket pool that utilizes a queue structure
+	instead of the stack-based implementation used by MemcachedClient. The
+	PooledSocket now has a new interface, IPooledSocket, with CouchbaseClient
+	and MemcachedClient having separate implementations. These
+	changes impact only CouchbaseClient instances—MemcachedClient instances
+	still use the older implementation. The benefits of this include: more
+	efficient resource allocation and management, elimination of some threading
+	issues related to race conditions and other reentrancy problems,
+	better structure and code organization, improved unit tests and
+	testability, and overall extensibility of certain components such as pools and
+	socket wrappers.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-299">NCBC-299: Fix project references:</a>
+
+	Changes in the dependencies in the GitHub repository so that Couchbase.Log4NetAdapter
+	and other projects that use NuGet do so only for 3rd party dependencies. All dependencies
+	between Couchbase libraries are now via project references and the NuGet packages point
+	to the latest Couchbase Client build.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-316">NCBC-316: Allow GetJson to support the retrieval of arrays and lists:</a>
+
+	Adds support to the CouchbaseClientExtensions.GetJson(...) methods to 
+	handle the deserialization of arrays and lists of objects and not 
+	just individual objects.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-306">NCBC-306: .NET GetJSON operation throws null reference exception:</a>
+
+	Add support for null values persisted for a key via the 
+	CouchbaseClientExtensions.GetJson(...) method. This method no 
+	longer throws a NullReferenceException when the value store for 
+	key is null and instead just returns null.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-293">NCBC-293: Enhance Couchbase.Client.Multiget(..) to allow getting details on missing items:</a>
+
+	Multiget now returns information for every operation (for example, success or failure).
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-296">NCBC-296: fix 'When_Observing_A_Removed_Key_Operation_Is_Successful_With_Master_And_Replication_Persistence':</a>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-317">NCBC-317 Mark Sync operations as obsolete:</a>
+
+	The CouchbaseClient.Sync(...) operations have been deprecated and will 
+	not be supported. They will be removed in future releases of the .NET 
+	client. The functionality has been superseded by CouchbaseClient.Observe(...)
+	methods and the PersistTo and ReplicateTo parameters.
+
+
+	Adds XML comments to all public methods of the Couchbase.Client class. 
+	The future API documentation will be based on these XML comments.
+
+
 <a id="couchbase-sdk-net-rn_1-2-9a"></a>
 
 ## Release Notes for Couchbase Client Library .NET 1.2.9 GA (04 October 2013)

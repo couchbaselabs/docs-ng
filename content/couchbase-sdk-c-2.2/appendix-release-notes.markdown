@@ -4,6 +4,176 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library C. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-c-rn_2-2-0"></a>
+
+## Release Notes for Couchbase Client Library C 2.2.0 GA (06 November 2013)
+
+**New Features and Behavior Changes in 2.2.0**
+
+* Handle 302 redirects in HTTP (views and administrative requests). By
+  default the library follows up to three redirects.  After the
+  limit is reached, the request is terminated with code
+  `LCB_TOO_MANY_REDIRECTS`. The limit is configurable through
+  `LCB_CNTL_MAX_REDIRECTS`. If it is set to -1, it disables the redirect
+  limit. The following example shows how to set the limit:
+
+        int new_value = 5;
+        lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_MAX_REDIRECTS, &new_value);
+
+	*Issues*: [CCBC-169](http://www.couchbase.com/issues/browse/CCBC-169)
+
+* Replace isasl with cbsasl. cbsasl implements both PLAIN and CRAM-MD5 authentication mechanisms.
+
+* `LCB_CNTL_MEMDNODE_INFO` command updated to include effective
+    SASL mechanism:
+
+        cb_cntl_server_t node;
+        node.version = 1;
+        node.v.v1.index = 0; /* first node */
+        lcb_cntl(instance, LCB_CNTL_GET, LCB_CNTL_MEMDNODE_INFO, &node);
+        if (node.v.v1.sasl_mech) {
+            printf("authenticated via SASL '%s'\n",
+                   node.v.v1.sasl_mech);
+        }
+
+
+* You can force a specific authentication mechanism for
+    the connection handle by using the `LCB_CNTL_FORCE_SASL_MECH` command:
+
+        lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_FORCE_SASL_MECH, "PLAIN");
+
+	*Issues*:
+   [CCBC-243](http://www.couchbase.com/issues/browse/CCBC-243)
+
+* Stricter, more inspectable behavior for the configuration cache. This provides a
+  test and an additional `lcb_cntl` operation to check the status of
+  the configuration cache. Also, it switches off the configuration cache with
+  memcached buckets.
+
+        int is_loaded;
+        lcb_cntl(instance, LCB_CNTL_GET, LCB_CNTL_CONFIG_CACHE_LOADED, &is_loaded);
+        if (is_loaded) {
+            printf("Configuration cache saved us a trip to the config server\n");
+        } else {
+            printf("We had to contact the configuration server for some reason\n");
+        }
+
+	*Issues*:
+   [CCBC-204](http://www.couchbase.com/issues/browse/CCBC-204)
+   [CCBC-205](http://www.couchbase.com/issues/browse/CCBC-205)
+
+
+
+**Fixes in 2.2.0**
+
+* libuv plugin: use the same CRT for free and malloc.
+
+	*Issues* :
+   [CCBC-286](http://www.couchbase.com/issues/browse/CCBC-286)
+
+* Fail `NOT_MY_VBUCKET` responses on time-out.
+
+   *Issues* :
+   [CCBC-288](http://www.couchbase.com/issues/browse/CCBC-288)
+
+* Do a full purge when negotiation times out. In this case we must
+  purge the server from all commands and not simply pop individual
+  items.
+
+   *Issues* :
+   [CCBC-275](http://www.couchbase.com/issues/browse/CCBC-275)
+
+
+* Reset the server's buffers upon reconnection. This fixes a crash
+  experienced when requesting a new read with the previous buffer
+  still intact. This was exposed by calling `lcb_failout_server` on a
+  time-out error while maintaining the same server struct.
+
+   *Issues* :
+   [CCBC-275](http://www.couchbase.com/issues/browse/CCBC-275)
+
+* Make server buffers reentrant-safe. When purging implicit commands,
+  we invoke callbacks that might in turn cause other LCB entry points
+  to be invoked, which can shift the contents or positions of the
+  ring buffers that we're reading from.
+
+   *Issues* :
+   [CCBC-282](http://www.couchbase.com/issues/browse/CCBC-282)
+
+* Use common config retry mechanism for bad configuration cache. This uses the
+  same error handling mechanism as when a bad configuration has been
+  received from the network. New `LCB_CONFIG_CACHE_INVALID` error code
+  to notify the user of such a situation
+
+   *Issues* :
+   [CCBC-278](http://www.couchbase.com/issues/browse/CCBC-278)
+
+* Handle getl and unl when purging the server (thanks Robert Groenenberg).
+
+   *Issues* :
+   [CCBC-274](http://www.couchbase.com/issues/browse/CCBC-274)
+
+* Don't fail out all commands on a time-out. Only fail those commands
+  that are old enough to have timed out already.
+
+* Don't record and use TTP/TTR from observe. Just poll at a fixed
+  interval, because the responses from the server side can be unreliable.
+
+   *Issues* :
+   [CCBC-269](http://www.couchbase.com/issues/browse/CCBC-269)
+
+* Allow hooks for mapping server codes to errors. This also helps
+  handle sane behavior if a new error code is introduced, or allow
+  user-defined logging when a specific error code is received.
+
+        lcb_errmap_callback default_callback;
+
+        lcb_error_t user_map_error(lcb_t instance, lcb_uint16_t in)
+        {
+          if (in == PROTOCOL_BINARY_RESPONSE_ETMPFAIL) {
+            fprintf(stderr, "temporary failure on server\n");
+          }
+          return default_callback(instance, in);
+        }
+
+        ...
+
+        default_callback = lcb_set_errmap_callback(conn, user_map_error);
+
+* Add an example of a connection pool. See `example/instancepool`
+  directory
+
+* Force `lcb_wait` return result of wait operation instead of
+  `lcb_get_last_error`. It returns `last_error` if and only if the
+  handle is not yet configured
+
+   *Issues* :
+   [CCBC-279](http://www.couchbase.com/issues/browse/CCBC-279)
+
+* `cbc-pillowfight`: compute item size correctly during set If
+  `minSize` and `maxSize` are set to the same value it can sometimes
+  crash since it may try to read out of memory bounds from the
+  allocated data buffer.
+
+   *Issues* :
+   [CCBC-284](http://www.couchbase.com/issues/browse/CCBC-284)
+
+* Apply key prefix CLI option in cbc-pillowfight
+
+   *Issues* :
+   [CCBC-283](http://www.couchbase.com/issues/browse/CCBC-283)
+
+* Add `--enable-maintainer-mode`. Maintainer mode enables
+  `--enable-werror --enable-warnings --enable-debug`, forces all
+  plugins to be installed and forces all tests, tools, and examples to
+  be built
+
+* Expose `LCB_MAX_ERROR` to allow user-defined codes
+
+   *Issues* :
+   [CCBC-255](http://www.couchbase.com/issues/browse/CCBC-255)
+
+
 <a id="couchbase-sdk-c-rn_2-1-3"></a>
 
 ## Release Notes for Couchbase Client Library C 2.1.3 GA (10 September 2013)

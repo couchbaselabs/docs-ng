@@ -190,13 +190,13 @@ navbar:
   - label: SDKs
     subnav:
       - label: C
-        href: /couchbase-sdk-c-2.1/
+        href: /couchbase-sdk-c-2.2/
 
       - label: Java
         href: /couchbase-sdk-java-1.2/
 
       - label: .NET
-        href: /couchbase-sdk-net-1.2/
+        href: /couchbase-sdk-net-1.3/
       
       - label: Node.js
         href: /couchbase-sdk-node-1.1/
@@ -213,7 +213,7 @@ navbar:
   - label: SDK API References
     subnav:
       - label: C
-        href: http://www.couchbase.com/autodocs/couchbase-c-client-2.1.2/index.html
+        href: http://www.couchbase.com/autodocs/couchbase-c-client-2.2.0/index.html
 
       - label: Java
         href: http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html
