@@ -617,8 +617,7 @@ For example:
 ```
 
 You can set this information when creating and updating design documents through
-the design document REST API. For more information, see [Design Document REST
-API](#couchbase-views-designdoc-api).
+the design document REST API. For more information, see [Storing a Design Document](#couchbase-views-designdoc-api).
 
 To perform this operation using the `curl` tool:
 
