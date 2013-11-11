@@ -773,6 +773,7 @@ These functions will return a single value based on the items in a result set. T
 |--------- |------------| -----|--------|
 | BASE64_VALUE(value) | Return the value encoded in base64. can be used on work with non-JSON values stored in the bucket. | value | 
 | CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
+| DATE_PART('field', source) | Retrieves subfields such as year or hour from date/time values. source must be a value expression of type timestamp, time, or interval | value |  SELECT date_part('hour', INTERVAL '4 hours 3 minutes')
 | FIRSTNUM(expr1, expr2, ...) | Returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric value | NULL or integer |  
 | FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
 | GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value |  
@@ -791,7 +792,8 @@ These functions will return a single value based on the items in a result set. T
 | META() | Returns metadata for the document | value | 
 | MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | 
 | NANIF(value1, value2) | If value1 equals value2, return NaN, otherwise value1 | value1 or NaN |  
-|   NEGINFIF(value1, value2) | If value1 equals value2, return negative infinity, otherwise value1 | value1 or -infinity |  
+|   NEGINFIF(value1, value2) | If value1 equals value2, return negative infinity, otherwise value1 | value1 or -infinity | 
+|   NOW_STR | Returns current date and time as a String value | value |   
 |   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | 
 |  POSINFIF(value1, value2) | If value1 equals value2, return positive infinity, otherwise value1 | value1 or +infinity |  
 |   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL |   
