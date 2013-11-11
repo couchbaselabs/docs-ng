@@ -219,7 +219,7 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html
 
       - label: Node.js
-        href: http://www.couchbase.com/autodocs/couchbase-node-client-1.0.1/index.html
+        href: http://www.couchbase.com/autodocs/couchbase-node-client-latest/index.html
         
       - label: PHP
         href: http://www.couchbase.com/autodocs/couchbase-php-client-1.1.5/index.html
