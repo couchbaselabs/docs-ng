@@ -796,14 +796,14 @@ These functions will return a single value based on the items in a result set. T
 |  POSINFIF(value1, value2) | If value1 equals value2, return positive infinity, otherwise value1 | value1 or +infinity |  
 |   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL |   
 |   ROUND( value, digits ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL |   
-|   RTRIM( expr, charset ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL |   
+|   RTRIM( expr, charset ) | Remove the longest string containing only the characters in the specified character set starting at the end| string or NULL |   
 |   SUBSTR( value, position ) | For value of string and position numeric, returns substring from position to end of string. String position starts at 1. If position 0, starts at position 1 nonetheless. If negative position, characters are counted from the end of string. Otherwise returns NULL. | string or NULL |   
 |   SUBSTR( value, position, length ) | If length is positive integer, returns substring starting at position up to length characters. Otherwise NULL | string or NULL |   
 |   TRIM( expr, charset ) | Functional equivalent of LTRIM(RTRIM(expr, charset)) | string or NULL |   
 |   TRUNC( value ) | If numeric value, truncates towards zero. Functional equivalent of TRUNC(value, 0). Otherwise returns NULL | integer or NULL |   
 |   TRUNC( value, digits ) | If digits an integer and value numeric, truncates value to the specific number of digits. Otherwise returns NULL | integer or NULL |   
 |   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL |   
-|   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL |   
+|   VALUE() | Returns the full value for the item in the current context| value or NULL |   
 
 <a id="reserved_words"></a>
 ## Reserved Words
