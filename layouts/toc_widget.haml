@@ -12,3 +12,8 @@
               - entry[:children].each do |child|
                 %li
                   %a{:href => child[:href]}= child[:title]
+                  - unless child[:children].empty?
+                    %ul.sub-menu
+                      - child[:children].each do |child|
+                        %li
+                          %a{:href => child[:href]}= child[:title]
