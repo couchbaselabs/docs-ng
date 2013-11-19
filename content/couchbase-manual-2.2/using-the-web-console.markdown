@@ -504,7 +504,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
      * `Access Control`
 
-       The access control configures the port clients use to communicate with the data
+       The access control configures the port that clients use to communicate with the data
        bucket, and whether the bucket requires a password.
 
        To use the TCP standard port (11211), the first bucket you create can use this
@@ -515,6 +515,10 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
        To use a dedicated port, select the dedicate port radio button and enter the
        port number you want to use. Using a dedicated port supports both the text and
        binary client protocols, and does not require authentication.
+	   
+	   Note: When defining a port on a bucket, the server automatically starts up a copy of Moxi on the servers, and exposes it on that port.  This supports the ASCII memcached protocol.  However, Couchbase strongly recommend against using Moxi in this way.  If needed, a client-side Moxi should be installed on the application servers and have it connect to this bucket (whether it is "port" or "password" doesn't matter).
+	   
+	   When defining a password on a bucket, it requires a client that supports the binary memcached protocol with SASL (all Couchbase client libraries and client-side Moxi provide this support). Defining a password on a bucket is the recommended approach.
 
      * **Flush**
 
