@@ -2177,4 +2177,8 @@ them into human readable form, including date and time. Note that the
 `_active_tasks` or every node in the cluster to verify if progress is stuck,
 etc.
 
+## Beam.smp uses excessive memory
+On Linux, if XDCR Max Replications per Bucket are set to a value in the higher limit (such as 128), then beam.sm uses excessive memory. Solution: Reset to 32 or lower.
+
+
 <a id="couchbase-server-rn"></a>

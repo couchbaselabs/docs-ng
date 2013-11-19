@@ -1,4 +1,270 @@
-# Appendix: Troubleshooting Views (Technical Background)
+
+# Troubleshooting
+When troubleshooting your Couchbase Server deployment there are a number of
+different approaches available to you. For specific answers to individual
+problems, see [Common Errors](#couchbase-troubleshooting-common-errors).
+
+<a id="couchbase-troubleshooting-general"></a>
+
+## General Tips
+
+The following are some general tips that may be useful before performing any
+more detailed investigations:
+
+ * Try pinging the node.
+
+ * Try connecting to the Couchbase Server Web Console on the node.
+
+ * [Try to use telnet to connect to the various ports](#couchbase-network-ports)
+   that Couchbase Server uses.
+
+ * Try reloading the web page.
+
+ * Check firewall settings (if any) on the node. Make sure there isn't a firewall
+   between you and the node. On a Windows system, for example, the Windows firewall
+   might be blocking the ports (Control Panel > Windows Firewall).
+
+ * Make sure that the documented ports are open between nodes and make sure the
+   data operation ports are available to clients.
+
+ * Check your browser's security settings.
+
+ * Check any other security software installed on your system, such as antivirus
+   programs.
+
+ * Generate a Diagnostic Report for use by Couchbase Technical Support to help
+   determine what the problem is. There are two ways of collecting this
+   information:
+
+    * Click `Generate Diagnostic Report` on the Log page to obtain a snapshot of your
+      system's configuration and log information for deeper analysis. You must send
+      this file to Couchbase.
+
+    * Run the `cbcollect_info` on each node within your cluster. To run, you must
+      specify the name of the file to be generated:
+
+       ```
+       > cbcollect_info nodename.zip
+       ```
+
+      This will create a Zip file with the specified name. You must run each command
+      individually on each node within the cluster. You can then send each file to
+      Couchbase for analysis.
+
+      For more information, see [cbcollect_info
+      Tool](#couchbase-admin-cmdline-cbcollect_info).
+
+<a id="couchbase-troubleshooting-specific-errors"></a>
+
+## Responding to Specific Errors
+
+The following table outlines some specific areas to check when experiencing
+different problems:
+
+<a id="table-couchbase-troubleshooting-specific-errors"></a>
+
+Severity      | Issue                               | Suggested Action(s)                                                      
+--------------|-------------------------------------|--------------------------------------------------------------------------
+Critical      | Couchbase Server does not start up. | Check that the service is running.                                       
+              |                                     | Check error logs.                                                        
+              |                                     | Try restarting the service.                                              
+Critical      | A server is not responding.         | Check that the service is running.                                       
+              |                                     | Check error logs.                                                        
+              |                                     | Try restarting the service.                                              
+Critical      | A server is down.                   | Try restarting the server.                                               
+              |                                     | Use the command-line interface to check connectivity.                    
+Informational | Bucket authentication failure.      | Check the properties of the bucket that you are attempting to connect to.
+
+The primary source for run-time logging information is the Couchbase Server Web
+Console. Run-time logs are automatically set up and started during the
+installation process. However, the Couchbase Server gives you access to
+lower-level logging details if needed for diagnostic and troubleshooting
+purposes. Log files are stored in a binary format in the logs directory under
+the Couchbase installation directory. You must use `browse_logs` to extract the
+log contents from the binary format to a text file.
+
+<a id="couchbase-troubleshooting-logs"></a>
+
+## Logs and Logging
+
+Couchbase Server creates a number of different log files depending on the
+component of the system that produce the error, and the level and severity of
+the problem being reported. For a list of the different file locations for each
+platform, see [](#couchbase-troubleshooting-logs-oslocs).
+
+<a id="couchbase-troubleshooting-logs-oslocs"></a>
+
+Platform | Location                                                                     
+---------|------------------------------------------------------------------------------
+Linux    | `/opt/couchbase/var/lib/couchbase/logs`                                      
+Windows  | `C:\Program Files\Couchbase\Server\log` Assumes default installation location
+Mac OS X | `~/Library/Logs`                                                             
+
+Individual log files are automatically numbered, with the number suffix
+incremented for each new log, with a maximum of 20 files per log. Individual log
+file sizes are limited to 10MB by default.
+
+[](#couchbase-troubleshooting-logs-files) contains a list of the different log
+files are create in the logging directory and their contents.
+
+<a id="couchbase-troubleshooting-logs-files"></a>
+
+File               | Log Contents                                                                                                                                               
+-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------
+`couchdb`          | Errors relating to the couchdb subsystem that supports views, indexes and related REST API issues                                                          
+`debug`            | Debug level error messages related to the core server management subsystem, excluding information included in the `couchdb`, `xdcr` and `stats` logs.      
+`info`             | Information level error messages related to the core server management subsystem, excluding information included in the `couchdb`, `xdcr` and `stats` logs.
+`error`            | Error level messages for all subsystems excluding `xdcr`.                                                                                                  
+`xcdr_error`       | XDCR error messages.                                                                                                                                       
+`xdcr`             | XDCR information messages.                                                                                                                                 
+`mapreduce_errors` | JavaScript and other view-processing errors are reported in this file.                                                                                     
+`views`            | Errors relating to the integration between the view system and the core server subsystem.                                                                  
+`stats`            | Contains periodic reports of the core statistics.                                                                                                          
+`memcached.log`    | Contains information relating to the core memcache component, including vBucket and replica and rebalance data streams requests.                           
+
+Each log file group will also include a `.idx` and `.siz` file which holds meta
+information about the log file group. These files are automatically updated by
+the logging system.
+
+<a id="couchbase-troubleshooting-common-errors"></a>
+
+## Common Errors
+
+This page will attempt to describe and resolve some common errors that are
+encountered when using Couchbase. It will be a living document as new problems
+and/or resolutions are discovered.
+
+ * **Problems Starting Couchbase Server for the first time**
+
+   If you are having problems starting Couchbase Server on Linux for the first
+   time, there are two very common causes of this that are actually quite related.
+   When the `/etc/init.d/couchbase-server` script runs, it tries to set the file
+   descriptor limit and core file size limit:
+
+    ```
+    > ulimit -n 10240 ulimit -c unlimited
+    ```
+
+   Depending on the defaults of your system, this may or may not be allowed. If
+   Couchbase Server is failing to start, you can look through the logs and pick out
+   one or both of these messages:
+
+    ```
+    ns_log: logging ns_port_server:0:Port server memcached on node 'ns_1@127.0.0.1' exited with status 71. »
+    Restarting. Messages: failed to set rlimit for open files. »
+    Try running as root or requesting smaller maxconns value.
+    ```
+
+   Alternatively you may additional see or optionally see:
+
+    ```
+    ns_port_server:0:info:message - Port server memcached on node 'ns_1@127.0.0.1' exited with status 71. »
+    Restarting. Messages: failed to ensure corefile creation
+    ```
+
+   The resolution to these is to edit the /etc/security/limits.conf file and add
+   these entries:
+
+    ```
+    couchbase hard nofile 10240
+    couchbase hard core unlimited
+    ```
+
+<a id="couchbase-views-debugging-reportingissues"></a>
+
+## What to include in good issue reports (JIRA)
+
+When reporting issues to Couchbase (using
+[couchbase.com/issues](http://www.couchbase.com/issues) ), you should always add
+the following information to JIRA issues:
+
+ * Environment description (package installation? cluster\_run? build number? OS)
+
+ * All the steps necessary to reproduce (if applicable)
+
+ * Show the full content of all the design documents
+
+ * Describe how your documents are structured (all same structure, different
+   structures?)
+
+ * If you generated the data with any tool, mention its name and all the parameters
+   given to it (full command line)
+
+ * Show what queries you were doing (include all query parameters, full URL), use
+   curl with option -v and show the full output, example:
+
+
+```
+> curl -v 'http://localhost:9500/default/_design/test/_view/view1?limit=10&stale=false'
+* About to connect() to localhost port 9500 (#0)
+*   Trying ::1... Connection refused
+*   Trying 127.0.0.1... connected
+* Connected to localhost (127.0.0.1) port 9500 (#0)
+> GET /default/_design/test/_view/view1 HTTP/1.1
+> User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+> Host: localhost:9500
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Transfer-Encoding: chunked
+< Server: MochiWeb/1.0 (Any of you quaids got a smint?)
+< Date: Tue, 21 Aug 2012 14:43:06 GMT
+< Content-Type: text/plain;charset=utf-8
+< Cache-Control: must-revalidate
+<
+{"total_rows":2,"rows":[
+{"id":"doc1","key":"doc1","value":111111},
+{"id":"doc2","key":"doc2","value":222222}
+]
+}
+* Connection #0 to host localhost left intact
+* Closing connection #0
+```
+
+ * Repeat the query with different values for the stale parameter and show the
+   output
+
+ * Attach logs from all nodes in the cluster
+
+ * Try all view related operations, including design document
+   creation/update/deletion, from the command line. The goal here to isolate UI
+   problems from the view engine.
+
+ * If you suspect the indexer is stuck, blocked, etc, please use curl against the
+   `_active_tasks` API to confirm that, the goal again is to isolate UI issues from
+   view-engine issues. Example:
+
+    ```
+    > curl -s 'http://localhost:9500/_active_tasks' | json_xs
+    [
+       {
+          "indexer_type" : "main",
+          "started_on" : 1345645088,
+          "progress" : 43,
+          "initial_build" : true,
+          "updated_on" : 1345645157,
+          "total_changes" : 250000,
+          "design_documents" : [
+             "_design/test"
+          ],
+          "pid" : "<0.5948.0>",
+          "changes_done" : 109383,
+          "signature" : "4995c136d926bdaf94fbe183dbf5d5aa",
+          "type" : "indexer",
+          "set" : "default"
+       }
+    ]
+    ```
+
+Note that the `started_on` and `update_on` fields are UNIX timestamps. There are
+tools (even online) and programming language APIs (Perl, Python, etc) to convert
+them into human readable form, including date and time. Note that the
+`_active_tasks` API contains information per node, so you'll have to query
+`_active_tasks` or every node in the cluster to verify if progress is stuck,
+etc.
+
+
+## Troubleshooting Views
 
 A number of errors and problems with views are generally associated with the
 eventual consistency model of the view system. In this section, some further
@@ -2084,97 +2350,9 @@ note that at this point, all sequences in `indexable_seqs` are necessarily
 greater or equal then the corresponding sequences in `wanted_sequences`,
 otherwise the `stale=false` implementation is broken.
 
-<a id="couchbase-views-debugging-reportingissues"></a>
 
-## What to include in good issue reports (JIRA)
-
-When reporting issues to Couchbase (using
-[couchbase.com/issues](http://www.couchbase.com/issues) ), you should always add
-the following information to JIRA issues:
-
- * Environment description (package installation? cluster\_run? build number? OS)
-
- * All the steps necessary to reproduce (if applicable)
-
- * Show the full content of all the design documents
-
- * Describe how your documents are structured (all same structure, different
-   structures?)
-
- * If you generated the data with any tool, mention its name and all the parameters
-   given to it (full command line)
-
- * Show what queries you were doing (include all query parameters, full URL), use
-   curl with option -v and show the full output, example:
+## Beam.smp uses excessive memory
+On Linux, if XDCR Max Replications per Bucket are set to a value in the higher limit (such as 128), then beam.sm uses excessive memory. Solution: Reset to 32 or lower.
 
 
-```
-> curl -v 'http://localhost:9500/default/_design/test/_view/view1?limit=10&stale=false'
-* About to connect() to localhost port 9500 (#0)
-*   Trying ::1... Connection refused
-*   Trying 127.0.0.1... connected
-* Connected to localhost (127.0.0.1) port 9500 (#0)
-> GET /default/_design/test/_view/view1 HTTP/1.1
-> User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
-> Host: localhost:9500
-> Accept: */*
->
-< HTTP/1.1 200 OK
-< Transfer-Encoding: chunked
-< Server: MochiWeb/1.0 (Any of you quaids got a smint?)
-< Date: Tue, 21 Aug 2012 14:43:06 GMT
-< Content-Type: text/plain;charset=utf-8
-< Cache-Control: must-revalidate
-<
-{"total_rows":2,"rows":[
-{"id":"doc1","key":"doc1","value":111111},
-{"id":"doc2","key":"doc2","value":222222}
-]
-}
-* Connection #0 to host localhost left intact
-* Closing connection #0
-```
 
- * Repeat the query with different values for the stale parameter and show the
-   output
-
- * Attach logs from all nodes in the cluster
-
- * Try all view related operations, including design document
-   creation/update/deletion, from the command line. The goal here to isolate UI
-   problems from the view engine.
-
- * If you suspect the indexer is stuck, blocked, etc, please use curl against the
-   `_active_tasks` API to confirm that, the goal again is to isolate UI issues from
-   view-engine issues. Example:
-
-    ```
-    > curl -s 'http://localhost:9500/_active_tasks' | json_xs
-    [
-       {
-          "indexer_type" : "main",
-          "started_on" : 1345645088,
-          "progress" : 43,
-          "initial_build" : true,
-          "updated_on" : 1345645157,
-          "total_changes" : 250000,
-          "design_documents" : [
-             "_design/test"
-          ],
-          "pid" : "<0.5948.0>",
-          "changes_done" : 109383,
-          "signature" : "4995c136d926bdaf94fbe183dbf5d5aa",
-          "type" : "indexer",
-          "set" : "default"
-       }
-    ]
-    ```
-
-Note that the `started_on` and `update_on` fields are UNIX timestamps. There are
-tools (even online) and programming language APIs (Perl, Python, etc) to convert
-them into human readable form, including date and time. Note that the
-`_active_tasks` API contains information per node, so you'll have to query
-`_active_tasks` or every node in the cluster to verify if progress is stuck,
-etc.
-
-<a id="couchbase-server-rn"></a>
