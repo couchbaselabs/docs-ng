@@ -1052,14 +1052,11 @@ Tool](#couchbase-admin-cmdline-cbbackup).
 
 ## Upgrading Couchbase Server
 
-The following are officially supported upgrade paths for Couchbase Server for
+The following is the officially supported upgrade path for Couchbase Server for
 both online upgrades or offline upgrades:
 
- * Couchbase 1.8.1 to Couchbase 2.0.x and above
+ * Couchbase 1.8.1 to Couchbase 2.0 and above
 
- * Couchbase 2.0 to Couchbase 2.0.x and above
-
- * Couchbase 2.0.1 to Couchbase 2.1 and above
 
 If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
 available for both your original Couchbase Server 1.8 data files and the new
