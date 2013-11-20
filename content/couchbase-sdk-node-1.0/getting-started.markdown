@@ -39,8 +39,8 @@ with the default install.
 var couchbase = require("couchbase");
 
 var bucket = new couchbase.Connection({
-  ‘bucket’:’beer-sample’,
-  ‘host’:’127.0.0.1:8091’
+  'bucket':'beer-sample',
+  'host':'127.0.0.1:8091'
 }, function(err) {
   if (err) {
     // Failed to make a connection to the Couchbase cluster.
@@ -55,7 +55,7 @@ var bucket = new couchbase.Connection({
 
     var doc = result.value;
 
-    console.log(doc.name + ‘, ABV: ‘ + doc.abv);
+    console.log(doc.name + ', ABV: ' + doc.abv);
 
     doc.comment = "Random beer from Norway";
 
@@ -69,7 +69,7 @@ var bucket = new couchbase.Connection({
 
       // Success!
       process.exit(0);
-    }
+    });
   });
 });
 ```
