@@ -9,7 +9,7 @@ The tutorial contains several apps that gradually introduce the Couchbase Lite c
 * [HelloCBL](#hellocbl) is a basic "Hello World" app designed to introduce the basics of working with Couchbase Lite, without considering the details of structuring an iOS app.
 * [LiteNote](#litenote), a notepad app, demonstrates the basic Couchbase Lite APIs  shown in HelloCBL and introduces a few additional APIs in the context of a well-structured iOS app.
 * [LiteNoteViews](#litenoteviews) builds on LiteNote to introduce the APIs for working with views and queries.
-* [LiteNoteSync](#litenotesync) builds on LiteNoteViews to add synchronization and user authentication. It uses [Couchbase Cloud](http://www.couchbasecloud.com) to provide Couchbase Sync Gateway and Couchbase Server for the back end.
+* [LiteNoteSync](#litenotesync) builds on LiteNoteViews to add synchronization and user authentication.  [Couchbase Cloud](http://www.couchbasecloud.com) provides Couchbase Sync Gateway and Couchbase Server for the back end.
 
 You can download the Couchbase Lite iOS tutorial apps from GitHub.
 
