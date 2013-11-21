@@ -46,7 +46,7 @@ var bucket = new couchbase.Connection({
     throw err;
   }
 
-  bucket.get('aass_brewery_juleol', function(err, result) {
+  bucket.get('aass_brewery-juleol', function(err, result) {
     if (err) {
       // Failed to retrieve key
       throw err;
@@ -58,7 +58,7 @@ var bucket = new couchbase.Connection({
 
     doc.comment = "Random beer from Norway";
 
-    bucket.replace('aass_brewery_juleol', doc, function(err, result) {
+    bucket.replace('aass_brewery-juleol', doc, function(err, result) {
       if (err) {
         // Failed to replace key
         throw err;
