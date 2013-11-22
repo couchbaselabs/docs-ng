@@ -589,7 +589,6 @@ Upon success, Couchbase Server will send a response as follows:
 
 ```
 HTTP/1.1 200 OK
-HTTP/1.1 200 OK
 ```
 
 If you try to failover a node that does not exist in the cluster, you will get a
