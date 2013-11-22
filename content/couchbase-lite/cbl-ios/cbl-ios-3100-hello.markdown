@@ -10,6 +10,8 @@ The HelloCBL tutorial presents detailed steps for creating a Couchbase Lite app 
 
 To make the first example in the tutorial easier to understand, the program structure is simplified. Only one new method, `sayHello`, is created and all the Couchbase Lite APIs used in the example are placed within that method. The `sayHello` method is called from the `application:didFinishLaunchingWithOptions:` method in the application delegate class. All output is sent to the Xcode console, rather than the iPhone screen in the simulator. The example does not use any graphics and does not require setting up a user interface. Rest assured, the other sample apps in the tutorial do not take these shortcuts—they incorporate standard iOS software design and development practices.
 
+You can follow along with the tutorial and create  your own HelloCBL, or you can [download HelloCBL](https://github.com/couchbaselabs/couchbase-lite-tutorial-ios/tree/master/HelloCBL) from GitHub. 
+
 ### Step 1: Create a new project
 
 1. Open Xcode and select **File > New > Project**.
