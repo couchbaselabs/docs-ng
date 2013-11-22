@@ -34,6 +34,8 @@ To get set up to use PhoneGap, install the following tools:
 
 3. If you want to build apps for Android devices: 
 
+	* Install [Apache Ant](http://ant.apache.org), which is a build tool.
+
 	* Install [Android Studio](http://developer.android.com/sdk/installing/studio.html). 
 
 	* Install the Android SDK by using the Android SDK Manager. If you have a project open in Android Studio, you can run the SDK Manager by selecting **Tools > Android > SDK Manager**.
