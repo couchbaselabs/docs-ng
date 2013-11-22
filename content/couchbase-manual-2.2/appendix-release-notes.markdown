@@ -1,3 +1,5 @@
+<a id="couchbase-server-rn"></a>
+
 # Appendix: Release Notes
 
 The following sections provide release notes for individual release versions of

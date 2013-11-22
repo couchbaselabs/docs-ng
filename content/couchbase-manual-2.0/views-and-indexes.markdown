@@ -2270,6 +2270,14 @@ detailed in the table below.
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.                       
 404                         | The requested content could not be found. The returned content will include further information, as a JSON object, if available.
 
+To get a list of design documents for a bucket, use the following with the GET request:
+
+```
+"ddocs": {
+        "uri": "/pools/default/buckets/default/ddocs" // To obtain design docs for this bucket
+    }
+```
+
 For example, to get the existing design document from the bucket `sales` for the
 design document `byfield` :
 

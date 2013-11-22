@@ -5,6 +5,50 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+## Release notes for Couchbase client library Ruby 3.3.3 GA (12 September 2013)
+
+## 1.3.3 (2013-09-12)
+
+**New Features and Behavior Changes in 1.3.3**
+
+* Allow application to use several connections with thread-local singleton.  
+*Issues*: [RCBC-134](http://www.couchbase.com/issues/browse/RCBC-134)
+
+*  Add selection options for new IO engines: select and iocp.  
+*Issues*: [RCBC-137](http://www.couchbase.com/issues/browse/RCBC-137)
+
+* Allow determining the version of libcouchbase:
+
+        Couchbase.libcouchbase_version
+
+
+**Fixes in 1.3.3**
+
+* Fixed invalid memory access which was detected by using 'GC.stress = true' in tests.  
+Issues: [RCBC-135](http://www.couchbase.com/issues/browse/RCBC-135)
+
+* Build shared object for ruby 2.0 on windows. Also fixes build script when using latest rake and rake-compiler.  
+*Issues*:  [RCBC-136](http://www.couchbase.com/issues/browse/RCBC-136): 
+
+* Initialize event indexes correctly. The plug-in didn't trace event callbacks, which might lead to invalid memory access during rebalance, where libcouchbase creates or removes a lot of events because of a fast-changing topology.  
+Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141): 
+
+* When setting the username field, check for password presence. Fixes segmentation fault in this code:
+
+        Couchbase.connect(:username => "default", :bucket => "default")
+
+* Fix deprecation warning on ruby 2.x. On newer versions it should use `rb_thread_call_without_gvl()`.
+
+        ext/couchbase_ext/multithread_plugin.c: In function ‘loop_run_poll’:
+        ext/couchbase_ext/multithread_plugin.c:772:5: warning: ‘rb_thread_blocking_region’ is deprecated (declared at .../2.0.0-p247-dbg/include/ruby-2.0.0/ruby/intern.h:839) [-Wdeprecated-declarations]
+             rb_thread_blocking_region(loop_blocking_poll, args, RUBY_UBF_PROCESS, NULL);
+
+* Do not try to compile with plug-ins for Windows platform.
+
+* Force handle to be NULL on `lcb_create()` failure. `lcb_create()` can leave garbage in the pointer even if the call itself failed.  This behavior could lead to illegal memory access on GC.
+
+* Remove usage of `RARRAY_PTR` in favor of `rb_ary_entry`. This improves performance significantly on Rubinius and also improves compatibility with future CRuby 2.1, which introduces generational garbage collection. This results in these arrays not having to be rescanned in Rubinius and not marked as shady in RBGCENC in CRuby 2.1.   For more discussion, see <https://bugs.ruby-lang.org/issues/8399>.
+
 <a id="couchbase-sdk-ruby-rn_1-3-2"></a>
 
 ## Release Notes for Couchbase Client Library Ruby 1.3.2 GA (10 July 2013)
@@ -104,4 +148,3 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
     Couchbase.connect(:transcoder => Couchbase::Transcoder::Marshal)
     ```
 
-<a id="licenses"></a>

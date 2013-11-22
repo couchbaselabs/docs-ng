@@ -722,7 +722,7 @@ Server 2.0+, we recommend that you remain using the defaults provided.
 
 The process that periodically runs and removes documents from RAM is known as
 the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting inactive replica data from RAM on the node. If the
+process starts ejecting replica data from RAM on the node. If the
 amount of RAM used by items reaches an upper threshold, known as the *high water
 mark*, both replica data and active data written from clients will be ejected.
 The item pager will continue to eject items from RAM until the amount of RAM
