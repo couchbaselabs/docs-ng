@@ -7,15 +7,41 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-size: 14px;
+size: 18px;
+border-bottom: double;
+border-color: @cbred;
+margin-bottom: 20px;
 }
 
 h2 {
-size: 13px;
+size: 14px;
+border-bottom: solid;
+border-width: thin;
+border-color: @cbred;
 }
 
 h3, h4 {
 size: 12px;
+}
+
+
+/* blue for note boxes in documentation e.g. <p class="notebox"> */
+.notebox {
+  border-style: solid;
+  padding: 10px;
+  width: 90%;
+  margin: 10px auto;
+  border-color: #34b0b0;
+ }
+ 
+ /* green for best practices & recommendation note boxes in the documentation e.g., <p class="notebox bp" > */
+.bp {
+	border-color: #699809;
+} 
+
+/* purple for warning note boxes in the documentation e.g., <p class="notebox warning" > */
+.warning {
+	border-color: #83084d;
 }
 
 
@@ -342,6 +368,10 @@ h1:hover, h2:hover, h3:hover, h4:hover {
   .show-for-small {
     display: none;
   }
+  
+
+
+  
 }
 
 
