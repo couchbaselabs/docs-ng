@@ -711,22 +711,23 @@ system needs more memory resources and the RAM is full, inactive pages in memory
 are moved to the swap space. Swappiness indicates how
 frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
-<p style="border-style:solid;padding:10px;width:90%;margin:0 auto;border-color:#a30a0a">
-<strong>Recommendation</strong>:
+<p class="notebox bp">
+<strong>Recommendation:</strong>
 For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
 </p>  
 
 
 To change the swap configuration:
 
-1. Execute ```cat /proc/sys/vm/swappiness``` on each node to determine the current swap usage configuration.
-2. Execute ```sudo sysctl vm.swappiness=0``` to immediately change the swap configuration and ensure that it persists through server restarts.
-3.  Using sudo or root user privileges, edit the kernel parameters configuration file, ```/etc/sysctl.conf```, so that the change is always in effect.
-4. Append ```vm.swappiness = 0``` to the file.
+1. Execute `cat /proc/sys/vm/swappiness` on each node to determine the current swap usage configuration.
+2. Execute `sudo sysctl vm.swappiness=0` to immediately change the swap configuration and ensure that it persists through server restarts.
+3.  Using sudo or root user privileges, edit the kernel parameters configuration file, `/etc/sysctl.conf`, so that the change is always in effect.
+4. Append `vm.swappiness = 0` to the file.
 5. Reboot your system.
 
-**Note**: 
-Executing ```sudo sysctl vm.swappiness=0``` ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, ```sysctl.conf```, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.
+<p class="notebox">
+<strong>Note:</strong>
+Executing <code>sudo sysctl vm.swappiness=0</code> ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, <code>sysctl.conf</code>, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted. </p>
 
 
 ### Using Couchbase Server on RightScale
@@ -737,8 +738,8 @@ The templates also provide support for [Amazon Elastic Block Store](http://aws.a
 
 Couchbase provides RightScale ServerTemplates based on [Chef](http://www.opscode.com/chef/) and, for compatibility with existing systems, non-Chef-based ServerTemplates. 
 
-<p style="border-style:solid;padding:10px;width:90%;margin:10px auto;border-color:#a30a0a">
-<strong>Note</strong>: Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
+<p class="notebox">
+<strong>Note:</strong> Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
 </p>
 
 Before you can set up Couchbase Server on RightScale, you need a RightScale account and an AWS account that is connected to your RightScale account. For information about connecting the accounts, see [Add AWS Credentials to RightScale](http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard). 
