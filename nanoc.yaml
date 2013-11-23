@@ -189,46 +189,44 @@ navbar:
 
   - label: SDKs
     subnav:
-      - label: C
+      - label: C Developer Guide
         href: /couchbase-sdk-c-2.2/
 
-      - label: Java
-        href: /couchbase-sdk-java-1.2/
-
-      - label: .NET
-        href: /couchbase-sdk-net-1.3/
-      
-      - label: Node.js
-        href: /couchbase-sdk-node-1.1/
-        
-      - label: PHP
-        href: /couchbase-sdk-php-1.2/
-        
-      - label: Python
-        href: /couchbase-sdk-python-1.1/
-
-      - label: Ruby
-        href: /couchbase-sdk-ruby-1.3/
-        
-  - label: SDK API References
-    subnav:
-      - label: C
+      - label: C API Reference
         href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
 
-      - label: Java
+      - label: Java Developer Guide
+        href: /couchbase-sdk-java-1.2/
+
+      - label: Java API Reference
         href: http://www.couchbase.com/autodocs/couchbase-java-client-latest/index.html
 
-      - label: Node.js
+      - label: .NET Developer Guide
+        href: /couchbase-sdk-net-1.3/
+      
+      - label: Node.js API Reference
         href: http://www.couchbase.com/autodocs/couchbase-node-client-latest/index.html
         
-      - label: PHP
+      - label: Node.js Developer Guide
+        href: /couchbase-sdk-node-1.1/
+        
+      - label: PHP Developer Guide
+        href: /couchbase-sdk-php-1.2/
+        
+      - label: PHP API Reference
         href: http://www.couchbase.com/autodocs/couchbase-php-client-latest/index.html
 
-      - label: Python
+      - label: Python Developer Guide
+        href: /couchbase-sdk-python-1.1/
+
+      - label: Python API Reference
         href: http://www.couchbase.com/autodocs/couchbase-python-client-latest/index.html
 
-      - label: Ruby
+      - label: Ruby Developer Guide
+        href: /couchbase-sdk-ruby-1.3/
+
+      - label: Ruby API Reference
         href: http://www.couchbase.com/autodocs/couchbase-ruby-client-latest/index.html
 
-  - label: All Documentation
+  - label: Index
     href: http://www.couchbase.com/documentation-archives
