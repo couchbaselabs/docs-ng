@@ -158,9 +158,6 @@ navbar:
       - label: Query Language Developer Preview
         href: /couchbase-query-language-0.1/
           
-      - label: Couchbase Sync Gateway
-        href: /sync-gateway/
-
       - label: Elasticsearch Plug-in
         href: /couchbase-elastic-search/
 
@@ -183,6 +180,9 @@ navbar:
         
       - label: Couchbase Lite PhoneGap Guide
         href: /couchbase-lite/cbl-phonegap/
+
+      - label: Couchbase Sync Gateway
+        href: /sync-gateway/
 
   - label: Developer
     href: /couchbase-devguide-2.2/
