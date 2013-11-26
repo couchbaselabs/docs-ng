@@ -800,7 +800,7 @@ For 2.0.1 please follow the same steps for 2.0 and earlier.
 
 ## Upgrading to Couchbase Server 2.0.x
 
-The following is officially supported upgrade path for Couchbase Server for
+The following are officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
 
  * Couchbase 1.8.1 to Couchbase 2.0.x and above
