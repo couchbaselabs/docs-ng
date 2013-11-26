@@ -49,28 +49,31 @@ recommend Ruby 1.9.2 or 1.8.7 [http://ruby-lang.org](http://ruby-lang.org).
 
 You can verify that Ruby is installed by typing the following command:
 
-`shell> ruby -v ruby 1.9.3p286 (2012-10-12 revision 37165) [x86_64-linux]`
-Another dependency needed for the client is libcouchbase. Please consult \[ [C
-Client Library](http://www.couchbase.com/develop/c/current]) page about ways to
-get it on your system. Here we will assume you are using the Ubuntu/Debian
-GNU/Linux family and have the `apt` tool.
+```
+shell> ruby -v
+ruby 1.9.3p286 (2012-10-12 revision 37165) [x86_64-linux]
+```
 
-Note that the libcouchbase dependency is not needed if you are on Microsoft
-Windows, as all dependencies are bundled in the source.
+Another dependency needed for the client is libcouchbase. Please consult  [C Client Library](http://www.couchbase.com/develop/c/current) page about ways to get it on your system. Here we will assume you are using the Ubuntu/Debian GNU/Linux family and have the `apt` tool.
 
-Once you have installed libcouchbase, you are then ready to install the most
-recent client using rubygems.
+Note that the libcouchbase dependency is not needed if you are on Microsoft Windows, as all dependencies are bundled in the source.
 
-`shell> gem install couchbase Fetching: couchbase-1.2.0.gem (100%) Building
-native extensions.  This could take a while... Successfully installed
-couchbase-1.2.0 1 gem installed` Lets load and verify the library version.
+Once you have installed libcouchbase, you are then ready to install the most recent client using rubygems.
 
-`shell> ruby -rrubygems -rcouchbase -e 'puts Couchbase::VERSION' 1.2.0` The
-TCP/IP port allocation on Windows by default includes a restricted number of
-ports available for client communication. For more information on this issue,
-including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
+```
+shell> gem install couchbase 
+Fetching: couchbase-1.2.0.gem (100%) 
+Building native extensions.  This could take a while... Successfully installed
+couchbase-1.2.0 1 gem installed
+```
+
+Lets load and verify the library version.
+
+```
+shell> ruby -rrubygems -rcouchbase -e 'puts Couchbase::VERSION' 1.2.0
+```
+
+The TCP/IP port allocation on Windows by default includes a restricted number of ports available for client communication. For more information on this issue, including information on how to adjust the configuration and increase the available ports, see [MSDN: Avoiding TCP/IP Port Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
 
 <a id="hello_couchbase"></a>
 
@@ -290,13 +293,14 @@ puts row.id
 end
 ```
 
-In the logs, you can see the corresponding document keys automatically sorted
-(ascending):
+In the logs, you can see the corresponding document keys automatically sorted (ascending):
 
-`21st_amendment_brewery_cafe 21st_amendment_brewery_cafe-21a_ipa
+```
+21st_amendment_brewery_cafe 21st_amendment_brewery_cafe-21a_ipa
 21st_amendment_brewery_cafe-563_stout
 21st_amendment_brewery_cafe-amendment_pale_ale
-21st_amendment_brewery_cafe-bitter_american`<a id="deleting_documents"></a>
+21st_amendment_brewery_cafe-bitter_american`
+```
 
 ### Deleting Documents
 

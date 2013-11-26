@@ -5,9 +5,7 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
-## Release notes for Couchbase client library Ruby 3.3.3 GA (12 September 2013)
-
-## 1.3.3 (2013-09-12)
+## Release notes for Couchbase client library Ruby 1.3.3 GA (12 September 2013)
 
 **New Features and Behavior Changes in 1.3.3**
 
