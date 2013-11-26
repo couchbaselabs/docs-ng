@@ -26,25 +26,34 @@ ready to be used.
 
 After that you can clone the complete repository from couchbaselabs on github:
 
-`shell> git clone git://github.com/couchbaselabs/couchbase-beer.rb.git Cloning
+```
+shell> git clone git://github.com/couchbaselabs/couchbase-beer.rb.git Cloning
 into 'couchbase-beer.rb'... remote: Counting objects: 409, done. remote:
 Compressing objects: 100% (254/254), done. remote: Total 409 (delta 183), reused
 340 (delta 114) Receiving objects: 100% (409/409), 235.17 KiB | 130 KiB/s, done.
-Resolving deltas: 100% (183/183), done.` Navigate to the directory and install
+Resolving deltas: 100% (183/183), done. 
+```
+Navigate to the directory and install
 all application dependencies:
 
 
 ```
-shell> cd couchbase-beer.rb/ shell> bundle install...snip... Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+shell> cd couchbase-beer.rb/ 
+shell> bundle install
+...snip... Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
 ```
 
 That’s it. Assuming that the server with `beer-sample` bucket is up and running
 on localhost, you can just start ruby web server:
 
-`shell> rails server => Booting Thin => Rails 3.2.8 application starting in
+```
+shell> rails server => Booting Thin => Rails 3.2.8 application starting in
 development on http://0.0.0.0:3000 => Call with -d to detach => Ctrl-C to
 shutdown server >> Thin web server (v1.5.0 codename Knife) >> Maximum
-connections set to 1024 >> Listening on 0.0.0.0:3000, CTRL+C to stop` Then
+connections set to 1024 >> Listening on 0.0.0.0:3000, CTRL+C to stop
+```
+
+Then
 navigate to [http://localhost:3000/](http://localhost:3000/). You should see
 something like that:
 
@@ -120,10 +129,12 @@ end
 Next step will be to configure Couchbase connection, this step should be
 familiar to the rails developer, because `couchbase-model` brings YAML-styled
 configuration, so if you know how `config/database.yml` works, you can make some
-assumtions about how `config/couchbase.yml` works. To generate a config, use the
+assumptions about how `config/couchbase.yml` works. To generate a config, use the
 `couchbase:config` generator:
 
-`shell> rails generate couchbase:config create  config/couchbase.yml` Since our
+	shell> rails generate couchbase:config create  config/couchbase.yml
+
+Since our
 bucket name differs from the project name, you should update the `bucket`
 property in the config. Also if your Couchbase Server is not running on the
 local machine, you should also change the hostname in the config. After you’ve
@@ -131,9 +142,11 @@ made your modifications, your config should look like this:
 
 ### config/couchbase.yml
 
-`common: &common hostname: localhost port: 8091 username: password: pool:
+```
+common: &common hostname: localhost port: 8091 username: password: pool:
 default  development: <<: *common bucket: beer-sample  production: <<: *common
-bucket: beer-sample`
+bucket: beer-sample
+```
 
 That’s it for configuration, let’s move forward and create some models.
 
@@ -197,11 +210,15 @@ if needed. There is also the rails generator for views. It will put view stubs
 for you in proper places. Here, for example, is the model layout for this
 particular application:
 
-`app/models/ ├── beer │   ├── all │   │   └── map.js │   └── by_category │      
+```
+app/models/ ├── beer │   ├── all │   │   └── map.js │   └── by_category │      
 ├── map.js │       └── reduce.js ├── beer.rb ├── brewery │   ├── all │   │   └──
 map.js │   ├── all_with_beers │   │   └── map.js │   ├── by_country │   │   ├──
 map.js │   │   └── reduce.js │   └── points │       └── spatial.js ├──
-brewery.rb ├── favorites.rb └── user.rb` For each model which has views, you
+brewery.rb ├── favorites.rb └── user.rb
+```
+
+For each model which has views, you
 should create a directory with the same name and put in the appropriate
 javascript files. Each should implement the corresponding parts of the view. For
 example `_design/brewery/_view/by_country` does require both map and reduce
@@ -279,9 +296,12 @@ It has two actions:
  1. "show" uses another view from the `Brewery` model, which collates breweries with
     beer for easier access. Here is a map function which does that job:
 
-    `function(doc, meta) { switch(doc.type) { case "brewery": emit([meta.id]);
+	```
+function(doc, meta) { switch(doc.type) { case "brewery": emit([meta.id]);
     break; case "beer": if (doc.brewery_id && doc.name) { emit([doc.brewery_id,
-    doc.name]); } break; } }` As you can see we are using a compound key with
+    doc.name]); } break; } }
+```
+As you can see we are using a compound key with
     brewery ID in the first position and the document name in the second position.
     Because we are selecting only beers without null names, they will be sorted
     after the breweries. By doing so, when we filter result by the first key only,
@@ -301,9 +321,13 @@ After that it will execute spatial query using map bounds and the Couchbase
 Server will give you all the breweries which are nearby. Lets take a look at the
 implemetation. The core of this feature in `brewery/points/spatial.js` :
 
-`function(doc, meta) { if (doc.geo && doc.geo.lng && doc.geo.lat && doc.name) {
+```
+function(doc, meta) { if (doc.geo && doc.geo.lng && doc.geo.lat && doc.name) {
 emit({type: "Point", coordinates: [doc.geo.lng, doc.geo.lat]}, {name: doc.name,
-geo: doc.geo}); } }` The function will emit Point object and the name with
+geo: doc.geo}); } }
+```
+
+The function will emit Point object and the name with
 coordinates as the payload. The action in the controller is quite trivial, it
 transmit the result to the frontend in JSON representation, where google maps is
 rendering markers for each object.
