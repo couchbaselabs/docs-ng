@@ -191,20 +191,22 @@ Couchbase Server provides a set of commands to store documents. The commands are
 very similar to each other and differ only in their meaning on the server-side.
 These are:
 
-`set`     | Stores a document in Couchbase Server (identified by its unique key) and overrides the previous document (if there was one).                 
-----------|----------------------------------------------------------------------------------------------------------------------------------------------
-`add`     | Adds a document in Couchbase Server (identified by its unique key) and fails if there is already a document with the same key stored.        
-`replace` | Replaces a document in Couchbase Server (identified by its unique key) and fails if there is no document with the given key already in place.
+|Command|Description|  
+| ------	| ------	|  
+|`set`     | Stores a document in Couchbase Server (identified by its unique key) and overrides the previous document (if there was one).
+|`add`     | Adds a document in Couchbase Server (identified by its unique key) and fails if there is already a document with the same key stored.
+|`replace` | Replaces a document in Couchbase Server (identified by its unique key) and fails if there is no document with the given key already in place.
 
 There are also additional commands mutation commands, which do make sense when
 you are working in `:plain` mode, because they are implmented on the server and
 not JSON-aware. But still they might be useful in your application:
 
-`prepend`   | Prepend given string to the value. The concatenation is done on the server side.                                                                                                                                    
-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`append`    | Append given string to the value. The concatenation is also done on the server side.                                                                                                                                
-`increment` | Increment, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will increment by one. See API reference for other options.
-`decrement` | Decrement, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will decrement by one. See API reference for other options.
+|Command|Description|  
+| ------	| ------	|  
+|`prepend`   | Prepend given string to the value. The concatenation is done on the server side.
+|`append`    | Append given string to the value. The concatenation is also done on the server side.
+|`increment` | Increment, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will increment by one. See API reference for other options.
+|`decrement` | Decrement, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will decrement by one. See API reference for other options.
 
 The SDK provides several options for these operations, but to start out here are
 the simplest forms:
@@ -277,12 +279,13 @@ of the query will contain. All supported options are available as items in
 options Hash accepted either by the view method or by `#each` iterator on the
 view. Here are some of them:
 
-include\_docs (Boolean) | Used to define if the complete documents should be fetched with the result ( `false` by default). Note this will actually fetch the document itself from the cache, so if it has been changed or deleted you may not receive a document that matches the view, or any at all.
-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-reduce (Boolean)        | Used to enable/disable the reduce function (if there is one defined on the server). `true` by default.                                                                                                                                                                       
-limit (Fixnum)          | Limit the number of results that should be returned.                                                                                                                                                                                                                         
-descending (Boolean)    | Revert the sorting order of the result set. ( `false` by default)                                                                                                                                                                                                            
-stale (Boolean, Symbol) | Can be used to define the tradeoff between performance and freshness of the data. ( `:update_after` by default)                                                                                                                                                              
+|Option|Description|
+| ------	| ------	|
+|include\_docs (Boolean) | Used to define if the complete documents should be fetched with the result ( `false` by default). Note this will actually fetch the document itself from the cache, so if it has been changed or deleted you may not receive a document that matches the view, or any at all.
+|reduce (Boolean) | Used to enable/disable the reduce function (if there is one defined on the server). `true` by default.
+|limit (Fixnum) | Limit the number of results that should be returned.
+|descending (Boolean) | Revert the sorting order of the result set. ( `false` by default)
+|stale (Boolean, Symbol) | Can be used to define the tradeoff between performance and freshness of the data. ( `:update_after` by default)
 
 Now that we have our View information in place, we can issue the query, which
 actually triggers the scatter-gather data loading process on the Cluster. We can
