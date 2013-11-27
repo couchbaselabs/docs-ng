@@ -93,12 +93,13 @@ versions:
       - 2.1
       - 2.0
       - 1.8
-  
+
   couchbase-query-language:
-    name: "Query Language, N1QL"
+    name: "Query Language N1QL"
     versions:
+      - 0.1
       - 1.0
-      
+
   couchbase-sdk-c:
     name: "C SDK"
     versions:
