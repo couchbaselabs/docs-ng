@@ -21,7 +21,7 @@ For example, suppose you have a database named cookbook. In the database, the ID
 |/_replicate  | /_replicate |
 
 ## Resource Groups
-The API enables you to interact with all aspects of your database. The API is divided into the following logical groups of resources:
+The REST API enables you to interact with all aspects of your database. The API is divided into the following logical groups of resources:
 
 | Resource Group | Description|  
 |  ------	| ------	|  

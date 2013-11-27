@@ -80,7 +80,7 @@ Returns certain rows from the built-in view of all documents.
 
 Sample request:
 
-	POST /cookbook/_add_docs
+	POST /cookbook/_all_docs
 
 
 
