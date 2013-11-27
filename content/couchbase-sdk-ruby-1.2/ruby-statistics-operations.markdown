@@ -10,18 +10,15 @@ information from all of the servers defined within a couchbase object. A summary
 of the commands is provided below.
 
 
-```
+```ruby
 couchbase.stats
 #=> {...}
 ```
 
-The `stats` command gets the statistics from all of the configured nodes. The
-information is returned in the form of a nested Hash, first containing the
-address of the configured server and then within each server the individual
-statistics for that server as key value pairs.
+The `stats` command gets the statistics from all of the configured nodes. The information is returned in the form of a nested hash, first containing the address of the configured server and then within each server the individual statistics for that server as key value pairs.
 
 
-```
+```json
 {
     "172.16.16.76:12008"=>
     {

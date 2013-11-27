@@ -128,7 +128,7 @@ To create a model, all you need is to define the class and inherit from `Couchba
 
 ### app/models/brewery.rb
 
-```
+```ruby
 class Brewery < Couchbase::Model
   attribute :name, :description
   attribute :country, :state, :city, :address
@@ -153,7 +153,7 @@ end
 
 The first part of the model contains attribute definitions. The `attribute` macro defines a pair of accessors and helps to maintain map of attributes-values. You can also specify default a value for each attribute:
 
-```
+```ruby
 class Post < Couchbase::Model
   attribute :title, :body
   attribute :timestamp, :default => lambda{ Time.now }
@@ -197,7 +197,7 @@ Those automatically generated files are full of comments, so they are worth read
 Now we examine the controllers from the project. This is where data is selected
 to display to user. For example `BreweriesController` :
 
-```
+```ruby
 class BreweriesController < ApplicationController
   def index
     filter = params.extract!(:start_key, :end_key).reject{|_, v| v.blank?}
@@ -238,7 +238,7 @@ It has two actions:
  1. "show" uses another view from the `Brewery` model, which collates breweries with
     beer for easier access. Here is a map function which does that job:
 
-	```
+	```javascript
 function(doc, meta) { switch(doc.type) { case "brewery": emit([meta.id]);
     break; case "beer": if (doc.brewery_id && doc.name) { emit([doc.brewery_id,
     doc.name]); } break; } }
@@ -260,7 +260,7 @@ As you can see we are using a compound key with
 
 One of the experimental features of the Couchbase Server is spatial views. These kind of views allow you to build indexes on geo attributes of your data. This sample application demonstrates spatial views. Click on the "Map" link in the menu and your browser will fetch your current location; it will position the center of the map to your location, or to Mountain View otherwise. After that it will execute a spatial query using map bounds and the Couchbase Server will give you all the breweries which are nearby. The following is part of the implementation. The core of this feature is `brewery/points/spatial.js` :
 
-```
+```javascript
 function(doc, meta) { if (doc.geo && doc.geo.lng && doc.geo.lat && doc.name) {
 emit({type: "Point", coordinates: [doc.geo.lng, doc.geo.lat]}, {name: doc.name,
 geo: doc.geo}); } }
@@ -272,13 +272,13 @@ Except nice extensions, provided by `couchbase-model` library, `couchbase` gem i
 
 To use Couchbase as cache store in Rails, just put following line in your `config/application.rb` file:
 
-```
+```ruby
 config.cache_store = :couchbase_store
 ```
 
 You can also pass additional connection options:
 
-```
+```ruby
 cache_options = {
   :bucket => 'protected',
   :username => 'protected',
@@ -291,21 +291,21 @@ config.cache_store = :couchbase_store, cache_options
 To use Couchbase as the session store you should update your
 `config/initializers/session_store.rb` file:
 
-```
+```ruby
 require 'action_dispatch/middleware/session/couchbase_store'
 AppName::Application.config.session_store :couchbase_store
 ```
 
 Or remove this file and add following line to your `config/application.rb` :
 
-```
+```ruby
 require 'action_dispatch/middleware/session/couchbase_store'
 config.session_store :couchbase_store
 ```
 
 You can also pass additional options:
 
-```
+```ruby
 require 'action_dispatch/middleware/session/couchbase_store'
 session_options = {
   :expire_after => 5.minutes,

@@ -26,7 +26,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
  * EventMachine plugin to integrate with EventMachine library. Note that the engine
    is experimental at this stage. Example:
 
-    ```
+    ```ruby
     require 'eventmachine'
     require 'couchbase'
 
@@ -54,7 +54,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
  * Allow to use Bucket instance in completely asynchronous environment like this,
    without blocking on connect:
 
-    ```
+    ```ruby
     conn = Couchbase.new(:async => true)
     conn.run do
      conn.on_connect do |res|
@@ -106,7 +106,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
    Here is the demonstration of the broken case, when we are require document to be
    persisted at least on two nodes:
 
-    ```
+    ```ruby
     cas = c.set("foo", document, :observe => {:persisted => 2})
     ```
 
@@ -159,7 +159,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
    Here is the demonstration of the broken case, when we are require document to be
    persisted at least on two nodes:
 
-    ```
+    ```ruby
     cas = c.set("foo", document, :observe => {:persisted => 2})
     ```
 
@@ -181,7 +181,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
    The Bucket\#set for example should return the object corresponding to arguments
    passed:
 
-    ```
+    ```ruby
     irb> conn.set("foo", "bar")
     851339802448297984
     irb> conn.set("foo" => "bar", "baz" => "foo")
@@ -312,7 +312,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Implement Bucket\#unlock
 
-    ```
+    ```ruby
     # Unlock the single key
     val, _, cas = c.get("foo", :lock => true, :extended => true)
     c.unlock("foo", :cas => cas)
@@ -365,7 +365,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Storage functions with durability requirements. Examples:
 
-    ```
+    ```ruby
     # Ensure that the key will be persisted at least on the one node
     c.set("foo", "bar", :observe => {:persisted => 1})
     ```
@@ -374,7 +374,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Implement Bucket\#observe command to query durable state. Examples:
 
-    ```
+    ```ruby
     # Query state of the single key
     c.observe("foo")
     #=> [#<Couchbase::Result:0x00000001650df0 ...>, ...]
@@ -396,10 +396,10 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Fix Bucket\#cas operation behavior in async mode. The callback of the
    Bucket\#cas method is triggered only once, when it fetches old value, and it
-   isn¿t possible to receive notification if the next store operation was
+   isn't possible to receive notification if the next store operation was
    successful. Example, append JSON encoded value asynchronously:
 
-    ```
+    ```ruby
     c.default_format = :document
     c.set("foo", {"bar" => 1})
     c.run do
@@ -425,7 +425,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Bootstrapping using multiple nodes
 
-    ```
+    ```ruby
     Couchbase.connect(:node_list => ['example.com:8091', 'example.org:8091', 'example.net'])
     ```
 
@@ -449,13 +449,13 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Implement key prefix (simple namespacing)
 
-    ```
+    ```ruby
     Couchbase.connect(:key_prefix => "prefix:")
     ```
 
  * Implement cache store adapter for Rails
 
-    ```
+    ```ruby
     cache_options = {
      :bucket => 'protected',
      :username => 'protected',
@@ -467,7 +467,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Allow to force assembling result Hash for multi-get
 
-    ```
+    ```ruby
     connection.get("foo", "bar")
     #=> [1, 2]
     connection.get("foo", "bar", :assemble_hash => true)
@@ -476,7 +476,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * Integrate with Rack and Rails session store
 
-    ```
+    ```ruby
     # rack
     require 'rack/session/couchbase'
     use Rack::Session::Couchbase
@@ -492,7 +492,9 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **Fixes in 1.2.0.dp4**
 
- * Now it is possible to stop event loop (asynchronous mode)```
+ * Now it is possible to stop event loop (asynchronous mode)
+
+	```ruby
    conn.run do
     10.times do |ii|
     conn.get("foo") do |ret|
@@ -539,7 +541,9 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
  * This fix allows mixing of sync and async approaches. The library maintain the
    counter of the pending requests called 'seqno' and now it is possible to block
-   and wait for completion of part of the command:```
+   and wait for completion of part of the command:
+
+```ruby
    conn.run do
     100.times do |n|
     connection.set("key" + n, {"val" => n})
@@ -556,7 +560,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
    regardless of CAS. The lock could be reset by using correct CAS, or timeout will
    pass. See the example:
 
-    ```
+    ```ruby
     irb> require 'couchbase'
     true
     irb> Couchbase.bucket.set("foo", "bar")
@@ -576,7 +580,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
    More examples:
 
-    ```
+    ```ruby
     # Get and lock key using custom timeout
     c.get("foo", :lock => 3)
 
@@ -594,7 +598,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
    user chooses the threshold when the library should flush the buffers to the
    network:
 
-    ```
+    ```ruby
     conn.run(:send_threshold => 100) do # 100 bytes
     connection.set("uniq_id", "foo" * 100)
     ```
@@ -623,7 +627,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
    to be only one item it will be treated differently than if there happens to be 2
    items.
 
-    ```
+    ```ruby
     get(["foo"]) #=> ["bar"]
     get("foo") #=> "bar"
     get(["x"], :extended => true) #=> {"x"=>["xval", 0, 18336939621176836096]}

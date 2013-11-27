@@ -160,7 +160,7 @@ To create a model, all you need is just define class and inherit from
 ### app/models/brewery.rb
 
 
-```
+```ruby
 class Brewery < Couchbase::Model
   attribute :name, :description
   attribute :country, :state, :city, :address
@@ -190,7 +190,7 @@ macro defines a pair of accessors and helps to maintain map of
 attributes-values. You can also specify default a value for each attribute:
 
 
-```
+```ruby
 class Post < Couchbase::Model
   attribute :title, :body
   attribute :timestamp, :default => lambda{ Time.now }
@@ -254,7 +254,7 @@ Now lets dissect the controllers from the project. This is where data is
 selected to display to user. For example `BreweriesController` :
 
 
-```
+```ruby
 class BreweriesController < ApplicationController
   def index
     filter = params.extract!(:start_key, :end_key).reject{|_, v| v.blank?}
@@ -296,7 +296,7 @@ It has two actions:
  1. "show" uses another view from the `Brewery` model, which collates breweries with
     beer for easier access. Here is a map function which does that job:
 
-	```
+	```javascript
 function(doc, meta) { switch(doc.type) { case "brewery": emit([meta.id]);
     break; case "beer": if (doc.brewery_id && doc.name) { emit([doc.brewery_id,
     doc.name]); } break; } }
@@ -321,7 +321,7 @@ After that it will execute spatial query using map bounds and the Couchbase
 Server will give you all the breweries which are nearby. Lets take a look at the
 implemetation. The core of this feature in `brewery/points/spatial.js` :
 
-```
+```javascript
 function(doc, meta) { if (doc.geo && doc.geo.lng && doc.geo.lat && doc.name) {
 emit({type: "Point", coordinates: [doc.geo.lng, doc.geo.lat]}, {name: doc.name,
 geo: doc.geo}); } }
@@ -348,7 +348,7 @@ config.cache_store = :couchbase_store
 You can also pass additional connection options there
 
 
-```
+```ruby
 cache_options = {
   :bucket => 'protected',
   :username => 'protected',
@@ -362,7 +362,7 @@ To use Couchbase as the session store you should update your
 `config/initializers/session_store.rb` file
 
 
-```
+```ruby
 require 'action_dispatch/middleware/session/couchbase_store'
 AppName::Application.config.session_store :couchbase_store
 ```
@@ -370,7 +370,7 @@ AppName::Application.config.session_store :couchbase_store
 Or remove this file and add following line to your `config/application.rb` :
 
 
-```
+```ruby
 require 'action_dispatch/middleware/session/couchbase_store'
 config.session_store :couchbase_store
 ```
@@ -378,7 +378,7 @@ config.session_store :couchbase_store
 You can also pass additional options:
 
 
-```
+```ruby
 require 'action_dispatch/middleware/session/couchbase_store'
 session_options = {
   :expire_after => 5.minutes,

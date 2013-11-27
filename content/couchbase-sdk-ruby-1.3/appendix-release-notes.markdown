@@ -56,12 +56,9 @@ Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
  * Allow application to select the strategy of reading from replica nodes. *This
    version requires libcouchbase >= 2.0.7.* Now three strategies are available:
 
-    1. `:first` - synonym to `true`, previous behavior now the default. It means that
-       the library will sequentially iterate over all replicas in the configuration
-       supplied by the cluster and will return as soon as it finds a successful
-       response, or report an error.
+    1. `:first` - synonym to `true`, previous behavior now the default. It means that the library will sequentially iterate over all replicas in the configuration supplied by the cluster and will return as soon as it finds a successful response, or report an error.
 
-        ```
+        ```ruby
         c.get("foo", :replica => true)
         c.get("foo", :replica => :first)
         #=> "bar"
@@ -69,11 +66,9 @@ Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
         #=> ["bar", 0, 11218368683493556224]
         ```
 
-    1. `:all` - query all replicas in parallel. In this case the method will return the
-       array of the values on the all replica nodes without a particular order. Also if
-       the key isn't on the node, it will be skipped in the result array.
+    1. `:all` - query all replicas in parallel. In this case the method will return the array of the values on the all replica nodes without a particular order. Also if the key isn't on the node, it will be skipped in the result array.
 
-        ```
+        ```ruby
         c.get("foo", :replica => :all)
         #=> ["bar", "bar", "bar"]
         c.get("foo", :replica => :all, :extended => true)
@@ -82,10 +77,9 @@ Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
         # ["bar", 0, 11218368683493556224]]
         ```
 
-    1. `Fixnum` - you can also select specific replica node by its index in the cluster
-       configuration. It should be in interval `0...c.num_replicas`
+    1. `Fixnum` - you can also select specific replica node by its index in the cluster configuration. It should be in interval `0...c.num_replicas`
 
-        ```
+        ```ruby
         0...c.num_replicas
         #=> 0...3
         c.get("foo", :replica => 1)
@@ -94,10 +88,7 @@ Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
         #=> ArgumentError: replica index should be in interval 0...3
         ```
 
-   Note that applications should not assume the order of the replicas indicates
-   more recent data is at a lower index number. It is up to the application to
-   determine which version of a document/item it may wish to use in the case of
-   retrieving data from a replica.
+   Note that applications should not assume the order of the replicas indicates    more recent data is at a lower index number. It is up to the application to    determine which version of a document/item it may wish to use in the case of    retrieving data from a replica.
 
    *Issues* : [RCBC-133](http://www.couchbase.com/issues/browse/RCBC-133)
 
@@ -135,13 +126,13 @@ Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
 
  * Deprecate numeric argument to 'default\_format'. Instead of this style:
 
-    ```
+    ```ruby
     Couchbase.connect(:default_format => Couchbase::Bucket::FMT_MARSHAL)
     ```
 
    Symbol notation or explicit transcoder entity should be used
 
-    ```
+    ```ruby
     Couchbase.connect(:default_format => :marshal)
     Couchbase.connect(:transcoder => Couchbase::Transcoder::Marshal)
     ```

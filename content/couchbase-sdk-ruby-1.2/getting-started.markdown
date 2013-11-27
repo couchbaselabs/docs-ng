@@ -97,7 +97,7 @@ document, print it out and modify it. This first example contains the full
 sourcecode, but in later example we’ll omit the preamble and assume we’re
 already connected to the cluster.
 
-```
+```ruby
 require 'rubygems'
 require 'couchbase'
 
@@ -212,7 +212,7 @@ The SDK provides several options for these operations, but to start out here are
 the simplest forms:
 
 
-```
+```ruby
 key = "aass_brewery-juleol"
 doc = {"name" => "Juleøl", "abv" => 5.9}
 
@@ -230,7 +230,7 @@ by the unique key through the get method, or through Views. Since Views are more
 complex, let’s just look at a simple get first:
 
 
-```
+```ruby
 doc = client.get("aass_brewery-juleol")
 
 keys = ["foo", "bar"]
@@ -256,7 +256,7 @@ query view with options you need and use results. In its simplest form, it looks
 like this:
 
 
-```
+```ruby
 # 1: Get the design document definition
 ddoc = client.design_docs["beer"]
 ddoc.views      #=> ["brewery_beers", "by_location"]
@@ -295,7 +295,7 @@ first five results). The resulting information is encapsulated inside the
 `ViewRow` object.
 
 
-```
+```ruby
 view = client.design_docs["beer"].brewery_beers
 
 # Include all docs and limit to 5
@@ -353,7 +353,7 @@ but it will fail once the CAS value has changed. Here is a example on how to do
 it with the Ruby SDK:
 
 
-```
+```ruby
 key = "eagle_brewing-golden"
 # Reads the document with the CAS value.
 beer, flags, cas = client.get(key, :extended => true)
@@ -375,7 +375,7 @@ Internally it does the same thing but abstract you from storing and passing meta
 information. Here is the previous example rewritten to use this operation:
 
 
-```
+```ruby
 key = "eagle_brewing-golden"
 client.cas(key) do |beer|
 beer["name"] = "Some other Name"
@@ -402,7 +402,7 @@ without arguments and inspecting keys `"ep_getl_default_timeout"` and
 `"ep_getl_max_timeout"` correspondingly.
 
 
-```
+```ruby
 key = "eagle_brewing-golden";
 
 # Get with Lock
@@ -454,7 +454,7 @@ Here is an example on how to make sure that the document has been persisted on
 its master node, but also replicated to at least one of its replicas.
 
 
-```
+```ruby
 key = "important"
 value = "document"
 client.set(key, value, :observe => {:persisted => 1, :replicated => 1})
@@ -464,7 +464,7 @@ You can also separate persistence requirement from actual operations, and in
 this case, you can wait for several keys:
 
 
-```
+```ruby
 keys = []
 (1..5).each do |nn|
 key = "important-#{nn}"
