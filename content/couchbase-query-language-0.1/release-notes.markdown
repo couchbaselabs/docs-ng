@@ -3,7 +3,7 @@
 The following sections provide release notes for individual versions of Couchbase Query Language (N1QL).
 
 ## Release Notes for Couchbase Query Language Developer Preview 2 (November 2013) ##
-This is the 2nd 'developer preview' edition of Couchbase Query Language
+This is the second developer preview edition of Couchbase Query Language
 
 **New features in DP2:**
 
@@ -14,7 +14,7 @@ This is the 2nd 'developer preview' edition of Couchbase Query Language
 
 **Fixes in DP2:**
 
-* Add initial date/time features
+* Add initial date and time features
   
   *Issues*: [MB-9325](http://www.couchbase.com/issues/browse/MB-9325)
 * Queries covered by index now avoid the FETCH operator
@@ -42,7 +42,7 @@ This is a 'Developer Preview' and this release is **not** meant to be used in Pr
 
 ## Release Notes for Couchbase Query Language Developer Preview 1 (September 2013) ##
 
-This is the 1st 'developer preview' edition of Couchbase Query Language
+This is the first developer preview edition of Couchbase Query Language
 
 
 
