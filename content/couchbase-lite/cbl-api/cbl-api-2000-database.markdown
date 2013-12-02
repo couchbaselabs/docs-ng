@@ -5,20 +5,20 @@ The following table lists the database resources:
 
 |HTTP Method | Path Template | Description  |
 | ------	| ------	| ------	|  
-| GET    | /db                     | Retrieves information about the database 
-| PUT    | /db                     | Creates a new database
-| DELETE | /db                     | Deletes a database 
-| GET    | /db/_all_docs           | Returns a built-in view of all documents in the database  
-| POST   | /db/_all_docs           | Returns certain rows from the built-in view of all documents   
-| POST   | /db/_bulk_docs          | Inserts multiple documents into the database in a single request
-| GET    | /db/_changes            | Returns changes for the given database  
-| POST   | /db/_compact            | Starts a compaction for the database  
-| POST   | /db/_purge              | Purges some historical documents entirely from database history  
-| POST   | /db/_temp_view          | Executes a given view function for all documents and returns the result    |
+| GET    | /{db}                     | Retrieves information about the database 
+| PUT    | /{db}                     | Creates a new database
+| DELETE | /{db}                     | Deletes a database 
+| GET    | /{db}/_all_docs           | Returns a built-in view of all documents in the database  
+| POST   | /{db}/_all_docs           | Returns certain rows from the built-in view of all documents   
+| POST   | /{db}/_bulk_docs          | Inserts multiple documents into the database in a single request
+| GET    | /{db}/_changes            | Returns changes for the given database  
+| POST   | /{db}/_compact            | Starts a compaction for the database  
+| POST   | /{db}/_purge              | Purges some historical documents entirely from database history  
+| POST   | /{db}/_temp_view          | Executes a given view function for all documents and returns the result    |
 
 In each path template, `db` represents the database on which you want to operate.
 
-## GET /db
+## GET /{db}
 
 Retrieves information about the database.
 
@@ -50,7 +50,7 @@ Objects in the returned JSON document:
 |update_seq |Integer  |Number of updates to the database
    
 
-## PUT /db
+## PUT /{db}
 
 Creates a new database.
 
@@ -58,7 +58,7 @@ Sample request:
 
 	PUT /cookbook
 
-## DELETE /db
+## DELETE /{db}
 
 Deletes a database.
 
@@ -66,7 +66,7 @@ Sample request:
 
 	DELETE /cookbook
 
-## GET /db/_all_docs
+## GET /{db}/_all_docs
 Returns a built-in view of all documents in the database.
 
 Sample request:
@@ -75,7 +75,7 @@ Sample request:
 
 
 
-## POST /db/_all_docs
+## POST /{db}/_all_docs
 Returns certain rows from the built-in view of all documents.
 
 Sample request:
@@ -84,7 +84,7 @@ Sample request:
 
 
 
-## POST /db/_bulk_docs
+## POST /{db}/_bulk_docs
 Inserts multiple documents into the database in a single request.
 
 Sample request:
@@ -93,7 +93,7 @@ Sample request:
 
 
 
-## GET  /db/_changes
+## GET  /{db}/_changes
 Returns changes for the given database.
 
 Sample request:
@@ -101,7 +101,7 @@ Sample request:
 	GET /cookbook/_changes
 
 
-## POST /db/_compact 
+## POST /{db}/_compact 
 Starts a compaction for the database.
 
 Sample request:
@@ -109,7 +109,7 @@ Sample request:
 	POST /cookbook/_compact
 
 
-## POST /db/_purge
+## POST /{db}/_purge
 Purges some historical documents entirely from database history.
 
 Sample request:
@@ -117,7 +117,7 @@ Sample request:
 	POST /cookbook/_purge
 
 
-## POST /db/_temp_view
+## POST /{db}/_temp_view
 Executes a given view function for all documents and returns the result.
 
 Sample request:
