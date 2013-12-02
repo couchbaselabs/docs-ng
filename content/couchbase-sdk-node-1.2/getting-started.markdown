@@ -21,7 +21,7 @@ Install the following packages to get started using the Node.js SDK:
     npm install couchbase` If all went well, you should not see any errors printed
     to the screen.  Keep in mind because the Node.js SDK has a C++ component, you 
     will need a C++ compiler and associate build tools, though on Windows, the package
-    ships with prebuilt binaries.
+    ships with prebuilt binaries.  Also note that the Node.js SDK is only compatible with 	Node.js v0.8, v0.10 and v0.11.
 
 <a id="hello_couchbase"></a>
 
