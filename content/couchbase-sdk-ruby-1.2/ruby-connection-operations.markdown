@@ -14,7 +14,7 @@ exception object `Couchbase::Error::Connect` if it fails to connect. The
 following creates a default connection:
 
 
-```
+```ruby
 c = Couchbase.connect
 c2 = Couchbase.new
 ```
@@ -26,7 +26,7 @@ The following are equivalent alternatives to connect to the same node, using
 different syntax:
 
 
-```
+```ruby
 #creates connection to the default bucket on default node
 c = Couchbase.connect("http://localhost:8091/pools/default/buckets/default")
 
@@ -53,7 +53,7 @@ list, to connect to a node after rebalance or failover. To provide multiple
 possible nodes for initial connection:
 
 
-```
+```ruby
 c = Couchbase.connect(:bucket => "mybucket",
                       :node_list => ['example.com:8091', 'example.net'])
 ```
@@ -62,7 +62,7 @@ Here is creating a connection to a protected bucket by providing a username and
 password. Notice that the username you provide is the same as the bucket:
 
 
-```
+```ruby
 Couchbase.connect(:bucket => 'protected',
                   :username => 'protected',
                   :password => 'secret')
@@ -92,7 +92,7 @@ still alive when the next request is made to the ruby process, the SDK will not
 create a new client instance, but rather use the existing one:
 
 
-```
+```ruby
 # Simple example to connect using thread local singleton
 
 Couchbase.connection_options = {:bucket => "my",
@@ -120,7 +120,7 @@ and then change the timeout setting. This new connection-level setting will
 apply to any subsequent read/write requests made with the client instance:
 
 
-```
+```ruby
 #sets timeout for initial client instance and connection to server
 
 conn = Couchbase.connect(:timeout => 3_000_000)

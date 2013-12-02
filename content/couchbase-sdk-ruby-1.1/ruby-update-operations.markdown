@@ -303,7 +303,7 @@ c.delete("foo")        #=> false
 
 c.set("foo", "bar")
 c.delete("foo", :quiet => false)   #=> true
-c.delete("foo", :quiet => true)    #=> nil (default behaviour)
+c.delete("foo", :quiet => true)    #=> nil (default behavior)
 c.delete("foo", :quiet => false)   #=> will raise Couchbase::Error::NotFound
 
 #attempt to delete with version check using cas value

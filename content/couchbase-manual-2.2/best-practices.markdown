@@ -33,13 +33,13 @@ Cloud](#couchbase-bestpractice-cloud).
 
     * It is a trade off between reliability and efficiency.
 
- * [Moxi: We always prefer a client-side moxi (or a smart client) over a
+ * Couchbase prefers a client-side moxi (or a smart client) over a
    server-side moxi. However, for development environments or for faster, easier
-   deployments, you can use server-side moxis. We don't recommend server-side moxi
-   because of the drawback: if a server receives a client request and doesn't have
-   the requested data, there's an additional hop. Read more about clients
-   [here](http://www.couchbase.com/develop). Read more about different Deployment
-   Strategieshere](#couchbase-deployment).
+   deployments, you can use server-side moxis. A server-side moxi is not recommended
+   because of the following drawback: if a server receives a client request and doesn't have
+   the requested data, there's an additional hop. See 
+   [client development](http://www.couchbase.com/develop) and [Deployment
+   Strategies](#couchbase-deployment) for more information.
 
  * Number of cores: Couchbase is relatively more memory or I/O bound than is CPU
    bound. However, Couchbase is more efficient on machines that have at least two
@@ -149,7 +149,7 @@ Constant                                                                        
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
-headroomThe cluster needs additonal overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
+headroom The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
 High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 70%.                                                                                                                                                                                                  
 
 This is a rough guideline to size your cluster:
@@ -360,7 +360,7 @@ primary concerns for your servers, here is what we recommend:
       throughput.
 
  * Network: Most configurations will work with Gigabit Ethernet interfaces. Faster
-   solutions such as 10GBit and Inifiniband will provide spare capacity.
+   solutions such as 10GBit and Infiniband will provide spare capacity.
 
 <a id="couchbase-bestpractice-sizing-cloud"></a>
 
@@ -446,11 +446,10 @@ following:
    high values mean that data that your application expects to be stored is not in
    memory.
 
-[The water mark is another key statistic to monitor cluster performance. The
+The water mark is another key statistic to monitor cluster performance. The
 'water mark' determines when it is necessary to start freeing up available
-memory. Read more about this
-concepthere](#couchbase-introduction-architecture-diskstorage). Here are two
-important statistics related to water marks:
+memory. See [disk storage](#couchbase-introduction-architecture-diskstorage) 
+for more information. Two important statistics related to water marks include:
 
  * High Water Mark ( `ep_mem_high_wat` )
 
@@ -679,7 +678,7 @@ your host.
 
 As a rule, you should set the hostname before you add a node to a cluster. You
 can also provide a hostname in these ways: when you install a Couchbase Server
-2.1 node or when you do a REST-API call before the node is part of a cluster.
+2.1 node or when you do a REST API call before the node is part of a cluster.
 You can also add a hostname to an existing cluster for an online upgrade. If you
 restart, any hostname you establish with one of these methods will be used. For
 instructions, see [Using Hostnames with Couchbase
@@ -707,42 +706,151 @@ taken to restrict access.
 
 ### Swap Space
 
-Swap space in Linux is used when the physical memory (RAM) is full. If the
+On Linux, swap space is used when the physical memory (RAM) is full. If the
 system needs more memory resources and the RAM is full, inactive pages in memory
-are moved to the swap space. From a range of 0 to 100, swappiness indicates how
-frequently a system should use swap space based on RAM usage. We recommend the
-following for swap space:
+are moved to the swap space. Swappiness indicates how
+frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
- * By default on most Linux platforms, swapiness is set to 60. However this will
-   make a system go into swap too frequently for Couchbase Server.
-
- * If you use Couchbase Server 2.0+ without views, we recommend setting swappiness
-   of 10 to avoid going into swap too frequently.
-
- * If you use Couchbase Server 2.0+ with views, we recommend setting swappiness to
-   0 or else your system swap usage will be far too high.
-
- * Certain cloud systems by default do not have a swap partition configured. If you
-   are using views, we recommend setting swappiness to 0. If you are not using
-   views, you can set this to 10.
-
-To view the currently set swappiness on your system, enter this:
+<p class="notebox bp">
+<strong>Recommendation:</strong>
+For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
+</p>  
 
 
-```
-sysctl vm.swappiness
-```
+To change the swap configuration:
 
-Or you can use this command:
+1. Execute `cat /proc/sys/vm/swappiness` on each node to determine the current swap usage configuration.
+2. Execute `sudo sysctl vm.swappiness=0` to immediately change the swap configuration and ensure that it persists through server restarts.
+3.  Using sudo or root user privileges, edit the kernel parameters configuration file, `/etc/sysctl.conf`, so that the change is always in effect.
+4. Append `vm.swappiness = 0` to the file.
+5. Reboot your system.
+
+<p class="notebox">
+<strong>Note:</strong>
+Executing <code>sudo sysctl vm.swappiness=0</code> ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, <code>sysctl.conf</code>, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted. </p>
 
 
-```
-cat /proc/sys/vm/swappiness
-```
+### Using Couchbase Server on RightScale
 
-To change the swappiness, edit `/etc/sysctl.conf` and add `vm.swappiness` at the
-end of the file. After you save this and reboot your system, this setting will
-be used.
+Couchbase partners with [RightScale](http://www.rightscale.com) to provide preconfigured RightScale ServerTemplates that you can use to create an individual or array of servers and start them as a cluster. Couchbase Server RightScale ServerTemplates enable you to quickly set up Couchbase Server on [Amazon Elastic Compute Cloud](http://aws.amazon.com/ec2/) (Amazon EC2) servers in the [Amazon Web Services](http://aws.amazon.com)  (AWS) cloud through RightScale. 
+
+The templates also provide support for [Amazon Elastic Block Store](http://aws.amazon.com/ebs/) (Amazon EBS) standard volumes and Provisioned IOPS volumes. (IOPS is an acronym for input/output operations per second.) For more information about Amazon EBS volumes and their capabilities and limitations, see [Amazon EBS Volume Types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html#EBSVolumeTypes). 
+
+Couchbase provides RightScale ServerTemplates based on [Chef](http://www.opscode.com/chef/) and, for compatibility with existing systems, non-Chef-based ServerTemplates. 
+
+<p class="notebox">
+<strong>Note:</strong> Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
+</p>
+
+Before you can set up Couchbase Server on RightScale, you need a RightScale account and an AWS account that is connected to your RightScale account. For information about connecting the accounts, see [Add AWS Credentials to RightScale](http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard). 
+
+At a minimum, you need the following [RightScale user role privileges](http://support.rightscale.com/15-References/Tables/User_Role_Privileges) to work with the Couchbase RightScale ServerTemplates: actor, designer, library, observer, and server_login. To add privileges: from the RightScale menu bar, click **Settings > Account Settings > Users** and modify the permission list.
+
+To set up Couchbase Server on RightScale, you need to import and customize a  ServerTemplate. After the template is customized, you can launch server and cluster instances. The following figure illustrates the workflow:
+
+<img src="images/rightscale-workflow.png" style="width:50%;display:block;margin-left:auto;margin-right:auto">
+
+The following procedures do not describe every parameter that you can modify when working with the RightScale ServerTemplates. If you need more information about a parameter, click the info button located near the parameter name.
+
+**To import the Couchbase Server RightScale ServerTemplate:**
+
+1. From the RightScale menu bar, select **Design > MultiCloud Marketplace > ServerTemplates**.
+2. In the **Keywords** box on the left under Search, type **couchbase**, and then click **Go**.
+3. In the search results list, click on the latest version of the Couchbase Server ServerTemplate.
+
+    The name of each Couchbase template in the list contains the Couchbase Server version number.
+    
+4. Click **Import**.
+5. Review each page of the end user license agreement, and then click **Finish** to accept the agreement.
+
+**To create a new deployment:**
+
+1. From the RightScale menu bar, select **Manage > Deployments > New**.
+2. Enter a Nickname and Description for the new deployment.
+3. Click **Save**.
+
+**To add a server or cluster to a deployment:**
+
+1. From the RightScale menu bar, select **Manage > Deployments**.
+2. Click the nickname of the deployment that you want to place the server or cluster in.
+3. From the deployment page menu bar, add the server or cluster:
+    * To add a server, click **Add Server**.
+    * To add a cluster, click **Add Array**.
+4. In the Add to Deployment window, select a cloud and click **Continue**.
+5. On the Server Template page, select a template from the list.
+    
+    If you have many server templates in your account, you can reduce the number of entries in the list by typing a keyword from the template name into the Server Template Name box under Filter Options.
+    
+6. Click **Server Details**.
+7. On the **Server Details** page, choose settings for Hardware:
+
+	**Server Name** or **Array Name**—Enter a name for the new server or array.
+	
+	**Instance Type**—The default is extra large. The template supports only large or extra large instances and requires a minimum of 4 cores.
+	
+	**EBS Optimized**—Select the check box to enable EBS-optimized volumes for Provisioned IOPS.
+	
+8. Choose settings for Networking:
+
+	* **SSH Key**—Choose an SSH key.
+
+	* **Security Groups**—Choose one or more security groups.
+
+9. If you are adding a cluster, click **Array Details**, and then choose settings for Autoscaling Policy and Array Type Details.
+
+    Under Autoscaling Policy, you can set the minimum and maximum number of active servers in the cluster by modifying the **Min Count** and **Max Count** parameters. If you want a specific number of servers, set both parameters to the same value.
+    
+10. Click **Finish**.
+ 
+**To customize the template for a server or a cluster:**
+
+1. From the RightScale menu bar, select **Manage > Deployments**.
+2. Click the nickname of the deployment that the server or cluster is in.
+3. Click the nickname of the server or cluster.
+4. On the Server or Server Array page, click the **Inputs** tab, and then click **edit**.
+5. Expand the **BLOCK_DEVICE** category and modify inputs as needed.
+
+	The BLOCK_DEVICE category contains input parameters that are specific to storage. Here's a list of some advanced inputs that you might want to modify:
+
+	* **I/O Operations per Second**—Number of input/output operations per second (IOPS) that the volume can support
+	* **Volume Type**—Type of storage device
+
+6. Expand the **DB_COUCHBASE** category and modify inputs as needed.
+
+	The DB_COUCHBASE category contains input parameters that are specific to Couchbase Server. In general, the default values are suitable for one server. If you want to create a cluster, you need to modify the input parameter values. Here's a list of the advanced inputs that you can modify:
+
+	* **Bucket Name**—Name of the bucket. The default bucket name is `default`.
+
+	* **Bucket Password**—Password for the bucket.
+
+	* **Bucket RAM Quota**—RAM quota for the bucket in MB.
+
+	* **Bucket Replica Count**—Bucket replica count.
+
+	* **Cluster REST/Web Password**—Password for the administrator account. The default is `password`.
+	
+	* **Cluster REST/Web Username**—Administrator account user name for access to the cluster via the REST or web interface. The default is `Administrator`.
+
+	* **Cluster Tag**—Tag for nodes in the cluster that are automatically joined.
+
+    * **Couchbase Server Edition**—The edition of Couchbase Server. The default is `enterprise`.
+    
+	* **Rebalance Count**—The number of servers to launch before doing a rebalance. Set this value to the total number of target servers you plan to have in the cluster. If you set the value to 0, Couchbase Server does a rebalance after each server joins the cluster.
+	
+7. Click **Save**.
+8. If you are ready to launch the server or cluster right now, click **Launch**.
+
+**To launch servers or clusters:**
+
+1. From the RightScale menu bar, select **Manage > Deployments**.
+2. Click the nickname of the deployment that the server or cluster is in.
+3. Click the nickname of the server or cluster.
+4. On the Server or Server Array page, click **Launch**.
+
+
+**To log in to the Couchbase Web Console:**
+
+ You can log in to the Couchbase Web Console by using your web browser to connect to the the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
 
 <a id="couchbase-deployment"></a>
 
@@ -806,7 +914,7 @@ communicate with Couchbase Cluster without installing another piece of proxy
 software. The downside to this approach is performance.
 
 In this deployment option versus a typical memcached deployment, in a worse-case
-scenario, server mapping will happen twice (e.g. using ketama hashing to a
+scenario, server mapping will happen twice (e.g. using Ketama hashing to a
 server list on the client, then using vBucket hashing and server mapping on the
 proxy) with an additional round trip network hop introduced.
 

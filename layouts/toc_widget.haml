@@ -1,6 +1,9 @@
-.span3.hidden-phone
+#outernav.span3.hidden-phone
   - unless @item.toc.empty?
-    %ul#sidenav.span3.nav.nav-list
+    %ul#sidenav.span3.nav.nav-list.affix
+      -unless section_name().empty?
+        %li
+          %h3= section_name()
       - @item.toc.each do |entry|
         %li
           %a{:href => entry[:href]}= entry[:title]
@@ -9,3 +12,8 @@
               - entry[:children].each do |child|
                 %li
                   %a{:href => child[:href]}= child[:title]
+                  - unless child[:children].empty?
+                    %ul.sub-menu
+                      - child[:children].each do |child|
+                        %li
+                          %a{:href => child[:href]}= child[:title]

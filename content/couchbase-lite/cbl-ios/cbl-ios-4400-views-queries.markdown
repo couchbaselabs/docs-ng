@@ -13,41 +13,49 @@ For example, if you have an address book in a database, you might want to query 
 
 You might also want to be able to look up people's names from phone numbers, so you can do Caller ID on incoming calls. For this you'd make a view whose keys are phone numbers. Now, a document might have multiple phone numbers in it, like so:
 
-	{ "first": "Bob",
-	  "last": "Dobbs"
-	  "phone": {
-	  		"home": "408-555-1212",
-			"cell": "408-555-3774",
-			"work": "650-555-8333"} }
-
-No problem: the map function just needs to loop over the phone numbers and emit each one. You then have a view index that contains each phone number, even if several of them map to the same document.
+```json
+{
+   "first":"Bob",
+   "last":"Dobbs",
+   "phone":{
+      "home":"408-555-1212",
+      "cell":"408-555-3774",
+      "work":"650-555-8333"
+   }
+}
+```
+No problem&mdash;the map function just needs to loop over the phone numbers and emit each one. You then have a view index that contains each phone number, even if several of them map to the same document.
 
 ### Getting All Documents
 
-To start off with, for simplicity we'll look at a very useful predefined view called `_all_docs`. This is equivalent to a view with a map function that simply emits the `_id` field as the key. Its index contains all documents in the database, sorted by ID.
+To start off, for simplicity we'll look at how you can retrieve all documents in the database without using a view.
 
-To query an existing view, get a `CBLQuery` object for it. The built-in `_all_docs` view is accessed directly from the CBLDatabase:
+To retrieve all the documents in the database, you need to create a `CBLQuery` object.
+The  `queryAllDocuments` method in the `CBLDatabase` class returns a new `CBLQuery` object that contains all documents in the database:
 
-	CBLQuery* query = database.getAllDocuments;
+	CBLQuery* query = database.queryAllDocuments;
 
-This creates a new query object. Before running the query, you can customize it &mdash; this is much like the SQL `SELECT` statement's `ORDER BY`, `OFFSET` and `LIMIT` clauses. Let's say you want the ten documents with the highest keys:
+After you obtain the new `CBLQuery` object, you can customize it (this is similar to the SQL `SELECT` statement `ORDER BY`, `OFFSET` and `LIMIT` clauses). The following example shows how to retrieve the ten documents with the highest keys:
 
 	query.limit = 10;
 	query.descending = YES;
 
-As a side effect you get the documents in reverse order, but that's easy to compensate for if it's not appropriate. Now you can iterate over the results:
+As a side effect you get the documents in reverse order, but you can compensate for that if it's not appropriate. Now you can iterate over the results:
 
 	for (CBLQueryRow* row in query.rows) {
 		NSLog(@"Doc ID = %@", row.key);
 	}
 
-`query.rows` evaluates the query and returns an NSEnumerator that can be used with a `for...in` loop to iterate over the results. Each result is a `CBLQueryRow` object&mdash;you might expect it to be a CBLDocument, but the key-value pairs emitted in views don't necessarily correspond one-to-one to documents, so a document might be present multiple times under different keys. If you want the document that emitted a row, you can get it from its `document` property.
+`query.rows` evaluates the query and returns an `NSEnumerator` object that you can   use with a `for...in` loop to iterate over the results. Each result is a `CBLQueryRow` object. You might expect the result to be a CBLDocument, but the key-value pairs emitted in views don't necessarily correspond one-to-one to documents and a document might be present multiple times under different keys. If you want the document that emitted a row, you can get it from the row's `document` property.
 
-### Creating A View
+### Creating Views
 
-Now let's turn to views in general. The first part is creating the view by defining its map (and optionally reduce) function. Here's how the Grocery Sync example app sets up its by-date view:
+To create a view, you define its map (and optionally its reduce) function. When you define the MapReduce functions, you also  assign a version identifier to the function. If you change the MapReduce function later, you must remember to change the version so Couchbase Lite rebuilds the index.
+
+Here's how the Grocery Sync example app sets up its by-date view:
 
     CBLView* view = [db viewNamed: @"byDate"];
+    
     [view setMapBlock: MAPBLOCK({
         id date = [doc objectForKey: @"created_at"];
         if (date) emit(date, doc);
@@ -65,21 +73,21 @@ This is a block that takes the following parameters:
  * An NSDictionary&mdash;this is the contents of the document being indexed.
  * A function (a block) called `emit` that takes the parameters `key` and `value`. This is the function your code calls to emit a key-value pair into the view's index.
 
-After you get that, the example map block is pretty straightforward: it looks for a `created_at` property in the document, and if it's present it emits it as the key, with the entire document contents as the value. Emitting the document as the value is fairly common. It makes it slightly faster to read the document at query time, at the expense of some disk space.
+After you get that, the example map block is straightforward: it looks for a `created_at` property in the document, and if it's present, it emits it as the key, with the entire document contents as the value. Emitting the document as the value is fairly common. It makes it slightly faster to read the document at query time, at the expense of some disk space.
 
 The view index then consists of the dates of all documents, sorted in order. This is useful for displaying the documents ordered by date (which Grocery Sync does), or for finding all documents created within a certain range of dates.
 
-Note that any document without a `created_at` field is ignored and won't appear in the view index. This means you can put other types of documents in the same database (maybe names and addresses of of grocery stores?) without them messing up the display of the shopping list.
+Any document without a `created_at` field is ignored and won't appear in the view index. This means you can put other types of documents in the same database (such as names and addresses of of grocery stores) without them messing up the display of the shopping list.
 
-IMPORTANT: The view index itself is persistent, but the `defineViewNamed:version:` method has to be called every time the app starts, before the view is accessed. This is because the map function _isn't_ persistent, it's an ephemeral block pointer, and it needs to be hooked up to Couchbase Lite at runtime.
+**Note**: The view index itself is persistent, but the `setMapBlock:reduceBlock:version` and `setMapBlock:version:` methods must be called every time the app starts, before the view is accessed. This is because the map function _isn't_ persistent&mdash;it's an ephemeral block pointer, and it needs to be hooked up to Couchbase Lite at runtime.
 
-### Querying The View
+### Querying Views
 
-Now that the view is created, querying it is very much like querying `_all_docs`, except that you get the `CBLQuery` object from the view not the database:
+Now that the view is created, querying it is very much like querying `_all_docs`, except that you get the `CBLQuery` object from the view rather than the database:
 
     CBLQuery* query = [[db viewNamed: @"byDate"] query];
 
-Every call to `query` creates a new CBLQuery object, ready for you to customize. You can set a number of properties to specify key ranges, ordering, and so on. as described in the [view and query design](view-and-query-design) section. Then you run the query (i.e. start enumerating its `rows` property) exactly as described above under "Getting All Documents".
+Every call to `query` creates a new CBLQuery object, ready for you to customize. You can set a number of properties to specify key ranges, ordering, and so on. as described in the [view and query design](view-and-query-design) section. Then you run the query (that is, start enumerating its `rows` property) exactly as described previously in [Getting All Documents](#getting-all-documents).
 
 ### Updating Queries
 
@@ -92,7 +100,7 @@ It can be useful to know whether the results of a query have changed. You might 
 		}
 	}
 
-### Live Queries
+### Using Live Queries
 
 Even better than _checking_ for a query update is getting _notified_ when one happens. Users expect apps to be live and don't want to have to press a refresh button to see new data. This is especially true if data might arrive over the network at any time through synchronization &mdash; that new data needs to show up right away.
 
@@ -115,7 +123,7 @@ Don't forget to remove the observer when cleaning up. The observation method mig
 		}
 	}
 
-### Automatic Table Source
+### Using an Automatic Table Source
 
 And what's even better than a live query? A live query that automatically acts as the data source of a `UITableView`. That's what `CBLUITableSource` provides: it's an implementation of `UITableViewDataSource` that observes a `CBLLiveQuery` and syncs the table with the view rows. To use it, you need to:
 

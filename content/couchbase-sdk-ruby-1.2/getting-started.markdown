@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase Ruby SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 Awesome that you want to learn more about Couchbase! This is the right place to
@@ -47,7 +51,11 @@ running. We recommend Ruby 1.9.2 or 1.8.7
 
 You can verify that Ruby is installed by typing the following command:
 
-`shell> ruby -v ruby 1.9.3p286 (2012-10-12 revision 37165) [x86_64-linux]`
+```
+shell> ruby -v
+ruby 1.9.3p286 (2012-10-12 revision 37165) [x86_64-linux]
+```
+
 Another dependency needed for client is libcouchbase. Please consult \[ [C
 Client Library](http://www.couchbase.com/develop/c/current]) page about ways to
 get it on your system. Here we will assume you are using the Ubuntu/Debian
@@ -59,11 +67,19 @@ Windows, as all dependencies are bundled in the source.
 Once you have installed libcouchbase, you are then ready to install the most
 recent client using rubygems.
 
-`shell> gem install couchbase Fetching: couchbase-1.2.0.gem (100%) Building
+```
+shell> gem install couchbase Fetching: couchbase-1.2.0.gem (100%) Building
 native extensions.  This could take a while... Successfully installed
-couchbase-1.2.0 1 gem installed` Lets load and verify library version.
+couchbase-1.2.0 1 gem installed
+```
 
-`shell> ruby -rrubygems -rcouchbase -e 'puts Couchbase::VERSION' 1.2.0` The
+Lets load and verify library version.
+
+```
+shell> ruby -rrubygems -rcouchbase -e 'puts Couchbase::VERSION' 1.2.0
+```
+
+The
 TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
@@ -74,14 +90,14 @@ Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
 
 ## Hello Couchbase
 
+
 To follow the tradition of programming tutorials, we’ll start with "Hello
 Couchbase". In the first example, we’ll connect to the Cluster, retrieve the
 document, print it out and modify it. This first example contains the full
 sourcecode, but in later example we’ll omit the preamble and assume we’re
 already connected to the cluster.
 
-
-```
+```ruby
 require 'rubygems'
 require 'couchbase'
 
@@ -175,26 +191,28 @@ Couchbase Server provides a set of commands to store documents. The commands are
 very similar to each other and differ only in their meaning on the server-side.
 These are:
 
-`set`     | Stores a document in Couchbase Server (identified by its unique key) and overrides the previous document (if there was one).                 
-----------|----------------------------------------------------------------------------------------------------------------------------------------------
-`add`     | Adds a document in Couchbase Server (identified by its unique key) and fails if there is already a document with the same key stored.        
-`replace` | Replaces a document in Couchbase Server (identified by its unique key) and fails if there is no document with the given key already in place.
+|Command|Description|  
+| ------	| ------	|  
+|`set`     | Stores a document in Couchbase Server (identified by its unique key) and overrides the previous document (if there was one).
+|`add`     | Adds a document in Couchbase Server (identified by its unique key) and fails if there is already a document with the same key stored.
+|`replace` | Replaces a document in Couchbase Server (identified by its unique key) and fails if there is no document with the given key already in place.
 
 There are also additional commands mutation commands, which do make sense when
 you are working in `:plain` mode, because they are implmented on the server and
 not JSON-aware. But still they might be useful in your application:
 
-`prepend`   | Prepend given string to the value. The concatenation is done on the server side.                                                                                                                                    
-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`append`    | Append given string to the value. The concatenation is also done on the server side.                                                                                                                                
-`increment` | Increment, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will increment by one. See API reference for other options.
-`decrement` | Decrement, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will decrement by one. See API reference for other options.
+|Command|Description|  
+| ------	| ------	|  
+|`prepend`   | Prepend given string to the value. The concatenation is done on the server side.
+|`append`    | Append given string to the value. The concatenation is also done on the server side.
+|`increment` | Increment, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will increment by one. See API reference for other options.
+|`decrement` | Decrement, atomically, the value. The value is a string representation of an unsigned integer. The new value is returned by the operation. By default it will decrement by one. See API reference for other options.
 
 The SDK provides several options for these operations, but to start out here are
 the simplest forms:
 
 
-```
+```ruby
 key = "aass_brewery-juleol"
 doc = {"name" => "Juleøl", "abv" => 5.9}
 
@@ -212,7 +230,7 @@ by the unique key through the get method, or through Views. Since Views are more
 complex, let’s just look at a simple get first:
 
 
-```
+```ruby
 doc = client.get("aass_brewery-juleol")
 
 keys = ["foo", "bar"]
@@ -238,7 +256,7 @@ query view with options you need and use results. In its simplest form, it looks
 like this:
 
 
-```
+```ruby
 # 1: Get the design document definition
 ddoc = client.design_docs["beer"]
 ddoc.views      #=> ["brewery_beers", "by_location"]
@@ -261,12 +279,13 @@ of the query will contain. All supported options are available as items in
 options Hash accepted either by the view method or by `#each` iterator on the
 view. Here are some of them:
 
-include\_docs (Boolean) | Used to define if the complete documents should be fetched with the result ( `false` by default). Note this will actually fetch the document itself from the cache, so if it has been changed or deleted you may not receive a document that matches the view, or any at all.
-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-reduce (Boolean)        | Used to enable/disable the reduce function (if there is one defined on the server). `true` by default.                                                                                                                                                                       
-limit (Fixnum)          | Limit the number of results that should be returned.                                                                                                                                                                                                                         
-descending (Boolean)    | Revert the sorting order of the result set. ( `false` by default)                                                                                                                                                                                                            
-stale (Boolean, Symbol) | Can be used to define the tradeoff between performance and freshness of the data. ( `:update_after` by default)                                                                                                                                                              
+|Option|Description|
+| ------	| ------	|
+|include\_docs (Boolean) | Used to define if the complete documents should be fetched with the result ( `false` by default). Note this will actually fetch the document itself from the cache, so if it has been changed or deleted you may not receive a document that matches the view, or any at all.
+|reduce (Boolean) | Used to enable/disable the reduce function (if there is one defined on the server). `true` by default.
+|limit (Fixnum) | Limit the number of results that should be returned.
+|descending (Boolean) | Revert the sorting order of the result set. ( `false` by default)
+|stale (Boolean, Symbol) | Can be used to define the tradeoff between performance and freshness of the data. ( `:update_after` by default)
 
 Now that we have our View information in place, we can issue the query, which
 actually triggers the scatter-gather data loading process on the Cluster. We can
@@ -276,7 +295,7 @@ first five results). The resulting information is encapsulated inside the
 `ViewRow` object.
 
 
-```
+```ruby
 view = client.design_docs["beer"].brewery_beers
 
 # Include all docs and limit to 5
@@ -289,10 +308,14 @@ end
 In the logs, you can see the corresponding document keys automatically sorted
 (ascending):
 
-`21st_amendment_brewery_cafe 21st_amendment_brewery_cafe-21a_ipa
+```
+21st_amendment_brewery_cafe 21st_amendment_brewery_cafe-21a_ipa
 21st_amendment_brewery_cafe-563_stout
 21st_amendment_brewery_cafe-amendment_pale_ale
-21st_amendment_brewery_cafe-bitter_american`<a id="deleting_documents"></a>
+21st_amendment_brewery_cafe-bitter_american`
+```
+
+<a id="deleting_documents"></a>
 
 ### Deleting Documents
 
@@ -330,7 +353,7 @@ but it will fail once the CAS value has changed. Here is a example on how to do
 it with the Ruby SDK:
 
 
-```
+```ruby
 key = "eagle_brewing-golden"
 # Reads the document with the CAS value.
 beer, flags, cas = client.get(key, :extended => true)
@@ -352,7 +375,7 @@ Internally it does the same thing but abstract you from storing and passing meta
 information. Here is the previous example rewritten to use this operation:
 
 
-```
+```ruby
 key = "eagle_brewing-golden"
 client.cas(key) do |beer|
 beer["name"] = "Some other Name"
@@ -379,7 +402,7 @@ without arguments and inspecting keys `"ep_getl_default_timeout"` and
 `"ep_getl_max_timeout"` correspondingly.
 
 
-```
+```ruby
 key = "eagle_brewing-golden";
 
 # Get with Lock
@@ -431,7 +454,7 @@ Here is an example on how to make sure that the document has been persisted on
 its master node, but also replicated to at least one of its replicas.
 
 
-```
+```ruby
 key = "important"
 value = "document"
 client.set(key, value, :observe => {:persisted => 1, :replicated => 1})
@@ -441,7 +464,7 @@ You can also separate persistence requirement from actual operations, and in
 this case, you can wait for several keys:
 
 
-```
+```ruby
 keys = []
 (1..5).each do |nn|
 key = "important-#{nn}"

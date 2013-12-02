@@ -267,7 +267,7 @@ resources:
  * Creating and Managing Buckets with Couchbase Web Console: see [Viewing Data
    Buckets](#couchbase-admin-web-console-data-buckets).
 
- * Creating and Managing Buckets with Couchbase REST-API: see [Managing
+ * Creating and Managing Buckets with Couchbase REST API: see [Managing
    Buckets](#couchbase-admin-restapi-bucketops).
 
  * Creating and Managing Buckets with Couchbase CLI (Command-Line Tool): see
@@ -278,10 +278,7 @@ resources:
 ### RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
-the `Server Quota` and `Bucket Quota`. For more information about creating and
-changing these two settings, see **Couldn't resolve xref tag:
-couchbase-cli-other-examples** and [Creating and Editing Data
-Buckets](#couchbase-admin-web-console-data-buckets-createedit).
+the `Server Quota` and `Bucket Quota`.
 
  * **Server Quota**
 
@@ -290,7 +287,7 @@ Buckets](#couchbase-admin-web-console-data-buckets-createedit).
    caching data *for all buckets* and is configured on a per-node basis. The Server
    Quota is initially configured in the first server in your cluster is configured,
    and the quota is identical on all nodes. For example, if you have 10 nodes and a
-   16GB Server Quota, ther is 160GB RAM available across the cluster. If you were
+   16GB Server Quota, there is 160GB RAM available across the cluster. If you were
    to add two more nodes to the cluster, the new nodes would need 16GB of free RAM,
    and the aggregate RAM available in the cluster would be 192GB.
 
@@ -311,7 +308,7 @@ cluster expands the overall RAM quota, and the bucket quota, increasing the
 amount of information that can be kept in RAM.
 
 [The Bucket Quota is used by the system to determine when data should
-beejected](#couchbase-introduction-architecture-ejection-eviction) from memory.
+be ejected](#couchbase-introduction-architecture-ejection-eviction) from memory.
 Bucket Quotas are dynamically configurable within the limit of your Server
 Quota, and enable you to individually control the caching of information in
 memory on a per bucket basis. You can therefore configure different buckets to
@@ -320,9 +317,6 @@ cope with your required caching RAM allocation requirements.
 The Server Quota is also dynamically configurable, but care must be taken to
 ensure that the nodes in your cluster have the available RAM to support your
 chosen RAM quota configuration.
-
-For more information on changing Couchbase Quotas, see **Couldn't resolve xref
-tag: couchbase-admin-tasks-quotas**.
 
 <a id="couchbase-introduction-architecture-vbuckets"></a>
 
@@ -336,8 +330,8 @@ data, and for supporting replicas (copies of bucket data) on more than one node.
 Clients access the information stored in a bucket by communicating directly with
 the node response for the corresponding vBucket. This direct access enables
 clients to communicate with the node storing the data, rather than using a proxy
-or redistribution architecture. The result is abstracting the physical toplogy
-from the logical partitioning of data. This architecture is what gives Coucbase
+or redistribution architecture. The result is abstracting the physical topology
+from the logical partitioning of data. This architecture is what gives Couchbase
 Server the elasticity.
 
 This architecture differs from the method used by `memcached`, which uses
@@ -376,7 +370,7 @@ node, Server D is added to the cluster and the vBucket Map is updated.
 ![](images/vbuckets-after.png)
 
 [The vBucket map is updated during
-therebalance](#couchbase-introduction-architecture-rebalancing) operation; the
+the rebalance](#couchbase-introduction-architecture-rebalancing) operation; the
 updated map is then sent the cluster to all the cluster participants, including
 the other nodes, any connected "smart" clients, and the Moxi proxy service.
 
@@ -488,7 +482,7 @@ Writers](#couchbase-admin-tasks-mrw).
 
 [Couchbase Server will never delete entire items from disk unless a client
 explicitly deletes the item from the database or
-theexpiration](#couchbase-introduction-architecture-expiration) value for the
+the expiration](#couchbase-introduction-architecture-expiration) value for the
 item is reached. The ejection mechanism removes an item from RAM, while keeping
 a copy of the key and metadata for that document in RAM and also keeping copy of
 that document on disk. For more information about document expiration and
@@ -666,7 +660,7 @@ provides a stream of data of the changes that are occurring within the system.
 
 TAP is used during replication, to copy data between vBuckets used for replicas.
 It is also used during the rebalance procedure to move data between vBuckets and
-redestribute the information across the system.
+redistribute the information across the system.
 
 <a id="couchbase-introduction-architecture-clientinterface"></a>
 
@@ -918,10 +912,10 @@ the basic running of a Membase cluster.
 
    To build Views that can output and query your stored data, your objects must be
    stored in the database using the JSON format. This may mean that if you have
-   been using the native serialisation of your client library to convert a language
+   been using the native serialization of your client library to convert a language
    specific object so that it can be stored into Membase Server, you will now need
    to structure your data and use a native to JSON serialization solution, or
-   reformat your data so that it can be formated as JSON.
+   reformat your data so that it can be formatted as JSON.
 
 <a id="couchbase-introduction-migration-couchdb"></a>
 

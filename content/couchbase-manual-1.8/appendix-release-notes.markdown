@@ -36,7 +36,7 @@ rebalancing fixes and improvements, including:
  * Improved logging provides more information about what operations are taking
    place, and what errors and problems are being reported by the system.
 
-**New Features and Behaviour Changes in 1.8.1**
+**New Features and Behavior Changes in 1.8.1**
 
  * A new port (11209) has been enabled for communication between cluster nodes. You
    must ensure that this port has been opened through firewall and network
@@ -50,7 +50,7 @@ rebalancing fixes and improvements, including:
  * Histogram timings are now provided for `get_stats` requests.
 
  * When a node leaves a cluster (due to failover or removal), the database files
-   would automatically be deleted. This behaviour has now been changed so that the
+   would automatically be deleted. This behavior has now been changed so that the
    database files are not deleted when the node leaves the cluster.
 
    Files are deleted when the node is added back to the cluster a rebalance
@@ -544,7 +544,7 @@ to the following areas of this release:
    `mbbackup` in Membase Server is now called `cbbackup`. See the full release note
    entry below for more detailed information.
 
-**New Features and Behaviour Changes in 1.8.0**
+**New Features and Behavior Changes in 1.8.0**
 
  * Ubuntu 9.x is no longer a supported platform and support will be removed in a
    future release.

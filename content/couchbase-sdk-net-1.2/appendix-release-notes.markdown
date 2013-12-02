@@ -1,12 +1,36 @@
 # Appendix: Release Notes
 
 The following sections provide release notes for individual release versions of
-Couchbase Client Library.NET. To browse or submit new issaues, see [Couchbase
+Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
+
+<a id="couchbase-sdk-net-rn_1-2-9a"></a>
+
+## Release Notes for Couchbase Client Library .NET 1.2.9 GA (04 October 2013)
+
+.NET Couchbase Client 1.2.9 is a follow up release to 1.2.8 
+and fixes the following issue:
+
+* NCBC-308: KeyExists does not release socket pool if not found.
+
+<a id="couchbase-sdk-net-rn_1-2-8a"></a>
+
+## Release Notes for Couchbase Client Library .NET 1.2.8 GA (01 October 2013)
+
+.NET Couchbase Client 1.2.8 release is a fixes the following issues:
+
+* NCBC-301: added a new StatusCode enumeration for unifying client and server
+status results of operations across all clients. This also fixes a bug where
+socket time-out messages on the client were not returned with the operation
+result.
+* NCBC-250: unit test improvements.
+* NCBC-257: Improvements to ensure that Disposed objects do not make it through 
+to the finalization phase of garbage collection. This should improve issues with
+socket time-outs and generally improve client stability and performance.
 
 <a id="couchbase-sdk-net-rn_1-2-6a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.6 GA (07 May 2013)
+## Release Notes for Couchbase Client Library .NET 1.2.6 GA (07 May 2013)
 
 .NET Couchbase Client 1.2.6 fixes an issue where the 1.2.5 NuGet package
 contained an unsigned Enyim.Caching assembly (3.5 only). The 4.0 NuGet package
@@ -14,12 +38,12 @@ was not affected.
 
 <a id="couchbase-sdk-net-rn_1-2-5a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.5 GA (07 May 2013)
+## Release Notes for Couchbase Client Library .NET 1.2.5 GA (07 May 2013)
 
 .NET Couchbase Client 1.2.5 removes the RestSharp and Hammock dependencies, adds
 support for.NET 3.5, along with new features and bug fixes.
 
-**New Features and Behaviour Changes in 1.2.5**
+**New Features and Behavior Changes in 1.2.5**
 
  * NCBC-231: Support for Unlock without CAS operation
 
@@ -59,9 +83,9 @@ support for.NET 3.5, along with new features and bug fixes.
      Assert.That(savedThing.Id, Is.StringContaining(key));
     ```
 
- * NCBC-246: The.NET Client Library is now code compatible with the.NET Framework
+ * NCBC-246: The.NET Client Library is now code compatible with the .NET Framework
    version 3.5. The NuGet package and release zip file contain both 4.0 and 3.5
-   assemblies. The solution (see GitHub) now includes a Couchbase.Net35 project.
+   assemblies. The solution (see GitHub) now includes a Couchbase .Net35 project.
 
  * NCBC-247: RestSharp and Hammock are no longer dependencies of the Couchbase.NET
    Client Library.
@@ -89,12 +113,12 @@ support for.NET 3.5, along with new features and bug fixes.
 
 <a id="couchbase-sdk-net-rn_1-2-4a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.4 GA (02 April 2013)
+## Release Notes for Couchbase Client Library .NET 1.2.4 GA (02 April 2013)
 
 .NET Couchbase Client 1.2.4 adds support for Get with Lock feature, along with
 bug fixes.
 
-**New Features and Behaviour Changes in 1.2.4**
+**New Features and Behavior Changes in 1.2.4**
 
  * NCBC-238: Support for key exists check without getting value.
 
@@ -131,18 +155,18 @@ bug fixes.
 
 <a id="couchbase-sdk-net-rn_1-2-3a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.3 GA (08 March 2013)
+## Release Notes for Couchbase Client Library .NET 1.2.3 GA (08 March 2013)
 
 .NET Couchbase Client 1.2.3 GA addresses an invalid strong name issue with
 Enyim.Caching in release 1.2.2.
 
 <a id="couchbase-sdk-net-rn_1-2-2a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.2 GA (05 March 2013)
+## Release Notes for Couchbase Client Library .NET 1.2.2 GA (05 March 2013)
 
 .NET Couchbase Client 1.2.2 GA provides stability fixes and new API methods.
 
-**New Features and Behaviour Changes in 1.2.2**
+**New Features and Behavior Changes in 1.2.2**
 
  * NCBC-229: Support Remove with CAS operation.
 
@@ -165,11 +189,11 @@ Enyim.Caching in release 1.2.2.
 
 <a id="couchbase-sdk-net-rn_1-2-1a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.1 GA (05 February 2013)
+## Release Notes for Couchbase Client Library .NET 1.2.1 GA (05 February 2013)
 
 .NET Couchbase Client 1.2.1 GA provides stability fixes and new API methods.
 
-**New Features and Behaviour Changes in 1.2.1**
+**New Features and Behavior Changes in 1.2.1**
 
  * NCBC-165: IView now includes a `CheckExists` method, which will allow callers to
    verifiy that a view exists in a design document prior to executing a view query.
@@ -287,7 +311,7 @@ Enyim.Caching in release 1.2.2.
 
 <a id="couchbase-sdk-net-rn_1-2-0g"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.0 GA (12 December 2012)
+## Release Notes for Couchbase Client Library .NET 1.2.0 GA (12 December 2012)
 
 Couchbase Client 1.2 GA is the first GA release to support Couchbase Server 2.0.
 1.2 is backwards compatible with Couchbase Server 1.8.
@@ -320,9 +344,9 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 <a id="couchbase-sdk-net-rn_1-2-0f"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.0-BETA-3 Beta (28 November 2012)
+## Release Notes for Couchbase Client Library .NET 1.2.0-BETA-3 Beta (28 November 2012)
 
-**New Features and Behaviour Changes in 1.2.0-BETA-3**
+**New Features and Behavior Changes in 1.2.0-BETA-3**
 
  * New CouchbaseCluster GetItemCount method (NCBC-92)
 
@@ -387,9 +411,9 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 <a id="couchbase-sdk-net-rn_1-2-0d"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.0-DP4 Alpha (27 August 2012)
+## Release Notes for Couchbase Client Library .NET 1.2.0-DP4 Alpha (27 August 2012)
 
-**New Features and Behaviour Changes in 1.2.0-DP4**
+**New Features and Behavior Changes in 1.2.0-DP4**
 
  * New bucket administration methods
 
@@ -434,9 +458,9 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 <a id="couchbase-sdk-net-rn_1-2-0c"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.0-DP3 Alpha (27 August 2012)
+## Release Notes for Couchbase Client Library .NET 1.2.0-DP3 Alpha (27 August 2012)
 
-**New Features and Behaviour Changes in 1.2.0-DP3**
+**New Features and Behavior Changes in 1.2.0-DP3**
 
  * Initial implementation of Observe and Store with durability checks.
 
@@ -454,7 +478,7 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 <a id="couchbase-sdk-net-rn_1-2-0b"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2.0-DP2 Alpha (25 July 2012)
+## Release Notes for Couchbase Client Library .NET 1.2.0-DP2 Alpha (25 July 2012)
 
 **Fixes in 1.2.0-DP2**
 
@@ -469,9 +493,9 @@ The Couchbase.NET Client Library 1.2 requires the.NET Framework 4.0 or higher.
 
 <a id="couchbase-sdk-net-rn_1-2-0a"></a>
 
-## Release Notes for Couchbase Client Library.NET 1.2-DP Alpha (27 March 2012)
+## Release Notes for Couchbase Client Library .NET 1.2-DP Alpha (27 March 2012)
 
-**New Features and Behaviour Changes in 1.2-DP**
+**New Features and Behavior Changes in 1.2-DP**
 
  * Initial support for Couchbase Server 2.0 view API.
 

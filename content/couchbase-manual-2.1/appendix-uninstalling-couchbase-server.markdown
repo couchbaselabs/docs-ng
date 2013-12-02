@@ -18,16 +18,16 @@ Before removing Couchbase Server from your system, you should do the following:
 
 <a id="couchbase-uninstalling-redhat"></a>
 
-## Uninstalling on a RedHat Linux System
+## Uninstalling on a Red Hat Linux System
 
-To uninstall the software on a RedHat Linux system, run the following command:
+To uninstall the software on a Red Hat Linux system, run the following command:
 
 
 ```
 shell> sudo rpm -e couchbase-server
 ```
 
-Refer to the RedHat RPM documentation for more information about uninstalling
+Refer to the Red Hat RPM documentation for more information about uninstalling
 packages using RPM.
 
 You may need to delete the data files associated with your installation. The

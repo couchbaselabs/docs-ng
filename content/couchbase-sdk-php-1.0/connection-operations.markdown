@@ -78,7 +78,7 @@ establishes a connection to a cluster or it runs out of hosts to try.
 **Description**  | Retrieve an option                               
 **Returns**      | `scalar` ( Binary object )                       
 **Arguments**    |                                                  
-**int $option**  | Option controlling connection or server behaviour
+**int $option**  | Option controlling connection or server behavior
 
 <a id="table-couchbase-sdk_php_setoption"></a>
 
@@ -88,7 +88,7 @@ establishes a connection to a cluster or it runs out of hosts to try.
 **Description**   | Specify an option                                
 **Returns**       | `boolean` ( Boolean (true/false) )               
 **Arguments**     |                                                  
-**int $option**   | Option controlling connection or server behaviour
+**int $option**   | Option controlling connection or server behavior
 **scalar $mixed** | Option value (constant, number, or string)       
 
 <a id="api-reference-store"></a>

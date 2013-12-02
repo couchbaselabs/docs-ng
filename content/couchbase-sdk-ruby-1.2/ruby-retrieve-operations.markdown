@@ -57,7 +57,7 @@ transcoder for serialization of the object.
 For example:
 
 
-```
+```ruby
 object = couchbase.get("someKey");
 ```
 
@@ -73,7 +73,7 @@ The following show variations for using a `get` with different parameters and
 settings:
 
 
-```
+```ruby
 #get single value; returns value or nil
 
 c.get("foo")

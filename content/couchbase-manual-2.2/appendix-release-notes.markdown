@@ -1,3 +1,5 @@
+<a id="couchbase-server-rn"></a>
+
 # Appendix: Release Notes
 
 The following sections provide release notes for individual release versions of
@@ -49,7 +51,7 @@ Additional enhancements in 2.2 include:
       `xdcr_optimistic_replication_threshold`, `xdcr_worker_batch_size`,
       `xdcr_connection_timeout`, `xdcr_num_worker_process`,
       `xdcr_num_http_connections`, and `xdcr_num_retries_per_request`. You can now
-      change these settings and they will immeidately apply to the existing XDCR
+      change these settings and they will immediately apply to the existing XDCR
       replication. For more information, see [Changing Internal XDCR
       Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
@@ -128,6 +130,12 @@ Additional enhancements in 2.2 include:
      
         *Issues* : [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
 
+	* If you upgrade an Ubuntu system from 1.81 to 2.2.0, the node referenced by the host name is reset during the upgrade. 
+
+		Workaround: Before upgrading, make sure you put the host name under  /opt/couchbase/var/lib/couchbase/ip so the installer can back it up as ip.debsave and determine the host name after the upgrade.
+
+		Issues: [MB-8932](http://www.couchbase.com/issues/browse/MB-8932), [MB-9109](http://www.couchbase.com/issues/browse/MB-9109)
+	
  * **Database Operations**
 
     * Any non-UTF-8 characters are not filtered or logged by Couchbase Server. Future
@@ -293,7 +301,7 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
    See [couchbase-cli Tool](#couchbase-admin-cmdline-couchbase-cli).
 
  * Several new and updated statistics for XDCR on the admin Console and via the
-   REST-API. For more information, see [Monitoring Incoming
+   REST API. For more information, see [Monitoring Incoming
    XDCR](#couchbase-admin-web-console-data-buckets-xdcr-recv), [Monitoring Outgoing
    XDCR](#couchbase-admin-web-console-data-buckets-xdcr), and [Getting XDCR Stats
    via REST](#couchbase-admin-restapi-xdcr-stats).
@@ -358,7 +366,7 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
 
     * In the past too many simultaneous views requests could overwhelm a node. You can
       now limit the number of simultaneous requests a node can receive. For more
-      information, see REST-API, see [Limiting Simultaneous Node
+      information, see REST API, see [Limiting Simultaneous Node
       Requests](#couchbase-restapi-request-limits).
 
       *Issues* : [MB-8199](http://www.couchbase.com/issues/browse/MB-8199)
@@ -407,7 +415,7 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
 
       *Issues* : [MB-8461](http://www.couchbase.com/issues/browse/MB-8461)
 
-    * If you edit a data bucket using the REST-API and you do not provide existing
+    * If you edit a data bucket using the REST API and you do not provide existing
       values for bucket properties, the server may reset existing bucket properties to
       the default value. To avoid this situation you should specify all existing
       bucket properties as well as the updated properties as parameters when you make
@@ -495,7 +503,7 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
       index fragmentation. After this cleanup process completes it will cause more
       index fragmentation and therefore we run compaction again. Index compaction will
       therefore always run after a certain number of changes to vBuckets on nodes. You
-      can change this setting using the REST-API, see [Adjusting Rebalance during
+      can change this setting using the REST API, see [Adjusting Rebalance during
       Compaction](#couchbase-admin-restapi-rebalance-before-compaction).
 
       *Issues* : [MB-8319](http://www.couchbase.com/issues/browse/MB-8319)

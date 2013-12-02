@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase PHP SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 We will use PHP and access the Couchbase server as part of this exercise; the
@@ -24,7 +28,7 @@ This section also assumes you have downloaded and set up a compatible version of
 Couchbase Server and have at least one instance of Couchbase Server and one data
 bucket established. If you need to set up these items, you can do with the
 Couchbase Administrative Console, or Couchbase Command-Line Interface (CLI), or
-the Couchbase REST-API. For information and instructions, see:
+the Couchbase REST API. For information and instructions, see:
 
  * [Using the Couchbase Web
    Console](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-introduction.html),

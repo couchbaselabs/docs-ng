@@ -25,8 +25,8 @@ each platform:
 
 **Linux**    | `/opt/couchbase/bin`, `/opt/couchbase/bin/install`, `/opt/couchbase/bin/tools`, `/opt/couchbase/bin/tools/unsupported`                      
 -------------|---------------------------------------------------------------------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\couchbase\server\bin`, `C:\Program Files\couchbase\server\bin\install`, and `C:\Program Files\couchbase\server\bin\tools`.
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin`                                                                  
+**Windows**  | `C:\Program Files\couchbase\server\bin`, `C:\Program Files\couchbase\server\bin\install`, and `C:\Program Files\couchbase\server\bin\tools`.
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin`                                                                  
 
 <a id="couchbase-admin-cmdline-unsupported"></a>
 
@@ -99,8 +99,8 @@ cluster have access to.
 
 **Linux**    | `/opt/couchbase/bin/couchbase-cli`                                                      
 -------------|-----------------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\couchbase-cli.exe`                               
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/couchbase-cli`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\couchbase-cli.exe`                               
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/couchbase-cli`
 
 This tool provides access to various management operations for Couchbase Server
 clusters, nodes and buckets. The basic usage format is:
@@ -211,7 +211,7 @@ Command                | Option                                     | Descriptio
 `setting-compacttion`  | `--compaction-db-size=SIZE[MB]`            | Size of disk fragmentation when database compaction is triggered        
 `setting-compacttion`  | `--compaction-view-percentage=PERCENTAGE`  | Percentage of disk fragmentation when views compaction is triggered     
 `setting-compacttion`  | `--compaction-view-size=SIZE[MB]`          | Size of disk fragmentation when views compaction is triggered           
-`setting-compacttion`  | `--compaction-period-from=HH:MM`           | Enable compaction from this time onwards                                
+`setting-compacttion`  | `--compaction-period-from=HH:MM`           | Enable compaction from this time onward                                
 `setting-compacttion`  | `--compaction-period-to=HH:MM`             | Stop enabling compaction at this time                                   
 `setting-compacttion`  | `--enable-compaction-abort=[0|1]`          | Allow compaction to abort when time expires                             
 `setting-compacttion`  | `--enable-compaction-parallel=[0|1]`       | Allow parallel compaction processes for database and view               
@@ -219,7 +219,7 @@ Command                | Option                                     | Descriptio
 `setting-notification` | `--enable-notification=[0|1]`              | Allow notifications                                                     
                        |                                            |                                                                         
 `setting-alert`        | `--enable-email-alert=[0|1]`               | Allow email alert                                                       
-`setting-alert`        | `--email-recipients=RECIPIENT`             | Email recipents, separate addresses with, or ;                          
+`setting-alert`        | `--email-recipients=RECIPIENT`             | Email recipients, separate addresses with, or ;                          
 `setting-alert`        | `--email-sender=SENDER`                    | Sender email address                                                    
 `setting-alert`        | `--email-user=USER`                        | Email server username                                                   
 `setting-alert`        | `--email-password=PWD`                     | Email server password                                                   
@@ -257,10 +257,10 @@ Command                | Option                                     | Descriptio
 `xdcr-replicate`       | `--create`                                 | Create and start a new replication                                      
 `xdcr-replicate`       | `--delete`                                 | Stop and cancel a replication                                           
 `xdcr-replicate`       | `--xdcr-from-bucket=BUCKET`                | Source bucket name to replicate from                                    
-`xdcr-replicate`       | `--xdcr-clucter-name=CLUSTERNAME`          | Remote cluster to replicate to                                          
+`xdcr-replicate`       | `--xdcr-cluster-name=CLUSTERNAME`          | Remote cluster to replicate to                                          
 `xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to                                           
 
-You can also perform many of these same settings using the REST-API, see [Using
+You can also perform many of these same settings using the REST API, see [Using
 the REST API](#couchbase-admin-restapi).
 
 Some examples of commonly-used `couchbase-cli` commands:
@@ -462,8 +462,8 @@ locations, depending on your platform:
 
 **Linux**    | `/opt/couchbase/bin/cbstats`                                                      
 -------------|-----------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbstats.exe`                               
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbstats`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbstats.exe`                               
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbstats`
 
 
 
@@ -475,7 +475,7 @@ node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster.
 
-[You use this tool to get thecouchbase node
+[You use this tool to get the Couchbase Server node
 statistics](#couchbase-monitoring-nodestats). The general format for the command
 is:
 
@@ -564,13 +564,13 @@ ep\_num\_ops\_del\_meta            | Number of delWithMeta operations
 curr\_items                        | Num items in active vbuckets (temp + live)                                                                                                                                       
 curr\_temp\_items                  | Num temp items in active vbuckets                                                                                                                                                
 curr\_items\_tot                   | Num current items including those not active (replica, dead and pending states)                                                                                                  
-ep\_kv\_size                       | Memory used to store item metadata, keys and values, no matter the vbucket’s state. If an item’s value is ejected, this stat will be decremented by the size of the item’s value.
+ep\_kv\_size                       | Memory used to store item metadata, keys and values, no matter the vbucket's state. If an item's value is ejected, this stat will be decremented by the size of the item's value.
 ep\_value\_size                    | Memory used to store values for resident keys                                                                                                                                    
 ep\_overhead                       | Extra memory used by transient data like persistence queues, replication queues, checkpoints, etc.                                                                               
 ep\_max\_data\_size                | Max amount of data allowed in memory.                                                                                                                                            
 ep\_mem\_low\_wat                  | Low water mark for auto-evictions.                                                                                                                                               
 ep\_mem\_high\_wat                 | High water mark for auto-evictions.                                                                                                                                              
-ep\_total\_cache\_size             | The total byte size of all items, no matter the vbucket’s state, no matter if an item’s value is ejected.                                                                        
+ep\_total\_cache\_size             | The total byte size of all items, no matter the vbucket's state, no matter if an item's value is ejected.                                                                        
 ep\_oom\_errors                    | Number of times unrecoverable OOMs happened while processing operations                                                                                                          
 ep\_tmp\_oom\_errors               | Number of times temporary OOMs happened while processing operations                                                                                                              
 ep\_mem\_tracker\_enabled          | True if memory usage tracker is enabled                                                                                                                                          
@@ -754,11 +754,15 @@ cbstats hostname:port -b bucket_name -p bucket_password | grep 'warmup'
 cbstats hostname:port -b bucket_name -p bucket_password raw warmup
 ```
 
-ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ep\_warmup\_state  | * Indicates the current progress of the warmup: **Initial**. Start warmup processes.  * **EstimateDatabaseItemCount**. Estimating database item count.  * **KeyDump**. Begin loading keys and metadata, but not documents, into RAM.  * **CheckForAccessLog**. Determine if an access log is available. This log indicates which keys have been frequently read or written.  * **LoadingAccessLog**. Load information from access log.  * **LoadingData**. This indicates the server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  * **Done**. Server is ready to handle read and write requests.
-
-High-level warmup statistics that are available are as follows:
+* **ep\_warmup\_thread** - Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+* **ep\_warmup\_state** - Indicates the current progress of the warmup:
+	* Initial - Start warmup processes.
+	* EstimateDatabaseItemCount - Estimating database item count.
+	* KeyDump - Begin loading keys and metadata, but not documents, into RAM.
+	* CheckForAccessLog - Determine if an access log is available. This log indicates which keys have been frequently read or written.
+	* LoadingAccessLog - Load information from access log.
+	* LoadingData - The server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.
+	* Done - The server is ready to handle read and write requests.
 
 Name                                | Description                                                  | Value Type                         
 ------------------------------------|--------------------------------------------------------------|------------------------------------
@@ -884,8 +888,8 @@ cluster restart.
 
 **Linux**    | `/opt/couchbase/bin/cbepctl`                                                      
 -------------|-----------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbepctl.exe`                               
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbepctl`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbepctl.exe`                               
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbepctl`
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -1221,7 +1225,7 @@ To disable flushing a data bucket:
 > ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
 ```
 
-You can initiate the flush via the REST-API. For information about changing this
+You can initiate the flush via the REST API. For information about changing this
 setting in the Web Console, see [Viewing Data
 Buckets](#couchbase-admin-web-console-data-buckets). For information about
 flushing data buckets via REST, see [Flushing a
@@ -1266,8 +1270,8 @@ platform:
 
 **Linux**    | `/opt/couchbase/bin/cbcollect_info`                                                      
 -------------|------------------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbcollect_info`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbcollect_info`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info`
 
 **Be aware that this tool is a per-node operation.** If you want to perform this
 operation for an entire cluster, you will need to perform the command for every
@@ -1353,8 +1357,8 @@ Depending upon your platform, this tool is the following directories:
 
 **Linux**    | `/opt/couchbase/bin/cbbackup`                                                      
 -------------|------------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbbackup`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbbackup`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbbackup`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbbackup`
 
 The format of the `cbbackup` command is:
 
@@ -1612,8 +1616,8 @@ The tool is in the following locations, depending on your platform:
 
 **Linux**    | `/opt/couchbase/bin/cbrestore`                                                      
 -------------|-------------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbrestore`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbrestore`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\cbrestore`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbrestore`
 
 The format of the `cbrestore` command is:
 
@@ -1640,7 +1644,7 @@ Where:
 
  * `[destination]`
 
-   The destination bucket for the restored information. This is a bucker in an
+   The destination bucket for the restored information. This is a bucket in an
    existing cluster. If you restore the data to a single node in a cluster, provide
    the hostname and port for the node you want to restore to. If you restore an
    entire data bucket, provide the URL of one of the nodes within the cluster.
@@ -1712,7 +1716,7 @@ default port of `8091`. The default number of vBuckets for Couchbase 2.0 is
 1024; in earlier versions of Couchbase, you may have a different number of
 vBuckets. If you do want to restore data to a cluster with a different number of
 vBuckets, you should perform this command with port `11211`, which will
-accomodate the difference in vBuckets:
+accommodate the difference in vBuckets:
 
 
 ```
@@ -1753,8 +1757,8 @@ Locations for this tool are as follows:
 
 **Linux**    | `/opt/couchbase/bin/`                                                      
 -------------|----------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
 The following is the syntax and examples for this command:
 
@@ -1779,6 +1783,7 @@ The following are the standard command options which you can also view with
 
 -h, --help                                                       | Command help                                                                                                                                                                                                                 
 -----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--add                                                            | Use --add instead of --set in order to not overwrite existing items in the destination
 -b BUCKET\_SOURCE                                                | Single named bucket from source cluster to transfer                                                                                                                                                                          
 -B BUCKET\_DESTINATION, --bucket-destination=BUCKET\_DESTINATION | Single named bucket on destination cluster which receives transfer. This allows you to transfer to a bucket with a different name as your source bucket. If you do not provide defaults to the same name as the bucket-source
 -i ID, --id=ID                                                   | Transfer only items that match a vbucketID                                                                                                                                                                                   
@@ -1979,7 +1984,7 @@ that must be addressed immediately.
 [The tool retrieves data from the Couchbase Server monitoring system, aggregates
 it over a time scale, analyzes the statistics against thresholds, and generates
 a report. Unlike other command line tools such as `cbstats` and `cbtransfer`
-that use theTAP protocol](#couchbase-introduction-architecture-tap) to obtain
+that use the TAP protocol](#couchbase-introduction-architecture-tap) to obtain
 data from the monitoring system, `cbhealthchecker` obtains data by using the
 REST API and the memcached protocol. For more information about the statistics
 provided by Couchbase Server, see [Statistics and
@@ -2001,8 +2006,8 @@ platform:
 
 **Linux**    | `/opt/couchbase/bin/`                                                      
 -------------|----------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
 The format of the `cbhealthchecker` command is:
 
@@ -2171,8 +2176,8 @@ depending upon your platform:
 
 **Linux**    | `/opt/couchbase/bin/tools/`                                                      
 -------------|----------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
 When you load documents as well as any associated design documents for views,
 you should use a directory structure similar to the following:
@@ -2214,8 +2219,7 @@ The following is an example of uploading JSON from a.zip file:
 Be aware that there are typically three types of errors that can occur: 1) the
 files are not well-formatted, 2) credentials are incorrect, or 3) the RAM quota
 for a new bucket to contain the JSON is too large given the current quota for
-Couchbase Server. For more information about changing RAM quotas for Couchbase
-Server nodes, see **Couldn't resolve xref tag: couchbase-admin-tasks-quotas**.
+Couchbase Server.
 
 <a id="couchbase-admin-cmdline-cbworkloadgen"></a>
 
@@ -2228,8 +2232,8 @@ This is useful for testing your Couchbase node.
 
 **Linux**    | `/opt/couchbase/bin/tools/`                                                      
 -------------|----------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
 The following is the standard command format:
 
@@ -2253,7 +2257,7 @@ that node:
 
 
 ```
-> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
+> ./cbworkloadgen -n 10.17.30.161:8091 -u Administrator -p password
 ```
 
 Will produce a result similar to the following if successful:
@@ -2289,7 +2293,7 @@ upon your platform, this tool is at the following locations:
 **Linux**    | `/opt/couchbase/bin/tools/`                                                      
 -------------|----------------------------------------------------------------------------------
 **Windows**  | Not Available on this platform.                                                  
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
 <a id="couchbase-admin-cmdline-vbuckettool"></a>
 
@@ -2303,7 +2307,7 @@ values based on Couchbase Server internal hashing algorithm. Moved as of 1.8 to
 
 **Linux**    | `/opt/couchbase/bin/tools/`                                                      
 -------------|----------------------------------------------------------------------------------
-**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
-**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
+**Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
+**Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
 <a id="couchbase-admin-restapi"></a>

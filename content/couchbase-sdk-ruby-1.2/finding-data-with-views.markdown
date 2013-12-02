@@ -41,7 +41,7 @@ The `View` Object is obtained by calling the appropriate view on the design
 document associated with the view on the server.
 
 
-```
+```ruby
 client = Couchbase.connect
 view = client.design_docs['docName'].viewName(params)
 ```
@@ -49,7 +49,7 @@ view = client.design_docs['docName'].viewName(params)
 or
 
 
-```
+```ruby
 client = Couchbase.connect
 view = Couchbase::View.new(client, "_design/docName/_view/viewName", params)
 ```

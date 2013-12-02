@@ -1,43 +1,25 @@
 # Tutorial
 
-In this chapter we build on the foundations introduced in the [Getting
-Started](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/getting-started.html)
-section and build a complete web application. Make sure to have the
-`beer-sample` bucket installed, because the application will allow you to
-display and manage beers and breweries. If you still need to get the sample
-database, see [Preparation](#getting-started-preparations).
+This tutorial builds on the foundation introduced in the [Getting Started](http://docs.couchbase.com/couchbase-sdk-java-1.2/#getting-started) section and uses a complete web application. Make sure you have the `beer-sample` bucket installed because the application allows you to display and manage beers and breweries. If you still need to get the sample database, see [Preparation](#getting-started-preparations).
 
-The full sourcecode for the example we show you is available at [couchbaselabs
-on GitHub](http://github.com/couchbaselabs/beersample-java). Note that the
-sample application you can download actually provides more content than we
-describe in this tutorial; but it should be easy for you to look around and
-understand how it functions if you first start reading this tutorial here.
+The full source code for the example is available at [couchbaselabs on GitHub](http://github.com/couchbaselabs/beersample-java). The sample application that you can download actually provides more content than we describe in this tutorial; but it should be easy for you to look around and understand how it functions if you first start reading this tutorial here.
 
 <a id="quickstart"></a>
 
 ## Preview the Application
 
-If you want to get up and running really quickly, here is how to do it with
-[Jetty](http://jetty.codehaus.org/jetty/). Note that this guide assumes you have
-MacOS or Linux. If you use Windows, you will need to modify the paths
-accordingly. Also, make sure to have at least [Maven](http://maven.apache.org/)
-installed on your machine.
+If you want to get up and running really quickly, here is how to do it with [Jetty](http://jetty.codehaus.org/jetty/). This guide assumes you are using  OS X or Linux. If you are using Windows, you need to modify the paths accordingly. Also, make sure you have [Maven](http://maven.apache.org/) installed on your machine.
 
- 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.0 and
-    [install](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install.html)
-    it. Make sure you install the
-    [beer-sample](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-sampledata-beer.html)
-    dataset when you run the wizard, because this tutorial will use it.
+ 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.2 and [install](http://docs.couchbase.com/couchbase-manual-2.2/#installing-and-upgrading) it. Make sure you install the     [beer-sample](http://docs.couchbase.com/couchbase-manual-2.2/#beer-sample-bucket) data set when you run the wizard because this tutorial uses it.
 
- 1. Add the following views and design documents to the `beer-sample` bucket. Views
-    and design documents enable us to index and query data from our database. Later
-    we will publish the views as production views. For more information about using
-    views from an SDK, see [Couchbase Developer Guide, Finding Data with
-    Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html).
+ 1. Add the following views and design documents to the `beer-sample` bucket. 
 
-    The first design document name is `beer` and view name is `by_name` :
+	Views and design documents enable you to index and query data from the database. Later we will publish the views as production views. For more information about using views from an SDK, see [Couchbase Developer Guide, Finding Data with
+    Views](http://docs.couchbase.com/couchbase-manual-2.2/#querying-views).
 
-     ```
+    The first design document name is `beer` and view name is `by_name`:
+
+     ```javascript
      function (doc, meta) {
        if(doc.type && doc.type == "beer") {
          emit(doc.name, null);
@@ -45,9 +27,9 @@ installed on your machine.
      }
      ```
 
-    The other design document name is `brewery` and view name is `by_name` :
+    The other design document name is `brewery` and view name is `by_name`:
 
-     ```
+     ```javascript
      function (doc, meta) {
        if(doc.type && doc.type == "brewery") {
          emit(doc.name, null);
@@ -89,35 +71,31 @@ installed on your machine.
      [INFO] Started Jetty Server
      ```
 
- 1. Now, navigate to [http://localhost:8080/welcome](http://localhost:8080/welcome)
-    and enjoy the application.
+ 1. Navigate to [http://localhost:8080/welcome](http://localhost:8080/welcome) and enjoy the application.
 
 <a id="preparations"></a>
 
 ## Preparing Your Project
 
-This tutorial uses Servlets and JSPs in combination with Couchbase Server 2.0 to
-display and manage beers and breweries found in the `beer-sample` dataset. The
-easiest way is to develop it with your IDE such as Eclipse or NetBeans. Then you
-can use your IDE to publish it automatically to an application server such as
-Apache Tomcat or GlassFish as a `war` archive. We designed the code here to be
-as portable as possible, but it may be the case that you need to change one or
-two things if you have a slightly different version or a customized setup in
-your environment.
+This tutorial uses Servlets and JSPs in combination with Couchbase Server 2.2 to
+display and manage beers and breweries found in the `beer-sample` data set. The
+easiest way to develop apps is by using an IDE such as [Eclipse](http://www.eclipse.org) or [NetBeans](https://netbeans.org). You
+can use the IDE to automatically publish apps to an application server such as
+Apache Tomcat or GlassFish as a WAR file. We designed the code here to be as portable as possible, but you might need to change one or two things if you have a slightly different version or a customized setup in your environment.
 
 <a id="preps-project"></a>
 
 ### Project Setup
 
 In your IDE, create a new `Web Project`, either with or without Maven support.
-If you have not already gone through the Getting Started for the Java SDK, you
+If you have not already gone through the Getting Started section for the Java SDK, you
 should review the information on how to include the Couchbase SDK and all the
 required dependencies in your project. For more information, see
 [Preparation](#getting-started-preparations).
 
-Also make sure to include Google GSON or your favorite JSON library as well.
+Also make sure to include [Google GSON](https://code.google.com/p/google-gson/) or your favorite JSON library as well.
 
-This tutorial uses a directory structure that appears as follows:
+This tutorial uses the following directory structure:
 
 
 ```
@@ -140,14 +118,13 @@ This tutorial uses a directory structure that appears as follows:
 |-------js
 ```
 
-If you use Maven, you should also have a `pom.xml` in the root directory. Here
-is a sample `pom.xml` so you can see the general structure and dependencies. The
+If you use Maven, you should also have a **pom.xml** file in the root directory. Here
+is a sample **pom.xml** so you can see the general structure and dependencies. The
 full source is at the repository we mentioned earlier. See [couchbaselabs on
-GitHub](http://github.com/couchbaselabs/beersample-java) for the full `pom.xml`
-:
+GitHub](http://github.com/couchbaselabs/beersample-java) for the full **pom.xml** file.
 
 
-```
+```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -159,23 +136,11 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full `pom.xml`
 
     <name>beersample-java</name>
 
-    <repositories>
-        <repository>
-            <id>couchbase</id>
-            <name>Couchbase Maven Repository</name>
-            <layout>default</layout>
-            <url>http://files.couchbase.com/maven2/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.1.4</version>
+            <version>1.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -193,9 +158,8 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full `pom.xml`
 ```
 
 To make the application more interactive, we use jQuery and Twitter Bootstrap.
-You can either download the libraries and put them in their appropriate css and
-js directories under `webapp`, or clone the project repository and use it from
-there. Either way, make sure you have the following files in place:
+You can either download the libraries and put them in their appropriate **css** and
+**js** directories under the **webapp** directory, or clone the project repository and use it from there. Either way, make sure you have the following files in place:
 
  * [css/beersample.css](https://raw.github.com/couchbaselabs/beersample-java/master/src/main/webapp/css/beersample.css)
 
@@ -218,45 +182,43 @@ we can use it in our application.
 
 ### Creating Your Views
 
-Views enable you to index and query data from your database. The `beer-sample`
+Views enable you to index and query data from your database. The **beer-sample**
 bucket comes with a small set of predefined view functions, but to have our
 application function correctly we need some more views. This is also a very good
 chance for you to see how you can manage views inside Couchbase Web Console. For
 more information on the topics, see [Couchbase Developer Guide, Finding Data
 with
-Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html)
+Views](http://docs.couchbase.com/couchbase-manual-2.2/#querying-views)
 and [Couchbase Manual, Using the Views
-Editor](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-editor.html).
+Editor](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-views-editor).
 
-Since we want to list beers and breweries by their name, we need to define one
+Because we want to list beers and breweries by their name, we need to define one
 view function for each type of result that we want.
 
- 1. In Couchbase Web Console and click on the `Views` menu.
+ 1. In Couchbase Web Console, click  **Views** .
 
- 1. Select `beer-sample` from the dropdown list to switch to the correct bucket.
+ 1. From the drop-down list box, choose the **beer-sample** bucket.
 
- 1. Now click on `Development Views` and then `Create Development View` to define
-    your first view.
+ 1. Click  **Development Views**, and then click **Create Development View** to define your first view.
 
- 1. You need to give it the name of both the design document and the actual view.
+ 1. Give the view the names of both the design document and the actual view.
     Insert the following names:
 
-    Design Document Name: \_design/dev\_beer
+    Design Document Name: `_design/dev_beer`
 
-    View Name: by\_name
+    View Name: `by_name`
 
-    The next step is to define the `map` and function and optionally at this phase
+    The next step is to define the `map` function and optionally at this phase
     you could define a `reduce` function to perform information on the index
-    results. In our example, we do not use the `reduce` functions at all but you can
-    play around with reduce functions and see how they work. See, Couchbase
+    results. In our example, we do not use the `reduce` functions at all, but you can play around with reduce functions ro see how they work. For more information, see Couchbase
     Developer Guide, [Using Built-in Reduce
-    Functions](http://www.couchbase.com/docs/couchbase-devguide-2.0/using-built-in-reduces.html)
+    Functions](http://docs.couchbase.com/couchbase-devguide-2.2/#using-built-in-reduces)
     and [Creating Custom
-    Reduces](http://www.couchbase.com/docs/couchbase-devguide-2.0/creating-custom-reduces.html).
+    Reduces](http://docs.couchbase.com/couchbase-devguide-2.2/#creating-custom-reduces).
 
- 1. Insert the following `map` function (that's JavaScript) and click `Save`.
+ 1. Insert the following JavaScript `map` function and click **Save**.
 
-     ```
+     ```javascript
      function (doc, meta) {
        if(doc.type && doc.type == "beer") {
          emit(doc.name, null);
@@ -271,25 +233,21 @@ In our case we emit the name of the beer ( `doc.name` ) when the document has a
 type field and the type is `beer`. For our application we do not need to emit a
 value; therefore we emit a `null` here.
 
-In general you should try to keep the index as small as possible. You should
+In general, you should try to keep the index as small as possible. You should
 resist the urge to include the full document with `emit(meta.id, doc)`, because
-it will increase the size of your view indexes and potentially impact
-application performance. If you need to access the full document or large parts
-of it, use the `setIncludeDocs(true)` directive which will do a `get()` call
-with the document ID in the background. Couchbase Server may return a version of
-the document that may be slightly out of sync with your view, but it will be a
-fast and efficient operation.
+it will increase the size of your view indexes and potentially impact application performance. If you need to access the full document or large parts
+of it, use the `setIncludeDocs(true)` directive, which does a `get()` call with the document ID in the background. Couchbase Server might return a version of
+the document that is slightly out of sync with your view, but it will be a fast and efficient operation.
 
-Now we need to provide a similar map function for our breweries. Since you
-already know how to do this, here is all the information you need to create it:
+Now we need to provide a similar map function for the breweries. Because you already know how to do this, here is all the information you need to create it:
 
- * Design Document Name: \_design/dev\_brewery
+ * Design Document Name: `_design/dev_brewery`
 
- * View Name: by\_name
+ * View Name: `by_name`
 
  * Map Function:
 
-    ```
+    ```javascript
     function (doc, meta) {
       if(doc.type && doc.type == "brewery") {
         emit(doc.name, null);
@@ -297,32 +255,28 @@ already know how to do this, here is all the information you need to create it:
     }
     ```
 
-The final step that you need to do is to push the design documents in production
-mode for Couchbase Server. While the design documents are in `development`, the
-index is only applied on the local node. See, [Couchbase Manual, Development and
-Production
-Views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-types.html).
-Since we want to have the index on the whole dataset:
+The final step is to push the design documents to production
+mode for Couchbase Server. While the design documents are in development mode, the index is applied only on the local node. See, [Couchbase Manual, Development and Production Views](http://docs.couchbase.com/couchbase-manual-2.2/#view-basics). To have the index on the whole data set:
 
- 1. In Couchbase Web Console, click the Views Tab.
+ 1. In Couchbase Web Console, click **Views**.
 
- 1. click the `Publish` button on both design documents.
+ 1. Click the **Publish** button on both design documents.
 
  1. Accept any dialog that warns you from overriding the old view function.
 
 For more information about using views for indexing and querying from Couchbase
-Server, here are some useful resources:
+Server, see the following useful resources:
 
  * General Information: [Couchbase Server Manual: Views and
-   Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+   Indexes](http://docs.couchbase.com/couchbase-manual-2.2/#view-basics).
 
  * Sample Patterns: to see examples and patterns you can use for views, see
    [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.2/#view-and-query-pattern-samples).
 
- * Timestamp Pattern: many developers frequently ask about extracting information
+ * Time-stamp Pattern: many developers frequently ask about extracting information
    based on date or time. To find out more, see [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns-timestamp.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.2/#date-and-time-selection).
 
 <a id="preps-webxml"></a>
 
@@ -333,7 +287,7 @@ be routed, we need to define a `web.xml` inside the `WEB-INF` directory of our
 project:
 
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <listener>
@@ -371,32 +325,23 @@ project:
 </web-app>
 ```
 
-This is not ready to run yet, because you have not implemented any of these
-classes yet, but we will do that soon. The `listener` directive references the
-`ConnectionMananger` class, which we implement to manage the connection instance
-to our Couchbase cluster. The `servlet` directives define our servlet classes
-that we use and the following `servlet-mapping` directives map HTTP URLs to
-them. The final `welcome-file-list` directive tells the application server where
-to route the root URL ( `"/"` ).
+This is not ready to run yet, because you have not implemented any of these classes yet, but we will do that soon. The `listener` directive references the
+`ConnectionMananger` class, which we implement to manage the connection instance to our Couchbase cluster. The `servlet` directives define the servlet classes
+that we use and the following `servlet-mapping` directives map HTTP URLs to them. The final `welcome-file-list` directive tells the application server where to route the root URL ( `"/"` ).
 
-For now, comment out all `servlet`, `servlet-mapping` and `welcome-file-list`
-directives with the `<!--` and `-->` characters, because the application server
-will complain that they are not implemented. When you implement the appropriate
-servlets, remove the comments accordingly. If you plan to add your own servlets,
-remember to add and map them inside the `web.xml` properly!
+For now, comment out all `servlet`, `servlet-mapping` and `welcome-file-list` directives with the `<!--` and `-->` tags, because the application server will complain that they are not implemented. When you implement the appropriate servlets, remove the comments accordingly. If you plan to add your own servlets, remember to add and map them inside the `web.xml` properly!
 
 <a id="connection-management"></a>
 
 ## Managing Connections
 
 The first class we implement is the `ConnectionManager` in the
-`src/main/java/com/couchbase/beersample` directory. This is a
-`ServletContextListener` which starts the `CouchbaseClient` on application
-startup and closes the connection when the application shuts down. Here is the
-full class:.
+**src/main/java/com/couchbase/beersample** directory. This is a
+`ServletContextListener` that starts the `CouchbaseClient` on application startup and closes the connection when the application shuts down. Here is the
+full class:
 
 
-```
+```java
 package com.couchbase.beersample;
 
 public class ConnectionManager implements ServletContextListener {
@@ -431,20 +376,10 @@ public class ConnectionManager implements ServletContextListener {
 }
 ```
 
-Note in this example, we removed the comments and imports have been removed to
-shorten the listing a bit. The `contextInitialized` and the `contextDestroyed`
-method are called on startup and shutdown. When the application starts, we
-initialize the `CouchbaseClient` with the list of nodes, the bucket name and an
-empty password. Note that in a production deployment, you want to fetch these
-environment-dependent settings from a config file. We will call the
-`getInstance()` method from the servlets to obtain the `CouchbaseClient`
-instance.
+In this example, we removed the comments and imports  to shorten the listing a bit. The `contextInitialized` and `contextDestroyed` methods are called on start-up and shutdown. When the application starts, we initialize the `CouchbaseClient` with the list of nodes, the bucket name and an empty password. In a production deployment, you want to fetch these environment-dependent settings from a configuration file. We will call the `getInstance()` method from the servlets to obtain the `CouchbaseClient` instance.
 
 When you publish your application, you should see in the server logs that the
-Java SDK correctly connects to the bucket. If you see an exception at this
-phase, it means that your settings are wrong or you have no Couchbase Server
-running at the given nodes. Here is an example server log during successfull
-connection:
+Java SDK correctly connects to the bucket. If you see an exception at this phase, it means that your settings are wrong or you have no Couchbase Server running at the given nodes. Here is an example server log from a successful connection:
 
 
 ```
@@ -462,17 +397,12 @@ INFO: com.couchbase_beersample-java_war_1.0-SNAPSHOT was successfully deployed i
 
 ## The Welcome Page
 
-The first servlet that we implement is the `WelcomeServlet`, so go ahead and
-remove the appropriate comments inside the `web.xml` file. You also want to
-enable the `welcome-file-list` as well at this point. When a user visits the
-application, we show him a nice greeting and give him all available options to
-choose.
+The first servlet that we implement is the `WelcomeServlet`, so go ahead and remove the appropriate comments inside the `web.xml` file. You also want to enable the `welcome-file-list` at this point. When a user visits the application, we show him a nice greeting and give him all available options to choose.
 
-Since there is no Couchbase Server interaction involved, we just tell it to
-render the JSP template:
+Because there is no Couchbase Server interaction involved, we just tell it to render the JSP template:
 
 
-```
+```java
 package com.couchbase.beersample;
 
 public class WelcomeServlet extends HttpServlet {
@@ -487,12 +417,11 @@ public class WelcomeServlet extends HttpServlet {
 }
 ```
 
-The index.jsp uses styling from Twitter bootstrap to look provide clean layout.
-Aside from that, it shows a nice greeting and links to the servlets that provide
-the actual functionality:
+The **index.jsp** file uses styling from Twitter bootstrap to provide a clean layout.
+Aside from that, it shows a nice greeting and links to the servlets that provide the actual functionality:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -524,13 +453,10 @@ the actual functionality:
 </t:layout>
 ```
 
-There is one more interesting note to make here: it uses taglibs, which enables
-us to use the same layout for all pages. Since we have not created this layout,
-we do so now. Create a `layout.tag` file in the `/WEB-INF/tags` directory that
-looks like this:
+There is one more interesting note to make here: it uses taglibs, which enables us to use the same layout for all pages. Because we have not created this layout, we do so now. Create the following **layout.tag** file in the **/WEB-INF/tags** directory:
 
 
-```
+```xml
 <%@tag description="Page Layout" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -580,26 +506,18 @@ looks like this:
 </html>
 ```
 
-Again, nothing fancy here. We just need it in place to make everything look
-clean afterwards. When you deploy your application, you should see in the logs
-that it is connects to the Couchbase cluster and when you view it in the browser
-you see a nice web page greeting.
+Again, nothing fancy here. We just need it in place to make everything look clean afterwards. When you deploy your application, you should see in the logs that it is connects to the Couchbase cluster, and when you view it in the browser you should see a nice web page greeting.
 
 <a id="managing-beers"></a>
 
 ## Managing Beers
 
-Now we reach the main portion of the tutorial where we actually interact with
-Couchbase Server. First, we uncomment the `BeerServlet` and its corresponding
-tags inside the `web.xml`. We make use of tje view to list all beers and make
-them easily searchable. We also provide a form to create and/or edit beers and
-finally delete them.
+Now we reach the main portion of the tutorial where we actually interact with Couchbase Server. First, we uncomment the `BeerServlet` and its corresponding tags inside the **web.xml** file. We make use of the view to list all beers and make them easily searchable. We also provide a form to create, edit, or delete beers.
 
-Here is the bare structure of our `BeerServlet`, which will be filled with live
-data soon. Once again, we removed comments and imports for the sake of brevity:
+Here is the bare structure of our `BeerServlet`, which will be filled with live data soon. Once again, we removed comments and imports for the sake of brevity:
 
 
-```
+```java
 package com.couchbase.beersample;
 
 public class BeerServlet extends HttpServlet {
@@ -662,20 +580,17 @@ public class BeerServlet extends HttpServlet {
 }
 ```
 
-Since our `web.xml` uses wildcards ( `*` ) to route every `/beer` that is
-related to this servlet, we need to inspect the path through `getPathInfo()` and
-dispatch the request to a helper method that does the actual work. We use the
-`doPost()` method to analyze and store the results of the web-form. We also use
-this method to edit and create new beers since we sent the form through a POST
+Because our **web.xml** file uses wildcards ( `*` ) to route every `/beer` that is
+related to this servlet, we need to inspect the path through `getPathInfo()` and dispatch the request to a helper method that does the actual work. We use the
+`doPost()` method to analyze and store the results of the web form. We also use
+this method to edit and create new beers because we sent the form through a POST
 request.
 
 The first functionality we implement is a list of the top 20 beers in a table.
-We can use the `beer/by_name` view we created at earlier to get a sorted list of
-all beers. The following code belongs to the `handleIndex` method and will build
-the list:
+We can use the `beer/by_name` view we created earlier to get a sorted list of all beers. The following Java code belongs to the `handleIndex` method and builds the list:
 
 
-```
+```java
 // Fetch the View
 View view = client.getView("beer", "by_name");
 
@@ -713,12 +628,10 @@ request.getRequestDispatcher("/WEB-INF/beers/index.jsp")
 ```
 
 The index action in the code above queries the view, parses the results with
-GSON into a `HashMap` and eventually forwards the `ArrayList` to the JSP layer.
-At this point we can implement the `index.jsp` template which will iterate over
-the `ArrayList` and print the beers out in a nicely-formatted table:
+GSON into a `HashMap` object and eventually forwards the `ArrayList` to the JSP layer. At this point we can implement the **index.jsp** template which iterates over the `ArrayList` and prints out the beers in a nicely formatted table:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -756,14 +669,10 @@ the `ArrayList` and print the beers out in a nicely-formatted table:
 ```
 
 Here we use [JSP](http://en.wikipedia.org/wiki/JavaServer_Pages) tags to iterate
-over the beers and use their properties, `name` and `id`, and fill the rows in
-the table with this information. In a browser you should now see a table with a
-list of beers with `Edit` and `Delete` buttons on the right. You can also see a
-link to the associated brewery that you can click on. Now we implement the
-delete action for each beer, since its very easy to do with Couchbase:
+over the beers and use their properties, `name` and `id`, and fill the table rows with this information. In a browser you should now see a table with a list of beers with `Edit` and `Delete` buttons on the right. You can also see a link to the associated brewery that you can click on. Now we implement the delete action for each beer, because it's very easy to do with Couchbase:
 
 
-```
+```java
 private void handleDelete(HttpServletRequest request,
   HttpServletResponse response) throws IOException, ServletException, InterruptedException, ExecutionException {
 
@@ -780,20 +689,14 @@ private void handleDelete(HttpServletRequest request,
 }
 ```
 
-The delete method deletes a document from the cluster based on the given
-document key. Here, we wait on the `OperationFuture` to return from the `get()`
-method and if the server successfully deletes the item we get `true` and can
-redirect to the index action.
+The delete method deletes a document from the cluster based on the given document key. Here, we wait on the `OperationFuture` to return from the `get()` method and if the server successfully deletes the item we get `true` and can redirect to the index action.
 
-Now that we can delete a document, we want to enable users to also edits beerst.
-The edit action is very similar to the delete action, but it reads and updates
-the document based on the given `ID` instead of deleting it. Before we can edit
-a beer, we also need to parse the String representation of the JSON document
-into a Java structure, so we can use it in the template. We again make use of
-the excellent Google GSON library to handle this for us:
+Now that we can delete a document, we want to enable users to edit beers.
+The edit action is very similar to the delete action, but it reads and updates the document based on the given ID instead of deleting it. Before we can edit
+a beer, we need to parse the string representation of the JSON document into a Java structure so we can use it in the template. We again make use of the Google GSON library to handle this for us:
 
 
-```
+```java
 private void handleEdit(HttpServletRequest request,
     HttpServletResponse response) throws ServletException, IOException {
 
@@ -815,8 +718,7 @@ private void handleEdit(HttpServletRequest request,
         // Forward the beer to the view
         request.setAttribute("beer", beer);
       }
-      request.setAttribute("title", "Modify Beer \"" + beer.get("name") + "\"");
-    } else {
+      request.setAttribute("title", "Modify Beer \"" + beer.get("name") + "\"");    } else {
       request.setAttribute("title", "Create a new beer");
     }
 
@@ -824,15 +726,11 @@ private void handleEdit(HttpServletRequest request,
   }
 ```
 
-If we get this beer document back from Couchbase Server and parse it into JSON,
-we convert it into a `HashMap` and then forwarded to the edit.jsp template.
-Also, we define a title variable that we use inside the template to determine if
-we want to edit a document or create a new one. We can enables users to create
-new beers as opposed to editing an existing beer anytime we pass no Beer ID to
-the edit method. Here is the corresponding edit.jsp template:
+
+If the `handleEdit` method gets a beer document back from Couchbase Server and parses it into JSON, the document is converted to a `HashMap` object and then forwarded to the **edit.jsp** template. Also, we define a title variable that we use inside the template to determine whether we want to edit a document or create a new one. We can enable users to create new beers as opposed to editing an existing beer anytime we pass no Beer ID to the edit method. Here is the corresponding **edit.jsp** template:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -896,17 +794,11 @@ the edit method. Here is the corresponding edit.jsp template:
 </t:layout>
 ```
 
-This template is a little bit longer, but this is mainly because we have lots of
-fields on our beer documents. Note how we use the beer attributes inside the
-value attributes of the HTML input fields. We also use the unique ID in the form
-method to dispatch it to the correct URL on submit.
+This template is a little bit longer, but that is mainly because we have lots of fields on our beer documents. Note how we use the beer attributes inside the value attributes of the HTML input fields. We also use the unique ID in the form method to dispatch it to the correct URL on submit.
 
-The last thing we need to do for form submission to work is the actual form
-parsing and storing itself. Since we do form submission through a POST request,
-we need to implement the `doPost()` method on our servlet:
+The last thing we need to do for form submission to work is the actual form parsing and storing itself. Since we do form submission through a POST request, we need to implement the `doPost()` method on our servlet: 
 
-
-```
+```java
 @Override
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -939,17 +831,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 }
 ```
 
-The code iterates over all POST fields and stores them in a `HashMap`. We then
-use the set command to store the document to Couchbase Server and use Google
-GSON to translate information out of `HashMap` into a JSON string. In this case,
-we could also wait for a `OperationFuture` response and return an error if we
-determine the set failed.
+The code iterates over all POST fields and stores them in a `HashMap` object. We then
+use the `set` command to store the document to Couchbase Server and use Google
+GSON to translate information out of the `HashMap` object into a JSON string. In this case, we could also wait for a `OperationFuture` response and return an error if we determine the `set` failed.
 
-The last line redirects to a show method, which just shows all fields of the
-document. Since the patterns are the same as before, here is the show method:
+The last line redirects to a show method, which just shows all fields of the document. Because the patterns are the same as before, here is the `handleShow` method:
 
 
-```
+```java
 private void handleShow(HttpServletRequest request,
   HttpServletResponse response) throws IOException, ServletException {
 
@@ -968,13 +857,10 @@ private void handleShow(HttpServletRequest request,
 }
 ```
 
-Again we extract the ID and if Couchbase Server finds the document it gets
-parsed into a HashMap and forwarded to the show.jsp template. If the server
-finds no document, we get a return of null in the Java SDK. The template then
-just prints out all keys and values in a table:
+Again we extract the ID and if Couchbase Server finds the document it gets parsed into a HashMap and forwarded to the **show.jsp** template. If the server finds no document, we get a return of null in the Java SDK. The template then just prints out all keys and values in a table:
 
 
-```
+```xml
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -995,26 +881,19 @@ just prints out all keys and values in a table:
 </t:layout>
 ```
 
-In the index.jsp template, you may notice the search box at the top. We can use
-it to dynamically filter our table results based on the user input. We will use
-nearly the same code for the filter as in the index method; except this time we
-make use of range queries to define a beginning and end to search for. For more
-information about performing range queries, see
-[Ordering](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-querying-ordering.html).
+In the **index.jsp** template, you might notice the search box at the top. We can use it to dynamically filter our table results based on the user input. We will use
+nearly the same code for the filter as in the index method; except this time we make use of range queries to define a beginning and end to search for. For more information about performing range queries, see [Ordering](http://docs.couchbase.com/couchbase-manual-2.2/#view-and-query-pattern-samples).
 
-Before we implement the actual Java method, we need to put the following snippet
-in the `js/beersample.js` file. You may have already done this at the beginning
-of the tutorial, and if so skip this step. This code takes any searchbox changes
-from the UI and updates the table with the JSON returned from the search method:
+Before we implement the actual Java method, we need to put the following snippet in the **js/beersample.js** file. You might have already done this at the beginning of the tutorial, and if so, you can skip this step. This code takes any search box changes from the UI and updates the table with the JSON returned from the search method:
 
 
-```
+```javasript
 $("#beer-search").keyup(function() {
    var content = $("#beer-search").val();
    if(content.length >= 0) {
        $.getJSON("/beers/search", {"value": content}, function(data) {
            $("#beer-table tbody tr").remove();
-           for(var i=0;i<data.length;i++) {
+           for(var i=0;i < data.length; i++) {
                var html = "<tr>";
                html += "<td><a href=\"/beers/show/"+data[i].id+"\">"+data[i].name+"</a></td>";
                html += "<td><a href=\"/breweries/show/"+data[i].brewery+"\">To Brewery</a></td>";
@@ -1030,14 +909,10 @@ $("#beer-search").keyup(function() {
 });
 ```
 
-The code waits for keyup events on the search field and then does a AJAX query
-to the search method on the servlet. The servlet computes the result and sends
-it back as JSON. The JavaScript then clears the table, iterates over the result
-and creates new rows with the new JSON results. The search method looks like
-this:
+The code waits for key-up events on the search field and then does an AJAX query to the search method on the servlet. The servlet computes the result and sends it back as JSON. The JavaScript then clears the table, iterates over the result, and creates new rows with the new JSON results. The search method looks like this:
 
 
-```
+```java
 private void handleSearch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
   // Exctract the searched value
@@ -1078,26 +953,16 @@ private void handleSearch(HttpServletRequest request, HttpServletResponse respon
 }
 ```
 
-You can use the `setRangeStart()` and `setRangeEnd()` methods to define the key
-range Couchbase Server returns. If we just provide the start range key, then we
-get all documents starting from our search value. Since we want only those
-beginning with the search value, we can use the special `"\uefff"` UTF-8
-character at the end which means "end here". You will need to get used to it
-this convention, but its very fast and efficient when accessing the view.
+You can use the `setRangeStart()` and `setRangeEnd()` methods to define the key range Couchbase Server returns. If we just provide the start range key, then we
+get all documents starting from our search value. Because we want only those beginning with the search value, we can use the special `"\uefff"` UTF-8 character at the end, which means "end here." You need to get used to this convention, but it's very fast and efficient when accessing the view.
 
 <a id="wrapping-up"></a>
 
 ## Wrapping Up
 
 The tutorial presents an easy approach to start a web application with Couchbase
-Server 2.0 as the underlying data source. If you want to dig a little bit
-deeper, see the full source code on [couchbaselabs on
-GitHub](http://github.com/couchbaselabs/beersample-java). This contains more
-servlets and code to learn from. This may be extended and updated from time to
-time so you may want to watch the repo.
+Server as the underlying data source. If you want to dig a little bit deeper, see the full source code at [couchbaselabs on GitHub](http://github.com/couchbaselabs/beersample-java). This contains more servlets and code to learn from. This might be extended and updated from time to time, so you might want to watch the repo.
 
-Of course this is only the starting point for Couchbase, but together with the
-Getting Started Guide and other community resources you are well equipped to
-start exploring Couchbase Server on your own. Have fun working with Couchbase!
+Of course this is only the starting point for Couchbase, but together with the Getting Started Guide and other community resources you are well equipped to start exploring Couchbase Server on your own. Have fun working with Couchbase!
 
 <a id="api-reference-started"></a>

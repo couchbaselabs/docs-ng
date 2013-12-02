@@ -30,7 +30,7 @@ You can use the following requests on the remote database. Replace *db* with the
 		POST /*db*/_bulk_docs
 
 * Upload a single document with attachments  
-		POST /*db*/_docid_?new_edits=false 
+		PUT /*db*/_docid_?new_edits=false
 
 
 **Pull Requests:**

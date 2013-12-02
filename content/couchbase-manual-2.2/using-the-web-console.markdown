@@ -1,4 +1,4 @@
-<a id="couchbase-admin-web-console"></a>
+	<tab descri<a id="couchbase-admin-web-console"></a>
 # Using the Web Console
 
 The Couchbase Web Console is the main tool for managing your Couchbase
@@ -162,7 +162,7 @@ The `Servers` section indicates overall server information for the cluster:
 
 ![](images/web-console-cluster-overview-servers.png)
 
- * `Active Servers` is the number of active servers within the current clsuter
+ * `Active Servers` is the number of active servers within the current cluster
    configuration.
 
  * `Servers Failed Over` is the number of servers that have failed over due to an
@@ -171,7 +171,7 @@ The `Servers` section indicates overall server information for the cluster:
  * `Servers Down` shows the number of servers that are down and not-contactable.
 
  * `Servers Pending Rebalance` shows the number of servers that are currently
-   waiting to be rebalanced after joiining a cluster or being reactivated after
+   waiting to be rebalanced after joining a cluster or being reactivated after
    failover.
 
 <a id="couchbase-admin-web-console-server-nodes"></a>
@@ -349,7 +349,7 @@ and the cluster as a whole.
 
 The `Data Buckets` page displays a list of all the configured buckets on your
 system (of both Couchbase and memcached types). The page provides a quick
-overview of your cluser health from the perspective of the configured buckets,
+overview of your cluster health from the perspective of the configured buckets,
 rather than whole cluster or individual servers.
 
 The information is shown in the form of a table, as seen in the figure below.
@@ -417,12 +417,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
  1. Select a name for the new bucket. The bucket name can only contain characters in
     range A-Z, a-z, 0-9 as well as underscore, period, dash and percent symbols.
 
-    ### Default Bucket Should Only for Testing
-
-    Any default bucket you initially set up with Couchbase Server should not be used
-    for storing live application data; you should create a named bucket specifically
-    for your application. The default bucket you create when you first install
-    Couchbase Server should only be used for testing.
+    **Best Practice**: Create a named bucket specifically for your application. Any default bucket you initially set up with Couchbase Server should not be used for storing live application data. The default bucket you create when you first install Couchbase Server should be used only for testing.
 
  1. Select a Bucket Type, either `Memcached` or `Couchbase`. See [Data
     Storage](#couchbase-introduction-architecture-buckets) for more information. The
@@ -461,7 +456,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
      * **Disk Read-Write Concurrency**
 
-       As of Couchbase Server 2.1, we support multiple readers and writers to persist
+       Multiple readers and writers are supported to persist
        data onto disk. For earlier versions of Couchbase Server, each server instance
        had only single disk reader and writer threads. By default this is set to three
        total threads per data bucket, with two reader threads and one writer thread for
@@ -488,7 +483,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
        For more information, see [RAM Sizing](#couchbase-bestpractice-sizing-ram).
 
-       Changing the size of a memcached bucket will erase all the data in the bucket
+       **Warning**: Changing the size of a memcached bucket will erase all the data in the bucket
        and recreate it, resulting in loss of all stored data for existing buckets.
 
      * **Auto-Compaction**
@@ -509,7 +504,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
      * `Access Control`
 
-       The access control configures the port clients use to communicate with the data
+       The access control configures the port that clients use to communicate with the data
        bucket, and whether the bucket requires a password.
 
        To use the TCP standard port (11211), the first bucket you create can use this
@@ -520,6 +515,10 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
        To use a dedicated port, select the dedicate port radio button and enter the
        port number you want to use. Using a dedicated port supports both the text and
        binary client protocols, and does not require authentication.
+	   
+	   Note: When defining a port on a bucket, the server automatically starts up a copy of Moxi on the servers, and exposes it on that port.  This supports the ASCII memcached protocol.  However, Couchbase strongly recommend against using Moxi in this way.  If needed, a client-side Moxi should be installed on the application servers and have it connect to this bucket (whether it is "port" or "password" doesn't matter).
+	   
+	   When defining a password on a bucket, it requires a client that supports the binary memcached protocol with SASL (all Couchbase client libraries and client-side Moxi provide this support). Defining a password on a bucket is the recommended approach.
 
      * **Flush**
 
@@ -570,8 +569,7 @@ You can delete the bucket entirely by clicking the `Delete` button.
 You can empty a Memcached bucket of all the cached information that it stores by
 using the `Flush` button.
 
-Using the `Flush` button removes all the objects stored in the Memcached bucket.
-Using this button on active Memcached buckets may delete important information.
+**Warning**: Using the `Flush` button removes all the objects stored in the Memcached bucket. Using this button on active Memcached buckets may delete important information.
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
@@ -603,7 +601,7 @@ all the graphs and statistics display within the web console.
 
    The `Data Buckets` selection list allows you to select which of the buckets
    configured on your cluster is to be used as the basis for the graph display. The
-   statistics shown are agregated over the whole cluster for the selected bucket.
+   statistics shown are aggregated over the whole cluster for the selected bucket.
 
  * `Server Selection`
 
@@ -631,7 +629,7 @@ all the graphs and statistics display within the web console.
  * `Individual Server Selection`
 
    Clicking the blue triangle next to any of the smaller statistics graphs enables
-   you to show the selected statistic individuall for each server within the
+   you to show the selected statistic individual for each server within the
    cluster, instead of aggregating the information for the entire cluster.
 
 <a id="couchbase-admin-web-console-data-buckets-individual"></a>
@@ -1077,7 +1075,7 @@ configuration. Possible include:
  * **Starting Up**
 
    The replication process has just started, and the clusters are determining what
-   data needs to be sent from the originatin cluster to the destination cluster.
+   data needs to be sent from the originating cluster to the destination cluster.
 
  * **Replicating**
 
@@ -1185,7 +1183,7 @@ The statistics shown are:
 Be aware that if you use an earlier version of Couchbase Server, such as
 Couchbase Server 2.0, only the first three statistics appear and have the labels
 **changes queue, documents checked, and documents replicated** respectively. You
-can also get XDCR statistics using the Couchbase REST-API. All of the statistics
+can also get XDCR statistics using the Couchbase REST API. All of the statistics
 in Web Console are based on statistics via the REST API or values derived from
 them. For more information including a full list of available statistics, see
 [Getting XDCR Stats via REST](#couchbase-admin-restapi-xdcr-stats).
@@ -1211,7 +1209,7 @@ The statistics shown are:
 
  * `sets per sec.`
 
-   Set operations per second for incoming XDRC data.
+   Set operations per second for incoming XDCR data.
 
  * `deletes per sec.`
 
@@ -1377,7 +1375,7 @@ Once you have edited your `map()` and `reduce()` functions, you must use the
 `Save` button to save the view definition.
 
 The design document will be validated before it is created or updated in the
-system. The validation checks for valid Javascript and for the use of valid
+system. The validation checks for valid JavaScript and for the use of valid
 built-in reduce functions. Any validation failure is reported as an error.
 
 You can also save the modified version of your view as a new view using the
@@ -1485,11 +1483,11 @@ Ranges](#couchbase-views-writing-querying-selection-partial).
 
 ## Using the Document Editor
 
-The Document Viewer and Editor enables you to browser, view and edit individual
+The Document Viewer and Editor enables you to browse, view, and edit individual
 documents stored in Couchbase Server buckets. To get to the `Documents` editor,
 click on the `Documents` button within the `Data Buckets` view. This will open a
 list of available documents. You are shown only a selection of the available
-documents, rather than all documents.
+documents, rather than all documents. The maximum size of editable documents is 2.5 KB.
 
 
 ![](images/web-console-document-list.png)
@@ -1577,7 +1575,7 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 ### Enabling Alerts
 
-You can enable email alerts to be raised when a signficant error occurs on your
+You can enable email alerts to be raised when a significant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
 to a configured SMTP server. Each alert email is send to the list of configured
 email recipients.
@@ -1674,7 +1672,7 @@ The available settings are:
 
     * `Writing data to disk for a specific bucket has failed`
 
-      The disk or device used for persisting data has failed to store persitent data
+      The disk or device used for persisting data has failed to store persistent data
       for a bucket.
 
 
@@ -1694,7 +1692,7 @@ Buckets](#couchbase-admin-web-console-data-buckets-createedit). For
 information about changing these settings with the REST API, see 
 [Using the REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
-As of Couchbase Server 2.2+ you can provide a purge interval to remove the key and metadata 
+You can provide a purge interval to remove the key and metadata 
 for items that have been deleted or are expired. This is known as 'tombstone purging'. 
 For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 
@@ -1786,7 +1784,7 @@ information to the Couchbase server:
  * Basic information about the size and configuration of your Couchbase cluster.
    This information will be used to help us prioritize our development efforts.
 
-You can enable/disable software updaate notifications
+You can enable/disable software update notifications
 
 The process occurs within the browser accessing the web console, not within the
 server itself, and no further configuration or internet access is required on

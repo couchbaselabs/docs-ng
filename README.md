@@ -1,3 +1,5 @@
+**docs-ng** is the official Couchbase documentation repository.
+
 About
 =====
 

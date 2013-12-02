@@ -8,7 +8,7 @@ Client Library PHP Issues Tracker](http://www.couchbase.com/issues/browse/PCBC).
 
 ## Release Notes for Couchbase Client Library PHP 1.0.5 GA (13 August 2012)
 
-**New Features and Behaviour Changes in 1.0.5**
+**New Features and Behavior Changes in 1.0.5**
 
  * Allow for multiple hosts to be specified either via an array or a semicolon
    delimited list
@@ -83,7 +83,7 @@ This is a bugfix release of the Couchbase PHP SDK.
 
 This is the first stable release of the Couchbase PHP SDK.
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * Implemented PCBC-38 (Change connect() signature to take a URL).
 

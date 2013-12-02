@@ -37,8 +37,8 @@ paths:
 Platform | Directory                                                       
 ---------|-----------------------------------------------------------------
 Linux    | `/opt/couchbase/var/lib/couchbase/data`                         
-Windows  | `C:\Program Files\couchbase\server\var\lib\couchbase\data`      
-Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
+Windows  | `C:\Program Files\couchbase\server\var\lib\couchbase\data`      
+Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
 
 [This path can be changed for each node at setup either via the Web UI setup
 wizard, using theREST API](#couchbase-admin-restapi) or using the Couchbase CLI:
@@ -77,7 +77,7 @@ cluster. You must take the node out of the cluster then follow the steps below:
  1. [Change the path on a running node either via theREST
     API](#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
     change will not actually take effect until the node is restarted. For more
-    information about using a REST-API request for ejecting nodes from clusters, see
+    information about using a REST API request for ejecting nodes from clusters, see
     [Removing a Node from a
     Cluster](#couchbase-admin-restapi-remove-node-from-cluster).
 
@@ -113,7 +113,7 @@ On Linux, Couchbase Server is installed as a standalone application with support
 for running as a background (daemon) process during startup through the use of a
 standard control script, `/etc/init.d/couchbase-server`. The startup script is
 automatically installed during installation from one of the Linux packaged
-releases (Debian/Ubuntu or RedHat/CentOS). By default Couchbase Server is
+releases (Debian/Ubuntu or Red Hat/CentOS). By default Couchbase Server is
 configured to be started automatically at run levels 2, 3, 4, and 5, and
 explicitly shutdown at run levels 0, 1 and 6.
 
@@ -187,7 +187,7 @@ shell> C:\Program Files\Couchbase\Server\bin\service_stop.bat
 
 On Mac OS X, Couchbase Server is supplied as a standard application. You can
 start Couchbase Server by double clicking on the application. Couchbase Server
-runs as a background application which installs a menubar item through which you
+runs as a background application which installs a menu bar item through which you
 can control the server.
 
 

@@ -21,7 +21,7 @@ For example, the following fragment stores and retrieves a single key/value
 pair:
 
 
-```
+```ruby
 couchbase.set("foo", 3600, value);
 
 foo = couchbase.get("foo");
@@ -44,7 +44,7 @@ need to use an event loop, namely an event loop in the form of a `run.. do
 |return|` block to perform asynchronous calls with the Ruby SDK:
 
 
-```
+```ruby
 couchbase = Couchbase.connect(:async => true)
 
 couchbase.run do |conn|

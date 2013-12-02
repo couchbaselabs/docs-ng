@@ -506,7 +506,7 @@ Server 2.0+, we recommend that you remain using the defaults provided.
 
 The process that periodically runs and removes documents from RAM is known as
 the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting inactive replica data from RAM on the node. If the
+process starts ejecting replica data from RAM on the node. If the
 amount of RAM used by items reaches an upper threshold, known as the *high water
 mark*, both replica data and active data written from clients will be ejected.
 The item pager will continue to eject items from RAM until the amount of RAM
@@ -656,8 +656,7 @@ both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
 Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually. For more information, see **Couldn't resolve xref tag:
-couchbase-admin-tasks-compaction-spatial**.
+compacted manually.
 
 Auto-compaction can be configured in two ways:
 
@@ -2401,7 +2400,7 @@ The benefits of swap rebalance are:
    the capacity of the cluster remains unchanged during the rebalance operation,
    helping to ensure performance and failover support.
 
-The behaviour of the cluster during a failover and rebalance operation with the
+The behavior of the cluster during a failover and rebalance operation with the
 swap rebalance functionality affects the following situations:
 
  * **Stopping a rebalance**
@@ -3072,7 +3071,7 @@ independently reach a consistent decision on which document wins.
 
 ### Changing XDCR Settings
 
-Besides Couchbase Web Console, you can use several Couchbase REST-API endpoints
+Besides Couchbase Web Console, you can use several Couchbase REST API endpoints
 to modify XDCRsettings. Some of these settings are references used in XDCR and
 some of these settings will change XDCR behavior or performance:
 
@@ -3111,7 +3110,7 @@ operation on every node in the cluster.
  * By server setting:
 
     ```
-    shell>    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:9000/diag/eval \
+    shell>    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
                           -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
     ```
 

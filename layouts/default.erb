@@ -10,7 +10,7 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title><%= @item[:title] %></title>
+	  <title><%= @item[:pagetitle] ? @item[:pagetitle] : @item[:title] %></title>	  	 
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width">
       <%= css_link("/assets/css/main") %>
@@ -21,7 +21,7 @@
       
       <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-7763794-1']);
+      _gaq.push(['_setAccount', 'UA-7763794-10']);
       _gaq.push(['_setDomainName', '.couchbase.com']);
       _gaq.push(['_setAllowLinker', true]);
       _gaq.push(['_setAllowHash', false]);
@@ -35,7 +35,7 @@
       
     </head>
 
-<body data-spy="scroll" data-target="#sidenav">
+<body>
 
     <div class="container-fluid">
          

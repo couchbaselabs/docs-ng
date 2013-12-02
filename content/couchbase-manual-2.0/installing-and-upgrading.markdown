@@ -482,9 +482,7 @@ opens and you should to complete the Couchbase Server setup process. See
 [Initial Server Setup](#couchbase-getting-started-setup) for more details.
 
 The Couchbase application runs as a background application. If you click on the
-icon in the menu bar you see a list of operations that can be performed, as
-shown in **Couldn't resolve xref tag:
-fig-couchbase-getting-started-macosx-menubar**.
+icon in the menu bar you see a list of operations that can be performed.
 
 The command line tools are included in the Couchbase Server application
 directory. You can access them in Terminal by using the full path of the
@@ -806,7 +804,6 @@ The following are officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
 
  * Couchbase 1.8.1 to Couchbase 2.0.x and above
-
  * Couchbase 2.0 to Couchbase 2.0.x and above
 
 If you want to upgrade from 1.8.0 to 2.0.x, you must have enough disk space

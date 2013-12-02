@@ -12,7 +12,7 @@ requests and will reduce the risk of an out of memory error. For instance in
 Ruby:
 
 
-```
+```ruby
 c.set("foo", 100)
 n = 1
 

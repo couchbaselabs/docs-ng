@@ -4,15 +4,9 @@
 
 ## Creating Timed Operations
 
-One approach you can try if you get temporary out of memory errors from the
-server is to explicitly pace the timing of requests you make. You can do this in
-any SDK by creating a timer and only performing a Couchbase request after a
-specific timed interval. This will provide a slight delay between server
-requests and will reduce the risk of an out of memory error. For instance in
-Ruby:
+One approach you can try if you get temporary out of memory errors from the server is to explicitly pace the timing of requests you make. You can do this in any SDK by creating a timer and only performing a Couchbase request after a specific timed interval. This will provide a slight delay between server requests and will reduce the risk of an out of memory error. For instance in Ruby:
 
-
-```
+```ruby
 c.set("foo", 100)
 n = 1
 
@@ -78,8 +72,7 @@ First we show you how to configure a couchbase connection. We will use
 `EventMachine::Synchrony::ConnectionPool` so the client can handle multiple
 threads:
 
-
-```
+```ruby
 config['couchbase'] = EventMachine::Synchrony::ConnectionPool.new(:size => 5) do
   Couchbase::Bucket.new(:engine => :eventmachine)
 end
@@ -93,8 +86,7 @@ We use `grape` to declare our API endpoints and `goliath` to run it
 asynchronously on EventMachine. This code connects these libraries and wraps the
 whole `grape` application into a `goliath` handler:
 
-
-```
+```ruby
 class App < Goliath::API
   def response(env)
     Chat.call(env)
@@ -112,8 +104,7 @@ Here the `Chat` class contains the definition of our API. Since the service
 communicates JSON we catch all errors, reformat them into JSON and stream the
 errors back to the client:
 
-
-```
+```ruby
 class Chat < Grape::API
 
   format :json
@@ -167,7 +158,7 @@ Views and
 Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
 
 
-```
+```ruby
 view = env.couchbase.design_docs["messages"].all
 ```
 
@@ -176,7 +167,7 @@ you want to load documents along with view results, just pass `:include_docs =>
 true` :
 
 
-```
+```ruby
 view = env.couchbase.design_docs["messages"].all(:include_docs => true
 ```
 
@@ -189,8 +180,7 @@ it.
 As the last note, we should probably show the server-side map function, which
 the server uses to index:
 
-
-```
+```javascript
 function(doc, meta) {
   if (doc.timestamp) {
     emit(meta.id, doc)
@@ -221,15 +211,14 @@ Query the server for a single message:
 
 
 ```
-$ curl -X POST -Fmessage="Hello world" http://localhost:9000/messages
+$ curl -X POST -Fmessage="Hello world" http://localhost:8091/messages
 {"ok":true,"id":"msg:1","cas":11880713153673363456}
 ```
 
 Query for all messages with this command:
 
-
 ```
-$ curl -X GET http://localhost:9000/messages
+$ curl -X GET http://localhost:8091/messages
 {"ok":true,"messages":[{"id":"msg:1","key":"msg:1","value":{"timestamp":"2013-04-11T12:43:42+03:00","message":"Hello world"},"cas":11880713153673363456}]}
 ```
 
@@ -248,11 +237,11 @@ Ruby client since version 1.3.0.
 
 So the transcoder API is simple; it is the class or instance, which responds to
 the two methods, `dump` and `load`. The semantic is very straight forward: dump
-returns a bytestream (String) representation of an object along with new flags.
+returns a byte stream (String) representation of an object along with new flags.
 The signature is:
 
 
-```
+```ruby
 def dump(obj, flags, options = {})
   # do conversion
   [blob, new_flags]
@@ -265,7 +254,7 @@ identify when the conversion occurs. Currently takes only one parameter,
 Compare the two different examples of using an implicit or explicit transcoder:
 
 
-```
+```ruby
 # default transcoder is Couchbase::Transcoder::Document
 conn = Couchbase.connect
 # implicit, used default transcoder, in this case :forced => false
@@ -277,7 +266,7 @@ conn.set("foo", "bar", :transcoder => MyCustom)
 The `load` method is even simpler. It converts the stream back into the object:
 
 
-```
+```ruby
 def load(blob, flags, options = {})
   # check flags and decode value
   obj
@@ -291,7 +280,7 @@ version of the Ruby formatting API, therefore the patch won't break applications
 built on earlier versions of the library:
 
 
-```
+```ruby
 conn.default_format = :document
 conn.get("foo", :format => :marshal) # {:force => true}
 ```
@@ -300,7 +289,7 @@ Below is a transcoder which will compress and decompress all values using Gzip.
 Its object initializer accepts any other transcoder and can format the results:
 
 
-```
+```ruby
 require 'zlib'
 require 'stringio'
 
@@ -336,7 +325,7 @@ end
 This shows you how you can use this transcoder after you create a connection:
 
 
-```
+```ruby
 conn = Couchbase.connect
 conn.transcoder = GzipTranscoder.new
 conn.get("foo")
@@ -355,7 +344,7 @@ special class `Couchbase::ConnectionPool` which designed to leverage
 only for ruby 1.9+. Here is small example, which demonstrates how to use it:
 
 
-```
+```ruby
 require 'rubygems'
 require 'couchbase'
 

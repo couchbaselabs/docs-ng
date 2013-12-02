@@ -23,8 +23,9 @@ each platform:
 
 <a id="table-couchbase-admin-cmdline-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin`, `/opt/couchbase/bin/install`, `/opt/couchbase/bin/tools`, `/opt/couchbase/bin/tools/unsupported`                      
+Operating System | Directory Locations
 -------------|---------------------------------------------------------------------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin`, `/opt/couchbase/bin/install`, `/opt/couchbase/bin/tools`, `/opt/couchbase/bin/tools/unsupported`                      
 **Windows**  | `C:\Program Files\couchbase\server\bin`, `C:\Program Files\couchbase\server\bin\install`, and `C:\Program Files\couchbase\server\bin\tools`.
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin`                                                                  
 
@@ -97,8 +98,9 @@ cluster have access to.
 
 <a id="table-couchbase-admin-cmdline-couchbase-cli-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/couchbase-cli`                                                      
+Operating System | Directory Locations
 -------------|-----------------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/couchbase-cli`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\couchbase-cli.exe`                               
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/couchbase-cli`
 
@@ -129,9 +131,10 @@ Where:
  * `OPTIONS` are zero or more options as follows:
 
    <a id="table-couchbase-admin-couchbase-cli-otpions"></a>
-
-   `-u USERNAME, --user=USERNAME`     | Admin username of the cluster
+   
+	Option | Description
    -----------------------------------|-----------------------------------
+   `-u USERNAME, --user=USERNAME`     | Admin username of the cluster
    `-p PASSWORD, --password=PASSWORD` | Admin password of the cluster
    `-o KIND, --output=KIND`           | Type of document: JSON or standard
    `-d, --debug`                      | Output debug information
@@ -261,7 +264,7 @@ Command                | Option                                     | Descriptio
 `xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to   
 `xdcr-replicate`  | `--xdcr-replication-mode= PROTOCOL` | Select REST protocol or memcached for replication. `xmem` indicates memcached while `capi` indicates REST protocol.                                                    
 
-You can also perform many of these same settings using the REST-API, see [Using
+You can also perform many of these same settings using the REST API, see [Using
 the REST API](#couchbase-admin-restapi).
 
 Some examples of commonly-used `couchbase-cli` commands:
@@ -357,8 +360,7 @@ Set data path for an unprovisioned cluster:
        --bucket=test_bucket \
        --bucket-port=11222 \
        --bucket-ramsize=400 \
-       --enable-flush=1 \
-       --enable-index-replica=1
+       --enable-flush=1
 
   Delete a bucket:
     couchbase-cli bucket-delete -c 192.168.0.1:8091 \
@@ -531,7 +533,7 @@ node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster.
 
-[You use this tool to get thecouchbase node
+[You use this tool to get the couchbase node
 statistics](#couchbase-monitoring-nodestats). The general format for the command
 is:
 
@@ -577,7 +579,7 @@ sort and filter the data.
 ```
 
 The following provides the stats that are created by `cbstats`:
-###Toplevel Stats
+### Toplevel Stats
 
 | Stat                               | Description                            |
 | ------------- |:-------------:| 
@@ -680,7 +682,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_num_expiry_pager_runs           | Number of times we ran expiry pager    
 |                                    | loops to purge expired items from      
 |                                    | memory/disk                            
-| ep_num_access_scanner_runs         | Number of times we ran accesss scanner 
+| ep_num_access_scanner_runs         | Number of times we ran access scanner 
 |                                    | to snapshot working set                
 | ep_access_scanner_num_items        | Number of items that last access       
 |                                    | scanner task swept to access log.      
@@ -710,7 +712,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_pending_ops_max_duration        | Max time (µs) used waiting on pending  
 |                                    | vbuckets                               
 | ep_bg_num_samples                  | The number of samples included in the  
-|                                    | avgerage                               
+|                                    | average                               
 | ep_bg_min_wait                     | The shortest time (µs) in the wait     
 |                                    | queue                                  
 | ep_bg_max_wait                     | The longest time (µs) in the wait      
@@ -751,14 +753,14 @@ The following provides the stats that are created by `cbstats`:
 | ep_config_file                     | The location of the ep-engine config   
 |                                    | file                                   
 | ep_couch_bucket                    | The name of this bucket                
-| ep_couch_host                      | The hostname that the couchdb views    
+| ep_couch_host                      | The hostname that the CouchDB views    
 |                                    | server is listening on                 
-| ep_couch_port                      | The port the couchdb views server is   
+| ep_couch_port                      | The port the CouchDB views server is   
 |                                    | listening on                           
 | ep_couch_reconnect_sleeptime       | The amount of time to wait before      
-|                                    | reconnecting to couchdb                
+|                                    | reconnecting to CouchDB                
 | ep_couch_response_timeout          | Length of time to wait for a response  
-|                                    | from couchdb before reconnecting       
+|                                    | from CouchDB before reconnecting       
 | ep_data_traffic_enabled            | Whether or not data traffic is enabled 
 |                                    | for this bucket                        
 | ep_degraded_mode                   | True if the engine is either warming   
@@ -843,13 +845,13 @@ The following provides the stats that are created by `cbstats`:
 |                                    | before we enable traffic               
 | ep_warmup_min_memory_threshold     | Percentage of max mem warmed up before 
 |                                    | we enable traffic                      
-| ep_warmup_oom                      | The amount of oom errors that occured  
+| ep_warmup_oom                      | The amount of oom errors that occurred  
 |                                    | during warmup                          
 | ep_warmup_thread                   | The status of the warmup thread        
 | ep_warmup_time                     | The amount of time warmup took
 
 
-###vBucket Total Stats
+### vBucket Total Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -867,7 +869,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_meta_data_memory           | Total memory used by meta data
 
 
-###Active vBucket Class Stats
+### Active vBucket Class Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -891,7 +893,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_active_queue_fill          | Total enqueued items                       
 | vb_active_queue_drain         | Total drained items
 
-###Replica vBucket Stats
+### Replica vBucket Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -915,7 +917,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_replica_queue_fill         | Total enqueued items                       
 | vb_replica_queue_drain        | Total drained items
 
-###Pending vBucket Stats
+### Pending vBucket Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -939,7 +941,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_pending_queue_fill         | Total enqueued items                       
 | vb_pending_queue_drain        | Total drained items
 
-###Tap Stats
+### Tap Stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:|
@@ -995,7 +997,7 @@ The following provides the stats that are created by `cbstats`:
 |                                | tap streams
 
 
-###Per Tap Client Stats
+### Per Tap Client Stats
 
 Each stat begins with =ep_tapq:= followed by a unique /client_id/ and
 another colon.  For example, if your client is named, =slave1=, the
@@ -1068,7 +1070,7 @@ another colon.  For example, if your client is named, =slave1=, the
 | num_vbucket_set_failed      | Number of failed vbucket set operations  |  C 
 | num_unknown                 | Number of unknown operations             |  C
 
-###Tap Aggregated Stats
+### Tap Aggregated Stats
 
 Aggregated tap stats allow named tap connections to be logically
 grouped and aggregated together by prefixes.
@@ -1091,7 +1093,7 @@ for =rebalance= and a set for =replication=.
 | [prefix]:itemondisk         | Number of items remaining on disk          
 | [prefix]:total_backlog_size | Num of remaining items for replication
 
-###Timing Stats
+### Timing Stats
 
 Timing stats provide histogram data from high resolution timers over
 various operations within the system.
@@ -1186,7 +1188,7 @@ and performance will suffer.
 | largest_min  | The the largest minimum hash table depth of all vbuckets 
 | max_count    | The largest number of items in a vbucket                 
 | min_count    | The smallest number of items in a vbucket                
-| total_counts | The total numer of items in all vbuckets
+| total_counts | The total number of items in all vbuckets
 
 It is also possible to get more detailed hash tables stats by using
 'hash detail'. This will print per-vbucket stats.
@@ -1213,7 +1215,7 @@ vbucket 0 is =vb_0:size=.
 ###Checkpoint Stats
 
 Checkpoint stats provide detailed information on per-vbucket checkpoint
-datastructure.
+data structure.
 
 Like Hash stats, requesting these stats has some impact on performance.
 Therefore, please do not poll them from the server frequently.
@@ -1227,17 +1229,17 @@ each stat name.
 | open_checkpoint_id               | ID of the current open checkpoint         
 | num_tap_cursors                  | Number of referencing TAP cursors         
 | num_checkpoint_items             | Number of total items in a checkpoint     
-|                                  | datastructure                             
+|                                  | data structure                             
 | num_open_checkpoint_items        | Number of items in the open checkpoint    
 | num_checkpoints                  | Number of checkpoints in a checkpoint     
-|                                  | datastructure                             
+|                                  | data structure                             
 | num_items_for_persistence        | Number of items remaining for persistence 
 | checkpoint_extension             | True if the open checkpoint is in the     
 |                                  | extension mode                            
 | state                            | The state of the vbucket this checkpoint  
 |                                  | contains data for                         
 | last_closed_checkpoint_id        | The last closed checkpoint number         
-| persisted_checkpoint_id          | The slast persisted checkpoint number
+| persisted_checkpoint_id          | The last persisted checkpoint number
 
 ###Memory Stats
 
@@ -1304,7 +1306,7 @@ Note that tcmalloc stats are not available on some operating systems
 
 - length_mismatch - The key length in memory doesn't match the length on disk.
 
-- data_mismatch - The data in memroy doesn't match the data on disk.
+- data_mismatch - The data in memory doesn't match the data on disk.
 
 - flags_mismatch - The flags in memory don't match the flags on disk.
 
@@ -1557,9 +1559,15 @@ cbstats hostname:port -b bucket_name -p bucket_password | grep 'warmup'
 cbstats hostname:port -b bucket_name -p bucket_password raw warmup
 ```
 
-ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ep\_warmup\_state  | * Indicates the current progress of the warmup: **Initial**. Start warmup processes.  * **EstimateDatabaseItemCount**. Estimating database item count.  * **KeyDump**. Begin loading keys and metadata, but not documents, into RAM.  * **CheckForAccessLog**. Determine if an access log is available. This log indicates which keys have been frequently read or written.  * **LoadingAccessLog**. Load information from access log.  * **LoadingData**. This indicates the server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  * **Done**. Server is ready to handle read and write requests.
+* **ep\_warmup\_thread** - Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+* **ep\_warmup\_state** - Indicates the current progress of the warmup:
+	* Initial - Start warmup processes.
+	* EstimateDatabaseItemCount - Estimating database item count.
+	* KeyDump - Begin loading keys and metadata, but not documents, into RAM.
+	* CheckForAccessLog - Determine if an access log is available. This log indicates which keys have been frequently read or written.
+	* LoadingAccessLog - Load information from access log.
+	* LoadingData - The server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.
+	* Done - The server is ready to handle read and write requests.
 
 High-level warmup statistics that are available are as follows:
 
@@ -2031,7 +2039,7 @@ To disable flushing a data bucket:
 > ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
 ```
 
-You can initiate the flush via the REST-API. For information about changing this
+You can initiate the flush via the REST API. For information about changing this
 setting in the Web Console, see [Viewing Data
 Buckets](#couchbase-admin-web-console-data-buckets). For information about
 flushing data buckets via REST, see [Flushing a
@@ -2048,7 +2056,7 @@ Parameter                       | Description
 **alog\_sleep\_time**           | Access scanner interval (minute)                                                                                                   
 **alog\_task\_time**            | Access scanner next task time (UTC)                                                                                                
 **bg\_fetch\_delay**            | Delay before executing a bg fetch (test feature).                                                                                  
-**couch\_response\_timeout**    | timeout in receiving a response from couchdb.                                                                                      
+**couch\_response\_timeout**    | timeout in receiving a response from CouchDB.                                                                                      
 **exp\_pager\_stime**           | Expiry Pager interval. Time interval that Couchbase Server waits before it performs cleanup and removal of expired items from disk.
 **flushall\_enabled**           | Enable flush operation.                                                                                                            
 **klog\_compactor\_queue\_cap** | queue cap to throttle the log compactor.                                                                                           
@@ -2074,8 +2082,9 @@ platform:
 
 <a id="table-couchbase-admin-cmdline-cbcollect_info-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/cbcollect_info`                                                      
+Operating System | Location
 -------------|------------------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/cbcollect_info`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\cbcollect_info`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info`
 
@@ -2083,7 +2092,7 @@ platform:
 operation for an entire cluster, you will need to perform the command for every
 node that exists for that cluster.
 
-As of Couchbase Server 2.1+ you will need a root account to run this command and
+You will need a root account to run this command and
 collect all the server information needed. There are internal server files and
 directories that this tool accesses which require root privileges.
 
@@ -2285,7 +2294,7 @@ and best practices for backup and restore of data with Couchbase Server, see
 
 **Backing Up Design Documents Only**
 
-As of Couchbase Server 2.1 you can backup only design documents from a cluster
+You can backup only design documents from a cluster
 or bucket with the option, `design_doc_only=1`. You can later restore the design
 documents only with `cbrestore`, see [cbrestore
 Tool](#couchbase-admin-cmdline-cbrestore) :
@@ -2450,7 +2459,7 @@ Where:
 
  * `[destination]`
 
-   The destination bucket for the restored information. This is a bucker in an
+   The destination bucket for the restored information. This is a bucket in an
    existing cluster. If you restore the data to a single node in a cluster, provide
    the hostname and port for the node you want to restore to. If you restore an
    entire data bucket, provide the URL of one of the nodes within the cluster.
@@ -2461,7 +2470,7 @@ Tool](#couchbase-admin-cmdline-cbtransfer).
 
 **Using cbrestore for Design Documents Only**
 
-As of Couchbase Server 2.1 you can restore design documents to a server node
+You can restore design documents to a server node
 with the option, `design_doc_only=1`. You can restore from a backup file you
 create with `cbbackup`, see [cbbackup Tool](#couchbase-admin-cmdline-cbbackup) :
 
@@ -2522,7 +2531,7 @@ default port of `8091`. The default number of vBuckets for Couchbase 2.0 is
 1024; in earlier versions of Couchbase, you may have a different number of
 vBuckets. If you do want to restore data to a cluster with a different number of
 vBuckets, you should perform this command with port `11211`, which will
-accomodate the difference in vBuckets:
+accommodate the difference in vBuckets:
 
 
 ```
@@ -2589,6 +2598,7 @@ The following are the standard command options which you can also view with
 
 -h, --help                                                       | Command help                                                                                                                                                                                                                 
 -----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--add                                                            | Use --add instead of --set in order to not overwrite existing items in the destination
 -b BUCKET\_SOURCE                                                | Single named bucket from source cluster to transfer                                                                                                                                                                          
 -B BUCKET\_DESTINATION, --bucket-destination=BUCKET\_DESTINATION | Single named bucket on destination cluster which receives transfer. This allows you to transfer to a bucket with a different name as your source bucket. If you do not provide defaults to the same name as the bucket-source
 -i ID, --id=ID                                                   | Transfer only items that match a vbucketID                                                                                                                                                                                   
@@ -2683,7 +2693,7 @@ not the associated design documents. To to so, you should explicitly use
 
 **Exporting and Importing CSV Files**
 
-As of Couchbase Server 2.1 you can import and export well-formed.csv files with
+You can import and export well-formed.csv files with
 `cbtransfer`. This will import data into Couchbase Server as documents and will
 export documents from the server into comma-separated values. This does not
 include any design documents associated with a bucket in the cluster.
@@ -2761,7 +2771,7 @@ w0 error: fails to read from csv file, .....
 
 **Transferring Design Documents Only**
 
-As of Couchbase Server 2.1 you can transfer design documents from one cluster to
+You can transfer design documents from one cluster to
 another one with the option, `design_doc_only=1` :
 
 
@@ -2786,10 +2796,10 @@ administrators, developers, and testers determine whether a cluster is healthy,
 has issues that must be addressed soon to prevent future problems, or has issues
 that must be addressed immediately.
 
-[The tool retrieves data from the Couchbase Server monitoring system, aggregates
+The tool retrieves data from the Couchbase Server monitoring system, aggregates
 it over a time scale, analyzes the statistics against thresholds, and generates
 a report. Unlike other command line tools such as `cbstats` and `cbtransfer`
-that use theTAP protocol](#couchbase-introduction-architecture-tap) to obtain
+that use the [TAP protocol](#couchbase-introduction-architecture-tap) to obtain
 data from the monitoring system, `cbhealthchecker` obtains data by using the
 REST API and the memcached protocol. For more information about the statistics
 provided by Couchbase Server, see [Statistics and
@@ -2803,14 +2813,14 @@ the format of the information. All `cbhealthchecker` output is stored in a
 delete files manually if the `reports` folder becomes too large. The path to the
 output files is displayed when the run finishes.
 
-`cbhealthchecker` is automatically installed with Couchbase Server 2.1 and
-later. You can find the tool in the following locations, depending upon your
+`cbhealthchecker` is automatically installed with Couchbase Server. You can find the tool in the following locations, depending upon your
 platform:
 
 <a id="table-couchbase-admin-cmdline-cbhealthchecker-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
@@ -2821,42 +2831,21 @@ The format of the `cbhealthchecker` command is:
 cbhealthchecker CLUSTER USERNAME PASSWORD OPTIONS
 ```
 
-Where:
-
- * `CLUSTER`
-
-   The cluster for which you want a report:
-
-   `-c HOST[:PORT]`  `--cluster=HOST[:PORT]` | Hostname and port of a node in the cluster. The default port is 8091.
-   ------------------------------------------|----------------------------------------------------------------------
-
- * `USERNAME`
-
-   Username of the cluster administrator account:
-
-   `-u USERNAME`  `--user=USERNAME` | Admin username of the cluster.
-   ---------------------------------|-------------------------------
-
- * `PASSWORD`
-
-   Password of the cluster administrator account:
-
-   `-p PASSWORD`  `--password=PASSWORD` | Admin password of the cluster.
-   -------------------------------------|-------------------------------
-
- * `OPTIONS`
-
-   Command options:
-
    <a id="table-couchbase-admin-cmdline-cbhealthchecker-options"></a>
 
-   `-b BUCKETNAME`  `--bucket=BUCKETNAME` | Specific bucket on which to report. The default is all buckets.
-   ---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------
-   `-i FILENAME`  `--input=FILENAME`      | Generate an analysis report from an input JSON file.
-   `-o FILENAME`  `--output=FILENAME`     | File name for the HTML report. The default output file name is the report time stamp, for example: `2013-07-26_13-26-23.html`.
-   `-h`  `--help`                         | Show the help message and exit.
-   `-s SCALE`  `--scale=SCALE`            | Time span (scale) for the statistics: minute, hour, day, week, month or year. The default time span is day.
-   `-j`  `--jsononly`                     | Collect data and output only a JSON file. When you use this option, the analysis report is not generated.
+
+Option   | Syntax | Description
+---------|-------------------------------------------|-------------------------------------------------
+CLUSTER  | `-c HOST[:PORT]`  `--cluster=HOST[:PORT]` | Hostname and port of a node in the cluster. The default port is 8091.
+USERNAME | `-u USERNAME`  `--user=USERNAME`          | Admin username of the cluster.
+PASSWORD | `-p PASSWORD`  `--password=PASSWORD`      | Admin password of the cluster.
+OPTIONS  | `-b BUCKETNAME`  `--bucket=BUCKETNAME`    | Specific bucket on which to report. The default is all buckets.
+         | `-i FILENAME`  `--input=FILENAME`         | Generate an analysis report from an input JSON file.
+         | `-o FILENAME`  `--output=FILENAME`        | File name for the HTML report. The default output file name is the report time stamp, for example: `2013-07-26_13-26-23.html`.
+         | `-h`  `--help`                            | Show the help message and exit.
+         | `-s SCALE`  `--scale=SCALE`               | Time span (scale) for the statistics: minute, hour, day, week, month or year. The default time span is day.
+         | `-j`  `--jsononly`                        | Collect data and output only a JSON file. When you use this option, the analysis report is not generated.
+
 
 **Sample Commands**
 
@@ -2973,8 +2962,9 @@ You use this tool to reset an administrative or read-only password. You can find
 
 <a id="table-couchbase-admin-cmdline-cbdocloader-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3017,8 +3007,9 @@ depending upon your platform:
 
 <a id="table-couchbase-admin-cmdline-cbdocloader-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3062,8 +3053,7 @@ The following is an example of uploading JSON from a.zip file:
 Be aware that there are typically three types of errors that can occur: 1) the
 files are not well-formatted, 2) credentials are incorrect, or 3) the RAM quota
 for a new bucket to contain the JSON is too large given the current quota for
-Couchbase Server. For more information about changing RAM quotas for Couchbase
-Server nodes, see **Couldn't resolve xref tag: couchbase-admin-tasks-quotas**.
+Couchbase Server.
 
 <a id="couchbase-admin-cmdline-cbworkloadgen"></a>
 
@@ -3074,8 +3064,9 @@ This is useful for testing your Couchbase node.
 
 <a id="table-couchbase-admin-cmdline-cbworkloadgen-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3101,7 +3092,7 @@ that node:
 
 
 ```
-> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
+> ./cbworkloadgen -n 10.17.30.161:8091 -u Administrator -p password
 ```
 
 Will produce a result similar to the following if successful:
@@ -3134,8 +3125,9 @@ upon your platform, this tool is at the following locations:
 
 <a id="table-couchbase-admin-cmdline-cbanalyze-core-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | Not Available on this platform.                                                  
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 
@@ -3149,8 +3141,9 @@ values based on Couchbase Server internal hashing algorithm. Moved as of 1.8 to
 
 <a id="table-couchbase-admin-cmdline-vbuckettool-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/tools/`                                                      
+Operating System | Location
 -------------|----------------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/tools/`                                                      
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\tools\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/`
 

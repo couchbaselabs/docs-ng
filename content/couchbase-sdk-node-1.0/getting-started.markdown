@@ -1,3 +1,7 @@
+# Introduction
+
+This guide provides information for developers who want to use the Couchbase Node.js SDK to build applications that use Couchbase Server.
+
 # Getting Started
 
 The following sections demonstrate how to get started using Couchbase with the
@@ -35,15 +39,15 @@ with the default install.
 var couchbase = require("couchbase");
 
 var bucket = new couchbase.Connection({
-  ‘bucket’:’beer-sample’,
-  ‘host’:’127.0.0.1:8091’
+  'bucket':'beer-sample',
+  'host':'127.0.0.1:8091'
 }, function(err) {
   if (err) {
     // Failed to make a connection to the Couchbase cluster.
     throw err;
   }
 
-  bucket.get('aass_brewery_juleol', function(err, result) {
+  bucket.get('aass_brewery-juleol', function(err, result) {
     if (err) {
       // Failed to retrieve key
       throw err;
@@ -51,11 +55,11 @@ var bucket = new couchbase.Connection({
 
     var doc = result.value;
 
-    console.log(doc.name + ‘, ABV: ‘ + doc.abv);
+    console.log(doc.name + ', ABV: ' + doc.abv);
 
     doc.comment = "Random beer from Norway";
 
-    bucket.replace('aass_brewery_juleol', doc, function(err, result) {
+    bucket.replace('aass_brewery-juleol', doc, function(err, result) {
       if (err) {
         // Failed to replace key
         throw err;
@@ -65,7 +69,7 @@ var bucket = new couchbase.Connection({
 
       // Success!
       process.exit(0);
-    }
+    });
   });
 });
 ```

@@ -23,7 +23,7 @@ To start using Couchbase Server, you need to follow these steps:
 ## Preparation
 
 Mixed deployments, such as cluster with both Linux and Windows server nodes are
-not supported. This incomparability is due to differences in the number of
+not supported. This incompatibility is due to differences in the number of
 shards between platforms. It is not possible either to mix operating systems
 within the same cluster, or configure XDCR between clusters on different
 platforms. You should use same operating system on all machines within a cluster
@@ -53,11 +53,12 @@ Windows 2008             | R2 with SP1 | 64 bit          | Developer and Product
 Windows 2012             |             | 64 bit          | Developer and Production |  
 Windows 7                |             | 32 and 64 bit   | Developer only           |                        
 Windows 8                |             | 32 and 64 bit   | Developer only           |                        
-MacOS                    | 10.7        | 64 bit          | Developer only           |                        
-MacOS                    | 10.8        | 64 bit          | Developer only           | MacOS 10.8             
+Mac OS                    | 10.7        | 64 bit          | Developer only           |                        
+Mac OS                    | 10.8        | 64 bit          | Developer only           | Mac OS 10.8             
+
 
 **Couchbase clusters with mixed platforms are not supported.** Specifically,
-Couchbase Server on MacOSX uses 64 vBuckets as opposed to the 1024 vBuckets used
+Couchbase Server on Mac OS X uses 64 vBuckets as opposed to the 1024 vBuckets used
 by other platforms. Due to this difference, if you need to move data between a
 Mac OS X cluster and a cluster hosted on another platform use `cbbackup` and
 `cbrestore`. For more information, see [Backup and Restore Between Mac OS X and
@@ -119,7 +120,7 @@ Guidelines](#couchbase-bestpractice-sizing).
 
 ### Supported Web Browsers
 
-The Couchbase Web Console runs on the following browsers, with Javascript
+The Couchbase Web Console runs on the following browsers, with JavaScript
 support enabled:
 
  * Mozilla Firefox 3.6 or higher
@@ -183,15 +184,15 @@ with Couchbase Server, as follows:
 
 <a id="table-couchbase-network-ports"></a>
 
-Port                       | Description                   | Node to Node | Node to Client | Cluster Administration | XDCR
----------------------------|-------------------------------|--------------|----------------|------------------------|-----
-8091                       | Web Administration Port       | Yes          | Yes            | Yes                    | Yes 
-8092                       | Couchbase API Port            | Yes          | Yes            | No                     | Yes 
-11209                      | Internal Cluster Port         | Yes          | No             | No                     | No  
-11210                      | Internal Cluster Port         | Yes          | Yes            | No                     | No  
-11211                      | Client interface (proxy)      | No           | Yes            | No                     | No  
-4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No  
-21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No  
+Port                       | Description                   | Node to Node | Node to Client | Cluster Administration | XDCR (version 1) | XDCR (version 2)
+---------------------------|-------------------------------|--------------|----------------|------------------------|------------------|-----------------
+8091                       | Web Administration Port       | Yes          | Yes            | Yes                    | Yes              | Yes 
+8092                       | Couchbase API Port            | Yes          | Yes            | No                     | Yes              | Yes 
+11209                      | Internal Bucket Port          | Yes          | No             | No                     | No               | No 
+11210                      | Internal/External Bucket Port | Yes          | Yes            | No                     | No               | Yes  
+11211                      | Client interface (proxy)      | No           | Yes            | No                     | No               | No  
+4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No               | No 
+21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No               | No  
 
 <a id="couchbase-getting-started-install"></a>
 
@@ -209,16 +210,16 @@ machine before you start the installation. For more information on uninstalling
 Couchbase Server, see [Uninstalling Couchbase Server](#couchbase-uninstalling).
 
 To perform an upgrade installation while retaining your existing dataset, see
-[Upgrading to Couchbase Server 2.1](#couchbase-getting-started-upgrade).
+[Upgrading to Couchbase Server](#couchbase-getting-started-upgrade).
 
 <a id="couchbase-getting-started-install-redhat"></a>
 
 ### Red Hat Linux Installation
 
 Before you install, make sure you check the supported platforms, see [Supported
-Platforms](#couchbase-getting-started-prepare-platforms). The RedHat
-installation uses the RPM package. Installation is supported on RedHat and
-RedHat-based operating systems such as CentOS.
+Platforms](#couchbase-getting-started-prepare-platforms). The Red Hat
+installation uses the RPM package. Installation is supported on Red Hat and
+Red Hat-based operating systems such as CentOS.
 
  1. For Red Hat Enterprise Linux version 6.0, Couchbase Server 2.2 RPM will do
     dependency checks for OpenSSL using `pkg-config`. Therefore you need to check
@@ -274,7 +275,7 @@ RedHat-based operating systems such as CentOS.
 
     Once the `rpm` command completes, Couchbase Server starts automatically, and is
     configured to automatically start during boot under the 2, 3, 4, and 5
-    runlevels. Refer to the RedHat RPM documentation for more information about
+    runlevels. Refer to the Red Hat RPM documentation for more information about
     installing packages using RPM.
 
     After installation finishes, the installation process will display a message
@@ -282,7 +283,7 @@ RedHat-based operating systems such as CentOS.
 
      ```
      Minimum RAM required  : 4 GB
-     System RAM configured : 8174464 kB
+     System RAM configured : 8174464 KB
 
      Minimum number of processors required : 4 cores
      Number of processors on the system    : 4 cores
@@ -301,9 +302,9 @@ RedHat-based operating systems such as CentOS.
      See /opt/couchbase/LICENSE.txt.
      ```
 
-Once installed, you can use the RedHat `chkconfig` command to manage the
+Once installed, you can use the Red Hat `chkconfig` command to manage the
 Couchbase Server service, including checking the current status and creating the
-links to enable and disable automatic start-up. Refer to the [RedHat
+links to enable and disable automatic start-up. Refer to the [Red Hat
 documentation](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-services-chkconfig.html)
 for instructions.
 
@@ -311,19 +312,18 @@ To do the initial setup for Couchbase, open a web browser and access the
 Couchbase Web Console. See [Initial Server
 Setup](#couchbase-getting-started-setup).
 
-###Installing on Centos/RHEL as Non-Root, Non-Sudo 
+###Installing on CentOS/RHEL as Non-Root, Non-Sudo 
 
 **This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo
 user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all 
-Couchbase command-line tools. To do so on Centos/RedHat:
+Couchbase command-line tools. To do so on CentOS/Red Hat:
 
- 1. After you download the Couchbase RPM, go to the directory where it is located
-    and extract it:
+ 1. After you download the Couchbase RPM, go to the directory where it is located and extract it:
 
-     ```
-     > rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
-     --no-absolute-filenames
-     ```
+
+		rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
+		--no-absolute-filenames
+
 
     In the directory where you extracted the files, you will see `opt` and `etc`
     subdirectories.
@@ -411,7 +411,7 @@ Platforms](#couchbase-getting-started-prepare-platforms).
      Unpacking couchbase-server (from couchbase-server_x86_64_2.1.0-xxx-rel.deb) ...
      libssl0.9.8 is installed. Continue installing
      Minimum RAM required  : 4 GB
-     System RAM configured : 4058708 kB
+     System RAM configured : 4058708 KB
 
      Minimum number of processors required : 4 cores
      Number of processors on the system    : 4 cores
@@ -604,13 +604,13 @@ and the `your_file_name.iss` file to the same directory on each machine.
 ### Mac OS X Installation
 
 Before you install, make sure you check the supported platforms, see [Supported
-Platforms](#couchbase-getting-started-prepare-platforms).Couchbase Server on Mac
+Platforms](#couchbase-getting-started-prepare-platforms). Couchbase Server on Mac
 OS X is for development purposes only. The Mac OS X installation uses a Zip file
 which contains a standalone application that can be copied to the `Applications`
 folder or to any other location you choose. The installation location is not the
 same as the location of the Couchbase data files.
 
-Please use the default archive file hander in Mac OS X, Archive Utility, when
+Please use the default archive file handler in Mac OS X, Archive Utility, when
 you unpack the Couchbase Server distribution. It is more difficult to diagnose
 non-functioning or damaged installations after extraction by other third party
 archive extraction tools.
@@ -619,7 +619,7 @@ Due to limitations within the Mac OS X operating system, the Mac OS X
 implementation is incompatible with other operating systems. It is not possible
 either to mix operating systems within the same cluster, or configure XDCR
 between a Mac OS X and Windows or Linux cluster. If you need to move data
-between a Mac OS X cluster and a cluster hosted on another platform, please use
+between a Mac OS X cluster and a cluster hosted on another platform, use
 `cbbackup` and `cbrestore`. For more information, see [Backup and Restore
 Between Mac OS X and Other Platforms](#couchbase-backup-restore-mac).
 
@@ -630,13 +630,12 @@ To install:
 
  1. Remove remaining files from previous installations:
 
-     ```
-     > rm -rf ~/Library/Application Support/Couchbase
+	```
+     	> rm -rf ~/Library/Application Support/Couchbase
+     	> rm -rf ~/Library/Application Support/Membase
+	```
 
-     >rm -rf ~/Library/Application Support/Membase
-     ```
-
- 1. Download the Mac OS X Zip file.
+ 1. Download the Mac OS X zip file.
 
  1. Double-click the downloaded Zip installation file to extract the server. This
     will create a single folder, the `Couchbase Server.app` application.
@@ -644,7 +643,7 @@ To install:
  1. Drag and Drop `Couchbase Server.app` to your chosen installation folder, such as
     the system `Applications` folder.
 
-Once the install completes, you can double-click on `Couchbase Server.app` to
+After the installation completes, you can double-click on `Couchbase Server.app` to
 start it. The Couchbase Server icon appears in the menu bar on the right-hand
 side. If you have not yet configured your server, then the Couchbase Web Console
 opens and you should to complete the Couchbase Server setup process. See
@@ -658,9 +657,9 @@ directory. You can access them in Terminal by using the full path of the
 Couchbase Server installation. By default, this is
 `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`.
 
-###Installing on Mac OSX as Non-Root, Non-Sudo
+###Installing on Mac OS X as Non-Root, Non-Sudo
 
-**This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OSX:
+**This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OS X:
 
  1. After you download Couchbase Server, open Terminal and go to the Downloads
     directory:
@@ -787,7 +786,7 @@ port other than `8091`, go to that port.
     When you provide an email address we will add it to the Couchbase community
     mailing list for news and update information about Couchbase and related
     products. You can unsubscribe from the mailing list at any time using the
-    unsubscribe link provided in each newletter. Web Console communicates the
+    unsubscribe link provided in each newsletter. Web Console communicates the
     following information:
 
      * The current version. When a new version of Couchbase Server exists, you get
@@ -846,7 +845,7 @@ once again.
 
 There are several ways you can provide hostnames for Couchbase 2.1+. You can
 provide a hostname when you install a Couchbase Server 2.1 on a machine, when
-you add the node to an existing cluster for online upgrade, or via a REST-API
+you add the node to an existing cluster for online upgrade, or via a REST API
 call. Couchbase Server stores this in a config file on disk. For earlier
 versions of Couchbase Server you must follow a manual process where you edit
 config files for each node which we describe below.
@@ -870,10 +869,10 @@ address under **Add Server**. You provide it in the **Server IP Address** field:
 
 ![](images/hostname_add_node.png)
 
-**Providing Hostnames via REST-API**
+**Providing Hostnames via REST API**
 
 The third way you can provide a node a hostname is to do a REST request at the
-endpoint `http://127.0.0.1:9000/node/controller/rename`. If you use this method,
+endpoint `http://127.0.0.1:8091/node/controller/rename`. If you use this method,
 you should provide the hostname before you add a node to a cluster. If you
 provide a hostname for a node that is already part of a Couchbase cluster; the
 server will reject the request and return `error 400 reason: unknown ["Renaming
@@ -882,7 +881,7 @@ is disallowed for nodes that are already part of a cluster"]`.:
 
 ```
 curl -v -X POST -u Administrator:asdasd \
-http://127.0.0.1:9000/node/controller/rename -d hostname=shz.localdomain
+http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
 ```
 
 Where you provide the IP address and port for the node and administrative
@@ -1051,16 +1050,17 @@ Tool](#couchbase-admin-cmdline-cbbackup).
 
 <a id="couchbase-getting-started-upgrade"></a>
 
-## Upgrading to Couchbase Server 2.1
+## Upgrading to Couchbase Server 2.2
 
-The following are officially supported upgrade paths for Couchbase Server for
+The following are the officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
 
- * Couchbase 1.8.1 to Couchbase 2.0.x and above
+ * Couchbase 1.8.1 to Couchbase 2.2 and above
+ * Couchbase 2.0 to Couchbase 2.2 and above
+ * Couchbase 2.0.x to Couchbase 2.2 and above
+ * Couchbase 2.1 to Couchbase 2.2 and above
+ * Couchbase 2.1.x to Couchbase 2.2 and above
 
- * Couchbase 2.0 to Couchbase 2.0.x and above
-
- * Couchbase 2.0.1 to Couchbase 2.1 and above
 
 If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
 available for both your original Couchbase Server 1.8 data files and the new
@@ -1154,7 +1154,7 @@ Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
 
 You will need at least one extra node to perform a swap rebalance.
 
- 1. Install Couchbase Server 2.0 on one extra machine that is not yet in the
+ 1. Install Couchbase Server on one extra machine that is not yet in the
     cluster. For install instructions, see [Installing Couchbase
     Server](#couchbase-getting-started-install).
 
@@ -1384,7 +1384,7 @@ an individual nodes in a cluster remain the same:
 
  1. Perform the installation upgrade for your platform:
 
-    **RHEL/Centos**
+    **RHEL/CentOS**
 
     You can perform an upgrade install using the RPM package — this will keep the
     data and existing configuration.
@@ -1413,9 +1413,7 @@ an individual nodes in a cluster remain the same:
 ## Upgrades Notes 1.8.1 to 2.1
 
 You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+ using
-either the online or offline upgrade method. See [Upgrading to Couchbase Server
-1.8](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-getting-started-upgrade.html)
-for more information.
+either the online or offline upgrade method.
 
 **Use Online Upgrades for Couchbase Server 1.8.1 to Couchbase Server 2.1+**
 
@@ -1436,7 +1434,7 @@ rebalance may fail.
 When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1+ on Linux,
 you should be aware of the **OpenSSL** requirement. OpenSSL is a required
 component and you will get an error message during upgrade if it is not
-installed. To install it RedHat-based systems, use `yum` :
+installed. To install it Red Hat-based systems, use `yum` :
 
 
 ```
@@ -1458,10 +1456,10 @@ the IP and hostname configuration is correct both before the upgrade and after
 upgrading the software. See [Hostnames for Couchbase Server 2.0.1 and
 Earlier](#couchbase-getting-started-hostnames-pre2.0).
 
-**Mac OSX Notes for 1.8.1 to 2.1+**
+**Mac OS X Notes for 1.8.1 to 2.1+**
 
-There is currently no officially supported upgrade installer for Mac OSX. If you
-want to migrate to 1.8.1 to 2.1+ on OSX, you must make a backup of your data
+There is currently no officially supported upgrade installer for Mac OS X. If you
+want to migrate to 1.8.1 to 2.1+ on OS X, you must make a backup of your data
 files with `cbbackup`, install the latest version, then restore your data with
 `cbrestore`. For more information, see [cbbackup
 Tool](#couchbase-admin-cmdline-cbbackup) and [cbrestore

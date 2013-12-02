@@ -55,7 +55,7 @@ The `append` appends information to the end of an existing key/value pair. The
 For example, to append a string to an existing key:
 
 
-```
+```ruby
 #sets foo key to text 'Hello'
 
 couchbase.set("foo", "Hello")
@@ -72,7 +72,7 @@ couchbase.get("foo")
 Other examples of using `append` are as follows:
 
 
-```
+```ruby
 #Perform a simple append
 
 c.set("foo", "aaa")
@@ -152,7 +152,7 @@ CAS stands for "compare and swap", and avoids the need for manual key mutexing.
 The following illustrates use of the `cas` function:
 
 
-```
+```ruby
 #appends to a JSON-encoded value
 # first sets value and formatting for stored value
         c.default_format = :document
@@ -204,7 +204,7 @@ used when reducing the server-side integer. For example, to decrement the server
 integer `dlcounter` by 5:
 
 
-```
+```ruby
 couchbase.set("counter", 10)
 couchbase.decr("counter", 5)
 couchbase.get("counter") #returns 5
@@ -213,7 +213,7 @@ couchbase.get("counter") #returns 5
 The following demonstrates different options available when using decrement:
 
 
-```
+```ruby
 #decrement key by one (default)
 
 c.decr("foo")
@@ -294,7 +294,7 @@ The following illustrates use of delete in Ruby along with various parameters
 and settings:
 
 
-```
+```ruby
 #set and delete for key 'foo' in default mode
 
 c.set("foo", "bar")
@@ -308,7 +308,7 @@ c.delete("foo")        #=> false
 
 c.set("foo", "bar")
 c.delete("foo", :quiet => false)   #=> true
-c.delete("foo", :quiet => true)    #=> nil (default behaviour)
+c.delete("foo", :quiet => true)    #=> nil (default behavior)
 c.delete("foo", :quiet => false)   #=> will raise Couchbase::Error::NotFound
 
 #attempt to delete with version check using cas value
@@ -354,7 +354,7 @@ value to be used when increasing the server-side integer. For example, to
 increment the server integer `dlcounter` by 5:
 
 
-```
+```ruby
 couchbase.set("counter", 10)
 couchbase.incr("counter", 5)
 couchbase.get("counter") #=> 15
@@ -371,7 +371,7 @@ For example, if the key `counter` does not exist, the following fragment will
 return 1000:
 
 
-```
+```ruby
 counter = couchbase.incr("counter", 1, :initial => 1000); #=> 1000
 ```
 
@@ -379,7 +379,7 @@ The following demonstrates different options available when using increment and
 the output they produce:
 
 
-```
+```ruby
 #increment key by one (default)
 
 c.incr("foo")
@@ -453,7 +453,7 @@ serialization of complex objects may lead to corruption when using `prepend`.
 For example, to prepend a string to an existing key:
 
 
-```
+```ruby
 #set inital key, foo
 
 couchbase.set("foo", "world!")
@@ -470,7 +470,7 @@ couchbase.get("foo") #=> "Hello, world!"
 Other examples of using `prepend` are as follows:
 
 
-```
+```ruby
 #simple prepend example
 
 c.set("foo", "aaa")
@@ -528,7 +528,7 @@ In Ruby, `touch` can be used to update or more keys.
 The following examples demonstrate use of `touch` with a single key:
 
 
-```
+```ruby
 #update record so no expiration (record held indefinitely long)
 
 c.touch("foo")
@@ -565,7 +565,7 @@ The following examples demonstrate use of `touch` with multiple keys, which are
 provided as a hash:
 
 
-```
+```ruby
 #update two records with 10 and 20 second expirations
 #returns hash with key and success/fail
 #{"foo" => true, "bar" => true}

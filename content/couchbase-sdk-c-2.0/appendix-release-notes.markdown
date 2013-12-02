@@ -8,7 +8,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.7 GA (10 July 2013)
 
-**New Features and Behaviour Changes in 2.0.7**
+**New Features and Behavior Changes in 2.0.7**
 
  * Improve `lcb\_get\_replica()`. Now it is possible to choose between three
    strategies:
@@ -34,7 +34,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.6 GA (07 May 2013)
 
-**New Features and Behaviour Changes in 2.0.6**
+**New Features and Behavior Changes in 2.0.6**
 
  * Added an example to properly use the bucket credentials for authentication
    instead of administrator credentials
@@ -76,7 +76,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.5 GA (05 April 2013)
 
-**New Features and Behaviour Changes in 2.0.5**
+**New Features and Behavior Changes in 2.0.5**
 
  * pillowfight example updated to optionally use threads
 
@@ -130,7 +130,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.3 GA (06 February 2013)
 
-**New Features and Behaviour Changes in 2.0.3**
+**New Features and Behavior Changes in 2.0.3**
 
  * Add a new library: libcouchbase\_debug.so (see include/libcouchbase/debug.h)
    which is a new library that contains new debug functionality.
@@ -186,7 +186,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.1 GA (11 December 2012)
 
-**New Features and Behaviour Changes in 2.0.1**
+**New Features and Behavior Changes in 2.0.1**
 
  * SystemTap and DTrace integration
 
@@ -234,7 +234,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.0 GA (27 November 2012)
 
-**New Features and Behaviour Changes in 2.0.0**
+**New Features and Behavior Changes in 2.0.0**
 
  * Add the CAS to the delete callback
 
@@ -252,7 +252,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.0beta3 Beta (21 November 2012)
 
-**New Features and Behaviour Changes in 2.0.0beta3**
+**New Features and Behavior Changes in 2.0.0beta3**
 
  * Try all known plugins for LCB\_IO\_OPS\_DEFAULT in run time
 
@@ -354,7 +354,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.0beta2 Beta (12 October 2012)
 
-**New Features and Behaviour Changes in 2.0.0beta2**
+**New Features and Behavior Changes in 2.0.0beta2**
 
  * Implement a new libev plugin. It is compatible with both libev3 and libev4.
 
@@ -394,7 +394,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
  * lcb\_create: replace assert() with error code
 
  * Breakout event loop in default error\_callback. This provides better default
-   behaviour for users who haven’t defined global error callback.
+   behavior for users who haven’t defined global error callback.
 
    *Issues* : [CCBC-105](http://www.couchbase.com/issues/browse/CCBC-105)
 
@@ -413,7 +413,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 2.0.0beta Beta (13 September 2012)
 
-**New Features and Behaviour Changes in 2.0.0beta**
+**New Features and Behavior Changes in 2.0.0beta**
 
  * Bundle Windows packages as zip archives
 
@@ -505,7 +505,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.1.0dp8 Developer Preview (27 July 2012)
 
-**New Features and Behaviour Changes in 1.1.0dp8**
+**New Features and Behavior Changes in 1.1.0dp8**
 
  * Allow the user to get the number of replicas using
    libcouchbase\_get\_num\_replicas()
@@ -572,7 +572,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.1.0dp7 Developer Preview (19 June 2012)
 
-**New Features and Behaviour Changes in 1.1.0dp7**
+**New Features and Behavior Changes in 1.1.0dp7**
 
  * Implement function to execution management requests. Using
    libcouchbase\_make\_management\_request() function you can configure the
@@ -592,7 +592,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.1.0dp6 Developer Preview (13 June 2012)
 
-**New Features and Behaviour Changes in 1.1.0dp6**
+**New Features and Behavior Changes in 1.1.0dp6**
 
  * Implement ‘help’ command for cbc tool
 
@@ -628,7 +628,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.1.0dp5 Developer Preview (06 June 2012)
 
-**New Features and Behaviour Changes in 1.1.0dp5**
+**New Features and Behavior Changes in 1.1.0dp5**
 
  * Implement ‘cbc-hash’ to get server/vbucket for given key
 
@@ -648,7 +648,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.1.0dp3 Developer Preview (03 June 2012)
 
-**New Features and Behaviour Changes in 1.1.0dp3**
+**New Features and Behavior Changes in 1.1.0dp3**
 
  * Implement GET\_LOCKED (GETL) command
 
@@ -716,7 +716,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.1.0dp Developer Preview (05 April 2012)
 
-**New Features and Behaviour Changes in 1.1.0dp**
+**New Features and Behavior Changes in 1.1.0dp**
 
  * This release adds new functionality to directly access Couchbase Server views
    using the `libcouchbase_make_couch_request()` function. See the associated

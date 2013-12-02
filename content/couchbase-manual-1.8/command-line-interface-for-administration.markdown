@@ -798,7 +798,7 @@ parameter on multiple buckets you must specify each bucket individually.
 ### cbflushctlset Command
 
 The `set` command configures a specific parameter or value within the
-persistence component. This is used to enable or configure specific behaviour
+persistence component. This is used to enable or configure specific behavior
 within the persistence system, such as disabling the client `flush_all` command
 support, or changing the watermarks used when determining keys to be evicted
 from RAM after they have been persisted.

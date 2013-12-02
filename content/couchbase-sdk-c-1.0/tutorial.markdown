@@ -8,7 +8,7 @@ program rather than how to build it.
 
 If you need to set up a server node or data bucket, you can do with the
 Couchbase Administrative Console, or Couchbase Command-Line Interface (CLI), or
-the Couchbase REST-API. For information and instructions, see:
+the Couchbase REST API. For information and instructions, see:
 
  * [Using the Couchbase Web
    Console](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-introduction.html),

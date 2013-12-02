@@ -2270,6 +2270,14 @@ detailed in the table below.
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.                       
 404                         | The requested content could not be found. The returned content will include further information, as a JSON object, if available.
 
+To get a list of design documents for a bucket, use the following with the GET request:
+
+```
+"ddocs": {
+        "uri": "/pools/default/buckets/default/ddocs" // To obtain design docs for this bucket
+    }
+```
+
 For example, to get the existing design document from the bucket `sales` for the
 design document `byfield` :
 
@@ -2419,9 +2427,7 @@ results matching the following:
    number order)
 
 View results and the parameters operate and interact in a specific order. The
-interaction directly affects how queries are written and data is selected. The
-sequence and precedence of the different parameters during queries is shown in
-**Couldn't resolve xref tag: fig-couchbase-views-querying-flow**.
+interaction directly affects how queries are written and data is selected.
 
 
 ![](images/views-query-flow.png)
@@ -2924,8 +2930,7 @@ can specify the group level to be applied to the query output when using a
 When grouping is enabled, the view output is grouped according to the key array,
 and you can specify the level within the defined array that the information is
 grouped by. You do this by specifying the index within the array by which you
-want the output grouped using the `group_level` parameter. You can see described
-in **Couldn't resolve xref tag: fig-couchbase-views-writing-querying-grouping**.
+want the output grouped using the `group_level` parameter.
 
 
 ![](images/views-grouping.png)
@@ -3223,7 +3228,7 @@ responses during a view query.
     }
     ```
 
-   You can alter this behaviour by using the `on_error` argument. The default value
+   You can alter this behavior by using the `on_error` argument. The default value
    is `continue`. If you set this value to `stop` then the view response will cease
    the moment an error occurs. The returned JSON will contain the error information
    for the node that returned the first error. For example:

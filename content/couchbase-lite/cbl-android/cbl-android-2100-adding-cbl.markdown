@@ -1,12 +1,12 @@
 ## Adding Couchbase Lite to Your Project
 
-You can add Couchbase Lite to your project by using any of the following methods:
+You can add Couchbase Lite to your Android project by using any of the following methods:
 
-* [Add a Maven dependency](#adding-a-maven-dependency).
+* [Add a Maven dependency](#adding-a-maven-dependency)
 
 * [Add a JAR file dependency](#adding-a-jar-file-dependency)
 
-* [Add the source files directly](#adding-source-files-to-your-project).
+* [Add the source files directly](#adding-source-files-to-your-project)
 
 
 ### Adding a Maven Dependency
@@ -64,7 +64,7 @@ Follow these steps to add the Maven dependency to your project:
 
 Follow these steps to add the JAR file to your project:
 
-1. Download the [1.0.0-beta release zip archive](http://qa.hq.northscale.net/job/build_cblite_android-artifacts/lastSuccessfulBuild/artifact/couchbase-lite-android/CouchbaseLiteProject/zip_release_archive.zip).
+1. Download the [latest release of Couchbase Lite for Android](http://www.couchbase.com/communities/couchbase-lite).
 
 2. Extract the .zip file to the **libs** directory.
 
@@ -78,7 +78,7 @@ Follow these steps to add the JAR file to your project:
 	}
 
 ### Adding Source Files to Your Project
-If you need to debug Couchbase Lite, you can include the Couchbase Lite code in your project rather than using a jar file or the Maven artifact dependencies . If you choose to  add the source files, make sure you remove any maven or jar file dependencies that you used previously.
+If you need to debug Couchbase Lite, you can include the Couchbase Lite code in your project rather than using a JAR file or the Maven artifact dependencies . If you choose to  add the source files, make sure you remove any maven or JAR file dependencies that you used previously.
 
 Follow these steps to add Couchbase Lite source files directly to your project:
 

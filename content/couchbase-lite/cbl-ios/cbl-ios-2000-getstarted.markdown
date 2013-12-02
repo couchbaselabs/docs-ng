@@ -19,7 +19,7 @@ Before you can build the ToDo Lite app, make sure you have the following tools i
 
 1. Download [Xcode](https://developer.apple.com/xcode/).
 
-2. Download [Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-lite) and move it to a permanent location.
+4. Download [Couchbase Lite for iOS](http://www.couchbase.com/communities/couchbase-lite) and move it to a permanent location.
 
 3. Download and install [Git](http://git-scm.com).
 

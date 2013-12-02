@@ -8,7 +8,7 @@ Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
 ## Release Notes for Couchbase Client Library.NET 1.1.6 GA (07 June 2012)
 
-**New Features and Behaviour Changes in 1.1.6**
+**New Features and Behavior Changes in 1.1.6**
 
  * The 1.1.6 release of the Couchbase.NET Client library is a build only change,
    providing signed assemblies for both Couchbase.dll and Enyim.Caching.dll. The
@@ -21,7 +21,7 @@ Client Library.NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 These updates includes minor bugfixes to release (.92) as well as an upgrade to
 the current release of Enyim.Memcached (2.15)
 
-**New Features and Behaviour Changes in 1.1.5**
+**New Features and Behavior Changes in 1.1.5**
 
  * The 1.1.5 release of the Couchbase.NET Client library includes fixes for issues
    NCBC-42, NCBC-43 and NCBC-49. With this release, client bootstrapping is now
@@ -55,7 +55,7 @@ the current release of Enyim.Memcached (2.15)
 
 ## Release Notes for Couchbase Client Library.NET 1.1.0 GA (02 May 2012)
 
-**New Features and Behaviour Changes in 1.1.0**
+**New Features and Behavior Changes in 1.1.0**
 
  * The 1.1 release of the.NET Client Library contains a series of new API methods
    designed to provide developers with more details about the success or failure of

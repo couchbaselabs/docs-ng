@@ -159,7 +159,7 @@ for the later is 2. They can be queried like this:
 
 
 ```
-shell> curl -s 'http://Administrator:asdasd@localhost:9000/settings/maxParallelIndexers'
+shell> curl -s 'http://Administrator:asdasd@localhost:8091/settings/maxParallelIndexers'
 {"globalValue":4,"nodes":{"n_0@192.168.1.80":4}}
 ```
 
@@ -539,7 +539,7 @@ The documents included in each row don't match the value field of each row, that
 is, the documents included are the latest (updated) versions but the index row
 values still reflect the previous (first) version of the documents.
 
-Why this behaviour? Well, `include_docs=true` works by at query time, for each
+Why this behavior? Well, `include_docs=true` works by at query time, for each
 row, to fetch from disk the latest revision of each document. There's no way to
 include a previous revision of a document. Previous revisions are not accessible
 through the latest vbucket databases MVCC snapshots (
@@ -553,7 +553,7 @@ The only way to ensure full consistency here is to include the documents
 themselves in the values emitted by the map function. Queries with `stale=false`
 are not 100% reliable either, as just after the index is updated and while rows
 are being streamed from disk to the client, document updates and deletes can
-still happen, resulting in the same behaviour as in the given example.
+still happen, resulting in the same behavior as in the given example.
 
 <a id="couchbase-views-debugging-expired"></a>
 
@@ -747,7 +747,7 @@ following URL:
 
 
 ```
-shell> curl -s http://localhost:9000/pools/default/buckets |
+shell> curl -s http://localhost:8091/pools/default/buckets |
   json_xs
  [
     {

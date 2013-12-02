@@ -157,25 +157,27 @@ The following describes optional clauses you can use in your select statement:
          "hobbies":["surfing"]
         }
         
-You can perform query with `FROM` and `AS` to get any children from the first contact retrieved:
-
+    You can perform a query with `FROM` and `AS` to get the name of the first child listed in each document in the contacts bucket:
+    
         SELECT children[0].name AS kid
         	FROM contacts
         	
-This will return a result as follows:
+    This will return a result as follows:
     
-    "resultset": [
-       {
-         "kid": "bill"
-       },
-       ....
-       ]
+        "resultset": [
+           {
+             "kid": "xena"
+           },
+           ....
+           ]
+
 
     Another way to use the `FROM` clause is to specify a path within a bucket as `data-source`. The path refers to an array in the your documents. With this option, the server evaluates the path for each document in the data bucket and the value at that path becomes an input for the query. For example, you have a data bucket named `contacts` which has documents that describes each contact in a system. Each document has an array called `address`. To get all addresses as input for a query, you use this clause:
 
         FROM contacts.address
 
-    This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, that contact will not be part of the query input.    
+
+	This will get all address fields from all contacts in the data bucket. If the address field does not exist for a contact, that contact will not be part of the query input.    
 
 * **OVER** - This clause can optionally follow a `FROM` clause. This will iterate over attributes within a specified document array. The array elements by this clause will then become input for further query operations. For example, imagine you have a document as follows and you want to get all published reviewers for the beer:
 
@@ -690,7 +692,7 @@ Given a customer order document with the following information:
 The following comparison terms are available in N1QL:
 
 | Comparison | Description | Returns | 
-| -------- |:----:| -----:|
+| -------- |----| -----|
 | = | Equals to | TRUE or FALSE |
 | == | Equals to | TRUE or FALSE |
 | != | Not equal to | TRUE or FALSE |
@@ -714,7 +716,7 @@ The following comparison terms are available in N1QL:
 The following are the arithmetic operations in N1QL. These operators only function on numeric values. If either operand is non-numeric, and expression will evaluate to NULL.
 
 | Operator | Description |
-| -------- | -----:|
+| -------- | -----|
 | + | Add items 
 | - | Subtract right value from left 
 | * | Multiply values 
@@ -755,7 +757,7 @@ Aggregate functions include SUM, AVG, COUNT, MIN, MAX and ARRAY_AGG. Aggregate f
 You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you use an aggregate function in a clause with these commands, the query will act as an aggregate query. 
 
 | Function | Description | Returns | Example | 
-| ------------- |:-------------:| -----:|-----:|
+| ------------- |-------------| -----|-----|
 | COUNT(expr) | Returns the number items in a result set | 0 or positive integer |  |
 | MIN(expr) | Returns minimum value of all values in a result set. This is the first non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer, NULL if no non-NULL, non-MISSING items in result set |  |
 | MAX(expr) | Returns maximum value of all values in a result set. This is the last non-NULL, non-MISSING value that would result from an ORDER BY | 0 or positive integer |  |
@@ -768,9 +770,10 @@ You can use aggregate functions in SELECT, HAVING and ORDER BY clauses. When you
 These functions will return a single value based on the items in a result set. The following are scalar functions in N1QL:
 
 |Function | Description | Returns | Example |
-|--------- |:------------:| -----:|--------:|
+|--------- |------------| -----|--------|
 | BASE64_VALUE(value) | Return the value encoded in base64. can be used on work with non-JSON values stored in the bucket. | value | 
 | CEIL(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
+| DATE_PART('field', source) | Retrieves subfields such as year or hour from date/time values. source must be a value expression of type timestamp, time, or interval | value |  SELECT date_part('hour', INTERVAL '4 hours 3 minutes')
 | FIRSTNUM(expr1, expr2, ...) | Returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric value | NULL or integer |  
 | FLOOR(value) | If numeric values, return the smallest integer no less than this value. Otherwise NULL | NULL or integer |  
 | GREATEST(expr, expr, ....) | Returns greatest value from all expressions provided. Otherwise NULL if values NULL or MISSING | value |  
@@ -789,19 +792,20 @@ These functions will return a single value based on the items in a result set. T
 | META() | Returns metadata for the document | value | 
 | MISSINGIF(value1, value2) | If value1 equals value2 return MISSING, otherwise value1 | value | 
 | NANIF(value1, value2) | If value1 equals value2, return NaN, otherwise value1 | value1 or NaN |  
-|   NEGINFIF(value1, value2) | If value1 equals value2, return negative infinity, otherwise value1 | value1 or -infinity |  
+|   NEGINFIF(value1, value2) | If value1 equals value2, return negative infinity, otherwise value1 | value1 or -infinity | 
+|   NOW_STR | Returns current date and time as a String value | value |   
 |   NULLIF( value1, value2 ) | If valuel 1 equals value2, return NULL, otherwise value1. | value1 or NULL | 
 |  POSINFIF(value1, value2) | If value1 equals value2, return positive infinity, otherwise value1 | value1 or +infinity |  
 |   ROUND( value ) | If value is numeric, round to nearest integer, otherwise NULL. Functional equivalent of `ROUND(value, 0)` | integer or NULL |   
 |   ROUND( value, digits ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL |   
-|   RTRIM( expr, charset ) | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | integer or NULL |   
+|   RTRIM( expr, charset ) | Remove the longest string containing only the characters in the specified character set starting at the end| string or NULL |   
 |   SUBSTR( value, position ) | For value of string and position numeric, returns substring from position to end of string. String position starts at 1. If position 0, starts at position 1 nonetheless. If negative position, characters are counted from the end of string. Otherwise returns NULL. | string or NULL |   
 |   SUBSTR( value, position, length ) | If length is positive integer, returns substring starting at position up to length characters. Otherwise NULL | string or NULL |   
 |   TRIM( expr, charset ) | Functional equivalent of LTRIM(RTRIM(expr, charset)) | string or NULL |   
 |   TRUNC( value ) | If numeric value, truncates towards zero. Functional equivalent of TRUNC(value, 0). Otherwise returns NULL | integer or NULL |   
 |   TRUNC( value, digits ) | If digits an integer and value numeric, truncates value to the specific number of digits. Otherwise returns NULL | integer or NULL |   
 |   UPPER( expr ) | If expr a string, return it in all uppercase letters. Otherwise NULL | string or NULL |   
-|   VALUE() | If digits an integer and value numeric, rounds the value up to the number of digits. Otherwise returns NULL | value or NULL |   
+|   VALUE() | Returns the full value for the item in the current context| value or NULL |   
 
 <a id="reserved_words"></a>
 ## Reserved Words

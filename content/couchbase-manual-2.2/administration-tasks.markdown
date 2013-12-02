@@ -114,7 +114,7 @@ For more information about Web Console or REST API, see [Using the Web Console](
 
 ## Using Multi- Readers and Writers
 
-As of Couchbase Server 2.1, we support multiple readers and writers to persist
+Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each bucket instance
 had only single disk reader and writer workers. By default this is set to three
 total workers per data bucket, with two reader workers and one writer worker for
@@ -227,7 +227,7 @@ Monitoring](#couchbase-admin-web-console-data-buckets-individual).
 **Changing Readers and Writers for Existing Buckets**
 
 You can change this setting after you create a data bucket in Web Console or
-REST-API. If you do so, the bucket will be re-started and will go through server
+REST API. If you do so, the bucket will be re-started and will go through server
 warmup before it becomes available. For more information about warmup, see
 [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
 
@@ -438,12 +438,17 @@ to filter for the information:
 
 Here the `localhost:11210` is the host name and default memcached port for a
 given node and `beer_sample` is a named bucket for the node. If you do not
-specify a bucket name, the command will apply to any existing default bucket for
-the node.
+specify a bucket name, the command will apply to any existing default bucket for the node.
 
-ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ep\_warmup\_state  | * Indicates the current progress of the warmup: **Initial**. Start warmup processes.  * **EstimateDatabaseItemCount**. Estimating database item count.  * **KeyDump**. Begin loading keys and metadata based, but not documents, into RAM.  * **CheckForAccessLog**. Determine if an access log is available. This log indicates which keys have been frequently read or written.  * **LoadingAccessLog**. Load information from access log.  * **LoadingData**. This indicates the server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  * **Done**. Server is ready to handle read and write requests.
+* **ep\_warmup\_thread** - Indicates whether the warmup completed or is still running. Returns "running" or "complete". 
+* **ep\_warmup\_state** - Indicates the current progress of the warmup:   
+	* Initial - Start warmup processes.  
+	* EstimateDatabaseItemCount - Estimate database item count.  
+	* KeyDump - Begin loading keys and metadata based, but not documents, into RAM.  
+	* CheckForAccessLog - Determine if an access log is available. This log indicates which keys have been frequently read or written.  
+	* LoadingAccessLog - Load information from access log.  
+	* LoadingData* - The server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  
+	* Done - The server is ready to handle read and write requests.
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -576,7 +581,7 @@ fetched from disk. Once replica data is enabled at the second node, Couchbase
 Server updates a map indicating where the data should be retrieved, and the
 server shares this information with client applications. Client applications can
 then get the replica data from the functioning node. For more information about
-node failure and failover, see [Failing Over
+node failure and failover, see [Failover
 Nodes](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-admin-creating-replicas-for-buckets"></a>
@@ -752,7 +757,7 @@ Server 2.0+, we recommend that you remain using the defaults provided.
 
 The process that periodically runs and removes documents from RAM is known as
 the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting inactive replica data from RAM on the node. If the
+process starts ejecting replica data from RAM on the node. If the
 amount of RAM used by items reaches an upper threshold, known as the *high water
 mark*, both replica data and active data written from clients will be ejected.
 The item pager will continue to eject items from RAM until the amount of RAM
@@ -817,8 +822,7 @@ reclaim disk space and reduce fragmentation.
 
 **How it works**
 
-Couchbase compacts views and data files. For database compaction, a new file is
-created into which the active index information is written. Meanwhile, the
+Couchbase compacts views and data files. For database compaction, a new file is created into which the active (non-stale) information is written. Meanwhile, the
 existing database files stay in place and continue to be used for storing
 information and updating the index data. This process ensures that the database
 continues to be available while compaction takes place. Once compaction is
@@ -917,8 +921,7 @@ both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
 Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually. For more information, see **Couldn't resolve xref tag:
-couchbase-admin-tasks-compaction-spatial**.
+compacted manually.
 
 Auto-compaction can be configured in two ways:
 
@@ -1056,7 +1059,7 @@ You want to consider the following:
 
 <a id="couchbase-admin-tasks-failover"></a>
 
-## Failing Over Nodes
+## Failover Nodes
 
 If a node in a cluster is unable to serve data you can *failover* that node.
 Failover means that Couchbase Server removes the node from a cluster and makes
@@ -1101,9 +1104,7 @@ completes. At this point, other nodes in the cluster will handle data requests.
 There is therefore no disruption in data service or no loss of data that can
 occur when you remove a node then rebalance the cluster. If you need to remove a
 functioning node for administration purposes, you should use the remove and
-rebalance functionality not failover. See [Performing a Rebalance, Adding a Node
-to a
-Cluster](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-addremove-rebalance.html).
+rebalance functionality not failover.
 
 If you try to failover a functioning node it may result in data loss. This is
 because failover will immediately remove the node from the cluster and any data
@@ -1236,7 +1237,7 @@ failover is not without potential problems.
 
  * **External monitoring**
 
-   [Another option is to have a system monitoring the cluster via theManagement
+   [Another option is to have a system monitoring the cluster via the Management
    REST API](#couchbase-admin-restapi). Such an external system is in a good
    position to failover nodes because it can take into account system components
    that are outside the scope of Couchbase Server.
@@ -1697,7 +1698,7 @@ There are a number of methods for performing a backup:
    For more information, see [Backing Up Using File
    Copies](#couchbase-backup-restore-backup-filecopy).
 
-   [To restore, you need to use thefile copy](#couchbase-backup-restore-filecopy)
+   [To restore, you need to use the file copy](#couchbase-backup-restore-filecopy)
    method.
 
 Due to the active nature of Couchbase Server it is impossible to create a
@@ -2146,6 +2147,11 @@ Where:
       Specify the name of the bucket the data will be written to. If this option is
       not specified, the data will be written to a bucket with the same name as the
       source bucket.
+    
+    * `--add`
+      
+      Use `--add` instead of `--set` in order to not overwrite existing items in the destination.
+
 
    For information on all the options available when using `cbrestore`, see
    [cbrestore Tool](#couchbase-admin-cmdline-cbrestore)
@@ -2722,7 +2728,7 @@ be updated or upgraded.
 
 Before you remove a node from the cluster, you should ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, seeChoosing when to shrink your cluster.
+more information on the considerations, see Choosing when to shrink your cluster.
 For the best results, use swap rebalance to swap the node you want to remove
 out, and swap in a replacement node. For more information on swap rebalance, see
 [Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
@@ -2901,7 +2907,7 @@ The benefits of swap rebalance are:
    the capacity of the cluster remains unchanged during the rebalance operation,
    helping to ensure performance and failover support.
 
-The behaviour of the cluster during a failover and rebalance operation with the
+The behavior of the cluster during a failover and rebalance operation with the
 swap rebalance functionality affects the following situations:
 
  * **Stopping a rebalance**
@@ -2931,7 +2937,7 @@ swap rebalance functionality affects the following situations:
 You should monitor the system during and immediately after a rebalance operation
 until you are confident that replication has completed successfully.
 
-As of Couchbase Server 2.1+ we provide a detailed rebalance report in Web
+A detailed rebalance report is available in the Web
 Console. As the server moves vBuckets within the cluster, Web Console provides a
 detailed report. You can view the same statistics in this report via a REST API
 call, see [Getting Rebalance
@@ -3403,11 +3409,11 @@ Get](ttp://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-se
 For more information about creating  buckets via the REST API, see [Creating and
 Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
 
-###Set Source and Destination Clusters
+### Set Source and Destination Clusters
 
-To create a uni-directional replication (i.e. from cluster A to cluster B):
+To create a unidirectional replication (from cluster A to cluster B):
 
- 1. Check and ensure that a destination bucket exists on the cluster to which you
+ 1. Check to ensure that a destination bucket exists on the cluster to which you
     will be replicating. To do so, perform this REST API request:
 
      ```
@@ -3431,7 +3437,7 @@ To create a uni-directional replication (i.e. from cluster A to cluster B):
     
 <a id="admin-tasks-xdcr-new-replication"></a>
     
-###Create New Replication
+### Create New Replication
 
 After you create references to the source and destination, you can create a replication 
 between the clusters in Couchbase Web Console. 
@@ -3459,30 +3465,34 @@ current status and list of replications in the `Ongoing Replications` section:
 
 <a id="admin-tasks-xdcr-advanced"></a>
 
-###Providing XDCR Advanced Settings
+### Providing XDCR Advanced Settings
 
-As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST-API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
+As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
-If you change want the replication protocol for an existing XDCR replication, you need to delete the replication, then re-create the replication with your preference.
+If you want to change the replication protocol for an existing XDCR replication, you need to delete the replication and then re-create the replication with your preference.
 
-1. In the `Create Replication` panel, click `Advanced Settings`.
-    Additional options appear in the panel.
+1. In the Create Replication panel, click **Advanced settings**.  
     
-![](images/create_rep_xdcr_advance2.2.png)
-        
-2. For `XDCR Protocol` select Version 1 or Version 2. This defaults to Version 2. You can also change this setting via the REST-API for XDCR internal settings we provide above or in Couchbase Server 2.2+, you can use  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+     ![](images/create_rep_xdcr_advance2.2.png)
+       
+2. Under Advanced settings, choose an XDCR Protocol version.
 
-    - Version 1 - uses the REST protocol for replication. This increases XDCR throughput at destination clusters.
+	Beginning with Couchbase Server 2.2, the XDCR Protocol defaults to version 2. 
+	
+	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plug-in, which depends on XDCR, choose version 1.
     
-    - Version 2 - uses memcached REST protocol for replication. If you use the Elastic Search plugin which depends on XDCR, you must use this protocol.
+	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
+
+	You can also change this setting via the REST API for XDCR internal settings or the  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+	
+	For more information about XDCR, see [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality). For more information about Elasticsearch, see 
+    [Couchbase Elasticsearch Guide](http://docs.couchbase.com/couchbase-elastic-search/).
     
-    See also, [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality) and for more information on Elastic Search, see 
-    [Couchbase Elastic Search Guide](http://docs.couchbase.com/couchbase-elastic-search/).
     
 3. Provide any changes for internal XDCR settings. You can also change these settings plus additional internal settings via the REST API. 
     
     How you adjust these variables differs based on what whether you want to perform
-    uni-directional or bi-directional replication between clusters. Other factors
+    unidirectional or bidirectional replication between clusters. Other factors
     for consideration include intensity of read/write operations on your clusters,
     the rate of disk persistence on your destination cluster, and your system
     environment. Changing these parameters will impact performance of your clusters
@@ -3509,7 +3519,7 @@ If you change want the replication protocol for an existing XDCR replication, yo
 
       Changing this to a smaller value could impact cluster operations when you have
       significant amount of write operations on a destination cluster and you are
-      performing bi-directional replication with XDCR. For instance, if you set this
+      performing bidirectional replication with XDCR. For instance, if you set this
       to 5 minutes, the incoming batches of data via XDCR replication will take
       priority in the disk write queue over incoming write workload for a destination
       cluster. This may result in the problem of having an ever growing disk-write
@@ -3526,19 +3536,19 @@ If you change want the replication protocol for an existing XDCR replication, yo
       or 3 times will improve overall replication performance as long as persistence
       to disk is fast enough on the destination cluster. Note however that this can
       have a negative impact on the destination cluster if you are performing
-      bi-directional replication between two clusters and the destination already
+      bidirectional replication between two clusters and the destination already
       handles a significant volume of reads/writes.
 
     - `XDCR Batch Size (KB)`
 
-      Document batching size, 10 to 100000 (kB). Default 2048. In general, increasing
+      Document batching size, 10 to 100000 (KB). Default 2048. In general, increasing
       this value by 2 or 3 times will improve XDCR transmissions rates, since larger
       batches of data will be sent in the same timed interval. For unidirectional
       replication from a source to a destination cluster, adjusting this setting by 2
       or 3 times will improve overall replication performance as long as persistence
       to disk is fast enough on the destination cluster. Note however that this can
       have a negative impact on the destination cluster if you are performing
-      bi-directional replication between two clusters and the destination already
+      bidirectional replication between two clusters and the destination already
       handles a significant volume of reads/writes.
 
     - `XDCR Failure Retry Interval`
@@ -3559,7 +3569,7 @@ If you change want the replication protocol for an existing XDCR replication, yo
 
 After you create the replication or update the setting, you can view or edit them once again by clicking Settings in Outgoing Replications.
 
-**Configuring Bi-Directional Replication**
+**Configuring Bidirectional Replication**
 
 Replication is unidirectional from one cluster to another. To configure
 bidirectional replication between two clusters, you need to provide settings for
@@ -3569,7 +3579,7 @@ configure a bidirectional replication:
 
  1. Create a replication from Cluster A to Cluster B on Cluster A.
 
- 1. Create a replication from Cluster B to Cluster A on Cluster B.
+ 2. Create a replication from Cluster B to Cluster A on Cluster B.
 
 You do not need identical topologies for both clusters; you can have a different
 number of nodes in each cluster, and different RAM and persistence
@@ -3598,7 +3608,7 @@ to. Therefore, when you view the console from a particular cluster, it will
 display any replications configured, or replications in progress for that
 particular source cluster. If you want to view information about replications at
 a destination cluster, you need to open the console at that cluster. Therefore,
-when you configure bi-directional you should use the web consoles that belong to
+when you configure bidirectional you should use the web consoles that belong to
 source and destination clusters to monitor both clusters.
 
 To see statistics on incoming and outgoing replications via XDCR see the
@@ -3668,7 +3678,7 @@ active will be displayed within the `Past Replications` section of the
    reduce CPU usage at destination clusters during replication.
 
    You can configure XDCR to operate via the new XMEM mode, which is the default or use CAPI
-   mode. To do so, you use Couchbase Web Console or the REST-API and change the setting for
+   mode. To do so, you use Couchbase Web Console or the REST API and change the setting for
    `xdcr_replication_mode`, see [Changing Internal XDCR
    Settings](#couchbase-admin-restapi-xdcr-change-settings).
 
@@ -3713,10 +3723,18 @@ active will be displayed within the `Past Replications` section of the
 ### Upgrading with XDCR
 
 As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem` which performs
- replication on a destination cluster with the memcached prototocol. This is the default mode for 
+ replication on a destination cluster with the memcached protocol. This is the default mode for 
  replications for Couchbase Server 2.2+. The other mode which exists is known as `capi` and is over 
- a REST protocol. When you upgrade Couchbase Server you need to make sure that both 
- your source and destination clusters support the replication mode you want to use. You may also need to delete the replication, complete the upgrade, then recreate the replication. If you do not, you could experience data loss during replication:
+ a REST protocol. 
+ 
+ These are pre-requistes that needs to be considered:
+ 
+ 1. When you upgrade Couchbase Server you need to make sure that both 
+ your source and destination clusters support the replication mode you want to use. 
+ 2. Network port 11210 needs to be open between nodes for 'xmem' mode of replication to work.
+ 3. You may also need to delete the replication, complete the upgrade, then recreate the replication. 
+ 
+ If you do not, you could experience data loss during replication:
  
  - `xmem` - only 2.2 servers and above support it.
  - `capi` - both 2.2 and pre-2.2 servers support it.
@@ -3789,8 +3807,8 @@ independently reach a consistent decision on which document wins.
 
 ### 'Optimistic Replication' in XDCR
 
-In Couchbase 2.1 you can also tune the performance of XDCR with a new parameter,
-`xdcrOptimisticReplicationThreshold`. By default XDCR gets metadata twice for
+XDCR can be tuned the performance of XDCR with the
+`xdcrOptimisticReplicationThreshold` parameter. By default, XDCR gets metadata twice for
 documents over 256 bytes before it performs conflict resolution for at a
 destination cluster. If the document fails conflict resolution it will be
 discarded at the destination cluster.
@@ -3820,7 +3838,7 @@ number of parallel replicators. This may increase the number of documents sent
 by XDCR which ultimately 'lose' conflicts at the destination which wastes
 network bandwidth.
 
-As of Couchbase Server 2.1, XDCR will not fetch metadata for documents that are
+**Note**: XDCR does not fetch metadata for documents that are
 deleted.
 
 **Changing the Document Threshold**
@@ -3868,7 +3886,7 @@ Replication (XDCR)](#couchbase-admin-tasks-xdcr).
 
 ### Changing XDCR Settings
 
-Besides Couchbase Web Console, you can use several Couchbase REST-API endpoints
+Besides Couchbase Web Console, you can use several Couchbase REST API endpoints
 to modify XDCRsettings. Some of these settings are references used in XDCR and
 some of these settings will change XDCR behavior or performance:
 
@@ -3912,7 +3930,7 @@ operation on every node in the cluster.
  * By server setting:
 
     ```
-    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:9000/diag/eval \
+    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
                           -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
     ```
 
@@ -4044,7 +4062,7 @@ To change the disk path of the existing node, the recommended sequence is:
 
  1. Configure the new disk path, either by using the REST API (see [Configuring
     Index Path for a Node](#couchbase-admin-restapi-provisioning-diskpath) ), using
-    the command-line (seecluster initializationfor more information).
+    the command-line (see cluster initialization for more information).
 
     Alternatively, connect to the Web UI of the new node, and follow the setup
     process to configure the disk path (see [Initial Server

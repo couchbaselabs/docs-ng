@@ -175,7 +175,7 @@ Option                               | Command                                  
 `--bucket-ramsize=RAMSIZEMB`         | `bucket*`                                 | RAM quota in MB                                                                                 
 `--bucket-replica=COUNT`             | `bucket*`                                 | Replication count                                                                               
 
-You can also perform many of these same settings using the REST-API, see [Using
+You can also perform many of these same settings using the REST API, see [Using
 the REST API](#couchbase-admin-restapi).
 
 <a id="couchbase-admin-cli-flushing"></a>
@@ -1093,7 +1093,7 @@ To disable flushing a data bucket:
 shell> ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
 ```
 
-You can initiate the flush via the REST-API. For information about changing this
+You can initiate the flush via the REST API. For information about changing this
 setting in the Web Console, see [Viewing Data
 Buckets](#couchbase-admin-web-console-data-buckets). For information about
 flushing data buckets via REST, see [Flushing a
@@ -1671,7 +1671,7 @@ that node:
 
 
 ```
-shell> ./cbworkloadgen -n 10.17.30.161:9000 -u Administrator -p password
+shell> ./cbworkloadgen -n 10.17.30.161:8091 -u Administrator -p password
 ```
 
 Will produce a result similar to the following if successful:

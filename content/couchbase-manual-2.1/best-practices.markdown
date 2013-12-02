@@ -33,13 +33,13 @@ Cloud](#couchbase-bestpractice-cloud).
 
     * It is a trade off between reliability and efficiency.
 
- * [Moxi: We always prefer a client-side moxi (or a smart client) over a
+ * Couchbase prefers a client-side moxi (or a smart client) over a
    server-side moxi. However, for development environments or for faster, easier
-   deployments, you can use server-side moxis. We don't recommend server-side moxi
-   because of the drawback: if a server receives a client request and doesn't have
-   the requested data, there's an additional hop. Read more about clients
-   [here](http://www.couchbase.com/develop). Read more about different Deployment
-   Strategieshere](#couchbase-deployment).
+   deployments, you can use server-side moxis. A server-side moxi is not recommended
+   because of the following drawback: if a server receives a client request and doesn't have
+   the requested data, there's an additional hop. See 
+   [client development](http://www.couchbase.com/develop) and [Deployment
+   Strategies](#couchbase-deployment) for more information.
 
  * Number of cores: Couchbase is relatively more memory or I/O bound than is CPU
    bound. However, Couchbase is more efficient on machines that have at least two
@@ -149,7 +149,7 @@ Constant                                                                        
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
-headroomThe cluster needs additonal overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
+headroom The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
 High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 70%.                                                                                                                                                                                                  
 
 This is a rough guideline to size your cluster:
@@ -360,7 +360,7 @@ primary concerns for your servers, here is what we recommend:
       throughput.
 
  * Network: Most configurations will work with Gigabit Ethernet interfaces. Faster
-   solutions such as 10GBit and Inifiniband will provide spare capacity.
+   solutions such as 10GBit and Infiniband will provide spare capacity.
 
 <a id="couchbase-bestpractice-sizing-cloud"></a>
 
@@ -446,11 +446,10 @@ following:
    high values mean that data that your application expects to be stored is not in
    memory.
 
-[The water mark is another key statistic to monitor cluster performance. The
+The water mark is another key statistic to monitor cluster performance. The
 'water mark' determines when it is necessary to start freeing up available
-memory. Read more about this
-concepthere](#couchbase-introduction-architecture-diskstorage). Here are two
-important statistics related to water marks:
+memory. See [disk storage](#couchbase-introduction-architecture-diskstorage) 
+for more information. Two important statistics related to water marks include:
 
  * High Water Mark ( `ep_mem_high_wat` )
 
@@ -676,7 +675,7 @@ your host.
 
 As a rule, you should set the hostname before you add a node to a cluster. You
 can also provide a hostname in these ways: when you install a Couchbase Server
-2.1 node or when you do a REST-API call before the node is part of a cluster.
+2.1 node or when you do a REST API call before the node is part of a cluster.
 You can also add a hostname to an existing cluster for an online upgrade. If you
 restart, any hostname you establish with one of these methods will be used. For
 instructions, see [Using Hostnames with Couchbase
@@ -704,42 +703,28 @@ taken to restrict access.
 
 ### Swap Space
 
-Swap space in Linux is used when the physical memory (RAM) is full. If the
+On Linux, swap space is used when the physical memory (RAM) is full. If the
 system needs more memory resources and the RAM is full, inactive pages in memory
-are moved to the swap space. From a range of 0 to 100, swappiness indicates how
-frequently a system should use swap space based on RAM usage. We recommend the
-following for swap space:
+are moved to the swap space. Swappiness indicates how
+frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
- * By default on most Linux platforms, swapiness is set to 60. However this will
-   make a system go into swap too frequently for Couchbase Server.
-
- * If you use Couchbase Server 2.0+ without views, we recommend setting swappiness
-   of 10 to avoid going into swap too frequently.
-
- * If you use Couchbase Server 2.0+ with views, we recommend setting swappiness to
-   0 or else your system swap usage will be far too high.
-
- * Certain cloud systems by default do not have a swap partition configured. If you
-   are using views, we recommend setting swappiness to 0. If you are not using
-   views, you can set this to 10.
-
-To view the currently set swappiness on your system, enter this:
+<p style="border-style:solid;padding:10px;width:90%;margin:0 auto;border-color:red">
+<strong>Recommendation</strong>:
+For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
+</p>  
 
 
-```
-sysctl vm.swappiness
-```
+To change the swap configuration:
 
-Or you can use this command:
+1. Execute ```cat /proc/sys/vm/swappiness``` on each node to determine the current swap usage configuration.
+2. Execute ```sudo sysctl vm.swappiness=0``` to immediately change the swap configuration and ensure that it persists through server restarts.
+3.  Using sudo or root user privileges, edit the kernel parameters configuration file, ```/etc/sysctl.conf```, so that the change is always in effect.
+4. Append ```vm.swappiness = 0``` to the file.
+5. Reboot your system.
 
+**Note**: 
+Executing ```sudo sysctl vm.swappiness=0``` ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, ```sysctl.conf```, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.
 
-```
-cat /proc/sys/vm/swappiness
-```
-
-To change the swappiness, edit `/etc/sysctl.conf` and add `vm.swappiness` at the
-end of the file. After you save this and reboot your system, this setting will
-be used.
 
 <a id="couchbase-deployment"></a>
 

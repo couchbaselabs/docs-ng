@@ -8,7 +8,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.0.7 GA (12 October 2012)
 
-**New Features and Behaviour Changes in 1.0.7**
+**New Features and Behavior Changes in 1.0.7**
 
  * Extract cbc tool into separate package (DEB/RPM) with -bin suffix.
 
@@ -133,7 +133,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 ## Release Notes for Couchbase Client Library C 1.0.0 GA (22 January 2012)
 
-**New Features and Behaviour Changes in 1.0.0**
+**New Features and Behavior Changes in 1.0.0**
 
  * This is the first stable release of the Couchbase C Client Library. It is a
    callback based C client library designed to work with Couchbase Server. It is

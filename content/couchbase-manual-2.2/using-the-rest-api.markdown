@@ -8,7 +8,7 @@ constraints, in other words, the REST API follows a **RESTful** architecture.
 You use the REST API to manage clusters, server nodes, and buckets, and to
 retrieve run-time statistics within your Couchbase Server deployment. If you
 want to develop your own Couchbase-compatible SDK, you will also use the
-REST-API within your library to handle *views*. Views enable you to index and
+REST API within your library to handle *views*. Views enable you to index and
 query data based on functions you define. For more information about views, see
 [Views and Indexes](#couchbase-views).
 
@@ -167,7 +167,7 @@ you would use for a REST API request. This is especially for administrative
 tasks such as creating a new bucket, adding a node to a cluster, or changing
 cluster settings.
 
-[For a list of supported browsers, seeSystem
+[For a list of supported browsers, see System
 Requirements](#couchbase-getting-started-prepare). For the Couchbase Web
 Console, a separate UI hierarchy is served from each node of the system (though
 asking for the root "/" would likely return a redirect to the user agent). To
@@ -176,7 +176,7 @@ port, for instance on your development machine: `http://localhost:8091`
 
 The operation and interface for the console is described in [Using the Web
 Console](#couchbase-admin-web-console). For most of the administrative
-operations described in this chapter for the REST-API, you can perform the
+operations described in this chapter for the REST API, you can perform the
 functional equivalent in Couchbase Web Console.
 
 <a id="couchbase-restapi-read-only-user"></a>
@@ -187,8 +187,11 @@ For more information about this type of user, see [Read-Only Users](#couchbase-a
 
 To create a read-only user, you need administrative access:
 
-    curl -X POST -u admin:password /settings/readOnlyUser -d username=a_name  -d password=a_passwword 
+    curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=a_password 
     
+Replace the *admin*, *password*, *localhost*, *a_name*, and *a_password*
+values in the above example with your actual values.
+
 Upon success, you will get this response:
 
     success: 200 | []
@@ -210,20 +213,21 @@ A `username` is a UTF-8 string that does not contain spaces, control characters 
 
 To change the password for a read-only user:
 
-    curl -X POST -u admin:password /settings/readOnlyUser -d password=new_password
+    curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=new_password
 
 To delete this user:
 
-    curl -X DELETE -u admin:password /settings/readOnlyUser 
+    curl -X DELETE -u admin:password http://localhost:8091/settings/readOnlyUser 
 
 To get the read-only username, you can have administrative or read-only permissions:
 
-    curl -u username:password  /settings/readOnlyAdminName
-    
+    curl -u username:password  http://localhost:8091/settings/readOnlyAdminName
+
+Replace the *admin*, *password*, *localhost*, *username*, *a_name*, and
+*new_password* values in the above examples with your actual values.
+
 This will return a response with the read-only username as payload, `success: 200 | "username"`. If there is no 
 read-only user you will get this error `not found: 404`.
-
-
 
 <a id="couchbase-admin-restapi-node-management"></a>
 
@@ -232,13 +236,13 @@ read-only user you will get this error `not found: 404`.
 A Couchbase Server instance, also known as 'node', is a physical or virtual
 machine running Couchbase Server. Each node is as a member of a cluster.
 
-To view information about nodes that exist in a Couchbase Cluster, you use this
-request:
+To view information about nodes that exist in a Couchbase Cluster, you use
+this request:
 
+    curl -u admin:password http://localhost:8091/pools/nodes
 
-```
-> curl -u admin:password 10.4.2.4:8091/pools/nodes
-```
+Replace *admin*, *password*, and *localhost* values in the above example with
+your actual values.
 
 Couchbase server returns this response in JSON:
 
@@ -321,14 +325,13 @@ Couchbase server returns this response in JSON:
 To retrieve statistics about a node, you can first retrieve a list of nodes in a
 cluster with this request:
 
+    curl -u admin:password http://localhost:8091/pools/default/buckets/default/nodes
 
-```
-> curl -u Admin:password http://10.4.2.4:8091/pools/default/buckets/default/nodes
-```
-
+Replace the *admin*, *password*, and values in the above example with your
+actual values.
+    
 You can send this request using the IP address and port for any node in the
 cluster. This sends the following HTTP request:
-
 
 ```
 GET /pools/default/buckets/default/nodes HTTP/1.1
@@ -339,7 +342,6 @@ Accept: */*
 
 If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
-
 
 ```
 {"servers":[
@@ -353,13 +355,12 @@ similar to the following example:
 You can then make a REST request to the specific IP address and port of given
 node shown in the response and add `/stats` as the endpoint:
 
+    curl -u admin:password http://10.4.2.4:8091/pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats
 
-```
-> curl -u Administrator:password http://10.4.2.4:8091/pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats
-```
-
+Replace the *admin*, *password*, and *10.4.2.4* values in the above example
+with your actual values.
+    
 This sends the following HTTP request:
-
 
 ```
 GET /pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats HTTP/1.1
@@ -368,9 +369,8 @@ Host: 10.4.2.4:8091
 Accept: */*
 ```
 
-If Couchbase Server successfully handles the reuqest, you will get a response
+If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
-
 
 ```
 {"hostname":"10.4.2.4:8091","hot_keys":[{"name":"[2012-11-05::3:47:01]"
@@ -414,15 +414,14 @@ The path for the index files can be configured through the use of the
 
 Example as follows:
 
-
-```
-> curl -X POST -u admin:password \
+    curl -X POST -u admin:password \
     -d index_path=/var/tmp/text-index \
     http://localhost:8091/nodes/self/controller/settings
-```
 
+Replace the *admin*, *password*, *localhost*, and */var/tmp/text-index*
+values in the above example with your actual values.
+    
 As a raw HTTP request:
-
 
 ```
 POST /nodes/self/controller/settings HTTP/1.1
@@ -434,7 +433,6 @@ Content-Length: xx path=/var/tmp/test
 
 The HTTP response will contain the response code and optional error message:
 
-
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -443,7 +441,6 @@ Content-Length: 0
 
 As of Couchbase Server 2.0.1 if you try to set the data path at this endpoint,
 you will receive this error:
-
 
 ```
 ERROR: unable to init 10.3.4.23 (400) Bad Request
@@ -461,16 +458,15 @@ a new request for cluster information based on this response.
 
 For example, using `curl` :
 
-
-```
-> curl -u admin:password -d username=Administrator \
+    curl -u admin:password -d username=Administrator \
     -d password=letmein \
     -d port=8091 \
     http://localhost:8091/settings/web
-```
 
+Replace the *admin*, *password*, *localhost*, *letmein*, and *Administrator*
+values in the above example with your actual values.
+    
 The raw HTTP request:
-
 
 ```
 POST /settings/web HTTP/1.1
@@ -482,7 +478,6 @@ username=Administrator&password=letmein&port=8091
 ```
 
 The corresponding HTTP response data:
-
 
 ```
 HTTP/1.1 200 OK
@@ -508,8 +503,9 @@ every node within the cluster.
 
 <a id="table-couchbase-admin-restapi-settings-cluster-set-param-post"></a>
 
-**Method**                  | `POST /pools/default`                              
+Set Memory | Description 
 ----------------------------|----------------------------------------------------
+**Method**                  | `POST /pools/default`                              
 **Request Data**            | Payload with memory quota setting                  
 **Response Data**           | Empty                                              
 **Authentication Required** | yes                                                
@@ -520,13 +516,12 @@ every node within the cluster.
 
 For example, to set the memory quota for a cluster at 400MB:
 
+    curl -X POST -u admin:password -d memoryQuota=400 http://localhost:8091/pools/default
 
-```
-> curl -X POST -u admin:password -d memoryQuota=400 http://localhost:8091/pools/default
-```
-
+Replace the *admin*, *password*, *localhost*, and *400* values in the above
+example with your actual values.
+    
 As a raw HTTP request:
-
 
 ```
 POST /pools/default HTTP/1.1
@@ -539,7 +534,6 @@ memoryQuota=400
 
 The HTTP response will contain the response code and optional error message:
 
-
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -550,9 +544,9 @@ Content-Length: 0
 
 ### Providing Hostnames for Nodes
 
-There are several ways you can provide hostnames for Couchbase 2.1+. You can
-provide a hostname when you install a Couchbase Server 2.1 node, when you add it
-to an existing cluster for online upgrade, or via a REST-API call. If a node
+There are several ways you can provide hostnames for Couchbase. You can
+provide a hostname when you install a Couchbase Server node, when you add it
+to an existing cluster for online upgrade, or via a REST API call. If a node
 restarts, any hostname you establish will be used. You cannot provide a hostname
 for a node that is already part of a Couchbase cluster; the server will reject
 the request and return `error 400 reason: unknown ["Renaming is disallowed for
@@ -573,21 +567,18 @@ Server](#couchbase-getting-started-hostnames).
 You can use this request to failover a node in the cluster. When you failover a
 node, it indicates the node is no longer available in a cluster and replicated
 data at another node should be available to clients. You can also choose to
-perform node failover using the Web Console, for more information, see
-[Couchbase Server Manual, Initiating Node
-Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-failover-manual.html).
+perform node failover using the Web Console.
 
-Using the REST-API endpoint `host:port/controller/failOver`, provide your
+Using the REST API endpoint `host:port/controller/failOver`, provide your
 administrative credentials and the parameter `optNode` which is an internal name
 for the node:
 
+    curl -v -X POST -u admin:password http://localhost:8091/controller/failOver -d otpNode=ns_2@10.3.3.63
 
-```
-> curl -v -X POST -u admin:password http://10.3.3.61:8091/controller/failOver -d otpNode=ns_2@10.3.3.63
-```
-
+Replace the *admin*, *password*, *localhost*, and *10.3.3.63*, values in the
+above example with your actual values.
+    
 The HTTP request will be similar to the following:
-
 
 ```
 POST /controller/failOver HTTP/1.1
@@ -596,16 +587,13 @@ Authorization: Basic
 
 Upon success, Couchbase Server will send a response as follows:
 
-
 ```
-HTTP/1.1 200 OK
 HTTP/1.1 200 OK
 ```
 
 If you try to failover a node that does not exist in the cluster, you will get a
 HTTP 404 error. To learn more about how to retrieve `optNode` information for
-the nodes in a cluster, see [Viewing Cluster
-Details](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-viewing-pool-info.html).
+the nodes in a cluster, see [Managing Clusters](#couchbase-admin-restapi-clusterops).
 
 <a id="couchbase-admin-restapi-bucketops"></a>
 
@@ -629,12 +617,11 @@ if a node fails.
 
 To retrieve information for all bucket for cluster:
 
+    curl -u admin:password http://localhost:8091/pools/default/buckets
 
-```
-> curl -u Administrator:password http://10.4.2.5:8091/pools/default/buckets
-```
-
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 ```
 GET /pools/default/buckets
 Host: localhost:8091
@@ -642,7 +629,6 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
-
 
 ```
 HTTP/1.1 200 OK
@@ -762,15 +748,14 @@ To retrieve information for a single bucket associated with a cluster, you make
 this request, where the last default can be replaced with the name of a specific
 bucket, if you have named buckets:
 
+    curl -u admin:password \
+    http://localhost:8091/pools/default/buckets/default
 
-```
-> curl -u Administrator:password \
-    http://10.4.2.5:8091/pools/default/buckets/default
-```
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 Couchbase Server returns a large JSON document with bucket information including
 internal vBucket information:
-
 
 ```
 {
@@ -812,11 +797,9 @@ internal vBucket information:
 }
 ```
 
-
 ```
 GET http://10.4.2.5:8091/pools/default/buckets/default?_=1340926633052
 ```
-
 
 ```
 HTTP/1.1 200 OK
@@ -844,13 +827,12 @@ a request to get a more detailed level of information:
 
 The following is a sample request to the endpoint with no parameters:
 
+    curl -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/stats
 
-```
-curl -u user:password http://hostname:8091/pools/default/buckets/bucket_name/stats
-```
-
+Replace the *admin*, *password*, *localhost*, and *bucket_name* values in the
+above example with your actual values.
+    
 The actual request appears as follows:
-
 
 ```
 GET /pools/default/buckets/<bucket name>/stats
@@ -860,7 +842,6 @@ Accept: application/json X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
 
 Upon success, you will see output similar to the following:
-
 
 ```
 HTTP/1.1 200 OK
@@ -934,42 +915,35 @@ Content-Length: nnn
 }
 ```
 
-The follow are sample requests at this endpoint with optional parameters:
+The following are sample requests at this endpoint with optional parameters.
+Replace the *admin*, *password*, *localhost*, *bucket_name*, and
+*1376963720000* values in the below examples with your actual values.
 
- *  ```
-    curl -u user:password  -d zoom=minute http://hostname:8091/pools/default/buckets/bucket_name/stats
-    ```
+    curl -u admin:password  -d zoom=minute http://localhost:8091/pools/default/buckets/bucket_name/stats
 
-   This will sample statistics from a bucket for the last minute.
+This will sample statistics from a bucket for the last minute.
 
- *  ```
-    curl -u user:password  -d zoom=day http://hostname:8091/pools/default/buckets/bucket_name/stats
-    ```
+    curl -u admin:password  -d zoom=day http://localhost:8091/pools/default/buckets/bucket_name/stats
 
-   This will sample statistics from a bucket for the past day.
+This will sample statistics from a bucket for the past day.
 
- * Using zoom level of a month:
+Using zoom level of a month:
 
-    ```
-    curl -u user:password  -d zoom=month http://hostname:8091/pools/default/buckets/bucket_name/stats
-    ```
+    curl -u admin:password  -d zoom=month http://localhost:8091/pools/default/buckets/bucket_name/stats
 
-   This will sample statistics from a bucket for the last month.
+This will sample statistics from a bucket for the last month.
 
- * Using zoom level of an hour from a specific timestamp:
+Using zoom level of an hour from a specific timestamp:
 
-    ```
-    curl -u user:password  -d zoom=hour&haveTStamp=1376963720000 http://hostname:8091/pools/default/buckets/bucket_name/stats
-    ```
+    curl -u admin:password  -d zoom=hour&haveTStamp=1376963720000 http://localhost:8091/pools/default/buckets/bucket_name/stats
 
-   This will sample statistics from a bucket from the timestamp until the server
-   receives the REST request.
+This will sample statistics from a bucket from the timestamp until the server
+receives the REST request.
 
 Sample output for each of these requests appears in the same format and with the
 same fields. Depending on the level of bucket activity, there may be more detail
 for each field or less. We the sake of brevity we have omitted sample output for
 each category.
-
 
 ```
 {
@@ -1161,7 +1135,6 @@ encoding. A response of "\n\n\n\n" delimits chunks. This will likely be
 converted to a "zero chunk" in a future release of this API, and thus the
 behavior of the streamingUri should be considered evolving.
 
-
 ```
 GET /pools/default/buckets/default
 Host: localhost:8091
@@ -1169,7 +1142,6 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
-
 
 ```
 HTTP/1.1 200 OK
@@ -1305,18 +1277,19 @@ operations immediately after this REST call successful returns.
 To ensure a bucket is available the recommended approach is try to read a key
 from the bucket. If you receive a 'key not found' error, or the document for the
 key, the bucket exists and is available to all nodes in a cluster. You can do
-this via a Couchbase SDK with any node in the cluster. See [Couchbase Developer
-Guide 2.0, Performing Connect, Set and
-Get](http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
+this via a Couchbase SDK with any node in the cluster.
 
 <a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
-**Method**                    | `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Request Data**              | List of payload parameters for the new bucket                                                                                                                                                                                                                                                                                                             
-**Response Data**             | JSON of the bucket confirmation or error condition                                                                                                                                                                                                                                                                                                        
-**Authentication Required**   | yes                                                                                                                                                                                                                                                                                                                                                       
-**Payload Arguments**         |                                                                                                                                                                                                                                                                                                                                                           
+
+**Method** - `POST /pools/default/buckets`                                                                                                                                                                                                                                                                                                                             
+**Request Data** - List of payload parameters for the new bucket                                                                                                                                                                                                                                                                                                             
+**Response Data** - JSON of the bucket confirmation or error condition                                                                                                                                                                                                                                                                                                        
+**Authentication Required** - yes  
+
+                                                                                                                                                                                                                                                                                                                                                    
+Payload Arguments        |  Description   
+------------------------------|----------------------------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                    
 `authType`                    | Required parameter. Type of authorization to be enabled for the new bucket as a string. Defaults to blank password if not specified. "sasl" enables authentication. "none" disables authentication.                                                                                                                                                       
 `bucketType`                  | Required parameter. Type of bucket to be created. String value. "memcached" configures as Memcached bucket. "couchbase" configures as Couchbase bucket                                                                                                                                                                                                    
 `flushEnabled`                | Optional parameter. Enables the 'flush all' functionality on the specified bucket. Boolean. 1 enables flush all support, 0 disables flush all support. Defaults to 0.                                                                                                                                                                                     
@@ -1331,7 +1304,7 @@ Get](http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-s
 **Return Codes**              |                                                                                                                                                                                                                                                                                                                                                           
 202                           | Accepted                                                                                                                                                                                                                                                                                                                                                  
 204                           | Bad Request JSON with errors in the form of {"errors": {.... }} name: Bucket with given name already exists ramQuotaMB: RAM Quota is too large or too small replicaNumber: Must be specified and must be a non-negative integer proxyPort: port is invalid, port is already in use                                                                        
-404                           | Object Not Found                                                                                                                                                                                                                                                                                                                                          
+404                           | Object Not Found
 
 When you create a bucket you must provide the `authType` parameter:
 
@@ -1355,11 +1328,11 @@ allocate to each node for the bucket. The minimum supported value is 100MB.
 
 For example:
 
+    curl -X POST -u admin:password -d name=newbucket -d ramQuotaMB=200 -d authType=none \
+    -d replicaNumber=2 -d proxyPort=11215 http://localhost:8091/pools/default/buckets
 
-```
-> curl -X POST -u admin:password -d name=newbucket -d ramQuotaMB=200 -d authType=none \
-     -d replicaNumber=2 -d proxyPort=11215 http://localhost:8091/pools/default/buckets
-```
+Replace the *admin*, *password*, *localhost*, *newbucket*, *200*, *2*,
+and *11215* values in the above example with your actual values.
 
 The parameters for configuring the bucket are provided as payload data, with
 each parameter and value provided as a key/value pair, separated by an
@@ -1367,7 +1340,6 @@ ampersand.
 
 The HTTP request should include the parameters setting in the payload of the
 `POST` request:
-
 
 ```
 POST /pools/default/buckets
@@ -1381,7 +1353,6 @@ name=newbucket&ramQuotaMB=20&authType=none&replicaNumber=2&proxyPort=11215
 
 If the bucket creation was successful, HTTP response 202 (Accepted) will be
 returned with empty content.
-
 
 ```
 202 Accepted
@@ -1398,11 +1369,9 @@ the error reason.
 To obtain the information about an existing bucket, use the main REST API bucket
 endpoint with the bucket name. For example:
 
-
 ```
 GET /pools/default/buckets/bucketname
 ```
-
 
 ```
 HTTP/1.1 200 OK
@@ -1460,15 +1429,17 @@ and then make your POST request to the bucket URI.
 For example, to edit the bucket `customer` :
 
 
-```
-> curl -v -X POST -u Administrator:Password -d name=customer \
+    curl -v -X POST -u admin:password -d name=customer \
     -d flushEnabled=0 -d replicaNumber=1 -d authType=none \
     -d ramQuotaMB=200 -d proxyPort=11212 \
      http://localhost:8091/pools/default/buckets/customer
-```
 
+Replace the *admin*, *password*, *localhost*, *customer*, *0*, *1*,
+*200*, *11212*, and *customer* values in the above example with your
+actual values.
+     
 [Available parameters are identical to those available when creating a bucket.
-Seebucket parameters](#table-couchbase-admin-restapi-creating-buckets).
+See bucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
@@ -1489,15 +1460,14 @@ memcached bucket types.
 
 Example of a request:
 
-
-```
-> curl -X POST -u admin:password -d ramQuotaMB=25 -d authType=none \
+    curl -X POST -u admin:password -d ramQuotaMB=25 -d authType=none \
     -d proxyPort=11215 http://localhost:8091/pools/default/buckets/newbucket
-```
 
+Replace the *admin*, *password*, *localhost*, *25*, *11215*, and *new_bucket*
+values in the above example with your actual values.
+    
 The response will be 202, indicating the quota will be changed asynchronously
 throughout the servers in the cluster. An example:
-
 
 ```
 HTTP/1.1 202 OK
@@ -1517,13 +1487,13 @@ achieved by changing the active bucket configuration. You must specify the
 existing configuration parameters and the changed authentication parameters in
 the request:
 
-
-```
-> curl -X POST -u admin:password -d ramQuotaMB=130 -d authType=sasl \
+    curl -X POST -u admin:password -d ramQuotaMB=130 -d authType=sasl \
     -d saslPassword=letmein \
     http://localhost:8091/pools/default/buckets/acache
-```
 
+Replace the *admin*, *password*, *localhost*, *130*, *letmein*, and *acache*
+values in the above example with your actual values.
+    
 <a id="couchbase-admin-restapi-deleting-bucket"></a>
 
 ### Deleting a Bucket
@@ -1548,7 +1518,6 @@ advised to double check with the end user before sending such a request.
 
 To delete a bucket, you supply the URL of the Couchbase bucket using the
 `DELETE` operation. For example:
-
 
 ```
 DELETE /pools/default/buckets/default
@@ -1586,20 +1555,18 @@ all stored data. The operation will only succeed if flush is enabled on
 configured bucket. The format of the request is the URL of the REST endpoint
 using the `POST` HTTP operation:
 
-
 ```
 http://localhost:8091/pools/default/buckets/default/controller/doFlush
 ```
 
 For example, using `curl` :
 
+    curl -X POST 'http://admin:password@localhost:8091/pools/default/buckets/default/controller/doFlush'
 
-```
-> curl -X POST 'http://Administrator:Password@localhost:8091/pools/default/buckets/default/controller/doFlush'
-```
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 The equivalent HTTP protocol request:
-
 
 ```
 POST /pools/default/buckets/default/controller/doFlush
@@ -1613,13 +1580,11 @@ authorization header if the system has been secured.
 If flushing is disable for the specified bucket, a 400 response will be returned
 with the bucket status:
 
-
 ```
 {"_":"Flush is disabled for the bucket"}
 ```
 
 If the flush is successful, the HTTP response code is `200` :
-
 
 ```
 HTTP/1.1 200 OK
@@ -1634,7 +1599,6 @@ configurations; the remote bucket will not be flushed.
 
 Couchbase Server will return a HTTP 404 response if the URI is invalid or if it
 does not correspond to an active bucket in the system.
-
 
 ```
 404 Not Found
@@ -1656,13 +1620,12 @@ port number, and append '/pools'.
 
 Example Request:
 
+    curl -u admin:password http://localhost:8091/pools
 
-```
-> curl -u admin:password http://localhost:8091/pools
-```
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 As a raw HTTP request:
-
 
 ```
 GET /pools
@@ -1674,7 +1637,6 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 
 The corresponding HTTP response contains a JSON document describing the cluster
 configuration:
-
 
 ```
 HTTP/1.1 200 OK
@@ -1735,7 +1697,6 @@ You should not rely on the node list returned by this request to connect to a
 Couchbase Server. You should instead issue an HTTP get call to the bucket to get
 the node list for that specific bucket.
 
-
 ```
 GET /pools/default
 Host: localhost:8091
@@ -1743,7 +1704,6 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
-
 
 ```
 HTTP/1.1 200 OK
@@ -1856,17 +1816,16 @@ cluster. You add a new node with the at the RESTful endpoint
 `server_ip:port/controller/addNode`. You will need to provide an administrative
 username and password as parameters:
 
-
-```
-> curl -u Administrator:password \
+    curl -u admin:password \
     10.2.2.60:8091/controller/addNode \
-    -d "hostname=10.2.2.64&user=Administrator&password=password"
-```
+    -d "hostname=10.2.2.64&user=admin&password=password"
 
 Here we create a request to the cluster at 10.2.2.60:8091 to add a given node by
 using method, `controller/addNode` and by providing the IP address for the node
-as well as credentials. If successful, Couchbase Server will respond:
+as well as credentials. Replace the *admin*, *password*, *10.2.2.60*, and
+*10.2.2.64* values in the above example with your actual values.
 
+If successful, Couchbase Server will respond:
 
 ```
 HTTP/1.1 200 OK
@@ -1882,14 +1841,14 @@ a given cluster. You cannot merge two clusters together into a single cluster
 using the REST API, however, you can add a single node to an existing cluster.
 You will need to provide several parameters to add a node to a cluster:
 
-
-```
-> curl -u admin:password -d clusterMemberHostIp=192.168.0.1 \
+    curl -u admin:password -d clusterMemberHostIp=192.168.0.1 \
     -d clusterMemberPort=8091 \
-    -d user=admin -d password=admin123
+    -d user=admin -d password=password
     http://localhost:8091/node/controller/doJoinCluster
-```
 
+Replace the *admin*, *password*, and *192.168.0.1* values in the above
+example with your actual values.
+    
 The following arguments are required:
 
 <a id="table-restapi-add-node-to-cluster-args"></a>
@@ -1898,7 +1857,6 @@ Argument            | Description
 --------------------|-----------------------------------------------------------------------------------------------
 clusterMemberHostIp | Hostname or IP address to a member of the cluster the node receiving this POST will be joining
 clusterMemberPort   | Port number for the RESTful interface to the system                                           
-
 If your cluster requires credentials, you will need to provide the following
 parameters in your request:
 
@@ -1909,7 +1867,6 @@ Argument | Description
 user     | Administration user                             
 password | Password associated with the Administration user
 
-
 ```
 POST /node/controller/doJoinCluster
 Host: localhost:8091
@@ -1919,7 +1876,6 @@ Content-Length: xxxxxxxxxx
 Content-Type: application/x-www-form-urlencoded
 clusterMemberHostIp=192.168.0.1&clusterMemberPort=8091&user=admin&password=admin123
 ```
-
 
 ```
 200 OK with Location header pointing to pool details of pool just joined - successful join
@@ -1936,12 +1892,12 @@ When a node is temporarily or permanently down, you may want to remove it from a
 cluster:
 
 
-```
-> curl -u admin:password -d otpNode=ns_1@192.168.0.107 \
+    curl -u admin:password -d otpNode=ns_1@192.168.0.107 \
     http://192.168.0.106:8091/controller/ejectNode
-```
 
-
+Replace the *admin*, *password*, *192.168.0.107*, and *192.168.0.106*
+values in the above example with your actual values.
+    
 ```
 POST /controller/ejectNode
 Host: localhost:8091
@@ -1951,7 +1907,6 @@ Content-Length: xxxxxxxxxx
 Content-Type: application/x-www-form-urlencoded
 otpNode=ns_1@192.168.0.1
 ```
-
 
 ```
 200 OK - node ejected
@@ -1977,14 +1932,13 @@ The information must be supplied via the `ejectedNodes` and `knownNodes`
 parameters as a `POST` operation to the `/controller/rebalance` endpoint. For
 example:
 
-
-```
-&gt; curl -v -X -u admin:password POST 'http://Administrator:Password@192.168.0.77:8091/controller/rebalance' \
+    curl -v -X -u admin:password POST 'http://192.168.0.77:8091/controller/rebalance' \
     -d 'ejectedNodes=&knownNodes=ns_1%40192.168.0.77%2Cns_1%40192.168.0.56'
-```
+
+Replace the *admin*, *password*, *192.168.0.77*, and *192.168.0.56*
+values in the above example with your actual values.
 
 The corresponding raw HTTP request:
-
 
 ```
 POST /controller/rebalance HTTP/1.1
@@ -2024,12 +1978,12 @@ This first request returns a JSON structure containing the current progress
 information:
 
 
-```
-&gt; curl -u admin:password 'http://Administrator:Password@192.168.0.77:8091/pools/default/rebalanceProgress'
-```
+    curl -u admin:password '192.168.0.77:8091/pools/default/rebalanceProgress'
+
+Replace the *admin*, *password*, *localhost*, and *192.168.0.77*
+values in the above example with your actual values.
 
 As a pure REST API call it appears as follows:
-
 
 ```
 GET /pools/default/rebalanceProgress HTTP/1.1
@@ -2055,12 +2009,13 @@ as a floating point value between 0 and 1).
 For more details about the rebalance, use this request
 
 
-```
-&gt; curl -u admin:password 'http://<ip>:<port>/pools/default/tasks'
-```
-
+    curl -u admin:password 'http://localhost:8091/pools/default/tasks'
 
 ```
+
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+
 GET /pools/default/rebalanceProgress HTTP/1.1
 Authorization: Basic QWRtaW5pc3RyYXRvcjpUYW1zaW4=
 User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
@@ -2069,7 +2024,6 @@ Accept: */*
 ```
 
 The response data packet contains a JSON structure showing detailed progress:
-
 
 ```
 {
@@ -2145,19 +2099,18 @@ If you rebalance fails, you will see this response:
 ### Adjusting Rebalance during Compaction
 
 If you perform a rebalance while a node is undergoing index compaction, you may
-experience delays in rebalance. There is REST-API parameter as of Couchbase
+experience delays in rebalance. There is REST API parameter as of Couchbase
 Server 2.0.1 you can use to improve rebalance performance. If you do make this
 selection, you will reduce the performance of index compaction which can result
 in larger index file size.
 
 To make this request:
 
+    curl -X POST -u admin:password 'http://localhost:8091/internalSettings' -d 'rebalanceMovesBeforeCompaction=256'
 
-```
-wget --post-data='rebalanceMovesBeforeCompaction=256'
---user=Administrator --password=pass http://lh:9000/internalSettings
-```
-
+Replace the *admin*, *password*, *localhost*, and *256* values in the above
+example with your actual values.
+    
 This needs to be made as POST request to the `/internalSettings` endpoint. By
 default this setting is 16, which specifies the number of vBuckets which will
 moved per node until all vBucket movements pauses. After this pause the system
@@ -2174,14 +2127,13 @@ Use this request to retrieve any auto-failover settings for a cluster.
 Auto-failover is a global setting for all clusters. You need to be authenticated
 to read this value. Example:
 
+    curl -u admin:password http://localhost:8091/settings/autoFailover
 
-```
-> curl -u Administrator:letmein http://localhost:8091/settings/autoFailover
-```
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 If successful Couchbase Server returns any auto-failover settings for the
 cluster:
-
 
 ```
 {"enabled":false,"timeout":30,"count":0}
@@ -2201,12 +2153,10 @@ The following parameters and settings appear:
 
 Possible errors include:
 
-
 ```
 HTTP/1.1 401 Unauthorized
 This endpoint isn't available yet.
 ```
-
 
 ```
 GET /settings/autoFailover HTTP/1.1
@@ -2214,7 +2164,6 @@ Host: localhost:8091
 Authorization: Basic YWRtaW46YWRtaW4=
 Accept: */*
 ```
-
 
 ```
 HTTP/1.1 200 OK
@@ -2230,12 +2179,12 @@ Content-Length: nnn
 This is a global setting you apply to all clusters. You need to be authenticated
 to change this value. An example of this request:
 
+    curl "http://localhost:8091/settings/autoFailover" \
+    -i -u admin:password -d 'enabled=true&timeout=600'
 
-```
-> curl "http://localhost:8091/settings/autoFailover" \
-    -i -u Administrator:letmein -d 'enabled=true&timeout=600'
-```
-
+Replace the *admin*, *password*, *localhost*, and *600* values in the above
+example with your actual values.
+    
 Possible parameters are:
 
  * `enabled` (true|false) (required): Indicates whether Couchbase Server will
@@ -2244,7 +2193,6 @@ Possible parameters are:
  * `timeout` (integer that is greater than or equal to 30) (required; optional when
    enabled=false): The number of seconds a node must be down before Couchbase
    Server performs auto-failover on the node.
-
 
 ```
 POST /settings/autoFailover HTTP/1.1
@@ -2255,13 +2203,11 @@ Content-Length: 14
 enabled=true&timeout=60
 ```
 
-
 ```
 HTTP/1.1 200 OK
 ```
 
 The possible errors include:
-
 
 ```
 400 Bad Request, The value of "enabled" must be true or false.
@@ -2279,13 +2225,12 @@ failed-over. You can send a request to set the auto-failover number to 0. This
 is a global setting for all clusters. You need to be authenticated to change
 this value. No parameters are required:
 
-
-```
-> curl -X POST -i -u Administrator:letmein \
+    curl -X POST -i -u admin:password \
     http://localhost:8091/settings/autoFailover/resetCount
-```
 
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 ```
 POST /settings/autoFailover/resetCount HTTP/1.1
 Host: localhost:8091
@@ -2293,13 +2238,11 @@ Content-Type: application/x-www-form-urlencoded
 Authorization: Basic YWRtaW46YWRtaW4=
 ```
 
-
 ```
 HTTP/1.1 200 OK
 ```
 
 Possible errors include:
-
 
 ```
 This endpoint isn't available yet.
@@ -2320,14 +2263,13 @@ number of buckets used in a Couchbase cluster. The maximum allowed buckets in
 this request is 128, however the suggested maximum number of buckets is ten per
 cluster. The following illustrates the endpoint and parameters used:
 
+    curl -X POST -u admin:password -d maxBucketCount=6 http://localhost:8091/internalSettings
 
-```
-> curl -X POST -u admin:password -d maxBucketCount=6 http://ip_address:8091/internalSettings
-```
-
+Replace the *admin*, *password*, *localhost*, and *6* values in the above
+example with your actual values.
+    
 For this request you need to provide administrative credentials for the cluster.
 The following HTTP request will be sent:
-
 
 ```
 About to connect() to 127.0.0.1 port 8091 (#0)
@@ -2355,7 +2297,6 @@ Cache-Control: no-cache
 If you provide an invalid number, such as 0, a negative number, or an amount
 over 128 buckets, you will get this error message:
 
-
 ```
 ["Unexpected server error, request logged."]
 ```
@@ -2370,8 +2311,9 @@ indexers, use a `GET` request.
 
 <a id="table-couchbase-admin-restapi-settings-maxparallelindexers-get"></a>
 
+Get Maximum Parallel Indexers | Description
+----------------------------|------------------------------------------------------------------------------------------------------
 **Method**                  | `GET /settings/maxParallelIndexers`                                
-----------------------------|--------------------------------------------------------------------
 **Request Data**            | None                                                               
 **Response Data**           | JSON of the global and node-specific parallel indexer configuration
 **Authentication Required** | no                                                                 
@@ -2385,7 +2327,6 @@ GET http://127.0.0.1:8091/settings/maxParallelIndexers
 
 This returns a JSON structure of the current settings, providing both the
 globally configured value, and individual node configuration:
-
 
 ```
 {
@@ -2401,8 +2342,9 @@ To set the value, `POST` to the URL specifying a URL-encoded value to the
 
 <a id="table-couchbase-admin-restapi-settings-maxparallelindexers-post"></a>
 
-**Method**                  | `POST /settings/maxParallelIndexers`                                                                 
+Set Maximum Parallel Indexers | Description
 ----------------------------|------------------------------------------------------------------------------------------------------
+**Method**                  | `POST /settings/maxParallelIndexers`                                                                 
 **Request Data**            | None                                                                                                 
 **Response Data**           | JSON of the global and node-specific parallel indexer configuration                                  
 **Authentication Required** | yes                                                                                                  
@@ -2419,18 +2361,16 @@ The response to this request will specify whether you have email alerts set, and
 which events will trigger emails. This is a global setting for all clusters. You
 need to be authenticated to read this value:
 
+    curl -u admin:password http://localhost:8091/settings/alerts
 
-```
-> curl -u Administrator:letmein http://localhost:8091/settings/alerts
-```
-
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 ```
 GET /settings/alerts HTTP/1.1
 Host: localhost:8091
 Authorization: Basic YWRtaW46YWRtaW4= Accept: */*
 ```
-
 
 ```
 {
@@ -2448,7 +2388,6 @@ Authorization: Basic YWRtaW46YWRtaW4= Accept: */*
 
 Possible errors include:
 
-
 ```
 This endpoint isn't available yet.
 ```
@@ -2462,12 +2401,13 @@ change this value. If this is enabled, Couchbase Server sends an email when
 certain events occur. Only events related to auto-failover will trigger
 notification:
 
-
-```
-> curl -i -u Administrator:letmein \
+    curl -i -u admin:password \
     -d 'enabled=true&sender=couchbase@localhost&recipients=admin@localhost,membi@localhost&emailHost=localhost&emailPort=25&emailEncrypt=false' http://localhost:8091/settings/alerts
-```
 
+Replace the *admin*, *password*, *localhost*, *couchbase@localhost*,
+*admin@localhost*, *membi@localhost*, *25*, and *false* values in the above
+example with your actual values.
+    
 Possible parameters include:
 
  * `enabled` : (true|false) (required). Whether to enable or disable email
@@ -2507,13 +2447,11 @@ Authorization: Basic YWRtaW46YWRtaW4=
 Content-Length: 14 enabled=true&sender=couchbase@localhost&recipients=admin@localhost,membi@localhost&emailHost=localhost&emailPort=25&emailEncrypt=false�
 ```
 
-
 ```
 HTTP/1.1 200 OK
 ```
 
 Possible HTTP errors include:
-
 
 ```
 400 Bad Request
@@ -2546,16 +2484,16 @@ change this value. In response to this request, Couchbase Server sends a test
 email with the current configurations. This request uses the same parameters
 used in setting alerts and additionally an email subject and body.
 
+    curl -i -u admin:password http://localhost:8091/settings/alerts/sendTestEmail \
+    -d 'subject=Test+email+from+Couchbase& \
+    body=This+email+was+sent+to+you+to+test+the+email+alert+email+server+settings.&enabled=true& \
+    recipients=vmx%40localhost&sender=couchbase%40localhost& \
+    emailUser=&emailPass=&emailHost=localhost&emailPort=25&emailEncrypt=false& \
+    alerts=auto_failover_node%2Cauto_failover_maximum_reached%2Cauto_failover_other_nodes_down%2Cauto_failover_cluster_too_small'
 
-```
-> curl -i -u Administrator:letmein http://localhost:8091/settings/alerts/sendTestEmail \
-  -d 'subject=Test+email+from+Couchbase& \
-  body=This+email+was+sent+to+you+to+test+the+email+alert+email+server+settings.&enabled=true& \
-  recipients=vmx%40localhost&sender=couchbase%40localhost& \
-  emailUser=&emailPass=&emailHost=localhost&emailPort=25&emailEncrypt=false& \
-  alerts=auto_failover_node%2Cauto_failover_maximum_reached%2Cauto_failover_other_nodes_down%2Cauto_failover_cluster_too_small'
-```
-
+Replace the *admin*, *password*, *localhost*, *vmx%40localhost*,
+*couchbase%40localhost*, *25*, and *false* values in the above example with
+your actual values.
 
 ```
 POST /settings/alerts/sendTestEmail HTTP/1.1
@@ -2566,7 +2504,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 
 200 OK
 
-Possible errrors include:
+Possible errors include:
 
 
 ```
@@ -2584,8 +2522,9 @@ number of parallel indexers, use a `GET` request.
 
 <a id="table-couchbase-admin-restapi-settings-maxbucketcount-get"></a>
 
-**Method**                  | `GET /internalSettings`          
+Get Internal Settings | Description
 ----------------------------|----------------------------------
+**Method**                  | `GET /internalSettings`          
 **Request Data**            | None                             
 **Response Data**           | JSON of current internal settings
 **Authentication Required** | no                               
@@ -2593,7 +2532,6 @@ number of parallel indexers, use a `GET` request.
 200                         | Settings returned                
 
 For example:
-
 
 ```
 GET http://127.0.0.1:8091/internalSettings
@@ -2618,8 +2556,9 @@ values.
 
 <a id="table-couchbase-admin-restapi-settings-maxparallelindexers"></a>
 
+Set Configuration Value | Description
+----------------------------|---------------------------------------------------------------
 **Method**                  | `POST /settings/maxParallelIndexers`                                                                 
-----------------------------|------------------------------------------------------------------------------------------------------
 **Request Data**            | None                                                                                                 
 **Response Data**           | JSON of the global and node-specific parallel indexer configuration                                  
 **Authentication Required** | yes                                                                                                  
@@ -2630,12 +2569,12 @@ values.
 
 For example, to update the maximum number of buckets:
 
-
-```
-> curl -v -X POST http://Administrator:Password@localhost:8091/internalSettings \
+    curl -v -X POST http://admin:password@localhost:8091/internalSettings \
     -d maxBucketCount=20
-```
 
+Replace the *admin*, *password*, *localhost*, and *20* values in the above
+example with your actual values.
+    
 <a id="couchbase-admin-restapi-consistent-query"></a>
 
 ### Disabling Consistent Query Results on Rebalance
@@ -2663,14 +2602,13 @@ results during rebalance.
 
 To disable this feature, provide a request similar to the following:
 
-
-```
-> curl -v -u Administrator:password -X POST http://10.4.2.4:8091/internalSettings \
+    curl -v -u admin:password -X POST http://localhost:8091/internalSettings \
     -d indexAwareRebalanceDisabled=true
-```
 
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 If successful Couchbase Server will send a response:
-
 
 ```
 HTTP/1.1 200 OK
@@ -2701,18 +2639,20 @@ fragmentation. For more general information on this administrative task, see
 To compact data files for a given bucket as well as any indexes associated with
 that bucket, you make this request:
 
-```
-> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/compactBucket
-```
+    curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/compactBucket
 
+Replace the *admin*, *password*, *localhost*, and *bucket_name* values in the
+above example with your actual values.
+    
 Where you provide the ip and port for a node that accesses the bucket as well as
 the bucket name. You need to provide administrative credentials for
 that node in the cluster. To stop bucket compaction, issue this request:
 
-```
-> curl -i -v -X POST -u Administrator:password http://[ip]:[port]/pools/default/buckets/[bucket-name]/controller/cancelBucketCompaction
-```
+    curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/cancelBucketCompaction
 
+Replace the *admin*, *password*, *localhost*, and *bucket_name* values in the
+above example with your actual values.
+    
 **Compacting Spatial Views**
 
 If you have spatial views in your dataset, these are not
@@ -2743,16 +2683,16 @@ This URL contains the following special information:
 
 For example, you can send a request using `curl` :
 
-
-```
-> curl -X POST \
-    'http://127.0.0.1:9500/default/_design/dev_test_spatial_compaction/_spatial/_compact'
+    curl -u admin:password -X POST \
+    'http://localhost:8091/default/_design/dev_test_spatial_compaction/_spatial/_compact'
     -H 'Content-type: application/json'
-```
 
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 <a id="couchbase-admin-rest-auto-compaction"></a>
 
-###Setting Auto-Compaction
+### Setting Auto-Compaction
 
 In Couchbase Server you can also provide auto-compaction settings which will 
 trigger data and view compaction based on certain settings. These settings can be 
@@ -2761,12 +2701,10 @@ For background information, see [Admin Tasks, Compaction Process](#couchbase-adm
 To details about each setting, see 
 [Admin Tasks, Auto-Compaction Configuration](#couchbase-admin-tasks-compaction-autocompaction)
 
-
-
 **Auto-Compaction API**
 
 | REST API   | Description           
-| ------------- |:-------------:| 
+| ------------- |-------------| 
 | POST /controller/setAutoCompaction   | Set cluster-wide auto-compaction intervals and thresholds
 | GET /settings/autoCompaction  | Read cluster-wide settings for auto-compaction    
 | GET /pools/default/buckets/*bucket_name* | Read auto-compaction settings for named bucket   
@@ -2782,7 +2720,7 @@ for items that have been deleted or are expired. This is known as 'tombstone pur
 For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 
 | Parameter   | Value | Notes
-| ------------- |:-------------:|-------------:|
+| ------------- |-------------|-------------|
 | databaseFragmentationThreshold[percentage]  |  Integer between 2 and 100 | Percentage disk fragmentation for data
 | databaseFragmentationThreshold[size] | Integer greater than 1 | Bytes of disk fragmentation for data
 | viewFragmentationThreshold[percentage] | Integer between 2 and 100 |  Percentage disk fragmentation for index
@@ -2798,7 +2736,10 @@ For background information, see [Introduction, Tombstone Purging](#couchbase-int
 
 To read current auto-compaction settings for a cluster:
 
-        curl -u admin:password /settings/autoCompaction
+        curl -u admin:password http://localhost:8091/settings/autoCompaction
+
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
         
 This will result in JSON response as follows:
 
@@ -2821,7 +2762,10 @@ This tells us we have a `purgeInterval` of three days and no current thresholds 
 cluster will not perform data and index compaction in parallel. To see auto-compaction settings for a single bucket, 
 use this request:
 
-        curl -u admin:password /pools/default/buckets/<bucket_name>
+        curl -u admin:password http://localhost:8091/pools/default/buckets/bucket_name
+
+Replace the *admin*, *password*, *localhost*, and *bucket_name* values in the
+above example with your actual values.
         
 Couchbase Server sends a JSON response with auto-compaction settings for the `bucket_name`:
 
@@ -2842,13 +2786,11 @@ Couchbase Server sends a JSON response with auto-compaction settings for the `bu
 
 This indicates a tombstone `purgeInterval` of two days with a threshold of 30% disk fragmentation for data and views. This means items can be expired for two days or deleted two ago and their tombstones will be purged during the next auto-compaction run.cluster-wide
 
-
-
 <a id="couchbase-admin-restapi-views"></a>
 
 ## Managing Views with REST
 
-In Couchbase 2.0 you can index and query JSON documents using views. Views are
+You can index and query JSON documents using views. Views are
 functions written in JavaScript that can serve several purposes in your
 application. You can use them to: find all the documents in your database,
 create a copy of data in a document and present it in a specific order, create
@@ -2856,20 +2798,8 @@ an index to efficiently find documents by a particular value or by a particular
 structure in the document, represent relationships between documents, and
 perform calculations on data contained in documents.
 
-You store view functions in a design document as JSON and can use the REST-API
-to manage your design documents. Please refer to the following resources:
-
- * [Storing a Design
-   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-storing.html).
-
- * [Retrieving a Design
-   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-retrieving.html).
-
- * [Deleting a Design
-   Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
-
- * Querying Views via the REST-API. [Querying Using the REST
-   API](#couchbase-views-querying-rest-api).
+You store view functions in a design document as JSON and can use the REST API
+to manage your design documents.
 
 <a id="couchbase-restapi-request-limits"></a>
 
@@ -2890,12 +2820,11 @@ respond with a JSON object with a "error" and "reason" fields.
 
 For example, to change this limit for the port used for views:
 
+    curl -X POST -u admin:password http://localhost:8091/internalSettings -d 'capiRequestLimit=50'
 
-```
-wget --post-data='capiRequestLimit=50'
---user=Administrator --password=pass http://a_hostname:9000/internalSettings
-```
-
+Replace the *admin*, *password*, *localhost*, and *50* values in the above
+example with your actual values.
+    
 Will limit the number of simultaneous views requests and internal XDCR requests
 which can be made on a port. The following are all the port-related request
 parameters you can set:
@@ -2949,14 +2878,13 @@ cluster is the cluster from which you want to copy data; a destination cluster
 is the cluster where you want the replica data to be stored. To get information
 about a destination cluster:
 
+    curl -u admin:password http://localhost:8091/pools/default/remoteClusters
 
-```
-> curl -u Administrator:password http://10.4.2.5:8091/pools/default/remoteClusters
-```
-
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+    
 You provide credentials for the cluster and also the hostname and port for the
 remote cluster. This will generate a request similar to the following sample:
-
 
 ```
 GET /pools/default/remoteClusters HTTP/1.1
@@ -2968,7 +2896,6 @@ Accept: */*
 
 If successful, Couchbase Server will respond with a JSON response similar to the
 following:
-
 
 ```
 [{
@@ -3011,19 +2938,19 @@ cluster is the cluster from which you want to copy data; a destination cluster
 is the cluster where you want the replica data to be stored. To create a
 reference to a destination cluster:
 
+    curl -v -u admin:password1 http://10.4.2.4:8091/pools/default/remoteClusters \
+    -d uuid=9eee38236f3bf28406920213d93981a3  \
+    -d name=remote1
+    -d hostname=10.4.2.6:8091
+    -d username=admin -d password=password2
 
-```
-> curl -v -u Administrator:password1 10.4.2.4:8091/pools/default/remoteClusters \
--d uuid=9eee38236f3bf28406920213d93981a3  \
--d name=remote1
--d hostname=10.4.2.6:8091
--d username=Administrator -d password=password2
-```
+Replace the *admin*, *password1*, *password2*, *10.4.2.4*, *10.4.2.6*,
+*9eee38236f3bf28406920213d93981a3*, and *remote1* values in the above example
+with your actual values.
 
 You provide credentials for the source cluster and information, including
 credentials and UUID for destination cluster. This will generate a request
 similar to the following sample:
-
 
 ```
 POST /pools/default/remoteClusters HTTP/1.1
@@ -3037,7 +2964,6 @@ Content-Type: application/x-www-form-urlencoded
 
 If successful, Couchbase Server will respond with a JSON response similar to the
 following:
-
 
 ```
 {"name":"remote1","uri":"/pools/default/remoteClusters/remote1",
@@ -3075,13 +3001,12 @@ You can remove a reference to destination cluster using the REST API. A
 destination cluster is a cluster to which you replicate data. After you remove
 it, it will no longer be available for replication via XDCR:
 
-
-```
-> curl -v -X DELETE -u Administrator:password1 10.4.2.4:8091/pools/default/remoteClusters/remote1
-```
-
+    curl -v -X DELETE -u admin:password1 10.4.2.4:8091/pools/default/remoteClusters/remote1
+    
+Replace the *admin*, *password1*, *10.4.2.4*, and *remote1* values in the
+above example with your actual values.
+    
 This will send a request similar to the following example:
-
 
 ```
 DELETE /pools/default/remoteClusters/remote1 HTTP/1.1
@@ -3093,7 +3018,6 @@ Accept: */*
 
 If successful, Couchbase Server will respond with a 200 response as well as the
 string, 'OK':
-
 
 ```
 HTTP/1.1 200 OK
@@ -3117,18 +3041,18 @@ To replicate data to an established destination cluster from a source cluster,
 you can use the REST API or Couchbase Web Console. Once you create a replication
 it will automatically begin between the clusters. As a REST call:
 
+    curl -v -X POST -u admin:password1 http://10.4.2.4:8091/controller/createReplication
+    -d uuid=9eee38236f3bf28406920213d93981a3
+    -d fromBucket=beer-sample
+    -d toCluster=remote1
+    -d toBucket=remote_beer
+    -d replicationType=continuous
 
-```
-> curl -v -X POST -u Administrator:password1 http://10.4.2.4:8091/controller/createReplication
--d uuid=9eee38236f3bf28406920213d93981a3
--d fromBucket=beer-sample
--d toCluster=remote1
--d toBucket=remote_beer
--d replicationType=continuous
-```
-
+Replace the *admin*, *password1*, *10.4.2.4*, 
+*9eee38236f3bf28406920213d93981a3*, *beer-sample*, *remote1*, *remote_beer*,
+and *continuous* values in the above example with your actual values.
+    
 This will send a request similar to the following example:
-
 
 ```
 POST / HTTP/1.1
@@ -3143,7 +3067,6 @@ Content-Type: application/x-www-form-urlencoded
 If Couchbase Server successfully create the replication, it will immediately
 begin replicating data from the source to destination cluster. You will get a
 response similar to the following JSON:
-
 
 ```
 {
@@ -3167,13 +3090,14 @@ destination. If you re-create the replication between the same source and
 destination clusters and buckets, it XDCR will resume replication. To delete
 replication via REST API:
 
+    curl -u admin:password1  \
+    http://10.4.2.4:8091/controller/cancelXDCR/9eee38236f3bf28406920213d93981a3%2Fbeer-sample%2Fremote_beer  \
+    -X DELETE
 
-```
-> curl -u Administrator:password1  \
-http://10.4.2.4:8091/controller/cancelXDCR/9eee38236f3bf28406920213d93981a3%2Fbeer-sample%2Fremote_beer  \
--X DELETE
-```
-
+Replace the *admin*, *password1*, *10.4.2.4*,
+*9eee38236f3bf28406920213d93981a3*, *beer-sample*, and *remote_beer*
+values in the above example with your actual values.
+    
 You use a URL-encoded endpoint which contains the unique document ID that
 references the replication. You can also delete a replication using the
 Couchbase Web Console. For more information, see [Configuring
@@ -3187,15 +3111,14 @@ There are internal settings for XDCR which are only exposed via the REST API.
 These settings will change the replication behavior, performance, and timing. To
 view an XDCR internal settings, for instance:
 
+    curl -u admin:password1  \
+    http://10.4.2.4:8091/internalSettings
 
-```
-> curl -u Administrator:password1  \
-http://10.4.2.4:8091/internalSettings
-```
-
+Replace the *admin*, *password1*, and *10.4.2.4* values in the above example
+with your actual values.
+    
 You will receive a response similar to the following. For the sake of brevity,
 we are showing only the XDCR-related items:
-
 
 ```
 {
@@ -3218,8 +3141,7 @@ For more information about these settings and their usage, see [Cross Datacenter
 ### Changing Internal XDCR Settings
 
 There are internal settings for XDCR which will change the replication behavior, performance, and timing.
-As of Couchbase Server 2.2+, there new endpoints. One can change global settings for replications for a cluster and the other 
-endpoint will change settings for a specific replication ID:
+With the Couchbase Server, endpoints are available to change global settings for replications for a cluster and to change settings for a specific replication ID:
 
 - `/settings/replications/` — global settings applied to all replications for a cluster
 - `/settings/replications/<replication_id>` — settings for specific replication for a bucket
@@ -3227,34 +3149,34 @@ endpoint will change settings for a specific replication ID:
 
 As of Couchbase Server 2.2+ you can change settings for a specific replication ID in Web Console | XDCR | Ongoing Replications | Settings. In the REST API you can change these settings globally for all replications for a cluster or for a specific replication ID. For detailed information about these settings including the impact of changes to a setting, see [XDCR, Providing Advanced Settings](#admin-tasks-xdcr-advanced):
 
-| parameter        | Value           | Description  |
-| ------------- |:-------------:| -----:|
-| `xdcrMaxConcurrentReps` | Integer |  Equivalent to Web Console setting `XDCR Max Replications per Bucket`.
- | `xdcrCheckpointInterval` | Integer | Same as Web Console setting`XDCR Checkpoint Interval`.
- | `xdcrWorkerBatchSize` | Integer | Known as Web Console setting `XDCR Batch Count`.
- | `xdcrDocBatchSizeKb` | Integer | Same as Web Console setting `XDCR Batch Size (KB)`.
- | `xdcrFailureRestartInterval` | Integer | equal to Web Console setting`XDCR Failure Retry Interval`.
- | `xdcrOptimisticReplicationThreshold` | Integer | Same as to Web Console setting `XDCR Optimistic Replication Threshold`.
+Parameter        | Value           | Description 
+------------- |-------------| --------
+`xdcrMaxConcurrentReps` | Integer |  Equivalent to Web Console setting `XDCR Max Replications per Bucket`.
+`xdcrCheckpointInterval` | Integer | Same as Web Console setting`XDCR Checkpoint Interval`.
+`xdcrWorkerBatchSize` | Integer | Known as Web Console setting `XDCR Batch Count`.
+`xdcrDocBatchSizeKb` | Integer | Same as Web Console setting `XDCR Batch Size (KB)`.
+`xdcrFailureRestartInterval` | Integer | equal to Web Console setting`XDCR Failure Retry Interval`.
+`xdcrOptimisticReplicationThreshold` | Integer | Same as to Web Console setting `XDCR Optimistic Replication Threshold`.
  
 There are additional internal settings for XDCR which are not yet exposed by Web Console, but are available 
 via the REST API. These parameters are as follows:
 
-| parameter        | Value           | Description  |
-| ------------- |:-------------:| -----:|
-| `workerProcesses` | Integer from 1 to 32. Default 32. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
-| `httpConnections` | Integer from 1 to 100. Default 2. | Number of maximum simultaneous HTTP connections used for REST protocol.
-| `xmemWorker` | Integer from 1 to 32. Default 1. | Used in memcached protocol for XDCR at the data transport layer. The number of work processes per vbucket replicator. A memcached work process is responsible for sending memcached operations to a remote node.
-| `enablePipelineOps`| Boolean. Defaults to true. | Used for memcached protocol with XDCR for backwards computability.  True indicates pipelined operations and false indicates non-pipelined memcached operations.
-| `localConflictResolution` | Boolean, default is false. | Used for backwards compatibility with pre-2.2 clusters. Perform conflict resolution on source cluster before replication to destination. 
+Parameter        | Value           | Description 
+------------- |-------------| --------
+`workerProcesses` | Integer from 1 to 32. Default 32. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
+`httpConnections` | Integer from 1 to 100. Default 2. | Number of maximum simultaneous HTTP connections used for REST protocol.
+`xmemWorker` | Integer from 1 to 32. Default 1. | Used in memcached protocol for XDCR at the data transport layer. The number of work processes per vbucket replicator. A memcached work process is responsible for sending memcached operations to a remote node.
+`enablePipelineOps`| Boolean. Defaults to true. | Used for memcached protocol with XDCR for backwards computability.  True indicates pipelined operations and false indicates non-pipelined memcached operations.
+`localConflictResolution` | Boolean, default is false. | Used for backwards compatibility with pre-2.2 clusters. Perform conflict resolution on source cluster before replication to destination. 
 
 The following example updates an XDCR setting for parallel replication streams per node:
 
+    curl -X POST -u admin:password1  \
+    http://10.4.2.4:8091/settings/replications/  \
+    -d xdcrMaxConcurrentReps=64
 
-```
-> curl -X POST -u Administrator:password1  \
-http://10.4.2.4:8091/settings/replications/  \
--d xdcrMaxConcurrentReps=64
-```
+Replace the *admin*, *password1*, *10.4.2.4*, and *64* values in the above
+example with your actual values.
 
 If Couchbase Server successfully updates this setting, it will send a response
 as follows:
@@ -3273,14 +3195,13 @@ Cache-Control: no-cache
 
 ### Getting XDCR Stats via REST
 
-You can get XDCR statistics from either Couchbase Web Console, or the REST-API.
+You can get XDCR statistics from either Couchbase Web Console, or the REST API.
 You perform all of these requests on a source cluster to get information about a
 destination cluster. All of these requests use the UUID, a unique identifier for
-destination cluster. You can get this ID by using the REST-API if you do not
+destination cluster. You can get this ID by using the REST API if you do not
 already have it. For instructions, see [Getting a Destination Cluster
 Reference](#couchbase-admin-restapi-xdcr-destination). The endpoints are as
 follows:
-
 
 ```
 http://hostname:port/pools/default/buckets/[bucket_name]/stats/[destination_endpoint]
@@ -3349,13 +3270,13 @@ You need to provide properly URL-encoded
 `/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]`. To get the number of
 documents written:
 
+    curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
 
-```
-curl-X GET http://hostname:port/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
-```
+Replace the *admin*, *password*, *localhost*,
+*8ba6870d88cd72b3f1db113fc8aee675*, *source_bucket*, and *destination_bucket*
+values in the above example with your actual values.
 
-Will produce this output:
-
+The above command will produce this output:
 
 ```
 {"samplesCount":60,"isPersistent":true,"lastTStamp":1371685106753,"interval":1000,
@@ -3367,7 +3288,7 @@ Will produce this output:
 1371685087753,1371685088753,1371685089753,1371685090753,1371685091754,1371685092753,1371685093753,1371685094753,
 1371685095753,1371685096753,1371685097753,1371685098753,1371685099753,1371685100753,1371685101753,1371685102753,
 1371685103753,1371685104753,1371685105753,1371685106753],
-"nodeStats":{"127.0.0.1:9000":[1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+"nodeStats":{"127.0.0.1:8091":[1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
@@ -3377,13 +3298,13 @@ Will produce this output:
 This shows that XDCR transferred 1 million documents at each of the timestamps
 provided. To get the rate of replication, make this REST request:
 
+    curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Frate_replication
 
-```
-curl -X GET http://hostanme:port/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Frate_replication
-```
-
-This will produce this output:
-
+Replace the *admin*, *password*, *localhost*,
+*8ba6870d88cd72b3f1db113fc8aee675*, *source_bucket*, and *destination_bucket*
+values in the above example with your actual values.
+    
+This will produce the following output:
 
 ```
 {"samplesCount":60,"isPersistent":true,"lastTStamp":1371685006753,"interval":1000,
@@ -3395,14 +3316,17 @@ This will produce this output:
 1371684987754,1371684988753,1371684989753,1371684990753,1371684991753,1371684992753,1371684993753,1371684994753,
 1371684995753,1371684996753,1371684997753,1371684998776,1371684999753,1371685000753,1371685001753,1371685002753,
 1371685003753,1371685004753,1371685005753,1371685006753],
-"nodeStats":{"127.0.0.1:9000":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
+"nodeStats":{"127.0.0.1:8091":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
 ```
 
 To get `docs_opt_repd` you first get the replication id for a source and destination bucket. First get a list active tasks for a cluster:
 
-        curl -s -X GET -u Administrator:password \
-        http://10.3.121.119:8091/pools/default/tasks
-        
+        curl -s -u admin:password \
+        http://localhost:8091/pools/default/tasks
+
+Replace the *admin*, *password*, and *localhost* values in the above example
+with your actual values.
+                
 This will result in output as follows:
 
         ....
@@ -3442,7 +3366,6 @@ This will return results for all stats as follows. Within the JSON you find an
 array `xdc_ops` and the value for this attribute will be the last sampling of
 write operations on the destination due to XDCR:
 
-
 ```
 {
 .................
@@ -3469,7 +3392,6 @@ will return all categories of messages.
 Messages may be labeled, "info" "crit" or "warn". Accessing logs requires
 administrator credentials if the system is secured.
 
-
 ```
 GET /pools/default/logs?cat=crit
 Host: localhost:8091
@@ -3477,7 +3399,6 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
-
 
 ```
 201: bucket was created and valid URIs returned
@@ -3511,7 +3432,6 @@ difficulty handling a server response. For instance, the Web UI uses this
 functionality to log client error conditions. To add entries you provide a REST
 request:
 
-
 ```
 POST /logClientError
 Host: localhost:8091
@@ -3519,7 +3439,6 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
-
 
 ```
 200 - OK

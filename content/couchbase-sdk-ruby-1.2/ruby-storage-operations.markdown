@@ -45,7 +45,7 @@ fail if the key already exists in the database.
 The `add` method adds a value to the database using the specified key.
 
 
-```
+```ruby
 couchbase.add("someKey", 0, someObject);
 ```
 
@@ -55,7 +55,7 @@ return false) if the specified key already exists.
 For example, the first operation in the example below may complete if the key
 does not already exist, but the second operation will always fail as the first
 operation will set the key:
-```
+```ruby
 c.add("foo", "bar")   # stores successully
 c.add("foo", "baz")   # raises Couchbase::Error::KeyExists:
                       # fails to store value (key="foo", error=0x0c)
@@ -91,7 +91,7 @@ supporting the explicit setting of the expiry time on the item. For example to
 update the `samplekey` :
 
 
-```
+```ruby
 couchbase.replace("samplekey","updatedvalue",0);
 ```
 
@@ -132,7 +132,7 @@ data.
 Examples of using set as follows:
 
 
-```
+```ruby
 #Store a key/value which expires in 2 seconds using relative TTL
 
 c.set("foo", "bar", :ttl => 2)

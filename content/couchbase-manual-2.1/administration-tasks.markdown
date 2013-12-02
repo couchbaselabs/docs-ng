@@ -191,7 +191,7 @@ Monitoring](#couchbase-admin-web-console-data-buckets-individual).
 **Changing Readers and Writers for Existing Buckets**
 
 You can change this setting after you create a data bucket in Web Console or
-REST-API. If you do so, the bucket will be re-started and will go through server
+REST API. If you do so, the bucket will be re-started and will go through server
 warmup before it becomes available. For more information about warmup, see
 [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
 
@@ -405,9 +405,15 @@ given node and `beer_sample` is a named bucket for the node. If you do not
 specify a bucket name, the command will apply to any existing default bucket for
 the node.
 
-ep\_warmup\_thread | Indicates if the warmup has completed. Returns "running" or "complete".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ep\_warmup\_state  | * Indicates the current progress of the warmup: **Initial**. Start warmup processes.  * **EstimateDatabaseItemCount**. Estimating database item count.  * **KeyDump**. Begin loading keys and metadata based, but not documents, into RAM.  * **CheckForAccessLog**. Determine if an access log is available. This log indicates which keys have been frequently read or written.  * **LoadingAccessLog**. Load information from access log.  * **LoadingData**. This indicates the server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  * **Done**. Server is ready to handle read and write requests.
+* **ep\_warmup\_thread** - Indicates whether the warmup completed or is still running. Returns "running" or "complete". 
+* **ep\_warmup\_state** - Indicates the current progress of the warmup:   
+	* Initial - Start warmup processes.  
+	* EstimateDatabaseItemCount - Estimate database item count.  
+	* KeyDump - Begin loading keys and metadata based, but not documents, into RAM.  
+	* CheckForAccessLog - Determine if an access log is available. This log indicates which keys have been frequently read or written.  
+	* LoadingAccessLog - Load information from access log.  
+	* LoadingData* - The server is loading data first for keys listed in the access log, or if no log available, based on keys found during the 'Key Dump' phase.  
+	* Done - The server is ready to handle read and write requests.
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -716,7 +722,7 @@ Server 2.0+, we recommend that you remain using the defaults provided.
 
 The process that periodically runs and removes documents from RAM is known as
 the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting inactive replica data from RAM on the node. If the
+process starts ejecting replica data from RAM on the node. If the
 amount of RAM used by items reaches an upper threshold, known as the *high water
 mark*, both replica data and active data written from clients will be ejected.
 The item pager will continue to eject items from RAM until the amount of RAM
@@ -781,8 +787,7 @@ reclaim disk space and reduce fragmentation.
 
 **How it works**
 
-Couchbase compacts views and data files. For database compaction, a new file is
-created into which the active index information is written. Meanwhile, the
+Couchbase compacts views and data files. For database compaction, a new file is created into which the active (non-stale) information is written. Meanwhile, the
 existing database files stay in place and continue to be used for storing
 information and updating the index data. This process ensures that the database
 continues to be available while compaction takes place. Once compaction is
@@ -815,7 +820,7 @@ Make sure you perform compaction…
    compaction should be scheduled during off-peak hours (use auto-compact to
    schedule specific times).
 
-   If compaction isn’t scheduled during off-peak hours, it can cause problems.
+   If compaction isn't scheduled during off-peak hours, it can cause problems.
    Because the compaction process can take a long to complete on large and busy
    databases, it is possible for the compaction process to fail to complete
    properly while the database is still active. In extreme cases, this can lead to
@@ -877,8 +882,7 @@ both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
 Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually. For more information, see **Couldn't resolve xref tag:
-couchbase-admin-tasks-compaction-spatial**.
+compacted manually.
 
 Auto-compaction can be configured in two ways:
 
@@ -907,7 +911,7 @@ specific settings are identical:
 
    For example, if you set the fragmentation percentage at 10%, the moment the
    fragmentation level has been identified, the compaction process will be started,
-   unless you have time limited auto-compaction. SeeTime Period.
+   unless you have time limited auto-compaction. See Time Period.
 
  * **View Fragmentation**
 
@@ -1186,7 +1190,7 @@ failover is not without potential problems.
 
  * **External monitoring**
 
-   [Another option is to have a system monitoring the cluster via theManagement
+   [Another option is to have a system monitoring the cluster via the Management
    REST API](#couchbase-admin-restapi). Such an external system is in a good
    position to failover nodes because it can take into account system components
    that are outside the scope of Couchbase Server.
@@ -1414,7 +1418,7 @@ There are a number of methods for performing a backup:
    For more information, see [Backing Up Using File
    Copies](#couchbase-backup-restore-backup-filecopy).
 
-   [To restore, you need to use thefile copy](#couchbase-backup-restore-filecopy)
+   [To restore, you need to use the file copy](#couchbase-backup-restore-filecopy)
    method.
 
 Due to the active nature of Couchbase Server it is impossible to create a
@@ -1498,6 +1502,7 @@ Where the arguments are as described below:
     * `--bucket-source` or `-b`
 
       Backup only the specified bucket name.
+        
 
  * `[source]`
 
@@ -1790,7 +1795,7 @@ with the backed up version of the data files, and then re-starting the cluster
 with the saved version of the cluster files.
 
 Make sure that any restoration of files also sets the proper ownership of those
-files to the couchbase user
+files to the couchbase user.
 
 When restoring data back in to the same cluster, then the following must be true
 before proceeding:
@@ -1863,6 +1868,10 @@ Where:
       Specify the name of the bucket the data will be written to. If this option is
       not specified, the data will be written to a bucket with the same name as the
       source bucket.
+    
+    * `--add`
+      
+      Use `--add` instead of `--set` in order to not overwrite existing items in the destination.
 
    For information on all the options available when using `cbrestore`, see
    [cbrestore Tool](#couchbase-admin-cmdline-cbrestore)
@@ -2439,7 +2448,7 @@ be updated or upgraded.
 
 Before you remove a node from the cluster, you should ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, seeChoosing when to shrink your cluster.
+more information on the considerations, see Choosing when to shrink your cluster.
 For the best results, use swap rebalance to swap the node you want to remove
 out, and swap in a replacement node. For more information on swap rebalance, see
 [Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
@@ -2618,7 +2627,7 @@ The benefits of swap rebalance are:
    the capacity of the cluster remains unchanged during the rebalance operation,
    helping to ensure performance and failover support.
 
-The behaviour of the cluster during a failover and rebalance operation with the
+The behavior of the cluster during a failover and rebalance operation with the
 swap rebalance functionality affects the following situations:
 
  * **Stopping a rebalance**
@@ -2982,7 +2991,7 @@ each Couchbase Server node.
 
 ### XDCR Architecture
 
-There are a number of key elements in Couchbase Server’s XDCR architecture
+There are a number of key elements in Couchbase Server's XDCR architecture
 including:
 
 **Continuous Replication.** XDCR in Couchbase Server provides continuous
@@ -3022,12 +3031,12 @@ replicated.
 **Active-Active Conflict Resolution.** Within a cluster, Couchbase Server
 provides strong consistency at the document level. On the other hand, XDCR also
 provides eventual consistency across clusters. Built-in conflict resolution will
-pick the same “winner” on both the clusters if the same document was mutated on
+pick the same "winner" on both the clusters if the same document was mutated on
 both the clusters. If a conflict occurs, the document with the most updates will
-be considered the “winner.” If the same document is updated the same number of
+be considered the "winner." If the same document is updated the same number of
 times on the source and destination, additional metadata such as numerical
 sequence, CAS value, document flags and expiration TTL value are used to pick
-the “winner.” XDCR applies the same rule across clusters to make sure document
+the "winner." XDCR applies the same rule across clusters to make sure document
 consistency is maintained:
 
 
@@ -3228,7 +3237,7 @@ Settings](#couchbase-admin-restapi-xdcr-internal-settings).
 
 <a id="couchbase-admin-tasks-xdcr-cancellation"></a>
 
-### Cancelling Replication
+### Canceling Replication
 
 You can cancel replication at any time by clicking `Delete` next to the active
 replication that is to be canceled.
@@ -3410,7 +3419,7 @@ Replication (XDCR)](#couchbase-admin-tasks-xdcr).
 
 ### Changing XDCR Settings
 
-Besides Couchbase Web Console, you can use several Couchbase REST-API endpoints
+Besides Couchbase Web Console, you can use several Couchbase REST API endpoints
 to modify XDCRsettings. Some of these settings are references used in XDCR and
 some of these settings will change XDCR behavior or performance:
 
@@ -3454,7 +3463,7 @@ operation on every node in the cluster.
  * By server setting:
 
     ```
-    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:9000/diag/eval \
+    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
                           -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
     ```
 
@@ -3586,7 +3595,7 @@ To change the disk path of the existing node, the recommended sequence is:
 
  1. Configure the new disk path, either by using the REST API (see [Configuring
     Index Path for a Node](#couchbase-admin-restapi-provisioning-diskpath) ), using
-    the command-line (seecluster initializationfor more information).
+    the command-line (see cluster initialization for more information).
 
     Alternatively, connect to the Web UI of the new node, and follow the setup
     process to configure the disk path (see [Initial Server

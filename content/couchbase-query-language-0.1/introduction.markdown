@@ -1,10 +1,9 @@
 #Introduction
 
 Couchbase Query Language, known as N1QL or 'Nickel', helps you to find and change data in Couchbase Server. 
-We designed the language to be human -readable and -writable; it is an extensible language designed for 
-ad-hoc querying. The query language is a standard semantic you use to build querying ability in other programming languages.
+We designed the language to be human -readable and -writable; it is an extensible language designed for ad-hoc querying. The query language is a standard semantic you use to build querying ability in other programming languages.
 
-The N1QL Developer Preview 1 (DP1) is a pre-beta release of the language. It provides a subset of functionality from the full query language. 
+The N1QL Developer Preview 1 is a pre-beta release of the language. It provides a subset of functionality from the full query language. 
 
 N1QL is similar to the standard SQL language for relational databases, but it is also includes some additional 
 features which are suited for document-oriented databases. This guide describes 

@@ -80,7 +80,7 @@ bug fixes related to system timeouts and system stability. This includes:
 
       *Issues* : [MB-6799](http://www.couchbase.com/issues/browse/MB-6799)
 
-    * There is a new REST-API call which can be used if you experience a slow
+    * There is a new REST API call which can be used if you experience a slow
       rebalance while indexing and compaction are in progress. For more information,
       see [Adjusting Rebalance during
       Compaction](#couchbase-admin-restapi-rebalance-before-compaction).
@@ -265,7 +265,7 @@ The major new features available in Couchbase Server 2.0 include:
    data for disaster recovery and can help you bring your data closer to your end
    users for better application performance.
 
-**New Features and Behaviour Changes in 2.0.0**
+**New Features and Behavior Changes in 2.0.0**
 
  * **XDCR (Cross Data-Center Replication) Enhancements.**
 
@@ -297,10 +297,10 @@ The major new features available in Couchbase Server 2.0 include:
    compaction. For more information, see [Auto-Compaction
    Configuration](#couchbase-admin-tasks-compaction-autocompaction).
 
- * There is also now a new REST-API in Couchbase Server 2.0 where you can enable or
+ * There is also now a new REST API in Couchbase Server 2.0 where you can enable or
    disable flush for each data bucket in a cluster. This also enables you to flush
    an individual bucket in a cluster or multiple buckets on a cluster with a single
-   REST-API command. For more information, see [Flushing a
+   REST API command. For more information, see [Flushing a
    Bucket](#couchbase-admin-restapi-flushing-bucket).
 
    *Issues* : [MB-6776](http://www.couchbase.com/issues/browse/MB-6776)
@@ -439,7 +439,7 @@ The major new features available in Couchbase Server 2.0 include:
 
       *Issues* : [MB-6840](http://www.couchbase.com/issues/browse/MB-6840)
 
-    * The Couchbase REST-API has changed to enable you to change the default maximum
+    * The Couchbase REST API has changed to enable you to change the default maximum
       number of buckets used in a Couchbase cluster. The maximum allowed buckets in
       this request is 128, however the maximum suggested number of buckets is ten per
       cluster. This is a safety mechanism to ensure that a cluster does not have
@@ -482,7 +482,7 @@ The major new features available in Couchbase Server 2.0 include:
        ["Unexpected server error, request logged."]
        ```
 
-      For more information about setting buckets per cluster via REST-API, see
+      For more information about setting buckets per cluster via REST API, see
       [Setting Maximum Buckets for Clusters](#couchbase-admin-restapi-max-buckets).
 
       *Issues* : [MB-5684](http://www.couchbase.com/issues/browse/MB-5684)
@@ -755,7 +755,7 @@ The major new features available in Couchbase Server 2.0 include:
     * The couchbase command line tool, `couchbase-cli` does not enable you to set
       `index_path` as a separate parameter as `data_path`. The former contains indexed
       data from defined views functions, while the later contains keys, metadata, and
-      JSON documents. You can however use the REST-API to do this.
+      JSON documents. You can however use the REST API to do this.
 
       *Issues* : [MB-7323](http://www.couchbase.com/issues/browse/MB-7323)
 
@@ -864,7 +864,7 @@ more information about Couchbase Server 2.0, visit [Couchbase Server
 The major improvements made between build \#1870 and build \#1941 are described
 below:
 
-**New Features and Behaviour Changes in 2.0.0 \#1941**
+**New Features and Behavior Changes in 2.0.0 \#1941**
 
  * The default node quota percentage has been reduced from 80% to 60% to provide
    capacity in the operating system for the view and indexing data to be cached.
@@ -1227,12 +1227,12 @@ The major improvements made between Beta and build \#1870 include:
    easier for you to spot or diagnose server issues. For more information, see
    [Logs and Logging](#couchbase-troubleshooting-logs).
 
-**New Features and Behaviour Changes in 2.0.0 build \#1870**
+**New Features and Behavior Changes in 2.0.0 build \#1870**
 
- * There is also now a new REST-API in Couchbase Server 2.0 where you can enable or
+ * There is also now a new REST API in Couchbase Server 2.0 where you can enable or
    disable flush for each data bucket in a cluster. This also enables you to flush
    an individual bucket in a cluster or multiple buckets on a cluster with a single
-   REST-API command. For more information, see [Flushing a
+   REST API command. For more information, see [Flushing a
    Bucket](#couchbase-admin-restapi-flushing-bucket).
 
    *Issues* : [MB-6776](http://www.couchbase.com/issues/browse/MB-6776)
@@ -1365,7 +1365,7 @@ The major improvements made between Beta and build \#1870 include:
 
       *Issues* : [MB-6806](http://www.couchbase.com/issues/browse/MB-6806)
 
-    * The Couchbase REST-API has changed to enable you to change the default maximum
+    * The Couchbase REST API has changed to enable you to change the default maximum
       number of buckets used in a Couchbase cluster. The maximum allowed buckets in
       this request is 128, however the maximum suggested number of buckets is ten per
       cluster. This is a safety mechanism to ensure that a cluster does not have
@@ -1408,7 +1408,7 @@ The major improvements made between Beta and build \#1870 include:
        ["Unexpected server error, request logged."]
        ```
 
-      For more information about setting buckets per cluster via REST-API, see
+      For more information about setting buckets per cluster via REST API, see
       [Setting Maximum Buckets for Clusters](#couchbase-admin-restapi-max-buckets).
 
       *Issues* : [MB-5684](http://www.couchbase.com/issues/browse/MB-5684)
@@ -1580,7 +1580,7 @@ enterprise- and community-edition customers. For more information about
 Couchbase Server 2.0, visit [Couchbase Server
 2.0](http://www.couchbase.com/couchbase-server/next).
 
-**New Features and Behaviour Changes in 2.0.0**
+**New Features and Behavior Changes in 2.0.0**
 
  * Two sample databases can be loaded either during setup or in the setting panel.
 
@@ -1865,7 +1865,7 @@ Couchbase Server 2.0, visit [Couchbase Server
 
 ## Release Notes for Couchbase Server 2.0.0 Build #1672 Developer Preview (10 September 2012)
 
-**New Features and Behaviour Changes in 2.0.0 Build \#1672**
+**New Features and Behavior Changes in 2.0.0 Build \#1672**
 
  * New statistics have been added to understand the cross data center replication
    streams. The source cluster will show information about each XDCR including
@@ -2241,7 +2241,7 @@ data type.
 Existing client libraries continue to work with the new release without
 modification to the View or document update mechanisms and information.
 
-**New Features and Behaviour Changes in 2.0.0 Build \#1554**
+**New Features and Behavior Changes in 2.0.0 Build \#1554**
 
  * Behavior Change: Identifying the content type of the document can no longer be
    achieved by using the `doc._bin` field of the document object. Instead, you
@@ -2466,7 +2466,7 @@ functionality.
 
    For more information, see [Couchbase Sample Buckets](#couchbase-sampledata).
 
-**New Features and Behaviour Changes in 2.0.0DP4**
+**New Features and Behavior Changes in 2.0.0DP4**
 
  * The index/view related improvements are for production views or development
    views with `full_set=true`.
@@ -2474,7 +2474,7 @@ functionality.
  * The indexes created by the view system are now replicated among nodes to ensure
    that indexes do not need to be rebuilt in the event of a failover.
 
- * A new option, `on_error` has been added to control the behaviour of the view
+ * A new option, `on_error` has been added to control the behavior of the view
    engine when returning a request. By default the value is `continue`, which
    indicates that the view engine should continue to return results in the event of
    an error. You can also set the option to `stop` to stop the view results being
@@ -2776,7 +2776,7 @@ functionality.
 
 This is the 3rd 'developer preview' edition of Couchbase Server 2.0.
 
-**New Features and Behaviour Changes in 2.0.0DP3**
+**New Features and Behavior Changes in 2.0.0DP3**
 
  * Status bars have been added to show view building and rebalance progress.
 

@@ -23,7 +23,7 @@ are running on your node:
    all server processes. This resulted in server disruption and crashes due to lack
    of memory.
 
-   As of Couchbase Server 2.1+ there is a separate monitoring/babysitting process
+   There is a separate monitoring/babysitting process
    running on each node. The process is small and simple and therefore unlikely to
    crash due to lack of memory. It is responsible for spawning and monitoring the
    second, larger process for cluster management, XDCR and views. It also spawns
@@ -147,7 +147,7 @@ the system is understanding how we interact with the disk subsystem.
 
 Since Couchbase Server is an asynchronous system, any mutation operation is
 committed first to DRAM and then queued to be written to disk. The client is
-returned an acknowledgement almost immediately so that it can continue working.
+returned an acknowledgment almost immediately so that it can continue working.
 There is replication involved here too, but we're ignoring it for the purposes
 of this discussion.
 
@@ -171,10 +171,13 @@ essentially sleep until there are more items to write.
 There are basically two ways to monitor the disk queue, at a high-level from the
 Web UI or at a low-level from the individual node statistics.
 
-From the Web UI, click on Monitor Data Buckets and select the particular bucket
-that you want to monitor. Click "Configure View" in the top right corner and
-select the "Disk Write Queue" statistic. Closing this window will show that
-there is a new mini-graph. This graph is showing the Disk Write Queue for all
+1. From the Web UI, click on Monitor Data Buckets and select the particular bucket
+that you want to monitor. 
+1. Click "Configure View" in the top right corner and
+select the "Disk Write Queue" statistic. Closing this window shows that
+there is a new mini-graph. 
+
+This graph is showing the Disk Write Queue for all
 nodes in the cluster. To get a deeper view into this statistic, you can monitor
 each node individually using the 'stats' output (see [Viewing Server
 Nodes](#couchbase-admin-web-console-server-nodes) for more information about
@@ -183,7 +186,7 @@ gathering node-level stats). There are two statistics to watch here:
 ep\_queue\_size (where new mutations are placed) flusher\_todo (the queue of
 items currently being written to disk)
 
-[SeeThe Dispatcher](#couchbase-monitoring-nodestats-dispatcher) for more
+[See The Dispatcher](#couchbase-monitoring-nodestats-dispatcher) for more
 information about monitoring what the disk subsystem is doing at any given time.
 
 <a id="couchbase-monitoring-stats"></a>
@@ -200,11 +203,11 @@ the proxy and individual nodes have directly accessible statistics interfaces.
 
 ### REST Interface Statistics
 
-[The easiest to use interface into the statistics provided by REST is to use the
-[Using the Web Console](#couchbase-admin-web-console). This GUI gathers
+To interact with statistics provided by REST, use the
+[Couchbase Web Console](#couchbase-admin-web-console). This GUI gathers
 statistics via REST and displays them to your browser. The REST interface has a
 set of resources that provide access to the current and historic statistics the
-cluster gathers and stores. See theREST documentation](#couchbase-admin-restapi)
+cluster gathers and stores. See the [REST documentation](#couchbase-admin-restapi)
 for more information.
 
 <a id="couchbase-monitoring-nodestats"></a>
@@ -215,9 +218,9 @@ for more information.
 documentation](http://github.com/membase/ep-engine/blob/master/docs/stats.org)
 can be found in the repository.
 
-[Along with stats at the REST and UI level, individual nodes can also be queried
+Along with stats at the REST and UI level, individual nodes can also be queried
 for statistics either through a client which uses binary protocol or through
-thecbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
+the [cbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
 Server.
 
 For example:
@@ -300,8 +303,7 @@ Moxi, as part of it's support of memcached protocol, has support for the
 memcached `stats` command. Regular memcached clients can request statistics
 through the memcached stats command. The stats command accepts optional
 arguments, and in the case of Moxi, there is a stats proxy sub-command. A
-detailed description of statistics available through Moxi can be found
-[here](http://www.couchbase.com/docs/moxi-manual-1.7/index.html).
+detailed description of statistics available through Moxi can be found in the [Moxi 1.8 Manual](http://docs.couchbase.com/moxi-manual-1.8).
 
 For example, one simple client one may use is the commonly available netcat
 (output elided with ellipses):

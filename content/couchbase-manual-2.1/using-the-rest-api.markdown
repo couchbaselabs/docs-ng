@@ -7,7 +7,7 @@ constraints, in other words, the REST API follows a **RESTful** architecture.
 You use the REST API to manage clusters, server nodes, and buckets, and to
 retrieve run-time statistics within your Couchbase Server deployment. If you
 want to develop your own Couchbase-compatible SDK, you will also use the
-REST-API within your library to handle *views*. Views enable you to index and
+REST API within your library to handle *views*. Views enable you to index and
 query data based on functions you define. For more information about views, see
 [Views and Indexes](#couchbase-views).
 
@@ -63,7 +63,7 @@ concepts discussed in the following sections.
 
 ## Types of Resources
 
-There are a number of different resources within the Couchbase Server and these
+There are a number of different resources within the Couchbase Server, and these
 resources will require a different URI/RESTful-endpoint in order to perform an
 operations:
 
@@ -166,7 +166,7 @@ you would use for a REST API request. This is especially for administrative
 tasks such as creating a new bucket, adding a node to a cluster, or changing
 cluster settings.
 
-[For a list of supported browsers, seeSystem
+[For a list of supported browsers, see System
 Requirements](#couchbase-getting-started-prepare). For the Couchbase Web
 Console, a separate UI hierarchy is served from each node of the system (though
 asking for the root "/" would likely return a redirect to the user agent). To
@@ -175,7 +175,7 @@ port, for instance on your development machine: `http://localhost:8091`
 
 The operation and interface for the console is described in [Using the Web
 Console](#couchbase-admin-web-console). For most of the administrative
-operations described in this chapter for the REST-API, you can perform the
+operations described in this chapter for the REST API, you can perform the
 functional equivalent in Couchbase Web Console.
 
 <a id="couchbase-admin-restapi-node-management"></a>
@@ -321,7 +321,7 @@ Host: 10.4.2.4:8091
 Accept: */*
 ```
 
-If Couchbase Server successfully handles the reuqest, you will get a response
+If Couchbase Server successfully handles the request, you will get a response
 similar to the following example:
 
 
@@ -505,7 +505,7 @@ Content-Length: 0
 
 There are several ways you can provide hostnames for Couchbase 2.1+. You can
 provide a hostname when you install a Couchbase Server 2.1 node, when you add it
-to an existing cluster for online upgrade, or via a REST-API call. If a node
+to an existing cluster for online upgrade, or via a REST API call. If a node
 restarts, any hostname you establish will be used. You cannot provide a hostname
 for a node that is already part of a Couchbase cluster; the server will reject
 the request and return `error 400 reason: unknown ["Renaming is disallowed for
@@ -530,7 +530,7 @@ perform node failover using the Web Console, for more information, see
 [Couchbase Server Manual, Initiating Node
 Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-failover-manual.html).
 
-Using the REST-API endpoint `host:port/controller/failOver`, provide your
+Using the REST API endpoint `host:port/controller/failOver`, provide your
 administrative credentials and the parameter `optNode` which is an internal name
 for the node:
 
@@ -1421,7 +1421,7 @@ shell> curl -v -X POST -u Administrator:Password -d name=customer \
 ```
 
 [Available parameters are identical to those available when creating a bucket.
-Seebucket parameters](#table-couchbase-admin-restapi-creating-buckets).
+See bucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
@@ -2170,7 +2170,7 @@ If you rebalance fails, you will see this response:
 ### Adjusting Rebalance during Compaction
 
 If you perform a rebalance while a node is undergoing index compaction, you may
-experience delays in rebalance. There is REST-API parameter as of Couchbase
+experience delays in rebalance. There is REST API parameter as of Couchbase
 Server 2.0.1 you can use to improve rebalance performance. If you do make this
 selection, you will reduce the performance of index compaction which can result
 in larger index file size.
@@ -2180,7 +2180,7 @@ To make this request:
 
 ```
 wget --post-data='rebalanceMovesBeforeCompaction=256'
---user=Administrator --password=pass http://lh:9000/internalSettings
+--user=Administrator --password=pass http://lh:8091/internalSettings
 ```
 
 This needs to be made as POST request to the `/internalSettings` endpoint. By
@@ -2591,7 +2591,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 
 200 OK
 
-Possible errrors include:
+Possible errors include:
 
 
 ```
@@ -2717,7 +2717,7 @@ an index to efficiently find documents by a particular value or by a particular
 structure in the document, represent relationships between documents, and
 perform calculations on data contained in documents.
 
-You store view functions in a design document as JSON and can use the REST-API
+You store view functions in a design document as JSON and can use the REST API
 to manage your design documents. Please refer to the following resources:
 
  * [Storing a Design
@@ -2729,7 +2729,7 @@ to manage your design documents. Please refer to the following resources:
  * [Deleting a Design
    Document](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-designdoc-api-deleting.html).
 
- * Querying Views via the REST-API. [Querying Using the REST
+ * Querying Views via the REST API. [Querying Using the REST
    API](#couchbase-views-querying-rest-api).
 
 <a id="couchbase-restapi-request-limits"></a>
@@ -2742,7 +2742,7 @@ many simultaneous views requests resulted in a node being overwhelmed. For
 general information about this endpoint, see [Managing Internal Cluster
 Settings](#couchbase-admin-restapi-settings-max_bucket_count).
 
- When Couchbase Server rejects an incoming connection because one of these
+When Couchbase Server rejects an incoming connection because one of these
 limits is exceeded, it responds with an HTTP status code of 503. The HTTP
 Retry-After header will be set appropriately. If the request is made to a REST
 port, the response body will provide the reason why the request was rejected. If
@@ -2754,7 +2754,7 @@ For example, to change this limit for the port used for views:
 
 ```
 wget --post-data='capiRequestLimit=50'
---user=Administrator --password=pass http://a_hostname:9000/internalSettings
+--user=Administrator --password=pass http://a_hostname:8091/internalSettings
 ```
 
 Will limit the number of simultaneous views requests and internal XDCR requests
@@ -2762,7 +2762,7 @@ which can be made on a port. The following are all the port-related request
 parameters you can set:
 
  * **restRequestLimit** : Maximum number of simultaneous connections each node
-   should accept on a REST port. Diagnostic-related requests and 
+   should accept on a REST port. Diagnostic-related requests and 
    `/internalSettings` requests are not counted in this limit.
 
  * **capiRequestLimit** : Maximum number of simultaneous connections each node
@@ -3054,7 +3054,7 @@ shell> curl -u Administrator:password1  \
 http://10.4.2.4:8091/internalSettings
 ```
 
-You will recieve a response similar to the following. For the sake of brevity,
+You will receive a response similar to the following. For the sake of brevity,
 we are showing only the XDCR-related items:
 
 
@@ -3083,7 +3083,7 @@ The the XDCR-related values are defined as follows:
  * (Number) xdcrWorkerBatchSize: Document batching count, 500 to 10000. Default
    500.
 
- * (Number) xdcrDocBatchSizeKb: Document batching size, 10 to 100000 (kB). Default
+ * (Number) xdcrDocBatchSizeKb: Document batching size, 10 to 100000 (KB). Default
    2048.
 
  * (Number) xdcrFailureRestartInterval: Interval for restarting failed XDCR, 1 to
@@ -3170,7 +3170,7 @@ can adjust are defined as follows:
 
  * `xdcrDocBatchSizeKb` (Integer)
 
-   Document batching size, 10 to 100000 (kB). Default 2048. In general, increasing
+   Document batching size, 10 to 100000 (KB). Default 2048. In general, increasing
    this value by 2 or 3 times will improve XDCR transmissions rates, since larger
    batches of data will be sent in the same timed interval. For unidirectional
    replication from a source to a destination cluster, adjusting this setting by 2
@@ -3189,7 +3189,7 @@ can adjust are defined as follows:
 
  * `xdcrOptimisticReplicationThreshold` (Integer)
 
-   Document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
+   Document size in bytes, 0 to 20,971,520 bytes (20 MB). Default is 256 bytes. XDCR
    will get metadata for documents larger than this size on a single time before
    replicating the document to a destination cluster.
 
@@ -3197,10 +3197,10 @@ can adjust are defined as follows:
 
 ### Getting XDCR Stats via REST
 
-You can get XDCR statistics from either Couchbase Web Console, or the REST-API.
+You can get XDCR statistics from either Couchbase Web Console, or the REST API.
 You perform all of these requests on a source cluster to get information about a
 destination cluster. All of these requests use the UUID, a unique identifier for
-destination cluster. You can get this ID by using the REST-API if you do not
+destination cluster. You can get this ID by using the REST API if you do not
 already have it. For instructions, see [Getting a Destination Cluster
 Reference](#couchbase-admin-restapi-xdcr-destination). The endpoints are as
 follows:
@@ -3287,7 +3287,7 @@ Will produce this output:
 1371685087753,1371685088753,1371685089753,1371685090753,1371685091754,1371685092753,1371685093753,1371685094753,
 1371685095753,1371685096753,1371685097753,1371685098753,1371685099753,1371685100753,1371685101753,1371685102753,
 1371685103753,1371685104753,1371685105753,1371685106753],
-"nodeStats":{"127.0.0.1:9000":[1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+"nodeStats":{"127.0.0.1:8091":[1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
@@ -3315,7 +3315,7 @@ This will produce this output:
 1371684987754,1371684988753,1371684989753,1371684990753,1371684991753,1371684992753,1371684993753,1371684994753,
 1371684995753,1371684996753,1371684997753,1371684998776,1371684999753,1371685000753,1371685001753,1371685002753,
 1371685003753,1371685004753,1371685005753,1371685006753],
-"nodeStats":{"127.0.0.1:9000":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
+"nodeStats":{"127.0.0.1:8091":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
 ```
 
 You can also see the incoming write operations that occur on a destination

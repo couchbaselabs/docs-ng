@@ -2,42 +2,35 @@
 
 Before you can work with Couchbase and Elasticsearch, you need to set up
 Couchbase Plug-in for Elasticsearch, a Couchbase 2.0 or later cluster, and an
-Elasticsearch cluster. After you install the two different clusters, start them.
-The Couchbase cluster stores any items from your application, and sends replicas
+Elasticsearch cluster. After you install the clusters, start them. The Couchbase cluster stores any items from your application and sends replicas
 of these items to the Elasticsearch cluster for indexing. Your Couchbase cluster
 can contain one or more instances of Couchbase server, and your Elasticsearch
 cluster can contain one or more instances of the search engine. For more
-information about setting up and using these two components, check the
-following:
+information about setting up and using these components, see the
+following links:
 
  * [Couchbase Plug-in for
-   Elasticsearch](https://github.com/couchbaselabs/elasticsearch-transport-couchbase)
-   : be aware that this plug-in is compatible with **Elasticsearch 0.19.9 and
-   0.90.2**.
+   Elasticsearch](https://github.com/couchbaselabs/elasticsearch-transport-couchbase). Be aware that this plug-in is compatible with **Elasticsearch 0.19.9 and
+   0.90.5**.
 
  * [Couchbase Server
-   Requirements](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-prepare.html)
-   : describes supported platforms, hardware requirements, software requirements,
-   and network settings.
+   requirements](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-prepare.html). This topic describes supported platforms, hardware requirements, software requirements, and network settings.
 
  * [Couchbase Server
-   Install](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install.html)
-   : the server comes with an easy-to-use installer, however you may want further
-   information about platform-specific installation steps.
+   installation](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install.html). Couchbase Server comes with an easy-to-use installer, however you may want further information about platform-specific installation steps.
 
  * [Elasticsearch
-   Install](http://www.elasticsearch.org/guide/reference/setup/installation.html) :
+   installation](http://www.elasticsearch.org/guide/reference/setup/installation.html).
    installation instructions and system prerequisites for Elasticsearch. **Be aware
    that the Couchbase Plug-in for Elasticsearch has been tested for compatibility
-   with Elasticsearch 0.19.9 and 0.90.2**.
+   with Elasticsearch 0.19.9 and 0.90.5**.
 
-For now you will probably only need one instance of Couchbase Server running in
+For now you probably need only one instance of Couchbase Server running in
 a cluster and one instance of the Elasticsearch engine. Later as you test your
 integration under load and deploy your implementation, you will need to add more
 servers to handle the workload. At this phase, the most important point about
-the Couchbase Server install is to *make sure that you include the beer-sample
-data which is included as an option in the install.* The examples in this guide
-will build on data contained in the sample. For more information about using
+the Couchbase Server installation is to make sure that you include the beer-sample
+data, which is available as an installation option. The examples in this guide build on data contained in the sample database. For more information about using
 sample buckets, see [Couchbase Web Console, Installing Sample
 Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console-settings-samplebuckets.html).
 
@@ -53,26 +46,26 @@ information from Couchbase can be mapped and converted into data which
 Elasticsearch will index and query.
 
 This plug-in is compatible with Couchbase Server 2.0 or later and Elasticsearch
-0.19.9 and 0.90.2. For more information about the administrative tool for
+0.19.9 and 0.90.5. For more information about the administrative tool for
 Elasticsearch, see [Elasticsearch
 head.](http://mobz.github.com/elasticsearch-head/) For more information about
 setting up Elasticsearch, see [Elasticsearch
 Install](http://www.elasticsearch.org/guide/reference/setup/installation.html)
 
- 1. Go to your install directory for Elasticsearch:
+ 1. Go to your installation directory for Elasticsearch:
 
      ```
-     cd elasticsearch-0.90.2
+     cd elasticsearch-0.90.5
      ```
 
  1. Install the Couchbase Plug-in:
 
      ```
      bin/plugin -install transport-couchbase -url \
-     http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.1.0/elasticsearch-transport-couchbase-1.1.0.zip
+     http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.2.0/elasticsearch-transport-couchbase-1.2.0.zip
      ```
 
-    After a successful install, the plugin installer returns:
+    After a successful installation, the plug-in installer returns:
 
      ```
      DONE Installed transport-couchbase

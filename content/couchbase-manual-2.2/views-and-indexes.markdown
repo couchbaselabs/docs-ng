@@ -277,12 +277,7 @@ are guidelines on handling expiration with views:
    node.
 
 For more information about setting intervals for the maintenance process, refer
-to the Couchbase Manual command line tool, [Couchbase Server Manual 2.0,
-Specifying Disk Cleanup
-Interval](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-cbepctl-disk-cleanup.html)
-and refer to the examples on `exp_pager_stime`. For more information about views
-and view query parameters, see [Finding Data with
-Views](http://www.couchbase.com/docs/couchbase-devguide-2.0/indexing-querying-data.html).
+to the Couchbase command line tool and review the examples on `exp_pager_stime`.
 
 <a id="couchbase-views-operation-cluster"></a>
 
@@ -330,9 +325,7 @@ to all other nodes in the cluster. Depending on the parameter you send in your
 query, each node will either send the most current partial index at that node,
 will update the partial index and send it, or send the partial index and update
 it on disk. Couchbase Server will collect and collate these partial indexes and
-sent this aggregate result to a client. For more information about controlling
-index updates using query parameters, see [Index Updates and the stale
-Parameter](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-stale.html).
+sent this aggregate result to a client.
 
 To handle errors when you perform a query, you can configure how the cluster
 behaves when errors occur. See [Error
@@ -351,8 +344,7 @@ node to another. In other words, this feature ensures you get query results from
 a node during rebalance that are consistent with the query results you would
 have received from the node before rebalance started. This functionality
 operates by default in Couchbase Server, however you can optionally choose to
-disable it. For more information, see [Disabling Consistent Query Results on
-Rebalance](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-consistent-query.html).
+disable it.
 Be aware that while this functionality, when enabled, will cause cluster
 rebalance to take more time; however we do not recommend you disable this
 functionality in production without thorough testing otherwise you may observe
@@ -459,9 +451,7 @@ deletion because the deleted document has not yet been removed from the index.
 For both scenarios, you should use an `observe` command from a client with the
 `persistto` argument to verify the persistent state for the document, then force
 an update of the view using `stale=false`. This will ensure that the document is
-correctly updated in the view index. For more information, see [Couchbase
-Developer Guide, Using
-Observe](http://www.couchbase.com/docs/couchbase-devguide-2.0/monitoring-data.html).
+correctly updated in the view index. 
 
 When you have multiple clients accessing an index, the index update process and
 results returned to clients depend on the parameters passed by each client and
@@ -627,8 +617,7 @@ For example:
 ```
 
 You can set this information when creating and updating design documents through
-the design document REST API. For more information, see [Design Document REST
-API](#couchbase-views-designdoc-api).
+the design document REST API. For more information, see [Storing a Design Document](#couchbase-views-designdoc-api).
 
 To perform this operation using the `curl` tool:
 
@@ -799,7 +788,7 @@ The `meta` structure contains the following fields and associated information:
  * `expiration`
 
    The expiration value for the stored object. The stored expiration time is always
-   sotred as an absolute Unix epoch time value.
+   stored as an absolute Unix epoch time value.
 
 These additional fields are only exposed when processing the documents within
 the view server. These fields are not returned when you access the object
@@ -1035,7 +1024,7 @@ two parts, a map function and a reduce function:
 The combination of the map and the reduce function produce the corresponding
 view. The two functions work together, with the map producing the initial
 material based on the content of each JSON document, and the reduce function
-summarising the information generated during the map phase. The reduction
+summarizing the information generated during the map phase. The reduction
 process is selectable at the point of accessing the view, you can choose whether
 to the reduce the content or not, and, by using an array as the key, you can
 specifying the grouping of the reduce information.
@@ -1304,11 +1293,14 @@ same key and value fields for each row, but the key is the selected group (or an
 array of the group elements according to the group level), and the value is the
 computed reduction value.
 
-[[[[Couchbase includes three built-in reduce functions,
-`_count`](#couchbase-views-writing-reduce-count),
-`_sum`](#couchbase-views-writing-reduce-sum), and
-`_stats`](#couchbase-views-writing-reduce-stats). You can also write your
-owncustom reduction functions](#couchbase-views-writing-reduce-custom).
+Couchbase includes three built-in reduce functions: 
+
+* [`_count`](#couchbase-views-writing-reduce-count)
+* [`_sum`](#couchbase-views-writing-reduce-sum)
+* [`_stats`](#couchbase-views-writing-reduce-stats). 
+
+You can also write your
+own [custom reduction functions](#couchbase-views-writing-reduce-custom).
 
 The reduce function also has a final additional benefit. The results of the
 computed reduction are stored in the index along with the rest of the view
@@ -1502,7 +1494,7 @@ The `reduce()` function has to work slightly differently to the `map()`
 function. In the primary form, a `reduce()` function must convert the data
 supplied to it from the corresponding `map()` function.
 
-The core structure of the reduce function execution is shown the figurebelow.
+The core structure of the reduce function execution is shown the figure below.
 
 
 ![](images/custom-reduce.png)
@@ -1630,7 +1622,7 @@ This can be explicitly written as follows:
 f(keys, values) = f(keys, [ f(keys, values) ])
 ```
 
-This can been seen graphically in the illustrationbelow, where previous
+This can been seen graphically in the illustration below, where previous
 reductions are included within the array of information are re-supplied to the
 reduce function as an element of the array of values supplied to the reduce
 function.
@@ -2157,8 +2149,9 @@ The format of this command is as shown in the table below:
 
 <a id="couchbase-views-designdoc-api-put"></a>
 
+Put Design Document | Description
+----------------------------|---------------------------------------------------------------
 **Method**                  | `PUT /bucket/_design/design-doc`                                                                         
-----------------------------|----------------------------------------------------------------------------------------------------------
 **Request Data**            | Design document definition (JSON)                                                                        
 **Response Data**           | Success and stored design document ID                                                                    
 **Authentication Required** | optional                                                                                                 
@@ -2206,7 +2199,7 @@ In the above example:
    The view being accessed in this case is a development view. To create a
    development view, you *must* use the `dev_` prefix to the view name.
 
-   As a `PUT` command, the URL is also significant, in that the location designes
+   As a `PUT` command, the URL is also significant, in that the location designates
    the name of the design document. In the example, the URL includes the name of
    the bucket ( `sales` ) and the name of the design document that will be created
    `dev_byfield`.
@@ -2227,7 +2220,7 @@ will contain the field `ok` and the ID of the design document created:
 ```
 
 The design document will be validated before it is created or updated in the
-system. The validation checks for valid Javascript and for the use of valid
+system. The validation checks for valid JavaScript and for the use of valid
 built-in reduce functions. Any validation failure is reported as an error.
 
 In the event of an error, the returned JSON will include the field `error` with
@@ -2269,8 +2262,9 @@ detailed in the table below.
 
 <a id="couchbase-views-designdoc-api-get"></a>
 
+Get Design Document | Description 
+----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Method**                  | `GET /bucket/_design/design-doc`                                                                                                
-----------------------------|---------------------------------------------------------------------------------------------------------------------------------
 **Request Data**            | Design document definition (JSON)                                                                                               
 **Response Data**           | Success and stored design document ID                                                                                           
 **Authentication Required** | optional                                                                                                                        
@@ -2278,6 +2272,14 @@ detailed in the table below.
 200                         | Request completed successfully.                                                                                                 
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.                       
 404                         | The requested content could not be found. The returned content will include further information, as a JSON object, if available.
+
+To get a list of design documents for a bucket, use the following with the GET request:
+
+```
+"ddocs": {
+        "uri": "/pools/default/buckets/default/ddocs" // To obtain design docs for this bucket
+    }
+```
 
 For example, to get the existing design document from the bucket `sales` for the
 design document `byfield` :
@@ -2355,8 +2357,9 @@ shown in the table below:
 
 <a id="couchbase-views-designdoc-api-delete"></a>
 
+Delete Design Document | Description 
+----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Method**                  | `DELETE /bucket/_design/design-doc`                                                                                             
-----------------------------|---------------------------------------------------------------------------------------------------------------------------------
 **Request Data**            | Design document definition (JSON)                                                                                               
 **Response Data**           | Success and confirmed design document ID                                                                                        
 **Authentication Required** | optional                                                                                                                        
@@ -2428,15 +2431,13 @@ results matching the following:
    number order)
 
 View results and the parameters operate and interact in a specific order. The
-interaction directly affects how queries are written and data is selected. The
-sequence and precedence of the different parameters during queries is shown in
-**Couldn't resolve xref tag: fig-couchbase-views-querying-flow**.
+interaction directly affects how queries are written and data is selected.
 
 
 ![](images/views-query-flow.png)
 
 The core arguments and selection systems are the same through both the REST API
-interface, and the client libraries. The setting of these values differes
+interface, and the client libraries. The setting of these values differs
 between different client libraries, but the argument names and expected and
 supported values are the same across all environments.
 
@@ -2497,8 +2498,9 @@ The additional supported arguments are detailed in the table below.
 
 <a id="table-couchbase-querying-arguments"></a>
 
-**Method**                  | `GET /bucket/_design/design-doc/_view/view-name`                                                                                                                     
+Get View Name | Description 
 ----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Method**                  | `GET /bucket/_design/design-doc/_view/view-name`                                                                                                                     
 **Request Data**            | None                                                                                                                                                                 
 **Response Data**           | JSON of the rows returned by the view                                                                                                                                
 **Authentication Required** | no                                                                                                                                                                   
@@ -2768,7 +2770,7 @@ records, including "aa":
 ```
 
 Specifying a partial string to `startkey` will trigger output of the selected
-values as soon as the first value or value greather than the specified value is
+values as soon as the first value or value greater than the specified value is
 identified. For strings, this partial match (from left to right) is identified.
 For example, specifying a `startkey` of "d" will return:
 
@@ -2789,7 +2791,7 @@ used. For example, searching a database of ingredients and specifying a
 To match all of the records for a given word or value across the entire range,
 you can use the null value in the `endkey` parameter. For example, to search for
 all records that start only with the word "almond", you specify a `startkey` of
-"almond", and an endkey of "almond\u02ad" (i.e. with the last latin character at
+"almond", and an endkey of "almond\u02ad" (i.e. with the last Latin character at
 the end). If you are using Unicode strings, you may want to use "\uefff".
 
 
@@ -2933,9 +2935,7 @@ can specify the group level to be applied to the query output when using a
 When grouping is enabled, the view output is grouped according to the key array,
 and you can specify the level within the defined array that the information is
 grouped by. You do this by specifying the index within the array by which you
-want the output grouped using the `group_level` parameter. You can see described
-in **Couldn't resolve xref tag: fig-couchbase-views-writing-querying-grouping**.
-
+want the output grouped using the `group_level` parameter.
 
 ![](images/views-grouping.png)
 
@@ -3232,7 +3232,7 @@ responses during a view query.
     }
     ```
 
-   You can alter this behaviour by using the `on_error` argument. The default value
+   You can alter this behavior by using the `on_error` argument. The default value
    is `continue`. If you set this value to `stop` then the view response will cease
    the moment an error occurs. The returned JSON will contain the error information
    for the node that returned the first error. For example:
@@ -3668,7 +3668,7 @@ function(doc, meta) {
 ```
 
 For convenience, you may wish to use the `dateToArray()` function, which
-convertes a date object or string into an array. For example, if the date has
+converts a date object or string into an array. For example, if the date has
 been stored within the document as a single field:
 
 
@@ -4352,7 +4352,7 @@ than one needed to support selection by the author.
 
 <a id="couchbase-views-writing-sql-select"></a>
 
-### Translating SQL Field Selection (SELECT) to Map/Reduce
+### Translating SQL SELECT to Map/Reduce
 
 The field selection within an SQL query can be translated into a corresponding
 view definition, either by adding the fields to the emitted key (if the value is
@@ -4815,8 +4815,9 @@ request. The full list is provided in the following summary table.
 
 <a id="couchbase-querying-arguments-geo"></a>
 
-**Method**                  | `GET /bucket/_design/design-doc/_spatial/spatial-name`              
+Get Spatial Name | Description 
 ----------------------------|---------------------------------------------------------------------
+**Method**                  | `GET /bucket/_design/design-doc/_spatial/spatial-name`              
 **Request Data**            | None                                                                
 **Response Data**           | JSON of the documents returned by the view                          
 **Authentication Required** | no                                                                  
@@ -4834,7 +4835,7 @@ request. The full list is provided in the following summary table.
                             | `ok` : Allow stale views                                            
                             | `update_after` : Allow stale view, update view after access         
 
-Bounding Box QueriesIf you do not supply a bounding box, the full dataset is
+Bounding Box Queries If you do not supply a bounding box, the full dataset is
 returned. When querying a spatial index you can use the bounding box to specify
 the boundaries of the query lookup on a given value. The specification should be
 in the form of a comma-separated list of the coordinates to use during the
