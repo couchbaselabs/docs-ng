@@ -12,20 +12,25 @@ can be used to perform some simple operations.
 
 ## Download and Installation
 
-Install the following packages to get started using the Node.js SDK:
+The Node.js SDK is compatible only with Node.js v0.8, v0.10 and v0.11. Because the SDK has a C++ component, you also need a C++ compiler and associated build tools. The SDK package for Microsoft Windows ships with prebuilt binaries. 
+
+To get started with the Node.js SDK, install the following packages:
 
  1. [Download, install and start Couchbase
-    server](http://www.couchbase.com/download). Come back here when you are done.
+    server](http://www.couchbase.com/download). 
+ 
+ 1. Install the Node.js SDK. The easiest way to do this is via the npm tool: 
 
- 1. Install the Node.js SDK. The easiest way to do this is via the npm tool: `shell>
-    npm install couchbase` If all went well, you should not see any errors printed
-    to the screen.  Keep in mind because the Node.js SDK has a C++ component, you 
-    will need a C++ compiler and associate build tools, though on Windows, the package
-    ships with prebuilt binaries.  Also note that the Node.js SDK is only compatible with 	Node.js v0.8, v0.10 and v0.11.
+	```
+shell> npm install couchbase
+```
+
+	If all goes well, you won't see any errors printed to the screen. 
 
 <a id="hello_couchbase"></a>
 
 ## Hello Couchbase
+
 
 To follow the tradition of programming tutorials, we’ll start with "Hello
 Couchbase". This example works with the "beer-sample" bucket that is provided
