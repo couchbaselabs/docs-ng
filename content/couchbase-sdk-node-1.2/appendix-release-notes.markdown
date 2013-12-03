@@ -5,6 +5,27 @@ Couchbase Node.js Client Library. To browse or submit new issues, see [Couchbase
 Node.js Client Library Issues
 Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
+<a id="couchbase-sdk-node-rn_1-2-0"></a>
+
+## Release Notes for Couchbase Node.js Client Library 1.2.0 GA (3 December 2013)
+
+**New Features and Behavior Changes in 1.2.0**
+
+ * Added missing touchMulti method.
+ * Added missing arithmeticMulti and removed broken incrMulti and decrMulti. 
+ * Added support for Node.js v0.11.
+
+<a id="couchbase-sdk-node-rn_1-1-1"></a>
+
+## Release Notes for Couchbase Node.js Client Library 1.1.1 GA (10 November 2013)
+
+**New Features and Behavior Changes in 1.1.1**
+
+ * Various minor bug fixes.
+ * Corrected issue with http requests.
+ * Significant updates to docs.
+ * Embedded libcouchbase 2.2.0
+
 <a id="couchbase-sdk-node-rn_1-1-0"></a>
 
 ## Release Notes for Couchbase Node.js Client Library 1.1.0 GA (5 November 2013)
