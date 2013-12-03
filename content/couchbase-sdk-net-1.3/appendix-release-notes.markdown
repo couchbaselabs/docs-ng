@@ -6,7 +6,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 <a id="couchbase-sdk-net-rn_1-3-0"></a>
 
-## Release Notes for Couchbase Client Library .NET 1.3.0 GA (6 November 2013)
+## Release Notes for Couchbase Client Library .NET 1.3.0 GA (3 December 2013)
 
 .NET Couchbase Client 1.3.0 includes the following features and fixes:
 
@@ -18,12 +18,40 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 	PooledSocket now has a new interface, IPooledSocket, with CouchbaseClient
 	and MemcachedClient having separate implementations. These
 	changes impact only CouchbaseClient instances—MemcachedClient instances
-	still use the older implementation. The benefits of this include: more
-	efficient resource allocation and management, elimination of some threading
-	issues related to race conditions and other reentrancy problems,
-	better structure and code organization, improved unit tests and
-	testability, and overall extensibility of certain components such as pools and
-	socket wrappers.
+	still use the older implementation. 
+
+
+    The benefits of this include:
+    + More efficient resource allocation and management especially during a rebalance scenario
+    + Elimination of some threading issues related to race conditions and other reentrancy problems
+    + Better structure and code organization, improved unit tests and testability
+    + Improved overall extensibility of certain components such as pools and socket wrappers.     
+&nbsp;
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-325">NCBC-325: MemcachedClient.ExecuteGet(IEnumerable<string> keys) is not returning any error code on connection error </a>
+
+    Method MemcachedClient.ExecuteGet(IEnumerable<string> keys) of .NET SDK is returning empty dictionary when none of specified keys were found. And the same result is returned on connection error. So it is not possible to distinguish between these two cases and it's not possible to find what went wrong. 
+* <a href="http://www.couchbase.com/issues/browse/NCBC-333">NCBC-333: reference cleanup when SocketPool is Disposed</a>
+
+    If the client is terminated without calling dispose, a NullReferenceException for the SocketPool class may be thrown. This ensures that the reference is not null before dereferencing it.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-331">NCBC-331: Change queueTimeout default from 100ms to 2500ms</a>
+
+    The default value for queueTimeout is currently 100ms, which is extremely low and will unnecessarily cause queue timeout exceptions. This will increase the queueTimeout to 2.5 seconds, which is still a relatively low amount. Note that this only affects threads waiting on the SocketPool for a socket, not the actual time it takes to execute and operation. 
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-329">NCBC-329: Ensure IOperationResult returns StatusCode on failure.</a>
+
+    Many of the operations on failure do not return a StatusCode in their IOperationResult resturn values. This fixes most of these cases. 
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-318">NCBC-318: Status Code list contains duplicate value</a>
+
+    StatusCode.UnknownCommand is now 0x0081.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-324">NCBC-324: ExecuteGet(string key, DateTime newExpiration) returns unexpected result codes</a>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-309">NCBC-309: Move .NET API documentation from docs repo to auto-doc </a>
+
+    First step in changing the client documentation involves adding XML comments to each public method. In later releases, client documentation will be generated from the XML notation.
 
 * <a href="https://www.couchbase.com/issues/browse/NCBC-299">NCBC-299: Fix project references:</a>
 
@@ -49,9 +77,8 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 	Multiget now returns information for every operation (for example, success or failure).
 
-* <a href="https://www.couchbase.com/issues/browse/NCBC-296">NCBC-296: fix 'When_Observing_A_Removed_Key_Operation_Is_Successful_With_Master_And_Replication_Persistence':</a>
 
-* <a href="https://www.couchbase.com/issues/browse/NCBC-317">NCBC-317 Mark Sync operations as obsolete:</a>
+* <a href="https://www.couchbase.com/issues/browse/NCBC-317">NCBC-317: Mark Sync operations as obsolete:</a>
 
 	The CouchbaseClient.Sync(...) operations have been deprecated and will 
 	not be supported. They will be removed in future releases of the .NET 
