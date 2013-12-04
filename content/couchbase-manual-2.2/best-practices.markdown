@@ -711,7 +711,7 @@ system needs more memory resources and the RAM is full, inactive pages in memory
 are moved to the swap space. Swappiness indicates how
 frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
-<div class="notebox">
+<div class="notebox bp">
 <p>Recommendation</p>
 <p>For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).</p>
 </div>  
@@ -727,7 +727,7 @@ To change the swap configuration:
 
 <div class="notebox">
 <p>Note</p>
-<p>Executing <code>sudo sysctl vm.swappiness=0</code> ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, <code>sysctl.conf</code>, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.</p>
+<p>Executing <code>sudo sysctl vm.swappiness=0</code> ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, <strong>sysctl.conf</strong>, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.</p>
 </div>
 
 

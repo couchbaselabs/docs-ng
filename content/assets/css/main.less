@@ -25,7 +25,7 @@ size: 12px;
 }
 
 
-/* blue for note boxes in documentation e.g. <p class="notebox"> */
+/* For note boxes in documentation e.g. <div class="notebox"> */
 .notebox {
   padding: 10px;
   width: 90%;
@@ -35,24 +35,33 @@ size: 12px;
   background-color: #DDEBDD;
  }
  
- /* green for best practices & recommendation note boxes in the documentation e.g., <p class="notebox bp" > */
-.bp {
-	/*border-color: #699809;*/
-} 
-
+ /* For first paragraph of a note, makes text bold and adds underline */
 div.notebox p:first-child {
 	border-bottom: thin solid #1D261D;
 	font-weight: bold;
 }
 
-div.notebox p {
+/* For code in noteboxes, omits the backgound and border */
+div.notebox p code {
+	background-color: transparent;
+	border-style: none;
+	padding: 0;
 }
 
-/* purple for warning note boxes in the documentation e.g., <p class="notebox warning" > */
+ /* Best practices & recommendation note boxes in the documentation e.g., <div class="notebox bp" > */
+.bp {
+	background-color: powderblue;
+} 
+
+/* Warning note boxes in the documentation e.g., <div class="notebox warning" > */
 .warning {
-	border-color: #83084d;
+	background-color: gold;
 }
 
+/* tip note boxes in the documentation e.g., <div class="notebox tip" > */
+.tip {
+	background-color: mistyrose;
+}
 
 .sub-menu {
   height: 0px;
