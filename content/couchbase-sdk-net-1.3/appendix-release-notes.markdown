@@ -77,8 +77,10 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 	Multiget now returns information for every operation (for example, success or failure).
 
-    **NOTE**- This is a breaking change in that previously, only successful operations were returned;in this release both failed and successful operations are returned in the results.
-
+<div class="notebox">
+<p>Note</p>
+<p>Due to this change, you might need to modify the way you handle the object returned by multiget. Previously, multiget only returned successful operations. In this release, both failed and successful operations are returned in the results.</p>
+</div>
 
 * <a href="https://www.couchbase.com/issues/browse/NCBC-317">NCBC-317: Mark Sync operations as obsolete:</a>
 
