@@ -1,4 +1,4 @@
-# Installation overview
+# Installing and Upgrading
 
 To start using Couchbase Server, you need to follow these steps:
 
@@ -1050,16 +1050,17 @@ Tool](#couchbase-admin-cmdline-cbbackup).
 
 <a id="couchbase-getting-started-upgrade"></a>
 
-# Upgrading Couchbase Server
+## Upgrading to Couchbase Server 2.2
 
-The following are officially supported upgrade paths for Couchbase Server for
+The following are the officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
 
- * Couchbase 1.8.1 to Couchbase 2.0.x and above
+ * Couchbase 1.8.1 to Couchbase 2.2 and above
+ * Couchbase 2.0 to Couchbase 2.2 and above
+ * Couchbase 2.0.x to Couchbase 2.2 and above
+ * Couchbase 2.1 to Couchbase 2.2 and above
+ * Couchbase 2.1.x to Couchbase 2.2 and above
 
- * Couchbase 2.0 to Couchbase 2.0.x and above
-
- * Couchbase 2.0.1 to Couchbase 2.1 and above
 
 If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
 available for both your original Couchbase Server 1.8 data files and the new
@@ -1133,14 +1134,14 @@ Cluster Stays in Operation    | Yes                                             
 Cluster must be Shutdown      | No                                              | Yes                                  
 Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node | All nodes in Cluster Upgraded at Once
 
-## Backup your data before performing an upgrade
+### Backup your data before performing an upgrade
 
 Before you perform an upgrade, whether it is online or offline, you should
 backup your data, see [Backup and Restore](#couchbase-backup-restore).
 
 <a id="couchbase-getting-started-upgrade-online-swap"></a>
 
-## Online Upgrade with Swap Rebalance
+### Online Upgrade with Swap Rebalance
 
 You can perform a swap rebalance to upgrade your nodes to Couchbase Server 2.0+,
 without reducing the performance of your cluster. This is the preferred method
@@ -1199,7 +1200,7 @@ Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
 
 <a id="couchbase-getting-started-upgrade-online"></a>
 
-## Standard Online Upgrades
+### Standard Online Upgrades
 
 This is also known as a standard online upgrade process and it can take place
 without taking down the cluster or your application. This means that the cluster
@@ -1281,7 +1282,7 @@ cluster to a new version.
 
 <a id="couchbase-getting-started-upgrade-offline"></a>
 
-## Offline Upgrade Process
+### Offline Upgrade Process
 
 The offline upgrade process requires you to shutdown all the applications and
 then the entire Couchbase Server cluster. You can then perform the upgrade the
