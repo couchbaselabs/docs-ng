@@ -8,8 +8,8 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.2.3 GA (3 December 2013)
 
-The 1.2.2 release is the third bug fix release for the 1.2 series. It is a
-pure bugfix release, increasing the stability of the SDK in various scenarios.
+The 1.2.3 release is the third bug fix release for the 1.2 series. It is a
+pure bug fix release, increasing the stability of the SDK in various scenarios.
 
 **Fixes in 1.2.3**
 
@@ -17,21 +17,21 @@ pure bugfix release, increasing the stability of the SDK in various scenarios.
  * [SPY-146](http://www.couchbase.com/issues/browse/SPY-146): When using persistence and
    replication constraints (that is, PersistTo and ReplicateTo), together with "special"
    UTF-8 characters that take up 2 bytes instead of one (for example the pound sign or euro sign),
-   in 1.2.2 and below it doesn't work (a normal set() will work, but a set with a constraint
-   will lead to a timeout). Now the UTF-8 key is properly encoded for the underlying protocol.
+   in 1.2.2 and earlier it doesn't work&dash;a normal set() works, but a set with a constraint
+   will lead to a time-out. Now the UTF-8 key is properly encoded for the underlying protocol.
 
  * [SPY-144](http://www.couchbase.com/issues/browse/SPY-144): During special failure conditions
-   on the server side, it could be the case that the callback stack of an operation grows out
+   on the server side, the callback stack of an operation might grow out
    of bounds. This is now mitigated, improving the general stability of the client.
 
  * [SPY-136](http://www.couchbase.com/issues/browse/SPY-136): When a node is rebooted and a client
-   newer than 1.2.1 is used, it could be the case that the SASL (authentication) mechanism list
-   does not respond immediately, leading to authentication failures. Now, the client waits
-   until a valid responds gets returned.
+   later than 1.2.1 is used, the SASL (authentication) mechanism list
+   might not respond immediately, leading to authentication failures. Now, the client waits
+   until a valid responds is returned.
 
  * [JCBC-380](http://www.couchbase.com/issues/browse/JCBC-380): When Couchbase Server is
-   configured with an alternative admin port (not using the 8091), the SDK is now aware
-   of the change completely and does not enforce you to use 8091. This is a regression
+   configured with an alternative admin port (not using 8091), the SDK is now aware
+   of the change completely and does not force you to use 8091. This is a regression
    fix.
 
 <a id="couchbase-sdk-java-rn_1-2-2a"></a>
