@@ -711,10 +711,10 @@ system needs more memory resources and the RAM is full, inactive pages in memory
 are moved to the swap space. Swappiness indicates how
 frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
-<p class="notebox bp">
-<strong>Recommendation:</strong>
-For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
-</p>  
+<div class="notebox bp">
+<p>Recommendation</p>
+<p>For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).</p>
+</div>  
 
 
 To change the swap configuration:
@@ -725,9 +725,10 @@ To change the swap configuration:
 4. Append `vm.swappiness = 0` to the file.
 5. Reboot your system.
 
-<p class="notebox">
-<strong>Note:</strong>
-Executing <code>sudo sysctl vm.swappiness=0</code> ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, <code>sysctl.conf</code>, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted. </p>
+<div class="notebox">
+<p>Note</p>
+<p>Executing <code>sudo sysctl vm.swappiness=0</code> ensures that the operating system no longer uses swap unless memory is completely exhausted. Updating the kernel parameters configuration file, <strong>sysctl.conf</strong>, ensures that the operating system always uses swap in accordance with Couchbase recommendations even when the node is rebooted.</p>
+</div>
 
 
 ### Using Couchbase Server on RightScale
@@ -738,9 +739,10 @@ The templates also provide support for [Amazon Elastic Block Store](http://aws.a
 
 Couchbase provides RightScale ServerTemplates based on [Chef](http://www.opscode.com/chef/) and, for compatibility with existing systems, non-Chef-based ServerTemplates. 
 
-<p class="notebox">
-<strong>Note:</strong> Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
-</p>
+<div class="notebox">
+<p>Note</p> 
+<p>Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.</p>
+</div>
 
 Before you can set up Couchbase Server on RightScale, you need a RightScale account and an AWS account that is connected to your RightScale account. For information about connecting the accounts, see [Add AWS Credentials to RightScale](http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard). 
 
