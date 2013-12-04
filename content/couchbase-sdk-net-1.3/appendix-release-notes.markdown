@@ -30,14 +30,14 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-325">NCBC-325: MemcachedClient.ExecuteGet(IEnumerable<string> keys) is not returning any error code on connection error </a>
 
-    Method MemcachedClient.ExecuteGet(IEnumerable<string> keys) of .NET SDK is returning empty dictionary when none of specified keys were found. And the same result is returned on connection error. So it is not possible to distinguish between these two cases and it's not possible to find what went wrong. 
+    Method MemcachedClient.ExecuteGet(IEnumerable<string> keys) of .NET SDK retunrs an empty dictionary when none of the specified keys were found. The same result is returned on connection error. So it is not possible to distinguish between these two cases and it's not possible to find what went wrong. 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-333">NCBC-333: reference cleanup when SocketPool is Disposed</a>
 
-    If the client is terminated without calling dispose, a NullReferenceException for the SocketPool class may be thrown. This ensures that the reference is not null before dereferencing it.
+    If the client is terminated without calling dispose, a NullReferenceException for the SocketPool class might be thrown. This ensures that the reference is not null before dereferencing it.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-331">NCBC-331: Change queueTimeout default from 100ms to 2500ms</a>
 
-    The default value for queueTimeout is currently 100ms, which is extremely low and will unnecessarily cause queue timeout exceptions. This will increase the queueTimeout to 2.5 seconds, which is still a relatively low amount. Note that this only affects threads waiting on the SocketPool for a socket, not the actual time it takes to execute and operation. 
+    The default value for queueTimeout is currently 100 ms, which is extremely low and will unnecessarily cause queue time-out exceptions. This will increase the queueTimeout to 2.5 seconds, which is still a relatively low amount. Note that this only affects threads waiting on the SocketPool for a socket, not the actual time it takes to execute an operation. 
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-329">NCBC-329: Ensure IOperationResult returns StatusCode on failure.</a>
 
@@ -51,7 +51,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-309">NCBC-309: Move .NET API documentation from docs repo to auto-doc </a>
 
-    First step in changing the client documentation involves adding XML comments to each public method. In later releases, client documentation will be generated from the XML notation.
+    The first step in changing the client documentation involves adding XML comments to each public method. In later releases, client documentation will be generated from the XML comments.
 
 * <a href="https://www.couchbase.com/issues/browse/NCBC-299">NCBC-299: Fix project references:</a>
 
@@ -82,7 +82,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 	The CouchbaseClient.Sync(...) operations have been deprecated and will 
 	not be supported. They will be removed in future releases of the .NET 
-	client. The functionality has been superseded by CouchbaseClient.Observe(...)
+	client. The functionality has been superseded by the CouchbaseClient.Observe(...)
 	methods and the PersistTo and ReplicateTo parameters.
 
 
