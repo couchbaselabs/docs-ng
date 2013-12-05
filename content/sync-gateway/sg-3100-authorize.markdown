@@ -130,7 +130,7 @@ This allows the app server to optionally do its own authentication using the fol
 
 3. App server sends a POST request with the user name to the Sync Gateway Admin REST API server `/dbname/_session` endpoint.
 
-4. If the request fails with a 401 status, there is no Sync Gateway user account with that name. The app server can then create one (also using the Admin REST API) and  repeat the `_session` request.
+4. If the request fails with a 404 status, there is no Sync Gateway user account with that name. The app server can then create one (also using the Admin REST API) and  repeat the `_session` request.
 
 5. The app server adds a `Set-Cookie:` HTTP header to its response to the client, using the session cookie name and value received from the gateway.
 
