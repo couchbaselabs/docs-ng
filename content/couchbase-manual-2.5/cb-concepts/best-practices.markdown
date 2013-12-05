@@ -150,7 +150,7 @@ Constant                                                                        
 Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
 headroom The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
-High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 70%.                                                                                                                                                                                                  
+High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
 
 This is a rough guideline to size your cluster:
 
@@ -187,7 +187,7 @@ Constants               | value
 Type of Storage         | SSD                     
 overhead\_percentage    | 25%                     
 metadata\_per\_document | 56 for 2.1, 64 for 2.0.X
-high\_water\_mark       | 70%                     
+high\_water\_mark       | 85%                     
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>
 
