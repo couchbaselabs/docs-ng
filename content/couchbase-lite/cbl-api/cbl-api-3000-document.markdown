@@ -2,21 +2,21 @@
 
 Document resources enable you to work with individual documents in a database. The following table lists the document resources:
 
-|HTTP Method | Path Template | Description  |
+|HTTP method | URI pattern | Description  |
 | ------	| ------	| ------	|  
-| POST    | /{db}                     | Creates a new document in the database  
-| GET| /{db}/{doc} | Retrieves a specific document |
-| DELETE| /{db}/{doc} | Deletes a specific document |  
-|  HEAD| /{db}/{doc} | Returns only the headers for the document
-|  PUT| /{db}/{doc} |Updates a specific document|  
-| DELETE | /{db}/{doc}/{attachment}| Deletes the attachments for a specific document|
-| GET | /{db}/{doc}/{attachment}| Retrieves the attachments for a specific document|
-| PUT | /{db}/{doc}/{attachment}| Updates the attachments for a specific document|
+| `POST`    | `/{db}`                     | Creates a new document in the database  
+| `GET`| `/{db}/{doc}` | Retrieves a specific document |
+| `DELETE`| `/{db}/{doc}` | Deletes a specific document |  
+|  `HEAD`| `/{db}/{doc}` | Retrieves only the headers for the document
+|  `PUT`| `/{db}/{doc}` |Updates a specific document|  
+| `DELETE` | `/{db}/{doc}/{attachment}`| Deletes the attachments for a specific document|
+| `GET` | `/{db}/{doc}/{attachment}`| Retrieves the attachments for a specific document|
+| `PUT` | `/{db}/{doc}/{attachment}`| Updates the attachments for a specific document|
 
 
 The following table defines the parameters used in the path templates:
 
-| Parameter | Description|  
+| Name | Description|  
 |  ------	| ------	|  
 | attachment | Identifier of an attachment |  
 | db | Name of the database|  
