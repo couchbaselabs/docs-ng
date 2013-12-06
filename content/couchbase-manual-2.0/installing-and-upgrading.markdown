@@ -74,8 +74,7 @@ Your system should meet or exceed the following system requirements.
 
  * Windows Server 2008 R2 with Service Pack 1 (64-bit). You must upgrade your
    Windows Server 2008 R2 installation with Service Pack 1 installed before running
-   Couchbase Server. You can obtain Service Pack 1 from [Microsoft
-   TechNet](http://technet.microsoft.com/en-us/windows/gg635126.aspx).
+   Couchbase Server. You can obtain Service Pack 1 from <a href=http://technet.microsoft.com/en-us/windows/gg635126.aspx>Microsoft TechNet</a>.
 
  * Windows 7 (64-bit).
 
@@ -364,8 +363,7 @@ where you install it.
 The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
+available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx>MSDN: Avoiding TCP/IP Port Exhaustion</a>.
 
 Couchbase Server uses the Microsoft C++ redistributable package, which will
 automatically download for you during installation. However, if another
