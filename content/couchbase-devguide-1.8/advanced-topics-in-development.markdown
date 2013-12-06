@@ -1303,8 +1303,7 @@ respective approaches you can use:
    connection objects. You should create only a single static instance of a
    Couchbase client per bucket, in accordance with.Net framework. The persistent
    client will maintain connection pools per server node. For more information, see
-   [MSDN: AppDomain
-   Class](http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx)
+   <a href=http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx>MSDN: AppDomain Class</a>.
 
  * You can persist a Couchbase client storing it in a way such that the Ruby
    garbage collector does not remove from memory. To do this, you can create a
