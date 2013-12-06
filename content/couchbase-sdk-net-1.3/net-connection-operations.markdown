@@ -37,7 +37,7 @@ persisted connections, you can use a connection pool which contains multiple
 connection objects. You should create only a single static instance of a
 Couchbase client per bucket, in accordance with.Net framework. The persistent
 client will maintain connection pools per server node. For more information, see
-[MSDN: AppDomain
-Class](http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx)
+<a href=http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx>MSDN: AppDomain
+Class</a>.
 
 <a id="api-reference-set"></a>
