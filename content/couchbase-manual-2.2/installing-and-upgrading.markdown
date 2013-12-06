@@ -504,8 +504,9 @@ it.
 The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
+available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx>
+MSDN: Avoiding TCP/IP Port
+Exhaustion</a>.
 
 Couchbase Server uses the Microsoft C++ redistributable package, which will
 automatically download for you during installation. However, if another
@@ -515,8 +516,7 @@ successfully, shut down all other running applications during installation.
 
 For Windows 2008, you must upgrade your Windows Server 2008 R2 installation with
 Service Pack 1 installed before running Couchbase Server. You can obtain Service
-Pack 1 from [Microsoft
-TechNet](http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx).
+Pack 1 from <a href=http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx> Microsoft TechNet</a>.
 
 The standard Microsoft Server installation does not provide an adequate number
 of ephemeral ports for Couchbase clusters. Without the correct number of open
