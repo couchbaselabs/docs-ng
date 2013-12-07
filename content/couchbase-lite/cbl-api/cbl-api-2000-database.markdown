@@ -57,14 +57,36 @@ The response is a JSON document that contains the following objects:
 
 ### Example
 
-The following example shows how 
+The following example retrieves information about a database named `beer-db`.
 #### Sample request
 ```
-GET /cookbook HTTP/1.1
+GET /beer-db HTTP/1.1
+Host: 10.17.15.239:59840
 ```
 
 #### Sample response
 
+```json
+HTTP/1.1 200 OK
+Server: CouchbaseLite 1.485
+Content-Type: application/json
+Accept-Ranges: bytes
+Content-Length: 281
+Cache-Control: must-revalidate
+Date: Fri, 06 Dec 2013 22:31:17 GMT
+
+{
+  "instance_start_time" : 1386367000326153,
+  "committed_update_seq" : 25800,
+  "disk_size" : 15360000,
+  "purge_seq" : 0,
+  "db_uuid" : "65FB16DF-FFD7-4514-9E8D-B734B066D28D",
+  "doc_count" : 5048,
+  "db_name" : "beer-db",
+  "update_seq" : 25800,
+  "disk_format_version" : 11
+}
+```
 ## Create database
 
 This request creates a new database.
