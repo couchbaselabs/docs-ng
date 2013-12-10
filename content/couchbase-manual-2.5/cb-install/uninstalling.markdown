@@ -1,4 +1,4 @@
-# Uninstalling Couchbase Server
+# Uninstalling 
 
 If you want to uninstall Couchbase Server from your system you must choose the
 method appropriate for your operating system.
@@ -18,7 +18,7 @@ Before removing Couchbase Server from your system, you should do the following:
 
 <a id="couchbase-uninstalling-redhat"></a>
 
-## Uninstalling on a Red Hat Linux System
+## Uninstalling on Red Hat Linux
 
 To uninstall the software on a Red Hat Linux system, run the following command:
 
@@ -37,7 +37,7 @@ your system.
 
 <a id="couchbase-uninstalling-debian"></a>
 
-## Uninstalling on an Debian/Ubuntu Linux System
+## Uninstalling on  Debian/Ubuntu Linux
 
 To uninstall the software on a Ubuntu Linux system, run the following command:
 
@@ -56,7 +56,7 @@ your system.
 
 <a id="couchbase-uninstalling-windows"></a>
 
-## Uninstalling on a Windows System
+## Uninstalling on Windows
 
 To uninstall the software on a Windows system you must have Administrator or
 Power User privileges to uninstall Couchbase.
@@ -66,7 +66,7 @@ Programs`, and remove the Couchbase Server software.
 
 <a id="couchbase-uninstalling-macosx"></a>
 
-## Uninstalling on a Mac OS X System
+## Uninstalling on Mac OS X
 
 To uninstall on Mac OS X:
 
@@ -78,4 +78,4 @@ To uninstall on Mac OS X:
     from the `~/Library/Application Support` folder for the user that ran Couchbase
     Server.
 
-<a id="couchbase-sampledata"></a>
+

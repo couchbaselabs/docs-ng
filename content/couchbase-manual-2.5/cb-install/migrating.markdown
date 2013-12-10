@@ -1,6 +1,6 @@
 <a id="couchbase-introduction-migration"></a>
 
-# Migration to Couchbase
+# Migrating
 
 Couchbase Server is based on components from both Membase Server and CouchDB. If
 you are a user of these database systems, or are migrating from these to

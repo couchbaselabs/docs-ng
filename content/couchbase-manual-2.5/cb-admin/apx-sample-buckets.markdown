@@ -1,3 +1,5 @@
+<a id="couchbase-sampledata"></a>
+
 # Sample Buckets
 
 Couchbase Server comes with sample buckets that contain both data and MapReduce

@@ -140,7 +140,9 @@ Get Design Document | Description
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.                       
 404                         | The requested content could not be found. The returned content will include further information, as a JSON object, if available.
 
-To get a list of design documents for a bucket, use the following with the GET request:
+To get back all the design documents with views defined on a bucket, the use following URI path with the GET request. 
+In addition to get specific design documents back, the name of the design document can be specified to retrieve it.
+
 
 ```
 "ddocs": {

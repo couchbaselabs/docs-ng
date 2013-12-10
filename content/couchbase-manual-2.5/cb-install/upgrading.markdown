@@ -1,6 +1,6 @@
 <a id="couchbase-getting-started-upgrade"></a>
 
-# Upgrading to Couchbase Server 2.2
+# Upgrading
 
 The following are the officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
@@ -300,7 +300,7 @@ upgraded cluster.
 
 <a id="couchbase-getting-started-upgrade-individual"></a>
 
-# Upgrading individual nodes
+## Upgrading individual nodes
 
 Whether you are performing an online or offline upgrade, the steps for upgrading
 an individual nodes in a cluster remain the same:
@@ -337,7 +337,7 @@ an individual nodes in a cluster remain the same:
 
  1. Perform the installation upgrade for your platform:
 
-##RHEL/CentOS
+###RHEL/CentOS
 
     You can perform an upgrade install using the RPM package — this will keep the
     data and existing configuration.
@@ -354,7 +354,7 @@ an individual nodes in a cluster remain the same:
      > sudo dpkg -i couchbase-server-architecture___meta_current_release.deb
      ```
 
-##Windows
+###Windows
 
     The Install Wizard will upgrade your server installation using the same
     installation location. For example, if you have installed Couchbase Server in
@@ -363,7 +363,7 @@ an individual nodes in a cluster remain the same:
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0"></a>
 
-# Upgrade Notes 1.8.1 to 2.1+
+## Upgrade Notes 1.8.1 to 2.1+
 
 You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+ using
 either the online or offline upgrade method.
@@ -382,7 +382,7 @@ should have a 10 second delay from adding a 2.1+ node to the cluster and
 rebalancing. If you request rebalance too soon after adding a 2.1+ node, the
 rebalance may fail.
 
-##Linux Upgrade Notes for 1.8.1 to 2.1+
+###Linux Upgrade Notes for 1.8.1 to 2.1+
 
 When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1+ on Linux,
 you should be aware of the **OpenSSL** requirement. OpenSSL is a required
@@ -401,7 +401,7 @@ On Debian-based systems, use `apt-get` to install the required OpenSSL package:
 > sudo apt-get install libssl0.9.8
 ```
 
-##Windows Upgrade Notes for 1.8.1 to 2.1+
+###Windows Upgrade Notes for 1.8.1 to 2.1+
 
 If you have configured your Couchbase Server nodes to use hostnames, rather than
 IP addresses, to identify themselves within the cluster, you must ensure that
@@ -409,7 +409,7 @@ the IP and hostname configuration is correct both before the upgrade and after
 upgrading the software. See [Hostnames for Couchbase Server 2.0.1 and
 Earlier](#couchbase-getting-started-hostnames-pre2.0).
 
-##Mac OS X Upgrade Notes for 1.8.1 to 2.1+
+###Mac OS X Upgrade Notes for 1.8.1 to 2.1+
 
 There is currently no officially supported upgrade installer for Mac OS X. If you
 want to migrate to 1.8.1 to 2.1+ on OS X, you must make a backup of your data
@@ -420,14 +420,14 @@ Tool](#couchbase-admin-cmdline-cbrestore).
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
 
-# Upgrade Notes for 1.8 and earlier to 2.1+
+## Upgrade Notes for 1.8 and earlier to 2.1+
 
 If you run Couchbase Server 1.8 or earlier, including Membase 1.7.2 and earlier,
 you must upgrade to Couchbase Server 1.8.1 first. You do this so that your data
 files can convert into 2.0 compatible formats. This conversion is only available
 from 1.8.1 to 2.0 + upgrades.
 
-##Offline upgrade
+###Offline upgrade
 
  * To perform an offline upgrade, you use the standard installation system such as
    `dpkg`, `rpm` or Windows Setup Installer to upgrade the software on each
@@ -458,7 +458,7 @@ from 1.8.1 to 2.0 + upgrades.
 
 <a id="couchbase-getting-started-upgrade-cetoee"></a>
 
-# Upgrading from Community Edition to Enterprise Edition
+## Upgrading from Community Edition to Enterprise Edition
 
 **You should use the same version number when you perform the migration process
 to prevent version differences which may result in a failed upgrade.** To
@@ -468,7 +468,7 @@ Enterprise Edition, you can use two methods:
  * Perform an online upgrade
  * Perform an offline upgrade
 
-## Online upgrade
+### Online upgrade
    Here you remove one node from the cluster and rebalance. On the nodes you have
    taken out of the cluster, uninstall Couchbase Server Community Edition package,
    and install Couchbase Server Enterprise Edition. You can then add the new nodes
@@ -478,7 +478,7 @@ Enterprise Edition, you can use two methods:
    For more information on performing online upgrades, see [Standard Online
    Upgrades](#couchbase-getting-started-upgrade-online).
 
-## Offline upgrade
+### Offline upgrade
 
    Shutdown the entire cluster, and uninstall Couchbase Server Community Edition
    from each machine. Then install Couchbase Server Enterprise Edition. The data
