@@ -5,37 +5,103 @@ The following table lists the database resources:
 
 |HTTP Method | URI pattern | Description  |
 | ------	| ------	| ------	|  
-| `GET`    | `/{db}`                     | Retrieves information about the database 
-| `PUT`    | /`{db}`                     | Creates a new database
+| `PUT`    | `/{db}`                     | Creates a new database
+| `GET`    | `/{db}`                     | Retrieves information about a database 
 | `DELETE` | `/{db}`                     | Deletes a database 
 | `GET`    | `/{db}/_all_docs`           | Retrieve the built-in view of all documents in the database  
 | `POST`   | `/{db}/_all_docs`           | Retrieves specified documents from the built-in view of all documents in the database   
 | `POST`   | `/{db}/_bulk_docs`          | Inserts multiple documents into the database in a single request
-| `GET`    | `/{db}/_changes`            | Returns changes for the given database  
+| `GET`    | `/{db}/_changes`            | Returns changes for the database  
 | `POST`   | `/{db}/_compact`            | Starts a compaction for the database  
-| `POST`   | `/{db}/_purge`              | Purges some historical documents entirely from database history  
+| `POST`   | `/{db}/_purge`              | Purges some historical documents from the database history  
+| `POST`   | `/{db}/_revs_diff`          | Returns a list of differences from the supplied document|
 | `POST`   | `/{db}/_temp_view`          | Executes a given view function for all documents and returns the result    |
 
 In the URI patterns, `db` represents the name of the database on which you want to operate.
 
-## Get database information
+## PUT /{db}
 
-This request retrieves information about the database.
-
-### Request summary
-
-* **Request**: `GET /db`
-* **Request body**: none
-* **Response body**: A JSON document that contains information about the database.
-* **HTTP status codes**:
-
-### Request
-
-#### Syntax
+This request creates a new database. The database name must begin with a lowercase letter. The legal characters for the database name are: lowercase letters \[`a-z`], digits \[`0-9`], and special characters \[`$_()+-/`].
+###Request
+The request uses the following syntax:
 
 ```
-GET /{db} HTTP/1.1
-Host: {host:port}
+PUT /<db> HTTP/1.1
+Host: <server:port>
+```
+
+### Response
+The response contains a JSON document.
+
+
+|Name | Type | Description|  
+| ------	| ------	| ------	|  
+|error | String | Error message|  
+|ok| Boolean | Indicates whether the operation was successful|  
+|status | Integer | HTTP error code|  
+
+### Example
+
+The following example creates a new database named `cookbook`.
+
+**Request**
+
+```
+PUT /cookbook HTTP/1.1
+Host: http://10.0.0.7:59840
+```
+	
+**Response**
+
+```
+HTTP/1.1 201 Created
+Server: CouchbaseLite 1.485
+Location: http://10.0.0.7:59840/cookbook
+Accept-Ranges: bytes
+Content-Length: 18
+Content-Type: application/json
+Date: Sun, 08 Dec 2013 20:17:16 GMT
+
+{
+  "ok" : true
+}
+```
+
+The following example shows the error you receive when requesting creation of a database that already exists:
+
+**Request**
+
+```
+PUT /cookbook HTTP/1.1
+Host: http://10.0.0.7:59840
+```
+
+**Response**
+
+```
+HTTP/1.1 412 Precondition Failed
+Transfer-Encoding: chunked
+Accept-Ranges: bytes
+Content-Type: application/json
+Server: CouchbaseLite 1.485
+Date: Mon, 09 Dec 2013 19:26:09 GMT
+
+{
+  "status" : 412,
+  "error" : "file_exists"
+}
+```
+
+## GET /{db}
+
+This request retrieves information about a database.
+
+### Request
+The request uses the following syntax:
+
+```
+GET /<db> HTTP/1.1
+Host: <server:port>
 ```
 
 ### Response
@@ -58,13 +124,16 @@ The response is a JSON document that contains the following objects:
 ### Example
 
 The following example retrieves information about a database named `beer-db`.
-#### Sample request
+
+**Request**
+
 ```
 GET /beer-db HTTP/1.1
 Host: 10.17.15.239:59840
 ```
 
-#### Sample response
+
+**Response**
 
 ```json
 HTTP/1.1 200 OK
@@ -76,7 +145,7 @@ Cache-Control: must-revalidate
 Date: Fri, 06 Dec 2013 22:31:17 GMT
 
 {
-  "instance_start_time" : 1386367000326153,
+  "instance_start_time" : 1386620242527997,
   "committed_update_seq" : 25800,
   "disk_size" : 15360000,
   "purge_seq" : 0,
@@ -87,23 +156,68 @@ Date: Fri, 06 Dec 2013 22:31:17 GMT
   "disk_format_version" : 11
 }
 ```
-## Create database
 
-This request creates a new database.
+The following example shows the response returned when you request information about a database that does not exist on the server. The example requests information from a server located at 10.0.0.7:59840 about a database named `cookbook`, which does not exist on that server.
 
-Sample request:
+**Request**
 
-	PUT /cookbook
+```
+GET /cookbook HTTP/1.1
+Host: 10.0.0.7:59840
+```
 
-## Delete database
+**Response**
 
-This request deletes a database.
+```
+HTTP/1.1 404 Not Found
+Transfer-Encoding: chunked
+Accept-Ranges: bytes
+Content-Type: application/json
+Server: CouchbaseLite 1.485
+Date: Sun, 08 Dec 2013 20:16:50 GMT
 
-Sample request:
+{
+  "status" : 404,
+  "error" : "not_found"
+}
+```
+## DELETE /{db}
 
-	DELETE /cookbook
+This request deletes a database, including all documents and attachments.
 
-## Get all documents
+### Request
+
+The request uses the following syntax:
+
+	DELETE /<db> HTTP/1.1
+	Host: <server:port>
+
+
+### Response
+### Example
+
+**Request**
+
+```
+DELETE /genealogy HTTP/1.1
+Host: 10.0.0.7:59840
+```
+
+**Response**
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Accept-Ranges: bytes
+Content-Length: 18
+Server: CouchbaseLite 1.485
+Date: Mon, 09 Dec 2013 04:24:05 GMT
+
+{
+  "ok" : true
+}
+```
+## GET /{db}/_all_docs
 This request returns a built-in view of all documents in the database.
 
 Sample request:
@@ -111,8 +225,7 @@ Sample request:
 	GET /cookbook/_all_docs
 
 
-
-## Get specific documents
+## POST /{db}/_all_docs
 This request retrieves specific documents from the built-in view of all documents.
 
 Sample request:
@@ -120,8 +233,7 @@ Sample request:
 	POST /cookbook/_all_docs
 
 
-
-## Insert multiple documents
+## /{db}/_bulk_docs
 This request inserts multiple documents into the database in a single request.
 
 Sample request:
@@ -129,8 +241,7 @@ Sample request:
 	POST /cookbook/_bulk_docs
 
 
-
-## GET database changes
+## GET /{db}/_changes
 Returns changes for the given database.
 
 Sample request:
@@ -138,7 +249,7 @@ Sample request:
 	GET /cookbook/_changes
 
 
-## POST compact database 
+## POST /{db}/_compact 
 Starts a compaction for the database.
 
 Sample request:
@@ -146,7 +257,7 @@ Sample request:
 	POST /cookbook/_compact
 
 
-## POST purge database
+## POST /{db}/_purge
 Purges some historical documents entirely from the database history.
 
 Sample request:
@@ -154,11 +265,11 @@ Sample request:
 	POST /cookbook/_purge
 
 
-## POST temporary view
-Executes a given view function for all documents and returns the result.
+
+## POST /{db}/_revs_diff
+## POST /{db}/_temp_view
+Executes a view function for all documents and returns the result.
 
 Sample request:
 
 	POST /cookbook/_temp_view
-
-

@@ -6,9 +6,9 @@ This reference manual provides information for developers who want to use the Co
 
 Within the paths of the URIs presented in this reference manual:
 
-* Path segments that start with an underscore character are static components of the URI that you use exactly as given. For example: `_replicate`
+* Path segments that start with an underscore character are static components of the URI that you use exactly as given. For example: `_replicate`.
 
-* Path segments that are not preceded by an underscore character represent variables that you replace with your own value. For example: `db`
+* Path segments that are not preceded by an underscore character represent variables that you replace with your own value. These variables are usually enclosed in brackets as a reminder. For example: `{db}` or `<db>`.
 
 For example, suppose you have a database named cookbook. In the database, the IDs for recipes start with the string "recipe" and IDs for design documents start with the string "ddoc". The following table shows examples of values you might use for the URI path in the request that you send to the database:
 
@@ -32,6 +32,8 @@ The REST API enables you to interact with all aspects of your database. The API 
 | [Miscellaneous](#miscellaneous-resources) | Operates on information about the database.|  
 | [Authentication](#authentication-resources) | Operates on session and authentication data.|  
 
+## HTTP Responses
+The HTTP responses consist of a header and a message body. The message body is a JSON document. To learn more about JSON, check out [JSON.org](http://json.org) and the [W3Schools JSON Tutorial](http://www.w3schools.com/json/).
 
 ## HTTP Status Codes
 
@@ -39,6 +41,8 @@ Couchbase Lite returns the HTTP status codes listed in the following table:
 
 | HTTP Status Code | Returned String |  
 |  ------	| ------	|  
+200 | OK
+201 | Created
 400 | Bad data encoding
 400 | bad_request
 400 | Invalid attachment
@@ -52,7 +56,7 @@ Couchbase Lite returns the HTTP status codes listed in the following table:
 404 | not_found
 406 | not_acceptable
 409 | conflict
-412 | file_exists     
+412 | file_exists
 415 | bad_content_type
 500 | Application callback block failed
 500 | Attachment store error
