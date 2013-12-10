@@ -163,7 +163,10 @@ This can be fixed by deleting documents in a different way.  Because a document 
 
 The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). In this case, the replicator needs to log on to the remote server on your behalf.
 
-**Security Tip:** Because Basic auth sends the password in an easily readable form, it is _only_ safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the `https:` scheme.
+<div class="notebox tip">
+<p>Security Tip</p> 
+<p>Because Basic auth sends the password in an easily readable form, it is <em>only</em> safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the <code>https:</code> scheme.</p>
+</div>
 
 You need to register logon credentials for the replicator to use. There are several ways to do this and most of them use the standard credential mechanism provided by the Cocoa Foundation framework.
 
@@ -189,38 +192,44 @@ Here’s an example of how to register a credential for a remote database. First
 
 Next, create a `NSURLProtectionSpace` object that defines the URLs to which the credential applies:
 
-```objectivec
-NSURLProtectionSpace* space;
 
-space = [[[NSURLProtectionSpace alloc] 
-        initWithHost: @"sync.example.com"
-                port: 443
-            protocol: @"https"
-               realm: @"My Database"
-authenticationMethod: NSURLAuthenticationMethodDefault]
-         autorelease];
-```
+    
+    NSURLProtectionSpace* space;
+    
+    space = [[[NSURLProtectionSpace alloc] 
+            initWithHost: @"sync.example.com"
+                    port: 443
+                protocol: @"https"
+                   realm: @"My Database"
+    authenticationMethod: NSURLAuthenticationMethodDefault]
+             autorelease];
+    
 
 Finally, register the credential for the protection space:
 
-```objectivec 
-[[NSURLCredentialStorage sharedCredentialStorage]
-   setDefaultCredential: cred
-     forProtectionSpace: space];
-```
+    [[NSURLCredentialStorage sharedCredentialStorage]
+       setDefaultCredential: cred
+         forProtectionSpace: space];
+
 
 This is best done right after the user enters a name and password in your configuration UI. Because this example specified _permanent_ persistence, the credential store writes the password securely to the Keychain. From then on, NSURLConnection, Cocoa's underlying HTTP client engine, finds it when it needs to authenticate with that same server.
 
 The Keychain is a secure place to store secrets: it's encrypted with a key derived from the user's iOS passcode, and managed only by a single trusted OS process. If you don’t want the password stored to disk, use `NSURLCredentialPersistenceForSession`  for the persistence setting. But then you need to call the above code on every launch, begging the question of where you get the password from. The alternatives are generally less secure than the Keychain.
 
-**NOTE:** The OS is picky about the parameters of the protection space. If they don’t match exactly—including the `port` and the `realm` string—the credentials are not used and the sync fails with a 401 error. This is annoying to troubleshoot. In case of mysterious auth failures, double-check the all the credential's and protection space's spelling and port numbers!
+<div class="notebox">
+<p>Note</p>
+<p>The OS is picky about the parameters of the protection space. If they don’t match exactly—including the `port` and the `realm` string—the credentials are not used and the sync fails with a 401 error. This is annoying to troubleshoot. In case of mysterious auth failures, double-check the all the credential's and protection space's spelling and port numbers!
+</p>
+</div>
 
-If you need to figure out the actual realm string for the server, you can use `curl` or an equivalent HTTP client tool to examine the "WWW-Authenticate" response header for an auth failure:
+If you need to figure out the actual realm string for the server, you can use [curl](http://curl.haxx.se) or another HTTP client tool to examine the "WWW-Authenticate" response header for an auth failure. Here's an example that uses curl:
 
-    $ curl -i -X POST http://sync.example.com/dbname/
-    HTTP/1.1 401 Unauthorized
-    WWW-Authenticate: Basic realm="My Database"
 
+```
+$ curl -i -X POST http://sync.example.com/dbname/
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="My Database"
+```
 
 #### OAuth
 
@@ -228,13 +237,15 @@ If you need to figure out the actual realm string for the server, you can use `c
 
 Sync Gateway supports OAuth version 1 (but _not_ yet the newer OAuth 2) for client authentication, so if this has been configured in your upstream database, you can replicate with it by providing OAuth tokens:
 
-```objectivec
+
+```
 replication.OAuth = 
    @{ @"consumer_secret": consumerSecret,
       @"consumer_key": consumerKey,
       @"token_secret": tokenSecret,
       @"token": token };
 ```
+
 Getting these four values is somewhat tricky and involves authenticating with the origin server (the site at which the user has an account or identity). Usually you use an OAuth client library to do the hard work, such as a library from [Google](http://code.google.com/p/gtm-oauth/) or [Facebook](https://github.com/facebook/facebook-ios-sdk).
 
 OAuth tokens expire after some time. If you install them into a persistent replication, you still need to call the client library periodically to validate them. If they're updated, you need to update them in the replication settings.
