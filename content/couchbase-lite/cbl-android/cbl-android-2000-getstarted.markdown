@@ -43,7 +43,7 @@ This section shows how to create a simple Hello World app with Couchbase Lite. I
 
 	This example uses the name MyProject for the new project. 
 
-4. Set the minimum required SDK to **API 11: Android 3.0 (Honeycomb)** or later.
+4. Set the minimum required SDK to **API 9: Android 2.3 (Gingerbread)** or later.
 
 5. Click **Next**, and move through the remaining setup screens and enter settings as necessary.
 
