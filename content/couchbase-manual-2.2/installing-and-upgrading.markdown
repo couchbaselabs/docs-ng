@@ -516,8 +516,7 @@ successfully, shut down all other running applications during installation.
 
 For Windows 2008, you must upgrade your Windows Server 2008 R2 installation with
 Service Pack 1 installed before running Couchbase Server. You can obtain Service
-Pack 1 from [Microsoft
-TechNet](http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx).
+Pack 1 from <a href=http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx> Microsoft TechNet</a>.
 
 The standard Microsoft Server installation does not provide an adequate number
 of ephemeral ports for Couchbase clusters. Without the correct number of open

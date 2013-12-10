@@ -173,16 +173,19 @@ navbar:
       - label: Couchbase Lite Concepts Guide
         href: /couchbase-lite/cbl-concepts/
 
-      - label: Couchbase Lite iOS Guide
+      - label: Couchbase Lite iOS Developer Guide
         href: /couchbase-lite/cbl-ios/
 
-      - label: Couchbase Lite Android Guide
+      - label: Couchbase Lite iOS API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html
+
+      - label: Couchbase Lite Android Developer Guide
         href: /couchbase-lite/cbl-android/
         
-      - label: Couchbase Lite PhoneGap Guide
+      - label: Couchbase Lite PhoneGap Developer Guide
         href: /couchbase-lite/cbl-phonegap/
 
-      - label: Couchbase Sync Gateway
+      - label: Couchbase Sync Gateway Guide
         href: /sync-gateway/
 
   - label: Developer
