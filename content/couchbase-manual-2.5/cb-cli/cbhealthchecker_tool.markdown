@@ -134,7 +134,7 @@ time the report was run, and an assessment of the overall health of the cluster.
 The following figure shows the report header:
 
 
-![](images/health-report-header.png)
+![](../images/health-report-header.png)
 
  * The body of the report is divided into several sections:Couchbase — Alerts
 
@@ -145,7 +145,7 @@ The following figure shows the report header:
    portion of the alerts section of a report:
 
 
-   ![](images/health-report-alerts.png)
+   ![](../images/health-report-alerts.png)
 
  * Couchbase Cluster Overview
 
@@ -154,7 +154,7 @@ The following figure shows the report header:
    following figure shows a portion of the cluster overview section of a report:
 
 
-   ![](images/health-report-cluster-overview.png)
+   ![](../images/health-report-cluster-overview.png)
 
  * Couchbase — Warning Indicators
 
@@ -165,4 +165,4 @@ The following figure shows the report header:
    portion of the warning indicators section of a report:
 
 
-   ![](images/health-report-warnings.png)
+   ![](../images/health-report-warnings.png)

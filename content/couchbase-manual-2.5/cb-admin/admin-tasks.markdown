@@ -96,11 +96,11 @@ To create a read-only user:
 1. In Couchbase Web Console, click Settings. A panel appears with several different sub-tabs.
 2. Click Account Management. A panel appears where you can add a read-only user:
 
-   ![](images/read_only_setup.png)
+   ![](../images/read_only_setup.png)
 
 3. Enter a Username, Password and verify the password.
 4. Click Create. The panel refreshes and has options for resetting the read-only user password or deleting the user:
- ![](images/read_only_created.png)
+ ![](../images/read_only_created.png)
  
 This read-only user can now log into Couchbase Web Console in read-only mode or perform REST API GET requests that do not require administrative credentials. If a read-only user performs a REST POST or DELETE request that changes cluster, bucket, XDCR, or node settings, the server will send an HTTP 401 error:
 
@@ -155,7 +155,7 @@ a New Bucket](#couchbase-admin-web-console-data-buckets-createedit-create).
  1. Select a number of reader/writers under Disk Read-Write Concurrency.
 
 
-    ![](images/mrw_setting_panel.png)
+    ![](../images/mrw_setting_panel.png)
 
  1. Provide other bucket-level settings of your choice.
 
@@ -165,13 +165,13 @@ a New Bucket](#couchbase-admin-web-console-data-buckets-createedit-create).
     yellow indicator to show the bucket is in warmup phase:
 
 
-    ![](images/mrw_bucket_warmup.png)
+    ![](../images/mrw_bucket_warmup.png)
 
     After the bucket completes warmup, it will appear with a green indicator next to
     it:
 
 
-    ![](images/mrw_bucket_ready2.png)
+    ![](../images/mrw_bucket_ready2.png)
 
     This default bucket is now ready to receive and serve requests. If you create a
     named bucket, you will see a similar status indicator next to your named bucket.
@@ -242,7 +242,7 @@ To change this setting in Web Console:
     General information about the bucket appears as well as controls for the bucket.
 
 
-    ![](images/mrw_edit_bucket.png)
+    ![](../images/mrw_edit_bucket.png)
 
  1. Click Edit.
 
@@ -256,7 +256,7 @@ To change this setting in Web Console:
     A warning appears indicating that this change will recreate the data bucket.
 
 
-    ![](images/mrw_bucket_edit_warning.png)
+    ![](../images/mrw_bucket_edit_warning.png)
 
  1. Click Continue
 
@@ -551,7 +551,7 @@ following shows two different nodes in a Couchbase cluster, and illustrates how
 two nodes can store replica data for one another:
 
 
-![](images/replica_backoff.png)
+![](../images/replica_backoff.png)
 
 When a client application writes data to a node, that data will be placed in a
 replication queue and then a copy will be sent to another node. The replicated
@@ -1454,7 +1454,7 @@ Topologies](#xdcr-topologies). The following shows a scenario where you will
 lose replica vBuckets from a cluster due to multi-node failure:
 
 
-![](images/cb_rec_multi_failure.png)
+![](../images/cb_rec_multi_failure.png)
 
 Before you perform a recovery, make sure that your main cluster has an adequate
 amount of memory and disk space to support the workload as well as the data you
@@ -1521,7 +1521,7 @@ understand whether or not this approach will work in your failure scenario:
    buckets since both will have missing partitions.
 
 
-   ![](images/cbrecovery_diff_replicas.png)
+   ![](../images/cbrecovery_diff_replicas.png)
 
 **Handling the Recovery**
 
@@ -1538,7 +1538,7 @@ follow this process:
     available:
 
 
-    ![](images/post-failover-log-lost-data.png)
+    ![](../images/post-failover-log-lost-data.png)
 
  1. Add new functioning nodes to replace the failed nodes.
 
@@ -1547,7 +1547,7 @@ follow this process:
     information about the missing vBuckets and you cannot recover them.
 
 
-    ![](images/cb_recovery1b.png)
+    ![](../images/cb_recovery1b.png)
 
     In this example we have two nodes that failed in a three-node cluster and we add
     a new node 10.3.3.61.
@@ -1561,7 +1561,7 @@ follow this process:
     a Stop Recovery button appears.
 
 
-    ![](images/cb_recovery2.png)
+    ![](../images/cb_recovery2.png)
 
     After the recovery completes, this button disappears.
 
@@ -1572,7 +1572,7 @@ follow this process:
     replica vBuckets and evenly redistribute them across the cluster.
 
 
-    ![](images/cbrecovery_3b.png)
+    ![](../images/cbrecovery_3b.png)
 
 **Recovery 'Dry-Run'**
 
@@ -1627,13 +1627,13 @@ Web Console:
     see an increased number in the `items` level during recovery:
 
 
-    ![](images/monitor_cb_recovery.png)
+    ![](../images/monitor_cb_recovery.png)
 
  1. You can also see the number of active vBuckets increase as they are recovered
     until you reach 1024 vBuckets. Click on the vBucket Resources drop-down:
 
 
-    ![](images/cbrec_monitor_vbucks.png)
+    ![](../images/cbrec_monitor_vbucks.png)
 
  1. As this tool runs from the command line you can stop it at any time as you would
     any other command-line tool.
@@ -1645,7 +1645,7 @@ Web Console:
     in this panel:
 
 
-    ![](images/stop_cbrecovery.png)
+    ![](../images/stop_cbrecovery.png)
 
  1. After recovery completes, click on the Server Nodes tab then Rebalance to
     rebalance your cluster.
@@ -2563,7 +2563,7 @@ a sample of this in the figure below, here shown on the `Manage Server Nodes`
 page.
 
 
-![](images/admin-tasks-pending-rebalance.png)
+![](../images/admin-tasks-pending-rebalance.png)
 
 To rebalance the cluster, you must initiate the rebalance process, detailed in
 [Performing a
@@ -2588,7 +2588,7 @@ operation. The methods are:
    shown in the figure below:
 
 
-   ![](images/admin-tasks-rebalance-add-setup.png)
+   ![](../images/admin-tasks-rebalance-add-setup.png)
 
    You are prompted for three pieces of information:
 
@@ -2609,7 +2609,7 @@ operation. The methods are:
    in the example below:
 
 
-   ![](images/admin-tasks-rebalance-node-added.png)
+   ![](../images/admin-tasks-rebalance-node-added.png)
 
  * **Web Console — After Installation**
 
@@ -2618,7 +2618,7 @@ operation. The methods are:
    You can see the button in the figure below.
 
 
-   ![](images/admin-tasks-rebalance-add-button.png)
+   ![](../images/admin-tasks-rebalance-add-button.png)
 
    You will be presented with a dialog box, as shown below. Couchbase Server should
    be installed, and should have been configured as per the normal setup
@@ -2626,7 +2626,7 @@ operation. The methods are:
    another cluster using this method. The Couchbase Server must be running.
 
 
-   ![](images/admin-tasks-rebalance-add-console.png)
+   ![](../images/admin-tasks-rebalance-add-console.png)
 
    You need to fill in the requested information:
 
@@ -2788,7 +2788,7 @@ configured state. To start a rebalance:
    `Rebalance` button.
 
 
-   ![](images/admin-tasks-rebalance-starting-console.png)
+   ![](../images/admin-tasks-rebalance-starting-console.png)
 
    Clicking this button will immediately initiate a rebalance operation. You can
    monitor the progress of the rebalance operation through the web console.
@@ -2945,7 +2945,7 @@ Progress](#couchbase-admin-restapi-rebalance-progress). If you click on the
 drop-down next to each node, you can view the detailed rebalance status:
 
 
-![](images/rebalance_detail_report.png)
+![](../images/rebalance_detail_report.png)
 
 The section `Data being transferred out` means that a node sends data to other
 nodes during rebalance. The section `Data being transferred in` means that a
@@ -3168,7 +3168,7 @@ within the cluster (this is configurable up to three replicas). If a server goes
 down, failover promotes replica data to active:
 
 
-![](images/intra_cluster_repl.png)
+![](../images/intra_cluster_repl.png)
 
 Cross datacenter replication in Couchbase Server involves replicating active
 data to multiple, geographically diverse datacenters either for disaster
@@ -3176,7 +3176,7 @@ recovery or to bring data closer to its users for faster data access, as shown
 in below:
 
 
-![](images/xdcr_1.png)
+![](../images/xdcr_1.png)
 
 You can also see that XDCR and intra-cluster replication occurs simultaneously.
 Intra-cluster replication is taking place within the clusters at both Datacenter
@@ -3243,7 +3243,7 @@ recovery or to bring data closer to its users for faster data access, as shown
 in below:
 
 
-![](images/xdcr_selective.png)
+![](../images/xdcr_selective.png)
 
 As shown above, after the document is stored in Couchbase Server and before XDCR
 replicates a document to other datacenters, a couple of things happen within
@@ -3265,7 +3265,7 @@ each Couchbase Server node.
     undergo low latency read/write operations:
 
 
-    ![](images/xdcr-persistence.png)
+    ![](../images/xdcr-persistence.png)
 
 <a id="xdcr-architecture"></a>
 
@@ -3320,7 +3320,7 @@ the “winner.” XDCR applies the same rule across clusters to make sure docume
 consistency is maintained:
 
 
-![](images/xdcr_conflict_res.png)
+![](../images/xdcr_conflict_res.png)
 
 As shown in above, bidirectional replication is set up between Datacenter 1 and
 Datacenter 2 and both the clusters start off with the same JSON document (Doc
@@ -3335,7 +3335,7 @@ flexibility to create several complex topologies such as the chain and
 propagation topology as shown below:
 
 
-![](images/xdcr_repl_chain.png)
+![](../images/xdcr_repl_chain.png)
 
 In the image below there is one bidirectional replication link between
 Datacenter 1 and Datacenter 2 and two unidirectional replication links between
@@ -3347,7 +3347,7 @@ in the local offices (Datacenters 3 and 4) are pushed to the regional office
 using unidirectional replication:
 
 
-![](images/xdcr_advanced.png)
+![](../images/xdcr_advanced.png)
 
 A description of the functionality, implementation and limitations of XDCR are
 provided in [Behavior and
@@ -3426,7 +3426,7 @@ To create a unidirectional replication (from cluster A to cluster B):
     cluster.
 
 
-    ![](images/xdcr-cluster-reference.png)
+    ![](../images/xdcr-cluster-reference.png)
 
     Enter the username and password for the administrator on the destination
     cluster.
@@ -3453,7 +3453,7 @@ between the clusters in Couchbase Web Console.
     the destination cluster:
 
 
-    ![](images/create_xdcr_rep2.2.png)
+    ![](../images/create_xdcr_rep2.2.png)
 
  4. Click the `Replicate` button to start the replication process.
 
@@ -3461,7 +3461,7 @@ After you have configured and started replication, the web console will show the
 current status and list of replications in the `Ongoing Replications` section:
 
 
-![](images/xdcr-cluster-monitor.png)
+![](../images/xdcr-cluster-monitor.png)
 
 <a id="admin-tasks-xdcr-advanced"></a>
 
@@ -3473,7 +3473,7 @@ If you want to change the replication protocol for an existing XDCR replication,
 
 1. In the Create Replication panel, click **Advanced settings**.  
     
-     ![](images/create_rep_xdcr_advance2.2.png)
+     ![](../images/create_rep_xdcr_advance2.2.png)
        
 2. Under Advanced settings, choose an XDCR Protocol version.
 
@@ -3625,7 +3625,7 @@ example below, we show the errors that occur if replication streams from XDCR
 will fail due to the missing vBuckets:
 
 
-![](images/xdcr-errors-missing-vbuckets.png)
+![](../images/xdcr-errors-missing-vbuckets.png)
 
 You can tune your XDCR parameters by using the administration REST API. See
 [Viewing Internal XDCR
@@ -3667,7 +3667,7 @@ active will be displayed within the `Past Replications` section of the
    the destination cluster:
 
 
-   ![](images/XDCR_xmem.png)
+   ![](../images/XDCR_xmem.png)
 
    In this mode, every replication process at a source cluster will deliver
    mutations directly via the memcached protocol on the remote cluster. This
@@ -3854,7 +3854,7 @@ Console. On the Data Buckets tab under Incoming XDCR Operations, you can compare
 `metadata reads per sec` to `sets per sec` :
 
 
-![](images/monitor_optmized_xdcr.png)
+![](../images/monitor_optmized_xdcr.png)
 
 If you set a low threshold relative to document size, `metadata reads per sec`
 will be roughly twice the value of `sets per sec`. If you set a high threshold
@@ -3954,7 +3954,7 @@ can configure a point to point VPN connection using a static route between the
 two clusters:
 
 
-![](images/xdcr-vpn-static.png)
+![](../images/xdcr-vpn-static.png)
 
 When using Amazon EC2 or other cloud deployment solutions, particularly when
 using different EC2 zones, there is no built-in VPN support between the
@@ -3970,7 +3970,7 @@ region to the third-party BGP VPN router, and the VPN connection from the other
 region, using the BGP gateway to route between the two VPN connections.
 
 
-![](images/xdcr-vpn-bgp.png)
+![](../images/xdcr-vpn-bgp.png)
 
 Configuration of these VPN routes and systems is dependent on your VPN solution.
 

@@ -77,7 +77,7 @@ data objects that have been stored.
 A brief overview of this process is shown in the figure below.
 
 
-![](images/views-basic-overview.png)
+![](../images/views-basic-overview.png)
 
 In the above example, the view takes the Name, City and Salary fields from the
 stored documents and then creates a array of this information for each document
@@ -304,7 +304,7 @@ indexes from views within a single design document and store the indexes in a
 single file on each node in the cluster:
 
 
-![](images/views_replica.png)
+![](../images/views_replica.png)
 
 Couchbase Server can optionally create replica indexes on nodes that are contain
 replicated data; this is to prepare your cluster for a failover scenario. The
@@ -413,7 +413,7 @@ Three values for `stale` are supported:
    results are returned accordingly.
 
 
-   ![](images/views-stale-sequence-stale.png)
+   ![](../images/views-stale-sequence-stale.png)
 
    This setting results in the fastest response times to a given query, since the
    existing index will be used without being updated. However, this risks returning
@@ -428,7 +428,7 @@ Three values for `stale` are supported:
    therefore the response will be delayed until the updated index is available.
 
 
-   ![](images/views-stale-sequence-updatebefore.png)
+   ![](../images/views-stale-sequence-updatebefore.png)
 
  * **stale=update\_after**
 
@@ -437,7 +437,7 @@ Three values for `stale` are supported:
    once the results have been returned to the client.
 
 
-   ![](images/views-stale-sequence-updateafter.png)
+   ![](../images/views-stale-sequence-updateafter.png)
 
 The indexing engine is an asynchronous process; this means querying an index may
 produce results you may not expect. For example, if you update a document, and
@@ -648,7 +648,7 @@ parsed as valid JSON then it is stored as a verbatim binary copy of the
 submitted data.
 
 
-![](images/view-types-datastore.png)
+![](../images/view-types-datastore.png)
 
 When retrieving the stored data, the format of the information depends on
 whether the data was tagged as valid JSON or not:
@@ -932,7 +932,7 @@ The support for the two different view types means that there is a typical work
 flow for view development, as shown in the figure below:
 
 
-![](images/view-types-workflow.png)
+![](../images/view-types-workflow.png)
 
 The above diagram features the following steps:
 
@@ -1046,7 +1046,7 @@ values in views will be shown as the details of the two functions are discussed.
 You can see an example of the view creation process in the figure below.
 
 
-![](images/view-building.png)
+![](../images/view-building.png)
 
 Because of the separation of the two elements, you can consider the two
 functions individually.
@@ -1094,7 +1094,7 @@ view system and obtaining and processing the results.
 The basic operation of the map function can be seen in the figure below.
 
 
-![](images/views-basic-overview.png)
+![](../images/views-basic-overview.png)
 
 In this example, a map function is taking the Name, City, and Salary fields from
 the JSON documents stored in the Couchbase bucket and mapping them to a table of
@@ -1196,7 +1196,7 @@ fields in the specified view. The result in the view result is just the `null`
 entry for that field in the value output.
 
 
-![](images/views-basic-overview-missing.png)
+![](../images/views-basic-overview-missing.png)
 
 You should check that the field or data source exists during the map processing
 before emitting the data.
@@ -1497,7 +1497,7 @@ supplied to it from the corresponding `map()` function.
 The core structure of the reduce function execution is shown the figure below.
 
 
-![](images/custom-reduce.png)
+![](../images/custom-reduce.png)
 
 The base format of the `reduce()` function is as follows:
 
@@ -1628,7 +1628,7 @@ reduce function as an element of the array of values supplied to the reduce
 function.
 
 
-![](images/custom-rereduce.png)
+![](../images/custom-rereduce.png)
 
 That is, the input of a reduce function can be not only the raw data from the
 map phase, but also the output of a previous reduce phase. This is called
@@ -2173,7 +2173,7 @@ View results and the parameters operate and interact in a specific order. The
 interaction directly affects how queries are written and data is selected.
 
 
-![](images/views-query-flow.png)
+![](../images/views-query-flow.png)
 
 The core arguments and selection systems are the same through both the REST API
 interface, and the client libraries. The setting of these values differs
@@ -2676,7 +2676,7 @@ and you can specify the level within the defined array that the information is
 grouped by. You do this by specifying the index within the array by which you
 want the output grouped using the `group_level` parameter.
 
-![](images/views-grouping.png)
+![](../images/views-grouping.png)
 
 The `group_level` parameter specifies the array index (starting at 1) at which
 you want the grouping occur, and generate a unique value based on this value

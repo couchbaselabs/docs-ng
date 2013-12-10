@@ -191,7 +191,7 @@ runs as a background application which installs a menu bar item through which yo
 can control the server.
 
 
-![](images/macosx-menubar.png)
+![](../images/macosx-menubar.png)
 
 The individual menu options perform the following actions:
 

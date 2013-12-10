@@ -871,7 +871,7 @@ allows the clients to share the vBucket map, locate the node containing the
 required vBucket, and read and write information from there.
 
 
-![](images/couchbase-060711-1157-32_img_281.jpg)
+![](../images/couchbase-060711-1157-32_img_281.jpg)
 
 See also [vBuckets](http://dustin.github.com/2010/06/29/memcached-vbuckets.html)
 for an in-depth description.
@@ -888,7 +888,7 @@ connection pooling. The diagram below shows the flow with a standalone proxy
 installed on the application server.
 
 
-![](images/couchbase-060711-1157-32_img_280.jpg)
+![](../images/couchbase-060711-1157-32_img_280.jpg)
 
 We configured the memcached client to have just one server in its server list
 (localhost), so all operations are forwarded to `localhost:11211` — a port
@@ -918,7 +918,7 @@ server list on the client, then using vBucket hashing and server mapping on the
 proxy) with an additional round trip network hop introduced.
 
 
-![](images/couchbase-060711-1157-32_img_279.jpg)
+![](../images/couchbase-060711-1157-32_img_279.jpg)
 
 For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
 1.8 Manual](http://www.couchbase.com/docs/moxi-manual-1.8/index.html).

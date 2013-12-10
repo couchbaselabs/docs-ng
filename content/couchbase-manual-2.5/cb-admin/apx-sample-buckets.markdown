@@ -1,4 +1,4 @@
-# Couchbase Sample Buckets
+# Sample Buckets
 
 Couchbase Server comes with sample buckets that contain both data and MapReduce
 queries to demonstrate the power and capabilities.
