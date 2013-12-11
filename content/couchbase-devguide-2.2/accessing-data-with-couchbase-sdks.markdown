@@ -1723,11 +1723,14 @@ Both `incr` and `decr` are considered 'binary' methods in that they operate on
 binary data, not JSON documents. Because of this, keys used by `incr` and `decr`
 cannot be queried or indexed with Couchbase Server.
 
-Couchbase Server stores and transmits numbers as **unsigned numbers**, therefore
+<div class="notebox tip">
+<p>Tip</p>
+<p>Couchbase Server stores and transmits numbers as <strong>unsigned numbers</strong>, therefore
 if you try to store negative number and then increment, it will cause overflow.
 In this case, an integer overflow value will be returned. See the integer
 overflow example that follows. In the case of decrement, if you attempt to
-decrement zero or a negative number, you will always get a result of zero.
+decrement zero or a negative number, you will always get a result of zero.</p>
+</div>
 
 The next example demonstrates use of `incr` to identify documents with unique
 ids and retrieve them with the id:
@@ -1880,21 +1883,28 @@ protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 Should you choose to destroy cached and persisted data, the `flush_all`
 operation is available at the SDK level.
 
-This operation is disabled by default as of the 1.8.1 Couchbase Server and
+<div class="notebox warning">
+<p>Warning</p>
+<p>This operation is disabled by default as of the 1.8.1 Couchbase Server and
 above. This is to prevent accidental, detrimental data loss. Use of this
 operation should be done only with extreme caution, and most likely only for
 test databases as it will delete, item by item, every persisted document as well
-as destroy all cached data.
+as destroy all cached data.</p>
+</div>
 
-Third-party client testing tools may perform a `flush_all` operation as part of
+<div class="notebox warning">
+<p>Warning</p>
+<p>Third-party client testing tools may perform a <code>flush_all</code> operation as part of
 their test scripts. Be aware of the scripts run by your testing tools and avoid
 triggering these test cases/operations unless you are certain they are being
-performed on your sample/test database.
-
-Inadvertent use of `flush_all` on production databases, or other data stores you
+performed on your sample/test database.</p>
+<p>Inadvertent use of <code>flush_all</code> on production databases, or other data stores you
 intend to use will result in permanent loss of data. Moreover the operation as
 applied to a large data store will take many hours to remove persisted
-documents.
+documents.</p>
+</div>
+
+
 
 This next example demonstrates how to perform a synchronous and asynchronous
 `flush` in Ruby:

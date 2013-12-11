@@ -74,10 +74,13 @@ Libraries:
 
  * C
 
-The TCP/IP port allocation on Windows by default includes a restricted number of
+<div class="notebox warning">
+<p>Warning</p>
+<p>The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
-available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx> MSDN: Avoiding TCP/IP Port Exhaustion</a>.
+available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx> MSDN: Avoiding TCP/IP Port Exhaustion</a>.</p>
+</div>
 
 Depending upon the OS for your development platform and web application server
 platform, choose the 32- or 64- bit versions of the SDK. Download and install
@@ -234,7 +237,7 @@ end
 In this example, we set and retrieve data in a Ruby `begin rescue end` block.
 The code block attempts to set the value "Hello World!" for the key "spoon" with
 an expiration of 10 seconds. Then gets the value for the "spoon" key and outputs
-it. If the Couchbase client receives and error, it outputs "There is no spoon."
+it. If the Couchbase client receives an error, it outputs "There is no spoon."
 
 (Optional) Depending on the language you are using, you may need to be
 responsible for explicitly destroying the Couchbase client object, and thereby

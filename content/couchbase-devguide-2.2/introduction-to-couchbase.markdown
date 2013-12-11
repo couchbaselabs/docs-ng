@@ -154,8 +154,11 @@ to change how the document is handled:
    Couchbase Server will delete values during regular maintenance if the ttl for an
    item has expired.
 
-   The expiration value deletes information from the entire database. It has no
-   effect on when the information is removed from the RAM caching layer.
+   <div class="notebox">
+   <p>Note</p>
+   <p>The expiration value deletes information from the entire database. It has no
+   effect on when the information is removed from the RAM caching layer.</p>
+   </div>
 
  * **Flags** —These are SDK- specific flags which are used to provides a variety of
    options during storage, retrieval, update, and removal of documents. Typically
