@@ -239,15 +239,16 @@ The code block attempts to set the value "Hello World!" for the key "spoon" with
 an expiration of 10 seconds. Then gets the value for the "spoon" key and outputs
 it. If the Couchbase client receives an error, it outputs "There is no spoon."
 
-(Optional) Depending on the language you are using, you may need to be
+<div class="notebox tip">
+<p>Tip </p>
+<p>Depending on the language you are using, you may need to be
 responsible for explicitly destroying the Couchbase client object, and thereby
 destroying the connection. Typically it is a best practice to try to reuse the
 same client instance across multiple processes and threads, rather than
 constantly create and destroy clients. This will provide better application
 performance and reduce processing times. For more information about client
-instance reuse and connection pooling, see [Optimizing Client
-Instances](optimizing-client-instances) and [Maintaining Persistent
-Connections](cb-persistent-connections).
+instance reuse and connection pooling, see <a href="#optimizing-client-instances">Optimizing Client Instances</a> and <a href="#cb-persistent-connections">Maintaining Persistent Connections</a>.</p>
+</div>
 
 The next example in Java we demonstrate how it is safest to create at least two
 possible node URIs while creating an initial connection with the server. This

@@ -176,10 +176,13 @@ call; with these SDKs you do not need to explicitly load a JSON conversion
 library and do a conversion prior to reading and writing a JSON document. For
 more information, please consult the Language Reference for your chosen SDK.
 
-If you are currently using serialized objects with memcached or Membase, you can
+<div class="notebox tip">
+<p>Tip </p>
+<p>If you are currently using serialized objects with memcached or Membase, you can
 continue using this in Couchbase Server 1.8+. JSON offers the advantage of
 providing heterogeneous platform support, and will enable you to use new
-features of Couchbase Server such as view, querying and indexing.
+features of Couchbase Server such as view, querying and indexing.</p>
+</div>
 
 The following illustrates a simple JSON document used to represent a beer. For
 JSON, string-value pairs are the basic building blocks you use to represent
