@@ -146,6 +146,7 @@ versions:
   couchbase-sdk-python:
     name: "Python SDK"
     versions:
+      - 1.2
       - 1.1
       - 1.0
 
