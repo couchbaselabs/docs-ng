@@ -44,7 +44,7 @@ Sample request:
 
 ```
 GET / HTTP/1.1
-Host: 10.17.15.239:59840
+Host: localhost:59840
 ```
 
 Sample response:
@@ -73,27 +73,30 @@ The request uses the following syntax:
 
 ```
 GET /_active_tasks
-Host: 10.0.0.7:59840
+Host: localhost:59840
 ```
 
 ### Response
 The response contains a JSON document that contains an array of active tasks. If there are no active tasks, an empty array is returned in the response.
 
+### Example
 ## GET _all_dbs
 
 This request retrieves a list of all databases on the server.
 
+### Request
+### Response
 
 ### Example
 
-The following example requests a list of databases on the server at 10.0.0.7:59840. The response lists the three databases on the server: `beer-db`, `cookbook`, and `genealogy`.
+The following example requests a list of databases on the server. The response lists the three databases on the server: `beer-db`, `cookbook`, and `genealogy`.
 
 
 **Request**
 
 ```
 GET /_all_dbs HTTP/1.1
-Host: 10.0.0.7:59840
+Host: localhost:59840
 ```
 
 **Response**
@@ -161,7 +164,7 @@ Sample request:
 
 ```
 POST /_replicate HTTP/1.1
-Host: 10.17.15.239:59840
+Host: localhost:59840
 
 {
    "create_target" : true,
@@ -209,7 +212,7 @@ Request
 
 ```
 GET /_uuids HTTP/1.1
-Host: 10.0.0.7:59840
+Host: localhost:59840
 ```
 
 Response

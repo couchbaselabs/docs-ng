@@ -12,9 +12,21 @@ Local document resources enable you to create documents that are not replicated 
 
 This request creates a local document.
 
+### Request
+### Response
+### Example
 ## GET /{db}/local/{local-doc}
 
 This request retrieves a local document.
+
+### Request
+### Response
+### Example
 ## DELETE /{db}/local/{local-doc}
 
 This request deletes a local document.
+
+### Request
+### Response
+### Example
+

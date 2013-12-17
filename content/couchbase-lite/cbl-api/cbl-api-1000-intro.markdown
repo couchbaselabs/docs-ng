@@ -12,7 +12,7 @@ Within the paths of the URIs presented in this reference manual:
 
 For example, suppose you have a database named cookbook. In the database, the IDs for recipes start with the string "recipe" and IDs for design documents start with the string "ddoc". The following table shows examples of values you might use for the URI path in the request that you send to the database:
 
-|Path | Value |  
+|Path | Sample value |  
 | ------	| ------	|  
 |/db | /cookbook |  
 | /db/_changes| /cookbook/_changes |  
@@ -43,6 +43,7 @@ Couchbase Lite returns the HTTP status codes listed in the following table:
 |  ------	| ------	|  
 200 | OK
 201 | Created
+202 | Accepted
 400 | Bad data encoding
 400 | bad_request
 400 | Invalid attachment

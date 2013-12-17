@@ -19,23 +19,60 @@ Design document resources enable you to create and modify views. The following t
 
 ## PUT /{db}/_design/{design-doc}
 
+### Request
+### Response
+### Example
+
 ## GET /{db}/_design/{design-doc}
+### Request
+### Response
+### Example
 
 ## DELETE /{db}/_design/{design-doc}
+
+
+### Request
+### Response
+### Example
 
 
 ## GET /{db}/_design/{design-doc}/{attachment}
 
 
+### Request
+### Response
+### Example
+
+
 ## PUT /{db}/_design/{design-doc}/{attachment}
+
+
+### Request
+### Response
+### Example
 
 
 
 ## DELETE /{db}/_design/{design-doc}/{attachment}
 
+### Request
+### Response
+### Example
+
+
 
 ## GET /{db}/_design/{design-doc}/_view/{view-name}
 
+### Request
+### Response
+### Example
+
+
 ## POST /{db}/_design/{design-doc}/_view/{view-name}
+
+
+### Request
+### Response
+### Example
 
 
