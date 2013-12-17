@@ -643,8 +643,10 @@ key ("some\_key") into a vBucketId. Your client library must also encode a
 binary request message (following `memcached` binary protocol), but also also
 needs to include the vBucketId as part of that binary request message.
 
-Python-aware readers might look at this implementation for an
-[example](http://github.com/membase/ep-engine/blob/master/management/mc_bin_client.py).
+<div class="notebox">
+<p>Note</p>
+<p>Python-aware readers might look at this implementation for an <a href="http://github.com/membase/ep-engine/blob/master/management/mc_bin_client.py">example</a>.</p>
+</div>
 
 Each couchbase server will double-check the vBucketId as it processes requests,
 and would return NOT\_MY\_VBUCKET error responses if your client library

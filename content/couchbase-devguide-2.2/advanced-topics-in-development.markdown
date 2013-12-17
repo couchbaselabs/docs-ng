@@ -1319,18 +1319,22 @@ do two requests. The following is a summary of recommended alternative calls:
    append or prepend; this is particular so if you are performing this on thousands
    or millions of documents.
 
-`Append()/Prepend()` can add raw serialized data to existing data for a key. The
+<div class="notebox tip">
+<p>Tip</p>
+<p>
+<code>Append()/Prepend()</code> can add raw serialized data to existing data for a key. The
 Couchbase Server treats an existing value as a binary stream and concatenates
 the new content to either beginning or end. Non-linear, hierarchical formats in
 the database will merely have the new information added at the start or end.
 There will be no logic which adds the information to a certain place in a stored
-document structure or object.
+document structure or object. </p>
 
-Therefore, if you have a serialized object in Couchbase Server and then append
+<p>Therefore, if you have a serialized object in Couchbase Server and then append
 or prepend, the existing content in the serialized object will not be extended.
-For instance, if you `append()` an integer to an Array stored in Couchbase, this
+For instance, if you <code>append()</code> an integer to an Array stored in Couchbase, this
 will result in the record containing a serialized array, and then the serialized
-integer.
+integer.</p>
+</div>
 
 <a id="optimizing-client-instances"></a>
 
