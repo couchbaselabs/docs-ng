@@ -10,6 +10,7 @@ The following table lists the server resources:.
 | `GET` | `/_active_tasks`|Retrieves a list of tasks running on the server  
 | `GET` | `/_all_dbs`|Retrieves a list of all databases on the server  
 | `POST` | `_replicate` | Starts or cancels a replication operation  
+|`GET` | `_session` | Returns a generic response for compatibility purposes
 | `GET` | `/_uuids`|Retrieves a list of identifiers of the databases on the server  
 
 
@@ -19,35 +20,47 @@ This request returns meta-information about the server.
 
 ###Request
 
-The request uses the following syntax:
+**Request headers**
 
-```
-GET / HTTP/1.1
-host: <server:port>
-```
+This request does not have any required headers.
 
+**Query parameters**
+
+This request does not use query parameters.
+
+**Message body**
+
+This request does not use a message body.
 ### Response
+
+**Status codes**
+
+**Response headers**
+
+This response uses only standard HTTP headers.
+
+**Message body**
 
 The response message body contains a JSON document with the following objects:
 
 |Name | Type | Description|  
 | ------	| ------	|  
-| CouchbaseLite | String | Contains the string "Welcome"  
-| couchdb | String | Contains the string "Welcome"  
-| version | String | Couchbase Lite version number  
+| `CouchbaseLite` | String | Contains the string "Welcome"  
+| `couchdb` | String | Contains the string "Welcome"  
+| `version` | String | Couchbase Lite version number  
 
 ### Example
 
-The following example requests information about the server running at http://10.17.15.239:59840/.
+The following example requests information about the server running at http://localhost:59840/.
 
-Sample request:
+**Request**
 
 ```
 GET / HTTP/1.1
 Host: localhost:59840
 ```
 
-Sample response:
+**Response**
 
 ```
 HTTP/1.1 200 OK
@@ -69,28 +82,76 @@ Date: Fri, 06 Dec 2013 19:21:48 GMT
 This request retrieves a list of all tasks running on the server. 
 ### Request
 
-The request uses the following syntax:
+**Request headers**
+
+This request does not have any required headers.
+
+**Query parameters**
+
+This request does not use query parameters.
+
+**Message body**
+
+This request does not use a message body.
+### Response
+
+**Status codes**
+
+**Response headers**
+
+This response uses only standard HTTP headers.
+
+**Message body**
+
+The response message body contains a JSON document with an array of active tasks. If there are no active tasks, an empty array is returned in the response.
+
+### Example
+
+**Request**
 
 ```
-GET /_active_tasks
+GET /beer-db/_active_tasks HTTP/1.1
 Host: localhost:59840
 ```
 
-### Response
-The response contains a JSON document that contains an array of active tasks. If there are no active tasks, an empty array is returned in the response.
 
-### Example
 ## GET _all_dbs
 
 This request retrieves a list of all databases on the server.
 
 ### Request
+
+**Request headers**
+
+This request does not have any required headers.
+
+**Query parameters**
+
+This request does not use query parameters.
+
+**Message body**
+
+This request does not use a message body.
+
 ### Response
+
+**Status codes**
+
+**Response headers**
+
+This response uses only standard HTTP headers.
+
+**Message body**
+
+The response message contains the following object:
+
+| Name | Type | Description  
+|  ------	| ------	| ------	|  
+| not applicable | array | List of the names of the databases on the server |
 
 ### Example
 
 The following example requests a list of databases on the server. The response lists the three databases on the server: `beer-db`, `cookbook`, and `genealogy`.
-
 
 **Request**
 
@@ -125,42 +186,47 @@ This request starts or cancels a replication operation.
 
 ### Request
 
-The request uses the following syntax:
+**Request headers**
 
-```
-POST /_replicate HTTP/1.1
-Host: <server:port>
+This request does not have any required headers.
 
-{
-   "create_target" : <value>,
-   "source" : "<uri>",
-   "target" : "<uri>",
-}
-```
+**Query parameters**
+
+This request does not use query parameters.
+
+**Message body**
 
 The request message body is a JSON document that contains the following objects:
 
 |Name | Type | Description | Required|  
 | ------	| ------	| ------	| ------	|  
-|create_target | Boolean | Indicates whether to create the target database | No |  
-|source | string | URI of the source database | Yes |  
-|target | string | URI of the target database | Yes |  
+|`create_target` | Boolean | Indicates whether to create the target database | No |  
+|`source` | string | URI of the source database | Yes |  
+|`target` | string | URI of the target database | Yes |  
 
 ### Response
+
+**Status codes**
+
+**Response headers**
+
+This response uses only standard HTTP headers.
+
+**Message body**
 
 The response message body is a JSON document that contains the following objects.
 
 | Name | Type | Description |  
 |  ------	| ------	| ------	|  
-| ok | Boolean | Indicates whether the replication operation was successful|  
-| session_id | string | Session identifier |  
+| `ok` | Boolean | Indicates whether the replication operation was successful|  
+| `session_id` | string | Session identifier |  
 
 
 ### Example
 
 The following example replicates the database named `beer-db` located at `sync.couchbasecloud.com` to a database named `beer-db` on the local server.
 
-Sample request:
+**Request**
 
 ```
 POST /_replicate HTTP/1.1
@@ -173,7 +239,7 @@ Host: localhost:59840
 }
 ```
 
-Sample response:
+**Response**
 
 ```
 Status Code: 200 OK
@@ -187,35 +253,114 @@ Transfer-Encoding: chunked
    "ok":true
 }
 ```
+
+## GET /_session
+This request retrieves session information. Even though Couchbase Lite doesn't support user logins, it implements a generic response to the _session API for compatibility with apps, such as [Futon](http://docs.couchdb.org/en/latest/intro/futon.html), that might call it.
+### Request
+
+**Request headers**
+
+This request does not have any required headers.
+
+**Query parameters**
+
+This request does not use query parameters.
+
+**Message body**
+
+This request does not use a message body.
+
+### Response
+
+**Status codes**
+
+**Response headers**
+
+This response uses only standard HTTP headers.
+
+**Message body**
+
+### Example
+
+The following example shows request for session information.
+
+**Request**
+
+```
+GET /_session
+Host: localhost:59840
+```
+
+**Response**
+
+```
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: must-revalidate
+Content-Type: application/json
+Date: Wed, 18 Dec 2013 21:34:56 GMT
+Server: CouchbaseLite 1.486
+Transfer-Encoding: chunked
+
+{
+  "userCtx" : {
+    "name" : null,
+    "roles" : [
+      "_admin"
+    ]
+  },
+  "ok" : true
+}
+```
+
+
 ## GET /_uuids
 
 This request retrieves a list of the database identifiers.
 
 ### Request
 
-The request uses the following syntax:
+**Request headers**
 
-```
-GET /_uuids HTTP/1.1
-Host: 10.0.0.7:59840
-```
+This request does not have any required headers.
+
+**Query parameters**
+
+This request does not use query parameters.
+
+**Message body**
+
+This request does not use a message body.
+
 
 ### Response
 
-The response is a JSON document that contains an an array of identifiers.
+**Status codes**
+
+**Response headers**
+
+This response uses only standard HTTP headers.
+
+**Message body**
+
+The response message body is a JSON document that contains the following objects.
+
+| Name | Type | Description  
+|  ------	| ------	| ------	|  
+| `uuids` | array | List of database identifiers  
 
 ### Example
 
-The following example requests the UUIDs from a server 
+The following example requests the UUIDs from the local server.
 
-Request
+**Request**
 
 ```
 GET /_uuids HTTP/1.1
 Host: localhost:59840
 ```
 
-Response
+**Response**
 
 ```
 HTTP/1.1 200 OK

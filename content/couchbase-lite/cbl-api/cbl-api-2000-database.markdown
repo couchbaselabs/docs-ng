@@ -58,9 +58,9 @@ The response contains a JSON document that contains some of the following object
 
 |Name | Type | Description|  
 | ------	| ------	| ------	|  
-|error | String | Error message|  
-|ok| Boolean | Indicates whether the operation was successful|  
-|status | Integer | HTTP error code|  
+|`error` | String | Error message|  
+|`ok`| Boolean | Indicates whether the operation was successful|  
+|`status` | Integer | HTTP error code|  
 
 ### Example
 
@@ -282,9 +282,9 @@ The response contains a JSON document that contains some of the following object
 
 |Name | Type | Description|  
 | ------	| ------	| ------	|  
-|error | String | Error message|  
-|ok| Boolean | Indicates whether the operation was successful|  
-|status | Integer | HTTP error code|  
+|`error` | String | Error message|  
+|`ok`| Boolean | Indicates whether the operation was successful|  
+|`status` | Integer | HTTP error code|  
 
 ### Example
 
@@ -337,7 +337,7 @@ This request does not have any required headers.
 | `startkey` | string | If this parameter is provided, return documents starting with the specified key. | none  
 | `start_key` |  string | Alias for `startkey` param | none  
 | `startkey_docid` | string | If this parameter is provided, return documents starting with the specified document identifier. | none  
-| update_seq | Boolean | Indicates whether to include `update_seq` in the response | false
+| `update_seq` | Boolean | Indicates whether to include `update_seq` in the response | false
 
 **Message body**
 
@@ -438,7 +438,7 @@ The message body is a JSON document that contains the following object:
 
 |Name | Type | Description|  
 | ------	| ------	| ------	|  
-| keys | array | List of identifiers of the documents to retrieve |
+| `keys` | array | List of identifiers of the documents to retrieve |
 ### Response
 
 **Status codes**
@@ -534,9 +534,9 @@ The message body is a JSON document that contains the following objects:
 
 |Name | Type | Description| Default |
 | ------	| ------	| ------	|  ------ |
-| all_or_nothing | Boolean | *Optional*. Indicates whether to use all-or-nothing semantics for the database commit mode | false  
-|  docs | array | List containing new or updated documents. The docs object can contain `_id, `_rev`, `_deleted`, and values for new and updated documents. | none  
-| new_edits | Boolean | *Optional*. Indicates whether to assign new revision identifiers to new edits. | true  
+| `all_or_nothing` | Boolean | *Optional*. Indicates whether to use all-or-nothing semantics for the database commit mode | false  
+|  `docs` | array | List containing new or updated documents. The docs object can contain `_id, `_rev`, `_deleted`, and values for new and updated documents. | none  
+| `new_edits` | Boolean | *Optional*. Indicates whether to assign new revision identifiers to new edits. | true  
 
 ### Response
 
@@ -557,9 +557,9 @@ The response message body is a JSON documental that contains an array. Each arra
 
 |Name|Type|Description|  
 | ------	| ------	| ------	|  
-| id | String | Document identifier |  
-| ok | Boolean | Indicates whether the operation was successful   
-| rev |String | revision identifier |  
+| `id` | String | Document identifier |  
+| `ok` | Boolean | Indicates whether the operation was successful   
+| `rev` |String | revision identifier |  
 
 ### Example
 Sample request:
@@ -773,9 +773,9 @@ The response contains a JSON document that contains some of the following object
 
 |Name | Type | Description|  
 | ------	| ------	| ------	|  
-|error | String | Error message|  
-|ok| Boolean | Indicates whether the operation was successful|  
-|status | Integer | HTTP error code|  
+|`error` | String | Error message|  
+|`ok`| Boolean | Indicates whether the operation was successful|  
+|`status` | Integer | HTTP error code|  
 
 ### Example
 

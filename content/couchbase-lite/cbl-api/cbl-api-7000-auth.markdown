@@ -1,6 +1,6 @@
 # Authentication Resources
 
-Authentication resources enable you to work with authorization data.
+Authentication resources enable you authenticate users via [Facebook](https://developers.facebook.com/docs/facebook-login/) or [Mozilla Persona](http://www.mozilla.org/en-US/persona/).
 
 The following table lists the authentication resources.
 
@@ -8,4 +8,3 @@ The following table lists the authentication resources.
 | ------	| ------	| ------	|  
 |`POST` |`/_facebook_token` |Facebook |  
 |`POST` | `/_persona_assertion` |Persona |  
-|`GET` | `_session` | Returns a generic response for compatibility purposes

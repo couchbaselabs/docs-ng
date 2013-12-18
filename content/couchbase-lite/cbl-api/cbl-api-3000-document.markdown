@@ -16,9 +16,9 @@ The following table defines the parameters used in the URI patterns:
 
 | Name | Description|  
 |  ------	| ------	|  
-| attachment | Identifier of an attachment |  
-| db | Name of the database|  
-| doc | Identifier of a document
+| `attachment` | Identifier of an attachment |  
+| `db` | Name of the database|  
+| `doc` | Identifier of a document
 
 
 ## POST /{db}
@@ -50,9 +50,9 @@ The response is a JSON document that contains the following objects:
 
 |Name|Type|Description|  
 | ------	| ------	| ------	|  
-| id | String | Document identifier |  
-| ok | Boolean | Indicates whether the operation was successful   
-| rev |String | revision identifier |  
+| `id` | String | Document identifier |  
+| `ok` | Boolean | Indicates whether the operation was successful   
+| `rev` |String | revision identifier |  
 
 ### Example
 
@@ -177,9 +177,9 @@ The response is a JSON document that contains the following objects:
 
 |Name|Type|Description|  
 | ------	| ------	| ------	|  
-| id | String | Document identifier |  
-| ok | Boolean | Indicates whether the operation was successful   
-| rev |String | revision identifier |  
+| `id` | String | Document identifier |  
+| `ok` | Boolean | Indicates whether the operation was successful   
+| `rev` |String | revision identifier |  
 
 ### Example
 
@@ -426,9 +426,9 @@ The response is a JSON document that contains the following objects:
 
 |Name|Type|Description|  
 | ------	| ------	| ------	|  
-| id | String | Document identifier |  
-| ok | Boolean | Indicates whether the operation was successful   
-| rev |String | revision identifier |  
+| `id` | String | Document identifier |  
+| `ok` | Boolean | Indicates whether the operation was successful   
+| `rev` |String | revision identifier |  
 
 ### Example
 
@@ -507,9 +507,9 @@ The response is a JSON document that contains the following objects:
 
 |Name|Type|Description|  
 | ------	| ------	| ------	|  
-| id | String | Document identifier |  
-| ok | Boolean | Indicates whether the operation was successful   
-| rev |String | revision identifier |  
+| `id` | String | Document identifier |  
+| `ok` | Boolean | Indicates whether the operation was successful   
+| `rev` |String | revision identifier |  
 
 ### Example
 
