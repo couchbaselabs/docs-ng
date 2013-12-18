@@ -185,6 +185,9 @@ navbar:
       - label: Couchbase Lite PhoneGap Developer Guide
         href: /couchbase-lite/cbl-phonegap/
 
+      - label: Couchbase Lite REST API Reference
+        href: /couchbase-lite/cbl-api/
+
       - label: Couchbase Sync Gateway Guide
         href: /sync-gateway/
 

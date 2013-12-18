@@ -2,17 +2,23 @@
 
 This reference manual provides information for developers who want to use the Couchbase Lite REST API to develop apps for mobile devices. To get an overview of Couchbase Lite, read the [Couchbase Lite Concepts Guide](/couchbase-lite/cbl-concepts/).
 
+<div class=notebox>
+<p>Work In Progress</p>
+<p>The Couchbase Lite REST API Reference is a work in progress. All the APIs that Couchbase Lite supports are listed in this document, but some of them are not  documented yet.</p>
+<p>If you want to help fill in the gaps, please feel free to fork the <a href="https://github.com/couchbaselabs/docs-ng">official Couchbase documentation repository</a> on GitHub, make documentation updates in your fork, and then send a pull request.</p>
+<p>If you have questions about the REST API, please ask them on the <a href="https://groups.google.com/forum/#!forum/mobile-couchbase"> Couchbase Mobile mailing list</a>.</p>
+</div>
 ## Resource Groups
 The REST API enables you to interact with all of your database resources. The Couchbase Lite REST API is divided into the following logical groups of resources:
 
 | Resource Group | Description|  
 |  ------	| ------	|  
-| [Database](#database-resources) | Operates on the whole database.|  
-| [Document](#document-resources) |Operates on individual documents. |  
-| [Local Document](#local-document-resources) | Operates on local documents that are not replicated.|  
-| [Design Document](#design-document-resources) | Operates on design documents (for views).|  
-| [Server](#server-resources) | Operates on the database host server.|  
-| [Authentication](#authentication-resources) | Operates on session and authentication data.|  
+| [Database](#database-resources) | APIs that operate on the whole database|  
+| [Document](#document-resources) |APIs that operate on individual documents |  
+| [Local Document](#local-document-resources) | APIs that operate on local documents that are not replicated|  
+| [Design Document](#design-document-resources) | APIs that operate on design documents (for views)|  
+| [Server](#server-resources) | APIs that operate on the database host server|  
+| [Authentication](#authentication-resources) | APIs that operate on session and authentication data|  
 
 ## HTTP requests and responses
 The Couchbase Lite REST API uses the [Hypertext Transfer Protocol (HTTP)](http://www.w3.org/Protocols/rfc2616/rfc2616.html). Each API is an HTTP request. For each HTTP request that you send, you receive an HTTP response. HTTP requests consist of a request line, header lines, and a message body. HTTP responses consist of a status line, header lines, and a message body. 
