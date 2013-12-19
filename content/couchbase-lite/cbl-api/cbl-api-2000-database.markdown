@@ -811,6 +811,11 @@ Deleting a document does not remove the document from the database— that just 
 
 Purging documents does not remove the space used by them on disk. To reclaim disk space, run a database compact (see /db/_compact) or compact views (see /db/_compact/design-doc) request.
 
+<div class="notebox warning">
+<p>Warning</p>
+<p>Avoid using <code>POST/db/_purge</code> requests because they can have unanticipated side effects.</p>
+</div>
+
 ### Request
 
 **Request headers**
