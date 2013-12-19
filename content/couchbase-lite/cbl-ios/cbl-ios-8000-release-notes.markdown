@@ -5,14 +5,13 @@
 This is the second Beta release of Couchbase Lite iOS 1.0. Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for all your online and offline mobile application needs. The 1.0 version features Native APIs, REST APIs, JSON support, and sync capability. The beta release is available to all community-edition customers.
 
 ### Features
-* Revision depth limit property added to to reduce revision tree sizes and help database compaction.
-* Made concurrency more flexible, by allowing Couchbase Lite to run on a dispatch queue and adding a way to call it from any thread.
+* **Replication enhancements**—The replicator can now sync specific sets of documents, and pull replications can now optionally poll. Replications run on a separate background thread so they won't block the main thread or regular Couchbase Lite operations (except unavoidably while writing to the database).
+* **Revision management enhancements**-Database compaction now "prunes" the oldest revisions once a document's revision history grows beyond a maximum length.
+* **CBLModel enhancements**-CBLModel now supports all remaining scalar property types and custom object classes as properties.
+* **Performance enhancements**-A number of performance enhancements were added, including tuning of the CBLBatcher, incremental parsing of the _changes feed, and significant speeds to SQLite database access. 
+* **API name changes**-API names changed to follow a language-neutral API spec in preparation to make support development for other platforms simple and consistent.
+* **Flexible concurrency**-Made concurrency more flexible, by allowing Couchbase Lite to run on a dispatch queue and adding a way to call it from any thread.
 * Support for 64-bit iOS apps.
-* Replications run on a separate background thread so they won't block the main thread or regular Couchbase Lite operations (except unavoidably while writing to the database.)
-* Reduced the latency of pushing or pulling single revisions by tuning the behavior of CBLBatcher.
-* The pull replicator parses the incoming _changes feed incrementally, so it can start processing changes sooner.
-* Significant speedups to SQLite database access.
-* API names changed to follow a language-neutral API spec in preparation to make support development for other platforms simple and consistent.
 
 ### Fixes in Beta 2
 
