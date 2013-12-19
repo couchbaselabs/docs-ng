@@ -64,7 +64,7 @@ all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allo
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.2.1.jar, or latest version available
+ * couchbase-client-1.2.3.jar, or latest version available
 
  * spymemcached-2.10.1.jar
 
@@ -87,7 +87,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.3</version>
 </dependency>
 ```
 
@@ -97,7 +97,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.2.1"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.2.3"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -108,7 +108,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.2.1"
+  compile "com.couchbase.client:couchbase-client:1.2.3"
 }
 ```
 
@@ -149,7 +149,7 @@ NetBeans IDE and open it:
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.2.1
+     * **Version**: 1.2.3
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
@@ -179,7 +179,7 @@ import java.net.URI;
 import java.util.ArrayList;
 
 public class App {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     ArrayList<URI> nodes = new ArrayList<URI>();
 
     // Add one or more nodes of your cluster (exchange the IP with yours)
@@ -392,5 +392,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.2/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html).
+Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.2.3/index.html).
 
