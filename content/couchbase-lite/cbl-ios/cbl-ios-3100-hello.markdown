@@ -105,7 +105,7 @@ The code added in this step is explained in a later section, [Hello Couchbase Li
 		}
 		
 		// create a new database
-		CBLDatabase *database = [manager createDatabaseNamed: dbname error: &error];
+		CBLDatabase *database = [manager databaseNamed: dbname error: &error];
 		if (!database) {
 			NSLog (@"Cannot create database. Error message: %@", error.localizedDescription);
 			return NO;
@@ -122,7 +122,7 @@ The code added in this step is explained in a later section, [Hello Couchbase Li
 		NSLog(@"This is the data for the document: %@", myDictionary);
 		
 		// create an empty document
-		CBLDocument* doc = [database untitledDocument];
+		CBLDocument* doc = [database createDocument];
 		
 		// write the document to the database
 		CBLRevision *newRevision = [doc putProperties: myDictionary error: &error];
