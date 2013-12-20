@@ -19,8 +19,9 @@ Overall performance fixes to improve product usability.
 ### Known Issues
 * Authentication
 	* If your Persona login fails with a 405, make sure you have set the personaOrigin URL on the command line or in the config file.
+	* We are actively working on a known Mac issue for Facebook and Persona support stemming from a build bug. For Mac developers looking to use these third-party services, developers can use [Couchbase Cloud] (http://www.couchbasecloud.com/index/) or build Sync Gateway using these [instructions](http://docs.couchbase.com/sync-gateway/#building-from-source) while we fix the Mac installer.
 	
-	Issues: [#71](https://github.com/couchbase/sync_gateway/issues/71)
+	Issues: [#71](https://github.com/couchbase/sync_gateway/issues/71), [#220](https://github.com/couchbase/sync_gateway/issues/220)
 
 * Web Client Support
 	* Web-apps will have trouble making XHR requests to Sync Gateway due to browser security restrictions, unless the HTML is hosted at the same public host/port.
