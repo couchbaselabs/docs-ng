@@ -31,32 +31,31 @@ The following table lists some of the status codes returned by Couchbase Lite:
 
 | HTTP Status Code | Returned String |  
 |  ------	| ------	|  
-200 | OK
-201 | Created
-202 | Accepted
-400 | Bad data encoding
-400 | bad_request
-400 | Invalid attachment
-400 | Invalid database/document/revision ID
-400 | Invalid JSON
-400 | Invalid parameter in HTTP query or JSON body
-401 | unauthorized
-403 | forbidden
-404 | Attachment not found
-404 | deleted
-404 | not_found
-406 | not_acceptable
-409 | conflict
-412 | file_exists
-415 | bad_content_type
-500 | Application callback block failed
-500 | Attachment store error
-500 | Database error!
-500 | Database locked
-500 | Internal error
-500 | Invalid data in database
-502 | Invalid response from remote replication server
-
+| 200 | OK
+| 201 | Created
+| 202 | Accepted
+| 400 | Bad data encoding
+| 400 | bad_request
+| 400 | Invalid attachment
+| 400 | Invalid database/document/revision ID
+| 400 | Invalid JSON
+| 400 | Invalid parameter in HTTP query or JSON body
+| 401 | unauthorized
+| 403 | forbidden
+| 404 | Attachment not found
+| 404 | deleted
+| 404 | not_found
+| 406 | not_acceptable
+| 409 | conflict
+| 412 | file_exists
+| 415 | bad_content_type
+| 500 | Application callback block failed
+| 500 | Attachment store error
+| 500 | Database error!
+| 500 | Database locked
+| 500 | Internal error
+| 500 | Invalid data in database
+| 502 | Invalid response from remote replication server
 
 ## Notation Conventions
 
