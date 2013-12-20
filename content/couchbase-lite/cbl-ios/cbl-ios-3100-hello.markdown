@@ -84,65 +84,66 @@ The code added in this step is explained in a later section, [Hello Couchbase Li
 	
 4. Just before the `@end` statement at the end of the file, add the following method:
 
-	```
-	// creates a database, and then creates, stores, and retrieves a document
-	- (BOOL) sayHello {
-	
-		// holds error error messages from unsuccessful calls
-		NSError *error;
-	
-		// create a shared instance of CBLManager
-		CBLManager *manager = [CBLManager sharedInstance];
-		if (!manager) {
-	       NSLog (@"Cannot create shared instance of CBLManager");
-	       return NO;
-		}
-			
-		// create a name for the database and make sure the name is legal
-		NSString *dbname = @"my-new-database";
-		if (![CBLManager isValidDatabaseName: dbname]) {
-			NSLog (@"Bad database name");
-			return NO;
-		}
-			
-		// create a new database
-		CBLDatabase *database = [manager databaseNamed: dbname error: &error];
-		if (!database) {
-			NSLog (@"Cannot create database. Error message: %@", error.localizedDescription);
-			return NO;
-		}
-	
-		// create an object that contains data for the new document
-		NSDictionary *myDictionary =
-			[NSDictionary dictionaryWithObjectsAndKeys:
-				@"Hello Couchbase Lite!", @"message",
-				[[NSDate date] description], @"timestamp",
-				nil];
-			
-		// display the data for the new document
-		NSLog(@"This is the data for the document: %@", myDictionary);
-			
-		// create an empty document
-		CBLDocument* doc = [database createDocument];
-			
-		// write the document to the database
-		CBLRevision *newRevision = [doc putProperties: myDictionary error: &error];
-		if (!newRevision) {
-			NSLog (@"Cannot write document to database. Error message: %@", error.localizedDescription);
-		}
-			
-		// save the ID of the new document
-		NSString *docID = doc.documentID;
-			
-		// retrieve the document from the database
-		CBLDocument *retrievedDoc = [database documentWithID: docID];
-			
-		// display the retrieved document
-		NSLog(@"The retrieved document contains: %@", retrievedDoc.properties);
-			
-		return YES;
-	}
-	```
+<pre><code>
+// creates a database, and then creates, stores, and retrieves a document
+- (BOOL) sayHello {
+   
+    // holds error error messages from unsuccessful calls
+    NSError *error;
+    
+    // create a shared instance of CBLManager
+    CBLManager s*manager = [CBLManager sharedInstance];
+    if (!manager) {
+        NSLog (@"Cannot create shared instance of CBLManager");
+        return NO;
+    }
+    
+    // create a name for the database and make sure the name is legal
+    NSString *dbname = @"my-new-database";
+    if (![CBLManager isValidDatabaseName: dbname]) {
+        NSLog (@"Bad database name");
+        return NO;
+    }
+    
+    // create a new database
+    CBLDatabase *database = [manager databaseNamed: dbname error: &error];
+    if (!database) {
+        NSLog (@"Cannot create database. Error message: %@", error.localizedDescription);
+        return NO;
+    }
+    
+    // create an object that contains data for the new document
+    NSDictionary *myDictionary =
+        [NSDictionary dictionaryWithObjectsAndKeys:
+            @"Hello Couchbase Lite!", @"message",
+            [[NSDate date] description], @"timestamp",
+            nil];
+    
+    // display the data for the new document
+    NSLog (@"This is the data for the document: %@", myDictionary);
+    
+    // create an empty document
+    CBLDocument* doc = [database createDocument];
+    
+    // write the document to the database
+    CBLRevision *newRevision = [doc putProperties: myDictionary error: &error];
+    if (!newRevision) {
+        NSLog (@"Cannot write document to database. Error message: %@", error.localizedDescription);
+    }
+    
+    // save the ID of the new document
+    NSString *docID = doc.documentID;
+    
+    // retrieve the document from the database
+    CBLDocument *retrievedDoc = [database documentWithID: docID];
+    
+    // display the retrieved document
+    NSLog(@"The retrieved document contains: %@", retrievedDoc.properties);
+    
+    return YES;
+
+}
+</code></pre>
 
 The `sayHello` method creates a new database, and then creates a document, stores the document in the database, and retrieves the document. This section contains additional notes that supplement the comments in the code.
 
