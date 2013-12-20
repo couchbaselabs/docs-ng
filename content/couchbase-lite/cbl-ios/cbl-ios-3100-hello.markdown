@@ -8,7 +8,7 @@ The HelloCBL tutorial presents detailed steps for creating a Couchbase Lite app 
 * Saving a document in the database.
 * Retrieving a document from the database.
 
-To make the first example in the tutorial easier to understand, the program structure is simplified. Only one new method, `sayHello`, is created and all the Couchbase Lite APIs used in the example are placed within that method. The `sayHello` method is called from the `application:didFinishLaunchingWithOptions:` method in the application delegate class. All output is sent to the Xcode console, rather than the iPhone screen in the simulator. The example does not use any graphics and does not require setting up a user interface. Rest assured, the other sample apps in the tutorial do not take these shortcuts—they incorporate standard iOS software design and development practices.
+To make the first example in the tutorial easier to understand, the program structure is simplified. Only one new method, `sayHello`, is created and all the Couchbase Lite APIs used in the example are placed within that method. The `sayHello` method is called from the `application:didFinishLaunchingWithOptions:` method in the application delegate class. All output is sent to the Xcode console, rather than the iPhone screen in the simulator. The example does not use any graphics and does not require setting up a user interface. Rest assured, the other sample iOS apps do not take these shortcuts—they incorporate standard iOS software design and development practices.
 
 You can follow along with the tutorial and create  your own HelloCBL, or you can [download HelloCBL](https://github.com/couchbaselabs/couchbase-lite-tutorial-ios/tree/master/HelloCBL) from GitHub. 
 
@@ -57,6 +57,7 @@ You can follow along with the tutorial and create  your own HelloCBL, or you can
     * `libz.dylib`
 
 	Click the **+** at the bottom of the section to add each item.  When you are done, it should look similar to the following screenshot:
+	
 	<img src=images/build-phases.png width=600px/>
 
 
@@ -73,7 +74,7 @@ The code added in this step is explained in a later section, [Hello Couchbase Li
 
 	These statements import the Couchbase Lite framework headers needed by the `sayHello` method.
 	
-3. At the end of the `application:didFinishLaunchingWithOptions`: method, just before the `return` statement, add the following code:
+3. Just before the `return` statement at the end of the `application:didFinishLaunchingWithOptions`: method, add the following code:
 
 		// Run the method that creates a database, and then stores and retrieves a document
 		BOOL result = [self sayHello];
@@ -81,67 +82,67 @@ The code added in this step is explained in a later section, [Hello Couchbase Li
 
 	The first line calls the `sayHello` method, which demonstrates the basic Couchbase Lite iOS APIs. The second line executes after the return from the `sayHello` method and prints a message on the console that indicates whether the run was successful.
 	
-4. At the end of the file, just before the `@end` statement, add the following method:
+4. Just before the `@end` statement at the end of the file, add the following method:
 
-
-		// creates a database, and then creates, stores, and retrieves a document
-		- (BOOL) sayHello {
-
+	```
+	// creates a database, and then creates, stores, and retrieves a document
+	- (BOOL) sayHello {
+	
 		// holds error error messages from unsuccessful calls
 		NSError *error;
-
+	
 		// create a shared instance of CBLManager
 		CBLManager *manager = [CBLManager sharedInstance];
 		if (!manager) {
-			NSLog (@"Cannot create shared instance of CBLManager");
-			return NO;
+	       NSLog (@"Cannot create shared instance of CBLManager");
+	       return NO;
 		}
-		
+			
 		// create a name for the database and make sure the name is legal
 		NSString *dbname = @"my-new-database";
 		if (![CBLManager isValidDatabaseName: dbname]) {
 			NSLog (@"Bad database name");
 			return NO;
 		}
-		
+			
 		// create a new database
 		CBLDatabase *database = [manager databaseNamed: dbname error: &error];
 		if (!database) {
 			NSLog (@"Cannot create database. Error message: %@", error.localizedDescription);
 			return NO;
 		}
-
+	
 		// create an object that contains data for the new document
 		NSDictionary *myDictionary =
 			[NSDictionary dictionaryWithObjectsAndKeys:
 				@"Hello Couchbase Lite!", @"message",
 				[[NSDate date] description], @"timestamp",
 				nil];
-		
+			
 		// display the data for the new document
 		NSLog(@"This is the data for the document: %@", myDictionary);
-		
+			
 		// create an empty document
 		CBLDocument* doc = [database createDocument];
-		
+			
 		// write the document to the database
 		CBLRevision *newRevision = [doc putProperties: myDictionary error: &error];
 		if (!newRevision) {
 			NSLog (@"Cannot write document to database. Error message: %@", error.localizedDescription);
 		}
-		
+			
 		// save the ID of the new document
 		NSString *docID = doc.documentID;
-		
+			
 		// retrieve the document from the database
 		CBLDocument *retrievedDoc = [database documentWithID: docID];
-		
+			
 		// display the retrieved document
 		NSLog(@"The retrieved document contains: %@", retrievedDoc.properties);
-		
+			
 		return YES;
-
-}
+	}
+	```
 
 The `sayHello` method creates a new database, and then creates a document, stores the document in the database, and retrieves the document. This section contains additional notes that supplement the comments in the code.
 
@@ -159,7 +160,7 @@ When the document is saved to the database, Couchbase Lite generates a document 
 
 The saved document is retrieved from the database by using the `CBLDatabase` class `documentWithID:` method. The retrieved document is written out to the console to show its content, which now includes the `_id` and `_rev` properties created by Couchbase Lite.
 
-### Step 4: Build and run Hello CBL
+### Step 4: Build and run HelloCBL
 1. Set the active scheme to the iOS simulator for iPhone Retina (4-inch):
 
 	<img src="images/active-scheme.png" width=600px />
@@ -174,6 +175,6 @@ The saved document is retrieved from the database by using the `CBLDatabase` cla
 	
 	<img src="images/console-output.png" width=600px />
 
-Congratulations! You've just createds your first Couchbase Lite app! 
+Congratulations! You've just created your first Couchbase Lite app! 
 
 
