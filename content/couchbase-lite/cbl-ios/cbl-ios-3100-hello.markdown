@@ -63,8 +63,6 @@ You can follow along with the tutorial and create  your own HelloCBL, or you can
 
 ### Step 3: Add the Hello Couchbase Lite code
 
-The code added in this step is explained in a later section, [Hello Couchbase Lite walkthrough](#hello-couchbase-lite-walkthrough).
-
 1. Open the **HCAppDelegate.m** file.
 
 2. Add the following code to the #import section:
