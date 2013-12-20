@@ -89,15 +89,18 @@ A minimum specification machine should have the following characteristics:
 
  * 4GB RAM (physical)
 
-For development and testing purposes a reduced CPU and RAM than the minimum
+<div class="notebox">
+<p>Note</p>
+<p>For development and testing purposes a reduced CPU and RAM than the minimum
 specified can be used. This can be as low as 1GB of free RAM beyond operating
 system requirements and a single CPU core. However, you should not use a
 configuration lower than that specified in production. Performance on machines
 lower than the minimum specification will be significantly lower and should not
-be used as an indication of the performance on a production machine.
+be used as an indication of the performance on a production machine.</p>
 
-View performance on machines with less than 2 CPU cores will be significantly
-reduced.
+<p>View performance on machines with less than 2 CPU cores will be significantly
+reduced.</p>
+</div>
 
 You must have enough memory to run your operating system and the memory reserved
 for use by Couchbase Server. For example, if you want to dedicate 8GB of RAM to
@@ -203,14 +206,17 @@ package for your chosen platform from
 [http://www.couchbase.com/downloads](http://www.couchbase.com/downloads). For
 each platform, follow the corresponding platform-specific instructions.
 
-If you are installing Couchbase Server on to a machine that has previously had
+<div class="notebox">
+<p>Note</p>
+<p>If you are installing Couchbase Server on to a machine that has previously had
 Couchbase Server installed and you do not want to perform an upgrade
 installation, you must remove Couchbase Server and any associated data from your
 machine before you start the installation. For more information on uninstalling
-Couchbase Server, see [Uninstalling Couchbase Server](#couchbase-uninstalling).
+Couchbase Server, see <a href="#appendix-uninstalling-couchbase-server">Uninstalling Couchbase Server</a>.</p>
 
-To perform an upgrade installation while retaining your existing dataset, see
-[Upgrading to Couchbase Server](#couchbase-getting-started-upgrade).
+<p>To perform an upgrade installation while retaining your existing dataset, see <a href="#couchbase-getting-started-upgrade">
+Upgrading to Couchbase Server</a>.</p>
+</div>
 
 <a id="couchbase-getting-started-install-redhat"></a>
 
@@ -499,31 +505,36 @@ anti-virus software running on the machine before you start the installation
 process. You also need administrator privileges on the machine where you install
 it.
 
-### Port Exhaustion on Windows
+<div class="notebox bp">
+<p>Best Practice: Port Exhaustion on Windows</p>
 
-The TCP/IP port allocation on Windows by default includes a restricted number of
+<p>The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
 available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx>
 MSDN: Avoiding TCP/IP Port
-Exhaustion</a>.
+Exhaustion</a>.</p>
+</div>
 
-Couchbase Server uses the Microsoft C++ redistributable package, which will
+<div class="notebox warning">
+<p>Warning</p>
+<p>Couchbase Server uses the Microsoft C++ redistributable package, which will
 automatically download for you during installation. However, if another
 application on your machine is already using the package, your installation
 process may fail. To ensure that your installation process completes
-successfully, shut down all other running applications during installation.
+successfully, shut down all other running applications during installation.</p>
 
-For Windows 2008, you must upgrade your Windows Server 2008 R2 installation with
+<p>For Windows 2008, you must upgrade your Windows Server 2008 R2 installation with
 Service Pack 1 installed before running Couchbase Server. You can obtain Service
-Pack 1 from <a href=http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx> Microsoft TechNet</a>.
+Pack 1 from <a href=http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx> Microsoft TechNet</a>.</p>
 
-The standard Microsoft Server installation does not provide an adequate number
+<p>The standard Microsoft Server installation does not provide an adequate number
 of ephemeral ports for Couchbase clusters. Without the correct number of open
 ephemeral ports, you may experience errors during rebalance, timeouts on
 clients, and failed backups. The Couchbase Server installer will check for your
-current port setting and adjust it if needed. See [Microsoft
-KB-196271](http://support.microsoft.com/kb/196271).
+current port setting and adjust it if needed. See <a href=http://support.microsoft.com/kb/196271>Microsoft
+KB-196271</a>.</p>
+</div>
 
 **Installation Wizard**
 
@@ -926,10 +937,13 @@ Addresses](#couchbase-bestpractice-cloud-ip).
 For 2.0.1 please follow the same steps for 2.0 and earlier. The one difference
 between versions is the name and location of the file you change.
 
-This operation on both Linux and Windows is data destructive. This process will
+<div class="notebox warning">
+<p>Warning</p>
+<p>This operation on both Linux and Windows is data destructive. This process will
 reinitialize the node and remove all data on the node. You may want to perform a
-backup of node data before you perform this operation, see [cbbackup
-Tool](#couchbase-admin-cmdline-cbbackup).
+backup of node data before you perform this operation, see <a href=#couchbase-admin-cmdline-cbbackup>cbbackup
+Tool</a>.</p>
+</div>
 
 **For Linux 2.0.1 and Earlier:**
 
@@ -1062,16 +1076,19 @@ both online upgrades or offline upgrades:
  * Couchbase 2.1.x to Couchbase 2.2 and above
 
 
-If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
+<div class="notebox">
+<p>Important</p>
+<p>If you want to upgrade from 1.8.0 to 2.0+, you must have enough disk space
 available for both your original Couchbase Server 1.8 data files and the new
 format for Couchbase Server 2.0 files. You will also need additional disk space
 for new functions such as indexing and compaction. You will need approximately
-three times the disk space.
+three times the disk space.</p>
 
-You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
+<p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
 must first upgrade from Couchbase Server 1.8 or earlier to Couchbase Server
 1.8.1 to provide data compatibility with Couchbase Server 2.0 +. After you
-perform this initial upgrade you can then upgrade to 2.0+.
+perform this initial upgrade you can then upgrade to 2.0+.</p>
+</div>
 
 You can perform a cluster upgrade in two ways:
 
