@@ -27,9 +27,12 @@ Views](#indexing-querying-data).
 
 ## Comparing Document-Oriented and Relational Data
 
-Want to learn more about moving from relational to document-oriented databases?
-See the Couchbase whitepaper here [Relational to
-NoSQL](http://info.couchbase.com/Relational-to-NoSQL.html )
+<div class="notebox">
+<p>Note</p>
+<p>Want to learn more about moving from relational to document-oriented databases?
+See <a href=http://info.couchbase.com/Relational-to-NoSQL.html>Relational to NoSQL</a>.</p>
+</div>
+
 
 In a relational database system you must define a *schema* before adding records
 to a database. The schema is the structure described in a formal language

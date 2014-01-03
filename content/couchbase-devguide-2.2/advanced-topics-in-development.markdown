@@ -448,10 +448,13 @@ To fulfill these requirements, we can use these techniques:
    tickets can be offered once again. If there are failures when a ticket is in an
    intermediate state, the system can compensate.
 
-Note that this is still an optimistic approach for handling the document
+<div class="notebox">
+<p>Note</p>
+<p>This is still an optimistic approach for handling the document
 changes; it assumes that we can retrieve the accurate transaction state from the
 document, which may not be possible if the system fails and the document has
-still not been persisted.
+still not been persisted.</p>
+</div>
 
 The process would look like this if follow the basic application flow:
 
@@ -584,27 +587,29 @@ versions are available on Github:
  * [PHP Advanced Transaction](https://gist.github.com/3155762), includes checks,
    JSON helpers, encapsulation, and counters.
 
-**Caveats On this Approach**
+<div class="notebox bp">
+<p>Caveats On this Approach</p>
 
-The following approach we illustrate below is still an optimistic approach that
+<p>The following approach we illustrate below is still an optimistic approach that
 assumes we can recover correct information about the two-phase commit state from
 the server after failure. It is possible that a system failure occurs and the
 information is not yet persisted, and therefore information used to rollback a
-transaction is not adequate. As of Couchbase Server 2.0 + we provide new
-functionality in the `observe()` command which enables you to find out whether
+transaction is not adequate. As of Couchbase Server 2.0+ we provide new
+functionality in the <code>observe()</code> command which enables you to find out whether
 an item is persisted or not. This provides better assurance for you that a
-commit state is accurate so you can perform any required rollbacks.
+commit state is accurate so you can perform any required rollbacks.</p>
 
-The second major caveat for this approach is that if you perform this across
+<p>The second major caveat for this approach is that if you perform this across
 thousands of documents or more, you may have a larger number of remaining
 documents which represent the transfers. We suggest you delete documents
 representing transfers is an orderly way, otherwise you will have a larger
-number of stale, pending documents.
+number of stale, pending documents.</p>
 
-You should only use these patterns in production only after you test your
+<p>You should only use these patterns in production only after you test your
 application in all failure scenarios; for data that requires the highest level
 of integrity and reliability, such as cash balances, you may want to use a
-traditional database which provides absolute guarantees of data integrity.
+traditional database which provides absolute guarantees of data integrity.</p>
+</div>
 
 With Couchbase Server, you can generally provide something functional analogous
 to an atomic transaction by performing a two-phase commit. You follow this
@@ -1738,7 +1743,7 @@ ensure you do not lose all your data in case of major hardware or other system
 failure.
 
 Because you typically want to perform a backup and restore with zero system
-downtime with Couchbase Server it is impossible to create a complete in-time
+downtime with Couchbase Server, it is impossible to create a complete in-time
 backup and snapshot of the entire cluster. In production, Couchbase Server will
 constantly receive requests and updated data; therefore it is impossible to take
 an accurate snapshot of all possible information. This would be the case for any
@@ -1748,8 +1753,7 @@ Instead, you can perform full backups, and incremental backups, and merge these
 two together in order to create a time-specific backup; nonetheless your
 information may still not be 100% complete.
 
-For more information on backups and restores, see Couchbase Server Manual,
-"Backup and Restore with Couchbase."
+For more information on backups and restores, see Couchbase Server Manual's section: <a href=http://docs.couchbase.com/couchbase-manual-2.2/#couchbase-backup-restore>Backup and Restore</a>.
 
 <a id="cb-handling-failover"></a>
 
