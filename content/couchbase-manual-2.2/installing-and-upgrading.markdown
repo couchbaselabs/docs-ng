@@ -1086,7 +1086,7 @@ three times the disk space.</p>
 
 <p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
 must first upgrade from Couchbase Server 1.8 or earlier to Couchbase Server
-1.8.1 to provide data compatibility with Couchbase Server 2.0 +. After you
+1.8.1 to provide data compatibility with Couchbase Server 2.0+. After you
 perform this initial upgrade you can then upgrade to 2.0+.</p>
 </div>
 
@@ -1151,10 +1151,10 @@ Cluster Stays in Operation    | Yes                                             
 Cluster must be Shutdown      | No                                              | Yes                                  
 Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node | All nodes in Cluster Upgraded at Once
 
-### Backup your data before performing an upgrade
-
-Before you perform an upgrade, whether it is online or offline, you should
-backup your data, see [Backup and Restore](#couchbase-backup-restore).
+<div class="notebox bp">
+<p>Best Practice: Backup Your Data before Performing an Upgrade</p>
+<p>Before you perform an upgrade, whether it is online or offline, you should backup your data, see <a href=#couchbase-backup-restore>Backup and Restore</a>.</p>
+</div>
 
 <a id="couchbase-getting-started-upgrade-online-swap"></a>
 
@@ -1234,11 +1234,14 @@ back nodes into the cluster. This would reduce your cluster capacity while you
 add the new node back into the cluster, which could lead to data being ejected
 to disk.
 
-For information on upgrading from Couchbase Server 1.8 to Couchbase Server 2.1,
-see [Upgrades Notes 1.8.1 to 2.1](#couchbase-getting-started-upgrade-1-8-2-0).
-You cannot directly upgrade from Couchbase Server 1.8 to 2.0+, instead you must
+<div class="notebox">
+<p>Important</p>
+<p>For information on upgrading from Couchbase Server 1.8 to Couchbase Server 2.1,
+see <a href=#couchbase-getting-started-upgrade-1-8-2-0>Upgrades Notes 1.8.1 to 2.1</a>.
+You cannot directly upgrade from Couchbase Server 1.8 to 2.0+; instead, you must
 first upgrade to Couchbase Server 1.8.1 for data compatibility and then upgrade
-to Couchbase Server 2.1+.
+to Couchbase Server 2.1+.</p>
+</div>
 
 To perform an standard, online upgrade of your cluster:
 
@@ -1305,17 +1308,17 @@ The offline upgrade process requires you to shutdown all the applications and
 then the entire Couchbase Server cluster. You can then perform the upgrade the
 software on each machine, and bring your cluster and application back up again.
 
-If you are upgrade from Couchbase Server 1.8 to Couchbase 2.0 there are more
-steps for the upgrade because you must first upgrade to Couchbase 1.8.1 for data
-compatibility with 2.0. For more information, see [Upgrades Notes 1.8.1 to
-2.1](#couchbase-getting-started-upgrade-1-8-2-0).
+<div class="notebox">
+<p>Note</p>
+<p>If you are upgrading from Couchbase Server 1.8 to Couchbase 2.0, there are more steps for the upgrade because you must first upgrade to Couchbase 1.8.1 for data compatibility with 2.0. For more information, see <a href=#couchbase-getting-started-upgrade-1-8-2-0>Upgrades Notes 1.8.1 to 2.1</a>.</p>
 
-Check that your disk write queue ( [Disk Write
-Queue](#couchbase-monitoring-diskwritequeue) ) is completely drained to ensure
+<p>Check that your <a href=#couchbase-monitoring-diskwritequeue>disk write queue</a> is completely drained to ensure
 all data has been persisted to disk and will be available after the upgrade. It
 is a best practice to turn off your application and allow the queue to drain
 before you upgrade it. It is also a best practice to perform a backup of all
-data before you upgrade
+data before you upgrade.
+</p>
+</div>
 
 To perform an offline upgrade:
 
@@ -1513,12 +1516,15 @@ from 1.8.1 to 2.0 + upgrades.
       database files are created. There must be enough disk space to handle this
       conversion operation (e.g., 3x more disk space).
 
-   The data migration process from the old file format to the new file format may
+   <div class="notebox">
+   <p>Note</p>
+   <p>The data migration process from the old file format to the new file format may
    take some time. You should wait for the process to finish before you start
-   Couchbase Server 2.0.
+   Couchbase Server 2.0.</p>
 
-   Once the upgrade process finishes, Couchbase Server 2.0 starts automatically.
-   Repeat this process on all nodes within your cluster.
+   <p>Once the upgrade process finishes, Couchbase Server 2.0 starts automatically.
+   Repeat this process on all nodes within your cluster.</p>
+   </div>
 
 <a id="couchbase-getting-started-upgrade-cetoee"></a>
 
@@ -1559,11 +1565,14 @@ admin console should provide basic confirmation that your node is available.
 Using the `couchbase-cli` command to query your Couchbase Server node will
 confirm that the node is available.
 
-The Couchbase Server web console uses the same port number as clients use when
+<div class="notebox">
+<p>Note</p>
+<p>The Couchbase Server web console uses the same port number as clients use when
 communicated with the server. If you can connect to the Couchbase Server web
 console, administration and database clients should be able to connect to the
 core cluster port and perform operations. The Web Console will also warn if the
-console loses connectivity to the node.
+console loses connectivity to the node.</p>
+</div>
 
 To verify your installation works for clients, you can use either the
 `cbworkloadgen` command, or `telnet`. The `cbworkloadgen` command uses the
@@ -1584,8 +1593,11 @@ The `cbworkloadgen` is a basic tool that can be used to check the availability
 and connectivity of a Couchbase Server cluster. The tool executes a number of
 different operations to provide basic testing functionality for your server.
 
-`cbworkloadgen` provides basic testing functionality. It does not provide
-performance or workload testing.
+<div class="notebox">
+<p>Note</p>
+<p><code>cbworkloadgen</code> provides basic testing functionality. It does not provide
+performance or workload testing.</p>
+</div>
 
 To test a Couchbase Server installation using `cbworkloadgen`, execute the
 command supplying the IP address of the running node:
@@ -1614,8 +1626,11 @@ You can test your Couchbase Server installation by using Telnet to connect to
 the server and using the Memcached text protocol. This is the simplest method
 for determining if your Couchbase Server is running.
 
-You will not need to use the Telnet method for communicating with your server
-within your application. Instead, use one of the Couchbase SDKs.
+<div class="notebox">
+<p>Note</p>
+<p>You will not need to use the Telnet method for communicating with your server
+within your application. Instead, use one of the Couchbase SDKs.</p>
+</div>
 
 You will need to have `telnet` installed on your server to connect to Couchbase
 Server using this method. Telnet is supplied as standard on most platforms, or
