@@ -239,9 +239,12 @@ The individual menu options perform the following actions:
    Once the installation has been completed you will be asked whether you want to
    automatically update Couchbase Server in the future.
 
-   Using the update service also sends anonymous usage data to Couchbase on the
+   <div class="notebox">
+   <p>Note</p>
+   <p>Using the update service also sends anonymous usage data to Couchbase on the
    current version and cluster used in your organization. This information is used
-   to improve our service offerings.
+   to improve our service offerings.</p>
+   </div>
 
    You can also enable automated updates by selecting the `Automatically download
    and install updates in the future` checkbox.
