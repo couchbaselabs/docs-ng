@@ -8,7 +8,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 ## Release Notes for Couchbase Client Library .NET 1.3.1 GA (7 January 2014)
 
-.NET Couchbase Client 1.3.1 includes the following features and fixes:
+.NET Couchbase Client 1.3.1 is largely a maintenance release and includes the following features and fixes:
 
 <a id="couchbase-sdk-net-rn_1-3-1"></a>
 
