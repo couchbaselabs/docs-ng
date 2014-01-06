@@ -4,7 +4,95 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
-<a id="couchbase-sdk-net-rn_1-3-0"></a>
+<a id="couchbase-sdk-net-rn_1-3-1"></a>
+
+## Release Notes for Couchbase Client Library .NET 1.3.1 GA (7 January 2014)
+
+.NET Couchbase Client 1.3.1 includes the following features and fixes:
+
+<a id="couchbase-sdk-net-rn_1-3-1"></a>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-334">NCBC-334: Add a post-merge git hook for updating the assembly version:<a/>
+
+    This commit adds a git post-merge hook that will run after a pull by our build process, assuming that the remote
+    repo has changes. It will use git-describe to get the lastest revision since the last tag
+    and includes the current SHA1. It will then update a Version.txt file and the AssemblyInfo.cs
+    class with this information in the AssemblyInformationalVersion attribute. A future enhancement
+    will update the AssemblyVersion and AssemblyFileVersion as well as add the git log (release notes)
+    for the current release as an embedded resource and expose a public method to access it.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-327">NCBC-327: Update Nuspec files to current VS Solution Configuration:</a>
+
+    Previously the projects in the solution would use Nuget (in some cases) to handle internal references instead of simple 
+    using project-to-project references. This caused various versioning issues. This commit changes the Nuspec files so that 
+    they only reference the Nuget dependencies from Nuget and not when doing local builds.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-341">NCBC-341: AOOR when deserializing bootstrap config with empty 'pools' element:</a>
+
+    During certain times, such as a rebalance, When a config contains an empty "pools" element, it causes a ArgumentOutOfRangeException 
+    to be thrown. This will change the logic to check for this case an throw a BootstrapConfigurationException instead.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-337">NCBC-337: Fix for 'View vquery was mapped to a dead node, failing.' errors:</a>
+
+    When a config update occurs, the client may receive a configuration with
+    nodes with a 'status' of 'warmup', in this state the 'couchbaseApiBase' is not
+    returned. This puts the client in a state where a client node may not have a
+    IHttpClient to execute the view request again, thus the request fails. This
+    commit adds a check to ensure that the node is 'valid' by checking for nodes
+    where the IHttpClient is not null.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-352">NCBC-352: Flag all Increment/Decrement methods with CAS params as 'Obsolete':</a>
+
+    Some of the Increment/Decrement methods in the Enyim libraries have parameters
+    for CAS values, this commit flags those methods as obsolete and they may be
+    removed in future versions of the .NET SDK. The reason that they are being
+    flagged as obsolete is because Increment/Decrement are atomic operations on the
+    server, thus making the CAS parameter redundant. Furthermore, testing indicates
+    that they do not work as expected.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-353">NCBC-353: Add node IP to error messages so that users can isolate issues easier:</a>
+
+    This changes the format of the error message returned from the IOperationResult.Message so that it is easier to track and resolve 
+    issues with amongst various nodes in the cluster.
+Property. 
+<div class="notebox">
+<p>Note</p>
+<p>Clients which depend on the former message format may break:
+<ul>
+<li>Former: 'Queue Timeout'</li>
+<li>Latter: 'Queue Timeout - 127.0.0.1'</li>
+</ul>
+Please adjust accordingly when upgrading to this version of the .NET SDK
+</p>
+</div>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-345">NCBC-345: Update Readme.mdown to reflect changes in the Couchbase .NET SDK versioning policy:</a>
+
+    "We use the 'Semantic Versioning 2.0' model described here for our versioning model: http://http://semver.org
+    All officially released binary's use the following convention: MAJOR.MINOR.PATCH for example: 1.2.9 or 1.3.0.
+    We occasionally provide snapshots of mid-iteration bug fixes for validation purposes. In which case we add another 
+    number MAJOR.MINOR.PATCH.SNAPSHOT where SNAPSHOT is a number starting at 5000 (e.g. 1.3.0.5000) and 
+    incremented with each build. All snapshot builds are neither tested thoroughly nor supported in any way - user beware! "
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-344">NCBC-344: NotImplementedException when storing against MemcachedClient in v1.3 client:</a>
+
+    Fixes a regression bug for people using our fork of the MemcachedClient API. Couchbase highly suggests using the CouchbaseClient
+    for reasons such as this.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-289">NCBC-289: Does not return errors object on exception:</a>
+
+    An exception is thrown when an error is detected for all view error cases. 
+    In the next version (2.x) of the client will make a decision
+    on how we want the client to behave when an error is encountered when 
+    processing a view. This commit makes it consistent across all error cases
+    and does not change the interface, which would likely impact users
+    requiring them to change there code from handling exceptions to checking
+    an errors property for failures.
+
+    This commit also adds additional unit tests and refactors the
+    CouchbaseViewHandler class so that we can pass streams into the
+    ReadResponse method that contain text resembling errors returned from the
+    server.
 
 ## Release Notes for Couchbase Client Library .NET 1.3.0 GA (3 December 2013)
 
