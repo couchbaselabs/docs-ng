@@ -1461,22 +1461,25 @@ overwriting changes from another `append/prepend` request. Note however that the
 order in which Couchbase Server appends or prepends data is not guaranteed for
 concurrent `append/prepend` requests.
 
-Non-linear, hierarchical formats in the database will merely have the new
+<div class="notebox">
+<p>Note</p>
+<p>Non-linear, hierarchical formats in the database will merely have the new
 information added at the start or end. There will be no logic which adds the
-information to a certain place in a stored document structure or object.
+information to a certain place in a stored document structure or object.</p>
 
-Therefore, if you have a serialized object in Couchbase Server and then append,
+<p>Therefore, if you have a serialized object in Couchbase Server and then append,
 or prepend, the existing content in the serialized object will not be extended.
-For instance, if you `append` an integer to an Array stored in Couchbase, this
+For instance, if you <code>append</code> an integer to an Array stored in Couchbase, this
 will result in the document containing a serialized array, and then the
-serialized integer.
+serialized integer.</p>
 
-Similarly, if you have JSON document with nested attributes, when you prepend
+<p>Similarly, if you have JSON document with nested attributes, when you prepend
 and append, the new data will appear either before or after the entire JSON
-object, but not within the JSON object, nor any nested attributes in the JSON.
+object, but not within the JSON object, nor any nested attributes in the JSON.</p>
 
-De-serialization of objects that have data appended or prepended may result in
-data corruption, due to the behavior previously described.
+<p>De-serialization of objects that have data appended or prepended may result in
+data corruption, due to the behavior previously described.</p>
+</div>
 
 Both `append` and `prepend` originated from the request that Couchbase Server
 supports 'lists' or sets. Developers wanted to maintain documents representing
@@ -1823,12 +1826,15 @@ identifier, and if the number provided as a `delete` parameter does not match
 the deletion will fail and return an error. If Couchbase Server successfully
 deletes a document, it returns a status code indicating success or failure.
 
-Be aware that when you `delete` a key it may not be removed immediately from the
+<div class="notebox">
+<p>Note</p>
+<p>Be aware that when you <code>delete</code> a key it may not be removed immediately from the
 server. Instead Couchbase Server will flag an item for deletion and if the key
 is requested by another client, the server returns a 'key not found' error.
 Couchbase Server will actually remove the item from the server upon the next
 request for it. Alternately Couchbase Server has a maintenance process that runs
-by default every hour and will remove any items flagged for deletion.
+by default every hour and will remove any items flagged for deletion.</p>
+</div>
 
 It is important to note that in some SDK's such as in Ruby, a `delete` can be
 performed in synchronous or asynchronous mode; in contrast other SDK's such as

@@ -599,9 +599,12 @@ of replicas you specify. For example, if you configure three replicas for a data
 bucket, replication will only be enabled once you have four nodes in the
 cluster.
 
-After you specify the number of replicas you want for a bucket and then create
+<div class="notebox">
+<p>Note</p>
+<p>After you specify the number of replicas you want for a bucket and then create
 the bucket, you cannot change this value. Therefore be certain you specify the
-number of replicas you truly want.
+number of replicas you truly want.</p>
+</div>
 
 For more information about creating and editing buckets, or specifying replicas
 for buckets, see [Creating and Editing Data
@@ -920,8 +923,11 @@ Couchbase Server incorporates an automated compaction mechanism that can compact
 both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
-Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually.
+<div class="notebox">
+<p>Note</p>
+<p>Spatial indexes are not automatically compacted. Spatial indexes must be
+compacted manually. For more information, see <a href=""#compacting-bucket-data-and-indexes">Compacting Bucket Data and Indexes</a>.</p>
+</div>
 
 Auto-compaction can be configured in two ways:
 
@@ -968,8 +974,11 @@ specific settings are identical:
    If compaction is identified as required outside of these hours, compaction will
    be delayed until the specified time period is reached.
 
-   The time period is applied every day while the Couchbase Server is active. The
-   time period cannot be configured on a day-by-day basis.
+   <div class="notebox">
+	<p>Note</p>
+   <p>The time period is applied every day while the Couchbase Server is active. The
+   time period cannot be configured on a day-by-day basis.</p>
+   </div>
 
  * **Compaction abortion**
 
@@ -1332,15 +1341,17 @@ If you need to remove a node from the cluster due to hardware or system failure,
 you need to indicate the failover status for that node. This causes Couchbase
 Server to use replicated data from other functioning nodes in the cluster.
 
-Before you indicate the failover for a node you should read [Failing Over
-Nodes](#couchbase-admin-tasks-failover). Do not use failover to remove a
+<div class="notebox warning">
+<p>Warning</p>
+<p> Before you indicate the failover for a node, you should read <a href="#couchbase-admin-tasks-failover">Failing Over
+Nodes</a>. Do not use failover to remove a
 functioning node from the cluster for administration or upgrade. This is because
 initiating a failover for a node will activate replicated data at other nodes
 which will reduce the overall capacity of the cluster. Data from the failover
 node that has not yet been replicated at other nodes or persisted on disk will
-be lost. For information about removing and adding a node, see [Performing a
-Rebalance, Adding a Node to a
-Cluster](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-addremove-rebalance.html).
+be lost. For information about removing and adding a node, see <a href="#couchbase-admin-tasks-addremove-rebalance">Performing a Rebalance, Adding a Node to a
+Cluster</a>.</p>
+</div>
 
 You can provide the failover status for a node with two different methods:
 
@@ -1698,20 +1709,26 @@ There are a number of methods for performing a backup:
    For more information, see [Backing Up Using File
    Copies](#couchbase-backup-restore-backup-filecopy).
 
-   [To restore, you need to use the file copy](#couchbase-backup-restore-filecopy)
-   method.
+   To restore, you need to use the [file copy method](#couchbase-backup-restore-filecopy).
+   
 
-Due to the active nature of Couchbase Server it is impossible to create a
+<div class="notebox">
+<p>Note</p>
+<p>Due to the active nature of Couchbase Server it is impossible to create a
 complete in-time backup and snapshot of the entire cluster. Because data is
 always being updated and modified, it would be impossible to take an accurate
-snapshot.
+snapshot.</p>
+</div>
 
 For detailed information on the restore processes and options, see [Restoring
 Using cbrestore](#couchbase-backup-restore-restore).
 
-It is a best practice to backup and restore your entire cluster to minimize any
+<div class="notebox bp">
+<p>Best Practice</p>
+<p>Backup and restore your entire cluster to minimize any
 inconsistencies in data. Couchbase is always per-item consistent, but does not
-guarantee total cluster consistency or in-order persistence.
+guarantee total cluster consistency or in-order persistence.</p>
+</div>
 
 <a id="couchbase-backup-restore-backup-cbbackup"></a>
 
@@ -2006,9 +2023,12 @@ The above will copy only the keys matching the specified prefix into the backup
 file. When the data is restored, only those keys that were recorded in the
 backup file will be restored.
 
-The regular expression match is performed client side. This means that the
-entire bucket contents must be accessed by the `cbbackup` command and then
-discarded if the regular expression does not match.
+<div class="notebox warning">
+<p>Warning</p>
+<p>The regular expression match is performed client side. This means that the
+entire bucket contents must be accessed by the <code>cbbackup</code> command and then
+discarded if the regular expression does not match.</p>
+</div>
 
 Key-based regular expressions can also be used when restoring data. You can
 backup an entire bucket and restore selected keys during the restore process
@@ -2073,8 +2093,11 @@ the cluster again. You are replacing the entire cluster data and configuration
 with the backed up version of the data files, and then re-starting the cluster
 with the saved version of the cluster files.
 
-Make sure that any restoration of files also sets the proper ownership of those
-files to the couchbase user
+<div class="notebox warning">
+<p>Warning</p>
+<p>Make sure that any restoration of files also sets the proper ownership of those
+files to the Couchbase user.</p>
+</div>
 
 When restoring data back in to the same cluster, then the following must be true
 before proceeding:
@@ -2305,8 +2328,11 @@ items into the appropriate bucket.
     > cbtransfer http://mac:8091 memcached://linux:11211 -b default -B default
     ```
 
-   These transfers will not transfer design documents, since they are using the
-   Memcached protocol
+   <div class="notebox">
+	<p>Note</p>
+	<p>These transfers will not transfer design documents since they are using the
+   Memcached protocol.</p>
+   </div>
 
  * **Transferring Design Documents**
 
@@ -2540,9 +2566,12 @@ Rebalancing a cluster involves marking nodes to be added or removed from the
 cluster, and then starting the rebalance operation so that the data is moved
 around the cluster to reflect the new structure.
 
-Until you complete a rebalance, you should avoid using the failover
+<div class="notebox warning">
+<p>Caution</p>
+<p>Until you complete a rebalance, you should avoid using the failover
 functionality since that may result in loss of data that has not yet been
-replicated.
+replicated.</p>
+</div>
 
  * For information on adding nodes to your cluster, see [Adding a Node to a
    Cluster](#couchbase-admin-tasks-addremove-rebalance-add).
@@ -2704,16 +2733,23 @@ operation. The methods are:
 
    If you receive a failure message, you will be notified of the type of failure.
 
-   You can add multiple nodes in one command by supplying multiple `--server-add`
-   command-line options to the command.
+  <div class="notebox tip">
+	<p>Tip</p>
+	<p>
+   You can add multiple nodes in one command by supplying multiple <code>--server-add</code>
+   command-line options to the command.</p>
+   </div>
 
 Once a server has been successfully added, the Couchbase Server cluster will
 indicate that a rebalance is required to complete the operation.
 
-You can cancel the addition of a node to a cluster without having to perform a
+<div class="notebox">
+<p>Note</p>
+<p>You can cancel the addition of a node to a cluster without having to perform a
 rebalance operation. Canceling the operation will remove the server from the
 cluster without having transferred or exchanged any data, since no rebalance
-operation took place. You can cancel the operation through the web interface.
+operation took place. You can cancel the operation through the web interface.</p>
+</div>
 
 <a id="couchbase-admin-tasks-addremove-rebalance-remove"></a>
 
@@ -2724,14 +2760,15 @@ disable the node from serving any requests across the cluster. Once removed, a
 node is no longer part of the cluster in any way and can be switched off, or can
 be updated or upgraded.
 
-### Ensure Capacity for Node Removal
-
-Before you remove a node from the cluster, you should ensure that you have the
+<div class="notebox bp">
+<p>Best Practice: Ensure Capacity for Node Removal</p>
+<p>Before you remove a node from the cluster, you should ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
 more information on the considerations, see Choosing when to shrink your cluster.
 For the best results, use swap rebalance to swap the node you want to remove
-out, and swap in a replacement node. For more information on swap rebalance, see
-[Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
+out and swap in a replacement node. For more information on swap rebalance, see <a href="#couchbase-admin-tasks-addremove-rebalance-swap">
+Swap Rebalance</a>.</p>
+</div>
 
 Like adding nodes, there are a number of solutions for removing a node:
 
@@ -2861,10 +2898,13 @@ Swap rebalance only occurs if the following are true:
    example, if you have marked two nodes to be removed, and added another two nodes
    to the cluster.
 
-Swap rebalance occurs automatically if the number of nodes being added and
+<div class="notebox">
+<p>Note</p>
+<p>Swap rebalance occurs automatically if the number of nodes being added and
 removed are identical. There is no configuration or selection mechanism to force
 a swap rebalance. If a swap rebalance cannot take place, then a normal rebalance
-operation will be used instead.
+operation will be used instead.</p>
+</div>
 
 When Couchbase Server identifies that a rebalance is taking place and that there
 are an even number of nodes being removed and added to the cluster, the swap
@@ -2922,13 +2962,15 @@ swap rebalance functionality affects the following situations:
    When a node has failed, removing it and adding a replacement node, or adding the
    node back, will be treated as swap rebalance.
 
-   ### Failed Over Nodes
-
+   <div class="notebox bp">
+	<p>Best Practice: Failed Over Nodes</p>
+	<p>
    With swap rebalance functionality, after a node has failed over, you should
-   either clean up and re-add the failed over node, or add a new node and perform a
+   either clean up and re-add the failed over node or add a new node and perform a
    rebalance as normal. The rebalance will be handled as a swap rebalance which
    will minimize the data movements without affecting the overall capacity of the
-   cluster.
+   cluster.</p>
+   </div>
 
 <a id="couchbase-admin-tasks-addremove-rebalance-monitoring"></a>
 
