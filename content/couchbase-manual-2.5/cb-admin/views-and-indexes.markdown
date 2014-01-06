@@ -661,16 +661,16 @@ whether the data was tagged as valid JSON or not:
    about the document is presented in a separate structure available during view
    processing.
 
-   The whitespace, field ordering may differ from the submitted version of the JSON
+   The white space, field ordering may differ from the submitted version of the JSON
    document.
 
    For example, the JSON document below, stored using the key `mykey` :
 
     ```
     {
-       "title" : "Fish Stew"
+       "title" : "Fish Stew",
        "servings" : 4,
-       "subtitle" : "Delicious with fresh bread",
+       "subtitle" : "Delicious with fresh bread"
     }
     ```
 
@@ -686,7 +686,7 @@ whether the data was tagged as valid JSON or not:
 
  * **Non-JSON**
 
-   Information not parse-able as JSON will always be stored and returned as a
+   Information not parsable as JSON will always be stored and returned as a
    binary copy of the information submitted to the database. If you store an image,
    for example, the data returned will be an identical binary copy of the stored
    image.
@@ -712,7 +712,7 @@ JSON supports the same basic types as supported by JavaScript, these are:
 
  * Number (either integer or floating-point).
 
-   JavaScript supports a maximum numerical value of 2 `53`. If you are working with
+   JavaScript supports a maximum numerical value of 2^53. If you are working with
    numbers larger than this from within your client library environment (for
    example, 64-bit numbers), you must store the value as a string.
 
