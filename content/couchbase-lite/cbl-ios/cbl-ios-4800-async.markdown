@@ -5,9 +5,9 @@ Couchbase Lite's API is mostly synchronous. That makes it simpler and more effic
 
 First, though, a stern warning: **Couchbase Lite objects are not thread-safe** so you cannot call them from multiple threads. This means you can't solve latency problems just by calling part of your app code that uses Couchbase Lite on a background thread or dispatch queue. If you're using the same CBL instances you use on the main thread, you will crash or corrupt the app state.
 
-### Async Queries
+### Asynchronous Queries
 
-View queries will slow down as the database grows, especially when the view's index needs to be updated after the database changes. You can prevent this from blocking your UI by running the query asynchronously.
+View queries slow down as the database grows, especially when the view's index needs to be updated after the database changes. You can prevent this from blocking your UI by running the query asynchronously.
 
 The easiest way to do this is just to use `CBLLiveQuery` (or `CBLUITableSource`, which uses it internally.) It always runs its queries in the background, and then posts a KVO notification on the main thread after the query is complete.
 

@@ -25,13 +25,13 @@ Couchbase Lite includes a JSON-Schema validator class. However, to keep code siz
 
 ### Defining a Schema
 
-You probably want to store the schema in a JSON file, so create a new empty file in your target and give it the extension `.json`. Double-check that the file has been added to the target's "Copy Bundle Resources" file list.
+You probably want to store the schema in a JSON file, so create a new empty file in your target and give it a `.json` file extension. Make sure the file is included in the target's "Copy Bundle Resources" file list.
 
 Now fill in your schema. Note that the current implementation of the validator class follows [JSON Schema Draft 4](http://tools.ietf.org/html/draft-zyp-json-schema-04).
 
 ### Validating Objects
 
-Define a document validation block
+Define a document validation block, as shown in the following example:
 
 ```
     NSURL* url = [[NSBundle mainBundle] URLForResource: resourceName withExtension: @"json"];
@@ -49,15 +49,13 @@ Define a document validation block
 
 If you want, you can get the NSError returned by a validation failure and return that as the validation error message.
 
-Note the call to `-selfValidate:` &mdash; this is very useful during development, to catch mistakes in your schema, but you shouldn't include it in any real builds of the app because it will load the JSON-Schema meta-schema over HTTP from json-schema.org. This will at best slow down launch, and at worst fail (triggering an assertion failure and crash) if your app is launched while offline.
+The call to `-selfValidate:` is very useful during development to catch mistakes in your schema, but you shouldn't include it in any real builds of the app because it will load the JSON-Schema meta-schema over HTTP from json-schema.org. This will at best slow down launch, and at worst fail (triggering an assertion failure and crash) if your app is launched while offline.
 
 #### Handling Deletions
 
 Document deletion is an important special case that all validators need to handle. To Couchbase Lite a deletion is just a special revision, sometimes called a *tombstone*, that contains a property `"_deleted": true`. Typically, a deletion revision has no other properties.
 
 Your schema needs to recognize a tombstone as a special case, otherwise it will inadvertently prevent all deletions. You do this by giving the top level of the schema a `type` property whose value is an array &mdash; meaning that values can have any of the given types &mdash; and make one element of the array a schema definition specifying an object with a required `_deleted` property whose value must be `true`.
-
-**Sample schema TBD**
 
 #### Detecting Invalid Changes
 
