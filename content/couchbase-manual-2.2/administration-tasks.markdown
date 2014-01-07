@@ -2459,7 +2459,7 @@ Choosing when each of situations applies is not always straightforward. Detailed
 below is the information you need to choose when, and why, to rebalance your
 cluster under different scenarios.
 
-**Choosing when to expand the size of your cluster**
+**Choosing When to Expand the Size of Your Cluster**
 
 You can increase the size of your cluster by adding more nodes. Adding more
 nodes increases the available RAM, disk I/O and network bandwidth available to
@@ -2487,12 +2487,13 @@ base your decision:
       more RAM to do so. Adding nodes will increase the overall capacity of the system
       and then you can shrink any existing buckets in order to make room for new ones.
 
- * **Increasing disk I/O Throughput**
+ * **Increasing Disk I/O Throughput**
 
    By adding nodes to a Couchbase Server cluster, you will increase the aggregate
    amount of disk I/O that can be performed across the cluster. This is especially
    important in high-write environments, but can also be a factor when you need to
    read large amounts of data from the disk.
+
 
  * **Increasing Disk Capacity**
 
@@ -2506,7 +2507,7 @@ base your decision:
    will cause the overall network bandwidth required to be spread out across
    additional nodes, which will reduce the individual bandwidth of each node.
 
-\> **Choosing when to shrink your cluster**
+**Choosing When to Shrink Your Cluster**
 
 Choosing to shrink a Couchbase cluster is a more subjective decision. It is
 usually based upon cost considerations, or a change in application requirements
@@ -2529,7 +2530,9 @@ When choosing whether to shrink a cluster:
    flight during that operation. Using the remove functionality will ensure that
    all data is properly replicated and continuously available.
 
-**Choosing when to Rebalance**
+<a name="whentoshrinkcluster"></a>
+
+**Choosing When to Rebalance**
 
 Once you decide to add or remove nodes to your Couchbase Server cluster, there
 are a few things to take into consideration:
@@ -2764,7 +2767,7 @@ be updated or upgraded.
 <p>Best Practice: Ensure Capacity for Node Removal</p>
 <p>Before you remove a node from the cluster, you should ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, see Choosing when to shrink your cluster.
+more information on the considerations, see <a href="#whentoshrinkcluster">Choosing When to Shrink Your Cluster</a>.
 For the best results, use swap rebalance to swap the node you want to remove
 out and swap in a replacement node. For more information on swap rebalance, see <a href="#couchbase-admin-tasks-addremove-rebalance-swap">
 Swap Rebalance</a>.</p>
@@ -3433,23 +3436,24 @@ named destination clusters you can select when you configure replication. When
 you configure XDCR, the destination cluster reference should point to the IP
 address of one of the nodes in the destination cluster.
 
-Before you set up replication via XDCR, you should be certain that a destination
+<div class="notebox warning">
+<p>Warning</p>
+<p>Before you set up replication via XDCR, you should be certain that a destination
 bucket already exists. If this bucket does not exist, replication via XDCR may
 not find some shards on the destination cluster; this will result in replication
 of only some data from the source bucket and will significantly delay
 replication. This would also require you to retry replication multiple times to
-get a source bucket to be fully replicated to a destination.
+get a source bucket to be fully replicated to a destination.</p>
 
-Therefore make sure that you check that a destination bucket exists. The
+<p>Therefore make sure that you check that a destination bucket exists. The
 recommended approach is try to read on any key from the bucket. If you receive a
 'key not found' error, or the document for the key, the bucket exists and is
 available to all nodes in a cluster. You can do this via a Couchbase SDK with
-any node in the cluster. See [Couchbase Developer Guide 2.0, Performing Connect,
-Set and
-Get](ttp://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
+any node in the cluster. See <a href="http://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html">Couchbase Developer Guide 2.0: Performing Connect,
+Set and Get</a>.</p>
 
-For more information about creating  buckets via the REST API, see [Creating and
-Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
+<p>For more information about creating  buckets via the REST API, see <a href="#couchbase-admin-restapi-creating-buckets">Creating and Editing Data Buckets</a>.</p>
+</div>
 
 ### Set Source and Destination Clusters
 
