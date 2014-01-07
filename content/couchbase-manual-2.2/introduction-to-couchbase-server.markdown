@@ -329,7 +329,7 @@ effectively across the cluster. The vBucket system is used both for distributing
 data, and for supporting replicas (copies of bucket data) on more than one node.
 
 Clients access the information stored in a bucket by communicating directly with
-the node response for the corresponding vBucket. This direct access enables
+the node responsible for the corresponding vBucket. This direct access enables
 clients to communicate with the node storing the data, rather than using a proxy
 or redistribution architecture. The result is abstracting the physical topology
 from the logical partitioning of data. This architecture is what gives Couchbase
@@ -379,7 +379,7 @@ node, Server D is added to the cluster and the vBucket Map is updated.
 The vBucket map is updated during
 the <a href="#couchbase-introduction-architecture-rebalancing">
 rebalance</a> operation; the
-updated map is then sent the cluster to all the cluster participants, including
+updated map is then sent to all the cluster participants, including
 the other nodes, any connected "smart" clients, and the Moxi proxy service.</p>
 </div>
 
@@ -473,13 +473,13 @@ simultaneously read and write data on disk:
 ![](images/threads_read_write.png)
 
 This multi-threaded engine includes additional synchronization among threads
-that are access the same data cache to avoid conflicts. To maintain performance
+that are accessing the same data cache to avoid conflicts. To maintain performance
 while avoiding conflicts over data we use a form of locking between threads as
 well as thread allocation among vBuckets with static partitioning. When
 Couchbase Server creates multiple reader and writer threads, the server assesses
 a range of vBuckets for each thread and assigns each thread exclusively to
 certain vBuckets. With this static thread coordination, the server schedules
-threads so that only a single reader and single writer thread that access the
+threads so that only a single reader and single writer thread can access the
 same vBucket at any given time. We show this in the image above with six
 pre-allocated threads and two data Buckets. Each thread has the range of
 vBuckets that is statically partitioned for read and write access.
@@ -541,7 +541,7 @@ Couchbase Server items. This job will run until measured memory reaches
 `mem_low_wat`. If the rate of incoming items is faster than the migration of
 items to disk, the system may return errors indicating there is not enough
 space. This will continue until there is available memory. The process of
-removing data from the caching to make way for the actively used information is
+removing data from the cache to make way for the actively used information is
 called `ejection`, and is controlled automatically through thresholds set on
 each configured bucket in your Couchbase Server Cluster.
 
@@ -732,7 +732,7 @@ base operations of Create, Retrieve, Update and Delete:
       includes the keys (used to select specific or ranges of information) and values.
       For example, you could create a view on contact information that outputs the
       JSON record by the contact's name, and with a value containing the contacts
-      address. Each view also outputs the key used to store the original object. IF
+      address. Each view also outputs the key used to store the original object. If
       the view doesn't contain the information you need, you can use the returned key
       with the memcached protocol to obtain the complete record.
 

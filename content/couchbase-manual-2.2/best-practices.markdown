@@ -160,7 +160,7 @@ This is a rough guideline to size your cluster:
 Variable                                                     | Calculation                                                           
 -------------------------------------------------------------|-----------------------------------------------------------------------
 no\_of\_copies                                               | `1 + number_of_replicas`                                              
-total\_metadataAll the documents need to live in the memory. | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
+total\_metadata All the documents need to live in the memory. | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
 total\_dataset                                               | `(documents_num) * (value_size) * (no_of_copies)`                     
 working\_set                                                 | `total_dataset * (working_set_percentage)`                            
 Cluster RAM quota required                                   | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
