@@ -1193,7 +1193,7 @@ You will need at least one extra node to perform a swap rebalance.
 
     ![](images/online-upgrade-addnode.png)
 
- 1. Remove one of your existing old nodes to from the cluster. Under Server Nodes |
+ 1. Remove one of your existing old nodes from the cluster. Under Server Nodes |
     Server panel, Click Remove Server for the node you want to remove. This will
     flag this server for removal.
 

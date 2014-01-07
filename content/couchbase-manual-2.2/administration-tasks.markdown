@@ -127,7 +127,7 @@ three total readers and writers.
 How you change this setting depends on the hardware in your Couchbase cluster:
 
  * If you deploy your cluster on the minimum hardware requirement which is
-   dual-core CPUs running on 2GHz and 4GM of physical RAM, you should stay with the
+   dual-core CPUs running on 2GHz and 4GB of physical RAM, you should stay with the
    default setting of three.
 
  * If you deploy your servers on recommended hardware requirements or above you can
