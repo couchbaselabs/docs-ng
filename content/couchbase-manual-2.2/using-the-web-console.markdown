@@ -417,7 +417,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
  1. Select a name for the new bucket. The bucket name can only contain characters in
     range A-Z, a-z, 0-9 as well as underscore, period, dash and percent symbols.
 
-    **Best Practice**: Create a named bucket specifically for your application. Any default bucket you initially set up with Couchbase Server should not be used for storing live application data. The default bucket you create when you first install Couchbase Server should be used only for testing.
+    <div class="notebox bp"><p>Best Practice: Default Bucket Only for Testing</p><p> Create a named bucket specifically for your application. Any default bucket you initially set up with Couchbase Server should not be used for storing live application data. The default bucket you create when you first install Couchbase Server should be used only for testing.</p></div>
 
  1. Select a Bucket Type, either `Memcached` or `Couchbase`. See [Data
     Storage](#couchbase-introduction-architecture-buckets) for more information. The
@@ -483,9 +483,11 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
        For more information, see [RAM Sizing](#couchbase-bestpractice-sizing-ram).
 
-       **Warning**: Changing the size of a memcached bucket will erase all the data in the bucket
-       and recreate it, resulting in loss of all stored data for existing buckets.
-
+       <div class="notebox warning">
+       <p>Warning</p>
+       <p>Changing the size of a memcached bucket will erase all the data in the bucket
+       and recreate it, resulting in loss of all stored data for existing buckets.</p>
+</div>
      * **Auto-Compaction**
 
        Both data and index information stored on disk can become fragmented. Compaction
@@ -569,7 +571,10 @@ You can delete the bucket entirely by clicking the `Delete` button.
 You can empty a Memcached bucket of all the cached information that it stores by
 using the `Flush` button.
 
-**Warning**: Using the `Flush` button removes all the objects stored in the Memcached bucket. Using this button on active Memcached buckets may delete important information.
+<div class="notebox warning">
+<p>Warning</p>
+<p> Using the <code>Flush</code> button removes all the objects stored in the Memcached bucket. Using this button on active Memcached buckets may delete important information.</p>
+</div>
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
@@ -617,8 +622,11 @@ all the graphs and statistics display within the web console.
    for all graphs displayed on the page. For example, selecting `Minute` shows
    information for the last minute, continuously updating.
 
-   As the selected interval increases, the amount of statistical data displayed
-   will depend on how long your cluster has been running.
+   <div class="notebox">
+   <p>Note</p>
+   <p>As the selected interval increases, the amount of statistical data displayed
+   will depend on how long your cluster has been running.</p>
+   </div>
 
  * `Statistic Selection`
 
@@ -1333,9 +1341,12 @@ REST API, see [Design Document REST API](#couchbase-views-designdoc-api).
 To create a new view as part of an existing design document, click the `Add
 View` button against the corresponding design document.
 
-View names must be specified using one or more UTF-8 characters. You cannot have
+<div class="notebox">
+<p>Note</p>
+<p>View names must be specified using one or more UTF-8 characters. You cannot have
 a blank view name. View names cannot have leading or trailing whitespace
-characters (space, tab, newline, or carriage-return).
+characters (space, tab, newline, or carriage-return).</p>
+</div>
 
 If you create a new view, or have selected a Development view, you can create
 and edit the `map()` and `reduce()` functions. Within a development view, the
@@ -1356,8 +1367,11 @@ Document` will randomly select a document from the database. Clicking `Edit
 Document` will take you to the Views editor, see [Using the Document
 Editor](#couchbase-admin-web-console-documents)
 
-Documents stored in the database that are identified as Non-JSON may be
-displayed as binary, or text-encoded binary, within the UI.
+<div class="notebox">
+<p>Note</p>
+<p>Documents stored in the database that are identified as Non-JSON may be
+displayed as binary, or text-encoded binary, within the UI.</p>
+</div>
 
 Document metadata is displayed in a separate box on the right hand side of the
 associated document. This shows the metadata for the displayed document, as
@@ -1407,9 +1421,11 @@ Cluster Data Set`. Because this executes the view in real-time on the data set,
 the time required to build the view may be considerable. Progress for building
 the view is shown at the top of the window.
 
-If you have edited either the `map()` or `reduce()` portions of your view
-definition, you *must* save the definition. The `Show Results` button will
-remain greyed out until the view definition has been saved.
+<div class="notebox">
+<p>Note</p>
+<p>If you have edited either the <code>map()</code> or <code>reduce()</code> portions of your view definition, you <i>must</i> save the definition. The <code>Show Results</code> button will
+remain greyed out until the view definition has been saved.</p>
+</div>
 
 You can also filter the results and the output using the built-in filter system.
 This filter provides similar options that are available to clients for filtering
@@ -1472,12 +1488,15 @@ selecting filter values. The filter values you specify are identical to those
 available when querying from a standard client library. For more information,
 see [Querying Views](#couchbase-views-writing-querying).
 
-Due to the nature of range queries, a special character may be added to query
+<div class="notebox">
+<p>Note</p>
+<p>Due to the nature of range queries, a special character may be added to query
 specifications when viewing document ranges. The character may not show up in
 all web browsers, and may instead appear instead as an invisible, but
 selectable, character. For more information on this character and usage, see
-[Partial Selection and Key
-Ranges](#couchbase-views-writing-querying-selection-partial).
+<a href="#couchbase-views-writing-querying-selection-partial">Partial Selection and Key
+Ranges</a>.</p>
+</div>
 
 <a id="couchbase-admin-web-console-documents"></a>
 
