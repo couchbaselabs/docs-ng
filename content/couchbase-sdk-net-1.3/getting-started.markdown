@@ -2,56 +2,40 @@
 
 This guide provides information for developers who want to use the Couchbase .NET SDK to build applications that use Couchbase Server.
 
+Beginning with the 1.2.5 release, Couchbase .NET Client Library supports .NET Framework versions 3.5 and 4.0.
+
 # Getting Started
 
-This chapter will get you started with using Couchbase Server and the .NET (C\#)
+This section helps you get started using Couchbase Server and the .NET (C\#)
 Client Library.
 
-As of release 1.2.5, the Couchbase.NET Client Library supports .NET Framework
-versions 3.5 and 4.0.
+## Downloading the software
 
-<a id="server"></a>
+To get the software:
 
-## Get a Server
+1. [Download and install Couchbase Server](http://www.couchbase.com/download).
 
-[Get & Install Couchbase Server.](http://www.couchbase.com/download) Come back
-here when you're done
+2. Get the client library by using one of the following methods:
 
-<a id="downloading"></a>
+	* Download the zip file from the [Couchbase .NET community Getting Started](http://www.couchbase.com/communities/net/getting-started) page.
 
-## Get a Client Library
-
-It can either be [downloaded as a
-zip file](http://packages.couchbase.com/clients/net/1.2/Couchbase-Net-Client-1.2.6.zip)
-or run the following command in the NuGet Package Manger console:
-
-
-```
-PM> Install-Package CouchbaseNetClient
-```
-
-<a id="tryitout"></a>
-
-## Try it Out!
-
-### Project Setup
+	* Run the following command in the [NuGet](http://www.nuget.org) package manger console:
+	
+			PM> Install-Package CouchbaseNetClient
+	
+## Setting up a project
 
 Create a new console project in Visual Studio. Add references to the
-Couchbase.dll, Enyim.Memcached.dll, Newtonsoft.Json.dll and RestSharp.dll
-assemblies found in the release zip file.
+**Couchbase.dll**, **Enyim.Memcached.dll**, **Newtonsoft.Json.dll**, and **RestSharp.dll** assemblies that are in the release zip file.
 
 Visual Studio console applications target the .NET Framework Client Profile by
-default, so you'll need to update the project properties to instead target the
+default, so you need to change the project properties to target the
 full .NET Framework. If you skip this step, you'll have compilation errors.
 
-<a id="configuration"></a>
-
-### Adding Configuration
+## Adding configuration
 
 You can configure your Couchbase client either programmatically or using the
-app.config file with the appropriate Couchbase config section. Using app.config
-is more flexible and is the preferred approach. Modify your app.config file as
-follows:
+**app.config** file with the appropriate Couchbase configuration section. Using **app.config** s more flexible and is the preferred approach. Modify your **app.config** file as follows:
 
 
 ```
@@ -70,24 +54,18 @@ follows:
 ```
 
 The URIs in the servers list are used by the client to obtain information about
-the cluster configuration. If you're running on your local dev machine, include
-only a single URI using 127.0.0.1 as the address.
+the cluster configuration. If you're running on your local development machine, include only a single URI and use 127.0.0.1 as the address.
 
-The default Couchbase Server installation creates a bucket named "default"
-without a password, therefore the bucket and bucketPassword attributes are
-optional. If you created an authenticated bucket, you should specify those
-values in place of the default settings above.
+The `bucket` and `bucketPassword` attributes are optional because the default Couchbase Server installation creates a bucket named `default` that does not use a password. If you create an authenticated bucket, you must specify those values in place of the default settings shown in the example.
 
-The TCP/IP port allocation on Windows by default includes a restricted number of
+By default, the TCP/IP port allocation on Windows includes a restricted number of
 ports available for client communication. For more information on this issue,
-including information on how to adjust the configuration and increase the
+including information about how to adjust the configuration and increase the
 available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx> MSDN: Avoiding TCP/IP Port Exhaustion</a>.
 
-<a id="clientinstantiation"></a>
+## Instantiating the Client
 
-### Instantiating the Client
-
-Add the following using statements to Program.cs:
+To instantiate the client, add the following using statements to the **Program.cs** file:
 
 
 ```
@@ -98,13 +76,12 @@ using Newtonsoft.Json;
 ```
 
 Couchbase is the namespace containing the client and configuration classes with
-which you'll work. Enyim.Caching.Memcached contains supporting infrastructure.
-Recall that Couchbase supports the Memcached protocol and is therefore able to
-make use of the popular Enyim Memcached client for many of its core key/value
+which you'll work. `Enyim.Caching.Memcached` contains supporting infrastructure. Because Couchbase supports the memcached protocol, it can
+make use of the popular EnyimMemcached client for many of its core key-value
 operations.
 
-Next create an instance of the client in the Main method. Use the default
-constructor, which depends on the configuration from app.config.
+Next, create an instance of the client in the `Main` method. Use the default
+constructor, which depends on the configuration from the **app.config** file.
 
 
 ```
@@ -132,19 +109,14 @@ public static class CouchbaseManager
 }
 ```
 
-However, for the purpose of this getting started guide the locally scoped client
+However, for the purpose of this getting started section, the locally scoped client
 variable created above is sufficient.
 
-<a id="crud"></a>
+### Performing CRUD Operations
 
-### CRUD Operations
-
-The primary CRUD API used by the .NET Client is that of a standard key/value
+The primary CRUD API used by the .NET Client is a standard key-value
 store. You create and update documents by supplying a key and value. You
-retrieve or remove documents by supplying a value. For example, consider the
-JSON document that you'll find in the "beer-sample" bucket that's available when
-you install Couchbase Server and setup your cluster. The key for this document
-is "new\_holland\_brewing\_company-sundog."
+retrieve or remove documents by supplying a value. For example, consider the following JSON document that you'll find in the `beer-sample` bucket that's available when you install Couchbase Server and set up your cluster. The key for this document is `new_holland_brewing_company-sundog`.
 
 
 ```
@@ -163,15 +135,15 @@ is "new\_holland\_brewing\_company-sundog."
 }
 ```
 
-To retrieve this document, you simply call the Get method of the client.
+To retrieve this document, call the `Get` method of the client:
 
 
 ```
 var savedBeer = client.Get("new_holland_brewing_company-sundog");
 ```
 
-If you add a line to print the savedBeer to the console, you should see a JSON
-string that contains the data above.
+If you add a line to print `savedBeer` to the console, you should see a JSON
+string that contains the data from the JSON document.
 
 
 ```
@@ -179,15 +151,14 @@ var savedBeer = client.Get("new_holland_brewing_company-sundog");
 Console.WriteLine(savedBeer);
 ```
 
-In this example, savedBeer would be of type Object. To get a string back instead
-and avoid having to cast, simply use the generic version of Get.
+In this example, `savedBeer` would be of type `Object`. To get a string back instead and avoid having to cast, use the generic version of Get:
 
 
 ```
 var savedBeer = client.Get<string>("new_holland_brewing_company-sundog");
 ```
 
-To add a document, first create a JSON string.
+To add a document, first create a JSON string:
 
 
 ```
@@ -207,77 +178,43 @@ var newBeer =
 }";
 ```
 
-For a key, we'll simply take the name of the beer and prefix it with the name of
-the brewery, separated with a dash and with spaces replaced by underscores. The
-exact mechanism by which you create your keys need only be consistent. If you
-are going to query documents by key (not just through views) you should choose
-predictable keys (e.g., cottrell\_brewing-old\_yankee\_ale).
+In this example, the key is formed by taking the name of the beer and prefixing it with the name of the brewery, separated with a dash and replacing spaces replaced with underscores. The mechanism by which you create your keys needs to be consistent. If you are going to query documents by key (not just through views), you should choose predictable keys (for example, `cottrell_brewing-old_yankee_ale`).
 
 
 ```
 var key = "cottrell_brewing-old_yankee_ale";
 ```
 
-With this new key, the JSON document may easily be stored.
+You can store the document, as shown in the following example:
 
 
 ```
 var result = client.Store(StoreMode.Add, "cottrell_brewing-old_yankee_ale", newBeer);
 ```
 
-There are three arguments to Store. The first is the store mode. Use
-StoreMode.Add for new keys, StoreMode.Replace to update existing keys and
-StoreMode.Set to add when a key doesn’t exist or to replace it when it does.
-Store will fail if Add is used with an existing key or Replace is used with a
-non-existent key. The second and third arguments are the key and value,
-respectively. The return value, assigned to the result variable, is a Boolean
-indicating whether the operation succeeded.
+The `Store` method takes several arguments. The first is the store mode. For the store mode value, use `StoreMode.Add` for new keys, `StoreMode.Replace` to update existing keys, and `StoreMode.Set` to add when a key doesn’t exist or to replace it when it does. `Store` fails if `StoreMode.Add` is used with an existing key or `StoreMode.Replace` is used with a nonexistent key. The second and third arguments are the key and value, respectively. The return value, assigned to `result` in this example, is a Boolean that indicates whether the operation succeeded.
 
-Removing a document simply entails calling the Remove method with the key to be
-removed. Like the other methods we've seen so far, Remove returns a Boolean
-indicating operation success.
-
+Removing a document entails calling the `Remove` method with the key to be
+removed. Like the other methods shown so far, `Remove` returns a Boolean value
+indicating operation success. For example:
 
 ```
 var result = client.Remove("cottrell_brewing-old_yankee_ale");
 ```
 
-<a id="storingjson"></a>
-
 ### Storing JSON Documents
 
-While storing and retreiving JSON strings is a straightforward process,
-documents in a typical application are likely at some point to be represented by
-domain objects (i.e., POCOs). More mileage will come from storing some
-representation of these data objects. For example, the beer documents could be
-represented by an instance of a Beer class in memory. The .NET Client Library
-will allow for serializable objects to be persisted using .NET's standard
-over-the-wire serialization. However, on the server, these objects will be
-stored as binary attachments to a JSON document. The impact of being an
-attachment is that it will not be indexed in a view. A better solution then, is
-to serialize data objects to JSON strings before storing them and deserializing
-JSON document strings to objects when retreiving them.
+While storing and retrieving JSON strings is a straightforward process, documents in a typical application are likely at some point to be represented by domain objects (that is, [POCOs](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)). More mileage  comes from storing some representation of these data objects. For example, the beer documents could be represented by an instance of a Beer class in memory. The .NET Client Library allows for serializable objects to be persisted using .NET's standard over-the-wire serialization. However, on the server, these objects are stored as binary attachments to a JSON document. The impact of being an attachment is that it is not indexed in a view. A better solution is to serialize data objects to JSON strings before storing them and deserializing JSON document strings to objects when retrieving them.
 
-<a id="jsonextensions"></a>
+### Using CouchbaseClient JSON Extension Methods
 
-### CouchbaseClient JSON Extension Methods
-
-If you want an easy way to read and write JSON, the CouchbaseClientExtensions
-class under the Couchbase.Extensions namespace provides two very basic methods,
-StoreJson and GetJson. Both methods depend on the open source Newtonsoft.Json
-library, which is already a dependency of the Couchbase .NET Library. Both
-methods wrap only the most basic Get and Store overloads and don't currently
-support CAS or TTL operations. They are included with the library for
-convenience and will likely be augmented in the future by a Couchbase Labs
-extension library.
+If you want an easy way to read and write JSON, the `CouchbaseClientExtensions` class under the Couchbase.Extensions namespace provides two very basic methods, `StoreJson` and `GetJson`. Both methods depend on the open source Newtonsoft.Json library, which is already a dependency of the Couchbase .NET Library. Both methods wrap only the most basic Get and Store overloads and don't currently support CAS or TTL operations. They are included with the library for convenience and might be augmented in the future by a Couchbase Labs extension library.
 
 To improve the way beer data is managed in this getting started project, add a
-new file Beer.cs to the project. It will contain a plain-old-CLR-object (POCO)
+new file, **Beer.cs**, to the project. It contains a plain-old-CLR-object (POCO)
 with mappings from class properties to JSON properties. For brevity, some
-document properties have been omitted. Notice also that the Type property has
-been made read-only and forces all beer instances to be marked with the type
-"beer." This type information will be useful when creating views and wanting to
-find all "beer" documents.
+document properties have been omitted. The `Type` property is read-only and forces all beer instances to be marked with the type
+`beer`. This type information is useful when you want to create views and find all "beer" documents. The **Beer.cs** file looks like this:
 
 
 ```
@@ -306,11 +243,11 @@ public class Beer
 }
 ```
 
-By default, Json.NET will serialize the properties of your class in the case you
+By default, Json.NET serializes the properties of your class in the case you
 created them. Because we want our properties to match the casing of the
 documents in the beer-sample bucket, we're going to set JSON property names in
 JsonProperty attributes (in the Newtonsoft.Json namespace). Again, we could
-store instances of this Beer class without converting them first to JSON
+store instances of this Beer class without converting them to JSON first
 (requires marking the class with a Serializable attribute), but that would
 prevent those documents from being indexed in views.
 
@@ -330,24 +267,20 @@ var newBeer = new Beer
 };
 ```
 
-And to store the new instance, simply use the extension method. Result will
-return a Boolean indicating operation success.
-
+To store the new instance, use the extension method. The returned `result` object contains a Boolean that indicates whether the operation succeeded.
 
 ```
 var result = client.StoreJson(StoreMode.Set, key, newBeer);
 ```
 
-Retrieving the Beer instance is also similar to retrieving a document as was
-demonstrated above.
-
+Retrieving the Beer instance is also similar to retrieving a document:
 
 ```
 var savedBeer = client.GetJson<beer><Beer>(key);</beer>
 ```
 
-At this point, your simple Program.cs file should look something like the
-following:
+At this point, your **Program.cs** file should look something like the
+following example:
 
 
 ```
@@ -383,15 +316,15 @@ class Program
 
 ### Working with Views
 
-Map/Reduce Views are used to create queryable, secondary indexes in Couchbase
-Server. The primary index for documents is the key you use when performing the
-standard CRUD methods described above. See the view documentation for more
+MapReduce views are used to create secondary indexes in Couchbase
+Server that can be queried. The primary index for documents is the key you use when performing the
+standard CRUD methods described previously. See the view documentation for more
 information on writing views.
 
-For this example, the by\_name view in the beer design document will be queried.
-This view simply checks whether a document is a beer and has a name. If it does,
-it emits the beer's name into the index. This view will allow for beers to be
-queried for by name. For example, it's now possible to ask the question "What
+The following example queries the `by_name` view in the beer design document.
+This view just checks whether a document is a beer and has a name. If it does,
+it emits the beer's name into the index. This view allows for beers to be
+queried by name. For example, it's now possible to ask the question "What
 beers start with A?"
 
 
@@ -403,7 +336,7 @@ function (doc, meta) {
 }
 ```
 
-Querying a view through the .NET Client Library requires calling the GetView
+Querying a view through the .NET Client Library requires calling the `GetView`
 method and providing the name of the design document and the name of the view.
 
 
@@ -411,12 +344,11 @@ method and providing the name of the design document and the name of the view.
 var view = client.GetView("beer", "by_name");
 ```
 
-The return type of GetView is an enumerable IView, where each enumerated value
-is an IViewRow. The actual view query isn't run until you enumerate over the
+The return type of `GetView` is an enumerable `IView`, where each enumerated value
+is an `IViewRow`. The actual view query isn't run until you enumerate over the
 view. For example, if you wanted to print out each of the keys that have been
-indexed, you could use the IViewRow instance's Info dictionary. This particular
-view emits null as the value, so that will be empty when this snippet runs.
-
+indexed, you could use the `IViewRow` instance's Info dictionary. This particular
+view emits null as the value, so that is empty when this snippet runs.
 
 ```
 foreach (var row in view)
@@ -427,25 +359,25 @@ foreach (var row in view)
 
 The code above should give you a list of beer names for all beer documents that
 exist in the beer-sample bucket. If you want to filter that list, there are
-fluent methods that may be chained off of the IView instance before iterating
-over it. Modifying the GetView call above as follows will find all beers whose
+fluent methods that can be chained off of the `IView` instance before iterating
+over it. Modifying the `GetView` call above as follows finds all beers whose
 names start with "A" and limits the results to 50 rows. See the API reference
-for other fluent methods. Please note that these methods return an IView
-instance, which is an IEnumerable, but is not an IQueryable. Therefore, using
-LINQ extension methods on the IView will not reduce the results in the query.
-Only the IView fluent methods will affect the query before it is run.
+for other fluent methods. These methods return an `IView`
+instance, which is an `IEnumerable`, but is not an `IQueryable`. Therefore, using
+LINQ extension methods on the `IView` does not reduce the results in the query.
+Only the `IView` fluent methods affect the query before it is run.
 
 
 ```
 var view = client.GetView("beer", "by_name").StartKey("A").EndKey("B").Limit(50);
 ```
 
-Also included in the IViewRow instance, is the original ID (the key from the k/v
-pair) of the document. It is accessible by way of the IViewRow's ItemId
-property. Taking that ID, it is possible to retrieve the original document.
+Also included in the `IViewRow` instance, is the original ID (the key from the key-value
+pair) of the document. It is accessible by way of the `ItemId`
+property of the `IViewRow`. Taking that ID, it is possible to retrieve the original document.
 Using the JSON extension methods, it's also possible to get a Beer instance for
 each row. If it seems expensive to perform these lookups, recall that Couchbase
-Server has a Memcached layer built in and these queries are unlikely to be
+Server has a memcached layer built in, and these queries are unlikely to be
 pulling data from disk. The documents are likely to be found in memory.
 
 
@@ -457,11 +389,11 @@ foreach (var row in view)
 }
 ```
 
-Finally, there is a generic version of GetView which encapsulates the details of
+Finally, there is a generic version of `GetView` that encapsulates the details of
 the view row data structures. To retrieve Beer instances automatically by ID as
-you iterate over the view, you need to add the generic parameter to GetView
+you iterate over the view, you need to add the generic parameter to `GetView`
 along with the third Boolean argument to tell the client to perform the by ID
-lookup. If you omit the third parameter, the client will attempt to deserialize
+lookup. If you omit the third parameter, the client attempts to deserialize
 the value emitted by the index into an instance of the specified generic type.
 Again, in this example the value was null. Therefore, deserialization must be
 done by way of ID lookup.
@@ -477,7 +409,7 @@ foreach (var beer in view)
 ```
 
 For more information about using views for indexing and querying from Couchbase
-Server, here are some useful resources:
+Server, see the following resources:
 
  * For more information on Views, how they operate, and how to write effective
    map/reduce queries, see [Couchbase Server 2.0:
@@ -493,4 +425,4 @@ Server, here are some useful resources:
    based on date or time. To find out more, see [Couchbase Views, Sample
    Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns-timestamp.html).
 
-<a id="tutorial"></a>
+
