@@ -38,7 +38,7 @@ You can configure your Couchbase client either programmatically or using the
 **app.config** file with the appropriate Couchbase configuration section. Using **app.config** s more flexible and is the preferred approach. Modify your **app.config** file as follows:
 
 
-```
+```xml
 <?xml version="1.0"?>
 <configuration>
   <configSections>
@@ -68,7 +68,7 @@ available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=
 To instantiate the client, add the following using statements to the **Program.cs** file:
 
 
-```
+```csharp
 using Couchbase;
 using Enyim.Caching.Memcached;
 using Enyim.Caching.Memcached;
@@ -84,7 +84,7 @@ Next, create an instance of the client in the `Main` method. Use the default
 constructor, which depends on the configuration from the **app.config** file.
 
 
-```
+```csharp
 var client = new CouchbaseClient();
 ```
 
@@ -95,7 +95,7 @@ per AppDomain. Creating a static property on a class works well for this
 purpose. For example:
 
 
-```
+```csharp
 public static class CouchbaseManager
 {
    private readonly static CouchbaseClient _instance;
@@ -119,7 +119,7 @@ store. You create and update documents by supplying a key and value. You
 retrieve or remove documents by supplying a value. For example, consider the following JSON document that you'll find in the `beer-sample` bucket that's available when you install Couchbase Server and set up your cluster. The key for this document is `new_holland_brewing_company-sundog`.
 
 
-```
+```json
 {
  "name": "Sundog",
  "abv": 5.25,
@@ -138,7 +138,7 @@ retrieve or remove documents by supplying a value. For example, consider the fol
 To retrieve this document, call the `Get` method of the client:
 
 
-```
+```csharp
 var savedBeer = client.Get("new_holland_brewing_company-sundog");
 ```
 
@@ -146,7 +146,7 @@ If you add a line to print `savedBeer` to the console, you should see a JSON
 string that contains the data from the JSON document.
 
 
-```
+```csharp
 var savedBeer = client.Get("new_holland_brewing_company-sundog");
 Console.WriteLine(savedBeer);
 ```
@@ -154,14 +154,14 @@ Console.WriteLine(savedBeer);
 In this example, `savedBeer` would be of type `Object`. To get a string back instead and avoid having to cast, use the generic version of Get:
 
 
-```
+```csharp
 var savedBeer = client.Get<string>("new_holland_brewing_company-sundog");
 ```
 
 To add a document, first create a JSON string:
 
 
-```
+```csharp
 var newBeer =
 @"{
    ""name"": ""Old Yankee Ale"",
@@ -181,14 +181,14 @@ var newBeer =
 In this example, the key is formed by taking the name of the beer and prefixing it with the name of the brewery, separated with a dash and replacing spaces replaced with underscores. The mechanism by which you create your keys needs to be consistent. If you are going to query documents by key (not just through views), you should choose predictable keys (for example, `cottrell_brewing-old_yankee_ale`).
 
 
-```
+```csharp
 var key = "cottrell_brewing-old_yankee_ale";
 ```
 
 You can store the document, as shown in the following example:
 
 
-```
+```csharp
 var result = client.Store(StoreMode.Add, "cottrell_brewing-old_yankee_ale", newBeer);
 ```
 
@@ -198,7 +198,7 @@ Removing a document entails calling the `Remove` method with the key to be
 removed. Like the other methods shown so far, `Remove` returns a Boolean value
 indicating operation success. For example:
 
-```
+```csharp
 var result = client.Remove("cottrell_brewing-old_yankee_ale");
 ```
 
@@ -217,7 +217,7 @@ document properties have been omitted. The `Type` property is read-only and forc
 `beer`. This type information is useful when you want to create views and find all "beer" documents. The **Beer.cs** file looks like this:
 
 
-```
+```csharp
 public class Beer
 {
     [JsonProperty("name")]
@@ -256,7 +256,7 @@ string above. Replace the code where a JSON string was created with the code
 below.
 
 
-```
+```csharp
 var newBeer = new Beer
 {
     Name = "Old Yankee Ale",
@@ -269,13 +269,13 @@ var newBeer = new Beer
 
 To store the new instance, use the extension method. The returned `result` object contains a Boolean that indicates whether the operation succeeded.
 
-```
+```csharp
 var result = client.StoreJson(StoreMode.Set, key, newBeer);
 ```
 
 Retrieving the Beer instance is also similar to retrieving a document:
 
-```
+```csharp
 var savedBeer = client.GetJson<beer><Beer>(key);</beer>
 ```
 
@@ -283,7 +283,7 @@ At this point, your **Program.cs** file should look something like the
 following example:
 
 
-```
+```csharp
 class Program
 {
     static void Main(string[] args)
@@ -312,8 +312,6 @@ class Program
 }
 ```
 
-<a id="workingwithviews"></a>
-
 ### Working with Views
 
 MapReduce views are used to create secondary indexes in Couchbase
@@ -328,7 +326,7 @@ queried by name. For example, it's now possible to ask the question "What
 beers start with A?"
 
 
-```
+```javascript
 function (doc, meta) {
   if (doc.type && doc.type == "beer" && doc.name) {
      emit(doc.name, null);
@@ -340,17 +338,13 @@ Querying a view through the .NET Client Library requires calling the `GetView`
 method and providing the name of the design document and the name of the view.
 
 
-```
+```csharp
 var view = client.GetView("beer", "by_name");
 ```
 
-The return type of `GetView` is an enumerable `IView`, where each enumerated value
-is an `IViewRow`. The actual view query isn't run until you enumerate over the
-view. For example, if you wanted to print out each of the keys that have been
-indexed, you could use the `IViewRow` instance's Info dictionary. This particular
-view emits null as the value, so that is empty when this snippet runs.
+The return type of `GetView` is an enumerable `IView`, where each enumerated value is an `IViewRow`. The actual view query isn't run until you enumerate over the view. For example, if you wanted to print out each of the keys that have been indexed, you could use the `IViewRow` instance's Info dictionary. This particular view emits null as the value, so that is empty when this snippet runs.
 
-```
+```csharp
 foreach (var row in view)
 {
     Console.WriteLine("Key: {0}, Value: {1}", row.Info["key"], row.Info["value"]);
@@ -368,20 +362,14 @@ LINQ extension methods on the `IView` does not reduce the results in the query.
 Only the `IView` fluent methods affect the query before it is run.
 
 
-```
+```csharp
 var view = client.GetView("beer", "by_name").StartKey("A").EndKey("B").Limit(50);
 ```
 
-Also included in the `IViewRow` instance, is the original ID (the key from the key-value
-pair) of the document. It is accessible by way of the `ItemId`
-property of the `IViewRow`. Taking that ID, it is possible to retrieve the original document.
-Using the JSON extension methods, it's also possible to get a Beer instance for
-each row. If it seems expensive to perform these lookups, recall that Couchbase
-Server has a memcached layer built in, and these queries are unlikely to be
-pulling data from disk. The documents are likely to be found in memory.
+Also included in the `IViewRow` instance, is the original ID (the key from the key-value pair) of the document. It is accessible by way of the `ItemId` property of the `IViewRow`. Taking that ID, it is possible to retrieve the original document. Using the JSON extension methods, it's also possible to get a Beer instance for each row. If it seems expensive to perform these lookups, recall that Couchbase Server has a memcached layer built in, and these queries are unlikely to be pulling data from disk. The documents are likely to be found in memory.
 
 
-```
+```csharp
 foreach (var row in view)
 {
     var doc = client.GetJson<Beer>(row.ItemId);
@@ -399,7 +387,7 @@ Again, in this example the value was null. Therefore, deserialization must be
 done by way of ID lookup.
 
 
-```
+```csharp
 var view = client.GetView<Beer>("beer", "by_name", true).StartKey("A").EndKey("B").Limit(50);
 
 foreach (var beer in view)
