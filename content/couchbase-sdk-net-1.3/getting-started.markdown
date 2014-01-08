@@ -22,9 +22,8 @@ here when you're done
 ## Get a Client Library
 
 It can either be [downloaded as a
-zip file](http://packages.couchbase.com/clients/net/1.2/Couchbase-Net-Client-1.2.6.zip)
+zip file](http://packages.couchbase.com/clients/net/1.3/Couchbase-Net-Client-1.3.1.zip)
 or run the following command in the NuGet Package Manger console:
-
 
 ```
 PM> Install-Package CouchbaseNetClient
