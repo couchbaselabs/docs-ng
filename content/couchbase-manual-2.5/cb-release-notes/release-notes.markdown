@@ -1,9 +1,9 @@
 
-# Release Notes
+# Couchbase Server Release Notes
 
-## Release Notes for Couchbase Server 2.5 GA
+## Release Notes for 2.5 GA
 
-## Release Notes for Couchbase Server 2.2 GA
+## Release Notes for 2.2 GA
 
 Couchbase Server 2.2 (September 2013) is our minor update release for Couchbase Server 2.0. This includes some major enhancements, new features and important bug fixes.  Also with this we have extended our platform support for Windows 2012 and provide separate packages for Ubuntu 12.04 and CentOS 6.
 
@@ -191,7 +191,7 @@ Additional enhancements in 2.2 include:
 
 <a id="couchbase-server-rn_2-1-1a"></a>
 
-## Release Notes for Couchbase Server 2.1.1 GA
+## Release Notes for 2.1.1 GA
 
 Couchbase Server 2.1.1 (July 2013) is first maintenance release for Couchbase Server 2.1.
 This release includes some major bug fixes and enhancements:
@@ -243,7 +243,7 @@ The Enterprise Edition of Couchbase Server is now available on Mac OSX. See
 
 <a id="couchbase-server-rn_2-1-0a"></a>
 
-## Release Notes for Couchbase Server 2.1.0 GA
+## Release Notes for 2.1.0 GA
 
 Couchbase Server 2.1.0 (June 2013) is the first minor release for Couchbase Server 2.0 and
 includes several optimizations, new features and important bug fixes.

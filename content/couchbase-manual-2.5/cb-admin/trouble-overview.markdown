@@ -1,4 +1,4 @@
-# Troubleshooting overview
+# Troubleshooting
 When troubleshooting your Couchbase Server deployment there are a number of
 different approaches available to you. For specific answers to individual
 problems, see [Common Errors](#couchbase-troubleshooting-common-errors).

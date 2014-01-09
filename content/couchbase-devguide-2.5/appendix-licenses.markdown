@@ -63,11 +63,12 @@ OTHERWISE INSTALL, DOWNLOAD OR USE THE SOFTWARE.
     furnished to do so, subject to Licensee including the following copyright notice
     in all copies or substantial portions of the Software:
 
-     ```
-     Couchbase ©
-     http://www.couchbase.com
-     Copyright 2011 Couchbase, Inc.
-     ```
+    ```
+    Couchbase ©  
+    http://www.couchbase.com  
+    Copyright 2014 Couchbase, Inc.  
+    ```
+
 
     As used in this Agreement, "Software" means the object code version of the
     applicable elastic data management server software provided by Couchbase, Inc.

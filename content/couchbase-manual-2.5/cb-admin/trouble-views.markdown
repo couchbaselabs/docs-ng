@@ -1,4 +1,4 @@
-# Troubleshooting Views
+## Troubleshooting Views
 
 A number of errors and problems with views are generally associated with the
 eventual consistency model of the view system. In this section, some further
@@ -10,7 +10,7 @@ what information to include in JIRA.
 
 <a id="couchbase-views-debugging-timeout"></a>
 
-## Timeout errors in query responses
+### Timeout errors in query responses
 
 When querying a view with `stale=false`, you get often timeout errors for one or
 more nodes. These nodes are nodes that did not receive the original query
@@ -147,7 +147,7 @@ seconds
 
 <a id="couchbase-views-debugging-blocking"></a>
 
-## Blocked indexers, no progress for long periods of time
+### Blocked indexers, no progress for long periods of time
 
 Each design document maps to one indexer, so when the indexer runs it updates
 all views defined in the corresponding design document. Indexing takes resources
@@ -323,7 +323,7 @@ with type `indexer`.
 
 <a id="couchbase-views-debugging-missing"></a>
 
-## Data missing in query response or it's wrong (user issue)
+### Data missing in query response or it's wrong (user issue)
 
 For example, you defined a view with a `_stats` reduce function. You query your
 view, and keep getting empty results all the time, for example:
@@ -409,7 +409,7 @@ numbers
 
 <a id="couchbase-views-debugging-wrongdocs"></a>
 
-## Wrong documents or rows when querying with include_docs=true
+### Wrong documents or rows when querying with include_docs=true
 
 Imagine you have the following design document:
 
@@ -557,14 +557,14 @@ still happen, resulting in the same behavior as in the given example.
 
 <a id="couchbase-views-debugging-expired"></a>
 
-## Expired documents still have their associated Key-Value pairs returned in queries with stale=false
+### Expired documents still have their associated Key-Value pairs returned in queries with stale=false
 
 See
 [http://www.couchbase.com/issues/browse/MB-6219](http://www.couchbase.com/issues/browse/MB-6219)
 
 <a id="couchbase-views-debugging-datamissing"></a>
 
-## Data missing in query response or it's wrong (potentially due to server issues)
+### Data missing in query response or it's wrong (potentially due to server issues)
 
 Sometimes, especially between releases for development builds, it's possible
 results are missing due to issues in some component of Couchbase Server. This
@@ -1303,7 +1303,7 @@ In this case Tommie was able to identify that the problem was in ep-engine.
 
 <a id="couchbase-views-debugging-indexfs"></a>
 
-## Index filesystem structure and meaning
+### Index filesystem structure and meaning
 
 All index files live within a subdirectory of the data directory named
 `@indexes`. Within this subdirectory, there's a subdirectory for each bucket
@@ -1388,7 +1388,7 @@ tmp_fd2bdf6191e61af6e801e3137e2f1102_main
 
 <a id="couchbase-views-debugging-aliases"></a>
 
-## Design document aliases
+### Design document aliases
 
 When 2 or more design documents have exactly the same map and reduce functions
 (but different IDs of course), they get the same signature (see [Index
@@ -1529,7 +1529,7 @@ you'll see one single indexer task, which lists both design documents in the
 
 <a id="couchbase-views-debugging-singlenode"></a>
 
-## Getting query results from a single node
+### Getting query results from a single node
 
 There's a special URI which allows to get index results only from the targeted
 node. It is used only for development and debugging, not meant to be public.
@@ -1559,7 +1559,7 @@ Here follows an example where we query 2 different nodes from a 4 nodes cluster.
 
 <a id="couchbase-views-debugging-replicaindex"></a>
 
-## Verifying replica index and querying it (debug/testing)
+### Verifying replica index and querying it (debug/testing)
 
 It's not easy to test/verify from the outside that the replica index is working.
 Remember, replica index is optional, and it's just an optimization for faster
@@ -1646,7 +1646,7 @@ issues)](#couchbase-views-debugging-datamissing).
 
 <a id="couchbase-views-debugging-totalrows"></a>
 
-## Expected cases for total_rows with a too high value
+### Expected cases for total_rows with a too high value
 
 In some scenarios, it's expected to see queries returning a `total_rows` field
 with a value higher than the maximum rows they can return (map view queries
@@ -1699,7 +1699,7 @@ mentioned above. In steady state all of the above fields are empty lists.
 
 <a id="couchbase-views-debugging-btreestats"></a>
 
-## Getting view btree stats for performance and longevity analysis
+### Getting view btree stats for performance and longevity analysis
 
 As of 2.0 build 1667, there is a special (non-public) URI to get statistics for
 all the btrees of an index (design document). These statistics are developer
@@ -1782,7 +1782,7 @@ the statistics).
 
 <a id="couchbase-views-debugging-debugstale"></a>
 
-## Debugging stale=false queries for missing/unexpected data
+### Debugging stale=false queries for missing/unexpected data
 
 The query parameter `debug=true` can be used to debug queries with `stale=false`
 that are not returning all expected data or return unexpected data. This is
@@ -2086,7 +2086,7 @@ otherwise the `stale=false` implementation is broken.
 
 <a id="couchbase-views-debugging-reportingissues"></a>
 
-## What to include in good issue reports (JIRA)
+### What to include in good issue reports (JIRA)
 
 When reporting issues to Couchbase (using
 [couchbase.com/issues](http://www.couchbase.com/issues) ), you should always add
@@ -2177,8 +2177,8 @@ them into human readable form, including date and time. Note that the
 `_active_tasks` or every node in the cluster to verify if progress is stuck,
 etc.
 
-## Beam.smp uses excessive memory
+### Beam.smp uses excessive memory
 On Linux, if XDCR Max Replications per Bucket are set to a value in the higher limit (such as 128), then beam.sm uses excessive memory. Solution: Reset to 32 or lower.
 
 
-<a id="couchbase-server-rn"></a>
+

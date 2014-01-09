@@ -29,7 +29,7 @@ Views](#indexing-querying-data).
 
 Want to learn more about moving from relational to document-oriented databases?
 See the Couchbase whitepaper here [Relational to
-NoSQL](http://info.couchbase.com/Relational-to-NoSQL.html )
+NoSQL](http://info.couchbase.com/Relational-to-NoSQL.html)
 
 In a relational database system you must define a *schema* before adding records
 to a database. The schema is the structure described in a formal language

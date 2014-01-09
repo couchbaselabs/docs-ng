@@ -1,4 +1,6 @@
-# Administration Basics
+<a id="couchbase-admin-basics"></a>
+
+# Administration basics
 
 This chapter covers everything on the Administration of a Couchbase Sever
 cluster. Administration is supported through three primary methods:
@@ -9,7 +11,7 @@ cluster. Administration is supported through three primary methods:
    provides access to the administration and statistic information for your
    cluster.
 
-   For more information, read [Using the Web
+   For more information, see [Using the Web
    Console](#couchbase-admin-web-console).
 
  * **Command-line Toolkit**
@@ -26,12 +28,33 @@ cluster. Administration is supported through three primary methods:
    communicating over HTTP to administer and monitor a Couchbase cluster.
 
    For more information, read [Using the REST API](#couchbase-admin-restapi).
+   
+
+
+ * **Best Practices**
+ 
+    For information on deploying and building your Couchbase Server cluster, see
+   [Best Practices](#couchbase-bestpractice) and in particular, [Deployment Strategies](#couchbase-deployment).
+
+
+If you already have an application that uses the Memcached protocol then you can 
+start using your Couchbase Server immediately. If so, you can simply point your 
+application to this server like you would any other memcached server. No code 
+changes or special libraries are needed, and the application will behave exactly 
+as it would against a standard memcached server. Without the client knowing 
+anything about it, the data is being replicated, persisted, and the cluster can 
+be expanded or contracted completely transparently.
+
+If you do not already have an application, then you should investigate one of 
+the available Couchbase client libraries to connect to your server and start 
+storing and retrieving information. For more information, see [Couchbase 
+SDKs](http://www.couchbase.com/develop).
 
 <a id="couchbase-data-files"></a>
 
 ## Couchbase Data Files
 
-By default, Couchbase Server will store the data files under the following
+By default, Couchbase Server stores data files under the following
 paths:
 
 Platform | Directory                                                       
@@ -255,4 +278,4 @@ The individual menu options perform the following actions:
    close the menu bar interface. To restart, you must open the Couchbase Server
    application from the installation folder.
 
-<a id="couchbase-bestpractice"></a>
+

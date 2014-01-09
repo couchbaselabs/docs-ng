@@ -30,7 +30,10 @@ cluster is the cluster from which you want to copy data; a destination cluster
 is the cluster where you want the replica data to be stored. To get information
 about a destination cluster:
 
-    curl -u admin:password http://localhost:8091/pools/default/remoteClusters
+```
+curl -u admin:password 
+	http://localhost:8091/pools/default/remoteClusters
+```
 
 Replace the *admin*, *password*, and *localhost* values in the above example
 with your actual values.
@@ -46,7 +49,7 @@ Host: 10.4.2.4:8091
 Accept: */*
 ```
 
-If successful, Couchbase Server will respond with a JSON response similar to the
+If successful, Couchbase Server responds with a JSON response similar to the
 following:
 
 ```
@@ -216,7 +219,7 @@ Content-Length: 126
 Content-Type: application/x-www-form-urlencoded
 ```
 
-If Couchbase Server successfully create the replication, it will immediately
+If Couchbase Server successfully creates the replication, it will immediately
 begin replicating data from the source to destination cluster. You will get a
 response similar to the following JSON:
 
@@ -355,7 +358,8 @@ already have it. For instructions, see [Getting a Destination Cluster
 Reference](#couchbase-admin-restapi-xdcr-destination). The endpoints are as
 follows:
 
-```
+<pre><code class="java">
+
 http://hostname:port/pools/default/buckets/[bucket_name]/stats/[destination_endpoint]
 
 # where a possible [destination endpoint] includes:
@@ -412,23 +416,23 @@ replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_wt
 
 # bytes replicated per second
 replications/[UUID]/[source_bucket]/[destination_bucket]/rate_replication
-
 # number of docs sent optimistically 
 replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
-
-```
+</code></pre>
 
 You need to provide properly URL-encoded
 `/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]`. To get the number of
 documents written:
 
-    curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
+```
+curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
+```
 
 Replace the *admin*, *password*, *localhost*,
 *8ba6870d88cd72b3f1db113fc8aee675*, *source_bucket*, and *destination_bucket*
 values in the above example with your actual values.
 
-The above command will produce this output:
+The above command produces the following output:
 
 ```
 {"samplesCount":60,"isPersistent":true,"lastTStamp":1371685106753,"interval":1000,
@@ -491,10 +495,12 @@ This will result in output as follows:
 
 With this replication id you can get a sampling of stats for `docs_opt_repd`:
 
+```
 http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
 replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destination%2fdocs_opt_repd 
+```
 
-This will result in output similar to the following:
+This results in output similar to the following:
 
         { 
            "samplesCount":60, 
@@ -514,7 +520,7 @@ request on your destination cluster at the following endpoint:
 http://[Destination_IP]:8091/pools/default/buckets/[bucket_name]/stats
 ```
 
-This will return results for all stats as follows. Within the JSON you find an
+This returns results for all stats as follows. Within the JSON you find an
 array `xdc_ops` and the value for this attribute will be the last sampling of
 write operations on the destination due to XDCR:
 
@@ -527,7 +533,7 @@ write operations on the destination due to XDCR:
 }
 ```
 
-Finally be aware that we expose many of these statistics in Couchbase Web
+Many of these statistics are exposed in the Couchbase Web
 Console. For more information, see [Monitoring Outgoing
 XDCR](#couchbase-admin-web-console-data-buckets-xdcr).
 

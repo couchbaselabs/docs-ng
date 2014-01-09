@@ -18,12 +18,10 @@ To verify your installation works for clients, you can use either the
 `cbworkloadgen` command, or `telnet`. The `cbworkloadgen` command uses the
 Python Client SDK to communicate with the cluster, checking both the cluster
 administration port and data update ports. For more information, see [Testing
-Couchbase Server using
-cbworkloadgen](#couchbase-getting-started-testing-cbworkloadgen).
+with cbworkloadgen](#couchbase-getting-started-testing-cbworkloadgen).
 
 Using `telnet` only checks the Memcached compatibility ports and the memcached
-text-only protocol. For more information, see [Testing Couchbase Server using
-Telnet](#couchbase-getting-started-testing-telnet).
+text-only protocol. For more information, see [Testing with Telnet](#couchbase-getting-started-testing-telnet).
 
 <a id="couchbase-getting-started-testing-cbworkloadgen"></a>
 
@@ -129,3 +127,4 @@ Connection closed by foreign host.
 ```
 
 All of the Memcached protocols commands will work through Telnet.
+

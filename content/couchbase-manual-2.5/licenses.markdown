@@ -66,7 +66,7 @@ OTHERWISE INSTALL, DOWNLOAD OR USE THE SOFTWARE.
      ```
      Couchbase ©
      http://www.couchbase.com
-     Copyright 2011 Couchbase, Inc.
+     Copyright 2014 Couchbase, Inc.
      ```
 
     As used in this Agreement, "Software" means the object code version of the

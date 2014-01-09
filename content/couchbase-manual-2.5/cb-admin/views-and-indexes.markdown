@@ -1,4 +1,6 @@
-# Views and Indexes
+<a id="couchbase-views"></a>
+
+# Using views and indexes
 
 Views within Couchbase Server process the information stored in your Couchbase
 Server database, allowing you to index and query your data. A view creates an

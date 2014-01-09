@@ -32,11 +32,9 @@ This section is not an exhaustive description of views and managing views with
 Couchbase Server; it is merely a summary of basic concepts and SDK-based
 examples to start using views with Couchbase SDKs. For more detailed information
 about views, managing views, and handling views using Couchbase Web Console, see
-[Couchbase Server Manual: Views and
-Indexes](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views.html).
-To see examples and patterns you can use for views, see [Couchbase Views, Sample
-Patterns](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-sample-patterns.html
-)
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
+To see examples and patterns you can use for views, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/))
 
 <a id="understanding-views"></a>
 
@@ -112,8 +110,8 @@ is currently stored. For more information about this topic, see [Building an
 Index](#building-index)
 
 For more detailed information about views, including how and when Couchbase
-Server creates an index based on views, see [Couchbase Server Manual,
-Views](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-basics.html).
+Server creates an index based on views, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="filter-extract-data"></a>
 
@@ -194,15 +192,13 @@ as the parameter for document values, such as the title and blog text. Our
 function first looks at the metadata to determine if it is a JSON document by
 doing a `if..else`. If the document is JSON, the map function extracts the blog
 title and the date/time for the blog entry. For more information about how
-meta-data is stored and handled in JSON documents, see [Couchbase Server 2.1.0
-Manual,
-Metadata](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-datastore-fields.html).
+meta-data is stored and handled in JSON documents, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 If the document is binary data, you would need to provide some code to handle
 it, but typically if you are going to query an index data, you would do so on
 JSON documents. For more information about using views with binary data, see
-[Couchbase Server 2.1.0 Manual, Views on Non-JSON
-data](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-nonjson.html).
+the [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/)
 
 The `emit()` function takes two arguments: the first one is `key`, and the
 second one is `value`. The `emit()` creates an entry, or row, in our result set.
@@ -283,8 +279,7 @@ changed.
 When you query this view, Couchbase Server will send the list of all documents
 as JSON. It will contain the key, value and the document id, plus some
 additional metadata. For more information about JSON document metadata in
-Couchbase, see [Couchbase Server Manual 2.1.0, Document
-Metadata](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-datastore-fields.html)
+Couchbase, see the [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="building-index"></a>
 
@@ -317,11 +312,15 @@ index may take several hours over a large database, and you will want a fairly
 complete index to already be available as soon as you put the view into
 production.
 
-When Couchbase Server creates an index based on a view, it will sort results
-based on the keys. The server will put keys in order based on factors such as 1)
-alphabetical order, 2) numeric order, and 3) object type or value. For
-information about the sort order of indexes, see [Couchbase Server 2.1.0 Manual,
-Ordering](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-querying-ordering.html).
+When Couchbase Server creates an index based on a view, it sorts results
+based on the keys. The server puts keys in order based on factors such as: 
+
+*  alphabetical order
+* numeric order
+* object type or value. 
+
+Forinformation about the sort order of indexes, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 The real-time nature of Couchbase Server means that an index can become outdated
 fairly quickly when new entries and updates occur. Couchbase Server generates
@@ -344,13 +343,12 @@ In this case, we query a view named `recent_posts` in a design document named
 indicate that Couchbase Server can return the most current index as it exists.
 For more detailed information about the `stale` parameter, consult the Language
 Reference for your SDK. For general information and underlying server operations
-for the `stale` parameter see [Couchbase Server Manual 2.1.0, Index Updates and
-the Stale
-Parameter](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-stale.html).
+for the `stale` parameter see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 For more information and details on how and when Couchbase Server generates an
-index and updates an index, see [Couchbase Server 2.1.0 Manual, View
-Operation](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-operation.html).
+index and updates an index, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="performing-range-lookup"></a>
 
@@ -513,9 +511,8 @@ KeyValue
 Couchbase Server sorts results in ascending or descending order based on the
 value of the key; for instance if you sort in ascending order, keys starting
 with 'a' will be in a higher position than those starting with 'c'. For more
-information about sorting rules and values in Couchbase Server, see [Couchbase
-Server 2.1.0 Manual,
-Ordering](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-querying-ordering.html)
+information about sorting rules and values in Couchbase Server, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="handling-result-sets"></a>
 
@@ -691,9 +688,8 @@ appear in JSON as follows:
 
 For more information about built-in reduce functions, consult the Language
 Reference for your chosen SDK at [Develop with
-Couchbase](http://www.couchbase.com/develop) and [Couchbase Server 2.1.0 Manual,
-Reduce
-Functions](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-reduce.html#couchbase-views-writing-reduce-count).
+Couchbase](http://www.couchbase.com/develop) and the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="using-compound-keys-group-by"></a>
 
@@ -784,9 +780,8 @@ see the individual Language Reference for your SDK at [Develop with
 Couchbase](http://www.couchbase.com/develop).
 
 A common question from developers is how to extract items based on date or time
-using views. For more information and examples, see [Couchbase Views, Date and
-Time
-Selection](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-sample-patterns-timestamp.html).
+using views. For more information and examples, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="creating-views-from-sdk"></a>
 
@@ -796,11 +791,10 @@ When you develop a new application using views, you sometimes need to create a
 view dynamically from your code. For example you may need this when you install
 your application, when you write a test, or when you are building a framework
 and want to create views and query data from the framework. This sections
-describes you how to do it. Make sure you have installed the [beer
-sample](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-sampledata-beer.html)
-dataset which comes as an option when you install Couchbase Server. For more
-information about the Couchbase Server install, see [Couchbase Server Manual,
-Installing](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-install.html).
+describes you how to do it. Make sure you have installed the beer
+sample dataset which comes as an option when you install Couchbase Server. For more
+information about Couchbase Server installation, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-install/)
 
 For more information about using views from the Java SDK, see [Tug's
 Blog](http://tugdualgrall.blogspot.de/2012).
@@ -916,9 +910,9 @@ system property 'viewmode' to 'development' to put the view into production
 mode. Then we query our view and limit the number of documents returned to 20
 items. Finally when we query our view we set the `stale` parameter to FALSE to
 indicate we want to reindex and include any new or updated beers in Couchbase.
-For more information about the `stale` parameter and index updates, see [Index
-Updates and the Stale
-Parameter](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-stale.html).
+For more information about the `stale` parameter and index updates, see Index
+Updates and the Stale Parameter in the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#couchbase-views-writing-stale).
 
 The last part of this code sample is a loop we use to iterate through each item
 in the result set. You can provide any code for handling or outputting
@@ -926,16 +920,7 @@ individual results here.
 
 For more information about developing views in general, the follow resources
 describe best practices, and how indexing works on the server, along with other
-topics:
-
- * [View Writing Best
-   Practice](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-bestpractice.html).
-
- * [Views and Stored
-   Data](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-datastore.html).
-
- * [Development and Production
-   Views](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-types.html).
+topics see the [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/).
 
 <a id="creating-custom-reduces"></a>
 
@@ -952,8 +937,8 @@ conjunction with a built-in reduce. This section demonstrates the use of custom
 reduce functions.
 
 For more information about the sample application described in this section, as
-well as the custom reduce function used in it, see [Visualizing Reddit Data with
-Couchbase 2.1.0](http://crate.im/posts/couchbase-views-reddit-data/)
+well as the custom reduce function used in it, see 
+[Creating a Couchbase view from Reddit](http://crate.im/posts/couchbase-views-reddit-data/).
 
 The goal of our application is to show the frequency of Reddit posts that occur
 over the course of a day. To do this we aggregate information from Reddit, the
@@ -1132,9 +1117,7 @@ can be plotted to the corresponding hour in a day and color-coded:
 
 To create a graph from the JSON result set, we use open source data
 visualization code available from [Data-Driven Documents](http://d3js.org). The
-graph is created using HTML and JQuery. For more information about the graphing,
-or about the sample application, see [Visualizing Reddit
-Data](http://crate.im/posts/visualizing-reddit-data/).
+graph is created using HTML and JQuery.
 
 <a id="understanding-custom-reduce"></a>
 
@@ -1243,8 +1226,8 @@ get a count of all items in a result set, not the count of the reduced set.
 Nonetheless you should keep this behavior in mind if you perform a custom reduce
 which assumes the calculations are performed on the initial result set. If you
 want to find more information about the re-reduce, and other forms of custom
-reduces, see
-[](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-reduce.html)
+reduces, see the
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/).
 
 <a id="error-handing-for-views"></a>
 
@@ -1253,7 +1236,7 @@ reduces, see
 When you query a view, Couchbase Server might return errors when it is
 generating a result set. For instance, the server may only be able to retrieve
 results from two of three server nodes in response to a view query. Couchbase
-Server will include any successfully created results as a JSON object; any
+Server includes any successfully created results as a JSON object; any
 errors that the server encountered are a part of the JSON object. Couchbase SDKs
 include helper methods you can use to handle any detected errors. For instance
 in the Ruby SDK:
@@ -1279,14 +1262,19 @@ are streaming from Couchbase Server in response to the view query. Within the
 `on_error` loop we can do something useful with each error object; in this case
 we log the content from the error object to standard output.
 
-Note that any error objects in a result set will appear at the end of the
-response object. Therefore you may receive several objects in the result set
-that are successfully retrieved results. After any retrieved results you will
-find error objects.
 
-If you are using the REST API or Couchbase Admin Console to query views, you can
-read more about the functional equivalent of the `on_error` method and what
-conditions will cause errors here: [Couchbase Server 2.1.0 Manual, Views, Error
-Control](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-writing-querying-errorcontrol.html).
+<div class="notebox">
+<p>Note></p>
+<p>
+Error objects in a result set appear at the end of the response object. 
+Therefore, the result set may have several objects that are successfully retrieved results. 
+The error objects occur after the retrieved results.
+</p>
+</div>
+
+If you are using the REST API or Couchbase Admin Console to query views, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#couchbase-views-writing-querying-errorcontrol) 
+for more information about the functional equivalent of the `on_error` method and what
+conditions causes errors.
 
 <a id="developing-clients"></a>

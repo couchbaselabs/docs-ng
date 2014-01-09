@@ -448,12 +448,14 @@ To fulfill these requirements, we can use these techniques:
    tickets can be offered once again. If there are failures when a ticket is in an
    intermediate state, the system can compensate.
 
-Note that this is still an optimistic approach for handling the document
-changes; it assumes that we can retrieve the accurate transaction state from the
-document, which may not be possible if the system fails and the document has
-still not been persisted.
+<div class="notebox">
+<p>Note</p>
+<p>When handling document changes, it is assumed that an accurate transaction state 
+can be retrieved from the document, which may not be possible if the system fails 
+and the document has still not been persisted.
+</p></div>
 
-The process would look like this if follow the basic application flow:
+The following diagram shows the basic application process flow:
 
 
 ![](images/lease_out_pattern1.png)
@@ -1319,18 +1321,22 @@ do two requests. The following is a summary of recommended alternative calls:
    append or prepend; this is particular so if you are performing this on thousands
    or millions of documents.
 
-`Append()/Prepend()` can add raw serialized data to existing data for a key. The
+<div class="notebox tip">
+<p>Tip</p>
+<p>`Append()/Prepend()` can add raw serialized data to existing data for a key. The
 Couchbase Server treats an existing value as a binary stream and concatenates
 the new content to either beginning or end. Non-linear, hierarchical formats in
 the database will merely have the new information added at the start or end.
 There will be no logic which adds the information to a certain place in a stored
 document structure or object.
+</p>
 
-Therefore, if you have a serialized object in Couchbase Server and then append
+<p>Therefore, if you have a serialized object in Couchbase Server and then append
 or prepend, the existing content in the serialized object will not be extended.
 For instance, if you `append()` an integer to an Array stored in Couchbase, this
 will result in the record containing a serialized array, and then the serialized
 integer.
+</p></div>
 
 <a id="optimizing-client-instances"></a>
 
@@ -1377,16 +1383,13 @@ respective approaches you can use:
 
    This example uses the default bucket. Arguments include host:port, username,
    password, bucket name, and true indicates we want to use a persistent
-   connection. For more information, refer to the [Couchbase PHP SDK Language
-   Reference.](http://www.couchbase.com/docs/couchbase-sdk-php-1.1/api-reference-connection.html)
-
+   connection. 
+   
  * Java: When you create connection with the Java SDK, the connection is a
    thread-safe object that can be shared across multiple processes. The alternative
    is that you can create a connection pool which contains a multiple connection
    objects.
 
-   For more information, see [Couchbase Java SDK: Connecting to the
-   Server.](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/api-reference-connection.html)
 
  * .Net: Connections that you create with the.net SDK are also thread-safe objects;
    for persisted connections, you can use a connection pool which contains multiple
@@ -1395,9 +1398,6 @@ respective approaches you can use:
    client will maintain connection pools per server node. For more information, see
    [MSDN: AppDomain
    Class](http://msdn.microsoft.com/en-us/library/system.appdomain(v=vs.71).aspx).
-   You can also find more information about client instances and connection for
-   the.Net SDK at [.Net Connection
-   Operations](http://www.couchbase.com/docs/couchbase-sdk-net-1.2/api-reference-connection.html)
 
  * You can persist a Couchbase client storing it in a way such that the Ruby
    garbage collector does not remove from memory. To do this, you can create a
@@ -1650,10 +1650,9 @@ information that needs to be garbage-collected by a VM, which will also slow
 down your application performance.
 
 The following are some of the frequently-used timeouts that you set for a
-connection to Couchbase Server from the.Net SDK. for a full list of timeouts,
-their defaults, and their descriptions for.Net, please see [Couchbase.Net SDK,
-Configuration](http://www.couchbase.com/docs/couchbase-sdk-net-1.2/couchbase-sdk-net-configuration.html)
-:
+connection to Couchbase Server from the .Net SDK. for a full list of timeouts,
+their defaults, and their descriptions for .Net, see the 
+_Couchbase .Net SDK Developer Guide_.
 
 <a id="about-client-timeouts-net"></a>
 
@@ -1708,8 +1707,7 @@ Default, maximum number of microseconds to wait for a connection or a read/write
 This section provides general, non-SDK specific information about logging,
 backups and restores, as well as failover information. For more information,
 please refer to the Language Reference for your chosen SDK as well as the
-[Couchbase Server Manual
-2.1.0](http://www.couchbase.com/docs/couchbase-manual-2.1.0/index.html)
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5)
 
 <a id="cb-configuring-logs"></a>
 
@@ -1734,16 +1732,22 @@ Backing up your information should be a regular process you perform to help
 ensure you do not lose all your data in case of major hardware or other system
 failure.
 
+<div class="notebox">
+<p>Note</p>
+<p>
 Because you typically want to perform a backup and restore with zero system
 downtime with Couchbase Server it is impossible to create a complete in-time
 backup and snapshot of the entire cluster. In production, Couchbase Server will
 constantly receive requests and updated data; therefore it is impossible to take
 an accurate snapshot of all possible information. This would be the case for any
 other database in production mode.
+</p>
 
-Instead, you can perform full backups, and incremental backups, and merge these
+<p>Instead, you can perform full backups, and incremental backups, and merge these
 two together in order to create a time-specific backup; nonetheless your
 information may still not be 100% complete.
+</p>
+</div>
 
 For more information on backups and restores, see Couchbase Server Manual,
 "Backup and Restore with Couchbase."

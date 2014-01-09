@@ -7,7 +7,7 @@ hours, 7 days a week. Couchbase Server provides the following benefits:
 
  * **Flexible Data Model**
 
-   With Couchbase Server, you use JSON documents to represent application objects
+   With Couchbase Server, JSON documents are used to represent application objects
    and the relationships between objects. This document model is flexible enough so
    that you can change application objects without having to migrate the database
    schema, or plan for significant application downtime. Even the same type of
@@ -70,39 +70,39 @@ and developers can rapidly scale up their web applications by adding servers.
 
 Before you develop applications on the Couchbase Server, you will want to
 understand key concepts and components that are related to application
-development on Couchbase Server. This section provides an overview of concepts
-and terms you will become familiar with as you create an application. For more
-detailed information about underlying functions of Couchbase Server, data
-storage, and cluster management, please refer to the [Couchbase Server
-Manual](http://www.couchbase.com/docs/couchbase-manual-2.1.0/index.html).
+development on Couchbase Server. For more information about underlying functions of Couchbase Server, data
+storage, and cluster management, see the [Couchbase Server
+Manual](http://docs.couchbase.com/couchbase-manual-2.5).
 
 <a id="couchbase-as-doc-store"></a>
 
 ### Couchbase as Document Store
 
-The primary unit of data storage in Couchbase Server 2.1.0 is a JSON document,
+The primary unit of data storage in Couchbase Server is a JSON document,
 which is a data structure capable of holding arrays and other complex
 information. JSON documents are information-rich, flexible structures that
 enable you to model objects as individual documents. By using JSON documents to
 model your data, you can construct your application data as individual documents
 which would otherwise require rigidly-defined relational database tables. This
 provides storage for your web application which is well suited to serialized
-objects and the programming languages that use them. Notably in Couchbase Server
-2.1.0, as in previous versions of the server, you can also store binary objects,
-such as integers and strings.
+objects and the programming languages that use them. 
 
-Because you model your application objects as documents, you do not need to
-perform schema migrations. The documents you use and the fields they store will
-indicate any relationships between application objects; therefore to update the
-structure of objects you store, you merely change the document structure that
-you write to Couchbase Server.
+<div class="notebox">
+<p>Note</p>
+<p>Binary objects,
+such as integers and strings, can also be stored.</p>
+</div>
 
-When you use Couchbase Server as a store for JSON documents, you also get the
-ability to index and query your records. Couchbase Server 2.1.0 provides a
-JavaScript-based query engine you use to find records based on field values. For
+Because application objects are modeled as documents, schema migrations do not need to be performed. The documents and the fields they store
+indicate the relationships between application objects; therefore, to update the
+structure of objects you store, change the document structure that
+is written to Couchbase Server.
+
+When Couchbase Server is used as a store for JSON documents, the records can be indexed and queried. Couchbase Server provides a
+JavaScript-based query engine to find records based on field values. For
 more information, see [Finding Data with Views](#indexing-querying-data).
 
-For more information about working with JSON documents and Couchbase, see,
+For more information about working with JSON documents and Couchbase, see
 [Modeling Documents](#modeling-documents).
 
 <a id="couchbase-buckets"></a>
@@ -118,9 +118,8 @@ you will most likely create buckets for your development and production
 environment.
 
 For more information about data buckets in Couchbase Server, and how to create
-them, see [Using Data Buckets](bucket-general-function) and [Couchbase Server
-2.1.0 Manual, Data
-Buckets](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-web-console-data-buckets.html)
+them, see [Using Data Buckets](bucket-general-function) and the [Couchbase Server
+Manual](http://docs.couchbase.com/couchbase-manual-2.5).
 
 <a id="keys-documents"></a>
 
@@ -154,8 +153,9 @@ to change how the document is handled:
    Couchbase Server will delete values during regular maintenance if the ttl for an
    item has expired.
 
-   The expiration value deletes information from the entire database. It has no
-   effect on when the information is removed from the RAM caching layer.
+   <div class=notebox><p>Note</p>
+<p>The expiration value deletes information from the entire database. It has no
+   effect on when the information is removed from the RAM caching layer.</p></div>
 
  * **Flags** —These are SDK- specific flags which are used to provides a variety of
    options during storage, retrieval, update, and removal of documents. Typically
@@ -180,15 +180,15 @@ if your cluster experiences server failure, SDKs will automatically direct
 requests to still-functioning nodes. SDKs are able to determine the locations of
 information, the status of nodes, and the status of the cluster using a REST API
 for administration. For more information about the REST API for Administration,
-see [Couchbase Server 2.1.0 Manual, REST API for
-Administration](https://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-restapi.html).
+see the [Couchbase Server REST API](http://docs.couchbase.com/couchbase-manual-2.5/cb-rest-api/).
 
-The following shows a single web application server, the Couchbase SDK, and a
+The following diagram shows a single web application server, the Couchbase SDK, and a
 Couchbase Server cluster. In real deployments, multiple web application servers
 can communicate via a Couchbase SDK to a cluster.
 
-
 ![](images/CB_basic_arch.jpg)
+
+
 
 <a id="couchbase-nodes-clusters"></a>
 
@@ -238,7 +238,7 @@ If you are an application developer with a background primarily in relational
 databases, Couchbase Server has some key characteristics and advantages that you
 should be familiar with. The following compares the different database systems:
 
-**Couchbase Server**                                                                                                                                                                                                    | **Traditional Relational Database (RDBMS)**                                                                                                                      
+Couchbase Server                                                                                                                                                                                                   | Traditional Relational Database (RDBMS)                                                                                                                      
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rapidly scalable to millions of users.                                                                                                                                                                                  | Scalable to thousands of users.                                                                                                                                  
 Data can be structured, semi-structured, and unstructured.                                                                                                                                                              | Data must be normalized.                                                                                                                                         
@@ -295,8 +295,7 @@ availability of data, even during node failure.
 For more information about Couchbase Server as a replacement for memcached and
 RDBMS systems, see [Replacing a Memcached Tier with a Couchbase
 Cluster](http://info.couchbase.com/rs/northscale/images/Couchbase_WP_Dealing_with_Memcached_Challenges.pdf)
-and [Couchbase Server Manual 2.1.0, Couchbase
-APIs](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-architecture-apis.html).
+and the [Couchbase SDKs](http://docs.couchbase.com).
 
 <a id="couchbase-rebalancing"></a>
 
@@ -306,9 +305,8 @@ During a server rebalance, Couchbase Server automatically updates information
 about where data is located. During the rebalance, a Couchbase SDK can therefore
 still write to an active node in a cluster and the Couchbase Server will update
 information about the newly saved data location. Once the rebalance is complete,
-your Couchbase SDK will automatically switch to the new topology. For more
-information, see [Couchbase Server Manual 2.1.0,
-Rebalancing](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-addremove.html)
+the Couchbase SDK automatically switches to the new topology. For more
+information, see the [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/).
 
 <a id="couchbase-failover"></a>
 
@@ -316,26 +314,23 @@ Rebalancing](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admi
 
 Couchbase SDKs can connect to any node in a cluster; at runtime SDKs also
 automatically receive information from Couchbase Server if any nodes are
-unavailable. If a node that is used by your application fails, the SDK will be
+unavailable. If a node that is used by your application fails, the SDK is
 informed by Couchbase Server and mark that node as down and will also have
 information about alternate nodes that are still available. You use the
 Couchbase Admin tool to manually indicate a node has failed, or you can
 configure couchbase Server to use auto-failover. For more information, see
-[Couchbase Server 1.8
-Manual](http://www.couchbase.com/docs/couchbase-manual-2.1.0/index.html).
-
-During node failure, Couchbase SDKs will get errors trying to read or write any
+the _Couchbase Server Manual_.
+During node failure, Couchbase SDKs receive errors trying to read or write any
 data that is on a failed node. Couchbase SDKs are still able to read and write
 to all other functioning nodes in the cluster. After the node failure has been
-detected and the node has been failed-over, SDKs will be updated by the
+detected and the node has been failed-over, SDKs is updated by the
 Couchbase Server and will resume functioning with the cluster and nodes as they
 normally would. In this way, Couchbase SDKs and the applications you build on
 them are able to cope with transient node failures and still conduct reads and
 writes.
 
-For more information about node failover, see [Couchbase Server Manual 2.1.0,
-Node
-Failover](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-failover.html).
+For more information about node failover, see the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin).
 
 <a id="couchbase-usecases"></a>
 
@@ -380,7 +375,7 @@ games, where nearly every user gesture mutates game state, is serviced by
 Couchbase by asynchronously queueing mutations for disk storage and also by
 collapsing mutations into the most recently queued mutation. For example, a
 player making 10 game state mutations in 5 seconds, such as planting 10 flowers
-in 5 seconds, will be compressed by Couchbase automatically into just one queued
+in 5 seconds, is compressed by Couchbase automatically into just one queued
 disk mutation.
 
 Couchbase Server can also force-save mutated item data to disk, even if an item

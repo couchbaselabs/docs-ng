@@ -30,8 +30,7 @@ In general, your Couchbase client library implementation will be similar to a
 For instance, it may even be an extension of some existing `memcached`
 binary-protocol client library), but just supports a different key hashing
 approach. Instead of using modulus or ketama/consistent hashing, the new hashing
-approach in Couchbase is instead based around "vbuckets", which you can read up
-more about [here](http://dustin.github.com/2010/06/29/memcached-vbuckets.html)
+approach in Couchbase is instead based around "vbuckets", which you can read about [here](http://dustin.github.com/2010/06/29/memcached-vbuckets.html)
 
 In the vBucket approach, to find a server to talk to for a given key, your
 client library should hash the key string into a vBucket-Id (a 16-bit integer).
@@ -731,8 +730,7 @@ the Rebalance. A client library can use the optional fast forward map during
 NOT\_MY\_VBUCKET errors to avoid linear probing of all servers and can instead
 just jump straight to talking with the eventual vBucket owner.
 
-Please see the implementation in libvBucket that handles a fast-forward-map
-[here](http://github.com/membase/libvbucket/blob/master/tests/testapp.c#L67).
+Please see the implementation in [libvBucket](http://github.com/membase/libvbucket/blob/master/tests/testapp.c#L67) that handles a fast-forward-map.
 
 The linear probing, however, should be retained by client library
 implementations as a good fallback, just-in-case error handling codepath.
@@ -752,8 +750,7 @@ should provide an error to the user application rather than attempting to access
 items from wrong nodes (nodes that have been Failover'ed out of the cluster).
 
 The libvBucket C library has an API for comparing two configurations to support
-these kinds of comparisons. See the `vbucket_compare()` function
-[here](http://github.com/membase/libvbucket/blob/master/include/libvbucket/vbucket.h).
+these kinds of comparisons. See the [vbucket_compare() function](http://github.com/membase/libvbucket/blob/master/include/libvbucket/vbucket.h).
 
 As an advanced option, the client library should keep multiple REST/JSON streams
 open and do continual "majority vote" comparisons between streamed
@@ -1007,8 +1004,8 @@ failover and activate replicated data. For instance if you a SLA that requires
 you to get data within 30 seconds of a request or less, you may need replica
 read functionality. In this case you can use replica read at the binary protocol
 level or as it is available in Couchbase SDKs. For more information about node
-failure and failover, see [Couchbase Server Manual, Failing Over
-Nodes](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-failover.html).
+failure and failover, see Failover nodes in the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#couchbase-admin-tasks-failover).
 
 If you create your own Couchbase client, you can also create a wrapper on this
 protocol to provide replica reads.

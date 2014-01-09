@@ -162,14 +162,11 @@ navbar:
       - label: Couchbase Server 2.5
         href: /couchbase-manual-2.5/
         
-      - label:  "--  Installation Guide"
+      - label:  "--  Install and Upgrade"
         href: /couchbase-manual-2.5/cb-install/
         
       - label:  "--  Administrator Guide"
         href: /couchbase-manual-2.5/cb-admin/
-        
-      - label:  "-- Concepts"
-        href: /couchbase-manual-2.5/cb-concepts/
         
       - label:  "--  CLI Reference"
         href: /couchbase-manual-2.5/cb-cli/
@@ -177,8 +174,6 @@ navbar:
       - label:  "--  REST API Reference"
         href: /couchbase-manual-2.5/cb-rest-api/
         
-      - label:  "--  Troubleshooting"
-        href: /couchbase-manual-2.5/cb-trouble/
       - label: Couchbase 2.2
         href: /couchbase-manual-2.2/
 
@@ -190,12 +185,17 @@ navbar:
 
       - label: Couchbase 1.8
         href: /couchbase-manual-1.8/
-        
-      - label: Query Language Developer (preview)
-        href: /couchbase-query-language-0.1/
 
       - label: Moxi Guide
         href: /moxi-manual-1.8/
+        
+        
+      - label: Couchbase Release Notes
+        href: /couchbase-manual-2.5/cb-release-notes/
+                  
+      - label: Query Language Developer (preview)
+        href: /couchbase-query-language-0.1/
+
 
 
           

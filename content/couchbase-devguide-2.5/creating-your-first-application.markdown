@@ -74,11 +74,14 @@ Libraries:
 
  * C
 
-The TCP/IP port allocation on Windows by default includes a restricted number of
+<div class="notebox warning>
+<p>Warning</p>
+<p>The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
 available ports, see [MSDN: Avoiding TCP/IP Port
 Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
+</p></div>
 
 Depending upon the OS for your development platform and web application server
 platform, choose the 32- or 64- bit versions of the SDK. Download and install
@@ -112,14 +115,13 @@ the server from the client.
 
 ### Create Your First Bucket
 
-The first thing you will want to do after you set up Couchbase Server and you
-want to explore the SDKs is to create a data bucket. You can do so with the
+The first thing you will want to do after setting up Couchbase Server and 
+exploring the SDKs is to create a data bucket. You can do so with the
 Couchbase Admin Console, or you can use the REST API. For your first application
 in this chapter, we will show the REST API approach, which you may be less
 familiar with after your initial server install. For more information about
-creating named buckets via the Couchbase Admin Console, see [Couchbase Server
-Manual 2.1.0, Creating and Editing Data
-Buckets](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-web-console-data-buckets-createedit.html)
+creating named buckets via the Couchbase Admin Console, see the [Couchbase Server
+Manual](http://docs.couchbase.come/couchbase-manual-2.5/cb-admin/).
 
 You create either a Couchbase or memcached bucket using the REST API. When you
 make a request, you provide a REST request using a REST client or a UNIX utility
@@ -172,9 +174,8 @@ such as curl.
 
 After you create your first data bucket, you can begin interacting with that
 bucket using a Couchbase SDK. To learn more about the Couchbase REST API,
-particularly for administrative functions, see [Couchbase Server Manual, REST
-API for
-Administration](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-restapi.html)
+particularly for administrative functions, see the [Couchbase Server
+Manual REST API](http://docs.couchbase.come/couchbase-manual-2.5/cb-rest-api/)
 
 <a id="couchbase-client-connecting"></a>
 
@@ -237,6 +238,9 @@ The code block attempts to set the value "Hello World!" for the key "spoon" with
 an expiration of 10 seconds. Then gets the value for the "spoon" key and outputs
 it. If the Couchbase client receives and error, it outputs "There is no spoon."
 
+<div class="notebox tip">
+<p>Tip</p>
+<p>
 (Optional) Depending on the language you are using, you may need to be
 responsible for explicitly destroying the Couchbase client object, and thereby
 destroying the connection. Typically it is a best practice to try to reuse the
@@ -246,6 +250,7 @@ performance and reduce processing times. For more information about client
 instance reuse and connection pooling, see [Optimizing Client
 Instances](optimizing-client-instances) and [Maintaining Persistent
 Connections](cb-persistent-connections).
+</p></div>
 
 The next example in Java we demonstrate how it is safest to create at least two
 possible node URIs while creating an initial connection with the server. This
@@ -562,10 +567,9 @@ Couchbase Server responds with the following results as JSON:
 This section is intended as a brief introduction to querying and indexing JSON
 documents with Couchbase SDKs. There is definitely much more to learn about the
 topic. For more detailed information about the topic, see [Finding Data with
-Views](#indexing-querying-data) for using views with the SDKs, and [Couchbase
-Server Manual, Views and
-Indexes](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views.html)
-for understanding indexing and querying in general with Couchbase Server 2.1.0.
+Views](#indexing-querying-data) for using views with the SDKs, and the [Couchbase Server
+Manual](http://docs.couchbase.come/couchbase-manual-2.5/cb-admin/) 
+for understanding indexing and querying in general with Couchbase Server.
 
 <a id="cb-basic-telnet-ops"></a>
 
@@ -578,7 +582,7 @@ if your SDK-level operations are actually working. When you telnet to Couchbase
 Server, you can perform retrieves and writes for a specific key.
 
 To connect Couchbase Server via telnet, provide the host and port where it is
-located. The default bucket created on the Couchbase Server will be on port
+located. The default bucket created on the Couchbase Server is on port
 11211 for purposes of telnet. This does not require any authentication:
 
 
@@ -718,8 +722,6 @@ cas record1 0 0 3 10
 ```
 
 For more information about using telnet with the Couchbase Server, especially
-for server statistics and performance, see [Couchbase Server 2.1.0 Manual,
-Testing Couchbase Server using
-Telnet](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-getting-started-testing-telnet.html)
-
+for server statistics and performance, see the 
+[Couchbase Server Manual, Testing Couchbase Server](http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#testing-couchbase-server).
 <a id="storing-data"></a>

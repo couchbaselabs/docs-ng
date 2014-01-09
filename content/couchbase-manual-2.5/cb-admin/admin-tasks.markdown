@@ -1,4 +1,4 @@
-# Administration Tasks
+# Administration tasks
 
 For general running and configuration, Couchbase Server is self-managing. The
 management infrastructure and components of the Couchbase Server system are able
@@ -76,7 +76,7 @@ These administration tasks include:
 
 <a id="couchbase-admin-tasks-read-only"></a>
 
-##Read-Only Users
+##Read-Only users
 
 As of Couchbase Server 2.2+ you can create one non-administrative user who has read-only access in the Web Console and the REST API. A read-only user cannot create buckets, edit buckets, add nodes to clusters, change XDCR settings, create views or see any stored data. Any REST API calls which require an administrator will fail and return an error for this user. In the Web Console a read-only user will be able to view:
 
@@ -112,7 +112,7 @@ For more information about Web Console or REST API, see [Using the Web Console](
            
 <a id="couchbase-admin-tasks-mrw"></a>
 
-## Using Multi- Readers and Writers
+## Using Multi-readers and writers
 
 Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each bucket instance
@@ -322,7 +322,7 @@ Server 2.1](#couchbase-getting-started-upgrade).
 
 <a id="couchbase-admin-tasks-warmup-access"></a>
 
-## Handling Server Warmup
+## Handling server warmup
 
 Couchbase Server 2.0+ provides improved performance for *server warmup* ; this
 is the process a restarted server must undergo before it can serve data. During
@@ -424,7 +424,7 @@ chosen Couchbase SDK.
 
 <a id="couchbase-admin-tasks-cbstats-warmup"></a>
 
-### Getting Warmup Information
+### Getting warmup information
 
 You can use `cbstats` to get information about server warmup, including the
 status of warmup and whether warmup is enabled. The following are two alternates
@@ -464,7 +464,7 @@ Information](#couchbase-admin-cmdline-cbstats-warmup).
 
 <a id="couchbase-admin-warmup-threshold"></a>
 
-### Changing the Warmup Threshold
+### Changing the warmup threshold
 
 To modify warmup behavior by changing the setting for
 `ep_warmup_min_items_threshold` use the command-line tool provided with your
@@ -477,7 +477,7 @@ cache-miss errors.
 
 <a id="couchbase-admin-tasks-access-scanner"></a>
 
-### Changing Access Scanner Settings
+### Changing access scanner settings
 
 The server runs a periodic scanner process which will determine which keys are
 most frequently-used, and therefore, which documents should be loaded first
@@ -531,7 +531,7 @@ Tool](#couchbase-admin-cmdline-cbepctl).
 
 <a id="couchbase-admin-tasks-intercluster-replication"></a>
 
-## Handling Replication within a Cluster
+## Handling replication within a cluster
 
 Within a Couchbase cluster, you have *replica data* which is a copy of an item
 at another node. After you write an item to Couchbase Server, it makes a copy of
@@ -586,7 +586,7 @@ Nodes](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-admin-creating-replicas-for-buckets"></a>
 
-### Providing Data Replication
+### Providing data replication
 
 You can configure data replication for each bucket in cluster. You can also
 configure different buckets to have different levels of data replication,
@@ -609,7 +609,7 @@ Buckets](#couchbase-admin-web-console-data-buckets-createedit).
 
 <a id="couchbase-admin-tasks-replica-backoff"></a>
 
-### Specifying Backoff for Replication
+### Specifying backoff for replication
 
 Your cluster is set up to perform some level of data replication between nodes
 within the cluster for any given node. Every node will have both *active data*
@@ -675,7 +675,7 @@ Queues](#couchbase-admin-web-console-data-buckets-tapqueues).
 
 <a id="couchbase-admin-tasks-working-set-mgmt"></a>
 
-## Ejection and Working Set Management
+## Ejection and working set management
 
 Couchbase Server actively manages the data stored in a caching layer; this
 includes the information which is frequently accessed by clients and which needs
@@ -801,7 +801,7 @@ Ejection](#couchbase-admin-cbepctl-ejection).
 
 <a id="couchbase-admin-tasks-compaction"></a>
 
-## Database and View Compaction
+## Database and view compaction
 
 The data files in which information is stored in a persistent state for a
 Couchbase Bucket are written to and updated as information is appended, updated
@@ -818,7 +818,7 @@ reclaim disk space and reduce fragmentation.
 
 <a id="couchbase-admin-tasks-compaction-process"></a>
 
-### Compaction Process
+### Compaction process
 
 **How it works**
 
@@ -1022,7 +1022,7 @@ and change these settings using the REST API, see [Using REST, Setting Auto-Comp
 
 <a id="couchbase-admin-tasks-compaction-strategies"></a>
 
-### Auto-compaction Strategies
+### Auto-compaction strategies
 
 The exact fragmentation and scheduling settings for auto-compaction should be
 chosen carefully to ensure that your database performance and compaction
@@ -1059,7 +1059,7 @@ You want to consider the following:
 
 <a id="couchbase-admin-tasks-failover"></a>
 
-## Failover Nodes
+## Failover nodes
 
 If a node in a cluster is unable to serve data you can *failover* that node.
 Failover means that Couchbase Server removes the node from a cluster and makes
@@ -1134,7 +1134,7 @@ For more information about performing failover see the following resources:
 
 <a id="couchbase-admin-tasks-failover-choosing"></a>
 
-### Choosing a Failover Solution
+### Choosing a failover solution
 
 Because node failover has the potential to reduce the performance of your
 cluster, you should consider how best to handle a failover situation. Using
@@ -1155,7 +1155,7 @@ more detail.
 
 <a id="couchbase-admin-tasks-failover-automatic-considerations"></a>
 
-### Automated Failover Considerations
+### Automated failover considerations
 
 Automatically failing components in any distributed system can cause problems.
 If you cannot identify the cause of failure, and you do not understand the load
@@ -1216,7 +1216,7 @@ lead to problems include:
 
 <a id="couchbase-admin-tasks-failover-monitored"></a>
 
-### Manual or Monitored Failover
+### Manual or monitored failover
 
 Performing manual failover through monitoring can take two forms, either by
 human monitoring or by using a system external to the Couchbase Server cluster.
@@ -1255,7 +1255,7 @@ failover is not without potential problems.
 
 <a id="couchbase-admin-tasks-failover-automatic"></a>
 
-### Using Automatic Failover
+### Using automatic failover
 
 There are a number of restrictions on automatic failover in Couchbase Server.
 This is to help prevent some issues that can occur when you use automatic
@@ -1326,7 +1326,7 @@ Auto-Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admi
 
 <a id="couchbase-admin-tasks-failover-manual"></a>
 
-### Initiating a Node Failover
+### Initiating a node failover
 
 If you need to remove a node from the cluster due to hardware or system failure,
 you need to indicate the failover status for that node. This causes Couchbase
@@ -1376,7 +1376,7 @@ Situation](#couchbase-admin-tasks-failover-handling).
 
 <a id="couchbase-admin-tasks-failover-handling"></a>
 
-### Handling a Failover Situation
+### Handling a failover situation
 
 Any time that you automatically or manually failover a node, the cluster
 capacity will be reduced. Once a node is failed over:
@@ -1434,7 +1434,7 @@ For more information on adding a node to the cluster and rebalancing, see
 
 <a id="couchbase-admin-tasks-remote-recovery"></a>
 
-## Data Recovery from Remote Clusters
+## Data recovery from remote clusters
 
 If more nodes fail in a cluster than the number of replicas, data partitions in
 that cluster will no longer be available. For instance, if you have a four node

@@ -35,9 +35,7 @@ application developer, such as creating a new data bucket, and setting
 authentication for the bucket. With the REST API, you can also gather statistics
 from a cluster, define and make changes to buckets, and add or remove new nodes
 to the cluster. For more information about helpful bucket-level operations you
-will can use as you develop an application in [Couchbase Server Manual 2.1.0,
-REST API for
-Administration](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-restapi.html).
+will can use as you develop an application in [Couchbase Server Manual](docs.couchbase.com/couchbase-manual-2.5) REST API.
 
 <a id="couchbase-vs-sql"></a>
 
@@ -82,7 +80,7 @@ Couchbase](http://www.couchbase.com/develop).
 
 Note: If you use the text-based memcache protocol to communicate with Couchbase
 Server, you will need to use moxi as a message proxy. For more information, see
-[Moxi Manual 1.8](http://www.couchbase.com/docs/moxi-manual-1.8/index.html).
+[Moxi Manual 1.8](http://docs.couchbase.com/moxi-manual-1.8/).
 
  * **Store Operations**
 
@@ -221,17 +219,18 @@ are guidelines on handling expiration with views:
    In this case, you may want to run the expiry pager process more frequently to
    ensure that items that have expired are not included in calculations used in the
    reduce function. We recommend an interval of 10 minutes for the expiry pager on
-   each node of a cluster. Do note that this interval will have some slight impact
-   on node performance as it will be performing cleanup more frequently on the
+   each node of a cluster. Note that this interval has a slight impact
+   on node performance as it performs cleanup more frequently on the
    node.
 
-For more information about setting intervals for the maintenance process, refer
-to the Couchbase Manual command line tool, [Couchbase Server Manual 2.1.0
-Specifying Disk Cleanup
-Interval](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-cbepctl-disk-cleanup.html)
-and refer to the examples on `exp_pager_stime`. For more information about views
+For more information about setting intervals for the maintenance process, see 
+the [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/cb-cli/) 
+command line tool, `cbepctl` associated with specifying disk cleanup
+intervals and refer to the examples on `exp_pager_stime`. For more information about views
 and view query parameters, see [Finding Data with
-Views](http://www.couchbase.com/docs/couchbase-devguide-2.1.0/indexing-querying-data.html).
+Views](#indexing-querying-data).
+
+
 
 <a id="about-asynchronous-operations"></a>
 
@@ -329,8 +328,9 @@ them to create more space in RAM. One hundred million keys which are 70 Bytes
 each plus meta data at 54 Bytes each will require about 11.2 GB of RAM for a
 cluster. This figure does not include caching any values or replica copies of
 data, if you consider these factors, you would need over 23 GB. For more
-information, see [Couchbase Manual, Sizing
-Guidelines](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-bestpractice-sizing.html).
+information, see Sizing Guidelines in the 
+[Couchbase Server Manual](http://docs.couchbase/couchbase-manual-2.5).
+
 
 <a id="cb-set"></a>
 
@@ -798,9 +798,7 @@ In this case `getDelayed` returns immediately and we retrieve all the keys later
 by performing `fetchAll`.
 
 The multiple-retrieve methods in Couchbase SDKs are based on sending multiple
-`getq` in the memcached protocol in a single binary packet. For more information
-about the memcached protocol, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-architecture-apis-memcached-protocol.html).
+`getq` in the memcached protocol in a single binary packet. 
 
 When you do a multiple-retrieve, be aware that the method will return values for
 the keys that exist. If a key does not exist, Couchbase Server returns a 'key
@@ -965,8 +963,7 @@ In this example, the value for the "foo" key is 1, flags are set to zero, and
 the CAS value is 8835713818674332672.
 
 The equivalent call in the memcached protocol is `get` which returns the value
-for the key as well as the CAS value. For more information, see [memcached
-protocol](http://www.couchbase.com/docs/couchbase-manual-1.8/couchbase-architecture-apis-memcached-protocol.html).
+for the key as well as the CAS value.
 
 If a key does not exist, you will get a 'key does not exist' error in response.
 If you did not expect this result, you should check any application logic that
@@ -1723,11 +1720,16 @@ Both `incr` and `decr` are considered 'binary' methods in that they operate on
 binary data, not JSON documents. Because of this, keys used by `incr` and `decr`
 cannot be queried or indexed with Couchbase Server.
 
+<div class-"notebox tip">
+<p>Tip</p>
+<p>
 Couchbase Server stores and transmits numbers as **unsigned numbers**, therefore
 if you try to store negative number and then increment, it will cause overflow.
 In this case, an integer overflow value will be returned. See the integer
 overflow example that follows. In the case of decrement, if you attempt to
 decrement zero or a negative number, you will always get a result of zero.
+</p>
+</div>
 
 The next example demonstrates use of `incr` to identify documents with unique
 ids and retrieve them with the id:
@@ -1820,12 +1822,16 @@ identifier, and if the number provided as a `delete` parameter does not match
 the deletion will fail and return an error. If Couchbase Server successfully
 deletes a document, it returns a status code indicating success or failure.
 
-Be aware that when you `delete` a key it may not be removed immediately from the
-server. Instead Couchbase Server will flag an item for deletion and if the key
+<div class="notebox">
+<p>Note</p>
+<p>Be aware that when you `delete` a key it may not be removed immediately from the
+server. Instead Couchbase Server flags an item for deletion and if the key
 is requested by another client, the server returns a 'key not found' error.
 Couchbase Server will actually remove the item from the server upon the next
-request for it. Alternately Couchbase Server has a maintenance process that runs
-by default every hour and will remove any items flagged for deletion.
+request for it. Alternately, Couchbase Server has a maintenance process that runs
+by default every hour and which removes any items flagged for deletion.
+</p>
+</div>
 
 It is important to note that in some SDK's such as in Ruby, a `delete` can be
 performed in synchronous or asynchronous mode; in contrast other SDK's such as
@@ -1880,21 +1886,32 @@ protocol](https://github.com/memcached/memcached/blob/master/doc/protocol.txt).
 Should you choose to destroy cached and persisted data, the `flush_all`
 operation is available at the SDK level.
 
+<div class="notebox warning">
+<p>Warning</p>
+<p>
 This operation is disabled by default as of the 1.8.1 Couchbase Server and
 above. This is to prevent accidental, detrimental data loss. Use of this
 operation should be done only with extreme caution, and most likely only for
 test databases as it will delete, item by item, every persisted document as well
 as destroy all cached data.
+</p>
+</div>
 
+<div class="notebox warning">
+<p>Warning</p>
+<p>
 Third-party client testing tools may perform a `flush_all` operation as part of
 their test scripts. Be aware of the scripts run by your testing tools and avoid
 triggering these test cases/operations unless you are certain they are being
 performed on your sample/test database.
-
+</p>
+<p>
 Inadvertent use of `flush_all` on production databases, or other data stores you
 intend to use will result in permanent loss of data. Moreover the operation as
 applied to a large data store will take many hours to remove persisted
 documents.
+</p>
+</div>
 
 This next example demonstrates how to perform a synchronous and asynchronous
 `flush` in Ruby:
@@ -1979,9 +1996,9 @@ The other scenario you may want to handle in your application is where you want
 to make sure a document has been replicated. As of Couchbase Server 2.0, you can
 automatically configure replication of data from one cluster to another cluster
 and from one data bucket to another bucket. Collectively, this new functionality
-is known as cross datacenter replication, or XDCR. For more information, see
-[Couchbase Sever 2.1.0 Manual, Cross Datacenter
-Replication](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-xdcr.html).
+is known as cross datacenter replication, or XDCR. For more information, 
+see Cross Datacenter Replication in the 
+[Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/).
 
 The final scenario where you would want to use an observe-function is for
 documents that should be durable in nature. For instance, imagine you have a

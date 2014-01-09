@@ -1,4 +1,6 @@
-# Best Practices
+<a id="couchbase-bestpractice"></a>
+
+# Best practices
 
 When building your Couchbase Server cluster, you need to keep multiple aspects
 in mind: the configuration and hardware of individual servers, the overall
@@ -12,7 +14,7 @@ Cloud](#couchbase-bestpractice-cloud).
 
 <a id="couchbase-bestpractice-clusterdesign"></a>
 
-## Cluster Design Considerations
+## Cluster design considerations
 
  * RAM: Memory is a key factor for smooth cluster performance. Couchbase best fits
    applications that want most of their active dataset in memory. It is very
@@ -56,7 +58,7 @@ Cloud](#couchbase-bestpractice-cloud).
 
 <a id="couchbase-bestpractice-sizing"></a>
 
-## Sizing Guidelines
+## Sizing guidelines
 
 Here are the primary considerations when sizing your Couchbase Server cluster:
 
@@ -94,14 +96,14 @@ each limit will be increased linearly as the cluster size is increased.
 
 <a id="couchbase-bestpractice-sizing-ram"></a>
 
-### RAM Sizing
+### RAM sizing
 
 RAM is usually the most critical sizing parameter. It's also the one that can
 have the biggest impact on performance and stability.
 
 <a id="couchbase-bestpractice-sizing-ram-workingset"></a>
 
-### Working Set
+### Working set
 
 Before we can decide how much memory we will need for the cluster, we should
 understand the concept of a 'working set.' The 'working set' is the data that
@@ -215,7 +217,7 @@ per\_node\_ram\_quota as there may be other programs running on your machine.
 
 <a id="couchbase-bestpractice-sizing-disk"></a>
 
-### Disk Throughput and Sizing
+### Disk throughput and sizing
 
 Couchbase Server decouples RAM from the I/O layer. This is a huge advantage. It
 allows you to scale high at very low and consistent latencies. It also enables
@@ -243,7 +245,7 @@ maintenance.
 
 <a id="couchbase-bestpractice-sizing-network"></a>
 
-### Network Bandwidth
+### Network bandwidth
 
 Network bandwidth is not normally a significant factor to consider for cluster
 sizing. However, clients require network bandwidth to access information in the
@@ -269,7 +271,7 @@ Operations per second = Application reads +
 
 <a id="couchbase-bestpractice-sizing-datasafety"></a>
 
-### Data Safety
+### Data safety
 
 Make sure you have enough nodes (and the right configuration) in your cluster to
 keep your data safe. There are two areas to keep in mind: how you distribute
@@ -329,7 +331,7 @@ more replicas in smaller clusters.
 
 <a id="couchbase-bestpractice-sizing-hardware"></a>
 
-### Hardware Requirements
+### Hardware requirements
 
 In general, Couchbase Server has very low hardware requirements and is designed
 to be run on commodity or virtualized systems. However, as a rough guide to the
@@ -378,7 +380,7 @@ Cloud](#couchbase-bestpractice-cloud).
 
 <a id="couchbase-bestpractice-deployment"></a>
 
-## Deployment Considerations
+## Deployment considerations
 
  * **Restricted access to Moxi ports**
 
@@ -419,7 +421,7 @@ Cloud](#couchbase-bestpractice-cloud).
 
 <a id="couchbase-bestpractice-ongoing"></a>
 
-## Ongoing Monitoring and Maintenance
+## Ongoing monitoring and maintenance
 
 To fully understand how your cluster is working, and whether it is working
 effectively, there are a number of different statistics that you should monitor
@@ -491,7 +493,7 @@ using the standard monitoring tools.
 
 <a id="couchbase-bestpractice-ongoing-ui"></a>
 
-### Important UI Stats to Watch
+### Important UI stats to watch
 
 You can add the following graphs to watch on the Couchbase console. These graphs
 can be de/selected by clicking on the `Configure View` link at the top of the
@@ -530,7 +532,7 @@ can be de/selected by clicking on the `Configure View` link at the top of the
 
 <a id="couchbase-bestpractice-secondfirewall"></a>
 
-## Couchbase Behind a Secondary Firewall
+## Couchbase behind a secondary firewall
 
 If you are deploying Couchbase behind a secondary firewall, you should open the
 ports that Couchbase Server uses for communication. In particular, the following
@@ -623,7 +625,7 @@ application. Take the following steps to make that happen:
 
 <a id="couchbase-bestpractice-cloud-localstorage"></a>
 
-### Local Storage
+### Local storage
 
 Dealing with local storage is not very much different than a data center
 deployment. However, EC2 provides an interesting solution. Through the use of
@@ -640,7 +642,7 @@ configuring Couchbase to point to wherever you have mounted an external volume.
 
 <a id="couchbase-bestpractice-cloud-ip"></a>
 
-### Handling Changes in IP Addresses
+### Handling changes in IP addresses
 
 When you use Couchbase Server in the cloud, server nodes can use internal or
 public IP addresses. Because IP addresses in the cloud may change quite
@@ -704,7 +706,7 @@ taken to restrict access.
 
 <a id="couchbase-bestpractice-cloud-swap"></a>
 
-### Swap Space
+### Swap space
 
 On Linux, swap space is used when the physical memory (RAM) is full. If the
 system needs more memory resources and the RAM is full, inactive pages in memory
@@ -853,7 +855,7 @@ The following procedures do not describe every parameter that you can modify whe
 
 <a id="couchbase-deployment"></a>
 
-## Deployment Strategies
+## Deployment strategies
 
 Here are a number of deployment strategies that you may want to use. Smart
 clients are the preferred deployment option if your language and development
@@ -862,7 +864,7 @@ configuration for the best performance and functionality.
 
 <a id="couchbase-deployment-vbucket-client"></a>
 
-### Using a smart (vBucket aware) Client
+### Using a smart (vBucket aware) client
 
 When using a smart client, the client library provides an interface to the
 cluster and performs server selection directly via the vBucket mechanism. The
@@ -878,7 +880,7 @@ for an in-depth description.
 
 <a id="couchbase-deployment-standaloneproxy"></a>
 
-### Client-Side (standalone) Proxy
+### Client-side (standalone) proxy
 
 If a smart client is not available for your chosen platform, you can deploy a
 standalone proxy. This provides the same functionality as the smart client while

@@ -88,8 +88,7 @@ data:
    conflict resolution of keys that are updated concurrently on different clusters.
    This conflict resolution takes place when using Couchbases cross datacenter
    replication (XDCR). The sequence number keeps track of how many times a document
-   is mutated. For more information about XDCR, see [Couchbase Server Manual,
-   XDCR](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-tasks-xdcr.html).
+   is mutated. For more information about XDCR, see the [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5).
 
 CAS values enable you to store information and then require that a client
 provide the correct unique CAS value in order to update it. Be aware that
@@ -176,10 +175,14 @@ call; with these SDKs you do not need to explicitly load a JSON conversion
 library and do a conversion prior to reading and writing a JSON document. For
 more information, please consult the Language Reference for your chosen SDK.
 
+<div class="notebox tip">
+<p>Tip</p>
+<p>
 If you are currently using serialized objects with memcached or Membase, you can
 continue using this in Couchbase Server 1.8+. JSON offers the advantage of
 providing heterogeneous platform support, and will enable you to use new
 features of Couchbase Server such as view, querying and indexing.
+</p></div>
 
 The following illustrates a simple JSON document used to represent a beer. For
 JSON, string-value pairs are the basic building blocks you use to represent
@@ -231,7 +234,7 @@ JSON document by using `json_encode()` and passing in the result as the value to
 `set()`. When we store the JSON document, we specify the key 'beer\_My\_Brew.'
 
 In the presidents example provided in the section on [Performing a Bulk
-Set](http://www.couchbase.com/docs/couchbase-devguide-2.1.0/populating-cb.html),
+Set](#populating-cb),
 we used one of the many JSON Libraries available that convert JSON documents in
 to native objects. In this case we use
 [Gson](http://code.google.com/p/google-gson/) an open source library which
@@ -360,15 +363,15 @@ bucket operations you may find helpful. For more information about these three
 tools, see:
 
  * [Using the Couchbase Web
-   Console](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-introduction.html),
+   Console](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/),
    for information on using the Couchbase Administrative Console,
 
  * [Couchbase
-   CLI](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-web-console.html),
+   CLI](http://docs.couchbase.com/couchbase-manual-2.5/cb-cli/),
    for the command line interface,
 
  * [Couchbase REST
-   API](http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-admin-restapi.html),
+   API](http://docs.couchbase.com/couchbase-manual-2.5/cb-rest-api/),
    for creating and managing Couchbase resources.
 
 The following areas can be administered using the Couchbase REST API, the

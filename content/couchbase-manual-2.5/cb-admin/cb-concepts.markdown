@@ -1,97 +1,7 @@
-# Introduction to Couchbase Server
-
-Couchbase Server is a NoSQL document database for interactive web applications.
-It has a flexible data model, is easily scalable, provides consistent high
-performance and is 'always-on,' meaning it is can serve application data 24
-hours, 7 days a week. Couchbase Server provides the following benefits:
-
- * **Flexible Data Model**
-
-   With Couchbase Server, you use JSON documents to represent application objects
-   and the relationships between objects. This document model is flexible enough so
-   that you can change application objects without having to migrate the database
-   schema, or plan for significant application downtime. Even the same type of
-   object in your application can have a different data structures. For instance,
-   you can initially represent a user name as a single document field. You can
-   later structure a user document so that the first name and last name are
-   separate fields in the JSON document without any downtime, and without having to
-   update all user documents in the system.
-
-   The other advantage in a flexible, document-based data model is that it is well
-   suited to representing real-world items and how you want to represent them. JSON
-   documents support nested structures, as well as field representing relationships
-   between items which enable you to realistically represent objects in your
-   application.
-
- * **Easy Scalability**
-
-   It is easy to scale your application with Couchbase Server, both within a
-   cluster of servers and between clusters at different data centers. You can add
-   additional instances of Couchbase Server to address additional users and growth
-   in application data without any interruptions or changes in your application
-   code. With one click of a button, you can rapidly grow your cluster of Couchbase
-   Servers to handle additional workload and keep data evenly distributed.
-
-   Couchbase Server provides automatic sharding of data and rebalancing at runtime;
-   this lets you resize your server cluster on demand. Cross-data center
-   replication providing in Couchbase Server 2.0 enables you to move data closer to
-   your user at other data centers.
-
- * **Consistent High Performance**
-
-   Couchbase Server is designed for massively concurrent data use and consistent
-   high throughput. It provides consistent sub-millisecond response times which
-   help ensure an enjoyable experience for users of your application. By providing
-   consistent, high data throughput, Couchbase Server enables you to support more
-   users with less servers. The server also automatically spreads workload across
-   all servers to maintain consistent performance and reduce bottlenecks at any
-   given server in a cluster.
-
- * **"Always Online"**
-
-   Couchbase Server provides consistent sub-millisecond response times which help
-   ensure an enjoyable experience for users of your application. By providing
-   consistent, high data throughput, Couchbase Server enables you to support more
-   users with less servers. The server also automatically spreads workload across
-   all servers to maintain consistent performance and reduce bottlenecks at any
-   given server in a cluster.
-
-   Features such as cross-data center replication and auto-failover help ensure
-   availability of data during server or datacenter failure.
-
-All of these features of Couchbase Server enable development of web applications
-where low–latency and high throughput are required by end users. Web
-applications can quickly access the right information within a Couchbase cluster
-and developers can rapidly scale up their web applications by adding servers.
-
-<a id="couchbase-introduction-nosql"></a>
-
-## Couchbase Server and NoSQL
-
-NoSQL databases are characterized by their ability to store data without first
-requiring one to define a database schema. In Couchbase Server, you can store
-data as key-value pairs or JSON documents. Data does not need to confirm to a
-rigid, pre-defined schema from the perspective of the database management
-system. Due to this schema-less nature, Couchbase Server supports a *scale out*
-approach to growth, increasing data and I/O capacity by adding more servers to a
-cluster; and without any change to application software. In contrast, relational
-database management systems *scale up* by adding more capacity including CPU,
-memory and disk to accommodate growth.
-
-Relational databases store information in relations which must be defined, or
-modified, before data can be stored. A relation is simply a table of rows, where
-each row in a given relation has a fixed set of columns. These columns are
-consistent across each row in a relation. Tables can be further connected
-through cross-table references. One table, could hold rows of all individual
-citizens residing in a town. Another table, could have rows consisting of
-parent, child and relationship fields. The first two fields could be references
-to rows in the citizens table while the third field describes the parental
-relationship between the persons in the first two fields such as father or
-mother.
 
 <a id="couchbase-introduction-architecture"></a>
 
-## Architecture and Concepts
+# Architecture and concepts
 
 In order to understand the structure and layout of Couchbase Server, you first
 need to understand the different components and systems that make up both an
@@ -105,7 +15,7 @@ performance database.
 
 <a id="couchbase-introduction-architecture-nodes"></a>
 
-### Nodes and Clusters
+## Nodes and Clusters
 
 Couchbase Server can be used either in a standalone configuration, or in a
 cluster configuration where multiple Couchbase Servers are connected together to
@@ -138,7 +48,7 @@ In this description:
 
 <a id="couchbase-introduction-architecture-clustermanager"></a>
 
-### Cluster Manager
+## Cluster Manager
 
 Every node within a Couchbase Cluster includes the Cluster Manager component.
 The Cluster Manager is responsible for the following within a cluster:
@@ -166,7 +76,7 @@ access. Additional ports are configured for inter-node communication.
 
 <a id="couchbase-introduction-architecture-buckets"></a>
 
-### Data Storage
+## Data Storage
 
 Couchbase Server provides data management services using *buckets* ; these are
 isolated virtual containers for data. A bucket is a logical grouping of physical
@@ -275,7 +185,7 @@ resources:
 
 <a id="couchbase-introduction-architecture-quotas"></a>
 
-### RAM Quotas
+## RAM Quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
 the `Server Quota` and `Bucket Quota`.  
@@ -321,7 +231,7 @@ chosen RAM quota configuration.
 
 <a id="couchbase-introduction-architecture-vbuckets"></a>
 
-### vBuckets
+## vBuckets
 
 A vBucket is defined as the *owner* of a subset of the key space of a Couchbase
 cluster. These vBuckets are used to allow information to be distributed
@@ -382,7 +292,7 @@ communicates directly with Server D to obtain the information.
 
 <a id="couchbase-introduction-architecture-datainram"></a>
 
-### Caching Layer
+## Caching Layer
 
 The architecture of Couchbase Server includes a built-in caching layer. This
 caching layer acts as a central part of the server and provides very rapid reads
@@ -428,7 +338,7 @@ from RAM, or return it after it fetches it from disk.
 
 <a id="couchbase-introduction-architecture-diskstorage"></a>
 
-### Disk Storage
+## Disk Storage
 
 For performance, Couchbase Server mainly stores and retrieves information for
 clients using RAM. At the same time, Couchbase Server will eventually store all
@@ -448,7 +358,7 @@ processes the load queue and reads the information back from disk and into
 memory. The client is made to wait until the data has been loaded back into
 memory before the information is returned.
 
-**Multiple Readers and Writers**
+### Multiple Readers and Writers
 
 Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each server instance
@@ -479,7 +389,7 @@ vBuckets that is statically partitioned for read and write access.
 For information about configuring this option, see [Using Multi- Readers and
 Writers](#couchbase-admin-tasks-mrw).
 
-**Document Deletion from Disk**
+### Document Deletion from Disk
 
 For Couchbase Server will never delete entire items from disk unless a client
 explicitly deletes the item from the database or
@@ -491,7 +401,8 @@ deletion, see [Couchbase Developer Guide, About Document
 Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
 
 <a id="couchbase-introduction-tombstone-purge"></a>
-**Tombstone Purging**
+
+### Tombstone Purging
 
 Couchbase Server and other distributed databases maintain tombstones in order to
 provide eventual consistency between nodes and between clusters. Tombstones are
@@ -511,7 +422,7 @@ You can now configure the Metadata Purge Interval which sets how frequently a no
 
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
 
-### Ejection, Eviction and Working Set Management
+## Ejection, Eviction and Working Set Management
 
 *Ejection* is a process automatically performed by Couchbase Server; it is the
 process of removing data from RAM to provide room for frequently-used items.
@@ -553,7 +464,7 @@ management, including any administrative tasks which impact this process, see
 
 <a id="couchbase-introduction-architecture-expiration"></a>
 
-### Expiration
+## Expiration
 
 Each document stored in the database has an optional expiration value (TTL, time
 to live). The default is for there to be no expiration, i.e. the information
@@ -574,7 +485,7 @@ be removed from the system, freeing up RAM and disk for more active data.
 
 <a id="couchbase-introduction-architecture-warmup"></a>
 
-### Server Warmup
+## Server Warmup
 
 Anytime you restart the Couchbase Server, or when you restore data to a server
 instance, the server must undergo a *warmup* process before it can handle
@@ -593,7 +504,7 @@ see [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
 
 <a id="couchbase-introduction-architecture-rebalancing"></a>
 
-### Rebalancing
+## Rebalancing
 
 The way data is stored within Couchbase Server is through the distribution
 offered by the vBucket structure. If you want to expand or shrink your Couchbase
@@ -619,7 +530,7 @@ support the system.
 
 <a id="couchbase-introduction-architecture-replication"></a>
 
-### Replicas and Replication
+## Replicas and Replication
 
 In addition to distributing information across the cluster for even data
 distribution and cluster performance, you can also establish *replica vBuckets*
@@ -648,7 +559,7 @@ replication between clusters via XDCR see [Cross Datacenter Replication
 
 <a id="couchbase-introduction-architecture-failover"></a>
 
-### Failover
+## Failover
 
 Information is distributed around a cluster using a series of replicas. For
 Couchbase buckets you can configure the number of `replicas` (complete copies of
@@ -672,7 +583,7 @@ For more information, see [Failing Over Nodes](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-introduction-architecture-tap"></a>
 
-### TAP
+## TAP
 
 The TAP protocol is an internal part of the Couchbase Server system and is used
 in a number of different areas to exchange data throughout the system. TAP
@@ -753,7 +664,7 @@ way you work with storing data in Couchbase Server.
 
 <a id="couchbase-introduction-architecture-administration"></a>
 
-### Administration Tools
+## Administration Tools
 
 Couchbase Server was designed to be as easy to use as possible, and does not
 require constant attention. Administration is however offered in a number of
@@ -793,7 +704,7 @@ Couchbase Server and cluster:
 
 <a id="couchbase-introduction-architecture-stats"></a>
 
-### Statistics and Monitoring
+## Statistics and Monitoring
 
 In order to understand what your cluster is doing and how it is performing,
 Couchbase Server incorporates a complete set of statistical and monitoring
