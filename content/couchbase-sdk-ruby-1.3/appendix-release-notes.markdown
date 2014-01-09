@@ -5,6 +5,30 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+## Release notes for Couchbase client library Ruby 1.3.4 (8 January 2014)
+
+**New Features and Behavior Changes in 1.3.4**
+
+* Build 64-bit versions of the extensions for Windows platform. Also support ruby 2.0 and 2.1.
+
+* Updated hacking section in README.
+
+*  Return CAS in extended mode for incr/decr
+
+	Issues: [RCBC-151](http://www.couchbase.com/issues/browse/RCBC-151)
+
+* Update list of options on `Cluster.create_bucket`. Added the following new options: `:replica_index`, `:flush_enabled`,   `:parallel_db_and_view_compaction`.
+
+	Issues: [RCBC-150](http://www.couchbase.com/issues/browse/RCBC-150)
+	
+* Allow retries on Couchbase::Bucket#cas collisions. Now it takes a `:retry` Fixnum option that specifies the maximum number of times the method should retry the entire get/update/set operation when a `Couchbase::Error::KeyExists` error is encountered due to a   concurrent update from another writer between its `#get` and `#set` calls.
+
+* MD5 and truncate ActiveSupport::Cache keys that are longer than 250 characters.
+
+**Fixes in 1.3.4**
+
+* Fix gemspec warnings regarding versions of the dependencies. Now it honors semantic versioning and doesn't use strict versions.
+
 ## Release notes for Couchbase client library Ruby 1.3.3 GA (12 September 2013)
 
 **New Features and Behavior Changes in 1.3.3**
