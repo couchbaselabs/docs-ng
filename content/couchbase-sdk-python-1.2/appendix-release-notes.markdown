@@ -6,87 +6,82 @@ Client Library Python Issues
 Tracker](http://www.couchbase.com/issues/browse/PYCBC).
 
 <a id="couchbase-sdk-python-rn_1-2-0g"></a>
-## Release Notes for Couchbase Python SDK 1.2.0 GA (XXX January 2014)
+## Release Notes for Couchbase Python SDK 1.2.0 GA (7 January 2014)
 
 This release provides support for additional asynchronous interfaces,
-adds some additional convenience features and fixes various bugs related
+adds some additional convenience features, and fixes various bugs related
 to views.
 
 **New Features and Behavior Changes in 1.2.0**
 
-* Native Gevent support
+* Native gevent support
 
-   This feature adds native gevent support by means of an additional `gcouchbase`
-   package. This supercedes the "Gevent support" in the 1.1.0 release. Gevent
-   supported versions are 0.13 and 1.0.0
+	This feature adds native gevent support by means of an additional `gcouchbase` package. This supersedes the gevent support in the 1.1.0 release. Gevent supported versions are 0.13 and 1.0.0
 
-   *Issues*: [PYCBC-207](http://www.couchbase.com/issues/browse/PYCBC-207)
+	*Issues*: [PYCBC-207](http://www.couchbase.com/issues/browse/PYCBC-207)
 
 * Twisted Support
 
-   This feature adds an asynchronous API for use with the Twisted I/O framework
+	This feature adds an asynchronous API for use with the Twisted I/O framework
    for Python. Support is provided via the `txcouchbase` package. All known
    recent versions of Twisted are supported.
 
-   *Issues*: [PYCBC-194](http://www.couchbase.com/issues/browse/PYCBC-194)
+	 *Issues*: [PYCBC-194](http://www.couchbase.com/issues/browse/PYCBC-194)
 
 * Durability Context Manager
 
-   This feature provides a context context manager to affect the durability
-   settings for all operations executed in its scope. This may be used with
+	This feature provides a context manager to affect the durability
+   settings for all operations executed in its scope. This can be used with
    the python `with` keyword as an alternative to manually specifying the
-   `persist_to` and `replicate_to` parameters for each operation individually
+   `persist_to` and `replicate_to` parameters for each operation individually.
 
-   *Issues*: [PYCBC-201](http://www.couchbase.com/issues/browse/PYCBC-201)
+	*Issues*: [PYCBC-201](http://www.couchbase.com/issues/browse/PYCBC-201)
 
-* Multi Operation Pipeline
+* Multioperation Pipeline
 
-   This feature provides a batched operation context manager in which multiple
+	This feature provides a batched operation context manager in which multiple
    operations of different types can be batched together for execution. This
-   may improve performance as it reduces network latency by sending all
-   scheduled operations once the context manager exits, rather than sending each
+   might improve performance as it reduces network latency by sending all
+   scheduled operations after the context manager exits, rather than sending each
    operation individually. This has the same network performance benefits as using
-   the `*_multi` methods - but without requiring that all operations be of the
-   same type. Note that the `_multi` operations have other API and performance
+   the `*_multi` methods, but without requiring that all operations be of the
+   same type. The `_multi` operations have other API and performance
    benefits and should still be preferred over the pipeline context manager when
-   possible. Also note that the pipeline manager itself can also contain
+   possible. The pipeline manager itself can also contain
    `_multi`  operations in its own right.
 
-   *Issues*: [PYCBC-211](http://www.couchbase.com/issues/browse/PYCBC-211)
+	*Issues*: [PYCBC-211](http://www.couchbase.com/issues/browse/PYCBC-211)
 
 
 **Fixes in 1.2.0**
 
-* Streaming view parser will sometimes provide invalid JSON
+* Streaming view parser sometimes provides invalid JSON
 
-   The streaming view parser will sometimes drop the last `}` from the response
-   resulting in an error. This only affects query operations where `streaming=True`
+	The streaming view parser sometimes drops the last `}` from the response,
+   resulting in an error. This affects only query operations where `streaming=True`.
 
-   *Issues*: [PYCBC-206](http://www.couchbase.com/issues/browse/PYCBC-206)
+	*Issues*: [PYCBC-206](http://www.couchbase.com/issues/browse/PYCBC-206)
 
-* Views queries will malfunction if the `mapkey_single` or `mapkey_multi` fields are over 150 characters
+* Views queries malfunction if the `mapkey_single` or `mapkey_multi` fields are over 150 characters.
 
-   This was caused by multiple bugs in the library, such as placing an artificial limit
-   on the URI size to 150 characters, and placing extra such parameters via a `POST`
-   request.
+	This was caused by multiple bugs in the library, such as placing an artificial limit on the URI size to 150 characters and placing extra such parameters via a `POST` request.
 
-   *Issues*: [PYCBC-203](http://www.couchbase.com/issues/browse/PYCBC-203)
+	*Issues*: [PYCBC-203](http://www.couchbase.com/issues/browse/PYCBC-203)
 [PYCBC-199](http://www.couchbase.com/issues/browse/PYCBC-199)
-
 
 * Durability options missing from `delete()` method
 
-   The `delete` method was missing the processing of durability options
+	The `delete` method was missing the processing of durability options
    (e.g. `persist_to` and `replicate_to`).
 
-   *Issues*: [PYCBC-195](http://www.couchbase.com/issues/browse/PYCBC-195)
+	*Issues*: [PYCBC-195](http://www.couchbase.com/issues/browse/PYCBC-195)
 
 * Negative `persist_to` and `replicate_to` values not honored
 
-   A negative value should indicate "use all available nodes", but was not
-   being honored as such in all code paths
+	A negative value should indicate "use all available nodes", but was not
+   being honored as such in all code paths.
 
-   *Issues*: [PYCBC-200](http://www.couchbase.com/issues/browse/PYCBC-200)
+	*Issues*: [PYCBC-200](http://www.couchbase.com/issues/browse/PYCBC-200)
 
 
 <a id="couchbase-sdk-python-rn_1-1-0g"></a>
@@ -99,7 +94,7 @@ on top of the 1.0.0 release.
 
 **New Features and Behavior Changes in 1.1.0**
 
- * Durability/Persistence requirements
+ * Durability requirements
 
 	This feature allows the application to wait until keys have been
    stored to more than one node. This is done through the additional
@@ -113,7 +108,7 @@ on top of the 1.0.0 release.
 
 	gevent is a cooperative multitasking framework that allows
    the creation of greenlets, which are cooperatively scheduled
-   entities. This feature allows the couchbase.Connection object
+   entities. This feature allows the `couchbase.Connection` object
    to optionally use a different pure-python non-blocking I/O
    implementation that can cooperatively yield to other greenlets
    when needed.
