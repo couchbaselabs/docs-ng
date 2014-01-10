@@ -76,7 +76,7 @@ These administration tasks include:
 
 <a id="couchbase-admin-tasks-mrw"></a>
 
-## Using Multi- Readers and Writers
+## Using Multiple Readers and Writers
 
 As of Couchbase Server 2.1, we support multiple readers and writers to persist
 data onto disk. For earlier versions of Couchbase Server, each bucket instance
@@ -96,10 +96,10 @@ How you change this setting depends on the hardware in your Couchbase cluster:
 
  * If you deploy your servers on recommended hardware requirements or above you can
    increase this setting to eight. The recommended hardware requirements are
-   quad-core processes on 64-bit CPU and 3GHz, 16GB RAM physical storage. We also
+   quad-core processors on 64-bit CPU and 3GHz, 16GB RAM physical storage. We also
    recommend solid state drives.
 
- * If you have a hardware configuration which conforms to pre-2.1 hardware
+ * If you have a hardware configuration that conforms to pre-2.1 hardware
    requirements, you should change this setting to the minimum, which is 2.
 
 For more information about system requirements for Couchbase Server, see
