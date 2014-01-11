@@ -12,9 +12,11 @@ REST API within your library to handle *views*. Views enable you to index and
 query data based on functions you define. For more information about views, see
 [Views and Indexes](#couchbase-views).
 
-The REST API should *not* be used to read or write data to the server. Data
-operations such as `set` and `get` for example, are handled by Couchbase SDKs.
-See [Couchbase SDKs](http://couchbase.com/develop).
+<div class="notebox tip">
+<p>Tip</p>
+<p>The REST API should <i>not</i> be used to read or write data to the server. Data
+operations, such as <code>set</code> and <code>get</code> for example, are handled by Couchbase SDKs.</p>
+</div>
 
 The REST API accesses several different systems within the Couchbase Server
 product.
@@ -491,8 +493,10 @@ Cache-Control: no-cache no-store max-age=0
 {"newBaseUri":"http://localhost:8091/"}
 ```
 
-Note that even if it is not to be changed, the port number must be specified
-when you update username/password.
+<div class="notebox">
+<p>Note</p>
+<p>You must specfiy the port number when you update username/password.</p>
+</div>
 
 <a id="couchbase-admin-restapi-cluster-memory-quota"></a>
 
@@ -1259,25 +1263,31 @@ You can create a new bucket with a POST command sent to the URI for buckets in a
 cluster. This can be used to create either a Couchbase or a Memcached type
 bucket. The bucket name cannot have a leading underscore.
 
-To create a new Couchbase bucket, or edit the existing parameters for an
+To create a new Couchbase bucket or edit the existing parameters for an
 existing bucket, you can send a `POST` to the REST API endpoint. You can also
 use this same endpoint to get a list of buckets that exist for a cluster.
 
-Be aware that when you edit bucket properties, if you do not specify an existing
-bucket property Couchbase Server may reset this the property to be the default.
+<div class="notebox tip">
+<p>Tip</p>
+<p>Be aware that when you edit bucket properties, if you do not specify an existing
+bucket property Couchbase Server may reset the property to be the default.
 So even if you do not intend to change a certain property when you edit a
-bucket, you should specify the existing value to avoid this behavior.
+bucket, you should specify the existing value to avoid this behavior.</p>
+</div>
 
-This REST API will return a successful response when preliminary files for a
+<div class="notebox">
+<p>Note</p>
+<p>This REST API will return a successful response when preliminary files for a
 data bucket are created on one node. Because you may be using a multi-node
 cluster, bucket creation may not yet be complete for all nodes when a response
 is sent. Therefore it is possible that the bucket is not available for
-operations immediately after this REST call successful returns.
+operations immediately after this REST call successful returns.</p>
 
-To ensure a bucket is available the recommended approach is try to read a key
+<p>To ensure a bucket is available the recommended approach is try to read a key
 from the bucket. If you receive a 'key not found' error, or the document for the
 key, the bucket exists and is available to all nodes in a cluster. You can do
-this via a Couchbase SDK with any node in the cluster.
+this via a Couchbase SDK with any node in the cluster.</p>
+</div>
 
 <a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
@@ -1444,19 +1454,25 @@ See bucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
 
-You cannot change the name of a bucket via the REST API.
+<div class="notebox warning">
+<p>Warning</p>
+<p>You cannot change the name of a bucket via the REST API.</p>
+</div>
 
 <a id="couchbase-admin-restapi-bucket-memory-quota"></a>
 
 ### Increasing the Memory Quota for a Bucket
 
-You can increase and decrease a bucket's ramQuotaMB from its current level.
+You can increase and decrease a bucket's `ramQuotaMB` from its current level.
 However, while increasing will do no harm, decreasing should be done with proper
-sizing. Decreasing the bucket's ramQuotaMB lowers the watermark, and some items
-may be unexpectedly ejected if the ramQuotaMB is set too low.
+sizing. Decreasing the bucket's `ramQuotaMB` lowers the watermark, and some items
+may be unexpectedly ejected if the `ramQuotaMB` is set too low.
 
-As of 1.6.0, there are some known issues with changing the ramQuotaMB for
-memcached bucket types.
+<div class="notebox warning">
+<p>Warning</p>
+<p>As of 1.6.0, there are some known issues with changing the <code>ramQuotaMB</code> for
+memcached bucket types.</p>
+</div>
 
 Example of a request:
 
@@ -1512,9 +1528,12 @@ values in the above example with your actual values.
 500                         | Bucket could not be deleted on all nodes    
 503                         | Buckets cannot be deleted during a rebalance
 
-This operation is data destructive.The service makes no attempt to double check
-with the user. It simply moves forward. Clients applications using this are
-advised to double check with the end user before sending such a request.
+<div class="notebox warning">
+<p>Warning</p>
+<p>This operation is data destructive. The service makes no attempt to double check
+with the user; it simply moves forward. Clients applications using this are
+advised to double check with the end user before sending such a request.</p>
+</div>
 
 To delete a bucket, you supply the URL of the Couchbase bucket using the
 `DELETE` operation. For example:
@@ -1538,17 +1557,17 @@ deleted.
 <a id="couchbase-admin-restapi-flushing-bucket"></a>
 
 ### Flushing a Bucket
-
-This operation is data destructive. The service makes no attempt to confirm or
+<div class="notebox warning">
+<p>Warning</p>
+<p>This operation is data destructive. The service makes no attempt to confirm or
 double check the request. Client applications using this are advised to double
 check with the end user before sending such a request. You can control and limit
-the ability to flush individual buckets by setting the `flushEnabled` parameter
-on a bucket in Couchbase Web Console or via `cbepctl flush_param`.
+the ability to flush individual buckets by setting the <code>flushEnabled</code> parameter
+on a bucket in Couchbase Web Console or via <code>cbepctl flush_param</code>.</p>
 
-For information about changing this setting in the Web Console, see [Viewing
-Data Buckets](#couchbase-admin-web-console-data-buckets). For information about
-flushing data buckets via REST, see [Flushing a
-Bucket](#couchbase-admin-restapi-flushing-bucket).
+<p>For information about changing this setting in the Web Console, see <a href="#couchbase-admin-web-console-data-buckets">Viewing
+Data Buckets</a>.</p>
+</div>
 
 The `doFlush` operation empties the contents of the specified bucket, deleting
 all stored data. The operation will only succeed if flush is enabled on
@@ -1590,12 +1609,18 @@ If the flush is successful, the HTTP response code is `200` :
 HTTP/1.1 200 OK
 ```
 
-The flush request may lead to significant disk activity as the data in the
+<div class="notebox warning">
+<p>Warning</p>
+<p>The flush request may lead to significant disk activity as the data in the
 bucket is deleted from the database. The high disk utilization may affect the
-performance of your server until the data has been successfully deleted.
+performance of your server until the data has been successfully deleted.</p>
+</div>
 
-Also note that the flush request is not transmitted over XDCR replication
-configurations; the remote bucket will not be flushed.
+<div class="notebox">
+<p>Note</p>
+<p>Also note that the flush request is not transmitted over XDCR replication
+configurations; the remote bucket will not be flushed.</p>
+</div>
 
 Couchbase Server will return a HTTP 404 response if the URI is invalid or if it
 does not correspond to an active bucket in the system.
@@ -1688,10 +1713,13 @@ mentioned previously. The response contains a number of properties which define
 attributes of the cluster and *controllers* which enable you to make certain
 requests of the cluster.
 
-Note that since buckets could be renamed and there is no way to determine the
+<div class="notebox wraning">
+<p>Warning</p>
+<p>Note that since buckets could be renamed and there is no way to determine the
 name for the default bucket for a cluster, the system will attempt to connect
-non-SASL, non-proxied to a bucket clients to a bucket named "default". If it
-does not exist, Couchbase Server will drop the connection.
+non-SASL, non-proxied to a bucket clients to a bucket named "default." If it
+does not exist, Couchbase Server will drop the connection.</p>
+</div>
 
 You should not rely on the node list returned by this request to connect to a
 Couchbase Server. You should instead issue an HTTP get call to the bucket to get
@@ -2591,14 +2619,17 @@ By default this functionality is enabled; although it is possible to disable
 this functionality via the REST API, under certain circumstances described
 below.
 
-Be aware that rebalance may take significantly more time if you have implemented
+<div class="notebox">
+<p>Note</p> 
+<p>Be aware that rebalance may take significantly more time if you have implemented
 views for indexing and querying. While this functionality is enabled by default,
 if rebalance time becomes a critical factor for your application, you can
-disable this feature via the REST API.
+disable this feature via the REST API.</p>
 
-We do not recommend you disable this functionality for applications in
+<p>We do not recommend you disable this functionality for applications in
 production without thorough testing. To do so may lead to unpredictable query
-results during rebalance.
+results during rebalance.</p>
+</div>
 
 To disable this feature, provide a request similar to the following:
 
