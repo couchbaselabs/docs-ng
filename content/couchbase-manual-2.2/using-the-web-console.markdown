@@ -1803,22 +1803,25 @@ information to the Couchbase server:
  * Basic information about the size and configuration of your Couchbase cluster.
    This information will be used to help us prioritize our development efforts.
 
-You can enable/disable software update notifications
+You can enable/disable software update notifications.
 
-The process occurs within the browser accessing the web console, not within the
+<div class="notebox">
+<p>Note</p>
+<p>The process occurs within the browser accessing the web console, not within the
 server itself, and no further configuration or internet access is required on
-the server to enable this functionality. Providing the client accessing the
+the server to enable this functionality. Provided that the client accessing the
 Couchbase server console has internet access, the information can be
-communicated to the Couchbase servers.
+communicated to the Couchbase servers.</p>
 
-The update notification process the information anonymously, and the data cannot
-be tracked. The information is only used to provide you with update notification
+<p>The update notification processes the information anonymously, and the data cannot
+be tracked. The information is only used to provide you with updated notification
 and to provide information that will help us improve the future development
-process for Couchbase Server and related products.
+process for Couchbase Server and related products.</p>
 
-If the browser or computer that you are using to connect to your Couchbase
+<p>If the browser or computer that you are using to connect to your Couchbase
 Server web console does not have Internet access, the update notification system
-will not work.
+will not work.</p>
+</div>
 
 **Notifications**
 

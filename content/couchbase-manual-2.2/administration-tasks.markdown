@@ -486,17 +486,20 @@ time and the interval for the process. You may want to do this, for instance, if
 you have a peak time for your application when you want the keys used during
 this time to be quickly available after server restart.
 
-Note if you want to change this setting for an entire Couchbase cluster, you
+<div class="notebox">
+<p>Note</p>
+<p>If you want to change this setting for an entire Couchbase cluster, you
 will need to perform this command on per-node and per-bucket in the cluster. By
-default any setting you change with `cbepctl` will only be for the named bucket
-at the specific node you provide in the command.
+default any setting you change with <code>cbepctl</code> will only be for the named bucket
+at the specific node you provide in the command.</p>
 
-This means if you have a data bucket that is shared by two nodes, you will
+<p>This means if you have a data bucket that is shared by two nodes, you will
 nonetheless need to issue this command twice and provide the different host
 names and ports for each node and the bucket name. Similarly, if you have two
 data buckets for one node, you need to issue the command twice and provide the
 two data bucket names. If you do not specify a named bucket, it will apply to
-the default bucket or return an error if a default bucket does not exist.
+the default bucket or return an error if a default bucket does not exist.</p>
+</div>
 
 By default the scanner process will run once every 24 hours with a default
 initial start time of 2:00 AM UTC. This means after you install a new Couchbase
@@ -1319,8 +1322,11 @@ counter indicates a node has failed over, the server will no longer
 automatically failover additional nodes in the cluster. You will need to
 re-enable automatic failover in a cluster by resetting this counter.
 
-You should only resetting the automatic failover after you resolve the node
-issue, rebalance and restore the cluster to a fully functioning state.
+<div class="notebox warning">
+<p>Warning</p>
+<p>You should only reset the automatic failover after you resolve the node
+issue and rebalance and restore the cluster to a fully functioning state.</p>
+</div>
 
 You can reset the counter using the REST API:
 
@@ -1771,15 +1777,17 @@ The `cbbackup` command takes the following arguments:
 cbbackup [options] [source] [backup_dir]
 ```
 
-The `cbbackup` tool is located within the standard Couchbase command-line
-directory. See [Command-line Interface for
-Administration](#couchbase-admin-cmdline).
+<div class="notebox">
+<p>Note</p>
+<p>The <code>cbbackup</code> tool is located within the standard Couchbase command-line
+directory. See <a herf="#couchbase-admin-cmdline">Command-line Interface for
+Administration</a>.</p>
 
-Be aware that `cbbackup` does not support external IP addresses. This means that
+<p>Be aware that <code>cbbackup</code> does not support external IP addresses. This means that
 if you install Couchbase Server with the default IP address, you cannot use an
 external hostname to access it. To change the address format into a hostname
-format for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+format for the server, see <a herf="#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+</div>
 
 Where the arguments are as described below:
 
@@ -3963,9 +3971,12 @@ seconds if the network is back, XDCR will resume replicating. You can change
 this default behavior by changing an environment variable or by changing the
 server parameter `xdcr_failure_restart_interval` with a PUT request:
 
-Note that if you are using XDCR on multiple nodes in cluster and you want to
-change this setting throughout the cluster, you will need to perform this
-operation on every node in the cluster.
+<div class="notebox">
+<p>Note</p>
+<p>If you are using XDCR on multiple nodes in cluster and you want to
+change this setting throughout the cluster, you need to perform this
+operation on every node in the cluster.</p>
+</div>
 
  * By an environment variable:
 

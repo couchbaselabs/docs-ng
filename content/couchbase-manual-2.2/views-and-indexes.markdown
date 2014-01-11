@@ -7,11 +7,14 @@ within the view. The view consists of specific fields and information extracted
 from the objects stored in Couchbase. Views create indexes on your information
 allowing you to search and select information stored within Couchbase Server.
 
-Views are eventually consistent compared to the underlying stored documents.
+<div class="notebox">
+<p>Note</p>
+<p>Views are eventually consistent compared to the underlying stored documents.
 Documents are included in views when the document data is persisted to disk, and
 documents with expiry times are removed from indexes only when the expiration
 pager operates to remove the document from the database. For more information,
-read [View Operation](#couchbase-views-operation).
+read <a href="#couchbase-views-operation">View Operation</a>.</p>
+</div>
 
 Views can be used within Couchbase Server for a number of reasons, including:
 
@@ -175,12 +178,15 @@ All views within Couchbase operate as follows:
    would have a detrimental effect on live data, only development views can be
    modified.
 
-   Views are organized by design document, and indexes are created according to the
+   <div class="notebox">
+   <p>Note </p>
+   <p>Views are organized by design document, and indexes are created according to the
    design document. Changing a single view in a design document with multiple views
    invalidates all the views (and stored indexes) within the design document, and
    all the corresponding views defined in that design document will need to be
    rebuilt. This will increase the I/O across the cluster while the index is
-   rebuilt, in addition to the I/O required for any active production views.
+   rebuilt, in addition to the I/O required for any active production views.</p>
+   </div>
 
  * You can choose to update the result set from a view before you query it or after
    you query. Or you can choose to retrieve the existing result set from a view
@@ -394,15 +400,21 @@ updating of these indexes can be controlled at the point of data querying,
 rather than each time data is inserted. Whether the index is updated when
 queried can be controlled through the `stale` parameter.
 
-Irrespective of the `stale` parameter, documents can only be indexed by the
+<div class="notebox">
+<p>Note</p>
+<p>Irrespective of the <code>stale</code> parameter, documents can only be indexed by the
 system once the document has been persisted to disk. If the document has not
-been persisted to disk, use of the `stale` will not force this process. You can
-use the `observe` operation to monitor when documents are persisted to disk
-and/or updated in the index.
+been persisted to disk, use of the <code>stale</code> will not force this process. You can
+use the <code>observe</code> operation to monitor when documents are persisted to disk
+and/or updated in the index.</p>
+</div>
 
-Views can also be updated automatically according to a document change, or
-interval count. See [Automated Index
-Updates](#couchbase-views-operation-autoupdate).
+<div class="notebox">
+<p>Note</p>
+<p>Views can also be updated automatically according to a document change, or
+interval count. See <a href="#couchbase-views-operation-autoupdate">Automated Index
+Updates</a>.</p>
+</div>
 
 Three values for `stale` are supported:
 
@@ -439,19 +451,22 @@ Three values for `stale` are supported:
 
    ![](images/views-stale-sequence-updateafter.png)
 
-The indexing engine is an asynchronous process; this means querying an index may
+<div class="notebox warning">
+<p>Warning</p>
+<p>The indexing engine is an asynchronous process; this means querying an index may
 produce results you may not expect. For example, if you update a document, and
 then immediately run a query on that document you may not get the new
 information in the emitted view data. This is because the document updates have
-not yet been committed to disk, which is the point when the updates are indexed.
+not yet been committed to disk, which is the point when the updates are indexed.</p>
 
-This also means that deleted documents may still appear in the index even after
-deletion because the deleted document has not yet been removed from the index.
+<p>This also means that deleted documents may still appear in the index even after
+deletion because the deleted document has not yet been removed from the index.</p>
 
-For both scenarios, you should use an `observe` command from a client with the
-`persistto` argument to verify the persistent state for the document, then force
-an update of the view using `stale=false`. This will ensure that the document is
-correctly updated in the view index. 
+<p>For both scenarios, you should use an <code>observe</code> command from a client with the
+<code>persistto</code> argument to verify the persistent state for the document, then force
+an update of the view using <code>stale=false</code>. This will ensure that the document is
+correctly updated in the view index.</p> 
+</div>
 
 When you have multiple clients accessing an index, the index update process and
 results returned to clients depend on the parameters passed by each client and
@@ -492,11 +507,14 @@ the sequence that the clients interact with the server.
        re-indexing from Client 1 done, Client 2 gets this updated index and triggers
        re-indexing.
 
-Index updates may be stacked if multiple clients request that the view is
-updated before the information is returned ( `stale=false` ). This ensures that
+<div class="notebox">
+<p>Note</p>
+<p>Index updates may be stacked if multiple clients request that the view is
+updated before the information is returned (<code>stale=false</code>). This ensures that
 multiple clients updating and querying the index data get the updated document
-and version of the view each time. For `stale=update_after` queries, no stacking
-is performed, since all updates occur after the query has been accessed.
+and version of the view each time. For <code>stale=update_after</code> queries, no stacking
+is performed, since all updates occur after the query has been accessed.</p>
+</div>
 
 Sequential accesses
 
