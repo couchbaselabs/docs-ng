@@ -8,18 +8,15 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.3.1 GA (14 January 2014)
 
-The 1.3.1 release is the first bugfix release in the 1.3 series. It is a purely bugfix release, fixing a regression introduced in 1.3.0.
+The 1.3.1 release is the first bug fix release in the 1.3 series. It fixes a regression introduced in 1.3.0.
 
 **Fixes in 1.3.1 **
 
-* [JCBC-399](http://www.couchbase.com/issues/browse/JCBC-399): When `CouchbaseClient.asyncQuery(...)` is called and a listener is attached
-   to the future, it is now only called once instead of twice. This makes sure operations done in the listener are not performed twice without
-   any external guards against this in place.
+* [JCBC-399](http://www.couchbase.com/issues/browse/JCBC-399): When `CouchbaseClient.asyncQuery(...)` is called and a listener is attached to the future, it is now only called once instead of twice. This makes sure operations done in the listener are not performed twice without any external guards against this in place.
 
 ** Known Issues in 1.3.1 **
 
-* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom timeout (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higer than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The workaround
-here is to set a higher value through the `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom time-out (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higher than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The work-around  is to set a higher value through the `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower time-out setting.
 
 <a id="couchbase-sdk-java-rn_1-3-0a"></a>
 
@@ -68,7 +65,7 @@ The 1.3.0 release is the first minor release in the 1.3 series. It features a re
 
 **Fixes in 1.3.0**
 
-* [SPY-149](http://www.couchbase.com/issues/browse/SPY-149): Listeners are now only called after the future has been completed correctly, not when the value was set (or the operation cancelled). This mitigates a potential race condition where the future is technically not completed yet, but the listener has already been called with the future reference.
+* [SPY-149](http://www.couchbase.com/issues/browse/SPY-149): Listeners are now only called after the future has been completed correctly, not when the value was set or the operation canceled. This mitigates a potential race condition where the future is technically not completed yet, but the listener has already been called with the future reference.
 
 ** Known Issues in 1.3.0 **
 
