@@ -67,10 +67,9 @@ Documents contain a special property named `_rev` whose value is the current rev
 
 The `_rev` property is already in the dictionary you got from the `CBLDocument`, so all you need to do is modify the properties dictionary and hand back the modified dictionary that still contains the `_rev` property to `putProperties:`.
 
-The following example retrieves a document, retrieves a property named `check` from the document, toggles the value of `check`, and then writes an updated revision of the document to the database.
+The following example retrieves a document, gets a property named `check` from the document, toggles the value of `check`, and then writes an updated revision of the document to the database.
 
 ```java
-
 // get a document from a QueryRow object
 Document document = row.getDocument();
 
@@ -105,7 +104,27 @@ Even if your app is single-threaded, most Couchbase Lite apps use replication, w
 
 This is, admittedly, unlikely to happen in the above example because the elapsed time between getting and putting the properties is so short (microseconds, probably). It's more likely in a situation where it takes the user a while to make a change. For example, in a fancier to-do list app the user might open an inspector view, make multiple changes, then commit them. The app would probably fetch the document properties when the user presses the edit button, let the user take as long as she wants to modify the UI controls, and then save when she returns to the main UI. In this situation, minutes might have gone by, and it's much more likely that in the meantime the replicator pulled down someone else's update to that same document.
 
-We'll show you how to deal with this, but for simplicity we'll do it in the context of our  example. The easiest way to deal with a conflict is by starting over and trying again. By now the `Document` will have updated itself to the latest revision, so you'll be making your changes to current content and won't get a conflict.
+The easiest way to deal with a conflict is by starting over and trying again. By now the `Document` will have updated itself to the latest revision, so you'll be making your changes to current content and won't get a conflict.
+
+Here's an example that shows how to handle conflicts. The example makes a copy of the document properties, and then tries to update the document. If the update is successful, the update operation ends. Otherwise, the catch block looks at the returned error code to decide the next action. If the error is a 409 Conflict HTTP status code, it tries to update the document again. If the error contains any other status code, it logs the error and ends the update operation.
+
+```java
+boolean done = false;
+do {
+    Map<String, Object> properties = new HashMap<String, Object>(doc.getProperties());
+    try {
+        doc.putProperties(properties);
+        done = true;
+    } catch (CouchbaseLiteException e) {
+        if (e.getCBLStatus().getCode() == Status.CONFLICT) {
+            // keep trying
+        } else {
+            e.printStackTrace();
+            done = true;
+        }
+    }
+} while (!done);
+```
 
 ### Deleting documents
 
