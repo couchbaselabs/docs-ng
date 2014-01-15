@@ -128,7 +128,7 @@ particular parameter might need to be modified.
 
 Parameter | Description | Default | When to Override the default value                                                                                                                                                                                                                         
 ----------------------------|--------------------------------------------------------------------------------------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`opTimeout` | Time in milliseconds for an operation to time out                                                    | 2500 ms  | You can set this value higher when there is heavy network traffic and time-outs happen frequently.                                                                                                                                                          
+`opTimeout` | Time in milliseconds for an operation to time out                                                    | 2500 ms  | You can set this value higher when there is heavy network traffic and timeouts happen frequently.                                                                                                                                                          
 `timeoutExceptionThreshold` | Number of operations to time out before the node is deemed down | 998 | You can set this value lower to deem a node is down earlier.                                                                                                                                                                                               
 `readBufSize` | Read buffer size | 16384 | You can set this value higher or lower to optimize the reads.                                                                                                                                                                                              
 `opQueueMaxBlockTime`       | The maximum time to block waiting for op queue operations to complete, in milliseconds.          | 10000 ms | The default has been set with the expectation that most requests are interactive and waiting for more than a few seconds is thus more undesirable than failing the request. However, this value could be lowered for operations not to block for this time.
@@ -143,7 +143,7 @@ Parameter | Description | Default | When to Override the default value
 ## Shutting down the Connection
 
 The preferred method for closing a connection is to cleanly shut down the active
-connection with a time-out using the `shutdown()` method with an optional time-out
+connection with a timeout using the `shutdown()` method with an optional timeout
 period and unit specification. The following example shuts down the active connection
 to all the configured servers after 60 seconds:
 
@@ -182,7 +182,7 @@ In this form the `shutdown()` method returns no value.
 This section provides reference material about querying and working with views and design documents from the perspective of the Java client. If you want to get started quickly, check out the tutorial first. Also, the server documentation provides good information about how views work in general and their characteristics. 
 
 ### Introduction
-Let's first discuss how the client interacts with the server in terms of views. While not mandatory, it is always good to get a general idea about how the underlying codebase works. Because a view result potentially contains many rows, the client cannot pinpoint a single node to ask for the result (which is different than key-based operations). So instead of asking a single node for a specific document, the client asks one node in the cluster for the complete result. The server node temporarily acts as the broker for the view query and aggregates the results from all nodes in the cluster. It then returns the combined result to the client. All communication is done over HTTP port 8092. If you are using views, you need to make sure this port is reachable (in addition to ports 11210 and 8091).
+Let's first discuss how the client interacts with the server in terms of views. While not mandatory, it is always good to get a general idea about how the underlying codebase works. Because a view result potentially contains many rows, the client cannot pinpoint a single node to ask for the result (which is different than key-based operations). So instead of asking a single node for a specific document, the client asks one node in the cluster for the complete result. The server node temporarily acts as the broker for the view query and aggregates the results from all nodes in the cluster. It then returns the combined result to the client. All communication is done over HTTP port 8092. You need to make sure this port is reachable (in addition to [other ports](http://docs.couchbase.com/couchbase-manual-2.2/#network-ports)).
 
 In the current implementation, the SDK uses the Apache **httpcore** library to perform the actual HTTP requests (and collect responses). This is done over Java NIO, which is very efficient compared to traditional, blocking IO. By default, two threads are created for view handling when you instantiate a new `CouchbaseClient` object. The first one is for the IO Reactor, which is basically the orchestrator, and then a worker thread  that does the actual work of listening on the NIO selectors is launched. These settings can be tuned, but the defaults are suitable to get started.
 
@@ -191,7 +191,7 @@ While views are performant, they can never be as fast as single-key lookups. The
 ### Configuration
 On the `CouchbaseConnectionFactoryBuilder`, you can tune the following configuration options, which modify the run time behavior of views:
 
- - `setViewTimeout()`&mdash;default: 75 seconds (Cluster side default time-out is 60 seconds.)
+ - `setViewTimeout()`&mdash;default: 75 seconds (Cluster side default timeout is 60 seconds.)
  - `setViewWorkerSize()`&mdash;default: 1 thread
  - `setViewConnsPerNode()`&mdash;default: 10 connections.
 
@@ -207,15 +207,15 @@ new CouchbaseConnectionFactoryBuilder()
 );
 ```
 
- **View time-out**. The view time-out is the default time-out used when the blocking methods are used (like `client.query(...)`). If the asynchronous methods are used, a custom time-out can be provided for greater flexibility. In general, you should not set a low time-out (like 2.5 seconds as with key-based operations), because views tend to take longer to return. Also, plan some padding for network spike latencies or if more traffic arrives than planned. This is also why a very conservative time-out of 75 seconds is used (and on the server side, the time-out is 60 seconds).
+ **View timeout**. The view timeout is the default timeout used when the blocking methods are used (like `client.query(...)`). If the asynchronous methods are used, a custom timeout can be provided for greater flexibility. In general, you should not set a low timeout (like 2.5 seconds as with key-based operations), because views tend to take longer to return. Also, plan some padding for network spike latencies or if more traffic arrives than planned. This is also why a very conservative timeout of 75 seconds is used (and on the server side, the timeout is 60 seconds).
 
  **View worker size**. Depending on the number of nodes in the cluster and the amount of view requests made, the worker size can be tuned to accommodate special needs. As a rule of thumb, if you do not expect more than 1 KB of view requests per second, one worker should be fine. If you want to push the limits, steadily increase the worker size and see if throughput increases (always potentially with higher latency as the trade-off).
 
 **View connections per node**. This setting describes the maximum number of open HTTP connections in parallel on a per-node basis. For example, if you have 5 servers in your cluster and you keep the default maximum of 10 connections, the SDK will not open more than a total of 50 connections to the cluster. If you need more performance tuning this value might or might not help (if the server is busy serving requests, adding more connections won't always help). The client only opens new connections if the other ones are still busy processing. If the maximum number of connections is open, the requests are  queued up and dispatched (or time out).
 
-The operation time-out for key-based operations, which is set to 2.5 seconds by default, is somewhat related because if you use the `setIncludeDocs(true)` query parameter, the SDK fetches documents in the background for you before returning you the `ViewResult`. While key-based operations are much more performant, time-outs can still occur. This is especially something to watch out for if you have a large amount of your data set on disk.
+The operation timeout for key-based operations, which is set to 2.5 seconds by default, is somewhat related because if you use the `setIncludeDocs(true)` query parameter, the SDK fetches documents in the background for you before returning you the `ViewResult`. While key-based operations are much more performant, timeouts can still occur. This is especially something to watch out for if you have a large amount of your data set on disk.
 
-You can also configure the `viewmode` system property. By default, all view requests are made against design documents that haven been published. If you forget to click **Publish** in the user interface, the SDK still complains that the view does not exist. If you explicitly want to use development views, you can change this by setting the `viewmode` system property to `development` (default is `production`) before the `CouchbaseClient´ object is constructed. This enables you to change from a development version of the view to a production version without needing to rebuild the application.
+You can also configure the `viewmode` system property. By default, all view requests are made against design documents that haven been published. If you forget to click `Publish` in the user interface, the SDK still complains that the view does not exist. If you explicitly want to use development views, you can change this by setting the `viewmode` system property to `development` (default is `production`) before the `CouchbaseClient` object is constructed. This enables you to change from a development version of the view to a production version without needing to rebuild the application.
 
 ### Querying
 Querying the view consists of several steps. To query the view, you load the view definition, define a `Query` object ,and then query the actual index on the server. You can then iterate over the returned data set.
@@ -241,8 +241,9 @@ query.setLimit(10);
 query.setIncludeDocs(true);
 query.setStale(Stale.UPDATE_AFTER);
 ```
+
 ##### ComplexKeys
-The setters have docblocks to explain their meaning, but there is one thing you should be aware of. Because those arguments get transformed into HTTP query parameters, certain transformations need to be done, the most important one being escaping of values. Because escaping tends to get hairy pretty quickly, especially if you might be dealing with brackets (for arrays) and quotes, a `ComplexKey` utility class is available. It removes the escaping burden from you and helps with inferring the correct wire format for the given object. All of the methods that take a `ComplexKey` also take a raw `String`, so you can always provide your own arguments if needed.
+The setters have docblocks to explain their meaning, but there is one thing you should be aware of. Because those arguments get transformed into HTTP query parameters, certain transformations need to be done, the most important one being escaping of values. Because escaping tends to get complex pretty quickly, especially if you might be dealing with brackets (for arrays) and quotes, a `ComplexKey` utility class is available. It removes the escaping burden from you and helps with inferring the correct wire format for the given object. All of the methods that take a `ComplexKey` also take a raw `String`, so you can always provide your own arguments if needed.
 
 Let's say we only want to get two keys out of our view index. Couchbase Server needs a format like `["key1","key2"]`, but we also need to encode it properly. Let's try the raw way first:
 
@@ -450,11 +451,9 @@ Index Value: null
 You can see that while the ID refers to the document ID (and won't change, even if the index changes), both the key and value reflect the view definition.
 
 #### Pagination
-If you want to go through larger amounts of index data, it might make sense to load them in chunks (speak "pages"). Pagination is commonly found in web applications where a table is displayed and the user can click a button to get the next batch of data and so on. A naive approach might be implemented like this:
+If you want to go through larger amounts of index data, it might make sense to load them in chunks (speak "pages"). Pagination is commonly found in web applications where a table is displayed and the user can click a button to get the next batch of data and so on. A naive approach might be implemented with `setLimit()` and `setSkip()`, keeping the limit at a fixed size (the page size) and increment skip by the numbers of pages you want to skip forward.
 
-With `setLimit()` and `setSkip()`, keep the limit at a fixed size (the page size) and increment skip by the numbers of pages you want to skip forward.
-
-While this sounds pretty easy at first, it turns out that if the skip part gets very large, the performance degrades a lot. This has to do with how the indexer goes through the stored information. It can't just skip directly to the skip marker you requested, but has to go through all N skipped documents to find the starting point. One can imagine that this is quite inefficient, so a second strategy can be used that requires more work on the client side, but is much faster:
+While this sounds pretty easy at first, it turns out that if the skip part gets very large, the performance degrades a lot. This has to do with how the indexer goes through the stored information. It can't just skip directly to the skip marker you requested, but has to go through all N skipped documents to find the starting point. One can imagine that this is quite inefficient, so a second strategy can be used that requires more work on the client side, but is much faster.
 
 Using a combination of `startKey` and `startKeyDocID`, you can hint the correct document ID to the indexer and because of the index structure stored it can jump directly to the desired document. This is also known as stateful pagination because the client needs to keep track of the next document to start with. So you need to keep in mind to fetch N+1 documents and use the last one as a starter for the next query. For reduced views, only skip and limit can be used because there is no distinct document ID to start from next.
 
@@ -530,7 +529,7 @@ client.asyncGetView("beer", "brewery_beers").addListener(new HttpCompletionListe
 latch.await(); // wait for the latch to be counted down in the callback
 ```
 
-You can also grab the `HttpFuture` directly from the `async*` methods and block on them as needed (or sending them over to your own thread pool for execution). Another reason why you want to use the `HttpFuture` is that you can change the default time-out for every query. If you only want to wait 50 seconds until a time-out arises, you can do it like this:
+You can also grab the `HttpFuture` directly from the `async*` methods and block on them as needed (or sending them over to your own thread pool for execution). Another reason why you want to use the `HttpFuture` is that you can change the default timeout for every query. If you only want to wait 50 seconds until a timeout arises, you can do it like this:
 
 ```java
 View view = client.asyncGetView("beer", "brewery_beers").get(50, TimeUnit.SECONDS);
@@ -587,7 +586,7 @@ Map: function (doc, meta) {
 }
 ```
 
-The same way you load a `DesignDocument`, you can create your own and save it. Note that there is no translation between Java and JavaScript going on, the best idea is to write the view in the UI and then copy it to a file or directly in the source code, depending on your needs. Make sure special characters are properly escaped ()your IDE should help you with that).
+The same way you load a `DesignDocument`, you can create your own and save it. Note that there is no translation between Java and JavaScript going on, the best idea is to write the view in the UI and then copy it to a file or directly in the source code, depending on your needs. Make sure special characters are properly escaped (your IDE should help you with that).
 
 Here is an example that creates a new design document, one view with a map and reduce function and saves it. You could then query it as normal.
 
@@ -652,7 +651,7 @@ private List<String> findBreweriesCached(CouchbaseClient client, View view) thro
 }
 ```
 
-Of course this can be modified to handle custom `Query` objects and time-out settings. The `View` instance is passed in explicitly because it can also be cached and reused in other spots of the application (also, proper error handling needs to be in place in a production setting).
+Of course this can be modified to handle custom `Query` objects and timeout settings. The `View` instance is passed in explicitly because it can also be cached and reused in other spots of the application (also, proper error handling needs to be in place in a production setting).
 
 #### Parallelism
 One thread querying a view might not give you the throughput needed for your application. If you are benchmarking simple code like the following, you are more or less benchmarking network latency:
@@ -727,7 +726,7 @@ If you always try to load a fresh `View` object this is not likely to happen, bu
 
 `TimeoutExceptions` can arise on all view method calls, most of the time because one part in the request/response cycles is slowing down (client, network or server). They should be caught, logged and investigated properly. The default timeout, while adjustable, is set to 75 seconds.
 
-Always include null-checks when processing `getDocument()` calls because by definition a view is not 100% up-to-date on the state of the documents. This is especially important if you are storing documents with time-outs or deleting them on a regular basis. The following example checks for a null document:
+Always include null-checks when processing `getDocument()` calls because by definition a view is not 100% up-to-date on the state of the documents. This is especially important if you are storing documents with timeouts or deleting them on a regular basis. The following example checks for a null document:
 
 
 ```java
