@@ -84,7 +84,7 @@ This section shows how to create a simple Hello World app for an Android device 
 		...
 			// hack to add .so objects (bit.ly/17pUlJ1)
 			compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
-			compile 'com.couchbase.cblite:CBLite:1.0.0-beta'
+			compile 'com.couchbase.cblite:CBLite:1.0.0-beta2'
 		}
 
 **Build the empty project**
