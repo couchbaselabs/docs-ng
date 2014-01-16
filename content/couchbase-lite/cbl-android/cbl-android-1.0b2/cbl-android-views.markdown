@@ -41,7 +41,7 @@ query.setLimit(10);
 query.setDescending(true);
 ```
         
-As a side effect of setting the query to descending order you get the documents in reverse order, but you can compensate for that if it's not appropriate. Now you can iterate over the results:
+As a side effect of setting the query to descending order you get the documents in reverse order, but you can compensate for that if it's not appropriate. Now that the query attributes are set, you can run the query and iterate over the results:
 
 ```java
 try {
@@ -66,18 +66,19 @@ Here's how the Grocery Sync example app sets up its by-date view:
 
 ```java
 com.couchbase.lite.View viewItemsByDate = database.getView(String.format("%s/%s", designDocName, byDateViewName));
-        viewItemsByDate.setMap(new Mapper() {
-            @Override
-            public void map(Map<String, Object> document, Emitter emitter) {
-                Object createdAt = document.get("created_at");
-                if (createdAt != null) {
-                    emitter.emit(createdAt.toString(), document);
-                }
-            }
-        }, "1.0");
+
+viewItemsByDate.setMap(new Mapper() {
+    @Override
+    public void map(Map<String, Object> document, Emitter emitter) {
+        Object createdAt = document.get("created_at");
+        if (createdAt != null) {
+            emitter.emit(createdAt.toString(), document);
+        }
+    }
+}, "1.0");
 ```
 
-The name of the view is arbitrary, but you need to use it later on when querying the view. The interesting part here is the `Mapper` expression, which is a block defining the map function. The block that takes the following parameters:
+The name of the view is arbitrary, but you need to use it later on when querying the view. The interesting part here is the `Mapper` expression, which is a block defining the map function. The block takes the following parameters:
 
  * A map that has the contents of the document being indexed.
  * A function called `emitter` that takes the parameters `key` and `value`. This is the function your code calls to emit a key-value pair into the view's index.
@@ -155,7 +156,7 @@ Don't forget to remove the observer when cleaning up.
 This section discusses how to set up some different types of queries.
 #### All Matching Results
 
-If you run the query without setting any key ranges, the result is all the emitted rows, in ascending order by key. To reverse the order, set the query's `descending` property.
+If you run a query without setting any key ranges, the result is all the emitted rows, in ascending order by key. To reverse the order, set the query's `descending` property to `true`.
 
 #### Exact Queries
 
@@ -182,7 +183,14 @@ The real power of views comes when you use compound keys. If your map function e
 
 For example, if a map function emitted the document's `store` and `item` properties as a compound key:
 
-    emit(@[doc[@"store"], doc[@"item"]], nil);
+
+```java
+List<Object> compoundKey = new ArrayList<Object>();
+compoundKey.add(doc.getProperty("store"));
+compoundKey.add(doc.getProperty("item"));
+emitter.emit(compoundKey, null);
+```
+      
 
 then the view's index contains a series of keys ordered like this:
 
@@ -199,10 +207,23 @@ The ordering of compound keys depends entirely on how you want to query them; th
 
 ##### Compound-Key Ranges
 
-The way you specify the beginning and end of compound-key ranges can be a bit unintuitive. For example, you have a view whose keys are of the form `[store, item]` and you want to find all the items to buy at Safeway. What are the `startKey` and `endKey`? Clearly, their first elements are `@"Safeway"`, but what comes after that? You need a way to specify the minimum and maximum possible keys with a given first element. The code to set the start and keys looks like this:
+The way you specify the beginning and end of compound-key ranges can be a bit unintuitive. For example, you have a view whose keys are of the form `(store, item)` and you want to find all the items to buy at Safeway. What are the `startKey` and `endKey`? Clearly, their first elements are `"Safeway"`, but what comes after that? You need a way to specify the minimum and maximum possible keys with a given first element. The code to set the start and keys looks like this:
 
-    query.startKey = @[ @"Safeway" ];
-    query.endKey = @[ @"Safeway", @{} ];
+```java
+// set the starting key
+query.setStartKey("Safeway");
+
+// create empty dictionary object to specify the end of the range
+Map<String,Object> eol = new HashMap<String, Object>();
+
+// build the end key in a list object
+List<Object> endList = new ArrayList<Object>();
+endList.add("Safeway");
+endList.add(eol);
+
+// set the ending key
+query.setEndKey(endList);
+```
 
 The minimum key with a given first element is just a length-1 array with that element. (This is just like the way that the word "A" sorts before any other word starting with "A".)
 
