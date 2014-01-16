@@ -28,8 +28,7 @@ To handle multiple phone numbers, the map function just needs to loop over the p
 
 To start off, for simplicity, this section shows how you can retrieve all documents in the database without using a view.
 
-To retrieve all the documents in the database, you need to create a `Query` object.
-The  `createAllDocumentsQuery()` method in the `Database` class returns a new `Query` object that contains all documents in the database:
+To retrieve all the documents in the database, you need to create a `Query` object. The  `createAllDocumentsQuery()` method in the `Database` class returns a new `Query` object that contains all documents in the database:
 
 ```java
 Query query = database.createAllDocumentsQuery();
@@ -65,24 +64,23 @@ To create a view, define its map (and optionally its reduce) function. When you 
 
 Here's how the Grocery Sync example app sets up its by-date view:
 
-    CBLView* view = [db viewNamed: @"byDate"];
-    
-    [view setMapBlock: MAPBLOCK({
-        id date = [doc objectForKey: @"created_at"];
-        if (date) emit(date, doc);
-    }) version: @"1.0"];
+```java
+com.couchbase.lite.View viewItemsByDate = database.getView(String.format("%s/%s", designDocName, byDateViewName));
+        viewItemsByDate.setMap(new Mapper() {
+            @Override
+            public void map(Map<String, Object> document, Emitter emitter) {
+                Object createdAt = document.get("created_at");
+                if (createdAt != null) {
+                    emitter.emit(createdAt.toString(), document);
+                }
+            }
+        }, "1.0");
+```
 
-The name of the view is arbitrary, but you need to use it later on when querying the view. The interesting part here is the `MAPBLOCK` expression, which is a block defining the map function. If you get an error about "too many arguments provided to function-like macro invocation," it just means the preprocess is confused. Try putting parentheses around the expression with commas in it. `MAPBLOCK` is a preprocessor macro used to simplify the declaration of the block. Here's what a block looks like without it:
+The name of the view is arbitrary, but you need to use it later on when querying the view. The interesting part here is the `Mapper` expression, which is a block defining the map function. The block that takes the following parameters:
 
-    ^(NSDictionary* doc, void (^emit)(id key, id value)) {
-        id date = [doc objectForKey: @"created_at"];
-        if (date) emit(date, doc);
-    }
-
-This is a block that takes the following parameters:
-
- * An NSDictionary&mdash;this is the contents of the document being indexed.
- * A function (a block) called `emit` that takes the parameters `key` and `value`. This is the function your code calls to emit a key-value pair into the view's index.
+ * A map that has the contents of the document being indexed.
+ * A function called `emitter` that takes the parameters `key` and `value`. This is the function your code calls to emit a key-value pair into the view's index.
 
 After you get that, the example map block is straightforward: it looks for a `created_at` property in the document, and if it's present, it emits it as the key, with the entire document contents as the value. Emitting the document as the value is fairly common. It makes it slightly faster to read the document at query time, at the expense of some disk space.
 
@@ -92,75 +90,85 @@ Any document without a `created_at` field is ignored and won't appear in the vie
 
 <div class="notebox">
 <p>Note</p>
-<p>The view index itself is persistent, but the <code>setMapBlock:reduceBlock:version:</code> and <code>setMapBlock:version:</code> methods must be called every time the app starts, before the view is accessed. You need to call them because the map function <em>is not</em> persistent&mdash;it's an ephemeral block pointer that needs to be hooked up to Couchbase Lite at run time.</p>
+<p>The view index itself is persistent, but the <code>setMap()</code> method must be called every time the app starts, before the view is accessed. You need to call it because the map function <em>is not</em> persistent&mdash;it's an ephemeral block pointer that needs to be hooked up to Couchbase Lite at run time.</p>
 </div>
 
 ### Querying Views
 
-Now that the view is created, querying it is very much like querying `createAllDocumentsQuery`, except that you get the `CBLQuery` object from the view rather than the database:
+Now that the view is created, querying it is very much like using `createAllDocumentsQuery()`, except that you get the `Query` object from the view rather than the database:
 
-    CBLQuery* query = [[db viewNamed: @"byDate"] createQuery];
+```java
+com.couchbase.lite.View view = database.getView("byDate");
+Query query = view.createQuery();
+```
 
-Every call to `createQuery` creates a new `CBLQuery` object, ready for you to customize. You can set a number of properties to specify key ranges, ordering, and so on. as described in the [view and query design](#view-and-query-design) section. Then you run the query exactly as described previously in [Getting All Documents](#getting-all-documents).
+Every call to `createQuery()` creates a new `Query` object, ready for you to customize. You can set a number of properties to specify key ranges, ordering, and so on, as described in the [view and query design](#view-and-query-design) section. Then you run the query exactly as described in [Getting All Documents](#getting-all-documents).
 
 ### Updating Queries
 
-It can be useful to know whether the results of a query have changed. You might have generated some complex output, like a fancy graph, from the query rows, and would prefer to save the work of recomputing the graph if nothing has changed. You can accomplish this by keeping the `CBLQueryEnumerator` object around, and then later checking its `stale` property. This property returns `true` if the results are out of date:
+It's useful to know whether the results of a query have changed. You might have generated some complex output, like a fancy graph, from the query rows, and would prefer to save the work of recomputing the graph if nothing has changed. You can accomplish this by keeping the `QueryEnumerator` object around, and then later checking its `stale` property. This property returns `true` if the results are out of date:
 
-```
-if (rowEnum.stale) {
-   rowEnum = [query run: &error];
+```java
+if (rowEnum.isStale()) {
+    rowEnum = query.run();
 }
 ```
 ### Using Live Queries
 
-Even better than _checking_ for a query update is getting _notified_ when one happens. Users expect apps to be live and don't want to have to press a refresh button to see new data. This is especially true if data might arrive over the network at any time through synchronization &mdash; that new data needs to show up right away.
+Even better than _checking_ for a query update is getting _notified_ when one happens. Users expect apps to be live and don't want to have to press a refresh button to see new data. This is especially true if data might arrive over the network at any time through synchronization&mdash;that new data needs to show up right away.
 
-For this reason Couchbase Lite has a very useful subclass of `CBLQuery` called `CBLLiveQuery`, which has a `rows` property that updates automatically as the database changes. The `rows` property is _observable_ using Cocoa's key-value Observing (KVO) mechanism. That means you can register for immediate notifications when it changes, and use those to drive user-interface updates.
+For this reason Couchbase Lite has a very useful subclass of `Query` called `LiveQuery`, which has a `rows` property that updates automatically as the database changes. You can register as a listener for immediate notifications when the database changes, and use those notifications to drive user-interface updates.
 
-To create a `CBLLiveQuery` you just ask a regular query object for a live copy of itself. You can then register as an observer:
+To create a `LiveQuery` you just ask a regular query object for a live copy of itself. You can then register as a listener:
 
-	self.liveQuery = query.asLiveQuery;
-    [self.liveQuery addObserver: self forKeyPath: @"rows" options: 0 context: NULL];
+```java
+private void startLiveQuery(com.couchbase.lite.View view) throws Exception {
 
-Don't forget to remove the observer when cleaning up. The observation method might look like this:
+    final ProgressDialog progressDialog = showLoadingSpinner();
+    if (liveQuery == null) {
 
-	- (void) observeValueForKeyPath: (NSString*)keyPath 
-	                       ofObject: (id)object
-	                         change: (NSDictionary*)change
-                            context: (void*)context
-	{
-	    if (object == self.liveQuery) {
-			for (CBLQueryRow* row in object.rows) {
-				// update the UI
-			}
-		}
-	}
+        liveQuery = view.createQuery().toLiveQuery();
 
-### Using an Automatic Table Source
+        liveQuery.addChangeListener(new LiveQuery.ChangeListener() {
+            @Override
+            public void changed(LiveQuery.ChangeEvent event) {
+                displayRows(event.getRows());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        });
 
-And what's even better than a live query? A live query that automatically acts as the data source of a `UITableView`. That's what `CBLUITableSource` provides: it's an implementation of `UITableViewDataSource` that observes a `CBLLiveQuery` and syncs the table with the view rows. To use it, you need to:
+        liveQuery.start();
 
- 1. Instantiate a `CBLUITableSource` object. One easy way is to put one in the same .xib as the table view.
- 2. Set its `tableView` property to the `UITableView`. This is an IBOutlet so you can wire it up.
- 3. Set its `query` property to a `CBLLiveQuery`.
- 4. Set its `labelProperty` property to the name of a property in the view row's value (or in the associated document). The value of this property is the text that is displayed in the table cell's label.
+    }
+}
+```
 
-If you want more control over the label, or want to use a fancier cell with more than just text, you can implement the `CBLUITableDelegate` protocol and set that object as the table source's delegate. This gives you a number of optional methods you can implement that will allow you to substitute your own `UITableCell` and handle errors. 
+Don't forget to remove the observer when cleaning up. 
 
 ### View and Query Design
 
+This section discusses how to set up some different types of queries.
 #### All Matching Results
 
-If you run the query without setting any key ranges, the result is all the emitted rows, in ascending order by key (date, in this example.) To reverse the order, set the query's `descending` property.
+If you run the query without setting any key ranges, the result is all the emitted rows, in ascending order by key. To reverse the order, set the query's `descending` property.
 
 #### Exact Queries
 
 To get only the rows with specific keys, set the query's `keys` property to an array of the desired keys:
 
-    query.keys = @[aSpecificDate];
+```java
+List<Object> keyArray = new ArrayList<Object>();
+keyArray.add("d123");
+keyArray.add("d457");
+query.setKeys(keyArray);
+```
 
-The order of the keys in the array doesn't matter; the results are returned in ascending-key order.
+The order of the keys in the array doesn't matter because the results are returned in ascending-key order.
 
 #### Key Ranges
 
@@ -198,6 +206,6 @@ The way you specify the beginning and end of compound-key ranges can be a bit un
 
 The minimum key with a given first element is just a length-1 array with that element. (This is just like the way that the word "A" sorts before any other word starting with "A".)
 
-The maximum key contains an empty `NSDictionary` object. Couchbase Lite defines a sorting or collation order for all JSON types, and JSON objects (also known as dictionaries) sort after everything else. An empty dictionary is kind of like a "Z" on steroids: it's a placeholder that sorts after any string, number, or array. It looks weird at first, but it's a useful idiom used in queries to represent the end of a range.
+The maximum key contains an empty `NSDictionary` object. Couchbase Lite defines a sorting or collation order for all JSON types, and JSON objects (also known as dictionaries) sort after everything else. An empty dictionary is kind of like a "Z" on steroids&mdash;it's a placeholder that sorts after any string, number, or array. It looks weird at first, but it's a useful idiom used in queries to represent the end of a range.
 
 
