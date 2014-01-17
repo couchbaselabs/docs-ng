@@ -2,182 +2,280 @@
 
 This section describes how to work with replication in an Android app. To learn more about replication, see [Replication](/couchbase-lite/cbl-concepts/#replication) in the *Couchbase Lite Concepts Guide*.
 
-### Creating a Replication
+### Creating Replications
+Replications are represented by `Replication` objects. You create replication objects by calling the following methods on your local `Database` object:
 
-**To create a replication:**
+* `getPullReplication()` sets up a pull replication.
+* `getPushReplication()` sets up a push replication.
 
-1.  Add the following static initializer block to the Application's main activity:
+Creating a replication object does not start the replication automatically. To start a replication, you need to send a `start` message to the replication object.
 
-	```java
-  {
-      CBURLStreamHandlerFactory.registerSelfIgnoreError();
-  }
+Newly created replications are nonpersistent and noncontinuous. To change those settings, you need to immediately set their `persistent` or `continuous` properties.
+
+It's not strictly necessary to keep references to the replication objects, but you do need them if you want to [monitor their progress](#monitoring-replication-progress).
+
+The following example shows how to set up and start a bidirectional replication:
+
+```java
+URL syncUrl;
+try {
+    syncUrl = new URL("http://db.example.com");
+} catch (MalformedURLException e) {
+    throw new RuntimeException(e);
+}
+
+Replication pullReplication = database.createPullReplication(syncUrl);
+pullReplication.setContinuous(true);
+
+Replication pushReplication = database.createPushReplication(syncUrl);
+pushReplication.setContinuous(true);
+
+pullReplication.start();
+pushReplication.start();
 ```
 
-2.  Add the following code to the `onCreate()` method of the Application's main activity:
+### Monitoring replication progress
+A replication object has several properties you can observe to track its progress. You can use the following `Replication` class properties to monitor replication progress:
 
-	      // start Couchbase Lite
-	      CBLServer server = null;
-	      String filesDir = getFilesDir().getAbsolutePath();
-	      try {
-	        server = new CBLServer(filesDir);
-	      } catch (IOException e) {
-	        Log.e(TAG, "Error starting CBLServer", e);
-	      }
-	
-	      // start Ektorp adapter
-	      HttpClient httpClient = new CBLiteDBHttpClient(server);
-	      CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
+ * `completedChangesCount`—number of documents copied so far in the current batch
+ * `changesCount`—total number of documents to be copied
+ * `lastError`—set to an `NSError` if the replication fails or `nil` if there has not been an error since the replication started.
+ * `status`—an enumeration named `ReplicationStatus` that indicates the current state of the replication. The status can be `STOPPED`, `OFFLINE`, `IDLE` or `ACTIVE`. Stopped means the replication is finished or hit a fatal error. Offline means the server is unreachable over the network. Idle means the replication is continuous but there is currently nothing left to be copied. Active means the replication is currently transferring data.
 
-	      // create a local database
-	      CouchDbConnector dbConnector = dbInstance.createConnector("testdb", true);
-	
-	      // pull this database to the test replication server
-	      ReplicationCommand pullCommand = new ReplicationCommand.Builder()
-	          .source("https://sync.example.com/example_db")
-	          .target("testdb")
-	          .continuous(true)
-	          .build();
-	
-	      ReplicationStatus status = dbInstance.replicate(pullCommand);
+The following example shows how to set up a change listener for a replication:
 
+```java
+pullReplication.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        Replication replication = event.getSource();
+        Log.d(TAG, "Replication : " + replication + " changed.");
+        if (!replication.isRunning()) {
+            String msg = String.format("Replicator %s not running", replication);
+            Log.d(TAG, msg);
+        }
+        else {
+            int processed = replication.getCompletedChangesCount();
+            int total = replication.getChangesCount();
+            String msg = String.format("Replicator processed %d / %d", processed, total);
+            Log.d(TAG, msg);
+        }
+    }
+});
+```
 
+### Stopping replications
 
-### Creating a Replication Without Credentials in the URL
+You can cancel persistent and continuous replications by stopping them. The following example shows how to stop a replication`:
 
-You can perform authenticated replications *without* having to expose the credentials in the URL. To create the replication without credentials in the URL:
+```java
+pullReplication.stop();
+pushReplication.stop();
+```
 
-1. Implement your own `HttpClientFactory` class that knows how to build `HttpClient` instances that can authenticate themselves.
+The following example shows how to stop all replications that exist for a database:
 
-2.  Register your `HttpClientFactory` instance with `CBLServer` as the default client.
+```java
+List<Replication> replications = database.getAllReplications();
+for (Replication rep : replications) {
+    rep.stop();
+}
+```
 
-3.  Start a replication and do not include the credentials in the URL.
+### Document Validation
 
+Pulling from another database requires some trust because you are importing documents and changes that were created elsewhere. Aside from issues of security and authentication, how can you be sure the documents are even formatted correctly? Your application logic probably makes assumptions about what properties and values documents have, and if you pull down a document with invalid properties it might confuse your code.
 
+The solution to this is to add a validation function to your database. The validation function is called on every document being added or updated. The function decides whether the document should be accepted, and can even decide which HTTP error code to return (most commonly 403 Forbidden, but possibly 401 Unauthorized).
 
-Here's an example:
+Validation functions aren't just called during replication&mdash;they see every insertion or update, so they can also be used as a sanity check for your own application code. If you forget this, you might occasionally be surprised by getting a 403 Forbidden error from a document update when a change is rejected by one of your own validation functions.
 
-	// start Couchbase Lite
-	String filesDir = getContext().getFilesDir().getAbsolutePath();
-	CBLServer cblserver = new CBLServer(filesDir);
-	
-	// register our own custom HttpClientFactory
-	cblserver.setDefaultHttpClientFactory(new HttpClientFactory() {
+Here's an example validation function definition from the Grocery Sync sample code. This is a real-life example of self-protection from bad data. At one point during development, the Android Grocery Sync app was generating dates in the wrong format, which confused the iOS app when it pulled down the documents created on Android. After the bug was fixed, the affected docs were still in server-side databases. The following validation function was added to reject documents that had incorrect dates:
 
-	@Override
-	public org.apache.http.client.HttpClient getHttpClient() {
+```objc
+    [theDatabase setValidationNamed: @"created_at" asBlock: VALIDATIONBLOCK({
+        if (newRevision.isDeletion)
+            return;
+        id date = (newRevision.properties)[@"created_at"];
+        if (date && ! [CBLJSON dateWithJSONObject: date]) {
+            [context rejectWithMessage: [@"invalid date " stringByAppendingString: [date description]]];
+        }
+    })];
+```
+The validation block ensures that the document's `created_at` property, if present, is in valid ISO-8601 date format. The validation block takes the following parameters: 
 
-		// start with a default http client
-		DefaultHttpClient httpClient = new DefaultHttpClient();
+*  `newRevision`—a `CBLRevision` object that contains the new document revision to be approved
+*  `context`— an `id<CBLValidationContext>` object that you can use to communicate with the database 
 
-		// create a credentials provider to store our credentials
-		BasicCredentialsProvider credsProvider = new BasicCredentialsProvider();
+A validation block should look at `newRevision.properties`, which is the document content, to determine whether the document is valid. If the revision is invalid, you can either call the `rejectWithMessage:` method on the `context` object to customize the error returned or just call the `reject` method.
 
-		// store our credentials (make sure the URL is not prefixed by https:// if using SSL)
-		AuthScope myScope = new AuthScope("sync.example.com", 5984);
-		Credentials myCredentials = new UsernamePasswordCredentials("mschoch", "notMyPassword");
-		credsProvider.setCredentials(myScope, myCredentials);
+The example validation block first checks whether the revision is deleted. This is a common idiom: a *tombstone* revision marking a deletion usually has no properties at all, so it doesn't make sense to check their values. Another reason to check for deletion is to enforce rules about which documents are allowed to be deleted. For example, suppose you have documents that contain a property named `status` and you want to disallow deletion of any document whose `status` property was not first set to `completed`. Making that check requires looking at the _current_ value of the `status` property, before the deletion. You can get the currently active revision from the  `currentRevision` property of `context`. This is very useful for enforcing immutable properties or other restrictions on the changes can be made to a property. The `CBLValidationContext`  property `changedKeys` is also useful for checking these types of conditions.
 
-		// set the credentials provider
-		httpClient.setCredentialsProvider(credsProvider);
+You can optionally define schemas for your documents by using the powerful [JSON-Schema](http://json-schema.org) format and validate them programmatically. To learn how to do that, see [Validating JSON Objects](#validating-json-objects).
 
-		// add an interceptor to sent the credentials preemptively
-		HttpRequestInterceptor preemptiveAuth = new HttpRequestInterceptor() {
+### Filtered Replications
 
-			@Override
-			public void process(HttpRequest request,
-					HttpContext context) throws HttpException,
-					IOException {
-				AuthState authState = (AuthState) context.getAttribute(ClientContext.TARGET_AUTH_STATE);
-				CredentialsProvider credsProvider = (CredentialsProvider) context.getAttribute(
-						ClientContext.CREDS_PROVIDER);
-				HttpHost targetHost = (HttpHost) context.getAttribute(ExecutionContext.HTTP_TARGET_HOST);
+You might want to replicate only a subset of documents, especially when pulling from a huge cloud database down to a limited mobile device. For this purpose, Couchbase Lite supports user-defined filter functions in replications. A filter function is registered with a name. It takes a document's contents as a parameter and simply returns true or false to indicate whether it should be replicated.
 
-				if (authState.getAuthScheme() == null) {
-					AuthScope authScope = new AuthScope(targetHost.getHostName(), targetHost.getPort());
-					Credentials creds = credsProvider.getCredentials(authScope);
-					authState.setCredentials(creds);
-					authState.setAuthScheme(new BasicScheme());
-				}
-			}
-		};
+#### Filtered Pull
 
-		httpClient.addRequestInterceptor(preemptiveAuth, 0);
+Filter functions are run on the _source_ database. In a pull, that would be the remote server, so that server must have the appropriate filter function. If you don't have admin access to the server, you are restricted to the set of already existing filter functions.
 
-		return httpClient;
-	}
-	});
-	
-	// start Ektorp adapter
-	HttpClient httpClient = new CBLiteHttpClient(cblserver);
-	CouchDbInstance server = new StdCouchDbInstance(httpClient);
-	
-	// create a local database
-	CouchDbConnector db = server.createConnector("testdb", true);
-	
-	// push this database to the test replication server
-	ReplicationCommand pushCommand = new ReplicationCommand.Builder()
-	.source("https://sync.example.com/ektorp_replication_test")
-	.target("testdb")
-	.continuous(false)
-	.build();
-	
-	ReplicationStatus status = server.replicate(pushCommand);
-	
-	// ...
+To use an existing remote filter function in a pull replication, set the replication's `filter` property to the filter's full name, which is the design document name, a slash, and then the filter name:
 
+	pull.filter = @"grocery/sharedItems";
 
+Filtered pulls are how Couchbase Lite can encode the list of [channels](https://github.com/couchbaselabs/sync_gateway/wiki/Channels-Access-Control-and-Data-Routing-w-Sync-Function) it wants Sync Gateway to replicate, although in the case of Sync Gateway, the implementation is based on indexes, not filters.
 
-### Using Filtered Replication
+#### Filtered Push
 
-The following example shows how you can define a filter function, and then use the filter function when performing a push replication.
+During a push, the filter function runs locally in Couchbase Lite. As with MapReduce functions, the filter function is specified at run time as a native block pointer. Here's an example of defining a filter function that passes only documents with a `"shared"` property with a value of `true`:
 
- This filter function only return strue for documents with an even value for the field "foo".
+```objectivec
+database setFilterNamed: @"sharedItems"
+                asBlock: FILTERBLOCK({
+                   return [[doc objectForKey: @"shared"] booleanValue];
+                })];
+```
 
+This function can then be plugged into a push replication by name:
 
-	        String filesDir = getContext().getFilesDir().getAbsolutePath();
-	        CBLServer tdserver = new CBLServer(filesDir);
-	
-	        // install the filter
-	        CBLDatabase database = tdserver.getDatabaseNamed("ektorp_filter_test");
-	        database.defineFilter("evenFoo", new CBLFilterBlock() {
-	
-	            @Override
-	            public boolean filter(CBLRevision revision) {
-	                Integer foo = (Integer)revision.getProperties().get("foo");
-	                if(foo != null && foo.intValue() % 2 == 0) {
-	                    return true;
-	                }
-	                return false;
-	            }
-	        });
-	
-	        HttpClient httpClient = new CBLiteHttpClient(tdserver);
-	        CouchDbInstance server = new StdCouchDbInstance(httpClient);
-	
-	        // create a local database
-	        CouchDbConnector db = server.createConnector("ektorp_filter_test", true);
-	
-	        // create 3 objects
-	        TestObject test1 = new TestObject(1, false, "ektorp-1");
-	        TestObject test2 = new TestObject(2, false, "ektorp-2");
-	        TestObject test3 = new TestObject(3, false, "ektorp-3");
-	
-	        // save these objects in the database
-	        db.create(test1);
-	        db.create(test2);
-	        db.create(test3);
-	
-	        // push this database to the test replication server
-	        ReplicationCommand pushCommand = new ReplicationCommand.Builder()
-	            .source("ektorp_filter_test")
-	            .target("http://@10.0.2.2:5984" + "/ektorp_filter_test")
-	            .continuous(false)
-	            .filter("evenFoo")
-	            .build();
-	
-	        ReplicationStatus status = server.replicate(pushCommand);
+```objectivec
+push.filter = @"sharedItems";
+```
+
+#### Parameterized Filters
+
+Filter functions can be made more general-purpose by taking parameters. For example, a filter could pass documents whose `"owner"` property has a particular value, allowing the user name to be specified by the replication. That way there doesn't have to be a separate filter for every user.
+
+To specify parameters, set the `filterParams` property of the replication object. Its value is a dictionary that maps parameter names to values. The dictionary must be JSON-compatible, so the values can be any type allowed by JSON.
+
+Couchbase Lite filter blocks get the parameters as a `params` dictionary passed to the block.
+
+#### Deleting documents with Filtered Replications
+
+Deleting documents can be tricky in the context of filtered replications.  For example, assume you have a document that has a `worker_id` field, and you set up a filtered replication to pull documents only when the `worker_id` equals a certain value.
+
+When one of these documents is deleted, it does not get synched in the pull replication.  Because the filter function looks for a document with a specific `worker_id`, and the deleted document won't contain any `worker_id`, it fails the filter function and therefore is not synched.
+
+This can be fixed by deleting documents in a different way.  Because a document is considered deleted as long as it has the special `_deleted` field, it is possible to delete the document while still retaining the `worker_id` field.  Instead of using the DELETE verb, you instead use the PUT verb.  You definitely need to set the `_deleted` field  for the document to be considered deleted. You can then either retain the fields that you need for filtered replication, like the `worker_id` field, or you can retain all of the fields in the original document.
+
+### Authentication
+
+The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). In this case, the replicator needs to log on to the remote server on your behalf.
+
+<div class="notebox tip">
+<p>Security Tip</p> 
+<p>Because Basic auth sends the password in an easily readable form, it is <em>only</em> safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the <code>https:</code> scheme.</p>
+</div>
+
+You need to register logon credentials for the replicator to use. There are several ways to do this and most of them use the standard credential mechanism provided by the Cocoa Foundation framework.
+
+#### Hardcoded Username and Password
+
+The simplest but least secure way to store credentials is to use the standard syntax for embedding them in the URL of the remote database:
+
+	https://frank:s33kr1t@sync.example.com/database/
+
+This URL specifies a username `frank` and password `s33kr1t`. If you use this as the remote URL when creating a replication, Couchbase Lite uses the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
+
+#### Using The Credential Store
+
+The better way to store credentials is in the `NSURLCredentialStore`, which is a Cocoa system API that can store credentials either in memory or in the secure (encrypted) Keychain. They then get used automatically when there’s a connection to the matching server.
+
+Here’s an example of how to register a credential for a remote database. First, create a `NSURLCredential` object that contains the username and password, as well as an indication of the persistence with which they should be stored:
+
+    NSURLCredential* cred;
+    cred = [NSURLCredential 
+       credentialWithUser: @"frank"
+                 password: @"s33kr1t"
+              persistence: NSURLCredentialPersistencePermanent];
+
+Next, create a `NSURLProtectionSpace` object that defines the URLs to which the credential applies:
 
 
-Using this replication only one record will be replicated, the one where the "foo" value is 2.
+    
+    NSURLProtectionSpace* space;
+    
+    space = [[[NSURLProtectionSpace alloc] 
+            initWithHost: @"sync.example.com"
+                    port: 443
+                protocol: @"https"
+                   realm: @"My Database"
+    authenticationMethod: NSURLAuthenticationMethodDefault]
+             autorelease];
+    
+
+Finally, register the credential for the protection space:
+
+    [[NSURLCredentialStorage sharedCredentialStorage]
+       setDefaultCredential: cred
+         forProtectionSpace: space];
+
+
+This is best done right after the user enters a name and password in your configuration UI. Because this example specified _permanent_ persistence, the credential store writes the password securely to the Keychain. From then on, `NSURLConnection`, Cocoa's underlying HTTP client engine, finds it when it needs to authenticate with that same server.
+
+The Keychain is a secure place to store secrets: it's encrypted with a key derived from the user's iOS passcode, and managed only by a single trusted OS process. If you don’t want the password stored to disk, use `NSURLCredentialPersistenceForSession`  for the persistence setting. But then you need to call the above code on every launch, begging the question of where you get the password from. The alternatives are generally less secure than the Keychain.
+
+<div class="notebox">
+<p>Note</p>
+<p>The OS is picky about the parameters of the protection space. If they don’t match exactly—including the `port` and the `realm` string—the credentials are not used and the sync fails with a 401 error. This is annoying to troubleshoot. In case of mysterious auth failures, double-check the all the credential's and protection space's spelling and port numbers!
+</p>
+</div>
+
+If you need to figure out the actual realm string for the server, you can use [curl](http://curl.haxx.se) or another HTTP client tool to examine the response's `WWW-Authenticate` header for an authentication failure. Here's an example that uses curl:
+
+
+```
+$ curl -i -X POST http://sync.example.com/dbname/
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="My Database"
+```
+
+#### OAuth
+
+[OAuth](http://oauth.net) is a complex protocol that, among other things, allows a user to use an identity from one site (such as Google or Facebook) to authenticate to another site (such as a Sync Gateway server) _without_ having to trust the relaying site with the user's password.
+
+Sync Gateway supports OAuth version 1 (but _not_ yet the newer OAuth 2) for client authentication, so if this has been configured in your upstream database, you can replicate with it by providing OAuth tokens:
+
+
+```
+replication.OAuth = 
+   @{ @"consumer_secret": consumerSecret,
+      @"consumer_key": consumerKey,
+      @"token_secret": tokenSecret,
+      @"token": token };
+```
+
+Getting these four values is somewhat tricky and involves authenticating with the origin server (the site at which the user has an account or identity). Usually you use an OAuth client library to do the hard work, such as a library from [Google](http://code.google.com/p/gtm-oauth/) or [Facebook](https://github.com/facebook/facebook-ios-sdk).
+
+OAuth tokens expire after some time. If you install them into a persistent replication, you still need to call the client library periodically to validate them. If they're updated, you need to update them in the replication settings.
+
+
+### Replication Conflicts
+
+Replication is a bit like merging branches in a version control system (for example, pushing and pulling in Git). Just as in version control, you can run into conflicts if incompatible changes are made to the same data. In Couchbase Lite this happens if a replicated document is changed differently in the two databases, and then one database is replicated to the other. Now both of the changes exist there. Here's an example scenario:
+
+ 1. Create `mydatabase` on device A.
+ 2. Create document 'doc' in `mydatabase`. Let's say its revision ID is '1-foo'.
+ 3. Push `mydatabase` from device A to device B. Now both devices have identical copies of the database.
+ 4. On device A, update 'doc', producing new revision '2-bar'.
+ 5. On device B, update 'doc' differently, producing new revision '2-baz'. (No, this does not cause an error. The different revision 2 is in a different copy of the database on device A, and device B has no way of knowing about it yet.)
+ 6. Now push `mydatabase` from device A to device B again. (Transferring in the other direction would lead to similar results.)
+ 7. On device B, `mydatabase` now has _two_ current revisions of 'doc': both '2-bar' and '2-baz'.
+
+You might ask why the replicator allows the two conflicting revisions to coexist, when a regular PUT doesn't. The reason is that if the replicator were to give up and fail with a 409 Conflict error, the app would be in a bad state. It wouldn't be able to resolve the conflict because it doesn't have easy access to both revisions (the other revision is on the other device). By accepting conflicting revisions, the replicator allows apps to resolve the conflicts by operating only on local data.
+
+What happens on device B now when the app tries to get the contents of 'doc'? For simplicity, Couchbase Lite preserves the illusion that one document ID maps to one current revision. It does this by choosing one of the conflicting revisions, '2-baz' as the "winner" that is returned by default from API calls. If the app on device B doesn't look too close, it thinks that only this revision exists and ignores the one from device A.
+
+You can detect conflicts in the following ways:
+
+* Call `-[CBLDocument getConflictingRevisions:]` and check for multiple returned values.
+* Create a view that finds all conflicts by having its map function look for a `_conflicts` property and emit a row if it's present.
+
+After a conflict is detected, you resolve it by deleting the revisions you don't want and optionally storing a revision that contains the merged contents. In the example, if the app wants to keep one revision it can just delete the other one. More likely it needs to merge parts of each revision, so it can do the merge, delete revision '2-bar', and put the new merged copy as a child of '2-baz'.
+
+
+
+
 
