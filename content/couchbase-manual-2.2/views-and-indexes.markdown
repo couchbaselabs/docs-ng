@@ -553,11 +553,14 @@ parameters are `updateInterval` and `updateMinChanges` :
 The auto-update process only operates on full-set development and production
 indexes. Auto-update does not operate on partial set development indexes.
 
-Irrespective of the automated update process, documents can only be indexed by
+<div class="notebox">
+<p>Note</p>
+<p>Irrespective of the automated update process, documents can only be indexed by
 the system once the document has been persisted to disk. If the document has not
 been persisted to disk, the automated update process will not force the
-unwritten data to be written to disk. You can use the `observe` operation to
-monitor when documents have been persisted to disk and/or updated in the index.
+unwritten data to be written to disk. You can use the <code>observe</code> operation to
+monitor when documents have been persisted to disk and/or updated in the index.</p>
+</div>
 
 The updates are applied as follows:
 
@@ -644,11 +647,13 @@ To perform this operation using the `curl` tool:
 > curl -X POST -v -d 'updateInterval=7000&updateMinChanges=7000' \
     'http://Administrator:Password@192.168.0.72:8091/settings/viewUpdateDaemon'
 ```
-
-Partial-set development views are not automatically rebuilt, and during a
-rebalance operation, development views are not updated, even when when
+<div class="notebox">
+<p>Note</p>
+<p>Partial-set development views are not automatically rebuilt, and during a
+rebalance operation, development views are not updated, even when 
 consistent views are enabled, as this relies on the automated update mechanism.
-Updating development views in this way would waste system resources.
+Updating development views in this way would waste system resources.</p>
+</div>
 
 <a id="couchbase-views-datastore"></a>
 
@@ -730,9 +735,12 @@ JSON supports the same basic types as supported by JavaScript, these are:
 
  * Number (either integer or floating-point).
 
-   JavaScript supports a maximum numerical value of 2^53. If you are working with
+   <div class="notebox">
+   <p>Note</p>
+   <p>JavaScript supports a maximum numerical value of 2^53. If you are working with
    numbers larger than this from within your client library environment (for
-   example, 64-bit numbers), you must store the value as a string.
+   example, 64-bit numbers), you must store the value as a string.</p>
+   </div>
 
  * String — this should be enclosed by double-quotes and supports Unicode
    characters and backslash escaping. For example:
@@ -766,10 +774,11 @@ JSON supports the same basic types as supported by JavaScript, these are:
        "title" : "Chicken Coriander"
     }
     ```
-
-If the submitted data cannot be parsed as a JSON, the information will be stored
-as a binary object, not a JSON document.
-
+<div class="notebox warning">
+<p>Warning</p>
+<p>If the submitted data cannot be parsed as a JSON, the information will be stored
+as a binary object, not a JSON document.</p>
+</div>
 <a id="couchbase-views-datastore-fields"></a>
 
 ### Document Metadata
@@ -808,9 +817,12 @@ The `meta` structure contains the following fields and associated information:
    The expiration value for the stored object. The stored expiration time is always
    stored as an absolute Unix epoch time value.
 
-These additional fields are only exposed when processing the documents within
+<div class="notebox">
+<p>Note</p>
+<p>These additional fields are only exposed when processing the documents within
 the view server. These fields are not returned when you access the object
-through the Memcached/Couchbase protocol as part of the document.
+through the Memcached/Couchbase protocol as part of the document.</p>
+</div>
 
 <a id="couchbase-views-datastore-nonjson"></a>
 
@@ -822,14 +834,17 @@ stored as a JSON document. If you store a value that cannot be parsed as a JSON
 document, the original binary data is stored. This can be identified during view
 processing by using the `meta` object supplied to the `map()` function.
 
-Information that has been identified and stored as binary documents instead of
+<div class="notebox">
+<p>Note</p>
+<p>Information that has been identified and stored as binary documents instead of
 JSON documents can still be indexed through the views system by creating an
 index on the key data. This can be particularly useful when the document key is
 significant. For example, if you store information using a prefix to the key to
-identify the record type, you can create document-type specific indexes.
+identify the record type, you can create document-type specific indexes.</p>
 
-For more information and examples, see [Views on non-JSON
-Data](#couchbase-views-writing-nonjson).
+<p>For more information and examples, see <a href="#couchbase-views-writing-nonjson">Views on non-JSON
+Data</a>.</p>
+</div>
 
 <a id="couchbase-views-datastore-indexseq"></a>
 
@@ -860,9 +875,12 @@ Conversely, documents that have been stored with an expiry may continue to be
 included within the view index until the document has been removed from the
 database by the expiry pager.
 
-Couchbase Server supports the Observe command, which enables the current state
+<div class="notebox">
+<p>Note</p>
+<p>Couchbase Server supports the Observe command, which enables the current state
 of a document and whether the document has been persisted to disk and/or whether
-it has been considered for inclusion in an index.
+it has been considered for inclusion in an index.</p>
+</div>
 
 When accessing a view, the contents of the view are asynchronous to the stored
 documents. In addition, the creation and updating of the view is subject to the
@@ -921,9 +939,12 @@ but have different purposes and restrictions placed upon their operation.
       subset of the full set of documents stored in the bucket. You can elect to run
       the View over the full set using the Web Console.
 
-      Because of the selection process, the reduced set of documents may not be fully
+      <div class="notebox warning">
+      <p>Warning</p>
+      <p>Because of the selection process, the reduced set of documents may not be fully
       representative of all the documents in the bucket. You should always check the
-      view execution over the full set.
+      view execution over the full set.</p>
+      </div>
 
  * **Production Views**
 
@@ -1074,9 +1095,12 @@ function affects and supports searching, see [Map
 Functions](#couchbase-views-writing-map). For details on writing the reduce
 function, see [Reduce Functions](#couchbase-views-writing-reduce).
 
-View names must be specified using one or more UTF-8 characters. You cannot have
+<div class="notebox">
+<p>Note</p>
+<p>View names must be specified using one or more UTF-8 characters. You cannot have
 a blank view name. View names cannot have leading or trailing whitespace
-characters (space, tab, newline, or carriage-return).
+characters (space, tab, newline, or carriage-return).</p>
+</div>
 
 To create views, you can use either the Admin Console View editor (see [Using
 the Views Editor](#couchbase-views-editor) ), use the REST API for design
@@ -1216,8 +1240,11 @@ entry for that field in the value output.
 
 ![](images/views-basic-overview-missing.png)
 
-You should check that the field or data source exists during the map processing
-before emitting the data.
+<div class="notebox">
+<p>Note</p>
+<p>You should check that the field or data source exists during the map processing
+before emitting the data.</p>
+</div>
 
 To better understand how the map function works to output different types of
 information and retrieve it, see [View and Query Pattern
@@ -1233,11 +1260,14 @@ be useful. For example, if you want to obtain a count of all the items of a
 particular type, such as comments, recipes matching an ingredient, or blog
 entries against a keyword.
 
-When using a reduce function in your view, the value that you specify in the
-call to `emit()` is replaced with the value generated by the reduce function.
-This is because the value specified by `emit()` is used as one of the input
+<div class="notebox">
+<p>Note</p>
+<p>When using a reduce function in your view, the value that you specify in the
+call to <code>emit()</code> is replaced with the value generated by the reduce function.
+This is because the value specified by <code>emit()</code>  is used as one of the input
 parameters to the reduce function. The reduce function is designed to reduce a
-group of values emitted by the corresponding `map()` function.
+group of values emitted by the corresponding <code>map()</code> function.</p>
+</div>
 
 Alternatively, reduce can be used for performing sums, for example totalling all
 the invoice values for a single client, or totalling up the preparation and
@@ -1328,13 +1358,16 @@ a very low impact on the Couchbase Server to the query (the value is not
 computed at runtime), and results in very fast query times, even when accessing
 information based on a range-based query.
 
-The `reduce()` function is designed to reduce and summarize the data emitted
-during the `map()` phase of the process. It should only be used to summarize the
+<div class="notebox">
+<p>Note</p>
+<p>The <code>reduce()</code> function is designed to reduce and summarize the data emitted
+during the <code>map()</code> phase of the process. It should only be used to summarize the
 data, and not to transform the output information or concatenate the information
-into a single structure.
+into a single structure.</p>
 
-When using a composite structure, the size limit on the composite structure
-within the `reduce()` function is 64KB.
+<p>When using a composite structure, the size limit on the composite structure
+within the <code>reduce()</code> function is 64KB.</p>
+</div>
 
 <a id="couchbase-views-writing-reduce-count"></a>
 
@@ -1408,10 +1441,13 @@ The built-in `_sum` function sums the values from the `map()` function call,
 this time summing up the information in the value for each row. The information
 can either be a single number or during a rereduce an array of numbers.
 
-The input values must be a number, not a string-representation of a number. The
+<div class="notebox">
+<p>Note</p>
+<p>The input values must be a number, not a string-representation of a number. The
 entire map/reduce will fail if the reduce input is not in the correct format.
-You should use the `parseInt()` or `parseFloat()` function calls within your
-`map()` function stage to ensure that the input data is a number.
+You should use the <code>parseInt()</code> or <code>parseFloat()</code> function calls within your
+<code>map()</code> function stage to ensure that the input data is a number.</p>
+</div>
 
 For example, using the same sales source data, accessing the group level 1 view
 would produce the total sales for each salesman:
@@ -1735,13 +1771,16 @@ Reduce functions must be written to cope with this scenario in order to cope
 with the incremental nature of the view and index building. If this is not
 handled correctly, the index will fail to be built correctly.
 
-The `reduce()` function is designed to reduce and summarize the data emitted
-during the `map()` phase of the process. It should only be used to summarize the
+<div class="notebox">
+<p>Note</p>
+<p>The <code>reduce()</code> function is designed to reduce and summarize the data emitted
+during the <code>map()</code> phase of the process. It should only be used to summarize the
 data, and not to transform the output information or concatenate the information
-into a single structure.
+into a single structure.</p>
 
-When using a composite structure, the size limit on the composite structure
-within the `reduce()` function is 64KB.
+<p>When using a composite structure, the size limit on the composite structure
+within the <code>reduce()</code> function is 64KB.</p>
+</div>
 
 <a id="couchbase-views-writing-nonjson"></a>
 
@@ -2019,8 +2058,10 @@ You should keep the following in mind while developing and deploying your views:
         emit(doc.experience, doc);
         }
     ```
-
-   The above view may have significant performance and index size effects.
+<div class="notebox warning">
+<p>Warning</p>
+<p>The above view may have significant performance and index size effects.</p>
+</div>
 
    This will include the full document content in the index.
 
@@ -2177,11 +2218,14 @@ Put Design Document | Description
 201                         | Document created successfully.                                                                           
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.
 
-When creating a design document through the REST API, we recommend that you
-create a development ( `dev` ) view. We recommend that you create a dev design
+<div class="notebox">
+<p>Note</p>
+<p>When creating a design document through the REST API, we recommend that you
+create a development ( <code>dev</code> ) view. We recommend that you create a dev design
 document and views first, and then check the output of the configured views in
-your design document. To create a dev view you *must* explicitly use the `dev_`
-prefix for the design document name.
+your design document. To create a dev view you <i>must</i> explicitly use the <code>dev_</code>
+prefix for the design document name.</p>
+</div>
 
 For example, using `curl`, you can create a design document, `byfield`, by
 creating a text file (with the name `byfield.ddoc` ) with the design document
@@ -2214,8 +2258,11 @@ In the above example:
    bucket password. If the bucket does not have a password, then the authentication
    information is not required.
 
-   The view being accessed in this case is a development view. To create a
-   development view, you *must* use the `dev_` prefix to the view name.
+<div class="notebox">
+<p>Note</p>
+<p>The view being accessed in this case is a development view. To create a
+   development view, you <i>must</i> use the <code>dev_</code> prefix to the view name.</p>
+   </div>
 
    As a `PUT` command, the URL is also significant, in that the location designates
    the name of the design document. In the example, the URL includes the name of
@@ -2608,10 +2655,13 @@ more detailed `reason` field. For example:
 }
 ```
 
-If you supply incorrect parameters to the query, an error message is returned by
+<div class="notebox">
+<p>Note</p>
+<p>If you supply incorrect parameters to the query, an error message is returned by
 the server. Within the Client Libraries the precise behavior may differ between
 individual language implementations, but in all cases, an invalid query should
-trigger an appropriate error or exception.
+trigger an appropriate error or exception.</p>
+</div>
 
 Detail on each of the parameters, and specific areas of interaction are
 described within the additional following sections, which also apply to all
@@ -2626,9 +2676,12 @@ returned by the view. Key selection is made after the view results (including
 the reduction function) are executed, and after the items in the view output
 have been sorted.
 
+<div class="notebox">
+<p>Important</p>
 When specifying keys to the selection mechanism, the key must be expressed in
 the form of a JSON value. For example, when specifying a single key, a string
-must be quoted ("string").
+must be quoted ("string").</p>
+</div>
 
 When specifying the key selection through a parameter, the keys must match the
 format of the keys emitted by the view. Compound keys, for example where an
@@ -2658,9 +2711,12 @@ The following selection types are supported:
    `["tomato","avocado"]`, then all results with a key of 'tomato' *or* 'avocado'
    will be returned.
 
-   When using this query option, the output results are not sorted by key. This is
+   <div class="notebox">
+<p>Note</p>
+<p>When using this query option, the output results are not sorted by key. This is
    because key sorting of these values would require collating and sorting all the
-   rows before returning the requested information.
+   rows before returning the requested information.</p>
+   </div>
 
    In the event of using a compound key, each compound key must be specified in the
    query. For example:
@@ -3053,8 +3109,11 @@ format, with the basic order for all basic and compound follows as follows:
 The natural sorting is therefore by default close to natural sorting order both
 alphabetically (A-Z) and numerically (0-9).
 
-There is no collation or foreign language support. Sorting is always according
-to the above rules based on UTF-8 values.
+<div class="notebox">
+<p>Note</p>
+<p>There is no collation or foreign language support. Sorting is always according
+to the above rules based on UTF-8 values.</p>
+</div>
 
 You can alter the direction of the sorting (reverse, highest to lowest
 numerically, Z-A alphabetically) by using the `descending` option. When set to
@@ -3096,10 +3155,13 @@ be reversed:
 The above selection will start generating results when 'zucchini' is identified
 in the key, and stop returning results when 'tomato' is identified in the key.
 
-View output and selection are case sensitive. Specifying the key 'Apple' will
+<div class="notebox">
+<p>Note</p>
+<p>View output and selection are case sensitive. Specifying the key 'Apple' will
 not return 'apple' or 'APPLE' or other case differences. Normalizing the view
 output and query input to all lowercase or upper case will simplify the process
-by eliminating the case differences.
+by eliminating the case differences.</p>
+</div>
 
 <a id="couchbase-views-ordering-unicode-collation"></a>
 
@@ -3386,9 +3448,12 @@ Or to obtain a list of objects within a given range:
 ?startkey="object100"&endkey="object199"
 ```
 
-For all views, the document ID is automatically included as part of the view
+<div class="notebox">
+<p>Note</p>
+<p>For all views, the document ID is automatically included as part of the view
 response. But the without including the document ID within the key emitted by
-the view, it cannot be used as a search or querying mechanism.
+the view, it cannot be used as a search or querying mechanism.</p>
+</div>
 
 <a id="couchbase-views-sample-patterns-second"></a>
 
