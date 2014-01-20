@@ -2247,7 +2247,7 @@ In the above example:
  * `-H 'Content-Type: application/json'`
 
    Specifies the HTTP header information. Couchbase Server requires the information
-   to be sent and identified as the `application/json` datatype. Information not
+   to be sent and identified as the `application/json` data type. Information not
    supplied with the content-type set in this manner will be rejected.
 
  * `http://user:password@localhost:8092/sales/_design/dev_byfield'`
@@ -3847,9 +3847,12 @@ Which generates the following output:
 }
 ```
 
-Keep in mind that you can create multiple views to provide different views and
+<div class="notebox">
+<p>Note</p>
+<p>Keep in mind that you can create multiple views to provide different views and
 queries on your document data. In the above example, you could create individual
-views for the limited datatypes of logtype to create a `warningsbydate` view.
+views for the limited data types of logtype to create a <code>warningsbydate</code> view.</p>
+</div>
 
 <a id="couchbase-views-sample-patterns-selectivemap"></a>
 
@@ -4180,11 +4183,14 @@ single operation. However, if your data and document structure do not allow it
 then you can use a multi-phase transaction process to perform the operation in a
 number of distinct stages.
 
-This method is not reliant on views, but the document structure and update make
+<div class="notebox warning">
+<p>Warning</p>
+<p>This method is not reliant on views, but the document structure and update make
 it easy to find out if there are 'hanging' or trailing transactions that need to
-be processed without additional document updates. Using views and the Observe
+be processed without additional document updates. Using views and the <code>observe</code>
 operation to monitor changes could lead to long wait times during the
-transaction process while the view index is updated.
+transaction process while the view index is updated.</p>
+</div>
 
 To employ this method, you use a similar transaction record as in the previous
 example, but use the transaction record to record each stage of the update
@@ -4486,10 +4492,13 @@ the view has been requested through the client library. For more information on
 this parameter and the performance impact, see [View Writing Best
 Practice](#couchbase-views-writing-bestpractice).
 
-Within a `SELECT` statement it is common practice to include the primary key for
+<div class="notebox">
+<p>Note</p>
+<p>Within a <code>SELECT</code> statement it is common practice to include the primary key for
 a given record in the output. Within a view this is not normally required, since
 the document ID that generated each row is always included within the view
-output.
+output.</p>
+</div>
 
 <a id="couchbase-views-writing-sql-where"></a>
 
