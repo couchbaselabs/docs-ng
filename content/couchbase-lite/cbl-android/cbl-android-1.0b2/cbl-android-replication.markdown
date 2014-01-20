@@ -90,32 +90,36 @@ The solution to this is to add a validation function to your database. The valid
 
 Validation functions aren't just called during replication&mdash;they see every insertion or update, so they can also be used as a sanity check for your own application code. If you forget this, you might occasionally be surprised by getting a 403 Forbidden error from a document update when a change is rejected by one of your own validation functions.
 
-Here's an example validation function definition from the Grocery Sync sample code. This is a real-life example of self-protection from bad data. At one point during development, the Android Grocery Sync app was generating dates in the wrong format, which confused the iOS app when it pulled down the documents created on Android. After the bug was fixed, the affected docs were still in server-side databases. The following validation function was added to reject documents that had incorrect dates:
+Here's an example validation function that makes sure each new document contains a `towel` property:
 
-```objc
-    [theDatabase setValidationNamed: @"created_at" asBlock: VALIDATIONBLOCK({
-        if (newRevision.isDeletion)
-            return;
-        id date = (newRevision.properties)[@"created_at"];
-        if (date && ! [CBLJSON dateWithJSONObject: date]) {
-            [context rejectWithMessage: [@"invalid date " stringByAppendingString: [date description]]];
+```java
+database.setValidation("hoopy", new Validator() {
+    @Override
+    public boolean validate(Revision newRevision, ValidationContext context) {
+        boolean hoopy = newRevision.isDeletion()  || (newRevision.getProperties().get("towel") != null);
+        Log.v("Validator:", String.format("--- Validating %s --> %b", newRevision.getProperties(), hoopy));
+        if(!hoopy) {
+            context.reject("Where's your towel?");
         }
-    })];
+        return hoopy;
+    }
+});
 ```
-The validation block ensures that the document's `created_at` property, if present, is in valid ISO-8601 date format. The validation block takes the following parameters: 
+ 
+The example sets up a validation delegate named `hoopy` and defines the `Validator` interface for the `validate()` method. The `validate()` method accepts the following parameters:
 
-*  `newRevision`—a `CBLRevision` object that contains the new document revision to be approved
-*  `context`— an `id<CBLValidationContext>` object that you can use to communicate with the database 
+*  `newRevision`—a `Revision` object that contains the new document revision to be approved
+*  `context`— a `ValidationContext` object that you use to communicate with the database
 
-A validation block should look at `newRevision.properties`, which is the document content, to determine whether the document is valid. If the revision is invalid, you can either call the `rejectWithMessage:` method on the `context` object to customize the error returned or just call the `reject` method.
+If the document contained in `newRevision` is not being deleted, the `validate()` method checks for the presence of a `towel` property in the document. If there is no `towel` property, the method rejects the change by sending a `reject()` message to the `context` object. 
 
-The example validation block first checks whether the revision is deleted. This is a common idiom: a *tombstone* revision marking a deletion usually has no properties at all, so it doesn't make sense to check their values. Another reason to check for deletion is to enforce rules about which documents are allowed to be deleted. For example, suppose you have documents that contain a property named `status` and you want to disallow deletion of any document whose `status` property was not first set to `completed`. Making that check requires looking at the _current_ value of the `status` property, before the deletion. You can get the currently active revision from the  `currentRevision` property of `context`. This is very useful for enforcing immutable properties or other restrictions on the changes can be made to a property. The `CBLValidationContext`  property `changedKeys` is also useful for checking these types of conditions.
+A validation block can call `newRevision.getProperties()` to retrieve the document content and determine whether the document is valid. If the revision is invalid, call the `reject()` method on the `context` object. You can customize the error returned by specifying an optional error message string with the call to the `reject()` method.
 
-You can optionally define schemas for your documents by using the powerful [JSON-Schema](http://json-schema.org) format and validate them programmatically. To learn how to do that, see [Validating JSON Objects](#validating-json-objects).
+The example validation block first checks whether the revision is deleted. This is a common idiom: a *tombstone* revision marking a deletion usually has no properties at all, so it doesn't make sense to check their values. Another reason to check for deletion is to enforce rules about which documents are allowed to be deleted. For example, suppose you have documents that contain a property named `status` and you want to disallow deletion of any document whose `status` property was not first set to `completed`. Making that check requires looking at the _current_ value of the `status` property, before the deletion. You can get the currently active revision from the  `currentRevision` property of `context`. This is very useful for enforcing immutable properties or other restrictions on the changes can be made to a property. The `ValidationContext`  property `changedKeys` is also useful for checking these types of conditions.
 
 ### Filtered Replications
 
-You might want to replicate only a subset of documents, especially when pulling from a huge cloud database down to a limited mobile device. For this purpose, Couchbase Lite supports user-defined filter functions in replications. A filter function is registered with a name. It takes a document's contents as a parameter and simply returns true or false to indicate whether it should be replicated.
+You might want to replicate only a subset of documents, especially when pulling from a huge cloud database down to a limited mobile device. For this purpose, Couchbase Lite supports user-defined filter functions in replications. A filter function is registered with a name. It takes a document's content as a parameter and returns true or false to indicate whether it should be replicated.
 
 #### Filtered Pull
 
@@ -123,53 +127,55 @@ Filter functions are run on the _source_ database. In a pull, that would be the 
 
 To use an existing remote filter function in a pull replication, set the replication's `filter` property to the filter's full name, which is the design document name, a slash, and then the filter name:
 
-	pull.filter = @"grocery/sharedItems";
+	pull.setFilter = "grocery/sharedItems";
 
-Filtered pulls are how Couchbase Lite can encode the list of [channels](https://github.com/couchbaselabs/sync_gateway/wiki/Channels-Access-Control-and-Data-Routing-w-Sync-Function) it wants Sync Gateway to replicate, although in the case of Sync Gateway, the implementation is based on indexes, not filters.
+Filtered pulls enable Couchbase Lite to encode the list of [channels](https://github.com/couchbaselabs/sync_gateway/wiki/Channels-Access-Control-and-Data-Routing-w-Sync-Function) it wants Sync Gateway to replicate. In Sync Gateway, the implementation is based on indexes, not filters.
 
 #### Filtered Push
 
-During a push, the filter function runs locally in Couchbase Lite. As with MapReduce functions, the filter function is specified at run time as a native block pointer. Here's an example of defining a filter function that passes only documents with a `"shared"` property with a value of `true`:
+During a push, the filter function runs locally in Couchbase Lite. Here's an example of a filter function definition that passes only documents with a `"shared"` property with a value of `true`:
 
-```objectivec
-database setFilterNamed: @"sharedItems"
-                asBlock: FILTERBLOCK({
-                   return [[doc objectForKey: @"shared"] booleanValue];
-                })];
+```java
+database.setFilter("sharedItems", new ReplicationFilter() {
+    @Override
+    public boolean filter(SavedRevision revision, Map<String, Object> params) {
+        return ((Boolean) revision.getProperties().get("shared")).booleanValue();
+    }
+});
 ```
 
 This function can then be plugged into a push replication by name:
 
 ```objectivec
-push.filter = @"sharedItems";
+push.setFilter = "sharedItems";
 ```
 
 #### Parameterized Filters
 
 Filter functions can be made more general-purpose by taking parameters. For example, a filter could pass documents whose `"owner"` property has a particular value, allowing the user name to be specified by the replication. That way there doesn't have to be a separate filter for every user.
 
-To specify parameters, set the `filterParams` property of the replication object. Its value is a dictionary that maps parameter names to values. The dictionary must be JSON-compatible, so the values can be any type allowed by JSON.
+To specify parameters, call `setFilterParams` on the `Replication` object. Its value is a dictionary that maps parameter names to values. The dictionary must be JSON-compatible, so the values can be any type allowed by JSON.
 
-Couchbase Lite filter blocks get the parameters as a `params` dictionary passed to the block.
+Couchbase Lite filter blocks get the parameters in a `params` map object passed to the block.
 
 #### Deleting documents with Filtered Replications
 
 Deleting documents can be tricky in the context of filtered replications.  For example, assume you have a document that has a `worker_id` field, and you set up a filtered replication to pull documents only when the `worker_id` equals a certain value.
 
-When one of these documents is deleted, it does not get synched in the pull replication.  Because the filter function looks for a document with a specific `worker_id`, and the deleted document won't contain any `worker_id`, it fails the filter function and therefore is not synched.
+When one of these documents is deleted, it does not get synched in the pull replication.  Because the filter function looks for a document with a specific `worker_id`, and the deleted document won't contain any `worker_id`, it fails the filter function and therefore is not synced.
 
-This can be fixed by deleting documents in a different way.  Because a document is considered deleted as long as it has the special `_deleted` field, it is possible to delete the document while still retaining the `worker_id` field.  Instead of using the DELETE verb, you instead use the PUT verb.  You definitely need to set the `_deleted` field  for the document to be considered deleted. You can then either retain the fields that you need for filtered replication, like the `worker_id` field, or you can retain all of the fields in the original document.
+This can be fixed by deleting documents in a different way.  Because a document is considered deleted as long as it has the special `_deleted` field, it is possible to delete the document while still retaining the `worker_id` field.  Instead of using the DELETE verb, use the PUT verb.  You definitely need to set the `_deleted` field  for the document to be considered deleted. You can then either retain the fields that you need for filtered replication, like the `worker_id` field, or you can retain all of the fields in the original document.
 
 ### Authentication
 
-The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). In this case, the replicator needs to log on to the remote server on your behalf.
+The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). In this case, the replicator needs to log in to the remote server on your behalf.
 
 <div class="notebox tip">
 <p>Security Tip</p> 
 <p>Because Basic auth sends the password in an easily readable form, it is <em>only</em> safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the <code>https:</code> scheme.</p>
 </div>
 
-You need to register logon credentials for the replicator to use. There are several ways to do this and most of them use the standard credential mechanism provided by the Cocoa Foundation framework.
+You need to register login credentials for the replicator to use. There are several ways to do this. 
 
 #### Hardcoded Username and Password
 
@@ -178,59 +184,6 @@ The simplest but least secure way to store credentials is to use the standard sy
 	https://frank:s33kr1t@sync.example.com/database/
 
 This URL specifies a username `frank` and password `s33kr1t`. If you use this as the remote URL when creating a replication, Couchbase Lite uses the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
-
-#### Using The Credential Store
-
-The better way to store credentials is in the `NSURLCredentialStore`, which is a Cocoa system API that can store credentials either in memory or in the secure (encrypted) Keychain. They then get used automatically when there’s a connection to the matching server.
-
-Here’s an example of how to register a credential for a remote database. First, create a `NSURLCredential` object that contains the username and password, as well as an indication of the persistence with which they should be stored:
-
-    NSURLCredential* cred;
-    cred = [NSURLCredential 
-       credentialWithUser: @"frank"
-                 password: @"s33kr1t"
-              persistence: NSURLCredentialPersistencePermanent];
-
-Next, create a `NSURLProtectionSpace` object that defines the URLs to which the credential applies:
-
-
-    
-    NSURLProtectionSpace* space;
-    
-    space = [[[NSURLProtectionSpace alloc] 
-            initWithHost: @"sync.example.com"
-                    port: 443
-                protocol: @"https"
-                   realm: @"My Database"
-    authenticationMethod: NSURLAuthenticationMethodDefault]
-             autorelease];
-    
-
-Finally, register the credential for the protection space:
-
-    [[NSURLCredentialStorage sharedCredentialStorage]
-       setDefaultCredential: cred
-         forProtectionSpace: space];
-
-
-This is best done right after the user enters a name and password in your configuration UI. Because this example specified _permanent_ persistence, the credential store writes the password securely to the Keychain. From then on, `NSURLConnection`, Cocoa's underlying HTTP client engine, finds it when it needs to authenticate with that same server.
-
-The Keychain is a secure place to store secrets: it's encrypted with a key derived from the user's iOS passcode, and managed only by a single trusted OS process. If you don’t want the password stored to disk, use `NSURLCredentialPersistenceForSession`  for the persistence setting. But then you need to call the above code on every launch, begging the question of where you get the password from. The alternatives are generally less secure than the Keychain.
-
-<div class="notebox">
-<p>Note</p>
-<p>The OS is picky about the parameters of the protection space. If they don’t match exactly—including the `port` and the `realm` string—the credentials are not used and the sync fails with a 401 error. This is annoying to troubleshoot. In case of mysterious auth failures, double-check the all the credential's and protection space's spelling and port numbers!
-</p>
-</div>
-
-If you need to figure out the actual realm string for the server, you can use [curl](http://curl.haxx.se) or another HTTP client tool to examine the response's `WWW-Authenticate` header for an authentication failure. Here's an example that uses curl:
-
-
-```
-$ curl -i -X POST http://sync.example.com/dbname/
-HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Basic realm="My Database"
-```
 
 #### OAuth
 
@@ -251,7 +204,6 @@ Getting these four values is somewhat tricky and involves authenticating with th
 
 OAuth tokens expire after some time. If you install them into a persistent replication, you still need to call the client library periodically to validate them. If they're updated, you need to update them in the replication settings.
 
-
 ### Replication Conflicts
 
 Replication is a bit like merging branches in a version control system (for example, pushing and pulling in Git). Just as in version control, you can run into conflicts if incompatible changes are made to the same data. In Couchbase Lite this happens if a replicated document is changed differently in the two databases, and then one database is replicated to the other. Now both of the changes exist there. Here's an example scenario:
@@ -270,12 +222,8 @@ What happens on device B now when the app tries to get the contents of 'doc'? Fo
 
 You can detect conflicts in the following ways:
 
-* Call `-[CBLDocument getConflictingRevisions:]` and check for multiple returned values.
+* Call `-getConflictingRevisions()` on the `Document` object and check for multiple returned values.
 * Create a view that finds all conflicts by having its map function look for a `_conflicts` property and emit a row if it's present.
 
 After a conflict is detected, you resolve it by deleting the revisions you don't want and optionally storing a revision that contains the merged contents. In the example, if the app wants to keep one revision it can just delete the other one. More likely it needs to merge parts of each revision, so it can do the merge, delete revision '2-bar', and put the new merged copy as a child of '2-baz'.
-
-
-
-
 
