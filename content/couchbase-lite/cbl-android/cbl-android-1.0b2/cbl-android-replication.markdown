@@ -168,41 +168,20 @@ This can be fixed by deleting documents in a different way.  Because a document 
 
 ### Authentication
 
-The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). In this case, the replicator needs to log in to the remote server on your behalf.
+The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). You need to register login credentials for the replicator to use when logging in to the remote server on your behalf.
 
 <div class="notebox tip">
 <p>Security Tip</p> 
-<p>Because Basic auth sends the password in an easily readable form, it is <em>only</em> safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the <code>https:</code> scheme.</p>
+<p>Because Basic Authentication sends the password in an easily readable form, it is <em>only</em> safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the <code>https:</code> scheme.</p>
 </div>
 
-You need to register login credentials for the replicator to use. There are several ways to do this. 
-
-#### Hardcoded Username and Password
+#### Hard-coded username and password
 
 The simplest but least secure way to store credentials is to use the standard syntax for embedding them in the URL of the remote database:
 
 	https://frank:s33kr1t@sync.example.com/database/
 
-This URL specifies a username `frank` and password `s33kr1t`. If you use this as the remote URL when creating a replication, Couchbase Lite uses the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
-
-#### OAuth
-
-[OAuth](http://oauth.net) is a complex protocol that, among other things, allows a user to use an identity from one site (such as Google or Facebook) to authenticate to another site (such as a Sync Gateway server) _without_ having to trust the relaying site with the user's password.
-
-Sync Gateway supports OAuth version 1 (but _not_ yet the newer OAuth 2) for client authentication, so if this has been configured in your upstream database, you can replicate with it by providing OAuth tokens:
-
-
-```
-replication.OAuth = 
-   @{ @"consumer_secret": consumerSecret,
-      @"consumer_key": consumerKey,
-      @"token_secret": tokenSecret,
-      @"token": token };
-```
-
-Getting these four values is somewhat tricky and involves authenticating with the origin server (the site at which the user has an account or identity). Usually you use an OAuth client library to do the hard work, such as a library from [Google](http://code.google.com/p/gtm-oauth/) or [Facebook](https://github.com/facebook/facebook-ios-sdk).
-
-OAuth tokens expire after some time. If you install them into a persistent replication, you still need to call the client library periodically to validate them. If they're updated, you need to update them in the replication settings.
+The URL in the example specifies the user name `frank` and password `s33kr1t`. If you use this form for the remote URL when creating a replication, Couchbase Lite uses the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
 
 ### Replication Conflicts
 
