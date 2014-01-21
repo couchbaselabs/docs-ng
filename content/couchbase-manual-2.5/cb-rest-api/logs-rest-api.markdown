@@ -1,6 +1,6 @@
 # Logs REST API
 
-## Using System Logs
+## Using system logs
 
 Couchbase Server logs various messages, which are available via the REST API.
 These log messages are optionally categorized by the module. You can retrieve a
@@ -42,7 +42,7 @@ Content-Length: nnn
 ```
 
 <a id="couchbase-admin-restapi-client-logging"></a>
-## Client Logging Interface
+## Client logging interface
 
 If you create your own Couchbase SDK you may might want to add entries to the
 central log. These entries would typically be responses to exceptions such as

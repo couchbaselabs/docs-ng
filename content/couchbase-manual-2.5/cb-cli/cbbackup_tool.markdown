@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cmdline-cbbackup"></a>
 
-# cbbackup Tool
+# cbbackup tool
 
 The `cbbackup` tool creates a copy of data from an entire running cluster, an
 entire bucket, a single node, or a single bucket on a single functioning node.
@@ -15,7 +15,7 @@ restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
 hostnames for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+Server](../cb-install/#couchbase-getting-started-hostnames).
 
 Depending upon your platform, this tool is the following directories:
 
@@ -141,7 +141,7 @@ k` option. For example, to backup all keys from a bucket with the prefix
 
 For more information on using `cbbackup` scenarios when you may want to use it
 and best practices for backup and restore of data with Couchbase Server, see
-[Backing Up Using cbbackup](#couchbase-backup-restore-backup-cbbackup).
+[Backing Up Using cbbackup](../cb-admin/#couchbase-backup-restore-backup-cbbackup).
 
 **Backing Up Design Documents Only**
 

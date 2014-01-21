@@ -9,14 +9,14 @@ understanding of the main concepts and terms.
 
 <a id="couchbase-introduction-migration-membase"></a>
 
-## Migrating for Membase Users
+## Migrating for Membase users
 
 For an existing Membase user the primary methods for creating, adding,
 manipulating and retrieving data remain the same. In addition, the background
 operational elements of your Couchbase Server deployment will not differ from
 the basic running of a Membase cluster.
 
-### Term and Concept Differences
+### Term and concept differences
 
    The following terms are new, or updated, in Couchbase Server:
 
@@ -34,7 +34,7 @@ the basic running of a Membase cluster.
 
     * *Membase Buckets* are now *Couchbase Buckets*.
 
-### Consistent Functionality
+### Consistent functionality
 
    The core functionality of Membase, including the methods for basic creation,
    updating and retrieval of information all remain identical within Couchbase
@@ -47,7 +47,7 @@ the basic running of a Membase cluster.
    View-related statistics, and an update to the Web Administration Console for
    building and defining views.
 
-### Changed Functionality
+### Changed functionality
 
    The main difference of Couchbase Server is that in addition to the key/value
    data store nature of the database, you can also use Views to convert the
@@ -60,7 +60,7 @@ the basic running of a Membase cluster.
    manage the concept of lists or sets of data by using other keys as a lookup or
    compounding values.
 
-### Operational and Deployment Differences
+### Operational and deployment differences
 
    The main components of the operation and deployment of your Couchbase Server
    remain the same as with Membase Server. You can add new nodes, failover,
@@ -78,7 +78,7 @@ the basic running of a Membase cluster.
    and how to compact and clean-up view information to help reduce disk space
    consumption and response times.
 
-### Client and Application Changes
+### Client and application ahanges
 
    Clients can continue to communicate with Couchbase Server using the existing
    memcached protocol interface for the basic create, retrieve, update and delete
@@ -94,7 +94,7 @@ the basic running of a Membase cluster.
 
 <a id="couchbase-introduction-migration-couchdb"></a>
 
-## Migrating for CouchDB Users
+## Migrating for CouchDB users
 
 Although Couchbase Server incorporates the view engine functionality built into
 CouchDB, the bulk of the rest of the functionality is supported through the
@@ -105,7 +105,7 @@ that want to use Couchbase Server, particularly when migrating existing
 applications. However, you also gain the scalability and performance advantages
 of the Membase Server components.
 
-### Term and Concept Differences
+### Term and concept differences
 
    Within CouchDB information is stored into the database using the concept of a
    document ID (either explicit or automatically generated), against which the
@@ -131,7 +131,7 @@ of the Membase Server components.
    of replicas of the information, and the port and authentication required to
    access the information.
 
-### Consistent Functionality
+### Consistent functionality
 
    The operation and interface for querying and creating view definitions in
    Couchbase Server is mostly identical. Views are still based on the combination
@@ -147,7 +147,7 @@ of the Membase Server components.
    specification. Stale views are also supported, and just as with CouchDB,
    accessing a stale view prevents Couchbase Server from updating the index.
 
-### Changed Functionality
+### Changed functionality
 
    There are many changes in the functionality and operation of Couchbase Server
    than CouchDB, including:
@@ -171,7 +171,7 @@ of the Membase Server components.
       built into Couchbase Server that provides cluster configuration, monitoring and
       view/document update functionality.
 
-### Operational and Deployment Differences
+### Operational and deployment differences
 
    From a practical level the major difference between CouchDB and Couchbase Server
    is that options for clustering and distribution of information are significantly
@@ -184,7 +184,7 @@ of the Membase Server components.
    redirect queries to the server that holds the information as it is distributed
    around the cluster. This process is automatic.
 
-### Client and Application Changes
+### Client and application changes
 
    As your CouchDB based application already uses JSON for the document
    information, and a document ID to identify each document, the bulk of your

@@ -1,7 +1,7 @@
    
 <a id="couchbase-admin-cmdline-cbdocloader"></a>
 
-# cbdocloader Tool
+# cbdocloader tool
 
 You can use this tool to load a group of JSON documents in a given directory, or
 in a single.zip file. This is the underlying tool used during your initial

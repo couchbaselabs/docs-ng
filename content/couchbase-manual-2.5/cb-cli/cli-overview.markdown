@@ -1,8 +1,10 @@
-# Command-line Interface overview
+<a id="couchbase-admin-cmdline"></a>
+
+# Command-line interface overview
 
 Couchbase Server includes a number of command-line tools that can be used to
 manage and monitor a Couchbase Server cluster or server. All operations are
-mapped to their appropriate [Using the REST API](#couchbase-admin-restapi) call
+mapped to their appropriate [REST API](../cb-rest-api/#couchbase-admin-restapi) call
 (where available).
 
 There are a number of command-line tools that perform different functions and
@@ -12,7 +14,7 @@ question in each case.
 
 <a id="couchbase-admin-cmdline-rename-remove-new"></a>
 
-## Command Line Tools and Availability
+## Command line tools and availability
 
 As of Couchbase Server 2.0, the following publicly available tools have been
 renamed, consolidated or removed. This is to provide better usability, and
@@ -31,7 +33,7 @@ Operating System | Directory Locations
 
 <a id="couchbase-admin-cmdline-unsupported"></a>
 
-## Unsupported Tools
+## Unsupported tools
 
 The following are tools that are visible in Couchbase Server 2.0 installation;
 however the tools are unsupported. This means they are meant for Couchbase
@@ -53,7 +55,7 @@ internal use and will not be supported by Couchbase Technical Support:
 
 <a id="couchbase-admin-cmdline-deprecated-removed"></a>
 
-## Deprecated and Removed Tools
+## Deprecated and removed tools
 
 The following are tools that existed in previous versions but have been
 deprecated and removed as of Couchbase Server 1.8:

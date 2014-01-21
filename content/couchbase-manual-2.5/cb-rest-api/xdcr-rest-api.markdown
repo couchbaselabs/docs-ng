@@ -6,7 +6,7 @@ Cross Datacenter Replication (XDCR) enables you to automatically replicate data
 between clusters and between data buckets. There are several endpoints for the
 Couchbase REST API that you can use specifically for XDCR. For more information
 about using and configuring XDCR, see [Cross Datacenter Replication
-(XDCR)](#couchbase-admin-tasks-xdcr).
+(XDCR)](../cb-admin/#couchbase-admin-tasks-xdcr).
 
 When you use XDCR, you specify source and destination clusters. A source cluster
 is the cluster from which you want to copy data; a destination cluster is the
@@ -19,11 +19,11 @@ source to a destination; in contrast, bi-directional replication means that XDCR
 replicates from a source to a destination and also replicates from the
 destination to the source. For more information about using Couchbase Web
 Console to configure XDCR, see [Cross Datacenter Replication
-(XDCR)](#couchbase-admin-tasks-xdcr).
+(XDCR)](../cb-admin/#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-xdcr-destination"></a>
 
-## Getting a Destination Cluster Reference
+## Getting a destination cluster reference
 
 When you use XDCR, you establish *source* and *destination* cluster. A source
 cluster is the cluster from which you want to copy data; a destination cluster
@@ -82,11 +82,11 @@ The following describes the response elements:
    has been deleted or not.
 
 For more information about XDCR and using XDCR via the Couchbase Web Console,
-see [Cross Datacenter Replication (XDCR)](#couchbase-admin-tasks-xdcr).
+see [Cross Datacenter Replication (XDCR)](../cb-admin/#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-xdcr-create-ref"></a>
 
-## Creating a Destination Cluster Reference
+## Creating a destination cluster reference
 
 When you use XDCR, you establish *source* and *destination* cluster. A source
 cluster is the cluster from which you want to copy data; a destination cluster
@@ -146,11 +146,11 @@ The following describes the response elements:
 
 For more information about XDCR and creating references to destination clusters
 via the Couchbase Web Console, see [Configuring
-Replication](#couchbase-admin-tasks-xdcr-configuration).
+Replication](../cb-admin/#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-deleting-ref"></a>
 
-## Deleting a Destination Cluster Reference
+## Deleting a destination cluster reference
 
 You can remove a reference to destination cluster using the REST API. A
 destination cluster is a cluster to which you replicate data. After you remove
@@ -186,11 +186,11 @@ Pragma: no-cache
 
 For more information about XDCR and references to destination clusters via the
 Couchbase Web Console, see [Configuring
-Replication](#couchbase-admin-tasks-xdcr-configuration).
+Replication](../cb-admin/#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-create-repl"></a>
 
-## Creating XDCR Replications
+## Creating XDCR replications
 
 To replicate data to an established destination cluster from a source cluster,
 you can use the REST API or Couchbase Web Console. Once you create a replication
@@ -234,11 +234,11 @@ The unique document ID returned in the JSON is a reference you can use if you
 want to delete the replication.
 
 For more information about XDCR and creating a new replication see [Configuring
-Replication](#couchbase-admin-tasks-xdcr-configuration).
+Replication](../cb-admin/#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-delete-repl"></a>
 
-## Deleting XDCR Replications
+## Deleting XDCR replications
 
 When you delete a replication, it stops replication from the source to the
 destination. If you re-create the replication between the same source and
@@ -256,11 +256,11 @@ values in the above example with your actual values.
 You use a URL-encoded endpoint which contains the unique document ID that
 references the replication. You can also delete a replication using the
 Couchbase Web Console. For more information, see [Configuring
-Replication](#couchbase-admin-tasks-xdcr-configuration).
+Replication](../cb-admin/#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-restapi-xdcr-internal-settings"></a>
 
-## Viewing Internal XDCR Settings
+## Viewing internal XDCR settings
 
 There are internal settings for XDCR which are only exposed via the REST API.
 These settings will change the replication behavior, performance, and timing. To
@@ -289,11 +289,11 @@ we are showing only the XDCR-related items:
 ```
 
 For more information about these settings and their usage, see [Cross Datacenter Replication
-(XDCR), Providing Advanced Settings](#admin-tasks-xdcr-advanced).
+(XDCR), Providing Advanced Settings](../cb-admin/#admin-tasks-xdcr-advanced).
 
 <a id="couchbase-admin-restapi-xdcr-change-settings"></a>
 
-## Changing Internal XDCR Settings
+## Changing internal XDCR settings
 
 There are internal settings for XDCR which will change the replication behavior, performance, and timing.
 With the Couchbase Server, endpoints are available to change global settings for replications for a cluster and to change settings for a specific replication ID:
@@ -302,7 +302,10 @@ With the Couchbase Server, endpoints are available to change global settings for
 - `/settings/replications/<replication_id>` — settings for specific replication for a bucket
 - `/internalSettings` - settings applied to all replications for a cluster. Endpoint exists in Couchbase 2.0 and onward.
 
-As of Couchbase Server 2.2+ you can change settings for a specific replication ID in Web Console | XDCR | Ongoing Replications | Settings. In the REST API you can change these settings globally for all replications for a cluster or for a specific replication ID. For detailed information about these settings including the impact of changes to a setting, see [XDCR, Providing Advanced Settings](#admin-tasks-xdcr-advanced):
+As of Couchbase Server 2.2+ you can change settings for a specific replication ID in Web Console | XDCR | Ongoing Replications | Settings. 
+In the REST API you can change these settings globally for all replications for a cluster or for a specific replication ID. 
+For detailed information about these settings including the impact of changes to a setting, 
+see [XDCR, Providing Advanced Settings](../cb-admin/#admin-tasks-xdcr-advanced):
 
 Parameter        | Value           | Description 
 ------------- |-------------| --------
@@ -348,14 +351,14 @@ Cache-Control: no-cache
 
 <a id="couchbase-admin-restapi-xdcr-stats"></a>
 
-## Getting XDCR Stats via REST
+## Getting XDCR stats via REST
 
 You can get XDCR statistics from either Couchbase Web Console, or the REST API.
 You perform all of these requests on a source cluster to get information about a
 destination cluster. All of these requests use the UUID, a unique identifier for
 destination cluster. You can get this ID by using the REST API if you do not
 already have it. For instructions, see [Getting a Destination Cluster
-Reference](#couchbase-admin-restapi-xdcr-destination). The endpoints are as
+Reference](../cb-admin/#couchbase-admin-restapi-xdcr-destination). The endpoints are as
 follows:
 
 <pre><code class="java">
@@ -535,5 +538,115 @@ write operations on the destination due to XDCR:
 
 Many of these statistics are exposed in the Couchbase Web
 Console. For more information, see [Monitoring Outgoing
-XDCR](#couchbase-admin-web-console-data-buckets-xdcr).
+XDCR](../cb-admin/#couchbase-admin-web-console-data-buckets-xdcr).
+
+
+<a id="cb-restapi-xdcr-data-encrypt"></a>
+
+## Managing XDCR data encryption
+The process for configuring XDCR with data encryption (Enterprise Edition only) involves configuring the XDCR cluster reference with data encryption enabled, providing the SSL certificate, and configuring replication.
+
+The following summarizes the HTTP methods used for defining XDCR data encryption:
+
+
+
+<table border="1">
+<tr><th>HTTP method</th><th>URI path</th><th>Description</th></tr>
+<tr><td>GET</td><td><code>/pools/default/remoteClusters</code></td><td>Gets the destination cluster reference</td></tr>
+<tr><td>POST</td><td><code>/pools/default/remoteClusters</code></td><td>Creates a  reference to the destination cluster</td></tr>
+<tr><td>PUT</td><td><code>/pools/default/remoteClusters/UUID</code></td><td>Modifies the destination cluster reference</td></tr>
+<tr><td>DELETE</td><td><code>/pools/default/remoteClusters/UUID</code></td><td>Deletes the reference to the destination cluster.</td></tr>
+</table>
+
+
+
+
+### Retrieving certificates
+
+To retrieve the SSL certificate from the destination cluster to the source cluster:
+
+**Destination endpoint**
+
+`/pools/default/certificate`
+
+**Example**
+
+```
+curl http://remoteHost:port/pools/default/certificate > ./remoteCert.pem
+```
+
+
+### Regenerating certificates
+To regenerate a certificate on a destination cluster:
+
+**Destination endpoint**
+
+`/controller/regenerateCertificate`
+
+
+**Example**
+
+
+```
+curl -X POST http://Administrator:asdasd@remoteHost:8091/controller/regenerateCertificate
+```
+
+
+### Configuring XDCR with data encryption
+A POST to `/pools/default/remoteClusters` creates the XDCR cluster reference from the source cluster to the destination cluster. Setting the `demandEncryption` to one (1) and providing the certificate name and location enables data encryption.
+
+**Destination endpoint**
+
+`POST /pools/default/remoteClusters` creates the destination cluster reference.
+
+`PUT /pools/default/remoteClusters` modifies the destination cluster reference.
+
+
+**Syntax**
+
+```
+curl –X POST  -u Admin:myPassword
+  http://localHost:port/pools/default/remoteClusters 
+  -d name=<clusterName>             // Remote cluster name
+  -d hostname=<host>:<port>         // FQDN of the remote host.
+  -d username=<adminName>           // Remote cluster Admin name
+  -d password=<adminPassword>       // Remote cluster Admin password
+  -d demandEncryption=[0|1]
+  -d data-urlencode "certificate=$(cat remoteCert.pem)"
+```
+
+
+**Example**
+
+```
+curl –X POST 
+-d name=remoteName  
+-d hostname=10.3.4.187:8091
+-d username=remoteAdmin –d password=remotePassword
+-d demandEncryption=1
+-d data-urlencode "certificate=$(cat remoteCert.pem)"
+http://Administrator:asdasd@192.168.0.1:8091/pools/default/remoteClusters/
+```
+
+
+
+
+### Disabling data encryption
+To modify the XDCR configuration so that SSL data encryption is disabled, execute a PUT from the source cluster to the destination cluster with `demandEncryption=0`.
+
+**Destination endpoint**
+
+`/pools/default/remoteClusters`
+
+**Example**
+
+```
+curl –X PUT  -u Admin:myPassword
+  http://192.168.0.1:8091/pools/default/remoteClusters/
+-d name=remoteName 
+-d hostname=10.3.4.187:8091
+-d username=remoteAdmin –d password=remotePassword
+-d demandEncryption=0
+```
+
 

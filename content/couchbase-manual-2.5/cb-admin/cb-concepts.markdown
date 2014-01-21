@@ -15,7 +15,7 @@ performance database.
 
 <a id="couchbase-introduction-architecture-nodes"></a>
 
-## Nodes and Clusters
+## Nodes and clusters
 
 Couchbase Server can be used either in a standalone configuration, or in a
 cluster configuration where multiple Couchbase Servers are connected together to
@@ -74,9 +74,10 @@ Access to the Cluster Manager is provided through the administration interface
 ) on a dedicated network port, and through dedicated network ports for client
 access. Additional ports are configured for inter-node communication.
 
+
 <a id="couchbase-introduction-architecture-buckets"></a>
 
-## Data Storage
+## Data storage
 
 Couchbase Server provides data management services using *buckets* ; these are
 isolated virtual containers for data. A bucket is a logical grouping of physical
@@ -125,7 +126,7 @@ Client Support  | Memcached, should use Ketama consistent hashing | Full Smart C
 
 There are three bucket interface types that can be be configured:
 
- * The default Bucket
+ * The default bucket
 
    The default bucket is a Couchbase bucket that always resides on port 11211 and
    is a non-SASL authenticating bucket. When Couchbase Server is first installed
@@ -137,14 +138,14 @@ There are three bucket interface types that can be be configured:
    vBucket aware smart client, an ASCII client or a binary client that doesn't use
    SASL authentication.
 
- * Non-SASL Buckets
+ * Non-SASL buckets
 
    Non-SASL buckets may be placed on any available port with the exception of port
    11211 if the bucket is not named "default". Only one Non-SASL bucket may placed
    on any individual port. These buckets may be reached with a vBucket aware smart
    client, an ASCII client or a binary client that doesn't use SASL authentication
 
- * SASL Buckets
+ * SASL buckets
 
    SASL authenticating Couchbase buckets may only be placed on port 11211 and each
    bucket is differentiated by its name and password. SASL bucket may not be placed
@@ -178,19 +179,19 @@ resources:
    Buckets](#couchbase-admin-web-console-data-buckets).
 
  * Creating and Managing Buckets with Couchbase REST API: see [Managing
-   Buckets](#couchbase-admin-restapi-bucketops).
+   Buckets](../cb-rest-api/#couchbase-admin-restapi-bucketops).
 
  * Creating and Managing Buckets with Couchbase CLI (Command-Line Tool): see
-   [couchbase-cli Tool](#couchbase-admin-cmdline-couchbase-cli).
+   [couchbase-cli tool](../cb-cli/#couchbase-admin-cmdline-couchbase-cli).
 
 <a id="couchbase-introduction-architecture-quotas"></a>
 
-## RAM Quotas
+## RAM quotas
 
 RAM is allocated to Couchbase Server in two different configurable quantities,
 the `Server Quota` and `Bucket Quota`.  
 
- * **Server Quota**
+ * **Server quota**
 
    The Server Quota is the RAM that is allocated to the server when Couchbase
    Server is first installed. This sets the limit of RAM allocated by Couchbase for
@@ -201,7 +202,7 @@ the `Server Quota` and `Bucket Quota`.
    to add two more nodes to the cluster, the new nodes would need 16GB of free RAM,
    and the aggregate RAM available in the cluster would be 192GB.
 
- * **Bucket Quota**
+ * **Bucket quota**
 
    The Bucket Quota is the amount of RAM allocated to an individual bucket for
    caching data. Bucket quotas are configured on a per-node basis, and is allocated
@@ -239,7 +240,7 @@ effectively across the cluster. The vBucket system is used both for distributing
 data, and for supporting replicas (copies of bucket data) on more than one node.
 
 Clients access the information stored in a bucket by communicating directly with
-the node response for the corresponding vBucket. This direct access enables
+the node responsible for the corresponding vBucket. This direct access enables
 clients to communicate with the node storing the data, rather than using a proxy
 or redistribution architecture. The result is abstracting the physical topology
 from the logical partitioning of data. This architecture is what gives Couchbase
@@ -249,7 +250,7 @@ This architecture differs from the method used by `memcached`, which uses
 client-side key hashes to determine the server from a defined list. This
 requires active management of the list of servers, and specific hashing
 algorithms such as Ketama to cope with changes to the topology. The structure is
-also more flexible and able to cope with changes than the typical sharding
+also more flexible and able to cope better with changes than the typical sharding
 arrangement used in an RDBMS environment.
 
 vBuckets are not a user-accessible component, but they are a critical component
@@ -264,7 +265,7 @@ consulted to lookup the server that "hosts" that vBucket. The table contains one
 row per vBucket, pairing the vBucket to its hosting server. A server appearing
 in this table can be (and usually is) responsible for multiple vBuckets.
 
-The diagram below shows how the Key to Server mapping (vBucket map) works. There
+The following diagram shows how the Key to Server mapping (vBucket map) works. There
 are three servers in the cluster. A client wants to look up ( `get` ) the value
 of KEY. The client first hashes the key to calculate the vBucket which owns KEY.
 In this example, the hash resolves to vBucket 8 ( `vB8` ) By examining the
@@ -282,17 +283,17 @@ node, Server D is added to the cluster and the vBucket Map is updated.
 
 The vBucket map is updated during
 the [rebalance](#couchbase-introduction-architecture-rebalancing) operation; the
-updated map is then sent the cluster to all the cluster participants, including
+updated map is then sent to all the cluster participants, including
 the other nodes, any connected "smart" clients, and the Moxi proxy service.
 
 Within the new four-node cluster model, when a client again wants to `get` the
-value of KEY, the hashing algorithm will still resolve to vBucket 8 ( `vB8` ).
+value of KEY, the hashing algorithm still resolves to vBucket 8 ( `vB8` ).
 The new vBucket map however now maps that vBucket to Server D. The client now
 communicates directly with Server D to obtain the information.
 
 <a id="couchbase-introduction-architecture-datainram"></a>
 
-## Caching Layer
+## Caching layer
 
 The architecture of Couchbase Server includes a built-in caching layer. This
 caching layer acts as a central part of the server and provides very rapid reads
@@ -338,7 +339,7 @@ from RAM, or return it after it fetches it from disk.
 
 <a id="couchbase-introduction-architecture-diskstorage"></a>
 
-## Disk Storage
+## Disk storage
 
 For performance, Couchbase Server mainly stores and retrieves information for
 clients using RAM. At the same time, Couchbase Server will eventually store all
@@ -358,7 +359,7 @@ processes the load queue and reads the information back from disk and into
 memory. The client is made to wait until the data has been loaded back into
 memory before the information is returned.
 
-### Multiple Readers and Writers
+### Multiple readers and writers
 
 Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each server instance
@@ -375,13 +376,13 @@ simultaneously read and write data on disk:
 ![](../images/threads_read_write.png)
 
 This multi-threaded engine includes additional synchronization among threads
-that are access the same data cache to avoid conflicts. To maintain performance
+that are accessing the same data cache to avoid conflicts. To maintain performance
 while avoiding conflicts over data we use a form of locking between threads as
 well as thread allocation among vBuckets with static partitioning. When
 Couchbase Server creates multiple reader and writer threads, the server assesses
 a range of vBuckets for each thread and assigns each thread exclusively to
 certain vBuckets. With this static thread coordination, the server schedules
-threads so that only a single reader and single writer thread that access the
+threads so that only a single reader and single writer thread can access the
 same vBucket at any given time. We show this in the image above with six
 pre-allocated threads and two data Buckets. Each thread has the range of
 vBuckets that is statically partitioned for read and write access.
@@ -389,7 +390,7 @@ vBuckets that is statically partitioned for read and write access.
 For information about configuring this option, see [Using Multi- Readers and
 Writers](#couchbase-admin-tasks-mrw).
 
-### Document Deletion from Disk
+### Document deletion from disk
 
 For Couchbase Server will never delete entire items from disk unless a client
 explicitly deletes the item from the database or
@@ -398,16 +399,16 @@ item is reached. The ejection mechanism removes an item from RAM, while keeping
 a copy of the key and metadata for that document in RAM and also keeping copy of
 that document on disk. For more information about document expiration and
 deletion, see [Couchbase Developer Guide, About Document
-Expiration](http://www.couchbase.com/docs/couchbase-devguide-2.0/about-ttl-values.html).
+Expiration](http://docs.couchbase.com/couchbase-devguide-2.5/#about-ttl-values).
 
 <a id="couchbase-introduction-tombstone-purge"></a>
 
-### Tombstone Purging
+### Tombstone purging
 
 Couchbase Server and other distributed databases maintain tombstones in order to
 provide eventual consistency between nodes and between clusters. Tombstones are
 records of expired or deleted items and they include the key for the item as
-well as metadata. As of Couchbase Server 2.0+, we stored the key plus several bytes of
+well as metadata. Couchbase Server stores the key plus several bytes of
 metadata per deleted item in two structures per node. With millions of
 mutations, the space taken up by tombstones can grow quickly. This is especially
 the case if you have a large number of deletions or expired documents.
@@ -417,12 +418,12 @@ You can now configure the Metadata Purge Interval which sets how frequently a no
  * In Web Console, see [Using Web Console, Enabling
    Auto-Compaction](#couchbase-admin-web-console-settings-autocompaction).
 
- * You can also change this interval via REST, see [Using REST API, Setting 
+ * You can also change this interval via REST, see the [REST API, Setting 
    Auto-Compaction](#couchbase-admin-rest-auto-compaction).
 
 <a id="couchbase-introduction-architecture-ejection-eviction"></a>
 
-## Ejection, Eviction and Working Set Management
+## Ejection, eviction and working set management
 
 *Ejection* is a process automatically performed by Couchbase Server; it is the
 process of removing data from RAM to provide room for frequently-used items.
@@ -433,14 +434,14 @@ Couchbase Server performs to free space in RAM, and to ensure the most-used
 items are still available in RAM is also known as *working set management*.
 
 In addition to memory quota for the caching layer, there are two watermarks the
-engine will use to determine when it is necessary to start persisting more data
+engine uses to determine when it is necessary to start persisting more data
 to disk. These are `mem_low_wat` and `mem_high_wat`.
 
 As the caching layer becomes full of data, eventually the mem\_low\_wat is
 passed. At this time, no action is taken. As data continues to load, it will
 eventually reach `mem_high_wat`. At this point a background job is scheduled to
 ensure items are migrated to disk and the memory is then available for other
-Couchbase Server items. This job will run until measured memory reaches
+Couchbase Server items. This job runs until measured memory reaches
 `mem_low_wat`. If the rate of incoming items is faster than the migration of
 items to disk, the system may return errors indicating there is not enough
 space. This will continue until there is available memory. The process of
@@ -485,7 +486,7 @@ be removed from the system, freeing up RAM and disk for more active data.
 
 <a id="couchbase-introduction-architecture-warmup"></a>
 
-## Server Warmup
+## Server warmup
 
 Anytime you restart the Couchbase Server, or when you restore data to a server
 instance, the server must undergo a *warmup* process before it can handle
@@ -495,7 +496,7 @@ and write. Depending on the size and configuration of your system and the amount
 of data persisted in your system, server warmup may take some time to load all
 of the data into memory.
 
-Couchbase Server 2.0 provides a more optimized warmup process; instead of
+Couchbase Server provides a more optimized warmup process; instead of
 loading data sequentially from disk into RAM, it divides the data to be loaded
 and handles it in multiple phases. Couchbase Server is also able to begin
 serving data before it has actually loaded all the keys and data from vBuckets.
@@ -530,7 +531,7 @@ support the system.
 
 <a id="couchbase-introduction-architecture-replication"></a>
 
-## Replicas and Replication
+## Replicas and replication
 
 In addition to distributing information across the cluster for even data
 distribution and cluster performance, you can also establish *replica vBuckets*
@@ -550,7 +551,7 @@ more technical details about data replication within Couchbase clusters, or to
 learn about any configurations for replication, see [Handling Replication within
 a Cluster](#couchbase-admin-tasks-intercluster-replication).
 
-As of Couchbase Server 2.0, you are also able to perform replication between two
+You are also able to perform replication between two
 Couchbase clusters. This is known as cross datacenter replication (XDCR) and can
 provide a copy of your data at a cluster which is closer to your users, or to
 provide the data in case of disaster recovery. For more information about
@@ -579,7 +580,7 @@ Failover can be performed manually, or you can use the built-in automatic
 failover that reacts after a preset time when a node within the cluster becomes
 unavailable.
 
-For more information, see [Failing Over Nodes](#couchbase-admin-tasks-failover).
+For more information, see [Failover nodes](#couchbase-admin-tasks-failover).
 
 <a id="couchbase-introduction-architecture-tap"></a>
 
@@ -595,7 +596,7 @@ redistribute the information across the system.
 
 <a id="couchbase-introduction-architecture-clientinterface"></a>
 
-### Client Interface
+### Client interface
 
 Within Couchbase Server, the techniques and systems used to get information into
 and out of the database differ according to the level and volume of data that
@@ -635,7 +636,7 @@ base operations of Create, Retrieve, Update and Delete:
       includes the keys (used to select specific or ranges of information) and values.
       For example, you could create a view on contact information that outputs the
       JSON record by the contact's name, and with a value containing the contacts
-      address. Each view also outputs the key used to store the original object. IF
+      address. Each view also outputs the key used to store the original object. If 
       the view doesn't contain the information you need, you can use the returned key
       with the memcached protocol to obtain the complete record.
 
@@ -664,7 +665,7 @@ way you work with storing data in Couchbase Server.
 
 <a id="couchbase-introduction-architecture-administration"></a>
 
-## Administration Tools
+## Administration tools
 
 Couchbase Server was designed to be as easy to use as possible, and does not
 require constant attention. Administration is however offered in a number of
@@ -689,7 +690,7 @@ Couchbase Server and cluster:
    interface can be called from your own custom management and administration
    scripts to support different operations.
 
-   Full details are provided in [Using the REST API](#couchbase-admin-restapi)
+   Full details are provided in the [REST API](../cb-rest-api/#couchbase-admin-restapi)
 
  * **Command Line Interface**
 
@@ -704,7 +705,7 @@ Couchbase Server and cluster:
 
 <a id="couchbase-introduction-architecture-stats"></a>
 
-## Statistics and Monitoring
+## Statistics and monitoring
 
 In order to understand what your cluster is doing and how it is performing,
 Couchbase Server incorporates a complete set of statistical and monitoring
@@ -757,4 +758,4 @@ machine.
 
 
 
-<a id="couchbase-getting-started"></a>
+

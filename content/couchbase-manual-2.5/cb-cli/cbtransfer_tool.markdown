@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cmdline-cbtransfer"></a>
 
-# cbtransfer Tool
+# cbtransfer tool
 
 You use this tool to transfer data and design documents between two clusters or
 from a file to a cluster. With this tool you can also create a copy of data from
@@ -11,6 +11,9 @@ lightweight extract-transform-load (ETL) tool that can move data from a source
 to a destination. The source and destination parameters are similar to URLs or
 file paths.
 
+<div class="notebox">
+<p>Note</p>
+<p>
 `cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
 addresses for server nodes outside of a cluster. They can only communicate with
 nodes from a node list obtained within a cluster. You should perform backup,
@@ -18,7 +21,8 @@ restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
 hostnames for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+Server](../cb-install/#couchbase-getting-started-hostnames).
+</p></div>
 
 The tool is at the following locations:
 

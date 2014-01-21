@@ -11,17 +11,19 @@ both online upgrades or offline upgrades:
  * Couchbase 2.1 to Couchbase 2.2 and above
  * Couchbase 2.1.x to Couchbase 2.2 and above
 
-
-If you want to upgrade from 1.8.0 to 2.0 +, you must have enough disk space
+<div class="notebox warning">
+<p>Important</p>
+<p>
+If you plan to upgrade from 1.8.0 to 2.0+, ensure that there is enough disk space
 available for both your original Couchbase Server 1.8 data files and the new
-format for Couchbase Server 2.0 files. You will also need additional disk space
-for new functions such as indexing and compaction. You will need approximately
-three times the disk space.
+format for Couchbase Server 2.x files. Provide approximately three (3) times 
+the disk space for functionality such as indexing and compaction.
+</p></div>
 
 You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
 must first upgrade from Couchbase Server 1.8 or earlier to Couchbase Server
-1.8.1 to provide data compatibility with Couchbase Server 2.0 +. After you
-perform this initial upgrade you can then upgrade to 2.0+.
+1.8.1 to provide data compatibility with Couchbase Server 2.0+. After 
+performing this initial upgrade, upgrade to 2.0 or higher.
 
 You can perform a cluster upgrade in two ways:
 
@@ -59,7 +61,7 @@ You can perform a cluster upgrade in two ways:
    node. This upgrade process is also much quicker than performing a standard
    online upgrade because you only need to rebalance each upgraded node once. For
    more information on swap rebalance, see [Swap
-   Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
+   Rebalance](../cb-admin/#couchbase-admin-tasks-addremove-rebalance-swap).
 
 ## Offline upgrades
 
@@ -87,23 +89,25 @@ Cluster Stays in Operation    | Yes                                             
 Cluster must be Shutdown      | No                                              | Yes                                  
 Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node | All nodes in Cluster Upgraded at Once
 
-## Backup your data before performing an upgrade
 
-Before you perform an upgrade, whether it is online or offline, you should
-backup your data, see [Backup and Restore](#couchbase-backup-restore).
+<div class="notebox bp">
+<p>Recommendation</p>
+<p>Before performing an upgrade, whether it is online or offline, 
+backup your data, see [Backup and Restore](../cb-admin/#couchbase-backup-restore).
+</p></div>
 
 <a id="couchbase-getting-started-upgrade-online-swap"></a>
 
 ## Online upgrade with swap rebalance
 
-You can perform a swap rebalance to upgrade your nodes to Couchbase Server 2.0+,
+You can perform a swap rebalance to upgrade your nodes to Couchbase Server,
 without reducing the performance of your cluster. This is the preferred method
-for performing and online upgrade of your cluster because cluster capacity is
+for performing an online upgrade of your cluster because cluster capacity is
 always maintained throughout the upgrade. If you are unable to perform an
-upgrade via swap rebalance, you may perform an standard online upgrade, see
-[Standard Online Upgrades](#couchbase-getting-started-upgrade-online). For
+upgrade via swap rebalance, perform an standard online upgrade, see
+[Standard online upgrades](#couchbase-getting-started-upgrade-online). For
 general information on swap rebalance, see [Swap
-Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
+Rebalance](../cb-admin/#couchbase-admin-tasks-addremove-rebalance-swap).
 
 You will need at least one extra node to perform a swap rebalance.
 
@@ -112,7 +116,7 @@ You will need at least one extra node to perform a swap rebalance.
     Server](#couchbase-getting-started-install).
 
  1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
-    Tool](#couchbase-admin-cmdline-cbbackup).
+    tool](../cb-cli/#couchbase-admin-cmdline-cbbackup).
 
  1. Open Couchbase Web Console at an existing node in the cluster.
 
@@ -122,14 +126,14 @@ You will need at least one extra node to perform a swap rebalance.
 
     ![](../images/upgrade_addserver.png)
 
- 1. Click Add Server. A panel appears where you can provide credentials and either a
+ 1. Click *Add Server*. A panel appears where you can provide credentials and either a
     host name or IP address for the new node: *At this point you can provide a
     hostname for the node you add. For more information, see.*
 
 
     ![](../images/online-upgrade-addnode.png)
 
- 1. Remove one of your existing old nodes to from the cluster. Under Server Nodes |
+ 1. Remove one of your existing old nodes from the cluster. Under Server Nodes |
     Server panel, Click Remove Server for the node you want to remove. This will
     flag this server for removal.
 
@@ -149,7 +153,7 @@ will not yet function until you migrate all nodes in your cluster to 2.0+. After
 you do so, they will be enabled for your use.
 
 For general information on swap rebalance, see [Swap
-Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
+Rebalance](../cb-admin/#couchbase-admin-tasks-addremove-rebalance-swap).
 
 <a id="couchbase-getting-started-upgrade-online"></a>
 
@@ -163,12 +167,17 @@ upgrade method if you are not able to perform online upgrade via swap rebalance,
 see [Online Upgrade with Swap
 Rebalance](#couchbase-getting-started-upgrade-online-swap).
 
-As a best practice, you should always add the same number of nodes a to a
+<div class="notebox bp">
+<p>Best practice</p>
+<p>
+As a best practice, you should always add the same number of nodes to a
 cluster as the number you remove and then perform rebalance. While it is
 technically possible you should avoid removing a node, rebalancing then adding
 back nodes into the cluster. This would reduce your cluster capacity while you
 add the new node back into the cluster, which could lead to data being ejected
 to disk.
+</p>
+</div>
 
 For information on upgrading from Couchbase Server 1.8 to Couchbase Server 2.1,
 see [Upgrades Notes 1.8.1 to 2.1](#couchbase-getting-started-upgrade-1-8-2-0).
@@ -179,7 +188,7 @@ to Couchbase Server 2.1+.
 To perform an standard, online upgrade of your cluster:
 
  1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
-    Tool](#couchbase-admin-cmdline-cbbackup).
+    tool](../cb-cli/#couchbase-admin-cmdline-cbbackup).
 
  1. Choose a node to remove from the cluster and upgrade. You can upgrade one node
     at a time, or if you have enough cluster capacity, two nodes at a time. We do
@@ -241,24 +250,33 @@ The offline upgrade process requires you to shutdown all the applications and
 then the entire Couchbase Server cluster. You can then perform the upgrade the
 software on each machine, and bring your cluster and application back up again.
 
-If you are upgrade from Couchbase Server 1.8 to Couchbase 2.0 there are more
+<div class="notebox">
+<p>Note</p>
+<p>
+If you are upgrading from Couchbase Server 1.8 to Couchbase 2.0 and higher, there are more
 steps for the upgrade because you must first upgrade to Couchbase 1.8.1 for data
 compatibility with 2.0. For more information, see [Upgrades Notes 1.8.1 to
 2.1](#couchbase-getting-started-upgrade-1-8-2-0).
+</p>
+</div>
 
-Check that your disk write queue ( [Disk Write
-Queue](#couchbase-monitoring-diskwritequeue) ) is completely drained to ensure
-all data has been persisted to disk and will be available after the upgrade. It
-is a best practice to turn off your application and allow the queue to drain
-before you upgrade it. It is also a best practice to perform a backup of all
-data before you upgrade
+<div class="notebox bp">
+<p>Best practice</p>
+<p>
+Check that the disk write queue is completely drained to ensure
+all data has been persisted to disk and will be available after the upgrade. 
+Couchbase recommends that you turn off your application and allow the queue to drain
+before upgrading. Couchbase also recommends all
+data be backed up before upgrading. For more information, see [Disk Write
+Queue](../cb-admin/#couchbase-monitoring-diskwritequeue).
+</p></div>
 
 To perform an offline upgrade:
 
  1. Under Settings | Auto-Failover, disable auto-failover for all nodes in the
     cluster. If you leave this enabled, the first node that you shut down will be
     auto-failed-over. For instructions, see [Enabling Auto-Failover
-    Settings](#couchbase-admin-web-console-settings-autofailover).
+    Settings](../cb-admin/#couchbase-admin-web-console-settings-autofailover).
 
  1. Shut down your application, so that no more requests go to Couchbase Cluster.
 
@@ -279,10 +297,10 @@ To perform an offline upgrade:
     ![](../images/upgrade_disk_write_zero.png)
 
  1. Create a backup of your cluster data using `cbbackup`. See [cbbackup
-    Tool](#couchbase-admin-cmdline-cbbackup).
+    tool](../cb-cli/#couchbase-admin-cmdline-cbbackup).
 
  1. Shutdown Couchbase Server on each machine in your cluster. For instructions, see
-    [Server Startup and Shutdown](#couchbase-admin-basics-running)
+    [Server Startup and Shutdown](../cb-admin/#couchbase-admin-basics-running)
 
  1. After you shutdown your nodes, perform a standard node upgrade to the new
     version of Couchbase Server. See [Upgrading Individual
@@ -293,7 +311,7 @@ To perform an offline upgrade:
 
  1. As the cluster warms up, you can monitor the status of the warmup process to
     determine when you can switch on your application. See [Monitoring startup
-    (warmup)](#couchbase-monitoring-startup).
+    (warmup)](../cb-admin/#couchbase-monitoring-startup).
 
 Once the cluster finishes warmup, you can re-enable your application on the
 upgraded cluster.
@@ -308,8 +326,8 @@ an individual nodes in a cluster remain the same:
  1. Download Couchbase Server
 
  1. Backup data for that node. To backup an existing Couchbase Server installation,
-    use `cbbackup`. See [Backing Up Using
-    cbbackup](#couchbase-backup-restore-backup-cbbackup).
+    use `cbbackup`. See [Backing up using
+    cbbackup](../cb-admin/#couchbase-backup-restore-backup-cbbackup).
 
  1. Backup the node-specific configuration files. While the upgrade script perform a
     backup of the configuration and data files, as a best practice you should make
@@ -323,7 +341,7 @@ an individual nodes in a cluster remain the same:
     Windows  | `C:\Program Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat`
 
  1. Stop Couchbase Server. For instructions, see [Server Startup and
-    Shutdown](#couchbase-admin-basics-running).
+    Shutdown](../cb-admin/#couchbase-admin-basics-running).
 
  1. Check your hostname configurations. If you have deployed Couchbase Server in a
     cloud service, or you are using hostnames rather than IP addresses, you must
@@ -386,7 +404,7 @@ rebalance may fail.
 
 When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1+ on Linux,
 you should be aware of the **OpenSSL** requirement. OpenSSL is a required
-component and you will get an error message during upgrade if it is not
+component and an error message occurs during upgrade if it is not
 installed. To install it Red Hat-based systems, use `yum` :
 
 
@@ -415,8 +433,8 @@ There is currently no officially supported upgrade installer for Mac OS X. If yo
 want to migrate to 1.8.1 to 2.1+ on OS X, you must make a backup of your data
 files with `cbbackup`, install the latest version, then restore your data with
 `cbrestore`. For more information, see [cbbackup
-Tool](#couchbase-admin-cmdline-cbbackup) and [cbrestore
-Tool](#couchbase-admin-cmdline-cbrestore).
+tool](../cb-cli/#couchbase-admin-cmdline-cbbackup) and [cbrestore
+tool](../cb-cli/#couchbase-admin-cmdline-cbrestore).
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
 
@@ -450,8 +468,8 @@ from 1.8.1 to 2.0 + upgrades.
       conversion operation (e.g., 3x more disk space).
 
    The data migration process from the old file format to the new file format may
-   take some time. You should wait for the process to finish before you start
-   Couchbase Server 2.0.
+   take some time. You should wait for the process to finish before starting
+   Couchbase Server.
 
    Once the upgrade process finishes, Couchbase Server 2.0 starts automatically.
    Repeat this process on all nodes within your cluster.
@@ -462,8 +480,8 @@ from 1.8.1 to 2.0 + upgrades.
 
 **You should use the same version number when you perform the migration process
 to prevent version differences which may result in a failed upgrade.** To
-upgrade between Couchbase Server Community Edition and Couchbase Server
-Enterprise Edition, you can use two methods:
+upgrade from Couchbase Server Community Edition to Couchbase Server
+Enterprise Edition, one of the following methods:
 
  * Perform an online upgrade
  * Perform an offline upgrade

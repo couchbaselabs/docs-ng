@@ -277,7 +277,7 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
    [cbtransfer Tool](#couchbase-admin-cmdline-cbtransfer).
 
  * Server-side replica-read API. [Couchbase Developer Guide, Replica
-   Read](http://www.couchbase.com/docs/couchbase-devguide-2.1.0/cb-protocol-replica-read.html).
+   Read](http://docs.couchbase.com/couchbase-devguide-2.1.0/#cb-protocol-replica-read).
 
 **Additional behavior changes in 2.1.0 include:**
 
@@ -420,7 +420,7 @@ The **major enhancements** available in Couchbase Server 2.1.0 include:
       bucket properties as well as the updated properties as parameters when you make
       this REST request. For more information, see [Couchbase Manual, Creating and
       Editing Data
-      Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-creating-buckets.html).
+      Buckets](http://docs.couchbase.com/couchbase-manual-2.1/#couchbase-admin-restapi-creating-buckets).
 
       *Issues* : [MB-7897](http://www.couchbase.com/issues/browse/MB-7897)
 

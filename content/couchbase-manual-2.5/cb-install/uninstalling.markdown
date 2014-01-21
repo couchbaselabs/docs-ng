@@ -7,11 +7,11 @@ Before removing Couchbase Server from your system, you should do the following:
 
  * Shutdown your Couchbase Server. For more information on the methods of shutting
    down your server for your platform, see [Server Startup and
-   Shutdown](#couchbase-admin-basics-running).
+   Shutdown](../cb-admin/#couchbase-admin-basics-running).
 
  * If your machine is part of an active cluster, you should rebalance your cluster
    to take the node out of your configuration. See
-   [Rebalancing](#couchbase-admin-tasks-addremove).
+   [Rebalancing](../cb-admin/#couchbase-admin-tasks-addremove).
 
  * Update your clients to point to an available node within your Couchbase Server
    cluster.

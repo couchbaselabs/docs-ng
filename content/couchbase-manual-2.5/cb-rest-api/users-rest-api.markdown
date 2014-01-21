@@ -2,7 +2,7 @@
 # Users REST API
 
 As of Couchbase Server 2.2+ you can create one read-only user with the REST API. 
-For more information about this type of user, see [Read-Only Users](#couchbase-admin-tasks-read-only).
+For more information about this type of user, see [Read-Only Users](../cb-admin/#couchbase-admin-tasks-read-only).
 
 
 

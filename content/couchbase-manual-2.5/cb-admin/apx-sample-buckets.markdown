@@ -1,6 +1,6 @@
 <a id="couchbase-sampledata"></a>
 
-# Sample Buckets
+# Sample buckets
 
 Couchbase Server comes with sample buckets that contain both data and MapReduce
 queries to demonstrate the power and capabilities.
@@ -14,7 +14,7 @@ sample databases. The available sample buckets include:
 
 <a id="couchbase-sampledata-gamesim"></a>
 
-## Game Simulation Sample Bucket
+## Game Simulation sample bucket
 
 The Game Simulation sample bucket is designed to showcase a typical gaming
 application that combines records showing individual gamers, game objects and
@@ -69,7 +69,7 @@ of the object being stored.
 
 <a id="couchbase-sampledata-gamesim-views-leaderboard"></a>
 
-### leaderboard View
+### leaderboard view
 
 The `leaderboard` view is designed to generate a list of the players and their
 current score:
@@ -160,7 +160,7 @@ Which generates the following:
 
 <a id="couchbase-sampledata-gamesim-views-playerlist"></a>
 
-### playerlist View
+### playerlist view
 
 The `playerlist` view creates a list of all the players by using a map function
 that looks for "player" records.
@@ -212,7 +212,7 @@ This outputs a list of players in the format:
 
 <a id="couchbase-sampledata-beer"></a>
 
-## Beer Sample Bucket
+## Beer sample bucket
 
 The beer sample data demonstrates a combination of the document structure used
 to describe different items, including references between objects, and also
@@ -276,7 +276,7 @@ defined.
 
 <a id="couchbase-sampledata-beer-views-brewerybeers"></a>
 
-### brewery_beers View
+### brewery_beers view
 
 The `brewery_beers` view outputs a composite list of breweries and beers they
 brew by using the view output format to create a 'fake' join, as detailed in
@@ -363,7 +363,7 @@ provide a list of the beers at each brewery.
 
 <a id="couchbase-sampledata-beer-views-by_location"></a>
 
-### by_location View
+### by_location view
 
 Outputs the brewery location, accounting for missing fields in the source data.
 The output creates information either by country, by country and state, or by

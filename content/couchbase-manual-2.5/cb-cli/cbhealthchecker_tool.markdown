@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cmdline-cbhealthchecker"></a>
 
-# cbhealthchecker Tool
+# cbhealthchecker tool
 
 The `cbhealthchecker` tool generates a health report named *Cluster Health Check
 Report* for a Couchbase cluster. The report provides data that helps
@@ -12,11 +12,11 @@ that must be addressed immediately.
 The tool retrieves data from the Couchbase Server monitoring system, aggregates
 it over a time scale, analyzes the statistics against thresholds, and generates
 a report. Unlike other command line tools such as `cbstats` and `cbtransfer`
-that use the [TAP protocol](#couchbase-introduction-architecture-tap) to obtain
+that use the [TAP protocol](../cb-admin/#couchbase-introduction-architecture-tap) to obtain
 data from the monitoring system, `cbhealthchecker` obtains data by using the
 REST API and the memcached protocol. For more information about the statistics
 provided by Couchbase Server, see [Statistics and
-Monitoring](#couchbase-introduction-architecture-stats).
+Monitoring](../cb-admin/#couchbase-introduction-architecture-stats).
 
 You can generate reports on the following time scales: minute, hour, day, week,
 month, and year. The tool outputs an HTML file, a text file, and a JSON file.

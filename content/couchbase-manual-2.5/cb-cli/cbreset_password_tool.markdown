@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cbreset_password"></a>
 
-# cbreset_password Tool
+# cbreset_password tool
 
 You use this tool to reset an administrative or read-only password. You can find this tool in the following locations, depending upon your platform:
 

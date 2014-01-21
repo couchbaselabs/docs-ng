@@ -1,6 +1,6 @@
 <a id="couchbase-views"></a>
 
-# Using views and indexes
+# Views and indexes
 
 Views within Couchbase Server process the information stored in your Couchbase
 Server database, allowing you to index and query your data. A view creates an
@@ -60,12 +60,12 @@ Couchbase Server database.
 
  * The Couchbase Server Web Console includes an editor for writing and developing
    new views. See [Using the Views Editor](#couchbase-views-editor). You can also
-   use a REST API to create, update and delete design documents. See [Design
-   Document REST API](#couchbase-views-designdoc-api).
+   use a REST API to create, update and delete design documents. See the [REST API, Design
+   Documents](../cb-rest-api/#couchbase-views-designdoc-api).
 
 <a id="couchbase-views-basics"></a>
 
-## View Basics
+## View basics
 
 The purpose of a view is take the un-structured, or semi-structured, data stored
 within your Couchbase Server database, extract the fields and information that
@@ -103,7 +103,7 @@ change to applications or a costly schema update before doing so.
 
 <a id="couchbase-views-operation"></a>
 
-## View Operation
+## View operation
 
 All views within Couchbase operate as follows:
 
@@ -206,7 +206,7 @@ All views within Couchbase operate as follows:
 
 <a id="couchbase-views-expiration"></a>
 
-### How Expiration Impacts Views
+### How expiration impacts views
 
 Be aware that Couchbase Server does lazy expiration, that is, expired items are
 flagged as deleted rather than being immediately erased. Couchbase Server has a
@@ -261,7 +261,7 @@ are guidelines on handling expiration with views:
 
  * **Reduces and Expired Documents** : In some cases, you may want to perform a
    *reduce function* to perform aggregations and calculations on data in Couchbase
-   Server 2.0. In this case, Couchbase Server takes pre-calculated values which are
+   Server. In this case, Couchbase Server takes pre-calculated values which are
    stored for an index and derives a final result. This also means that any expired
    items still on disk will be part of the reduction. This may not be an issue for
    your final result if the ratio of expired items is proportionately low compared
@@ -283,7 +283,7 @@ to the Couchbase command line tool and review the examples on `exp_pager_stime`.
 
 <a id="couchbase-views-operation-cluster"></a>
 
-### How Views Function in a Cluster
+### How views function in a cluster
 
 **Distributing data**. If you familiar working with Couchbase Server you know
 that the server distributes data across different nodes in a cluster. This means
@@ -317,7 +317,7 @@ By providing replica indexes the server enables you to still perform queries
 even in the event of node failure. You can specify whether Couchbase Server
 creates replica indexes or not when you create a data bucket. For more
 information, see [Creating and Editing Data
-Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console-data-buckets-createedit.html)
+Buckets](#couchbase-admin-web-console-data-buckets-createedit)
 
 **Query Time within a Cluster**
 
@@ -354,7 +354,7 @@ inconsistent query results.
 
 <a id="couchbase-views-operation-performance"></a>
 
-### View Performance
+### View performance
 
 View performance includes the time taken to update the view, the time required
 for the view update to be accessed, and the time for the updated information to
@@ -389,7 +389,7 @@ Some key notes and points are provided below:
 
 <a id="couchbase-views-writing-stale"></a>
 
-### Index Updates and the stale Parameter
+### Index updates and the stale parameter
 
 Indexes are created by Couchbase Server based on the view definition, but
 updating of these indexes can be controlled at the point of data querying,
@@ -517,7 +517,7 @@ as the record sequence may change between individual queries.
 
 <a id="couchbase-views-operation-autoupdate"></a>
 
-### Automated Index Updates
+### Automated index updates
 
 In addition to a configurable update interval, you can also update all indexes
 automatically in the background. You configure automated update through two
@@ -545,7 +545,7 @@ monitor when documents have been persisted to disk and/or updated in the index.
 
 The updates are applied as follows:
 
- * Active Indexes, Production Views
+ * Active indexes, Production views
 
    For all active, production views, indexes are automatically updated according to
    the update interval `updateInterval` and the number of document changes
@@ -554,7 +554,7 @@ The updates are applied as follows:
    If `updateMinChanges` is set to 0 (zero), then automatic updates are disabled
    for main indexes.
 
- * Replica Indexes
+ * Replica indexes
 
    If replica indexes have been configured for a bucket, the index is automatically
    updated according to the document changes ( `replicaUpdateMinChanges` ; default
@@ -619,7 +619,8 @@ For example:
 ```
 
 You can set this information when creating and updating design documents through
-the design document REST API. For more information, see [Storing a Design Document](#couchbase-views-designdoc-api).
+the design document REST API. For more information, see 
+[Storing design documents](../cb-rest-api/#couchbase-views-designdoc-api).
 
 To perform this operation using the `curl` tool:
 
@@ -636,7 +637,7 @@ Updating development views in this way would waste system resources.
 
 <a id="couchbase-views-datastore"></a>
 
-## Views and Stored Data
+## Views and stored data
 
 The view system relies on the information stored within your cluster being
 formatted as a JSON document. The formatting of the data in this form allows the
@@ -702,7 +703,7 @@ within the Web Console.
 
 <a id="couchbase-views-datastore-json"></a>
 
-### JSON Basics
+### JSON basics
 
 JSON is used because it is a lightweight, easily parsed, cross-platform data
 representation format. There are a multitude of libraries and tools designed to
@@ -756,7 +757,7 @@ as a binary object, not a JSON document.
 
 <a id="couchbase-views-datastore-fields"></a>
 
-### Document Metadata
+### Document metadata
 
 During view processing, metadata about individual documents is exposed through a
 separate JSON object, `meta`, that can be optionally defined as the second
@@ -798,7 +799,7 @@ through the Memcached/Couchbase protocol as part of the document.
 
 <a id="couchbase-views-datastore-nonjson"></a>
 
-### Non-JSON Data
+### Non-JSON data
 
 All documents stored in Couchbase Server will return a JSON structure, however,
 only submitted information that could be parsed into a JSON document will be
@@ -817,7 +818,7 @@ Data](#couchbase-views-writing-nonjson).
 
 <a id="couchbase-views-datastore-indexseq"></a>
 
-### Document Storage and Indexing Sequence
+### Document storage and indexing sequence
 
 The method of storage of information into the Couchbase Server affects how and
 when the indexing information is built, and when data written to the cluster is
@@ -859,7 +860,7 @@ Updates](#couchbase-views-operation-autoupdate).
 
 <a id="couchbase-views-types"></a>
 
-## Development and Production Views
+## Development and production views
 
 Due to the nature of the Couchbase cluster and because of the size of the
 datasets that can be stored across a cluster, the impact of view development
@@ -873,7 +874,7 @@ in production, Couchbase Server supports two different view
 types,Developmentviews andProductionviews. The two view types work identically,
 but have different purposes and restrictions placed upon their operation.
 
- * **Development Views**
+ * **Development views**
 
    Development views are designed to be used while you are still selecting and
    designing your view definitions. While a view is in development mode, views
@@ -909,7 +910,7 @@ but have different purposes and restrictions placed upon their operation.
       representative of all the documents in the bucket. You should always check the
       view execution over the full set.
 
- * **Production Views**
+ * **Production views**
 
    Production views are optimized for production use. A production view has the
    following attributes:
@@ -965,7 +966,7 @@ For information on publishing a view from development to production state, see
 
 <a id="couchbase-views-writing"></a>
 
-## Writing Views
+## Writing views
 
 The fundamentals of a view are straightforward. A view creates a perspective on
 the data stored in your Couchbase buckets in a format that can be used to
@@ -1055,8 +1056,8 @@ functions individually.
 
 For information on how to write map functions, and how the output of the map
 function affects and supports searching, see [Map
-Functions](#couchbase-views-writing-map). For details on writing the reduce
-function, see [Reduce Functions](#couchbase-views-writing-reduce).
+functions](#couchbase-views-writing-map). For details on writing the reduce
+function, see [Reduce functions](#couchbase-views-writing-reduce).
 
 View names must be specified using one or more UTF-8 characters. You cannot have
 a blank view name. View names cannot have leading or trailing whitespace
@@ -1064,7 +1065,7 @@ characters (space, tab, newline, or carriage-return).
 
 To create views, you can use either the Admin Console View editor (see [Using
 the Views Editor](#couchbase-views-editor) ), use the REST API for design
-documents (see [Design Document REST API](#couchbase-views-designdoc-api) ), or
+documents (see the [REST API, Design Documents](../cb-rest-api/#couchbase-views-designdoc-api) ), or
 use one of the client libraries that support view management.
 
 For more information and examples on how to query and obtain information from a
@@ -1072,7 +1073,7 @@ map, see [Querying Views](#couchbase-views-writing-querying).
 
 <a id="couchbase-views-writing-map"></a>
 
-### Map Functions
+### Map functions
 
 The map function is the most critical part of any view as it provides the
 logical mapping between the input fields of the individual objects stored within
@@ -1209,7 +1210,7 @@ Samples](#couchbase-views-sample-patterns).
 
 <a id="couchbase-views-writing-reduce"></a>
 
-### Reduce Functions
+### Reduce functions
 
 Often the information that you are searching or reporting on needs to be
 summarized or reduced. There are a number of different occasions when this can
@@ -1295,7 +1296,7 @@ same key and value fields for each row, but the key is the selected group (or an
 array of the group elements according to the group level), and the value is the
 computed reduction value.
 
-Couchbase includes three built-in reduce functions: 
+Couchbase includes the following built-in reduce functions: 
 
 * [`_count`](#couchbase-views-writing-reduce-count)
 * [`_sum`](#couchbase-views-writing-reduce-sum)
@@ -1490,7 +1491,7 @@ rows.
 
 <a id="couchbase-views-writing-reduce-custom"></a>
 
-### Writing Custom Reduce Functions
+### Writing custom reduce functions
 
 The `reduce()` function has to work slightly differently to the `map()`
 function. In the primary form, a `reduce()` function must convert the data
@@ -1554,7 +1555,7 @@ required for the specified key.
 
 <a id="couchbase-views-writing-reduce-custom-builtin"></a>
 
-### Re-writing the built-in Reduce Functions
+### Re-writing the built-in reduce functions
 
 Using this model as a template, it is possible to write the full implementation
 of the built-in functions `_sum` and `_count` when working with the sales data
@@ -1606,7 +1607,7 @@ with the final value being returned.
 
 <a id="couchbase-views-writing-reduce-custom-rereduce"></a>
 
-### Handling Rereduce
+### Handling re-reduce
 
 For `reduce()` functions, they should be both transparent and standalone. For
 example, the `_sum` function did not rely on global variables or parsing of
@@ -1729,7 +1730,7 @@ within the `reduce()` function is 64KB.
 
 <a id="couchbase-views-writing-nonjson"></a>
 
-### Views on non-JSON Data
+### Views on non-JSON data
 
 If the data stored within your buckets is not JSON formatted or JSON in nature,
 then the information is stored in the database as an attachment to a JSON
@@ -1787,7 +1788,7 @@ startkey=['monster', null, null]&endkey=['monster','\u0000' ,'\u0000']
 
 <a id="couchbase-views-writing-utilityfuncs"></a>
 
-### Built-in Utility Functions
+### Built-in utility functions
 
 Couchbase Server incorporates different utility function beyond the core
 JavaScript functionality that can be used within `map()` and `reduce()`
@@ -1829,7 +1830,7 @@ functions where relevant.
 
 <a id="couchbase-views-writing-bestpractice"></a>
 
-### View Writing Best Practice
+### View writing best practice
 
 Although you are free to write views matching your data, you should keep in mind
 the performance and storage implications of creating and organizing the
@@ -2064,7 +2065,7 @@ You should keep the following in mind while developing and deploying your views:
 
 <a id="couchbase-views-schemaless"></a>
 
-## Views in a Schema-less Database
+## Views in a schema-less database
 
 One of the primary advantages of the document-based storage and the use of
 map/reduce views for querying the data is that the structure of the stored
@@ -2135,7 +2136,7 @@ changes.
 
 <a id="couchbase-views-writing-querying"></a>
 
-## Querying Views
+## Querying views
 
 In order to query a view, the view definition must include a suitable map
 function that uses the `emit()` function to generate each row of information.
@@ -2184,163 +2185,17 @@ supported values are the same across all environments.
 
 <a id="couchbase-views-querying-rest-api"></a>
 
-### Querying Using the REST API
+### Querying using the REST API
 
 Querying can be performed through the REST API endpoint. The REST API supports
 and operates using the core HTTP protocol, and this is the same system used by
 the client libraries to obtain the view data.
 
-Using the REST API you can query a view by accessing any node within the
-Couchbase Server cluster on port 8092. For example:
-
-
-```
-GET http://localhost:8092/bucketname/_design/designdocname/_view/viewname
-```
-
-Where:
-
- * `bucketname` is the name of the bucket.
-
- * `designdocname` is the name of the design document that contains the view.
-
-   For views defined within the development context (see [Development and
-   Production Views](#couchbase-views-types) ), the `designdocname` is prefixed
-   with `dev_`. For example, the design document `beer` is accessible as a
-   development view using `dev_beer`.
-
-   Production views are accessible using their name only.
-
- * `viewname` is the name of the corresponding view within the design document.
-
-When accessing a view stored within an SASL password-protected bucket, you must
-include the bucket name and bucket password within the URL of the request:
-
-
-```
-GET http://bucketname:password@localhost:8092/bucketname/_design/designdocname/_view/viewname
-```
-
-Additional arguments to the URL request can be used to select information from
-the view, and provide limit, sorting and other options. For example, to output
-only ten items:
-
-
-```
-GET http://localhost:8092/bucketname/_design/designdocname/_view/viewname?limit=10
-```
-
-The formatting of the URL follows the HTTP specification. The first argument
-should be separated from the base URL using a question mark ( `?` ). Additional
-arguments should be separated using an ampersand ( `&` ). Special characters
-should be quoted or escaped according to the HTTP standard rules.
-
-The additional supported arguments are detailed in the table below.
-
-<a id="table-couchbase-querying-arguments"></a>
-
-Get View Name | Description 
-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Method**                  | `GET /bucket/_design/design-doc/_view/view-name`                                                                                                                     
-**Request Data**            | None                                                                                                                                                                 
-**Response Data**           | JSON of the rows returned by the view                                                                                                                                
-**Authentication Required** | no                                                                                                                                                                   
-**Query Arguments**         |                                                                                                                                                                      
-`descending`                | Return the documents in descending by key order                                                                                                                      
-                            | **Parameters** : boolean; optional                                                                                                                                   
-`endkey`                    | Stop returning records when the specified key is reached. Key must be specified as a JSON value.                                                                     
-                            | **Parameters** : string; optional                                                                                                                                    
-`endkey_docid`              | Stop returning records when the specified document ID is reached                                                                                                     
-                            | **Parameters** : string; optional                                                                                                                                    
-`full_set`                  | Use the full cluster data set (development views only).                                                                                                              
-                            | **Parameters** : boolean; optional                                                                                                                                   
-`group`                     | Group the results using the reduce function to a group or single row                                                                                                 
-                            | **Parameters** : boolean; optional                                                                                                                                   
-`group_level`               | Specify the group level to be used                                                                                                                                   
-                            | **Parameters** : numeric; optional                                                                                                                                   
-`inclusive_end`             | Specifies whether the specified end key should be included in the result                                                                                             
-                            | **Parameters** : boolean; optional                                                                                                                                   
-`key`                       | Return only documents that match the specified key. Key must be specified as a JSON value.                                                                           
-                            | **Parameters** : string; optional                                                                                                                                    
-`keys`                      | Return only documents that match each of keys specified within the given array. Key must be specified as a JSON value. Sorting is not applied when using this option.
-                            | **Parameters** : array; optional                                                                                                                                     
-`limit`                     | Limit the number of the returned documents to the specified number                                                                                                   
-                            | **Parameters** : numeric; optional                                                                                                                                   
-`on_error`                  | Sets the response in the event of an error                                                                                                                           
-                            | **Parameters** : string; optional                                                                                                                                    
-                            | **Supported Values**                                                                                                                                                 
-                            | `continue` : Continue to generate view information in the event of an error, including the error information in the view response stream.                            
-                            | `stop` : Stop immediately when an error condition occurs. No further view information will be returned.                                                              
-`reduce`                    | Use the reduction function                                                                                                                                           
-                            | **Parameters** : boolean; optional                                                                                                                                   
-`skip`                      | Skip this number of records before starting to return the results                                                                                                    
-                            | **Parameters** : numeric; optional                                                                                                                                   
-`stale`                     | Allow the results from a stale view to be used                                                                                                                       
-                            | **Parameters** : string; optional                                                                                                                                    
-                            | **Supported Values** :                                                                                                                                               
-                            | `false` : Force a view update before returning data                                                                                                                  
-                            | `ok` : Allow stale views                                                                                                                                             
-                            | `update_after` : Allow stale view, update view after it has been accessed                                                                                            
-`startkey`                  | Return records with a value equal to or greater than the specified key. Key must be specified as a JSON value.                                                       
-                            | **Parameters** : string; optional                                                                                                                                    
-`startkey_docid`            | Return records starting with the specified document ID                                                                                                               
-                            | **Parameters** : string; optional                                                                                                                                    
-
-The output from a view will be a JSON structure containing information about the
-number of rows in the view, and the individual view information.
-
-An example of the View result is shown below:
-
-
-```
-{
-  "total_rows": 576,
-  "rows" : [
-      {"value" : 13000, "id" : "James", "key" : ["James", "Paris"] },
-      {"value" : 20000, "id" : "James", "key" : ["James", "Tokyo"] },
-      {"value" : 5000,  "id" : "James", "key" : ["James", "Paris"] },
-…
-    ]
-}
-```
-
-The JSON returned consists of two fields:
-
- * `total_rows`
-
-   A count of the number of rows of information within the stored View. This shows
-   the number of rows in the full View index, not the number of rows in the
-   returned data set.
-
- * `rows`
-
-   An array, with each element of the array containing the returned view data,
-   consisting of the value, document ID that generated the row, and the key.
-
-In the event of an error, the HTTP response will be an error type (not 200), and
-a JSON structure will be returned containing two fields, the basic `error` and a
-more detailed `reason` field. For example:
-
-
-```
-{
-  "error":"bad_request",
-  "reason":"invalid UTF-8 JSON: {{error,{1,\"lexical error: invalid char in json text.\\n\"}},\n                     \"Paris\"}"
-}
-```
-
-If you supply incorrect parameters to the query, an error message is returned by
-the server. Within the Client Libraries the precise behavior may differ between
-individual language implementations, but in all cases, an invalid query should
-trigger an appropriate error or exception.
-
-Detail on each of the parameters, and specific areas of interaction are
-described within the additional following sections, which also apply to all
-client library interfaces.
+For more information, see the [REST API, Querying views](../cb-rest-api/#couchbase-restapi-query-views).
 
 <a id="couchbase-views-writing-querying-selection"></a>
 
-### Selecting Information
+### Selecting information
 
 Couchbase Server supports a number of mechanisms for selecting information
 returned by the view. Key selection is made after the view results (including
@@ -2422,7 +2277,7 @@ The following selection types are supported:
 
 <a id="couchbase-views-writing-querying-selection-compoundbykey"></a>
 
-### Selecting Compound Information by key or keys
+### Selecting compound information by key or keys
 
 If you are generating a compound key within your view, for example when
 outputting a date split into individually year, month, day elements, then the
@@ -2476,7 +2331,7 @@ Keys](#couchbase-views-writing-querying-selection-compound).
 
 <a id="couchbase-views-writing-querying-selection-partial"></a>
 
-### Partial Selection and Key Ranges
+### Partial selection and key ranges
 
 Matching of the key value has a precedence from right to left for the key value
 and the supplied `startkey` and/or `endkey`. Partial strings may therefore be
@@ -2551,7 +2406,7 @@ being output that match the specified prefix.
 
 <a id="couchbase-views-writing-querying-selection-compound"></a>
 
-### Partial Selection with Compound Keys
+### Partial selection with compound keys
 
 Compound keys, such as arrays or hashes, can also be specified in the view
 output, and the matching precedence can be used to provide complex selection
@@ -2667,7 +2522,7 @@ This is much faster than the skip/limit example shown above.
 
 <a id="couchbase-views-writing-querying-grouping"></a>
 
-### Grouping in Queries
+### Grouping in queries
 
 If you have specified an array as your compound key within your view, then you
 can specify the group level to be applied to the query output when using a
@@ -2704,7 +2559,7 @@ compound key using an array as the output value for the key.
 
 <a id="couchbase-views-writing-querying-grouping-selection"></a>
 
-### Selection when Grouping
+### Selection when grouping
 
 When using grouping and selection using the `key`, `keys`, or `startkey` /
 `endkey` parameters, the query value should match at least the format (and
@@ -2824,7 +2679,7 @@ by eliminating the case differences.
 
 <a id="couchbase-views-ordering-unicode-collation"></a>
 
-### Understanding Letter Ordering in Views
+### Understanding letter ordering in views
 
 Couchbase Server uses a Unicode collation algorithm to order letters, so you
 should be aware of how this functions. Most developers are typically used to
@@ -2891,8 +2746,8 @@ Ranges](#couchbase-views-writing-querying-selection-partial).
 
 This following example demonstrates Unicode collation in Couchbase Server and
 the impact on query results returned with a `startkey` and `endkey`. It is based
-on the `beer-sample` database provided with Couchbase Server 2.0. For more
-information, see [Beer Sample Bucket](#couchbase-sampledata-beer).
+on the `beer-sample` database provided with Couchbase Server. For more
+information, see [Beer sample bucket](#couchbase-sampledata-beer).
 
 Imagine you want to retrieve all breweries with names starting with uppercase Y.
 Your query parameters would appear as follows:
@@ -2929,7 +2784,7 @@ Options](http://userguide.icu-project.org/collation/customization#TOC-Default-Op
 
 <a id="couchbase-views-writing-querying-errorcontrol"></a>
 
-### Error Control
+### Error control
 
 There are a number of parameters that can be used to help control errors and
 responses during a view query.
@@ -2997,7 +2852,7 @@ responses during a view query.
 
 <a id="couchbase-views-sample-patterns"></a>
 
-## View and Query Pattern Samples
+## View and query pattern samples
 
 Building views and querying the indexes they generate is a combined process
 based both on the document structure and the view definition. Writing an
@@ -3011,7 +2866,7 @@ structures, views and querying parameters required for different situations.
 
 <a id="couchbase-views-sample-patterns-general"></a>
 
-### General Advice
+### General advice
 
 There are some general points and advice for writing all views that apply
 irrespective of the document structure, query format, or view content.
@@ -3051,7 +2906,7 @@ irrespective of the document structure, query format, or view content.
 
 <a id="couchbase-views-sample-patterns-type"></a>
 
-### Validating Document Type
+### Validating document type
 
 If your dataset includes documents that may be either JSON or binary, then you
 do not want to create a view that outputs individual fields for non-JSON
@@ -3073,7 +2928,7 @@ output.
 
 <a id="couchbase-views-sample-patterns-primary"></a>
 
-### Document ID (Primary) Index
+### Document ID (primary) index
 
 To create a 'primary key' index, i.e. an index that contains a list of every
 document within the database, with the document ID as the key, you can create a
@@ -3113,7 +2968,7 @@ the view, it cannot be used as a search or querying mechanism.
 
 <a id="couchbase-views-sample-patterns-second"></a>
 
-### Secondary Index
+### Secondary index
 
 The simplest form of view is to create an index against a single field from the
 documents stored in your database.
@@ -3160,7 +3015,7 @@ regardless of the document field capitalization.
 
 <a id="couchbase-views-sample-patterns-expiry"></a>
 
-### Using Expiration Metadata
+### Using expiration metadata
 
 The metadata object makes it very easy to create and update different views on
 your data using information outside of the main document data. For example, you
@@ -3186,7 +3041,7 @@ view of who was recently active on the service.
 
 <a id="couchbase-views-sample-patterns-multiemit"></a>
 
-### Emitting Multiple Rows
+### Emitting multiple rows
 
 The `emit()` function is used to create a record of information for the view
 during the map phase, but it can be called multiple times within that map phase
@@ -3305,7 +3160,7 @@ This generates the following view:
 
 <a id="couchbase-views-sample-patterns-timestamp"></a>
 
-### Date and Time Selection
+### Date and time selection
 
 For date and time selection, consideration must be given to how the data will
 need to be selected when retrieving the information. This is particularly true
@@ -3509,7 +3364,7 @@ views for the limited datatypes of logtype to create a `warningsbydate` view.
 
 <a id="couchbase-views-sample-patterns-selectivemap"></a>
 
-### Selective Record Output
+### Selective record output
 
 If you are storing different document types within the same bucket, then you may
 want to ensure that you generate views only on a specific record type within the
@@ -3580,7 +3435,7 @@ selection can be much easier at the expense of updating additional view indexes.
 
 <a id="couchbase-views-sample-patterns-sortreduce"></a>
 
-### Sorting on Reduce Values
+### Sorting on reduce values
 
 The sorting algorithm within the view system outputs information ordered by the
 generated key within the view, and therefore it operates before any reduction
@@ -3593,7 +3448,7 @@ enabled from a client, and perform the sorting within the client application.
 
 <a id="couchbase-views-sample-patterns-joins"></a>
 
-### Solutions for Simulating Joins
+### Solutions for simulating joins
 
 Joins between data, even when the documents being examined are contained within
 the same bucket, are not possible directly within the view system. However, you
@@ -3688,7 +3543,7 @@ client SDK to get all the comment records from the Couchbase Server cache.
 
 <a id="couchbase-views-sample-patterns-transactions"></a>
 
-### Simulating Transactions
+### Simulating transactions
 
 Couchbase Server does not support transactions, but the effect can be simulated
 by writing a suitable document and view definition that produces the effect
@@ -3827,7 +3682,7 @@ upsetting the existing stored data.
 
 <a id="couchbase-views-sample-patterns-commits"></a>
 
-### Simulating Multi-phase Transactions
+### Simulating multi-phase transactions
 
 The technique in [Simulating
 Transactions](#couchbase-views-sample-patterns-transactions) will work if your
@@ -4007,7 +3862,7 @@ applied, also exists, allowing the changes to be reversed and backed out.
 
 <a id="couchbase-views-writing-sql"></a>
 
-## Translating SQL to Map/Reduce
+## Translating SQL to map/reduce
 
 
 ```
@@ -4093,7 +3948,7 @@ than one needed to support selection by the author.
 
 <a id="couchbase-views-writing-sql-select"></a>
 
-### Translating SQL SELECT to Map/Reduce
+### Translating SQL SELECT to map/reduce
 
 The field selection within an SQL query can be translated into a corresponding
 view definition, either by adding the fields to the emitted key (if the value is
@@ -4149,7 +4004,7 @@ output.
 
 <a id="couchbase-views-writing-sql-where"></a>
 
-### Translating SQL WHERE to Map/Reduce
+### Translating SQL WHERE to map/reduce
 
 The `WHERE` clause within an SQL statement forms the selection criteria for
 choosing individual records. Within a view, the ability to query the data is
@@ -4328,7 +4183,7 @@ SELECT recipeid FROM recipe JOIN ingredients on ingredients.recipeid = recipe.re
 
 <a id="couchbase-views-writing-sql-order"></a>
 
-### Translating SQL ORDER BY to Map/Reduce
+### Translating SQL ORDER BY to map/reduce
 
 The `ORDER BY` clause within SQL controls the order of the records that are
 output. Ordering within a view is controlled by the value of the key. However,
@@ -4375,7 +4230,7 @@ using the `descending` query parameter. For more information, see
 
 <a id="couchbase-views-writing-sql-group"></a>
 
-### Translating SQL GROUP BY to Map/Reduce
+### Translating SQL GROUP BY to map/reduce
 
 The `GROUP BY` parameter within SQL provides summary information for a group of
 matching records according to the specified fields, often for use with a numeric
@@ -4458,10 +4313,10 @@ examples of paging strategies.
 
 <a id="couchbase-views-writing-geo"></a>
 
-## Writing Geospatial Views
+## Writing geospatial views
 
 Geospatial support was introduced as an *experimental* feature in Couchbase
-Server 2.0. This feature is currently unsupported and is provided only for the
+Server. This feature is currently unsupported and is provided only for the
 purposes of demonstration and testing.
 
 GeoCouch adds two-dimensional spatial index support to Couchbase. Spatial
@@ -4476,7 +4331,7 @@ to the view engine to provide advanced geospatial queries.
 
 <a id="couchbase-views-writing-geo-data"></a>
 
-### Adding Geometry Data
+### Adding geometry data
 
 GeoCouch supports the storage of any geometry information using the
 [GeoJSON](http://geojson.org/geojson-spec.html) specification. The format of the
@@ -4502,7 +4357,7 @@ sent to the bucket could be formatted like that below:
 
 <a id="couchbase-views-writing-geo-views"></a>
 
-### Views and Queries
+### Views and queries
 
 The GeoCouch extension uses the standard Couchbase indexing system to build a
 two-dimensional index from the point data within the bucket. The format of the

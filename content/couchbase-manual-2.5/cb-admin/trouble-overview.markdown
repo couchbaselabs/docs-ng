@@ -1,3 +1,5 @@
+<a id="couchbase-troubleshooting"></a>
+
 # Troubleshooting
 When troubleshooting your Couchbase Server deployment there are a number of
 different approaches available to you. For specific answers to individual
@@ -5,7 +7,7 @@ problems, see [Common Errors](#couchbase-troubleshooting-common-errors).
 
 <a id="couchbase-troubleshooting-general"></a>
 
-## General Tips
+## General tips
 
 The following are some general tips that may be useful before performing any
 more detailed investigations:
@@ -50,12 +52,12 @@ more detailed investigations:
       individually on each node within the cluster. You can then send each file to
       Couchbase for analysis.
 
-      For more information, see [cbcollect_info
-      Tool](#couchbase-admin-cmdline-cbcollect_info).
+      For more information, see the [cbcollect_info
+      tool](../cb-cli/#couchbase-admin-cmdline-cbcollect_info).
 
 <a id="couchbase-troubleshooting-specific-errors"></a>
 
-## Responding to Specific Errors
+## Responding to specific errors
 
 The following table outlines some specific areas to check when experiencing
 different problems:
@@ -84,7 +86,7 @@ log contents from the binary format to a text file.
 
 <a id="couchbase-troubleshooting-logs"></a>
 
-## Logs and Logging
+## Logs and logging
 
 Couchbase Server creates a number of different log files depending on the
 component of the system that produce the error, and the level and severity of
@@ -127,7 +129,7 @@ the logging system.
 
 <a id="couchbase-troubleshooting-common-errors"></a>
 
-## Common Errors
+## Common errors
 
 This page will attempt to describe and resolve some common errors that are
 encountered when using Couchbase. It will be a living document as new problems

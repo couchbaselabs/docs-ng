@@ -1,11 +1,13 @@
 <title="Clusters REST API">
+
+<a id="cb-restapi-clusters"></a>
 # Clusters REST API
 
 One of the first ways to discover the URI endpoints for the REST API is to find
 the clusters available. For this you provide the Couchbase Server IP address,
 port number, and append '/pools'.
 
-Example Request:
+**Example Request**
 
     curl -u admin:password http://localhost:8091/pools
 
@@ -25,7 +27,7 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 The corresponding HTTP response contains a JSON document describing the cluster
 configuration:
 
-```
+<pre><code>
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: nnn
@@ -52,7 +54,7 @@ Content-Length: nnn
              "ns_server":"1.8.1-927-rel-enterprise",
              "stdlib":"1.17.4"}
  }
-```
+</code></pre>
 
 Couchbase Server returns only one cluster per group of systems and the cluster
 will typically have a default name.
@@ -75,13 +77,17 @@ mentioned previously. The response contains a number of properties which define
 attributes of the cluster and *controllers* which enable you to make certain
 requests of the cluster.
 
-Note that since buckets could be renamed and there is no way to determine the
-name for the default bucket for a cluster, the system will attempt to connect
+<div class="notebox warning">
+<p>Warning</p>
+<p>
+Since buckets could be renamed and there is no way to determine the
+name for the default bucket for a cluster, the system attempts to connect
 non-SASL, non-proxied to a bucket clients to a bucket named "default". If it
-does not exist, Couchbase Server will drop the connection.
+does not exist, Couchbase Server drops the connection.
+</p></div>
 
-You should not rely on the node list returned by this request to connect to a
-Couchbase Server. You should instead issue an HTTP get call to the bucket to get
+Do not rely on the node list returned by this request to connect to a
+Couchbase Server. Instead, issue an HTTP Get call to the bucket to get
 the node list for that specific bucket.
 
 ```
@@ -92,7 +98,7 @@ Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 ```
 
-```
+<pre><code>
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: nnn
@@ -178,7 +184,7 @@ Content-Length: nnn
         "uri":"/pools/default/stats"
     }
 }
-```
+</code></pre>
 
 The controllers in this list all accept parameters as `x-www-form-urlencoded`,
 and perform the following functions:
@@ -200,7 +206,7 @@ stopRebalance | Stop any rebalance operation currently running. This takes no pa
 
 This is a REST request made to a Couchbase cluster to add a given node to the
 cluster. You add a new node with the at the RESTful endpoint
-`server_ip:port/controller/addNode`. You will need to provide an administrative
+`server_ip:port/controller/addNode`. Provide an administrative
 username and password as parameters:
 
     curl -u admin:password \
@@ -318,8 +324,9 @@ configuration. Nodes should have been previously added or marked for removal as
 appropriate.
 
 The information must be supplied via the `ejectedNodes` and `knownNodes`
-parameters as a `POST` operation to the `/controller/rebalance` endpoint. For
-example:
+parameters as a `POST` operation to the `/controller/rebalance` endpoint. 
+
+**Example**
 
     curl -v -X -u admin:password POST 'http://192.168.0.77:8091/controller/rebalance' \
     -d 'ejectedNodes=&knownNodes=ns_1%40192.168.0.77%2Cns_1%40192.168.0.56'
@@ -360,19 +367,23 @@ There are two endpoints for rebalance progress. One is a general request which
 outputs high-level percentage completion at `/pools/default/rebalanceProgress`.
 The second possible endpoint is one corresponds to the detailed rebalance report
 available in Web Console, see [Monitoring a
-Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring) for details
+Rebalance](../cb-admin/#couchbase-admin-tasks-addremove-rebalance-monitoring) for details
 and definitions.
+
+**Example**
 
 This first request returns a JSON structure containing the current progress
 information:
 
 
-    curl -u admin:password '192.168.0.77:8091/pools/default/rebalanceProgress'
+```
+curl -u admin:password '192.168.0.77:8091/pools/default/rebalanceProgress'
+```
 
 Replace the *admin*, *password*, *localhost*, and *192.168.0.77*
 values in the above example with your actual values.
 
-As a pure REST API call it appears as follows:
+As a pure REST API call, it appears as follows:
 
 ```
 GET /pools/default/rebalanceProgress HTTP/1.1
@@ -395,16 +406,17 @@ as a floating point value between 0 and 1).
 }
 ```
 
-For more details about the rebalance, use this request
+For more details about the rebalance, use the following request:
 
 
-    curl -u admin:password 'http://localhost:8091/pools/default/tasks'
-
+```
+curl -u admin:password 'http://localhost:8091/pools/default/tasks'
 ```
 
 Replace the *admin*, *password*, and *localhost* values in the above example
 with your actual values.
 
+```
 GET /pools/default/rebalanceProgress HTTP/1.1
 Authorization: Basic QWRtaW5pc3RyYXRvcjpUYW1zaW4=
 User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
@@ -414,7 +426,7 @@ Accept: */*
 
 The response data packet contains a JSON structure showing detailed progress:
 
-```
+<pre><code>
 {
   type: "rebalance",
   recommendedRefreshPeriod: 0.25,
@@ -464,12 +476,13 @@ The response data packet contains a JSON structure showing detailed progress:
     }
   }
 }
-```
+</code></pre>
 
-This will show percentage complete for each individual node undergoing
+This shows percentage complete for each individual node undergoing
 rebalance. For each specific node, it provides the current number of docs
 transferred and other items. For details and definitions of these items, see
-[Monitoring a Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
+[Monitoring a Rebalance](../cb-admin/#couchbase-admin-tasks-addremove-rebalance-monitoring).
+
 If you rebalance fails, you will see this response:
 
 
@@ -493,9 +506,14 @@ Server 2.0.1 you can use to improve rebalance performance. If you do make this
 selection, you will reduce the performance of index compaction which can result
 in larger index file size.
 
+**Example**
+
 To make this request:
 
-    curl -X POST -u admin:password 'http://localhost:8091/internalSettings' -d 'rebalanceMovesBeforeCompaction=256'
+```
+curl -X POST -u admin:password 'http://localhost:8091/internalSettings' 
+    -d 'rebalanceMovesBeforeCompaction=256'
+```
 
 Replace the *admin*, *password*, *localhost*, and *256* values in the above
 example with your actual values.
@@ -508,22 +526,29 @@ are being moved, so if you specify a larger value, it means that the server will
 spend less time compacting the index, which will result in larger index files
 that take up more disk space.
 
+
 <a id="couchbase-admin-restapi-get-autofailover-settings"></a>
 
+
 ## Managing auto-failover
-### Retrieving Auto-Failover Settings
+This section provides information about retrieving, enabling, disabling and resetting auto-failover.
+
+### Retrieving auto-failover settings
 
 Use this request to retrieve any auto-failover settings for a cluster.
 Auto-failover is a global setting for all clusters. You need to be authenticated
 to read this value. Example:
 
-    curl -u admin:password http://localhost:8091/settings/autoFailover
+```
+curl -u admin:password http://localhost:8091/settings/autoFailover
+```
 
 Replace the *admin*, *password*, and *localhost* values in the above example
 with your actual values.
     
 If successful Couchbase Server returns any auto-failover settings for the
 cluster:
+
 
 ```
 {"enabled":false,"timeout":30,"count":0}
@@ -564,13 +589,15 @@ Content-Length: nnn
 
 <a id="couchbase-admin-restapi-autofailover"></a>
 
-### Enabling and Disabling Auto-Failover
+### Enabling and disabling auto-failover
 
 This is a global setting you apply to all clusters. You need to be authenticated
 to change this value. An example of this request:
 
-    curl "http://localhost:8091/settings/autoFailover" \
+```
+curl "http://localhost:8091/settings/autoFailover" \
     -i -u admin:password -d 'enabled=true&timeout=600'
+```
 
 Replace the *admin*, *password*, *localhost*, and *600* values in the above
 example with your actual values.
@@ -608,15 +635,17 @@ This endpoint isn't available yet.
 
 <a id="couchbase-admin-restapi-reset-autofailover"></a>
 
-### Resetting Auto-Failover
+### Resetting auto-failover
 
 This resets the number of nodes that Couchbase Server has automatically
 failed-over. You can send a request to set the auto-failover number to 0. This
 is a global setting for all clusters. You need to be authenticated to change
 this value. No parameters are required:
 
-    curl -X POST -i -u admin:password \
+```
+curl -X POST -i -u admin:password \
     http://localhost:8091/settings/autoFailover/resetCount
+```
 
 Replace the *admin*, *password*, and *localhost* values in the above example
 with your actual values.
@@ -784,15 +813,17 @@ This endpoint isn't available yet.
 
 <a id="couchbase-admin-restapi-enbling-disabling-email"></a>
 
-### Enabling and Disabling Email Notifications
+### Enabling and disabling email notifications
 
 This is a global setting for all clusters. You need to be authenticated to
 change this value. If this is enabled, Couchbase Server sends an email when
-certain events occur. Only events related to auto-failover will trigger
+certain events occur. Only events related to auto-failover trigger
 notification:
 
-    curl -i -u admin:password \
+```
+curl -i -u admin:password \
     -d 'enabled=true&sender=couchbase@localhost&recipients=admin@localhost,membi@localhost&emailHost=localhost&emailPort=25&emailEncrypt=false' http://localhost:8091/settings/alerts
+```
 
 Replace the *admin*, *password*, *localhost*, *couchbase@localhost*,
 *admin@localhost*, *membi@localhost*, *25*, and *false* values in the above
@@ -867,7 +898,7 @@ JSON object ({"errors": {"key": "error"}}) with errors.
 
 <a id="couchbase-admin-restapi-sending-test-emails"></a>
 
-### Sending Test Emails
+### Sending test emails
 
 This is a global setting for all clusters. You need to be authenticated to
 change this value. In response to this request, Couchbase Server sends a test
@@ -981,14 +1012,18 @@ By default this functionality is enabled; although it is possible to disable
 this functionality via the REST API, under certain circumstances described
 below.
 
+<div class="notebox">
+<p>Note</p>
+<p>
 Be aware that rebalance may take significantly more time if you have implemented
 views for indexing and querying. While this functionality is enabled by default,
 if rebalance time becomes a critical factor for your application, you can
-disable this feature via the REST API.
-
-We do not recommend you disable this functionality for applications in
+disable this feature via the REST API.</p>
+<p>We do not recommend you disable this functionality for applications in
 production without thorough testing. To do so may lead to unpredictable query
 results during rebalance.
+</p>
+</div>
 
 To disable this feature, provide a request similar to the following:
 
@@ -1006,5 +1041,5 @@ Content-Type: application/json
 ```
 
 For more information about views and how they function within a cluster, see
-[View Operation](#couchbase-views-operation).
+[View Operation](../cb-admin/#couchbase-views-operation).
 

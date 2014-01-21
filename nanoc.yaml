@@ -165,7 +165,7 @@ navbar:
       - label:  "--  Install and Upgrade"
         href: /couchbase-manual-2.5/cb-install/
         
-      - label:  "--  Administrator Guide"
+      - label:  "--  Administration Guide"
         href: /couchbase-manual-2.5/cb-admin/
         
       - label:  "--  CLI Reference"

@@ -1,5 +1,6 @@
-	<tab descri<a id="couchbase-admin-web-console"></a>
-# Using the Web Console
+<a id="couchbase-admin-web-console"></a>
+
+# Couchbase Web Console
 
 The Couchbase Web Console is the main tool for managing your Couchbase
 installation. The Web Console provides the following tabs:
@@ -62,7 +63,7 @@ systems within the web console, including:
 
 <a id="couchbase-admin-web-console-cluster-overview"></a>
 
-## Viewing Cluster Summary
+## Viewing cluster summary
 
 `Cluster Overview` is the home page for the Couchbase Web Console. The page
 provides an overview of your cluster health, including RAM and disk usage and
@@ -78,7 +79,7 @@ activity.
 
 <a id="couchbase-admin-web-console-cluster-overview-cluster"></a>
 
-### Viewing Cluster Overview
+### Viewing cluster overview
 
 The Cluster section provides information on the RAM and disk usage information
 for your cluster.
@@ -139,7 +140,7 @@ storage space across your cluster.
 
 <a id="couchbase-admin-web-console-cluster-overview-buckets"></a>
 
-### Viewing Buckets
+### Viewing buckets
 
 The `Buckets` section provides two graphs showing the `Operations per second`
 and `Disk fetches per second`.
@@ -155,7 +156,7 @@ to disk to retrieve information instead of using the information stored in RAM.
 
 <a id="couchbase-admin-web-console-cluster-overview-servers"></a>
 
-### Viewing Servers
+### Viewing servers
 
 The `Servers` section indicates overall server information for the cluster:
 
@@ -176,7 +177,7 @@ The `Servers` section indicates overall server information for the cluster:
 
 <a id="couchbase-admin-web-console-server-nodes"></a>
 
-## Viewing Server Nodes
+## Viewing server nodes
 
 In addition to monitoring buckets over all the nodes within the cluster,
 Couchbase Server also includes support for monitoring the statistics for an
@@ -197,7 +198,7 @@ allocation information.
 
 The detail display shows the following information:
 
- * **Node Information**
+ * **Node information**
 
    The node information provides detail node configuration data:
 
@@ -219,7 +220,7 @@ The detail display shows the following information:
 
       The version number of the Couchbase Server installed and running on this node.
 
- * **Memory Cache**
+ * **Memory cache**
 
    The Memory Cache section shows you the information about memory usage, both for
    Couchbase Server and for the server as a whole. You can use this to compare RAM
@@ -309,7 +310,7 @@ Buckets](#couchbase-admin-web-console-data-buckets).
 
 <a id="couchbase-admin-web-console-server-states"></a>
 
-### Understanding Server States
+### Understanding server states
 
 Couchbase Server nodes can be in a number of different states depending on their
 current activity and availability. The displayed states are:
@@ -338,9 +339,10 @@ current activity and availability. The displayed states are:
 You can monitor the current server status using both the `Manage: Server Nodes`
 and `Monitor: Server Nodes` screens within the Web Console.
 
-<a id="couchbase-admin-web-console-data-buckets"></a>
 
-## Viewing Data Buckets
+
+<a id="couchbase-admin-web-console-data-buckets"></a>
+## Viewing data buckets
 
 Couchbase Server provides a range of statistics and settings through the `Data
 Buckets` and `Server Nodes`. These show overview and detailed information so
@@ -395,7 +397,7 @@ for details on creating new data buckets.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit"></a>
 
-### Creating and Editing Data Buckets
+### Creating and editing data buckets
 
 When creating a new data bucket, or editing an existing one, you will be
 presented with the bucket configuration screen. From here you can set the memory
@@ -404,7 +406,7 @@ creating a new bucket, and the bucket type.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-create"></a>
 
-### Creating a New Bucket
+### Creating a new bucket
 
 You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
@@ -440,7 +442,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
        and so forth. If a node in a cluster fails, after you perform failover, the
        replicated data will be made available on a functioning node. This provides
        continuous cluster operations in spite of machine failure. For more information,
-       see [Failing Over Nodes](#couchbase-admin-tasks-failover).
+       see [Failver nodes](#couchbase-admin-tasks-failover).
 
        You can disable replication by deselecting the `Enable` checkbox.
 
@@ -532,7 +534,7 @@ You can create a new bucket in Couchbase Web Console under the Data Buckets tab.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editcb"></a>
 
-### Editing Couchbase Buckets
+### Editing Couchbase buckets
 
 You can edit a number of settings for an existing Couchbase bucket in Couchbase
 Web Console:
@@ -553,7 +555,7 @@ click the `Delete` button.
 
 <a id="couchbase-admin-web-console-data-buckets-createedit-editmc"></a>
 
-### Editing Memcached Buckets
+### Editing Memcached buckets
 
 For Memcached buckets, you can modify the following settings when editing an
 existing bucket:
@@ -573,7 +575,7 @@ using the `Flush` button.
 
 <a id="couchbase-admin-web-console-data-buckets-info"></a>
 
-### Bucket Information
+### Bucket information
 
 You can obtain basic information about the status of your data buckets by
 clicking on the drop-down next to the bucket name under the `Data Buckets` page.
@@ -588,7 +590,7 @@ bucket information display.
 
 <a id="couchbase-admin-web-console-monitoring"></a>
 
-## Viewing Bucket and Cluster Statistics
+## Viewing bucket and cluster statistics
 
 Within the `Data Bucket` monitor display, information is shown by default for
 the entire Couchbase Server cluster. The information is aggregated from all the
@@ -634,7 +636,7 @@ all the graphs and statistics display within the web console.
 
 <a id="couchbase-admin-web-console-data-buckets-individual"></a>
 
-### Individual Bucket Monitoring
+### Individual bucket monitoring
 
 Bucket monitoring within the Couchbase Web Console has been updated to show
 additional detailed information. The following statistic groups are available
@@ -692,7 +694,7 @@ For Memcached bucket types, the Memcached statistic summary is provided. See
 
 <a id="couchbase-admin-web-console-data-buckets-summary"></a>
 
-### Bucket Monitoring — Summary Statistics
+### Bucket monitoring — summary statistics
 
 The summary section is designed to provide a quick overview of the cluster
 activity. Each graph (or selected graph) shows information based on the
@@ -807,7 +809,7 @@ The following graph types are available:
 
 <a id="couchbase-admin-web-console-data-buckets-vbucket"></a>
 
-### Monitoring vBucket Resources
+### Monitoring vBucket resources
 
 The vBucket statistics provide information for all vBucket types within the
 cluster across three different states. Within the statistic display the table of
@@ -865,7 +867,7 @@ The individual statistics, one for each state, shown are:
 
 <a id="couchbase-admin-web-console-data-buckets-diskqueues"></a>
 
-### Monitoring Disk Queues
+### Monitoring disk queues
 
 The Disk Queues statistics section displays the information for data being
 placed into the disk queue. Disk queues are used within Couchbase Server to
@@ -909,7 +911,7 @@ The displayed statistics are:
 
 <a id="couchbase-admin-web-console-data-buckets-tapqueues"></a>
 
-### Monitoring TAP Queues
+### Monitoring TAP queues
 
 The TAP queues statistics are designed to show information about the TAP queue
 activity, both internally, between cluster nodes and clients. The statistics
@@ -952,7 +954,7 @@ The statistics in this section are detailed below:
 
 <a id="couchbase-admin-web-console-data-buckets-memcached"></a>
 
-### Bucket Memcached Buckets
+### Bucket Memcached muckets
 
 For Memcached buckets, Web Console displays a separate group of statistics:
 
@@ -1046,7 +1048,7 @@ The Memcached statistics are:
 
 <a id="couchbase-admin-web-console-data-buckets-xdcr"></a>
 
-### Monitoring Outgoing XDCR
+### Monitoring outgoing XDCR
 
 The Outgoing XDCR shows the XDCR operations that are supporting cross datacenter
 replication from the current cluster to a destination cluster. For more
@@ -1186,11 +1188,11 @@ Couchbase Server 2.0, only the first three statistics appear and have the labels
 can also get XDCR statistics using the Couchbase REST API. All of the statistics
 in Web Console are based on statistics via the REST API or values derived from
 them. For more information including a full list of available statistics, see
-[Getting XDCR Stats via REST](#couchbase-admin-restapi-xdcr-stats).
+[Getting XDCR Stats via REST](../cb-rest-api/#couchbase-admin-restapi-xdcr-stats).
 
 <a id="couchbase-admin-web-console-data-buckets-xdcr-recv"></a>
 
-### Monitoring Incoming XDCR
+### Monitoring incoming XDCR
 
 The Incoming XDCR section shows the XDCR operations that are coming into to the
 current cluster from a remote cluster. For more information on XDCR, see [Cross
@@ -1221,7 +1223,7 @@ The statistics shown are:
 
 <a id="couchbase-admin-web-console-data-buckets-views"></a>
 
-### Monitoring View Statistics
+### Monitoring view statistics
 
 The View statistics show information about individual design documents within
 the selected bucket. One block of stats will be shown for each production-level
@@ -1322,13 +1324,13 @@ The individual elements of this interface are:
 
 <a id="couchbase-views-editor-createedit"></a>
 
-### Creating and Editing Views
+### Creating and editing views
 
 You can create a new design document and/or view by clicking the `Create
 Development View` button within the `Views` section of the Web Console. If you
 are creating a new design document and view you will be prompted to supply both
 the design document and view name. To create or edit your documents using the
-REST API, see [Design Document REST API](#couchbase-views-designdoc-api).
+REST API, see the [Design Document REST API](../cb-rest-api/#couchbase-views-designdoc-api).
 
 To create a new view as part of an existing design document, click the `Add
 View` button against the corresponding design document.
@@ -1397,8 +1399,7 @@ Views](#couchbase-views-writing-querying).
 
 Clicking on the `Filter Results` query string will open a new window containing
 the raw, JSON formatted, version of the View results. To access the view results
-using the REST API, see [Querying Using the REST
-API](#couchbase-views-querying-rest-api).
+using the REST API, see the [REST API, Querying views](../cb-rest-api/#couchbase-restapi-query-views).
 
 By default, Views during the development stage are executed only over a subset
 of the full document set. This is indicated by the `Development Time Subset`
@@ -1420,7 +1421,7 @@ Results](#couchbase-views-editor-view).
 
 <a id="couchbase-views-editor-publishing"></a>
 
-### Publishing Views
+### Publishing views
 
 Publishing a view moves the view definition from the Development view to a
 Production View. Production views cannot be edited. The act of publishing a view
@@ -1431,7 +1432,7 @@ publish the updated version of the view back to the production side.
 
 <a id="couchbase-views-editor-view"></a>
 
-### Getting View Results
+### Getting view results
 
 Once a view has been published to be a production view, you can examine and
 manipulate the results of the view from within the web console view interface.
@@ -1538,7 +1539,7 @@ instance.
 
 <a id="couchbase-admin-web-console-settings-updatenotifications"></a>
 
-### Update Notification Settings
+### Update notification settings
 
 You can enable or disable Update Notifications by checking the `Enable software
 update notifications` checkbox within the `Update Notifications` screen. Once
@@ -1556,7 +1557,7 @@ Notifications](#couchbase-admin-web-console-update-notifications).
 
 <a id="couchbase-admin-web-console-settings-autofailover"></a>
 
-### Enabling Auto-Failover Settings
+### Enabling auto-failover settings
 
 The Auto-Failover settings enable auto-failover, and the timeout before the
 auto-failover process is started when a cluster node failure is detected.
@@ -1573,7 +1574,7 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-alerts"></a>
 
-### Enabling Alerts
+### Enabling alerts
 
 You can enable email alerts to be raised when a significant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
@@ -1622,7 +1623,7 @@ The available settings are:
    A list of the recipients of each alert message. You can specify more than one
    recipient by separating each address by a space, comma or semicolon.
 
-   Clicking the `Test Mail` button will send a test email to confirm the settings
+   Click *Test Mail* to send a test email to confirm the settings
    and configuration of the email server and recipients.
 
  * `Available alerts`
@@ -1683,14 +1684,14 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-autocompaction"></a>
 
-### Enabling Auto-Compaction
+### Enabling auto-compaction
 
 The `Auto-Compaction` tab configures the default auto-compaction settings for
 all the databases. These can be overridden using per-bucket settings available
 within [Creating and Editing Data
 Buckets](#couchbase-admin-web-console-data-buckets-createedit). For 
-information about changing these settings with the REST API, see 
-[Using the REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
+information about changing these settings with the REST API, see the 
+[REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
 You can provide a purge interval to remove the key and metadata 
 for items that have been deleted or are expired. This is known as 'tombstone purging'. 
@@ -1740,7 +1741,7 @@ The settings tab sets the following default parameters:
    the clusters. If you set this value too high, it will delay the server from
    reclaiming disk space.
 
-   You can also change this setting with the REST API, see [Using REST, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
+   You can also change this setting with the REST API, see the [REST API, Setting Auto-Compaction](couchbase-admin-rest-auto-compaction).
 
 For more information on compaction, see [Database and View
 Compaction](#couchbase-admin-tasks-compaction). For information on how
@@ -1749,7 +1750,7 @@ Configuration](#couchbase-admin-tasks-compaction-autocompaction).
 
 <a id="couchbase-admin-web-console-settings-samplebuckets"></a>
 
-### Installing Sample Buckets
+### Installing sample buckets
 
 The `Sample Buckets` tab enables you to install the sample bucket data if the
 data has not already been loaded in the system. For more information on the
@@ -1759,14 +1760,14 @@ sample data available, see [Couchbase Sample Buckets](#couchbase-sampledata).
 ![](../images/web-console-server-settings-sample.png)
 
 If the sample bucket data was not loaded during setup, select the sample buckets
-that you want to load using the checkboxes, and click the `Create` button.
+that you want to load using the checkboxes, and click *Create*.
 
 If the sample bucket data has already been loaded, it will be listed under the
 `Installed Samples` section of the page.
 
 <a id="couchbase-admin-web-console-update-notifications"></a>
 
-## Updating Notifications
+## Updating notifications
 
 During installation you can select to enable the Update Notification function.
 Update notifications allow a client accessing the Couchbase Web Console to
@@ -1815,7 +1816,7 @@ download location to obtain the updated release package.
 
 <a id="couchbase-admin-web-console-alerting"></a>
 
-## Warnings and Alerts
+## Warnings and alerts
 
 A new alerting systems has been built into the Couchbase Web Console. This is
 sued to highlight specific issues and problems that you should be aware of and
@@ -1853,4 +1854,4 @@ The following errors and alerts are supported:
    Indicates that the available disk space used for persistent storage has reached
    at least 90% of capacity.
 
-<a id="couchbase-admin-cmdline"></a>
+

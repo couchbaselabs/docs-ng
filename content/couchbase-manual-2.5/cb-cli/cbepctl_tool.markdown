@@ -1,6 +1,6 @@
 <a id="couchbase-admin-cmdline-cbepctl"></a>
 
-# cbepctl Tool
+# cbepctl tool
 
 The `cbepctl` command enables you to control many of the configuration, RAM and
 disk parameters of a running cluster. This tool is for controlling the vBucket
@@ -64,10 +64,10 @@ Parameter                      | Description
 
 <a id="couchbase-admin-cbepctl-disk-cleanup"></a>
 
-## Changing the Disk Cleanup Interval
+## Changing the disk cleanup interval
 
 One of the most important use cases for the `cbepctl flush_param` is the set the
-time interval for disk cleanup in Couchbase Server 2.0. Couchbase Server does
+time interval for disk cleanup. Couchbase Server does
 lazy expiration, that is, expired items are flagged as deleted rather than being
 immediately erased. Couchbase Server has a maintenance process that will
 periodically look through all information and erase expired items. This
@@ -93,7 +93,7 @@ waits before it tries to remove expired items from disk.
 
 <a id="couchbase-admin-cbepctl-disk-queue"></a>
 
-## Changing Disk Write Queue Quotas
+## Changing disk write queue quotas
 
 One of the specific uses of `cbepctl` is to the change the default maximum items
 for a disk write queue. This impacts replication of data that occurs between
@@ -143,7 +143,7 @@ In this example, we set the threshold to 15% of all items at a replica node.
 When a disk write queue on a replica node reaches this point, it will request
 replication backoff. For more information about replicas, replication and
 backoff from replication, see [Replicas and
-Replication](#couchbase-introduction-architecture-replication). The other
+Replication](../cb-admin/#couchbase-introduction-architecture-replication). The other
 command options for `tap_param` are:
 
 Parameter                     | Description                                                                                                                                 
@@ -155,7 +155,7 @@ Parameter                     | Description
 
 <a id="couchbase-admin-cbepctl-access-scanner"></a>
 
-## Changing Access Log Settings
+## Changing access log settings
 
 In Couchbase Server 2.0, we provide a more optimized disk warmup. In past
 versions of Couchbase Server, the server would load all keys and data
@@ -198,7 +198,7 @@ In this example we set the initial time to 11:00 PM UTC.
 
 <a id="couchbase-admin-cbepctl-ejection"></a>
 
-## Changing Thresholds for Ejection
+## Changing thresholds for ejection
 
 Couchbase Server has a process to *eject* items from RAM when too much space is
 being taken up in RAM; ejection means that documents will be removed from RAM,
@@ -211,7 +211,7 @@ known as the *high water mark*. The server determines that items are not
 frequently used based on a boolean for each item known as NRU
 (Not-Recently-used). There a few settings you can adjust to change server
 behavior during the ejection process. In general, we do not recommend you change
-ejection defaults for Couchbase Server 2.0 unless you are required to do so.
+ejection defaults for Couchbase Server unless you are required to do so.
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -223,7 +223,7 @@ cluster.
 
 For technical information about the ejection process, the role of NRU and server
 processes related to ejection, see [Ejection and Working Set
-Management](#couchbase-admin-tasks-working-set-mgmt).
+Management](../cb-admin/#couchbase-admin-tasks-working-set-mgmt).
 
 **Setting the Low Water Mark**
 
@@ -279,16 +279,16 @@ possible, and maintain incoming requests to that node. However, if you have the
 server eject a very large percentage of replica data, should a node fail, the
 replica data will not be immediately available. In that case, Couchbase Server
 has to retrieve the items from disk back into RAM and then it can respond to the
-requests. For Couchbase Server 2.0 we generally recommend that you do not change
+requests. We generally recommend that you do not change
 these defaults.
 
 For technical information about the ejection process, the role of NRU and server
 processes related to ejection, see [Ejection and Working Set
-Management](#couchbase-admin-tasks-working-set-mgmt).
+Management](../cb-admin/#couchbase-admin-tasks-working-set-mgmt).
 
 <a id="couchbase-admin-cbepctl-mutation_mem"></a>
 
-## Changing Setting for Out Of Memory Errors
+## Changing setting for out of memory errors
 
 By default, Couchbase Server will send clients a temporary out of memory error
 if RAM is 95% consumed and only 5% RAM remains for overhead. We do not suggest
@@ -317,7 +317,7 @@ and named bucket that exists in the cluster.
 
 <a id="couchbase-admin-cbepctl-flush-enable"></a>
 
-## Enabling Flush of Data Buckets - Will be Deprecated
+## Enabling flush of data buckets - will be deprecated
 
 By default, this setting appears in Couchbase Web Console and is disabled; when
 it is enabled Couchbase Server is able to flush all the data in a bucket. **Be
@@ -327,16 +327,19 @@ configuration not operating on data buckets shared by multiple nodes.
 
 **The preferred way to enable data bucket flush is either 1) Couchbase Web
 Console or via 2) couchbase-cli**. For more information about these two options,
-see [Creating and Editing Data
-Buckets](#couchbase-admin-web-console-data-buckets-createedit) and [Flushing
-Buckets with couchbase-cli](#couchbase-admin-cli-flushing).
+see [Creating and editing data
+buckets](../cb-admin/#couchbase-admin-web-console-data-buckets-createedit) and [Flushing
+buckets with couchbase-cli](#couchbase-admin-cli-flushing).
 
-Flushing a bucket is data destructive. If you use **cbepctl**, it makes no
+<div class="notebox warning">
+<p>Warning</p>
+<p>Flushing a bucket is data destructive. If you use **cbepctl**, it makes no
 attempt to confirm or double check the request. Client applications using this
 are advised to double check with the end user before sending such a request. You
 can control and limit the ability to flush individual buckets by setting the
 `flushEnabled` parameter on a bucket in Couchbase Web Console or via `cbepctl
 flush_param`.
+</p></div>
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -362,9 +365,9 @@ To disable flushing a data bucket:
 
 You can initiate the flush via the REST API. For information about changing this
 setting in the Web Console, see [Viewing Data
-Buckets](#couchbase-admin-web-console-data-buckets). For information about
+Buckets](../cb-admin/#couchbase-admin-web-console-data-buckets). For information about
 flushing data buckets via REST, see [Flushing a
-Bucket](#couchbase-admin-restapi-flushing-bucket).
+Bucket](../cb-rest-api/#couchbase-admin-restapi-flushing-bucket).
 
 <a id="couchbase-admin-cbepctl-flush-params"></a>
 

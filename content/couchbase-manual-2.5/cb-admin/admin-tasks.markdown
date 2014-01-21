@@ -1,21 +1,23 @@
-# Administration tasks
+<a id="couchbase-admin-tasks"></a>
+# Admin tasks
 
 For general running and configuration, Couchbase Server is self-managing. The
 management infrastructure and components of the Couchbase Server system are able
 to adapt to the different events within the cluster. There are only a few
-different configuration variables, and the majority of these do not need to be
+different configuration variables. The majority of these configuration variables do not need to be
 modified or altered in most installations.
 
-However, there are a number of different tasks that you will need to carry out
-over the lifetime of your cluster, such as backup, failover and altering the
-size of your cluster as your application demands change. You will also need to
-monitor and react to the various statistics reported by the server to ensure
-that your cluster is operating at the highest performance level, and to expand
-your cluster when you need to expand the RAM or disk I/O capabilities.
+However, there are a number of different tasks that are performed
+over the lifetime of the cluster environment including:
 
-These administration tasks include:
+* Expand your cluster when you need to expand the RAM or disk I/O capabilities.
+* Failover and altering the size of your cluster as your application demands change.
+* Monitoring and reacting to the various statistics reported by the server to ensure
+that your cluster is operating at the highest performance level.
+* Backing up the cluster.
 
- * **Increasing or Reducing Your Cluster Size**
+
+ **Increasing or reducing your cluster size**
 
    When your cluster requires additional RAM, disk I/O or network capacity, you
    will need to expand the size of your cluster. If the increased load is only a
@@ -32,14 +34,14 @@ These administration tasks include:
    rebalance operation is available in
    [Rebalancing](#couchbase-admin-tasks-addremove).
 
- * **Warming up a Server** There may be cases where you want to explicitly shutdown
+**Warming up a server** There may be cases where you want to explicitly shutdown
    a server and then restart it. Typically the server had been running for a while
    and has data stored on disk when you restart it. In this case, the server needs
    to undergo a warmup process before it can again serve data requests. To manage
    the warmup process for Couchbase Server instances, see [Handling Server
    Warmup](#couchbase-admin-tasks-warmup-access).
 
- * **Handle a Failover Situation**
+**Handling a failover situation**
 
    A failover situation occurs when one of the nodes within your cluster fails,
    usually due to a significant hardware or network problem. Couchbase Server is
@@ -55,7 +57,7 @@ These administration tasks include:
 
    For more information, see [Failing Over Nodes](#couchbase-admin-tasks-failover).
 
- * **Manage Database and View Fragmentation**
+**Managing database and view fragmentation**
 
    The database and view index files created by Couchbase Server can become
    fragmented. This can cause performance problems, as well as increasing the space
@@ -65,7 +67,7 @@ These administration tasks include:
    Information on how to enable and configure auto-compaction is available in
    [Database and View Compaction](#couchbase-admin-tasks-compaction).
 
- * **Backup and Restore Your Cluster Data**
+**Backing up and restoring your cluster data**
 
    Couchbase Server automatically distributes your data across the nodes within the
    cluster, and supports replicas of that data. It is good practice, however, to
@@ -108,11 +110,13 @@ This read-only user can now log into Couchbase Web Console in read-only mode or 
         WWW-Authenticate: Basic realm="Couchbase Server Admin / REST"
         ....
 
-For more information about Web Console or REST API, see [Using the Web Console](#couchbase-admin-web-console) or [Using the REST API](#couchbase-admin-restapi). You can also create a read-only user with the REST API, see [Creating Read-Only Users](#couchbase-restapi-read-only-user).
+For more information about Web Console or REST API, see [Using the Web Console](#couchbase-admin-web-console) or 
+the [REST API](../cb-rest-api/#couchbase-admin-restapi). 
+You can also create a read-only user with the REST API, see [Creating Read-Only Users]((../cb-rest-api/#couchbase-admin-restapi#couchbase-restapi-read-only-user).
            
 <a id="couchbase-admin-tasks-mrw"></a>
 
-## Using Multi-readers and writers
+## Using multi-readers and writers
 
 Multiple readers and writers are supported to persist
 data onto disk. For earlier versions of Couchbase Server, each bucket instance
@@ -127,7 +131,7 @@ three total readers and writers.
 How you change this setting depends on the hardware in your Couchbase cluster:
 
  * If you deploy your cluster on the minimum hardware requirement which is
-   dual-core CPUs running on 2GHz and 4GM of physical RAM, you should stay with the
+   dual-core CPUs running on 2GHz and 4GB of physical RAM, you should stay with the
    default setting of three.
 
  * If you deploy your servers on recommended hardware requirements or above you can
@@ -136,10 +140,11 @@ How you change this setting depends on the hardware in your Couchbase cluster:
    recommend solid state drives.
 
  * If you have a hardware configuration which conforms to pre-2.1 hardware
-   requirements, you should change this setting to the minimum, which is 2.
+   requirements, you should change this setting to the minimum, which is 
+   two (2) workers per data bucket.
 
 For more information about system requirements for Couchbase Server, see
-[Resource Requirements](#couchbase-getting-started-prepare-hardware).
+[Resource Requirements](../cb-install/#couchbase-getting-started-prepare-hardware).
 
 **Changing the Number of Readers and Writers**
 
@@ -276,7 +281,7 @@ ramQuotaMB=4000 -d threadsNumber=3 -v
 
 For details about changing bucket properties via REST, including limitations and
 behavior, see [Creating and Editing Data
-Buckets](#couchbase-admin-restapi-creating-buckets).
+Buckets](../cb-rest-api/#couchbase-admin-restapi-creating-buckets).
 
 You see the following request via HTTP:
 
@@ -309,28 +314,28 @@ HTTP/1.1 400 Bad Request
 ```
 
 If you upgrade a Couchbase cluster, a new node can use this setting without
-bucket restart and warmup. In this case you set up a new 2.1+ node, add that
+bucket restart and warmup. In this case you set up a new 2.1 or higher node, add that
 node to the cluster, and on that new node edit the existing bucket setting for
 readers and writers. After you rebalance the cluster, this new node will perform
 reads and writes with multiple readers and writers and the data bucket will not
 restart or go through warmup. All existing pre-2.1 nodes will remain with a
 single readers and writers for the data bucket. As you continue the upgrade and
-add additional 2.1+ nodes to the cluster, these new nodes will automatically
+add additional 2.1 or higher nodes to the cluster, these new nodes will automatically
 pick up the setting and use multiple readers and writers for the bucket. For
 general information about Couchbase cluster upgrade, see [Upgrading to Couchbase
-Server 2.1](#couchbase-getting-started-upgrade).
+Server](../cb-install/#couchbase-getting-started-upgrade).
 
 <a id="couchbase-admin-tasks-warmup-access"></a>
 
 ## Handling server warmup
 
-Couchbase Server 2.0+ provides improved performance for *server warmup* ; this
+Couchbase Server provides improved performance for *server warmup* ; this
 is the process a restarted server must undergo before it can serve data. During
 this process the server loads items persisted on disk into RAM. One approach to
 load data is to do sequential loading of items from disk into RAM; however it is
 not necessarily an effective process because the server does not take into
-account whether the items are frequently used. In Couchbase Server 2.0, we
-provide additional optimizations during the warmup process to make data more
+account whether the items are frequently used. In Couchbase Server, 
+additional optimizations is provided during the warmup process to make data more
 rapidly available, and to prioritize frequently-used items in an access log. The
 server pre-fetches a list of most-frequently accessed keys and fetches these
 documents before it fetches any other items from disk.
@@ -340,15 +345,15 @@ keys are most frequently-used. You can use Couchbase Server command-line tools
 to change the initial time and the interval for the process. You may want to do
 this for instance, if you have a peak time for your application when you want
 the keys used during this time to be quickly available after server restart. For
-more information, see [Changing Access Log
-Settings](#couchbase-admin-cbepctl-access-scanner).
+more information, see [Changing access log
+settings](../cb-cli/#couchbase-admin-cbepctl-access-scanner).
 
 The server can also switch into a ready mode before it has actually retrieved
 all documents for keys into RAM, and therefore can begin serving data before it
 has loaded all stored items. This is also a setting you can configure so that
 server warmup is faster.
 
-The following describes the initial warmup phases for the Couchbase Server 2.0+.
+The following describes the initial warmup phases for the Couchbase Server.
 In these first phase, the server begins fetch all keys and metadata from disk.
 Then the server gets access log information it needs to retrieve the most-used
 keys:
@@ -399,7 +404,7 @@ for the remaining keys. After this point, Couchbase Server will load this
 remaining documents from disk into RAM as a background data fetch.
 
 In order to adjust warmup behavior, it is also important for you to understand
-the access log and scanning process in Couchbase Server 2.0. The server uses the
+the access log and scanning process in Couchbase Server. The server uses the
 access log to determine which documents are most frequently used, and therefore
 which documents should be loaded first.
 
@@ -459,8 +464,8 @@ to perform the command for every node/bucket combination that exists for that
 cluster.
 
 There are more detailed statistics available on the warmup process. For more
-information, see [Getting Warmup
-Information](#couchbase-admin-cmdline-cbstats-warmup).
+information, see [Getting warmup
+information](../cb-cli/#couchbase-admin-cmdline-cbstats-warmup).
 
 <a id="couchbase-admin-warmup-threshold"></a>
 
@@ -486,21 +491,23 @@ time and the interval for the process. You may want to do this, for instance, if
 you have a peak time for your application when you want the keys used during
 this time to be quickly available after server restart.
 
-Note if you want to change this setting for an entire Couchbase cluster, you
+<div class="notebox">
+<p>Note</p>
+<p>If you want to change this setting for an entire Couchbase cluster, you
 will need to perform this command on per-node and per-bucket in the cluster. By
-default any setting you change with `cbepctl` will only be for the named bucket
-at the specific node you provide in the command.
-
-This means if you have a data bucket that is shared by two nodes, you will
+default, any setting you change with `cbepctl` will only be for the named bucket
+at the specific node you provide in the command.</p>
+<p>This means that if you have a data bucket that is shared by two nodes, you will
 nonetheless need to issue this command twice and provide the different host
 names and ports for each node and the bucket name. Similarly, if you have two
 data buckets for one node, you need to issue the command twice and provide the
 two data bucket names. If you do not specify a named bucket, it will apply to
-the default bucket or return an error if a default bucket does not exist.
+the default bucket or return an error if a default bucket does not exist.</p>
+</div>
 
-By default the scanner process will run once every 24 hours with a default
+By default the scanner process runs once every 24 hours with a default
 initial start time of 2:00 AM UTC. This means after you install a new Couchbase
-Server 2.0 instance or restart the server, by default the scanner will run every
+Server instance or restart the server, by default the scanner will run every
 24- hour time period at 2:00 AM UTC by default. To change the time interval when
 the access scanner process runs to every 20 minutes:
 
@@ -527,7 +534,7 @@ server will apply the setting to any default bucket that exists at the specified
 node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster. For more information, see [cbepctl
-Tool](#couchbase-admin-cmdline-cbepctl).
+tool](../cb-cli/#couchbase-admin-cmdline-cbepctl).
 
 <a id="couchbase-admin-tasks-intercluster-replication"></a>
 
@@ -599,9 +606,11 @@ of replicas you specify. For example, if you configure three replicas for a data
 bucket, replication will only be enabled once you have four nodes in the
 cluster.
 
-After you specify the number of replicas you want for a bucket and then create
+<div class="notebox"><p>Note</p>
+<p>After you specify the number of replicas you want for a bucket and then create
 the bucket, you cannot change this value. Therefore be certain you specify the
-number of replicas you truly want.
+number of replicas you truly want.</p>
+</div>
 
 For more information about creating and editing buckets, or specifying replicas
 for buckets, see [Creating and Editing Data
@@ -713,7 +722,7 @@ abbreviation for *not-recently-used*. If an item has not been recently used then
 the item is a candidate for ejection if the high water mark has been exceeded.
 When the high water mark has been exceeded, the server evicts items from RAM.
 
-As of Couchbase Server 2.0.1+ we provide two NRU bits per item and also provide
+Couchbase Server provides two NRU bits per item and also provide
 a replication protocol that can propagate items that are frequently read, but
 not mutated often. For earlier versions of Couchbase Server, we had provided
 only a single bit for NRU and a different replication protocol which resulted in
@@ -721,7 +730,7 @@ two issues: metadata could not reflect how frequently or recently an item had
 been changed, and the replication protocol only propagated NRUs for mutation
 items from an active vBucket to a replica vBucket. This second behavior meant
 that the working set on an active vBucket could be quite different than the set
-on a replica vBucket. By changing the replication protocol in 2.0.1+ the working
+on a replica vBucket. By changing the replication protocol, the working
 set in replica vBuckets will be closer to the working set in the active vBucket.
 
 NRUs will be decremented or incremented by server processes to indicate an item
@@ -751,7 +760,7 @@ You can adjust settings for Couchbase Server which change behavior during
 ejection. You can indicate the percentage of RAM you are willing to consume
 before items are ejected, or you can indicate whether ejection should occur more
 frequently on replicated data than on original data. Be aware that for Couchbase
-Server 2.0+, we recommend that you remain using the defaults provided.
+Server recommends that you use the default settings.
 
 **Understanding the Item Pager**
 
@@ -765,9 +774,8 @@ consumed is below the *low water mark*. Both the high water mark and low water
 mark are expressed as an absolute amount of RAM, such as 5577375744 bytes.
 
 When you change either of these settings, you can provide a percentage of total
-RAM for a node such as 80% or as an absolute number of bytes. For Couchbase
-Server 2.0 and above, we recommend you remain using the default settings
-provided. Defaults for these two settings are listed below.
+RAM for a node such as 80% or as an absolute number of bytes. Couchbase
+Server recommends that you use the default settings. Defaults for these settings are listed below.
 
 <a id="table-couchbase-admin-watermark-defaults"></a>
 
@@ -796,8 +804,8 @@ The item pager ejects items from RAM in two phases:
 ------------|------------------------------------|------------------------------------
 2.0+        | 60%                                | 40%                                
 
-For instructions to change this setting, see [Changing Thresholds for
-Ejection](#couchbase-admin-cbepctl-ejection).
+For instructions to change this setting, see [Changing thresholds for
+ejection](../cb-cli/#couchbase-admin-cbepctl-ejection).
 
 <a id="couchbase-admin-tasks-compaction"></a>
 
@@ -914,14 +922,16 @@ Make sure you perform compaction…
 
 <a id="couchbase-admin-tasks-compaction-autocompaction"></a>
 
-### Auto-Compaction Configuration
+### Auto-compaction configuration
 
 Couchbase Server incorporates an automated compaction mechanism that can compact
 both data files and the view index files, based on triggers that measure the
 current fragmentation level within the database and view index data files.
 
-Spatial indexes are not automatically compacted. Spatial indexes must be
-compacted manually.
+<div class="notebox"><p>Note</p>
+<p>Spatial indexes are not automatically compacted. Spatial indexes must be
+compacted manually.</p>
+</div>
 
 Auto-compaction can be configured in two ways:
 
@@ -966,10 +976,7 @@ specific settings are identical:
    you could configure compaction to take place between 01:00 and 06:00.
 
    If compaction is identified as required outside of these hours, compaction will
-   be delayed until the specified time period is reached.
-
-   The time period is applied every day while the Couchbase Server is active. The
-   time period cannot be configured on a day-by-day basis.
+   be delayed until the specified time period is reached. The time period is applied every day while the Couchbase Server is active. The time period cannot be configured on a day-by-day basis.
 
  * **Compaction abortion**
 
@@ -1018,7 +1025,8 @@ information on the settings, see
 [Settings](#couchbase-admin-web-console-settings). Information on per-bucket
 settings is through the Couchbase Bucket create/edit screen. See [Creating and
 Editing Data Buckets](#couchbase-admin-web-console-data-buckets-createedit). You can also view 
-and change these settings using the REST API, see [Using REST, Setting Auto-Compaction](#couchbase-admin-rest-auto-compaction).
+and change these settings using the REST API, see the 
+[REST API, Setting Auto-Compaction](../cb-rest-api/#couchbase-admin-rest-auto-compaction).
 
 <a id="couchbase-admin-tasks-compaction-strategies"></a>
 
@@ -1059,7 +1067,7 @@ You want to consider the following:
 
 <a id="couchbase-admin-tasks-failover"></a>
 
-## Failover nodes
+## Failing over nodes
 
 If a node in a cluster is unable to serve data you can *failover* that node.
 Failover means that Couchbase Server removes the node from a cluster and makes
@@ -1155,7 +1163,7 @@ more detail.
 
 <a id="couchbase-admin-tasks-failover-automatic-considerations"></a>
 
-### Automated failover considerations
+**Automated failover considerations**
 
 Automatically failing components in any distributed system can cause problems.
 If you cannot identify the cause of failure, and you do not understand the load
@@ -1163,7 +1171,7 @@ that will be placed on the remaining system, then automated failover can cause
 more problems than it is designed to solve. Some of the situations that might
 lead to problems include:
 
- * **Avoiding Failover Chain-Reactions (Thundering Herd)**
+ * **Avoiding failover chain-reactions (Thundering herd)**
 
    Imagine a scenario where a Couchbase Server cluster of five nodes is operating
    at 80-90% aggregate capacity in terms of network load. Everything is running
@@ -1185,7 +1193,7 @@ lead to problems include:
    One alternate preventative solution is to ensure there is excess capacity to
    handle unexpected node failures and allow replicas to take over.
 
- * **Handling Failovers with Network Partitions**
+ * **Handling failovers with network partitions**
 
    If you have a network partition across the nodes in a Couchbase cluster,
    automatic failover would lead to nodes on both sides of the partition to
@@ -1216,7 +1224,7 @@ lead to problems include:
 
 <a id="couchbase-admin-tasks-failover-monitored"></a>
 
-### Manual or monitored failover
+**Manual or monitored failover**
 
 Performing manual failover through monitoring can take two forms, either by
 human monitoring or by using a system external to the Couchbase Server cluster.
@@ -1238,7 +1246,7 @@ failover is not without potential problems.
  * **External monitoring**
 
    [Another option is to have a system monitoring the cluster via the Management
-   REST API](#couchbase-admin-restapi). Such an external system is in a good
+   REST API](../cb-rest-api/#couchbase-admin-restapi). Such an external system is in a good
    position to failover nodes because it can take into account system components
    that are outside the scope of Couchbase Server.
 
@@ -1259,8 +1267,8 @@ failover is not without potential problems.
 
 There are a number of restrictions on automatic failover in Couchbase Server.
 This is to help prevent some issues that can occur when you use automatic
-failover. For more information about potential issues, see [Choosing a Failover
-Solution](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-failover-choosing.html#couchbase-admin-tasks-failover-automatic-considerations).
+failover. For more information about potential issues, see [Choosing a failover
+solution](#couchbase-admin-tasks-failover-choosing).
 
  * **Disabled by Default** Automatic failover is disabled by default. This prevents
    Couchbase Server from using automatic failover without you explicitly enabling
@@ -1281,19 +1289,19 @@ Solution](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tas
    multiple pings of a node that may be down. This is to prevent failover of a
    functioning but slow node or to prevent network connection issues from
    triggering failover. For more information about this setting, see [Enabling and
-   Disabling
-   Auto-Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-autofailover.html).
+   disabling
+   auto-failover](../cb-rest-api/#couchbase-admin-restapi-autofailover).
 
 You can use the REST API to configure an email notification that will be sent by
 Couchbase Server if any node failures occur and node is automatically failed
-over. For more information, see [Enabling and Disabling Email
-Notifications](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-enbling-disabling-email.html).
+over. For more information, see [Enabling and disabling email
+notifications](../cb-rest-api/#couchbase-admin-restapi-enbling-disabling-email).
 
 To configure automatic failover through the Administration Web Console, see
-[Enabling Auto-Failover
-Settings](#couchbase-admin-web-console-settings-autofailover). For information
-on using the REST API, see [Retrieving Auto-Failover
-Settings](#couchbase-admin-restapi-get-autofailover-settings).
+[Enabling auto-failover
+settings](#couchbase-admin-web-console-settings-autofailover). For information
+on using the REST API, see [Retrieving auto-failover
+settings](../cb-rest-api/#couchbase-admin-restapi-get-autofailover-settings).
 
 Once an automatic failover has occurred, the Couchbase Cluster is relying on
 other nodes to serve replicated data. You should initiate a rebalance to return
@@ -1310,9 +1318,11 @@ counter indicates a node has failed over, the server will no longer
 automatically failover additional nodes in the cluster. You will need to
 re-enable automatic failover in a cluster by resetting this counter.
 
-You should only resetting the automatic failover after you resolve the node
-issue, rebalance and restore the cluster to a fully functioning state.
-
+<div class="notebox bp">
+<p>Important</p>
+<p>Reset the automatic failover only after the node
+issue is resolved, rebalance occurs, and the cluster is restored to a fully functioning state.</p>
+</div>
 You can reset the counter using the REST API:
 
 
@@ -1322,7 +1332,7 @@ You can reset the counter using the REST API:
 ```
 
 For more information on using this REST API see [Resetting
-Auto-Failover](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi-reset-autofailover.html).
+Auto-Failover](../cb-rest-api/#couchbase-admin-restapi-reset-autofailover).
 
 <a id="couchbase-admin-tasks-failover-manual"></a>
 
@@ -1332,15 +1342,19 @@ If you need to remove a node from the cluster due to hardware or system failure,
 you need to indicate the failover status for that node. This causes Couchbase
 Server to use replicated data from other functioning nodes in the cluster.
 
-Before you indicate the failover for a node you should read [Failing Over
+<div class="notebox bp">
+<p>Important</p>
+<p>Before you indicate the failover for a node, read [Failing Over
 Nodes](#couchbase-admin-tasks-failover). Do not use failover to remove a
 functioning node from the cluster for administration or upgrade. This is because
-initiating a failover for a node will activate replicated data at other nodes
-which will reduce the overall capacity of the cluster. Data from the failover
+initiating a failover for a node activates replicated data at other nodes
+which reduces the overall capacity of the cluster. Data from the failover
 node that has not yet been replicated at other nodes or persisted on disk will
 be lost. For information about removing and adding a node, see [Performing a
 Rebalance, Adding a Node to a
-Cluster](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-tasks-addremove-rebalance.html).
+Cluster](../cb-admin/#couchbase-admin-tasks-addremove-rebalance).
+</p></div>
+
 
 You can provide the failover status for a node with two different methods:
 
@@ -1407,7 +1421,7 @@ Rebalance](#couchbase-admin-tasks-addremove-rebalance).
 
 <a id="couchbase-admin-tasks-failover-addback"></a>
 
-### Adding Back a Failed Over Node
+### Adding back a failed over node
 
 You can add a failed over node back to the cluster if you identify and fix the
 issue that caused node failure. After Couchbase Server marks a node as failed
@@ -1667,7 +1681,7 @@ the number of documents recovered.
 
 <a id="couchbase-backup-restore"></a>
 
-## Backup and Restore
+## Backup and restore
 
 Backing up your data should be a regular process on your cluster to ensure that
 you do not lose information in the event of a serious hardware or installation
@@ -1709,13 +1723,16 @@ snapshot.
 For detailed information on the restore processes and options, see [Restoring
 Using cbrestore](#couchbase-backup-restore-restore).
 
-It is a best practice to backup and restore your entire cluster to minimize any
+<div class="notebox bp">
+<p>Best Practice</p>
+<p>It is a best practice to backup and restore your entire cluster to minimize any
 inconsistencies in data. Couchbase is always per-item consistent, but does not
 guarantee total cluster consistency or in-order persistence.
+</p></div>
 
 <a id="couchbase-backup-restore-backup-cbbackup"></a>
 
-### Backing Up Using cbbackup
+### Backing up using cbbackup
 
 The `cbbackup` tool is a flexible backup command that enables you to backup both
 local data and remote nodes and clusters involving different combinations of
@@ -1755,14 +1772,13 @@ cbbackup [options] [source] [backup_dir]
 ```
 
 The `cbbackup` tool is located within the standard Couchbase command-line
-directory. See [Command-line Interface for
-Administration](#couchbase-admin-cmdline).
+directory. See the [Command-line interface](../cb-cli/#couchbase-admin-cmdline).
 
 Be aware that `cbbackup` does not support external IP addresses. This means that
 if you install Couchbase Server with the default IP address, you cannot use an
 external hostname to access it. To change the address format into a hostname
 format for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+Server](../cb-install/#couchbase-getting-started-hostnames).
 
 Where the arguments are as described below:
 
@@ -1771,7 +1787,7 @@ Where the arguments are as described below:
    One or more options for the backup process. These are used to configure username
    and password information for connecting to the cluster, backup type selection,
    and bucket selection. For a full list of the supported arguments, see [cbbackup
-   Tool](#couchbase-admin-cmdline-cbbackup).
+   tool](../cb-cli/#couchbase-admin-cmdline-cbbackup).
 
    The primary options select what will be backed up by `cbbackup`, including:
 
@@ -1983,7 +1999,7 @@ expected method for restoring the data to the cluster.
 
 <a id="couchbase-backup-restore-backup-cbbackup-filter"></a>
 
-### Filtering Keys During Backup
+**Filtering keys during backup**
 
 The `cbbackup` command includes support for filtering the keys that are backed
 up into the database files you create. This can be useful if you want to
@@ -2006,9 +2022,12 @@ The above will copy only the keys matching the specified prefix into the backup
 file. When the data is restored, only those keys that were recorded in the
 backup file will be restored.
 
-The regular expression match is performed client side. This means that the
+<div class="notebox warning">
+<p>Warning</p>
+<p>The regular expression match is performed client side. This means that the
 entire bucket contents must be accessed by the `cbbackup` command and then
-discarded if the regular expression does not match.
+discarded if the regular expression does not match.</p>
+</div>
 
 Key-based regular expressions can also be used when restoring data. You can
 backup an entire bucket and restore selected keys during the restore process
@@ -2017,7 +2036,7 @@ tool](#couchbase-backup-restore-cbrestore).
 
 <a id="couchbase-backup-restore-backup-filecopy"></a>
 
-### Backing Up Using File Copies
+**Backing up using file copies**
 
 You can also backup by using either `cbbackup` and specifying the local
 directory where the data is stored, or by copying the data files directly using
@@ -2047,7 +2066,7 @@ configuration file from each node.
 
 <a id="couchbase-backup-restore-restore"></a>
 
-### Restoring Using cbrestore
+### Restoring using cbrestore
 
 When restoring a backup, you have to select the appropriate restore sequence
 based on the type of restore you are performing. The methods available to you
@@ -2063,47 +2082,8 @@ If the information was backed up using a direct file copy, then you must restore
 the information back to an identical cluster. See [Restoring Using File
 Copies](#couchbase-backup-restore-filecopy).
 
-<a id="couchbase-backup-restore-filecopy"></a>
-
-### Restoring Using File Copies
-
-To restore the information to the same cluster, with the same configuration, you
-must shutdown your entire cluster while you restore the data, and then restart
-the cluster again. You are replacing the entire cluster data and configuration
-with the backed up version of the data files, and then re-starting the cluster
-with the saved version of the cluster files.
-
-Make sure that any restoration of files also sets the proper ownership of those
-files to the couchbase user
-
-When restoring data back in to the same cluster, then the following must be true
-before proceeding:
-
- * The backup and restore must take between cluster using the same version of
-   Couchbase Server.
-
- * The cluster must contain the same number of nodes.
-
- * Each node must have the IP address or hostname it was configured with when the
-   cluster was backed up.
-
- * You must restore all of the `config.dat` configuration files as well as all of
-   the database files to their original locations.
-
-The steps required to complete the restore process are:
-
- 1. Stop the Couchbase Server service on all nodes. For more information, see
-    [Server Startup and Shutdown](#couchbase-admin-basics-running).
-
- 1. On each node, restore the database, `stats.json`, and configuration file (
-    `config.dat` ) from your backup copies for each node.
-
- 1. Restart the service on each node. For more information, see [Server Startup and
-    Shutdown](#couchbase-admin-basics-running).
 
 <a id="couchbase-backup-restore-cbrestore"></a>
-
-### Restoring using cbrestore tool
 
 The `cbrestore` command takes the information that has been backed up via the
 `cbbackup` command and streams the stored data into a cluster. The configuration
@@ -2154,7 +2134,7 @@ Where:
 
 
    For information on all the options available when using `cbrestore`, see
-   [cbrestore Tool](#couchbase-admin-cmdline-cbrestore)
+   [cbrestore tool](../cb-cli/#couchbase-admin-cmdline-cbrestore)
 
  * `[source]`
 
@@ -2211,12 +2191,12 @@ bucket in the cluster.
 
 <a id="couchbase-backup-restore-cbrestore-filter"></a>
 
-### Filtering Keys During Restore
+**Filtering keys during restore**
 
 The `cbrestore` command includes support for filtering the keys that are
 restored to the database from the files that were created during backup. This is
 in addition to the filtering support available during backup (see [Filtering
-Keys During Backup](#couchbase-backup-restore-backup-cbbackup-filter) ).
+keys during backup](#couchbase-backup-restore-backup-cbbackup-filter) ).
 
 The specification is in the form of a regular expression supplied as an option
 to the `cbrestore` command. For example, to restore information to a bucket only
@@ -2245,17 +2225,59 @@ The above will copy only the keys matching the specified prefix into the
 `default` bucket. For each key skipped, an information message will be supplied.
 The remaining output shows the records transferred and summary as normal.
 
+<a id="couchbase-backup-restore-filecopy"></a>
+
+**Restoring using file copies**
+
+To restore the information to the same cluster, with the same configuration, you
+must shutdown your entire cluster while you restore the data, and then restart
+the cluster again. You are replacing the entire cluster data and configuration
+with the backed up version of the data files, and then re-starting the cluster
+with the saved version of the cluster files.
+
+<div class="notebox bp">
+<p>Important</p>
+<p>Make sure that any restoration of files also sets the proper ownership of those
+files to the couchbase user
+</p></div>
+
+When restoring data back in to the same cluster, then the following must be true
+before proceeding:
+
+ * The backup and restore must take between cluster using the same version of
+   Couchbase Server.
+
+ * The cluster must contain the same number of nodes.
+
+ * Each node must have the IP address or hostname it was configured with when the
+   cluster was backed up.
+
+ * You must restore all of the `config.dat` configuration files as well as all of
+   the database files to their original locations.
+
+The steps required to complete the restore process are:
+
+ 1. Stop the Couchbase Server service on all nodes. For more information, see
+    [Server Startup and Shutdown](#couchbase-admin-basics-running).
+
+ 1. On each node, restore the database, `stats.json`, and configuration file (
+    `config.dat` ) from your backup copies for each node.
+
+ 1. Restart the service on each node. For more information, see [Server Startup and
+    Shutdown](#couchbase-admin-basics-running).
+
+
 <a id="couchbase-backup-restore-mac"></a>
 
-### Backup and Restore Between Mac OS X and Other Platforms
+### Backup and restore between Mac OS X and other platforms
 
-Couchbase Server 2.0 on Mac OS X uses a different number of configured vBuckets
+Couchbase Server on Mac OS X uses a different number of configured vBuckets
 than the Linux and Windows installations. Because of this, backing up from Mac
 OS X and restoring to Linux or Windows, or vice versa, requires using the
 built-in Moxi server and the memcached protocol. Moxi will rehash the stored
 items into the appropriate bucket.
 
- * **Backing Up Mac OS X and Restoring on Linux/Windows**
+ * **Backing up Mac OS X and restoring on Linux/Windows**
 
    To backup the data from Mac OS X, you can use the standard `cbbackup` tool and
    options:
@@ -2276,7 +2298,7 @@ items into the appropriate bucket.
    If you have backed up multiple buckets from your Mac, you must restore to each
    bucket individually.
 
- * **Backing Up Linux/Windows and Restoring on Mac OS X**
+ * **Backing Up Linux/Windows and restoring on Mac OS X**
 
    To backup the data from Linux or Windows, you can use the standard `cbbackup`
    tool and options:
@@ -2294,7 +2316,7 @@ items into the appropriate bucket.
     > cbrestore /linuxbackup/today memcached://mac:11211 -b default -B default
     ```
 
- * **Transferring Data Directly**
+ * **Transferring data directly**
 
    You can use `cbtransfer` to perform the data move directly between Mac OS X and
    Linux/Windows clusters without creating the backup file, providing you correctly
@@ -2305,10 +2327,13 @@ items into the appropriate bucket.
     > cbtransfer http://mac:8091 memcached://linux:11211 -b default -B default
     ```
 
-   These transfers will not transfer design documents, since they are using the
+   <div class="notebox">
+<p>Important</p>
+<p>These transfers will not transfer design documents, since they are using the
    Memcached protocol
+</p></div>
 
- * **Transferring Design Documents**
+ * **Transferring design documents**
 
    Because you are restoring data using the Memcached protocol, design documents
    are not restored. A possible workaround is to modify your backup directory.
@@ -2427,7 +2452,7 @@ Behind-the-Scenes](#couchbase-admin-tasks-addremove-rebalance-background).
 
 <a id="couchbase-admin-tasks-addremove-deciding"></a>
 
-### Choosing When to Rebalance
+### Choosing when to rebalance
 
 Choosing when each of situations applies is not always straightforward. Detailed
 below is the information you need to choose when, and why, to rebalance your
@@ -2441,7 +2466,7 @@ your client applications and helps to spread the load around more machines.
 There are a few different metrics and statistics that you can use on which to
 base your decision:
 
- * **Increasing RAM Capacity**
+ * **Increasing RAM capacity**
 
    One of the most important components in a Couchbase Server cluster is the amount
    of RAM available. RAM not only stores application data and supports the
@@ -2461,26 +2486,27 @@ base your decision:
       more RAM to do so. Adding nodes will increase the overall capacity of the system
       and then you can shrink any existing buckets in order to make room for new ones.
 
- * **Increasing disk I/O Throughput**
+ * **Increasing disk I/O throughput**
 
    By adding nodes to a Couchbase Server cluster, you will increase the aggregate
    amount of disk I/O that can be performed across the cluster. This is especially
    important in high-write environments, but can also be a factor when you need to
    read large amounts of data from the disk.
 
- * **Increasing Disk Capacity**
+ * **Increasing disk capacity**
 
    You can either add more disk space to your current nodes or add more nodes to
    add aggregate disk space to the cluster.
 
- * **Increasing Network Bandwidth**
+ * **Increasing network bandwidth**
 
    If you see that you are or are close to saturating the network bandwidth of your
    cluster, this is a very strong indicator of the need for more nodes. More nodes
    will cause the overall network bandwidth required to be spread out across
    additional nodes, which will reduce the individual bandwidth of each node.
 
-\> **Choosing when to shrink your cluster**
+
+**Choosing when to shrink your cluster**
 
 Choosing to shrink a Couchbase cluster is a more subjective decision. It is
 usually based upon cost considerations, or a change in application requirements
@@ -2503,7 +2529,7 @@ When choosing whether to shrink a cluster:
    flight during that operation. Using the remove functionality will ensure that
    all data is properly replicated and continuously available.
 
-**Choosing when to Rebalance**
+**Choosing when to rebalance**
 
 Once you decide to add or remove nodes to your Couchbase Server cluster, there
 are a few things to take into consideration:
@@ -2534,15 +2560,18 @@ are a few things to take into consideration:
 
 <a id="couchbase-admin-tasks-addremove-rebalance"></a>
 
-### Performing a Rebalance
+### Rebalancing a cluster
 
 Rebalancing a cluster involves marking nodes to be added or removed from the
 cluster, and then starting the rebalance operation so that the data is moved
 around the cluster to reflect the new structure.
 
-Until you complete a rebalance, you should avoid using the failover
+<div class="notebox bp">
+<p>Important</p>
+<p>Until you complete a rebalance, avoid using the failover
 functionality since that may result in loss of data that has not yet been
 replicated.
+</p></div>
 
  * For information on adding nodes to your cluster, see [Adding a Node to a
    Cluster](#couchbase-admin-tasks-addremove-rebalance-add).
@@ -2571,7 +2600,7 @@ Rebalance](#couchbase-admin-tasks-addremove-rebalance-rebalancing).
 
 <a id="couchbase-admin-tasks-addremove-rebalance-add"></a>
 
-### Adding a Node to a Cluster
+#### Adding a node to a cluster
 
 There are a number of methods available for adding a node to a cluster. The
 result is the same in each case, the node is marked to be added to the cluster,
@@ -2581,7 +2610,7 @@ operation. The methods are:
  * **Web Console — During Installation**
 
    When you are performing the Setup of a new Couchbase Server installation (see
-   [Initial Server Setup](#couchbase-getting-started-setup) ), you have the option
+   [Initial Server Setup](../cb-install/#couchbase-getting-started-setup) ), you have the option
    of joining the new node to an existing cluster.
 
    During the first step, you can select the `Join a cluster now` radio button, as
@@ -2653,7 +2682,7 @@ operation. The methods are:
 
  * **Using the REST API**
 
-   Using the REST API, you can add nodes to the cluster by providing the IP
+   With the REST API, you can add nodes to the cluster by providing the IP
    address, administrator username and password as part of the data payload. For
    example, using `curl` you could add a new node:
 
@@ -2663,10 +2692,10 @@ operation. The methods are:
         -d "hostname=192.168.0.68&user=node-username&password=node-password"
     ```
 
-   For more information, see [Adding a Node to a
-   Cluster](#restapi-create-new-node).
+   For more information, see [Adding a node to a
+   cluster](../cb-rest-api/#restapi-create-new-node).
 
- * **Using the Command-line**
+ * **Using the Command-line interface**
 
    You can use the `couchbase-cli` command-line tool to add one or more nodes to an
    existing cluster. The new nodes must have Couchbase Server installed, and
@@ -2707,8 +2736,11 @@ operation. The methods are:
    You can add multiple nodes in one command by supplying multiple `--server-add`
    command-line options to the command.
 
-Once a server has been successfully added, the Couchbase Server cluster will
+<div class="notebox">
+<p>Note</p>
+<p>Once a server has been successfully added, the Couchbase Server cluster will
 indicate that a rebalance is required to complete the operation.
+</p></div>
 
 You can cancel the addition of a node to a cluster without having to perform a
 rebalance operation. Canceling the operation will remove the server from the
@@ -2717,21 +2749,23 @@ operation took place. You can cancel the operation through the web interface.
 
 <a id="couchbase-admin-tasks-addremove-rebalance-remove"></a>
 
-### Removing a Node from a Cluster
+#### Removing a node from a cluster
 
-Removing a node marks the node for removal from the cluster, and will completely
-disable the node from serving any requests across the cluster. Once removed, a
+Removing a node marks the node for removal from the cluster and completely
+disables the node from serving any requests across the cluster. Once removed, a
 node is no longer part of the cluster in any way and can be switched off, or can
 be updated or upgraded.
 
-### Ensure Capacity for Node Removal
-
-Before you remove a node from the cluster, you should ensure that you have the
+<div class="notebox bp">
+<p>Important</p>
+<p> Before you remove a node from the cluster, ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
 more information on the considerations, see Choosing when to shrink your cluster.
 For the best results, use swap rebalance to swap the node you want to remove
 out, and swap in a replacement node. For more information on swap rebalance, see
 [Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
+</p></div>
+
 
 Like adding nodes, there are a number of solutions for removing a node:
 
@@ -2768,7 +2802,7 @@ operation to complete the removal process.
 
 <a id="couchbase-admin-tasks-addremove-rebalance-rebalancing"></a>
 
-### Performing a Rebalance
+#### Performing a rebalance
 
 Once you have configured the nodes that you want to add or remove from your
 cluster, you must perform a rebalance operation. This moves the data around the
@@ -2797,7 +2831,7 @@ configured state. To start a rebalance:
    the `Stop Rebalance` button. This only stops the rebalance operation, it does
    not cancel the operation. You should complete the rebalance operation.
 
- * **Using the Command-line**
+ * **Using the command-line interface**
 
    You can initiate a rebalance using the `couchbase-cli` and the `rebalance`
    command:
@@ -2846,7 +2880,7 @@ Rebalance](#couchbase-admin-tasks-addremove-rebalance-monitoring).
 
 <a id="couchbase-admin-tasks-addremove-rebalance-swap"></a>
 
-### Swap Rebalance
+### Swap rebalance
 
 Swap Rebalance is an automatic feature that optimizes the movement of data when
 you are adding and removing the same number of nodes within the same operation.
@@ -2861,14 +2895,16 @@ Swap rebalance only occurs if the following are true:
    example, if you have marked two nodes to be removed, and added another two nodes
    to the cluster.
 
+* When Couchbase Server identifies that a rebalance is taking place and that there
+are an even number of nodes being removed and added to the cluster, the swap
+rebalance method is used to perform the rebalance operation.
+
 Swap rebalance occurs automatically if the number of nodes being added and
 removed are identical. There is no configuration or selection mechanism to force
 a swap rebalance. If a swap rebalance cannot take place, then a normal rebalance
 operation will be used instead.
 
-When Couchbase Server identifies that a rebalance is taking place and that there
-are an even number of nodes being removed and added to the cluster, the swap
-rebalance method is used to perform the rebalance operation.
+
 
 When a swap rebalance takes place, the rebalance operates as follows:
 
@@ -2922,17 +2958,18 @@ swap rebalance functionality affects the following situations:
    When a node has failed, removing it and adding a replacement node, or adding the
    node back, will be treated as swap rebalance.
 
-   ### Failed Over Nodes
-
-   With swap rebalance functionality, after a node has failed over, you should
-   either clean up and re-add the failed over node, or add a new node and perform a
+<div class="notebox bp">
+<p>Best practice</p>
+<p>With swap rebalance functionality, after a node has failed over, 
+either clean up and re-add the failed over node, or add a new node and perform a
    rebalance as normal. The rebalance will be handled as a swap rebalance which
-   will minimize the data movements without affecting the overall capacity of the
+   minimize the data movements without affecting the overall capacity of the
    cluster.
+</p></div>
 
 <a id="couchbase-admin-tasks-addremove-rebalance-monitoring"></a>
 
-### Monitoring a Rebalance
+### Monitoring a rebalance
 
 You should monitor the system during and immediately after a rebalance operation
 until you are confident that replication has completed successfully.
@@ -2941,7 +2978,7 @@ A detailed rebalance report is available in the Web
 Console. As the server moves vBuckets within the cluster, Web Console provides a
 detailed report. You can view the same statistics in this report via a REST API
 call, see [Getting Rebalance
-Progress](#couchbase-admin-restapi-rebalance-progress). If you click on the
+Progress](../cb-rest-api/#couchbase-admin-restapi-rebalance-progress). If you click on the
 drop-down next to each node, you can view the detailed rebalance status:
 
 
@@ -3019,7 +3056,7 @@ You can also use `cbstats` to see underlying rebalance statistics:
 
 <a id="couchbase-admin-tasks-addremove-questions"></a>
 
-### Common Rebalancing Questions
+### Common rebalancing questions
 
 Provided below are some common questions and answers for the rebalancing
 operation.
@@ -3087,7 +3124,7 @@ operation.
 
 <a id="couchbase-admin-tasks-addremove-buckets"></a>
 
-### Rebalance Effect on Bucket Types
+### Rebalance effect on bucket types
 
 The rebalance operation works across the cluster on both Couchbase and
 `memcached` buckets, but there are differences in the rebalance operation due to
@@ -3122,7 +3159,7 @@ For `memcached` buckets:
 
 <a id="couchbase-admin-tasks-addremove-rebalance-background"></a>
 
-### Rebalance Behind-the-Scenes
+### Rebalance behind-the-scenes
 
 The rebalance process is managed through a specific process called the
 `orchestrator`. This examines the current vBucket map and then combines that
@@ -3151,214 +3188,16 @@ communicated back to the connected clients which will now use the new location.
 
 <a id="couchbase-admin-tasks-xdcr"></a>
 
-## Cross Datacenter Replication (XDCR)
+## Managing XDCR
 
-Couchbase Server 2.0 supports cross datacenter replication (XDCR), providing an
+Couchbase Server supports cross datacenter replication (XDCR), providing an
 easy way to replicate data from one cluster to another for disaster recovery as
 well as better data locality (getting data closer to its users).
 
-Couchbase Server provides support for both intra-cluster replication and cross
-datacenter replication (XDCR). Intra-cluster replication is the process of
-replicating data on multiple servers within a cluster in order to provide data
-redundancy should one or more servers crash. Data in Couchbase Server is
-distributed uniformly across all the servers in a cluster, with each server
-holding active and replica documents. When a new document is added to Couchbase
-Server, in addition to being persisted, it is also replicated to other servers
-within the cluster (this is configurable up to three replicas). If a server goes
-down, failover promotes replica data to active:
-
-
-![](../images/intra_cluster_repl.png)
-
-Cross datacenter replication in Couchbase Server involves replicating active
-data to multiple, geographically diverse datacenters either for disaster
-recovery or to bring data closer to its users for faster data access, as shown
-in below:
-
-
-![](../images/xdcr_1.png)
-
-You can also see that XDCR and intra-cluster replication occurs simultaneously.
-Intra-cluster replication is taking place within the clusters at both Datacenter
-1 and Datacenter 2, while at the same time XDCR is replicating documents across
-datacenters. Both datacenters are serving read and write requests from the
-application.
-
-### Use Cases
-
-**Disaster Recovery.** Disaster can strike your datacenter at any time – often
-with little or no warning. With active-active cross datacenter replication in
-Couchbase Server, applications can read and write to any geo-location ensuring
-availability of data 24x365 even if an entire datacenter goes down.
-
-**Bringing Data Closer to Users.** Interactive web applications demand low
-latency response times to deliver an awesome application experience. The best
-way to reduce latency is to bring relevant data closer to the user. For example,
-in online advertising, sub-millisecond latency is needed to make optimized
-decisions about real-time ad placements. XDCR can be used to bring
-post-processed user profile data closer to the user for low latency data access.
-
-**Data Replication for Development and Test Needs.** Developers and testers
-often need to simulate production-like environments for troubleshooting or to
-produce a more reliable test. By using cross datacenter replication, you can
-create test clusters that host subset of your production data so that you can
-test code changes without interrupting production processing or risking data
-loss.
-
-<a id="xdcr-topologies"></a>
-
-### Basic Topologies
-
-XDCR can be configured to support a variety of different topologies; the most
-common are unidirectional and bidirectional.
-
-Unidirectional Replication is one-way replication, where active data gets
-replicated from the source cluster to the destination cluster. You may use
-unidirectional replication when you want to create an active offsite backup,
-replicating data from one cluster to a backup cluster.
-
-Bidirectional Replication allows two clusters to replicate data with each other.
-Setting up bidirectional replication in Couchbase Server involves setting up two
-unidirectional replication links from one cluster to the other. This is useful
-when you want to load balance your workload across two clusters where each
-cluster bidirectionally replicates data to the other cluster.
-
-In both topologies, data changes on the source cluster are replicated to the
-destination cluster only after they are persisted to disk. You can also have
-more than two datacenters and replicate data between all of them.
-
-XDCR can be setup on a per bucket basis. A bucket is a logical container for
-documents in Couchbase Server. Depending on your application requirements, you
-might want to replicate only a subset of the data in Couchbase Server between
-two clusters. With XDCR you can selectively pick which buckets to replicate
-between two clusters in a unidirectional or bidirectional fashion. As shown in
-Figure 3, there is no XDCR between Bucket A (Cluster 1) and Bucket A (Cluster
-2). Unidirectional XDCR is setup between Bucket B (Cluster 1) and Bucket B
-(Cluster 2). There is bidirectional XDCR between Bucket C (Cluster 1) and Bucket
-C (Cluster 2):
-
-Cross datacenter replication in Couchbase Server involves replicating active
-data to multiple, geographically diverse datacenters either for disaster
-recovery or to bring data closer to its users for faster data access, as shown
-in below:
-
-
-![](../images/xdcr_selective.png)
-
-As shown above, after the document is stored in Couchbase Server and before XDCR
-replicates a document to other datacenters, a couple of things happen within
-each Couchbase Server node.
-
- 1. Each server in a Couchbase cluster has a managed cache. When an application
-    stores a document in Couchbase Server it is written into the managed cache.
-
- 1. The document is added into the intra-cluster replication queue to be replicated
-    to other servers within the cluster.
-
- 1. The document is added into the disk write queue to be asynchronously persisted
-    to disk. The document is persisted to disk after the disk-write queue is
-    flushed.
-
- 1. After the documents are persisted to disk, XDCR pushes the replica documents to
-    other clusters. On the destination cluster, replica documents received will be
-    stored in cache. This means that replica data on the destination cluster can
-    undergo low latency read/write operations:
-
-
-    ![](../images/xdcr-persistence.png)
-
-<a id="xdcr-architecture"></a>
-
-### XDCR Architecture
-
-There are a number of key elements in Couchbase Server’s XDCR architecture
-including:
-
-**Continuous Replication.** XDCR in Couchbase Server provides continuous
-replication across geographically distributed datacenters. Data mutations are
-replicated to the destination cluster after they are written to disk. There are
-multiple data streams (32 by default) that are shuffled across all shards
-(called vBuckets in Couchbase Server) on the source cluster to move data in
-parallel to the destination cluster. The vBucket list is shuffled so that
-replication is evenly load balanced across all the servers in the cluster. The
-clusters scale horizontally, more the servers, more the replication streams,
-faster the replication rate. For information on changing the number of data
-streams for replication, see [Changing XDCR
-Settings](#couchbase-admin-xdcr-rest-crossref)
-
-**Cluster Aware.** XDCR is cluster topology aware. The source and destination
-clusters could have different number of servers. If a server in the source or
-destination cluster goes down, XDCR is able to get the updated cluster topology
-information and continue replicating data to available servers in the
-destination cluster.
-
-**Push based connection resilient replication.** XDCR in Couchbase Server is
-push-based replication. The source cluster regularly checkpoints the replication
-queue per vBucket and keeps track of what data the destination cluster last
-received. If the replication process is interrupted for example due to a server
-crash or intermittent network connection failures, it is not required to restart
-replication from the beginning. Instead, once the replication link is restored,
-replication can continue from the last checkpoint seen by the destination
-cluster.
-
-**Efficient.** For the sake of efficiency, Couchbase Server is able to
-de-duplicate information that is waiting to be stored on disk. For instance, if
-there are three changes to the same document in Couchbase Server, and these
-three changes are waiting in queue to be persisted, only the last version of the
-document is stored on disk and later gets pushed into the XDCR queue to be
-replicated.
-
-**Active-Active Conflict Resolution.** Within a cluster, Couchbase Server
-provides strong consistency at the document level. On the other hand, XDCR also
-provides eventual consistency across clusters. Built-in conflict resolution will
-pick the same “winner” on both the clusters if the same document was mutated on
-both the clusters. If a conflict occurs, the document with the most updates will
-be considered the “winner.” If the same document is updated the same number of
-times on the source and destination, additional metadata such as numerical
-sequence, CAS value, document flags and expiration TTL value are used to pick
-the “winner.” XDCR applies the same rule across clusters to make sure document
-consistency is maintained:
-
-
-![](../images/xdcr_conflict_res.png)
-
-As shown in above, bidirectional replication is set up between Datacenter 1 and
-Datacenter 2 and both the clusters start off with the same JSON document (Doc
-1). In addition, two additional updates to Doc 1 happen on Datacenter 2. In the
-case of a conflict, Doc 1 on Datacenter 2 is chosen as the winner because it has
-seen more updates.
-
-### Advanced Topologies
-
-By combining unidirectional and bidirectional topologies, you have the
-flexibility to create several complex topologies such as the chain and
-propagation topology as shown below:
-
-
-![](../images/xdcr_repl_chain.png)
-
-In the image below there is one bidirectional replication link between
-Datacenter 1 and Datacenter 2 and two unidirectional replication links between
-Datacenter 2 and Datacenters 3 and 4. Propagation replication can be useful in a
-scenario when you want to setup a replication scheme between two regional
-offices and several other local offices. Data between the regional offices is
-replicated bidirectionally between Datacenter 1 and Datacenter 2. Data changes
-in the local offices (Datacenters 3 and 4) are pushed to the regional office
-using unidirectional replication:
-
-
-![](../images/xdcr_advanced.png)
-
-A description of the functionality, implementation and limitations of XDCR are
-provided in [Behavior and
-Limitations](#couchbase-admin-tasks-xdcr-functionality).
-
-To create and configure replication, see [Configuring
-Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-tasks-xdcr-configuration"></a>
 
-### About XDCR Replications
+### Configuring XDCR replications
 
 You configure replications using the `XDCR` tab of the Administration Web
 Console. You configure replication on a bucket basis. If you want to replicate
@@ -3402,14 +3241,14 @@ Therefore make sure that you check that a destination bucket exists. The
 recommended approach is try to read on any key from the bucket. If you receive a
 'key not found' error, or the document for the key, the bucket exists and is
 available to all nodes in a cluster. You can do this via a Couchbase SDK with
-any node in the cluster. See [Couchbase Developer Guide 2.0, Performing Connect,
+any node in the cluster. See [Couchbase Developer Guide Performing Connect,
 Set and
-Get](ttp://www.couchbase.com/docs/couchbase-devguide-2.0/cb-basic-connect-get-set.html).
+Get](http://docs.couchbase.com/couchbase-devguide-2.5/#cb-basic-connect-get-set).
 
 For more information about creating  buckets via the REST API, see [Creating and
-Editing Data Buckets](#couchbase-admin-restapi-creating-buckets).
+Editing Data Buckets](../cb-rest-api/#couchbase-admin-restapi-creating-buckets).
 
-### Set Source and Destination Clusters
+### Setting source and destination clusters
 
 To create a unidirectional replication (from cluster A to cluster B):
 
@@ -3437,7 +3276,7 @@ To create a unidirectional replication (from cluster A to cluster B):
     
 <a id="admin-tasks-xdcr-new-replication"></a>
     
-### Create New Replication
+### Creating new replications
 
 After you create references to the source and destination, you can create a replication 
 between the clusters in Couchbase Web Console. 
@@ -3465,9 +3304,10 @@ current status and list of replications in the `Ongoing Replications` section:
 
 <a id="admin-tasks-xdcr-advanced"></a>
 
-### Providing XDCR Advanced Settings
+### Providing XDCR advanced settings
 
-As of Couchbase Server 2.2+, when you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST API, see [Changing Internal XDCR Settings](#couchbase-admin-restapi-xdcr-change-settings).
+When you create a new replication, you can also provide internal settings and choose the protocol used for replication at the destination cluster. For earlier versions of Couchbase Server, these internal settings were only available via the REST API, 
+see [Changing Internal XDCR Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
 
 If you want to change the replication protocol for an existing XDCR replication, you need to delete the replication and then re-create the replication with your preference.
 
@@ -3477,13 +3317,14 @@ If you want to change the replication protocol for an existing XDCR replication,
        
 2. Under Advanced settings, choose an XDCR Protocol version.
 
-	Beginning with Couchbase Server 2.2, the XDCR Protocol defaults to version 2. 
+	The XDCR protocol defaults to version 2. 
 	
 	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plug-in, which depends on XDCR, choose version 1.
     
 	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
 
-	You can also change this setting via the REST API for XDCR internal settings or the  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
+	You can also change this setting via the REST API for XDCR internal settings or the 
+	[`couchbase-cli` tool](../cb-cli/#couchbase-admin-cli-xmem").
 	
 	For more information about XDCR, see [XDCR Behavior and Limitations](#couchbase-admin-tasks-xdcr-functionality). For more information about Elasticsearch, see 
     [Couchbase Elasticsearch Guide](http://docs.couchbase.com/couchbase-elastic-search/).
@@ -3565,7 +3406,7 @@ If you want to change the replication protocol for an existing XDCR replication,
       replicating the document to a destination cluster. For background information, see 
       ['Optimistic Replication' in XDCR](#xdcr-optimistic-replication)
 
-4. Click Replicate. 
+4. Click *Replicate*. 
 
 After you create the replication or update the setting, you can view or edit them once again by clicking Settings in Outgoing Replications.
 
@@ -3585,25 +3426,27 @@ You do not need identical topologies for both clusters; you can have a different
 number of nodes in each cluster, and different RAM and persistence
 configurations.
 
-You can also create a replication using the Administration REST API instead of
+You can also create a replication using the REST API instead of
 Couchbase Web Console. For more information, see [Getting a Destination Cluster
-Reference](#couchbase-admin-restapi-xdcr-destination).
+Reference](../cb-rest-api/#couchbase-admin-restapi-xdcr-destination).
 
 After you create a replication between clusters, you can configure the number of
 parallel replicators that run per node. The default number of parallel, active
 streams per node is 32, but you can adjust this. For information on changing the
 internal configuration settings, see [Viewing Internal XDCR
-Settings](#couchbase-admin-restapi-xdcr-internal-settings).
+Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-internal-settings).
 
 <a id="couchbase-admin-tasks-xdcr-monitoring"></a>
 
-### Monitoring Replication Status
+### Monitoring replication status
 
-There are two different areas of Couchbase Web Console which contain information
-about replication via XDCR: 1) the XDCR tab, and 2) the outgoing XDCR section
-under the Data Buckets tab.
+The following indicate the different areas of the Couchbase Web Console that contains information
+about replication via XDCR: 
 
-The Couchbase Web Console will display replication from the cluster it belongs
+* The XDCR tab.
+* The outgoing XDCR section under the Data Buckets tab.
+
+The Couchbase Web Console displays replication from the cluster it belongs
 to. Therefore, when you view the console from a particular cluster, it will
 display any replications configured, or replications in progress for that
 particular source cluster. If you want to view information about replications at
@@ -3629,11 +3472,11 @@ will fail due to the missing vBuckets:
 
 You can tune your XDCR parameters by using the administration REST API. See
 [Viewing Internal XDCR
-Settings](#couchbase-admin-restapi-xdcr-internal-settings).
+Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-internal-settings).
 
 <a id="couchbase-admin-tasks-xdcr-cancellation"></a>
 
-### Canceling Replication
+### Canceling replication
 
 You can cancel replication at any time by clicking `Delete` next to the active
 replication that is to be canceled.
@@ -3646,86 +3489,16 @@ Canceled replications that were terminated while the replication was still
 active will be displayed within the `Past Replications` section of the
 `Replications` section of the web console.
 
-<a id="couchbase-admin-tasks-xdcr-functionality"></a>
-
-### Behavior and Limitations
-
- * **Replication via Memcached Protocol** As of Couchbase Server 2.2+, XDCR can
-   replicate data through the memcached protocol at a destination cluster. 
-   This new mode utilizes highly efficient memcached protocol on the destination cluster for replicating changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination cluster and also improves XDCR scalability. 
-   
-   In earlier versions of Couchbase Server only the REST protocol could be used for replication. 
-   On a source cluster a work process batched multiple
-   mutations and sent the batch to a destination cluster using a REST interface.
-   The REST interface at the destination node unpacked the batch of mutations and
-   sent each mutation via a single memcached command. The destination cluster then
-   stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies
-   on the REST API known as CAPI.
-
-   This second mode available for XDCR is known as *XMEM mode XDCR* and will
-   bypass the REST interface and replicates mutations via the memcached protocol at
-   the destination cluster:
 
 
-   ![](../images/XDCR_xmem.png)
 
-   In this mode, every replication process at a source cluster will deliver
-   mutations directly via the memcached protocol on the remote cluster. This
-   additional mode will not impact current XDCR architecture, rather it is
-   implemented completely within the data communication layer used in XDCR. Any
-   external XDCR interface remains the same. The benefit of using this mode is
-   performance: this will increase XDCR throughput, improve XDCR scalability, and
-   reduce CPU usage at destination clusters during replication.
-
-   You can configure XDCR to operate via the new XMEM mode, which is the default or use CAPI
-   mode. To do so, you use Couchbase Web Console or the REST API and change the setting for
-   `xdcr_replication_mode`, see [Changing Internal XDCR
-   Settings](#couchbase-admin-restapi-xdcr-change-settings).
-
- * **Network and System Outages**
-
-    * XDCR is resilient to intermittent network failures. In the event that the
-      destination cluster is unavailable due to a network interruption, XDCR will
-      pause replication and will then retry the connection to the cluster every 30
-      seconds. Once XDCR can successfully reconnect with a destination cluster, it
-      will resume replication. In the event of a more prolonged network failure where
-      the destination cluster is unavailable for more than 30 seconds, a source
-      cluster will continue polling the destination cluster which may result in
-      numerous errors over time. In this case, you should delete the replication in
-      Couchbase Web Console, fix the system issue, then re-create the replication. The
-      new XDCR replication will resume replicating items from where the old
-      replication had been stopped.
-
-    * Your configurations will be retained over host restarts and reboots. You do not
-      need to re-configure your replication configuration in the event of a system
-      failure.
-
- * **Document Handling**
-
-    * XDCR does not replicate views and view indexes; you must manually exchange view
-      definitions between clusters and re-generate the index on the destination
-      cluster.
-
-    * Non UTF-8 encodable document IDs on the source cluster are automatically
-      filtered out and logged and are not transferred to the remote cluster. If you
-      have any non UTF-8 keys you will see warning output in the `xdcr_error.*` log
-      files along with a list of all non-UTF-8 keys found by XDCR.
-
- * **Flush Requests**
-
-   Flush requests to delete the entire contents of bucket are not replicated to the
-   remote cluster. Performing a flush operation will only delete data on the local
-   cluster. Flush is disabled if there is an active outbound replica stream
-   configured.
-   
 <a id="couchbase-admin-tasks-xdcr-upgrades"></a>
 
 ### Upgrading with XDCR
 
-As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem` which performs
- replication on a destination cluster with the memcached protocol. This is the default mode for 
- replications for Couchbase Server 2.2+. The other mode which exists is known as `capi` and is over 
- a REST protocol. 
+The `smem` replication mode performs replication on a destination cluster with the memcached protocol. 
+This is the default mode for Couchbase Server replications. The `capi` mode performs 
+replications over a REST protocol. 
  
  These are pre-requistes that needs to be considered:
  
@@ -3742,11 +3515,11 @@ As of Couchbase Server 2.2 we introduce a second replication mode known as `xmem
 Consider the following upgrade scenarios:
 
 1. Both source and destination clusters are pre-2.2 and you upgrade both to pre-2.2 versions. This scenario is supported since both clusters will use `capi`.
-2. Both source and destination clusters are pre-2.2 and you upgrade the destination to 2.2. 
+2. Both source and destination clusters are pre-2.2 and you upgrade the destination to 2.2 or higher. 
 This is a safe upgrade path since the source cluster will still communicate by default via `capi` to the destination.
-3. You upgrade only the source cluster to 2.2 and the destination is pre-2.2. This is not a safe upgrade path because the destination cannot receive replication via `xmem`. This will result in incorrect data replication and failures in conflict resolution.
+3. You upgrade only the source cluster to 2.2 or higher and the destination is pre-2.2. This is not a safe upgrade path because the destination cannot receive replication via `xmem`. This results in incorrect data replication and failures in conflict resolution.
 4. You upgrade both source and destination clusters from pre-2.2 to 2.2. This is also not a safe upgrade path because the cluster upgrades are not synchronized. You may complete source upgrade prior to destination upgrade. This may lead to incorrect data replication and failures in conflict resolution.
-5. Source is pre-2.2 an destination is Elastic Search. If you upgrade your source cluster to 2.2, you need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
+5. Source is pre-2.2 an destination is Elastic Search. If you upgrade your source cluster to 2.2 or higher, you need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
 
 For these scenarios 3-4 you should follow this process:
 
@@ -3757,7 +3530,7 @@ For these scenarios 3-4 you should follow this process:
 
 <a id="couchbase-xdcr-conflict-resolution"></a>
 
-### Conflict Resolution in XDCR
+### Conflict resolution in XDCR
 
 XDCR automatically performs conflict resolution for different document versions
 on source and destination clusters. The algorithm is designed to consistently
@@ -3805,7 +3578,7 @@ independently reach a consistent decision on which document wins.
 
 <a id="xdcr-optimistic-replication"></a>
 
-### 'Optimistic Replication' in XDCR
+### 'Optimistic replication' in XDCR
 
 XDCR can be tuned the performance of XDCR with the
 `xdcrOptimisticReplicationThreshold` parameter. By default, XDCR gets metadata twice for
@@ -3845,7 +3618,7 @@ deleted.
 
 You can change this setting with the REST API as one of the internal settings
 for XDCR. For more information, see [Changing Internal XDCR
-Settings](#couchbase-admin-restapi-xdcr-change-settings).
+Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
 
 **Monitoring 'Optimistic Replication"**
 
@@ -3884,7 +3657,7 @@ Replication (XDCR)](#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-xdcr-rest-crossref"></a>
 
-### Changing XDCR Settings
+### Changing XDCR settings
 
 Besides Couchbase Web Console, you can use several Couchbase REST API endpoints
 to modify XDCRsettings. Some of these settings are references used in XDCR and
@@ -3892,18 +3665,18 @@ some of these settings will change XDCR behavior or performance:
 
  * Viewing, setting and removing destination cluster references, can be found in
    [Getting a Destination Cluster
-   Reference](#couchbase-admin-restapi-xdcr-destination), [Creating a Destination
-   Cluster Reference](#couchbase-admin-restapi-xdcr-create-ref) and [Deleting a
-   Destination Cluster Reference](#couchbase-admin-restapi-xdcr-deleting-ref).
+   Reference](../cb-rest-api/#couchbase-admin-restapi-xdcr-destination), [Creating a Destination
+   Cluster Reference](../cb-rest-api/#couchbase-admin-restapi-xdcr-create-ref) and [Deleting a
+   Destination Cluster Reference](../cb-rest-api/#couchbase-admin-restapi-xdcr-deleting-ref).
 
  * Creating and removing a replication via REST can be found in [Creating a
-   Destination Cluster Reference](#couchbase-admin-restapi-xdcr-create-ref) and
+   Destination Cluster Reference](../cb-rest-api/#couchbase-admin-restapi-xdcr-create-ref) and
    [Deleting a Destination Cluster
-   Reference](#couchbase-admin-restapi-xdcr-deleting-ref).
+   Reference](../cb-rest-api/#couchbase-admin-restapi-xdcr-deleting-ref).
 
  * Concurrent replications, which is the number of concurrent replications per
    Couchbase Server instance. See [Viewing Internal XDCR
-   Settings](#couchbase-admin-restapi-xdcr-internal-settings).
+   Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-internal-settings).
 
  * 'Optimistic Replication.' For more information about 'optimistic replication',
    see ['Optimistic Replication' in XDCR](#xdcr-optimistic-replication).
@@ -3941,7 +3714,7 @@ environment parameter will supersede.
 
 <a id="couchbase-admin-tasks-xdcr-security"></a>
 
-### Securing Data Communication with XDCR
+### Securing data communication
 
 When configuring XDCR across multiple clusters over public networks, the data is
 sent unencrypted across the public interface channel. To ensure security for the
@@ -3985,9 +3758,63 @@ You must ensure when configuring your VPN connection that you route and secure
 all the ports in use by the XDCR communication protocol, ports 8091 and 8092 on
 every node within the cluster at each destination.
 
+<a id="cb-admin-tasks-xdcr-encrypt">
+### Managing XDCR data encryption
+
+The cross data center (XDCR) data security feature (Enterprise Edition only)provides secure cross data center replication using Secure Socket Layer (SSL) data encryption. The data replicated between clusters can be encrypted in both uni-directional and bi-directional topologies. With the XDCR data encryption feature, the XDCR traffic from the source cluster is secured by enabling the XDCR encryption option, providing the destination cluster's certificate, and then replicating. The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+
+
+#### XDCR data encryption prerequisites
+
+* Both source and destination clusters must support SSL network connections.
+* Couchbase servers on both source and destination clusters must have Couchbase 2.5 and above installed.
+
+#### To enable XDCR data security
+To enable XDCR data security using SSL and create replication:
+
+1. On the destination cluster, navigate to Settings > Cluster and copy the certificate.
+	* (Optional) To regenerate the existing destination certificate, click **Regenerate** before copying.
+2. On the source cluster, select the XDCR tab.
+3. Select Remote Clusters > Create Cluster Reference, verify or create the cluster reference.
+4. Select the Encryption box and paste the certificate in the provided area and click **Save**.
+5. From Ongoing Replications > Create Replication, provide the cluster and bucket information and click **Replicate**.
+
+#### Certificate example
+
+The following is an example of a certificate:
+
+```
+-----BEGIN CERTIFICATE-----
+MIICmDCCAYKgAwIBAgIIE0cwVgpNPEAwCwYJKoZIhvcNAQEFMAwxCjAIBgNVBAMT
+ASowHhcNMTMwMTAxMDAwMDAwWhcNNDkxMjMxMjM1OTU5WjAMMQowCAYDVQQDEwEq
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArHU82H7JRDBY3Iji6XDU
+SsfMHfHusTAvgLe/uwX47zI9hJDmH1OUCUxBXBCNtSlFNBdNfTKSINH0ka3mw2St
+qEEartPrZbbPWRLL4sAcAgEP9A8QST9xtsO43Qa7GsPQrdnRObY7erHL+wzOgVqT
+DobfXHvJMBxBJH31sAbUkN502LQCs03hlvs31lt+b8NwXOzD4ChDi6MmpkQdGX95
+CIag8G78AejEFycwcbIStt16j5Qbe7M974xMhFNbm1VHjpiVqCYxjzfyLGk6q4g8
+uh7KSuZ9dWFTRZgwy5tl2tpkbEbvpS7qtG1/v6Xu+h8ilw4S08MwCIhaegumwya/
+7QIDAQABowIwADALBgkqhkiG9w0BAQUDggEBAFHG7B+h3zT/YBv/E1MS8EHqfb+q
+FxwSDffl8cMKiVJ5BZZ56cXpaP1drU22zUVKPpaCvSmgJ1un7Pa56GSb0Dd+Dgid
+d1UJgR4DIu6bnFi4N63itabsiCHsux99zg/IJ+ZqZf+G8fVBWI9kJeK6dP98sSTF
+0Ze9SkJ0oo2JQeUVurakgU7IpxIilZK6UNO7q8y+bIqCgeGP+neERjrXKlnSjET2
+OCI07nPSIwcw2DYcVcs4g0t2g1u9EMXXYqB1OBTQBrY8BOUN08U8uYFHfSntJhXY
+EZpXqp9H24QENjggh6xOv6lzpZbPvsIfB+T30ZkQpmH2nISHFwjb9kJOkEQ=
+-----END CERTIFICATE-----
+```
+
+
+#### XDCR data security error message
+
+```
+Invalid certificate and/or private key
+```
+
+
+
+
 <a id="couchbase-admin-tasks-xdcr-cloud"></a>
 
-### Using XDCR in Cloud Deployments
+### Using XDCR in cloud deployments
 
 If you want to use XDCR within a cloud deployment to replicate between two or
 more clusters that are deployed in the cloud, there are some additional
@@ -4036,9 +3863,71 @@ XDCR Nodes           | 8091, 8092                             | IP of remote clu
 For more information in general about using Couchbase Server in the cloud, see
 [Using Couchbase in the Cloud](#couchbase-bestpractice-cloud).
 
+
+
+<a id="cb-admin-tasks-rack-aware"></a>
+## Managing Rack Awareness
+The Rack Awareness feature (Enterprise Edition) allows logical groupings of servers on a cluster where each server group physically belongs to a rack or availability zone. This feature provides the ability to specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. To enable Rack Awareness, all servers in a cluster must be upgraded to use the Rack Awareness feature. 
+
+This section describes how to manage server groups through the Web Console. See also, the [CLI, couchbase-cli](../cb-cli/#cb-cli-couchbase-cli), [CLI, Managing Rack Awareness](../cb-cli/#cbcli-rack-aware) and REST API for managing Rack Awareness, managing servers and server groups. By default, when a Couchbase cluster is initialized, Group 1 is created. 
+
+### Creating server groups
+<img src="../images/CreateGroup.png" alt="Create Group" height="100">
+
+To create a server group:
+
+1. From the Server Nodes tab, click Server Groups.
+2. Click Create Group and provide a group name to the Add Group pop-up.
+3. Click Create.
+
+### Renaming server groups
+<img src="../images/EditGroup.png" alt="Rename Group" height="100">
+
+To change a server group's name:
+
+1. From the Server Nodes tab, click Server Groups.
+2. Click Edit Group.
+3. Change the group name and Save.
+
+### Deleting server groups
+To delete a server group:
+
+1. Ensure that the server group is empty.
+2. Delete through "This group is empty, click to delete."
+3. Click Delete from the confirmation pop-up.
+
+### Adding servers to server groups
+<img src="../images/NewServer.png" alt="Add Server" height="200">
+
+To add a server:
+
+1. From the Server Nodes tab, click Add Server.
+2. Provide the Server IP Address, select a server group from the drop down menu, and provide the administrator username and password for the server being added.
+3. Click Add Server.
+4. From the Server Nodes tab, click Rebalance.
+
+
+### Removing servers from server groups
+To remove a server from a server group:
+
+1. From the Server Nodes tab, click Remove for the server that you want to delete.
+2. Click Remove from the confirmation pop-up.
+3. From the Server Nodes tab, click Rebalance.
+
+### Moving servers between server groups
+To move a server from one group to another:
+
+1. From the Server Nodes tab, Click Server Groups
+2. Drag and drop the server from one group to another.
+3. Click Apply Changes.
+4. From the Server Nodes tab, click Rebalance.
+
+
+
+
 <a id="couchbase-admin-tasks-changepath"></a>
 
-## Changing the Configured Disk Path
+## Changing the configured disk path
 
 You cannot change the disk path where the data and index files are stored on a
 running server. To change the disk path, the node must be removed from the
@@ -4061,12 +3950,12 @@ To change the disk path of the existing node, the recommended sequence is:
     Rebalance](#couchbase-admin-tasks-addremove-rebalance-rebalancing).
 
  1. Configure the new disk path, either by using the REST API (see [Configuring
-    Index Path for a Node](#couchbase-admin-restapi-provisioning-diskpath) ), using
+    Index Path for a Node](../cb-rest-api/#couchbase-admin-restapi-provisioning-diskpath) ), using
     the command-line (see cluster initialization for more information).
 
     Alternatively, connect to the Web UI of the new node, and follow the setup
     process to configure the disk path (see [Initial Server
-    Setup](#couchbase-getting-started-setup).
+    Setup](../cb-install/#couchbase-getting-started-setup).
 
  1. Add the node back to the cluster, see [Adding a Node to a
     Cluster](#couchbase-admin-tasks-addremove-rebalance-add).
@@ -4075,4 +3964,4 @@ The above process will change the disk path only on the node you removed from
 the cluster. To change the disk path on multiple nodes, you will need to swap
 out each node and change the disk path individually.
 
-<a id="couchbase-admin-web-console"></a>
+

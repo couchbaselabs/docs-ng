@@ -1,5 +1,7 @@
 <title>REST API overview</title>
 
+<a id="couchbase-admin-rest
+
 <a id="couchbase-admin-restapi"></a>
 # REST API overview
 
@@ -11,9 +13,13 @@ want to develop your own Couchbase-compatible SDK, you will also use the
 REST API within your library to handle *views*. Views enable you to index and
 query data based on functions that you define. 
 
+<div class="notebox tip">
+<p>Tip</p>
+<p>
 The REST API should *not* be used to read or write data to the server. Data
 operations such as `set` and `get` for example, are handled by Couchbase SDKs.
 See [Couchbase SDKs](http://couchbase.com/develop).
+</p></div>
 
 In addition, the Couchbase Web Console uses many of the same REST API endpoints that are used for a REST API request. This is especially for administrative tasks such as creating a new bucket, adding a node to a cluster, or changing cluster settings. 
 
@@ -43,8 +49,8 @@ The REST API is built on a number of basic principles:
  * **HTTP Basic Access Authentication**
 
    The Couchbase Management REST API uses HTTP basic authentication. The
-   browser-based [Using the Web Console](#couchbase-admin-web-console) and
-   [Command-line Interface for Administration](#couchbase-admin-cmdline) also use
+   browser-based [Using the Web Console](../cb-admin/#couchbase-admin-web-console) and
+   [Command-line Interface](../cb-cli/#couchbase-admin-cmdline) also use
    HTTP basic authentication.
 
  * **Versatile Server Nodes**
@@ -101,7 +107,7 @@ operations:
    Views enable you to index and query data based on logic you specify. You can
    also use views to perform calculations and aggregations, such as statistics, for
    items in Couchbase Server. For more information, see [Views and
-   Indexes](#couchbase-views).
+   Indexes](../cb-admin/#couchbase-views).
 
 ### Cross datacenter replication (XDCR)
 
@@ -112,7 +118,7 @@ operations:
    Couchbase cluster to another cluster after system failure. 2) provide copies of
    data on clusters that are physically closer to your end users. For more
    information, see [Cross Datacenter Replication
-   (XDCR)](#couchbase-admin-tasks-xdcr).
+   (XDCR)](../cb-admin/#couchbase-admin-tasks-xdcr).
 
 <a id="couchbase-admin-restapi-key-concepts-httpheaders"></a>
 
@@ -133,7 +139,7 @@ X-YYYYY-Client-Specification-Version | String                                   
 
 <a id="couchbase-admin-restapi-key-concepts-httpstatus"></a>
 
-## HTTP Status Codes
+## HTTP status codes
 
 The Couchbase Server will return one of the following HTTP status codes in
 response to your REST API request:

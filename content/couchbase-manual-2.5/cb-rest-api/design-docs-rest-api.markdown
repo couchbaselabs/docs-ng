@@ -1,6 +1,6 @@
 <a id="couchbase-views-designdoc-api"></a>
 
-# Design Documents REST API
+# Design documents REST API
 
 Design documents are used to store one or more view definitions. Views can be
 defined within a design document and uploaded to the server through the REST
@@ -8,7 +8,7 @@ API.
 
 <a id="couchbase-views-designdoc-api-storing"></a>
 
-## Storing a Design Document
+## Storing design documents
 
 To create a new design document with one or more views, you can upload the
 corresponding design document using the REST API with the definition in place.
@@ -121,7 +121,7 @@ in this example), and for each view, a corresponding `map()` function.
 
 <a id="couchbase-views-designdoc-api-retrieving"></a>
 
-## Retrieving a Design Document
+## Retrieving design documents
 
 To obtain an existing design document from a given bucket, you need to access
 the design document from the corresponding bucket using a `GET` request, as
@@ -218,7 +218,7 @@ The metadata matches the corresponding metadata for a data document.
 
 <a id="couchbase-views-designdoc-api-deleting"></a>
 
-## Deleting a Design Document
+## Deleting design documents
 
 To delete a design document, you use the `DELETE` HTTP request with the URL of
 the corresponding design document. The summary information for this request is

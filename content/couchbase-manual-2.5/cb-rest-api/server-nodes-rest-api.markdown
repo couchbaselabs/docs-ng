@@ -1,6 +1,6 @@
 <a id="couchbase-admin-restapi-node-management"></a>
 
-# Server Nodes REST API
+# Server nodes REST API
 
 A Couchbase Server instance, also known as 'node', is a physical or virtual
 machine running Couchbase Server. Each node is as a member of a cluster.
@@ -260,8 +260,11 @@ Cache-Control: no-cache no-store max-age=0
 {"newBaseUri":"http://localhost:8091/"}
 ```
 
-Note that even if it is not to be changed, the port number must be specified
-when you update username/password.
+<div classs="notebox">
+<p>Note</p>
+<p>
+The port number must be specified when username/password is updated.
+</p></div>
 
 <a id="couchbase-admin-restapi-cluster-memory-quota"></a>
 
@@ -322,12 +325,8 @@ the request and return `error 400 reason: unknown ["Renaming is disallowed for
 nodes that are already part of a cluster"]`.
 
 To see the specific REST request, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+Server](../cb-install/#couchbase-getting-started-hostnames).
 
-For Couchbase Server 2.0.1 and earlier you must follow a manual process where
-you edit config files for each node which we describe below. For more
-information, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
 
 <a id="couchbase-admin-restapi-failover-node"></a>
 

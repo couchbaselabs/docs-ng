@@ -14,4 +14,4 @@ Max metadata            | Approximately 150 bytes per document
 Max Buckets per Cluster | 10                                  
 Max View Key Size       | 4096 bytes                          
 
-<a id="licenses"></a>
+

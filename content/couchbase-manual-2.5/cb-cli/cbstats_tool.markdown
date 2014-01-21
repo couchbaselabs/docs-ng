@@ -1,6 +1,6 @@
 <a id="couchbase-admin-cmdline-cbstats"></a>
 
-# cbstats Tool
+# cbstats tool
 
 You use the `cbstats` tool to get node- and cluster-level statistics about
 performance and items in storage. The tool can be found in the following
@@ -23,8 +23,8 @@ node. If you want to perform this operation for an entire cluster, you will need
 to perform the command for every node/bucket combination that exists for that
 cluster.
 
-[You use this tool to get the couchbase node
-statistics](#couchbase-monitoring-nodestats). The general format for the command
+Use this tool to get the [couchbase node
+statistics](../cb-admin/#couchbase-monitoring-nodestats). The general format for the command
 is:
 
 
@@ -70,7 +70,7 @@ sort and filter the data.
 
 The following provides the stats that are created by `cbstats`:
 
-## Toplevel Stats
+## Toplevel stats
 
 | Stat                               | Description                            |
 | ------------- |:-------------:| 
@@ -342,7 +342,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_warmup_time                     | The amount of time warmup took
 
 
-## vBucket Total Stats
+## vBucket total stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -360,7 +360,7 @@ The following provides the stats that are created by `cbstats`:
 | ep_meta_data_memory           | Total memory used by meta data
 
 
-## Active vBucket Class Stats
+## Active vBucket class stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -384,7 +384,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_active_queue_fill          | Total enqueued items                       
 | vb_active_queue_drain         | Total drained items
 
-## Replica vBucket Stats
+## Replica vBucket stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -408,7 +408,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_replica_queue_fill         | Total enqueued items                       
 | vb_replica_queue_drain        | Total drained items
 
-## Pending vBucket Stats
+## Pending vBucket stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:| 
@@ -432,7 +432,7 @@ The following provides the stats that are created by `cbstats`:
 | vb_pending_queue_fill         | Total enqueued items                       
 | vb_pending_queue_drain        | Total drained items
 
-## Tap Stats
+## Tap stats
 
 | Stat                          | Description                                |
 | ------------- |:-------------:|
@@ -488,7 +488,7 @@ The following provides the stats that are created by `cbstats`:
 |                                | tap streams
 
 
-## Per Tap Client Stats
+## Per Tap client stats
 
 Each stat begins with =ep_tapq:= followed by a unique /client_id/ and
 another colon.  For example, if your client is named, =slave1=, the
@@ -561,7 +561,7 @@ another colon.  For example, if your client is named, =slave1=, the
 | num_vbucket_set_failed      | Number of failed vbucket set operations  |  C 
 | num_unknown                 | Number of unknown operations             |  C
 
-### Tap Aggregated Stats
+### Tap aggregated stats
 
 Aggregated tap stats allow named tap connections to be logically
 grouped and aggregated together by prefixes.
@@ -584,12 +584,12 @@ for =rebalance= and a set for =replication=.
 | [prefix]:itemondisk         | Number of items remaining on disk          
 | [prefix]:total_backlog_size | Num of remaining items for replication
 
-## Timing Stats
+## Timing stats
 
 Timing stats provide histogram data from high resolution timers over
 various operations within the system.
 
-##General Form
+##General form
 
 As this data is multi-dimensional, some parsing may be required for
 machine processing.  It's somewhat human readable, but the =stats=
@@ -624,7 +624,7 @@ this:
 :    1ms - 2ms     : ( 99.92%)    1
 
 
-##Available Stats
+##Available stats
 
 The following histograms are available from "timings" in the above
 form to describe when time was spent doing various things:
@@ -660,7 +660,7 @@ form to describe when time was spent doing various things:
 | item_alloc_sizes      | Item allocation size counters (in bytes)
 
 
-## Hash Stats
+## Hash stats
 
 Hash stats provide information on your vbucket hash tables.
 
@@ -703,7 +703,7 @@ vbucket 0 is =vb_0:size=.
 | mem_size         | Running sum of memory used by each item          
 | mem_size_counted | Counted sum of current memory used by each item
 
-## Checkpoint Stats
+## Checkpoint stats
 
 Checkpoint stats provide detailed information on per-vbucket checkpoint
 data structure.
@@ -732,7 +732,7 @@ each stat name.
 | last_closed_checkpoint_id        | The last closed checkpoint number         
 | persisted_checkpoint_id          | The last persisted checkpoint number
 
-## Memory Stats
+## Memory stats
 
 This provides various memory-related stats including the stats from tcmalloc.
 Note that tcmalloc stats are not available on some operating systems
@@ -776,7 +776,7 @@ Note that tcmalloc stats are not available on some operating systems
 |                                     | TCMalloc is using for small objects
 
 
-## Stats Key and Vkey
+## Stats key and Vkey
 | Stat                          | Description   | K/V |            
 | ------------- |----------|:-------------:|
 | key_cas                       | The keys current cas value             |KV
@@ -835,7 +835,7 @@ Stats =warmup= shows statistics related to warmup logic
 
 
 
-## KV Store Stats
+## KV store stats
 
 These provide various low-level stats and timings from the underlying KV
 storage system and useful to understand various states of the storage
@@ -869,7 +869,7 @@ The following stats are available for the CouchStore database engine:
 | save_documents    | Time spent in CouchStore save documents operation
 
 
-## Dispatcher Stats/JobLogs
+## Dispatcher stats and job logs
 
 This provides the stats from AUX dispatcher and non-IO dispatcher, and
 from all the reader and writer threads running for the specific bucket.
@@ -893,7 +893,7 @@ The following stats are for individual job logs:
 | task              | The activity/job the thread ran during that time
 
 
-## Stats Reset
+## Stats reset
 
 Resets the list of stats below.
 
@@ -966,7 +966,7 @@ Reset Histograms:
 
 <a id="couchbase-admin-cmdline-cbstats-timings"></a>
 
-## Getting Server Timings
+## Getting server timings
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -1029,7 +1029,7 @@ tap\_mutation           | Time spent servicing tap mutations
 
 <a id="couchbase-admin-cmdline-cbstats-warmup"></a>
 
-## Getting Warmup Information
+## Getting warmup information
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -1104,7 +1104,7 @@ ep\_warmup\_time                    | Total time spent by loading data (warmup) 
 
 <a id="couchbase-admin-cmdline-cbstats-TAP"></a>
 
-## Getting TAP Information
+## Getting TAP information
 
 Couchbase Server uses an internal protocol known as TAP to stream information
 about data changes between cluster nodes. Couchbase Server uses the TAP protocol

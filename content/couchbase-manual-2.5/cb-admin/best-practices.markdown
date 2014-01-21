@@ -147,12 +147,12 @@ Use the following items to calculate how much memory you need:
 
 <a id="couchbase-bestpractice-sizing-ram-constants"></a>
 
-Constant                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                      
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
-SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
-headroom The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. | Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
-High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
+Constant                                       Description                                                                                                                                                                                                                                                      
+------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Metadata per document (metadata\_per\_document) | This is the amount of memory that Couchbase needs to store metadata per document. Metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
+SSD or Spinning                                 | SSDs give better I/O performance.                                                                                                                                                                                                                                
+headroom                                        | The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
+High Water Mark (high\_water\_mark)             | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
 
 This is a rough guideline to size your cluster:
 
@@ -161,7 +161,7 @@ This is a rough guideline to size your cluster:
 Variable                                                     | Calculation                                                           
 -------------------------------------------------------------|-----------------------------------------------------------------------
 no\_of\_copies                                               | `1 + number_of_replicas`                                              
-total\_metadataAll the documents need to live in the memory. | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
+total\_metadata All the documents need to live in the memory. | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
 total\_dataset                                               | `(documents_num) * (value_size) * (no_of_copies)`                     
 working\_set                                                 | `total_dataset * (working_set_percentage)`                            
 Cluster RAM quota required                                   | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
@@ -188,14 +188,14 @@ Constants               | value
 ------------------------|-------------------------
 Type of Storage         | SSD                     
 overhead\_percentage    | 25%                     
-metadata\_per\_document | 56 for 2.1, 64 for 2.0.X
+metadata\_per\_document | 56 for 2.1, 64 for 2.0 or higher
 high\_water\_mark       | 85%                     
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>
 
 Variable                   | Calculation                                                      
 ---------------------------|------------------------------------------------------------------
-no\_of\_copies             | = 21 for original and 1 for replica                              
+no\_of\_copies             | = 1 for original and 1 for replica                              
 total\_metadata            | = 1,000,000 \* (100 + 120) \* (2) = 440,000,000                  
 total\_dataset             | = 1,000,000 \* (10,000) \* (2) = 20,000,000,000                  
 working\_set               | = 20,000,000,000 \* (0.2) = 4,000,000,000                        
@@ -664,11 +664,11 @@ can be accomplished by using a dynamic DNS service such as DNSMadeEasy which
 will allow you to automatically update the hostname when an underlying IP
 address changes.
 
-The following steps will completely destroy any data and configuration from the
+The following steps completely destroys any data and configuration from the
 node, so you should start with a fresh Couchbase install. If you already have a
 running cluster, you can rebalance a node out of the cluster, make the change,
 and then rebalance it back into the cluster. For more information, see
-[Upgrading to Couchbase Server 2.1](#couchbase-getting-started-upgrade).
+[Upgrading to Couchbase Server](../cb-install/#couchbase-getting-started-upgrade).
 
 Nodes with both IPs and hostnames can exist in the same cluster. When you set
 the IP address using this method, you should not specify the address as
@@ -678,20 +678,20 @@ your host.
 
 **Linux and Windows 2.1 and above**
 
-As a rule, you should set the hostname before you add a node to a cluster. You
-can also provide a hostname in these ways: when you install a Couchbase Server
-2.1 node or when you do a REST API call before the node is part of a cluster.
+As a rule, you should set the hostname before you add a node to a cluster. You 
+can also provide a hostname in these ways: when you install a Couchbase Server 
+node or when you do a REST API call before the node is part of a cluster. 
 You can also add a hostname to an existing cluster for an online upgrade. If you
 restart, any hostname you establish with one of these methods will be used. For
 instructions, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+Server](../cb-install/#couchbase-getting-started-hostnames).
 
 **Linux and Windows 2.0.1 and earlier**
 
 For Couchbase Server 2.0.1 and earlier you must follow a manual process where
 you edit config files for each node which we describe below for Couchbase in the
 cloud. For instructions, see [Hostnames for Couchbase Server 2.0.1 and
-Earlier](#couchbase-getting-started-hostnames-pre2.0).
+Earlier](../cb-install/#couchbase-getting-started-hostnames-pre2.0).
 
 <a id="couchbase-bestpractice-cloud-netsecurity"></a>
 
@@ -903,7 +903,7 @@ For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
 
 <a id="couchbase-deployment-embedproxy"></a>
 
-### Using Server-Side (Couchbase Embedded) Proxy
+### Using server-side (Couchbase embedded) proxy
 
 We do not recommend server-side proxy configuration for production use. You
 should use either a smart client or the client-side proxy configuration unless

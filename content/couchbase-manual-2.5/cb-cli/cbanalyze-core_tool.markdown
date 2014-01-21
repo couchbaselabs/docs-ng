@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cmdline-cbanalyze-core"></a>
 
-# cbanalyze-core Tool
+# cbanalyze-core tool
 
 Helper script to parse and analyze core dump from a Couchbase node. Depending
 upon your platform, this tool is at the following locations:

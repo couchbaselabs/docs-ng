@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cmdline-cbcollect_info"></a>
 
-# cbcollect_info Tool
+# cbcollect_info tool
 
 This is one of the most important diagnostic tools used by Couchbase technical
 support teams; this command-line tool provides detailed statistics for a

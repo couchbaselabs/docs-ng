@@ -8,11 +8,14 @@ admin console should provide basic confirmation that your node is available.
 Using the `couchbase-cli` command to query your Couchbase Server node will
 confirm that the node is available.
 
-The Couchbase Server web console uses the same port number as clients use when
+<div class="notebox">
+<p>Note</p>
+<p>The Couchbase Server web console uses the same port number as clients use when
 communicated with the server. If you can connect to the Couchbase Server web
 console, administration and database clients should be able to connect to the
 core cluster port and perform operations. The Web Console will also warn if the
 console loses connectivity to the node.
+</p></div>
 
 To verify your installation works for clients, you can use either the
 `cbworkloadgen` command, or `telnet`. The `cbworkloadgen` command uses the
@@ -31,8 +34,12 @@ The `cbworkloadgen` is a basic tool that can be used to check the availability
 and connectivity of a Couchbase Server cluster. The tool executes a number of
 different operations to provide basic testing functionality for your server.
 
-`cbworkloadgen` provides basic testing functionality. It does not provide
+<div class="notebox">
+<p>Note</p>
+<p>`cbworkloadgen` provides basic testing functionality. It does not provide
 performance or workload testing.
+</p>
+</div>
 
 To test a Couchbase Server installation using `cbworkloadgen`, execute the
 command supplying the IP address of the running node:
@@ -59,10 +66,13 @@ For a longer test you can increase the number of iterations:
 
 You can test your Couchbase Server installation by using Telnet to connect to
 the server and using the Memcached text protocol. This is the simplest method
-for determining if your Couchbase Server is running.
+for determining if Couchbase Server is running.
 
-You will not need to use the Telnet method for communicating with your server
+<div class="notebox">
+<p>Note</p>
+<p>You will not need to use the Telnet method for communicating with your server
 within your application. Instead, use one of the Couchbase SDKs.
+</p></div>
 
 You will need to have `telnet` installed on your server to connect to Couchbase
 Server using this method. Telnet is supplied as standard on most platforms, or

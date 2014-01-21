@@ -1,4 +1,4 @@
-## Troubleshooting Views
+## Troubleshooting views
 
 A number of errors and problems with views are generally associated with the
 eventual consistency model of the view system. In this section, some further
@@ -557,7 +557,7 @@ still happen, resulting in the same behavior as in the given example.
 
 <a id="couchbase-views-debugging-expired"></a>
 
-### Expired documents still have their associated Key-Value pairs returned in queries with stale=false
+### Expired documents still have their associated key-value pairs returned in queries with stale=false
 
 See
 [http://www.couchbase.com/issues/browse/MB-6219](http://www.couchbase.com/issues/browse/MB-6219)
@@ -1701,7 +1701,7 @@ mentioned above. In steady state all of the above fields are empty lists.
 
 ### Getting view btree stats for performance and longevity analysis
 
-As of 2.0 build 1667, there is a special (non-public) URI to get statistics for
+There is a special (non-public) URI to get statistics for
 all the btrees of an index (design document). These statistics are developer
 oriented and are useful for analyzing performance and longevity issues. Example:
 

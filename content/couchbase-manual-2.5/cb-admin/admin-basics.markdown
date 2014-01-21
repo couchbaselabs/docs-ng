@@ -1,6 +1,6 @@
 <a id="couchbase-admin-basics"></a>
 
-# Administration basics
+# Admin basics
 
 This chapter covers everything on the Administration of a Couchbase Sever
 cluster. Administration is supported through three primary methods:
@@ -11,7 +11,7 @@ cluster. Administration is supported through three primary methods:
    provides access to the administration and statistic information for your
    cluster.
 
-   For more information, see [Using the Web
+   For more information, see the [Couchbase Web
    Console](#couchbase-admin-web-console).
 
  * **Command-line Toolkit**
@@ -19,15 +19,14 @@ cluster. Administration is supported through three primary methods:
    Provided within the Couchbase package are a number of command-line tools that
    allow you to communicate and control your Couchbase cluster.
 
-   For more information, read [Command-line Interface for
-   Administration](#couchbase-admin-cmdline).
+   For more information, see the [Command-line interface](../cb-cli/#couchbase-admin-cmdline).
 
  * **Couchbase REST API**
 
    Couchbase Server includes a RESTful API that enables any tool capable of
    communicating over HTTP to administer and monitor a Couchbase cluster.
 
-   For more information, read [Using the REST API](#couchbase-admin-restapi).
+   For more information, see the [REST API](../cb-rest-api/#couchbase-admin-restapi).
    
 
 
@@ -52,7 +51,7 @@ SDKs](http://www.couchbase.com/develop).
 
 <a id="couchbase-data-files"></a>
 
-## Couchbase Data Files
+## Couchbase data files
 
 By default, Couchbase Server stores data files under the following
 paths:
@@ -64,7 +63,7 @@ Windows  | `C:\Program Files\couchbase\server\var\lib\couchbase\data`
 Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
 
 This path can be changed for each node at setup either via the Web UI setup
-wizard, using the [REST API](#couchbase-admin-restapi) or using the Couchbase CLI:
+wizard, using the [REST API](../cb-rest-api/#couchbase-admin-restapi) or using the Couchbase CLI:
 
 Changing the data path for a node that is already part of a cluster will
 permanently delete the data stored.
@@ -91,18 +90,18 @@ When using the command line tool, you cannot change the data file and index file
 path settings individually. If you need to configure the data file and index
 file paths individually, use the REST API. For more information, see
 [Configuring Index Path for a
-Node](#couchbase-admin-restapi-provisioning-diskpath)
+Node](../cb-rest-api/#couchbase-admin-restapi-provisioning-diskpath)
 
-For Couchbase Server 2.0, once a node or cluster has already been setup and is
+Once a node or cluster has already been setup and is
 storing data, you cannot change the path while the node is part of a running
 cluster. You must take the node out of the cluster then follow the steps below:
 
  1. [Change the path on a running node either via the REST
-    API](#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
+    API](../cb-rest-api/#couchbase-admin-restapi) or using the Couchbase CLI (commands above). This
     change will not actually take effect until the node is restarted. For more
     information about using a REST API request for ejecting nodes from clusters, see
     [Removing a Node from a
-    Cluster](#couchbase-admin-restapi-remove-node-from-cluster).
+    Cluster](../cb-rest-api/#couchbase-admin-restapi-remove-node-from-cluster).
 
  1. Shut the node down.
 
@@ -113,7 +112,7 @@ cluster. You must take the node out of the cluster then follow the steps below:
 
 <a id="couchbase-admin-basics-running"></a>
 
-## Server Startup and Shutdown
+## Server startup and shutdown
 
 The packaged installations of Couchbase Server include support for automatically
 starting and stopping Couchbase Server using the native boot and shutdown
@@ -130,7 +129,7 @@ platform-specific links:
 
 <a id="couchbase-admin-basics-running-linux"></a>
 
-### Startup and Shutdown on Linux
+### Startup and shutdown on Linux
 
 On Linux, Couchbase Server is installed as a standalone application with support
 for running as a background (daemon) process during startup through the use of a
@@ -156,7 +155,7 @@ To manually stop Couchbase Server using the startup/shutdown script:
 
 <a id="couchbase-admin-basics-running-windows"></a>
 
-### Startup and Shutdown on Windows
+### Startup and shutdown on Windows
 
 On Windows, Couchbase Server is installed as a Windows service. You can use the
 `Services` tab within the Windows Task Manager to start and stop Couchbase
@@ -206,7 +205,7 @@ To stop the server using the supplied script:
 
 <a id="couchbase-admin-basics-running-macosx"></a>
 
-### Startup and Shutdown on Mac OS X
+### Startup and shutdown on Mac OS X
 
 On Mac OS X, Couchbase Server is supplied as a standard application. You can
 start Couchbase Server by double clicking on the application. Couchbase Server

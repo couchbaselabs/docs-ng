@@ -1,6 +1,6 @@
 # Compaction REST API
 
-## Set Data and Index Compaction
+## Set data and index compaction
 
 Couchbase Server will write all data that you append, update and delete as files
 on disk. This process can eventually lead to gaps in the data file, particularly
@@ -10,11 +10,11 @@ the empty gaps in all data files by performing a process called compaction. In
 both the case of data files and index files, you will want to perform frequent
 compaction of the files on disk to help reclaim disk space and reduce disk
 fragmentation. For more general information on this administrative task, see
-[Database and View Compaction](#couchbase-admin-tasks-compaction).
+[Database and View Compaction](../cb-admin/#couchbase-admin-tasks-compaction).
 
 <a id="couchbase-admin-rest-compacting-bucket"></a>
 
-### Compacting Bucket Data and Indexes
+### Compacting bucket data and indexes
 
 To compact data files for a given bucket as well as any indexes associated with
 that bucket, you make this request:
@@ -33,7 +33,7 @@ that node in the cluster. To stop bucket compaction, issue this request:
 Replace the *admin*, *password*, *localhost*, and *bucket_name* values in the
 above example with your actual values.
     
-**Compacting Spatial Views**
+**Compacting spatial views**
 
 If you have spatial views in your dataset, these are not
 automatically compacted with data and indexes. Instead, you must manually compact each spatial
@@ -72,16 +72,16 @@ with your actual values.
     
 <a id="couchbase-admin-rest-auto-compaction"></a>
 
-### Setting Auto-Compaction
+### Setting auto-compaction
 
 In Couchbase Server you can also provide auto-compaction settings which will 
 trigger data and view compaction based on certain settings. These settings can be 
 made for an entire cluster or for a bucket in a cluster. 
-For background information, see [Admin Tasks, Compaction Process](#couchbase-admin-tasks-compaction-process). 
+For background information, see [Admin Tasks, Compaction Process](../cb-admin/#couchbase-admin-tasks-compaction-process). 
 To details about each setting, see 
-[Admin Tasks, Auto-Compaction Configuration](#couchbase-admin-tasks-compaction-autocompaction)
+[Admin Tasks, Auto-Compaction Configuration](../cb-admin/#couchbase-admin-tasks-compaction-autocompaction)
 
-**Auto-Compaction API**
+**Auto-compaction API**
 
 | REST API   | Description           
 | ------------- |-------------| 
@@ -90,14 +90,14 @@ To details about each setting, see
 | GET /pools/default/buckets/*bucket_name* | Read auto-compaction settings for named bucket   
 | POST/pools/default/buckets/*bucket_name* | Set auto-compaction interval or thresholds for named bucket
 
-**Auto-Compaction Parameters**
+**Auto-compaction parameters**
 
 You can use the following parameters for global auto-compaction settings which apply to all buckets in a cluster at `/controller/setAutoCompaction`. You also use these at `/pools/default/buckets/<bucket_name>`  
 for bucket-level auto-compaction. You will need to provide administrative credentials to change these settings.
 
 As of Couchbase Server 2.2+ you can provide a purge interval to remove the key and metadata 
 for items that have been deleted or are expired. This is known as 'tombstone purging'. 
-For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
+For background information, see [Introduction, Tombstone Purging](../cb-admin/#couchbase-introduction-tombstone-purge).
 
 | Parameter   | Value | Notes
 | ------------- |-------------|-------------|

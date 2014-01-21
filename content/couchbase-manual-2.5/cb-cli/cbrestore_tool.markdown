@@ -1,7 +1,7 @@
 
 <a id="couchbase-admin-cmdline-cbrestore"></a>
 
-# cbrestore Tool
+# cbrestore tool
 
 The `cbrestore` tool restores data from a file to an entire cluster or to a
 single bucket in the cluster. Items that had been written to file on disk will
@@ -14,7 +14,7 @@ restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
 hostnames for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+Server](../cb-install/#couchbase-getting-started-hostnames).
 
 The tool is in the following locations, depending on your platform:
 
@@ -90,7 +90,7 @@ the backup files `~/backup/bucket_one/design.json` and
 This will restore design documents in both backup files to a bucket in your
 cluster named `my_bucket` After you restore the design documents you can see
 them in Couchbase Web Console under the Views tab. For more information about
-the Views Editor, see [Using the Views Editor](#couchbase-views-editor).
+the Views Editor, see [Using the Views Editor](../cb-install/#couchbase-views-editor).
 
 **Using cbrestore from Couchbase Server 2.0 with 1.8.x**
 
@@ -134,4 +134,4 @@ If you want more information about using `cbbackup` 2.0 tool to backup data onto
 a 1.8.x cluster. See [cbbackup Tool](#couchbase-admin-cmdline-cbbackup).
 
 For general information on using `cbbackup`, see [Restoring using cbrestore
-tool](#couchbase-backup-restore-cbrestore).
+tool](../cb-admin/#couchbase-backup-restore-cbrestore).

@@ -6,13 +6,13 @@ see the version-specific notes throughout the manual.
 In addition to an introduction to Couchbase Server and a description of the relationship to NoSQL, 
 this manual provides the following topics: 
 
-* [Installation Guide](cb-install/)
+* [Installation and Upgrade](cb-install/)
 
-* [Administrator Guide](cb-admin/)  
+* [Administration](cb-admin/)  
 
-* [CLI Reference](cb-cli/)
+* [CLI](cb-cli/)
 
-* [REST API Reference](cb-rest-api/)
+* [REST API](cb-rest-api/)
 
 
 
@@ -52,7 +52,7 @@ hours, 7 days a week. Couchbase Server provides the following benefits:
 
    Couchbase Server provides automatic sharding of data and rebalancing at runtime;
    this lets you resize your server cluster on demand. Cross-data center
-   replication providing in Couchbase Server 2.0 enables you to move data closer to
+   replication enables you to move data closer to
    your user at other data centers.
 
  * **Consistent High Performance**

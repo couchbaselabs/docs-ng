@@ -528,7 +528,7 @@ each category.
 
 <a id="couchbase-admin-restapi-named-bucket-streaming-uri"></a>
 
-## Using the bucket streamingURI
+## Using the bucket streaming URI
 
 The individual bucket request is exactly the same as what would be obtained from
 the item in the array for the entire buckets list described previously. The
@@ -665,21 +665,26 @@ To create a new Couchbase bucket, or edit the existing parameters for an
 existing bucket, you can send a `POST` to the REST API endpoint. You can also
 use this same endpoint to get a list of buckets that exist for a cluster.
 
+<div class="notebox">
+<p>Note</p>
+<p>
 Be aware that when you edit bucket properties, if you do not specify an existing
 bucket property Couchbase Server may reset this the property to be the default.
 So even if you do not intend to change a certain property when you edit a
 bucket, you should specify the existing value to avoid this behavior.
+</p></div>
 
-This REST API will return a successful response when preliminary files for a
+The REST API returns a successful response when preliminary files for a
 data bucket are created on one node. Because you may be using a multi-node
 cluster, bucket creation may not yet be complete for all nodes when a response
 is sent. Therefore it is possible that the bucket is not available for
 operations immediately after this REST call successful returns.
 
-To ensure a bucket is available the recommended approach is try to read a key
+To ensure a bucket is available, the recommended approach is try to read a key
 from the bucket. If you receive a 'key not found' error, or the document for the
 key, the bucket exists and is available to all nodes in a cluster. You can do
-this via a Couchbase SDK with any node in the cluster.
+this via a Couchbase SDK with any node in the cluster. 
+See the _Couchbase Developer Guide_ for more information.
 
 <a id="table-couchbase-admin-restapi-creating-buckets"></a>
 
@@ -702,7 +707,7 @@ Payload Arguments        |  Description
 `replicaIndex`                | Optional parameter. Boolean. 1 enable replica indexes for replica bucket data while 0 disables. Default of 1.                                                                                                                                                                                                                                             
 `replicaNumber`               | Optional parameter. Numeric. Number of replicas to be configured for this bucket. Required parameter when creating a Couchbase bucket. Default 1, minimum 0, maximum 3.                                                                                                                                                                                   
 `saslPassword`                | Optional Parameter. String. Password for SASL authentication. Required if SASL authentication has been enabled.                                                                                                                                                                                                                                           
-`threadsNumber`               | Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and writers for the data bucket. For detailed information about this feature, see [Using Multi- Readers and Writers](#couchbase-admin-tasks-mrw).                                                                                                                        
+`threadsNumber`               | Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and writers for the data bucket. For detailed information about this feature, see [Using Multi- Readers and Writers](../cb-admin/#couchbase-admin-tasks-mrw).                                                                                                                        
 **Return Codes**              |                                                                                                                                                                                                                                                                                                                                                           
 202                           | Accepted                                                                                                                                                                                                                                                                                                                                                  
 204                           | Bad Request JSON with errors in the form of {"errors": {.... }} name: Bucket with given name already exists ramQuotaMB: RAM Quota is too large or too small replicaNumber: Must be specified and must be a non-negative integer proxyPort: port is invalid, port is already in use                                                                        
@@ -846,7 +851,12 @@ See bucket parameters](#table-couchbase-admin-restapi-creating-buckets).
 If the request is successful, HTTP response 200 will be returned with an empty
 data content.
 
-You cannot change the name of a bucket via the REST API.
+<div class="notebox warning">
+<p>Warning</p>
+<p>
+The bucket name cannot be changed via the REST API.
+</p>
+</div>
 
 <a id="couchbase-admin-restapi-bucket-memory-quota"></a>
 
@@ -857,8 +867,12 @@ However, while increasing will do no harm, decreasing should be done with proper
 sizing. Decreasing the bucket's ramQuotaMB lowers the watermark, and some items
 may be unexpectedly ejected if the ramQuotaMB is set too low.
 
-As of 1.6.0, there are some known issues with changing the ramQuotaMB for
+<div class="notebox">
+<p>Note</p>
+<p>
+There are some known issues with changing the ramQuotaMB for
 memcached bucket types.
+</p></div>
 
 Example of a request:
 
@@ -914,9 +928,13 @@ values in the above example with your actual values.
 500                         | Bucket could not be deleted on all nodes    
 503                         | Buckets cannot be deleted during a rebalance
 
+<div class="notebox warning">
+<p>Warning</p>
+<p>
 This operation is data destructive.The service makes no attempt to double check
 with the user. It simply moves forward. Clients applications using this are
 advised to double check with the end user before sending such a request.
+</p></div>
 
 To delete a bucket, you supply the URL of the Couchbase bucket using the
 `DELETE` operation. For example:
@@ -941,16 +959,19 @@ deleted.
 
 ## Flushing buckets
 
-This operation is data destructive. The service makes no attempt to confirm or
+<div class="notebox warning">
+<p>Warning</p>
+<p>This operation is data destructive. The service makes no attempt to confirm or
 double check the request. Client applications using this are advised to double
 check with the end user before sending such a request. You can control and limit
 the ability to flush individual buckets by setting the `flushEnabled` parameter
 on a bucket in Couchbase Web Console or via `cbepctl flush_param`.
+</p></div>
 
 For information about changing this setting in the Web Console, see [Viewing
-Data Buckets](#couchbase-admin-web-console-data-buckets). For information about
+data buckets](../cb-admin/#couchbase-admin-web-console-data-buckets). For information about
 flushing data buckets via REST, see [Flushing a
-Bucket](#couchbase-admin-restapi-flushing-bucket).
+bucket](#couchbase-admin-restapi-flushing-bucket).
 
 The `doFlush` operation empties the contents of the specified bucket, deleting
 all stored data. The operation will only succeed if flush is enabled on
@@ -992,14 +1013,22 @@ If the flush is successful, the HTTP response code is `200` :
 HTTP/1.1 200 OK
 ```
 
+<div class="notebox warning">
+<p>Warning</p>
+<p>
 The flush request may lead to significant disk activity as the data in the
 bucket is deleted from the database. The high disk utilization may affect the
 performance of your server until the data has been successfully deleted.
+</p></div>
 
-Also note that the flush request is not transmitted over XDCR replication
+<div class="notebox">
+<p>Note</p>
+<p>
+The flush request is not transmitted over XDCR replication
 configurations; the remote bucket will not be flushed.
+</p></div>
 
-Couchbase Server will return a HTTP 404 response if the URI is invalid or if it
+Couchbase Server returns a HTTP 404 response if the URI is invalid or if it
 does not correspond to an active bucket in the system.
 
 ```
@@ -1010,5 +1039,5 @@ You can configure whether flush is enabled for a bucket by configuring the
 individual bucket properties, either the REST API (see [Modifying Bucket
 Parameters](#couchbase-admin-restapi-modifying-bucket-properties) ), or through
 the Admin Console (see [Creating and Editing Data
-Buckets](#couchbase-admin-web-console-data-buckets-createedit) ).
+Buckets](../cb-admin/#couchbase-admin-web-console-data-buckets-createedit) ).
 

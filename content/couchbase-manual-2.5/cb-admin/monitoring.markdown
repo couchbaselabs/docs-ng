@@ -6,7 +6,7 @@ before starting your monitoring procedure.
 
 <a id="couchbase-underlying-processes"></a>
 
-## Underlying Server Processes
+## Underlying server processes
 
 There are several different server processes that constantly run in Couchbase
 Server whether or not the server is actively handling reads/writes or handling
@@ -19,9 +19,7 @@ are running on your node:
 
    These processes are responsible for monitoring and managing all other underlying
    server processes such as ongoing XDCR replications, cluster operations, and
-   views. Prior to 2.1 we had a single process for memcached, Moxi and to monitor
-   all server processes. This resulted in server disruption and crashes due to lack
-   of memory.
+   views.
 
    There is a separate monitoring/babysitting process
    running on each node. The process is small and simple and therefore unlikely to
@@ -35,8 +33,8 @@ are running on your node:
    `erl.exe` processes running on Linux or Windows respectively.
 
    The set of log files for this monitoring process is `ns_server.babysitter.log`
-   which you can collect with `cbcollect_info`. See [cbcollect_info
-   Tool](#couchbase-admin-cmdline-cbcollect_info).
+   which you can collect with `cbcollect_info`. See the [cbcollect_info
+   tool](../cb-cli/#couchbase-admin-cmdline-cbcollect_info).
 
  * **memcached** : This process is responsible for caching items in RAM and
    persisting them to disk.
@@ -140,7 +138,7 @@ ep\_warmup\_time   | How long the warmup thread was running for. During warmup t
 
 <a id="couchbase-monitoring-diskwritequeue"></a>
 
-## Disk Write Queue
+## Disk write queue
 
 Couchbase Server is a persistent database which means that part of monitoring
 the system is understanding how we interact with the disk subsystem.
@@ -166,7 +164,7 @@ essentially sleep until there are more items to write.
 
 <a id="couchbase-monitoring-diskwritequeue-monitoring"></a>
 
-### Monitoring the Disk Write Queue
+### Monitoring the disk write queue
 
 There are basically two ways to monitor the disk queue, at a high-level from the
 Web UI or at a low-level from the individual node statistics.
@@ -191,7 +189,7 @@ information about monitoring what the disk subsystem is doing at any given time.
 
 <a id="couchbase-monitoring-stats"></a>
 
-## Couchbase Server Statistics
+## Couchbase Server statistics
 
 Couchbase Server provides statistics at multiple levels throughout the cluster.
 These are used for regular monitoring, capacity planning and to identify the
@@ -201,18 +199,18 @@ the proxy and individual nodes have directly accessible statistics interfaces.
 
 <a id="couchbase-monitoring-stats-rest"></a>
 
-### REST Interface Statistics
+### REST interface statistics
 
 To interact with statistics provided by REST, use the
 [Couchbase Web Console](#couchbase-admin-web-console). This GUI gathers
 statistics via REST and displays them to your browser. The REST interface has a
 set of resources that provide access to the current and historic statistics the
-cluster gathers and stores. See the [REST documentation](#couchbase-admin-restapi)
+cluster gathers and stores. See the [REST API](../cb-rest-api/#couchbase-admin-restapi)
 for more information.
 
 <a id="couchbase-monitoring-nodestats"></a>
 
-### Couchbase Server Node Statistics
+### Couchbase Server node statistics
 
 [Detailed stats
 documentation](http://github.com/membase/ep-engine/blob/master/docs/stats.org)
@@ -220,7 +218,7 @@ can be found in the repository.
 
 Along with stats at the REST and UI level, individual nodes can also be queried
 for statistics either through a client which uses binary protocol or through
-the [cbstats utility](#couchbase-admin-cmdline-cbstats) shipped with Couchbase
+the [cbstats utility](../cb-cli/#couchbase-admin-cmdline-cbstats) shipped with Couchbase
 Server.
 
 For example:
@@ -265,14 +263,14 @@ There are seven commands available through the stats interface:
 
 <a id="couchbase-monitoring-nodestats-stats"></a>
 
-### stats Command
+### stats command
 
 This displays a large list of statistics related to the Couchbase process
 including the underlying engine (ep\_\* stats).
 
 <a id="couchbase-monitoring-nodestats-dispatcher"></a>
 
-### dispatcher Command
+### dispatcher command
 
 This statistic will show what the dispatcher is currently doing:
 
@@ -297,7 +295,7 @@ you a log of recently run dispatcher jobs so you can see what's been happening.
 
 <a id="couchbase-monitoring-moxistats"></a>
 
-## Couchbase Server Moxi Statistics
+## Couchbase Server Moxi statistics
 
 Moxi, as part of it's support of memcached protocol, has support for the
 memcached `stats` command. Regular memcached clients can request statistics
@@ -369,4 +367,4 @@ STAT 11211:default:pstd_stats:tot_downstream_connect_max_reached 0
 END
 ```
 
-<a id="couchbase-troubleshooting"></a>
+

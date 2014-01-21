@@ -1,5 +1,5 @@
-
 <a id="couchbase-getting-started"></a>
+
 # Getting started
 
 To start using Couchbase Server, follow these steps:
@@ -35,21 +35,28 @@ Couchbase Server, see [Uninstalling Couchbase Server](#couchbase-uninstalling).
 
 ## Preparing to install
 
-Mixed deployments, such as cluster with both Linux and Windows server nodes are
+<div class="notebox warning">
+<p>Warning</p>
+<p>
+Mixed deployments, such as a cluster with both Linux and Windows server nodes are
 not supported. This incompatibility is due to differences in the number of
-shards between platforms. It is not possible either to mix operating systems
-within the same cluster, or configure XDCR between clusters on different
-platforms. You should use same operating system on all machines within a cluster
-and on the same operating systems on multiple clusters if you perform XDCR
-between the clusters.
+shards between platforms. Operating systems cannot be mixed within the same cluster 
+and when XDCR is configured between clusters, operating systems cannot be mixed 
+between clusters.
+</p>
+<p>Implement the same operating system on all machines within a cluster.</p> 
+<p>If XDCR is used, implement the same operating system on 
+the other clusters. 
+</p>
+</div>
 
 Your system should meet the following system requirements.
 
 <a id="couchbase-getting-started-prepare-platforms"></a>
 
-## Supported Platforms
+## Supported platforms
 
-With Couchbase Server 2.2 we have extended our platform support for Windows 2012 and provide separate packages for Ubuntu 12.04 and CentOS 6.
+Couchbase Server provides platform support for Windows 2012 and separate packages for Ubuntu 12.04 and CentOS 6.
 
 <a id="table-couchbase-platform-support"></a>
 
@@ -83,7 +90,7 @@ Server](#couchbase-getting-started-install).
 
 <a id="couchbase-getting-started-prepare-hardware"></a>
 
-## Resource Requirements
+## Resource requirements
 
 The following hardware requirements are recommended for installation:
 
@@ -102,15 +109,20 @@ A minimum specification machine should have the following characteristics:
 
  * 4GB RAM (physical)
 
+<div class="notebox">
+<p>Note</p>
+<p>
 For development and testing purposes a reduced CPU and RAM than the minimum
 specified can be used. This can be as low as 1GB of free RAM beyond operating
 system requirements and a single CPU core. However, you should not use a
 configuration lower than that specified in production. Performance on machines
 lower than the minimum specification will be significantly lower and should not
 be used as an indication of the performance on a production machine.
-
-View performance on machines with less than 2 CPU cores will be significantly
+</p>
+<p>View performance on machines with less than 2 CPU cores will be significantly
 reduced.
+</p>
+</div>
 
 You must have enough memory to run your operating system and the memory reserved
 for use by Couchbase Server. For example, if you want to dedicate 8GB of RAM to
@@ -127,11 +139,11 @@ You must have the following amount of storage available:
    information
 
 For information and recommendations on server and cluster sizing, see [Sizing
-Guidelines](#couchbase-bestpractice-sizing).
+Guidelines](../cb-admin/#couchbase-bestpractice-sizing).
 
 <a id="couchbase-getting-started-prepare-browser"></a>
 
-## Supported Web Browsers
+## Supported web browsers
 
 The Couchbase Web Console runs on the following browsers, with JavaScript
 support enabled:
@@ -160,7 +172,7 @@ support enabled:
 
 <a id="couchbase-network-ports"></a>
 
-## Network Ports
+## Network ports
 
 Couchbase Server uses a number of different network ports for communication
 between the different components of the server, and for communicating with
@@ -174,18 +186,18 @@ that you need to open these ports.
 The following table lists the ports used for different types of communication
 with Couchbase Server, as follows:
 
-### Node to Node
+### Node to node
 
    Where noted, these ports are used by Couchbase Server for communication between
    all nodes within the cluster. You must have these ports open on all to enable
    nodes to communicate with each other.
 
-### Node to Client
+### Node to client
 
    Where noted, these ports should be open between each node within the cluster and
    any client nodes accessing data within the cluster.
 
-### Cluster Administration
+### Cluster administration
 
    Where noted, these ports should be open and accessible to allow administration,
    whether using the REST API, command-line clients, and Web browser.
@@ -219,7 +231,7 @@ Red Hat-based operating systems such as CentOS.
 
 ## Installing on Red Hat Linux
 
- 1. For Red Hat Enterprise Linux version 6.0, Couchbase Server 2.2 RPM will do
+ 1. For Red Hat Enterprise Linux version 6.0, Couchbase Server RPM performs 
     dependency checks for OpenSSL using `pkg-config`. Therefore you need to check
     that this pkg-config is installed and if you do not have it, install it:
 
@@ -310,7 +322,7 @@ To do the initial setup for Couchbase, open a web browser and access the
 Couchbase Web Console. See [Initial Server
 Setup](#couchbase-getting-started-setup).
 
-## Installing on CentOS/RHEL as Non-Root, Non-Sudo 
+## Installing on CentOS/RHEL as non-root, non-sudo 
 
 **This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo
 user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all 
@@ -369,7 +381,7 @@ Couchbase command-line tools. To do so on CentOS/Red Hat:
      ```
 
 For general instructions on server start-up and shutdown as a sudo or root user,
-see [Server Startup and Shutdown](#couchbase-admin-basics-running).
+see [Server Startup and Shutdown](../cb-admin/#couchbase-admin-basics-running).
 
 <a id="couchbase-getting-started-install-ubuntu"></a>
 
@@ -442,7 +454,7 @@ Ubuntu documentation for instructions. To provide initial setup for Couchbase,
 open a web browser and access the web administration interface. See [Initial
 Server Setup](#couchbase-getting-started-setup).
 
-## Installing on Ubuntu as Non-Root, Non-Sudo
+## Installing on Ubuntu as non-root, non-sudo
 
 **This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo
 user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all 
@@ -485,7 +497,7 @@ Couchbase command-line tools. To do so on Ubuntu:
      ```
 
 For general instructions on server start-up and shutdown as a sudo or root user,
-see [Server Startup and Shutdown](#couchbase-admin-basics-running).
+see [Server Startup and Shutdown](../cb-admin/#couchbase-admin-basics-running).
 
 <a id="couchbase-getting-started-install-win"></a>
 
@@ -500,33 +512,43 @@ anti-virus software running on the machine before you start the installation
 process. You also need administrator privileges on the machine where you install
 it.
 
-## Port Exhaustion on Windows
-
+<div class="notebox bp">
+<p>Port exhaustion on Windows</p>
+<p>
 The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
 available ports, see [MSDN: Avoiding TCP/IP Port
 Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
+</p>
+</div>
 
-Couchbase Server uses the Microsoft C++ redistributable package, which will
-automatically download for you during installation. However, if another
+<div class="notebox warning">
+<p>Warning</p>
+<p>
+Couchbase Server uses the Microsoft C++ redistributable package, which 
+automatically downloads during installation. However, if another
 application on your machine is already using the package, your installation
 process may fail. To ensure that your installation process completes
 successfully, shut down all other running applications during installation.
-
+</p>
+<p>
 For Windows 2008, you must upgrade your Windows Server 2008 R2 installation with
 Service Pack 1 installed before running Couchbase Server. You can obtain Service
 Pack 1 from [Microsoft
 TechNet](http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx).
-
+</p>
+<p>
 The standard Microsoft Server installation does not provide an adequate number
 of ephemeral ports for Couchbase clusters. Without the correct number of open
 ephemeral ports, you may experience errors during rebalance, timeouts on
 clients, and failed backups. The Couchbase Server installer will check for your
 current port setting and adjust it if needed. See [Microsoft
 KB-196271](http://support.microsoft.com/kb/196271).
+</p>
+</div>
 
-## Installation Wizard
+## Installation wizard
 
  1. Double click on the downloaded executable file.
 
@@ -554,7 +576,7 @@ KB-196271](http://support.microsoft.com/kb/196271).
 
     ![](../images/windows_port_check.png)
 
- 1. Click Yes.
+ 1. Click *Yes*.
 
     Without a sufficient number of ephemeral ports, a Couchbase cluster fails during
     rebalance and backup; other operations such as client requests will timeout. If
@@ -569,7 +591,7 @@ KB-196271](http://support.microsoft.com/kb/196271).
 After installation you should follow the server setup instructions. See [Initial
 Server Setup](#couchbase-getting-started-setup).
 
-## Unattended Installation
+## Unattended installation
 
 To use the unattended installation process, you first record your installation
 settings in wizard installation. These settings are saved to a file. You can use
@@ -616,13 +638,17 @@ you unpack the Couchbase Server distribution. It is more difficult to diagnose
 non-functioning or damaged installations after extraction by other third party
 archive extraction tools.
 
+<div class="notebox warning">
+<p>Warning</p>
+<p>
 Due to limitations within the Mac OS X operating system, the Mac OS X
 implementation is incompatible with other operating systems. It is not possible
 either to mix operating systems within the same cluster, or configure XDCR
 between a Mac OS X and Windows or Linux cluster. If you need to move data
 between a Mac OS X cluster and a cluster hosted on another platform, use
 `cbbackup` and `cbrestore`. For more information, see [Backup and Restore
-Between Mac OS X and Other Platforms](#couchbase-backup-restore-mac).
+Between Mac OS X and Other Platforms](../cb-admin/#couchbase-backup-restore-mac).
+</p></div>
 
 
 ## Installing on Mac OS X
@@ -642,7 +668,7 @@ To install:
  1. Download the Mac OS X zip file.
 
  1. Double-click the downloaded Zip installation file to extract the server. This
-    will create a single folder, the `Couchbase Server.app` application.
+    creates a single folder, the `Couchbase Server.app` application.
 
  1. Drag and Drop `Couchbase Server.app` to your chosen installation folder, such as
     the system `Applications` folder.
@@ -661,7 +687,7 @@ directory. You can access them in Terminal by using the full path of the
 Couchbase Server installation. By default, this is
 `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`.
 
-## Installing on Mac OS X as Non-Root, Non-Sudo
+## Installing on Mac OS X as non-root, non-sudo
 
 **This installation is for development purposes only.** There may be cases when you want to install the server as a non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OS X:
 

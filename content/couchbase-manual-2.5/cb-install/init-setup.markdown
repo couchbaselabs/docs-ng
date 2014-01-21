@@ -2,9 +2,13 @@
 
 # Initial server setup
 
-We recommend that you clear your browser cache before doing the setup process.
+<div class="notebox bp">
+<p>Recommendation</p>
+<p>
+Couchbase recommends that you clear your browser cache before doing the setup process.
 You can find notes and tips on how to do this on different browsers and
-platforms on [this page](http://www.wikihow.com/Clear-Your-Browser's-Cache).
+platforms on [wikihow.com](http://www.wikihow.com/Clear-Your-Browser's-Cache).
+</p></div>
 
 On all platforms you can access the web console by connecting to the embedded
 web server on port 8091. For example, if your server can be identified on your
@@ -24,11 +28,11 @@ port other than `8091`, go to that port.
     with views you can accept the default setting. For the best performance, you may
     want to configure different disks for the server, for storing your document and
     for index data. For more information on best practices and disk storage, see
-    [Disk Throughput and Sizing](#couchbase-bestpractice-sizing-disk).
+    [Disk Throughput and Sizing](../cb-admin/#couchbase-bestpractice-sizing-disk).
 
     The `Configure Server Memory` section sets the amount of physical RAM that will
     be allocated by Couchbase Server for storage. For more information and
-    guidelines, see [RAM Sizing](#couchbase-bestpractice-sizing-ram).
+    guidelines, see [RAM Sizing](../cb-admin/#couchbase-bestpractice-sizing-ram).
 
     If you are creating a new cluster, this is the amount of memory that will be
     allocated on each node within your Couchbase cluster. The memory for each node
@@ -66,7 +70,7 @@ port other than `8091`, go to that port.
     ![](../images/web-console-startup-3.png)
 
     For more information on the contents of the sample buckets, see [Couchbase
-    Sample Buckets](#couchbase-sampledata). After you create sample data buckets a
+    Sample Buckets](../cb-admin/#couchbase-sampledata). After you create sample data buckets a
     Create Bucket panel appears where you create new data buckets
 
  1. Set up a test bucket for Couchbase Server. You can change all bucket settings
@@ -74,7 +78,7 @@ port other than `8091`, go to that port.
 
     Enter 'default' as the bucket name and accept all other defaults in this panel.
     For more information about creating buckets, see [Creating and Editing Data
-    Buckets](#couchbase-admin-web-console-data-buckets-createedit).
+    Buckets](../cb-admin/#couchbase-admin-web-console-data-buckets-createedit).
 
     Couchbase Server will create a new data bucket named 'default.' You can use this
     test bucket to learn more about Couchbase and can use it in a test environment.
@@ -103,8 +107,8 @@ port other than `8091`, go to that port.
  1. Enter a username and password. Your username must have no more than 24
     characters, and your password must have 6 to 24 characters. You use these
     credentials each time you add a new server into the cluster. These are the same
-    credentials you use for Couchbase REST API. See, [Using the REST
-    API](#couchbase-admin-restapi).
+    credentials you use for Couchbase REST API. See the Couchbase [REST
+    API](../cb-rest-api/#couchbase-admin-restapi).
 
 Once you finish this setup, you see Couchbase Web Console with the Cluster
 Overview page:
@@ -121,7 +125,7 @@ the port, RAM, using any of the following methods:
    The command line tools provided with your Couchbase Server installation includes
    `couchbase-cli`. This tool provides access to the core functionality of the
    Couchbase Server by providing a wrapper to the REST API. For information about
-   CLI, see [couchbase-cli Tool](#couchbase-admin-cmdline-couchbase-cli).
+   CLI, see [couchbase-cli tool](../cb-cli/#couchbase-admin-cmdline-couchbase-cli).
 
 ## Using the REST API
 
@@ -129,12 +133,12 @@ the port, RAM, using any of the following methods:
    REST API is the basis for both the command-line tools and Web interface to
    Couchbase Server.
 
-   For more information on using the REST API see, [Using the REST
-   API](#couchbase-admin-restapi).
+   For more information on using the REST API see, the Couchbase [REST
+   API](../cb-rest-api/#couchbase-admin-restapi).
 
 <a id="couchbase-getting-started-hostnames"></a>
 
-## Using Hostnames
+## Using hostnames
 
 When you first install Couchbase Server you can access using a default IP
 address. There may be cases where you want to provide a hostname for each
@@ -148,7 +152,7 @@ once again.
 ### Couchbase 2.1+ Linux and Windows
 
 There are several ways you can provide hostnames for Couchbase 2.1+. You can
-provide a hostname when you install a Couchbase Server 2.1 on a machine, when
+provide a hostname when you install a Couchbase Server on a machine, when
 you add the node to an existing cluster for online upgrade, or via a REST API
 call. Couchbase Server stores this in a config file on disk. For earlier
 versions of Couchbase Server you must follow a manual process where you edit
@@ -204,8 +208,8 @@ request:
 ###Hostnames when upgrading to 2.1
 
 If you perform an offline upgrade from Couchbase 1.8.1+ to 2.1 (Linux and Windows)and you have a
-configured hostname using the instructions here [Handling Changes in IP
-Addresses](#couchbase-bestpractice-cloud-ip), a 2.1 server will use this
+configured hostname using the instructions from [Handling Changes in IP
+Addresses](../cb-admin/#couchbase-bestpractice-cloud-ip), a 2.1 server will use this
 configuration.
 
 If you perform an online upgrade from 1.8.1+ to 2.1, you should add the hostname
@@ -215,19 +219,23 @@ versions, see [Upgrading to Couchbase Server
 
 **Hostnames and the Cloud (such as EC2, Azure, etc)**. For more information about handling
 IP addresses and hostnames, see [Handling Changes in IP
-Addresses](#couchbase-bestpractice-cloud-ip).
+Addresses](../cb-admin/#couchbase-bestpractice-cloud-ip).
 
 <a id="couchbase-getting-started-hostnames-pre2.0"></a>
 
-### Hostnames for Couchbase Server 2.0.1 and Earlier
+### Hostnames for Couchbase Server 2.0.1 and earlier
 
 For 2.0.1 please follow the same steps for 2.0 and earlier. The one difference
 between versions is the name and location of the file you change.
 
-This operation on both Linux and Windows is data destructive. This process will
-reinitialize the node and remove all data on the node. You may want to perform a
-backup of node data before you perform this operation, see [cbbackup
-Tool](#couchbase-admin-cmdline-cbbackup).
+<div class="notebox warning">
+<p>Warning</p>
+<p>
+This operation on both Linux and Windows is data destructive. This process 
+reinitializes the node and removes all data on the node. Couchbase recommend that 
+all node data be backed up before performing this operation, see [cbbackup
+tool](../cb-cli/#couchbase-admin-cmdline-cbbackup).
+</p></div>
 
 * **Hostnames for Linux 2.0.1 and earlier**
 
