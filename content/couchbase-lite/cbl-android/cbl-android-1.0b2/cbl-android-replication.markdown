@@ -10,7 +10,7 @@ Replications are represented by `Replication` objects. You create replication ob
 
 Creating a replication object does not start the replication automatically. To start a replication, you need to send a `start` message to the replication object.
 
-Newly created replications are nonpersistent and noncontinuous. To change those settings, you need to immediately set their `persistent` or `continuous` properties.
+Newly created replications are noncontinuous. To create a continuous replication, you need to immediately set the `continuous` property of the `Replication` object to `true`.
 
 It's not strictly necessary to keep references to the replication objects, but you do need them if you want to [monitor their progress](#monitoring-replication-progress).
 
@@ -66,7 +66,7 @@ pullReplication.addChangeListener(new Replication.ChangeListener() {
 
 ### Stopping replications
 
-You can cancel persistent and continuous replications by stopping them. The following example shows how to stop a replication`:
+You can cancel continuous replications by stopping them. The following example shows how to stop a replication`:
 
 ```java
 pullReplication.stop();
@@ -152,11 +152,11 @@ push.setFilter = "sharedItems";
 
 #### Parameterized Filters
 
-Filter functions can be made more general-purpose by taking parameters. For example, a filter could pass documents whose `"owner"` property has a particular value, allowing the user name to be specified by the replication. That way there doesn't have to be a separate filter for every user.
+Filter functions can be made more general-purpose by taking parameters. For example, a filter could approve documents whose `"owner"` property has a particular value, allowing the user name to be specified by the replication. That way there doesn't have to be a separate filter for every user.
 
-To specify parameters, call `setFilterParams` on the `Replication` object. Its value is a dictionary that maps parameter names to values. The dictionary must be JSON-compatible, so the values can be any type allowed by JSON.
+To specify parameters, call `setFilterParams()` on the `Replication` object. The filter parameters object is a dictionary that maps parameter names to values. The dictionary must be JSON-compatible, so the values can be any type allowed by JSON.
 
-Couchbase Lite filter blocks get the parameters in a `params` map object passed to the block.
+Couchbase Lite filter blocks get the parameters in a map object named `params` that is passed into the block.
 
 #### Deleting documents with Filtered Replications
 
@@ -182,6 +182,49 @@ The simplest but least secure way to store credentials is to use the standard sy
 	https://frank:s33kr1t@sync.example.com/database/
 
 The URL in the example specifies the user name `frank` and password `s33kr1t`. If you use this form for the remote URL when creating a replication, Couchbase Lite uses the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
+
+
+#### Authenticating with Facebook credentials
+
+1. Download the [Android Facebook SDK](https://github.com/facebook/facebook-android-sdk).
+
+Here's an example that shows how to authenticate with Facebook credentials:
+
+```java
+ private void addFacebookAuthorization(Replication replication) {
+
+    // start Facebook Login
+    Session.openActiveSession(this, true, new Session.StatusCallback() {
+
+        // callback when session changes state
+        @Override
+        public void call(Session session, SessionState state, Exception exception) {
+
+            if (exception != null || !session.isOpened())  {
+                return;
+            }
+
+            // make request to the Facebook /me API
+            Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+
+                // callback after Facebook Graph API response with user object
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    if (user != null) {
+                        String email = (String) user.getProperty("email");
+                        FacebookAuthorizer authorizer = new FacebookAuthorizer(email);
+                        authorizer.registerAccessToken(session.getAccessToken(), email, replication.getRemoteUrl());
+                        replication.setAuthorizer(authorizer);
+                    }
+
+                }
+            });
+
+        }
+    });
+}
+```
+
 
 ### Replication Conflicts
 

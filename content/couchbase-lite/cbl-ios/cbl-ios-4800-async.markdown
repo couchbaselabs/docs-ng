@@ -1,17 +1,21 @@
 ## Concurrency Support
 
 
-Couchbase Lite's API is mostly synchronous. That makes it simpler and more efficient. Most of the API calls are quick enough that it's not a problem to run them on the main thread, but some things might become too slow, especially with large databases, so you'd like to offload the processing to a background thread. You have a couple of options.
+The Couchbase Lite API is mostly synchronous. That makes it simpler and more efficient. Most of the API calls are quick enough that it's not a problem to run them on the main thread, but some things might become too slow, especially with large databases, so you might want to offload the processing to a background thread. You have a couple of options.
 
-First, though, a stern warning: **Couchbase Lite objects are not thread-safe** so you cannot call them from multiple threads. This means you can't solve latency problems just by calling part of your app code that uses Couchbase Lite on a background thread or dispatch queue. If you're using the same CBL instances you use on the main thread, you will crash or corrupt the app state.
+<div class="notebox warning">
+<p>Warning</p>
+<p>Couchbase Lite objects are not thread-safe. You cannot call them from multiple threads.</p>
+<p>This means you can't solve latency problems just by calling part of your app code that uses Couchbase Lite on a background thread or dispatch queue. If you're using the same Couchbase Lite instances that you use on the main thread, you will crash or corrupt the app state.</p>
+</div>
 
 ### Asynchronous Queries
 
 View queries slow down as the database grows, especially when the view's index needs to be updated after the database changes. You can prevent this from blocking your UI by running the query asynchronously.
 
-The easiest way to do this is just to use `CBLLiveQuery` (or `CBLUITableSource`, which uses it internally.) It always runs its queries in the background, and then posts a KVO notification on the main thread after the query is complete.
+The easiest way to do this is just to use `CBLLiveQuery`. It always runs its queries in the background, and then posts a notification on the main thread after the query is complete.
 
-If you use regular `CBLQuery` directly, though, you may find its `.rows` accessor getting slow. You can access the result rows asynchronously like this:
+If you use a regular `CBLQuery` directly, though, you might find its `.rows` accessor getting slow. You can access the result rows asynchronously like this:
 
 ```objectivec
     [query runAsync: ^(CBLQueryEnumerator* rows) {

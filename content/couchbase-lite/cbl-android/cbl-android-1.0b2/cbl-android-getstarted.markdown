@@ -33,32 +33,45 @@ This section shows how to create a simple Hello World app for an Android device 
 
 2. In the Welcome to Android Studio screen, choose **New Project**.
 
-3. In the New Project window, enter the application name, module name, package name, and project location. 
+3. In the New Project window, enter the application name, module name, package name, and project location.
 
-	This example uses the name MyProject for the new project. 
+	This example uses `Hello World` for the application name.
 
 4. Set the minimum required SDK to **API 9: Android 2.3 (Gingerbread)** or later.
 
-5. Click **Next**, and move through the remaining setup screens and enter settings as necessary.
+	After you fill in the fields, the New Project window should look something like this:
+	
+	<img src="images/new-project.png" width="100%" />
+
+5. Click **Next**, and then move through the remaining setup screens and enter settings as necessary (or just accept the defaults).
 
 6. Click **Finish**.
 
 **Add Couchbase Lite Dependencies via Maven**
 
-1. Expand the **MyProject** folder, and then open the **build.gradle** file. 
+1. Expand the **HelloWorld** folder, and then open the **build.gradle** file. 
 
-	If the **build.gradle** file is empty, then you are looking at the wrong one. Make sure you open the one in the **MyProject** folder.
+	You should see something like this:
+	![](images/build-gradle.png)
+	
+	If the **build.gradle** file is empty, then you are looking at the wrong one. Make sure you open the one in the **HelloWorld** folder (and not the one at the project level).
 
-2. Add the following repositories section to the **build.gradle** file so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
+2. In the **build.gradle** file, add the following lines to the top-level **repositories** section (not the one under buildscript) so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
+
+	    maven {
+	        url "http://files.couchbase.com/maven2/"
+	    }
+	    mavenLocal()
+		
+	After you add the extra lines, the **repositories** section should look like this:
 
 		repositories {
-		    mavenCentral()
-		    maven {
-		        url "http://files.couchbase.com/maven2/"
-		    }
-		    mavenLocal()
+			mavenCentral()
+			maven {
+				url "http://files.couchbase.com/maven2/"
+			}
+			mavenLocal()
 		}
-
 
 3. Select **Tools > Open Terminal**, create a **libs** directory, and then change to the new directory:
 
@@ -79,21 +92,26 @@ This section shows how to create a simple Hello World app for an Android device 
 
 5. In the **build.gradle** file, add the following lines to the top-level dependencies section (not the one under the `buildscript` section).
 
+		// hack to add .so objects (bit.ly/17pUlJ1)
+		compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
+		compile 'com.couchbase.cblite:CBLite:1.0.0-beta2'
+		
+	After you add the extra lines, the dependencies section should look similar to this:
 
 		dependencies {
-		...
+			compile 'com.android.support:appcompat-v7:+'
 			// hack to add .so objects (bit.ly/17pUlJ1)
-			compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
+			compile fileTree(dir: 'libs', include: 'td_collator_so.jar')
 			compile 'com.couchbase.cblite:CBLite:1.0.0-beta2'
 		}
 
-**Build the empty project**
+6. In the Android Studio tool bar, click **Sync Project with Gradle Files**.
 
-In a Terminal window, run the following command to make sure the code builds:
+7. In the Android Studio tool bar, click **Run**.
 
-	$ ./gradlew clean && ./gradlew build
-
-Couchbase Lite for Android does not currently build correctly with Proguard. If you get build errors that mention Proguard, you can disable it by changing the **build.gradle** file runProguard setting in the android section to false. When you change it, the section should look something like this:
+	When requested, start the emulator. You should see the app start and "Hello World" appear in the app window.
+	
+Couchbase Lite for Android does not currently build correctly with Proguard. If you get build errors that mention Proguard, you can disable it by changing the **build.gradle** file `runProguard` setting in the android section to false. When you change it, the section should look something like this:
 
 ```groovy
 android {

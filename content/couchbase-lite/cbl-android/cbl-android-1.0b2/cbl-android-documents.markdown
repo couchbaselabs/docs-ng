@@ -65,7 +65,7 @@ To update a document after you modify its attributes, call `putProperties:` agai
 
 Documents contain a special property named `_rev` whose value is the current revision ID. The revision ID is a long, hex string. When you update a document, the new properties dictionary must contain a `_rev` key whose value is the ID of the revision that you're updating.
 
-The `_rev` property is already in the dictionary you got from the `CBLDocument`, so all you need to do is modify the properties dictionary and hand back the modified dictionary that still contains the `_rev` property to `putProperties:`.
+The `_rev` property is already in the dictionary you got from the `Document`, so all you need to do is modify the properties dictionary and hand back the modified dictionary that still contains the `_rev` property to `putProperties:`.
 
 The following example retrieves a document, gets a property named `check` from the document, toggles the value of `check`, and then writes an updated revision of the document to the database.
 
