@@ -56,17 +56,43 @@ The certificate is a self-signed certificate used by SSL to initiate secure sess
 
 ## Upgrade notes
 
-* For the XDCR data encryption feature, both the source *and* the destination cluster should have certificates updated.
+* For the XDCR data encryption feature, anytime the remote cluster's certificate is regenerated, 
+the corresponding source cluster must use the regenerated certificate of the remote cluster 
+for replication to continue from source to remote cluster.both the source *and* the 
+destination cluster should have certificates updated.
 
-## Fixed issues in 2.5
-
+## Fixed or resolved issues in 2.5
+ 1 [MB-8981](https://www.couchbase.com/issues/browse/MB-8981) 
+ 2 [MB-9019](https://www.couchbase.com/issues/browse/MB-9019) 
+ 3 [MB-9049](https://www.couchbase.com/issues/browse/MB-9049) 
+ 4 [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
+ 5 [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
+ 6 [MB-8932](http://www.couchbase.com/issues/browse/MB-8932)
+ 7 [MB-9109](http://www.couchbase.com/issues/browse/MB-9109)
+ 8 [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
+ 9 
+10 [MB-8654](http://www.couchbase.com/issues/browse/MB-8654)
+11 [MB-7168](http://www.couchbase.com/issues/browse/MB-7168)
+12 [MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
+13 
+14 [MB-8777](http://www.couchbase.com/issues/browse/MB-8777)
 
 
 ## Known issues in 2.5
-To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB
+To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-xxxx
 
-* *Issue* : ?? MB-7887 or mb-9947
-*  *Issue* : MB-9885.
+
+
+* *Issue* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
+Cluster operations
+: If you continuously perform numerous appends to a document, it may lead to 
+memory fragmentation and overuse. This is due to an underlying issue of 
+inefficient memory allocation and deallocation with the third party software 
+`tcmalloc`.
+
+*  *Issue* : [MB-9885](http://www.couchbase.com/issues/browse/MB-9885]
+If your system is overloaded with requests, rebalance may fail and an error displays associated with the overload. 
+
 Rebalance may fail when etimedout errors happen.
 
 
@@ -75,12 +101,16 @@ Rebalance may fail when etimedout errors happen.
 
 
 *  *Issues* : [MB-9755](https://www.couchbase.com/issues/browse/MB-9755)
-[RZA] Incorrect failover message pops up when failing over a node
+[RZA] Incorrect failover message pops up when failing over a node.
 
 *  *Issues* : [MB-9754](https://www.couchbase.com/issues/browse/MB-9754)
-[CLI-RZA] Create group command fails when '!' is present inside the group name.
+[CLI-RZA] Create group command fails when an exclamation mark (!) is present inside the group name.
 
 
 *  *Issues* : [MB-9768](https://www.couchbase.com/issues/browse/MB-9768)
-vBuckets shuffle in online upgrade from 2.2.0 to 2.5.0-1011 in 2 replica bucket
+vBuckets shuffle in online upgrade from 2.2.0 to 2.5.0-1011 in two replica buckets.
+
+* *Issues* : [MB-9707](https://www.couchbase.com/issues/browse/MB-9707)
+Users may see incorrect "Outbound mutations" stat after topology change at source cluster. 
+
 
