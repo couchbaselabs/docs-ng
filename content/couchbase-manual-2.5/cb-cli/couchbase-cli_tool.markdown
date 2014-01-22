@@ -489,6 +489,7 @@ couchbase-cli rebalance -c 192.168.0.1:8091
 
 
 ## Managing buckets
+This section provides examples for listing, creating, modifying, flushing, and compacting buckets.
 
 ### Listing bucketss
 
@@ -789,7 +790,7 @@ when an XDCR cluster reference is created or modified. The CLI provides the `cou
 The option `--xdcr-demand-encryption=1` enables XDCR data encryption  `-xdcr-certificate=CERTIFICATE` 
 provides the SSL certificate for data security.
 
-
+#### Enabling XDCR data encryption
 To setup XDCR with SSL data encryption:
 
 1. Retrieve the certificate from the destination cluster. See [Managing SSL certificates](#cb-cli-ssl-cert) for more information
@@ -829,11 +830,34 @@ SUCCESS: init/edit test
 <<replication reference created>> 
 ```
 
+#### Disabling XDCR data encryption
+To disable XDCR data encryption, execute `couchbase-cli xdcr-setup` with `--xdcr-demand-encryption=0`. 
+
+**Example**
+
+```
+couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=0 
+```
+
+
+
 <a id="cb-cli-ssl-cert"></a>
 
 ### Managing SSL certificates
 
+Retrieving an SSL certificate for XDCR data encryption, should be done in a secure manner, such as with `ssh` and `scp`. For example:
+
+1. Use a secure method to log in to a node on the destination cluster. For example: `ssh`.
+1. Retrieve the certificate with the `couchbase-cli ssl-manage` command.
+1. Use a secure method  to transfer the certificate from the destination cluster to the source cluster. For example: `scp`.
+1. Proceed with setting up XDCR with SSL data encryption. See [Managing XDCR data encryption](#cb-cli-xdcr-data-encrypt).
+
 The  `couchbase-cli ssl-manage` command provides the following options for regenerating and retrieving certificates.
+
 
 `--regenerate-cert=CERTIFICATE`
 : Regenerates a self-signed certificate on the destination cluster. Specify the full path for the location of the pem-encoded certificate file. For example, `--regenerate-cert=./new.pem`.
@@ -841,9 +865,11 @@ The  `couchbase-cli ssl-manage` command provides the following options for regen
 `--retrieve-cert=CERTIFICATE`
 : Retrieves the self-signed certificate from the destination cluster to the source cluster. Specify a local location (full path) and file name for the pem-encoded certificate. For example, `--retrieve-cert=./newCert.pem`.
 
+
 #### Retrieving certificates
 
 To retrieve an existing self-signed certificate, the `ssl-manage` command is used.
+
 
 **Syntax**
 
