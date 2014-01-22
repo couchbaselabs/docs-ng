@@ -127,6 +127,51 @@ Each log file group will also include a `.idx` and `.siz` file which holds meta
 information about the log file group. These files are automatically updated by
 the logging system.
 
+### Changing log file location
+The default file log location is /opt/couchbase/var/lib/couchbase/logs, however, if you want to change the default log location to a different directory, change the log file configuration option. 
+
+<div class="notebox"><p>Note</p>
+<p>To implement a log file location change (from the default), you must be log in as either root or sudo and the Couchbase service must be restarted.</p>
+</div>
+
+To change the log file configuration:
+1. Log in as root or sudo and navigate to the directory where you installed Couchbase. For example: `/opt/couchbase/etc/couchbase/static_config`1. Edit the static_config file and change the `error_logger_mf_dir` variable to a different directory. For example: ```{error_logger_mf_dir, "/home/user/cb/opt/couchbase/var/lib/couchbase/logs"}``` 1. Restart the Couchbase service.After restarting the Couchbase service, all subsequent logs will be in the new directory.
+
+### Changing logging levels
+The default logging level for all log files are set to debug except for couchdb, which is set to info. If you want to change the default logging level, modify the logging level configuration options. 
+
+The configuration change can be performed in one of the following ways:
+
+* persistent 
+* dynamic (on the fly, without restarting). 
+#### Changing logging levels to be persistent
+Logging levels can be changed so that the changes are persistent, that is, the changes continue to be implemented should a Couchbase Server reboot occur.<div class="notebox"><p>Note</p>
+<p>To implement logging level changes, the Couchbase service must be restarted.</p>
+</div>
+To change logging levels to be persistent:1. Log in as root or sudo and navigate to the directory where you installed Couchbase. For example: `/opt/couchbase/etc/couchbase/static_config`1. Edit the **static_config** file and change the desired log component. For example, parameters with the `loglevel_` prefix set the logging level.1. Restart the Couchbase service. After restarting the Couchbase service, logging levels for that component will be changed.
+
+#### Changing logging levels dynamically
+If logging levels are changed dynamically and if a Couchbase server reboot occurs, then the changed logging levels revert to the default. 
+To change logging levels dynamically, execute a curl POST command using the following syntax:
+
+```curl -X POST -u adminName:adminPassword
+  HOST:PORT/diag/eval 
+  –d ‘ale:set_loglevel(<log_component>,<logging_level>).’
+```
+
+Where:
+Log_component
+: The default log level (except couchdb) is debug. For example, ns_server. The available loggers are ns_server, couchdb, user, Menelaus, ns_doctor, stats, rebalance, cluster, views, mapreduce_errors , xdcr and error_loggerLogging_level 
+: The available log levels are debug, info, warning, and error. 
+**Example**
+
+```curl -X POST -u Administrator:password 
+  http://127.0.0.1:8091/diag/eval 
+  -d 'ale:set_loglevel(ns_server,error).
+```
+
+
+
 <a id="couchbase-troubleshooting-common-errors"></a>
 
 ## Common errors

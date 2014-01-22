@@ -293,6 +293,37 @@ writes. When a task is actually running on a given dispatcher, the "runtime"
 tells you how long the current task has been running. Newer versions will show
 you a log of recently run dispatcher jobs so you can see what's been happening.
 
+### Changing statistics collection
+The default Couchbase Server statistics collection is set to collect every second. 
+The tuning that is available for statistic collection is by collecting statistics less frequently. 
+
+<div class="notebox"><p>Note</p>
+<p>If statistic collection is changed from the default, the Couchbase service must be restarted.</p>
+</div>
+
+To change statistic collection:
+
+1.	Log in as root or sudo and navigate to the directory where Couchbase is installed. For example: 
+`/opt/couchbase/etc/couchbase/static_config`
+2.	Edit the static_config file.
+3.	Add the following parameter: {grab_stats_every_n_ticks, 10}, where 10 is the number of ticks. 
+In the Couchbase environment one tick is one second (default). It is recommended that the statistics 
+collection be more frequent (and accurate). However, assign an appropriate tick value for you environment.
+4.	Restart the Couchbase service.
+
+After restarting the Couchbase service, the statistics collection rate will be changed.
+
+
+#### Changing the stats file location
+The default stats file location is `/opt/couchbase/var/lib/couchbase/stats`, however, if you want to 
+change the default stats file location, create a symlink location to the new directory.
+
+<div class="notebox"><p>Note</p>
+<p>When creating a symlink, stop and restart the Couchbase service.
+</p></div>
+
+
+
 <a id="couchbase-monitoring-moxistats"></a>
 
 ## Couchbase Server Moxi statistics

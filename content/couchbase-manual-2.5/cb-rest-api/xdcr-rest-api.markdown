@@ -611,8 +611,7 @@ curl –X POST  -u Admin:myPassword
   -d hostname=<host>:<port>         // FQDN of the remote host.
   -d username=<adminName>           // Remote cluster Admin name
   -d password=<adminPassword>       // Remote cluster Admin password
-  -d demandEncryption=[0|1]
-  -d data-urlencode "certificate=$(cat remoteCert.pem)"
+  -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat remoteCert.pem)"
 ```
 
 
@@ -623,8 +622,7 @@ curl –X POST
 -d name=remoteName  
 -d hostname=10.3.4.187:8091
 -d username=remoteAdmin –d password=remotePassword
--d demandEncryption=1
--d data-urlencode "certificate=$(cat remoteCert.pem)"
+-d demandEncryption=1 --data-urlencode "certificate=$(cat remoteCert.pem)"
 http://Administrator:asdasd@192.168.0.1:8091/pools/default/remoteClusters/
 ```
 

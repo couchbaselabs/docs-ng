@@ -3186,6 +3186,23 @@ migration of the all the data has completed, the original vBucket is marked as
 disabled, and the new vBucket is enabled. This updates the vBucket map, which is
 communicated back to the connected clients which will now use the new location.
 
+**Changing the number of vBucket moves**
+
+The number of vBucket moves that occur during the rebalance operation can be modified. The default is one (1), that is, only one vBucket is moved at a time during the rebalance operation.
+To change the number of vBucket moves, execute a curl POST command using the following syntax with the the `/internalSettings` endpoint and  `rebalanceMovesPerNode` option.
+
+```curl -X POST -u admin:password 
+  -d rebalanceMovesPerNode=1 
+  http://HOST:PORT/internalSettings
+```
+For example:
+
+```curl -X POST -u Administrator:password 
+  -d rebalanceMovesPerNode=14 
+  http://soursop-s11201.sc.couchbase.com:8091/internalSettings
+```
+
+
 <a id="couchbase-admin-tasks-xdcr"></a>
 
 ## Managing XDCR
@@ -3500,12 +3517,14 @@ The `smem` replication mode performs replication on a destination cluster with t
 This is the default mode for Couchbase Server replications. The `capi` mode performs 
 replications over a REST protocol. 
  
- These are pre-requistes that needs to be considered:
+ These are prerequistes that needs to be considered:
  
- 1. When you upgrade Couchbase Server you need to make sure that both 
- your source and destination clusters support the replication mode you want to use. 
+ 1. When upgrading Couchbase Server, make sure that both the 
+ source and destination clusters support the desired replication mode. 
  2. Network port 11210 needs to be open between nodes for 'xmem' mode of replication to work.
- 3. You may also need to delete the replication, complete the upgrade, then recreate the replication. 
+ 3. Alternatively, delete the replication, complete the upgrade, then recreate the replication. 
+ 4. To use XDCR data encryption with Secure Socket Layer (SSL), all nodes must be upgraded 
+ to at least Couchbase Server 2.5 Enterprise Edition.
  
  If you do not, you could experience data loss during replication:
  
@@ -3761,7 +3780,13 @@ every node within the cluster at each destination.
 <a id="cb-admin-tasks-xdcr-encrypt">
 ### Managing XDCR data encryption
 
-The cross data center (XDCR) data security feature (Enterprise Edition only)provides secure cross data center replication using Secure Socket Layer (SSL) data encryption. The data replicated between clusters can be encrypted in both uni-directional and bi-directional topologies. With the XDCR data encryption feature, the XDCR traffic from the source cluster is secured by enabling the XDCR encryption option, providing the destination cluster's certificate, and then replicating. The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+The cross data center (XDCR) data security feature (Enterprise Edition only)provides 
+secure cross data center replication using Secure Socket Layer (SSL) data encryption. 
+The data replicated between clusters can be encrypted in both uni-directional and 
+bi-directional topologies. With the XDCR data encryption feature, 
+the XDCR traffic from the source cluster is secured by enabling the XDCR encryption option, 
+providing the destination cluster's certificate, and then replicating. 
+The certificate is a self-signed certificate used by SSL to initiate secure sessions.
 
 
 #### XDCR data encryption prerequisites
@@ -3775,9 +3800,30 @@ To enable XDCR data security using SSL and create replication:
 1. On the destination cluster, navigate to Settings > Cluster and copy the certificate.
 	* (Optional) To regenerate the existing destination certificate, click **Regenerate** before copying.
 2. On the source cluster, select the XDCR tab.
-3. Select Remote Clusters > Create Cluster Reference, verify or create the cluster reference.
-4. Select the Encryption box and paste the certificate in the provided area and click **Save**.
+3. Select Remote Clusters > Create Cluster Reference, to verify or create the cluster reference.
+4. Select the **Enable Encryption** box and paste the certificate in the provided area and click **Save**.
 5. From Ongoing Replications > Create Replication, provide the cluster and bucket information and click **Replicate**.
+
+
+#### To change XDCR data encryption
+In some situations (such as updating SSL data security), the SSL certificate is regenerated and the 
+XDCR data encryption is updated. To change XDCR data encryption:
+
+1. On the destination cluster, navigate to Settings > Cluster.
+1. Click **Regenerate**  and copy the certificate.
+1. On the source cluster, select the XDCR tab.
+1. Select Remote Clusters > Create Cluster Reference and for the destination cluster, click **Edit**.
+1. Select the **Enable Encryption** box and paste the regenerated certificate in the provided area and click **Save**.
+
+ 
+####Destination SSL Certificate
+
+<img src="../images/xdcr-remote-cert3.png" alt="Remote SSL Certificate" width="700">
+
+####Create Cluster Reference
+
+<img src="../images/xdcr-source-encrypt.png" alt="Create Cluster Reference" height="500">
+
 
 #### Certificate example
 
@@ -3871,42 +3917,49 @@ The Rack Awareness feature (Enterprise Edition) allows logical groupings of serv
 
 This section describes how to manage server groups through the Web Console. See also, the [CLI, couchbase-cli](../cb-cli/#cb-cli-couchbase-cli), [CLI, Managing Rack Awareness](../cb-cli/#cbcli-rack-aware) and REST API for managing Rack Awareness, managing servers and server groups. By default, when a Couchbase cluster is initialized, Group 1 is created. 
 
-### Creating server groups
-<img src="../images/CreateGroup.png" alt="Create Group" height="100">
+The servers and server groups are displayed from the Server Nodes tab:
 
+<img src="../images/rack-aware-groups.png" alt="Server Nodes" width="700">
+
+The server groups are edited and created by clicking on **Server Groups**:
+
+<img src="../images/rack-aware-groups2.png" alt="Server Groups" width="700">
+
+
+### Creating server groups
 To create a server group:
 
-1. From the Server Nodes tab, click Server Groups.
-2. Click Create Group and provide a group name to the Add Group pop-up.
-3. Click Create.
+1. From the Server Nodes tab, click **Server Groups**.
+2. Click **Create Group** and provide a group name to the Add Group pop-up.
+3. Click **Create**.
 
+<img src="../images/CreateGroup.png" alt="Create Group" height="100">
 ### Renaming server groups
-<img src="../images/EditGroup.png" alt="Rename Group" height="100">
-
 To change a server group's name:
 
-1. From the Server Nodes tab, click Server Groups.
-2. Click Edit Group.
-3. Change the group name and Save.
+1. From the Server Nodes tab, click **Server Groups**.
+2. Click **Edit Group**.
+3. Change the group name and **Save**.
+
+<img src="../images/EditGroup.png" alt="Rename Group" height="100">
 
 ### Deleting server groups
-To delete a server group:
+To delete a server group, first remove all:
 
-1. Ensure that the server group is empty.
-2. Delete through "This group is empty, click to delete."
-3. Click Delete from the confirmation pop-up.
+1. From the Server Nodes tab, click **Remove** to remove nodes from the server group.
+2. From the Server Nodes tab, click **Server Groups**.
+2. Click on "This group is empty, click to delete." which is displayed if the server group is empty.
+3. Click **Delete** from the Removing pop-up.
 
 ### Adding servers to server groups
-<img src="../images/NewServer.png" alt="Add Server" height="200">
-
 To add a server:
 
-1. From the Server Nodes tab, click Add Server.
+1. From the Server Nodes tab, click **Add Server**.
 2. Provide the Server IP Address, select a server group from the drop down menu, and provide the administrator username and password for the server being added.
-3. Click Add Server.
-4. From the Server Nodes tab, click Rebalance.
+3. Click **Add Server**.
+4. From the Server Nodes tab, click **Rebalance**.
 
-
+<img src="../images/NewServer.png" alt="Add Server" height="200">
 ### Removing servers from server groups
 To remove a server from a server group:
 
@@ -3917,10 +3970,10 @@ To remove a server from a server group:
 ### Moving servers between server groups
 To move a server from one group to another:
 
-1. From the Server Nodes tab, Click Server Groups
+1. From the Server Nodes tab, Click **Server Groups**.
 2. Drag and drop the server from one group to another.
-3. Click Apply Changes.
-4. From the Server Nodes tab, click Rebalance.
+3. Click **Apply Changes**.
+4. From the Server Nodes tab, click **Rebalance**.
 
 
 
@@ -3960,8 +4013,8 @@ To change the disk path of the existing node, the recommended sequence is:
  1. Add the node back to the cluster, see [Adding a Node to a
     Cluster](#couchbase-admin-tasks-addremove-rebalance-add).
 
-The above process will change the disk path only on the node you removed from
-the cluster. To change the disk path on multiple nodes, you will need to swap
+The above process changes the disk path only on the node that was removed from
+the cluster. To change the disk path on multiple nodes, swap
 out each node and change the disk path individually.
 
 

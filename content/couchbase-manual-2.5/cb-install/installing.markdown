@@ -213,6 +213,9 @@ Port                       | Description                   | Node to Node | Node
 ---------------------------|-------------------------------|--------------|----------------|------------------------|------------------|-----------------
 8091                       | Web Administration Port       | Yes          | Yes            | Yes                    | Yes              | Yes 
 8092                       | Couchbase API Port            | Yes          | Yes            | No                     | Yes              | Yes 
+11214                      | SSL Proxy    |
+18091                      | HTTPS Management              |
+18092                      | 
 11209                      | Internal Bucket Port          | Yes          | No             | No                     | No               | No 
 11210                      | Internal/External Bucket Port | Yes          | Yes            | No                     | No               | Yes  
 11211                      | Client interface (proxy)      | No           | Yes            | No                     | No               | No  
