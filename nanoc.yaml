@@ -110,6 +110,7 @@ versions:
   couchbase-sdk-java:
     name: "Java SDK"
     versions:
+      - 1.3
       - 1.2
       - 1.1
       - 1.0
@@ -146,6 +147,7 @@ versions:
   couchbase-sdk-python:
     name: "Python SDK"
     versions:
+      - 1.2
       - 1.1
       - 1.0
 
@@ -185,6 +187,9 @@ navbar:
       - label: Couchbase Lite PhoneGap Developer Guide
         href: /couchbase-lite/cbl-phonegap/
 
+      - label: Couchbase Lite REST API Reference
+        href: /couchbase-lite/cbl-api/
+
       - label: Couchbase Sync Gateway Guide
         href: /sync-gateway/
 
@@ -200,7 +205,7 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
 
       - label: Java Developer Guide
-        href: /couchbase-sdk-java-1.2/
+        href: /couchbase-sdk-java-1.3/
 
       - label: Java API Reference
         href: http://www.couchbase.com/autodocs/couchbase-java-client-latest/index.html
@@ -221,7 +226,7 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-php-client-latest/index.html
 
       - label: Python Developer Guide
-        href: /couchbase-sdk-python-1.1/
+        href: /couchbase-sdk-python-1.2/
 
       - label: Python API Reference
         href: http://www.couchbase.com/autodocs/couchbase-python-client-latest/index.html

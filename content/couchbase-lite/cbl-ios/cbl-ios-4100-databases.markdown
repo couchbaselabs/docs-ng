@@ -11,27 +11,27 @@ You can set up the initial database in your app by using any of the following me
 * [Install a prebuilt database](#installing-a-prebuilt-database)
 
 #### Creating a Database in Your App
-To create a database in your app, you need to create a `CBLDatabase` instance by using the `createDatabaseNamed:error` method provided in the `CBLManager` class. Typically, this is done in the app delegate. The following code fragments show an example.
+To create a database in your app, you need to create a `CBLDatabase` instance by using the `databaseNamed:error:` method provided in the `CBLManager` class. Typically, this is done in the app delegate header and implementation files. The following code fragments show an example.
 
-In the **AppDelegate.h** file:
+In the **AppDelegate.h** file, import Couchbase Lite and use a property to declare the database object:
 
 ```
-	// AppDelegate.h file
+// AppDelegate.h file
 	
-	#import <CouchbaseLite/CouchbaseLite.h>
+#import <CouchbaseLite/CouchbaseLite.h>
 	...
-    @property (strong, nonatomic) CBLDatabase *database;
+@property (strong, nonatomic) CBLDatabase *database;
 ```
 
-In the `application:didFinishLaunchingWithOptions:` method in the **AppDelegate.m** file:
+In the `application:didFinishLaunchingWithOptions:` method in the **AppDelegate.m** file, create the database:
 
 ```
-        // create a shared instance of CBLManager
-        CBLManager *manager = [CBLManager sharedInstance];
+// create a shared instance of CBLManager
+CBLManager *manager = [CBLManager sharedInstance];
         
-        // create a database
-        NSError *error;
-        self.database = [manager createDatabaseNamed: @"my-database" error: &error];
+// create a database
+NSError *error;
+self.database = [manager databaseNamed: @"my-database" error: &error];
 ```
    
 
@@ -40,7 +40,7 @@ In the `application:didFinishLaunchingWithOptions:` method in the **AppDelegate.
 TBD
 
 #### Installing a Prebuilt Database
-For some use cases you might want to install a database along with your app. Consider the following pros and cons when deciding whether to include a database with your app.
+For some use cases you might want to install a database along with your app. Consider the following pros and cons when deciding whether to include a database with your app:
 
 Pros:
 
@@ -90,7 +90,7 @@ After your app launches and creates a `CBLDatabase` instance for its database, i
                                   withAttachments: cannedAttPath
                                             error: &error];
         NSAssert(ok, @"Failed to install database: %@", error);
-        CBLDatabase* database = [dbManager databaseNamed: @"catalog"
+        CBLDatabase* database = [dbManager existingDatabaseNamed: @"catalog"
                                                    error: &error];
         NSAssert(database, @"Failed to open database");
     }

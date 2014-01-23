@@ -1538,7 +1538,7 @@ tap\_mutation           | Time spent servicing tap mutations
 
 <a id="couchbase-admin-cmdline-cbstats-warmup"></a>
 
-### Getting Warmup Information
+### Getting Warmup Information with cbstats
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -1688,8 +1688,11 @@ configuration, memory and disk persistence behavior. This tool was formerly
 provided as the separate tools, `cbvbucketctl` and `cbflushctl` in Couchbase
 1.8.
 
-Changes to the cluster configuration using `cbepctl` are not persisted over a
-cluster restart.
+<div class="notebox warning">
+<p> Caution </p>
+<p>Changes to the cluster configuration using <code>cbepctl</code> are not persisted over a
+cluster restart.</p>
+</div>
 
 <a id="table-couchbase-admin-cmdline-cbepctl-locs"></a>
 
@@ -2009,13 +2012,16 @@ Console or via 2) couchbase-cli**. For more information about these two options,
 see [Creating and Editing Data
 Buckets](#couchbase-admin-web-console-data-buckets-createedit) and [Flushing
 Buckets with couchbase-cli](#couchbase-admin-cli-flushing).
-
-Flushing a bucket is data destructive. If you use **cbepctl**, it makes no
+ 
+<div class="notebox warning">
+<p>Warning</p>
+<p>Flushing a bucket is data destructive. If you use <code>cbepctl</code>, it makes no
 attempt to confirm or double check the request. Client applications using this
 are advised to double check with the end user before sending such a request. You
 can control and limit the ability to flush individual buckets by setting the
-`flushEnabled` parameter on a bucket in Couchbase Web Console or via `cbepctl
-flush_param`.
+<code>flushEnabled</code> parameter on a bucket in Couchbase Web Console or via <code>cbepctl
+flush_param</code>.</p>
+</div>
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
@@ -2118,9 +2124,12 @@ If you choose the verbosity option, `-v` debugging information for
 `cbcollect_info`, it will gather statistics from an individual node in the
 cluster.
 
-This command will collect information from an individual Couchbase Server node.
+<div class="notebox">
+<p>Note</p>
+<p>This command will collect information from an individual Couchbase Server node.
 If you are experiencing problems with multiple nodes in a cluster, you may need
-to run it on all nodes in a cluster.
+to run it on all nodes in a cluster.</p>
+</div>
 
 The tool will create the following.log files in your named archive:
 
@@ -2157,14 +2166,16 @@ entire bucket, a single node, or a single bucket on a single functioning node.
 Your node or cluster needs to be functioning in order to create the backup.
 Couchbase Server will write a copy of data onto disk.
 
-`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+<div class="notebox">
+<p>Note</p>
+<p><code>cbbackup</code>, <code>cbrestore</code> and <code>cbtransfer</code> do not communicate with external IP
 addresses for server nodes outside of a cluster. They can only communicate with
 nodes from a node list obtained within a cluster. You should perform backup,
 restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
-hostnames for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+hostnames for the server, see <a href="#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+</div>
 
 Depending upon your platform, this tool is the following directories:
 
@@ -2416,14 +2427,16 @@ The `cbrestore` tool restores data from a file to an entire cluster or to a
 single bucket in the cluster. Items that had been written to file on disk will
 be restored to RAM.
 
-`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+<div class="notebox">
+<p>Note</p>
+<p><code>cbbackup</code>, <code>cbrestore</code> and <code>cbtransfer</code> do not communicate with external IP
 addresses for server nodes outside of a cluster. They can only communicate with
 nodes from a node list obtained within a cluster. You should perform backup,
 restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
-hostnames for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+hostnames for the server, see <a href="#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+</div>
 
 The tool is in the following locations, depending on your platform:
 
@@ -2557,14 +2570,16 @@ lightweight extract-transform-load (ETL) tool that can move data from a source
 to a destination. The source and destination parameters are similar to URLs or
 file paths.
 
-`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+<div class="notebox">
+<p>Note</p>
+<p><code>cbbackup</code>, <code>cbrestore</code> and <code>cbtransfer</code> do not communicate with external IP
 addresses for server nodes outside of a cluster. They can only communicate with
 nodes from a node list obtained within a cluster. You should perform backup,
 restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
-hostnames for the server, see [Using Hostnames with Couchbase
-Server](#couchbase-getting-started-hostnames).
+hostnames for the server, see <a href="#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+</div>
 
 The tool is at the following locations:
 
