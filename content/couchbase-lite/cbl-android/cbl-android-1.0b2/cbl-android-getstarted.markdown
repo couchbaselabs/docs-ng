@@ -119,11 +119,11 @@ This section shows how to create a simple Hello World app for an Android device 
 Running the empty app at this point verifies whether the dependencies are set up correctly. If the app doesn't run properly for you, check the following troubleshooting tips:
 
 <ul>
-<li>Errors in the <strong>build.gradle</strong> file are a common cause of problems. </li>
+<li>Errors in the <strong>build.gradle</strong> file are a common cause of problems: </li>
 <ul>
 <li>Double-check the spelling of all entries in the file.</li>
-<li>Check to make sure all the code added to the file is located in the correct sections.</li>
-<li>Compare your file to this <a href="images/build-gradle-sample.txt">sample <strong>build.gradle</strong></a> file.
+<li>Make sure all code added to the file is located in the correct sections.</li>
+<li>Compare your file to this <a href="images/build-gradle-sample.png">sample <strong>build.gradle</strong></a> file.
 </ul>
 <li>Couchbase Lite for Android does not currently build correctly with Proguard. If you get build errors that mention Proguard, you can disable it by changing the **build.gradle** file `runProguard` setting in the **android** section to false. When you change it, the *android* section should look something like the following code:</li>
 <pre><code>
