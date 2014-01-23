@@ -1714,10 +1714,11 @@ The settings tab sets the following default parameters:
    If enabled, database and view compaction will be executed simultaneously,
    implying a heavier processing and disk I/O load during the compaction process.
 
-   ### Enable Parallel Compaction
-
-   It is recommended to run data and view compaction in parallel based on the
-   throughput of your disk.
+   <div class="notebox bp">
+   <p>Best Practice: Enable Parallel Compaction</p>
+   <p>It is recommended to run data and view compaction in parallel based on the
+   throughput of your disk.</p>
+   </div>
 
 For more information on compaction, see [Database and View
 Compaction](#couchbase-admin-tasks-compaction). For information on how
