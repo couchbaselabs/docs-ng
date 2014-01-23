@@ -26,11 +26,12 @@ Availability Zone or Region
 : Cloud servers hosted in locations that are composed of regions and availability zones. Each region is a separate geographic area. Each region has multiple, isolated locations known as availability zones.
 
 
-**To enable Rack Awareness
+**To enable Rack Awareness**
 
 * Configure at least two server groups.
 * Configure all of the servers to use server groups.
 * Configure each server group to have the same number of servers (recommended).
+
 
 To improve data availability, configure servers into groups where all of the servers in a server group are in a single rack. With more than one rack, replica partitions of a group are distributed among servers in other server groups. In the event that a whole rack goes down, since the replica partitions are on separate racks, data is available.
 

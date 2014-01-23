@@ -3939,6 +3939,12 @@ This section describes how to manage server groups through the Web Console. See 
 To implement Rack Awareness, all servers in the cluster must be upgraded to Couchbase 2.5 Enterprise Edition.
 
 
+* Configure at least two server groups.
+* Configure all of the servers to use server groups.
+* Configure each server group to have the same number of servers (recommended).
+
+
+
 ### Rack Awareness Web Console
 
 The servers and server groups are displayed from the Server Nodes tab:
