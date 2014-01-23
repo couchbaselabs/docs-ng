@@ -42,31 +42,17 @@ The certificate is a self-signed certificate used by SSL to initiate secure sess
 * For architecture and concept information about XDCR and XDCR data encryption, see 
 [Cross Datacenter Replication](../cb-admin/#cb-concepts-xdcr) and 
 [XDCR data encryption](../cd-admin/#cb-concepts-xdcr-data-encrypt).
-* For user interface information about managing XDCR data encryption, see  
+* For information about managing XDCR data encryption, see  
 [Managing XDCR](../cb-admin/#couchbase-admin-tasks-xdcr) and 
 [Managing XDCR data encryption](../cb-admin/#cb-admin-tasks-xdcr-encrypt).
 * For command line interface information for managing XDCR and XDCR data encryption, see the 
 [couchbase-cli](../cb-cli/#couchbase-cli-tool), 
-[couchbase-cli, Managing XDCR](../cb-cli/#cb-cli-xdcr),  
-[couchbase-cli, Managing XDCR data encryption](../cb-cli/#cb-cli-xdcr-data-encrypt).
+[Managing XDCR CLI](../cb-cli/#cb-cli-xdcr),  
+[Managing XDCR data encryption CLI](../cb-cli/#cb-cli-xdcr-data-encrypt).
 * For REST API information for managing XDCR and XDCR data encryption, see the 
 [XDCR REST API](../cb-rest-api/#couchbase-admin-restapi-xdcr) and 
 [Managing XDCR data encryption](../cb-rest-api/#cb-restapi-xdcr-data-encrypt).
 
-<div class="notebox">
-<p>XDCR data encryption feature</p>
-<p>Anytime a destination cluster's certificate is regenerated, corresponding source cluster(s) must use the destination cluster's regenerated certificate for replication. For XDCR replication to occur when XDCR data encryption is enable, the source cluster must be updated with the destination cluster's regenerated certificate.
-</p>
-<p>For example, if source clusters A, B, C use XDCR data encryption to replicate to destination cluster E, each of the source clusters must be updated whenever the certificate on the destination cluster E is regenerated (changed).
-</p>
-<p>Under these circumstances, if the source cluster(s) are not updated with the destination cluster's regenerated certificate, replication stops.
-</p>
-</div>
-## Upgrade notes
-
-
-
-	
 
 ## Fixed or resolved issues in 2.5
 >[MB-8981](https://www.couchbase.com/issues/browse/MB-8981) 
@@ -84,8 +70,34 @@ The certificate is a self-signed certificate used by SSL to initiate secure sess
 
 
 ## Known issues in 2.5
-To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-xxxx
+To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-
 
+DOC DONE MB-9855 = CLI missing for Get and Regenerate Cluster Certificate for XDCR + SSL
+
+* DOC NOTE MB-9774 = [CLI] server-add command always adds server to default group even if another group name is specified.
+
+* NO MB-9755 = RZA: Incorrect failover message pops up when failing over a node
+
+* DOC NOTE MB-9754 = [CLI-RZA]Create group command fails when '!' is present inside the group name.
+* BY DESIGN - SEE TONY (asso w/rza)  MB-9768 = vbuckets shuffle in online upgrade from 2.2.0 to 2.5.0-1011 in 2 replica bucket
+
+* MB-9930 = regression in memory fragmentation in tcmalloc with appends ops(2.5.0v2.2.0)
+
+DOC NOTE * MB-9929 = XDCR+SSL : Upgrade from 2.x-2.5.0: Cluster reference dialog should clearly indicate encryption is available only 2.5.0 onwards
+
+* MB-9885 = Rebalance failed due to badmatch,{error,time-out}
+
+* MB-9858 = Rebalance stuck with heavy dgm
+
+* MB-9831 = It takes more than 2 minutes to persist 1000 documents (~2KB each)
+
+* MB-9824 = RAM gauge has incorrect values if one of 2 buckets is down
+
+* MB-7250 = Mac OS X App should be signed by a valid developer key
+
+* MB-9975 = it's possible to set up "moxi bucket" on ssl proxy port
+
+NO * MB-9790 = standalone modi-server does not auto-restart
 
 
 [MB-7887](http://www.couchbase.com/issues/browse/MB-7887): **Cluster operations issue**
@@ -96,16 +108,6 @@ inefficient memory allocation and deallocation with the third party software
 
 [MB-9885](http://www.couchbase.com/issues/browse/MB-9885): **Rebalance issue**
 : If the system is overloaded with requests, rebalance may fail and an error displays associated with the overload. 
-
-NOT a BUG, CHANGE DOCS[MB-9774](https://www.couchbase.com/issues/browse/MB-9774): **CLI  and Rack Awareness issue**
-: The `couchbase-cli server-add` command always adds servers to the default group even if a server group name (`--group-name=groupName`) is specified.
-
-
-NOT a BUG [MB-9755](https://www.couchbase.com/issues/browse/MB-9755): **Rack Awareness**
-: Incorrect failover message occurs when failing over a node.
-
- [MB-9754](https://www.couchbase.com/issues/browse/MB-9754): **CLI and Rack Awareness issue**
-: For `couchbase-cli group-manage`, the `--create --group-name=groupName` command option fails when the server group name includes an exclamation mark (!).
 
 [MB-9768](https://www.couchbase.com/issues/browse/MB-9768): **Upgrade issue** 
 : vBuckets shuffle in online upgrade from 2.2.0 to 2.5.0 occurs in two replica buckets.

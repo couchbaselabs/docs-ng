@@ -213,12 +213,13 @@ Port                       | Description                   | Node to Node | Node
 ---------------------------|-------------------------------|--------------|----------------|------------------------|------------------|-----------------
 8091                       | Web Administration Port       | Yes          | Yes            | Yes                    | Yes              | Yes 
 8092                       | Couchbase API Port            | Yes          | Yes            | No                     | Yes              | Yes 
-11214                      | SSL Proxy    |
-18091                      | HTTPS Management              |
-18092                      | 
 11209                      | Internal Bucket Port          | Yes          | No             | No                     | No               | No 
 11210                      | Internal/External Bucket Port | Yes          | Yes            | No                     | No               | Yes  
 11211                      | Client interface (proxy)      | No           | Yes            | No                     | No               | No  
+11214                      | Incoming SSL Proxy            | No           | No             | No                     | Yes              | Yes
+11215                      | Internal Outgoing SSL Proxy   | No           | No             | No                     | Yes              | Yes
+18091                      | Internal REST HTTPS for SSL   | No           | No             | No                     | Yes              | Yes
+18092                      | Internal CAPI HTTPS for SSL   | No           | No             | No                     | Yes              | Yes
 4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No               | No 
 21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No               | No  
 

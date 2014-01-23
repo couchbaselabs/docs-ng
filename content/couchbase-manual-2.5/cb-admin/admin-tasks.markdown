@@ -3189,18 +3189,25 @@ communicated back to the connected clients which will now use the new location.
 **Changing the number of vBucket moves**
 
 The number of vBucket moves that occur during the rebalance operation can be modified. The default is one (1), that is, only one vBucket is moved at a time during the rebalance operation.
-To change the number of vBucket moves, execute a curl POST command using the following syntax with the the `/internalSettings` endpoint and  `rebalanceMovesPerNode` option.
 
-```curl -X POST -u admin:password 
+To change the number of vBucket moves, execute a curl POST command using the following syntax with the the `/internalSettings` endpoint and  `rebalanceMovesPerNode` option.
+
+
+<pre><code>
+curl -X POST -u admin:password 
   -d rebalanceMovesPerNode=1 
   http://HOST:PORT/internalSettings
-```
-For example:
+</pre></code>
 
-```curl -X POST -u Administrator:password 
+
+For example:
+
+
+<pre><code>
+curl -X POST -u Administrator:password 
   -d rebalanceMovesPerNode=14 
   http://soursop-s11201.sc.couchbase.com:8091/internalSettings
-```
+</pre></code>
 
 
 <a id="couchbase-admin-tasks-xdcr"></a>
@@ -3272,9 +3279,9 @@ To create a unidirectional replication (from cluster A to cluster B):
  1. Check to ensure that a destination bucket exists on the cluster to which you
     will be replicating. To do so, perform this REST API request:
 
-     ```
+<pre><code>
      curl -u Admin:password http://ip.for.destination.cluster:8091/pools/default/buckets
-     ```
+</pre></code>
 
  2. To set up a destination cluster reference, click the `Create Cluster Reference`
     button. You will be prompted to enter a name used to identify this cluster, the
@@ -3715,16 +3722,17 @@ operation on every node in the cluster.
 
  * By an environment variable:
 
-    ```
-    >    export XDCR_FAILURE_RESTART_INTERVAL=60
-    ```
+<pre><code>
+export XDCR_FAILURE_RESTART_INTERVAL=60
+</pre></code>
 
  * By server setting:
 
-    ```
-    >    curl -X POST http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval \
-                          -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
-    ```
+<pre><code>
+curl -X POST 
+  http://Administrator: <http://Administrator/>asdasd@127.0.0.1:8091/diag/eval 
+  -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
+</pre></code>
 
 You can put the system environment variable in a system configuration file on
 your nodes. When the server restarts, it will load this parameter. If you set
@@ -3788,11 +3796,21 @@ the XDCR traffic from the source cluster is secured by enabling the XDCR encrypt
 providing the destination cluster's certificate, and then replicating. 
 The certificate is a self-signed certificate used by SSL to initiate secure sessions.
 
+Anytime a destination cluster's certificate is regenerated, corresponding source cluster(s) must use the destination cluster's regenerated certificate for replication. For XDCR replication to occur when XDCR data encryption is enable, the source cluster must be updated with the destination cluster's regenerated certificate.
+
+For example, if source clusters A, B, C use XDCR data encryption to replicate to destination cluster D each of the source clusters must be updated whenever the certificate on the destination cluster D is regenerated (changed).
+
+<div class="notebox">
+<p>Note</p>
+<p>If a destination cluster's certificate is regenerated and the source cluster(s) are not updated with the new certificate, replication stops.
+</p>
+</div>
 
 #### XDCR data encryption prerequisites
 
 * Both source and destination clusters must support SSL network connections.
-* Couchbase servers on both source and destination clusters must have Couchbase 2.5 and above installed.
+* Couchbase servers on both source and destination clusters must have Couchbase 2.5 Enterprise Edition and above installed.
+*  The source cluster must use the destination cluster's certificate. If the destination cluster's certificate is regenerated, source cluster(s) must be updated with the new certificate.
 
 #### To enable XDCR data security
 To enable XDCR data security using SSL and create replication:
@@ -3913,9 +3931,15 @@ For more information in general about using Couchbase Server in the cloud, see
 
 <a id="cb-admin-tasks-rack-aware"></a>
 ## Managing Rack Awareness
-The Rack Awareness feature (Enterprise Edition) allows logical groupings of servers on a cluster where each server group physically belongs to a rack or availability zone. This feature provides the ability to specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. To enable Rack Awareness, all servers in a cluster must be upgraded to use the Rack Awareness feature. 
+The Rack Awareness feature (Enterprise Edition) allows logical groupings of servers on a cluster where each server group physically belongs to a rack or availability zone. This feature provides the ability to specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. 
 
 This section describes how to manage server groups through the Web Console. See also, the [CLI, couchbase-cli](../cb-cli/#cb-cli-couchbase-cli), [CLI, Managing Rack Awareness](../cb-cli/#cbcli-rack-aware) and REST API for managing Rack Awareness, managing servers and server groups. By default, when a Couchbase cluster is initialized, Group 1 is created. 
+
+### Rack Awareness prerequisites
+To implement Rack Awareness, all servers in the cluster must be upgraded to Couchbase 2.5 Enterprise Edition.
+
+
+### Rack Awareness Web Console
 
 The servers and server groups are displayed from the Server Nodes tab:
 
