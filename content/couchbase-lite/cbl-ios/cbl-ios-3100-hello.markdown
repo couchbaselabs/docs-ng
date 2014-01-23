@@ -149,7 +149,7 @@ The `sayHello` method creates a shared `CBLManager` object that manages a collec
 
 After `sayHello` creates a name for the new database, it validates the name. A database name can consist of only lowercase alphabetic characters (a-z), digits (0-9) and a few special characters (_$()+-/), so it's important to validate the name.
 
-To create the database, it calls `createDatabaseNamed:error` , which is a method in the `CBLManager` class that returns a `CBLDatabase` object. Immediately after the call, it checks to make sure the database was created.
+To create the database, it calls `createDatabaseNamed:error`, which is a method in the `CBLManager` class that returns a `CBLDatabase` object. Immediately after the call, it checks to make sure the database was created.
 
 `NSDictionary` objects provide JSON-compatible representations of data that are suitable for creating documents that you can store in the database. The document created by `sayHello` is an `NSDictionary` object named `myDictionary` that contains only two keys, `message` and `timestamp`. `message` contains the string "Hello Couchbase Lite!", and `timestamp` contains the time and date the document was created. The document content is written out to the console to show its content. 
 
