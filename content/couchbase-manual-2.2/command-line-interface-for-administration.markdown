@@ -1538,7 +1538,7 @@ tap\_mutation           | Time spent servicing tap mutations
 
 <a id="couchbase-admin-cmdline-cbstats-warmup"></a>
 
-### Getting Warmup Information
+### Getting Warmup Information with cbstats
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node
