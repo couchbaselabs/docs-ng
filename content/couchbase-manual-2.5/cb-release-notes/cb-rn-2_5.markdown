@@ -53,29 +53,34 @@ The certificate is a self-signed certificate used by SSL to initiate secure sess
 [XDCR REST API](../cb-rest-api/#couchbase-admin-restapi-xdcr) and 
 [Managing XDCR data encryption](../cb-rest-api/#cb-restapi-xdcr-data-encrypt).
 
-
+<div class="notebox">
+<p>XDCR data encryption feature</p>
+<p>Anytime a destination cluster's certificate is regenerated, corresponding source cluster(s) must use the destination cluster's regenerated certificate for replication. For XDCR replication to occur when XDCR data encryption is enable, the source cluster must be updated with the destination cluster's regenerated certificate.
+</p>
+<p>For example, if source clusters A, B, C use XDCR data encryption to replicate to destination cluster E, each of the source clusters must be updated whenever the certificate on the destination cluster E is regenerated (changed).
+</p>
+<p>Under these circumstances, if the source cluster(s) are not updated with the destination cluster's regenerated certificate, replication stops.
+</p>
+</div>
 ## Upgrade notes
 
-* For the XDCR data encryption feature, anytime the remote cluster's certificate is regenerated, 
-the corresponding source cluster must use the regenerated certificate of the remote cluster 
-for replication to continue from source to remote cluster.both the source *and* the 
-destination cluster should have certificates updated.
+
+
+	
 
 ## Fixed or resolved issues in 2.5
- 1 [MB-8981](https://www.couchbase.com/issues/browse/MB-8981) 
- 2 [MB-9019](https://www.couchbase.com/issues/browse/MB-9019) 
- 3 [MB-9049](https://www.couchbase.com/issues/browse/MB-9049) 
- 4 [MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
- 5 [MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
- 6 [MB-8932](http://www.couchbase.com/issues/browse/MB-8932)
- 7 [MB-9109](http://www.couchbase.com/issues/browse/MB-9109)
- 8 [MB-8427](http://www.couchbase.com/issues/browse/MB-8427)
- 9 
-10 [MB-8654](http://www.couchbase.com/issues/browse/MB-8654)
-11 [MB-7168](http://www.couchbase.com/issues/browse/MB-7168)
-12 [MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
-13 
-14 [MB-8777](http://www.couchbase.com/issues/browse/MB-8777)
+>[MB-8981](https://www.couchbase.com/issues/browse/MB-8981) 
+>[MB-9019](https://www.couchbase.com/issues/browse/MB-9019) 
+>[MB-9049](https://www.couchbase.com/issues/browse/MB-9049) 
+>[MB-8712](http://www.couchbase.com/issues/browse/MB-8712)
+>[MB-8962](http://www.couchbase.com/issues/browse/MB-8962)
+>[MB-8932](http://www.couchbase.com/issues/browse/MB-8932)
+>[MB-9109](http://www.couchbase.com/issues/browse/MB-9109)
+>[MB-8427](http://www.couchbase.com/issues/browse/MB-8427) 
+>[MB-8654](http://www.couchbase.com/issues/browse/MB-8654)
+>[MB-7168](http://www.couchbase.com/issues/browse/MB-7168)
+>[MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
+>[MB-8777](http://www.couchbase.com/issues/browse/MB-8777)
 
 
 ## Known issues in 2.5
@@ -83,34 +88,35 @@ To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-xx
 
 
 
-* *Issue* : [MB-7887](http://www.couchbase.com/issues/browse/MB-7887)
-Cluster operations
-: If you continuously perform numerous appends to a document, it may lead to 
+[MB-7887](http://www.couchbase.com/issues/browse/MB-7887): **Cluster operations issue**
+: If numerous appends to a document are continuously performed, it may lead to 
 memory fragmentation and overuse. This is due to an underlying issue of 
 inefficient memory allocation and deallocation with the third party software 
 `tcmalloc`.
 
-*  *Issue* : [MB-9885](http://www.couchbase.com/issues/browse/MB-9885]
-If your system is overloaded with requests, rebalance may fail and an error displays associated with the overload. 
+[MB-9885](http://www.couchbase.com/issues/browse/MB-9885): **Rebalance issue**
+: If the system is overloaded with requests, rebalance may fail and an error displays associated with the overload. 
 
-Rebalance may fail when etimedout errors happen.
-
-
-*  *Issue* : [MB-9774](https://www.couchbase.com/issues/browse/MB-9774)
-[CLI] server-add command always adds server to default group even if another group name is specified.
+NOT a BUG, CHANGE DOCS[MB-9774](https://www.couchbase.com/issues/browse/MB-9774): **CLI  and Rack Awareness issue**
+: The `couchbase-cli server-add` command always adds servers to the default group even if a server group name (`--group-name=groupName`) is specified.
 
 
-*  *Issues* : [MB-9755](https://www.couchbase.com/issues/browse/MB-9755)
-[RZA] Incorrect failover message pops up when failing over a node.
+NOT a BUG [MB-9755](https://www.couchbase.com/issues/browse/MB-9755): **Rack Awareness**
+: Incorrect failover message occurs when failing over a node.
 
-*  *Issues* : [MB-9754](https://www.couchbase.com/issues/browse/MB-9754)
-[CLI-RZA] Create group command fails when an exclamation mark (!) is present inside the group name.
+ [MB-9754](https://www.couchbase.com/issues/browse/MB-9754): **CLI and Rack Awareness issue**
+: For `couchbase-cli group-manage`, the `--create --group-name=groupName` command option fails when the server group name includes an exclamation mark (!).
 
+[MB-9768](https://www.couchbase.com/issues/browse/MB-9768): **Upgrade issue** 
+: vBuckets shuffle in online upgrade from 2.2.0 to 2.5.0 occurs in two replica buckets.
 
-*  *Issues* : [MB-9768](https://www.couchbase.com/issues/browse/MB-9768)
-vBuckets shuffle in online upgrade from 2.2.0 to 2.5.0-1011 in two replica buckets.
+[MB-9707](https://www.couchbase.com/issues/browse/MB-9707): **XDCR issue**
+: An incorrect stat "Outbound mutations" stat may occur after a topology change at the source cluster. If all XDCR activity has settled down and data has been replicated, "Outbound mutations" stat should see 0, meaning, there are no remaining mutations to be replicated. Due to race condition, "Outbound mutations" may contain stats from "dead" vbuckets that were active before rebalance but had been migrated to other nodes during the rebalance. If this issue occurs, "Outbound mutations" may show a non-zero stat even after all data is replicated. 
 
-* *Issues* : [MB-9707](https://www.couchbase.com/issues/browse/MB-9707)
-Users may see incorrect "Outbound mutations" stat after topology change at source cluster. 
+: **Verification**: Verify the data on both the source and destination cluster by checking the number of items in the source vBucker and destination vBucket.
 
+: **Workaround**: Stop and restart XDCR to refresh all stats. If all the data has been replicated, the incoming XDCR stats for the destination cluster does not show set and delete operations. Note: Metadata operations are shown. 
 
+[MB-7160](http://www.couchbase.com/issues/browse/MB-7160): **CLI and Mac OSX issue**
+: For Mac OSX there is a bug in `cbcollect_info` and the tool will not 
+    include system log files, syslog.tar.gz. This will be fixed in future releases.
