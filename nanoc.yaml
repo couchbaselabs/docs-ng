@@ -150,7 +150,7 @@ versions:
       - 1.2
       - 1.1
       - 1.0
-
+  
 navbar:
   - label: Server
     href: /couchbase-manual-2.2/
@@ -182,8 +182,11 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html
 
       - label: Couchbase Lite Android Developer Guide
-        href: /couchbase-lite/cbl-android/
+        href: /couchbase-lite/cbl-android/cbl-android-1.0b2/
         
+      - label: Couchbase Lite Android API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-lite-android-latest/index.html
+
       - label: Couchbase Lite PhoneGap Developer Guide
         href: /couchbase-lite/cbl-phonegap/
 
