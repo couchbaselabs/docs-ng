@@ -1,9 +1,7 @@
-# Getting Started
-This section contains the information you need to start developing Android apps with Couchbase Lite. 
+## Building your first app with Android Studio
+This section describes how to build a Couchbase Lite app by using Android Studio.
 
-If you want to play with a demonstration app, you can download and run [GrocerySync](https://github.com/couchbaselabs/GrocerySync-Android) from our GitHub repository.  
-
-## Setting up the development environment
+### Setting up the Android Studio development environment
 
 Before you can build an app, you need to set up your development environment:
 
@@ -24,10 +22,10 @@ Before you can build an app, you need to set up your development environment:
 	* Extras/Google Repository
 	* Extras/Android Support Repository
 
-## Building Your First App
+### Creating an app with Android Studio
 This section shows how to create a simple Hello World app for an Android device with Couchbase Lite. It uses Maven to add the Couchbase Lite dependencies.
 
-### Step 1: Create a new project
+#### Step 1: Create a new project
 
 1. Launch Android Studio.
 
@@ -47,7 +45,7 @@ This section shows how to create a simple Hello World app for an Android device 
 
 6. Click **Finish**.
 
-### Step 2: Add Couchbase Lite dependencies via Maven
+#### Step 2: Add Couchbase Lite dependencies via Maven
 
 1. Expand the **HelloWorld** folder, and then open the **build.gradle** file. 
 
@@ -115,7 +113,7 @@ This section shows how to create a simple Hello World app for an Android device 
 
 	<img src="images/hello-world-emulator.png" width="40%" />
 
-#### Troubleshooting tips
+##### Troubleshooting tips
 Running the empty app at this point verifies whether the dependencies are set up correctly. If the app doesn't run properly for you, try the following troubleshooting tips:
 
 <ul>
@@ -138,7 +136,7 @@ android {
  }
 </code></pre>
 </ul>
-### Step 3: Add the HelloWorld code
+#### Step 3: Add the HelloWorld code
 
 1. Open the **MainActivity.java** file.
 2. Add the following lines of code to the imports section at the top of the file:
@@ -237,7 +235,7 @@ When the document is saved to the database, Couchbase Lite generates a document 
 
 The saved document is retrieved from the database by using the `Database` class `getDocument()` method. The retrieved document is written out to the log to show its content, which now includes the `_id` and `_rev` properties created by Couchbase Lite.
 
-### Step 4: Build and run HelloWorld
+#### Step 4: Build and run HelloWorld
 
 1. Click **Run**.
 

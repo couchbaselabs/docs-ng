@@ -1,6 +1,6 @@
-## Adding Couchbase Lite to Your Project
+# Adding Couchbase Lite to Your Project
 
-You can add Couchbase Lite to your Android project by using any of the following methods:
+You can add Couchbase Lite to your Android project by using one of the following methods:
 
 * [Add a Maven dependency](#adding-a-maven-dependency)
 
@@ -9,7 +9,7 @@ You can add Couchbase Lite to your Android project by using any of the following
 * [Add the source files directly](#adding-source-files-to-your-project)
 
 
-### Adding a Maven Dependency
+## Adding a Maven Dependency
 
 Follow these steps to add the Maven dependency to your project:
 
@@ -47,7 +47,7 @@ Follow these steps to add the Maven dependency to your project:
 
 		dependencies {
 		 ...
-			// hack to add .so objects (bit.ly/17pUlJ1)
+			// hack to add .so objects
 			compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
 			compile 'com.couchbase.cblite:CBLite:1.0.0-beta'
 		}
@@ -60,7 +60,7 @@ Follow these steps to add the Maven dependency to your project:
 	You can also use `com.android.support:support-v4:18.0.0`.
 
 
-### Adding a JAR File Dependency
+## Adding a JAR File Dependency
 
 Follow these steps to add the JAR file to your project:
 
@@ -77,12 +77,12 @@ Follow these steps to add the JAR file to your project:
 	    compile fileTree(dir: 'libs', include: '*.jar')
 	}
 
-### Adding Source Files to Your Project
+## Adding Source Files to Your Project
 If you need to debug Couchbase Lite, you can include the Couchbase Lite code in your project rather than using a JAR file or the Maven artifact dependencies. If you choose to add the source files, make sure you remove any Maven or JAR file dependencies that you used previously.
 
 Follow these steps to add Couchbase Lite source files directly to your project:
 
-#### Add submodules
+### Add submodules
 
 1. Change to the parent **MyProject** directory, which contains the **settings.gradle** file.
 
@@ -100,7 +100,7 @@ Follow these steps to add Couchbase Lite source files directly to your project:
 		$ git submodule add https://github.com/couchbase/couchbase-lite-android-javascript.git CBLiteJavascript
 
 
-#### Update Gradle files
+### Update Gradle files
 
 1. Add the following line to the **settings.gradle** file:
 
