@@ -1,9 +1,33 @@
-<title="Buckets REST API"
+<title>Buckets REST API</title>
 # Buckets REST API
 
 The bucket management and configuration REST API endpoints are provided to fine
 level control over the individual buckets in the cluster, their configuration,
 and specific operations such as `FLUSH`.
+
+<table>
+<tr>
+	<th>HTTP method</th><th>URI path</th><th>Description</th>
+	</tr>
+<tr>
+	<td>GET</td><td>/pools/default/buckets</td><td>Retrieves all bucket and bucket operations information from a cluster.</td>
+	</tr>
+<tr>
+	<td>GET</td><td>/pools/default/buckets/default</td><td>Retrieves information for a single bucket associated with a cluser.</td>
+	</tr>
+<tr>
+	<td>GET</td><td>/pools/default/buckets/bucket_name/stats</td><td>Retrieves bucket statistics for a specific bucket.</td>
+	</tr>
+<tr>
+	<td>POST</td><td>/pools/default/buckets</td><td>Creates a new Couchbase bucket.</td>
+	</tr>
+<tr>
+	<td>DELETE</td><td>/pools/default/buckets/bucket_name</td><td>Deletes a specific bucket.</td>
+	</tr>
+<tr>
+	<td>POST</td><td>/pools/default/buckets/default/controller/doFlush</td><td>Flushes a specific bucket.</td>
+	</tr>
+</table>	
 
 <a id="couchbase-admin-restapi-bucket-info"></a>
 

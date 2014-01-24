@@ -51,8 +51,13 @@ Port | Description
 <p>Ensure that these reserved ports are available prior to using XDCR data encryption.
 </p></div>
 
+Prior to upgrading, if buckets are using any of these reserved ports, change the port for the bucket. 
+Otherwise, XDCR data encryption is unavailable. (This applies to both offline and online upgrades.) 
+
+
 <div class="notebox"><p>Upgrade Note</p> 
-<p>vBuckets re-shuffling occurs during upgrade (from 2.2.0 to 2.5.0) during the first swap rebalance and when two (2) or more replica vBuckets are present. This behavior is expected.
+<p>When upgrading to Couchbase Server 2.5, vBuckets re-shuffling occurs during the first swap rebalance 
+and when two (2) or more replica vBuckets are present. This behavior is expected.
 </p></div>
 
 
@@ -66,6 +71,32 @@ Port | Description
 * For REST API information for managing XDCR and XDCR data encryption, see the 
 [XDCR REST API](../cb-rest-api/#couchbase-admin-restapi-xdcr) and 
 [Managing XDCR data encryption](../cb-rest-api/#cb-restapi-xdcr-data-encrypt).
+
+
+
+## Upgrade notes for 2.5
+
+During upgrade to Couchbase Server 2.5, vBuckets re-shuffling occurs during the first swap rebalance 
+and when two (2) or more replica vBuckets are present. 
+This behavior is expected. 
+
+Prior to upgrading, if buckets are using any of the following reserved ports, change the port for the bucket. 
+Otherwise, XDCR data encryption is unavailable. (This applies to both offline and online upgrades.) 
+
+With XDCR data encryption, the following ports are reserved:
+
+Port | Description
+-----------|---------------
+11214 | Incoming SSL Proxy
+11215 | Internal Outgoing SSL Proxy
+18091 | Internal REST HTTPS for SSL
+18092 | Internal CAPI HTTPS for SSL   
+
+<div class="notebox bp"><p>Important</p>
+<p>Ensure that these reserved ports are available prior to using XDCR data encryption.
+</p></div>
+
+
 
 
 ## Fixed or resolved issues in 2.5
@@ -106,15 +137,18 @@ To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-xx
 : Regression in memory fragmentation in tcmalloc with appends ops.
 
 [MB-9858](http://www.couchbase.com/issues/browse/MB-9858): **vBucket issue**
-: A high percentage of vBucket memory quota used on a vBucket causes rebalance to fail because the backfill task for the vBucket takeover is temporarily suspended due to high memory usage. 
+: A high percentage of vBucket memory quota used on a vBucket causes rebalance to fail 
+because the backfill task for the vBucket takeover is temporarily suspended due to high memory usage. 
 
 [MB-9831](http://www.couchbase.com/issues/browse/MB-9831): **vBucket issue**
-: It takes an unusually long time (more than two minutes) to persist a large number of documents (more than 100) where each document is approximately 2KB each.
+: It takes an unusually long time (more than two minutes) to persist a large number 
+of documents (more than 100) where each document is approximately 2KB each.
 
 [MB-9824](http://www.couchbase.com/issues/browse/MB-9824): **vBucket issue**
 : RAM gauge has incorrect values if one of two vBuckets is down.
 
-[MB-7250] (http://www.couchbase.com/issues/browse/MB-7250): **Developer issue**
+
+[MB-7250]ß(http://www.couchbase.com/issues/browse/MB-7250): **Developer issue**
 : Mac OS X App should be signed by a valid developer key.
 
 [MB-9975](http://www.couchbase.com/issues/browse/MB-9975): **XDCR data encryption issue**

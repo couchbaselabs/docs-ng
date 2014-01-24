@@ -378,17 +378,41 @@ an individual nodes in a cluster remain the same:
     installation location. For example, if you have installed Couchbase Server in
     the default location, `C:\Program Files\Couchbase\Server`, the Couchbase Server
     installer will put the latest version at the same location.
+    
+    
+## Upgrade notes for 2.5
+During upgrade to Couchbase Server 2.5, vBuckets re-shuffling occurs during the first swap rebalance 
+and when two (2) or more replica vBuckets are present. 
+This behavior is expected. 
+
+Prior to upgrading, if buckets are using any of the following reserved ports, change the port for the bucket. 
+Otherwise, XDCR data encryption is unavailable. (This applies to both offline and online upgrades.) 
+
+With XDCR data encryption, the following ports are reserved:
+
+Port | Description
+-----------|---------------
+11214 | Incoming SSL Proxy
+11215 | Internal Outgoing SSL Proxy
+18091 | Internal REST HTTPS for SSL
+18092 | Internal CAPI HTTPS for SSL   
+
+<div class="notebox warning"><p>Important</p>
+<p>Ensure that these reserved ports are available prior to using XDCR data encryption.
+</p></div>
+
+
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0"></a>
 
-## Upgrade Notes 1.8.1 to 2.1+
+## Upgrade notes for 1.8.1 to 2.1 and above
 
-You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+ using
+You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1 and above using
 either the online or offline upgrade method.
 
 **Use Online Upgrades for Couchbase Server 1.8.1 to Couchbase Server 2.1+**
 
-We recommend online upgrade method for 1.8.1 to 2.1+. The process is quicker and
+We recommend online upgrade method for 1.8.1 to 2.1 and above. The process is quicker and
 can take place while your cluster and application are up and running. When you
 upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+, the data files are
 updated to use the new Couchstore data format instead of the SQLite format used
@@ -396,13 +420,13 @@ in 1.8.1 and earlier. This increases the upgrade time, and requires additional
 disk space to support the migration.
 
 Be aware that if you perform a scripted online upgrade from 1.8.1 to 2. you
-should have a 10 second delay from adding a 2.1+ node to the cluster and
-rebalancing. If you request rebalance too soon after adding a 2.1+ node, the
+should have a 10 second delay from adding a node to the cluster and
+rebalancing. If you request rebalance too soon after adding a node, the
 rebalance may fail.
 
-###Linux Upgrade Notes for 1.8.1 to 2.1+
+###Linux upgrade notes for 1.8.1 to 2.1 and above
 
-When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1+ on Linux,
+When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1 and above on Linux,
 you should be aware of the **OpenSSL** requirement. OpenSSL is a required
 component and an error message occurs during upgrade if it is not
 installed. To install it Red Hat-based systems, use `yum` :
@@ -419,7 +443,7 @@ On Debian-based systems, use `apt-get` to install the required OpenSSL package:
 > sudo apt-get install libssl0.9.8
 ```
 
-###Windows Upgrade Notes for 1.8.1 to 2.1+
+###Windows Upgrade Notes for 1.8.1 to 2.1 and above
 
 If you have configured your Couchbase Server nodes to use hostnames, rather than
 IP addresses, to identify themselves within the cluster, you must ensure that
@@ -438,18 +462,16 @@ tool](../cb-cli/#couchbase-admin-cmdline-cbrestore).
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
 
-## Upgrade Notes for 1.8 and earlier to 2.1+
+## Upgrade Notes for 1.8 and earlier to 2.1 and above
 
 If you run Couchbase Server 1.8 or earlier, including Membase 1.7.2 and earlier,
 you must upgrade to Couchbase Server 1.8.1 first. You do this so that your data
-files can convert into 2.0 compatible formats. This conversion is only available
-from 1.8.1 to 2.0 + upgrades.
+files can convert into 2.0 and higher compatible formats. This conversion is only available
+from 1.8.1 to 2.0 and higher upgrades.
 
-###Offline upgrade
-
- * To perform an offline upgrade, you use the standard installation system such as
-   `dpkg`, `rpm` or Windows Setup Installer to upgrade the software on each
-   machine. Each installer will perform the following operations:
+To perform an offline upgrade, you use the standard installation system such as 
+`dpkg`, `rpm` or Windows Setup Installer to upgrade the software on each 
+machine. Each installer will perform the following operations: 
 
     * Shutdown Couchbase Server 1.8. Do not uninstall the server.
 
@@ -458,21 +480,22 @@ from 1.8.1 to 2.0 + upgrades.
       additional required components such as OpenSSL during the upgrade, you must
       manually restart Couchbase after you install the components.
 
-      The installer will copy 1.8.1-compatible data and configuration files to a
-      backup location.
+The installer copies 1.8.1-compatible data and configuration files to a backup location.
 
-      The `cbupgrade` program will automatically start. This will non-destructively
-      convert data from the 1.8.1 database file format (SQLite) to 2.0 database file
-      format (couchstore). The 1.8 database files are left "as-is", and new 2.0
-      database files are created. There must be enough disk space to handle this
-      conversion operation (e.g., 3x more disk space).
+The `cbupgrade` program automatically starts. This will non-destructively 
+convert data from the 1.8.1 database file format (SQLite) to 2.0 database file 
+format (couchstore). The 1.8 database files are left "as-is", and new 
+database files are created. There must be enough disk space to handle this 
+conversion operation (e.g., 3x more disk space).
 
-   The data migration process from the old file format to the new file format may
-   take some time. You should wait for the process to finish before starting
-   Couchbase Server.
+<div class="notebox"><p>Note</p>
+<p>The data migration process from the old file format to the new file format may 
+take some time. You should wait for the process to finish before starting 
+Couchbase Server.
+</p></div>
 
-   Once the upgrade process finishes, Couchbase Server 2.0 starts automatically.
-   Repeat this process on all nodes within your cluster.
+Once the upgrade process finishes, Couchbase Server starts automatically. 
+Repeat this process on all nodes within your cluster.
 
 <a id="couchbase-getting-started-upgrade-cetoee"></a>
 
@@ -486,7 +509,7 @@ Enterprise Edition, one of the following methods:
  * Perform an online upgrade
  * Perform an offline upgrade
 
-### Online upgrade
+### Online upgrade to Enterprise Edition
    Here you remove one node from the cluster and rebalance. On the nodes you have
    taken out of the cluster, uninstall Couchbase Server Community Edition package,
    and install Couchbase Server Enterprise Edition. You can then add the new nodes
@@ -496,7 +519,7 @@ Enterprise Edition, one of the following methods:
    For more information on performing online upgrades, see [Standard Online
    Upgrades](#couchbase-getting-started-upgrade-online).
 
-### Offline upgrade
+### Offline upgrade to Enterprise Edition
 
    Shutdown the entire cluster, and uninstall Couchbase Server Community Edition
    from each machine. Then install Couchbase Server Enterprise Edition. The data

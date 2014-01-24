@@ -1,6 +1,6 @@
 <title>REST API overview</title>
 
-<a id="couchbase-admin-rest
+<a id="couchbase-admin-rest"></a>
 
 <a id="couchbase-admin-restapi"></a>
 # REST API overview
@@ -18,7 +18,7 @@ query data based on functions that you define.
 <p>
 The REST API should *not* be used to read or write data to the server. Data
 operations such as `set` and `get` for example, are handled by Couchbase SDKs.
-See [Couchbase SDKs](http://couchbase.com/develop).
+See the <a href="http://couchbase.com/develop">Couchbase SDKs</a>.
 </p></div>
 
 In addition, the Couchbase Web Console uses many of the same REST API endpoints that are used for a REST API request. This is especially for administrative tasks such as creating a new bucket, adding a node to a cluster, or changing cluster settings. 

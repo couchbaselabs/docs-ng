@@ -324,8 +324,7 @@ for a node that is already part of a Couchbase cluster; the server will reject
 the request and return `error 400 reason: unknown ["Renaming is disallowed for
 nodes that are already part of a cluster"]`.
 
-To see the specific REST request, see [Using Hostnames with Couchbase
-Server](../cb-install/#couchbase-getting-started-hostnames).
+To see the specific REST request, see [Using hostnames](../cb-install/#couchbase-getting-started-hostnames).
 
 
 <a id="couchbase-admin-restapi-failover-node"></a>

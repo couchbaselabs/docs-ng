@@ -147,7 +147,7 @@ Use the following items to calculate how much memory you need:
 
 <a id="couchbase-bestpractice-sizing-ram-constants"></a>
 
-Constant                                       Description                                                                                                                                                                                                                                                      
+Constant                                        | Description                                                                                                                                                                                                                                                      
 ------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Metadata per document (metadata\_per\_document) | This is the amount of memory that Couchbase needs to store metadata per document. Metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                 | SSDs give better I/O performance.                                                                                                                                                                                                                                
@@ -713,10 +713,10 @@ system needs more memory resources and the RAM is full, inactive pages in memory
 are moved to the swap space. Swappiness indicates how
 frequently a system should use swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most Linux platforms have swappiness set to 60.
 
-<p style="border-style:solid;padding:10px;width:90%;margin:0 auto;border-color:#a30a0a">
-<strong>Recommendation</strong>:
-For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
-</p>  
+<div class="notebox bp"><p>Recommendation</p>
+<p>For optimal Couchbase Server operations, set the swappiness to <strong>0</strong> (zero).
+</p> 
+</div> 
 
 
 To change the swap configuration:
@@ -739,9 +739,10 @@ The templates also provide support for [Amazon Elastic Block Store](http://aws.a
 
 Couchbase provides RightScale ServerTemplates based on [Chef](http://www.opscode.com/chef/) and, for compatibility with existing systems, non-Chef-based ServerTemplates. 
 
-<p style="border-style:solid;padding:10px;width:90%;margin:10px auto;border-color:#a30a0a">
-<strong>Note</strong>: Beginning with Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
+<div class="notebox bp"><p>Note</p>
+<p>As of Couchbase Server 2.2, non-Chef templates are deprecated. Do not choose non-Chef templates for new installations.
 </p>
+</div>
 
 Before you can set up Couchbase Server on RightScale, you need a RightScale account and an AWS account that is connected to your RightScale account. For information about connecting the accounts, see [Add AWS Credentials to RightScale](http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard). 
 

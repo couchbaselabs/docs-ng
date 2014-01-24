@@ -1,4 +1,7 @@
-<title="Rack Awareness REST API"><a id="cb-restapi-rack-aware"></a>
+<title>Rack Awareness REST API</title>
+
+<a id="cb-restapi-rack-aware"></a>
+
 # Rack Awareness REST API
 The Rack Awareness feature allows logical groupings of servers on a cluster where each server group 
 physically belongs to a rack or availability zone. This feature provides the ability to specify 
@@ -32,8 +35,9 @@ DELETE | /pools/default/serverGroups/<:uuid> | Deletes a specific server group.
 
 
 
-## GET /pools/default/serverGroups
-Retrieves information about server groups. Provides group information, `"groups": [(<groupInfo>)+]`, 
+## Retrieving server group information
+
+`GET /pools/default/serverGroups` retrieves information about server groups. Provides group information, `"groups": [(<groupInfo>)+]`, 
 where each server group has unique URIs and UUIDs.
 
 **Syntax**
@@ -76,8 +80,8 @@ Group info | Description
 
 
 
-## POST /pools/default/serverGroups
-Creates a server group with a specific name. In the following example, Group A is created. If the group name has a space, for example, Group A, use double quotes; for example, `"Group A"`.
+## Creating server groups
+`POST /pools/default/serverGroups` creates a server group with a specific name. In the following example, Group A is created. If the group name has a space, for example, Group A, use double quotes; for example, `"Group A"`.
 
 
 **Syntax**
@@ -97,8 +101,8 @@ curl -X POST -u Admin:myPassword
 ```
 
 
-## PUT /pools/default/serverGroups/<:uuid> 
-Renames the server group. Find the UUID for the server group by using GET, add the UUID to the URI path, and specify a new group name. In this example, Group A is renamed to Group B. The UUID for the server group is located in the full URI information for that server group. The UUID remains the same for the server group after changing the name.
+## Renaming server groups
+` PUT /pools/default/serverGroups/<:uuid>` renames the server group. Find the UUID for the server group by using GET, add the UUID to the URI path, and specify a new group name. In this example, Group A is renamed to Group B. The UUID for the server group is located in the full URI information for that server group. The UUID remains the same for the server group after changing the name.
 
 For example, the UUID for Group A is located in the following group information:
 
@@ -123,8 +127,8 @@ curl -X PUT -u Admin:myPassword
   -d name="Group B"
 ```
 
-## DELETE /pools/default/serverGroups/<:uuid>
-Deletes a specific server group. The server group must be empty for a successful request. In the following example, the UUID is the same UUID used in the renaming example.
+## Deleting server groups
+`DELETE /pools/default/serverGroups/<:uuid>` deletes a specific server group. The server group must be empty for a successful request. In the following example, the UUID is the same UUID used in the renaming example.
 
 **Syntax**
 
@@ -140,8 +144,8 @@ curl -X DELETE -u Admin:myPassword
   http://192.168.0.1:8091/pools/default/serverGroups/246b5de857e100dbfd8b6dee0406420a
 ```
 
-## POST /pools/default/serverGroups/<:uuid>/addNode
-Adds a server to a cluster and assigns it to the specified server group. 
+## Adding servers to server groups
+`POST /pools/default/serverGroups/<:uuid>/addNode` adds a server to a cluster and assigns it to the specified server group. 
 
 **Syntax**
 
@@ -167,13 +171,19 @@ The server group's UUID is in the group information
 "addNodeURI":"/pools/default/serverGroups/d55339548767ceb51b241c61e3b9f036/addNode",
 ```
 
-## PUT /pools/default/serverGroups?rev=<:number> 
-Updates the server's group memberships. In the following examples, the group name is optional. If the group name is provided, it _must_ match the current group name. All servers must be mentioned and _all_ groups must be mentioned.The URI is used to identify the group.
+## Updating server group memberships
+`PUT /pools/default/serverGroups?rev=<:number>` updates the server's group memberships. 
+In the following examples, the group name is optional. If the group name is provided, 
+it _must_ match the current group name. 
+All servers must be mentioned and _all_ groups must be mentioned. 
+The URI is used to identify the group.
 
-This request only allows moving servers between server groups. It does not allow server group renaming or removal. In this example, the servers for Group 2 are moved to Group 1. 
+This request only allows moving servers between server groups. 
+It does not allow server group renaming or removal. 
+In this example, the servers for Group 2 are moved to Group 1. 
 
 
-The following is the group information is needed to update the server and server group memberships:
+The following is the group information that is needed to update the server and server group memberships:
 
 ```
 {
@@ -207,7 +217,7 @@ curl -d@file.json -X PUT
 
 In this example, the JSON data is provided on the command line.
 
-<pre>
+<pre><code>
 curl -v -X PUT 
   -u Administrator:password 
   http://192.168.171.144:8091/pools/default/serverGroups?rev=28418649 
@@ -219,11 +229,12 @@ curl -v -X PUT
        {"nodes": [], 
         "name": "Group 2", 
         "uri": "/pools/default/serverGroups/3ca074a8456e1d4940cfa3b7badc1e22"}] }'
-</pre>
+</code></pre>
 
 
 
 <div class=notebox>
 <p>Note</p>
-<p>The PUT request is transactional. The request either succeeds completely or fails without impact. If all nodes or groups are not passed, a generic error message: "Bad input" occurs and the server group is removed.
+<p>The PUT request is transactional. The request either succeeds completely or fails without impact. 
+If all nodes or groups are not passed, a generic error message: "Bad input" occurs and the server group is removed.
 </p></div>
