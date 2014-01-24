@@ -32,7 +32,7 @@ Intra-cluster replication is taking place within the clusters at both Datacenter
 datacenters. Both datacenters are serving read and write requests from the
 application.
 
-## Use cases
+## XDCR use cases
 
 **Disaster Recovery.** Disaster can strike your datacenter at any time – often
 with little or no warning. With active-active cross datacenter replication in
@@ -55,7 +55,7 @@ loss.
 
 <a id="xdcr-topologies"></a>
 
-## Basic topologies
+## XDCR basic topologies
 
 XDCR can be configured to support a variety of different topologies; the most
 common are unidirectional and bidirectional.
@@ -176,7 +176,7 @@ Datacenter 2 and both the clusters start off with the same JSON document (Doc
 case of a conflict, Doc 1 on Datacenter 2 is chosen as the winner because it has
 seen more updates.
 
-## Advanced topologies
+## XDCR advanced topologies
 
 By combining unidirectional and bidirectional topologies, you have the
 flexibility to create several complex topologies such as the chain and
@@ -207,9 +207,9 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 <a id="couchbase-admin-tasks-xdcr-functionality"></a>
 
-## Behavior and limitation
+## XDCR behavior and limitations
 
-### Replication via Memcached Protocol
+### XDCR replication via Memcached Protocol
 
  XDCR can
    replicate data through the memcached protocol at a destination cluster. 
@@ -243,7 +243,7 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
    `xdcr_replication_mode`, see [Changing Internal XDCR
    Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
 
-### Network and system outages
+### XDCR and network and system outages
 
     * XDCR is resilient to intermittent network failures. In the event that the
       destination cluster is unavailable due to a network interruption, XDCR will
@@ -261,7 +261,7 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
       need to re-configure your replication configuration in the event of a system
       failure.
 
-### Document handling
+### XDCR document handling
 
     * XDCR does not replicate views and view indexes; you must manually exchange view
       definitions between clusters and re-generate the index on the destination
@@ -272,7 +272,7 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
       have any non UTF-8 keys you will see warning output in the `xdcr_error.*` log
       files along with a list of all non-UTF-8 keys found by XDCR.
 
-### Flush requests
+### XDCR flush requests
 
    Flush requests to delete the entire contents of bucket are not replicated to the
    remote cluster. Performing a flush operation will only delete data on the local
@@ -283,11 +283,33 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
    
 ## XDCR data encryption
 
-The cross data center (XDCR) data security feature provides secure cross data center replication using Secure Socket Layer (SSL) data encryption. The data replicated between clusters can be encrypted in both uni-directional and bi-directional topologies.
+The cross data center (XDCR) data security feature provides secure cross data center replication 
+using Secure Socket Layer (SSL) data encryption. 
+The data replicated between clusters can be encrypted in both uni-directional and bi-directional topologies.
 
-By default, XDCR traffic to a destination cluster is sent in clear text that is unencrypted. In this case, when XDCR traffic occurs across multiple clusters over public networks, it is recommended that a VPN gateway be configured between the two data centers to encrypt the data between each route.
+By default, XDCR traffic to a destination cluster is sent in clear text that is unencrypted. 
+In this case, when XDCR traffic occurs across multiple clusters over public networks, 
+it is recommended that a VPN gateway be configured between the two data centers to encrypt the data between each route.
 
-With the XDCR data encryption feature, the XDCR traffic from the source cluster is secured by enabling the XDCR encryption option, providing the destination cluster's certificate, and then replicating. The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+With the XDCR data encryption feature, the XDCR traffic from the source cluster is secured by 
+enabling the XDCR encryption option, providing the destination cluster's certificate, and then replicating. 
+The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+
+
+The data encryption is established between the source and destination clusters. 
+Since data encryption is established at the cluster level, 
+all vBuckets that are selected for replicated on the destination cluster are data encrypted. 
+For vBuckets that need to be replicated without data encryption, establish a second XDCR destination cluster 
+without XDCR data encryption enabled.
+
+<div class="notebox"><p>Important</p>
+<p>Both data encrypted and non-encrypted replication can not occur between the same XDCR source and
+destination cluster. For example, if Cluster A (source) has data encryption enabled to Cluster B (destination), 
+then Cluster A (source) cannot also have non-encryption (data encryption *not* enabled) to Cluster B (destination).
+</p></div>
+
+For more information about enabling XDCR data encryption, see 
+[Managing XDCR data encryption](#For more information, see [Managing Rack Awareness](#cb-admin-tasks-rack-aware).
 
 
 ### XDCR data encryption prerequisites

@@ -3931,9 +3931,15 @@ For more information in general about using Couchbase Server in the cloud, see
 
 <a id="cb-admin-tasks-rack-aware"></a>
 ## Managing Rack Awareness
-The Rack Awareness feature (Enterprise Edition) allows logical groupings of servers on a cluster where each server group physically belongs to a rack or availability zone. This feature provides the ability to specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. 
+The Rack Awareness feature (Enterprise Edition) allows logical groupings of servers on 
+a cluster where each server group physically belongs to a rack or availability zone. 
+This feature provides the ability to specify that active and corresponding replica 
+partitions be created on servers that are part of a separate rack or zone. 
 
-This section describes how to manage server groups through the Web Console. See also, the [CLI, couchbase-cli](../cb-cli/#cb-cli-couchbase-cli), [CLI, Managing Rack Awareness](../cb-cli/#cbcli-rack-aware) and REST API for managing Rack Awareness, managing servers and server groups. By default, when a Couchbase cluster is initialized, Group 1 is created. 
+This section describes how to manage server groups through the Web Console. See also, 
+the [couchbase-cli](../cb-cli/#cb-cli-couchbase-cli), [Managing Rack Awareness CLI](../cb-cli/#cb-cli-rack-aware) 
+and [Rack Awareness REST API](../cb-rest-api/#cb-restapi-rack-aware), managing servers and server groups. 
+By default, when a Couchbase cluster is initialized, Group 1 is created. 
 
 ### Rack Awareness prerequisites
 To implement Rack Awareness, all servers in the cluster must be upgraded to Couchbase 2.5 Enterprise Edition.
@@ -3964,6 +3970,9 @@ To create a server group:
 3. Click **Create**.
 
 <img src="../images/CreateGroup.png" alt="Create Group" height="100">
+
+
+
 ### Renaming server groups
 To change a server group's name:
 

@@ -170,7 +170,7 @@ Additional enhancements in 2.2 include:
       backup, restore, or transfer from a node in your Couchbase cluster. These three
       tools will not transfer data from external IP addresses; they will function with
       IP addresses from an internal Couchbase cluster node list. See [cbbackup
-      Tool](#couchbase-admin-cmdline-cbbackup),
+      Tool](#couchbase-admin-cmdline-cbbackup).
 
       *Issues* : [MB-8459](http://www.couchbase.com/issues/browse/MB-8459)
       

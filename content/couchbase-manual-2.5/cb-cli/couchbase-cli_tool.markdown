@@ -134,7 +134,7 @@ group-manage options                  | Description
 `---add-servers="HOST:PORT;HOST:PORT"` | Adds servers to a group 
 `--move-servers="HOST:PORT;HOST:PORT"` | Moves a list of server from a group
 `--from-group=GROUPNAME ` | Moves one or more servers from a group.  
-` --to-group=GROUPNAME` | Moves one or more server to a group
+`--to-group=GROUPNAME` | Moves one or more server to a group
 
 ### rebalance options
 
@@ -142,7 +142,7 @@ rebalance options                  | Description
 --------------------------------------------|-------------------------------------------------------------------------
  `--server-add*`                            | See server-add OPTIONS                                                  
  `--server-remove=HOST[:PORT]`              | The server to remove from cluster    
-`--group-name=GROUPNAME`  | Server group to rebalance (Enterprise Edition only)                                     
+                                 
 
 
 ### failover option
@@ -425,6 +425,11 @@ couchbase-cli group-manage -c HOST:PORT
 ### Creating server groups
 In the following example, a server group is created.
 
+<div class="notebox"><p>Note</p>
+<p>The `--create --group-name` command may fail when an exclamation (!) is present inside the group name.
+</p></div>
+
+
 ```
 couchbase-cli group-manage -c 192.168.0.1:8091 
    -u myAdminName
@@ -443,7 +448,15 @@ couchbase-cli group-manage -c 192.168.0.1:8091
    --add-servers="10.1.1.1:8091;10.1.1.2:8091"
 ```
 
-In the following example, a server is added to the server group and rebalancing is *not* performed using the `server-add` command.
+In the following example, a server is added to the server group using the `server-add` command.
+
+
+<div class="notebox"><p>Note</p>
+<p>The `couchbase-cli group-manage' command is the preferred method of adding servers to 
+server group.</p>
+<p>If the `--group-name` option is not specified with the `server-add` command, the server 
+is added to the default group.</p>
+</div>
 
 ```
 couchbase-cli server-add -c 192.168.0.1:8091
@@ -454,15 +467,6 @@ couchbase-cli server-add -c 192.168.0.1:8091
 ```
 
 
-In the following example, a server is added to a server group and rebalancing is performed using the `rebalance` command.
-
-```
-couchbase-cli rebalance -c 192.168.0.1:8091 
-   --server-add=192.168.0.2:8091 
-   --server-add-username=Administrator 
-   --server-add-password=password 
-   --group-name=group1
-```
 
 ### Moving servers from server groups
 In the following example, two servers are moved from one server group to another using the `group-manage` command.
@@ -474,17 +478,6 @@ couchbase-cli group-manage -c 192.168.0.1:8091
    --from-group=myFirstGroup
    --to-group=mySecondGroup
    --move-servers="10.1.1.1:8091;10.1.1.2:8091"
-```
-
-In the following example, a server is removed from a server group, a different server is added to the same server group, and rebalancing is performed using the `rebalance` command.
-
-```
-couchbase-cli rebalance -c 192.168.0.1:8091 
-   --server-remove=192.168.0.2 
-   --server-add=192.168.0.4 
-   --server-add-username=Administrator 
-   --server-add-password=password 
-   --group-name=group1
 ```
 
 

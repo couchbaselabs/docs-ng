@@ -1,7 +1,12 @@
 <a id="cb-concepts-rack-aware"></a>
 
 # Rack Awareness
-The Rack Awareness feature allows logical groupings of servers on a cluster where each server group physically belongs to a rack or availability zone. This feature provides the ability to specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. To enable Rack Awareness, all servers in a cluster must be upgraded to use the Rack Awareness feature. 
+The Rack Awareness feature allows logical groupings of servers on a cluster where each server 
+group physically belongs to a rack or availability zone. This feature provides the ability to 
+specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. 
+To enable Rack Awareness, all servers in a cluster must be upgraded to Couchbase Server Enterprise Edition to use the Rack Awareness feature. 
+
+For more information, see [Managing Rack Awareness](#cb-admin-tasks-rack-aware).
 
 <div class="notebox">
 <p>Note</p>
