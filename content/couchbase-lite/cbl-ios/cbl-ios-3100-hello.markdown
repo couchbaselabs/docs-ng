@@ -90,7 +90,7 @@ You can follow along with the tutorial and create  your own HelloCBL, or you can
     NSError *error;
     
     // create a shared instance of CBLManager
-    CBLManager s*manager = [CBLManager sharedInstance];
+    CBLManager *manager = [CBLManager sharedInstance];
     if (!manager) {
         NSLog (@"Cannot create shared instance of CBLManager");
         return NO;
