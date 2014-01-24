@@ -78,7 +78,7 @@ Follow these steps to add the JAR file to your project:
 	}
 
 ### Adding Source Files to Your Project
-If you need to debug Couchbase Lite, you can include the Couchbase Lite code in your project rather than using a JAR file or the Maven artifact dependencies. If you choose to add the source files, make sure you remove any maven or JAR file dependencies that you used previously.
+If you need to debug Couchbase Lite, you can include the Couchbase Lite code in your project rather than using a JAR file or the Maven artifact dependencies. If you choose to add the source files, make sure you remove any Maven or JAR file dependencies that you used previously.
 
 Follow these steps to add Couchbase Lite source files directly to your project:
 

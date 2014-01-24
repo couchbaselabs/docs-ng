@@ -57,7 +57,7 @@ This section shows how to create a simple Hello World app for an Android device 
 	
 	If the **build.gradle** file is empty, then you are looking at the wrong one. Make sure you open the one in the **HelloWorld** folder (and not the one at the project level).
 
-2. In the **build.gradle** file, add the following lines to the top-level **repositories** section (not the one under buildscript) so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
+2. In the **build.gradle** file, add the following lines to the top-level **repositories** section (not the one under the buildscript section) so it can resolve dependencies through Maven Central and the Couchbase Maven repository:
 
 	    maven {
 	        url "http://files.couchbase.com/maven2/"
@@ -90,9 +90,9 @@ This section shows how to create a simple Hello World app for an Android device 
 		$ curl -OL http://cl.ly/Pr1r/td_collator_so.jar
 
 
-5. In the **build.gradle** file, add the following lines to the top-level dependencies section (not the one under the `buildscript` section).
+5. In the **build.gradle** file, add the following lines to the top-level dependencies section (not the one under the buildscript section).
 
-		// hack to add .so objects (bit.ly/17pUlJ1)
+		// hack to add .so objects
 		compile fileTree(dir: 'libs', include: 'td_collator_so.jar')  
 		compile 'com.couchbase.cblite:CBLite:1.0.0-beta2'
 		
@@ -100,7 +100,7 @@ This section shows how to create a simple Hello World app for an Android device 
 
 		dependencies {
 			compile 'com.android.support:appcompat-v7:+'
-			// hack to add .so objects (bit.ly/17pUlJ1)
+			// hack to add .so objects
 			compile fileTree(dir: 'libs', include: 'td_collator_so.jar')
 			compile 'com.couchbase.cblite:CBLite:1.0.0-beta2'
 		}
@@ -116,13 +116,14 @@ This section shows how to create a simple Hello World app for an Android device 
 	<img src="images/hello-world-emulator.png" width="40%" />
 
 #### Troubleshooting tips
-Running the empty app at this point verifies whether the dependencies are set up correctly. If the app doesn't run properly for you, check the following troubleshooting tips:
+Running the empty app at this point verifies whether the dependencies are set up correctly. If the app doesn't run properly for you, try the following troubleshooting tips:
 
 <ul>
 <li>Errors in the <strong>build.gradle</strong> file are a common cause of problems: </li>
 <ul>
 <li>Double-check the spelling of all entries in the file.</li>
 <li>Make sure all code added to the file is located in the correct sections.</li>
+<li>Verify the path for Couchbase Lite in the compile statement in the dependencies section.</li>
 <li>Compare your file to this <a href="images/build-gradle-sample.png">sample <strong>build.gradle</strong></a> file.
 </ul>
 <li>Couchbase Lite for Android does not currently build correctly with Proguard. If you get build errors that mention Proguard, you can disable it by changing the **build.gradle** file `runProguard` setting in the **android** section to false. When you change it, the *android* section should look something like the following code:</li>
@@ -176,8 +177,14 @@ android {
 	    return;
 	}
 	
-	// create a new database
-	Database database = manager.getDatabase(dbname);
+    // create a new database
+    Database database = null;
+    try {
+        database = manager.getDatabase(dbname);
+    } catch (CouchbaseLiteException e) {
+        Log.e(TAG, "Cannot get database");
+        return;
+    }
 	
 	// get the current date and time
 	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
