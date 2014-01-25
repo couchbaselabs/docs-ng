@@ -81,6 +81,7 @@ versions:
   couchbase-devguide:
     name: "Developer"
     versions:
+      - 2.5
       - 2.2
       - 2.1
       - 2.0
@@ -94,18 +95,12 @@ versions:
       - 2.1
       - 2.0
       - 1.8
-   
-  cb-install:
-    name: "Installation Guide"
-    versions:
-      - 2.5
-      
-  
+
   couchbase-query-language:
-    name: "Query Language, N1QL"
+    name: "Query Language N1QL"
     versions:
-      - 1.0
-      
+      - 0.1
+
   couchbase-sdk-c:
     name: "C SDK"
     versions:
@@ -132,6 +127,7 @@ versions:
   couchbase-sdk-node:
     name: "Node.js SDK"
     versions:
+      - 1.2
       - 1.1
       - 1.0
 
@@ -189,91 +185,77 @@ navbar:
       - label: Moxi Guide
         href: /moxi-manual-1.8/
         
-        
       - label: Couchbase Release Notes
         href: /couchbase-manual-2.5/cb-release-notes/
-                  
-      - label: Query Language Developer (preview)
-        href: /couchbase-query-language-0.1/
-
-
-
           
-  - label: Plug-ins
-    subnav:
-      - label: Elasticsearch Plug-in
-        href: /couchbase-elastic-search/
-
-      - label: Hadoop Plug-in
-        href: /hadoop-plugin-1.1/
-        
-
   - label: Mobile
     subnav:
       - label: Couchbase Lite Concepts Guide
         href: /couchbase-lite/cbl-concepts/
 
-      - label: Couchbase Lite iOS Guide
+      - label: Couchbase Lite iOS Developer Guide
         href: /couchbase-lite/cbl-ios/
 
-      - label: Couchbase Lite Android Guide
+      - label: Couchbase Lite iOS API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html
+
+      - label: Couchbase Lite Android Developer Guide
         href: /couchbase-lite/cbl-android/
         
-      - label: Couchbase Lite PhoneGap Guide
+      - label: Couchbase Lite PhoneGap Developer Guide
         href: /couchbase-lite/cbl-phonegap/
-          
-      - label: Couchbase Sync Gateway
+
+      - label: Couchbase Sync Gateway Guide
         href: /sync-gateway/
 
-
-
-  - label: Developer Guides
+  - label: Developer
     subnav:
-      
       - label: Couchbase Developer Guide
-        href: /couchbase-devguide-2.2/
+        href: /couchbase-devguide-2.5/
     
-      - label: C
+      - label: Query Language Developer (preview)
+        href: /couchbase-query-language-0.1/
+
+  - label: SDKs
+    subnav:
+      - label: C Developer Guide
         href: /couchbase-sdk-c-2.2/
 
-      - label: Java
+      - label: C API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
+
+      - label: Java Developer Guide
         href: /couchbase-sdk-java-1.2/
 
-      - label: .NET
+      - label: Java API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-java-client-latest/index.html
+
+      - label: .NET Developer Guide
         href: /couchbase-sdk-net-1.3/
       
-      - label: Node.js
-        href: /couchbase-sdk-node-1.1/
+      - label: Node.js Developer Guide
+        href: /couchbase-sdk-node-1.2/
         
-      - label: PHP
-        href: /couchbase-sdk-php-1.2/
-        
-      - label: Python
-        href: /couchbase-sdk-python-1.1/
-
-      - label: Ruby
-        href: /couchbase-sdk-ruby-1.3/
-        
-  - label: SDK API References
-    subnav:
-      - label: C
-        href: http://www.couchbase.com/autodocs/couchbase-c-client-2.2.0/index.html
-
-      - label: Java
-        href: http://www.couchbase.com/autodocs/couchbase-java-client-1.2.0/index.html
-
-      - label: Node.js
+      - label: Node.js API Reference
         href: http://www.couchbase.com/autodocs/couchbase-node-client-latest/index.html
         
-      - label: PHP
-        href: http://www.couchbase.com/autodocs/couchbase-php-client-1.1.5/index.html
+      - label: PHP Developer Guide
+        href: /couchbase-sdk-php-1.2/
+        
+      - label: PHP API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-php-client-latest/index.html
 
-      - label: Python
-        href: http://www.couchbase.com/autodocs/couchbase-python-client-0.9/index.html
+      - label: Python Developer Guide
+        href: /couchbase-sdk-python-1.1/
 
-      - label: Ruby
-        href: http://www.couchbase.com/autodocs/couchbase-ruby-client-1.3.2/index.html
+      - label: Python API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-python-client-latest/index.html
 
+      - label: Ruby Developer Guide
+        href: /couchbase-sdk-ruby-1.3/
 
-  - label: Documentation Archive
+      - label: Ruby API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-ruby-client-latest/index.html
+
+  - label: Index
     href: http://www.couchbase.com/documentation-archives
