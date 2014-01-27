@@ -74,7 +74,7 @@ Libraries:
 
  * C
 
-<div class="notebox warning>
+<div class="notebox warning">
 <p>Warning</p>
 <p>The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
