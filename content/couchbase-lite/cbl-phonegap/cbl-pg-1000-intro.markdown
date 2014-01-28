@@ -140,7 +140,7 @@ To make sure PhoneGap and your IDEs are set up correctly, try building the defau
 $ phonegap create my-app
 $ cd my-app
 $ phonegap run ios
-$ phongap run android
+$ phonegap run android
 ```
 
 For more information about setting up the SDKs on your computer, see:
@@ -162,7 +162,7 @@ The following table contains solutions for some other problems you might encount
 
 ### Using Apache Cordova
 
-If you cannot access the Couchbase Lite Plug-in for PhoneGap in the GitHub repository, you can use the Cordova download as an alternative.You can build apps with the Couchbase Lite Plug-in for PhoneGap by using [Cordova](http://cordova.apache.org) instead of PhoneGap. The Couchbase Lite Plug-in for PhoneGap is listed on the [Cordova Plugin Registry](http://plugins.cordova.io/#/com.couchbase.lite.phonegap). 
+If you cannot access the Couchbase Lite Plug-in for PhoneGap in the GitHub repository, you can use the Cordova download as an alternative. You can build apps with the Couchbase Lite Plug-in for PhoneGap by using [Cordova](http://cordova.apache.org) instead of PhoneGap. The Couchbase Lite Plug-in for PhoneGap is listed on the [Cordova Plugin Registry](http://plugins.cordova.io/#/com.couchbase.lite.phonegap). 
 
 When using Cordova, you install the Couchbase Lite Plug-in for PhoneGap into your app by using the Cordova command-line tool.
 
