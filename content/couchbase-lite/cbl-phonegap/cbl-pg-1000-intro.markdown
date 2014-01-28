@@ -42,6 +42,11 @@ To get set up to use PhoneGap, install the following tools:
 
 	* Set up an Android emulator by using the Android AVD Manager. If you have a project open in Android Studio, you can run the AVD Manager by selecting **Tools > Android > AVD Manager**.
 
+  * Add paths to the Android SDK tools and platform tools to your system's
+    PATH environment variable; for example, on Mac OS X add the following:
+   * `/Applications/Android Studio.app/sdk/tools`
+   * `/Applications/Android Studio.app/sdk/platform-tools` 
+
 	For additional information about setting up your Android development environment, refer to the [PhoneGap Android Platform Guide](http://docs.phonegap.com/en/3.0.0/guide_platforms_android_index.md.html#Android%20Platform%20Guide) .
 
 4. Install [Node.js](http://nodejs.org/download), which is a JavaScript network application platform. 
