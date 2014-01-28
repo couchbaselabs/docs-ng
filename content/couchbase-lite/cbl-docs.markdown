@@ -1,12 +1,33 @@
-### Couchbase Lite Documentation
-[Couchbase Lite Concepts Guide](cbl-concepts)  <-- Read Me First!
+#
 
-[Couchbase Lite iOS Guide](cbl-ios)  
+<p style="font: xx-large bold;color:tomato">Couchbase Lite Documentation</p>
+---
 
-[Couchbase Lite Android Guide](cbl-android)  
+[Concepts Guide](cbl-concepts)  <span style="color:tomato">Read Me First!</span>
 
-[Couchbase Lite PhoneGap Plug-in Guide](cbl-phonegap)
+---
 
-<!--
-[Couchbase Lite REST API Reference](cbl-api)  
---> 
+[iOS Developer Guide](cbl-ios)
+
+[iOS API Reference](http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html)
+
+---
+
+[Android Developer Guide](cbl-android/cbl-android-1.0b2/)
+
+[Android API Reference](http://www.couchbase.com/autodocs/couchbase-lite-android-latest/index.html)
+
+---
+
+[PhoneGap Plug-in Guide](cbl-phonegap)
+
+---
+
+[REST API Reference](cbl-api)
+
+---
+
+[Sync Gateway Guide](/sync-gateway)  
+
+---
+
