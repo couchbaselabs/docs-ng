@@ -42,12 +42,12 @@ To get set up to use PhoneGap, install the following tools:
 
 	* Set up an Android emulator by using the Android AVD Manager. If you have a project open in Android Studio, you can run the AVD Manager by selecting **Tools > Android > AVD Manager**.
 
-  * Add paths to the Android SDK tools and platform tools to your system's
-    PATH environment variable; for example, on Mac OS X add the following:
-   * `/Applications/Android Studio.app/sdk/tools`
-   * `/Applications/Android Studio.app/sdk/platform-tools` 
+    * Add paths to the Android SDK tools and platform tools to your system's
+      PATH environment variable; for example, on Mac OS X add the following:
+        * `/Applications/Android Studio.app/sdk/tools`
+        * `/Applications/Android Studio.app/sdk/platform-tools` 
 
-	For additional information about setting up your Android development environment, refer to the [PhoneGap Android Platform Guide](http://docs.phonegap.com/en/3.0.0/guide_platforms_android_index.md.html#Android%20Platform%20Guide) .
+	  For additional information about setting up your Android development environment, refer to the [PhoneGap Android Platform Guide](http://docs.phonegap.com/en/3.0.0/guide_platforms_android_index.md.html#Android%20Platform%20Guide).
 
 4. Install [Node.js](http://nodejs.org/download), which is a JavaScript network application platform. 
 
@@ -163,6 +163,7 @@ The following table contains solutions for some other problems you might encount
 |When you add plug-ins to your project, you get the following error message: \[error] project directory could not be found. | Make sure you are in the **/todo-lite** directory.  
 |When you build an iOS app, the iOS simulator doesn't start automatically.|Make sure ios-sim is installed.
 |When you build an Android app, it uses the remote environment and prompts you to log on to the PhoneGap build service. |  Make sure your Android device emulator is set up. For more information about setting up an emulator, read the [Deploy to Emulator section in the *PhoneGap Android Platform Guide*](http://docs.phonegap.com/en/3.0.0/guide_platforms_android_index.md.html#Android%20Platform%20Guide)
+|When attempting to run the app for Android, you encounter the following error *[error] An error occured during creation of android sub-project*|Ensure that the Android SDK tools and platform-tools directories are added to your system's PATH
 
 
 ### Using Apache Cordova
