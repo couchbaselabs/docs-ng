@@ -305,24 +305,12 @@ without XDCR data encryption enabled.
 <div class="notebox"><p>Important</p>
 <p>Both data encrypted and non-encrypted replication can not occur between the same XDCR source and
 destination cluster. For example, if Cluster A (source) has data encryption enabled to Cluster B (destination), 
-then Cluster A (source) cannot also have non-encryption (data encryption *not* enabled) to Cluster B (destination).
+then Cluster A (source) cannot also have non-encryption (data encryption is *not* enabled) to Cluster B (destination).
 </p></div>
 
 For more information about enabling XDCR data encryption, see 
-[Managing XDCR data encryption](#For more information, see [Managing Rack Awareness](#cb-admin-tasks-rack-aware).
+[Managing XDCR data encryption](#cb-admin-tasks-xdcr-encrypt).
 
 
-### XDCR data encryption prerequisites
-
-* Both source and destination clusters must support SSL network connections.
-* Couchbase servers on both source and destination clusters must have Couchbase 2.5 and above installed.
-
-
-
-**XDCR data security error message**
-
-```
-Invalid certificate and/or private key
-```
 
 
