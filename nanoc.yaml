@@ -222,7 +222,7 @@ navbar:
       - label: Couchbase Developer Guide
         href: /couchbase-devguide-2.5/
     
-      - label: Query Language Developer (preview)
+      - label: Query Language Developer Preview
         href: /couchbase-query-language-0.1/
 
   - label: SDKs

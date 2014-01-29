@@ -34,7 +34,7 @@ This section shows how to create a simple Hello World app for an Android device 
 
 #### Step 2: Add Couchbase Lite
 
-1. Download the latest version of Couchbase Lite.
+1. Download the latest version of Couchbase Lite from <http://www.couchbase.com/download#cb-mobile>.
 
 2. Decompress the zip file.
 
@@ -56,7 +56,11 @@ This section shows how to create a simple Hello World app for an Android device 
 
 8. Click **Run** and verify the app runs properly.
 
-	The won't run properly if you have Android Studio running simultaneously. 
+	When requested, start the emulator. You should see the app start in the emulator and the text "Hello World" in the app window, similar to the following figure:
+
+	<img src="images/hello-world-emulator-eclipse.png" width="40%" />
+
+	Running the empty app at this point verifies whether the dependencies are set up correctly. The app won't run properly if you have Android Studio running simultaneously with the ADT bundle Eclipse. 
 
 #### Step 3: Add the HelloWorld code
 
