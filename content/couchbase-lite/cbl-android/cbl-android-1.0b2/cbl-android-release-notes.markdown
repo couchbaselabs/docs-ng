@@ -10,25 +10,25 @@ This is the second beta release of Couchbase Lite Android 1.0. Couchbase Lite is
 ### Fixes in Beta 2
 
 * Minimum Android API level support
-	* This release supports Gingerbread (API level 9) and later.
+	* We now support Gingerbread (API level 9) and above
 
 	Issues: [115](https://github.com/couchbase/couchbase-lite-android/issues/115)
 
 * Attachment support
-	* Attachment retrieval has been fixed.
-	* Delete attachment via the REST API is now available.
+	* Retrieval of an Attachment's body is now working correctly
+	* Deletion of an Attachment via the REST API is now available
 	
 	Issues: [134](https://github.com/couchbase/couchbase-lite-android/issues/134), [152](https://github.com/couchbase/couchbase-lite-android/issues/152)
 
 * Database support
-	* Invalid database names throw the correct status code.
-	* A local or remotely replicated document update is now updated in the database document cache and does so by document ID.
+	* Attempts to create databases with invalid names now throws correct status code
+	* A local or remotely replicated document update is now updated in the database document cache and does so by document ID
 	
 	Issues: [146](https://github.com/couchbase/couchbase-lite-android/issues/146), [164](https://github.com/couchbase/couchbase-lite-android/issues/164) 
 
 * Document support
-	* The `_all_docs` keys parameter is now supported.
-	* Setting missing property is now fixed
+	* `_all_docs` keys parameter is now supported
+	* `missing` property now working properly to allow for compaction verification
 	
 	Issues: [147](https://github.com/couchbase/couchbase-lite-android/issues/147), [155](https://github.com/couchbase/couchbase-lite-android/issues/155)
 
@@ -39,7 +39,7 @@ This is the second beta release of Couchbase Lite Android 1.0. Couchbase Lite is
 	 Issues: [123](https://github.com/couchbase/couchbase-lite-android/issues/123), [125](https://github.com/couchbase/couchbase-lite-android/issues/125), [126](https://github.com/couchbase/couchbase-lite-android/issues/126)
 
 * Document support
-	* `_bulk_docs` does not include document deletions as part of push replication to target databases and causes conflicting revision trees.
+	* `_bulk_docs` does not include document deletions as part of push replication to target databases and causes conflicting revision trees
 
 	Issues: [174](https://github.com/couchbase/couchbase-lite-android/issues/174)
 
