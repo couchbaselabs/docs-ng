@@ -81,6 +81,7 @@ versions:
   couchbase-devguide:
     name: "Developer"
     versions:
+      - 2.5
       - 2.2
       - 2.1
       - 2.0
@@ -89,6 +90,7 @@ versions:
   couchbase-manual:
     name: "Server"
     versions:
+      - 2.5
       - 2.2
       - 2.1
       - 2.0
@@ -150,25 +152,43 @@ versions:
       - 1.2
       - 1.1
       - 1.0
-
+  
 navbar:
-  - label: Server
-    href: /couchbase-manual-2.2/
+  - label: Couchbase Server
     subnav:
-      - label: Couchbase Server Manual
-        href: /couchbase-manual-2.2/
-      
-      - label: Query Language Developer Preview
-        href: /couchbase-query-language-0.1/
-          
-      - label: Elasticsearch Plug-in
-        href: /couchbase-elastic-search/
-
-      - label: Hadoop Plug-in
-        href: /hadoop-plugin-1.1/
+    
+      - label: Couchbase Server 2.5
+        href: /couchbase-manual-2.5/
         
-      - label: Moxi
+      - label:  "--  Install and Upgrade"
+        href: /couchbase-manual-2.5/cb-install/
+        
+      - label:  "--  Administration Guide"
+        href: /couchbase-manual-2.5/cb-admin/
+        
+      - label:  "--  CLI Reference"
+        href: /couchbase-manual-2.5/cb-cli/
+        
+      - label:  "--  REST API Reference"
+        href: /couchbase-manual-2.5/cb-rest-api/
+        
+      - label: Couchbase 2.2
+        href: /couchbase-manual-2.2/
+
+      - label: Couchbase 2.1
+        href: /couchbase-manual-2.1/
+
+      - label: Couchbase 2.0
+        href: /couchbase-manual-2.0
+
+      - label: Couchbase 1.8
+        href: /couchbase-manual-1.8/
+
+      - label: Moxi Guide
         href: /moxi-manual-1.8/
+        
+      - label: Couchbase Release Notes
+        href: /couchbase-manual-2.5/cb-release-notes/
           
   - label: Mobile
     subnav:
@@ -182,8 +202,11 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html
 
       - label: Couchbase Lite Android Developer Guide
-        href: /couchbase-lite/cbl-android/
+        href: /couchbase-lite/cbl-android/cbl-android-1.0b2/
         
+      - label: Couchbase Lite Android API Reference
+        href: http://www.couchbase.com/autodocs/couchbase-lite-android-latest/index.html
+
       - label: Couchbase Lite PhoneGap Developer Guide
         href: /couchbase-lite/cbl-phonegap/
 
@@ -194,7 +217,12 @@ navbar:
         href: /sync-gateway/
 
   - label: Developer
-    href: /couchbase-devguide-2.2/
+    subnav:
+      - label: Couchbase Developer Guide
+        href: /couchbase-devguide-2.5/
+    
+      - label: Query Language Developer Preview
+        href: /couchbase-query-language-0.1/
 
   - label: SDKs
     subnav:
