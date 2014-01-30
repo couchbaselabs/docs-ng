@@ -3953,6 +3953,7 @@ To implement Rack Awareness, all servers in the cluster must be upgraded to Couc
 
 
 
+
 ### Rack Awareness Web Console
 
 The servers and server groups are displayed from the Server Nodes tab:
@@ -3971,7 +3972,7 @@ To create a server group:
 2. Click **Create Group** and provide a group name to the Add Group pop-up.
 3. Click **Create**.
 
-<img src="../images/CreateGroup.png" alt="Create Group" height="100">
+<img src="../images/CreateGroup.png" alt="Create Group">
 
 
 
@@ -3982,7 +3983,7 @@ To change a server group's name:
 2. Click **Edit Group**.
 3. Change the group name and **Save**.
 
-<img src="../images/EditGroup.png" alt="Rename Group" height="100">
+<img src="../images/EditGroup.png" alt="Rename Group">
 
 ### Deleting server groups
 To delete a server group, first remove all:
@@ -4000,13 +4001,14 @@ To add a server:
 3. Click **Add Server**.
 4. From the Server Nodes tab, click **Rebalance**.
 
-<img src="../images/NewServer.png" alt="Add Server" height="200">
+<img src="../images/NewServer.png" alt="Add Server" >
+
 ### Removing servers from server groups
 To remove a server from a server group:
 
-1. From the Server Nodes tab, click Remove for the server that you want to delete.
-2. Click Remove from the confirmation pop-up.
-3. From the Server Nodes tab, click Rebalance.
+1. From the Server Nodes tab, click **Remove** for the server that you want to delete.
+2. Click **Remove** from the confirmation pop-up.
+3. From the Server Nodes tab, click **Rebalance**.
 
 ### Moving servers between server groups
 To move a server from one group to another:
@@ -4016,7 +4018,7 @@ To move a server from one group to another:
 3. Click **Apply Changes**.
 4. From the Server Nodes tab, click **Rebalance**.
 
-
+<img src="../images/rack-aware-apply.png" alt="Apply changes to server group">
 
 
 <a id="couchbase-admin-tasks-changepath"></a>
