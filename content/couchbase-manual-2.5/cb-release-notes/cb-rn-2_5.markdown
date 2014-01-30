@@ -103,7 +103,7 @@ Port | Description
 
 ## Fixed or resolved issues in 2.5
 
-[MB-9953](http://www.couchbase.com/issues/browse/MB-9953): For XDCR and buckets, mutations are not replicating to the destination cluster. 
+[MB-9953](http://www.couchbase.com/issues/browse/MB-9953): For XDCR, mutations are not replicating to the destination cluster. 
 
 [MB-9938](http://www.couchbase.com/issues/browse/MB-9938): In a DGM scenario, memcached disconnects when doing disk fetches.
 
