@@ -156,7 +156,7 @@ versions:
 navbar:
   - label: Couchbase Server
     subnav:
-    
+
       - label: Couchbase Server 2.5
         href: /couchbase-manual-2.5/
         
@@ -189,6 +189,7 @@ navbar:
         
       - label: Couchbase Release Notes
         href: /couchbase-manual-2.5/cb-release-notes/
+        
           
   - label: Mobile
     subnav:

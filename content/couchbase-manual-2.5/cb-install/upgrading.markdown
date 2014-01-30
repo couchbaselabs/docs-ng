@@ -381,12 +381,14 @@ an individual nodes in a cluster remain the same:
     
     
 ## Upgrade notes for 2.5
-During upgrade to Couchbase Server 2.5, vBuckets re-shuffling occurs during the first swap rebalance 
-and when two (2) or more replica vBuckets are present. 
-This behavior is expected. 
-
-Prior to upgrading, if buckets are using any of the following reserved ports, change the port for the bucket. 
+This section covers upgrade behavior and important steps.
+### Prior to upgrade
+If buckets are using any of the following reserved ports, change the port for the bucket. 
 Otherwise, XDCR data encryption is unavailable. (This applies to both offline and online upgrades.) 
+
+<div class="notebox warning"><p>Important</p>
+<p>Ensure that the Secure Socket Layer (SSL) reserved ports are available prior to using XDCR data encryption.
+</p></div>
 
 With XDCR data encryption, the following ports are reserved:
 
@@ -397,9 +399,10 @@ Port | Description
 18091 | Internal REST HTTPS for SSL
 18092 | Internal CAPI HTTPS for SSL   
 
-<div class="notebox warning"><p>Important</p>
-<p>Ensure that these reserved ports are available prior to using XDCR data encryption.
-</p></div>
+
+
+### During upgrade
+If Couchbase Server 2.5 has more than two (2) replicas, the first swap rebalance takes additional time. This behavior is expected.
 
 
 
