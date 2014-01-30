@@ -103,6 +103,8 @@ Port | Description
 
 ## Fixed or resolved issues in 2.5
 
+[MB-10058](http://www.couchbase.com/issues/browse/MB-10058): With xmem implementation, mutations may be "dropped" if there are less than 10 memcached errors in the set-meta batch. 
+
 [MB-9953](http://www.couchbase.com/issues/browse/MB-9953): For XDCR, mutations are not replicating to the destination cluster. 
 
 [MB-9938](http://www.couchbase.com/issues/browse/MB-9938): In a DGM scenario, memcached disconnects when doing disk fetches.
