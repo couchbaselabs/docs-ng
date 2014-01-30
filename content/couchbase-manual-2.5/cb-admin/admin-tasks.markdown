@@ -3853,6 +3853,7 @@ The following is an example of an SSL certificate and where the certificate is o
 
 ####Create Cluster Reference
 The following is an example of the Create Cluster Reference pop-up.
+
 <img src="../images/xdcr-source-encrypt.png" alt="Create Cluster Reference" height="500">
 
 
