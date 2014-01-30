@@ -1,6 +1,6 @@
 
 # Couchbase Server Release Notes for 2.5 GA
-Couchbase Server 2.5 (January 2014) is minor release following 
+Couchbase Server 2.5 (February 2014) is minor release following 
 Couchbase Server 2.2. This includes some important new features and bug fixes.
 
 
