@@ -454,10 +454,10 @@ the IP and hostname configuration is correct both before the upgrade and after
 upgrading the software. See [Hostnames for Couchbase Server 2.0.1 and
 Earlier](#couchbase-getting-started-hostnames-pre2.0).
 
-###Mac OS X Upgrade Notes for 1.8.1 to 2.1+
+###Mac OS X Upgrade Notes for 1.8.1
 
 There is currently no officially supported upgrade installer for Mac OS X. If you
-want to migrate to 1.8.1 to 2.1+ on OS X, you must make a backup of your data
+want to migrate to 1.8.1 to a later Couchbase release on OS X, backup your data
 files with `cbbackup`, install the latest version, then restore your data with
 `cbrestore`. For more information, see [cbbackup
 tool](../cb-cli/#couchbase-admin-cmdline-cbbackup) and [cbrestore

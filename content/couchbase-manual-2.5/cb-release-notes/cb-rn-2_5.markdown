@@ -5,12 +5,11 @@ Couchbase Server 2.2. This includes some important new features and bug fixes.
 
 
 ## Enhancements in 2.5
+The new enhancements and feature for Couchbase 2.5 include:
 
-The new features for this release are for the Enterprise Edition only 
-and include:
-
-* Rack Awareness
-* XDCR data security
+* Rack Awareness (Enterprise Edition only)
+* XDCR data security (Enterprise Edition only)
+* Optimized connection management
 
 
 ### Rack Awareness feature
@@ -19,6 +18,8 @@ where each server group physically belongs to a rack or availability zone.
 This feature provides the ability to specify that active and corresponding 
 replica partitions be created on servers that are part of a separate rack or zone. 
 This increases reliability and availability in case entire racks or zones become unavailable. 
+
+See the following for more information about Rack Awareness:
 
 * For architecture and concept information about Rack Awareness and server groups, see  [Rack Awareness](../cb-admin/#cb-concepts-rack-aware).
 * For user interface information about managing Rack Awareness, see  [Managing Rack Awareness](../cb-admin/#cb-admin-tasks-rack-aware).
@@ -38,30 +39,7 @@ With the XDCR data security feature, the XDCR traffic can be secured by selectin
 XDCR encryption option and providing the remote cluster's certificate. 
 The certificate is a self-signed certificate used by SSL to initiate secure sessions.
 
-
-
-With XDCR data encryption, the following ports are reserved:
-
-Port | Description
------------|---------------
-11214 | Incoming SSL Proxy
-11215 | Internal Outgoing SSL Proxy
-18091 | Internal REST HTTPS for SSL
-18092 | Internal CAPI HTTPS for SSL   
-
-<div class="notebox bp"><p>Important</p>
-<p>Ensure that these reserved ports are available prior to using XDCR data encryption.
-</p></div>
-
-Prior to upgrading, if buckets are using any of these reserved ports, change the port for the bucket. 
-Otherwise, XDCR data encryption is unavailable. (This applies to both offline and online upgrades.) 
-
-
-<div class="notebox"><p>Upgrade Note</p> 
-<p>When upgrading to Couchbase Server 2.5, vBuckets re-shuffling occurs during the first swap rebalance 
-and when two (2) or more replica vBuckets are present. This behavior is expected.
-</p></div>
-
+See the following for more information about XDCR data encryption:
 
 * For architecture and concept information about XDCR and XDCR data encryption, see 
 [Cross Datacenter Replication](../cb-admin/#cb-concepts-xdcr) and 
@@ -76,7 +54,8 @@ and [Managing XDCR data encryption CLI](../cb-cli/#cb-cli-xdcr-data-encrypt).
 [XDCR REST API](../cb-rest-api/#couchbase-admin-restapi-xdcr) and 
 [Managing XDCR data encryption](../cb-rest-api/#cb-restapi-xdcr-data-encrypt).
 
-
+### Optimized connection management
+TBD 
 
 ## Upgrade notes for 2.5
 
@@ -136,7 +115,9 @@ To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-xx
 
 
 [MB-9992](http://www.couchbase.com/issues/browse/MB-9992): **vBucket issue**
-: Memory is not released after a flush.
+: Under certain circumstances the ep-engine flush api may not completely free up all memory in a bucket. This API has not been supported in the past few releases. Note: This does not affect the REST API `flush` command. 
+
+: **Workaround**: Delete and recreate the bucket.
 
 
 [MB-9858](http://www.couchbase.com/issues/browse/MB-9858): **vBucket issue**
