@@ -1,4 +1,7 @@
- # Monitoring Couchbase
+
+<a id="monitoring-couchbase"></a>
+
+# Monitoring Couchbase
 
 There are a number of different ways in which you can monitor Couchbase. You
 should be aware however of some of the basic issues that you will need to know
@@ -12,7 +15,7 @@ There are several different server processes that constantly run in Couchbase
 Server whether or not the server is actively handling reads/writes or handling
 other operations from a client application. Right after you start up a node, you
 may notice a spike in CPU utilization, and the utilization rate will plateau at
-some level greater than zero. The following describes the ongoing processes that
+some level greater than zero. The following describes t	he ongoing processes that
 are running on your node:
 
  * **beam.smp on Linux: erl.exe on Windows**

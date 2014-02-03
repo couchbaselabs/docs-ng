@@ -3788,29 +3788,31 @@ every node within the cluster at each destination.
 <a id="cb-admin-tasks-xdcr-encrypt">
 ### Managing XDCR data encryption
 
-The cross data center (XDCR) data security feature (Enterprise Edition only)provides 
+The cross data center (XDCR) data security feature (Enterprise Edition only) provides 
 secure cross data center replication using Secure Socket Layer (SSL) data encryption. 
 The data replicated between clusters can be encrypted in both uni-directional and 
-bi-directional topologies. With the XDCR data encryption feature, 
-the XDCR traffic from the source cluster is secured by enabling the XDCR encryption option, 
-providing the destination cluster's certificate, and then replicating. 
-The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+bi-directional replications.  
 
-Anytime a destination cluster's certificate is regenerated, corresponding source cluster(s) must use the destination cluster's regenerated certificate for replication. For XDCR replication to occur when XDCR data encryption is enable, the source cluster must be updated with the destination cluster's regenerated certificate.
-
-For example, if source clusters A, B, C use XDCR data encryption to replicate to destination cluster D each of the source clusters must be updated whenever the certificate on the destination cluster D is regenerated (changed).
-
-<div class="notebox">
-<p>Note</p>
-<p>If a destination cluster's certificate is regenerated and the source cluster(s) are not updated with the new certificate, replication stops.
-</p>
-</div>
 
 #### XDCR data encryption prerequisites
 
-* Both source and destination clusters must support SSL network connections.
 * Couchbase servers on both source and destination clusters must have Couchbase 2.5 Enterprise Edition and above installed.
-*  The source cluster must use the destination cluster's certificate. If the destination cluster's certificate is regenerated, source cluster(s) must be updated with the new certificate.
+*  The source cluster must use the destination cluster's certificate. The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+*  The reserved ports for XDCR data encryption must be available.
+
+<div class="notebox warning"><p>Important</p>
+<p>Ensure that the Secure Socket Layer (SSL) reserved ports are available prior to using XDCR data encryption. Otherwise, XDCR data encryption is unavailable.
+</p></div>
+
+With XDCR data encryption, the following ports are reserved:
+
+Port | Description
+-----------|---------------
+11214 | Incoming SSL Proxy
+11215 | Internal Outgoing SSL Proxy
+18091 | Internal REST HTTPS for SSL
+18092 | Internal CAPI HTTPS for SSL   
+
 
 #### To enable XDCR data security
 To enable XDCR data security using SSL and create replication:
@@ -3818,9 +3820,9 @@ To enable XDCR data security using SSL and create replication:
 1. On the destination cluster, navigate to Settings > Cluster and copy the certificate.
 	* (Optional) To regenerate the existing destination certificate, click **Regenerate** before copying.
 2. On the source cluster, select the XDCR tab.
-3. Select Remote Clusters > Create Cluster Reference, to verify or create the cluster reference.
+3. On the Remote Clusters panel, click **Create Cluster Reference**  to verify or create the cluster reference.
 4. Select the **Enable Encryption** box and paste the certificate in the provided area and click **Save**.
-5. From Ongoing Replications > Create Replication, provide the cluster and bucket information and click **Replicate**.
+5. On the Ongoing Replications panel, click **Create Replication**, provide the cluster and bucket information, and click **Replicate**.
 
 
 #### To change XDCR data encryption
@@ -3830,48 +3832,49 @@ XDCR data encryption is updated. To change XDCR data encryption:
 1. On the destination cluster, navigate to Settings > Cluster.
 1. Click **Regenerate**  and copy the certificate.
 1. On the source cluster, select the XDCR tab.
-1. Select Remote Clusters > Create Cluster Reference and for the destination cluster, click **Edit**.
-1. Select the **Enable Encryption** box and paste the regenerated certificate in the provided area and click **Save**.
+1. On the **Remote Clusters** panel, for the destination cluster, click **Edit**.
+1. Paste the regenerated certificate in the provided area and click **Save**.
+
+Anytime a destination cluster's certificate is regenerated, the corresponding source cluster(s) must be updated with the regenerated certificate.
+
+For example, if source clusters A, B, and C use XDCR data encryption to replicate to destination cluster D, each of the source clusters must be updated whenever the certificate on the destination cluster D is regenerated (changed).
+
+<div class="notebox warning">
+<p>Important</p>
+<p>If a destination cluster's certificate is regenerated and the source cluster(s) are not updated with the new certificate, replication stops.
+</p>
+</div>
 
  
-####Destination SSL Certificate
+####SSL certificate
+The following is an example of an SSL certificate and where the certificate is obtained on the cluster.
 
 <img src="../images/xdcr-remote-cert3.png" alt="Remote SSL Certificate" width="700">
 
 ####Create Cluster Reference
+The following is an example of the Create Cluster Reference pop-up.
 
 <img src="../images/xdcr-source-encrypt.png" alt="Create Cluster Reference" height="500">
 
 
-#### Certificate example
-
-The following is an example of a certificate:
+#### XDCR data security error messages
+When creating the cluster reference, if the SSL certificates are not the same on the destination and source 
+clusters, the following error message displays:
 
 ```
------BEGIN CERTIFICATE-----
-MIICmDCCAYKgAwIBAgIIE0cwVgpNPEAwCwYJKoZIhvcNAQEFMAwxCjAIBgNVBAMT
-ASowHhcNMTMwMTAxMDAwMDAwWhcNNDkxMjMxMjM1OTU5WjAMMQowCAYDVQQDEwEq
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArHU82H7JRDBY3Iji6XDU
-SsfMHfHusTAvgLe/uwX47zI9hJDmH1OUCUxBXBCNtSlFNBdNfTKSINH0ka3mw2St
-qEEartPrZbbPWRLL4sAcAgEP9A8QST9xtsO43Qa7GsPQrdnRObY7erHL+wzOgVqT
-DobfXHvJMBxBJH31sAbUkN502LQCs03hlvs31lt+b8NwXOzD4ChDi6MmpkQdGX95
-CIag8G78AejEFycwcbIStt16j5Qbe7M974xMhFNbm1VHjpiVqCYxjzfyLGk6q4g8
-uh7KSuZ9dWFTRZgwy5tl2tpkbEbvpS7qtG1/v6Xu+h8ilw4S08MwCIhaegumwya/
-7QIDAQABowIwADALBgkqhkiG9w0BAQUDggEBAFHG7B+h3zT/YBv/E1MS8EHqfb+q
-FxwSDffl8cMKiVJ5BZZ56cXpaP1drU22zUVKPpaCvSmgJ1un7Pa56GSb0Dd+Dgid
-d1UJgR4DIu6bnFi4N63itabsiCHsux99zg/IJ+ZqZf+G8fVBWI9kJeK6dP98sSTF
-0Ze9SkJ0oo2JQeUVurakgU7IpxIilZK6UNO7q8y+bIqCgeGP+neERjrXKlnSjET2
-OCI07nPSIwcw2DYcVcs4g0t2g1u9EMXXYqB1OBTQBrY8BOUN08U8uYFHfSntJhXY
-EZpXqp9H24QENjggh6xOv6lzpZbPvsIfB+T30ZkQpmH2nISHFwjb9kJOkEQ=
------END CERTIFICATE-----
+Attention - Got certificate mismatch while trying to send https request to HOST:18091
 ```
 
 
-#### XDCR data security error message
+If the SSL certificates become mismatched (for example, if the certificate on the destination cluster 
+is regenerated and the source cluster is not updated with the new certificate), vBucket replication stops 
+and the following error message displays:
 
 ```
-Invalid certificate and/or private key
+Error replicating vbucket <bucketNumber>. Please see logs for details.
 ```
+
+
 
 
 
@@ -3951,6 +3954,7 @@ To implement Rack Awareness, all servers in the cluster must be upgraded to Couc
 
 
 
+
 ### Rack Awareness Web Console
 
 The servers and server groups are displayed from the Server Nodes tab:
@@ -3969,7 +3973,7 @@ To create a server group:
 2. Click **Create Group** and provide a group name to the Add Group pop-up.
 3. Click **Create**.
 
-<img src="../images/CreateGroup.png" alt="Create Group" height="100">
+<img src="../images/CreateGroup.png" alt="Create Group">
 
 
 
@@ -3980,7 +3984,7 @@ To change a server group's name:
 2. Click **Edit Group**.
 3. Change the group name and **Save**.
 
-<img src="../images/EditGroup.png" alt="Rename Group" height="100">
+<img src="../images/EditGroup.png" alt="Rename Group">
 
 ### Deleting server groups
 To delete a server group, first remove all:
@@ -3998,13 +4002,14 @@ To add a server:
 3. Click **Add Server**.
 4. From the Server Nodes tab, click **Rebalance**.
 
-<img src="../images/NewServer.png" alt="Add Server" height="200">
+<img src="../images/NewServer.png" alt="Add Server" >
+
 ### Removing servers from server groups
 To remove a server from a server group:
 
-1. From the Server Nodes tab, click Remove for the server that you want to delete.
-2. Click Remove from the confirmation pop-up.
-3. From the Server Nodes tab, click Rebalance.
+1. From the Server Nodes tab, click **Remove** for the server that you want to delete.
+2. Click **Remove** from the confirmation pop-up.
+3. From the Server Nodes tab, click **Rebalance**.
 
 ### Moving servers between server groups
 To move a server from one group to another:
@@ -4014,7 +4019,7 @@ To move a server from one group to another:
 3. Click **Apply Changes**.
 4. From the Server Nodes tab, click **Rebalance**.
 
-
+<img src="../images/rack-aware-apply.png" alt="Apply changes to server group">
 
 
 <a id="couchbase-admin-tasks-changepath"></a>
