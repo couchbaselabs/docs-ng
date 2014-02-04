@@ -1,4 +1,6 @@
-# Appendix: Working with Operation Results
+# Working with Operation Results and Error Codes
+
+## Working with Operation Results
 
 The following sections provide details on working with the `IOperationResult`
 interface.
@@ -179,3 +181,55 @@ For more information on which API methods support ExecuteXXX variants, see the
 API reference.
 
 <a id="couchbase-sdk-net-json"></a>
+
+## Error Code Checking
+
+As previously discussed, the Couchbase .NET Client has two forms of CRUD methods: 
+those that return the primitive value (e.g. `bool`, `integer`, etc) of the result and 
+those that return an `IOperationResult` object. The former methods have a signature 
+that matches the operation's name (e.g. Increment(..)) and the latter methods have 
+a signature with a prefix of the "Execute" (e.g. ExecuteIncrement).
+
+The benefit of using the methods which return `IOperationResult` is that they give 
+you additional information of about the result of the operation which allows you to 
+handle specific error or failure cases or to determine what caused the error to occur. 
+Of major importance is the `Success`, `StatusCode`, `Message` and `Exception` fields.
+
+A description of each field:
+
+ * **Success** - returns Boolean true if operation was successful, otherwise false
+ * **StatusCode** - returns an integer value indicating the response status from the server 
+ or the IO portion of the client. There is also an enumeration describing the values and 
+ extension method that makes the conversion simple. 
+ * **Message** - a string describing the error that occurred
+ * **Exception** - the exception caused by the error
+
+Status Codes
+Perhaps the most important field is the `StatusCode` field. Here is a table with the numerical 
+value, enum value and description of each `StatusCode`:
+
+|  **Enum Value** |**Numerical**   |**Origin**   | **Description**  |
+|---|---|---|---|
+|  Success | 0  | Server  | Operation was successful |
+|  KeyNotFound | 1  | Server  | Key was not found on server |
+|  KeyExists | 2  | Server  | Key already exists on server |
+|  ValueToLarge | 3  | Server  | Value is to large  |
+|  InvalidArguments  |  4 | Server  | The operations arguments are invalid  |
+|  ItemNotStored | 5  | Server  | The item could not be stored  |
+|  IncrDecrOnNonNumericValue | 6  | Server  | An attempt was made to increment or decrement a non-numeric value – e.g. a string  |
+|  VBucketBelongsToAnotherServer | 7  | Server  | The VBucket the key is mapped too has been changed. Common during rebalance scenarios and operation should be retried  |
+|  AuthenticationError | 20  | Server  | SASL authentication has failed. Check the password or username of the server or bucket  |
+|  AuthenticationContinue | 21  | Server  | Used during SASL authentication  |
+|  InvalidRange | 22 | Server  | Invalid range was specified  |
+|  UnknownCommand | 81 | Server  | Operation was not recognized by server. Should never occur with a Couchbase supported client  |
+|  OutOfMemory | 82 | Server  | Server is out of memory. This is usually temporary, but should prompt further investigation  |
+|  NotSupported | 83 | Server  | A client attempted an operation that was not supported by the server  |
+|  InternalError | 84 | Server  | Server error state  |
+|  Busy  | 85 | Server  | Server is temporarily too busy. This may warrant a retry attempt  |
+|  TemporaryFailure  | 86 | Server |   |
+|  SocketPoolTimeout | 91 | Client | A timeout has occurred while attempting to retrieve a connection. This can happen during rebalance scenarios or during times of high throughput on the client. A retry attempt is warranted in this case |
+|  UnableToLocateNode | 92 | Client | Usually a temporary state of the client during rebalance/failover scenarios when a configuration change has occurred (server added or removed from cluster for example). A retry attempt is warranted in this case |
+|  NodeShutdown  | 93 | Client | Temporary client state during a configuration change when an operation is using the older state of the cluster. A retry attempt is warranted in this case  |
+|  OperationTimeout | 94 | Client | The 1.X client uses synchronous IO, If a connection is terminated by the server a timeout will occur after n seconds on the client if the current operation does not complete. A retry attempt is warranted in this case |
+
+Note the `StatusCode` enumeration is found within `Enyim.Caching` assembly: `Enyim.Caching.StatusCode`.
