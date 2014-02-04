@@ -4,7 +4,66 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
-<a id="couchbase-sdk-net-rn_1-3-1"></a>
+## Release Notes for Couchbase Client Library .NET 1.3.2 GA (4 February 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-2"></a>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-380">NCBC-380: Filtering on Compound Key with '+' Char Fails</a>
+ 
+    This fix adds methods for enabling url-encoding of HTTP request parameters when
+    making view requests. This allows for queries against keys that contain
+    special characters by ensuring that they are properly encoded.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-360">NCBC-360: Default connection timeout improperly set in SocketPoolConfiguration.cs</a>
+
+    This fixes a bug where the Default connection timeout property was set incorrectly in the 1.3.0 release.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-357">NCBC-357: Set TCP Keep Alives on Connections</a>
+
+    Enables TCP Keep-Alives on socket connections.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-358">NCBC-358: Sort nodes to reduce number server config changes</a>
+
+    When a server config update is signaled, the GetHashCode() method compares
+    the new config and the previous config to determine whether or not to recreate
+    the connection pool et al because the cluster has changed on the server. In
+    some cases the only change is to the order of the nodes. This fix orders the
+    node list before comparing so that the only 'real' changes result in a conn
+    pool reconfigure.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-368">NCBC-368: Randomize Bootstrap Node</a>
+
+    Randomizes the selection of the bootstrap node so that all clients do not
+    use the same node, which can cause "stampeding herd" and lopsided resource
+    utilization in large clusters or when cluster supports a large number of
+    clients. This ensures that boot-strapping is evenly distributed over all of the
+    urls in the configured boot-strap list. Note that the first 'good' node is
+    chosen as a bootstrapper.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-369">NCBC-369: ObjectDisposedException is not handled in PerformMultiGet</a>
+
+    Handles a case where an uncaught exception which could cause the host process to fail.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-359">NCBC-359 Allows Serializer customization</a>
+
+    This patch allows serializer customization by placeing a static field
+    on CouchbaseClientExtensions.JsonSerializerSettings that enables users of
+    the couchbase extension class to customize the serializer.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-375">NCBC-375: preferring ipv4-address</a>
+
+    If you configure a couchbase-server with hostname instead of ip (ipv4, you
+    can't enter an ipv6 address via web interface), the .net client library
+    refuses the connection. This fix ensures that the ipv4-address is chosen
+    over the ipv6-address when a connection is made.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-361">NCBC-361: Refactor Unit Test Project</a>
+
+    General improvements to the Couchbase.Tests project. This is an on-going effort.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-373">NCBC-373: .NET GetJSON operation throws System.ArgumentNullException</a>
+
+    Handles case when key is accessed without a value for a view.
 
 ## Release Notes for Couchbase Client Library .NET 1.3.1 GA (7 January 2014)
 
@@ -12,7 +71,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 <a id="couchbase-sdk-net-rn_1-3-1"></a>
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-334">NCBC-334: Add a post-merge git hook for updating the assembly version:<a/>
+* <a href="http://www.couchbase.com/issues/browse/NCBC-334">NCBC-334: Add a post-merge git hook for updating the assembly version:</a>
 
     This commit adds a git post-merge hook that runs after a pull by our build process, assuming that the remote repo has changes. It uses git-describe to get the latest revision since the last tag and includes the current SHA1. It then updates a **Version.txt** file and the `AssemblyInfo.cs` class with this information in the `AssemblyInformationalVersion` attribute. A future enhancement will update the AssemblyVersion and AssemblyFileVersion, add the git log (release notes) for the current release as an embedded resource, and expose a public method to access it.
 
