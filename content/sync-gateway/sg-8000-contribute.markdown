@@ -4,7 +4,7 @@ The Sync Gateway code is available on GitHub: <https://github.com/couchbase/sync
 
 ## Building From Source
 
-To build Sync Gateway from source, you must have [Go](http://golang.org) 1.1 or later installed on your computer. 
+To build Sync Gateway from source, you must have [Go](http://golang.org) 1.2 or later installed on your computer. 
 
 On Mac or Unix systems, you can build Sync Gateway from source as follows:
 
