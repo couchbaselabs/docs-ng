@@ -10,60 +10,52 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-380">NCBC-380: Filtering on Compound Key with '+' Char Fails</a>
  
-    This fix adds methods for enabling url-encoding of HTTP request parameters when
+    This fix adds methods for enabling URL encoding of HTTP request parameters when
     making view requests. This allows for queries against keys that contain
     special characters by ensuring that they are properly encoded.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-360">NCBC-360: Default connection timeout improperly set in SocketPoolConfiguration.cs</a>
 
-    This fixes a bug where the Default connection timeout property was set incorrectly in the 1.3.0 release.
+    This fixes a bug where the default connection timeout property was set incorrectly in the 1.3.0 release.
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-357">NCBC-357: Set TCP Keep Alives on Connections</a>
+* <a href="http://www.couchbase.com/issues/browse/NCBC-357">NCBC-357: Set TCP keep-alives on Connections</a>
 
-    Enables TCP Keep-Alives on socket connections.
+    Enables TCP keep-alives on socket connections.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-358">NCBC-358: Sort nodes to reduce number server config changes</a>
 
-    When a server config update is signaled, the GetHashCode() method compares
-    the new config and the previous config to determine whether or not to recreate
-    the connection pool et al because the cluster has changed on the server. In
-    some cases the only change is to the order of the nodes. This fix orders the
-    node list before comparing so that the only 'real' changes result in a conn
-    pool reconfigure.
+    When a server configuration update is signaled, the `GetHashCode()` method compares the new configuration and the previous configuration to determine whether it needs to recreate the connection pool because the cluster has changed on the server. In some cases the only change is to the order of the nodes. This fix orders the node list before doing the comparison so that only significant changes result in a connection pool reconfiguration.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-368">NCBC-368: Randomize Bootstrap Node</a>
 
     Randomizes the selection of the bootstrap node so that all clients do not
     use the same node, which can cause "stampeding herd" and lopsided resource
-    utilization in large clusters or when cluster supports a large number of
-    clients. This ensures that boot-strapping is evenly distributed over all of the
-    urls in the configured boot-strap list. Note that the first 'good' node is
+    utilization in large clusters or when a cluster supports a large number of
+    clients. This ensures that bootstrapping is evenly distributed over all of the
+    URLs in the configured bootstrap list. The first 'good' node is
     chosen as a bootstrapper.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-369">NCBC-369: ObjectDisposedException is not handled in PerformMultiGet</a>
 
-    Handles a case where an uncaught exception which could cause the host process to fail.
+    Handles a case where an uncaught exception can cause the host process to fail.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-359">NCBC-359 Allows Serializer customization</a>
 
-    This patch allows serializer customization by placeing a static field
-    on CouchbaseClientExtensions.JsonSerializerSettings that enables users of
+    This patch allows serializer customization by placing a static field
+    on `CouchbaseClientExtensions.JsonSerializerSettings` that enables users of
     the couchbase extension class to customize the serializer.
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-375">NCBC-375: preferring ipv4-address</a>
+* <a href="http://www.couchbase.com/issues/browse/NCBC-375">NCBC-375: preferring IPv4 address</a>
 
-    If you configure a couchbase-server with hostname instead of ip (ipv4, you
-    can't enter an ipv6 address via web interface), the .net client library
-    refuses the connection. This fix ensures that the ipv4-address is chosen
-    over the ipv6-address when a connection is made.
+    If you configure Couchbase Server with a host name instead of an IP address (IPv4 because you can't enter an IPv6 address via the Couchbase Web Console), the .NET client library refuses the connection. This fix ensures that the IPv4 address is chosen over the IPv6 address when a connection is made.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-361">NCBC-361: Refactor Unit Test Project</a>
 
-    General improvements to the Couchbase.Tests project. This is an on-going effort.
+    General improvements to the `Couchbase.Tests` project. This is an ongoing effort.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-373">NCBC-373: .NET GetJSON operation throws System.ArgumentNullException</a>
 
-    Handles case when key is accessed without a value for a view.
+    Handle the case where a key is accessed without a value for a view.
 
 ## Release Notes for Couchbase Client Library .NET 1.3.1 GA (7 January 2014)
 
