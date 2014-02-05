@@ -876,11 +876,20 @@ required vBucket, and read and write information from there.
 
 ![](../images/couchbase-060711-1157-32_img_281.jpg)
 
+
+In releases prior to Couchbase Server 2.5, a developer, via a client library of their choice, randomly selects a host from which to request an initial topology configuration. Any future changes to the cluster map following the initial bootstrap are based on the NOT_MY_VBUCKET response from the server. This connection is made to port 8091 and is based on an HTTP connection. 
+
+
+Starting with Couchbase Server 2.5, client libraries query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities.
+
+<div class="notebox"><p>Note</p>
+<p>This change is only applicable to Couchbase type buckets (not memcached buckets). An error is returned if a configuration request is received on port 8091.
+</p></div> 
+
 See also [vBuckets](http://dustin.github.com/2010/06/29/memcached-vbuckets.html)
 for an in-depth description.
 
 <a id="couchbase-deployment-standaloneproxy"></a>
-
 ### Client-side (standalone) proxy
 
 If a smart client is not available for your chosen platform, you can deploy a

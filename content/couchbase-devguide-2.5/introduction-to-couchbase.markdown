@@ -117,9 +117,8 @@ for organizing, managing and analyzing data storage. As an application developer
 you will most likely create buckets for your development and production
 environment.
 
-For more information about data buckets in Couchbase Server, and how to create
-them, see [Using Data Buckets](bucket-general-function) and the [Couchbase Server
-Manual](http://docs.couchbase.com/couchbase-manual-2.5).
+For more information about data buckets in Couchbase Server and how to create
+them, see [About Data Buckets](#bucket-general-function) and [Data storage](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#couchbase-introduction-architecture-buckets) in the Couchbase Server Manual.
 
 <a id="keys-documents"></a>
 

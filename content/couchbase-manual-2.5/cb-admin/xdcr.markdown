@@ -296,11 +296,13 @@ enabling the XDCR encryption option, providing the destination cluster's certifi
 The certificate is a self-signed certificate used by SSL to initiate secure sessions.
 
 
-The data encryption is established between the source and destination clusters. 
+Data encryption is established between the source and destination clusters. 
 Since data encryption is established at the cluster level, 
-all vBuckets that are selected for replicated on the destination cluster are data encrypted. 
-For vBuckets that need to be replicated without data encryption, establish a second XDCR destination cluster 
+all buckets that are selected for replicated on the destination cluster are data encrypted. 
+For buckets that need to be replicated without data encryption, establish a second XDCR destination cluster 
 without XDCR data encryption enabled.
+
+<img src="../images/xdcr-ssl.png" width="300">
 
 <div class="notebox"><p>Important</p>
 <p>Both data encrypted and non-encrypted replication can not occur between the same XDCR source and
