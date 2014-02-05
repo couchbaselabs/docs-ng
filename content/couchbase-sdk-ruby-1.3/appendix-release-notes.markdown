@@ -9,14 +9,14 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **Fixes in 1.3.5**
 
-* RCBC-159, RCBC-152 Honor the :environment constructor argument
-	Issues: [RCBC-152](http://www.couchbase.com/issues/browse/RCBC-152)
-	Issues: [RCBC-159](http://www.couchbase.com/issues/browse/RCBC-159)
+* Honor the :environment constructor argument.
+
+	Issues: [RCBC-152](http://www.couchbase.com/issues/browse/RCBC-152), [RCBC-159](http://www.couchbase.com/issues/browse/RCBC-159)
 
 * Allow inheritance from `Couchbase::Bucket`. It wasn't possible to
-  create a view with subclass of the `Couchbase::Bucket`.
+  create a view with subclass of the `Couchbase::Bucket` class.
 
-* Ensure that an exception raised early will not prevent the finalizer
+* Ensure that an exception raised early does not prevent the finalizer
   from being called in the underlying client being constructed. One
   example situation where this could occur:
 
