@@ -9,9 +9,12 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
 ## Release Notes for Couchbase Node.js Client Library 1.2.1 GA (4 February 2014)
 
-**New Features and Behaviour Changes in 1.2.1**
+**New Features and Behavior Changes in 1.2.1**
 
- * Added a mock version of Couchnode for easier testing. * Make total_rows available from view requests.  * Added initial experimental N1QL querying support. * Minor internal refactoring and bug fixes.
+ * Added a mock version of Couchnode for easier testing.
+ * Made `total_rows` available from view requests. 
+ * Added initial experimental N1QL querying support.
+ * Minor internal refactoring and bug fixes.
 
 <a id="couchbase-sdk-node-rn_1-2-0"></a>
 
