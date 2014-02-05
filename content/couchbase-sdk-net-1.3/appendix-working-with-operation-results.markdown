@@ -1,17 +1,15 @@
 # Working with Operation Results and Error Codes
 
-## Working with Operation Results
+The following sections provide details about working with the `IOperationResult` interface and the error codes it returns.
 
-The following sections provide details on working with the `IOperationResult`
-interface.
+## Working with operation results
 
-`CouchbaseClient` 's standard CRUD operations return `Boolean` values. When
+
+The standard `CouchbaseClient` CRUD operations return `Boolean` values. When
 exceptions or failures occur, they are swallowed and `false` is returned.
 
 While there might be scenarios where the cause of a failure is not important
-(e.g., non-persistent cache), it is likely that access to error information is
-necessary. To that end, the `CouchbaseClient` provides a set of complimentary
-ExecuteXXX methods, where XXX is the name of a standard CRUD operation.
+(for example, nonpersistent cache), sometimes you might want to access detailed error information. To that end, `CouchbaseClient` provides a set of complementary ExecuteXXX methods, where XXX is the name of a standard CRUD operation. The following example shows both forms of the method for the `Get` operation:
 
 
 ```
@@ -21,7 +19,7 @@ var result = client.ExecuteGet("foo"); //returns an IOperationResult
 ```
 
 All ExecuteXXX methods return an instance of an implementation of the
-`IOperationResult` interface.
+`IOperationResult` interface.:
 
 
 ```
@@ -39,8 +37,7 @@ public interface IOperationResult
 }
 ```
 
-For each of the ExecuteXXX methods, a typical use pattern would be to
-interrogate the possible error values on failure.
+For each of the ExecuteXXX methods, a typical use pattern is to interrogate the possible error values on failure, as shown in the following example:
 
 
 ```
@@ -182,20 +179,15 @@ API reference.
 
 <a id="couchbase-sdk-net-json"></a>
 
-## Error Code Checking
+## Checking error codes
 
-As previously discussed, the Couchbase .NET Client has two forms of CRUD methods: 
-those that return the primitive value (e.g. `bool`, `integer`, etc) of the result and 
-those that return an `IOperationResult` object. The former methods have a signature 
-that matches the operation's name (e.g. Increment(..)) and the latter methods have 
-a signature with a prefix of the "Execute" (e.g. ExecuteIncrement).
+The Couchbase .NET Client uses the following types of CRUD methods: 
 
-The benefit of using the methods which return `IOperationResult` is that they give 
-you additional information of about the result of the operation which allows you to 
-handle specific error or failure cases or to determine what caused the error to occur. 
-Of major importance is the `Success`, `StatusCode`, `Message` and `Exception` fields.
+* Methods that return the primitive value of the result (for example,`bool` or `integer`) . The signature of these methods matches the operation's name (for example, Increment(..)).
 
-A description of each field:
+* Methods that return an `IOperationResult` object. The signature of these methods begins with the prefix "Execute" (for example, ExecuteIncrement).
+
+The benefit of using the methods that return `IOperationResult` is that they give you additional information of about the result of the operation that enables you to handle specific error or failure cases or to determine what caused the error to occur. The most important fields in the `IOperationResult` object are:
 
  * **Success** - returns Boolean true if operation was successful, otherwise false
  * **StatusCode** - returns an integer value indicating the response status from the server 
@@ -204,11 +196,9 @@ A description of each field:
  * **Message** - a string describing the error that occurred
  * **Exception** - the exception caused by the error
 
-Status Codes
-Perhaps the most important field is the `StatusCode` field. Here is a table with the numerical 
-value, enum value and description of each `StatusCode`:
+The following table lists the enumeration name and corresponding numerical value, origin of the value, and description of each `StatusCode`:
 
-|  **Enum Value** |**Numerical**   |**Origin**   | **Description**  |
+|  **Enumeration** |**Value**   |**Origin**   | **Description**  |
 |---|---|---|---|
 |  Success | 0  | Server  | Operation was successful |
 |  KeyNotFound | 1  | Server  | Key was not found on server |
@@ -216,9 +206,9 @@ value, enum value and description of each `StatusCode`:
 |  ValueToLarge | 3  | Server  | Value is to large  |
 |  InvalidArguments  |  4 | Server  | The operations arguments are invalid  |
 |  ItemNotStored | 5  | Server  | The item could not be stored  |
-|  IncrDecrOnNonNumericValue | 6  | Server  | An attempt was made to increment or decrement a non-numeric value – e.g. a string  |
-|  VBucketBelongsToAnotherServer | 7  | Server  | The VBucket the key is mapped too has been changed. Common during rebalance scenarios and operation should be retried  |
-|  AuthenticationError | 20  | Server  | SASL authentication has failed. Check the password or username of the server or bucket  |
+|  IncrDecrOnNonNumericValue | 6  | Server  | An attempt was made to increment or decrement a non-numeric value Â– e.g. a string  |
+|  VBucketBelongsToAnotherServer | 7  | Server  | The vBucket the key is mapped to has been changed. Common during rebalance scenarios and operation should be retried  |
+|  AuthenticationError | 20  | Server  | SASL authentication has failed. Check the password or user name of the server or bucket  |
 |  AuthenticationContinue | 21  | Server  | Used during SASL authentication  |
 |  InvalidRange | 22 | Server  | Invalid range was specified  |
 |  UnknownCommand | 81 | Server  | Operation was not recognized by server. Should never occur with a Couchbase supported client  |
@@ -232,4 +222,4 @@ value, enum value and description of each `StatusCode`:
 |  NodeShutdown  | 93 | Client | Temporary client state during a configuration change when an operation is using the older state of the cluster. A retry attempt is warranted in this case  |
 |  OperationTimeout | 94 | Client | The 1.X client uses synchronous IO, If a connection is terminated by the server a timeout will occur after n seconds on the client if the current operation does not complete. A retry attempt is warranted in this case |
 
-Note the `StatusCode` enumeration is found within `Enyim.Caching` assembly: `Enyim.Caching.StatusCode`.
+You can find the `StatusCode` enumeration within `Enyim.Caching` assembly: `Enyim.Caching.StatusCode`.
