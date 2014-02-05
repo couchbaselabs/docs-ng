@@ -14,11 +14,11 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 	Issues: [RCBC-152](http://www.couchbase.com/issues/browse/RCBC-152), [RCBC-159](http://www.couchbase.com/issues/browse/RCBC-159)
 
 * Allow inheritance from `Couchbase::Bucket`. It wasn't possible to
-  create a view with subclass of the `Couchbase::Bucket` class.
+  create a view with a subclass of the `Couchbase::Bucket` class.
 
 * Ensure that an exception raised early does not prevent the finalizer
-  from being called in the underlying client being constructed. One
-  example situation where this could occur:
+  from being called in the underlying client being constructed. Here's an
+  example of a situation where this could occur:
 
         class Couchbase::Bucket
           def initialize(*args)
