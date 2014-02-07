@@ -3922,11 +3922,7 @@ address range. You will also need to ensure that the security also includes the
 right port and IP addresses for the remainder of your cluster to allow
 communication between the nodes within the cluster.
 
-Node Group           | Ports                                  | IP Addresses         
----------------------|----------------------------------------|----------------------
-Nodes within cluster | 4369, 8091, 8092,9, 11210, 21100-21199 | IP of cluster nodes  
-XDCR Nodes           | 8091, 8092                             | IP of remote clusters
-
+For more information about reserved Couchbase ports, see [Network ports](../cb-install/#table-couchbase-network-ports) in [Getting started](../cb-install/#couchbase-getting-started). 
 For more information in general about using Couchbase Server in the cloud, see
 [Using Couchbase in the Cloud](#couchbase-bestpractice-cloud).
 

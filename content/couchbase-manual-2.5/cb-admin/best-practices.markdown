@@ -534,37 +534,10 @@ can be de/selected by clicking on the `Configure View` link at the top of the
 
 ## Couchbase behind a secondary firewall
 
-If you are deploying Couchbase behind a secondary firewall, you should open the
-ports that Couchbase Server uses for communication. In particular, the following
-ports should be kept open: 11211, 11210, 4369, 8091, 8092, and the port range
-from 21100 to 21199.
+If Couchbase is being deployed behind a secondary firewall, ensure that the reserved 
+Couchbase network ports are open. For more information about the ports that Couchbase Server uses, see [Network ports](../cb-install/#network-ports).
 
- * Port 11210
 
-   If you're using smart clients or client-side Moxi from outside the second level
-   firewall, also open up port 11210 (in addition to the above port 8091), so that
-   the smart client libraries or client-side Moxi can directly connect to the data
-   nodes.
-
- * Port 8091
-
-   If you want to use the web admin console from outside the second level firewall,
-   also open up port 8091 (for REST/HTTP traffic).
-
- * Port 8092
-
-   Access to views is provided on port 8092; if this port is not open, you won't be
-   able to run access views, run queries, or update design documents, not even
-   through the Web Admin Console.
-
- * Port 11211
-
-   The server-side Moxi port is 11211. Pre-existing Couchbase and memcached
-   (non-smart) client libraries that are outside the second level firewall would
-   just need port 11211 open to work.
-
-Nodes within the Couchbase Server cluster need all the above ports open to work:
-11211, 11210, 4369, 8091, 8092, and the port range from 21100 to 21199
 
 <a id="couchbase-bestpractice-cloud"></a>
 

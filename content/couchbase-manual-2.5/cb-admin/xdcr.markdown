@@ -209,7 +209,7 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 ## XDCR behavior and limitations
 
-### XDCR replication via Memcached Protocol
+### XDCR replication via memcached protocol
 
  XDCR can
    replicate data through the memcached protocol at a destination cluster. 
@@ -245,32 +245,35 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
 
 ### XDCR and network and system outages
 
-    * XDCR is resilient to intermittent network failures. In the event that the
-      destination cluster is unavailable due to a network interruption, XDCR will
-      pause replication and will then retry the connection to the cluster every 30
-      seconds. Once XDCR can successfully reconnect with a destination cluster, it
-      will resume replication. In the event of a more prolonged network failure where
-      the destination cluster is unavailable for more than 30 seconds, a source
-      cluster will continue polling the destination cluster which may result in
-      numerous errors over time. In this case, you should delete the replication in
-      Couchbase Web Console, fix the system issue, then re-create the replication. The
-      new XDCR replication will resume replicating items from where the old
-      replication had been stopped.
+XDCR is resilient to intermittent network failures. In the event that the 
+destination cluster is unavailable due to a network interruption, XDCR 
+pauses replication and then retries the connection to the cluster every 30 
+seconds. Once XDCR can successfully reconnect with a destination cluster, it 
+resumes replication. In the event of a more prolonged network failure where 
+the destination cluster is unavailable for more than 30 seconds, a source 
+cluster continues polling the destination cluster which may result in 
+numerous errors over time. 
 
-    * Your configurations will be retained over host restarts and reboots. You do not
-      need to re-configure your replication configuration in the event of a system
-      failure.
+In case of a network interruption:
+
+1. Delete the replication in 
+the Web Console.
+1. Fix the system issue.
+1. Re-create the replication. 
+
+The new XDCR replication will resume replicating items from where the old 
+replication had been stopped. 
+
+Your configurations is retained over host restarts and reboots. 
+The replication configuration does not need to be re-configured 
+in the event of a system failure.
 
 ### XDCR document handling
 
-    * XDCR does not replicate views and view indexes; you must manually exchange view
-      definitions between clusters and re-generate the index on the destination
-      cluster.
+XDCR does not replicate views and view indexes. To replicate views and view indexes,  manually exchange view definitions between clusters and re-generate the index on the destination cluster.
 
-    * Non UTF-8 encodable document IDs on the source cluster are automatically
-      filtered out and logged and are not transferred to the remote cluster. If you
-      have any non UTF-8 keys you will see warning output in the `xdcr_error.*` log
-      files along with a list of all non-UTF-8 keys found by XDCR.
+Non UTF-8 encodable document IDs on the source cluster are automatically 
+filtered out and logged. The IDs are not transferred to the remote cluster. If there are any non UTF-8 keys, the warning output, `xdcr_error.*`  displays in the log files along with a list of all non-UTF-8 keys found by XDCR.
 
 ### XDCR flush requests
 

@@ -41,6 +41,11 @@ Availability Zone or Region
 To improve data availability, configure servers into groups where all of the servers in a server group are in a single rack. With more than one rack, replica partitions of a group are distributed among servers in other server groups. In the event that a whole rack goes down, since the replica partitions are on separate racks, data is available.
 
 
+<div class="notebox bp"><p>Important</p>
+<p>Couchbase does not automatically failover a server group. Auto-failover only fails over one (1) node. Thereafter, the number of auto failover nodes can be reset to zero (0). If a server group is down, the nodes can be manually failed over.
+</p></div>
+
+
 ## Replica and replication with server groups
 By design, Couchbase Server evenly distributes data of active and replica vBuckets across the cluster for cluster performance and redundancy purposes.
 
