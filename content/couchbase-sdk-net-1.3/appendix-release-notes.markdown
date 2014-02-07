@@ -8,6 +8,13 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 <a id="couchbase-sdk-net-rn_1-3-2"></a>
 
+* <a href="http://www.couchbase.com/issues/browse/NCBC-381">Ensure that Nuget installs Newtonsoft.NET 4.5.11</a>
+
+    If this is not specified in the .nuspec file, Nuget will attempt to
+    install the lastest version 6.0.0 which is not compatible with view
+    calls using 1.3.2 version of the Couchbase .NET SDK. These incompatible
+    issues will be resolved in a future release, likely 1.3.3.
+
 * <a href="http://www.couchbase.com/issues/browse/NCBC-380">NCBC-380: Filtering on Compound Key with '+' Char Fails</a>
  
     This fix adds methods for enabling URL encoding of HTTP request parameters when
@@ -47,7 +54,10 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-375">NCBC-375: preferring IPv4 address</a>
 
-    If you configure Couchbase Server with a host name instead of an IP address (IPv4 because you can't enter an IPv6 address via the Couchbase Web Console), the .NET client library refuses the connection. This fix ensures that the IPv4 address is chosen over the IPv6 address when a connection is made.
+    If you configure Couchbase Server with a host name instead of an IP address 
+    (IPv4 because you can't enter an IPv6 address via the Couchbase Web Console), the 
+    .NET client library refuses the connection. This fix ensures that the IPv4 address 
+    is chosen over the IPv6 address when a connection is made.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-361">NCBC-361: Refactor Unit Test Project</a>
 
