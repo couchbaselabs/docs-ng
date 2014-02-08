@@ -1,3 +1,8 @@
+---
+title: Common Patterns
+ng: true
+---
+
 # Common Patterns
 
 <a id="couchbase-sdk-ruby-timed-operations"></a>

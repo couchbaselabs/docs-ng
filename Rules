@@ -45,6 +45,9 @@ compile '*' do
     when 'markdown'
       filter :highlight_code
       filter :rdiscount, :extensions => [:smart, :autolink]
+      if item[:ng]
+        filter :extract_toc, :anchors => true
+      end
     else
       filter :erb
       filter :extract_toc, :anchors => true
@@ -60,8 +63,14 @@ route '*' do
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
   else
+    parts = File.split(item.identifier).compact
+    if item[:extension] == 'markdown'
+      # Strip leading number
+      parts[-1].gsub!(/^\d+-/, '')
+    end
     # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
+    parts.push('index.html')
+    File.join(parts)
   end
 end
 

@@ -1,3 +1,8 @@
+---
+title: Release Notes
+ng: true
+---
+
 # Appendix: Release Notes
 
 The following sections provide release notes for individual release versions of
@@ -188,4 +193,3 @@ Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
     Couchbase.connect(:default_format => :marshal)
     Couchbase.connect(:transcoder => Couchbase::Transcoder::Marshal)
     ```
-

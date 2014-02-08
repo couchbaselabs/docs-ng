@@ -1,6 +1,7 @@
-# Introduction
-
-This guide provides information for developers who want to use the Couchbase Ruby SDK to build applications that use Couchbase Server.
+---
+title: Getting Started
+ng: true
+---
 
 # Getting Started
 
@@ -40,8 +41,6 @@ everything, there is plenty of documentation available:
    API](http://couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi.html),
    for creating and managing Couchbase resources.
 
-<a id="installing_the_couchbase_client_libraries"></a>
-
 ## Installing the Couchbase Client Libraries
 
 Before you start you should have a working Ruby environment up and running. We
@@ -61,8 +60,8 @@ Note that the libcouchbase dependency is not needed if you are on Microsoft Wind
 Once you have installed libcouchbase, you are then ready to install the most recent client using rubygems.
 
 ```
-shell> gem install couchbase 
-Fetching: couchbase-1.2.0.gem (100%) 
+shell> gem install couchbase
+Fetching: couchbase-1.2.0.gem (100%)
 Building native extensions.  This could take a while... Successfully installed
 couchbase-1.2.0 1 gem installed
 ```
@@ -192,7 +191,7 @@ There are also additional commands mutation commands, which do make sense when
 you are working in `:plain` mode, because they are implemented on the server and
 not JSON-aware. But still they might be useful in your application:
 
-|Command | Description|  
+|Command | Description|
 | ------	| ------	|
 |`prepend`   | Prepend given string to the value. The concatenation is done on the server side.
 |`append`    | Append given string to the value. The concatenation is also done on the server side.
@@ -270,7 +269,7 @@ of the query will contain. All supported options are available as items in
 options Hash accepted either by the view method or by `#each` iterator on the
 view. Here are some of them:
 
-|Option|Description|  
+|Option|Description|
 | ------	| ------	|
 |include\_docs (Boolean) | Used to define if the complete documents should be fetched with the result ( `false` by default). Note this will actually fetch the document itself from the cache, so if it has been changed or deleted you may not receive a document that matches the view, or any at all.
 |reduce (Boolean)        | Used to enable/disable the reduce function (if there is one defined on the server). `true` by default.
