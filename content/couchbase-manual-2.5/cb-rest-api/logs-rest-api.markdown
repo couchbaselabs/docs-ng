@@ -38,10 +38,10 @@ To retrieve a specific log file, perform a GET on the `sasl_logs` endpoint and p
 
 ```
 curl -v -X GET -u Administrator:password
- http://127.0.0.1:8091/sasl_logs/<categoryName>
+ http://127.0.0.1:8091/sasl_logs/<logName>
 ```
 
-Where the _categoryName_ is one of the following:
+Where the _logName_ is one of the following log types:
 
 * babysitter
 * couchdb

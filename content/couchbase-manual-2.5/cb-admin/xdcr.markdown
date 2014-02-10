@@ -208,42 +208,37 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
 <a id="couchbase-admin-tasks-xdcr-functionality"></a>
 
 ## XDCR behavior and limitations
-
+This section discusses XDCR behavior and associated with various topics such as replication via memcached protocol, network or system outages, document handling and flush requests.
 ### XDCR replication via memcached protocol
 
- XDCR can
-   replicate data through the memcached protocol at a destination cluster. 
-   This new mode utilizes highly efficient memcached protocol on the destination cluster for replicating changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination cluster and also improves XDCR scalability. 
+ XDCR can replicate data through the memcached protocol at a destination cluster.  This new mode utilizes highly efficient memcached protocol on the destination cluster for replicating changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination cluster and also improves XDCR scalability. 
    
-   In earlier versions of Couchbase Server only the REST protocol could be used for replication. 
-   On a source cluster a work process batched multiple
-   mutations and sent the batch to a destination cluster using a REST interface.
-   The REST interface at the destination node unpacked the batch of mutations and
-   sent each mutation via a single memcached command. The destination cluster then
-   stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies
-   on the REST API known as CAPI.
+In earlier versions of Couchbase Server only the REST protocol could be used for replication. On a source cluster a work process batched multiple 
+mutations and sent the batch to a destination cluster using a REST interface. 
+The REST interface at the destination node unpacked the batch of mutations and 
+sent each mutation via a single memcached command. The destination cluster then 
+stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies 
+on the REST API known as CAPI.
 
-   This second mode available for XDCR is known as *XMEM mode XDCR* and will
-   bypass the REST interface and replicates mutations via the memcached protocol at
-   the destination cluster:
+This second mode available for XDCR is known as *XMEM mode XDCR* which 
+bypasses the REST interface and replicates mutations via the memcached protocol at 
+the destination cluster:
 
 
-   ![](../images/XDCR_xmem.png)
+![](../images/XDCR_xmem.png)
 
-   In this mode, every replication process at a source cluster will deliver
-   mutations directly via the memcached protocol on the remote cluster. This
-   additional mode will not impact current XDCR architecture, rather it is
-   implemented completely within the data communication layer used in XDCR. Any
-   external XDCR interface remains the same. The benefit of using this mode is
-   performance: this will increase XDCR throughput, improve XDCR scalability, and
-   reduce CPU usage at destination clusters during replication.
+In this mode, every replication process at a source cluster delivers 
+mutations directly via the memcached protocol on the remote cluster. This 
+additional mode does not impact current XDCR architecture, rather it is 
+implemented completely within the data communication layer used in XDCR. Any 
+external XDCR interface remains the same. The benefit of using this mode is 
+performance by increasing XDCR throughput, improving XDCR scalability, and 
+reducing CPU usage at destination clusters during replication.
 
-   You can configure XDCR to operate via the new XMEM mode, which is the default or use CAPI
-   mode. To do so, you use Couchbase Web Console or the REST API and change the setting for
-   `xdcr_replication_mode`, see [Changing Internal XDCR
-   Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
+XDCR can be configured to operate via the new XMEM mode, which is the default or with CAPI mode. To change the replication mode, change the setting for `xdcr_replication_mode` via the Web Console or REST API. For more information, see 
+[Changing Internal XDCRSettings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
 
-### XDCR and network and system outages
+### XDCR and network or system outages
 
 XDCR is resilient to intermittent network failures. In the event that the 
 destination cluster is unavailable due to a network interruption, XDCR 
@@ -281,6 +276,28 @@ filtered out and logged. The IDs are not transferred to the remote cluster. If t
    remote cluster. Performing a flush operation will only delete data on the local
    cluster. Flush is disabled if there is an active outbound replica stream
    configured.
+
+<div class="notebox bp"><p>Important</p>
+<p>When replicating to or from a bucket, do not flush that bucket on  the source or destination cluster. Flushing causes the vBucket state becomes temporarily unaccessible and results in a "not_found” error. The error suspends replication.
+</p></div>
+
+### XDCR stream management
+
+XDCR stream management
+Under the following circumstances, a period of time should pass (depending on the CPU load) before creating new XDCR streams:
+
+After creating a bucket
+After deleting an old XDCR stream
+
+If a new XDCR stream is created immediately after a bucket has been created, a “db_not_found” error may occur. When a bucket is created, a period of time passes before the buckets are available. If XDCR tries to replicate to or from the vBucket too soon, a “db_not_found” error occurs. The same situation applies when other clients are “talking” to a bucket.
+
+
+If a new XDCR stream is created immediately after an old XDCR stream is deleted, an Erlang eaddrinuse error occurs. This is related to the Erlang implementation of the TCP/IP protocol. After an Erlang process releases a socket, the socket stays in TIME_WAIT for a while before a new Erlang process can reuse it. If the new XDCR stream is created too quickly, vBucket replicators may encounter the eaddrinuse error and XDCR may not be able to fully start.
+
+<div class="notebox"><p>Note</p>
+<p>The TIME_WAIT interval may be tunable from the operating system. If so, try lowering the interval time.
+</p></div>
+
    
 <a id="cb-concepts-xdcr-data-encrypt"></a>
    

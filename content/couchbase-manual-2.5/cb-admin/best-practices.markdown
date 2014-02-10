@@ -188,7 +188,7 @@ Constants               | value
 ------------------------|-------------------------
 Type of Storage         | SSD                     
 overhead\_percentage    | 25%                     
-metadata\_per\_document | 56 for 2.1, 64 for 2.0 or higher
+metadata\_per\_document | 56 for 2.1 and higher, 64 for 2.0.x
 high\_water\_mark       | 85%                     
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>
@@ -196,7 +196,7 @@ high\_water\_mark       | 85%
 Variable                   | Calculation                                                      
 ---------------------------|------------------------------------------------------------------
 no\_of\_copies             | = 1 for original and 1 for replica                              
-total\_metadata            | = 1,000,000 \* (100 + 120) \* (2) = 440,000,000                  
+total\_metadata            | = 1,000,000 \* (100 + 56) \* (2) = 312,000,000                  
 total\_dataset             | = 1,000,000 \* (10,000) \* (2) = 20,000,000,000                  
 working\_set               | = 20,000,000,000 \* (0.2) = 4,000,000,000                        
 Cluster RAM quota required | = (440,000,000 + 4,000,000,000) \* (1+0.25)/(0.7) = 7,928,000,000
@@ -219,29 +219,40 @@ per\_node\_ram\_quota as there may be other programs running on your machine.
 
 ### Disk throughput and sizing
 
-Couchbase Server decouples RAM from the I/O layer. This is a huge advantage. It
-allows you to scale high at very low and consistent latencies. It also enables
-Couchbase Server to handle very high write loads without affecting your
-application's performance.
+In Couchbase Server 1.8.x, an "in-place-update" disk format was implemented, however, 
+sometimes a performance penalty occurred due to fragmentation of the 
+on-disk files under workloads with frequent updates/deletes. 
+In Couchbase Server 2.0 and higher, an "append-only" format and a built-in 
+automatic compaction process is implemented.
 
-However, Couchbase Server still needs to be able to write data to disk. Your
-disks need to be capable of handling a steady stream of incoming data. It is
-important to analyze your application's write load and provide enough disk
-throughput to match.
+an disk size requirements have increased 
+because is switched from an "in-place-update" disk format to an "append-only" format. 
+This is not typically a problem, however, it is important to take into consideration. 
 
-While information is written to disk, the internal statistics system monitors
-the outstanding items in the disk write queue. From its display, you can see the
-disk write queue load. Its peak shows how many items stored in Couchbase Server
-would be lost in the event of a server failure. It is up to your own internal
-requirements to decide how much vulnerability you are comfortable with. Then you
-size the cluster accordingly so that the disk write queue level remains low
-across the entire cluster. Adding more nodes will provide more disk throughput.
+The requirements of your disk subsystem are broken down into two components: 
+size and IO. 
 
-Disk space is also required to persist data. How much disk space you should plan
-for is dependent on how your data grows. You will also want to store backup data
-on the system. A good guideline is to plan for at least 130% of the total data
-you expect. 100% of this is for data backup, and 30% for overhead during file
-maintenance.
+**Size**
+
+The switch from an in-place-update disk format to an append-only one means that every write (insert/update/delete) creates a new entry in the file(s) and eliminates fragmentation.  This brings immense advantages in terms of reliability, performance, consistency of that performance, and much improved warmup/startup times.  The built-in automatic compaction process ensures that only the relevant copies of data are left around and reduces the size of the on-disk files.
+
+Depending on workload, the required disk size may range anywhere from **2-3x** your total dataset size (active and replica data combined) due to the append-only disk format.  Heavier update/delete workloads increases the size more dramatically than insert and read heavy workloads.  The size is likely to grow and then shrink significantly over the course of time as the automatic compaction process runs. The 2-3x number comes more from the need to expand rather than your data actually taking up more space on disk.
+
+
+**IO**
+
+IO is a combination of the sustained write rate, the need for compacting the database files, and anything else that requires disk access.  Couchbase Server automatically buffers writes to the database in RAM and eventually persists them to disk.  Because of this, the software can accommodate much higher write rates than a disk is able to handle. However, sustaining these writes eventually requires enough IO to get it all down to disk.
+
+To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else ourside of Couchbase that need space or is accessing the disk.
+
+
+
+<div class="notebox"><p>Best practice</p>
+<p>
+Use the available configuration options to separate data files, indexes and the installation/config directories on separate drives/devices to ensure that IO and space are allocated effectively.
+</p></div>
+
+
 
 <a id="couchbase-bestpractice-sizing-network"></a>
 
