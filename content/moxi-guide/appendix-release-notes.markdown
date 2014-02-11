@@ -4,13 +4,29 @@ The following sections provide release notes for individual release versions of
 Moxi. To browse or submit new issues, see [Moxi Issues
 Tracker](http://www.couchbase.com/issues/browse/MB).
 
+
+<a id="moxi-server-rn_2-5"></a>
+
+## Release Notes for Moxi 2.5 GA
+
+**Fixed Issues in 2.5**
+
+[MB-9677](http://www.couchbase.com/issues/browse/MB09677): A memory leak in the client-side moxi occurs during rebalance.
+
+[MB-9549](http://www.couchbase.com/issues/browse/MB-9549): A memory leak occurs when the TTL is updated for a non-resident item.
+
+[MB-8724](http://www.couchbase.com/issues/browse/MB-8724): Moxi 1.8.1 leaks memory and crashes via the Linux OOM killer.
+
+
+
+
+
 <a id="moxi-server-rn_1-8"></a>
 
 ## Release Notes for Moxi 1.8.0 GA (Already released)
 
 **Fixed Issues in 1.8.1**
 
-[MB-8724](http://www.couchbase.com/issues/browse/MB-8724): Moxi 1.8.1 leaks memory and crashes via the Linux OOM killer.
 
 
 

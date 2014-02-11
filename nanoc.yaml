@@ -155,6 +155,24 @@ versions:
 navbar:
   - label: Couchbase Server
     subnav:
+<<<<<<< HEAD
+=======
+    
+      - label: Couchbase Server 2.5
+        href: /couchbase-manual-2.5/
+        
+      - label:  "--  Install and Upgrade"
+        href: /couchbase-manual-2.5/cb-install/
+        
+      - label:  "--  Administration Guide"
+        href: /couchbase-manual-2.5/cb-admin/
+        
+      - label:  "--  CLI Reference"
+        href: /couchbase-manual-2.5/cb-cli/
+        
+      - label:  "--  REST API Reference"
+        href: /couchbase-manual-2.5/cb-rest-api/
+>>>>>>> cb2.5
         
       - label: Couchbase 2.2
         href: /couchbase-manual-2.2/
@@ -169,7 +187,8 @@ navbar:
         href: /couchbase-manual-1.8/
 
       - label: Moxi Guide
-        href: /moxi-manual-1.8/
+        href: /moxi-guide/
+        
         
         
           
