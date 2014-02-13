@@ -4,9 +4,9 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
-## Release Notes for Couchbase Client Library .NET 1.3.2 GA (4 February 2014)
+## Release Notes for Couchbase Client Library .NET 1.3.3 GA (4 February 2014)
 
-<a id="couchbase-sdk-net-rn_1-3-2"></a>
+<a id="couchbase-sdk-net-rn_1-3-3"></a>
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-381">Ensure that Nuget installs Newtonsoft.NET 4.5.11</a>
 
