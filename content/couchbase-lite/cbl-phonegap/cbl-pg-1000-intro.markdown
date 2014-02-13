@@ -119,9 +119,9 @@ $ git clone https://github.com/couchbaselabs/TodoLite-PhoneGap.git www
 
 	The Todo Lite app opens in the Android simulator. If the Android simulator does not open and you are prompted to log on to the Adobe PhoneGap build service, your Android device emulator is not set up correctly. You do not need to sign up for the PhoneGap build service to run this example.
 	
-
 ## Troubleshooting the ToDo Lite Build
 
+If you cannot build the ToDo Lite app, review the troubleshooting tips in this section.
 ### Troubleshooting Tools
 If you can't build the ToDo Lite app, first make sure you have all the tools listed in [Before You Begin](#before-you-begin) installed and that you have the latest released version of each tool. 
 
@@ -163,7 +163,7 @@ The following table contains solutions for some other problems you might encount
 |When you add plug-ins to your project, you get the following error message: \[error] project directory could not be found. | Make sure you are in the **/todo-lite** directory.  
 |When you build an iOS app, the iOS simulator doesn't start automatically.|Make sure ios-sim is installed.
 |When you build an Android app, it uses the remote environment and prompts you to log on to the PhoneGap build service. |  Make sure your Android device emulator is set up. For more information about setting up an emulator, read the [Deploy to Emulator section in the *PhoneGap Android Platform Guide*](http://docs.phonegap.com/en/3.0.0/guide_platforms_android_index.md.html#Android%20Platform%20Guide)
-|When attempting to run the app for Android, you encounter the following error *[error] An error occured during creation of android sub-project*|Ensure that the Android SDK tools and platform-tools directories are added to your system's PATH
+|When attempting to run the app for Android, you encounter the following error: *[error] An error occurred during creation of android sub-project*.|Ensure that the Android SDK **tools** and **platform-tools** directories are added to your system's PATH environment variable.
 
 
 ### Using Apache Cordova
@@ -186,3 +186,5 @@ To use Cordova to add the Couchbase Lite Plug-in for PhoneGap to your app:
 $ cd <your/project/directory>
 $ cordova local plugin add com.couchbase.lite.phonegap
 ```
+
+
