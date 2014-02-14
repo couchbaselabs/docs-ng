@@ -118,7 +118,7 @@ end
 
 Takes a given key, gets the value for the key, and yields it to a block.
 Replaces the value in the datastore with the result of the block as long as the
-key has not been updated in the meantime. If the the key has been successfully
+key has not been updated in the meantime. If the key has been successfully
 updated in the datastore, a new CAS value will be returned raises
 Error::KeyExists.
 

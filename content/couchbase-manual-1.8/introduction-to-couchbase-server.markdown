@@ -172,7 +172,7 @@ In this description:
    configured as a logical cluster. All nodes within the cluster are identical and
    provide the same functionality. Each node is capable of managing the cluster and
    each node can provide aggregate statistics and operational information about the
-   cluster. User data is is stored across the entire cluster through the vBucket
+   cluster. User data is stored across the entire cluster through the vBucket
    system.
 
    Clusters operate in a completely horizontal fashion. To increase the size of a

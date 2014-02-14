@@ -164,7 +164,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 **Fixes in 2.0.2**
 
- * Document LCB\_SERVER\_BUG and LCB\_PLUGIN\_VERSION\_MISMATCH. Enhance the the
+ * Document LCB\_SERVER\_BUG and LCB\_PLUGIN\_VERSION\_MISMATCH. Enhance the
    lcb\_strerror test to detect undocumented error codes.
 
  * Commands sent to multiple servers fail to detect the respose if mixed with other

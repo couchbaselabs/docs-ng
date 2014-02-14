@@ -637,7 +637,7 @@ include_once ("include/footer.php");
 
 If the user is already logged in (i.e., there is a value for
 `$_SESSION{"userid"}` ), they are immediately redirected to the chat.php file.
-If there is an error on login (in which case the the `loginUser` method returns
+If there is an error on login (in which case the `loginUser` method returns
 false) the login page is shown again with a login error.
 
 The logout screen (Figure 3) just indicates the logged out status of the user.

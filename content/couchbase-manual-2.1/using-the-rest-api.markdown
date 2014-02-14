@@ -3070,7 +3070,7 @@ we are showing only the XDCR-related items:
 }
 ```
 
-The the XDCR-related values are defined as follows:
+The XDCR-related values are defined as follows:
 
  * (Number) xdcrMaxConcurrentReps: Maximum concurrent replications per bucket, 8 to
    256. Default is 32. This controls the number of parallel replication streams per
@@ -3126,7 +3126,7 @@ uni-directional or bi-directional replication between clusters. Other factors
 for consideration include intensity of read/write operations on your clusters,
 the rate of disk persistence on your destination cluster, and your system
 environment. Changing these parameters will impact performance of your clusters
-as well as XDCR replication performance. The the XDCR-related settings which you
+as well as XDCR replication performance. The XDCR-related settings which you
 can adjust are defined as follows:
 
  * `xdcrMaxConcurrentReps` (Integer)

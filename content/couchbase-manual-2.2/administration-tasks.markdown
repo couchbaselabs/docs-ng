@@ -3535,7 +3535,7 @@ If you want to change the replication protocol for an existing XDCR replication,
 	
 	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plug-in, which depends on XDCR, choose version 1.
     
-	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
+	* Version 2 uses memcached REST protocol for replication. It is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
 
 	You can also change this setting via the REST API for XDCR internal settings or the  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 	
