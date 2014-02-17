@@ -5,6 +5,12 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+## Release notes for Couchbase client library Ruby 1.3.6 (17 February 2014)
+
+**Fixes in 1.3.6**
+
+* Fix linkage issue which blocks library installation on windows.
+
 ## Release notes for Couchbase client library Ruby 1.3.5 (5 February 2014)
 
 **Fixes in 1.3.5**
