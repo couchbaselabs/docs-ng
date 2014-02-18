@@ -9,7 +9,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **Fixes in 1.3.6**
 
-* Fix linkage issue which blocks library installation on windows.
+* Fix linkage issue that blocks library installation on Microsoft Windows.
 
 ## Release notes for Couchbase client library Ruby 1.3.5 (5 February 2014)
 
