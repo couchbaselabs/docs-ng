@@ -738,7 +738,7 @@ At a minimum, you need the following [RightScale user role privileges](http://su
 
 To set up Couchbase Server on RightScale, you need to import and customize a  ServerTemplate. After the template is customized, you can launch server and cluster instances. The following figure illustrates the workflow:
 
-<img src="images/rightscale-workflow.png" style="width:50%;display:block;margin-left:auto;margin-right:auto">
+<img src="../images/rightscale-workflow.png" style="width:50%;display:block;margin-left:auto;margin-right:auto">
 
 The following procedures do not describe every parameter that you can modify when working with the RightScale ServerTemplates. If you need more information about a parameter, click the info button located near the parameter name.
 
@@ -840,7 +840,7 @@ The following procedures do not describe every parameter that you can modify whe
 
 **To log in to the Couchbase Web Console:**
 
- You can log in to the Couchbase Web Console by using your web browser to connect to the the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
+ You can log in to the Couchbase Web Console by using your web browser to connect to the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
 
 <a id="couchbase-deployment"></a>
 

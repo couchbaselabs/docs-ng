@@ -146,7 +146,7 @@ set pymc34 0 0 10
 ```
 
 Note Couchbase Server will store all data from a bucket, node or cluster, but
-not the associated design documents. To to so, you should explicitly use
+not the associated design documents. To do so, you should explicitly use
 `cbbackup` to store the information and `cbrestore` to read it back into memory.
 
 **Exporting and Importing CSV Files**

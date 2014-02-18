@@ -236,7 +236,7 @@ get the value from Couchbase Server:
 
 ```
 #retrieve the last access date/time of the script.
-#the key name is is the script name prefixed with DATE::
+#the key name is the script name prefixed with DATE::
 $last_access_date=$cb_obj->get("DATE::" . $script_name);
 
 #handle the case where this is the first access to the script

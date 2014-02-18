@@ -485,7 +485,7 @@ Install each instance of a cluster on a different physical machine to ensure dat
 
 The following graphic shows a cluster configuration with multiple Couchbase instances on a physical machine. In addition, by having three (3) Couchbase server in a cluster and each server installed on different physical machines, the configuration reduces the risk of data loss from a hardware failure.
 
-<img src="multi-instance.png" width="600">
+<img src="../images/multi-instance.png" width="600">
 
 
 

@@ -676,7 +676,7 @@ and performance will suffer.
 | avg_max      | The average max depth of a vbucket hash table            
 | avg_min      | The average min depth of a vbucket hash table            
 | largest_max  | The largest hash table depth of in all vbuckets          
-| largest_min  | The the largest minimum hash table depth of all vbuckets 
+| largest_min  | The largest minimum hash table depth of all vbuckets 
 | max_count    | The largest number of items in a vbucket                 
 | min_count    | The smallest number of items in a vbucket                
 | total_counts | The total number of items in all vbuckets

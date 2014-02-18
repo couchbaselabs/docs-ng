@@ -141,6 +141,8 @@ Where:
 
 <a id="couchbase-admin-cmdline-couchbase-commands"></a>
 
+##couchbase-cli commands
+
 Command                | Description                                          
 -----------------------|------------------------------------------------------
 `server-list`          | List all servers in a cluster                        
@@ -169,100 +171,155 @@ Command                | Description
 `xdcr-replicate`       | Create and run replication via XDCR       
 `help show longer`     | usage/help and examples                              
 
+##couchbase-cli command options
+
 The following are options which can be used with their respective commands.
 Administration — `couchbase-cli` Tool commands options:
 
 <a id="couchbase-admin-cmdline-couchbase-commands-stdopts"></a>
 
-Command                | Option                                     | Description                                                             
------------------------|--------------------------------------------|-------------------------------------------------------------------------
-`server-add`           | `--server-add=HOST[:PORT]`                 | Server to add to cluster                                                
-`server-add`           | `--server-add-username=USERNAME`           | Admin username for the server to be added                               
-`server-add`           | `--server-add-password=PASSWORD`           | Admin password for the server to be added                               
-                       |                                            |                                                                         
-`server-readd`         | `--server-add=HOST[:PORT]`                 | Server to re-add to cluster                                             
-`server-readd`         | `--server-add-username=USERNAME`           | Admin username for the server to be added                               
-`server-readd`         | `--server-add-password=PASSWORD`           | Admin password for the server to be added                               
-                       |                                            |                                                                         
-`rebalance`            | `--server-add*`                            | See server-add OPTIONS                                                  
-`rebalance`            | `--server-remove=HOST[:PORT]`              | The server to remove from cluster                                       
-                       |                                            |                                                                         
-`failover`             | `--server-failover=HOST[:PORT]`            | Server to failover                                                      
-                       |                                            |                                                                         
-`cluster-*`            | `--cluster-username=USER`                  | New admin username                                                      
-`cluster-*`            | `--cluster-password=PASSWORD`              | New admin password                                                      
-`cluster-*`            | `--cluster-port=PORT`                      | New cluster REST/http port                                              
-`cluster-*`            | `--cluster-ramsize=RAMSIZEMB`              | Per node RAM quota in MB                                                
-                       |                                            |                                                                         
-`node-init`            | `--node-init-data-path=PATH`               | Per node path to store data                                             
-`node-init`            | `--node-init-index-path=PATH`              | Per node path to store index                                            
-                       |                                            |                                                                         
-`bucket-*`             | `--bucket=BUCKETNAME`                      | Named bucket to act on                                                  
-`bucket-*`             | `--bucket-type=TYPE`                       | Bucket type, either memcached or couchbase                              
-`bucket-*`             | `--bucket-port=PORT`                       | Supports ASCII protocol and does not require authentication             
-`bucket-*`             | `--bucket-password=PASSWORD`               | Standard port, exclusive with bucket-port                               
-`bucket-*`             | `--bucket-ramsize=RAMSIZEMB`               | Bucket RAM quota in MB                                                  
-`bucket-*`             | `--bucket-replica=COUNT`                   | Replication count                                                       
-`bucket-*`             | `--enable-flush=[0|1]`                     | Enable/disable flush                                                    
-`bucket-*`             | `--enable-index-replica=[0|1]`             | Enable/disable index replicas                                           
-`bucket-*`             | `--wait`                                   | Wait for bucket create to be complete before returning                  
-`bucket-*`             | `--force`                                  | Force command execution without asking for confirmation                 
-`bucket-*`             | `--data-only`                              | Compact database data only                                              
-`bucket-*`             | `--view-only`                              | Compact view data only                                                  
-                       |                                            |                                                                         
-`setting-compacttion`  | `--compaction-db-percentage=PERCENTAGE`    | Percentage of disk fragmentation when database compaction is triggered  
-`setting-compacttion`  | `--compaction-db-size=SIZE[MB]`            | Size of disk fragmentation when database compaction is triggered        
-`setting-compacttion`  | `--compaction-view-percentage=PERCENTAGE`  | Percentage of disk fragmentation when views compaction is triggered     
-`setting-compacttion`  | `--compaction-view-size=SIZE[MB]`          | Size of disk fragmentation when views compaction is triggered           
-`setting-compacttion`  | `--compaction-period-from=HH:MM`           | Enable compaction from this time onwards                                
-`setting-compacttion`  | `--compaction-period-to=HH:MM`             | Stop enabling compaction at this time                                   
-`setting-compacttion`  | `--enable-compaction-abort=[0|1]`          | Allow compaction to abort when time expires                             
-`setting-compacttion`  | `--enable-compaction-parallel=[0|1]`       | Allow parallel compaction processes for database and view               
-                       |                                            |                                                                         
-`setting-notification` | `--enable-notification=[0|1]`              | Allow notifications                                                     
-                       |                                            |                                                                         
-`setting-alert`        | `--enable-email-alert=[0|1]`               | Allow email alert                                                       
-`setting-alert`        | `--email-recipients=RECIPIENT`             | Email recipents, separate addresses with, or ;                          
-`setting-alert`        | `--email-sender=SENDER`                    | Sender email address                                                    
-`setting-alert`        | `--email-user=USER`                        | Email server username                                                   
-`setting-alert`        | `--email-password=PWD`                     | Email server password                                                   
-`setting-alert`        | `--email-host=HOST`                        | Email server hostname                                                   
-`setting-alert`        | `--email-port=PORT`                        | Email server port                                                       
-`setting-alert`        | `--enable-email-encrypt=[0|1]`             | Email encryption with 0 the default for no encryption                   
-`setting-alert`        | `--alert-auto-failover-node`               | Node was failed over via autofailover                                   
-`setting-alert`        | `--alert-auto-failover-max-reached`        | Maximum number of auto failover nodes reached                           
-`setting-alert`        | `--alert-auto-failover-node-down`          | Node not auto failed-over as other nodes are down at the same time      
-`setting-alert`        | `--alert-auto-failover-cluster-small`      | Node not auto failed-over as cluster was too small                      
-`setting-alert`        | `--alert-ip-changed`                       | Node ip address changed unexpectedly                                    
-`setting-alert`        | `--alert-disk-space`                       | Disk space used for persistent storage has reached at least 90% capacity
-`setting-alert`        | `--alert-meta-overhead`                    | Metadata overhead is more than 50% of RAM for node                      
-`setting-alert`        | `--alert-meta-oom`                         | Bucket memory on a node is entirely used for metadata                   
-`setting-alert`        | `--alert-write-failed`                     | Writing data to disk for a specific bucket has failed                   
-                       |                                            |                                                                         
-`setting-autofailover` | `--enable-auto-failover=[0|1]`             | Allow auto failover                                                     
-`setting-autofailover` | `--auto-failover-timeout=TIMEOUT (>=30)`   | Specify amount of node timeout that triggers auto failover              
-                       |                                            |                                                                         
-`setting-xdcr`         | `--max-concurrent-reps=[32]`               | Maximum concurrent replicators per bucket, 8 to 256.                    
-`setting-xdcr`         | `--checkpoint-interval=[1800]`             | Intervals between checkpoints, 60 to 14400 seconds.                     
-`setting-xdcr`         | `--worker-batch-size=[500]`                | Doc batch size, 500 to 10000.                                           
-`setting-xdcr`         | `--doc-batch-size=[2048]KB`                | Document batching size, 10 to 100000 KB                                 
-`setting-xdcr`         | `--failure-restart-interval=[30]`          | Interval for restarting failed xdcr, 1 to 300 seconds                   
-`setting-xdcr`         | `--optimistic-replication-threshold=[256]` | Document body size threshold (bytes) to trigger optimistic replication  
-                       |                                            |                                                                         
-`xdcr-setup`           | `--create`                                 | Create a new xdcr configuration                                         
-`xdcr-setup`           | `--edit`                                   | Modify existed xdcr configuration                                       
-`xdcr-setup`           | `--delete`                                 | Delete existing xdcr configuration                                      
-`xdcr-setup`           | `--xdcr-cluster-name=CLUSTERNAME`          | Remote cluster name                                                     
-`xdcr-setup`           | `--xdcr-hostname=HOSTNAME`                 | Remote host name to connect to                                          
-`xdcr-setup`           | `--xdcr-username=USERNAME`                 | Remote cluster admin username                                           
-`xdcr-setup`           | `--xdcr-password=PASSWORD`                 | Remote cluster admin password                                           
-                       |                                            |                                                                         
-`xdcr-replicate`       | `--create`                                 | Create and start a new replication                                      
-`xdcr-replicate`       | `--delete`                                 | Stop and cancel a replication                                           
-`xdcr-replicate`       | `--xdcr-from-bucket=BUCKET`                | Source bucket name to replicate from                                    
-`xdcr-replicate`       | `--xdcr-clucter-name=CLUSTERNAME`          | Remote cluster to replicate to                                          
-`xdcr-replicate`       | `--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to   
-`xdcr-replicate`  | `--xdcr-replication-mode= PROTOCOL` | Select REST protocol or memcached for replication. `xmem` indicates memcached while `capi` indicates REST protocol.                                                    
+###server-add options
+
+server-add options                 | Description                                                             
+-----------------------------------|----------------------------------------------------------
+`--server-add=HOST[:PORT]`         | Server to add to cluster                                                
+ `--server-add-username=USERNAME`  | Admin username for the server to be added                               
+`--server-add-password=PASSWORD`   | Admin password for the server to be added                               
+                       
+###server-readd options                       
+                                                                         
+server-readd options               | Description                                                             
+-----------------------------------|----------------------------------------------------------
+`--server-add=HOST[:PORT]`         | Server to re-add to cluster
+`--server-add-username=USERNAME`   | Admin username for the server to be added                               
+`--server-add-password=PASSWORD`   | Admin password for the server to be added                               
+
+###rebalance options
+
+rebalance options                 | Description                                                             
+----------------------------------|----------------------------------------------------------
+`--server-add*`                   | See server-add OPTIONS                                                  
+`--server-remove=HOST[:PORT]`     | The server to remove from cluster                                       
+
+###failover option
+
+failover options                   | Description                                                             
+-----------------------------------|----------------------------------------------------------
+`--server-failover=HOST[:PORT]`    | Server to failover                                                      
+
+###cluster-* options
+
+cluster-* options                 | Description                                                             
+----------------------------------|----------------------------------------------------------
+`--cluster-username=USER`         | New admin username                                                      
+`--cluster-password=PASSWORD`     | New admin password                                                      
+`--cluster-port=PORT`             | New cluster REST/http port                                              
+`--cluster-ramsize=RAMSIZEMB`     | Per node RAM quota in MB      
+
+###node-init options
+
+node-init options                 | Description                                                             
+----------------------------------|----------------------------------------------------------
+`--node-init-data-path=PATH`      | Per node path to store data                                             
+`--node-init-index-path=PATH`     | Per node path to store index   
+
+###bucket-* options
+
+bucket-* options                   | Description                                                             
+-----------------------------------|----------------------------------------------------------
+`--bucket=BUCKETNAME`              | Named bucket to act on                                                  
+`--bucket-type=TYPE`               | Bucket type, either memcached or couchbase                              
+`--bucket-port=PORT`               | Supports ASCII protocol and does not require authentication             
+`--bucket-password=PASSWORD`       | Standard port, exclusive with bucket-port                               
+`--bucket-ramsize=RAMSIZEMB`       | Bucket RAM quota in MB                                                  
+`--bucket-replica=COUNT`           | Replication count                                                       
+`--enable-flush=[0\|1]`            | Enable/disable flush                                                    
+`--enable-index-replica=[0\|1]`     | Enable/disable index replicas                                           
+`--wait`                                   | Wait for bucket create to be complete before returning                  
+`--force`                                  | Force command execution without asking for confirmation                 
+`--data-only`                              | Compact database data only                                              
+`--view-only`                              | Compact view data only                                                  
+
+
+###setting-compaction options
+
+setting-compaction options                 | Description                                                             
+-------------------------------------------|--------------------------------------------------
+`--compaction-db-percentage=PERCENTAGE`    | Percentage of disk fragmentation when database compaction is triggered  
+`--compaction-db-size=SIZE[MB]`            | Size of disk fragmentation when database compaction is triggered        
+`--compaction-view-percentage=PERCENTAGE`  | Percentage of disk fragmentation when views compaction is triggered     
+`--compaction-view-size=SIZE[MB]`          | Size of disk fragmentation when views compaction is triggered           
+`--compaction-period-from=HH:MM`           | Enable compaction from this time onwards                                
+`--compaction-period-to=HH:MM`             | Stop enabling compaction at this time                                   
+`--enable-compaction-abort=[0\|1]`         | Allow compaction to abort when time expires                             
+`--enable-compaction-parallel=[0\|1]`      | Allow parallel compaction processes for database and view         
+
+###setting-alert and notification options
+
+setting-alert options                      | Description                                                             
+-------------------------------------------|--------------------------------------------------
+`--enable-email-alert=[0\|1]`               | Allow email alert                                                       
+`--email-recipients=RECIPIENT`             | Email recipents, separate addresses with, or ;                          
+`--email-sender=SENDER`                    | Sender email address                                                    
+`--email-user=USER`                        | Email server username                                                   
+`--email-password=PWD`                     | Email server password                                                   
+`--email-host=HOST`                        | Email server hostname                                                   
+`--email-port=PORT`                        | Email server port                                                       
+`--enable-email-encrypt=[0\|1]`             | Email encryption with 0 the default for no encryption                   
+`--alert-auto-failover-node`               | Node was failed over via autofailover                                   
+`--alert-auto-failover-max-reached`        | Maximum number of auto failover nodes reached                           
+`--alert-auto-failover-node-down`          | Node not auto failed-over as other nodes are down at the same time      
+`--alert-auto-failover-cluster-small`      | Node not auto failed-over as cluster was too small                      
+`--alert-ip-changed`                       | Node ip address changed unexpectedly                                    
+`--alert-disk-space`                       | Disk space used for persistent storage has reached at least 90% capacity
+`--alert-meta-overhead`                    | Metadata overhead is more than 50% of RAM for node                      
+`--alert-meta-oom`                         | Bucket memory on a node is entirely used for metadata                   
+`--alert-write-failed`                     | Writing data to disk for a specific bucket has failed                   
+
+setting-notification options               | Description                                                             
+-------------------------------------------|--------------------------------------------------
+`--enable-notification=[0\|1]`             | Allow notifications                                                     
+
+###setting-autofailover options
+
+setting-autofailover options               | Description                                                             
+-------------------------------------------|--------------------------------------------------
+ `--enable-auto-failover=[0\|1]`            | Allow auto failover                                                     
+`--auto-failover-timeout=TIMEOUT (>=30)`   | Specify amount of node timeout that triggers auto failover              
+
+###setting-xdcr options
+
+setting-xdcr options                       | Description                                                             
+-------------------------------------------|--------------------------------------------------
+`--max-concurrent-reps=[32]`               | Maximum concurrent replicators per bucket, 8 to 256.                    
+`--checkpoint-interval=[1800]`             | Intervals between checkpoints, 60 to 14400 seconds.                     
+`--worker-batch-size=[500]`                | Doc batch size, 500 to 10000.                                           
+`--doc-batch-size=[2048]KB`                | Document batching size, 10 to 100000 KB                                 
+`--failure-restart-interval=[30]`          | Interval for restarting failed xdcr, 1 to 300 seconds                   
+`--optimistic-replication-threshold=[256]` | Document body size threshold (bytes) to trigger optimistic replication  
+
+###xdcr-setup options
+
+sdcr-setup options                         | Description                                                             
+-------------------------------------------|--------------------------------------------------
+`--create`                                 | Create a new xdcr configuration                                         
+`--edit`                                   | Modify existed xdcr configuration                                       
+`--delete`                                 | Delete existing xdcr configuration                                      
+`--xdcr-cluster-name=CLUSTERNAME`          | Remote cluster name                                                     
+`--xdcr-hostname=HOSTNAME`                 | Remote host name to connect to                                          
+`--xdcr-username=USERNAME`                 | Remote cluster admin username                                           
+`--xdcr-password=PASSWORD`                 | Remote cluster admin password                                           
+
+###xdcr-replicate options
+
+xdcr-replicate options                     | Description                                                             
+-------------------------------------------|--------------------------------------------------
+`--create`                                 | Create and start a new replication                                      
+`--delete`                                 | Stop and cancel a replication                                           
+`--xdcr-from-bucket=BUCKET`                | Source bucket name to replicate from                                    
+`--xdcr-clucter-name=CLUSTERNAME`          | Remote cluster to replicate to                                          
+`--xdcr-to-bucket=BUCKETNAME`              | Remote bucket to replicate to   
+`--xdcr-replication-mode= PROTOCOL`        | Select REST protocol or memcached for replication. `xmem` indicates memcached while `capi` indicates REST protocol.                                                    
 
 You can also perform many of these same settings using the REST API, see [Using
 the REST API](#couchbase-admin-restapi).
@@ -1185,7 +1242,7 @@ and performance will suffer.
 | avg_max      | The average max depth of a vbucket hash table            
 | avg_min      | The average min depth of a vbucket hash table            
 | largest_max  | The largest hash table depth of in all vbuckets          
-| largest_min  | The the largest minimum hash table depth of all vbuckets 
+| largest_min  | The largest minimum hash table depth of all vbuckets 
 | max_count    | The largest number of items in a vbucket                 
 | min_count    | The smallest number of items in a vbucket                
 | total_counts | The total number of items in all vbuckets
@@ -2703,7 +2760,7 @@ set pymc34 0 0 10
 ```
 
 Note Couchbase Server will store all data from a bucket, node or cluster, but
-not the associated design documents. To to so, you should explicitly use
+not the associated design documents. To do so, you should explicitly use
 `cbbackup` to store the information and `cbrestore` to read it back into memory.
 
 **Exporting and Importing CSV Files**

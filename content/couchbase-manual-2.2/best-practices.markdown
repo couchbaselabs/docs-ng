@@ -870,7 +870,7 @@ The following procedures do not describe every parameter that you can modify whe
 
 **To log in to the Couchbase Web Console:**
 
- You can log in to the Couchbase Web Console by using your web browser to connect to the the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
+ You can log in to the Couchbase Web Console by using your web browser to connect to the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
 
 <a id="couchbase-deployment"></a>
 

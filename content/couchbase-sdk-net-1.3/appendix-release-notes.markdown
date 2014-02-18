@@ -4,16 +4,18 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
-## Release Notes for Couchbase Client Library .NET 1.3.2 GA (4 February 2014)
+## Release Notes for Couchbase Client Library .NET 1.3.3 GA (4 February 2014)
 
-<a id="couchbase-sdk-net-rn_1-3-2"></a>
+	**Note: Version 1.3.2 was shipped as 1.3.3**
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-381">Ensure that Nuget installs Newtonsoft.NET 4.5.11</a>
+<a id="couchbase-sdk-net-rn_1-3-3"></a>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-381">Ensure that Nuget installs Newtonsoft.NET <=5.0.8</a>
 
     If this is not specified in the .nuspec file, Nuget will attempt to
     install the lastest version 6.0.0 which is not compatible with view
-    calls using 1.3.2 version of the Couchbase .NET SDK. These incompatible
-    issues will be resolved in a future release, likely 1.3.3.
+    calls using ~~1.3.2~~ 1.3.3 version of the Couchbase .NET SDK. These incompatible
+    issues will be resolved in a future release, likely ~~1.3.3~~ 1.3.4.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-380">NCBC-380: Filtering on Compound Key with '+' Char Fails</a>
  

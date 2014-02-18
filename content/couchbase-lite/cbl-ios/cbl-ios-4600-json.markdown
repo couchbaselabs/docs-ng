@@ -63,7 +63,7 @@ A schema can only identify whether a document is structurally invalid, it can't 
 
 * A new expense report, created by a user account that doesn't have permission to file expense reports.
 * A revision that changes the dollar value of an existing expense report, which is supposed to be immutable.
-* A revision that changes the approval status of an expense report, submitted by a user account that doesn't have permission to to do so (e.g. isn't in the originator's management hierarchy.)
+* A revision that changes the approval status of an expense report, submitted by a user account that doesn't have permission to do so (e.g. isn't in the originator's management hierarchy.)
 
 Cases like these still need to be checked with custom logic. `CBLValidationContext` has some convenience methods for this, like `changedKeys` and `enumerateChanges:`.
 

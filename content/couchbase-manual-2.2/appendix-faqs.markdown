@@ -43,7 +43,7 @@
  * What hardware and platforms does `couchbase` Server support?
 
    Couchbase Server supports Red Hat (and CentOS) versions 5 starting with update
-   2, Ubuntu 9 and and Windows Server 2008 (other versions have been shown to work
+   2, Ubuntu 9 and Windows Server 2008 (other versions have been shown to work
    but are not being specifically tested). There are both 32-bit and 64-bit
    versions available. Community support for Mac OS X is available. Future releases
    will provide support for additional platforms.
