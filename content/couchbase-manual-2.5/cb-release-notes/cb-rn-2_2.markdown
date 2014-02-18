@@ -1,5 +1,35 @@
 <a id="couchbase-server-rn_2-2"></a>
 # Couchbase Server Release Notes for 2.2 GA
+These releases apply to the previous Couchbase 2.2 build 821 and current Couchbase 2.2 build 837.
+
+
+## Release 2.2.0 - build 837
+These release notes are for the current Couchbase build 2.2.0-837. The release notes for Couchbase build 2.2.0-821 also apply. In addition, the following issues were fixed:
+
+**Fixes in 2.2.0-837**
+
+[MB-9073](https://www.couchbase.com/issues/browse/MB-9073): On recreate XDCR replication, the settings default to the last created replication mode; it should default to "xmem".
+
+[MB-9140](https://www.couchbase.com/issues/browse/MB-9140): The "Contact" link is invalid on the initial setup page.
+
+[MB-9209](https://www.couchbase.com/issues/browse/MB-9209): With XDCR, beam memory usage over time increases for the source cluster.      
+
+[MB-9422](https://www.couchbase.com/issues/browse/MB-9422): For certain vBucket maps, <code>cbrecovery</code> fails to create recovery map and crashes.      
+
+[MB-9467](https://www.couchbase.com/issues/browse/MB-9467): Enforce some limits during view indexing.
+
+**Known Issue in 2.2.0-837**
+
+[MB-9612](https://www.couchbase.com/issues/browse/MB-9612): On the destination cluster, XDCR spams the cluster management error logs with tmp errors.   
+
+[MB-10057](https://www.couchbase.com/issues/browse/MB-10057): With XDCR, Rebalance does not reset XDCR checkpoints. In some cases, XDCR checkpointing may reuse old and stale checkpoints which caused stuck replication.
+[MB-10059](https://www.couchbase.com/issues/browse/MB-10059): Replica vBuckets ignore `rev_seq` values of new items from the active vBucket. Instead, new `rev_seq` values are generated for those new item. With XDCR, an inconsistent state may occur.
+
+
+
+## Release 2.2.0 - build 821
+
+These release notes are for the previous   build 2.2.0-821.
 
 Couchbase Server 2.2 (September 2013) is our minor update release for Couchbase Server 2.0. This includes some major enhancements, new features and important bug fixes.  Also with this we have extended our platform support for Windows 2012 and provide separate packages for Ubuntu 12.04 and CentOS 6.
 
