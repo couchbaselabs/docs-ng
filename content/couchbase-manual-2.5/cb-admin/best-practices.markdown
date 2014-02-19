@@ -239,7 +239,7 @@ The switch from an in-place-update disk format to an append-only one means that 
 Depending on workload, the required disk size may range anywhere from **2-3x** your total dataset size (active and replica data combined) due to the append-only disk format.  Heavier update/delete workloads increases the size more dramatically than insert and read heavy workloads.  The size is likely to grow and then shrink significantly over the course of time as the automatic compaction process runs. The 2-3x number comes more from the need to expand rather than your data actually taking up more space on disk.
 
 <div class="notebox bp"><p>Important</p>
-<p>The disk size requirement of 2.3x your total dataset size is back on key-value only and does not take into account views and indexes and XDCR use.
+<p>The disk size requirement of 2-3x your total dataset size is back on key-value only and does not take into account views and indexes and XDCR use.
 </p></div>
 
 
