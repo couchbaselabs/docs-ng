@@ -17,7 +17,7 @@ some cluster changes are not picked up as fast as possible. One part of this cha
 * [SPY-151](http://www.couchbase.com/issues/browse/SPY-151): During shutdown, now all pending authentication threads are properly 
 interrupted, fixing a potential issue where threads hang and applications are not terminated. 
 * [SPY-148](http://www.couchbase.com/issues/browse/SPY-148): Listener worker threads are now only named when they are created, not when
-they are used. This fixes an issue where we rename the threads if a custom execturo is passed in.
+they are used. This fixes an issue where we rename the threads if a custom executor is passed in.
 
 ** Known Issues in 1.3.2 **
 
