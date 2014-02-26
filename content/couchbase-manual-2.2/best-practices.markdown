@@ -148,7 +148,7 @@ Use the following items to calculate how much memory you need:
 
 Constant                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                      
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
+Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
 headroom<sup>1</sup>| Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
 High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
@@ -194,7 +194,7 @@ Constants               | value
 ------------------------|-------------------------
 Type of Storage         | SSD                     
 overhead\_percentage    | 25%                     
-metadata\_per\_document | 56 for 2.1, 64 for 2.0.X
+metadata\_per\_document | 56 for 2.1 or higher
 high\_water\_mark       | 85%                     
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>
@@ -684,7 +684,7 @@ address changes.
 <p>The following steps will completely destroy any data and configuration from the
 node, so you should start with a fresh Couchbase install. If you already have a
 running cluster, you can rebalance a node out of the cluster, make the change,
-and then rebalance it back into the cluster. For more information, see <a href="#couchbase-getting-started-upgrade">Upgrading to Couchbase Server 2.1</a>.</p>
+and then rebalance it back into the cluster. For more information, see <a href="#couchbase-getting-started-upgrade">Upgrading to Couchbase Server 2.2</a>.</p>
 
 <p>Nodes with both IPs and hostnames can exist in the same cluster. When you set
 the IP address using this method, you should not specify the address as
@@ -696,7 +696,7 @@ your host.</p>
 
 As a rule, you should set the hostname before you add a node to a cluster. You
 can also provide a hostname in these ways: when you install a Couchbase Server
-2.1 node or when you do a REST API call before the node is part of a cluster.
+ node or when you do a REST API call before the node is part of a cluster.
 You can also add a hostname to an existing cluster for an online upgrade. If you
 restart, any hostname you establish with one of these methods will be used. For
 instructions, see [Using Hostnames with Couchbase
