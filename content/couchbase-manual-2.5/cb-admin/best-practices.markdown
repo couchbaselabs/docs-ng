@@ -233,33 +233,13 @@ size and IO.
 
 **Size** 
 
-An append-only format means that every write (insert/update/delete) creates a new entry in the file(s) which:
-
-* Eliminates fragmentation 
-* Increases reliability, performance, and consistency of that performance 
-* Improves warmup/startup times
-* Increases disk size requirements
-
-
-The built-in automatic compaction process allows the following:
-
-* Retains only relevant copies of data are left around
-* Reduces size of the on-disk files 
-
-The required disk size depends on the following factors:
-
-* Data type
-* XDCR usage
-* Views and indexes usage
-* Workload
+Disk size requirements are impacted by the Couchbase file write format, append-only, and the built-in automatic compaction process. Append-only format means that every write (insert/update/delete) creates a new entry in the file(s).
 
 The required disk size increases from the update and delete workload and then shrinks as the automatic compaction process runs. The size increases because of the data expansion rather than the actual data using more disk space. Heavier update and delete workloads increases the size more dramatically than heavy insert and read workloads.
 
+Size recommendations are available for key-value data only. If views and indexes or XDCR are implemented, contact Couchbase support for analysis and recommendations.
 
-* Key-value data only — Depending on the workload, the required disk size is  **2-3x** your total dataset size (active and replica data combined). 
-* Key-value data + XDCR — Depending on workload, the possible required disk size for key-value data using XDCR for uni-directional replication may be double and for bi-directional replication, quadruple or more. More specific disk sizing requires Couchbase support and analysis.
-* Views and indexes usage — The required disk size is dependent on complex variables and requires Couchbase support and analysis. 
-* XDCR usage— The required disk size is dependent on complex variables and requires Couchbase support and analysis.
+**Key-value data only** — Depending on the workload, the required disk size is  **2-3x** your total dataset size (active and replica data combined). 
 
 <div class="notebox bp"><p>Important</p> 
 <p>The disk size requirement of 2-3x your total dataset size applies to key-value data only and does not take into account other data formats and the use of views and indexes or XDCR. 
@@ -271,7 +251,7 @@ The required disk size increases from the update and delete workload and then sh
 
 IO is a combination of the sustained write rate, the need for compacting the database files, and anything else that requires disk access. Couchbase Server automatically buffers writes to the database in RAM and eventually persists them to disk. Because of this, the software can accommodate much higher write rates than a disk is able to handle. However, sustaining these writes eventually requires enough IO to get it all down to disk. 
 
-To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else ourside of Couchbase that need space or is accessing the disk. 
+To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else outside of Couchbase that need space or is accessing the disk. 
 
 
 
