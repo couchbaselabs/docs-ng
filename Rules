@@ -56,21 +56,12 @@ compile '*' do
   end
 end
 
-
-
 route '*' do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
   else
-    parts = File.split(item.identifier).compact
-    if item[:extension] == 'markdown'
-      # Strip leading number
-      parts[-1].gsub!(/^\d+-/, '')
-    end
-    # Write item with identifier /foo/ to /foo/index.html
-    parts.push('index.html')
-    File.join(parts)
+    item.identifier + 'index.html'
   end
 end
 

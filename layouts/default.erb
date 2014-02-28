@@ -112,7 +112,8 @@
 
         <div class="row-fluid">
             <% if @item[:ng] %>
-                <% children = (@item[:index] ? @item.children : @item.parent.children).sort_by(&:identifier) %>
+                <%= @item.position.inspect %>
+                <% children = (@item[:index] ? @item.children : @item.parent.children).sort_by(&:position) %>
                 <div id="outernav" class="span3 hidden-phone">
                     <ul id="sidenav" class="span3 nav nav-list affix">
                         <li><h3><%= section_name %></h3></li>
