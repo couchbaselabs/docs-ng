@@ -9,7 +9,7 @@ To start using Couchbase Server, you need to follow these steps:
     Server](#couchbase-getting-started-install).
 
  1. For more information on Upgrading Couchbase Server from a previous version, see
-    [Upgrading to Couchbase Server 2.1](#couchbase-getting-started-upgrade).
+    [Upgrading to Couchbase Server 2.2](#couchbase-getting-started-upgrade).
 
  1. Test the installation by connecting and storing some data using the native
     Memcached protocol. See [Testing Couchbase
@@ -215,7 +215,7 @@ machine before you start the installation. For more information on uninstalling
 Couchbase Server, see <a href="#appendix-uninstalling-couchbase-server">Uninstalling Couchbase Server</a>.</p>
 
 <p>To perform an upgrade installation while retaining your existing dataset, see <a href="#couchbase-getting-started-upgrade">
-Upgrading to Couchbase Server</a>.</p>
+Upgrading to Couchbase Server 2.2</a>.</p>
 </div>
 
 <a id="couchbase-getting-started-install-redhat"></a>
@@ -414,14 +414,14 @@ Platforms](#couchbase-getting-started-prepare-platforms).
      ```
      Selecting previously deselected package couchbase-server.
      (Reading database ... 73755 files and directories currently installed.)
-     Unpacking couchbase-server (from couchbase-server_x86_64_2.1.0-xxx-rel.deb) ...
+     Unpacking couchbase-server (from couchbase-server_x86_64_2.2.0-xxx-rel.deb) ...
      libssl0.9.8 is installed. Continue installing
      Minimum RAM required  : 4 GB
      System RAM configured : 4058708 KB
 
      Minimum number of processors required : 4 cores
      Number of processors on the system    : 4 cores
-     Setting up couchbase-server (2.1) ...
+     Setting up couchbase-server (2.2) ...
       * Started couchbase-server
 
      You have successfully installed Couchbase Server.
@@ -457,7 +457,7 @@ Couchbase command-line tools. To do so on Ubuntu:
     located and extract it:
 
      ```
-     >  dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb $HOME
+     >  dpkg-deb -x couchbase-server-community_x86_64_2.2.0-821-rel.deb $HOME
      ```
 
     In the directory where you extracted the files, you will see `opt` and `etc`
@@ -682,13 +682,13 @@ Couchbase Server installation. By default, this is
  1. Unzip the package containing Couchbase Server:
 
      ```
-     open couchbase-server-enterprise_x86_64_2.1.0.zip
+     open couchbase-server-enterprise_2.2.0_x86_64.zip
      ```
 
  1. Move Couchbase App to your `/Applications` folder:
 
      ```
-     mv couchbase-server-enterprise_x86_64_2.1.0/Couchbase\ Server.app /Applications/
+     mv couchbase-server-enterprise_2.2.0_x86_64/Couchbase\ Server.app /Applications/
      ```
 
  1. Start the server from Terminal:
@@ -852,10 +852,10 @@ If you restart a node, it will use the hostname once again. If you failover or
 remove a node from a cluster, the node needs to be configured with the hostname
 once again.
 
-**Couchbase 2.1 Linux and Windows**
+**Couchbase 2.2 Linux and Windows**
 
-There are several ways you can provide hostnames for Couchbase 2.1+. You can
-provide a hostname when you install a Couchbase Server 2.1 on a machine, when
+There are several ways you can provide hostnames for Couchbase 2.2. You can
+provide a hostname when you install a Couchbase Server on a machine, when
 you add the node to an existing cluster for online upgrade, or via a REST API
 call. Couchbase Server stores this in a config file on disk. For earlier
 versions of Couchbase Server you must follow a manual process where you edit
@@ -872,8 +872,8 @@ Any hostname you provide will survive node restart:
 
 **While Adding a Node**
 
-If you add a new 2.1+ node to an existing 2.0.1 or older Couchbase cluster you
-should first setup the hostname for the 2.1+ node in the setup wizard. If you
+If you add a new 2.2 node to an existing 2.0.1 or older Couchbase cluster you
+should first setup the hostname for the 2.2 node in the setup wizard. If you
 add a new 2.1+ node to a 2.1 cluster you can provide either a hostname or IP
 address under **Add Server**. You provide it in the **Server IP Address** field:
 
@@ -914,17 +914,16 @@ request:
 
  * Renaming is disallowed for nodes that are already part of a cluster.
 
-**Upgrading to 2.1 on Linux and Windows**
+**Upgrading to 2.2 on Linux and Windows**
 
-If you perform an offline upgrade from Couchbase 1.8.1+ to 2.1 and you have a
+If you perform an offline upgrade from Couchbase 1.8.1+ to 2.2 and you have a
 configured hostname using the instructions here [Handling Changes in IP
-Addresses](#couchbase-bestpractice-cloud-ip), a 2.1 server will use this
+Addresses](#couchbase-bestpractice-cloud-ip), a 2.2 server will use this
 configuration.
 
-If you perform an online upgrade from 1.8.1+ to 2.1, you should add the hostname
-when you create the new 2.1 node. For more information about upgrading between
-versions, see [Upgrading to Couchbase Server
-2.1](#couchbase-getting-started-upgrade)
+If you perform an online upgrade from 1.8.1+ to 2.2, you should add the hostname
+when you create the new node. For more information about upgrading between
+versions, see [Upgrading to Couchbase Server 2.2](#couchbase-getting-started-upgrade)
 
 **In the Cloud (such as EC2, Azure, etc)**. For more information about handling
 IP addresses and hostnames, see [Handling Changes in IP
@@ -1069,11 +1068,11 @@ Tool</a>.</p>
 The following are the officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
 
- * Couchbase 1.8.1 to Couchbase 2.2 and above
- * Couchbase 2.0 to Couchbase 2.2 and above
- * Couchbase 2.0.x to Couchbase 2.2 and above
- * Couchbase 2.1 to Couchbase 2.2 and above
- * Couchbase 2.1.x to Couchbase 2.2 and above
+ * Couchbase 1.8.1 to Couchbase 2.2 or higher
+ * Couchbase 2.0 to Couchbase 2.1 or higher
+ * Couchbase 2.0.x to Couchbase 2.2 or higher
+ * Couchbase 2.1 to Couchbase 2.2 or higher
+ * Couchbase 2.1.x to Couchbase 2.2 or higher
 
 
 <div class="notebox">

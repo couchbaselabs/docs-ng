@@ -309,13 +309,13 @@ HTTP/1.1 400 Bad Request
 ```
 
 If you upgrade a Couchbase cluster, a new node can use this setting without
-bucket restart and warmup. In this case you set up a new 2.1+ node, add that
+bucket restart and warmup. In this case you set up a new 2.1 or higher node, add that
 node to the cluster, and on that new node edit the existing bucket setting for
 readers and writers. After you rebalance the cluster, this new node will perform
 reads and writes with multiple readers and writers and the data bucket will not
 restart or go through warmup. All existing pre-2.1 nodes will remain with a
 single readers and writers for the data bucket. As you continue the upgrade and
-add additional 2.1+ nodes to the cluster, these new nodes will automatically
+add additional 2.1 or higher nodes to the cluster, these new nodes will automatically
 pick up the setting and use multiple readers and writers for the bucket. For
 general information about Couchbase cluster upgrade, see [Upgrading to Couchbase
 Server 2.1](#couchbase-getting-started-upgrade).

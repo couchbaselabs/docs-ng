@@ -689,42 +689,44 @@ Queues](#couchbase-admin-web-console-data-buckets-tapqueues).
 Couchbase Server actively manages the data stored in a caching layer; this
 includes the information which is frequently accessed by clients and which needs
 to be available for rapid reads and writes. When there are too many items in
-RAM, Couchbase Server will remove certain data to create free space and to
-maintain system performance. This process is called *working set management* and
-we refer to the set of data in RAM as a *working set*.
+RAM, Couchbase Server removes certain data to create free space and to
+maintain system performance. This process is called "working set management" and
+the set of data in RAM is referred to as the "working set".
 
-In general your working set consists of all the keys, metadata, and associated
-documents which are frequently used in your system and therefore require fast
+In general the working set consists of all the keys, metadata, and associated
+documents which are frequently used  require fast 
 access. The process the server performs to remove data from RAM is known as
-*ejection*, and when the server performs this process, it removes the document,
-but not the keys or metadata for an item. Keeping keys and metadata in RAM
+ejection. When the server performs this process, it removes the document,
+but not the keys or metadata for the item. Keeping keys and metadata in RAM
 serves three important purposes in a system:
 
  * Couchbase Server uses the remaining key and metadata in RAM if a request for
-   that key comes from a client; the server will then try to fetch the item from
+   that key comes from a client. If a request occurs, the server then tries to fetch the item from
    disk and return it into RAM.
 
- * The server can also use the keys and metadata in RAM for *miss access*. This
-   means that you quickly determine if an item is missing and then perform some
+ * The server can also use the keys and metadata in RAM for "miss access". This
+   means that it is quickly determine whether an item is missing and if so, perform some
    action, such as add it.
 
- * Finally the expiration process in Couchbase Server uses the metadata in RAM to
+ * Finally, the expiration process in Couchbase Server uses the metadata in RAM to
    quickly scan for items that are expired and later remove them from disk. This
-   process is known as the *expiry pager* and runs every 60 minutes by default. For
+   process is known as the "expiry pager" and runs every 60 minutes by default. For
    more information about the pager, and changing the setting for it, see [Changing
    the Disk Cleanup Interval](#couchbase-admin-cbepctl-disk-cleanup).
 
 **Not-Frequently-Used Items**
 
 All items in the server contain metadata indicating whether the item has been
-recently accessed or not; this metadata is known as NRU, which is an
-abbreviation for *not-recently-used*. If an item has not been recently used then
+recently accessed or not. This metadata is known as not-recently-used (NRU). 
+If an item has not been recently used, then
 the item is a candidate for ejection if the high water mark has been exceeded.
 When the high water mark has been exceeded, the server evicts items from RAM.
 
-Couchbase Server provides two NRU bits per item and also provide
+Couchbase Server provides two NRU bits per item and also provides 
 a replication protocol that can propagate items that are frequently read, but
-not mutated often. For earlier versions of Couchbase Server, we had provided
+not mutated often. 
+
+For earlier versions, Couchbase Server provided
 only a single bit for NRU and a different replication protocol which resulted in
 two issues: metadata could not reflect how frequently or recently an item had
 been changed, and the replication protocol only propagated NRUs for mutation
@@ -733,9 +735,8 @@ that the working set on an active vBucket could be quite different than the set
 on a replica vBucket. By changing the replication protocol, the working
 set in replica vBuckets will be closer to the working set in the active vBucket.
 
-NRUs will be decremented or incremented by server processes to indicate an item
-is more frequently used, or less frequently used. Items with lower bit values
-will have lower scores and will be considered more frequently used. The bit
+NRUs are decremented or incremented by server processes to indicate an item
+is more frequently used, or less frequently used. Items with lower bit values have lower scores and are considered more frequently used. The bit
 values, corresponding scores and status are as follows:
 
 <a id="table-couchbase-admin-NRU"></a>
@@ -748,41 +749,38 @@ values, corresponding scores and status are as follows:
 11             | 3         | Set to FALSE                             | Incremented by item pager for eviction.                             | Less frequently used item.
 
 When WSR is set to TRUE it means that an item should be replicated to a replica
-vBucket. There are two processes which change the NRU for an item: 1) if a
-client reads or writes an item, the server decrements NRU and lowers the item's
-score, 2) Couchbase Server also has a daily process which creates a list of
-frequently-used items in RAM. After this process runs, the server increment one
-of the NRU bits. Because two processes will change NRUs, they will also affect
+vBucket. There are two processes which change the NRU for an item: 
+
+* A client reads or writes an item, the server decrements NRU and lowers the item's score
+* A daily process which creates a list of frequently-used items in RAM. After this process runs, the server increments one
+of the NRU bits. 
+
+Because the two processes changes NRUs, they also affect
 which items are candidates for ejection. For more information about the access
 scanner, see [Handling Server Warmup](#couchbase-admin-tasks-warmup-access).
 
-You can adjust settings for Couchbase Server which change behavior during
-ejection. You can indicate the percentage of RAM you are willing to consume
-before items are ejected, or you can indicate whether ejection should occur more
-frequently on replicated data than on original data. Be aware that for Couchbase
-Server recommends that you use the default settings.
+Couchbase Server settings can be adjusted to change behavior during
+ejection. For example, specify the percentage of RAM to be consume
+before items are ejected or specify whether ejection should occur more
+frequently on replicated data than on original data. Couchbase 
+recommends that the default settings be used.
 
 **Understanding the Item Pager**
 
-The process that periodically runs and removes documents from RAM is known as
-the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting replica data from RAM on the node. If the
-amount of RAM used by items reaches an upper threshold, known as the *high water
-mark*, both replica data and active data written from clients will be ejected.
-The item pager will continue to eject items from RAM until the amount of RAM
-consumed is below the *low water mark*. Both the high water mark and low water
-mark are expressed as an absolute amount of RAM, such as 5577375744 bytes.
+The item pager process, which runs periodically, removes documents from RAM and retains the item's key and metadata. 
+If the amount of RAM used by items reaches the high water mark (upper threshold), both active and replica data are ejected until the memory usage (amount of RAM consumed) reaches the low water mark (lower threshold). 
+Evictions of active and replica data occur with the ratio probability of 40% (active data) to 60% (replica data) until the memory usage reaches the low watermark.
+Both the high water mark and low water mark are expressed as a percentage amount of RAM, such as 80%.
 
-When you change either of these settings, you can provide a percentage of total
-RAM for a node such as 80% or as an absolute number of bytes. Couchbase
-Server recommends that you use the default settings. Defaults for these settings are listed below.
+Both the high water mark and low water mark can be changed by providing a percentage amount of RAM for a node, for example, 80%. 
+Couchbase recommends that the following default settings be used:
 
 <a id="table-couchbase-admin-watermark-defaults"></a>
 
 **Version** | **High Water Mark** | **Low Water Mark**
 ------------|---------------------|-------------------
 2.0         | 75%                 | 60%               
-2.0.1+      | 85%                 | 75%               
+2.0.1 and higher     | 85%                 | 75%               
 
 The item pager ejects items from RAM in two phases:
 
@@ -800,9 +798,11 @@ The item pager ejects items from RAM in two phases:
 
 <a id="table-couchbase-admin-ejection-defaults"></a>
 
-**Version** | **Probability for Active vBucket** | **Probability for Replica vBucket**
-------------|------------------------------------|------------------------------------
-2.0+        | 60%                                | 40%                                
+The following is the probability of ejection based on active vs. replica vBuckets:
+
+Active vBucket | Replica vBucket
+------------------------------------|------------------------------------
+ 60%                                | 40%                                
 
 For instructions to change this setting, see [Changing thresholds for
 ejection](../cb-cli/#couchbase-admin-cbepctl-ejection).

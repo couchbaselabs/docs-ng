@@ -22,9 +22,7 @@ are running on your node:
 
    These processes are responsible for monitoring and managing all other underlying
    server processes such as ongoing XDCR replications, cluster operations, and
-   views. Prior to 2.1 we had a single process for memcached, Moxi and to monitor
-   all server processes. This resulted in server disruption and crashes due to lack
-   of memory.
+   views.
 
    There is a separate monitoring/babysitting process
    running on each node. The process is small and simple and therefore unlikely to

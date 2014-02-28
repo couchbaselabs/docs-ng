@@ -105,10 +105,9 @@ have the biggest impact on performance and stability.
 
 ### Working set
 
-Before we can decide how much memory we will need for the cluster, we should
-understand the concept of a 'working set.' The 'working set' is the data that
-your application actively uses at any point in time. Ideally you want all your
-working set to live in memory.
+The working set is the data that
+the client application actively uses at any point in time. Ideally, all of the 
+working set lives in memory. This impacts how much memory is needed.
 
 <a id="couchbase-bestpractice-sizing-ram-memoryquota"></a>
 
@@ -219,42 +218,67 @@ per\_node\_ram\_quota as there may be other programs running on your machine.
 
 ### Disk throughput and sizing
 
-In Couchbase Server 1.8.x, an "in-place-update" disk format was implemented, however, 
-sometimes a performance penalty occurred due to fragmentation of the 
-on-disk files under workloads with frequent updates/deletes. 
-In Couchbase Server 2.0 and higher, an "append-only" format and a built-in 
-automatic compaction process is implemented.
+Couchbase Server decouples RAM from the I/O layer. 
+Decoupling allows high scaling at very low and consistent latencies and enables 
+very high write loads without affecting  client application performance. 
 
-an disk size requirements have increased 
-because is switched from an "in-place-update" disk format to an "append-only" format. 
-This is not typically a problem, however, it is important to take into consideration. 
+Couchbase Server implements an append-only format and a built-in 
+automatic compaction process. Previously, in Couchbase Server 1.8.x, 
+an "in-place-update" disk format was implemented, however, 
+this implementation occasionally produced a performance penalty due to fragmentation of the 
+on-disk files under workloads with frequent updates/deletes. 
 
 The requirements of your disk subsystem are broken down into two components: 
 size and IO. 
 
-**Size**
+**Size** 
 
-The switch from an in-place-update disk format to an append-only one means that every write (insert/update/delete) creates a new entry in the file(s) and eliminates fragmentation.  This brings immense advantages in terms of reliability, performance, consistency of that performance, and much improved warmup/startup times.  The built-in automatic compaction process ensures that only the relevant copies of data are left around and reduces the size of the on-disk files.
+An append-only format means that every write (insert/update/delete) creates a new entry in the file(s) which:
 
-Depending on workload, the required disk size may range anywhere from **2-3x** your total dataset size (active and replica data combined) due to the append-only disk format.  Heavier update/delete workloads increases the size more dramatically than insert and read heavy workloads.  The size is likely to grow and then shrink significantly over the course of time as the automatic compaction process runs. The 2-3x number comes more from the need to expand rather than your data actually taking up more space on disk.
-
-<div class="notebox bp"><p>Important</p>
-<p>The disk size requirement of 2-3x your total dataset size is back on key-value only and does not take into account views and indexes and XDCR use.
-</p></div>
-
-
-**IO**
-
-IO is a combination of the sustained write rate, the need for compacting the database files, and anything else that requires disk access.  Couchbase Server automatically buffers writes to the database in RAM and eventually persists them to disk.  Because of this, the software can accommodate much higher write rates than a disk is able to handle. However, sustaining these writes eventually requires enough IO to get it all down to disk.
-
-To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else ourside of Couchbase that need space or is accessing the disk.
+* Eliminates fragmentation 
+* Increases reliability, performance, and consistency of that performance 
+* Improves warmup/startup times
+* Increases disk size requirements
 
 
+The built-in automatic compaction process allows the following:
 
-<div class="notebox"><p>Best practice</p>
-<p>
-Use the available configuration options to separate data files, indexes and the installation/config directories on separate drives/devices to ensure that IO and space are allocated effectively.
-</p></div>
+* Retains only relevant copies of data are left around
+* Reduces size of the on-disk files 
+
+The required disk size depends on the following factors:
+
+* Data type
+* XDCR usage
+* Views and indexes usage
+* Workload
+
+The required disk size increases from the update and delete workload and then shrinks as the automatic compaction process runs. The size increases because of the data expansion rather than the actual data using more disk space. Heavier update and delete workloads increases the size more dramatically than heavy insert and read workloads.
+
+
+* Key-value data only — Depending on the workload, the required disk size is  **2-3x** your total dataset size (active and replica data combined). 
+* Key-value data + XDCR — Depending on workload, the possible required disk size for key-value data using XDCR for uni-directional replication may be double and for bi-directional replication, quadruple or more. More specific disk sizing requires Couchbase support and analysis.
+* Views and indexes usage — The required disk size is dependent on complex variables and requires Couchbase support and analysis. 
+* XDCR usage— The required disk size is dependent on complex variables and requires Couchbase support and analysis.
+
+<div class="notebox bp"><p>Important</p> 
+<p>The disk size requirement of 2-3x your total dataset size applies to key-value data only and does not take into account other data formats and the use of views and indexes or XDCR. 
+</p></div> 
+
+
+
+**IO** 
+
+IO is a combination of the sustained write rate, the need for compacting the database files, and anything else that requires disk access. Couchbase Server automatically buffers writes to the database in RAM and eventually persists them to disk. Because of this, the software can accommodate much higher write rates than a disk is able to handle. However, sustaining these writes eventually requires enough IO to get it all down to disk. 
+
+To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else ourside of Couchbase that need space or is accessing the disk. 
+
+
+
+<div class="notebox"><p>Best practice</p> 
+<p> 
+Use the available configuration options to separate data files, indexes and the installation/config directories on separate drives/devices to ensure that IO and space are allocated effectively. 
+</p></div> 
 
 
 
