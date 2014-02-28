@@ -112,7 +112,6 @@
 
         <div class="row-fluid">
             <% if @item[:ng] %>
-                <%= @item.position.inspect %>
                 <% children = (@item[:index] ? @item.children : @item.parent.children).sort_by(&:position) %>
                 <div id="outernav" class="span3 hidden-phone">
                     <ul id="sidenav" class="span3 nav nav-list affix">
@@ -138,6 +137,20 @@
                         <% end %>
                     </ul>
                 </div>
+                <% if @item[:index] %>
+                    <script type="text/javascript">
+                        var redirects = [
+                        <% @item.children.each do |child| %>
+                            <%= child.path.split("/").compact.last.inspect %>,
+                        <% end %>
+                        ]
+                        for (var i in redirects) {
+                            if (document.location.hash == "#"+redirects[i]) {
+                                document.location = document.location.toString().replace("#", "");
+                            }
+                        }
+                    </script>
+                <% end %>
             <% elsif !@item[:no_toc] %>
                 <%= render 'toc_widget' %>
             <% end %>
