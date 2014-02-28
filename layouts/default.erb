@@ -120,6 +120,20 @@
                         <% children.each do |entry| %>
                             <li class="<%= (entry.identifier == @item.identifier) ? 'active' : '' %>">
                                 <%= link_to entry[:title], entry %>
+                                <% if entry.identifier == @item.identifier && !entry.toc.empty? && !entry.toc.first[:children].empty? %>
+                                    <ul class="sub-menu">
+                                        <% entry.toc.first[:children].each do |child| %>
+                                            <li><%= link_to child[:title], child[:href] %></li>
+                                            <% unless child[:children].empty? %>
+                                                <ul class="sub-menu">
+                                                    <% child[:children].each do |child| %>
+                                                        <li><%= link_to child[:title], child[:href] %></li>
+                                                    <% end %>
+                                                </ul>
+                                            <% end %>
+                                        <% end %>
+                                    </ul>
+                                <% end %>
                             </li>
                         <% end %>
                     </ul>
