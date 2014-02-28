@@ -1,0 +1,116 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0 - &#31532;7&#31456; &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473; - 7.10. cbtransfer&#12484;&#12540;&#12523;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0"><link rel="up" href="couchbase-admin-cmdline.html" title="&#31532;7&#31456; &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;"><link rel="prev" href="couchbase-admin-cmdline-cbrestore.html" title="7.9. cbrestore&#12484;&#12540;&#12523;"><link rel="next" href="couchbase-admin-cmdline-cbdocloader.html" title="7.11. cbdocloader&#12484;&#12540;&#12523;"><meta name="date" content="2013-06-26T23:53:47+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-manual-2.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0 </a></div><div class="inpagenav-doccommunity"><div class="inpagenav-doccommunity-title">Community Wiki and Resources</div><div><table summary="Simple list" border="0" class="simplelist"><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/downloads" target="_top">Couchbase Server 2.0&#12434;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html" target="_top">Couchbase &#38283;&#30330;&#32773;&#12460;&#12452;&#12489; 2.0</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/develop" target="_top">&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/forums/couchbase/couchbase-server-20x" target="_top">Couchbase Server &#12501;&#12457;&#12540;&#12521;&#12512;</a>
+            </td></tr></table></div></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="couchbase-admin-cmdline.html">7 &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-rename-remove-new.html">7.1 &#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12484;&#12540;&#12523;&#12392;&#21033;&#29992;&#21487;&#33021;&#29366;&#27841;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-unsupported.html">7.2 &#12469;&#12509;&#12540;&#12488;&#12373;&#12428;&#12390;&#12356;&#12394;&#12356;&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-deprecated-removed.html">7.3 &#24259;&#27490;&#20104;&#23450;&#12539;&#21066;&#38500;&#12373;&#12428;&#12383;&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-couchbase-cli.html">7.4 couchbase-cli &#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbstats.html">7.5 cbstats&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbepctl.html">7.6 cbepctl&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbcollect_info.html">7.7 cbcollect_info&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbbackup.html">7.8 cbbackup&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbrestore.html">7.9 cbrestore&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-admin-cmdline-cbtransfer.html">7.10 cbtransfer&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbdocloader.html">7.11 cbdocloader&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbworkloadgen.html">7.12 cbworkloadgen&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-cbanalyze-core.html">7.13 cbanalyze-core&#12484;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-admin-cmdline-vbuckettool.html">7.14 vbuckettool&#12484;&#12540;&#12523;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="couchbase-server-2-0-preface.html"> &#12399;&#12376;&#12417;&#12395;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-introduction.html">1 Couchbase Server&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-getting-started.html">2 &#12452;&#12531;&#12473;&#12488;&#12540;&#12523;&#12392;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-basics.html">3 &#12463;&#12521;&#12473;&#12479;&#31649;&#29702;&#12398;&#22522;&#26412;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-bestpractice.html">4 &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;
+</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-tasks.html">5 &#31649;&#29702;&#12479;&#12473;&#12463;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-web-console.html">6 Web&#12467;&#12531;&#12477;&#12540;&#12523;&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-cmdline.html">7 &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-restapi.html">8 REST API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-views.html">9 &#12499;&#12517;&#12540;&#12392;&#12452;&#12531;&#12487;&#12483;&#12463;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-monitoring.html">10 Couchbase&#12398;&#30435;&#35222;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-troubleshooting.html">11 &#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-faq.html">A &#12424;&#12367;&#12354;&#12427;&#36074;&#21839;&#65288;FAQ&#65289;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-uninstalling.html">B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sampledata.html">C Couchbase&#12398;&#12469;&#12531;&#12503;&#12523;&#12496;&#12465;&#12483;&#12488;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-views-troubleshooting.html">D &#12499;&#12517;&#12540;&#12398;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#65288;&#25216;&#34899;&#30340;&#32972;&#26223;&#65289;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-server-rn.html">E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-server-limits.html">F &#38480;&#30028;&#20516;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">7.10. <span class="command"><strong>cbtransfer</strong></span>&#12484;&#12540;&#12523;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-admin-cmdline-cbrestore.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;7&#31456; &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-admin-cmdline-cbdocloader.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="7.10. cbtransfer&#12484;&#12540;&#12523;"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="couchbase-admin-cmdline-cbtransfer"></a>7.10. <span class="command"><strong>cbtransfer</strong></span>&#12484;&#12540;&#12523;</h2></div></div></div><p>&#23436;&#20840;&#12395;&#20572;&#27490;&#12375;&#12390;&#12356;&#12427;&#12494;&#12540;&#12489;&#12363;&#12425;&#12487;&#12540;&#12479;&#12398;&#12467;&#12500;&#12540;&#12434;&#20316;&#25104;&#12377;&#12427;&#12383;&#12417;&#12395;&#12371;&#12398;&#12484;&#12540;&#12523;&#12434;&#20351;&#12360;&#12289;&#31292;&#20685;&#12375;&#12390;&#12356;&#12427;&#12463;&#12521;&#12473;&#12479;&#12395;&#12487;&#12540;&#12479;&#12434;&#12525;&#12540;&#12489;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;<span class="command"><strong>cbbackup</strong></span>&#12392;&#12399;&#30064;&#12394;&#12426;&#12289;&#12371;&#12398;&#12484;&#12540;&#12523;&#12399;&#12289;&#12418;&#12358;&#21205;&#12356;&#12390;&#12356;&#12394;&#12356;&#12494;&#12540;&#12489;&#12363;&#12425;&#12487;&#12540;&#12479;&#12398;&#12467;&#12500;&#12540;&#12434;&#20316;&#25104;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;&#12371;&#12398;&#12484;&#12540;&#12523;&#12399;&#19978;&#12395;<span class="command"><strong>cbbackup</strong></span>&#12392;<span class="command"><strong>cbrestore</strong></span>&#12364;&#27083;&#31689;&#12373;&#12428;&#12390;&#12356;&#12427;&#12371;&#12392;&#12434;&#12505;&#12540;&#12473;&#12392;&#12375;&#12383;&#19968;&#33324;&#30340;&#12394;&#12487;&#12540;&#12479;&#36578;&#36865;&#12484;&#12540;&#12523;&#12391;&#12377;&#12290;&#12371;&#12428;&#12399;&#12289;&#36865;&#20449;&#20803;&#12363;&#12425;&#23451;&#20808;&#12408;&#12487;&#12540;&#12479;&#12434;&#31227;&#12377;&#12371;&#12392;&#12364;&#12391;&#12365;&#12289;&#36605;&#37327;&#12394;&#25277;&#20986;&#12539;&#22793;&#25563;&#12539;&#12525;&#12540;&#12489;&#65288;ETL&#65289;&#12484;&#12540;&#12523;&#12391;&#12377;&#12290;&#36865;&#20449;&#20803;&#12362;&#12424;&#12403;&#23451;&#20808;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;&#12399;&#12289;URL&#12420;&#12501;&#12449;&#12452;&#12523;&#12497;&#12473;&#12395;&#20284;&#12390;&#12356;&#12414;&#12377;&#12290;</p><div class="informaltable"><a name="table-couchbase-admin-cmdline-cbtransfer-locs"></a><table border="1"><colgroup><col width="30%"><col width="70%"></colgroup><tbody><tr><td>
+              <span class="bold"><strong>Linux
+</strong></span>
+            </td><td>
+              <code class="filename">/opt/couchbase/bin/</code>
+            </td></tr><tr><td>
+              <span class="bold"><strong>Windows
+</strong></span>
+            </td><td>
+              <code class="filename">C:\Program&nbsp;Files\Couchbase\Server\bin\</code>
+            </td></tr><tr><td>
+              <span class="bold"><strong>Mac OS X</strong></span>
+            </td><td>
+              <code class="filename">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/</code>
+            </td></tr></tbody></table></div><p>&#27161;&#28310;&#30340;&#12394;&#12467;&#12510;&#12531;&#12489;&#12398;&#24418;&#24335;&#12399;&#27425;&#12398;&#12392;&#12362;&#12426;&#12391;&#12377;&#65306;</p><pre class="programlisting"><span class="line">Usage: cbtransfer [options] source destination</span>
+<span class="line"></span>
+<span class="line">Transfer couchbase cluster data from source to destination.</span>
+<span class="line"></span>
+<span class="line">Examples:</span>
+<span class="line">  cbtransfer http://SOURCE:8091 /backups/backup-42</span>
+<span class="line">  cbtransfer /backups/backup-42 http://DEST:8091</span>
+<span class="line">  cbtransfer /backups/backup-42 couchbase://DEST:8091</span>
+<span class="line">  cbtransfer http://SOURCE:8091 http://DEST:8091</span>
+<span class="line"></span>
+<span class="line">Options:</span>
+<span class="line">  -h, --help            show this help message and exit</span>
+<span class="line">  -b BUCKET_SOURCE, --bucket-source=BUCKET_SOURCE</span>
+<span class="line">                        single bucket from source to transfer</span>
+<span class="line">  -B BUCKET_DESTINATION, --bucket-destination=BUCKET_DESTINATION</span>
+<span class="line">                        when --bucket-source is specified, overrides the</span>
+<span class="line">                        destination bucket name; this allows you to transfer</span>
+<span class="line">                        to a different bucket; defaults to the same as the</span>
+<span class="line">                        bucket-source</span>
+<span class="line">  -i ID, --id=ID        allow only items that match a vbucketID</span>
+<span class="line">  -k KEY, --key=KEY     allow only items with keys that match a regexp</span>
+<span class="line">  -n, --dry-run         no actual work; just validate parameters, files,</span>
+<span class="line">                        connectivity and configurations</span>
+<span class="line">  -u USERNAME, --username=USERNAME</span>
+<span class="line">                        REST username for cluster or server node</span>
+<span class="line">  -p PASSWORD, --password=PASSWORD</span>
+<span class="line">                        REST password for cluster or server node</span>
+<span class="line">  -t THREADS, --threads=THREADS</span>
+<span class="line">                        number of concurrent workers</span>
+<span class="line">  -v, --verbose         verbose logging; more -v's provide more verbosity</span>
+<span class="line">  -x EXTRA, --extra=EXTRA</span>
+<span class="line">                        extra, uncommon config parameters;</span>
+<span class="line">                        comma-separated key=val(,key=val)* pairs</span>
+<span class="line">  --single-node         use a single server node from the source only,</span>
+<span class="line">                        not all server nodes from the entire cluster;</span>
+<span class="line">                        this single server node is defined by the source URL</span>
+<span class="line">  --source-vbucket-state=SOURCE_VBUCKET_STATE</span>
+<span class="line">                        only transfer from source vbuckets in this state,</span>
+<span class="line">                        such as 'active' (default) or 'replica',</span>
+<span class="line">                        if supported by the source class</span>
+<span class="line">  --destination-vbucket-state=DESTINATION_VBUCKET_STATE</span>
+<span class="line">                        only transfer to destination vbuckets in this state,</span>
+<span class="line">                        such as 'active' (default) or 'replica',</span>
+<span class="line">                        if supported by the destination class</span>
+<span class="line">  --destination-operation=DESTINATION_OPERATION</span>
+<span class="line">                        use a given operation (set, add, get) on the</span>
+<span class="line">                        destination, if supported</span>
+<span class="line"></span>
+<span class="line">  Available extra config parameters (-x):</span>
+<span class="line">    batch_max_bytes=400000 (max # of msg value bytes per batch);</span>
+<span class="line">    batch_max_size=1000 (max # msgs per batch); cbb_max_mb=100000 (max #</span>
+<span class="line">    of msg value MB per *.cbb file); max_retry=10 (max # of sequential</span>
+<span class="line">    retries); nmv_retry=1 (1 to retry after NOT_MY_VBUCKET replies);</span>
+<span class="line">    recv_min_bytes=4096 (amount of bytes for every recv() call); report=5</span>
+<span class="line">    (# batches before updating progress bar); report_full=2000 (# batches</span>
+<span class="line">    before emitting progress info); try_xwm=1 (1 to first try XXX-WITH-</span>
+<span class="line">    META commands)</span></pre><p>&#12371;&#12398;&#12484;&#12540;&#12523;&#12434;&#20351;&#12358;&#19978;&#12391;&#26368;&#12418;&#37325;&#35201;&#12394;&#12371;&#12392;&#12399;&#12289;&#38556;&#23475;&#12364;&#30330;&#29983;&#12375;&#12383;Couchbase&#12398;&#12494;&#12540;&#12489;&#12363;&#12425;&#12289;&#27231;&#33021;&#12375;&#12390;&#12356;&#12427;&#12494;&#12540;&#12489;&#12414;&#12383;&#12399;&#12463;&#12521;&#12473;&#12479;&#12395;&#12487;&#12540;&#12479;&#12434;&#36578;&#36865;&#12391;&#12365;&#12427;&#12392;&#12356;&#12358;&#12371;&#12392;&#12391;&#12377;&#65306;</p><pre class="programlisting"><span class="line">./cbtransfer \</span>
+<span class="line">       couchstore-files://COUCHSTORE_BUCKET_DIR \</span>
+<span class="line">       couchbase://HOST:PORT \</span>
+<span class="line">       --bucket-destination=DESTINATION_BUCKET</span>
+<span class="line"></span>
+<span class="line">./cbtransfer \</span>
+<span class="line">       couchstore-files:///opt/couchbase/var/lib/couchbase/data/default \</span>
+<span class="line">       couchbase://10.5.3.121:8091 \</span>
+<span class="line">       --bucket-destination=foo</span></pre><p>&#27425;&#12398;&#20363;&#12391;&#12399;&#12289;&#12354;&#12427;&#12494;&#12540;&#12489;&#12363;&#12425;&#27161;&#28310;&#20986;&#21147;&#12408;&#12377;&#12409;&#12390;&#12398;&#12487;&#12540;&#12479;&#12434;&#36865;&#12427;&#26041;&#27861;&#12434;&#31034;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;</p><pre class="programlisting"><span class="line">shell&gt; ./cbtransfer http://10.5.2.37:8091/ stdout:</span></pre><p>&#27425;&#12398;&#12424;&#12358;&#12394;&#20986;&#21147;&#12364;&#29983;&#25104;&#12373;&#12428;&#12414;&#12377;&#65306;</p><pre class="programlisting"><span class="line">set pymc40 0 0 10</span>
+<span class="line">0000000000</span>
+<span class="line">set pymc16 0 0 10</span>
+<span class="line">0000000000</span>
+<span class="line">set pymc9 0 0 10</span>
+<span class="line">0000000000</span>
+<span class="line">set pymc53 0 0 10</span>
+<span class="line">0000000000</span>
+<span class="line">set pymc34 0 0 10</span>
+<span class="line">0000000000</span></pre><p>Couchbase Server&#12399;&#12289;&#38306;&#36899;&#12375;&#12383;&#12487;&#12470;&#12452;&#12531;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488;&#12391;&#12399;&#12394;&#12367;&#12289;&#12496;&#12465;&#12483;&#12488;&#12289;&#12494;&#12540;&#12489;&#12420;&#12463;&#12521;&#12473;&#12479;&#12398;&#20840;&#12390;&#12398;&#12487;&#12540;&#12479;&#12434;&#20445;&#23384;&#12375;&#12414;&#12377;&#12290;&#12381;&#12398;&#12383;&#12417;&#12395;&#12399;&#12289;&#26126;&#31034;&#30340;&#12395;&#24773;&#22577;&#12434;&#26684;&#32013;&#12377;&#12427;<span class="command"><strong>cbbackup</strong></span>&#12392;&#12289;&#12513;&#12514;&#12522;&#12395;&#35501;&#12415;&#25147;&#12377;<span class="command"><strong>cbrestore&#12434;</strong></span>&#12434;&#20351;&#29992;&#12377;&#12427;&#24517;&#35201;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290;</p></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-admin-cmdline-cbrestore.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="couchbase-admin-cmdline.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-admin-cmdline-cbdocloader.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">7.9. <span class="command"><strong>cbrestore</strong></span>&#12484;&#12540;&#12523;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;7.11. <span class="command"><strong>cbdocloader</strong></span>&#12484;&#12540;&#12523;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

@@ -1,0 +1,177 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;4&#31456; Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="prev" href="couchbase-sdk-java-started-disconnection.html" title="3.3. &#25509;&#32154;&#12434;&#12471;&#12515;&#12483;&#12488;&#12480;&#12454;&#12531;&#12377;&#12427;"><link rel="next" href="couchbase-sdk-java-summary-synchronous.html" title="4.1. &#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#21628;&#12403;&#20986;&#12375;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-children"><div class="inpagenav-children-title">Child Sections</div><div class="inpagenav-children-link"><a href="couchbase-sdk-java-summary-synchronous.html">4.1 &#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#21628;&#12403;&#20986;&#12375;</a></div><div class="inpagenav-children-link"><a href="couchbase-sdk-java-summary-asynchronous.html">4.2 &#38750;&#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#21628;&#12403;&#20986;&#12375;</a></div><div class="inpagenav-children-link"><a href="couchbase-sdk-java-summary-transcoding.html">4.3 &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#12471;&#12522;&#12450;&#12521;&#12452;&#12474;&#65288;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12487;&#12451;&#12531;&#12464;&#65289;</a></div><div class="inpagenav-children-link"><a href="couchbase-sdk-java-summary-expiry.html">4.4 &#26377;&#21177;&#26399;&#38480;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">&#31532;4&#31456; Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-sdk-java-started-disconnection.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&nbsp;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-sdk-java-summary-synchronous.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="chapter" title="&#31532;4&#31456; Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;"><div class="titlepage"><div><div><h2 class="title"><a name="api-reference-summary"></a>&#31532;4&#31456; Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</h2></div></div></div><div class="toc"><p><b>&#30446;&#27425;</b></p><dl><dt><span class="section"><a href="couchbase-sdk-java-summary-synchronous.html">4.1. &#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#21628;&#12403;&#20986;&#12375;</a></span></dt><dt><span class="section"><a href="couchbase-sdk-java-summary-asynchronous.html">4.2. &#38750;&#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#21628;&#12403;&#20986;&#12375;</a></span></dt><dt><span class="section"><a href="couchbase-sdk-java-summary-transcoding.html">4.3. &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#12471;&#12522;&#12450;&#12521;&#12452;&#12474;&#65288;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12487;&#12451;&#12531;&#12464;&#65289;</a></span></dt><dt><span class="section"><a href="couchbase-sdk-java-summary-expiry.html">4.4. &#26377;&#21177;&#26399;&#38480;</a></span></dt></dl></div><p>
+    <code class="literal">couchbase-cient</code> &#12392; <code class="literal">spymemcached
+    </code>&#12521;&#12452;&#12502;&#12521;&#12522;&#12399;Causebase&#12395;&#23550;&#12377;&#12427;API&#21628;&#12403;&#20986;&#12375;&#12398;&#23436;&#20840;&#12394;&#12473;&#12452;&#12540;&#12488;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;&#12469;&#12509;&#12540;&#12488;&#12373;&#12428;&#12390;&#12356;&#12427;&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;&#12364;<a class="xref" href="api-reference-summary.html#table-couchbase-sdk-java-summary" title="&#34920;4.1 Java&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;">&#34920;4.1&#12300;Java&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;&#12301;</a>&#12395;&#35352;&#36617;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;
+  </p><div class="table"><a name="table-couchbase-sdk-java-summary"></a><p class="title"><b>&#34920;4.1 Java&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</b></p><div class="table-contents"><table summary="Java&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;" border="1"><colgroup><col class="path" width="50%"><col class="desc" width="50%"></colgroup><thead><tr><th>Method</th><th>Title</th></tr></thead><tbody><tr><td><a class="link" href="couchbase-sdk-java-set-add.html#table-couchbase-sdk_java_add"><code class="literal">client.add(key, expiry, value)</code></a></td><td>
+ Add a value with the specified key that does not already exist
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.add(key, expiry, value, persistto)</code></a></td><td>
+ Add a value using the specified key and observe it being
+ persisted on master and more node(s).
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.add(key, expiry, value, persistto, replicateto)</code></a></td><td>
+ Add a value using the specified key and observe it being
+ persisted on master and more node(s) and being replicated to
+ one or more node(s).
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.add(key, expiry, value, replicateto)</code></a></td><td>
+ Add a value using the specified key and observe it being
+ replicated to one or more node(s).
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-set-add.html#table-couchbase-sdk_java_add-transcoder"><code class="literal">client.add(key, expiry, value, transcoder)</code></a></td><td>
+ Add a value that does not already exist using custom
+ transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-append.html#table-couchbase-sdk_java_append"><code class="literal">client.append(casunique, key, value)</code></a></td><td>
+ Append a value to an existing key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-append.html#table-couchbase-sdk_java_append-transcoder"><code class="literal">client.append(casunique, key, value, transcoder)</code></a></td><td>
+ Append a value to an existing key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-cas.html#table-couchbase-sdk_java_asynccas"><code class="literal">client.asyncCAS(key, casunique, value)</code></a></td><td>
+ Asynchronously compare and set a value
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-cas.html#table-couchbase-sdk_java_asynccas-expiry-transcoder"><code class="literal">client.asyncCAS(key, casunique, expiry, value, transcoder)</code></a></td><td>
+ Asynchronously compare and set a value with custom transcoder
+ and expiry
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-cas.html#table-couchbase-sdk_java_asynccas-transcoder"><code class="literal">client.asyncCAS(key, casunique, value, transcoder)</code></a></td><td>
+ Asynchronously compare and set a value with custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-decr.html#table-couchbase-sdk_java_asyncdecr"><code class="literal">client.asyncDecr(key, offset)</code></a></td><td>
+ Asynchronously decrement the value of an existing key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gat.html#table-couchbase-sdk_java_asyncgat"><code class="literal">client.asyncGetAndTouch(key, expiry)</code></a></td><td>
+ Asynchronously get a value and update the expiration time for
+ a given key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gat.html#table-couchbase-sdk_java_asyncgat-transcoder"><code class="literal">client.asyncGetAndTouch(key, expiry, transcoder)</code></a></td><td>
+ Asynchronously get a value and update the expiration time for
+ a given key using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-get-async.html#table-couchbase-sdk_java_asyncget"><code class="literal">client.asyncGet(key)</code></a></td><td>
+ Asynchronously get a single key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_asyncget-bulk"><code class="literal">client.asyncGetBulk(keycollection)</code></a></td><td>
+ Asynchronously get multiple keys
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_asyncget-bulk-multikeys"><code class="literal">client.asyncGetBulk(keyn)</code></a></td><td>
+ Asynchronously get multiple keys
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_asyncget-bulk-multikeys-transcoder"><code class="literal">client.asyncGetBulk(transcoder, keyn)</code></a></td><td>
+ Asynchronously get multiple keys using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_asyncget-bulk-transcoder"><code class="literal">client.asyncGetBulk(keycollection, transcoder)</code></a></td><td>
+ Asynchronously get multiple keys using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-get-async.html#table-couchbase-sdk_java_asyncget-transcoder"><code class="literal">client.asyncGet(key, transcoder)</code></a></td><td>
+ Asynchronously get a single key using a custom transcoder
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.asyncGetLock(key [, getl-expiry ])</code></a></td><td>
+ Asynchronously get a lock.
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.asyncGetLock(key [, getl-expiry ], transcoder)</code></a></td><td>
+ Asynchronously get a lock with transcoder.
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gets.html#table-couchbase-sdk_java_asyncgets"><code class="literal">client.asyncGets(key)</code></a></td><td>
+ Asynchronously get single key value with CAS value
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gets.html#table-couchbase-sdk_java_asyncgets-transcoder"><code class="literal">client.asyncGets(key, transcoder)</code></a></td><td>
+ Asynchronously get single key value with CAS value using
+ custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-incr.html#table-couchbase-sdk_java_asyncincr"><code class="literal">client.asyncIncr(key, offset)</code></a></td><td>
+ Asynchronously increment the value of an existing key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-cas.html#table-couchbase-sdk_java_cas"><code class="literal">client.cas(key, casunique, value)</code></a></td><td>
+ Compare and set
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-cas.html#table-couchbase-sdk_java_cas-expiry-transcoder"><code class="literal">client.cas(key, casunique, expiry, value, transcoder)</code></a></td><td>
+ Compare and set with a custom transcoder and expiry
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-cas.html#table-couchbase-sdk_java_cas-transcoder"><code class="literal">client.cas(key, casunique, value, transcoder)</code></a></td><td>
+ Compare and set with a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-decr.html#table-couchbase-sdk_java_decr"><code class="literal">client.decr(key, offset)</code></a></td><td>
+ Decrement the value of an existing numeric key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-decr.html#table-couchbase-sdk_java_decr-default"><code class="literal">client.decr(key, offset, default)</code></a></td><td>
+ Decrement the value of a key, setting the initial value if the
+ key didn't already exist
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-decr.html#table-couchbase-sdk_java_decr-default-expiry"><code class="literal">client.decr(key, offset, default, expiry)</code></a></td><td>
+ Decrement the value of a key, setting the initial value if the
+ key didn't already exist, with an expiry
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-delete.html#table-couchbase-sdk_java_delete"><code class="literal">client.delete(key)</code></a></td><td>
+ Delete the specified key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gat.html#table-couchbase-sdk_java_gat"><code class="literal">client.getAndTouch(key, expiry)</code></a></td><td>
+ Get a value and update the expiration time for a given key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gat.html#table-couchbase-sdk_java_gat-transcoder"><code class="literal">client.getAndTouch(key, expiry, transcoder)</code></a></td><td>
+ Get a value and update the expiration time for a given key
+ using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-get.html#table-couchbase-sdk_java_get"><code class="literal">client.get(key)</code></a></td><td>
+ Get a single key
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.getAndLock(key [, getl-expiry ])</code></a></td><td>
+ Get and lock Asynchronously
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.getAndLock(key [, getl-expiry ], transcoder)</code></a></td><td>
+ Get and lock
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_get-bulk"><code class="literal">client.getBulk(keycollection)</code></a></td><td>
+ Get multiple keys
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_get-bulk-multikeys"><code class="literal">client.getBulk(keyn)</code></a></td><td>
+ Get multiple keys
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_get-bulk-multikeys-transcoder"><code class="literal">client.getBulk(transcoder, keyn)</code></a></td><td>
+ Get multiple keys using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_get-bulk-transcoder"><code class="literal">client.getBulk(keycollection, transcoder)</code></a></td><td>
+ Get multiple keys using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-get.html#table-couchbase-sdk_java_get-transcoder"><code class="literal">client.get(key, transcoder)</code></a></td><td>
+ Get a single key using a custom transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gets.html#table-couchbase-sdk_java_gets"><code class="literal">client.gets(key)</code></a></td><td>
+ Get single key value with CAS value
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-retrieve-gets.html#table-couchbase-sdk_java_gets-transcoder"><code class="literal">client.gets(key, transcoder)</code></a></td><td>
+ Get single key value with CAS value using custom transcoder
+ </td></tr><tr><td><a class="link" href="api-reference-stat.html#table-couchbase-sdk_java_getstats"><code class="literal">client.getStats()</code></a></td><td>
+ Get the statistics from all connections
+ </td></tr><tr><td><a class="link" href="api-reference-stat.html#table-couchbase-sdk_java_getstats-name"><code class="literal">client.getStats(statname)</code></a></td><td>
+ Get the statistics from all connections
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.getView(ddocname, viewname)</code></a></td><td>
+ Create a view object
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-incr.html#table-couchbase-sdk_java_incr"><code class="literal">client.incr(key, offset)</code></a></td><td>
+ Increment the value of an existing numeric key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-incr.html#table-couchbase-sdk_java_incr-default"><code class="literal">client.incr(key, offset, default)</code></a></td><td>
+ Increment the value of an existing numeric key
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-incr.html#table-couchbase-sdk_java_incr-default-expiry"><code class="literal">client.incr(key, offset, default, expiry)</code></a></td><td>
+ Increment the value of an existing numeric key
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.new CouchbaseClient([ url ] [, urls ] [, username ] [, password ])</code></a></td><td>
+ Create connection to Couchbase Server
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-prepend.html#table-couchbase-sdk_java_prepend"><code class="literal">client.prepend(casunique, key, value)</code></a></td><td>
+ Prepend a value to an existing key using the default
+ transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-prepend.html#table-couchbase-sdk_java_prepend-transcoder"><code class="literal">client.prepend(casunique, key, value, transcoder)</code></a></td><td>
+ Prepend a value to an existing key using a custom transcoder
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.query(view, query)</code></a></td><td>
+ Query a view
+ </td></tr><tr><td><a class="link" href=""><code class="literal">Query.new()</code></a></td><td>
+ Create a query object
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-replace.html#table-couchbase-sdk_java_replace"><code class="literal">client.replace(key, expiry, value)</code></a></td><td>
+ Update an existing key with a new value
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.replace(key, expiry, value, persistto)</code></a></td><td>
+ Replace a value using the specified key and observe it being
+ persisted on master and more node(s).
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.replace(key, expiry, value, persistto, replicateto)</code></a></td><td>
+ Replace a value using the specified key and observe it being
+ persisted on master and more node(s) and being replicated to
+ one or more node(s).
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.replace(key, expiry, value, replicateto)</code></a></td><td>
+ Replace a value using the specified key and observe it being
+ replicated to one or more node(s).
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-replace.html#table-couchbase-sdk_java_replace-transcoder"><code class="literal">client.replace(key, expiry, value, transcoder)</code></a></td><td>
+ Update an existing key with a new value using a custom
+ transcoder
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-set-set.html#table-couchbase-sdk_java_set"><code class="literal">client.set(key, expiry, value)</code></a></td><td>
+ Store a value using the specified key
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.set(key, expiry, value, persistto)</code></a></td><td>
+ Store a value using the specified key and observe it being
+ persisted on master and more node(s).
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.set(key, expiry, value, persistto, replicateto)</code></a></td><td>
+ Store a value using the specified key and observe it being
+ persisted on master and more node(s) and being replicated to
+ one or more node(s).
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.set(key, expiry, value, replicateto)</code></a></td><td>
+ Store a value using the specified key and observe it being
+ replicated to one or more node(s).
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-set-set.html#table-couchbase-sdk_java_set-transcoder"><code class="literal">client.set(key, expiry, value, transcoder)</code></a></td><td>
+ Store a value using the specified key and a custom transcoder.
+ </td></tr><tr><td><a class="link" href="couchbase-sdk-java-update-touch.html#table-couchbase-sdk_java_touch"><code class="literal">client.touch(key, expiry)</code></a></td><td>
+ Update the expiry time of an item
+ </td></tr><tr><td><a class="link" href=""><code class="literal">client.unlock(key, casunique)</code></a></td><td>
+ Unlock
+ </td></tr></tbody></table></div></div><br class="table-break"></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-sdk-java-started-disconnection.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-sdk-java-summary-synchronous.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">3.3. &#25509;&#32154;&#12434;&#12471;&#12515;&#12483;&#12488;&#12480;&#12454;&#12531;&#12377;&#12427;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;4.1. &#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#21628;&#12403;&#20986;&#12375;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

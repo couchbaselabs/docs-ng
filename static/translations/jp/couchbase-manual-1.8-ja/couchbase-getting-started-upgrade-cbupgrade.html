@@ -1,0 +1,80 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase Server 1.8 &#12510;&#12491;&#12517;&#12450;&#12523; - &#31532;2&#31456; Couchbase Server&#20837;&#38272; - 2.3.2. cbupgrade&#12398;&#25163;&#21205;&#23455;&#34892;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase Server 1.8 &#12510;&#12491;&#12517;&#12450;&#12523;"><link rel="up" href="couchbase-getting-started-upgrade.html" title="2.3. Couchbase Server&#12398;1.8&#12408;&#12398;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;"><link rel="prev" href="couchbase-getting-started-upgrade-manual.html" title="2.3.1. &#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;&#12458;&#12503;&#12471;&#12519;&#12531;&#12398;&#35373;&#23450;"><link rel="next" href="couchbase-getting-started-setup.html" title="2.4. Couchbase Server&#12398;&#35373;&#23450;"><meta name="date" content="2013-05-23T20:49:26+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-manual-1.8/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase Server 1.8 &#12510;&#12491;&#12517;&#12450;&#12523;</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="couchbase-getting-started-upgrade.html">2.3 Couchbase Server&#12398;1.8&#12408;&#12398;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="couchbase-getting-started-upgrade-manual.html">2.3.1 &#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;&#12458;&#12503;&#12471;&#12519;&#12531;&#12398;&#35373;&#23450;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-getting-started-upgrade-cbupgrade.html">2.3.2 cbupgrade&#12398;&#25163;&#21205;&#23455;&#34892;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="couchbase-server-preface.html"> &#12399;&#12376;&#12417;&#12395;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-introduction.html">1 Couchbase Server&#12398;&#32057;&#20171;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-getting-started.html">2 Couchbase Server&#20837;&#38272;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-basics.html">3 &#12463;&#12521;&#12473;&#12479;&#31649;&#29702;&#12398;&#22522;&#26412;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-bestpractice.html">4 &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-tasks.html">5 &#31649;&#29702;&#12479;&#12473;&#12463;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-web-console.html">6 Couchbase&#31649;&#29702;Web&#12467;&#12531;&#12477;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-cmdline.html">7 Couchbase&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12501;&#12455;&#12540;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-restapi.html">8 Couchbase &#31649;&#29702; REST API</a></div><div class="inpagenav-chapters-link"><a href="couchbase-developing.html">9 Couchbase&#12434;&#20351;&#29992;&#12375;&#12383;&#38283;&#30330;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-client-development.html">10 Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12398;&#38283;&#30330;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-architecture.html">11 Couchbase&#12398;&#12450;&#12540;&#12461;&#12486;&#12463;&#12481;&#12515;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-monitoring.html">12 Couchbase&#12398;&#30435;&#35222;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-troubleshooting.html">13 &#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-faq.html">A FAQ</a></div><div class="inpagenav-chapters-link"><a href="couchbase-uninstalling.html">B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="licenses.html">C Licenses</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">2.3.2. <span class="command"><strong>cbupgrade</strong></span>&#12398;&#25163;&#21205;&#23455;&#34892;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-getting-started-upgrade-manual.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">2.3. Couchbase Server&#12398;1.8&#12408;&#12398;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-getting-started-setup.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="2.3.2. cbupgrade&#12398;&#25163;&#21205;&#23455;&#34892;"><div class="titlepage"><div><div><h3 class="title"><a name="couchbase-getting-started-upgrade-cbupgrade"></a>2.3.2. <span class="command"><strong>cbupgrade</strong></span>&#12398;&#25163;&#21205;&#23455;&#34892;</h3></div></div></div><div class="note" title="&#27880;&#35352;" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">&#27880;&#35352;</h3><p>
+          &#12371;&#12398;&#12475;&#12463;&#12471;&#12519;&#12531;&#12399;&#12289;Windows&#12395;&#12399;&#36969;&#29992;&#12373;&#12428;&#12414;&#12379;&#12435;&#12290;
+        </p></div><p>
+        <code class="literal">INSTALL_DONT_AUTO_UPGRADE&#12458;&#12503;&#12471;&#12519;&#12531;</code>&#12434;&#20351;&#29992;&#12375;&#12383;&#24460;&#12289;&#23436;&#20840;&#12394;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;&#25163;&#38918;&#12434;&#23455;&#34892;&#12377;&#12427;&#12383;&#12417;&#12289;<span class="command"><strong>/opt/couchbase/bin/cbupgrade</strong></span>&#12434;&#20351;&#29992;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;cbupgrade&#12398;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12458;&#12503;&#12471;&#12519;&#12531;&#12399;&#12289;&#27425;&#12398;&#12392;&#12362;&#12426;&#12391;&#12377;&#65306;
+      </p><pre class="programlisting"><span class="line">[root@localhost ~]# /opt/couchbase/bin/cbupgrade -h</span>
+<span class="line">Usage: cbupgrade [-c path/to/previous/config/dir] [-a AUTO] [-d FILENAME] [-n] [-s FACTOR]</span>
+<span class="line">-c &lt;path/to/previous/config/dir&gt;</span>
+<span class="line">-- example: -c /etc/opt/membase/1.6.5.3.1</span>
+<span class="line">-a &lt;yes|no&gt;</span>
+<span class="line">-- automatic or non-interactive mode; default is 'no';</span>
+<span class="line">'yes' to force automatic 'yes' answers to all questions</span>
+<span class="line">-d &lt;dbdir_output_file&gt;</span>
+<span class="line">-- retrieve db directory from config file and exit</span>
+<span class="line">-n -- dry-run; don't actually change anything</span>
+<span class="line">-s &lt;free_disk_space_needed_factor&gt;</span>
+<span class="line">-- free disk space needed, as a factor of current bucket usage</span>
+<span class="line">-- default value is 2.0</span>
+<span class="line">-- example: -s 1.0</span></pre><p>
+        <span class="command"><strong>cbupgrade</strong></span>&#12503;&#12525;&#12464;&#12521;&#12512;&#12395;<code class="option">-n</code>&#12501;&#12521;&#12464;&#12434;&#25351;&#23450;&#12377;&#12427;&#12392;&#12289;<span class="command"><strong>cbupgrade</strong></span>&#12399;&#12356;&#12363;&#12394;&#12427;&#12501;&#12449;&#12452;&#12523;&#12418;&#22793;&#26356;&#12379;&#12378;&#12289;&#23455;&#34892;&#26178;&#12395;&#30330;&#29983;&#12377;&#12427;&#22793;&#26356;&#12398;&#34920;&#31034;&#12398;&#12415;&#34892;&#12356;&#12414;&#12377;&#12290;&#20363;:
+      </p><pre class="programlisting"><span class="line">[root@localhost ~]# /opt/couchbase/bin/cbupgrade -c /opt/membase/var/lib/membase/config -nDry-run</span>
+<span class="line">mode: no actual upgrade changes will be made.</span>
+<span class="line">Upgrading your Couchbase Server to 1.8.0r-55-g80f24f2.</span>
+<span class="line">The upgrade process might take awhile.</span>
+<span class="line">Analysing...</span>
+<span class="line">Previous config.dat file is /opt/membase/var/lib/membase/config/config.dat.rpmsave</span>
+<span class="line">Target node: ns_1@127.0.0.1</span>
+<span class="line">Membase/Couchbase should not be running.</span>
+<span class="line">Please use: /etc/init.d/couchbase-server stop</span>
+<span class="line">or: /etc/init.d/membase-server stop</span>
+<span class="line">Is the Membase/Couchbase server already stopped? [yes|no]</span>
+<span class="line">yes</span>
+<span class="line">Database dir: /opt/membase/var/lib/membase/data</span>
+<span class="line">Is that the expected database directory to upgrade? [yes|no]</span>
+<span class="line">yes</span>
+<span class="line">Buckets to upgrade: default</span>
+<span class="line">Are those the expected buckets to upgrade? [yes|no]</span>
+<span class="line">yes</span>
+<span class="line">Checking disk space available for buckets in directory:</span>
+<span class="line">/opt/membase/var/lib/membase/data</span>
+<span class="line">Free disk bucket space wanted: 0.0</span>
+<span class="line">Free disk bucket space available: 177790963712</span>
+<span class="line">Free disk bucket space available: 177790963712</span>
+<span class="line">Free disk space factor: 2.0</span>
+<span class="line">Ok.</span>
+<span class="line">Analysis complete.</span>
+<span class="line">Proceed with config &amp; data upgrade steps? [yes|no]</span>
+<span class="line">yes</span>
+<span class="line">SKIPPED (dry-run): Copying /opt/membase/var/lib/membase/config/config.dat.rpmsave</span>
+<span class="line">SKIPPED (dry-run): cp /opt/membase/var/lib/membase/config/config.dat.rpmsave /opt/couchbase/var</span>
+<span class="line">/lib/couchbase/config/config.dat</span>
+<span class="line">Ensuring bucket data directories.</span>
+<span class="line">SKIPPED (dry-run): Ensuring bucket data directory: /opt/membase/var/lib/membase/data/default-data</span>
+<span class="line">SKIPPED (dry-run): mkdir -p /opt/membase/var/lib/membase/data/default-data</span>
+<span class="line">SKIPPED (dry-run): Ensuring dbdir owner/group: /opt/membase/var/lib/membase/data</span>
+<span class="line">SKIPPED (dry-run): chown -R couchbase:couchbase /opt/membase/var/lib/membase/data</span>
+<span class="line">SKIPPED (dry-run): Ensuring dbdir owner/group: /opt/membase/var/lib/membase/data</span>
+<span class="line">SKIPPED (dry-run): chown -R couchbase:couchbase /opt/membase/var/lib/membase/data</span>
+<span class="line">Upgrading buckets.</span>
+<span class="line">Skipping already converted bucket: /opt/membase/var/lib/membase/data/default-data</span>
+<span class="line">Skipping already converted bucket: /opt/membase/var/lib/membase/data/test0-data</span>
+<span class="line">Done.</span></pre></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-getting-started-upgrade-manual.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="couchbase-getting-started-upgrade.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-getting-started-setup.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">2.3.1. &#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;&#12458;&#12503;&#12471;&#12519;&#12531;&#12398;&#35373;&#23450;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;2.4. Couchbase Server&#12398;&#35373;&#23450;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

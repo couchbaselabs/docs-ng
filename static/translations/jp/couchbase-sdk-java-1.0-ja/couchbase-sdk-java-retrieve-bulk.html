@@ -1,0 +1,147 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;6&#31456; &#21462;&#24471;&#25805;&#20316; - 6.5. &#19968;&#25324; get &#12513;&#12477;&#12483;&#12489;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="api-reference-retrieve.html" title="&#31532;6&#31456; &#21462;&#24471;&#25805;&#20316;"><link rel="prev" href="couchbase-sdk-java-retrieve-gets.html" title="6.4. CAS get &#12513;&#12477;&#12483;&#12489;"><link rel="next" href="api-reference-update.html" title="&#31532;7&#31456; &#26356;&#26032;&#25805;&#20316;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-retrieve-get.html">6.1 &#21516;&#26399; get &#12513;&#12477;&#12483;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-retrieve-get-async.html">6.2 &#38750;&#21516;&#26399; get &#12513;&#12477;&#12483;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-retrieve-gat.html">6.3 Get-and-Touch &#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-retrieve-gets.html">6.4 CAS get &#12513;&#12477;&#12483;&#12489;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-sdk-java-retrieve-bulk.html">6.5 &#19968;&#25324; get &#12513;&#12477;&#12483;&#12489;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">6.5. &#19968;&#25324; <code class="literal">get</code> &#12513;&#12477;&#12483;&#12489;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-sdk-java-retrieve-gets.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;6&#31456; &#21462;&#24471;&#25805;&#20316;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="api-reference-update.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="6.5. &#19968;&#25324; get &#12513;&#12477;&#12483;&#12489;"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="couchbase-sdk-java-retrieve-bulk"></a>6.5. &#19968;&#25324; <code class="literal">get</code> &#12513;&#12477;&#12483;&#12489;</h2></div></div></div><p>
+      &#19968;&#25324; <code class="methodname">getBulk()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12399;1&#12388;&#12414;&#12383;&#12399;&#12381;&#12428;&#20197;&#19978;&#12398;&#12450;&#12452;&#12486;&#12512;&#12434;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12363;&#12425;1&#22238;&#12398;&#12522;&#12463;&#12456;&#12473;&#12488;&#12391;&#21462;&#24471;&#12391;&#12365;&#12414;&#12377;&#12290;&#19968;&#25324;&#12513;&#12477;&#12483;&#12489;&#12434;&#21033;&#29992;&#12377;&#12427;&#12392;&#12289;&#21336;&#19968;&#12398;&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#21628;&#12403;&#20986;&#12375;&#12392;&#12394;&#12427;&#12383;&#12417;&#12289;&#35079;&#25968;&#12398;&#12471;&#12531;&#12464;&#12523;&#12394;&#12522;&#12463;&#12456;&#12473;&#12488;&#12424;&#12426;&#12418;&#12424;&#12426;&#21177;&#29575;&#30340;&#12391;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_get-bulk"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.getBulk(keycollection)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">Map&lt;String,Object&gt;</code> (
+ Map of Strings/Objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">Collection&lt;String&gt; keycollection</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr></tbody></table></div><p>
+      &#26368;&#21021;&#12398;&#24418;&#24335;&#12391;&#12399; <code class="literal">String </code>&#12398;
+      <code class="literal">Collection
+      </code>&#12391;&#21462;&#24471;&#12377;&#12427;&#12461;&#12540;&#12398;&#12522;&#12473;&#12488;&#12434;&#25351;&#23450;&#12375;&#12414;&#12377;&#12290;&#25147;&#12426;&#20516;&#12399;&#12461;&#12540;&#12392;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;
+      <code class="literal">Map </code>&#12392;&#12394;&#12426;&#12414;&#12377;&#12290;
+    </p><p>
+      &#20363;&#65306;
+    </p><pre class="programlisting"><span class="line">Map&lt;String,Object&gt; keyvalues = client.getBulk(keylist);</span>
+<span class="line"></span>
+<span class="line">System.out.printf("A is %s\n",keyvalues.get("keyA"));</span>
+<span class="line">System.out.printf("B is %s\n",keyvalues.get("keyB"));</span>
+<span class="line">System.out.printf("C is %s\n",keyvalues.get("keyC"));</span></pre><div class="note" title="&#27880;&#35352;" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">&#27880;&#35352;</h3><p>
+        &#36820;&#12373;&#12428;&#12427;&#12510;&#12483;&#12503;&#12399;&#20803;&#12398;&#12522;&#12463;&#12456;&#12473;&#12488;&#12398;&#12461;&#12540;&#12398;&#12358;&#12385;&#12289;&#23384;&#22312;&#12377;&#12427;&#12456;&#12531;&#12488;&#12522;&#12384;&#12369;&#12364;&#21547;&#12414;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;&#20363;&#12360;&#12400;&#12289;3&#12388;&#12398;&#12461;&#12540;&#12395;&#23550;&#12377;&#12427;&#20516;&#12434;&#12522;&#12463;&#12456;&#12473;&#12488;&#12375;&#12289;1&#12388;&#12375;&#12363;&#23384;&#22312;&#12375;&#12394;&#12363;&#12387;&#12383;&#22580;&#21512;&#12289;&#32080;&#26524;&#12398;&#12510;&#12483;&#12503;&#12399;key/value&#12506;&#12450;&#12434;1&#12388;&#12375;&#12363;&#21547;&#12415;&#12414;&#12379;&#12435;&#12290;
+      </p></div><div class="informaltable"><a name="table-couchbase-sdk_java_get-bulk-transcoder"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.getBulk(keycollection, transcoder)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">Map&lt;String,T&gt;</code> (
+ Map of Strings/Transcoded objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">Collection&lt;String&gt; keycollection</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">Transcoder&lt;T&gt; transcoder</code></strong></span></td><td colspan="3">
+ Transcoder class to be used to serialize value
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">getBulk()
+      </code>&#12513;&#12477;&#12483;&#12489;&#12398;&#20108;&#12388;&#30446;&#12398;&#24418;&#24335;&#12391;&#12399;&#21516;&#27096;&#12398;
+      <code class="literal">Collection</code>
+      &#12384;&#12369;&#12391;&#12394;&#12367;&#12459;&#12473;&#12479;&#12512;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12398;&#21033;&#29992;&#12418;&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;
+    </p><div class="note" title="&#27880;&#35352;" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">&#27880;&#35352;</h3><p>
+        &#25351;&#23450;&#12375;&#12383;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12399;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12363;&#12425;&#21462;&#24471;&#12375;&#12383;&#20840;&#12390;&#12398;&#20516;&#12395;&#23550;&#12375;&#12390;&#21033;&#29992;&#12373;&#12428;&#12414;&#12377;&#12290;
+      </p></div><div class="informaltable"><a name="table-couchbase-sdk_java_get-bulk-multikeys"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.getBulk(keyn)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">Map&lt;String,Object&gt;</code> (
+ Map of Strings/Objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">String... keyn</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">getBulk()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12398;&#19977;&#12388;&#30446;&#12398;&#24418;&#24335;&#12391;&#12399;&#21487;&#22793;&#38263;&#24341;&#25968;&#12392;&#12375;&#12390;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12363;&#12425;&#21462;&#24471;&#12377;&#12427;&#12461;&#12540;&#12434;&#25351;&#23450;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p><p>
+      &#20363;&#12360;&#12400;&#12289;<code class="literal">Collection</code>
+      &#12434;&#21033;&#29992;&#12375;&#12383;&#22580;&#21512;&#12392;&#21516;&#27096;&#12398;&#25805;&#20316;&#12434;&#12371;&#12398;&#12513;&#12477;&#12483;&#12489;&#12391;&#34892;&#12358;&#22580;&#21512;&#27425;&#12398;&#27096;&#12395;&#12394;&#12426;&#12414;&#12377;&#65306;
+    </p><pre class="programlisting"><span class="line">Map&lt;String,Object&gt; keyvalues = client.getBulk("keyA","keyB","keyC");</span>
+<span class="line"></span>
+<span class="line">System.out.printf("A is %s\n",keyvalues.get("keyA"));</span>
+<span class="line">System.out.printf("B is %s\n",keyvalues.get("keyB"));</span>
+<span class="line">System.out.printf("C is %s\n",keyvalues.get("keyC"));</span></pre><p>
+      &#36820;&#21364;&#12373;&#12428;&#12427; <code class="literal">Map
+      </code>&#12399;&#23384;&#22312;&#12377;&#12427;&#12461;&#12540;&#12398;&#12456;&#12531;&#12488;&#12522;&#12384;&#12369;&#12364;&#21547;&#12414;&#12428;&#12414;&#12377;&#12290;&#23384;&#22312;&#12375;&#12394;&#12356;&#12461;&#12540;&#12399;&#26263;&#40665;&#30340;&#12395;&#28961;&#35222;&#12373;&#12428;&#12414;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_get-bulk-multikeys-transcoder"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.getBulk(transcoder, keyn)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">Map&lt;String,T&gt;</code> (
+ Map of Strings/Transcoded objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">Transcoder&lt;T&gt; transcoder</code></strong></span></td><td colspan="3">
+ Transcoder class to be used to serialize value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">String... keyn</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr></tbody></table></div><p>
+      <code class="literal">getBulk()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12398;&#22235;&#12388;&#30446;&#12398;&#24418;&#24335;&#12391;&#12399;&#21487;&#22793;&#38263;&#37197;&#21015;&#12392;&#12459;&#12473;&#12479;&#12512;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12414;&#12377;&#12290;
+    </p><div class="warning" title="&#35686;&#21578;" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">&#35686;&#21578;</h3><p>
+        &#12459;&#12473;&#12479;&#12512;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12398;&#21033;&#29992;&#12434;&#12469;&#12509;&#12540;&#12488;&#12377;&#12427;&#20182;&#12398;&#12513;&#12477;&#12483;&#12489;&#12398;&#24418;&#24335;&#12392;&#12399;&#30064;&#12394;&#12426;&#12289;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12398;&#25351;&#23450;&#12399;&#26368;&#24460;&#12391;&#12399;&#12394;&#12367;&#12289;&#20808;&#38957;&#12398;&#24341;&#25968;&#12391;&#34892;&#12356;&#12414;&#12377;&#12290;
+      </p></div><div class="informaltable"><a name="table-couchbase-sdk_java_asyncget-bulk"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.asyncGetBulk(keycollection)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">yes</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">BulkFuture&lt;Map&lt;String,Object&gt;&gt;</code> (
+ Map of Strings/Objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">Collection&lt;String&gt; keycollection</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr></tbody></table></div><p>
+      &#38750;&#21516;&#26399;&#12398; <code class="methodname">getBulk()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12399;&#21462;&#24471;&#12377;&#12427;&#12461;&#12540;&#12398; <code class="literal">Collection
+      </code>&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12289; &#36820;&#21364;&#12373;&#12428;&#12427; key/value
+      &#24773;&#22577;&#12398;&#12510;&#12483;&#12503;&#12434;&#20445;&#25345;&#12377;&#12427; BulkFuture
+      &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#65288;<code class="literal">spymemcached</code>&#12497;&#12483;&#12465;&#12540;&#12472;&#12398;&#19968;&#37096;&#65289;&#12434;&#36820;&#21364;&#12375;&#12414;&#12377;&#12290;&#20182;&#12398;&#38750;&#21516;&#26399;&#12513;&#12477;&#12483;&#12489;&#12392;&#21516;&#27096;&#12395;&#12289;&#24540;&#31572;&#12434;&#24453;&#12388;&#24517;&#35201;&#12364;&#12394;&#12356;&#12392;&#12356;&#12358;&#21033;&#28857;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290;
+    </p><p>
+      <code class="literal">BulkFuture</code> &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12399;&#27161;&#28310;&#12398;
+      <code class="literal">Future</code>
+      &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12392;&#27604;&#12409;&#12427;&#12392;&#12431;&#12378;&#12363;&#12395;&#30064;&#12394;&#12427;&#21205;&#20316;&#12434;&#12375;&#12414;&#12377;&#12290;<code class="literal">Future
+      </code>&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12399;&#36820;&#21364;&#12373;&#12428;&#12383;&#21336;&#19968;&#12398;&#20516;&#12434;&#36820;&#12377;&#19968;&#26041;&#12289;
+      <code class="literal">BulkFuture
+      </code>&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12399;&#36820;&#21364;&#12373;&#12428;&#12383;&#20840;&#12390;&#12398;&#12461;&#12540;&#12434;&#21547;&#12416;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;&#22823;&#37327;&#12398;&#12461;&#12540;&#12434;&#35201;&#27714;&#12377;&#12427;&#38750;&#24120;&#12395;&#22823;&#12365;&#12394;&#12463;&#12456;&#12522;&#12391;&#12399;&#12289;&#12458;&#12522;&#12472;&#12490;&#12523;&#12398;&#12522;&#12473;&#12488;&#12395;&#21547;&#12414;&#12428;&#12427;&#20840;&#12390;&#12398;&#12461;&#12540;&#12434;&#21462;&#24471;&#12377;&#12427;&#12383;&#12417;&#12395;&#12289;&#35079;&#25968;&#12398;&#12522;&#12463;&#12456;&#12473;&#12488;&#12364;&#24517;&#35201;&#12395;&#12394;&#12427;&#12371;&#12392;&#12434;&#24847;&#21619;&#12375;&#12414;&#12377;&#12290;
+    </p><p>
+      &#20363;&#12360;&#12400;&#12289;&#27425;&#12398;&#12467;&#12540;&#12489;&#12399; <code class="literal">Collection
+      </code>&#12363;&#12425;&#21487;&#33021;&#12394;&#38480;&#12426;&#22810;&#12367;&#12398;&#12461;&#12540;&#12434;&#21462;&#24471;&#12377;&#12427;&#12391;&#12375;&#12423;&#12358;&#65306;
+    </p><pre class="programlisting"><span class="line">BulkFuture&lt;Map&lt;String,Object&gt;&gt; keyvalues = membase.asyncGetBulk(keylist);</span>
+<span class="line"></span>
+<span class="line">Map&lt;String,Object&gt; keymap = keyvalues.getSome(5,TimeUnit.SECONDS);</span>
+<span class="line"></span>
+<span class="line">System.out.printf("A is %s\n",keymap.get("keyA"));</span>
+<span class="line">System.out.printf("B is %s\n",keymap.get("keyB"));</span>
+<span class="line">System.out.printf("C is %s\n",keymap.get("keyC"));</span></pre><div class="informaltable"><a name="table-couchbase-sdk_java_asyncget-bulk-transcoder"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.asyncGetBulk(keycollection, transcoder)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">yes</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">BulkFuture&lt;Map&lt;String,T&gt;&gt;</code> (
+ Map of Strings/Transcoded objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">Collection&lt;String&gt; keycollection</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">Transcoder&lt;T&gt; transcoder</code></strong></span></td><td colspan="3">
+ Transcoder class to be used to serialize value
+ </td></tr></tbody></table></div><p>
+      &#38750;&#21516;&#26399;&#12398;<code class="literal"> getBulk()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12398;&#20108;&#12388;&#30446;&#12398;&#24418;&#24335;&#12391;&#12399;&#36820;&#21364;&#12377;&#12427;&#20516;&#12395;&#23550;&#12375;&#12390;&#12459;&#12473;&#12479;&#12512;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12434;&#21033;&#29992;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_asyncget-bulk-multikeys"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.asyncGetBulk(keyn)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">yes</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">BulkFuture&lt;Map&lt;String,Object&gt;&gt;</code> (
+ Map of Strings/Objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">String... keyn</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr></tbody></table></div><p>
+      &#19977;&#12388;&#30446;&#12398;&#24418;&#24335;&#12399;&#21487;&#22793;&#38263;&#24341;&#25968;&#12434;&#21463;&#12369;&#12427;&#12513;&#12477;&#12483;&#12489;&#12392;&#21516;&#12376;&#12391;&#12377;&#65288;<a class="link" href="couchbase-sdk-java-retrieve-bulk.html#table-couchbase-sdk_java_get-bulk-multikeys"><code class="literal">asyncBulkGet()</code>&#12434;&#21033;&#29992;&#12375;&#12383;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;</a>&#12434;&#21442;&#29031;&#65289;&#12290;&#25805;&#20316;&#12364;&#38750;&#21516;&#26399;&#12395;&#34892;&#12431;&#12428;&#12427;&#28857;&#12384;&#12369;&#12364;&#30064;&#12394;&#12387;&#12390;&#12356;&#12414;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_asyncget-bulk-multikeys-transcoder"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.asyncGetBulk(transcoder, keyn)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">yes</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Get one or more key values
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">BulkFuture&lt;Map&lt;String,T&gt;&gt;</code> (
+ Map of Strings/Transcoded objects
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">Transcoder&lt;T&gt; transcoder</code></strong></span></td><td colspan="3">
+ Transcoder class to be used to serialize value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">String... keyn</code></strong></span></td><td colspan="3">
+ One or more keys used to reference a value
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">asyncGetBulk()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12398;&#12418;&#12358;&#19968;&#12388;&#12398;&#24418;&#24335;&#12399;&#12289;&#24341;&#25968;&#12392;&#12375;&#12390;&#12459;&#12473;&#12479;&#12512;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12392;&#12461;&#12540;&#12398;&#12522;&#12473;&#12488;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12414;&#12377;&#12290;
+    </p></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-sdk-java-retrieve-gets.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="api-reference-retrieve.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="api-reference-update.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">6.4. CAS <code class="literal">get</code> &#12513;&#12477;&#12483;&#12489;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;&#31532;7&#31456; &#26356;&#26032;&#25805;&#20316;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

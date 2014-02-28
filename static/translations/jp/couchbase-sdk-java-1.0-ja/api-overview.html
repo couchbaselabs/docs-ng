@@ -1,0 +1,114 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;1&#31456; &#20837;&#38272;&#32232; - 1.3. Couchbase API&#12398;&#27010;&#35201;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="getting-started.html" title="&#31532;1&#31456; &#20837;&#38272;&#32232;"><link rel="prev" href="hello-world.html" title="1.2. Hello Couchbase"><link rel="next" href="further-example.html" title="1.4. &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="downloading.html">1.1 Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12398;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="hello-world.html">1.2 Hello Couchbase</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="api-overview.html">1.3 Couchbase API&#12398;&#27010;&#35201;</a></div><div class="inpagenav-sibling-link"><a href="further-example.html">1.4 &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;</a></div><div class="inpagenav-sibling-link"><a href="sample-application.html">1.5 &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;</a></div><div class="inpagenav-sibling-link"><a href="conclusion.html">1.6 &#32080;&#35542;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">1.3. Couchbase API&#12398;&#27010;&#35201;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="hello-world.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;1&#31456; &#20837;&#38272;&#32232;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="further-example.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="1.3. Couchbase API&#12398;&#27010;&#35201;"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="api-overview"></a>1.3. Couchbase API&#12398;&#27010;&#35201;</h2></div></div></div><p>
+      Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12395;&#12399;&#12289;&#39764;&#27861;&#12398;&#27096;&#12395;&#32032;&#26228;&#12425;&#12375;&#12356;&#29420;&#33258;&#12398;&#20998;&#25955;&#12513;&#12514;&#12522;&#12434;&#23455;&#35013;&#12377;&#12427;&#12383;&#12417;&#12395;&#21033;&#29992;&#12391;&#12365;&#12427;&#12289;&#22810;&#12367;&#12398;API&#12513;&#12477;&#12483;&#12489;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290;&#20197;&#19979;&#12398;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12513;&#12477;&#12483;&#12489;&#12399;&#12289;&#32032;&#26089;&#12367;&#21442;&#29031;&#12391;&#12365;&#12427;&#12424;&#12358;&#12395;&#12289;&#12459;&#12486;&#12468;&#12522;&#12395;&#20998;&#39006;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;
+    </p><div class="table"><a name="N1010A"></a><p class="title"><b>&#34920;1.1 &#21516;&#26399;&#12513;&#12477;&#12483;&#12489;</b></p><div class="table-contents"><table summary="&#21516;&#26399;&#12513;&#12477;&#12483;&#12489;" border="1"><colgroup><col width="50%"><col width="50%"></colgroup><tbody><tr><td>
+              <code class="literal">decr</code>
+            </td><td>
+              &#12461;&#12540;&#12434;&#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#12375;&#12289;&#20516;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">get</code>
+            </td><td>
+              &#12461;&#12515;&#12483;&#12471;&#12517;&#12363;&#12425;&#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getBulk</code>
+            </td><td>
+              &#21516;&#26178;&#12395;&#35079;&#25968;&#12398;&#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">gets</code>
+            </td><td>
+              &#12481;&#12455;&#12483;&#12463;&#12450;&#12531;&#12489;&#12475;&#12483;&#12488;(CAS)&#12434;&#21033;&#29992;&#12375;&#12390;&#12289;&#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">incr</code>
+            </td><td>
+              &#12461;&#12540;&#12398;&#20516;&#12434;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12375;&#12414;&#12377;&#12290;
+            </td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="N1013D"></a><p class="title"><b>&#34920;1.2 &#21516;&#26399;&#12481;&#12455;&#12483;&#12463;&#12450;&#12531;&#12489;&#12475;&#12483;&#12488;</b></p><div class="table-contents"><table summary="&#21516;&#26399;&#12481;&#12455;&#12483;&#12463;&#12450;&#12531;&#12489;&#12475;&#12483;&#12488;" border="1"><colgroup><col width="50%"><col width="50%"></colgroup><tbody><tr><td>
+              <code class="literal">cas</code>
+            </td><td>
+              &#12481;&#12455;&#12483;&#12463;&#12450;&#12531;&#12489;&#12475;&#12483;&#12488;(CAS)&#25805;&#20316;&#12434;&#23455;&#34892;&#12375;&#12414;&#12377;&#12290;
+            </td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="N1014C"></a><p class="title"><b>&#34920;1.3 &#38750;&#21516;&#26399;&#12513;&#12477;&#12483;&#12489;</b></p><div class="table-contents"><table summary="&#38750;&#21516;&#26399;&#12513;&#12477;&#12483;&#12489;" border="1"><colgroup><col width="50%"><col width="50%"></colgroup><tbody><tr><td>
+              <code class="literal">add</code>
+            </td><td>
+              &#26082;&#12395;&#23384;&#22312;&#12375;&#12394;&#12356;&#22580;&#21512;&#12395;&#12289;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12434;&#12461;&#12515;&#12483;&#12471;&#12517;&#12395;&#36861;&#21152;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">delete</code>
+            </td><td>
+              &#12461;&#12515;&#12483;&#12471;&#12517;&#12363;&#12425;&#20516;&#12434;&#21066;&#38500;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">flush</code>
+            </td><td>
+              &#12377;&#12409;&#12390;&#12398;&#12469;&#12540;&#12496;&#12540;&#19978;&#12398;&#12461;&#12515;&#12483;&#12471;&#12517;&#12434;&#12463;&#12522;&#12450;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">append</code>
+            </td><td>
+              &#12461;&#12515;&#12483;&#12471;&#12517;&#20869;&#12398;&#26082;&#23384;&#12398;&#20516;&#12395;&#36861;&#35352;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">asyncCAS</code>
+            </td><td>
+              &#12481;&#12455;&#12483;&#12463;&#12450;&#12531;&#12489;&#12475;&#12483;&#12488;(CAS)&#12434;&#21033;&#29992;&#12375;&#12390;&#12289;&#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">asyncDecr</code>
+            </td><td>
+              &#20516;&#12434;&#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">asyncGet</code>
+            </td><td>
+              &#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">asyncGetBulk</code>
+            </td><td>
+              &#21516;&#26178;&#12395;&#35079;&#25968;&#12398;&#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">asyncGets</code>
+            </td><td>
+              CAS&#12434;&#21033;&#29992;&#12375;&#12390;&#12289;&#20516;&#12434;&#21462;&#24471;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">asyncIncr</code>
+            </td><td>
+              &#20516;&#12434;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12375;&#12414;&#12377;&#12290;
+            </td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="N101AC"></a><p class="title"><b>&#34920;1.4 &#12473;&#12486;&#12540;&#12479;&#12473;&#12513;&#12477;&#12483;&#12489;</b></p><div class="table-contents"><table summary="&#12473;&#12486;&#12540;&#12479;&#12473;&#12513;&#12477;&#12483;&#12489;" border="1"><colgroup><col width="50%"><col width="50%"></colgroup><tbody><tr><td>
+              <code class="literal">addObserver</code>
+            </td><td>
+              &#25509;&#32154;&#29366;&#24907;&#12434;&#30435;&#35222;&#12377;&#12427;&#12458;&#12502;&#12470;&#12540;&#12496;&#12434;&#36861;&#21152;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getAvailableServers</code>
+            </td><td>
+              &#20351;&#29992;&#21487;&#33021;&#12394;&#12469;&#12540;&#12496;&#12540;&#12398;&#12522;&#12473;&#12488;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getNodeLocator</code>
+            </td><td>
+              &#12494;&#12540;&#12489;&#12398;&#12525;&#12465;&#12540;&#12479;&#12398;&#35501;&#12415;&#21462;&#12426;&#23554;&#29992;&#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getStats</code>
+            </td><td>
+              &#25509;&#32154;&#32113;&#35336;&#24773;&#22577;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getTranscoder</code>
+            </td><td>
+              &#12487;&#12501;&#12457;&#12523;&#12488;&#12398;&#12488;&#12521;&#12531;&#12473;&#12467;&#12540;&#12480;&#12398;&#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getUnavailableServers</code>
+            </td><td>
+              &#21033;&#29992;&#12391;&#12365;&#12394;&#12356;&#12469;&#12540;&#12496;&#12398;&#12522;&#12473;&#12488;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr><tr><td>
+              <code class="literal">getVersions</code>
+            </td><td>
+              &#25509;&#32154;&#12373;&#12428;&#12390;&#12356;&#12427;&#12377;&#12409;&#12390;&#12398;&#12469;&#12540;&#12496;&#12540;&#12398;&#12496;&#12540;&#12472;&#12519;&#12531;&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;
+            </td></tr></tbody></table></div></div><br class="table-break"></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="hello-world.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="getting-started.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="further-example.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">1.2. Hello Couchbase&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;1.4. &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>
