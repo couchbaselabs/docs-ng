@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# just copy content in this folder
+passthrough '/prebuilt/*'
+
 # Combine and compress all LESS stylesheets to the single file and
 # expose it as /assets/css/main.css
 compile '/assets/css/main' do
