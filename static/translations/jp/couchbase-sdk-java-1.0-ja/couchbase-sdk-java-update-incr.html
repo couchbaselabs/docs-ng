@@ -1,0 +1,111 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;7&#31456; &#26356;&#26032;&#25805;&#20316; - 7.6. &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="api-reference-update.html" title="&#31532;7&#31456; &#26356;&#26032;&#25805;&#20316;"><link rel="prev" href="couchbase-sdk-java-update-decr.html" title="7.5. &#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;"><link rel="next" href="couchbase-sdk-java-update-replace.html" title="7.7. &#32622;&#25563;&#25805;&#20316;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-append.html">7.1 Append &#12513;&#12477;&#12483;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-prepend.html">7.2 Prepend &#12513;&#12477;&#12483;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-cas.html">7.3 Check-and-Set &#12513;&#12477;&#12483;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-delete.html">7.4 &#21066;&#38500;&#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-decr.html">7.5 &#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-sdk-java-update-incr.html">7.6 &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-replace.html">7.7 &#32622;&#25563;&#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-sdk-java-update-touch.html">7.8 Touch &#25805;&#20316;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">7.6. &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-sdk-java-update-decr.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;7&#31456; &#26356;&#26032;&#25805;&#20316;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-sdk-java-update-replace.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="7.6. &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="couchbase-sdk-java-update-incr"></a>7.6. &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;</h2></div></div></div><p>
+      &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12513;&#12477;&#12483;&#12489;&#12399;&#29305;&#23450;&#12398;&#26684;&#32013;&#12373;&#12428;&#12383;&#25972;&#25968;&#20516;&#12434;&#22679;&#12420;&#12377;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;&#12371;&#12428;&#12425;&#12399;&#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;&#12392;&#21516;&#27096;&#12398;&#22522;&#28310;&#12391;&#21205;&#20316;&#12375;&#12414;&#12377;&#12290;&#20516;&#12364;&#25972;&#25968;&#20516;&#12395;&#12497;&#12540;&#12473;&#12391;&#12365;&#12427;&#22580;&#21512;&#12289;&#12381;&#12428;&#12434;&#26356;&#26032;&#12375;&#12414;&#12377;&#12290;&#26356;&#26032;&#25805;&#20316;&#12399;&#12469;&#12540;&#12496;&#12540;&#19978;&#12391;&#30330;&#29983;&#12375;&#12289;&#12503;&#12525;&#12488;&#12467;&#12523;&#12524;&#12505;&#12523;&#12391;&#25552;&#20379;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;&#12371;&#12428;&#12399;&#20108;&#27573;&#38542;&#12398;&#21462;&#24471;&#12362;&#12424;&#12403;&#12475;&#12483;&#12488;&#25805;&#20316;&#12434;&#31777;&#30053;&#21270;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_incr"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.incr(key, offset)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Increment the value of an existing numeric key. Couchbase Server
+ stores numbers as unsigned numbers, therefore if you try to
+ increment an existing negative number, it will cause an integer
+ overflow and return a non-logical numeric result. If a key does
+ not exist, this method will initialize it with the zero or a
+ specified value.
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">long</code> (
+ Numeric value
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">String key</code></strong></span></td><td colspan="3">
+ Document ID used to identify the value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int offset</code></strong></span></td><td colspan="3">
+ Integer offset value to increment/decrement (default 1)
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">incr()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12398;&#19968;&#12388;&#30446;&#12398;&#24418;&#24335;&#12391;&#12399;&#12289;&#12469;&#12540;&#12496;&#20596;&#12398;&#25972;&#25968;&#12434;&#22679;&#21152;&#12373;&#12379;&#12427;&#12383;&#12417;&#12398;&#12289;&#12461;&#12540;&#12392;&#12458;&#12501;&#12475;&#12483;&#12488;&#65288;&#22679;&#20998;&#65289;&#20516;&#12434;&#21463;&#12369;&#21462;&#12426;&#12414;&#12377;&#12290;&#20363;&#12360;&#12400;&#12469;&#12540;&#12496;&#12398;&#25972;&#25968;&#12289;<code class="literal">dlcounter
+      </code>&#12434; 5 &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12375;&#12414;&#12377;&#65306;
+    </p><pre class="programlisting"><span class="line">client.incr("dlcounter",5);</span></pre><p>
+      &#25351;&#23450;&#12375;&#12383;&#12461;&#12540;&#12398;&#26356;&#26032;&#24460;&#12398;&#20516;&#12364;&#25147;&#12426;&#20516;&#12392;&#12394;&#12426;&#12414;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_incr-default"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.incr(key, offset, default)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Increment the value of an existing numeric key. Couchbase Server
+ stores numbers as unsigned numbers, therefore if you try to
+ increment an existing negative number, it will cause an integer
+ overflow and return a non-logical numeric result. If a key does
+ not exist, this method will initialize it with the zero or a
+ specified value.
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">long</code> (
+ Numeric value
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">String key</code></strong></span></td><td colspan="3">
+ Document ID used to identify the value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int offset</code></strong></span></td><td colspan="3">
+ Integer offset value to increment/decrement (default 1)
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int default</code></strong></span></td><td colspan="3">
+ Default value to increment/decrement if key does not exist
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">incr()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12398;&#20108;&#12388;&#30446;&#12398;&#24418;&#24335;&#12391;&#12399;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#20869;&#12395;&#20516;&#12364;&#12414;&#12384;&#23384;&#22312;&#12375;&#12394;&#12356;&#22580;&#21512;&#12395;&#21033;&#29992;&#12373;&#12428;&#12427;&#12487;&#12501;&#12457;&#12523;&#12488;&#20516;&#12398;&#21033;&#29992;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;&#12461;&#12540;&#12364;&#23384;&#22312;&#12377;&#12427;&#22580;&#21512;&#12399;&#12289;&#12487;&#12501;&#12457;&#12523;&#12488;&#20516;&#12399;&#28961;&#35222;&#12373;&#12428;&#12289;&#25351;&#23450;&#12375;&#12383;&#12458;&#12501;&#12475;&#12483;&#12488;&#20516;&#12391;&#20516;&#12364;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12373;&#12428;&#12414;&#12377;&#12290;&#12371;&#12428;&#12399;&#12289;&#12459;&#12454;&#12531;&#12479;&#20516;&#12434;&#35352;&#37682;&#12375;&#12390;&#12356;&#12427;&#29366;&#27841;&#12391;&#12289;&#12461;&#12540;&#12364;&#20445;&#23384;&#12373;&#12428;&#12390;&#12356;&#12427;&#12363;&#20998;&#12363;&#12425;&#12394;&#12356;&#22580;&#21512;&#12395;&#21033;&#29992;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p><p>
+      &#20363;&#12360;&#12400;&#12289;<code class="literal">dlcounter</code>
+      &#12461;&#12540;&#12364;&#23384;&#22312;&#12375;&#12394;&#12356;&#22580;&#21512;&#12289;&#27425;&#12398;&#12467;&#12540;&#12489;&#12399;1000&#12434;&#36820;&#12375;&#12414;&#12377;&#65306;
+    </p><pre class="programlisting"><span class="line">long newcount =</span>
+<span class="line">    client.incr("dlcount",1,1000);</span>
+<span class="line"></span>
+<span class="line">System.out.printf("Updated counter is %d\n",newcount);</span></pre><p>
+      &#24460;&#32154;&#12398;&#21516;&#27096;&#12398;&#21628;&#12403;&#20986;&#12375;&#12391;&#12399;&#12289;<code class="literal">dlcount
+      </code>&#12364;&#26082;&#12395;&#23384;&#22312;&#65288;1000&#65289;&#12375;&#12289;1&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12373;&#12428;&#12427;&#12383;&#12417;&#12289;1001&#12364;&#36820;&#12426;&#12414;&#12377;&#12290;
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_incr-default-expiry"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.incr(key, offset, default, expiry)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">no</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Increment the value of an existing numeric key. Couchbase Server
+ stores numbers as unsigned numbers, therefore if you try to
+ increment an existing negative number, it will cause an integer
+ overflow and return a non-logical numeric result. If a key does
+ not exist, this method will initialize it with the zero or a
+ specified value.
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">long</code> (
+ Numeric value
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">String key</code></strong></span></td><td colspan="3">
+ Document ID used to identify the value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int offset</code></strong></span></td><td colspan="3">
+ Integer offset value to increment/decrement (default 1)
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int default</code></strong></span></td><td colspan="3">
+ Default value to increment/decrement if key does not exist
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int expiry</code></strong></span></td><td colspan="3">
+ Expiry time for key. Values larger than 30*24*60*60 seconds (30
+ days) are interpreted as absolute times (from the epoch).
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">incr()
+      </code>&#12513;&#12477;&#12483;&#12489;&#12398;&#19977;&#12388;&#30446;&#12398;&#24418;&#24335;&#12399;&#12289;&#12461;&#12540;&#12364;&#23384;&#22312;&#12375;&#12394;&#12356;&#22580;&#21512;&#12398;&#12487;&#12501;&#12457;&#12523;&#12488;&#20516;&#12395;&#21152;&#12360;&#12289;&#25351;&#23450;&#12461;&#12540;&#12398;&#26377;&#21177;&#26399;&#38480;&#12398;&#35373;&#23450;&#12434;&#21487;&#33021;&#12392;&#12375;&#12414;&#12377;&#12290;
+    </p><p>
+      &#20363;&#12360;&#12400;&#12289;&#20516;&#12364;&#12394;&#12356;&#22580;&#21512;&#12398;&#12487;&#12501;&#12457;&#12523;&#12488;&#20516;&#12434;1000&#12289;&#26377;&#21177;&#26399;&#38480;&#12434;1&#26178;&#38291;&#65288;3600&#31186;&#65289;&#12391;&#12459;&#12454;&#12531;&#12479;&#12434;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12375;&#12414;&#12377;&#65306;
+    </p><pre class="programlisting"><span class="line">long newcount =</span>
+<span class="line">    client.incr("dlcount",1,1000,3600);</span></pre><p>
+      &#26377;&#21177;&#26399;&#38480;&#20184;&#12365;&#12398;&#20516;&#12395;&#12388;&#12356;&#12390;&#12399;&#27425;&#12434;&#21442;&#29031;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;<a class="xref" href="couchbase-sdk-java-summary-expiry.html" title="4.4. &#26377;&#21177;&#26399;&#38480;">&#12300;&#26377;&#21177;&#26399;&#38480;&#12301;</a>
+    </p><div class="informaltable"><a name="table-couchbase-sdk_java_asyncincr"></a><table border="1"><colgroup><col class="field" width="25%"><col class="info" width="25%"><col class="addarg" width="25%"><col class="addinfo" width="25%"></colgroup><tbody><tr><td><span class="bold"><strong>API Call</strong></span></td><td colspan="3"><code class="literal">client.asyncIncr(key, offset)</code></td></tr><tr><td><span class="bold"><strong>Asynchronous</strong></span></td><td colspan="3">yes</td></tr><tr><td><span class="bold"><strong>Description</strong></span></td><td colspan="3">
+ Increment the value of an existing numeric key. Couchbase Server
+ stores numbers as unsigned numbers, therefore if you try to
+ increment an existing negative number, it will cause an integer
+ overflow and return a non-logical numeric result. If a key does
+ not exist, this method will initialize it with the zero or a
+ specified value.
+ </td></tr><tr><td><span class="bold"><strong>Returns</strong></span></td><td colspan="3"><code class="literal">Future&lt;Long&gt;</code> (
+ Asynchronous request value, as Long
+ )</td></tr><tr><td><span class="bold"><strong>Arguments</strong></span></td><td colspan="3">&nbsp;</td></tr><tr><td><span class="bold"><strong><code class="literal">String key</code></strong></span></td><td colspan="3">
+ Document ID used to identify the value
+ </td></tr><tr><td><span class="bold"><strong><code class="literal">int offset</code></strong></span></td><td colspan="3">
+ Integer offset value to increment/decrement (default 1)
+ </td></tr></tbody></table></div><p>
+      <code class="methodname">asyncIncr()</code>
+      &#12513;&#12477;&#12483;&#12489;&#12399;&#12461;&#12540;&#12395;&#23550;&#24540;&#12377;&#12427;&#20516;&#12398;&#38750;&#21516;&#26399;&#12398;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12414;&#12377;&#12290;&#38750;&#21516;&#26399;&#12398;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12399;&#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;&#12398;&#25147;&#12426;&#20516;&#12434;&#12377;&#12368;&#12395;&#21033;&#29992;&#12375;&#12394;&#12356;&#22580;&#21512;&#12395;&#20415;&#21033;&#12391;&#12377;&#12290;
+    </p><pre class="programlisting"><span class="line">OperationFuture&lt;Long&gt; incrOp =</span>
+<span class="line">    client.asyncIncr("samplekey",1,1000,24000);</span></pre></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-sdk-java-update-decr.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="api-reference-update.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-sdk-java-update-replace.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">7.5. &#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#25805;&#20316;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;7.7. &#32622;&#25563;&#25805;&#20316;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

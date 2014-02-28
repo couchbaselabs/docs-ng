@@ -1,0 +1,81 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase Server 1.8 &#12510;&#12491;&#12517;&#12450;&#12523; - &#31532;10&#31456; Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12398;&#38283;&#30330; - 10.2.1. &#12522;&#12473;&#12488;&#12398;&#12513;&#12459;&#12491;&#12474;&#12512;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase Server 1.8 &#12510;&#12491;&#12517;&#12450;&#12523;"><link rel="up" href="couchbase-client-development-saslauth.html" title="10.2. SASL&#35469;&#35388;&#12398;&#20363;"><link rel="prev" href="couchbase-client-development-saslauth.html" title="10.2. SASL&#35469;&#35388;&#12398;&#20363;"><link rel="next" href="couchbase-client-development-saslauth-authreq.html" title="10.2.2. &#35469;&#35388;&#35201;&#27714;"><meta name="date" content="2013-05-23T20:49:26+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-manual-1.8/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase Server 1.8 &#12510;&#12491;&#12517;&#12450;&#12523;</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="couchbase-client-development-saslauth.html">10.2 SASL&#35469;&#35388;&#12398;&#20363;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-client-development-saslauth-listmechanisms.html">10.2.1 &#12522;&#12473;&#12488;&#12398;&#12513;&#12459;&#12491;&#12474;&#12512;</a></div><div class="inpagenav-sibling-link"><a href="couchbase-client-development-saslauth-authreq.html">10.2.2 &#35469;&#35388;&#35201;&#27714;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="couchbase-server-preface.html"> &#12399;&#12376;&#12417;&#12395;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-introduction.html">1 Couchbase Server&#12398;&#32057;&#20171;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-getting-started.html">2 Couchbase Server&#20837;&#38272;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-basics.html">3 &#12463;&#12521;&#12473;&#12479;&#31649;&#29702;&#12398;&#22522;&#26412;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-bestpractice.html">4 &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-tasks.html">5 &#31649;&#29702;&#12479;&#12473;&#12463;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-web-console.html">6 Couchbase&#31649;&#29702;Web&#12467;&#12531;&#12477;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-cmdline.html">7 Couchbase&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12501;&#12455;&#12540;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-restapi.html">8 Couchbase &#31649;&#29702; REST API</a></div><div class="inpagenav-chapters-link"><a href="couchbase-developing.html">9 Couchbase&#12434;&#20351;&#29992;&#12375;&#12383;&#38283;&#30330;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-client-development.html">10 Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12398;&#38283;&#30330;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-architecture.html">11 Couchbase&#12398;&#12450;&#12540;&#12461;&#12486;&#12463;&#12481;&#12515;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-monitoring.html">12 Couchbase&#12398;&#30435;&#35222;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-troubleshooting.html">13 &#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-faq.html">A FAQ</a></div><div class="inpagenav-chapters-link"><a href="couchbase-uninstalling.html">B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="licenses.html">C Licenses</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">10.2.1. &#12522;&#12473;&#12488;&#12398;&#12513;&#12459;&#12491;&#12474;&#12512;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-client-development-saslauth.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">10.2. SASL&#35469;&#35388;&#12398;&#20363;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-client-development-saslauth-authreq.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="10.2.1. &#12522;&#12473;&#12488;&#12398;&#12513;&#12459;&#12491;&#12474;&#12512;"><div class="titlepage"><div><div><h3 class="title"><a name="couchbase-client-development-saslauth-listmechanisms"></a>10.2.1. &#12522;&#12473;&#12488;&#12398;&#12513;&#12459;&#12491;&#12474;&#12512;</h3></div></div></div><p>
+        <span class="command"><strong>memcached</strong></span>&#12469;&#12540;&#12496;&#12395;&#12381;&#12428;&#12364;&#12469;&#12509;&#12540;&#12488;&#12377;&#12427;&#12513;&#12459;&#12491;&#12474;&#12512;&#12434;&#35201;&#27714;&#12377;&#12427;&#12371;&#12392;&#12391;SASL&#35469;&#35388;&#12434;&#36215;&#21205;&#12375;&#12414;&#12377;&#12290;&#12371;&#12428;&#12399;&#12289;&#27425;&#12398;&#12497;&#12465;&#12483;&#12488;&#12434;&#36865;&#20449;&#12377;&#12427;&#12371;&#12392;&#12395;&#12424;&#12426;&#23455;&#29694;&#12373;&#12428;&#12414;&#12377;&#12290;
+      </p><pre class="programlisting"><span class="line">Byte/ 0 | 1 | 2 | 3 |</span>
+<span class="line">/ | | | |</span>
+<span class="line">|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">0| 80 | 20 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">4| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">8| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">12| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">16| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">20| 00 | 00 | 00 | 00 |</span></pre><pre class="programlisting"><span class="line">Header breakdown</span>
+<span class="line">Field (offset) (value)</span>
+<span class="line">Magic (0): 0x80 (PROTOCOL_BINARY_REQ)</span>
+<span class="line">Opcode (1): 0x20 (sasl list mechs)</span>
+<span class="line">Key length (2-3): 0x0000 (0)</span>
+<span class="line">Extra length (4): 0x00</span>
+<span class="line">Data type (5): 0x00</span>
+<span class="line">vBucket (6-7): 0x0000 (0)</span>
+<span class="line">Total body (8-11): 0x00000000 (0)</span>
+<span class="line">Opaque (12-15): 0x00000000 (0)</span>
+<span class="line">CAS (16-23): 0x0000000000000000 (0)</span></pre><p>
+        &#12469;&#12540;&#12496;&#12364;SASL&#35469;&#35388;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12427;&#22580;&#21512;&#12289;&#27425;&#12398;&#12497;&#12465;&#12483;&#12488;&#12364;&#36820;&#12373;&#12428;&#12414;&#12377;&#12290;
+      </p><pre class="programlisting"><span class="line">Byte/ 0 | 1 | 2 | 3 |</span>
+<span class="line">/ | | | |</span>
+<span class="line">|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|0 1 2 3 4 5 6 7|</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">0| 81 | 20 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">4| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">8| 00 | 00 | 00 | 05 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">12| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">16| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">20| 00 | 00 | 00 | 00 |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span>
+<span class="line">24| 50 ('P') | 4c ('L') | 41 ('A') | 49 ('I') |</span>
+<span class="line">+---------------+---------------+---------------+---------------+</span></pre><p>
+        28| 4e ('N') |
+      </p><pre class="programlisting"><span class="line">Header breakdown</span>
+<span class="line">Field (offset) (value)</span>
+<span class="line">Magic (0): 0x81 (PROTOCOL_BINARY_RES)</span>
+<span class="line">Opcode (1): 0x20 (sasl list mechs)</span>
+<span class="line">Key length (2-3): 0x0000 (0)</span>
+<span class="line">Extra length (4): 0x00</span>
+<span class="line">Data type (5): 0x00</span>
+<span class="line">Status (6-7): 0x0000 (SUCCESS)</span>
+<span class="line">Total body (8-11): 0x00000005 (5)</span>
+<span class="line">Opaque (12-15): 0x00000000 (0)</span>
+<span class="line">CAS (16-23): 0x0000000000000000 (0)</span>
+<span class="line">Mechanisms (24-28): PLAIN</span></pre><p>
+        &#12469;&#12540;&#12496;&#12399;&#12289;&#30064;&#12394;&#12427;&#12513;&#12459;&#12491;&#12474;&#12512;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12427;&#22580;&#21512;&#12364;&#12354;&#12426;&#12414;&#12377;&#12398;&#12391;&#27880;&#24847;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;&#12513;&#12459;&#12491;&#12474;&#12512;&#12398;&#12522;&#12473;&#12488;&#12399;&#12289;SASL&#12513;&#12459;&#12491;&#12474;&#12512;&#21517;&#12434;&#12473;&#12506;&#12540;&#12473;&#12391;&#21306;&#20999;&#12387;&#12383;&#12522;&#12473;&#12488;&#12391;&#12377;&#12290;&#65288;&#20363;&#65306;"PLAIN
+        CRAM-MD5 GSSAPI"&#65289;
+      </p></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-client-development-saslauth.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="couchbase-client-development-saslauth.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-client-development-saslauth-authreq.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">10.2. SASL&#35469;&#35388;&#12398;&#20363;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;10.2.2. &#35469;&#35388;&#35201;&#27714;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

@@ -1,0 +1,352 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0 - &#20184;&#37682;E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488; - E.4. Release Notes for Couchbase Server 2.0.0 build #1870 Beta (1 November 2012)</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0"><link rel="up" href="couchbase-server-rn.html" title="&#20184;&#37682;E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;"><link rel="prev" href="couchbase-server-rn_2-0-0j.html" title="E.3. Release Notes for Couchbase Server 2.0.0 #1941 Beta (November 13 2012)"><link rel="next" href="couchbase-server-rn_2-0-0h.html" title="E.5. Release Notes for Couchbase Server 2.0.0 Beta (18 September 2012)"><meta name="date" content="2013-06-26T23:53:47+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-manual-2.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0 </a></div><div class="inpagenav-doccommunity"><div class="inpagenav-doccommunity-title">Community Wiki and Resources</div><div><table summary="Simple list" border="0" class="simplelist"><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/downloads" target="_top">Couchbase Server 2.0&#12434;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html" target="_top">Couchbase &#38283;&#30330;&#32773;&#12460;&#12452;&#12489; 2.0</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/develop" target="_top">&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/forums/couchbase/couchbase-server-20x" target="_top">Couchbase Server &#12501;&#12457;&#12540;&#12521;&#12512;</a>
+            </td></tr></table></div></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="couchbase-server-rn.html">E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0l.html">E.1 Release Notes for Couchbase Server 2.0.1 GA (March 2013)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0k.html">E.2 Release Notes for Couchbase Server 2.0.0 GA (December 12 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0j.html">E.3 Release Notes for Couchbase Server 2.0.0 #1941 Beta (November 13 2012)</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-server-rn_2-0-0i.html">E.4 Release Notes for Couchbase Server 2.0.0 build #1870 Beta (1 November 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0h.html">E.5 Release Notes for Couchbase Server 2.0.0 Beta (18 September 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0g.html">E.6 Release Notes for Couchbase Server 2.0.0 Build #1672 Developer Preview (10 September 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0f.html">E.7 Release Notes for Couchbase Server 2.0.0 Build #1554 Developer Preview (10 August 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0e.html">E.8 Release Notes for Couchbase Server 2.0.0 Build #1495 Developer Preview (26 July 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0d.html">E.9 Release Notes for Couchbase Server 2.0.0DP4 Developer Preview (21 March 2012)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0c.html">E.10 Release Notes for Couchbase Server 2.0.0DP3 Developer Preview (13 December 2011)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0b.html">E.11 Release Notes for Couchbase Server 2.0.0DP2 Developer Preview (23 August 2011)</a></div><div class="inpagenav-sibling-link"><a href="couchbase-server-rn_2-0-0a.html">E.12 Release Notes for Couchbase Server 2.0.0DP Developer Preview (29 July 2011)</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="couchbase-server-2-0-preface.html"> &#12399;&#12376;&#12417;&#12395;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-introduction.html">1 Couchbase Server&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-getting-started.html">2 &#12452;&#12531;&#12473;&#12488;&#12540;&#12523;&#12392;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-basics.html">3 &#12463;&#12521;&#12473;&#12479;&#31649;&#29702;&#12398;&#22522;&#26412;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-bestpractice.html">4 &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;
+</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-tasks.html">5 &#31649;&#29702;&#12479;&#12473;&#12463;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-web-console.html">6 Web&#12467;&#12531;&#12477;&#12540;&#12523;&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-cmdline.html">7 &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-restapi.html">8 REST API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-views.html">9 &#12499;&#12517;&#12540;&#12392;&#12452;&#12531;&#12487;&#12483;&#12463;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-monitoring.html">10 Couchbase&#12398;&#30435;&#35222;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-troubleshooting.html">11 &#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-faq.html">A &#12424;&#12367;&#12354;&#12427;&#36074;&#21839;&#65288;FAQ&#65289;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-uninstalling.html">B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sampledata.html">C Couchbase&#12398;&#12469;&#12531;&#12503;&#12523;&#12496;&#12465;&#12483;&#12488;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-views-troubleshooting.html">D &#12499;&#12517;&#12540;&#12398;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#65288;&#25216;&#34899;&#30340;&#32972;&#26223;&#65289;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-server-rn.html">E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-server-limits.html">F &#38480;&#30028;&#20516;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">E.4. Release Notes for Couchbase Server 2.0.0 build #1870 Beta (1 November 2012)</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-server-rn_2-0-0j.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#20184;&#37682;E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-server-rn_2-0-0h.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="E.4. Release Notes for Couchbase Server 2.0.0 build #1870 Beta (1 November 2012)"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="couchbase-server-rn_2-0-0i"></a>E.4. Release Notes for Couchbase Server 2.0.0 build #1870 Beta (1 November 2012)</h2></div></div></div><p>
+ This is build #1870 of Couchbase Server 2.0. Couchbase Server is
+ a NoSQL document database for interactive web applications. It
+ has a flexible data model, is easily scalable, provides
+ consistent high performance and is "always-on," meaning it can
+ serve application data 24 hours, 7 days a week. For more
+ information about Couchbase Server 2.0, visit
+ <a class="ulink" href="http://www.couchbase.com/couchbase-server/next" target="_top">Couchbase
+ Server 2.0</a>.
+ </p><p>
+ The major improvements made between Beta and build #1870
+ include:
+ </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+ <span class="bold"><strong>General Changes in Rebalance
+ Behavior</strong></span>.
+ </p><p>
+ During rebalance, Couchbase Server now has new internal
+ logic that will wait for data to be persisted at a new node
+ before the new node takes responsibility for serving the
+ data. In situations where you want a very high level of
+ durability, this can provide you more assurance that your
+ data can be recovered after node failures.
+ </p></li><li class="listitem"><p>
+ <span class="bold"><strong>Querying Views during
+ Rebalance</strong></span>.
+ </p><p>
+ If you perform queries during rebalance, this new feature
+ will ensure that you receive the query results that you
+ would expect from a node as if it is not being rebalanced.
+ During node rebalance, you will get the same results you
+ would get as if the data were on an original node and as if
+ data were not being moved from one node to another. In other
+ words, this new feature ensures you get query results from a
+ new node during rebalance that are consistent with the query
+ results you would have received from the node before
+ rebalance started.
+ </p><p>
+ With this new feature, you will get the same query results
+ before rebalance, during rebalance and after rebalance.
+ Without this new functionality querying a view during
+ rebalance would have provided results inconsistent with the
+ results from a source node. With this new functionality
+ enabled, data that is being moved from one node to another
+ node will be incrementally added to an index available at
+ the new node so that you get query results that are
+ consistent with your expectations.
+ </p></li><li class="listitem"><p>
+ <span class="bold"><strong>XDCR (Cross Data-Center Replication)
+ Enhancements.</strong></span>
+ </p><p>
+ This includes the following features and enhancements:
+ </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Performance improvements. Performance for outbound
+ replication from a source cluster to a destination has
+ been improved. CPU utilization on destination clusters
+ has been reduced for better performance.
+ </p></li><li class="listitem"><p>
+ Improved Error Handling and Logging. More information
+ about documents and the size of documents awaiting
+ replication now available.
+ </p></li><li class="listitem"><p>
+ UI Improvements for XDCR in the Couchbase Web Console.
+ </p></li></ul></div><p>
+ The Couchbase Web Admin Console has been expanded to show
+ the number of documents waiting to be replicated via XDCR
+ and the total size of all documents waiting for replication.
+ Low-level errors and statistics have been moved to a
+ Couchbase Web Console log file to avoid information overload
+ and confusion. Messages that are more appropriately
+ categorized as recoverable states have been labeled
+ warnings, not errors.
+ </p></li><li class="listitem"><p>
+ Improve and enable data flush for entire cluster via
+ individual data buckets. Ability to disable and enable the
+ configuration setting for safe cluster administration. For
+ more information, see
+ <a class="xref" href="couchbase-admin-web-console-data-buckets-createedit.html#couchbase-admin-web-console-data-buckets-createedit-editcb" title="6.3.1.2. Couchbase&#12496;&#12465;&#12483;&#12488;&#12398;&#32232;&#38598;">&#12300;Couchbase&#12496;&#12465;&#12483;&#12488;&#12398;&#32232;&#38598;&#12301;</a>.
+ </p></li><li class="listitem"><p>
+ Server logs have been split and have been provided logical
+ naming. This makes it easier for you to spot or diagnose
+ server issues. For more information, see
+ <a class="xref" href="couchbase-troubleshooting-logs.html" title="11.3. &#12525;&#12464;&#12392;&#12525;&#12464;&#20986;&#21147;">&#12300;&#12525;&#12464;&#12392;&#12525;&#12464;&#20986;&#21147;&#12301;</a>.
+ </p></li></ul></div><p><a name="couchbase-server-rn_2-0-0i_features"></a><span class="bold"><strong>New Features and Behaviour Changes in 2.0.0 build #1870</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+ There is also now a new REST-API in Couchbase Server 2.0 where
+ you can enable or disable flush for each data bucket in a
+ cluster. This also enables you to flush an individual bucket in
+ a cluster or multiple buckets on a cluster with a single
+ REST-API command. For more information, see
+ <a class="xref" href="couchbase-admin-restapi-flushing-bucket.html" title="8.6.12. &#12496;&#12465;&#12483;&#12488;&#12398;&#12501;&#12521;&#12483;&#12471;&#12517;">&#12300;&#12496;&#12465;&#12483;&#12488;&#12398;&#12501;&#12521;&#12483;&#12471;&#12517;&#12301;</a>.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6776" target="_top">MB-6776</a></p></li></ul></div><p><a name="couchbase-server-rn_2-0-0i_fixes"></a><span class="bold"><strong>Fixes in 2.0.0 build #1870</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><span class="bold"><strong>Database Operations</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Now provide timestamp for when a TAP queue backfill starts. The
+ TAP backfill queue is used to send a snapshot of a vbucket to
+ another node.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6753" target="_top">MB-6753</a></p></li><li class="listitem"><p>
+ Couchbase Server had created new checkpoints even in the case
+ where empty, current checkpoints were available. The server
+ provided extraneous notifications when various changes to
+ checkpoints ID occurred due to constant polling by XDCR. Now
+ when an empty checkpoint is available, the server uses this
+ checkpoint for additional replication and provide this
+ checkpoint ID to XDCR. The server also pushes a single
+ notification to XDCR when a checkpoint is empty.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6632" target="_top">MB-6632</a></p></li><li class="listitem"><p>
+ Couchbase Server kept requesting to mark a group of partitions
+ as indexable when they were already marked as indexable, or when
+ they are already correctly marked as unindexable. This triggered
+ redundant effort by processes. It is now fixed.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6804" target="_top">MB-6804</a></p></li><li class="listitem"><p>
+ During XDCR replication, an incorrect cache-miss-ratio had been
+ displayed in Web Console, and had been returned in response to a
+ <span class="command"><strong>cbstats</strong></span> command. We had erroneously
+ incremented <code class="literal">ep_bg_fetched</code> for
+ <code class="literal">GET_META</code> background fetches. As a fix, we now
+ provide a separate stat for <code class="literal">GET_META</code>
+ background fetches.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6628" target="_top">MB-6628</a></p></li><li class="listitem"><p>
+ Get-and-touch returned incorrect error messages when an error
+ occurs. Get-and-touch now returns <code class="literal">ENOENT</code> if
+ key does not exist.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6840" target="_top">MB-6840</a></p></li><li class="listitem"><p>
+ This enables users to change the disk location of an index
+ without destroying persisted data. You can now set index_path
+ and it will delete an existing index only and create a new disk
+ location for use.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6423" target="_top">MB-6423</a></p></li><li class="listitem"><p>
+ When you try to automatically failover a node, Couchbase Server
+ will not perform the failover if there are not enough replica
+ vBuckets in the cluster to support the failed node.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6209" target="_top">MB-6209</a></p></li><li class="listitem"><p>
+ Querying a view during rebalance had resulted in several errors
+ due to the way database storage files were managed and named. We
+ now exclude opening databases that are meant to be excluded from
+ indexing and we now synchronously open databases for indexing to
+ resolve the problem.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6612" target="_top">MB-6612</a></p></li><li class="listitem"><p>
+ Querying a view on a single node incorrectly returned
+ <code class="literal">inconsistent_state</code> error if a bucket is
+ empty. This is corrected.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6736" target="_top">MB-6736</a></p></li><li class="listitem"><p>
+ Provide additional XDCR information on Logs tab of Couchbase Web
+ Console.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6888" target="_top">MB-6888</a></p></li><li class="listitem"><p>
+ We added missing checks to state transition requests. Also
+ erroneous error messages had occurred while the server monitored
+ partition in pending transition. This has been corrected.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6490" target="_top">MB-6490</a></p></li><li class="listitem"><p>
+ The collect_info logs was missing the mapreduce_errors log file.
+ Now this log also contains mapreduce_errors.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6859" target="_top">MB-6859</a></p></li><li class="listitem"><p>
+ Change the frequency that internal timeouts on Windows were
+ occurring to be more efficient.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6653" target="_top">MB-6653</a></p></li><li class="listitem"><p>
+ Node rebalance was failing when new nodes were added to the
+ cluster. This occurred due to processes being triggered after
+ defining partitions for indexing. The processes are now being
+ triggered at the correct time.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6706" target="_top">MB-6706</a></p></li><li class="listitem"><p>
+ Replication had exited with replicator_died message after
+ multiple attempts to update. Problem was caused by using old
+ revision numbers for new database files. Now new database files
+ use new revision numbers, resolving the problem.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6711" target="_top">MB-6711</a></p></li><li class="listitem"><p>
+ Sporadic failures occurred while running a unit test for testing
+ duplicate items on disk. Test now modified to use less items.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6647" target="_top">MB-6647</a></p></li><li class="listitem"><p>
+ Keys stored in the access log were not correctly scheduled to
+ load, due to a broken logic for detecting duplicate items. Now
+ keys properly load during warmup from access log.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6616" target="_top">MB-6616</a></p></li><li class="listitem"><p>
+ Couchbase Server had returned a HTTP 404 error when a node is
+ rebalanced and a client tried to cache a list of nodes for a
+ bucket. Now the server sends a HTTP 302 redirect with the URL of
+ an available node.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6922" target="_top">MB-6922</a></p></li><li class="listitem"><p>
+ The thread responsible for persisting data in Couchbase Server
+ had been crashing during vBucket state changes. This was caused
+ by not handling file not found exceptions. The cause of the
+ crashes has been fixed.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6676" target="_top">MB-6676</a></p></li><li class="listitem"><p>
+ Check-and-set value was not returned in response to a successful
+ delete request. Now it is returned as part of the response.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6661" target="_top">MB-6661</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Cluster Operations</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Server now releases returned document that is being marked
+ deleted. This fixes a rebalance failure where memcached crashes
+ on one of the nodes and rebalance exits with the error:
+ <code class="literal">{mover_failed,{badmatch, known macro:
+ {error,closed}}}</code>.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6806" target="_top">MB-6806</a></p></li><li class="listitem"><p>
+ The Couchbase REST-API has changed to enable you to change the
+ default maximum number of buckets used in a Couchbase cluster.
+ The maximum allowed buckets in this request is 128, however the
+ maximum suggested number of buckets is ten per cluster. This is
+ a safety mechanism to ensure that a cluster does not have
+ resource and CPU overuse due to too many buckets. The following
+ illustrates the endpoint and parameters used:
+ </p><pre class="programlisting"><span class="line">shell&gt;	curl -X -u admin:password -d maxBucketCount=6 http://ip_address:8091/internalSettings</span></pre><p>
+ For this request you need to provide administrative credentials
+ for the cluster. The following HTTP request will be sent:
+ </p><pre class="programlisting"><span class="line">About to connect() to 127.0.0.1 port 8091 (#0)</span>
+<span class="line">Trying 127.0.0.1...</span>
+<span class="line">connected</span>
+<span class="line">Connected to 127.0.0.1 (127.0.0.1) port 8091 (#0)</span>
+<span class="line">Server auth using Basic with user 'Administrator'</span>
+<span class="line">POST /internalSettings HTTP/1.1</span></pre><p>
+ If Couchbase Server successfully changes the bucket limit for
+ the cluster, you will get a HTTP 200 response:
+ </p><pre class="programlisting"><span class="line">HTTP/1.1 200 OK</span>
+<span class="line">Server: Couchbase Server 2.0.0r_501_gb614829</span>
+<span class="line">Pragma: no-cache</span>
+<span class="line">Date: Wed, 31 Oct 2012 21:21:48 GMT</span>
+<span class="line">Content-Type: application/json</span>
+<span class="line">Content-Length: 2</span>
+<span class="line">Cache-Control: no-cache</span></pre><p>
+ If you provide an invalid number, such as 0, a negative number,
+ or an amount over 128 buckets, you will get this error message:
+ </p><pre class="programlisting"><span class="line">["Unexpected server error, request logged."]</span></pre><p>
+ For more information about setting buckets per cluster via
+ REST-API, see
+ <a class="xref" href="couchbase-admin-restapi-max-buckets.html" title="8.7.11. &#12463;&#12521;&#12473;&#12479;&#12398;&#26368;&#22823;&#12496;&#12465;&#12483;&#12488;&#12398;&#35373;&#23450;">&#12300;&#12463;&#12521;&#12473;&#12479;&#12398;&#26368;&#22823;&#12496;&#12465;&#12483;&#12488;&#12398;&#35373;&#23450;&#12301;</a>.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-5684" target="_top">MB-5684</a></p></li><li class="listitem"><p>
+ Automatically prevent a user from creating more than the maximum
+ number of supported buckets in a Couchbase cluster. The default
+ maximum is six.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-5684" target="_top">MB-5684</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Web Console</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Provide cleaner, simplified output on error messages from XDCR
+ replication.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6763" target="_top">MB-6763</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Command-line Tools</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Incorrect message had been sent in response to a
+ <span class="command"><strong>cbstats vkey</strong></span> command. Server had returned the
+ string 'not found' for valid request. Now correct the memcached
+ protocol error is returned. For more information about <span class="command"><strong>
+ cbstats</strong></span>, see
+ <a class="xref" href="couchbase-admin-cmdline-cbstats.html" title="7.5. cbstats&#12484;&#12540;&#12523;">&#12300;<span class="command"><strong>cbstats</strong></span>&#12484;&#12540;&#12523;&#12301;</a>.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6751" target="_top">MB-6751</a></p></li><li class="listitem"><p>
+ Fixed stats vkey status for evicted keys. Stats vkey was
+ returning <code class="literal">item_deleted</code> instead of valid for
+ evicted keys. This change fixes that problem.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6840" target="_top">MB-6840</a></p></li><li class="listitem"><p>
+ <span class="command"><strong>cbepctl</strong></span> help options now show option for
+ setting the expiry_pager, a maintenance process for removing
+ deleted items from disk.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6764" target="_top">MB-6764</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Indexing and Querying</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Remove an internal setting dialog used internally by Couchbase
+ for testing consistent views.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6713" target="_top">MB-6713</a></p></li><li class="listitem"><p>
+ On Window platform, errors occurred trying to update a design
+ document. This is now fixed.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6653" target="_top">MB-6653</a></p></li><li class="listitem"><p>
+ When consistent views were enabled and rebalance was being
+ performed, the rebalance would fail. This was due to incorrect
+ handling of empty partitions and by accidentally performing disk
+ cleaning before updating partitions which would not be indexed.
+ This is fixed.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6612" target="_top">MB-6612</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Cross Datacenter Replication (XDCR)</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ In the past we had displayed several confusing error messages
+ and warnings for XDCR. We had provided low level information in
+ the Couchbase Web Console that is now provided to low files to
+ avoid overwhelming users with information. We were also
+ reporting errors that were actually more appropriately called
+ warnings since they were recoverable issues. We have changed
+ those errors to warning/advisories.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6934" target="_top">MB-6934</a></p></li><li class="listitem"><p>
+ By default, the server automatically disables flushing data from
+ a source data bucket when XDCR replications exist for that
+ bucket.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6809" target="_top">MB-6809</a></p></li><li class="listitem"><p>
+ Renamed "XDCR replication queue" in summary section to "XDCR
+ docs to replicate" for clarity.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6924" target="_top">MB-6924</a></p></li><li class="listitem"><p>
+ Replication via XDCR had experienced performance degradation
+ when a data bucket contained a higher ratio of expired items.
+ This has been fixed by ignoring the expiration time set for an
+ item, <code class="literal">SET_WITH_META</code>.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6662" target="_top">MB-6662</a></p></li><li class="listitem"><p>
+ We have added 3 new outbound operation stats, namely, 1) data
+ replicated, which is amount of data XDCR have replicated to the
+ remote data center through inter- cluster network; 2) active vb
+ replications, which shows the number of ongoing active
+ replications to the remote clusters; 3) waiting vb replications,
+ which is the number of vb replications in the waiting pool to
+ wait for turn to start replication. These stats will be useful
+ for performance monitoring and diagnosis.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6919" target="_top">MB-6919</a></p></li><li class="listitem"><p>
+ Couchbase Server was dropping connections from client libraries
+ too quickly when a node in a cluster was being rebalanced. Now
+ there will be more delay until a connection is dropped.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-5406" target="_top">MB-5406</a></p></li><li class="listitem"><p>
+ By default, the server automatically disables flushing data from
+ a source data bucket when XDCR replications exist for that
+ bucket.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6809" target="_top">MB-6809</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Performance</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ Increase maximum number of retries to open the database file.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6844" target="_top">MB-6844</a></p></li><li class="listitem"><p>
+ Prioritize flushing pending vbuckets over regular vbuckets. This
+ is a performance improvement used for rebalancing buckets that
+ have no views or design docs when consistent view mode is
+ enabled.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6796" target="_top">MB-6796</a></p></li><li class="listitem"><p>
+ Couchbase Server had experienced a one second delay to mark
+ empty and closed checkpoints on a persistence queue. Performance
+ improvements made to eliminate delay.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-6714" target="_top">MB-6714</a></p></li></ul></div></li></ul></div><p><a name="couchbase-server-rn_2-0-0i_knownissues"></a><span class="bold"><strong>Known Issues in 2.0.0 build #1870</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><span class="bold"><strong>Installation and Upgrade</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ It is not possible to perform an upgrade between Couchbase
+ Server 2.0 pre-releases including beta, or to perform an offline
+ upgrade from Couchbase Server 1.8 to a pre-release or beta of
+ Couchbase Server 2.0. To upgrade between these versions use
+ <span class="command"><strong>cbbackup</strong></span> to backup your data, delete the
+ existing installation, install the new version, and restore the
+ stored data.
+ </p><p>For more information, see <a class="xref" href="couchbase-backup-restore.html" title="5.6. &#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#12392;&#12522;&#12473;&#12488;&#12450;">&#12300;&#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#12392;&#12522;&#12473;&#12488;&#12450;&#12301;</a>, <a class="xref" href="couchbase-uninstalling.html" title="&#20184;&#37682;B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;">&#20184;&#37682;B <i>Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</i></a>.</p></li><li class="listitem"><p>
+ Documents identified as Non-JSON stored within Couchbase Server
+ may appear as binary, or text-encoded binary data within the UI.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-7069" target="_top">MB-7069</a></p></li><li class="listitem"><p>
+ During periods of moderate CPU load on the Couchbase Server
+ cluster, you may see warnings that <code class="literal">IP address seems to
+ have changed. Unable to listen to node X.X.X.X</code>.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-7115" target="_top">MB-7115</a>, <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-7238" target="_top">MB-7238</a>, <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-7228" target="_top">MB-7228</a></p></li></ul></div></li><li class="listitem"><p><span class="bold"><strong>Command-line Tools</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+ The <span class="command"><strong>cbbackup</strong></span>, <span class="command"><strong>cbrestore</strong></span>,
+ and <span class="command"><strong>cbtransfer</strong></span> command-line tools require the
+ <code class="literal">zlib</code> module for Python to have been
+ installed. If Python was installed from source, you must have
+ enabled <code class="literal">zlib</code> using the
+ <code class="literal">--with-zlib</code> option during the build process.
+ </p><p><span class="emphasis"><em>Issues</em></span>: <a class="ulink" href="http://www.couchbase.com/issues/browse/MB-7256" target="_top">MB-7256</a></p><p>For more information, see <a class="xref" href="couchbase-backup-restore.html" title="5.6. &#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#12392;&#12522;&#12473;&#12488;&#12450;">&#12300;&#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#12392;&#12522;&#12473;&#12488;&#12450;&#12301;</a>, <a class="xref" href="couchbase-uninstalling.html" title="&#20184;&#37682;B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;">&#20184;&#37682;B <i>Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</i></a>.</p></li></ul></div></li></ul></div></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-server-rn_2-0-0j.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="couchbase-server-rn.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-server-rn_2-0-0h.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">E.3. Release Notes for Couchbase Server 2.0.0 #1941 Beta (November 13 2012)&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;E.5. Release Notes for Couchbase Server 2.0.0 Beta (18 September 2012)</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>
