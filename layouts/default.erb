@@ -10,8 +10,8 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	  <title><%= @item[:pagetitle] ? @item[:pagetitle] : @item[:title] %></title>	  	 
-      <meta name="description" content="">
+	   <title><%= @item[:pagetitle] ? @item[:pagetitle] : @item[:title] %></title>	  	 
+      <meta name="description" content="<%= @item[:metadescr] %>">
       <meta name="viewport" content="width=device-width">
       <%= css_link("/assets/css/main") %>
         <link rel="stylesheet" href="/assets/css/header.css">
@@ -115,7 +115,6 @@
                 <%= render 'toc_widget' %>
                 <% end %>
             <div class="span9 mdcontent <%= @item[:css_class] %>">
-           
                 <%= yield %>
             </div>
         </div>
