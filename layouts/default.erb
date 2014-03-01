@@ -114,7 +114,13 @@
             <% unless @item[:no_toc] %>
                 <%= render 'toc_widget' %>
                 <% end %>
-            <div class="span9 mdcontent <%= @item[:css_class] %>">
+					 
+					<% if @item[:no_toc] %>
+						<div class="span12 mdcontent <%= @item[:css_class] %>">
+					<% else %>
+						<div class="span9 mdcontent <%= @item[:css_class] %>">
+					<% end %>
+					
                 <%= yield %>
             </div>
         </div>
