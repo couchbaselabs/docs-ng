@@ -138,6 +138,8 @@ To browse or submit new issues, see http://www.couchbase.com/issues/browse/MB-xx
 : **Workaround**: Delete and recreate the bucket.
 
 
+[MB-9612](https://www.couchbase.com/issues/browse/MB-9612): On the destination cluster, XDCR spams the cluster management error logs with tmp errors.   
+
 [MB-9858](http://www.couchbase.com/issues/browse/MB-9858): **vBucket issue**
 : A high percentage of vBucket memory quota used on a vBucket causes rebalance to fail 
 because the backfill task for the vBucket takeover is temporarily suspended due to high memory usage. 
@@ -146,7 +148,6 @@ because the backfill task for the vBucket takeover is temporarily suspended due 
 : The `couchbase-cli xdcr-setup --xdcr-cluster-name` option is misspelled in the CLI help. 
 `--xdcr-cluster-name` is correct. `--xdcr-clucter-name` is incorrect. 
 
-
 [MB-10005](http://www.couchbase.com/issues/browse/MB-10005): **XDCR data encryption issue**
 : Upgrade to Couchbase 2.5 Enterprise Edition succeeds when reserved ports for XDCR data encryption 
 are used by buckets.
@@ -154,5 +155,7 @@ are used by buckets.
 [MB-10000](http://www.couchbase.com/issues/browse/MB-10000): **XDCR and CLI issue**
 : The `couchbase-cli xdcr-setup` allows `--xdcr-cluster-name` as an optional option while Web Console has this field as mandatory. 
 
+[MB-10057](https://www.couchbase.com/issues/browse/MB-10057): With XDCR, Rebalance does not reset XDCR checkpoints. In some cases, XDCR checkpointing may reuse old and stale checkpoints which caused stuck replication.
 
+[MB-10059](https://www.couchbase.com/issues/browse/MB-10059): Replica vBuckets ignore `rev_seq` values of new items from the active vBucket. Instead, new `rev_seq` values are generated for those new item. With XDCR, an inconsistent state may occur.
 
