@@ -164,22 +164,6 @@
 
     </div>
 
-
-        <div class="row-fluid">
-            <% unless @item[:no_toc] %>
-                <%= render 'toc_widget' %>
-                <% end %>
-
-					<% if @item[:no_toc] %>
-						<div class="span12 mdcontent <%= @item[:css_class] %>">
-					<% else %>
-						<div class="span9 mdcontent <%= @item[:css_class] %>">
-					<% end %>
-
-                <%= yield %>
-            </div>
-        </div>
-
     <%= js_link("/assets/js/main") %>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
