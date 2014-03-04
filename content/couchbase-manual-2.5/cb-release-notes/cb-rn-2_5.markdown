@@ -47,7 +47,7 @@ See the following for more information about XDCR data encryption:
 
 * For concept details on XDCR and XDCR data encryption, see 
 [Cross Datacenter Replication](../cb-admin/#cb-concepts-xdcr) and 
-[XDCR data encryption](../cd-admin/#cb-concepts-xdcr-data-encrypt).
+[XDCR data encryption](../cb-admin/#cb-concepts-xdcr-data-encrypt).
 * For administrative tasks on managing XDCR data encryption, see  
 [Managing XDCR](../cb-admin/#couchbase-admin-tasks-xdcr) and 
 [Managing XDCR data encryption](../cb-admin/#cb-admin-tasks-xdcr-encrypt).
