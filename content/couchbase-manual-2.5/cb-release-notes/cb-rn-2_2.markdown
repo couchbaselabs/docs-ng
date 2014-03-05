@@ -23,6 +23,7 @@ These release notes are for the current Couchbase build 2.2.0-837. The release n
 [MB-9612](https://www.couchbase.com/issues/browse/MB-9612): On the destination cluster, XDCR spams the cluster management error logs with tmp errors.   
 
 [MB-10057](https://www.couchbase.com/issues/browse/MB-10057): With XDCR, Rebalance does not reset XDCR checkpoints. In some cases, XDCR checkpointing may reuse old and stale checkpoints which caused stuck replication.
+
 [MB-10059](https://www.couchbase.com/issues/browse/MB-10059): Replica vBuckets ignore `rev_seq` values of new items from the active vBucket. Instead, new `rev_seq` values are generated for those new item. With XDCR, an inconsistent state may occur.
 
 
