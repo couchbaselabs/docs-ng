@@ -1,4 +1,4 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
@@ -10,45 +10,43 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-261">NCBC-261: Use an enumeration instead of integers for return codes</a>
 
-    This patch adds a extension method to Enyim.Caching.StatusCodeExtensions to make it easier to work with 
-    the IOperationResult.Status property.
+    This patch adds an extension method to `Enyim.Caching.StatusCodeExtensions` to make it easier to work with 
+    the `IOperationResult.Status` property.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-408">NCBC-408: Retry Node Check during View Operations</a>
 
-    During a View operation, the client will look for a node to use to execute
-    the operation against. In certain cases (rebalance, etc) the list of nodes
-    may be empty. This will add an additional check if a candidate node is not
+    During a View operation, the client slook for a node to use to execute
+    the operation against. In certain cases, such as a rebalance, the list of nodes
+    might be empty. This adds an additional check if a candidate node is not
     found before the client gives up and returns a "View {0} was mapped to a
     dead node, failing." error.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-407">NCBC-407: Retry View Operations When Specific Error Cases are Encountered</a>
 
-    This patch enables the client to retry view operation when specific error
+    This patch enables the client to retry view operations when specific error
     cases are encountered. For example, all errors in the 300 range are
     retried and in certain cases 404 and 500's are retried as well.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-398">NCBC-398: Support Json.NET >= 6.0.1</a>
 
-    This commit removes restriction on Json.NET version and bumps the build
-    version from Nuget Version 4.5.11 to 5.0.8 (assembly versions are slightly
-    different). 5.0.8 is the last released version before 6.0.1.
+    This commit removes the restriction on Json.NET version and bumps the build version from Nuget Version 4.5.11 to 5.0.8 (assembly versions are slightly different). 5.0.8 is the last released version before 6.0.1.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-388">NCBC-388: Test case improvement</a>
 
-    This commit first adds a key and then verify that Store() should fail if we try to add it again.
+    This commit adds a key and then verifies that `Store()` fails if the key is added again.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-394">NCBC-394: Add 'Warn' Level Logging to 'core' configuration classes</a>
 
-    Serializes the client configuration and writes it to the log appender when log level is set to INFO.
+    Serializes the client configuration and writes it to the log appender when the log level is set to INFO.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-396">NCBC-396: Log the creation of client instances</a>
 
     This commit logs the creation of a client instance, writing the current configuration to the log when log level
-    INFO is configured. The purpose is to nake it easier to isolate issues specific to a client's configuration.
+    INFO is configured. The purpose is to make it easier to isolate issues specific to a client's configuration.
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-395">NCBC-395: Assign each client instance an identifer</a>
+* <a href="http://www.couchbase.com/issues/browse/NCBC-395">NCBC-395: Assign each client instance an identifier</a>
 
-    This commit adds an Identity property to the CouchbaseClient class which makes it easier to isolate a
+    This commit adds an Identity property to the CouchbaseClient class that makes it easier to isolate a
     specific client's log messages in environments where multiple clients are writing to the same log file.
 
 ## Release Notes for Couchbase Client Library .NET 1.3.3 GA (4 February 2014)

@@ -1,7 +1,7 @@
-# .Net Troubleshooting
+# Troubleshooting
 
+This section provides troubleshooting tips.
 <a id="net-sdk-bulk-load-and-backoff"></a>
-
 ## Bulk Load and Exponential Backoff
 
 When you bulk load data to Couchbase Server, you can accidentally overwhelm

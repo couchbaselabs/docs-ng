@@ -1,11 +1,11 @@
-# Retrieve Operations
+## Retrieve Operations
 
 The retrieve operations get information from the Couchbase database. A summary
 of the available API calls is listed below.
 
 <a id="couchbase-sdk-net-retrieve-get"></a>
 
-## Get Methods
+### Get Methods
 
 The Get() methods allow for direct access to a given key/value pair.
 

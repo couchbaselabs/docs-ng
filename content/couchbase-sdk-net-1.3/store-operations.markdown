@@ -1,4 +1,4 @@
-# Store Operations
+## Store Operations
 
 The Couchbase.NET Client Library store operations set information within the
 Couchbase database. These are distinct from the update operations in that the
@@ -6,7 +6,7 @@ key does not have to exist within the Couchbase database before being stored.
 
 <a id="couchbase-sdk-net-store-set"></a>
 
-## Store Methods
+### Store Methods
 
 The Store() methods add or replace a value in the database with the specified
 key.
