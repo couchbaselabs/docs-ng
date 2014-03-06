@@ -1,4 +1,4 @@
-# Appendix: Cluster Management with the .NET Client Library
+# Cluster Management with the .NET Client Library
 
 The following sections provide details about using the Couchbase .NET Client to
 manage buckets and design documents.

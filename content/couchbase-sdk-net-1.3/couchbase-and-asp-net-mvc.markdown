@@ -1,6 +1,6 @@
-# Couchbase and ASP.NET MVC
+# Couchbase ASP.NET MVC tutorial
 
-This tutorial will walk you through the steps of creating an ASP.NET MVC app
+This tutorial walks you through the steps of creating an ASP.NET MVC app
 using Couchbase. It will focus on practical design patterns, best practices
 along with general SDK usage.
 

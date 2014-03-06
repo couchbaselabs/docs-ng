@@ -1,4 +1,4 @@
-# Appendix: JSON Extension Methods
+# JSON Extension Methods
 
 The following sections provide details on how to use the `CouchbaseClient` JSON
 extensions.

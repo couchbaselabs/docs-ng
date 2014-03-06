@@ -1,4 +1,4 @@
-# Appendix: Configuring the .NET Client Library
+# Configuring the .NET Client Library
 
 The following sections provide details on the App|Web.config configuration
 options for the .NET Client Library
