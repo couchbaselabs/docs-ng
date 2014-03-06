@@ -85,11 +85,13 @@ var client = new CouchbaseClient(config);
    client has a basic dead node detection mechanism which will also use this
    timeout to reconnect servers which went offline.
 
- * `queueTimeout` (00:00:02.500) Specifies the amount of time after which the
-   getting of a connection from the pool will fail. The default is 100 msec.
+ * `queueTimeout` (00:00:02.500) This is the time that a worker thread will wait for
+    a connection to become available when the connection pool is empty. This would
+    happen in a high-throughput scenario or if the operations take longer than expected.
+    The default is 2500 msec.
 
- * `receiveTimeout` (00:00:10) The amount of time after which receiving data from
-   the socket fails.
+ * `receiveTimeout` (00:00:10) This amount of time that the client will wait on a
+    connection during a read. The default is 10 seconds.
 
 
 
