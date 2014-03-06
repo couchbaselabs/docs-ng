@@ -1,4 +1,4 @@
-# Working with Operation Results and Error Codes
+# Operation Results and Error Codes
 
 The following sections provide details about working with the `IOperationResult` interface and the error codes it returns.
 

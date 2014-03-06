@@ -1,3 +1,3 @@
-# .NET Method Summary
+# API Summary
 
-<a id="api-reference-connection"></a>
+This section describes the .NET client APIs.

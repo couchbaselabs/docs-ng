@@ -1,7 +1,7 @@
-# Appendix: Available packages for the .NET Client Library
+# Packages for the .NET Client Library
 
 The following sections provide details about the various Couchbase packages
-available on NuGet, and via direct download.
+available on NuGet and via direct download.
 
 The official Client Library and associated loggers are both available as .NET 3.5
 and .NET 4.0 builds. When you download the zip file, there are directories for

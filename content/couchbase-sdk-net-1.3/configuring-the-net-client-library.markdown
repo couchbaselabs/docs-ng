@@ -1,4 +1,4 @@
-# Appendix: Configuring the .NET Client Library
+# Configuring the .NET Client Library
 
 The following sections provide details on the App|Web.config configuration
 options for the .NET Client Library
@@ -85,7 +85,7 @@ var client = new CouchbaseClient(config);
    client has a basic dead node detection mechanism which will also use this
    timeout to reconnect servers which went offline.
 
- * `queueTimeout` (00:00:00.100) Specifies the amount of time after which the
+ * `queueTimeout` (00:00:02.500) Specifies the amount of time after which the
    getting of a connection from the pool will fail. The default is 100 msec.
 
  * `receiveTimeout` (00:00:10) The amount of time after which receiving data from

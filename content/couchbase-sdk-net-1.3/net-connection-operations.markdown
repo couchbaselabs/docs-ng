@@ -1,4 +1,4 @@
-# .Net Connection Operations
+## Connection Operations
 
 <a id="table-couchbase-sdk_net_connect"></a>
 
