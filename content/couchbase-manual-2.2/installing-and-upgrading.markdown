@@ -388,7 +388,7 @@ Platforms](#couchbase-getting-started-prepare-platforms).
 
  1. For Ubuntu version 12.04, you need to install a specific OpenSSL dependency by
     running:
-
+ 
      ```
      root-> apt-get install libssl0.9.8
      ```
