@@ -1,4 +1,4 @@
-# Appendix: Configuring Logging
+# Configuring Logging
 
 The following sections provide details on how to enable logging for the .NET
 Client Library

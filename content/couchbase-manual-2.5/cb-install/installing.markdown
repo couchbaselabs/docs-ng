@@ -271,7 +271,7 @@ To run Couchbase server on user-defined ports, ensure that the minimum RAM and C
 	* If port numbers are not specified, default ports are used. 
 	* To override some or all default ports, append the user-defined ports to the file. 
 3. (Optional) CAPI port (default 8092) can be edited in the **/opt/couchbase/etc/couchdb/default.d/capi.ini** file by replacing 8092 with the new port name.
-4. If the Couchbase server was previously configured, delete the **opt/couchbasevar/lib/couchbase/config/config.dat** file to remove the old configuration.
+4. If the Couchbase server was previously configured, delete the **opt/couchbase/var/lib/couchbase/config/config.dat** file to remove the old configuration.
 5. Start the Couchbase server
 
 The following are the user-defined ports to add, replace, or append to the **/opt/couchbase/etc/couchbase/static_config** file.  

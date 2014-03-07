@@ -1,11 +1,11 @@
-# Update Operations
+## Update Operations
 
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
 <a id="couchbase-sdk-net-update-append"></a>
 
-## Append Methods
+### Append Methods
 
 The `Append()` methods allow you to add information to an existing key/value
 pair in the database. You can use this to add information to a string or other
@@ -145,7 +145,7 @@ if (! appendResult.Sucecss)
 
 <a id="couchbase-sdk-net-update-decrement"></a>
 
-## Decrement Methods
+### Decrement Methods
 
 The `Decrement()` methods reduce the value of a given key if the corresponding
 value can be parsed to an integer value. These operations are provided at a
@@ -438,7 +438,7 @@ client.ExecuteDecrement("inventory", 100, 1, DateTime.Now.AddMinutes(5), result.
 
 <a id="couchbase-sdk-net-update-remove"></a>
 
-## Remove Methods
+### Remove Methods
 
 The `Remove()` method deletes an item in the database with the specified key.
 
@@ -563,7 +563,7 @@ else
 
 <a id="couchbase-sdk-net-update-increment"></a>
 
-## Increment Methods
+### Increment Methods
 
 The `Increment()` methods increase the value of a given key if the corresponding
 value can be parsed to an integer value. These operations are provided at a
@@ -856,7 +856,7 @@ client.ExecuteIncrement("inventory", 100, 1, DateTime.Now.AddMinutes(5), result.
 
 <a id="couchbase-sdk-net-update-prepend"></a>
 
-## Prepend Methods
+### Prepend Methods
 
 The `Prepend()` methods allow you to add information to an existing key/value
 pair in the database. You can use this to add information to a string or other
@@ -996,7 +996,7 @@ if (! prependResult.Sucecss)
 
 <a id="couchbase-sdk-net-update-touch"></a>
 
-## Touch Methods
+### Touch Methods
 
 The `Touch()` methods allow you to update the expiration time on a given key.
 This can be useful for situations where you want to prevent an item from
@@ -1034,7 +1034,7 @@ client.Touch("session", DateTime.Now.AddDays(1));
 
 <a id="couchbase-sdk-net-store-cas"></a>
 
-## CAS Methods
+### CAS Methods
 
 The check-and-set methods provide a mechanism for updating information only if
 the client knows the check (CAS) value. This can be used to prevent clients from
