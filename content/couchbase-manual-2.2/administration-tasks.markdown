@@ -761,19 +761,11 @@ Server 2.0+, we recommend that you remain using the defaults provided.
 
 **Understanding the Item Pager**
 
-The process that periodically runs and removes documents from RAM is known as
-the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting replica data from RAM on the node. If the
-amount of RAM used by items reaches an upper threshold, known as the *high water
-mark*, both replica data and active data written from clients will be ejected.
-The item pager will continue to eject items from RAM until the amount of RAM
-consumed is below the *low water mark*. Both the high water mark and low water
-mark are expressed as an absolute amount of RAM, such as 5577375744 bytes.
+The item pager process, which runs periodically, removes documents from RAM and retains the item's key and metadata. If the amount of RAM used by items reaches the high water mark (upper threshold), both active and replica data are ejected until the memory usage (amount of RAM consumed) reaches the low watermark (lower threshold). As of the 2.1.1 release, evictions of active and replica data occur with the ratio probability of 40% (active data) to 60% (replica data) until the memory usage reaches the low watermark. Both the high water mark and low water mark are expressed as a percentage amount of RAM, such as 80%. 
 
-When you change either of these settings, you can provide a percentage of total
-RAM for a node such as 80% or as an absolute number of bytes. For Couchbase
-Server 2.0 and above, we recommend you remain using the default settings
-provided. Defaults for these two settings are listed below.
+Both the high water mark and low water mark can be changed by providing a percentage amount of RAM for a node, for example, 80%. Couchbase 
+recommends that the following default settings be used: 
+
 
 <a id="table-couchbase-admin-watermark-defaults"></a>
 
