@@ -226,29 +226,49 @@ per_node_ram_quota as there may be other programs running on your machine.</p>
 
 ### Disk Throughput and Sizing
 
-Couchbase Server decouples RAM from the I/O layer. This is a huge advantage. It
-allows you to scale high at very low and consistent latencies. It also enables
-Couchbase Server to handle very high write loads without affecting your
-application's performance.
+Couchbase Server decouples RAM from the I/O layer. 
+Decoupling allows high scaling at very low and consistent latencies and enables 
+very high write loads without affecting  client application performance. 
 
-However, Couchbase Server still needs to be able to write data to disk. Your
-disks need to be capable of handling a steady stream of incoming data. It is
-important to analyze your application's write load and provide enough disk
-throughput to match.
+Couchbase Server implements an append-only format and a built-in 
+automatic compaction process. Previously, in Couchbase Server 1.8.x, 
+an "in-place-update" disk format was implemented, however, 
+this implementation occasionally produced a performance penalty due to fragmentation of the 
+on-disk files under workloads with frequent updates/deletes. 
 
-While information is written to disk, the internal statistics system monitors
-the outstanding items in the disk write queue. From its display, you can see the
-disk write queue load. Its peak shows how many items stored in Couchbase Server
-would be lost in the event of a server failure. It is up to your own internal
-requirements to decide how much vulnerability you are comfortable with. Then you
-size the cluster accordingly so that the disk write queue level remains low
-across the entire cluster. Adding more nodes will provide more disk throughput.
+The requirements of your disk subsystem are broken down into two components: 
+size and IO. 
 
-Disk space is also required to persist data. How much disk space you should plan
-for is dependent on how your data grows. You will also want to store backup data
-on the system. A good guideline is to plan for at least 130% of the total data
-you expect. 100% of this is for data backup, and 30% for overhead during file
-maintenance.
+**Size** 
+
+Disk size requirements are impacted by the Couchbase file write format, append-only, and the built-in automatic compaction process. Append-only format means that every write (insert/update/delete) creates a new entry in the file(s).
+
+The required disk size increases from the update and delete workload and then shrinks as the automatic compaction process runs. The size increases because of the data expansion rather than the actual data using more disk space. Heavier update and delete workloads increases the size more dramatically than heavy insert and read workloads.
+
+Size recommendations are available for key-value data only. If views and indexes or XDCR are implemented, contact Couchbase support for analysis and recommendations.
+
+**Key-value data only** — Depending on the workload, the required disk size is  **2-3x** your total dataset size (active and replica data combined). 
+
+<div class="notebox bp"><p>Important</p> 
+<p>The disk size requirement of 2-3x your total dataset size applies to key-value data only and does not take into account other data formats and the use of views and indexes or XDCR. 
+</p></div> 
+
+
+
+**IO** 
+
+IO is a combination of the sustained write rate, the need for compacting the database files, and anything else that requires disk access. Couchbase Server automatically buffers writes to the database in RAM and eventually persists them to disk. Because of this, the software can accommodate much higher write rates than a disk is able to handle. However, sustaining these writes eventually requires enough IO to get it all down to disk. 
+
+To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else outside of Couchbase that need space or is accessing the disk. 
+
+
+
+<div class="notebox"><p>Best practice</p> 
+<p> 
+Use the available configuration options to separate data files, indexes and the installation/config directories on separate drives/devices to ensure that IO and space are allocated effectively. 
+</p></div> 
+
+
 
 <a id="couchbase-bestpractice-sizing-network"></a>
 

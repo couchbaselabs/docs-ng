@@ -1195,19 +1195,14 @@ lead to problems include:
 
  * **Handling failovers with network partitions**
 
-   If you have a network partition across the nodes in a Couchbase cluster,
-   automatic failover would lead to nodes on both sides of the partition to
-   automatically failover. Each functioning section of the cluster would now have
-   to assume responsibility for the entire document ID space. While there would be
-   consistency for a document ID within each partial cluster, there would start to
-   be inconsistency of data between the partial clusters. Reconciling those
-   differences may be difficult, depending on the nature of your data and your
-   access patterns.
+In case of network partition or split-brain where the failure of a network device causes a network to be split, Couchbase implements automatic failover with the following restrictions:
 
-   Assuming one of the two partial clusters is large enough to cope with all
-   traffic, the solution is to direct all traffic for the cluster to that single
-   partial cluster. The separated nodes could then be re-added to the cluster to
-   bring the cluster to its original size.
+* Automatic failover requires a minimum of three (3) nodes per cluster. In a distributed network environment, a minimum of three (3) nodes are required on each side of a potential network partition. This prevents automatic failover of a node due to network failure. 
+* Automatic failover occurs only if exactly one (1) node is down. This prevents cascading failovers and subsequent performance and stability degradation. 
+* Automatic failover implements a 30 second delay when a node fails before it performs an automatic failover.  This prevents transient network issues or slowness from causing a node to be failed over when it shouldn’t be. 
+
+If a network partition occurs, automatic failover occurs if and only if automatic failover is allowed by the specified restrictions. For example, if a single node is partitioned out of a cluster of five (5), it is automatically failed over. If more than one (1) node is partitioned off, autofailover is not implemented. Note that when an automatic failover occurs, administrative action is required for a reset. 
+
 
  * **Handling Misbehaving Nodes**
 
@@ -1245,8 +1240,8 @@ failover is not without potential problems.
 
  * **External monitoring**
 
-   [Another option is to have a system monitoring the cluster via the Management
-   REST API](../cb-rest-api/#couchbase-admin-restapi). Such an external system is in a good
+   Another option is to have a system monitoring the cluster via the Couchbase
+   [REST API](../cb-rest-api/#couchbase-admin-restapi). Such an external system is in a good
    position to failover nodes because it can take into account system components
    that are outside the scope of Couchbase Server.
 
