@@ -85,5 +85,5 @@ replication.OAuth =
 
 Getting the values is somewhat tricky and involves authenticating with the origin server (the site at which the user has an account or identity). Usually you use an OAuth client library to do the hard work, such as a library from [Google](http://code.google.com/p/gtm-oauth/) or [Facebook](https://github.com/facebook/facebook-ios-sdk).
 
-OAuth tokens expire after some time. If you install them into a persistent replication, you still need to call the client library periodically to validate them. If they're updated, you need to update them in the replication settings.
+OAuth tokens expire after some time. If they're updated, you need to update them in the replication settings.
 
