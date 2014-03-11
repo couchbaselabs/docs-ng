@@ -1,3 +1,8 @@
+---
+title: "Appendix: Licenses"
+ng: true
+---
+
 # Appendix: Licenses
 
 This documentation and associated software is subject to the following licenses.

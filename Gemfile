@@ -13,8 +13,8 @@ gem 'nokogiri'
 # Webserver for 'nanoc view' command
 gem 'adsf'
 
-# Dependencies for 'nanoc watch' command
-gem 'listen'
+# File watcher configuration for guard
+gem 'guard-nanoc'
 gem 'rb-fsevent'
 gem 'rb-inotify'
 

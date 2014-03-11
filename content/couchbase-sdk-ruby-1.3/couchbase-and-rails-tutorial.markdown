@@ -1,3 +1,8 @@
+---
+title: Couchbase and Rails Tutorial
+ng: true
+---
+
 # Couchbase and Rails Tutorial
 
 The goal of this chapter is to show you how to write more advanced applications
@@ -166,7 +171,7 @@ Post.new(:title => "Hello, World!")
 The next block is about defining views. One way to play with views is Couchbase Server Admin Console, but it may not be the best to keep parts of the code in different places. After all Views are implemented in JavaScript and contain the business logic `couchbase-model`. Each time the server starts (in development mode for each request), the application will check the file system changes of the map/reduce JavaScript files and update the design document if needed. There is also the Rails generator for views. It will put view stubs for you in proper places. Here for example, is the model layout for this particular application:
 
 ```
-app/models/ ├── beer │   ├── all │   │   └── map.js │   └── by_category │      
+app/models/ ├── beer │   ├── all │   │   └── map.js │   └── by_category │  
 ├── map.js │       └── reduce.js ├── beer.rb ├── brewery │   ├── all │   │   └──
 map.js │   ├── all_with_beers │   │   └── map.js │   ├── by_country │   │   ├──
 map.js │   │   └── reduce.js │   └── points │       └── spatial.js ├──
@@ -176,7 +181,7 @@ brewery.rb ├── favorites.rb └── user.rb
 For each model which has views, you should create a directory with the same name and put in the appropriate JavaScript files. Each should implement the corresponding parts of the view. For example `_design/brewery/_view/by_country` does require both map and reduce parts. To generate a new view you should pass model name and view name you need to get:
 
 ```
-shell> rails generate couchbase:view beer test create 
+shell> rails generate couchbase:view beer test create
 app/models/beer/test/map.js create  app/models/beer/test/reduce.js
 ```
 

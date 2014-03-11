@@ -2,6 +2,7 @@ require 'pp'
 
 include Nanoc3::Helpers::Rendering
 include Nanoc3::Helpers::HTMLEscape
+include Nanoc3::Helpers::LinkTo
 
 def lookup_item(identifier)
   cleaned_identifier = identifier.cleaned_identifier
@@ -41,7 +42,16 @@ class DocVersion
   end
 end
 
-def base_name(identifier)
+def parent_id(item)
+  if item[:ng]
+    (item[:index] ? item : item.parent).identifier.gsub('/', '')
+  else
+    item[:title]
+  end
+end
+
+def base_name(item)
+  identifier = parent_id(item)
   if identifier
     li = identifier.rindex '-'
     li ? identifier[0...li] : identifier
@@ -49,9 +59,9 @@ def base_name(identifier)
 end
 
 def all_versions
-  identifier = base_name(@item[:title])
+  identifier = base_name(@item)
   if identifier
-    thisv = @item[:title][identifier.length+1..-1]
+    thisv = parent_id(@item)[identifier.length+1..-1]
     vdata = @site.config[:versions][identifier.to_sym][:versions].map do |v|
       DocVersion.new(identifier, v.to_s, v.to_s == thisv)
     end
@@ -62,7 +72,7 @@ rescue
 end
 
 def section_name
-  identifier = base_name(@item[:title])
+  identifier = base_name(@item)
   @site.config[:versions][identifier.to_sym][:name]
 rescue
   ""
