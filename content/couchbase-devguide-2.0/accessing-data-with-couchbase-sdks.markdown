@@ -2100,7 +2100,7 @@ For store and update operations, we can provide a parameter to specify that a
 document be persisted or replicated a certain number of times. In this example
 above we indicate that the key `foo` be persisted onto disk on two nodes. The
 `:timeout` is specific to this operation and indicates the operation should
-timeout after 5 seconds of waiting for the two document writes onto disk.
+time out after 5 seconds of waiting for the two document writes onto disk.
 
 One common approach for using an observe-function is to verify that a document
 is on at least one replica node. If you want to be extremely certain about the
