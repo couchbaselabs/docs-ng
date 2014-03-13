@@ -66,7 +66,7 @@ Starting with Couchbase Server 2.5, client libraries may instead query a cluster
 
 <div class="notebox"><p>Note</p>
 <p>This change is only applicable to Couchbase type buckets (not memcached buckets). An error is returned if a configuration request is received on port 8091.</p>
-<p>An updated client library is required take advantage of optimized connection management. Old client libraries will continue to use the port 8091 HTTP connection. See the your selected client library release notes for details.</p>
+<p>An updated client library is required take advantage of optimized connection management. Old client libraries will continue to use the port 8091 HTTP connection. See the client library release notes for details.</p>
 </div>
 
 For more information, see [Using a smart (vBucket aware) client](../cb-admin/#couchbase-deployment-vbucket-client) in Deployment strategies.
