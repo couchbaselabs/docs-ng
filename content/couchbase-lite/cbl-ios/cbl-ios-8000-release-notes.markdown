@@ -1,5 +1,43 @@
 # Release Notes
 
+## 1.0 Beta 3 (March 2014)
+
+This is the third Beta release of Couchbase Lite iOS 1.0.
+
+Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for all your online and offline mobile application needs. The 1.0 version features native APIs, REST APIs, JSON support, and sync capability. The beta release is available to all community-edition customers.
+
+### Features
+
+The primary focus of this release is to continue adding performance enhancements, push API name changes to follow our spec, and introduce a few minor features, for example:
+
+* Core Data adapter now available
+
+* Persistent replication is no longer supporter
+
+* CBLQuery improved with `.startKeyDocID` and `.endKeyDocID` now added (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111))
+
+* CBLView improved with `_local_seq` property now added
+
+
+### Fixes in Beta 3
+
+* Document support
+	* 'deleteDatabase' throws an unusual exception that it did not previously do before. Full description of the issue is available [here](https://groups.google.com/forum/#!msg/mobile-couchbase/gbDKLsnKk54/NvMliOZiF9EJ).
+
+### Known Issues
+
+A few of the issues noted in Beta 2 remain:
+
+* Indexing and querying for JSON
+	* Working on a JavaScript equivalent of the CouchDB MapReduce sum() function, which adds up the numeric values of all arguments.
+
+	 Issues: [76](https://github.com/couchbase/couchbase-lite-ios/issues/76)
+
+* Third-party Compatibility
+	* Server header modification is required when attempting to use `_bulk_get` with a reverse proxy.
+	
+	Issues: [215](https://github.com/couchbase/couchbase-lite-ios/issues/215)
+
 ## 1.0 Beta 2 (December 2013)
 
 This is the second Beta release of Couchbase Lite iOS 1.0. Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for all your online and offline mobile application needs. The 1.0 version features native APIs, REST APIs, JSON support, and sync capability. The beta release is available to all community-edition customers.
