@@ -2355,7 +2355,7 @@ items into the appropriate bucket.
 
 <a id="couchbase-admin-tasks-addremove"></a>
 
-## Rebalancing
+## Rebalancing tasks
 
 As you store data into your Couchbase Server cluster, you may need to alter the
 number of nodes in your cluster to cope with changes in your application load,

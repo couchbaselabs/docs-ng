@@ -2116,13 +2116,13 @@ conn.set("foo", "bar", :observe => {:persisted => 2, :timeout => 5})
 For store and update operations, we can provide a parameter to specify that a
 document be persisted or replicated a certain number of times. In this example
 above we indicate that the key `foo` be persisted onto disk on two nodes. The
-`:timeout` is specific to this operation and indicates the operation should
-timeout after 5 seconds of waiting for the two document writes onto disk.
+`:timeout` parameter is specific to this operation and indicates the operation should
+time out after waiting five (5) seconds for the two document writes to disk.
 
 One common approach for using an observe-function is to verify that a document
 is on at least one replica node. If you want to be extremely certain about the
 durability of some documents, you may want to verify that the document is
-replicated to at lease three nodes and persisted to at least four servers. This
+replicated to at least three nodes and persisted to at least four servers. This
 represents the maximum number of replicas and on-disk copies that Couchbase
 Server currently supports.
 
