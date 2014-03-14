@@ -1142,11 +1142,12 @@ lead to problems include:
 
 In case of network partition or split-brain where the failure of a network device causes a network to be split, Couchbase implements automatic failover with the following restrictions:
 
-* Automatic failover requires a minimum of three (3) nodes per cluster. In a distributed network environment, a minimum of three (3) nodes are required on each side of a potential network partition. This prevents automatic failover of a node due to network failure. 
-* Automatic failover occurs only if exactly one (1) node is down. This prevents cascading failovers and subsequent performance and stability degradation. 
+* Automatic failover requires a minimum of three (3) nodes per cluster. This prevents a 2-node cluster from having both nodes fail each other over in the face of a network partition and protects the data integrity and consistency.
+* Automatic failover occurs only if exactly one (1) node is down. This prevents a network partition from causing two or more halves of a cluster from failing each other over and protects the data integrity and consistency.
+* Automatic failover occurs only once before requiring administrative action. This prevents cascading failovers and subsequent performance and stability degradation. In many cases, it is better to not have access to a small part of the dataset rather than having a cluster continuously degrade itself to the point of being non-functional. 
 * Automatic failover implements a 30 second delay when a node fails before it performs an automatic failover.  This prevents transient network issues or slowness from causing a node to be failed over when it shouldn’t be. 
 
-If a network partition occurs, automatic failover occurs if and only if automatic failover is allowed by the specified restrictions. For example, if a single node is partitioned out of a cluster of five (5), it is automatically failed over. If more than one (1) node is partitioned off, autofailover is not implemented. Note that when an automatic failover occurs, administrative action is required for a reset. 
+If a network partition occurs, automatic failover occurs if and only if automatic failover is allowed by the specified restrictions. For example, if a single node is partitioned out of a cluster of five (5), it is automatically failed over. If more than one (1) node is partitioned off, autofailover does not occur. After that, administrative action is required for a reset. In the event that another node fails before the automatic failover is reset, no automatic failover occurs.   
 
  * **Handling Misbehaving Nodes**
 
