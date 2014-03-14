@@ -1,6 +1,10 @@
 # Couchbase Lite Architecture
 
+Couchbase Mobile adds Couchbase Lite and Sync Gateway to your technology stack.
+
 Couchbase Lite enables sync on iOS and Android devices with a flexible, embedded JSON-based database that works with Sync Gateway and Couchbase Server to handle the server side of your app synchronization connections. In production, you run Sync Gateway and use Couchbase Server for storage so you can handle a growing user base with confidence.
+
+Couchbase Server is deployed behind your firewall (as databases normally are). Sync Gateway is deployed on a server that can be accessed by mobile devices over the Internet and can also reach Couchbase Server. Mobile devices connect to Sync Gateway, which facilitates sync and enforces access control and update validation policies.
 
 ## Mobile Technology Stack
 
@@ -15,8 +19,5 @@ The mobile technology stack consists of:
 The following diagram illustrates the mobile technology stack:
 
 <img src="images/mobile-solution.png" width="100%" />
-
-Couchbase Server should be deployed behind your firewall (as databases normally are). Sync Gateway should be deployed on a server that can be accessed by mobile devices over the Internet and can also reach Couchbase Server. Mobile devices connect to Sync Gateway, which enforces access control and update validation policies.
-
 
 
