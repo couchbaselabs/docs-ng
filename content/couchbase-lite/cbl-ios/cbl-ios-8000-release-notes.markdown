@@ -1,6 +1,7 @@
 # Release Notes
 
-## 1.0 Beta 3 (March 2014)
+The following sections contain release notes for Couchbase Lite for iOS.
+## 1.0 Beta 3 (14 March 2014)
 
 This is the third Beta release of Couchbase Lite iOS 1.0.
 
@@ -10,30 +11,29 @@ Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for
 
 The primary focus of this release is to continue adding performance enhancements, push API name changes to follow our spec, and introduce a few minor features, for example:
 
-* Core Data adapter now available
+* The Core Data adapter is now available.
 
-* Persistent replication is no longer supporter
+* Persistent replication is no longer supported.
 
-* CBLQuery improved with `.startKeyDocID` and `.endKeyDocID` now added (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111))
+* The `CBLQuery` class is improved with the addition of `.startKeyDocID` and `.endKeyDocID` properties (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111)).
 
-* CBLView improved with `_local_seq` property now added
+* The `CBLView` class is improved with the addition of the `_local_seq` property.
 
 
 ### Fixes in Beta 3
 
-* Document support
-	* 'deleteDatabase' throws an unusual exception that it did not previously do before. Full description of the issue is available [here](https://groups.google.com/forum/#!msg/mobile-couchbase/gbDKLsnKk54/NvMliOZiF9EJ).
+*  `deleteDatabase` throws an unusual exception that it did not throw in previous beta releases. For a full description of the issue, see <https://groups.google.com/forum/#!msg/mobile-couchbase/gbDKLsnKk54/NvMliOZiF9EJ>.
 
 ### Known Issues
 
 A few of the issues noted in Beta 2 remain:
 
 * Indexing and querying for JSON
-	* Working on a JavaScript equivalent of the CouchDB MapReduce sum() function, which adds up the numeric values of all arguments.
+	* Working on a JavaScript equivalent of the CouchDB MapReduce `sum()` function, which adds up the numeric values of all arguments.
 
 	 Issues: [76](https://github.com/couchbase/couchbase-lite-ios/issues/76)
 
-* Third-party Compatibility
+* Third-party compatibility
 	* Server header modification is required when attempting to use `_bulk_get` with a reverse proxy.
 	
 	Issues: [215](https://github.com/couchbase/couchbase-lite-ios/issues/215)
