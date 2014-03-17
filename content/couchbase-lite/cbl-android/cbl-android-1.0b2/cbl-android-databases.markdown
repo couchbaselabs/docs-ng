@@ -2,9 +2,9 @@
 
 Databases are represented by the `Database` class and managed by the `Manager` class.
 
-When your app is launched for the first time, you need to set up a database. Depending on your app design, you might need to [set up an initial database](#setting-up-the-initial-database) the first time a user launches your app and then [connect to the existing database](#connecting-to-an-existing-database) upon subsequent launches. Each time the app launches, you must check whether the database exists in Couchbase Lite.
+When your app is launched for the first time, you need to set up a database. Depending on your app design, you might need to set up an initial database the first time a user launches your app and then [connect to the existing database](#connecting-to-an-existing-database) upon subsequent launches. Each time the app launches, you must check whether the database exists in Couchbase Lite.
 
-Database names must begin with an lowercase letter. You can test a database name for validity by calling `isValidDatabaseName()`. The following characters are valid in database names:
+Database names must begin with a lowercase letter. You can test a database name for validity by calling `isValidDatabaseName()`. The following characters are valid in database names:
 
 * lowercase letters: `a-z`
 * numbers: `0-9`

@@ -3,6 +3,12 @@ Depending on your app design, you might need to [set up an initial database](#se
 
 When your app is launched for the first time, you need to set up a database. 
 
+Database names must begin with a lowercase letter. The following characters are valid in database names:
+
+* lowercase letters: `a-z`
+* numbers: `0-9`
+* special characters: `_$()+-/`
+
 ### Setting Up the Initial Database
 You can set up the initial database in your app by using any of the following methods:
 
