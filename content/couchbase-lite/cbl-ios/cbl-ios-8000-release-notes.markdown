@@ -8,35 +8,32 @@ Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for
 
 ### Features
 
-The primary focus of this release is to continue adding performance enhancements, push API name changes to follow our spec, and introduce a few minor features, for example:
+The primary focus of this release is to continue adding performance enhancements and introduce a few minor features, for example:
 
-* Core Data adapter now available
+* **CoreData adapter now available** The `CBLIncrementalStore` class lets you use CoreData with Couchbase Lite (instead of SQLite) as its database.
 
-* Persistent replication is no longer supporter
+* **Persistent replication is no longer supported** We found that they were only marginally useful, confusing to understand and greatly complicated the replicator implementation. Most apps create their replications at launch time; if you do so, just remove the line that set the `.persistent` property and you will be fine.
 
-* CBLQuery improved with `.startKeyDocID` and `.endKeyDocID` now added (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111))
+* **Support for Views as changes-feed** Map blocks can now determine the sequence number of a document by examining the `_local_seq` property of the document dictionary. This can be used to build Views that act like changes-feeds.
 
-* CBLView improved with `_local_seq` property now added
+* **Improved feature support in CBLQuery** CBLQuery improved with `.startKeyDocID` and `.endKeyDocID` now added (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111))
 
+* **WebSockets used in continuous sync** The replicator now uses WebSockets to receive the continuous changes feed from the Sync Gateway. This should improve the performance of pull replications.
+
+* **Major performance enhancements** The replicator and Sync Gateway now GZip-compress a lot of their traffic, which saves bandwidth, and `CBLDatabase.lastSequenceNumber` is a lot faster to determine now.
+
+We have also done another round of API name changes to further keep in-sync with our API spec. A complete list of these API name changes is available [here](https://github.com/couchbase/couchbase-lite-ios/wiki/Beta-3-changes#api-changes).
 
 ### Fixes in Beta 3
+
+Some fixes to highlight in this release:
 
 * Document support
 	* 'deleteDatabase' throws an unusual exception that it did not previously do before. Full description of the issue is available [here](https://groups.google.com/forum/#!msg/mobile-couchbase/gbDKLsnKk54/NvMliOZiF9EJ).
 
 ### Known Issues
 
-A few of the issues noted in Beta 2 remain:
-
-* Indexing and querying for JSON
-	* Working on a JavaScript equivalent of the CouchDB MapReduce sum() function, which adds up the numeric values of all arguments.
-
-	 Issues: [76](https://github.com/couchbase/couchbase-lite-ios/issues/76)
-
-* Third-party Compatibility
-	* Server header modification is required when attempting to use `_bulk_get` with a reverse proxy.
-	
-	Issues: [215](https://github.com/couchbase/couchbase-lite-ios/issues/215)
+We currently do not have any new known issues to highlight for this release.
 
 ## 1.0 Beta 2 (December 2013)
 
