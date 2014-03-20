@@ -41,6 +41,11 @@ Availability Zone or Region
 To improve data availability, configure servers into groups where all of the servers in a server group are in a single rack. With more than one rack, replica partitions of a group are distributed among servers in other server groups. In the event that a whole rack goes down, since the replica partitions are on separate racks, data is available.
 
 
+<div class="notebox bp"><p>Important</p>
+<p>Couchbase does not automatically failover a server group. Auto-failover only fails over one (1) node. Thereafter, the number of auto failover nodes can be reset to zero (0). If a server group is down, the nodes can be manually failed over.
+</p></div>
+
+
 ## Replica and replication with server groups
 By design, Couchbase Server evenly distributes data of active and replica vBuckets across the cluster for cluster performance and redundancy purposes.
 
@@ -62,18 +67,18 @@ The following diagram shows a cluster of servers on two racks, Rack #1 and Rack 
 
 <img src="../images/RZASimple.png" alt="Rack Awareness" height="500" width="500">
 
-## Scenario - Adding a server
+### Scenario - Adding a server
 
-The following scenario shows how Rack Awareness functionality implements replica vBuckets when an imbalance is caused by an additional server being added to one server group. In this example, an additional server (Server 9) is added to a server group (Group 1). An imbalance occurs because one server group has more servers than the other server group. In this case, the rebalance operation performs a "best effort" of evenly distributing the replica vBuckets of the additional server across the cluster.
+The following scenario shows how Rack Awareness functionality implements replica vBuckets when an imbalance is caused by an additional server being added to one server group. In this example, an additional server (Server 9) is added to a server group (Group 1). An imbalance occurs because one server group has more servers than the other server group. In this case, the rebalance operation performs a "best effort" of evenly distributing the replica vBuckets of the additional server across the nodes on all the racks in the cluster.
 
 
 The following diagram shows a cluster of servers on two racks, Rack #1 and Rack #2, where one rack has a group of five (5) servers and the other rack has a group of four (4) servers.
 
 * Group 1 has Servers 1, 2, 3, 4, and 9
 * Group 1 servers have their active vBuckets and replica vBuckets from Group 2.
-* Group 1 servers 1 - 4 may optionally have replica vBuckets for Server 9.
+* Group 1 Servers 1 - 4 also has replica vBuckets for Server 9.
 * Group 2 has Servers 5, 6, 7, and 8. 
-* Group 2 servers have their active vBuckets and replica vBuckets from Group 1.
+* Group 2 servers have their active vBuckets and replica vBuckets from Group 1 including the replica vBuckets from Server 9 in Group 1.
 
 <img src="../images/RZAServerIN.png" alt="Server Added" height="500" width="650">
 
@@ -94,8 +99,9 @@ The following diagram shows the loss of a server resulting in an imbalance. In t
 * Group 1 Server 2 becomes unavailable.
 * Group 2 has Servers 5, 6, 7, and 8. 
 * Group 2 servers have their active vBuckets and replica vBuckets from Group 1.
-* Group 2 server has Failed-over replica vBuckets for Server 2 in Group 1.
+* Group 2 server activates the replica vBuckets for Server 2 in Group 1.
 
 
 <img src="../images/RZAServerOUT.png" alt="Server Unavailable" height="500" width="650">
+
 

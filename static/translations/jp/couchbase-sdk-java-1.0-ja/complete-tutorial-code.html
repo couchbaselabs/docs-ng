@@ -1,0 +1,392 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;2&#31456; &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523; - 2.11. &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;&#12469;&#12531;&#12503;&#12523;&#12467;&#12540;&#12489;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="tutorial.html" title="&#31532;2&#31456; &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;"><link rel="prev" href="using-vbuckets.html" title="2.10. vBucket&#12398;&#21033;&#29992;"><link rel="next" href="api-reference-started.html" title="&#31532;3&#31456; API&#12398;&#21033;&#29992;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="installation.html">2.1 &#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</a></div><div class="inpagenav-sibling-link"><a href="building-chat.html">2.2 &#12481;&#12515;&#12483;&#12488;&#12523;&#12540;&#12512;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12398;&#27083;&#31689;</a></div><div class="inpagenav-sibling-link"><a href="connecting.html">2.3 &#12469;&#12540;&#12496;&#12408;&#12398;&#25509;&#32154;</a></div><div class="inpagenav-sibling-link"><a href="configuring-logging.html">2.4 &#12525;&#12464;&#12398;&#35373;&#23450;</a></div><div class="inpagenav-sibling-link"><a href="connection-shutdown.html">2.5 &#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#25509;&#32154;&#12398;&#12471;&#12515;&#12483;&#12488;&#12480;&#12454;&#12531;</a></div><div class="inpagenav-sibling-link"><a href="increment-decrement.html">2.6 &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12488;&#12392;&#12487;&#12463;&#12522;&#12513;&#12531;&#12488;&#12398;&#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a href="prepend-append.html">2.7 Prepend&#12414;&#12383;&#12399;Append&#25805;&#20316;</a></div><div class="inpagenav-sibling-link"><a href="using-buckets.html">2.8 &#12496;&#12465;&#12483;&#12488;&#12398;&#21033;&#29992;</a></div><div class="inpagenav-sibling-link"><a href="error-handling.html">2.9 &#12456;&#12521;&#12540;&#20966;&#29702;</a></div><div class="inpagenav-sibling-link"><a href="using-vbuckets.html">2.10 vBucket&#12398;&#21033;&#29992;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="complete-tutorial-code.html">2.11 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;&#12469;&#12531;&#12503;&#12523;&#12467;&#12540;&#12489;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">2.11. &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;&#12469;&#12531;&#12503;&#12523;&#12467;&#12540;&#12489;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="using-vbuckets.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;2&#31456; &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="api-reference-started.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="2.11. &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;&#12469;&#12531;&#12503;&#12523;&#12467;&#12540;&#12489;"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="complete-tutorial-code"></a>2.11. &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;&#12469;&#12531;&#12503;&#12523;&#12467;&#12540;&#12489;</h2></div></div></div><p>
+      &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;&#23436;&#20840;&#12394;&#12467;&#12540;&#12489;&#12399;&#20197;&#19979;&#12398;&#12392;&#12362;&#12426;&#12391;&#12377;&#12290;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12434;Java&#12463;&#12521;&#12473;&#12497;&#12473;&#19978;&#12395;&#37197;&#32622;&#12375;&#12289;&#27425;&#12398;&#12424;&#12358;&#12394;&#24341;&#25968;&#12434;&#25351;&#23450;&#12375;&#12390;&#12467;&#12531;&#12497;&#12452;&#12523;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p><pre class="programlisting"><span class="line">$ javac -cp couchbase-client-1.0.0.jar:spymemcached-2.8.0.jar Tutorial.java</span>
+<span class="line">$ java -cp .:couchbase-client-1.0.0.jar:\</span>
+<span class="line">spymemcached-2.8.0.jar:jettison-1.1.jar:netty-3.2.0.Final.jar:\</span>
+<span class="line">commons-codec-1.5.jar Tutorial 192.168.3.104</span></pre><pre class="programlisting"><span class="line"><strong class="hl-keyword">import</strong> java.io.IOException;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.net.SocketAddress;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.net.URI;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.net.URISyntaxException;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.util.ArrayList;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.util.LinkedList;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.util.List;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.util.concurrent.Future;</span>
+<span class="line"><strong class="hl-keyword">import</strong> java.util.concurrent.TimeUnit;</span>
+<span class="line"></span>
+<span class="line"><strong class="hl-keyword">import</strong> javax.naming.ConfigurationException;</span>
+<span class="line"></span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.CASMutation;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.CASMutator;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.CASResponse;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.CASValue;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.CachedData;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.ConnectionObserver;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.transcoders.SerializingTranscoder;</span>
+<span class="line"><strong class="hl-keyword">import</strong> net.spy.memcached.transcoders.Transcoder;</span>
+<span class="line"></span>
+<span class="line"><strong class="hl-keyword">import</strong> com.couchbase.client.CouchbaseClient;</span>
+<span class="line"><strong class="hl-keyword">import</strong> com.couchbase.client.CouchbaseConnectionFactory;</span>
+<span class="line"></span>
+<span class="line"><strong class="hl-keyword">public</strong> <strong class="hl-keyword">class</strong> Tutorial {</span>
+<span class="line"></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">static</strong> CouchbaseClient client;</span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">long</strong> userId = <span class="hl-number">0</span>;</span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">long</strong> userCount = <span class="hl-number">0</span>;</span>
+<span class="line">    <strong class="hl-keyword">private</strong> Thread messageThread;</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Main Program for a Couchbase chat room application using</span>
+<span class="line">     * the couchbase-client and spymemcached libraries.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">public</strong> <strong class="hl-keyword">static</strong> <strong class="hl-keyword">void</strong> main(String[] args) {</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">if</strong> (args.length != <span class="hl-number">1</span>) {</span>
+<span class="line">            System.err.println(<strong class="hl-string"><em style="color:red">"usage: serveraddresses"</em></strong>);</span>
+<span class="line">            System.exit(<span class="hl-number">1</span>);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">try</strong> {</span>
+<span class="line"></span>
+<span class="line">            <strong class="hl-keyword">new</strong> Tutorial().run(args[<span class="hl-number">0</span>]);</span>
+<span class="line"></span>
+<span class="line">        } <strong class="hl-keyword">catch</strong> (Exception ex) {</span>
+<span class="line">            System.err.println(ex);</span>
+<span class="line">            client.shutdown();</span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong class="hl-keyword">public</strong> <strong class="hl-keyword">void</strong> run(String serverAddress) <strong class="hl-keyword">throws</strong> Exception {</span>
+<span class="line"></span>
+<span class="line">        System.setProperty(<strong class="hl-string"><em style="color:red">"net.spy.log.LoggerImpl"</em></strong>,</span>
+<span class="line">            <strong class="hl-string"><em style="color:red">"net.spy.memcached.compat.log.SunLogger"</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        System.out.println(String</span>
+<span class="line">                .format(<strong class="hl-string"><em style="color:red">"Connecting to %s"</em></strong>, serverAddress));</span>
+<span class="line"></span>
+<span class="line">        connect(serverAddress);</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">if</strong> (register()) {</span>
+<span class="line">            startMessageThread();</span>
+<span class="line">            Runtime.getRuntime().addShutdownHook(<strong class="hl-keyword">new</strong> unregisterThread());</span>
+<span class="line">            processInput();</span>
+<span class="line">            unregister();</span>
+<span class="line">            messageThread.interrupt();</span>
+<span class="line">        }</span>
+<span class="line">        client.shutdown(<span class="hl-number">1</span>, TimeUnit.MINUTES);</span>
+<span class="line">        System.exit(<span class="hl-number">0</span>);</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Connect to the server, or servers given.</span>
+<span class="line">     * @param serverAddress the server addresses to connect with.</span>
+<span class="line">     * @throws IOException if there is a problem with connecting.</span>
+<span class="line">     * @throws URISyntaxException</span>
+<span class="line">     * @throws ConfigurationException</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">void</strong> connect(String serverAddress) <strong class="hl-keyword">throws</strong> Exception {</span>
+<span class="line"></span>
+<span class="line">        URI base = <strong class="hl-keyword">new</strong> URI(</span>
+<span class="line">                String.format(<strong class="hl-string"><em style="color:red">"http://%s:8091/pools"</em></strong>,serverAddress));</span>
+<span class="line">        List&lt;URI&gt; baseURIs = <strong class="hl-keyword">new</strong> ArrayList&lt;URI&gt;();</span>
+<span class="line">        baseURIs.add(base);</span>
+<span class="line">        CouchbaseConnectionFactory cf = <strong class="hl-keyword">new</strong></span>
+<span class="line">                CouchbaseConnectionFactory(baseURIs, <strong class="hl-string"><em style="color:red">"rags"</em></strong>, <strong class="hl-string"><em style="color:red">"changeit"</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        client = <strong class="hl-keyword">new</strong> CouchbaseClient((CouchbaseConnectionFactory) cf);</span>
+<span class="line"></span>
+<span class="line">        client.addObserver(<strong class="hl-keyword">new</strong> ConnectionObserver() {</span>
+<span class="line"></span>
+<span class="line">            <strong class="hl-keyword">public</strong> <strong class="hl-keyword">void</strong> connectionLost(SocketAddress sa) {</span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Connection lost to "</em></strong> + sa.toString());</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">            <strong class="hl-keyword">public</strong> <strong class="hl-keyword">void</strong> connectionEstablished(SocketAddress sa,</span>
+<span class="line">                    <strong class="hl-keyword">int</strong> reconnectCount) {</span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Connection established with "</em></strong></span>
+<span class="line">                        + sa.toString());</span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Reconnected count: "</em></strong> + reconnectCount);</span>
+<span class="line">            }</span>
+<span class="line">        });</span>
+<span class="line"></span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Get a user name token for the current user.</span>
+<span class="line">     * @return the token to use.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> String getUserNameToken() {</span>
+<span class="line">        <strong class="hl-keyword">return</strong> String.format(<strong class="hl-string"><em style="color:red">"&lt;User-%d&gt;"</em></strong>, userId);</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Register the user with the chat room.</span>
+<span class="line">     * @return true if the registration succeeded, false otherwise.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">boolean</strong> register() <strong class="hl-keyword">throws</strong> Exception {</span>
+<span class="line"></span>
+<span class="line">        userId = client.incr(<strong class="hl-string"><em style="color:red">"UserId"</em></strong>, <span class="hl-number">1</span>, <span class="hl-number">1</span>);</span>
+<span class="line">        System.out.println(<strong class="hl-string"><em style="color:red">"You are user "</em></strong> + userId + <strong class="hl-string"><em style="color:red">"."</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        CASValue&lt;Object&gt; casValue = client.gets(<strong class="hl-string"><em style="color:red">"CurrentUsers"</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">if</strong> (casValue == null) {</span>
+<span class="line"></span>
+<span class="line">            System.out.println(<strong class="hl-string"><em style="color:red">"First user ever!"</em></strong>);</span>
+<span class="line"></span>
+<span class="line">            client.set(<strong class="hl-string"><em style="color:red">"CurrentUsers"</em></strong>, Integer.MAX_VALUE,</span>
+<span class="line">                    getUserNameToken()).get();</span>
+<span class="line"></span>
+<span class="line">        } <strong class="hl-keyword">else</strong> {</span>
+<span class="line"></span>
+<span class="line">            Future&lt;Boolean&gt; appendDone = client.append(casValue.getCas(),</span>
+<span class="line">                    <strong class="hl-string"><em style="color:red">"CurrentUsers"</em></strong>, getUserNameToken());</span>
+<span class="line"></span>
+<span class="line">            <strong class="hl-keyword">if</strong> (appendDone.get()) {</span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Registration succeeded."</em></strong>);</span>
+<span class="line">            } <strong class="hl-keyword">else</strong> {</span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Sorry registration failed."</em></strong>);</span>
+<span class="line">                <strong class="hl-keyword">return</strong> false;</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        userCount = client.incr(<strong class="hl-string"><em style="color:red">"UserCount"</em></strong>, <span class="hl-number">1</span>, <span class="hl-number">1</span>);</span>
+<span class="line">        System.out.println(<strong class="hl-string"><em style="color:red">"There are currently "</em></strong> + userCount</span>
+<span class="line">                + <strong class="hl-string"><em style="color:red">" connected."</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">return</strong> true;</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * A Transcoder for strings that just delegates to using</span>
+<span class="line">     * a SerializingTranscoder.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">class</strong> StringTranscoder <strong class="hl-keyword">implements</strong> Transcoder&lt;String&gt; {</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">final</strong> SerializingTranscoder delegate = <strong class="hl-keyword">new</strong> SerializingTranscoder();</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">public</strong> <strong class="hl-keyword">boolean</strong> asyncDecode(CachedData d) {</span>
+<span class="line">            <strong class="hl-keyword">return</strong> delegate.asyncDecode(d);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">public</strong> String decode(CachedData d) {</span>
+<span class="line">            <strong class="hl-keyword">return</strong> (String)delegate.decode(d);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">public</strong> CachedData encode(String o) {</span>
+<span class="line">            <strong class="hl-keyword">return</strong> delegate.encode(o);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">public</strong> <strong class="hl-keyword">int</strong> getMaxSize() {</span>
+<span class="line">            <strong class="hl-keyword">return</strong> delegate.getMaxSize();</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Unregister the current user from the chat room.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">void</strong> unregister() <strong class="hl-keyword">throws</strong> Exception {</span>
+<span class="line"></span>
+<span class="line">        CASMutation&lt;String&gt; mutation = <strong class="hl-keyword">new</strong> CASMutation&lt;String&gt;() {</span>
+<span class="line">            <strong class="hl-keyword">public</strong> String getNewValue(String current) {</span>
+<span class="line">                <strong class="hl-keyword">return</strong> current.replaceAll(getUserNameToken(), <strong class="hl-string"><em style="color:red">""</em></strong>);</span>
+<span class="line">            }</span>
+<span class="line">        };</span>
+<span class="line"></span>
+<span class="line">        Transcoder&lt;String&gt; transcoder = <strong class="hl-keyword">new</strong> StringTranscoder();</span>
+<span class="line">        CASMutator&lt;String&gt; mutator = <strong class="hl-keyword">new</strong> CASMutator&lt;String&gt;(client, transcoder);</span>
+<span class="line">        mutator.cas(<strong class="hl-string"><em style="color:red">"CurrentUsers"</em></strong>, <strong class="hl-string"><em style="color:red">""</em></strong>, <span class="hl-number">0</span>, mutation);</span>
+<span class="line"></span>
+<span class="line">        client.decr(<strong class="hl-string"><em style="color:red">"UserCount"</em></strong>, <span class="hl-number">1</span>);</span>
+<span class="line">        System.out.println(<strong class="hl-string"><em style="color:red">"Unregistered."</em></strong>);</span>
+<span class="line"></span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Print a number of messages.</span>
+<span class="line">     * @param startId the first message id to output.</span>
+<span class="line">     * @param endId the last message id to output.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">void</strong> printMessages(<strong class="hl-keyword">long</strong> startId, <strong class="hl-keyword">long</strong> endId) {</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">for</strong> (<strong class="hl-keyword">long</strong> i = startId; i &lt;= endId; i++) {</span>
+<span class="line">            String message = (String)client.get(<strong class="hl-string"><em style="color:red">"Message:"</em></strong> + i);</span>
+<span class="line">            <strong class="hl-keyword">if</strong> (message != null)</span>
+<span class="line">                System.out.println(message);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Finds the first message id that has not yet expired.</span>
+<span class="line">     * @param currentId the last message id to start with.</span>
+<span class="line">     * @return the first message id known in the system at the time.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">long</strong> findFirstMessage(<strong class="hl-keyword">long</strong> currentId) {</span>
+<span class="line">        CASValue&lt;Object&gt; cas = null;</span>
+<span class="line">        <strong class="hl-keyword">long</strong> firstId = currentId;</span>
+<span class="line">        <strong class="hl-keyword">do</strong> {</span>
+<span class="line">            firstId -= <span class="hl-number">1</span>;</span>
+<span class="line">            cas = client.gets(<strong class="hl-string"><em style="color:red">"Message:"</em></strong> + firstId);</span>
+<span class="line">        } <strong class="hl-keyword">while</strong> (cas != null);</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">return</strong> firstId + <span class="hl-number">1</span>;</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Start up the message display thread.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">void</strong> startMessageThread() {</span>
+<span class="line"></span>
+<span class="line">        messageThread = <strong class="hl-keyword">new</strong> Thread(<strong class="hl-keyword">new</strong> Runnable() {</span>
+<span class="line">            <strong class="hl-keyword">public</strong> <strong class="hl-keyword">void</strong> run() {</span>
+<span class="line"></span>
+<span class="line">                <strong class="hl-keyword">long</strong> messageId = -<span class="hl-number">1</span>;</span>
+<span class="line"></span>
+<span class="line">                <strong class="hl-keyword">try</strong> {</span>
+<span class="line">                    <strong class="hl-keyword">while</strong> (!Thread.interrupted()) {</span>
+<span class="line"></span>
+<span class="line">                        CASValue&lt;Object&gt; msgCountCas = client</span>
+<span class="line">                                .gets(<strong class="hl-string"><em style="color:red">"Messages"</em></strong>);</span>
+<span class="line"></span>
+<span class="line">                        <strong class="hl-keyword">if</strong> (msgCountCas == null) {</span>
+<span class="line">                            Thread.sleep(<span class="hl-number">250</span>);</span>
+<span class="line">                            <strong class="hl-keyword">continue</strong>;</span>
+<span class="line">                        }</span>
+<span class="line"></span>
+<span class="line">                        <strong class="hl-keyword">long</strong> current = Long.parseLong((String)msgCountCas</span>
+<span class="line">                                .getValue());</span>
+<span class="line"></span>
+<span class="line">                        <strong class="hl-keyword">if</strong> (messageId == -<span class="hl-number">1</span>) {</span>
+<span class="line">                            printMessages(findFirstMessage(current),</span>
+<span class="line">                                    current);</span>
+<span class="line">                        } <strong class="hl-keyword">else</strong> <strong class="hl-keyword">if</strong> (current &gt; messageId) {</span>
+<span class="line">                            printMessages(messageId + <span class="hl-number">1</span>, current);</span>
+<span class="line">                        } <strong class="hl-keyword">else</strong> {</span>
+<span class="line">                            Thread.sleep(<span class="hl-number">250</span>);</span>
+<span class="line">                            <strong class="hl-keyword">continue</strong>;</span>
+<span class="line">                        }</span>
+<span class="line"></span>
+<span class="line">                        messageId = current;</span>
+<span class="line"></span>
+<span class="line">                    }</span>
+<span class="line"></span>
+<span class="line">                } <strong class="hl-keyword">catch</strong> (InterruptedException ex) {</span>
+<span class="line">                } <strong class="hl-keyword">catch</strong> (RuntimeException ex) {</span>
+<span class="line">                }</span>
+<span class="line"></span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Stopped message thread."</em></strong>);</span>
+<span class="line">            }</span>
+<span class="line">        });</span>
+<span class="line"></span>
+<span class="line">        messageThread.start();</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Handle shutdown by unregistering</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">class</strong> unregisterThread <strong class="hl-keyword">extends</strong> Thread {</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">    <strong class="hl-keyword">public</strong> <strong class="hl-keyword">void</strong> run() {</span>
+<span class="line">      <strong class="hl-keyword">try</strong> {</span>
+<span class="line"></span>
+<span class="line">        unregister();</span>
+<span class="line">        messageThread.interrupt();</span>
+<span class="line">        client.shutdown(<span class="hl-number">1</span>, TimeUnit.MINUTES);</span>
+<span class="line">        <strong class="hl-keyword">super</strong>.run();;</span>
+<span class="line">      } <strong class="hl-keyword">catch</strong> (Exception e) {</span>
+<span class="line">      }</span>
+<span class="line">    }</span>
+<span class="line">  }</span>
+<span class="line"></span>
+<span class="line">    <strong style="color: silver" class="hl-tag">/**</span>
+<span class="line">     * Processes input from the user, and sends messages to the virtual</span>
+<span class="line">     * chat room.</span>
+<span class="line">     */</strong></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">void</strong> processInput() {</span>
+<span class="line">        <strong class="hl-keyword">boolean</strong> quit = false;</span>
+<span class="line"></span>
+<span class="line">        System.out.</span>
+<span class="line">          println(<strong class="hl-string"><em style="color:red">"Enter text, or /who to see user list, or /quit to exit."</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">try</strong> {</span>
+<span class="line">        <strong class="hl-keyword">do</strong> {</span>
+<span class="line">            String input = System.console().readLine();</span>
+<span class="line">            System.out.println(input);</span>
+<span class="line">            <strong class="hl-keyword">if</strong> (input.startsWith(<strong class="hl-string"><em style="color:red">"/quit"</em></strong>)) {</span>
+<span class="line">                quit = true;</span>
+<span class="line">            } <strong class="hl-keyword">else</strong> <strong class="hl-keyword">if</strong> (input.startsWith(<strong class="hl-string"><em style="color:red">"/who"</em></strong>)) {</span>
+<span class="line">                System.out.println(<strong class="hl-string"><em style="color:red">"Users connected: "</em></strong></span>
+<span class="line">                        + client.get(<strong class="hl-string"><em style="color:red">"CurrentUsers"</em></strong>));</span>
+<span class="line">            } <strong class="hl-keyword">else</strong> <strong class="hl-keyword">if</strong> (input.startsWith(<strong class="hl-string"><em style="color:red">"/cas"</em></strong>)) {</span>
+<span class="line">                runCasTest();</span>
+<span class="line">            } <strong class="hl-keyword">else</strong> {</span>
+<span class="line">                <em style="color: silver" class="hl-comment">// Send a new message to the chat</em></span>
+<span class="line">                <strong class="hl-keyword">long</strong> messageId = client.incr(<strong class="hl-string"><em style="color:red">"Messages"</em></strong>, <span class="hl-number">1</span>, <span class="hl-number">1</span>);</span>
+<span class="line">                client.set(<strong class="hl-string"><em style="color:red">"Message:"</em></strong> + messageId, <span class="hl-number">3600</span>,</span>
+<span class="line">                        getUserNameToken() + <strong class="hl-string"><em style="color:red">": "</em></strong> + input);</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">        } <strong class="hl-keyword">while</strong> (!quit);</span>
+<span class="line">        } <strong class="hl-keyword">catch</strong> (Exception e) {</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <strong class="hl-keyword">private</strong> <strong class="hl-keyword">void</strong> runCasTest() {</span>
+<span class="line">        System.out.println(<strong class="hl-string"><em style="color:red">"Testing a CAS operation."</em></strong>);</span>
+<span class="line">        CASValue&lt;Object&gt; cas = client.gets(<strong class="hl-string"><em style="color:red">"CasTest"</em></strong>);</span>
+<span class="line"></span>
+<span class="line">        <strong class="hl-keyword">if</strong> (cas == null) {</span>
+<span class="line">            <em style="color: silver" class="hl-comment">// Must create it first</em></span>
+<span class="line">            System.out.println(<strong class="hl-string"><em style="color:red">"Creating CasTest value."</em></strong>);</span>
+<span class="line">            client.set(<strong class="hl-string"><em style="color:red">"CasTest"</em></strong>, <span class="hl-number">120</span>, <strong class="hl-string"><em style="color:red">"InitialValue"</em></strong>);</span>
+<span class="line">            <strong class="hl-keyword">return</strong>;</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        System.out.println(<strong class="hl-string"><em style="color:red">"CAS for CasTest = "</em></strong>+cas.getCas());</span>
+<span class="line">        System.out.println(<strong class="hl-string"><em style="color:red">"Sleeping for 10 seconds."</em></strong>);</span>
+<span class="line">        <strong class="hl-keyword">try</strong> {</span>
+<span class="line">            Thread.sleep(<span class="hl-number">10000</span>);</span>
+<span class="line">        } <strong class="hl-keyword">catch</strong> (InterruptedException e) {</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        CASResponse response =</span>
+<span class="line">            client.cas(<strong class="hl-string"><em style="color:red">"CasTest"</em></strong>, cas.getCas(), <strong class="hl-string"><em style="color:red">"ReplacedValue"</em></strong>);</span>
+<span class="line">        <strong class="hl-keyword">if</strong> (response.equals(CASResponse.OK)) {</span>
+<span class="line">            System.out.println(<strong class="hl-string"><em style="color:red">"OK response."</em></strong>);</span>
+<span class="line">        }</span>
+<span class="line">        <strong class="hl-keyword">else</strong> <strong class="hl-keyword">if</strong> (response.equals(CASResponse.EXISTS)) {</span>
+<span class="line">            System.out.println(<strong class="hl-string"><em style="color:red">"EXISTS response."</em></strong>);</span>
+<span class="line">        }</span>
+<span class="line">        <strong class="hl-keyword">else</strong> <strong class="hl-keyword">if</strong> (response.equals(CASResponse.NOT_FOUND)) {</span>
+<span class="line">            System.out.println(<strong class="hl-string"><em style="color:red">"NOT_FOUND response."</em></strong>);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        cas = client.gets(<strong class="hl-string"><em style="color:red">"CasTest"</em></strong>);</span>
+<span class="line">        System.err.println(<strong class="hl-string"><em style="color:red">"CAS after = "</em></strong>+cas.getCas());</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre><p>
+      &#12362;&#12417;&#12391;&#12392;&#12358;&#12372;&#12374;&#12356;&#12414;&#12377;&#12289;&#12371;&#12398;&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12398;Couchbase&#12395;&#38306;&#36899;&#12377;&#12427;&#37096;&#20998;&#12364;&#23436;&#20102;&#12375;&#12414;&#12375;&#12383;&#65281;<a class="ulink" href="http://www.couchbase.com/docs/examples/couchbase-javaclient-examples-1.0.0.zip" target="_top">&#23436;&#20840;&#12394;Java&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#12477;&#12540;&#12473;&#12467;&#12540;&#12489;</a>&#12434;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;&#12375;&#12289;&#12381;&#12398;&#20966;&#29702;&#20869;&#23481;&#12434;&#21442;&#29031;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="using-vbuckets.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="tutorial.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="api-reference-started.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">2.10. vBucket&#12398;&#21033;&#29992;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;&#31532;3&#31456; API&#12398;&#21033;&#29992;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

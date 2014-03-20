@@ -10,8 +10,8 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	  <title><%= @item[:pagetitle] ? @item[:pagetitle] : @item[:title] %></title>	  	 
-      <meta name="description" content="">
+	   <title><%= @item[:pagetitle] ? @item[:pagetitle] : @item[:title] %></title>	  	 
+      <meta name="description" content="<%= @item[:metadescr] %>">
       <meta name="viewport" content="width=device-width">
       <%= css_link("/assets/css/main") %>
         <link rel="stylesheet" href="/assets/css/header.css">
@@ -92,15 +92,12 @@
          
                             <ul class="nav nav-pills pull-left">
                         <li>
-                            <a href="http://www.couchbase.com/documentation"><%= image_tag("/assets/img/home_icon") %></a>
+                            <a href="/index.html"><%= image_tag("/assets/img/home_icon") %></a>
                         </li>
                         <%= render 'navbar_widget' %>
                         <li>
-                            <a href="http://www.couchbase.com/docs/index-ja.html"><%= image_tag("/assets/img/ja") %></a>
-                        </li>
-                        <li>
-                            <a href="http://www.couchbase.com/kr"><%= image_tag("/assets/img/ko") %></a>
-                        </li>
+                            <a href="/prebuilt/translations/jp/index-ja.html"><%= image_tag("/assets/img/ja") %></a>
+                        </li>                        
                     </ul>
 
                 </div>
@@ -114,8 +111,13 @@
             <% unless @item[:no_toc] %>
                 <%= render 'toc_widget' %>
                 <% end %>
-            <div class="span9 mdcontent <%= @item[:css_class] %>">
-           
+					 
+					<% if @item[:no_toc] %>
+						<div class="span12 mdcontent <%= @item[:css_class] %>">
+					<% else %>
+						<div class="span9 mdcontent <%= @item[:css_class] %>">
+					<% end %>
+					
                 <%= yield %>
             </div>
         </div>

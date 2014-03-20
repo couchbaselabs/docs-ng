@@ -2,7 +2,7 @@
 
 This section describes how to work with replications in an iOS app. To learn more about replications, read about [Replication](/couchbase-lite/cbl-concepts/#replication) in the *Couchbase Lite Concepts Guide*.
 
-### Creating Replications
+### Creating replications
 Replications are represented by `CBLReplication` objects. You create replication objects by calling one of the following  methods on your local `CBLDatabase` object:
 
 * `replicationFromURL:` sets up a pull replication.
@@ -11,7 +11,7 @@ Replications are represented by `CBLReplication` objects. You create replication
 
 Creating a replication object does not start the replication automatically. To start a replication, you need to send a `start` message to the replication object.
 
-Newly created replications are nonpersistent and noncontinuous. To change those settings, you need to immediately set their `persistent` or `continuous` properties.
+Newly created replications are noncontinuous. To change the settings, you need to immediately set their `continuous` properties.
 
 It's not strictly necessary to keep references to the replication objects, but you do need them if you want to [monitor their progress](#monitoring-replication-progress).
 
@@ -33,7 +33,7 @@ self.push = [repls objectAtIndex: 1];
 
 The `exclusively: YES` option seeks out and removes any pre-existing replications with other remote URLs. This is useful if you sync with only one server at a time and just want to change the address of that server.
 
-### Monitoring Replication Progress
+### Monitoring replication progress
 A replication object has several properties you can observe to track its progress. You can use the following `CBLReplication` class properties to monitor replication progress:
 
  * `completedChangesCount`—number of documents copied so far in the current batch
@@ -76,9 +76,9 @@ In the example, `progressView` is a `UIProgressView` object that shows a bar gra
 
 Don't expect the progress indicator to be completely accurate. It might jump around because the `changesCount` property changes as the replicator figures out how many documents need to be copied. It might not advance smoothly because some documents, such as those with large attachments, take longer to transfer than others. In practice, the progress indicator is accurate enough to give the user an idea of what's going on.
 
-### Deleting Replications
+### Deleting replications
 
-You can cancel persistent and continuous replications by deleting them. The following example shows how to delete a replication by deleting the associated `CBLModel` object, `repl`:
+You can cancel continuous replications by deleting them. The following example shows how to delete a replication by deleting the associated `CBLModel` object, `repl`:
 
 ```objectivec
 [repl deleteDocument: &error];
@@ -91,7 +91,7 @@ The following example shows how to delete all replications involving a database.
 ```
 
 
-### Document Validation
+### Document validation
 
 Pulling from another database requires some trust because you are importing documents and changes that were created elsewhere. Aside from issues of security and authentication, how can you be sure the documents are even formatted correctly? Your application logic probably makes assumptions about what properties and values documents have, and if you pull down a document with invalid properties it might confuse your code.
 
@@ -122,11 +122,11 @@ The example validation block first checks whether the revision is deleted. This 
 
 You can optionally define schemas for your documents by using the powerful [JSON-Schema](http://json-schema.org) format and validate them programmatically. To learn how to do that, see [Validating JSON Objects](#validating-json-objects).
 
-### Filtered Replications
+### Filtered replications
 
 You might want to replicate only a subset of documents, especially when pulling from a huge cloud database down to a limited mobile device. For this purpose, Couchbase Lite supports user-defined filter functions in replications. A filter function is registered with a name. It takes a document's contents as a parameter and simply returns true or false to indicate whether it should be replicated.
 
-#### Filtered Pull
+#### Filtered pull
 
 Filter functions are run on the _source_ database. In a pull, that would be the remote server, so that server must have the appropriate filter function. If you don't have admin access to the server, you are restricted to the set of already existing filter functions.
 
@@ -136,7 +136,7 @@ To use an existing remote filter function in a pull replication, set the replica
 
 Filtered pulls are how Couchbase Lite can encode the list of [channels](https://github.com/couchbaselabs/sync_gateway/wiki/Channels-Access-Control-and-Data-Routing-w-Sync-Function) it wants Sync Gateway to replicate, although in the case of Sync Gateway, the implementation is based on indexes, not filters.
 
-#### Filtered Push
+#### Filtered push
 
 During a push, the filter function runs locally in Couchbase Lite. As with MapReduce functions, the filter function is specified at run time as a native block pointer. Here's an example of defining a filter function that passes only documents with a `"shared"` property with a value of `true`:
 
@@ -153,7 +153,7 @@ This function can then be plugged into a push replication by name:
 push.filter = @"sharedItems";
 ```
 
-#### Parameterized Filters
+#### Parameterized filters
 
 Filter functions can be made more general-purpose by taking parameters. For example, a filter could pass documents whose `"owner"` property has a particular value, allowing the user name to be specified by the replication. That way there doesn't have to be a separate filter for every user.
 
@@ -161,7 +161,7 @@ To specify parameters, set the `filterParams` property of the replication object
 
 Couchbase Lite filter blocks get the parameters as a `params` dictionary passed to the block.
 
-#### Deleting documents with Filtered Replications
+#### Deleting documents with filtered replications
 
 Deleting documents can be tricky in the context of filtered replications.  For example, assume you have a document that has a `worker_id` field, and you set up a filtered replication to pull documents only when the `worker_id` equals a certain value.
 
@@ -169,99 +169,7 @@ When one of these documents is deleted, it does not get synched in the pull repl
 
 This can be fixed by deleting documents in a different way.  Because a document is considered deleted as long as it has the special `_deleted` field, it is possible to delete the document while still retaining the `worker_id` field.  Instead of using the DELETE verb, you instead use the PUT verb.  You definitely need to set the `_deleted` field  for the document to be considered deleted. You can then either retain the fields that you need for filtered replication, like the `worker_id` field, or you can retain all of the fields in the original document.
 
-### Authentication
-
-The remote database Couchbase Lite replicates with likely requires authentication (particularly for a push because the server is unlikely to accept anonymous writes). In this case, the replicator needs to log on to the remote server on your behalf.
-
-<div class="notebox tip">
-<p>Security Tip</p> 
-<p>Because Basic auth sends the password in an easily readable form, it is <em>only</em> safe to use it over an HTTPS (SSL) connection or over an isolated network you're confident has full security. Before configuring authentication, make sure the remote database URL has the <code>https:</code> scheme.</p>
-</div>
-
-You need to register logon credentials for the replicator to use. There are several ways to do this and most of them use the standard credential mechanism provided by the Cocoa Foundation framework.
-
-#### Hardcoded Username and Password
-
-The simplest but least secure way to store credentials is to use the standard syntax for embedding them in the URL of the remote database:
-
-	https://frank:s33kr1t@sync.example.com/database/
-
-This URL specifies a username `frank` and password `s33kr1t`. If you use this as the remote URL when creating a replication, Couchbase Lite uses the included credentials. The drawback, of course, is that the password is easily readable by anything with access to your app's data files.
-
-#### Using The Credential Store
-
-The better way to store credentials is in the `NSURLCredentialStore`, which is a Cocoa system API that can store credentials either in memory or in the secure (encrypted) Keychain. They then get used automatically when there’s a connection to the matching server.
-
-Here’s an example of how to register a credential for a remote database. First, create a `NSURLCredential` object that contains the username and password, as well as an indication of the persistence with which they should be stored:
-
-    NSURLCredential* cred;
-    cred = [NSURLCredential 
-       credentialWithUser: @"frank"
-                 password: @"s33kr1t"
-              persistence: NSURLCredentialPersistencePermanent];
-
-Next, create a `NSURLProtectionSpace` object that defines the URLs to which the credential applies:
-
-
-    
-    NSURLProtectionSpace* space;
-    
-    space = [[[NSURLProtectionSpace alloc] 
-            initWithHost: @"sync.example.com"
-                    port: 443
-                protocol: @"https"
-                   realm: @"My Database"
-    authenticationMethod: NSURLAuthenticationMethodDefault]
-             autorelease];
-    
-
-Finally, register the credential for the protection space:
-
-    [[NSURLCredentialStorage sharedCredentialStorage]
-       setDefaultCredential: cred
-         forProtectionSpace: space];
-
-
-This is best done right after the user enters a name and password in your configuration UI. Because this example specified _permanent_ persistence, the credential store writes the password securely to the Keychain. From then on, `NSURLConnection`, Cocoa's underlying HTTP client engine, finds it when it needs to authenticate with that same server.
-
-The Keychain is a secure place to store secrets: it's encrypted with a key derived from the user's iOS passcode, and managed only by a single trusted OS process. If you don’t want the password stored to disk, use `NSURLCredentialPersistenceForSession`  for the persistence setting. But then you need to call the above code on every launch, begging the question of where you get the password from. The alternatives are generally less secure than the Keychain.
-
-<div class="notebox">
-<p>Note</p>
-<p>The OS is picky about the parameters of the protection space. If they don’t match exactly—including the `port` and the `realm` string—the credentials are not used and the sync fails with a 401 error. This is annoying to troubleshoot. In case of mysterious auth failures, double-check the all the credential's and protection space's spelling and port numbers!
-</p>
-</div>
-
-If you need to figure out the actual realm string for the server, you can use [curl](http://curl.haxx.se) or another HTTP client tool to examine the response's `WWW-Authenticate` header for an authentication failure. Here's an example that uses curl:
-
-
-```
-$ curl -i -X POST http://sync.example.com/dbname/
-HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Basic realm="My Database"
-```
-
-#### OAuth
-
-[OAuth](http://oauth.net) is a complex protocol that, among other things, allows a user to use an identity from one site (such as Google or Facebook) to authenticate to another site (such as a Sync Gateway server) _without_ having to trust the relaying site with the user's password.
-
-Sync Gateway supports OAuth version 1 (but _not_ yet the newer OAuth 2) for client authentication, so if this has been configured in your upstream database, you can replicate with it by providing OAuth tokens:
-
-
-```
-replication.OAuth = 
-   @{ @"consumer_secret": consumerSecret,
-      @"consumer_key": consumerKey,
-      @"token_secret": tokenSecret,
-      @"token": token };
-```
-
-Getting these four values is somewhat tricky and involves authenticating with the origin server (the site at which the user has an account or identity). Usually you use an OAuth client library to do the hard work, such as a library from [Google](http://code.google.com/p/gtm-oauth/) or [Facebook](https://github.com/facebook/facebook-ios-sdk).
-
-OAuth tokens expire after some time. If you install them into a persistent replication, you still need to call the client library periodically to validate them. If they're updated, you need to update them in the replication settings.
-
-
-### Replication Conflicts
+### Replication conflicts
 
 Replication is a bit like merging branches in a version control system (for example, pushing and pulling in Git). Just as in version control, you can run into conflicts if incompatible changes are made to the same data. In Couchbase Lite this happens if a replicated document is changed differently in the two databases, and then one database is replicated to the other. Now both of the changes exist there. Here's an example scenario:
 

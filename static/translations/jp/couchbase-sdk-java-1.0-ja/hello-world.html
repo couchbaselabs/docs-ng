@@ -1,0 +1,147 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;1&#31456; &#20837;&#38272;&#32232; - 1.2. Hello Couchbase</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="getting-started.html" title="&#31532;1&#31456; &#20837;&#38272;&#32232;"><link rel="prev" href="downloading.html" title="1.1. Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12398;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;"><link rel="next" href="api-overview.html" title="1.3. Couchbase API&#12398;&#27010;&#35201;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="downloading.html">1.1 Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12398;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="hello-world.html">1.2 Hello Couchbase</a></div><div class="inpagenav-sibling-link"><a href="api-overview.html">1.3 Couchbase API&#12398;&#27010;&#35201;</a></div><div class="inpagenav-sibling-link"><a href="further-example.html">1.4 &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;</a></div><div class="inpagenav-sibling-link"><a href="sample-application.html">1.5 &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;</a></div><div class="inpagenav-sibling-link"><a href="conclusion.html">1.6 &#32080;&#35542;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">1.2. Hello Couchbase</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="downloading.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;1&#31456; &#20837;&#38272;&#32232;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="api-overview.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="1.2. Hello Couchbase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="hello-world"></a>1.2. Hello Couchbase</h2></div></div></div><p>
+      Couchbase&#12392;&#23550;&#35441;&#12377;&#12427;&#26368;&#12418;&#12471;&#12531;&#12503;&#12523;&#12394;Java&#12503;&#12525;&#12464;&#12521;&#12512;&#12399;&#12393;&#12398;&#12424;&#12358;&#12394;&#12418;&#12398;&#12391;&#12289;&#12381;&#12428;&#12434;Java&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12484;&#12540;&#12523;&#12434;&#21033;&#29992;&#12375;&#12390;&#12393;&#12398;&#12424;&#12358;&#12395;&#12467;&#12531;&#12497;&#12452;&#12523;&#12375;&#12390;&#23455;&#34892;&#12377;&#12427;&#12398;&#12391;&#12375;&#12423;&#12358;&#12363;&#12290;&#12372;&#33288;&#21619;&#12364;&#12354;&#12428;&#12400;&#12289;&#12522;&#12473;&#12488;1&#12398;&#25163;&#38918;&#12434;&#21442;&#29031;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;
+    </p><p>
+      &#12522;&#12473;&#12488;1: Main.java
+    </p><pre class="programlisting"><span class="line">import java.net.URI;</span>
+<span class="line">import java.util.LinkedList;</span>
+<span class="line">import java.util.List;</span>
+<span class="line">import java.util.concurrent.TimeUnit;</span>
+<span class="line"></span>
+<span class="line">import com.couchbase.client.CouchbaseClient;</span>
+<span class="line">import net.spy.memcached.internal.GetFuture;</span>
+<span class="line">import net.spy.memcached.internal.OperationFuture;</span>
+<span class="line"></span>
+<span class="line">public class Main {</span>
+<span class="line">  public static final int EXP_TIME = 10;</span>
+<span class="line">  public static final String KEY = "spoon";</span>
+<span class="line">  public static final String VALUE = "Hello World!";</span>
+<span class="line"></span>
+<span class="line">  public static void main(String args[]) {</span>
+<span class="line">    // URI&#12434;&#12475;&#12483;&#12488;&#12375;&#12390;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12434;&#21462;&#24471;</span>
+<span class="line">    List&lt;URI&gt; uris = new LinkedList&lt;URI&gt;();</span>
+<span class="line"></span>
+<span class="line">    Boolean do_delete = false;</span>
+<span class="line"></span>
+<span class="line">    // &#36969;&#20999;&#12394;URL&#12434;&#25351;&#23450;&#12375;&#12390;&#12525;&#12540;&#12459;&#12523;&#12507;&#12473;&#12488;&#12408;&#25509;&#32154;</span>
+<span class="line">    uris.add(URI.create("http://127.0.0.1:8091/pools"));</span>
+<span class="line"></span>
+<span class="line">    CouchbaseClient client = null;</span>
+<span class="line">    try {</span>
+<span class="line">      client = new CouchbaseClient(uris, "default", "");</span>
+<span class="line">    } catch (Exception e) {</span>
+<span class="line">      System.err.println("Error connecting to Couchbase: "</span>
+<span class="line">        + e.getMessage());</span>
+<span class="line">      System.exit(0);</span>
+<span class="line">    }</span>
+<span class="line">    // &#21516;&#26399;&#12398;get&#12434;&#23455;&#34892;</span>
+<span class="line">    Object getObject = client.get(KEY);</span>
+<span class="line">    // &#38750;&#21516;&#26399;&#12398;set&#12434;&#23455;&#34892;</span>
+<span class="line">    OperationFuture&lt;Boolean&gt; setOp = client.set(KEY, EXP_TIME, VALUE);</span>
+<span class="line">    // &#38750;&#21516;&#26399;&#12398;get&#12434;&#23455;&#34892;</span>
+<span class="line">    GetFuture getOp = client.asyncGet(KEY);</span>
+<span class="line">    // &#38750;&#21516;&#26399;&#12398;delete&#12434;&#23455;&#34892;</span>
+<span class="line">    OperationFuture&lt;Boolean&gt; delOp = null;</span>
+<span class="line">    if (do_delete) {</span>
+<span class="line">      delOp = client.delete(KEY);</span>
+<span class="line">    }</span>
+<span class="line">    // &#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12434;&#12471;&#12515;&#12483;&#12488;&#12480;&#12454;&#12531;</span>
+<span class="line">    client.shutdown(3, TimeUnit.SECONDS);</span>
+<span class="line">    // &#12487;&#12540;&#12479;&#12395;&#20309;&#12364;&#36215;&#12371;&#12387;&#12383;&#12363;&#35211;&#12390;&#12415;&#12414;&#12375;&#12423;&#12358;</span>
+<span class="line">    // set&#12458;&#12506;&#12524;&#12540;&#12471;&#12519;&#12531;&#12399;&#25104;&#21151;&#12375;&#12383;&#12391;&#12375;&#12423;&#12358;&#12363;</span>
+<span class="line">    try {</span>
+<span class="line">      if (setOp.get().booleanValue()) {</span>
+<span class="line">        System.out.println("Set Succeeded");</span>
+<span class="line">      } else {</span>
+<span class="line">        System.err.println("Set failed: "</span>
+<span class="line">            + setOp.getStatus().getMessage());</span>
+<span class="line">      }</span>
+<span class="line">    } catch (Exception e) {</span>
+<span class="line">      System.err.println("Exception while doing set: "</span>
+<span class="line">          + e.getMessage());</span>
+<span class="line">    }</span>
+<span class="line">    // &#21516;&#26399;&#12398;get&#12391;&#21462;&#24471;&#12375;&#12383;&#20516;&#12434;&#20986;&#21147;</span>
+<span class="line">    if (getObject != null) {</span>
+<span class="line">      System.out.println("Synchronous Get Suceeded: "</span>
+<span class="line">          + (String) getObject);</span>
+<span class="line">    } else {</span>
+<span class="line">      System.err.println("Synchronous Get failed");</span>
+<span class="line">    }</span>
+<span class="line">    // &#38750;&#21516;&#26399;&#12398;asyncGet&#12391;&#21462;&#24471;&#12375;&#12383;&#20516;&#12434;&#20986;&#21147;</span>
+<span class="line">    try {</span>
+<span class="line">      if ((getObject = getOp.get()) != null) {</span>
+<span class="line">        System.out.println("Asynchronous Get Succeeded: "</span>
+<span class="line">            + getObject);</span>
+<span class="line">      } else {</span>
+<span class="line">        System.err.println("Asynchronous Get failed: "</span>
+<span class="line">            + getOp.getStatus().getMessage());</span>
+<span class="line">      }</span>
+<span class="line">    } catch (Exception e) {</span>
+<span class="line">      System.err.println("Exception while doing Aynchronous Get: "</span>
+<span class="line">          + e.getMessage());</span>
+<span class="line">    }</span>
+<span class="line">    // delete&#12364;&#25104;&#21151;&#12375;&#12383;&#12363;&#30906;&#35469;&#12375;&#12414;&#12377;</span>
+<span class="line">    if (do_delete) {</span>
+<span class="line">      try {</span>
+<span class="line">        if (delOp.get().booleanValue()) {</span>
+<span class="line">          System.out.println("Delete Succeeded");</span>
+<span class="line">        } else {</span>
+<span class="line">          System.err.println("Delete failed: " +</span>
+<span class="line">              delOp.getStatus().getMessage());</span>
+<span class="line">        }</span>
+<span class="line">      } catch (Exception e) {</span>
+<span class="line">        System.err.println("Exception while doing delete: "</span>
+<span class="line">            + e.getMessage());</span>
+<span class="line">      }</span>
+<span class="line">    }</span>
+<span class="line">  }</span>
+<span class="line">}</span></pre><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          Main.java&#12392;&#12356;&#12358;&#21517;&#21069;&#12398;&#12501;&#12449;&#12452;&#12523;&#12395;&#12522;&#12473;&#12488;1&#12398;&#12467;&#12540;&#12489;&#12434;&#20837;&#21147;&#12375;&#12414;&#12377;&#12290;
+        </p></li><li class="listitem"><p>
+          Java&#29992;&#12398;couchbase-client&#12392;spymemcached&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12434;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;&#19979;&#35352;&#12398;&#23455;&#34892;&#25163;&#38918;&#12395;&#35352;&#36617;&#12373;&#12428;&#12390;&#12356;&#12427;&#12392;&#12362;&#12426;&#12289;&#20381;&#23384;&#12377;&#12427;JAR&#12501;&#12449;&#12452;&#12523;&#12418;&#24517;&#35201;&#12395;&#12394;&#12426;&#12414;&#12377;&#12290;&#20381;&#23384;&#12377;&#12427;JAR&#12434;&#21462;&#24471;&#12377;&#12427;&#31777;&#21336;&#12394;&#26041;&#27861;&#12398;&#19968;&#12388;&#12399;Maven&#12522;&#12509;&#12472;&#12488;&#12522;&#12434;&#21033;&#29992;&#12377;&#12427;&#12371;&#12392;&#12391;&#12377;&#12290;
+        </p></li><li class="listitem"><p>
+          &#27425;&#12398;&#12467;&#12510;&#12531;&#12489;&#12434;&#20837;&#21147;&#12375;&#12414;&#12377;&#12290;
+        </p><pre class="programlisting"><span class="line">$ javac -cp couchbase-client-1.0.0.jar:spymemcached-2.8.0.jar \</span>
+<span class="line">        Main.java</span>
+<span class="line">  $ java -cp .:couchbase-client-1.0.0.jar:spymemcached-2.8.0.jar:\</span>
+<span class="line">  jettison-1.1.jar:netty-3.2.0.Final.jar:commons-codec-1.5.jar Main</span></pre></li></ol></div><p>
+      &#12362;&#20351;&#12356;&#12398;Couchbase&#12469;&#12540;&#12496;&#12398;IP&#12450;&#12489;&#12524;&#12473;&#12395;&#32622;&#12365;&#25563;&#12360;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;Linux&#12420;MacOS&#12434;&#21033;&#29992;&#12375;&#12390;&#12356;&#12427;&#22580;&#21512;&#12289;2&#12388;&#12417;&#12398;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12398;&#12475;&#12511;&#12467;&#12525;&#12531;&#12434;&#12467;&#12525;&#12531;&#12395;&#32622;&#12365;&#25563;&#12360;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;&#23455;&#34892;&#12377;&#12427;&#12392;&#27425;&#12398;&#24773;&#22577;&#12364;&#20986;&#21147;&#12373;&#12428;&#12414;&#12377;:
+    </p><pre class="programlisting"><span class="line">2012-01-16 15:06:29.265 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue</span>
+<span class="line">2012-01-16 15:06:29.277 INFO com.couchbase.client.CouchbaseConnection:  Connection state changed for sun.nio.ch.SelectionKeyImpl@1d3c468a</span>
+<span class="line">2012-01-16 15:06:29.420 INFO com.couchbase.client.CouchbaseConnection:  Shut down Couchbase client</span>
+<span class="line">Synchronous Get failed</span>
+<span class="line">Set Succeeded</span>
+<span class="line">Asynchronous Get Succeeded: Hello World!</span></pre><p>
+      &#12371;&#12398;&#20986;&#21147;&#12398;&#12411;&#12392;&#12435;&#12393;&#12399;&#12289;&#21839;&#38988;&#12434;&#35386;&#26029;&#12377;&#12427;&#12383;&#12417;&#12395;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#20869;&#12391;&#20309;&#12364;&#36215;&#12371;&#12387;&#12390;&#12356;&#12427;&#12398;&#12363;&#20253;&#12360;&#12427;&#12383;&#12417;&#12395;&#12289;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12364;&#29366;&#24907;&#12434;&#12525;&#12464;&#12395;&#20986;&#21147;&#12375;&#12390;&#12356;&#12427;&#12418;&#12398;&#12391;&#12377;&#12290;Couchbase&#12408;&#12398;&#25509;&#32154;&#12364;&#36861;&#21152;&#12373;&#12428;&#12289;&#25509;&#32154;&#29366;&#24907;&#12364;&#22793;&#21270;&#12375;&#12383;&#12371;&#12392;&#12434;&#34920;&#31034;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;&#12381;&#12375;&#12390;&#12289;&#21516;&#26399;&#12398;get&#12364;&#22833;&#25943;&#12375;&#12383;&#12371;&#12392;&#12434;&#31034;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;&#12371;&#12428;&#12399;"spoon"&#12392;&#12356;&#12358;&#12461;&#12540;&#12364;Couchbase&#20869;&#12395;&#23384;&#22312;&#12375;&#12394;&#12363;&#12387;&#12383;&#12371;&#12392;&#12364;&#21407;&#22240;&#12391;&#12377;&#12290;
+    </p><p>
+      10&#31186;&#20197;&#20869;&#12395;&#12289;&#20877;&#24230;&#12503;&#12525;&#12464;&#12521;&#12512;&#12434;&#23455;&#34892;&#12377;&#12427;&#12392;&#12289;&#27425;&#12398;&#20986;&#21147;&#12364;&#29983;&#25104;&#12373;&#12428;&#12414;&#12377;:
+    </p><pre class="programlisting"><span class="line">2012-01-16 15:37:12.242 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue</span>
+<span class="line">2012-01-16 15:37:12.253 INFO com.couchbase.client.CouchbaseConnection:  Connection state changed for sun.nio.ch.SelectionKeyImpl@7f2ad19e</span>
+<span class="line">2012-01-16 15:37:12.439 INFO com.couchbase.client.CouchbaseConnection:  Shut down Couchbase client</span>
+<span class="line">Synchronous Get Succeeded: Hello World!</span>
+<span class="line">Set Succeeded</span>
+<span class="line">Asynchronous Get Succeeded: Hello World!</span></pre><p>
+      &#20877;&#24230;&#12525;&#12464;&#12398;&#20869;&#23481;&#12434;&#35211;&#12390;&#12415;&#12427;&#12392;&#12289;&#25509;&#32154;&#29366;&#24907;&#12395;&#38306;&#12377;&#12427;&#20986;&#21147;&#12398;&#27425;&#12395;&#12289;"spoon"&#12392;&#12356;&#12358;&#12461;&#12540;&#12364;Couchbase&#12395;&#23384;&#22312;&#12375;&#12289;&#12381;&#12398;&#20516;&#12364;"Hello
+      World!"&#12384;&#12387;&#12383;&#12371;&#12392;&#12364;&#20998;&#12363;&#12426;&#12414;&#12377;&#12290;&#12371;&#12428;&#12399;&#21516;&#26399;&#12398;get&#12364;&#25104;&#21151;&#12375;&#12383;&#35388;&#25312;&#12391;&#12377;&#12290;10&#31186;&#24460;&#12395;&#21516;&#12376;&#12503;&#12525;&#12464;&#12521;&#12512;&#12434;&#23455;&#34892;&#12377;&#12427;&#12363;&#12289;do_delete&#12501;&#12521;&#12464;&#12434;true&#12395;&#12375;&#12390;&#12289;&#12503;&#12525;&#12464;&#12521;&#12512;&#12398;&#21205;&#20316;&#12398;&#22793;&#21270;&#12434;&#35211;&#12390;&#12415;&#12414;&#12375;&#12423;&#12358;&#12290;<code class="literal">getOp.getStatus().getMessage()</code>
+      &#12398;&#27096;&#12395;&#12289;Operation&#12463;&#12521;&#12473;&#12398;&#12513;&#12477;&#12483;&#12489;&#12434;&#21628;&#12403;&#20986;&#12379;&#12400;&#12289;&#38556;&#23475;&#12364;&#30330;&#29983;&#12375;&#12383;&#38555;&#12395;&#12469;&#12540;&#12496;&#12363;&#12425;&#27491;&#30906;&#12394;&#12513;&#12483;&#12475;&#12540;&#12472;&#12434;&#21462;&#24471;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p><p>
+      &#12362;&#12417;&#12391;&#12392;&#12358;&#12372;&#12374;&#12356;&#12414;&#12377;&#12289;&#12424;&#12426;&#24195;&#12356;&#19990;&#30028;&#12395;&#21521;&#12369;&#12390;&#12289;&#26368;&#21021;&#12398;&#23567;&#12373;&#12394;&#19968;&#27497;&#12434;&#36367;&#12415;&#20986;&#12375;&#12414;&#12375;&#12383;&#12290;
+    </p></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="downloading.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="getting-started.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="api-overview.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">1.1. Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12398;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;1.3. Couchbase API&#12398;&#27010;&#35201;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

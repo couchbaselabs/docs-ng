@@ -224,6 +224,78 @@ Port                       | Description                   | Node to Node | Node
 21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No               | No  
 
 
+
+
+
+Port 8091
+: Used by the Web Console from outside the second level firewall (for REST/HTTP traffic).
+
+Port 8092
+: Used to access views, run queries, and update design documents.
+
+
+Port 11210
+: Used by smart client libraries or client-side Moxi to directly connect to the data
+   nodes.
+
+Port 11211
+: Used by pre-existing Couchbase and memcached (non-smart) client libraries that are outside the second level firewall  to work.
+
+Ports 11214, 11215, 18091, and 18092
+: Used for SSL XDCR data encryptions.
+
+All other Ports
+: Used for other Couchbase Server communictions.
+
+
+<a id="install-user-defined-ports"></a>
+
+## User-defined ports
+
+This section describes how to install and run Couchbase server with user-defined ports rather than with the default 8091 port.
+
+To run Couchbase server on user-defined ports, ensure that the minimum RAM and CPU are available for the Couchbase instance. For information about Red Hat Linux installation, see http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#red-hat-linux-installation. 
+
+
+<div class="notebox"><p>Note</p>
+<p>Refer to the reserved Couchbase Server 
+<a href="#network-ports">Network ports</a> before creating user-defined ports.
+</p></div>
+
+**Setting up Couchbase with user-defined ports**
+
+1. Install Couchbase. 
+	* If Couchbase is already installed and running, stop the Couchbase server.
+2. Add the new user-defined ports to the **/opt/couchbase/etc/couchbase/static_config** file. 
+	* The /opt/couchbase/etc/couchbase/static_config file is where Couchbase picks up the configuration parameters from. 
+	* If port numbers are not specified, default ports are used. 
+	* To override some or all default ports, append the user-defined ports to the file. 
+3. (Optional) CAPI port (default 8092) can be edited in the **/opt/couchbase/etc/couchdb/default.d/capi.ini** file by replacing 8092 with the new port name.
+4. If the Couchbase server was previously configured, delete the **opt/couchbase/var/lib/couchbase/config/config.dat** file to remove the old configuration.
+5. Start the Couchbase server
+
+The following are the user-defined ports to add, replace, or append to the **/opt/couchbase/etc/couchbase/static_config** file.  
+
+
+```
+{rest_port, 9000}.                                   
+{mccouch_port, 8999}.                         
+{memcached_port, 12000}.
+{memcached_dedicated_port, 11999}.
+{moxi_port, 12001}.
+{short_name, "ns_1"}.
+{ssl_rest_port,11000}.                       
+{ssl_capi_port,11001}.
+{ssl_proxy_downstream_port,11002}.
+{ssl_proxy_upstream_port,11003}.
+```
+
+
+<div class="notebox"><p>Note</p>
+<p>If the newly configured ports overlap with ports used by other running applications, Couchbase fails to start. If the newly configured ports overlap with ports used by Couchbase buckets, erlang crash notifications display in the log file.
+</p></div>
+
+
 <a id="couchbase-getting-started-install-redhat"></a>
 
 # Red Hat Linux installation
@@ -386,6 +458,81 @@ Couchbase command-line tools. To do so on CentOS/Red Hat:
 
 For general instructions on server start-up and shutdown as a sudo or root user,
 see [Server Startup and Shutdown](../cb-admin/#couchbase-admin-basics-running).
+
+
+<a id="install-multiple-instance"><a>
+## Installing multiple instances on a machine
+
+Installing and running multiple Couchbase instances on a physical machine is possible for the Linux operating system. However, this implementation in recommended for development purposes only.
+
+**Requirements**
+
+Ensure that a minimum of 4GB RAM and 8 core CPU are available for each Couchbase instance. 
+When installing multiple instances of Couchbase on a physical machine, install as one of the following:
+
+* sudo user 
+* non-root, non-sudo user
+
+For information about non-root, non-sudo user installation, see [Installing on CentOS/RHEL as non-root, non-sudo](#installing-on-centosrhel-as-non-root-non-sudo).
+
+
+<div class="notebox"><p>Note</p>
+<p>Refer to the reserved Couchbase Server <a href="#network-ports">Network ports</a> and <a href="#install-user-defined-ports">User-defined ports</a> before creating user-defined ports.
+</p></div>
+
+
+**Recommendations**
+
+Install each instance of a cluster on a different physical machine to ensure data recovery if a failure occurs.
+
+<div class="notebox"><p>Note</p>
+<p>The number of Couchbase servers that can be installed on a physical machine depends on the RAM and CPU available.
+</p></div>
+
+The following graphic shows a cluster configuration with multiple Couchbase instances on a physical machine. In addition, by having three (3) Couchbase server in a cluster and each server installed on different physical machines, the configuration reduces the risk of data loss from a hardware failure.
+
+<img src="../images/multi-instance.png" width="600">
+
+
+
+**Setting up multiple instances**
+
+To set up multiple instances running on a physical machine:
+
+
+2. Install Couchbase Server as a sudo user or as a non-root, non-sudo user. For more information about installing as non-root,  non-sudo, see [Installing on CentOS/RHEL as non-root, non-sudo](#installing-on-centosrhel-as-non-root-non-sudo). 
+3. Create user-defined ports in the **/opt/couchbase/etc/couchbase/static_config** file.
+3. In the **/etc/security/limits.conf** file, ensure that the hard and soft limits for the `nofile` parameter are set to a value greater than 10240.
+4. Change the short_name parameter that identifies the instance (default: ns_1), to a different short_name in the **/opt/couchbase/etc/couchbase/static_config** file.
+	* The short_name value must different for each instance that resides on the same physical server.
+5. Change the two occurrences short_name in the **/opt/couchbase/bin/couchbase-server** file. For example, use the `sed` utility. 
+	* <code>sed -i 's/ns_1/ns_inst1/g' bin/couchbase-server</code>
+6. Start the Couchbase instance.
+7. Repeat the steps to install other instances.
+
+<div class="notebox" bp><p>Important</p>
+<p>
+While creating the cluster make sure the perServer RAM quota is calculated keeping in mind the number of instances planned to be installed on the machine. </p>
+<p>When configuring the instance for the cluster, Couchbase provides a default value for the perServer RAM quota. This default value is based on the total RAM quota available on the physical machine. Modify this value.
+</p></div>
+
+
+<div class="notebox"><p>Troubleshooting</p>
+<p>If any bucket created on the nodes appear to be in pending state or if rebalance fails  with not_all_nodes_are_ready_yet, there could be a mismatch of the short_name  value in the following files:</p>
+<p> /opt/couchbase/bin/couchbase-server</p>
+</p>/opt/couchbase/etc/couchbase/static_config</p>
+</div>
+
+
+
+**Limitations**
+
+* Cbrecovery is unavailable on customized ports
+* Cbworkloadgen  is unavailable
+* Offline upgrade  is unavailable
+* If a bucket is created on a dedicated port, some of the operations results in the error, "could not listen on port xxx”, even though the operation still succeeds. This error is logged regardless of the port that is used. 
+
+
 
 <a id="couchbase-getting-started-install-ubuntu"></a>
 

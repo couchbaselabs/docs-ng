@@ -5,6 +5,34 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+## Release notes for Couchbase client library Ruby 1.3.6 (17 February 2014)
+
+**Fixes in 1.3.6**
+
+* Fix linkage issue that blocks library installation on Microsoft Windows.
+
+## Release notes for Couchbase client library Ruby 1.3.5 (5 February 2014)
+
+**Fixes in 1.3.5**
+
+* Honor the :environment constructor argument.
+
+	Issues: [RCBC-152](http://www.couchbase.com/issues/browse/RCBC-152), [RCBC-159](http://www.couchbase.com/issues/browse/RCBC-159)
+
+* Allow inheritance from `Couchbase::Bucket`. It wasn't possible to
+  create a view with a subclass of the `Couchbase::Bucket` class.
+
+* Ensure that an exception raised early does not prevent the finalizer
+  from being called in the underlying client being constructed. Here's an
+  example of a situation where this could occur:
+
+        class Couchbase::Bucket
+          def initialize(*args)
+            raise "something wrong"
+            super
+          end
+        end
+
 ## Release notes for Couchbase client library Ruby 1.3.4 (8 January 2014)
 
 **New Features and Behavior Changes in 1.3.4**
@@ -20,7 +48,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 * Update list of options on `Cluster.create_bucket`. Added the following new options: `:replica_index`, `:flush_enabled`,   `:parallel_db_and_view_compaction`.
 
 	Issues: [RCBC-150](http://www.couchbase.com/issues/browse/RCBC-150)
-	
+
 * Allow retries on Couchbase::Bucket#cas collisions. Now it takes a `:retry` Fixnum option that specifies the maximum number of times the method should retry the entire get/update/set operation when a `Couchbase::Error::KeyExists` error is encountered due to a   concurrent update from another writer between its `#get` and `#set` calls.
 
 * MD5 and truncate ActiveSupport::Cache keys that are longer than 250 characters.
@@ -33,10 +61,10 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **New Features and Behavior Changes in 1.3.3**
 
-* Allow application to use several connections with thread-local singleton.  
+* Allow application to use several connections with thread-local singleton.
 *Issues*: [RCBC-134](http://www.couchbase.com/issues/browse/RCBC-134)
 
-*  Add selection options for new IO engines: select and iocp.  
+*  Add selection options for new IO engines: select and iocp.
 *Issues*: [RCBC-137](http://www.couchbase.com/issues/browse/RCBC-137)
 
 * Allow determining the version of libcouchbase:
@@ -46,14 +74,14 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **Fixes in 1.3.3**
 
-* Fixed invalid memory access which was detected by using 'GC.stress = true' in tests.  
+* Fixed invalid memory access which was detected by using 'GC.stress = true' in tests.
 Issues: [RCBC-135](http://www.couchbase.com/issues/browse/RCBC-135)
 
-* Build shared object for ruby 2.0 on windows. Also fixes build script when using latest rake and rake-compiler.  
-*Issues*:  [RCBC-136](http://www.couchbase.com/issues/browse/RCBC-136): 
+* Build shared object for ruby 2.0 on windows. Also fixes build script when using latest rake and rake-compiler.
+*Issues*:  [RCBC-136](http://www.couchbase.com/issues/browse/RCBC-136):
 
-* Initialize event indexes correctly. The plug-in didn't trace event callbacks, which might lead to invalid memory access during rebalance, where libcouchbase creates or removes a lot of events because of a fast-changing topology.  
-Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141): 
+* Initialize event indexes correctly. The plug-in didn't trace event callbacks, which might lead to invalid memory access during rebalance, where libcouchbase creates or removes a lot of events because of a fast-changing topology.
+Issues: [RCBC-141](http://www.couchbase.com/issues/browse/RCBC-141):
 
 * When setting the username field, check for password presence. Fixes segmentation fault in this code:
 

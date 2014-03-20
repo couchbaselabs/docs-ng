@@ -200,25 +200,20 @@ In this example we set the initial time to 11:00 PM UTC.
 
 ## Changing thresholds for ejection
 
-Couchbase Server has a process to *eject* items from RAM when too much space is
-being taken up in RAM; ejection means that documents will be removed from RAM,
-however the key and metadata for the item will remain in RAM. When a certain
-amount of RAM is consumed by items, the server will eject items starting with
-replica data. This threshold is known as the *low water mark*. If a second,
-higher threshold is breached, Couchbase Server will not only eject replica data,
-it will also eject less-frequently used items. This second RAM threshold is
-known as the *high water mark*. The server determines that items are not
-frequently used based on a boolean for each item known as NRU
-(Not-Recently-used). There a few settings you can adjust to change server
+The item pager process ejects items from RAM when too much space is
+being taken up in RAM. Ejection means that documents are removed from RAM but the key and metadata remain. 
+
+If the amount of RAM used by items reaches the high water mark (upper threshold), both active and replica data are ejected until the memory usage (amount of RAM consumed) reaches the low water mark (lower threshold). 
+
+The server determines that items are not
+frequently used based on a not-recently-used (NRU) boolean. There a few settings you can adjust to change server
 behavior during the ejection process. In general, we do not recommend you change
 ejection defaults for Couchbase Server unless you are required to do so.
 
-**Be aware that this tool is a per-node, per-bucket operation.** That means that
-if you want to perform this operation, you must specify the IP address of a node
-in the cluster and a named bucket. If you do not provided a named bucket, the
-server will apply the setting to any default bucket that exists at the specified
-node. If you want to perform this operation for an entire cluster, you will need
-to perform the command for every node/bucket combination that exists for that
+**Be aware that this tool is a per-node, per-bucket operation.** To perform this operation, the IP address of a node
+in the cluster and a named bucket must be specified. If a named bucket is not provided, the
+server applies the setting to any default bucket that exists at the specified
+node. To perform this operation for an entire cluster, perform the command for every node/bucket combination that exists for that
 cluster.
 
 For technical information about the ejection process, the role of NRU and server
@@ -227,60 +222,52 @@ Management](../cb-admin/#couchbase-admin-tasks-working-set-mgmt).
 
 **Setting the Low Water Mark**
 
-This represents the amount of RAM you ideally want to consume on a node. If this
-threshold is met, the server will begin ejecting replica items as they are
-written to disk. To change this percentage for instance:
+This represents the lower threshold of RAM to be consumed on a node. The item pager stops ejecting items once the low water mark is reached. To change this percentage amount of RAM, use the `cpepctl` tool:
 
 
 ```
 >    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 70
 ```
 
-You can also provides an absolute number of bytes when you change this setting.
+
 
 **Setting the High Water Mark**
 
 This represents the amount of RAM consumed by items that must be breached before
-infrequently used items will be ejected. To change this amount, you use the
-Couchbase command-line tool, `cbepctl` :
+infrequently used active and replica items are ejected. To change this amount, use the
+`cbepctl` tool. In the following example, the high water mark is set to 80% of RAM for a specific data bucket on a
+given node. 
+
+This means that items in RAM on this node can consume up to 80% of
+RAM before the item pager begins ejecting items.
 
 
 ```
 >    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_high_wat 80
 ```
 
-Here we set the high water mark to be 80% of RAM for a specific data bucket on a
-given node. This means that items in RAM on this node can consume up to 80% of
-RAM before the item pager begins ejecting items. You can also specify an
-absolute number of bytes when you set this threshold.
+
 
 **Setting Percentage of Ejected Items**
 
-After Couchbase Server removes all infrequently-used items and the high water
-mark is still breached, the server will then eject replicated data and active
-data from a node whether or not the data is frequently or infrequently used. By
-default, the server is configured to eject 40% random active items and will
-eject 60% random replica data from a node.
+Based on the NRU algorithm, the server ejects active and replica data from a node.
+By default, the server is configured to 40% active items and 60% replica data from a node.
 
-You change also the default percentage for ejection of active items versus
-replica items using the Couchbase command-line tool, `cbepctl` :
+
+To change default percentage for ejecting active and replica items, use the  `cbepctl`  tool. The following example increases the percentage of active items that can be ejected from a node to 50%.
 
 
 ```
 >    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
 ```
 
-This increases the percentage of active items that can be ejected from a node to
-50%. Be aware of potential performance implications when you make this change.
-In very simple terms, it may seem more desirable to eject as many replica items
+Be aware of potential performance implications when making this change.
+It may seem more desirable to eject as many replica items
 as possible and limit the amount of active data that can be ejected. In doing
 so, you will be able to maintain as much active data from a source node as
 possible, and maintain incoming requests to that node. However, if you have the
 server eject a very large percentage of replica data, should a node fail, the
-replica data will not be immediately available. In that case, Couchbase Server
-has to retrieve the items from disk back into RAM and then it can respond to the
-requests. We generally recommend that you do not change
-these defaults.
+replica data is not immediately available. In that case, the items are retrieved from disk and put back into RAM. Once in RAM, the request can be fulfilled. Couchbase  recommends that you do not change these defaults.
 
 For technical information about the ejection process, the role of NRU and server
 processes related to ejection, see [Ejection and Working Set

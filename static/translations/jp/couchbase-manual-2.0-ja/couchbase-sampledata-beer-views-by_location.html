@@ -1,0 +1,99 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0 - &#20184;&#37682;C Couchbase&#12398;&#12469;&#12531;&#12503;&#12523;&#12496;&#12465;&#12483;&#12488; - C.2.2. by_location&#12499;&#12517;&#12540;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0"><link rel="up" href="couchbase-sampledata-beer.html" title="C.2. Beer Sample&#12496;&#12465;&#12483;&#12488;"><link rel="prev" href="couchbase-sampledata-beer-views-brewerybeers.html" title="C.2.1. brewery_beers&#12499;&#12517;&#12540;"><link rel="next" href="couchbase-views-troubleshooting.html" title="&#20184;&#37682;D &#12499;&#12517;&#12540;&#12398;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#65288;&#25216;&#34899;&#30340;&#32972;&#26223;&#65289;"><meta name="date" content="2013-06-26T23:53:47+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-manual-2.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase Server &#12510;&#12491;&#12517;&#12450;&#12523; 2.0 </a></div><div class="inpagenav-doccommunity"><div class="inpagenav-doccommunity-title">Community Wiki and Resources</div><div><table summary="Simple list" border="0" class="simplelist"><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/downloads" target="_top">Couchbase Server 2.0&#12434;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html" target="_top">Couchbase &#38283;&#30330;&#32773;&#12460;&#12452;&#12489; 2.0</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/develop" target="_top">&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;</a>
+            </td></tr><tr><td>
+              <a class="ulink" href="http://www.couchbase.com/forums/couchbase/couchbase-server-20x" target="_top">Couchbase Server &#12501;&#12457;&#12540;&#12521;&#12512;</a>
+            </td></tr></table></div></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="couchbase-sampledata-beer.html">C.2 Beer Sample&#12496;&#12465;&#12483;&#12488;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="couchbase-sampledata-beer-views-brewerybeers.html">C.2.1 brewery_beers&#12499;&#12517;&#12540;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="couchbase-sampledata-beer-views-by_location.html">C.2.2 by_location&#12499;&#12517;&#12540;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="couchbase-server-2-0-preface.html"> &#12399;&#12376;&#12417;&#12395;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-introduction.html">1 Couchbase Server&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-getting-started.html">2 &#12452;&#12531;&#12473;&#12488;&#12540;&#12523;&#12392;&#12450;&#12483;&#12503;&#12464;&#12524;&#12540;&#12489;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-basics.html">3 &#12463;&#12521;&#12473;&#12479;&#31649;&#29702;&#12398;&#22522;&#26412;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-bestpractice.html">4 &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;
+</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-tasks.html">5 &#31649;&#29702;&#12479;&#12473;&#12463;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-web-console.html">6 Web&#12467;&#12531;&#12477;&#12540;&#12523;&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-cmdline.html">7 &#31649;&#29702;&#29992;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-admin-restapi.html">8 REST API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-views.html">9 &#12499;&#12517;&#12540;&#12392;&#12452;&#12531;&#12487;&#12483;&#12463;&#12473;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-monitoring.html">10 Couchbase&#12398;&#30435;&#35222;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-troubleshooting.html">11 &#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-faq.html">A &#12424;&#12367;&#12354;&#12427;&#36074;&#21839;&#65288;FAQ&#65289;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-uninstalling.html">B Couchbase Server&#12398;&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sampledata.html">C Couchbase&#12398;&#12469;&#12531;&#12503;&#12523;&#12496;&#12465;&#12483;&#12488;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-views-troubleshooting.html">D &#12499;&#12517;&#12540;&#12398;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#65288;&#25216;&#34899;&#30340;&#32972;&#26223;&#65289;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-server-rn.html">E &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-server-limits.html">F &#38480;&#30028;&#20516;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">C.2.2. <code class="literal">by_location</code>&#12499;&#12517;&#12540;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="couchbase-sampledata-beer-views-brewerybeers.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">C.2. Beer Sample&#12496;&#12465;&#12483;&#12488;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="couchbase-views-troubleshooting.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="C.2.2. by_location&#12499;&#12517;&#12540;"><div class="titlepage"><div><div><h3 class="title"><a name="couchbase-sampledata-beer-views-by_location"></a>C.2.2. <code class="literal">by_location</code>&#12499;&#12517;&#12540;</h3></div></div></div><p>&#20803;&#12487;&#12540;&#12479;&#12398;&#12501;&#12451;&#12540;&#12523;&#12489;&#12398;&#27424;&#33853;&#12434;&#32771;&#24942;&#12375;&#12390;&#12289;&#37304;&#36896;&#25152;&#12398;&#22580;&#25152;&#12434;&#20986;&#21147;&#12375;&#12414;&#12377;&#12290;&#22269;(country)&#12289;&#22269;&#12392;&#24030;(state)&#12289;&#22269;&#12392;&#24030;&#12392;&#37117;&#24066;(city)&#12398;&#12356;&#12378;&#12428;&#12363;&#12391;&#24773;&#22577;&#12434;&#20316;&#25104;&#12375;&#12289;&#20986;&#21147;&#12375;&#12414;&#12377;&#12290;</p><pre class="programlisting"><span class="line">function (doc, meta) {</span>
+<span class="line">  if (doc.country, doc.state, doc.city) {</span>
+<span class="line">    emit([doc.country, doc.state, doc.city], 1);</span>
+<span class="line">  } else if (doc.country, doc.state) {</span>
+<span class="line">    emit([doc.country, doc.state], 1);</span>
+<span class="line">  } else if (doc.country) {</span>
+<span class="line">    emit([doc.country], 1);</span>
+<span class="line">  }</span>
+<span class="line">}</span></pre><p>&#12371;&#12398;&#12499;&#12517;&#12540;&#12399;reduce&#37096;&#20998;&#12391;&#12289;&#32068;&#36796;&#12415;&#12398;<code class="function">_count</code>&#38306;&#25968;&#12434;&#21033;&#29992;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;reduce&#12434;&#20351;&#29992;&#12375;&#12394;&#12356;&#22580;&#21512;&#12399;&#20301;&#32622;&#24773;&#22577;&#12364;&#12381;&#12398;&#12414;&#12414;&#20986;&#21147;&#12373;&#12428;&#12414;&#12377;:</p><pre class="programlisting"><span class="line">{</span>
+<span class="line">   "total_rows" : 1413,</span>
+<span class="line">   "rows" : [</span>
+<span class="line">      {</span>
+<span class="line">         "value" : 1,</span>
+<span class="line">         "id" : "110f0b267e",</span>
+<span class="line">         "key" : [</span>
+<span class="line">            "Argentina",</span>
+<span class="line">            "",</span>
+<span class="line">            "Mendoza"</span>
+<span class="line">         ]</span>
+<span class="line">      },</span>
+<span class="line">      {</span>
+<span class="line">         "value" : 1,</span>
+<span class="line">         "id" : "110f035200",</span>
+<span class="line">         "key" : [</span>
+<span class="line">            "Argentina",</span>
+<span class="line">            "Buenos Aires",</span>
+<span class="line">            "San Martin"</span>
+<span class="line">         ]</span>
+<span class="line">      },</span>
+<span class="line">&hellip;</span>
+<span class="line">      {</span>
+<span class="line">         "value" : 1,</span>
+<span class="line">         "id" : "110f2701b3",</span>
+<span class="line">         "key" : [</span>
+<span class="line">            "Australia",</span>
+<span class="line">            "New South Wales",</span>
+<span class="line">            "Sydney"</span>
+<span class="line">         ]</span>
+<span class="line">      },</span>
+<span class="line">      {</span>
+<span class="line">         "value" : 1,</span>
+<span class="line">         "id" : "110f21eea3",</span>
+<span class="line">         "key" : [</span>
+<span class="line">            "Australia",</span>
+<span class="line">            "NSW",</span>
+<span class="line">            "Picton"</span>
+<span class="line">         ]</span>
+<span class="line">      },</span>
+<span class="line">      {</span>
+<span class="line">         "value" : 1,</span>
+<span class="line">         "id" : "110f117f97",</span>
+<span class="line">         "key" : [</span>
+<span class="line">            "Australia",</span>
+<span class="line">            "Queensland",</span>
+<span class="line">            "Sanctuary Cove"</span>
+<span class="line">         ]</span>
+<span class="line">      }</span>
+<span class="line">   ]</span>
+<span class="line">}</span></pre><p><code class="function">reduce()</code>&#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12392;&#12289;&#12464;&#12523;&#12540;&#12503;&#21270;&#12399;&#12289;country&#12289;state&#12289;city&#27598;&#12398;&#12499;&#12540;&#12523;&#37304;&#36896;&#25152;&#12398;&#25968;&#12434;&#22577;&#21578;&#12377;&#12427;&#12383;&#12417;&#12395;&#20351;&#29992;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;&#20363;&#12360;&#12400;&#12289;&#12464;&#12523;&#12540;&#12503;&#12524;&#12505;&#12523;&#12434;2&#12395;&#12377;&#12427;&#12371;&#12392;&#12391;&#12289;country&#12392;state&#27598;&#12398;&#25968;&#12434;&#20986;&#21147;&#12375;&#12414;&#12377;:</p><pre class="programlisting"><span class="line">{"rows":[</span>
+<span class="line">{"key":["Argentina",""],"value":1},</span>
+<span class="line">{"key":["Argentina","Buenos Aires"],"value":1},</span>
+<span class="line">{"key":["Aruba"],"value":1},</span>
+<span class="line">{"key":["Australia"],"value":1},</span>
+<span class="line">{"key":["Australia","New South Wales"],"value":4},</span>
+<span class="line">{"key":["Australia","NSW"],"value":1},</span>
+<span class="line">{"key":["Australia","Queensland"],"value":1},</span>
+<span class="line">{"key":["Australia","South Australia"],"value":2},</span>
+<span class="line">{"key":["Australia","Victoria"],"value":2},</span>
+<span class="line">{"key":["Australia","WA"],"value":1}</span>
+<span class="line">]</span>
+<span class="line">}</span></pre></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="couchbase-sampledata-beer-views-brewerybeers.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="couchbase-sampledata-beer.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="couchbase-views-troubleshooting.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">C.2.1. <code class="literal">brewery_beers</code>&#12499;&#12517;&#12540;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;&#20184;&#37682;D &#12499;&#12517;&#12540;&#12398;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#65288;&#25216;&#34899;&#30340;&#32972;&#26223;&#65289;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

@@ -309,13 +309,13 @@ HTTP/1.1 400 Bad Request
 ```
 
 If you upgrade a Couchbase cluster, a new node can use this setting without
-bucket restart and warmup. In this case you set up a new 2.1+ node, add that
+bucket restart and warmup. In this case you set up a new 2.1 or higher node, add that
 node to the cluster, and on that new node edit the existing bucket setting for
 readers and writers. After you rebalance the cluster, this new node will perform
 reads and writes with multiple readers and writers and the data bucket will not
 restart or go through warmup. All existing pre-2.1 nodes will remain with a
 single readers and writers for the data bucket. As you continue the upgrade and
-add additional 2.1+ nodes to the cluster, these new nodes will automatically
+add additional 2.1 or higher nodes to the cluster, these new nodes will automatically
 pick up the setting and use multiple readers and writers for the bucket. For
 general information about Couchbase cluster upgrade, see [Upgrading to Couchbase
 Server 2.1](#couchbase-getting-started-upgrade).
@@ -761,19 +761,11 @@ Server 2.0+, we recommend that you remain using the defaults provided.
 
 **Understanding the Item Pager**
 
-The process that periodically runs and removes documents from RAM is known as
-the *item pager*. When a threshold known as *low water mark* is reached, this
-process starts ejecting replica data from RAM on the node. If the
-amount of RAM used by items reaches an upper threshold, known as the *high water
-mark*, both replica data and active data written from clients will be ejected.
-The item pager will continue to eject items from RAM until the amount of RAM
-consumed is below the *low water mark*. Both the high water mark and low water
-mark are expressed as an absolute amount of RAM, such as 5577375744 bytes.
+The item pager process, which runs periodically, removes documents from RAM and retains the item's key and metadata. If the amount of RAM used by items reaches the high water mark (upper threshold), both active and replica data are ejected until the memory usage (amount of RAM consumed) reaches the low watermark (lower threshold). As of the 2.1.1 release, evictions of active and replica data occur with the ratio probability of 40% (active data) to 60% (replica data) until the memory usage reaches the low watermark. Both the high water mark and low water mark are expressed as a percentage amount of RAM, such as 80%. 
 
-When you change either of these settings, you can provide a percentage of total
-RAM for a node such as 80% or as an absolute number of bytes. For Couchbase
-Server 2.0 and above, we recommend you remain using the default settings
-provided. Defaults for these two settings are listed below.
+Both the high water mark and low water mark can be changed by providing a percentage amount of RAM for a node, for example, 80%. Couchbase 
+recommends that the following default settings be used: 
+
 
 <a id="table-couchbase-admin-watermark-defaults"></a>
 
@@ -1199,19 +1191,14 @@ lead to problems include:
 
  * **Handling Failovers with Network Partitions**
 
-   If you have a network partition across the nodes in a Couchbase cluster,
-   automatic failover would lead to nodes on both sides of the partition to
-   automatically failover. Each functioning section of the cluster would now have
-   to assume responsibility for the entire document ID space. While there would be
-   consistency for a document ID within each partial cluster, there would start to
-   be inconsistency of data between the partial clusters. Reconciling those
-   differences may be difficult, depending on the nature of your data and your
-   access patterns.
+In case of network partition or split-brain where the failure of a network device causes a network to be split, Couchbase implements automatic failover with the following restrictions:
 
-   Assuming one of the two partial clusters is large enough to cope with all
-   traffic, the solution is to direct all traffic for the cluster to that single
-   partial cluster. The separated nodes could then be re-added to the cluster to
-   bring the cluster to its original size.
+* Automatic failover requires a minimum of three (3) nodes per cluster. This prevents a 2-node cluster from having both nodes fail each other over in the face of a network partition and protects the data integrity and consistency.
+* Automatic failover occurs only if exactly one (1) node is down. This prevents a network partition from causing two or more halves of a cluster from failing each other over and protects the data integrity and consistency.
+* Automatic failover occurs only once before requiring administrative action. This prevents cascading failovers and subsequent performance and stability degradation. In many cases, it is better to not have access to a small part of the dataset rather than having a cluster continuously degrade itself to the point of being non-functional. 
+* Automatic failover implements a 30 second delay when a node fails before it performs an automatic failover.  This prevents transient network issues or slowness from causing a node to be failed over when it shouldn’t be. 
+
+If a network partition occurs, automatic failover occurs if and only if automatic failover is allowed by the specified restrictions. For example, if a single node is partitioned out of a cluster of five (5), it is automatically failed over. If more than one (1) node is partitioned off, autofailover does not occur. After that, administrative action is required for a reset. In the event that another node fails before the automatic failover is reset, no automatic failover occurs.  
 
  * **Handling Misbehaving Nodes**
 
@@ -3535,7 +3522,7 @@ If you want to change the replication protocol for an existing XDCR replication,
 	
 	* Version 1 uses the REST protocol for replication. This increases XDCR throughput at destination clusters. If you use the Elasticsearch plug-in, which depends on XDCR, choose version 1.
     
-	* Version 2 uses memcached REST protocol for replication. It is is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
+	* Version 2 uses memcached REST protocol for replication. It is a high-performance mode that directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a new replication with Couchbase Server 2.2 or later.
 
 	You can also change this setting via the REST API for XDCR internal settings or the  [`couchbase-cli` Tool](#couchbase-admin-cli-xmem").
 	

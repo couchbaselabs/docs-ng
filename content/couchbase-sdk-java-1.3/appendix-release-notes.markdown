@@ -4,6 +4,25 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-3-2a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.3.2 GA (6 February 2014)
+
+The 1.3.2 release is the second bug fix release in the 1.3 series.
+
+**Fixes in 1.3.2 **
+
+* [JCBC-403](http://www.couchbase.com/issues/browse/JCBC-403): With 100% View-Based workloads, without the fix it could be the case that
+some cluster changes are not picked up as fast as possible. One part of this change should also help with mixed workloads.
+* [SPY-151](http://www.couchbase.com/issues/browse/SPY-151): During shutdown, now all pending authentication threads are properly 
+interrupted, fixing a potential issue where threads hang and applications are not terminated. 
+* [SPY-148](http://www.couchbase.com/issues/browse/SPY-148): Listener worker threads are now only named when they are created, not when
+they are used. This fixes an issue where we rename the threads if a custom executor is passed in.
+
+** Known Issues in 1.3.2 **
+
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom time-out (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higher than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The work-around  is to set a higher value through the `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower time-out setting.
+
 <a id="couchbase-sdk-java-rn_1-3-1a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.3.1 GA (14 January 2014)

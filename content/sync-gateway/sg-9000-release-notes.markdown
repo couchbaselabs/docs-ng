@@ -1,5 +1,61 @@
 # Release Notes
 
+<<<<<<< HEAD
+=======
+The following sections contain release notes for Sync Gateway.
+## 1.0 Beta 3 (14 March 2014)
+This is the third Beta release of Couchbase Sync Gateway 1.0.
+
+Couchbase Sync Gateway is a ready-to-go, easy-to-scale sync layer that extends Couchbase Server to facilitate communication between Couchbase Server and your Couchbase Lite-backed apps. This version features syncing and basic admin features. 
+
+The beta release is available to all community-edition customers. You can find the Couchbase Sync Gateway documentation on the web at <http://docs.couchbase.com/sync-gateway>.
+
+### Features
+
+We've made some major changes since Beta 2 to make Sync Gateway more performant, scalable, and co-exist better with Couchbase Server. Features introduced in Beta 3 include:
+
+* **Bucket shadowing**. We designed a co-existence path with Couchbase Server 2.5 and later that uses a workflow called *bucket shadowing*. In this workflow, a Couchbase Server-managed bucket and a Sync Gateway-compatible bucket shadow each other. For more information, see [bucket shadowing](https://github.com/couchbase/sync_gateway/wiki/Bucket-Shadowing).
+* **New configuration properties**. The new configuration properties increase flexibility for compression, maximum number of open file descriptors allowed, and support for bucket shadowing.
+* **Admin API enhancements**. We've added more feedback for Admin API requests, the ability to check a database's correlating sync function, and a feature to check internal statistics that we've used ourselves for performance testing.
+* **Performance enhancements**. We've added support for gzip-compressed HTTP requests and responses, WebSocket protocol for continuous `_changes` feed, and in-memory caching of recently requested document bodies as well as change history.
+
+### Fixes
+
+The majority of noted issues found in Beta 2 have been fixed, but we also  fixed the following issues:
+
+* Replication support
+	* Fixed a bug that could cause the Sync Gateway to send a pull replicator the same changes over and over again, consuming CPU (on both sides) and network bandwidth. 
+
+	Issues: [262](https://github.com/couchbase/sync_gateway/issues/262)
+
+* Changes feed
+	* Fixed a rare crash in the `TruncateEncodedChangeLog` function, probably triggered by lots of simultaneous writes to a channel. 
+
+	Issues: [243](https://github.com/couchbase/sync_gateway/issues/243)
+	
+* Correctly assign document channels when importing existing documents from a Couchbase bucket or after changing the sync function.
+
+### Known Issues
+
+A few of the issues noted in Beta 2 remain:
+
+* Web Client Support
+	* Web apps will have trouble making XHR requests to Sync Gateway due to browser security restrictions unless the HTML is hosted at the same public host/port.
+	
+	Issues: [115](https://github.com/couchbase/sync_gateway/issues/115)
+	
+* Attachment Support
+	* We are actively working on an option to store attachments in third-party storage.
+	
+	Issues: [197](https://github.com/couchbase/sync_gateway/issues/197)
+
+* Authentication
+	* If your Persona login fails with a 405, make sure you have set the personaOrigin URL on the command line or in the configuration file.
+	
+	Issues: [71](https://github.com/couchbase/sync_gateway/issues/71)
+
+
+>>>>>>> 6ebb01fcfcea717cc14e8984b4a9759fe8a7884a
 ## 1.0 Beta 2 (December 2013)
 
 This is the second Beta release of Couchbase Sync Gateway 1.0. 
@@ -12,7 +68,7 @@ The beta release is available to all community-edition customers. You can find t
 
 The primary focus of the second Beta release for Sync Gateway has been performance enhancement, horizontal scaling, and increased stability.
 
-### Fixes in Beta 2
+### Fixes
 
 Overall performance fixes to improve product usability.
 

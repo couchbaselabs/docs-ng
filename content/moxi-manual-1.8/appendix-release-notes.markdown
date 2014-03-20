@@ -8,6 +8,12 @@ Tracker](http://www.couchbase.com/issues/browse/MB).
 
 ## Release Notes for Moxi 1.8.0 GA (Already released)
 
+**Fixed Issues in 1.8.1**
+
+[MB-8724](http://www.couchbase.com/issues/browse/MB-8724): Moxi 1.8.1 leaks memory and crashes via the Linux OOM killer.
+
+
+
 **Known Issues in 1.8.0**
 
  * When using Moxi in a cluster using `haproxy`, it's possible for a memory leak to

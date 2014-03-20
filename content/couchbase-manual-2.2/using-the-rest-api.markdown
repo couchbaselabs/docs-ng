@@ -3414,65 +3414,115 @@ XDCR](#couchbase-admin-web-console-data-buckets-xdcr).
 
 ## Using System Logs
 
-Couchbase Server logs various messages, which are available via the REST API.
-These log messages are optionally categorized by the module. You can retrieve a
-generic list of recent log entries or recent log entries for a particular
-category. If you perform a GET request on the systems logs URI, Couchbase Server
-will return all categories of messages.
+This section provides the REST API endpoints for retrieving log and diagnostic information as well as how an SDK can add entries into a log. 
 
-Messages may be labeled, "info" "crit" or "warn". Accessing logs requires
-administrator credentials if the system is secured.
+HTTP method | URI path | Description 
+------------------ | ------------ | --------------- 
+GET | `/diag` | Retrieves log and additional server diagnostic information. 
+GET | `/sasl_logs` | Retrieves log information. 
 
-```
-GET /pools/default/logs?cat=crit
-Host: localhost:8091
-Authorization: Basic xxxxxxxxxxxxxxxxxxx
-Accept: application/json
-X-memcachekv-Store-Client-Specification-Version: 0.1
-```
 
-```
-201: bucket was created and valid URIs returned
-HTTP/1.1
-200 OK
-Content-Type: application/json
-Content-Length: nnn
-[
-    {
-        "cat":"info",
-        "date": "",
-        "code": "302",
-        "message": "Some information for you."
-    },
-    {
-        "cat":"warn",
-        "date": "",
-        "code": "502",
-        "message": "Something needs attention."
-    }
-]
-```
+## Retrieving log information 
 
-<a id="couchbase-admin-restapi-client-logging"></a>
+Couchbase Server logs various messages, which are available via the REST API. 
+These log messages are optionally categorized by the module. A generic list of log entries or log entries for a particular category can be retrieved. 
 
-## Client Logging Interface
+<div class="notebox"><p>Note</p> 
+<p>If the system is secured, administrator credentials are required to access logs. 
+</p></div> 
 
-If you create your own Couchbase SDK you may might want to add entries to the
-central log. These entries would typically be responses to exceptions such as
-difficulty handling a server response. For instance, the Web UI uses this
-functionality to log client error conditions. To add entries you provide a REST
-request:
+To retrieve log and server diagnostic information, perform a GET with the `/diag` endpoint. 
 
-```
-POST /logClientError
-Host: localhost:8091
-Authorization: Basic xxxxxxxxxxxxxxxxxxx
-Accept: application/json
-X-memcachekv-Store-Client-Specification-Version: 0.1
-```
+``` 
+curl -v -X GET -u Administrator:password 
+   http://127.0.0.1:8091/diag 
+``` 
 
-```
-200 - OK
-```
+
+To retrieve a generic list of logs, perform a GET with the `/sasl_logs` endpoint. 
+
+``` 
+curl -v -X GET -u Administrator:password 
+  http://127.0.0.1:8091/sasl_logs 
+``` 
+
+
+To retrieve a specific log file, perform a GET on the `sasl_logs` endpoint and provide a specific log category. 
+
+``` 
+curl -v -X GET -u Administrator:password 
+ http://127.0.0.1:8091/sasl_logs/<logName> 
+``` 
+
+Where the _logName_ is one of the following log types: 
+
+* babysitter 
+* couchdb 
+* debug 
+* error 
+* info 
+* mapreduce_errors 
+* stats 
+* view 
+* xdcr 
+* xdcr_errors 
+
+**Example** 
+
+``` 
+curl -v -X GET -u Administrator:password 
+ http://127.0.0.1:8091/sasl_logs/mapreduce_errors 
+``` 
+
+
+**Results** 
+
+``` 
+* About to connect() to 127.0.0.1 port 8091 (#0) 
+* Trying 127.0.0.1... connected 
+* Connected to 127.0.0.1 (127.0.0.1) port 8091 (#0) 
+* Server auth using Basic with user 'Administrator' 
+> GET /sasl_logs/mapreduce_errors HTTP/1.1 
+> Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZA== 
+> User-Agent: curl/7.21.4 (x86_64-unknown-linux-gnu) libcurl/7.21.4 OpenSSL/0.9.8b zlib/1.2.3 
+> Host: 127.0.0.1:8091 
+> Accept: */* 
+> 
+< HTTP/1.1 200 OK 
+< Transfer-Encoding: chunked 
+< Server: Couchbase Server 
+< Pragma: no-cache 
+< Date: Thu, 13 Mar 2014 17:50:03 GMT 
+< Content-Type: text/plain; charset=utf-8 
+< Cache-Control: no-cache 
+< 
+logs_node (mapreduce_errors): 
+------------------------------- 
+------------------------------- 
+* Connection #0 to host 10.5.2.55 left intact 
+* Closing connection #0 
+
+``` 
+
+<a id="couchbase-admin-restapi-client-logging"></a> 
+
+## Client Logging Interface 
+
+Entries can be added to the central log from a custom Couchbase SDK. These entries are typically responses to exceptions such as difficulty handling a server response. For instance, the Web Console uses this functionality to log client error conditions. 
+
+To add entries, provide a REST request similar to the following: 
+
+``` 
+POST /logClientError 
+Host: localhost:8091 
+Authorization: Basic xxxxxxxxxxxxxxxxxxx 
+Accept: application/json 
+X-memcachekv-Store-Client-Specification-Version: 0.1 
+``` 
+
+
+``` 
+200 - OK 
+``` 
 
 <a id="couchbase-views"></a>

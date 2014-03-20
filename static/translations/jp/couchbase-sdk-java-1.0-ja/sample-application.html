@@ -1,0 +1,186 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0 - &#31532;1&#31456; &#20837;&#38272;&#32232; - 1.5. &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;</title><link href="couchdocs.css" type="text/css" rel="stylesheet"><meta content="DocBook XSL Stylesheets V1.76.1" name="generator"><link rel="home" href="index.html" title="Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0"><link rel="up" href="getting-started.html" title="&#31532;1&#31456; &#20837;&#38272;&#32232;"><link rel="prev" href="further-example.html" title="1.4. &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;"><link rel="next" href="conclusion.html" title="1.6. &#32080;&#35542;"><meta name="date" content="2013-06-26T18:56:30+00:00"><link type="image/x-icon" href="http://www.couchbase.com/sites/default/files/nosql_favicon.ico" rel="shortcut icon"><div class="inpagenav"><div class="googlesearch"><div class="inpagenav-home-title">Search:</div><form method="GET" action="http://www.google.com/search"><input type="text" name="q" size="24" maxlength="255"><input type="hidden" name="domains" value="www.couchbase.com/docs"><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs"><b>Search all manuals</b><br><input type="radio" name="sitesearch" value="www.couchbase.com/docs/couchbase-sdk-java-1.0/" checked><b>Search this manual</b><input type="submit" name="btnG" value="Google Search"></form></div><div class="inpagenav-home"><div class="inpagenav-home-title">Manual</div><a href="index.html"> Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;: Java 1.0</a></div><div class="inpagenav-genericcommunity"><div class="inpagenav-genericcommunity-title">Additional Resources</div><div><a href="http://www.couchbase.com/wiki">
+              Community Wiki
+            </a></div><div><a href="http://www.couchbase.com/forums">
+              Community Forums
+            </a></div><div><a href="http://www.couchbase.com/develop">
+              Couchbase SDKs
+            </a></div></div><div class="inpagenav-up"><div class="inpagenav-up-title">Parent Section</div><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-siblings"><div class="inpagenav-siblings-title">Chapter Sections</div><div class="inpagenav-sibling-link"><a href="downloading.html">1.1 Couchbase&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12398;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;</a></div><div class="inpagenav-sibling-link"><a href="hello-world.html">1.2 Hello Couchbase</a></div><div class="inpagenav-sibling-link"><a href="api-overview.html">1.3 Couchbase API&#12398;&#27010;&#35201;</a></div><div class="inpagenav-sibling-link"><a href="further-example.html">1.4 &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;</a></div><div class="inpagenav-sibling-link"><a class="currentnav" href="sample-application.html">1.5 &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;</a></div><div class="inpagenav-sibling-link"><a href="conclusion.html">1.6 &#32080;&#35542;</a></div></div><div class="inpagenav-chapters"><div class="inpagenav-chapters-title">Chapters</div><div class="inpagenav-chapters-link"><a href="getting-started.html">1 &#20837;&#38272;&#32232;</a></div><div class="inpagenav-chapters-link"><a href="tutorial.html">2 &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-started.html">3 API&#12398;&#21033;&#29992;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-summary.html">4 Java&#12513;&#12477;&#12483;&#12489;&#12398;&#27010;&#35201;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-set.html">5 &#20445;&#23384;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-retrieve.html">6 &#21462;&#24471;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-update.html">7 &#26356;&#26032;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="api-reference-stat.html">8 &#32113;&#35336;&#25805;&#20316;</a></div><div class="inpagenav-chapters-link"><a href="couchbase-sdk-java-rn.html">A &#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;</a></div></div></div><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7763794-1']);
+_gaq.push(['_setDomainName', '.couchbase.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowHash', false]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table summary="Navigation header" width="100%"><tr><th align="center" colspan="3">1.5. &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="further-example.html">&#25147;&#12427;</a>&nbsp;</td><th align="center" width="60%">&#31532;1&#31456; &#20837;&#38272;&#32232;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="conclusion.html">&#27425;&#12408;</a></td></tr></table><hr></div><div class="section" title="1.5. &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sample-application"></a>1.5. &#12469;&#12531;&#12503;&#12523;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#12499;&#12523;&#12489;&#12362;&#12424;&#12403;&#23455;&#34892;&#12377;&#12427;&#26041;&#27861;</h2></div></div></div><p>
+      <a class="ulink" href="http://www.couchbase.com/docs/examples/couchbase-javaclient-examples-1.0.0.zip" target="_top">Java
+      Getting
+      Started&#12477;&#12540;&#12473;&#12467;&#12540;&#12489;</a>&#12434;&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;&#12375;&#12390;&#27425;&#12398;&#25163;&#38918;&#12395;&#24467;&#12387;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;
+    </p><p>
+      &#27425;&#12398;&#25163;&#38918;&#12391;&#12289;&#12503;&#12525;&#12464;&#12521;&#12512;&#12434;&#12467;&#12531;&#12497;&#12452;&#12523;&#12375;&#12390;&#23455;&#34892;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290;
+    </p><pre class="programlisting"><span class="line">$ javac -cp couchbase-client-1.0.0.jar:spymemcached-2.8.0.jar \</span>
+<span class="line">    GettingStarted.java</span>
+<span class="line">$ java -cp .:couchbase-client-1.0.0.jar:\</span>
+<span class="line">spymemcached-2.8.0.jar:jettison-1.1.jar:netty-3.2.0.Final.jar:\</span>
+<span class="line">commons-codec-1.5.jar GettingStarted http://192.168.3.104:8091/pools 10</span></pre><p>
+      &#12371;&#12398;&#12503;&#12525;&#12464;&#12521;&#12512;&#12434;&#21021;&#12417;&#12390;&#23455;&#34892;&#12377;&#12427;&#12392;&#27425;&#12398;&#20869;&#23481;&#12364;&#20986;&#21147;&#12373;&#12428;&#12414;&#12377;:
+    </p><pre class="programlisting"><span class="line">Client-2 took 37.2500 ms per key. Created 35. Retrieved 65 from cache.</span>
+<span class="line">Client-3 took 37.7800 ms per key. Created 35. Retrieved 65 from cache.</span>
+<span class="line">Client-4 took 37.7100 ms per key. Created 35. Retrieved 65 from cache.</span>
+<span class="line">Client-0 took 37.8300 ms per key. Created 35. Retrieved 65 from cache.</span>
+<span class="line">Client-1 took 37.8400 ms per key. Created 35. Retrieved 65 from cache.</span></pre><p>
+      15&#31186;&#32076;&#36942;&#12377;&#12427;&#21069;&#12395;&#12503;&#12525;&#12464;&#12521;&#12512;&#12434;&#12418;&#12358;&#19968;&#24230;&#23455;&#34892;&#12377;&#12427;&#12392;&#12289;&#20170;&#24230;&#12399;&#27425;&#12398;&#20986;&#21147;&#20869;&#23481;&#12392;&#12394;&#12426;&#12414;&#12377;:
+    </p><pre class="programlisting"><span class="line">Client-1 took 4.6700 ms per key. Created 0. Retrieved 100 from cache.</span>
+<span class="line">Client-3 took 4.6000 ms per key. Created 0. Retrieved 100 from cache.</span>
+<span class="line">Client-4 took 4.7500 ms per key. Created 0. Retrieved 100 from cache.</span>
+<span class="line">Client-2 took 4.7900 ms per key. Created 0. Retrieved 100 from cache.</span>
+<span class="line">Client-0 took 4.8400 ms per key. Created 0. Retrieved 100 from cache.</span></pre><p>
+      &#19978;&#35352;&#12398;&#20986;&#21147;&#12395;&#12388;&#12356;&#12390;&#12289;&#33288;&#21619;&#28145;&#12356;&#28857;&#12364;&#12356;&#12367;&#12388;&#12363;&#12354;&#12426;&#12414;&#12377;&#12290;&#26368;&#21021;&#12398;&#12471;&#12490;&#12522;&#12458;&#12391;&#12399;5&#12388;&#12398;&#12473;&#12524;&#12483;&#12489;&#12364;&#12521;&#12531;&#12480;&#12512;&#12394;&#25972;&#25968;&#12434;&#21516;&#26178;&#12395;&#29983;&#25104;&#12375;&#12289;&#12461;&#12540;&#27598;&#12398;&#24179;&#22343;&#23455;&#34892;&#26178;&#38291;&#12399;100ms&#12434;&#22823;&#24133;&#12395;&#19979;&#22238;&#12387;&#12390;&#12356;&#12414;&#12377;&#12290;&#21508;&#12473;&#12524;&#12483;&#12489;&#12391;35&#20491;&#12398;&#25972;&#25968;&#12434;&#29983;&#25104;&#12375;&#12289;65&#20491;&#12398;&#25972;&#25968;&#12434;&#12461;&#12515;&#12483;&#12471;&#12517;&#12363;&#12425;&#35501;&#12415;&#36796;&#12435;&#12391;&#12356;&#12414;&#12377;&#12290;
+    </p><p>
+      &#20108;&#24230;&#30446;&#12398;&#23455;&#34892;&#12391;&#12399;15&#31186;&#12398;&#12479;&#12452;&#12512;&#12450;&#12454;&#12488;&#12364;&#12414;&#12384;&#32076;&#36942;&#12375;&#12390;&#12356;&#12394;&#12356;&#12398;&#12391;&#12289;&#20840;&#12390;&#12398;&#12473;&#12524;&#12483;&#12489;&#12395;&#12362;&#12356;&#12390;&#12289;&#20840;&#12390;&#12398;&#12521;&#12531;&#12480;&#12512;&#12394;&#25972;&#25968;&#12434;&#12461;&#12515;&#12483;&#12471;&#12517;&#12363;&#12425;&#21462;&#24471;&#12391;&#12365;&#12390;&#12356;&#12414;&#12377;&#12290;Couchbase&#12363;&#12425;&#12371;&#12428;&#12425;&#12398;&#20516;&#12434;&#21462;&#24471;&#12377;&#12427;&#12395;&#12399;&#25968;&#12511;&#12522;&#31186;&#12375;&#12363;&#12363;&#12363;&#12425;&#12394;&#12356;&#12371;&#12392;&#12364;&#20998;&#12363;&#12426;&#12414;&#12377;&#12290;
+    </p><p>
+      &#12371;&#12398;&#12503;&#12525;&#12464;&#12521;&#12512;&#12398;&#23436;&#20840;&#12394;&#12477;&#12540;&#12473;&#12467;&#12540;&#12489;&#12399;&#27425;&#12398;&#36890;&#12426;&#12391;&#12377;&#12290;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12521;&#12452;&#12502;&#12521;&#12522;&#12364;&#12463;&#12521;&#12473;&#12497;&#12473;&#12395;&#21547;&#12414;&#12428;&#12390;&#12356;&#12427;&#12371;&#12392;&#12434;&#30906;&#35469;&#12375;&#12289;&#20197;&#19979;&#12395;&#31034;&#12377;&#12424;&#12358;&#12394;&#12467;&#12510;&#12531;&#12489;&#12521;&#12452;&#12531;&#24341;&#25968;&#12434;&#25351;&#23450;&#12375;&#12390;&#23455;&#34892;&#12391;&#12365;&#12414;&#12377;&#12290;
+
+</p><pre class="programlisting"><span class="line">$ javac -cp couchbase-client-1.0.0.jar:spymemcached-2.8.0.jar \</span>
+<span class="line">    GettingStarted.java</span>
+<span class="line">$ java -cp .:couchbase-client-1.0.0.jar:\</span>
+<span class="line">spymemcached-2.8.0.jar:jettison-1.1.jar:netty-3.2.0.Final.jar:\</span>
+<span class="line">commons-codec-1.5.jar GettingStarted http://192.168.3.104:8091/pools 10</span></pre><p>
+    </p><pre class="programlisting"><span class="line">import java.util.Random;</span>
+<span class="line">import java.util.concurrent.CountDownLatch;</span>
+<span class="line">import java.util.concurrent.TimeUnit;</span>
+<span class="line">import java.util.ArrayList;</span>
+<span class="line"></span>
+<span class="line">import java.net.URI;</span>
+<span class="line"></span>
+<span class="line">import com.couchbase.client.CouchbaseClient;</span>
+<span class="line"></span>
+<span class="line">import net.spy.memcached.CASValue;</span>
+<span class="line">import net.spy.memcached.transcoders.IntegerTranscoder;</span>
+<span class="line"></span>
+<span class="line">/**</span>
+<span class="line"> * Sets up a number of threads each cooperating to generate a set of random</span>
+<span class="line"> * numbers and illustrates the time savings that can be achieved by using</span>
+<span class="line"> * Couchbase.</span>
+<span class="line"> */</span>
+<span class="line">public class GettingStarted {</span>
+<span class="line"></span>
+<span class="line">    static final int numIntegers = 100;</span>
+<span class="line">    static String addresses;</span>
+<span class="line">    static CountDownLatch countdown;</span>
+<span class="line"></span>
+<span class="line">    /**</span>
+<span class="line">     * @param args</span>
+<span class="line">     */</span>
+<span class="line">    public static void main(String[] args) {</span>
+<span class="line"></span>
+<span class="line">        if (args.length &lt; 2) {</span>
+<span class="line">            System.err.println("usage: addresses numthreads");</span>
+<span class="line">            System.exit(1);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        addresses = args[0];</span>
+<span class="line"></span>
+<span class="line">        int numThreads = Integer.parseInt(args[1]);</span>
+<span class="line"></span>
+<span class="line">        countdown = new CountDownLatch(numThreads);</span>
+<span class="line"></span>
+<span class="line">        for (int i = 0; i &lt; numThreads; i++) {</span>
+<span class="line">            Thread t = new Thread(new ClientThread(String.format(</span>
+<span class="line">                    "Client-%d", i)));</span>
+<span class="line">            t.setName("Client Thread " + i);</span>
+<span class="line">            t.start();</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        try {</span>
+<span class="line">            countdown.await();</span>
+<span class="line">        } catch (InterruptedException e) {</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        System.exit(0);</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    private static class ClientThread implements Runnable {</span>
+<span class="line"></span>
+<span class="line">        private String name;</span>
+<span class="line"></span>
+<span class="line">        public ClientThread(String name) {</span>
+<span class="line">            this.name = name;</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        @Override</span>
+<span class="line">        public void run() {</span>
+<span class="line"></span>
+<span class="line">            try {</span>
+<span class="line">                URI server = new URI(addresses);</span>
+<span class="line"></span>
+<span class="line">                ArrayList&lt;URI&gt; serverList = new ArrayList&lt;URI&gt;();</span>
+<span class="line"></span>
+<span class="line">                serverList.add(server);</span>
+<span class="line"></span>
+<span class="line">                CouchbaseClient client = new CouchbaseClient(</span>
+<span class="line">                        serverList, "rags", "changeit");</span>
+<span class="line">                IntegerTranscoder intTranscoder = new IntegerTranscoder();</span>
+<span class="line"></span>
+<span class="line">                // Not really random, all threads</span>
+<span class="line">                // will have the same seed and sequence of</span>
+<span class="line">                // numbers.</span>
+<span class="line">                Random rand = new Random(1);</span>
+<span class="line"></span>
+<span class="line">                long startTime = System.currentTimeMillis();</span>
+<span class="line"></span>
+<span class="line">                int created = 0;</span>
+<span class="line">                int cached = 0;</span>
+<span class="line"></span>
+<span class="line">                for (int i = 0; i &lt; numIntegers; i++) {</span>
+<span class="line">                    String key = String.format("Value-%d", i);</span>
+<span class="line"></span>
+<span class="line">                    CASValue&lt;Integer&gt; value = client.gets(key,</span>
+<span class="line">                            intTranscoder);</span>
+<span class="line"></span>
+<span class="line">                    if (value == null) {</span>
+<span class="line">                        // The value doesn't exist in Membase</span>
+<span class="line">                        client.set(key, 15, rand.nextInt(), intTranscoder);</span>
+<span class="line"></span>
+<span class="line">                        // Simulate the value taking time to create.</span>
+<span class="line">                        Thread.sleep(100);</span>
+<span class="line"></span>
+<span class="line">                        created++;</span>
+<span class="line"></span>
+<span class="line">                    } else {</span>
+<span class="line"></span>
+<span class="line">                        // The value does exist, another thread</span>
+<span class="line">                        // created it already so this thread doesn't</span>
+<span class="line">                        // have to.</span>
+<span class="line">                        int v = value.getValue();</span>
+<span class="line"></span>
+<span class="line">                        // Check that the value is what we</span>
+<span class="line">                        // expect it to be.</span>
+<span class="line">                        if (v != rand.nextInt()) {</span>
+<span class="line">                            System.err.println("No match.");</span>
+<span class="line">                        }</span>
+<span class="line">                        cached++;</span>
+<span class="line">                    }</span>
+<span class="line"></span>
+<span class="line">                    client.waitForQueues(1, TimeUnit.MINUTES);</span>
+<span class="line">                }</span>
+<span class="line"></span>
+<span class="line">                System.err.println(String.format(</span>
+<span class="line">                        "%s took %.4f ms per key. Created %d."</span>
+<span class="line">                                + " Retrieved %d from cache.", name,</span>
+<span class="line">                        (System.currentTimeMillis() - startTime)</span>
+<span class="line">                                / (double)numIntegers, created, cached));</span>
+<span class="line"></span>
+<span class="line">            } catch (Throwable ex) {</span>
+<span class="line">                ex.printStackTrace();</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">            countdown.countDown();</span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tr><td align="left" width="40%"><a accesskey="p" href="further-example.html">&#25147;&#12427;</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="getting-started.html">&#19978;&#12395;&#25147;&#12427;</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="conclusion.html">&#27425;&#12408;</a></td></tr><tr><td valign="top" align="left" width="40%">1.4. &#12424;&#12426;&#23455;&#29992;&#30340;&#12394;&#12503;&#12525;&#12464;&#12521;&#12512;&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td><td valign="top" align="right" width="40%">&nbsp;1.6. &#32080;&#35542;</td></tr></table></div><hr><div class="couchone-link">
+      Copyright (c) 2010-2013<a href="http://www.couchbase.com">Couchbase, Inc.</a></div></body></html>

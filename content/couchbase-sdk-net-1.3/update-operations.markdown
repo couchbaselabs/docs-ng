@@ -1,11 +1,11 @@
-# Update Operations
+## Update Operations
 
 The update methods support different methods of updating and changing existing
 information within Couchbase. A list of the available methods is listed below.
 
 <a id="couchbase-sdk-net-update-append"></a>
 
-## Append Methods
+### Append Methods
 
 The `Append()` methods allow you to add information to an existing key/value
 pair in the database. You can use this to add information to a string or other
@@ -145,7 +145,7 @@ if (! appendResult.Sucecss)
 
 <a id="couchbase-sdk-net-update-decrement"></a>
 
-## Decrement Methods
+### Decrement Methods
 
 The `Decrement()` methods reduce the value of a given key if the corresponding
 value can be parsed to an integer value. These operations are provided at a
@@ -162,7 +162,7 @@ either `Increment` or `Decrement` with a default value.
 ------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                        
 **Description**         | Decrement the value of an existing numeric key. The Couchbase Server stores numbers as unsigned values. Therefore the lowest you can decrement is to zero.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                 
+**Returns**             | `ulong` the result of the value decremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                 
 **Arguments**           |                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                          
@@ -184,7 +184,7 @@ client.Decrement("inventory", 100, 1); //counter will be 99
 ------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                        
 **Description**         | Decrement the value of an existing numeric key. The Couchbase Server stores numbers as unsigned values. Therefore the lowest you can decrement is to zero.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                 
+**Returns**             | `ulong` the result of the value decremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                
 **Arguments**           |                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                          
@@ -205,7 +205,7 @@ client.Decrement("inventory", 100, 1, TimeSpan.FromSeconds(60));
 ------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                        
 **Description**         | Decrement the value of an existing numeric key. The Couchbase Server stores numbers as unsigned values. Therefore the lowest you can decrement is to zero.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                 
+**Returns**             | `ulong` the result of the value decremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                               
 **Arguments**           |                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                          
@@ -226,7 +226,7 @@ client.Decrement("inventory", 100, 1, DateTime.Now.AddMinutes(5));
 ------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                        
 **Description**         | Decrement the value of an existing numeric key. The Couchbase Server stores numbers as unsigned values. Therefore the lowest you can decrement is to zero.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                 
+**Returns**             | `ulong` the result of the value decremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                
 **Arguments**           |                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                          
@@ -248,7 +248,7 @@ client.Decrement("inventory", 100, 1, result.Cas);
 ------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                        
 **Description**         | Decrement the value of an existing numeric key. The Couchbase Server stores numbers as unsigned values. Therefore the lowest you can decrement is to zero.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                 
+**Returns**             | `ulong` the result of the value decremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                               
 **Arguments**           |                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                          
@@ -272,7 +272,7 @@ client.Decrement("inventory", 100, 1, TimeSpan.FromSeconds(60), result.Cas);
 ------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                        
 **Description**         | Decrement the value of an existing numeric key. The Couchbase Server stores numbers as unsigned values. Therefore the lowest you can decrement is to zero.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                 
+**Returns**             | `ulong` the result of the value decremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                
 **Arguments**           |                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                          
@@ -438,7 +438,7 @@ client.ExecuteDecrement("inventory", 100, 1, DateTime.Now.AddMinutes(5), result.
 
 <a id="couchbase-sdk-net-update-remove"></a>
 
-## Remove Methods
+### Remove Methods
 
 The `Remove()` method deletes an item in the database with the specified key.
 
@@ -563,9 +563,9 @@ else
 
 <a id="couchbase-sdk-net-update-increment"></a>
 
-## Increment Methods
+### Increment Methods
 
-The `Increment()` methods reduce the value of a given key if the corresponding
+The `Increment()` methods increase the value of a given key if the corresponding
 value can be parsed to an integer value. These operations are provided at a
 protocol level to eliminate the need to get, update, and reset a simple integer
 value in the database. All the.NET Client Library methods support the use of an
@@ -580,7 +580,7 @@ either `Increment` or `Increment` with a default value.
 ------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                                                                                                                                                                                                        
 **Description**         | Increment the value of an existing numeric key. Couchbase Server stores numbers as unsigned numbers, therefore if you try to increment an existing negative number, it will cause an integer overflow and return a non-logical numeric result. If a key does not exist, this method will initialize it with the zero or a specified value.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                                                                                                                                                                                                 
+**Returns**             | `ulong` the result of the value incremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                                                                                                                                                                                        
 **Arguments**           |                                                                                                                                                                                                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                                                                                                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                                                                                                                                                                                                          
@@ -602,7 +602,7 @@ client.Increment("inventory", 100, 1); //counter will be 101
 ------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                                                                                                                                                                                                        
 **Description**         | Increment the value of an existing numeric key. Couchbase Server stores numbers as unsigned numbers, therefore if you try to increment an existing negative number, it will cause an integer overflow and return a non-logical numeric result. If a key does not exist, this method will initialize it with the zero or a specified value.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                                                                                                                                                                                                 
+**Returns**             | `ulong` the result of the value incremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                                                                                                                                                                                               
 **Arguments**           |                                                                                                                                                                                                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                                                                                                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                                                                                                                                                                                                          
@@ -623,7 +623,7 @@ client.Increment("inventory", 100, 1, TimeSpan.FromSeconds(60));
 ------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                                                                                                                                                                                                        
 **Description**         | Increment the value of an existing numeric key. Couchbase Server stores numbers as unsigned numbers, therefore if you try to increment an existing negative number, it will cause an integer overflow and return a non-logical numeric result. If a key does not exist, this method will initialize it with the zero or a specified value.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                                                                                                                                                                                                 
+**Returns**             | `ulong` the result of the value incremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                                                                                                                                                                                               
 **Arguments**           |                                                                                                                                                                                                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                                                                                                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                                                                                                                                                                                                          
@@ -644,7 +644,7 @@ client.Increment("inventory", 100, 1, DateTime.Now.AddMinutes(5));
 ------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                                                                                                                                                                                                        
 **Description**         | Increment the value of an existing numeric key. Couchbase Server stores numbers as unsigned numbers, therefore if you try to increment an existing negative number, it will cause an integer overflow and return a non-logical numeric result. If a key does not exist, this method will initialize it with the zero or a specified value.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                                                                                                                                                                                                 
+**Returns**             | `ulong` the result of the value incremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                                                                                                                                                                                              
 **Arguments**           |                                                                                                                                                                                                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                                                                                                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                                                                                                                                                                                                          
@@ -666,7 +666,7 @@ client.Increment("inventory", 100, 1, result.Cas);
 ------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                                                                                                                                                                                                        
 **Description**         | Increment the value of an existing numeric key. Couchbase Server stores numbers as unsigned numbers, therefore if you try to increment an existing negative number, it will cause an integer overflow and return a non-logical numeric result. If a key does not exist, this method will initialize it with the zero or a specified value.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                                                                                                                                                                                                 
+**Returns**             | `ulong` the result of the value incremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                                                                                                                                                                                               
 **Arguments**           |                                                                                                                                                                                                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                                                                                                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                                                                                                                                                                                                          
@@ -690,7 +690,7 @@ client.Increment("inventory", 100, 1, TimeSpan.FromSeconds(60), result.Cas);
 ------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Asynchronous**        | no                                                                                                                                                                                                                                                                                                                                        
 **Description**         | Increment the value of an existing numeric key. Couchbase Server stores numbers as unsigned numbers, therefore if you try to increment an existing negative number, it will cause an integer overflow and return a non-logical numeric result. If a key does not exist, this method will initialize it with the zero or a specified value.
-**Returns**             | `CasResult<ulong>` ( Cas result of bool )                                                                                                                                                                                                                                                                                                 
+**Returns**             | `ulong` the result of the value incremented by the offset (if the default value has not been stored, it will be the default value)                                                                                                                                                                                                                                                                                                
 **Arguments**           |                                                                                                                                                                                                                                                                                                                                           
 **string key**          | Document ID used to identify the value                                                                                                                                                                                                                                                                                                    
 **object defaultvalue** | Value to be stored if key does not already exist                                                                                                                                                                                                                                                                                          
@@ -856,7 +856,7 @@ client.ExecuteIncrement("inventory", 100, 1, DateTime.Now.AddMinutes(5), result.
 
 <a id="couchbase-sdk-net-update-prepend"></a>
 
-## Prepend Methods
+### Prepend Methods
 
 The `Prepend()` methods allow you to add information to an existing key/value
 pair in the database. You can use this to add information to a string or other
@@ -996,7 +996,7 @@ if (! prependResult.Sucecss)
 
 <a id="couchbase-sdk-net-update-touch"></a>
 
-## Touch Methods
+### Touch Methods
 
 The `Touch()` methods allow you to update the expiration time on a given key.
 This can be useful for situations where you want to prevent an item from
@@ -1034,7 +1034,7 @@ client.Touch("session", DateTime.Now.AddDays(1));
 
 <a id="couchbase-sdk-net-store-cas"></a>
 
-## CAS Methods
+### CAS Methods
 
 The check-and-set methods provide a mechanism for updating information only if
 the client knows the check (CAS) value. This can be used to prevent clients from

@@ -5,6 +5,17 @@ Couchbase Node.js Client Library. To browse or submit new issues, see [Couchbase
 Node.js Client Library Issues
 Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
+<a id="couchbase-sdk-node-rn_1-2-1"></a>
+
+## Release Notes for Couchbase Node.js Client Library 1.2.1 GA (4 February 2014)
+
+**New Features and Behavior Changes in 1.2.1**
+
+ * Added a mock version of Couchnode for easier testing.
+ * Made `total_rows` available from view requests. 
+ * Added initial experimental N1QL querying support.
+ * Minor internal refactoring and bug fixes.
+
 <a id="couchbase-sdk-node-rn_1-2-0"></a>
 
 ## Release Notes for Couchbase Node.js Client Library 1.2.0 GA (3 December 2013)

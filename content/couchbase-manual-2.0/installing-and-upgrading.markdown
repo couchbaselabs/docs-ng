@@ -835,7 +835,7 @@ You can perform a cluster upgrade in two ways:
    cluster down, you may prefer this upgrade method. For instructions on online
    upgrades, see [Online Upgrades](#couchbase-getting-started-upgrade-online).
 
-   For swap rebalance, you add a note to the cluster then perform a swap rebalance
+   For swap rebalance, you add a node to the cluster then perform a swap rebalance
    to shift data from an old node to a new node. You might prefer this approach if
    you do not have enough cluster capacity to handle data when you remove an old
    node. This upgrade process is also much quicker than performing a standard

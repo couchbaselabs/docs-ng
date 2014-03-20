@@ -208,69 +208,67 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
 <a id="couchbase-admin-tasks-xdcr-functionality"></a>
 
 ## XDCR behavior and limitations
+This section discusses XDCR behavior and associated with various topics such as replication via memcached protocol, network or system outages, document handling and flush requests.
+### XDCR replication via memcached protocol
 
-### XDCR replication via Memcached Protocol
-
- XDCR can
-   replicate data through the memcached protocol at a destination cluster. 
-   This new mode utilizes highly efficient memcached protocol on the destination cluster for replicating changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination cluster and also improves XDCR scalability. 
+ XDCR can replicate data through the memcached protocol at a destination cluster.  This new mode utilizes highly efficient memcached protocol on the destination cluster for replicating changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination cluster and also improves XDCR scalability. 
    
-   In earlier versions of Couchbase Server only the REST protocol could be used for replication. 
-   On a source cluster a work process batched multiple
-   mutations and sent the batch to a destination cluster using a REST interface.
-   The REST interface at the destination node unpacked the batch of mutations and
-   sent each mutation via a single memcached command. The destination cluster then
-   stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies
-   on the REST API known as CAPI.
+In earlier versions of Couchbase Server only the REST protocol could be used for replication. On a source cluster a work process batched multiple 
+mutations and sent the batch to a destination cluster using a REST interface. 
+The REST interface at the destination node unpacked the batch of mutations and 
+sent each mutation via a single memcached command. The destination cluster then 
+stored mutations in RAM. This process is known as *CAPI mode XDCR* as it relies 
+on the REST API known as CAPI.
 
-   This second mode available for XDCR is known as *XMEM mode XDCR* and will
-   bypass the REST interface and replicates mutations via the memcached protocol at
-   the destination cluster:
+This second mode available for XDCR is known as *XMEM mode XDCR* which 
+bypasses the REST interface and replicates mutations via the memcached protocol at 
+the destination cluster:
 
 
-   ![](../images/XDCR_xmem.png)
+![](../images/XDCR_xmem.png)
 
-   In this mode, every replication process at a source cluster will deliver
-   mutations directly via the memcached protocol on the remote cluster. This
-   additional mode will not impact current XDCR architecture, rather it is
-   implemented completely within the data communication layer used in XDCR. Any
-   external XDCR interface remains the same. The benefit of using this mode is
-   performance: this will increase XDCR throughput, improve XDCR scalability, and
-   reduce CPU usage at destination clusters during replication.
+In this mode, every replication process at a source cluster delivers 
+mutations directly via the memcached protocol on the remote cluster. This 
+additional mode does not impact current XDCR architecture, rather it is 
+implemented completely within the data communication layer used in XDCR. Any 
+external XDCR interface remains the same. The benefit of using this mode is 
+performance by increasing XDCR throughput, improving XDCR scalability, and 
+reducing CPU usage at destination clusters during replication.
 
-   You can configure XDCR to operate via the new XMEM mode, which is the default or use CAPI
-   mode. To do so, you use Couchbase Web Console or the REST API and change the setting for
-   `xdcr_replication_mode`, see [Changing Internal XDCR
-   Settings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
+XDCR can be configured to operate via the new XMEM mode, which is the default or with CAPI mode. To change the replication mode, change the setting for `xdcr_replication_mode` via the Web Console or REST API. For more information, see 
+[Changing Internal XDCRSettings](../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings).
 
-### XDCR and network and system outages
+### XDCR and network or system outages
 
-    * XDCR is resilient to intermittent network failures. In the event that the
-      destination cluster is unavailable due to a network interruption, XDCR will
-      pause replication and will then retry the connection to the cluster every 30
-      seconds. Once XDCR can successfully reconnect with a destination cluster, it
-      will resume replication. In the event of a more prolonged network failure where
-      the destination cluster is unavailable for more than 30 seconds, a source
-      cluster will continue polling the destination cluster which may result in
-      numerous errors over time. In this case, you should delete the replication in
-      Couchbase Web Console, fix the system issue, then re-create the replication. The
-      new XDCR replication will resume replicating items from where the old
-      replication had been stopped.
+XDCR is resilient to intermittent network failures. In the event that the 
+destination cluster is unavailable due to a network interruption, XDCR 
+pauses replication and then retries the connection to the cluster every 30 
+seconds. Once XDCR can successfully reconnect with a destination cluster, it 
+resumes replication. In the event of a more prolonged network failure where 
+the destination cluster is unavailable for more than 30 seconds, a source 
+cluster continues polling the destination cluster which may result in 
+numerous errors over time. 
 
-    * Your configurations will be retained over host restarts and reboots. You do not
-      need to re-configure your replication configuration in the event of a system
-      failure.
+In case of a network interruption:
+
+1. Delete the replication in 
+the Web Console.
+1. Fix the system issue.
+1. Re-create the replication. 
+
+The new XDCR replication will resume replicating items from where the old 
+replication had been stopped. 
+
+Your configurations is retained over host restarts and reboots. 
+The replication configuration does not need to be re-configured 
+in the event of a system failure.
 
 ### XDCR document handling
 
-    * XDCR does not replicate views and view indexes; you must manually exchange view
-      definitions between clusters and re-generate the index on the destination
-      cluster.
+XDCR does not replicate views and view indexes. To replicate views and view indexes,  manually exchange view definitions between clusters and re-generate the index on the destination cluster.
 
-    * Non UTF-8 encodable document IDs on the source cluster are automatically
-      filtered out and logged and are not transferred to the remote cluster. If you
-      have any non UTF-8 keys you will see warning output in the `xdcr_error.*` log
-      files along with a list of all non-UTF-8 keys found by XDCR.
+Non UTF-8 encodable document IDs on the source cluster are automatically 
+filtered out and logged. The IDs are not transferred to the remote cluster. If there are any non UTF-8 keys, the warning output, `xdcr_error.*`  displays in the log files along with a list of all non-UTF-8 keys found by XDCR.
 
 ### XDCR flush requests
 
@@ -278,6 +276,28 @@ Replication](#couchbase-admin-tasks-xdcr-configuration).
    remote cluster. Performing a flush operation will only delete data on the local
    cluster. Flush is disabled if there is an active outbound replica stream
    configured.
+
+<div class="notebox bp"><p>Important</p>
+<p>When replicating to or from a bucket, do not flush that bucket on  the source or destination cluster. Flushing causes the vBucket state becomes temporarily unaccessible and results in a "not_found” error. The error suspends replication.
+</p></div>
+
+### XDCR stream management
+
+XDCR stream management
+Under the following circumstances, a period of time should pass (depending on the CPU load) before creating new XDCR streams:
+
+After creating a bucket
+After deleting an old XDCR stream
+
+If a new XDCR stream is created immediately after a bucket has been created, a “db_not_found” error may occur. When a bucket is created, a period of time passes before the buckets are available. If XDCR tries to replicate to or from the vBucket too soon, a “db_not_found” error occurs. The same situation applies when other clients are “talking” to a bucket.
+
+
+If a new XDCR stream is created immediately after an old XDCR stream is deleted, an Erlang eaddrinuse error occurs. This is related to the Erlang implementation of the TCP/IP protocol. After an Erlang process releases a socket, the socket stays in TIME_WAIT for a while before a new Erlang process can reuse it. If the new XDCR stream is created too quickly, vBucket replicators may encounter the eaddrinuse error and XDCR may not be able to fully start.
+
+<div class="notebox"><p>Note</p>
+<p>The TIME_WAIT interval may be tunable from the operating system. If so, try lowering the interval time.
+</p></div>
+
    
 <a id="cb-concepts-xdcr-data-encrypt"></a>
    
@@ -296,11 +316,13 @@ enabling the XDCR encryption option, providing the destination cluster's certifi
 The certificate is a self-signed certificate used by SSL to initiate secure sessions.
 
 
-The data encryption is established between the source and destination clusters. 
+Data encryption is established between the source and destination clusters. 
 Since data encryption is established at the cluster level, 
-all vBuckets that are selected for replicated on the destination cluster are data encrypted. 
-For vBuckets that need to be replicated without data encryption, establish a second XDCR destination cluster 
+all buckets that are selected for replicated on the destination cluster are data encrypted. 
+For buckets that need to be replicated without data encryption, establish a second XDCR destination cluster 
 without XDCR data encryption enabled.
+
+<img src="../images/xdcr-ssl.png" width="300">
 
 <div class="notebox"><p>Important</p>
 <p>Both data encrypted and non-encrypted replication can not occur between the same XDCR source and

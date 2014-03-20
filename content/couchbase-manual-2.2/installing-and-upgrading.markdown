@@ -9,7 +9,7 @@ To start using Couchbase Server, you need to follow these steps:
     Server](#couchbase-getting-started-install).
 
  1. For more information on Upgrading Couchbase Server from a previous version, see
-    [Upgrading to Couchbase Server 2.1](#couchbase-getting-started-upgrade).
+    [Upgrading to Couchbase Server 2.2](#couchbase-getting-started-upgrade).
 
  1. Test the installation by connecting and storing some data using the native
     Memcached protocol. See [Testing Couchbase
@@ -197,6 +197,24 @@ Port                       | Description                   | Node to Node | Node
 4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No               | No 
 21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No               | No  
 
+
+Port 8091
+: Used by the Web Console from outside the second level firewall (for REST/HTTP traffic).
+
+Port 8092
+: Used to access views, run queries, and update design documents.
+
+
+Port 11210
+: Used by smart client libraries or client-side Moxi to directly connect to the data nodes.
+
+Port 11211
+: Used by pre-existing Couchbase and memcached (non-smart) client libraries that are outside the second level firewall  to work.
+
+
+All other Ports
+: Used for other Couchbase Server communictions.
+
 <a id="couchbase-getting-started-install"></a>
 
 ## Installing Couchbase Server
@@ -215,7 +233,7 @@ machine before you start the installation. For more information on uninstalling
 Couchbase Server, see <a href="#appendix-uninstalling-couchbase-server">Uninstalling Couchbase Server</a>.</p>
 
 <p>To perform an upgrade installation while retaining your existing dataset, see <a href="#couchbase-getting-started-upgrade">
-Upgrading to Couchbase Server</a>.</p>
+Upgrading to Couchbase Server 2.2</a>.</p>
 </div>
 
 <a id="couchbase-getting-started-install-redhat"></a>
@@ -388,7 +406,7 @@ Platforms](#couchbase-getting-started-prepare-platforms).
 
  1. For Ubuntu version 12.04, you need to install a specific OpenSSL dependency by
     running:
-
+ 
      ```
      root-> apt-get install libssl0.9.8
      ```
@@ -414,14 +432,14 @@ Platforms](#couchbase-getting-started-prepare-platforms).
      ```
      Selecting previously deselected package couchbase-server.
      (Reading database ... 73755 files and directories currently installed.)
-     Unpacking couchbase-server (from couchbase-server_x86_64_2.1.0-xxx-rel.deb) ...
+     Unpacking couchbase-server (from couchbase-server_x86_64_2.2.0-xxx-rel.deb) ...
      libssl0.9.8 is installed. Continue installing
      Minimum RAM required  : 4 GB
      System RAM configured : 4058708 KB
 
      Minimum number of processors required : 4 cores
      Number of processors on the system    : 4 cores
-     Setting up couchbase-server (2.1) ...
+     Setting up couchbase-server (2.2) ...
       * Started couchbase-server
 
      You have successfully installed Couchbase Server.
@@ -457,7 +475,7 @@ Couchbase command-line tools. To do so on Ubuntu:
     located and extract it:
 
      ```
-     >  dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb $HOME
+     >  dpkg-deb -x couchbase-server-community_x86_64_2.2.0-821-rel.deb $HOME
      ```
 
     In the directory where you extracted the files, you will see `opt` and `etc`
@@ -682,13 +700,13 @@ Couchbase Server installation. By default, this is
  1. Unzip the package containing Couchbase Server:
 
      ```
-     open couchbase-server-enterprise_x86_64_2.1.0.zip
+     open couchbase-server-enterprise_2.2.0_x86_64.zip
      ```
 
  1. Move Couchbase App to your `/Applications` folder:
 
      ```
-     mv couchbase-server-enterprise_x86_64_2.1.0/Couchbase\ Server.app /Applications/
+     mv couchbase-server-enterprise_2.2.0_x86_64/Couchbase\ Server.app /Applications/
      ```
 
  1. Start the server from Terminal:
@@ -852,10 +870,10 @@ If you restart a node, it will use the hostname once again. If you failover or
 remove a node from a cluster, the node needs to be configured with the hostname
 once again.
 
-**Couchbase 2.1 Linux and Windows**
+**Couchbase 2.2 Linux and Windows**
 
-There are several ways you can provide hostnames for Couchbase 2.1+. You can
-provide a hostname when you install a Couchbase Server 2.1 on a machine, when
+There are several ways you can provide hostnames for Couchbase 2.2. You can
+provide a hostname when you install a Couchbase Server on a machine, when
 you add the node to an existing cluster for online upgrade, or via a REST API
 call. Couchbase Server stores this in a config file on disk. For earlier
 versions of Couchbase Server you must follow a manual process where you edit
@@ -872,8 +890,8 @@ Any hostname you provide will survive node restart:
 
 **While Adding a Node**
 
-If you add a new 2.1+ node to an existing 2.0.1 or older Couchbase cluster you
-should first setup the hostname for the 2.1+ node in the setup wizard. If you
+If you add a new 2.2 node to an existing 2.0.1 or older Couchbase cluster you
+should first setup the hostname for the 2.2 node in the setup wizard. If you
 add a new 2.1+ node to a 2.1 cluster you can provide either a hostname or IP
 address under **Add Server**. You provide it in the **Server IP Address** field:
 
@@ -914,17 +932,16 @@ request:
 
  * Renaming is disallowed for nodes that are already part of a cluster.
 
-**Upgrading to 2.1 on Linux and Windows**
+**Upgrading to 2.2 on Linux and Windows**
 
-If you perform an offline upgrade from Couchbase 1.8.1+ to 2.1 and you have a
+If you perform an offline upgrade from Couchbase 1.8.1+ to 2.2 and you have a
 configured hostname using the instructions here [Handling Changes in IP
-Addresses](#couchbase-bestpractice-cloud-ip), a 2.1 server will use this
+Addresses](#couchbase-bestpractice-cloud-ip), a 2.2 server will use this
 configuration.
 
-If you perform an online upgrade from 1.8.1+ to 2.1, you should add the hostname
-when you create the new 2.1 node. For more information about upgrading between
-versions, see [Upgrading to Couchbase Server
-2.1](#couchbase-getting-started-upgrade)
+If you perform an online upgrade from 1.8.1+ to 2.2, you should add the hostname
+when you create the new node. For more information about upgrading between
+versions, see [Upgrading to Couchbase Server 2.2](#couchbase-getting-started-upgrade)
 
 **In the Cloud (such as EC2, Azure, etc)**. For more information about handling
 IP addresses and hostnames, see [Handling Changes in IP
@@ -1069,25 +1086,25 @@ Tool</a>.</p>
 The following are the officially supported upgrade paths for Couchbase Server for
 both online upgrades or offline upgrades:
 
- * Couchbase 1.8.1 to Couchbase 2.2 and above
- * Couchbase 2.0 to Couchbase 2.2 and above
- * Couchbase 2.0.x to Couchbase 2.2 and above
- * Couchbase 2.1 to Couchbase 2.2 and above
- * Couchbase 2.1.x to Couchbase 2.2 and above
+ * Couchbase 1.8.1 to Couchbase 2.2 or higher
+ * Couchbase 2.0 to Couchbase 2.1 or higher
+ * Couchbase 2.0.x to Couchbase 2.2 or higher
+ * Couchbase 2.1 to Couchbase 2.2 or higher
+ * Couchbase 2.1.x to Couchbase 2.2 or higher
 
 
 <div class="notebox">
 <p>Important</p>
-<p>If you want to upgrade from 1.8.0 to 2.0+, you must have enough disk space
+<p>If you want to upgrade from 1.8.0 to 2.0 or higher, you must have enough disk space
 available for both your original Couchbase Server 1.8 data files and the new
-format for Couchbase Server 2.0 files. You will also need additional disk space
+format for the new Couchbase Server files. You will also need additional disk space
 for new functions such as indexing and compaction. You will need approximately
 three times the disk space.</p>
 
-<p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to 2.0+. You
+<p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to a higher release of Couchbase Server. You
 must first upgrade from Couchbase Server 1.8 or earlier to Couchbase Server
-1.8.1 to provide data compatibility with Couchbase Server 2.0+. After you
-perform this initial upgrade you can then upgrade to 2.0+.</p>
+1.8.1 to provide data compatibility with a higher release of Couchbase Server. After you
+perform this initial upgrade you can then upgrade to a higher release of Couchbase Server.</p>
 </div>
 
 You can perform a cluster upgrade in two ways:
@@ -1096,7 +1113,7 @@ You can perform a cluster upgrade in two ways:
 
    You can upgrade your cluster without taking your cluster down and so your
    application keeps running during the upgrade process. There are two ways you can
-   perform this process: as a standard online upgrade, or as a swap rebalance. We
+   perform this process: as a standard online upgrade or as a swap rebalance. We
    highly recommend using a swap rebalance for online upgrade so that cluster
    capacity is always maintained. The standard online upgrade should only be used
    if swap rebalance is not possible.
@@ -1160,7 +1177,7 @@ Time Required                 | Requires Rebalance, Upgrade, Rebalance per Node 
 
 ### Online Upgrade with Swap Rebalance
 
-You can perform a swap rebalance to upgrade your nodes to Couchbase Server 2.0+,
+You can perform a swap rebalance to upgrade your nodes to Couchbase Server,
 without reducing the performance of your cluster. This is the preferred method
 for performing and online upgrade of your cluster because cluster capacity is
 always maintained throughout the upgrade. If you are unable to perform an
@@ -1207,9 +1224,8 @@ and remove multiple nodes from a cluster, however you should always add the same
 number of nodes from the cluster as you remove. For instance if you add one
 node, remove one node and if you add two nodes, you can remove two.
 
-Until you upgrade all nodes in a cluster from 1.8.1 or earlier to Couchbase
-Server 2.0+, any features in 2.0+ will be disabled. This means views or XDCR
-will not yet function until you migrate all nodes in your cluster to 2.0+. After
+Until all nodes in a cluster are upgraded from 1.8.1 or earlier, features in the new Couchbase Server release are disabled. This means views or XDCR
+will not yet function until all nodes in your cluster are migrated. After
 you do so, they will be enabled for your use.
 
 For general information on swap rebalance, see [Swap
@@ -1236,11 +1252,11 @@ to disk.
 
 <div class="notebox">
 <p>Important</p>
-<p>For information on upgrading from Couchbase Server 1.8 to Couchbase Server 2.1,
-see <a href=#couchbase-getting-started-upgrade-1-8-2-0>Upgrades Notes 1.8.1 to 2.1</a>.
-You cannot directly upgrade from Couchbase Server 1.8 to 2.0+; instead, you must
+<p>For information on upgrading from Couchbase Server 1.8 to a higher release of Couchbase Server,
+see <a href=#couchbase-getting-started-upgrade-1-8-2-0>Upgrade from 1.8.1 Notes</a>.
+You cannot directly upgrade from Couchbase Server 1.8 to 2.0 or higher; instead, you must
 first upgrade to Couchbase Server 1.8.1 for data compatibility and then upgrade
-to Couchbase Server 2.1+.</p>
+to a higher release.</p>
 </div>
 
 To perform an standard, online upgrade of your cluster:
@@ -1310,7 +1326,7 @@ software on each machine, and bring your cluster and application back up again.
 
 <div class="notebox">
 <p>Note</p>
-<p>If you are upgrading from Couchbase Server 1.8 to Couchbase 2.0, there are more steps for the upgrade because you must first upgrade to Couchbase 1.8.1 for data compatibility with 2.0. For more information, see <a href=#couchbase-getting-started-upgrade-1-8-2-0>Upgrades Notes 1.8.1 to 2.1</a>.</p>
+<p>If you are upgrading from Couchbase Server 1.8 to Couchbase Server 2.0 or higher, there are more steps for the upgrade because you must first upgrade to Couchbase 1.8.1 for data compatibility. For more information, see <a href=#couchbase-getting-started-upgrade-1-8-2-0>Upgrade from 1.8.1 Notes</a>.</p>
 
 <p>Check that your <a href=#couchbase-monitoring-diskwritequeue>disk write queue</a> is completely drained to ensure
 all data has been persisted to disk and will be available after the upgrade. It
@@ -1399,8 +1415,8 @@ an individual nodes in a cluster remain the same:
     Server](#couchbase-getting-started-hostnames)
 
  1. Check for required components and if needed, install them. This ensures that
-    Couchbase Server upgrades and migrates your existing data files. See [Upgrades
-    Notes 1.8.1 to 2.1](#couchbase-getting-started-upgrade-1-8-2-0).
+    Couchbase Server upgrades and migrates your existing data files. See [Upgrade from 1.8.1
+    Notes](#couchbase-getting-started-upgrade-1-8-2-0).
 
  1. Perform the installation upgrade for your platform:
 
@@ -1430,28 +1446,28 @@ an individual nodes in a cluster remain the same:
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0"></a>
 
-## Upgrades Notes 1.8.1 to 2.1
+## Upgrades from 1.8.1 Notes
 
-You can upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+ using
+You can upgrade from Couchbase Server 1.8.1 to a higher release of Couchbase Server using
 either the online or offline upgrade method.
 
-**Use Online Upgrades for Couchbase Server 1.8.1 to Couchbase Server 2.1+**
+**Use Online Upgrades from Couchbase Server 1.8.1**
 
-We recommend online upgrade method for 1.8.1 to 2.1+. The process is quicker and
+We recommend online upgrade method for 1.8.1 to a higher release of Couchbase Server. The process is quicker and
 can take place while your cluster and application are up and running. When you
-upgrade from Couchbase Server 1.8.1 to Couchbase Server 2.1+, the data files are
+upgrade from Couchbase Server 1.8.1 to a higher release of Couchbase Server, the data files are
 updated to use the new Couchstore data format instead of the SQLite format used
 in 1.8.1 and earlier. This increases the upgrade time, and requires additional
 disk space to support the migration.
 
-Be aware that if you perform a scripted online upgrade from 1.8.1 to 2. you
-should have a 10 second delay from adding a 2.1+ node to the cluster and
-rebalancing. If you request rebalance too soon after adding a 2.1+ node, the
+Be aware that if you perform a scripted online upgrade from 1.8.1 to a higher release of Couchbase Server, you
+should have a 10 second delay from adding a node to the cluster and
+rebalancing. If you request rebalance too soon after adding a node, the
 rebalance may fail.
 
-**Linux Upgrade Notes for 1.8.1 to 2.1+**
+**Linux Upgrade from 1.8.1 Notes**
 
-When you upgrade from Couchbase Server 1.8 to Couchbase Server 2.1+ on Linux,
+When you upgrade from Couchbase Server 1.8 to a higher release of Couchbase Server on Linux,
 you should be aware of the **OpenSSL** requirement. OpenSSL is a required
 component and you will get an error message during upgrade if it is not
 installed. To install it Red Hat-based systems, use `yum` :
@@ -1468,7 +1484,7 @@ On Debian-based systems, use `apt-get` to install the required OpenSSL package:
 > sudo apt-get install libssl0.9.8
 ```
 
-**Windows Upgrade Notes for 1.8.1 to 2.1+**
+**Windows Upgrade from 1.8.1 Notes**
 
 If you have configured your Couchbase Server nodes to use hostnames, rather than
 IP addresses, to identify themselves within the cluster, you must ensure that
@@ -1476,10 +1492,11 @@ the IP and hostname configuration is correct both before the upgrade and after
 upgrading the software. See [Hostnames for Couchbase Server 2.0.1 and
 Earlier](#couchbase-getting-started-hostnames-pre2.0).
 
-**Mac OS X Notes for 1.8.1 to 2.1+**
+**Mac OS X from 1.8.1 Notes**
+
 
 There is currently no officially supported upgrade installer for Mac OS X. If you
-want to migrate to 1.8.1 to 2.1+ on OS X, you must make a backup of your data
+want to migrate to 1.8.1 to a later Couchbase release on OS X, backup your data
 files with `cbbackup`, install the latest version, then restore your data with
 `cbrestore`. For more information, see [cbbackup
 Tool](#couchbase-admin-cmdline-cbbackup) and [cbrestore
@@ -1487,12 +1504,12 @@ Tool](#couchbase-admin-cmdline-cbrestore).
 
 <a id="couchbase-getting-started-upgrade-1-8-2-0-process"></a>
 
-### Upgrade Notes 1.8 and Earlier to 2.1+
+### Upgrade from 1.8 and Earlier Notes
 
 If you run Couchbase Server 1.8 or earlier, including Membase 1.7.2 and earlier,
 you must upgrade to Couchbase Server 1.8.1 first.You do this so that your data
 files can convert into 2.0 compatible formats. This conversion is only available
-from 1.8.1 to 2.0 + upgrades.
+when upgrading from 1.8.1 to a higher release of Couchbase Server.
 
  * **Offline Upgrade**
 
@@ -1511,18 +1528,18 @@ from 1.8.1 to 2.0 + upgrades.
       backup location.
 
       The `cbupgrade` program will automatically start. This will non-destructively
-      convert data from the 1.8.1 database file format (SQLite) to 2.0 database file
-      format (couchstore). The 1.8 database files are left "as-is", and new 2.0
+      convert data from the 1.8.1 database file format (SQLite) to the newer database file
+      format (couchstore). The 1.8 database files are left "as-is", and the new
       database files are created. There must be enough disk space to handle this
       conversion operation (e.g., 3x more disk space).
 
    <div class="notebox">
    <p>Note</p>
    <p>The data migration process from the old file format to the new file format may
-   take some time. You should wait for the process to finish before you start
+   take some time. You should wait for the process to finish before starting
    Couchbase Server 2.0.</p>
 
-   <p>Once the upgrade process finishes, Couchbase Server 2.0 starts automatically.
+   <p>Once the upgrade process finishes, Couchbase Server starts automatically.
    Repeat this process on all nodes within your cluster.</p>
    </div>
 

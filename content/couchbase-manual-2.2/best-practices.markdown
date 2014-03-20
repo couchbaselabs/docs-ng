@@ -148,7 +148,7 @@ Use the following items to calculate how much memory you need:
 
 Constant                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                      
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Prior to Couchbase 2.1, metadata used 64 bytes. As of Couchbase 2.1, metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
+Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
 SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
 headroom<sup>1</sup>| Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
 High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
@@ -194,7 +194,7 @@ Constants               | value
 ------------------------|-------------------------
 Type of Storage         | SSD                     
 overhead\_percentage    | 25%                     
-metadata\_per\_document | 56 for 2.1, 64 for 2.0.X
+metadata\_per\_document | 56 for 2.1 or higher
 high\_water\_mark       | 85%                     
 
 <a id="couchbase-bestpractice-sizing-ram-sample-vars"></a>
@@ -202,7 +202,7 @@ high\_water\_mark       | 85%
 Variable                   | Calculation                                                      
 ---------------------------|------------------------------------------------------------------
 no\_of\_copies             | = 1 for original and 1 for replica                              
-total\_metadata            | = 1,000,000 \* (100 + 120) \* (2) = 440,000,000                  
+total\_metadata            | = 1,000,000 \* (100 + 56) \* (2) = 312,000,000                  
 total\_dataset             | = 1,000,000 \* (10,000) \* (2) = 20,000,000,000                  
 working\_set               | = 20,000,000,000 \* (0.2) = 4,000,000,000                        
 Cluster RAM quota required | = (440,000,000 + 4,000,000,000) \* (1+0.25)/(0.7) = 7,928,000,000
@@ -226,29 +226,49 @@ per_node_ram_quota as there may be other programs running on your machine.</p>
 
 ### Disk Throughput and Sizing
 
-Couchbase Server decouples RAM from the I/O layer. This is a huge advantage. It
-allows you to scale high at very low and consistent latencies. It also enables
-Couchbase Server to handle very high write loads without affecting your
-application's performance.
+Couchbase Server decouples RAM from the I/O layer. 
+Decoupling allows high scaling at very low and consistent latencies and enables 
+very high write loads without affecting  client application performance. 
 
-However, Couchbase Server still needs to be able to write data to disk. Your
-disks need to be capable of handling a steady stream of incoming data. It is
-important to analyze your application's write load and provide enough disk
-throughput to match.
+Couchbase Server implements an append-only format and a built-in 
+automatic compaction process. Previously, in Couchbase Server 1.8.x, 
+an "in-place-update" disk format was implemented, however, 
+this implementation occasionally produced a performance penalty due to fragmentation of the 
+on-disk files under workloads with frequent updates/deletes. 
 
-While information is written to disk, the internal statistics system monitors
-the outstanding items in the disk write queue. From its display, you can see the
-disk write queue load. Its peak shows how many items stored in Couchbase Server
-would be lost in the event of a server failure. It is up to your own internal
-requirements to decide how much vulnerability you are comfortable with. Then you
-size the cluster accordingly so that the disk write queue level remains low
-across the entire cluster. Adding more nodes will provide more disk throughput.
+The requirements of your disk subsystem are broken down into two components: 
+size and IO. 
 
-Disk space is also required to persist data. How much disk space you should plan
-for is dependent on how your data grows. You will also want to store backup data
-on the system. A good guideline is to plan for at least 130% of the total data
-you expect. 100% of this is for data backup, and 30% for overhead during file
-maintenance.
+**Size** 
+
+Disk size requirements are impacted by the Couchbase file write format, append-only, and the built-in automatic compaction process. Append-only format means that every write (insert/update/delete) creates a new entry in the file(s).
+
+The required disk size increases from the update and delete workload and then shrinks as the automatic compaction process runs. The size increases because of the data expansion rather than the actual data using more disk space. Heavier update and delete workloads increases the size more dramatically than heavy insert and read workloads.
+
+Size recommendations are available for key-value data only. If views and indexes or XDCR are implemented, contact Couchbase support for analysis and recommendations.
+
+**Key-value data only** — Depending on the workload, the required disk size is  **2-3x** your total dataset size (active and replica data combined). 
+
+<div class="notebox bp"><p>Important</p> 
+<p>The disk size requirement of 2-3x your total dataset size applies to key-value data only and does not take into account other data formats and the use of views and indexes or XDCR. 
+</p></div> 
+
+
+
+**IO** 
+
+IO is a combination of the sustained write rate, the need for compacting the database files, and anything else that requires disk access. Couchbase Server automatically buffers writes to the database in RAM and eventually persists them to disk. Because of this, the software can accommodate much higher write rates than a disk is able to handle. However, sustaining these writes eventually requires enough IO to get it all down to disk. 
+
+To manage IO, configure the thresholds and schedule when the compaction process kicks in or doesn't kick in keeping in mind that the successful completion of compaction is critical to keeping the disk size in check. Disk size and disk IO become critical to size correctly when using views and indexes and cross-data center replication (XDCR) as well as taking backup and anything else outside of Couchbase that need space or is accessing the disk. 
+
+
+
+<div class="notebox"><p>Best practice</p> 
+<p> 
+Use the available configuration options to separate data files, indexes and the installation/config directories on separate drives/devices to ensure that IO and space are allocated effectively. 
+</p></div> 
+
+
 
 <a id="couchbase-bestpractice-sizing-network"></a>
 
@@ -546,40 +566,8 @@ can be de/selected by clicking on the `Configure View` link at the top of the
 
 ## Couchbase Behind a Secondary Firewall
 
-If you are deploying Couchbase behind a secondary firewall, you should open the
-ports that Couchbase Server uses for communication. In particular, the following
-ports should be kept open: 11211, 11210, 4369, 8091, 8092, and the port range
-from 21100 to 21199.
-
- * Port 11210
-
-   If you're using smart clients or client-side Moxi from outside the second level
-   firewall, also open up port 11210 (in addition to the above port 8091), so that
-   the smart client libraries or client-side Moxi can directly connect to the data
-   nodes.
-
- * Port 8091
-
-   If you want to use the web admin console from outside the second level firewall,
-   also open up port 8091 (for REST/HTTP traffic).
-
- * Port 8092
-
-   Access to views is provided on port 8092; if this port is not open, you won't be
-   able to run access views, run queries, or update design documents, not even
-   through the Web Admin Console.
-
- * Port 11211
-
-   The server-side Moxi port is 11211. Pre-existing Couchbase and memcached
-   (non-smart) client libraries that are outside the second level firewall would
-   just need port 11211 open to work.
-
-<div class="notebox">
-<p>Note</p>
-<p>Nodes within the Couchbase Server cluster need all the above ports open to work:
-11211, 11210, 4369, 8091, 8092, and the port range from 21100 to 21199. </p>
-</div>
+If Couchbase is being deployed behind a secondary firewall, ensure that the reserved 
+Couchbase network ports are open. For more information about the ports that Couchbase Server uses, see [Network ports](#network-ports).
 
 <a id="couchbase-bestpractice-cloud"></a>
 
@@ -684,7 +672,7 @@ address changes.
 <p>The following steps will completely destroy any data and configuration from the
 node, so you should start with a fresh Couchbase install. If you already have a
 running cluster, you can rebalance a node out of the cluster, make the change,
-and then rebalance it back into the cluster. For more information, see <a href="#couchbase-getting-started-upgrade">Upgrading to Couchbase Server 2.1</a>.</p>
+and then rebalance it back into the cluster. For more information, see <a href="#couchbase-getting-started-upgrade">Upgrading to Couchbase Server 2.2</a>.</p>
 
 <p>Nodes with both IPs and hostnames can exist in the same cluster. When you set
 the IP address using this method, you should not specify the address as
@@ -696,7 +684,7 @@ your host.</p>
 
 As a rule, you should set the hostname before you add a node to a cluster. You
 can also provide a hostname in these ways: when you install a Couchbase Server
-2.1 node or when you do a REST API call before the node is part of a cluster.
+ node or when you do a REST API call before the node is part of a cluster.
 You can also add a hostname to an existing cluster for an online upgrade. If you
 restart, any hostname you establish with one of these methods will be used. For
 instructions, see [Using Hostnames with Couchbase
@@ -870,7 +858,7 @@ The following procedures do not describe every parameter that you can modify whe
 
 **To log in to the Couchbase Web Console:**
 
- You can log in to the Couchbase Web Console by using your web browser to connect to the the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
+ You can log in to the Couchbase Web Console by using your web browser to connect to the public IP address on port 8091. The general format is `http://<server:port>`. For example: if the public IP address is 192.236.176.4, enter `http://192.236.176.4:8091/` in the web browser location bar.
 
 <a id="couchbase-deployment"></a>
 

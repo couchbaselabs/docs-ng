@@ -1,4 +1,4 @@
-# View/Query Interface
+## View/Query Interface
 
 Provides support for views. For more information about using views for indexing
 and querying from Couchbase Server, here are some useful resources:
