@@ -1,7 +1,6 @@
 # Release Notes
 
-The following sections contain release notes for Couchbase Lite for iOS.
-## 1.0 Beta 3 (14 March 2014)
+## 1.0 Beta 3 (March 2014)
 
 This is the third Beta release of Couchbase Lite iOS 1.0.
 
@@ -11,32 +10,27 @@ Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for
 
 The primary focus of this release is to continue adding performance enhancements, push API name changes to follow our spec, and introduce a few minor features, for example:
 
-* The Core Data adapter is now available.
+* **CoreData adapter now available** The `CBLIncrementalStore` class lets you use CoreData with Couchbase Lite (instead of SQLite) as its database.
 
-* Persistent replication is no longer supported.
+* **Persistent replication is no longer supported** We found that they were only marginally useful, confusing to understand and greatly complicated the replicator implementation. Most apps create their replications at launch time; if you do so, just remove the line that set the `.persistent` property and you will be fine.
 
-* The `CBLQuery` class is improved with the addition of `.startKeyDocID` and `.endKeyDocID` properties (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111)).
+* **Support for Views as changes-feed** Map blocks can now determine the sequence number of a document by examining the `_local_seq` property of the document dictionary. This can be used to build Views that act like changes-feeds.
 
-* The `CBLView` class is improved with the addition of the `_local_seq` property.
+* **Improved feature support in CBLQuery** CBLQuery improved with `.startKeyDocID` and `.endKeyDocID` now added (see [111](https://github.com/couchbase/couchbase-lite-ios/issues/111))
 
+* **WebSockets used in continuous sync** The replicator now uses WebSockets to receive the continuous changes feed from the Sync Gateway. This should improve the performance of pull replications.
+
+* **Major performance enhancements** The replicator and Sync Gateway now GZip-compress a lot of their traffic, which saves bandwidth, and `CBLDatabase.lastSequenceNumber` is a lot faster to determine now.
+
+We have also done another round of API name changes to further keep in-sync with our API spec. A complete list of these API name changes is available [here](https://github.com/couchbase/couchbase-lite-ios/wiki/Beta-3-changes#api-changes).
 
 ### Fixes in Beta 3
 
-*  `deleteDatabase` throws an unusual exception that it did not throw in previous beta releases. For a full description of the issue, see <https://groups.google.com/forum/#!msg/mobile-couchbase/gbDKLsnKk54/NvMliOZiF9EJ>.
+We currently do not have fixes outside of our aforementioned highlighted feature work that should be noted separately in this release. 
 
 ### Known Issues
 
-A few of the issues noted in Beta 2 remain:
-
-* Indexing and querying for JSON
-	* Working on a JavaScript equivalent of the CouchDB MapReduce `sum()` function, which adds up the numeric values of all arguments.
-
-	 Issues: [76](https://github.com/couchbase/couchbase-lite-ios/issues/76)
-
-* Third-party compatibility
-	* Server header modification is required when attempting to use `_bulk_get` with a reverse proxy.
-	
-	Issues: [215](https://github.com/couchbase/couchbase-lite-ios/issues/215)
+We currently do not have any new known issues to highlight for this release.
 
 ## 1.0 Beta 2 (December 2013)
 
@@ -67,11 +61,7 @@ This is the second Beta release of Couchbase Lite iOS 1.0. Couchbase Lite is an 
 * API names in Beta 2
 	* As mentioned in the Beta 2 feature list, we've made API changes to support a language-neutral spec. In Beta 2 the old method and property names are still available, but marked as deprecated. Xcode issues warnings for these, and the warning messages tell you what name to use instead.
 	 
-* Indexing and querying for JSON
-	* Working on a JavaScript equivalent of the CouchDB MapReduce sum() function, which adds up the numeric values of all arguments.
-
-	 Issues: [75](https://github.com/couchbase/couchbase-lite-ios/issues/75), [76](https://github.com/couchbase/couchbase-lite-ios/issues/76)
-	
+* Indexing and querying for JSON	
 	* The querying parameter startkey_docid is not yet implemented.
 
 	 Issues: [111](https://github.com/couchbase/couchbase-lite-ios/issues/111)
