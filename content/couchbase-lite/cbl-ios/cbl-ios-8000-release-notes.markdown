@@ -8,7 +8,7 @@ Couchbase Lite is an ultra-lightweight, reliable, secure JSON database built for
 
 ### Features
 
-The primary focus of this release is to continue adding performance enhancements and introduce a few minor features, for example:
+The primary focus of this release is to continue adding performance enhancements, push API name changes to follow our spec, and introduce a few minor features, for example:
 
 * **CoreData adapter now available** The `CBLIncrementalStore` class lets you use CoreData with Couchbase Lite (instead of SQLite) as its database.
 
@@ -26,10 +26,7 @@ We have also done another round of API name changes to further keep in-sync with
 
 ### Fixes in Beta 3
 
-Some fixes to highlight in this release:
-
-* Document support
-	* 'deleteDatabase' throws an unusual exception that it did not previously do before. Full description of the issue is available [here](https://groups.google.com/forum/#!msg/mobile-couchbase/gbDKLsnKk54/NvMliOZiF9EJ).
+We currently do not have fixes outside of our aforementioned highlighted feature work that should be noted separately in this release. 
 
 ### Known Issues
 
@@ -64,11 +61,7 @@ This is the second Beta release of Couchbase Lite iOS 1.0. Couchbase Lite is an 
 * API names in Beta 2
 	* As mentioned in the Beta 2 feature list, we've made API changes to support a language-neutral spec. In Beta 2 the old method and property names are still available, but marked as deprecated. Xcode issues warnings for these, and the warning messages tell you what name to use instead.
 	 
-* Indexing and querying for JSON
-	* Working on a JavaScript equivalent of the CouchDB MapReduce sum() function, which adds up the numeric values of all arguments.
-
-	 Issues: [75](https://github.com/couchbase/couchbase-lite-ios/issues/75), [76](https://github.com/couchbase/couchbase-lite-ios/issues/76)
-	
+* Indexing and querying for JSON	
 	* The querying parameter startkey_docid is not yet implemented.
 
 	 Issues: [111](https://github.com/couchbase/couchbase-lite-ios/issues/111)
