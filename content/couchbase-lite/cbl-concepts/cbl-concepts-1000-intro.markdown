@@ -1,6 +1,8 @@
-# Introduction
 
+# Introduction
 This guide provides a platform-independent overview of Couchbase Lite that focuses on what it is and how it works with your data.
+
+# What is Couchbase Lite?
 
 **Couchbase Lite** is a lightweight, document-oriented (NoSQL), syncable database engine suitable for embedding into mobile apps.
 
@@ -32,14 +34,14 @@ Couchbase Lite provides native APIs for seamless iOS (Objective-C) and Android (
 
 ## Features
 
-Major features of Couchbase Lite:
+Couchbase Lite provides native APIs for iOS and Android that offer low-latency and offline access to data.
 
   * **JSON-based**. Every document is a [JSON](http://json.org) object consisting of free-form key-value pairs. The values can contain arrays or even nested objects.This lets you structure your data in a way that's natural to your app, without having to deal with complex data normalization or joins.
   * **Schemaless**. This means that you don't have to define a rigid data layout beforehand, and later go through complex migrations if you need to update it. Data layout is somewhat free-form, and records, called *documents*, can have different structures. A sophisticated MapReduce query engine enables you to perform efficient queries, even on large data sets, regardless of how you structure the data in your documents.
   * Provides **native, object-oriented APIs for iOS and Android devices** that integrate with your app framework. These APIs can map database documents to your own native object model, let you work directly with JSON structures, or both. Additionally, apps built with web technologies can use the Couchbase Lite REST API (for example, JavaScript, C#, or Python applications).
   * Supports **replication** with compatible database servers. This gives your app best-of-breed sync capabilities. Not only can the user's data stay in sync across multiple devices, but multiple users' data can be synced together.
   * Supports **peer-to-peer replication**. By adding an extra HTTP listener component, your app can accept connections from other devices running Couchbase Lite and exchange data with them.
- * Supports **low-latency** and even **offline** access to data. In contrast with the frequent network request and response cycle of a traditional networked app, you work primarily with local data. This means your app remains responsive whether it's on WiFi, a slow cell network, or offline. The user can even modify data while offline, and it'll be synced to the server as soon as possible.
+ * Supports **low-latency** and **offline** access to data. In contrast with the frequent network request and response cycle of a traditional networked app, you work primarily with local data. This means your app remains responsive whether it's on WiFi, a slow cell network, or offline. The user can even modify data while offline, and it'll be synced to the server as soon as possible.
 
 ## Why Use Couchbase Lite?
 
@@ -57,22 +59,21 @@ Couchbase Lite provides an ultra-lightweight, reliable, secure JSON database bui
 
 ### Easy Sync
 
-Couchbase Lite provides a sync solution that already works. It's easy to set up, easy to manage, and easy to scale. Data syncing is crucial for mobile apps because it:
+Couchbase Lite provides a sync solution that already works. It's easy to set up, easy to manage, and easy to scale. Data syncing is crucial for mobile apps:
 
-* Lets users work with their data on multiple devices, from phones to desktop computers.
+* Customers want to work with their data on multiple devices—smartphones, tablets, and desktop computers.
 
-* Lets groups of users collaborate on shared data.
+* Groups of users want to collaborate on shared data.
 
-* Lets companies update data sets (whether corporate databases or restaurant directories) in one central place and have the updates delivered efficiently to clients.
+* Businesses want to update data sets in one central place and have the updates delivered efficiently to clients..
 
-* Makes apps more responsive, and even lets users work offline, by _taking network I/O out of the critical path_. The app's UI operates on local data, and syncing runs in the background.
+* Users want responsive apps that let them work offline.
 
-However, syncing is very difficult to implement properly. It requires special metadata (like vector clocks or revision trees), has to handle network partition and data conflicts, and its algorithms have to work incrementally and be highly failure-tolerant. Some mobile developers have waded into ad hoc sync implementations and found themselves in over their heads, with delayed or canceled products. Couchbase Lite has sync compatibility with a solution that already works, Couchbase Sync Gateway. 
-
+Syncing is very difficult to implement properly. It requires special metadata (like vector clocks or revision trees), has to handle network partition and data conflicts, and its algorithms have to work incrementally and be highly failure-tolerant. Some mobile developers have waded into ad hoc sync implementations and found themselves in over their heads, with delayed or canceled products. Couchbase Lite provides sync compatibility with a solution that already works, Couchbase Sync Gateway.
 
 ### Use Cases
 
-Couchbase has been working with community users and customers on use cases like these:
+Couchbase Lite technology boosts customer satisfaction in industries such as medicine, retail, travel, transportation, and social media. Couchbase has been working with community users and customers on use cases like these:
 
 * Medical Records—medical data is a great fit for schemaless JSON storage. It's also critical that it be available wherever the health care provider goes, regardless of network conditions.
 

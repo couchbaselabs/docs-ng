@@ -118,9 +118,8 @@ you will most likely create buckets for your development and production
 environment.
 
 For more information about data buckets in Couchbase Server, and how to create
-them, see [Using Data Buckets](bucket-general-function) and [Couchbase Server
-2.0 Manual, Data
-Buckets](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console-data-buckets.html)
+them, see [About Data Buckets](#bucket-general-function) and [Data Storage](http://docs.couchbase.com/couchbase-manual-2.0/#couchbase-introduction-architecture-buckets) in the Couchbase Server Manual.
+
 
 <a id="keys-documents"></a>
 

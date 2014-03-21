@@ -11,7 +11,7 @@ Replications are represented by `CBLReplication` objects. You create replication
 
 Creating a replication object does not start the replication automatically. To start a replication, you need to send a `start` message to the replication object.
 
-Newly created replications are nonpersistent and noncontinuous. To change those settings, you need to immediately set their `persistent` or `continuous` properties.
+Newly created replications are noncontinuous. To change the settings, you need to immediately set their `continuous` properties.
 
 It's not strictly necessary to keep references to the replication objects, but you do need them if you want to [monitor their progress](#monitoring-replication-progress).
 
@@ -78,7 +78,7 @@ Don't expect the progress indicator to be completely accurate. It might jump aro
 
 ### Deleting replications
 
-You can cancel persistent and continuous replications by deleting them. The following example shows how to delete a replication by deleting the associated `CBLModel` object, `repl`:
+You can cancel continuous replications by deleting them. The following example shows how to delete a replication by deleting the associated `CBLModel` object, `repl`:
 
 ```objectivec
 [repl deleteDocument: &error];

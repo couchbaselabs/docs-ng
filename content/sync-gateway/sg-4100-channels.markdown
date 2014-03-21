@@ -10,7 +10,7 @@ A replication from Sync Gateway specifies a set of channels to replicate. Docume
 
 You do not need to register or preassign channels. Channels come into existence as documents are assigned to them. Channels with no documents assigned to them are empty.
 
-Valid channel names consist of text letters \[A&ndash;Z, a&ndash;z], digits [0&ndash;9], and a few special characters \[= + / . , _ @] . The empty string is not allowed. The special channel name `*` denotes all channels. Channel names are compared literally—the comparison is case and diacritical sensitive.
+Valid channel names consist of text letters \[A&ndash;Z, a&ndash;z], digits [0&ndash;9], and a few special characters \[-+=/_.@] . The empty string is not allowed. The special channel name `*` denotes all channels. Channel names are compared literally—the comparison is case and diacritical sensitive.
 
 ### Mapping documents to channels
 

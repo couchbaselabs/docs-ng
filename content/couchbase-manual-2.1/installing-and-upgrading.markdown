@@ -191,6 +191,25 @@ Port                       | Description                   | Node to Node | Node
 4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No  
 21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No  
 
+
+Port 8091
+: Used by the Web Console from outside the second level firewall (for REST/HTTP traffic).
+
+Port 8092
+: Used to access views, run queries, and update design documents.
+
+
+Port 11210
+: Used by smart client libraries or client-side Moxi to directly connect to the data nodes.
+
+Port 11211
+: Used by pre-existing Couchbase and memcached (non-smart) client libraries that are outside the second level firewall  to work.
+
+
+All other Ports
+: Used for other Couchbase Server communictions.
+
+
 <a id="couchbase-getting-started-install"></a>
 
 ## Installing Couchbase Server
