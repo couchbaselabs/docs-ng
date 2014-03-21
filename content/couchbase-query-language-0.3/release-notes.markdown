@@ -2,8 +2,42 @@
 
 The following sections provide release notes for individual versions of Couchbase Query Language (N1QL).
 
+
+## Release Notes for Couchbase Query Language Developer Preview 3 (March 2014)
+This is the third developer preview edition of Couchbase Query Language.
+
+**New features in DP3:**
+
+* KEYS clause
+* BETWEEN and NOT BETWEEN clause
+* JOIN clause (based on primary keys)
+* NEST clause (based on primary keys
+* A second form of Case expression
+* Array functions: ARRAY_CONCAT(), ARRAY_LENGTH(), ARRAY_APPEND(), ARRAY_PREPEND(), and ARRAY_REMOVE()
+* Array slicing
+* Date functions: functions with Unix MILLIS timestamps
+* Type functions: IS\_, TO\_, and TYPE_NAME()
+
+
+
+**Changed features in DP#**
+
+* FROM ... OVER ... query pattern is changed to FROM ... UNNEST ...
+* ANY ... OVER ... query pattern is changed to ANY ... SATISFIES ...
+* ALL ... OVER ... query pattern is changed to EVERY ... SATISFIES ...
+
+
+**Fixes in DP3:**
+
+
+
+**Known Issues in DP3:**
+
+This is a 'Developer Preview' and this release is **not** meant to be used in Production.
+
+
 ## Release Notes for Couchbase Query Language Developer Preview 2 (November 2013) ##
-This is the second developer preview edition of Couchbase Query Language
+This is the second developer preview edition of Couchbase Query Language.
 
 **New features in DP2:**
 
@@ -12,11 +46,12 @@ This is the second developer preview edition of Couchbase Query Language
 * Minor syntax improvements – Example, AS keyword is now optional
 * Stability – various bug fixes to help improve the stability of query engine
 
+
 **Fixes in DP2:**
 
-* Add initial date and time features
-  
+* Add initial date and time features  
   *Issues*: [MB-9325](http://www.couchbase.com/issues/browse/MB-9325)
+  
 * Queries covered by index now avoid the FETCH operator
   
   *Issues*: [MB-9189](http://www.couchbase.com/issues/browse/MB-9189)
