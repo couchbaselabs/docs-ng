@@ -1,0 +1,103 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. The function names are case insensitive. Aggregate functions include SUM, AVG, ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="Aggregate functions"/><meta name="abstract" content="Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. The function names are case insensitive."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. The function names are case insensitive."/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_q2k_bzw_kn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Aggregate functions</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_q2k_bzw_kn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"/><td><div class="navheader"/></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">Aggregate functions</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">Aggregate functions take multiple values from
+    documents, perform calculations and return a single value as the result.
+    The function names are case insensitive.</p>
+
+
+<div class="section">
+    <p class="p">Aggregate functions include SUM, AVG, COUNT, MIN, MAX and ARRAY_AGG. Aggregate functions
+      can only be used in SELECT, HAVING, and ORDER BY clauses. When aggregate functions are
+      used in expressions in these clauses, the query will operate as an aggregate query.
+      Aggregate functions take one argument, the value over which to compute the aggregate
+      function. The COUNT function can also take a wildcard (*) or a path with a wildcard (path.*) as its argument.</p>
+
+  
+  <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
+          <th valign="bottom" align="left" id="d633e23" class="stentry" width="19.569471624266146%">Function</th>
+
+          <th valign="bottom" align="left" id="d633e26" class="stentry" width="51.46771037181996%">Description</th>
+
+          <th valign="bottom" align="left" id="d633e29" class="stentry" width="28.962818003913895%">Returns</th>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d633e23" class="stentry">ARRAY_AGG(expr)</td>
+
+          <td valign="top" headers="d633e26" class="stentry">Evaluate the expression for each member of the group and return an array
+            containing these values</td>
+
+          <td valign="top" headers="d633e29" class="stentry">Array</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d633e23" class="stentry">AVG(expr)</td>
+
+          <td valign="top" headers="d633e26" class="stentry">Returns average value of all values in a result set. Non-numeric values in a
+            result set are ignored.</td>
+
+          <td valign="top" headers="d633e29" class="stentry">Integer</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d633e23" class="stentry">COUNT(expr)</td>
+
+          <td valign="top" headers="d633e26" class="stentry">Returns the number items in a result set</td>
+
+          <td valign="top" headers="d633e29" class="stentry">0 or positive integer</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d633e23" class="stentry">MIN(expr)</td>
+
+          <td valign="top" headers="d633e26" class="stentry">Returns minimum value of all values in a result set. This is the first non-NULL,
+            non-MISSING value that would result from an ORDER BY</td>
+
+          <td valign="top" headers="d633e29" class="stentry">0 or positive integer, NULL if no non-NULL, non-MISSING items in result
+            set</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d633e23" class="stentry">MAX(expr)</td>
+
+          <td valign="top" headers="d633e26" class="stentry">Returns maximum value of all values in a result set. This is the last non-NULL,
+            non-MISSING value that would result from an ORDER BY</td>
+
+          <td valign="top" headers="d633e29" class="stentry">0 or positive integer</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d633e23" class="stentry">SUM(expr)</td>
+
+          <td valign="top" headers="d633e26" class="stentry">Returns sum of all numeric values in a result set. Non-numeric values in a result
+            set are ignored</td>
+
+          <td valign="top" headers="d633e29" class="stentry">Integer</td>
+
+        </tr>
+</table>
+
+  
+  
+  
+</div>
+
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

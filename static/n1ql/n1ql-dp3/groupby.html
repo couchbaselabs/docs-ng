@@ -1,0 +1,94 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The GROUP BY clause collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. The optional HAVING clause follows the GROUP BY clause. ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="GROUP BY clause"/><meta name="abstract" content="The GROUP BY clause collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. The optional HAVING clause follows the GROUP BY clause."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The GROUP BY clause collects items from multiple result objects and groups the elements by one or more expressions. This is an aggregate query. The optional HAVING clause follows the GROUP BY clause."/><meta name="DC.Relation" scheme="URI" content="select.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_u3m_jg4_mn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>GROUP BY clause</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_u3m_jg4_mn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects.">SELECT statement</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SELECT statement</span></a></span>  </div></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">GROUP BY clause</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">
+    The GROUP BY clause collects items from multiple result objects and 
+    groups the elements by one or more expressions. This is an aggregate query.  
+    The optional HAVING clause follows the GROUP BY clause.
+  </p>
+
+    <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+      
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> expr letting-clause <strong class="hl-keyword" style="color:#7f0055">having</strong>-clause
+      </pre>
+
+      <p class="p">The HAVING clause optionally follows the GROUP BY clause. 
+        It filters result objects from the GROUP BY clause with a given expression.</p>
+
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> expr <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> expr
+      </pre>
+
+    </div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Compatibility</h2>
+      
+      <p class="p">Compatible with Couchbase Server 2.2</p>
+
+    </div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Example</h2>
+      
+      <p class="p">In the following example, there are json documents for books and films.</p>
+
+      <ul class="ul">
+        <li class="li">Films have a field <samp class="ph codeph">"type": "movie"</samp>.</li>
+ 
+        <li class="li">Books have a field <samp class="ph codeph">"type": "book"</samp>.</li>
+
+      </ul>
+
+      <p class="p">Books in the result set are grouped together and 
+        returned in an object and films are grouped and returned in another object.</p>
+
+     <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> title, <strong class="hl-keyword" style="color:#7f0055">type</strong>, <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) <strong class="hl-keyword" style="color:#7f0055">AS</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong> <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">catalog</strong> <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <strong class="hl-keyword" style="color:#7f0055">type</strong>       
+     </pre>
+
+    </div>
+
+    
+    <div class="example">
+      <p class="p">The following example shows the GROUP BY clause used in the N1QL tutorial.</p>
+
+      <pre class="pre codeblock language-sql">    
+// <strong class="hl-keyword" style="color:#7f0055">Group</strong> <strong class="hl-keyword" style="color:#7f0055">by</strong> relation
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> relation, <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) <strong class="hl-keyword" style="color:#7f0055">AS</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>
+    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
+        <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> relation
+
+// <strong class="hl-keyword" style="color:#7f0055">Group</strong> <strong class="hl-keyword" style="color:#7f0055">by</strong> relations <strong class="hl-keyword" style="color:#7f0055">and</strong> <strong class="hl-keyword" style="color:#7f0055">filter</strong> groups <strong class="hl-keyword" style="color:#7f0055">by</strong> <strong class="hl-keyword" style="color:#7f0055">size</strong>
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> relation, <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) <strong class="hl-keyword" style="color:#7f0055">AS</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>
+    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
+        <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> relation
+            <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) &gt; <span class="hl-number">1</span>
+      </pre>
+
+    </div>
+   
+    
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SELECT statement</span></a></span>  </div>
+</body>
+</html>

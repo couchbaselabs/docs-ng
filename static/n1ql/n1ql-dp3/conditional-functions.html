@@ -1,0 +1,182 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Short reference description. Conditional functions for unknowns The following functions are conditional functions for unknowns. Function Description Returns FIRSTNUM(expr1, expr2, ... ) Returns the ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="Conditional functions"/><meta name="abstract" content="Short reference description."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Short reference description."/><meta name="DC.Relation" scheme="URI" content="scalar-function.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_vbz_jvd_ln"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Conditional functions</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_vbz_jvd_ln">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="scalar-function.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Scalar functions</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="scalar-function.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Scalar functions</span></a></span>  </div></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">Conditional functions</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">Short reference description.</p>
+
+
+<div class="section"><h2 class="title sectiontitle">Conditional functions for unknowns</h2>
+  
+    <p class="p">The following functions are conditional functions for unknowns.</p>
+
+    <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
+          <th valign="bottom" align="left" id="d1311e26" class="stentry" width="34.12322274881516%">Function</th>
+
+          <th valign="bottom" align="left" id="d1311e29" class="stentry" width="42.18009478672985%">Description</th>
+
+          <th valign="bottom" align="left" id="d1311e32" class="stentry" width="23.696682464454973%">Returns</th>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e26" class="stentry">FIRSTNUM(expr1, expr2, ... )</td>
+
+          <td valign="top" headers="d1311e29" class="stentry">Returns the first non-NULL, non-MISSING, non-NaN, non-infinite numeric
+            value</td>
+
+          <td valign="top" headers="d1311e32" class="stentry">NULL or integer</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e26" class="stentry">IFMISSING(expr, expr, ... )</td>
+
+          <td valign="top" headers="d1311e29" class="stentry">Returns the first non-MISSING value</td>
+
+          <td valign="top" headers="d1311e32" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e26" class="stentry">IFMISSINGORNULL(expr, expr, ... )</td>
+
+          <td valign="top" headers="d1311e29" class="stentry">Returns the first non-MISSING, non-NULL value</td>
+
+          <td valign="top" headers="d1311e32" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e26" class="stentry">IFNULL(expr, expr, ... )</td>
+
+          <td valign="top" headers="d1311e29" class="stentry">Returns the first non-NULL value</td>
+
+          <td valign="top" headers="d1311e32" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e26" class="stentry">MISSINGIF(value1, value2)</td>
+
+          <td valign="top" headers="d1311e29" class="stentry">If value1 equals value2 return MISSING, otherwise value1</td>
+
+          <td valign="top" headers="d1311e32" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e26" class="stentry">NULLIF(value1, value2 )</td>
+
+          <td valign="top" headers="d1311e29" class="stentry">If valuel 1 equals value2, return NULL, otherwise value1.</td>
+
+          <td valign="top" headers="d1311e32" class="stentry">value1 or NULL</td>
+
+        </tr>
+</table>
+
+</div>
+      
+ 
+ 
+ <div class="section"><h2 class="title sectiontitle">Conditional functions for numbers</h2>
+   
+      <p class="p">The following functions are conditional functions for numbers.</p>
+
+      <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
+          <th valign="bottom" align="left" id="d1311e123" class="stentry" width="34.204275534441805%">Function</th>
+
+          <th valign="bottom" align="left" id="d1311e126" class="stentry" width="42.042755344418055%">Description</th>
+
+          <th valign="bottom" align="left" id="d1311e129" class="stentry" width="23.752969121140143%">Returns</th>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">IFINF(expr1, expr2, ... )</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">Returns the first non-infinite value (+ or -)</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">IFNAN(expr1, expr2, ... )</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">Returns the first non-NaN value</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">IFNANORINF(expr1, expr2, ... )</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">Returns the first non-NaN, non-infinite value</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">IFNEGINF(expr1, expr2, ... )</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">Returns the first non-infinite value</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">IFPOSINF(expr1, expr2, ... )</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">Returns the first positive non-infinite value</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">NANIF(value1, value2)</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">If value1 equals value2, return NaN, otherwise value1</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value1 or NaN</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">NEGINFIF(value1, value2)</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">If value1 equals value2, return negative infinity, otherwise value1</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value1 or +infinity</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">NEGINFIF(value1, value2)</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">If value1 equals value2, return negative infinity, otherwise value1</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value1 or +infinity</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d1311e123" class="stentry">POSINFIF(value1, value2)</td>
+
+          <td valign="top" headers="d1311e126" class="stentry">If value1 equals value2, return positive infinity, otherwise value1</td>
+
+          <td valign="top" headers="d1311e129" class="stentry">value1 or +infinity</td>
+
+        </tr>
+</table>
+
+ </div>
+
+
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="scalar-function.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Scalar functions</span></a></span>  </div>
+</body>
+</html>

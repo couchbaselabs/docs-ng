@@ -1,0 +1,19 @@
+/* Insert logo image to the left of the guide name */
+div#productTitle h1:before {
+    display: inline;
+    content: url("oxygen-webhelp/resources/img/Couchbase-logo150.png");
+    margin: 0 1em 0 0;    
+}
+
+h1 {
+    /* Couchbase red */
+    color: #a30a0a;
+}
+
+.title.topictitle1 {
+    color: #a30a0a;
+}
+s
+.title.sectiontitle {
+    color: #a30a0a;
+}

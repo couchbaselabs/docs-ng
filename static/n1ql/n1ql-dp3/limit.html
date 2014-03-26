@@ -1,0 +1,124 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The LIMIT clause imposes a specific number of objects returned in a result set by SELECT. This clause must have a non-negative integer as upper bound. The OFFSET clause optionally follows the LIMIT ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="LIMIT clause"/><meta name="abstract" content="The LIMIT clause imposes a specific number of objects returned in a result set by SELECT. This clause must have a non-negative integer as upper bound. The OFFSET clause optionally follows the LIMIT clause. If an offset is specified, that many number of objects are omitted from the result set before enforcing a specified LIMIT. This clause must be a non-negative integer."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The LIMIT clause imposes a specific number of objects returned in a result set by SELECT. This clause must have a non-negative integer as upper bound. The OFFSET clause optionally follows the LIMIT clause. If an offset is specified, that many number of objects are omitted from the result set before enforcing a specified LIMIT. This clause must be a non-negative integer."/><meta name="DC.Relation" scheme="URI" content="select.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_h3q_1p4_mn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>LIMIT clause</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_h3q_1p4_mn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects.">SELECT statement</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SELECT statement</span></a></span>  </div></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">LIMIT clause</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">The LIMIT clause imposes a specific number of objects returned in a result set by SELECT. 
+    This clause must have a non-negative integer as upper bound. 
+    The OFFSET clause optionally follows the LIMIT clause. 
+    If an offset is specified, that many number of objects are omitted 
+    from the result set before enforcing a specified LIMIT. 
+    This clause must be a non-negative integer.</p>
+
+
+    <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+      
+      <pre class="pre codeblock language-sql">
+LIMIT expr
+LIMIT expr OFFSET expr
+      </pre>
+
+    </div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Compatibility</h2>
+      
+      <p class="p">Compatible with Couchbase Server 2.2</p>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Description</h2>
+      <p class="p">An OFFSET clause specifies a number of objects to be skipped. 
+        If a LIMIT clause is also present, the OFFSET is applied prior to the LIMIT. 
+        The OFFSET value must be a non-negative integer.</p>
+
+      <p class="p">A LIMIT clause imposes an upper bound on the number of objects returned by the SELECT statement. 
+        The LIMIT value must be a non-negative integer.</p>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Example</h2>
+      
+      <p class="p">The following example shows the LIMIT clause with the N1QL tutorial.</p>
+
+      
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> fname, age
+    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
+        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> age 
+            LIMIT <span class="hl-number">2</span> 
+      </pre>
+
+      
+      <p class="p">Returns:</p>
+
+      <pre class="pre codeblock">
+{
+  "resultset": [
+    {
+      "age": 18,
+      "fname": "Fred"
+    },
+    {
+      "age": 20,
+      "fname": "Harry"
+    }
+  ]
+}       
+      </pre>
+
+      
+      <p class="p">The following example shows the LIMIT and OFFSET clauses with the N1QL tutorial.</p>
+
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> fname, age
+    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
+        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> age 
+            LIMIT <span class="hl-number">2</span> OFFSET <span class="hl-number">2</span>        
+      </pre>
+
+      <p class="p">Returns:</p>
+
+      
+      <pre class="pre codeblock">
+{
+  "resultset": [
+    {
+      "age": 40,
+      "fname": "Jane"
+    },
+    {
+      "age": 46,
+      "fname": "Dave"
+    }
+  ]
+}        
+      </pre>
+
+      
+    </div>
+   
+    
+
+
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SELECT statement</span></a></span>  </div>
+</body>
+</html>

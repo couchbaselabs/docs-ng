@@ -1,0 +1,85 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This is the second developer preview edition of Couchbase Query Language released November 2013. New features Introducing date/time features in this release. Specifically two new functions DATE_PART ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="DP2 release notes"/><meta name="DC.Relation" scheme="URI" content="N1QLreleasenotes.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic_z4j_k3k_nn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>DP2 release notes</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic_z4j_k3k_nn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="N1QLreleasenotes.html" title="N1QL release notes">N1QL release notes</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="N1QLreleasenotes.html" title="N1QL release notes"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">N1QL release notes</span></a></span>  </div></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">DP2 release notes</h1>
+
+  <div class="body">
+    <p class="p">This is the second developer preview edition of Couchbase Query Language released November 2013.</p>
+
+    
+    <div class="section"><h2 class="title sectiontitle">New features</h2></div>
+
+    <ul class="ul">
+      <li class="li">Introducing date/time features in this release. 
+        Specifically two new functions DATE_PART and NOW_STR have been added. 
+        We will likely expand capabilities in this area in subsequent releases.</li>
+
+      <li class="li">Performance Improvements: Better use of indexes. 
+        These are internal improvements in the engine, for example, 
+        queries covered by index can eliminate the Fetch operator; 
+        find by id queries need not scan the index at all; MIN changed to use index.e</li>
+
+      <li class="li">Minor syntax improvements – Example, AS keyword is now optional</li>
+
+      <li class="li">Stability – various bug fixes to help improve the stability of query engine</li>
+
+    </ul>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Changed features</h2></div>
+
+    <ul class="ul">
+      <li class="li">Not applicable</li>
+
+    </ul>
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Fixes</h2></div>
+
+    <ul class="sl simple">
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9325" target="_blank">MB-9325 - Add initial date and time features.</a></li>
+
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9189" target="_blank">MB-9189 - Queries covered by index now avoid the FETCH operator.</a></li>
+
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9187" target="_blank">MB-9187 - Find by id queries now optimized to not scan an index at all.</a></li>
+
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9138" target="_blank">MB-9138 - Make AS keyword optional.</a></li>
+
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9060" target="_blank">MB-9060 - MIN now optimized to use index.</a></li>
+
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9206" target="_blank">MB-9206 - DISTINCT behaved unexpectedly when used in combination with the GROUP BY clause.</a></li>
+
+      <li class="sli">Issue: <a class="xref" href="http://www.couchbase.com/issues/browse/MB-9136" target="_blank">MB-9136 - Make IN optional in OVER..IN clauses.</a></li>
+
+      <li class="sli"/>
+
+      <li class="sli"/>
+
+    </ul>
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Known issues</h2></div>
+
+    
+    <p class="p">This release is a Developer Preview and is not meant to be used in Production.</p>
+
+    
+    
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="N1QLreleasenotes.html" title="N1QL release notes"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">N1QL release notes</span></a></span>  </div>
+</body>
+</html>

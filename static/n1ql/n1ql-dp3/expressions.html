@@ -1,0 +1,441 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="N1QL expressions are like formulas written in a query language. They include operators, symbols and values to evaluate and filter result objects. Syntax literal- value // [ string | number | object | ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="Expressions"/><meta name="abstract" content="N1QL expressions are like formulas written in a query language. They include operators, symbols and values to evaluate and filter result objects."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="N1QL expressions are like formulas written in a query language. They include operators, symbols and values to evaluate and filter result objects."/><meta name="DC.Relation" scheme="URI" content="operators.html"/><meta name="DC.Relation" scheme="URI" content="functions.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_kqy_tgq_kn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Expressions</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_kqy_tgq_kn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"/><td><div class="navheader"/></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">Expressions</h1>
+
+  
+  
+  <div class="body refbody"><p class="shortdesc">N1QL expressions are like formulas written in a query language. They include operators, 
+    symbols and values to evaluate and filter result objects.</p>
+
+    
+
+    
+    <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+      
+      <pre class="pre codeblock language-sql">
+literal-<strong class="hl-keyword" style="color:#7f0055">value</strong>   // [ string | <strong class="hl-keyword" style="color:#7f0055">number</strong> | <strong class="hl-keyword" style="color:#7f0055">object</strong> | <strong class="hl-keyword" style="color:#7f0055">array</strong> | <strong class="hl-keyword" style="color:#7f0055">TRUE</strong> | <strong class="hl-keyword" style="color:#7f0055">FALSE</strong> | <strong class="hl-keyword" style="color:#7f0055">NULL</strong> ]
+identifier      // [ unescaped-identifier | escaped-identifier ]
+                // unescaped-identifier: <strong class="hl-keyword" style="color:#7f0055">a</strong>-z | <strong class="hl-keyword" style="color:#7f0055">A</strong>-Z | _ | <strong class="hl-keyword" style="color:#7f0055">and</strong>  [ <span class="hl-number">0</span>-<span class="hl-number">9</span> | <strong class="hl-keyword" style="color:#7f0055">a</strong>-z | <strong class="hl-keyword" style="color:#7f0055">a</strong>-Z | _ | $ ]
+                // escaped-identifier: `chars`
+<strong class="hl-keyword" style="color:#7f0055">case</strong>-expr       // <strong class="hl-keyword" style="color:#7f0055">CASE</strong> <strong class="hl-keyword" style="color:#7f0055">WHEN</strong> expr <strong class="hl-keyword" style="color:#7f0055">THEN</strong> expr [, ...] [ <strong class="hl-keyword" style="color:#7f0055">ELSE</strong> expr ] <strong class="hl-keyword" style="color:#7f0055">END</strong>
+collection-expr // <strong class="hl-keyword" style="color:#7f0055">ANY</strong> | <strong class="hl-keyword" style="color:#7f0055">EVERY</strong> expr SATISFIES identifier <strong class="hl-keyword" style="color:#7f0055">IN</strong> <strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">END</strong>
+                // <strong class="hl-keyword" style="color:#7f0055">FIRST</strong> | <strong class="hl-keyword" style="color:#7f0055">ARRAY</strong> expr <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> identifier <strong class="hl-keyword" style="color:#7f0055">IN</strong> <strong class="hl-keyword" style="color:#7f0055">path</strong> [ <strong class="hl-keyword" style="color:#7f0055">WHEN</strong> expr ] <strong class="hl-keyword" style="color:#7f0055">END</strong>
+logical-term
+comparison-term
+arithmetic-term
+string-term
+<strong class="hl-keyword" style="color:#7f0055">function</strong>        // <strong class="hl-keyword" style="color:#7f0055">function</strong>-<strong class="hl-keyword" style="color:#7f0055">name</strong>( [ [ <strong class="hl-keyword" style="color:#7f0055">DISTINCT</strong> ] * | <strong class="hl-keyword" style="color:#7f0055">path</strong>.* | expr [, ... ] ] )
+nested-expr     // expr.expr <strong class="hl-keyword" style="color:#7f0055">or</strong> expr[ expr ]
+expr ]
+      </pre>
+      
+    </div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Compatibility</h2>
+      
+      <p class="p">Compatible with Couchbase Server 2.2</p>
+
+    </div>
+
+
+
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">The following examples and result outputs are based on the following customer order document.</p>
+
+      
+      <pre class="pre codeblock">
+{
+            "type":"contact",
+            "name":"dave",
+            "age": 45,
+            "email": "dave@gmail.com",
+            "children":[
+                {"name":"aiden","age":17,"gender":"m"},
+                {"name":"bill","age":2,"gender":"f"}
+                ],
+            ....
+}
+        
+      </pre>
+
+</div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">Literal values</h2>  
+      <p class="p">Literal value expressions returns any record that matches the literal expression provided in a query andincludes standard literal values in JSON. 
+        This includes strings, numbers, objects, arrays, the boolean TRUE/FALSE as well as NULL. 
+        The rules defined at json.org apply to literal values in N1QL with two exceptions: JSON arrays and objects.</p>
+
+        <ul class="ul">
+          <li class="li">JSON arrays and objects can only contain nested values.</li>
+
+          <li class="li">In N1QL, literal arrays and objects can also contain nested expressions.</li>
+
+          <li class="li">In JSON ‘true’, ‘false’, and ‘null’ are case-sensitive.</li>
+
+          <li class="li">In N1QL, they are case-insensitive to be consistent with other keywords.</li>
+
+        </ul>
+ 
+ 
+      <p class="p">The following query returns emails from contacts where the contact name is ‘dave’.</p>
+
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> email <strong class="hl-keyword" style="color:#7f0055">FROM</strong> contacts <strong class="hl-keyword" style="color:#7f0055">AS</strong> contact <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> contact.<strong class="hl-keyword" style="color:#7f0055">name</strong> = <span class="hl-string" style="color:#2a00ff">'dave'</span>
+  
+{
+  "email": "dave@gmail.com"
+}
+  </pre>
+
+ </div>
+
+    
+ 
+<div class="example"><h2 class="title sectiontitle">Identifiers</h2>
+      <p class="p">Identifiers, also known as a path, can be an escaped or unescaped identifier. 
+        Unescaped identifiers support the most common identifiers in JSON as a simpler syntax. 
+        Escaped identifiers are surrounded by back-ticks and support all identifiers in JSON. 
+        Using two back-ticks within an escaped identifier creates a single back-tick. 
+        An identifier is a reference to a value in the current context of a query. 
+        For instance, for a contacts database with the following document structure, the identifier <samp class="ph codeph">person.lasName</samp> evaluates to the value, Irving.
+      </p>
+
+      
+      <pre class="pre codeblock language-sql">
+   `{
+   "firstName" : "Geremy"
+   "lastName" : "Irving"
+   }
+ </pre>
+
+</div>
+
+    
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Nested expressions</h2>
+      
+      <p class="p">
+        Nested expressions specify fields nested inside of other objects. 
+        It can include the dot operator, <samp class="ph codeph">.</samp>, as well as bracket notation, <samp class="ph codeph">[position] or [start:end?]</samp>, 
+        to access items in an array or object. </p>
+
+      
+      <p class="p">Array slicing is available. Array slicing is in the form of <samp class="ph codeph">source-array [ start : end ]</samp>. 
+        It returns a new array containing a subset of the source array, 
+        containing the elements from position <samp class="ph codeph">start</samp> to <samp class="ph codeph">end-1</samp>. 
+        The element at <samp class="ph codeph">start</samp> is included, while the element at <samp class="ph codeph">end</samp> is not. 
+        If <samp class="ph codeph">end</samp> is omitted, all elements from <samp class="ph codeph">start</samp> to the end of the source array are included.</p>
+
+      
+      <p class="p">If the contacts documents has the following document structure and information:</p>
+
+      
+      <ul class="ul">
+        <li class="li">The expression address.city evalutes to the value, Mountain View.</li>
+
+        <li class="li">The expression revisions[0] evaluates to the value, 2013.</li>
+
+        <li class="li">The expression revisions[1:3] evaluates to the array value, [2012, 2011].</li>
+
+        <li class="li">The expression revisions[1:] evaluates to the array value [2012, 2011, 2010].</li>
+
+      </ul>
+
+      
+      <p class="p">}  
+      </p>
+
+      
+      <pre class="pre codeblock">
+{
+    "address": {
+    "city": "Mountain View"
+    },
+    "revisions": [2013, 2012, 2011, 2010]
+}
+      </pre>
+
+    
+    </div>
+
+
+    <div class="example"><h2 class="title sectiontitle">Case expressions</h2>
+      
+      <p class="p">Case expressions evaluates conditional logic in an expression.
+        For example the following uses a `CASE` clause to handle documents that do not have an ship date. 
+        This scans all orders and if an order has a shipped-on date, provide it in the result set. 
+        If an order does not have a shipped-on date, it provides default text instead.
+      </p>
+
+      <ul class="ul">
+        <li class="li">If the first WHEN expression evaluates to TRUE, the result for this expression is the THEN expression.</li>
+ 
+        <li class="li">If the first WHEN evaluates to FALSE, then the next WHEN clauses are evaluated.</li>
+ 
+        <li class="li">If no WHEN clause evaluates to TRUE, the result is the ELSE expression.</li>
+
+        <li class="li">If no ELSE expression is provided in the clause, the result is NULL.</li>
+
+      </ul>
+
+      
+      
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">CASE</strong> <strong class="hl-keyword" style="color:#7f0055">WHEN</strong> `shipped-<strong class="hl-keyword" style="color:#7f0055">on</strong>` <strong class="hl-keyword" style="color:#7f0055">IS</strong> <strong class="hl-keyword" style="color:#7f0055">NOT</strong> <strong class="hl-keyword" style="color:#7f0055">NULL</strong> <strong class="hl-keyword" style="color:#7f0055">THEN</strong> `shipped-<strong class="hl-keyword" style="color:#7f0055">on</strong>` <strong class="hl-keyword" style="color:#7f0055">ELSE</strong> \"<strong class="hl-keyword" style="color:#7f0055">not</strong>-shipped-yet\" <strong class="hl-keyword" style="color:#7f0055">END</strong> <strong class="hl-keyword" style="color:#7f0055">AS</strong> shipped <strong class="hl-keyword" style="color:#7f0055">FROM</strong> orders
+   
+      { "shipped": "<span class="hl-number">2013</span>/<span class="hl-number">01</span>/<span class="hl-number">02</span>" },
+      { "shipped": "<span class="hl-number">2013</span>/<span class="hl-number">01</span>/<span class="hl-number">12</span>" },
+      { "shipped": "<strong class="hl-keyword" style="color:#7f0055">not</strong>-shipped-yet" },
+      ....
+      </pre>
+
+      
+    </div>
+
+
+    <div class="example"><h2 class="title sectiontitle">Collection expressions</h2>
+      
+      <p class="p">Collection expressions valuate expressions using nested collections. The different
+          forms of collection expressions are specified using <samp class="ph codeph">ANY</samp>,
+          <samp class="ph codeph">EVERY</samp>, <samp class="ph codeph">FIRST</samp>, or <samp class="ph codeph">ARRAY</samp>. Provide an array to
+          evaluate as a <samp class="ph codeph">path</samp> in an <samp class="ph codeph">SATISFIES</samp> clause. The server iterates
+          through each element in the array and assign each item an <samp class="ph codeph">identifier</samp> from
+          the <samp class="ph codeph">IN</samp> clause. The <samp class="ph codeph">identifier</samp> is only used as a identifier
+          within the collection expression and is distinct from identifiers provided in other
+          clauses.</p>
+
+        
+        <ul class="ul">
+          <li class="li"><samp class="ph codeph">ANY</samp> - If at least one item in the array satisfies the <samp class="ph codeph">ANY</samp> expression, then returns <samp class="ph codeph">TRUE</samp>, otherwise returns <samp class="ph codeph">FALSE</samp>.</li>
+
+          <li class="li"><samp class="ph codeph">EVERY</samp> - If every array element satisfies the <samp class="ph codeph">EVERY</samp> expression, the return TRUE. Otherwise return <samp class="ph codeph">FALSE.</samp> If the array is empty, return <samp class="ph codeph">TRUE</samp>.</li>
+
+          <li class="li"><samp class="ph codeph">FIRST</samp> - Returns the evaluated expression using the first array element (that satisfies the <samp class="ph codeph">WHEN</samp> clause, if provided).</li>
+
+          <li class="li"><samp class="ph codeph">ARRAY</samp> - Returns a new array of the evaluated expression using each element of the <samp class="ph codeph">OVER</samp> array (that satisifies the <samp class="ph codeph">WHEN</samp> clause, if provided).</li>
+
+        </ul>
+
+
+<p class="p">ANY returns any record with one or more items that meet the condition or expression. In the following query, all contacts who have one or more children over the age of 14 are retrieved. This query returns at one item for 'dave' because one of his children is 17.
+</p>
+
+
+<pre class="pre codeblock">
+SELECT name FROM contacts WHERE ANY child.age &gt; 14 SATISFIES children
+
+
+"results": [
+{
+"name": "dave"
+},
+....
+]
+</pre>
+
+
+
+<p class="p">EVERY returns records with fields that meet all conditions or expression provided in the query. For example, this query is almost identical to the one above with `ANY` with `EVERY` substituted. This query scans all contacts and returns the name of any contact that has children over the age of 10. This tells us that out of all of the contacts only 'ian' has children who are both over the age 10.
+</p>
+
+
+<pre class="pre codeblock">
+SELECT name FROM tutorial WHERE EVERY child.age &gt; 10 SATISTIES tutorial.children AS child
+
+
+{
+"name": "ian"
+}
+</pre>
+
+
+      
+    </div>
+
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Logical expressions</h2>
+      
+      <p class="p">Logical expressions combine other expression with boolean logic including
+        <samp class="ph codeph">AND</samp>, <samp class="ph codeph">OR</samp>, and <samp class="ph codeph">NOT</samp>. 
+        Logical expressions can be used to provide logical operators, for example, 
+        two conditions can be tested at the same time in a query. 
+        This query scans all contacts and output the name of any contact 
+        with more than one child who also has an email ending in '@gmail'. </p>
+
+
+      
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong> <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">LENGTH</strong>(children) &gt; <span class="hl-number">0</span> <strong class="hl-keyword" style="color:#7f0055">AND</strong> email <strong class="hl-keyword" style="color:#7f0055">LIKE</strong> <span class="hl-string" style="color:#2a00ff">'%@gmail.com'</span>
+
+
+{
+	"<strong class="hl-keyword" style="color:#7f0055">name</strong>": "dave"
+	...
+},
+      </pre>
+
+      
+    </div>
+
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Comparison expressions</h2>
+      
+      <p class="p">Comparison expressions compare the results of two expressions.</p>
+
+      <p class="p">Arithmetic operators include equal (<samp class="ph codeph">=</samp>), 
+        less than (<samp class="ph codeph">&lt;</samp>), 
+        greater than (<samp class="ph codeph">&gt;</samp>), 
+        less than or equal to (<samp class="ph codeph">=&lt;</samp>), and greater than or equal to (<samp class="ph codeph">&gt;=</samp>). 
+        The terms <samp class="ph codeph">=</samp> and <samp class="ph codeph">==</samp> are functional equivalents of equal (provided for compatibility with other languages). 
+        The terms != and &lt;&gt; are also equivalent comparisons provided for compatibility.</p>
+
+        
+        <ul class="ul">
+          <li class="li">If a comparison term is missing from the clause, MISSING is returned. </li>
+
+          <li class="li">If either operand in a comparison results in NULL, NULL is returned. </li>
+
+          <li class="li">If comparison operators return results of different types, FALSE is returned.</li>
+
+        </ul>
+
+        
+        <p class="p">By default, string comparisons use raw collation (also known as binary collation). 
+        This collation is case sensitive. To perform case-insensitive comparisons, 
+        first transform a string with <samp class="ph codeph">UPPER()</samp> or <samp class="ph codeph">LOWER()</samp> functions.</p>
+
+        <p class="p">The LIKE operator allows wildcard matching in strings. 
+        A pattern to the right of the operators can optionally contain the wildcard characters percentage or underscore:</p>
+
+        <ul class="ul">
+          <li class="li">The percentage sign (%) indicates any string of zero or more characters.</li>
+
+          <li class="li">The underscore (_) matches any single character.</li>
+
+        </ul>
+
+         
+        
+        <p class="p">NULL or MISSING values have special comparison terms to determine type information.</p>
+
+  
+  
+  <p class="p">LIKE returns contacts are similar to a given string. For example, to get all contacts with an email ending with '@yahoo'. 
+    The % indicates any characters prior to @ can appear.
+  </p>
+
+      <pre class="pre codeblock language-sql">
+
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong>, email
+            <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
+                <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> email <strong class="hl-keyword" style="color:#7f0055">LIKE</strong> <span class="hl-string" style="color:#2a00ff">'%@yahoo.com'</span>
+
+{
+            "email": "harry@yahoo.com",
+            "<strong class="hl-keyword" style="color:#7f0055">name</strong>": "harry"
+ },
+      </pre>
+
+
+<p class="p">NOT LIKE is the inverse of `LIKE`. It returns items that are not like the given string. For example, the following clause will return all emails from contacts which do not contain `@yahoo`.
+</p>
+
+<pre class="pre codeblock">
+SELECT name, email
+            FROM tutorial 
+                WHERE email NOT LIKE '%@yahoo.com'
+
+
+{
+            "email": "dave@gmail.com",
+            "name": "dave"
+},
+      </pre>
+      
+    </div>
+
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Arithmetic expressions</h2>
+      
+      <p class="p">Arithmetic operations perform arithmetic methods within an expression. 
+        Arithmetic operations can be applied to any numerical values retrieved as part of query clauses.
+        This includes basic mathematical operations such as addition, subtraction, multiplication, divisions, and modulo. 
+        In addition, a negation operation changes the sign of a value.</p>
+
+      
+      <p class="p">This query selects the document where name is 'dave' and return the name, age and age times 12</p>
+
+      
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong>, age, age*<span class="hl-number">12</span> <strong class="hl-keyword" style="color:#7f0055">AS</strong> age_in_months
+            <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
+                <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong> = <span class="hl-string" style="color:#2a00ff">'dave'</span>
+
+{
+          "age": <span class="hl-number">45</span>,
+          "age_in_months": <span class="hl-number">540</span>,
+          "<strong class="hl-keyword" style="color:#7f0055">name</strong>": "dave"
+}
+      </pre>
+      
+    </div>
+
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">String expressions</h2>
+      
+      <p class="p">If both operands are strings, the <samp class="ph codeph">||</samp>
+        operator concatenates the strings, otherwise, the expression evaluates to NULL.</p>
+
+    </div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">Function name expression</h2>
+      
+      <p class="p">Function names are used to apply a function to values, to values at a specified path, 
+        or to values derived from a DISTINCT clause. </p>
+
+    </div>
+
+    
+
+    
+
+
+
+
+  </div>
+
+  <div class="related-links"><div class="relinfo relref"><strong>Related reference</strong><br/>
+<div><a class="navheader_parent_path" href="operators.html" title="N1QL operators follow a logical order of precedence with the parenthesis having the highest order. Parenthesis are used to combine expressions and operators. If parenthesis are used to group operators and expressions, these items are evaluated first and the result is used in other operations.">Operators</a></div>
+<div><a class="navheader_parent_path" href="functions.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Functions</a></div>
+</div>
+</div> 
+  
+  
+<div class="navfooter"><!----></div>
+</body>
+</html>

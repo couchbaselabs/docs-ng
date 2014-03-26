@@ -1,0 +1,78 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The UNNEST clause optionally follows the FROM clause. This clause iterates over attributes within a specified document array. The array elements by this clause becomes input for further query ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="UNNEST clause"/><meta name="abstract" content="The UNNEST clause optionally follows the FROM clause. This clause iterates over attributes within a specified document array. The array elements by this clause becomes input for further query operations."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The UNNEST clause optionally follows the FROM clause. This clause iterates over attributes within a specified document array. The array elements by this clause becomes input for further query operations."/><meta name="DC.Relation" scheme="URI" content="select.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_a1b_2y4_mn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>UNNEST clause</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_a1b_2y4_mn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects.">SELECT statement</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SELECT statement</span></a></span>  </div></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">UNNEST clause</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">The UNNEST clause optionally follows the FROM clause. 
+    This clause iterates over attributes within a specified document array. 
+    The array elements by this clause becomes input for further query operations. </p>
+
+ 
+    <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+      
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> <strong class="hl-keyword" style="color:#7f0055">path</strong> [<strong class="hl-keyword" style="color:#7f0055">AS</strong>] [alias]
+      </pre>
+
+    </div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Compatibility</h2>
+      
+      <p class="p">Compatible with Couchbase Server 2.2</p>
+
+    </div>
+
+    
+    
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Example</h2>
+      
+      <p class="p">In the following example, The UNNEST clause iterates over the reviews array and 
+        collects the reviewerName and publication from each element in the array. 
+        This collection of objects can be used as input for other query operations.</p>
+
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> review.reviewerName, review.publication
+  <strong class="hl-keyword" style="color:#7f0055">FROM</strong> beers <strong class="hl-keyword" style="color:#7f0055">AS</strong> b 
+    <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> review <strong class="hl-keyword" style="color:#7f0055">IN</strong> b.reviews
+      </pre>
+
+      
+      <pre class="pre codeblock">
+        { "id": "7983345",
+        "name": "Takayama Pale Ale",
+        "brewer": "Hida Takayama Brewing Corp.",
+        "reviews" : [
+            { "reviewerName" : "Takeshi Kitano", "publication" : "Outdoor Japan Magazine", "date": "3/2013" },
+            { "reviewerName" : "Moto Ohtake", "publication" : "Japan Beer Times", "date" : "7/2013" }
+            ]
+        }        
+      </pre>
+
+
+    </div>
+   
+    
+
+ 
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="select.html" title="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SELECT statement</span></a></span>  </div>
+</body>
+</html>

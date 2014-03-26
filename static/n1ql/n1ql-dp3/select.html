@@ -1,0 +1,223 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects. Syntax ALL ORDER BY expr [ asc | desc ] LIMIT int [OFFSET int ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="SELECT statement"/><meta name="abstract" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta name="DC.Relation" scheme="URI" content="selectClause.html"/><meta name="DC.Relation" scheme="URI" content="distinct.html"/><meta name="DC.Relation" scheme="URI" content="from.html"/><meta name="DC.Relation" scheme="URI" content="groupby.html"/><meta name="DC.Relation" scheme="URI" content="join.html"/><meta name="DC.Relation" scheme="URI" content="keys.html"/><meta name="DC.Relation" scheme="URI" content="limit.html"/><meta name="DC.Relation" scheme="URI" content="nest.html"/><meta name="DC.Relation" scheme="URI" content="orderby.html"/><meta name="DC.Relation" scheme="URI" content="unnest.html"/><meta name="DC.Relation" scheme="URI" content="where.html"/><meta name="DC.Relation" scheme="URI" content="expressions.html"/><meta name="DC.Relation" scheme="URI" content="operators.html"/><meta name="DC.Relation" scheme="URI" content="functions.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_gbn_1qx_gn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>SELECT statement</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_gbn_1qx_gn">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"/><td><div class="navheader"/></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">SELECT statement</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">The SELECT statement is used to extract data from Couchbase Server. The query is
+    against data buckets and results in one or more objects.</p>
+
+ 
+ <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+   
+   <pre class="pre codeblock language-sql">
+  <strong class="hl-keyword" style="color:#7f0055">ALL</strong> 
+      <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expr</em> [<strong class="hl-keyword" style="color:#7f0055">asc</strong>|<strong class="hl-keyword" style="color:#7f0055">desc</strong>]
+      LIMIT <em class="ph i">int</em> [OFFSET <em class="ph i">int</em>]
+  <strong class="hl-keyword" style="color:#7f0055">UNION</strong>
+      <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expr</em> [<strong class="hl-keyword" style="color:#7f0055">asc</strong>|<strong class="hl-keyword" style="color:#7f0055">desc</strong>]
+      LIMIT <em class="ph i">int</em> [OFFSET <em class="ph i">int</em>]
+  <strong class="hl-keyword" style="color:#7f0055">SELECT</strong>
+      <strong class="hl-keyword" style="color:#7f0055">FROM</strong>
+      LET
+      <strong class="hl-keyword" style="color:#7f0055">WHERE</strong>
+      <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong>
+  <strong class="hl-keyword" style="color:#7f0055">FROM</strong>... <strong class="hl-keyword" style="color:#7f0055">SELECT</strong>...
+      LET <em class="ph i">expr</em>
+      <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <em class="ph i">expr</em>
+      <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expr</em> 
+      <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <em class="ph i">expr</em>
+    </pre>
+      
+ </div>
+
+    
+ <div class="section"><h2 class="title sectiontitle">Compatibiity</h2>
+   
+   <p class="p">Compatible with Couchbase Server 2.2 and higher</p>
+
+ </div>
+   
+    
+<div class="section"><h2 class="title sectiontitle">Description</h2>
+  
+  <p class="p">
+    The SELECT statement queries a data source. 
+    A JSON array is returned that contains zero or more result objects. 
+    SELECT behaves as a sequence of steps in a process. 
+    Each step in the process produces result objects which are then used as 
+    inputs in the next step until all steps in the process are complete. 
+    The possible elements and operations in a query include:
+  </p>
+
+  <ul class="ul">
+    <li class="li">Data Source - The Couchbase data bucket that is queried. 
+      This is the data-source parameter in a FROM clause. 
+      Alternately, provide a path as data source.</li>
+
+    <li class="li">Filtering - Results objects from the SELECT can be filtered by adding a WHERE clause.</li>
+
+    <li class="li">Sorting - You can order objects in a result set and provide range limits by using ORDER BY, LIMIT, and OFFSET</li>
+
+    <li class="li">Result Set - You generate a set of result objects with GROUP BY or HAVING clauses 
+      along with a result expression list, <samp class="ph codeph">result-expr-list</samp>.</li>
+
+    <li class="li">Duplicate Removal - Remove duplicate result objects from the result set. To do so, use the DISTINCT clause.</li>
+
+    <li class="li">Ordering - Items are placed in the order specified by the ORDER BY expression list.</li>
+
+    <li class="li">Skipping - The first N items are skipped as specified by the OFFSET clause</li>
+
+    <li class="li">Limiting - No more than M items are returned as specified by the LIMIT clause.</li>
+
+  </ul>
+
+</div>
+    
+    
+<div class="section"><h2 class="title sectiontitle">Examples</h2>
+  
+  <p class="p">The following examples are based on the N1QL tutorial.&gt;</p>
+  
+  
+</div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">SELECT syntax and examples</h2>
+      
+    <pre class="pre codeblock language-sql">
+    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <em class="ph i">field</em> 
+      <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <em class="ph i">bucketName</em> 
+        <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <em class="ph i">expression</em>
+        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expression</em>
+    </pre>
+    
+
+    <pre class="pre codeblock language-sql">
+    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
+    </pre>
+
+
+    <pre class="pre codeblock language-sql">
+    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
+      <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> fname = <span class="hl-string" style="color:#2a00ff">'Ian'</span>
+    </pre>
+
+
+      <pre class="pre codeblock language-sql">
+    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> children age <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
+      <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> pname = <span class="hl-string" style="color:#2a00ff">'Dave'</span>
+      <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> age
+    </pre>
+
+
+    </div>
+
+    
+
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Customer Order data bucket</h2>
+      
+      <pre class="pre codeblock">{
+  "type": "customer-order",
+  "grand_total": 1000,
+  "billToAddress": 
+    {
+      "street": "123 foo",
+      "state": "CA",
+      "geo": 
+        {
+          "lat": 1234, "lon": 2344
+        }
+     },
+   "shipToAddress": 
+     {
+      "street": "123 foo",
+      "state": "CA"
+     },
+    items: 
+    [
+     { "productId": "coffee", "qty": 1 },
+     { "productId": "tea", "qty": 1 }
+    ]
+ }     </pre>
+
+    </div>
+
+    
+    
+    
+    
+      <div class="example"><h2 class="title sectiontitle">Select orders</h2>
+      
+      <p class="p">The following query returns all values from the Orders data bucket.</p>
+
+      <pre class="pre codeblock">
+SELECT * FROM orders.billToAddress.state
+      </pre>
+
+      <p class="p">Returns a list of all billing states from the order data bucket.</p>
+
+      <pre class="pre codeblock">
+   "results":  
+   [
+     {
+       "state": "CA"
+     }
+   ]
+      </pre>
+
+    </div>
+
+   
+    
+  </div>
+
+  
+  <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="selectClause.html">SELECT clause</a></strong><br/>
+The SELECT clause queries data from the Couchbase database.</li>
+<li class="link ulchildlink"><strong><a href="distinct.html">DISTINCT clause</a></strong><br/>
+The DISTINCT clause removes duplicate result objects from the query's result set.      If the DISTINCT clause is not used,      the query returns all objects that meet the query conditions in a result set.</li>
+<li class="link ulchildlink"><strong><a href="from.html">FROM clause</a></strong><br/>
+This is an optional clause for your query.        If this clause is omitted, the input for the query is a single empty object.        The most common way to use the FROM clause is to provide a data source       that is a named data bucket or path.        Alternately, provide the data bucket or path as an alias using the        AS clause with FROM.</li>
+<li class="link ulchildlink"><strong><a href="groupby.html">GROUP BY clause</a></strong><br/>
+     The GROUP BY clause collects items from multiple result objects and      groups the elements by one or more expressions. This is an aggregate query.       The optional HAVING clause follows the GROUP BY clause.   </li>
+<li class="link ulchildlink"><strong><a href="join.html">JOIN clause</a></strong><br/>
+This optional clause follows the `FROM`clause and      allows you to create new input objects by combining two or more source objects.      The `KEYS` clause is required after each JOIN.      It specifies the primary keys for the second bucket in the join.</li>
+<li class="link ulchildlink"><strong><a href="keys.html">KEYS clause</a></strong><br/>
+The KEYS clause is an optional clause that follows the FROM clause.      The KEYS clause is based on primary keys within a bucket.      Only values having those primary keys are included as inputs to the query.      KEYS is mandatory for the primary bucket.</li>
+<li class="link ulchildlink"><strong><a href="limit.html">LIMIT clause</a></strong><br/>
+The LIMIT clause imposes a specific number of objects returned in a result set by SELECT.      This clause must have a non-negative integer as upper bound.      The OFFSET clause optionally follows the LIMIT clause.      If an offset is specified, that many number of objects are omitted      from the result set before enforcing a specified LIMIT.      This clause must be a non-negative integer.</li>
+<li class="link ulchildlink"><strong><a href="nest.html">NEST clause</a></strong><br/>
+Nesting performs a join across two buckets.      But instead of producing a cross-product of the left and right hand inputs,      a single result is produced for each left hand input,      while the corresponding right hand inputs are collected into an array and      nested as a single array-valued field in the result object.</li>
+<li class="link ulchildlink"><strong><a href="orderby.html">ORDER BY clause</a></strong><br/>
+The order of items in the result set is determined by expression in this clause.      Objects are sorted first by the left-most expression in the list of expressions.      Any items with the same sort value will be sorted with the next expression in the list.      This process repeats until all items are sorted and all expressions in the list are evaluated.</li>
+<li class="link ulchildlink"><strong><a href="unnest.html">UNNEST clause</a></strong><br/>
+The UNNEST clause optionally follows the FROM clause.      This clause iterates over attributes within a specified document array.      The array elements by this clause becomes input for further query operations. </li>
+<li class="link ulchildlink"><strong><a href="where.html">WHERE clause</a></strong><br/>
+Any expression in the clause is evaluated for objects in a result set.      If it evaluates as TRUE for an object,      the object is included in the remainder of the query.</li>
+</ul>
+<div class="relinfo relref"><strong>Related reference</strong><br/>
+<div><a class="navheader_parent_path" href="expressions.html" title="N1QL expressions are like formulas written in a query language. They include operators, symbols and values to evaluate and filter result objects.">Expressions</a></div>
+<div><a class="navheader_parent_path" href="operators.html" title="N1QL operators follow a logical order of precedence with the parenthesis having the highest order. Parenthesis are used to combine expressions and operators. If parenthesis are used to group operators and expressions, these items are evaluated first and the result is used in other operations.">Operators</a></div>
+<div><a class="navheader_parent_path" href="functions.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Functions</a></div>
+</div>
+</div> 
+  
+  
+<div class="navfooter"><!----></div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive. Function Description Returns ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="Date functions"/><meta name="abstract" content="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive."/><meta name="DC.Relation" scheme="URI" content="scalar-function.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_oxm_btd_ln"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Date functions</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="reference_oxm_btd_ln">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="scalar-function.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Scalar functions</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="scalar-function.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Scalar functions</span></a></span>  </div></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">Date functions</h1>
+
+  
+  
+  <div class="body refbody"><p class="shortdesc">Scalar functions perform calculations on data. 
+    Scalar functions take a single item in a result set and returns a single value. 
+    All function names are case insensitive.</p>
+
+    
+    <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
+        <th valign="bottom" align="left" id="d2148e18" class="stentry" width="32.40165631469979%">Function</th>
+
+        <th valign="bottom" align="left" id="d2148e21" class="stentry" width="33.643892339544514%">Description</th>
+
+        <th valign="bottom" align="left" id="d2148e24" class="stentry" width="28.77846790890269%">Returns</th>
+
+      </tr>
+<tr class="strow">
+        <td valign="top" headers="d2148e18" class="stentry">DATE_ADD_MILLIS(expr, n, part)</td>
+
+        <td valign="top" headers="d2148e21" class="stentry">Date arithmetic. &lt;codeph&gt;n&lt;/codeph&gt; and &lt;codeph&gt;part&lt;/codeph&gt; defines
+          an interval or duration, which is then added (or subtracted) to the UNIX timestamp and
+          returns the result.</td>
+
+        <td valign="top" headers="d2148e24" class="stentry">Date results including year, month (1-12), day (1-31), hour (0-23), second (0-59),
+          and millisecond (0-999).</td>
+
+      </tr>
+<tr class="strow">
+        <td valign="top" headers="d2148e18" class="stentry">DATE_DIFF_MILLIS(expr1, expr2, part)</td>
+
+        <td valign="top" headers="d2148e21" class="stentry">Date arithmetic. Returns the elapsed time between two UNIX timestamps, as an
+          integer whose unit is part.</td>
+
+        <td valign="top" headers="d2148e24" class="stentry">Integer - Elapsed the time between two UNIX timestamps.</td>
+
+      </tr>
+<tr class="strow">
+        <td valign="top" headers="d2148e18" class="stentry">DATE_PART(field, source)</td>
+
+        <td valign="top" headers="d2148e21" class="stentry">Retrieves subfields such as year or hour from date/time values. The source must be
+          a value expression of type timestamp or time</td>
+
+        <td valign="top" headers="d2148e24" class="stentry">Value</td>
+
+      </tr>
+<tr class="strow">
+        <td valign="top" headers="d2148e18" class="stentry">DATE_PART_MILLIS(expr, part)</td>
+
+        <td valign="top" headers="d2148e21" class="stentry">Date part as an integer. The date expression is a number representing UNIX
+          milliseconds and part is s date part strings.</td>
+
+        <td valign="top" headers="d2148e24" class="stentry">See DATE_PART_MILLIS strings.</td>
+
+      </tr>
+<tr class="strow">
+        <td valign="top" headers="d2148e18" class="stentry">DATE_TRUNC_MILLIS(expr, part)</td>
+
+        <td valign="top" headers="d2148e21" class="stentry">Truncates UNIX timestamp so that the given date part string is the least
+          significant.</td>
+
+        <td valign="top" headers="d2148e24" class="stentry">Value</td>
+
+      </tr>
+<tr class="strow">
+        <td valign="top" headers="d2148e18" class="stentry">NOW_STR</td>
+
+        <td valign="top" headers="d2148e21" class="stentry">Returns current date and time as a String value.</td>
+
+        <td valign="top" headers="d2148e24" class="stentry">String value</td>
+
+        <td valign="top" class="stentry">alue</td>
+
+      </tr>
+</table>
+    
+ 
+ <div class="section"><h2 class="title sectiontitle">DATE_PART_MILLIS strings</h2>
+   
+   
+   <ul class="ul">
+     <li class="li">millenium</li>
+
+     <li class="li">century</li>
+
+     <li class="li">decade - floor(year / 10)</li>
+
+     <li class="li">year</li>
+
+     <li class="li">quarter - 1 to 4</li>
+
+     <li class="li">month - 1 to 12</li>
+
+     <li class="li">day - 1 to 31</li>
+
+     <li class="li">hour - 0 to 23</li>
+
+     <li class="li">minute - 0 to 59</li>
+
+     <li class="li">second - 0 to 59</li>
+
+     <li class="li">millisecond - 0 to 999</li>
+
+     <li class="li">week - 1 to 53; ceil(day_of_year / 7.0)</li>
+
+     <li class="li">day_of_year, doy - 1 to 366</li>
+
+     <li class="li">day_of_week, dow - 0 to 6</li>
+
+     <li class="li">iso_week - 1 to 53; use with iso_year</li>
+
+     <li class="li">iso_year - use with iso_week</li>
+
+     <li class="li">iso_dow - 1 to 7</li>
+
+     <li class="li">timezone - offset from UTC in seconds</li>
+
+     <li class="li">timezone_hour - hour component of timezone offset</li>
+
+     <li class="li">timezone_minute - minute component of timezone offset</li>
+
+   </ul>
+
+   
+ </div>
+
+ 
+ 
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="scalar-function.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Scalar functions</span></a></span>  </div>
+</body>
+</html>
