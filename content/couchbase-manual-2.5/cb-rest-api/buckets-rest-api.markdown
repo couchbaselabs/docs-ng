@@ -368,7 +368,7 @@ receives the REST request.
 
 Sample output for each of these requests appears in the same format and with the
 same fields. Depending on the level of bucket activity, there may be more detail
-for each field or less. We the sake of brevity we have omitted sample output for
+for each field or less. For the sake of brevity we have omitted sample output for
 each category.
 
 ```
