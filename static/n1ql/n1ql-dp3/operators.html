@@ -22,8 +22,8 @@
  
     <div class="section"><h2 class="title sectiontitle">Order of precedence</h2>
       
-      <p class="p">The following list shows the order of precedence.  Items listed above other items have
-        precedence.  For example, IS NULL has precedence over LIKE.</p>
+      <p class="p">The following list shows the order of precedence. Top-level items have precedence over
+        lower-level items. For example, IS NULL has precedence over LIKE.</p>
 
       
       <pre class="pre codeblock">
@@ -51,158 +51,159 @@ CASE | WHEN | THEN | ELSE | END
       <p class="p">Relational operators allow two expressions to be compared.</p>
 
       <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
-          <th valign="bottom" align="left" id="d4889e38" class="stentry" width="25.23809523809524%">Comparison</th>
+          <th valign="bottom" align="left" id="d5171e38" class="stentry" width="25.23809523809524%">Comparison</th>
 
-          <th valign="bottom" align="left" id="d4889e41" class="stentry" width="50.952380952380956%">Description</th>
+          <th valign="bottom" align="left" id="d5171e41" class="stentry" width="50.952380952380956%">Description</th>
 
-          <th valign="bottom" align="left" id="d4889e44" class="stentry" width="23.80952380952381%">Returns</th>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> = </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Equals to </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <th valign="bottom" align="left" id="d5171e44" class="stentry" width="23.80952380952381%">Returns</th>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> == </td>
+          <td valign="top" headers="d5171e38" class="stentry"> = </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Equals to </td>
+          <td valign="top" headers="d5171e41" class="stentry">Equals to </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> != </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Not equal to </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> &lt;&gt; </td>
+          <td valign="top" headers="d5171e38" class="stentry"> == </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Not equal to </td>
+          <td valign="top" headers="d5171e41" class="stentry">Equals to </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> &gt; </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Greater than </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> &gt;= </td>
+          <td valign="top" headers="d5171e38" class="stentry"> != </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Greater than or equal to </td>
+          <td valign="top" headers="d5171e41" class="stentry">Not equal to </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> &lt; </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Less than </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> &lt;= </td>
+          <td valign="top" headers="d5171e38" class="stentry"> &lt;&gt; </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Less than or equal to </td>
+          <td valign="top" headers="d5171e41" class="stentry">Not equal to </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> BETWEEN </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Search criteria for a query where the value is between two values, including the
-            end values specified in the range.</td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> LIKE </td>
+          <td valign="top" headers="d5171e38" class="stentry"> &gt; </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Match string with wildcard expression. <samp class="ph codeph">%</samp> for zero or more
+          <td valign="top" headers="d5171e41" class="stentry">Greater than </td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> &gt;= </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Greater than or equal to </td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> &lt; </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Less than </td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> &lt;= </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Less than or equal to </td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> BETWEEN </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Search criteria for a query where the value is between two values, including the
+            end values specified in the range. Values can be numbers, text, or dates.</td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> Value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> NOT BETWEEN </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Search criteria for a query where the value is outside the range of two values,
+            including the end values specified in the range. Values can be numbers, text, or
+            dates.</td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> Value</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> LIKE </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Match string with wildcard expression. <samp class="ph codeph">%</samp> for zero or more
             wildcards, <samp class="ph codeph">_</samp> to match any character at this place in a string </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> NOT LIKE </td>
+          <td valign="top" headers="d5171e38" class="stentry"> NOT LIKE </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Inverse of LIKE. Return TRUE if string is not similar to given string. </td>
+          <td valign="top" headers="d5171e41" class="stentry">Inverse of LIKE. Return TRUE if string is not similar to given string. </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> IS NULL </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Field has value of NULL. </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> IS NOT NULL </td>
+          <td valign="top" headers="d5171e38" class="stentry"> IS NULL </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Field has value or is missing. </td>
+          <td valign="top" headers="d5171e41" class="stentry">Field has value of NULL. </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> IS MISSING </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">No value for field found. </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> IS NOT MISSING </td>
+          <td valign="top" headers="d5171e38" class="stentry"> IS NOT NULL </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Value for field found or value is NULL. </td>
+          <td valign="top" headers="d5171e41" class="stentry">Field has value or is missing. </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> IS VALUED </td>
-
-          <td valign="top" headers="d4889e41" class="stentry">Value for field found. Value is neither missing nor NULL </td>
-
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> IS NOT VALUED </td>
+          <td valign="top" headers="d5171e38" class="stentry"> IS MISSING </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Value for field not found. Value is NULL. </td>
+          <td valign="top" headers="d5171e41" class="stentry">No value for field found. </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e38" class="stentry"> NOT BETWEEN </td>
+          <td valign="top" headers="d5171e38" class="stentry"> IS NOT MISSING </td>
 
-          <td valign="top" headers="d4889e41" class="stentry">Search criteria for a query where the value is outside the range of two values,
-            including the end values specified in the range. </td>
+          <td valign="top" headers="d5171e41" class="stentry">Value for field found or value is NULL. </td>
 
-          <td valign="top" headers="d4889e44" class="stentry"> </td>
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> IS VALUED </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Value for field found. Value is neither missing nor NULL </td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e38" class="stentry"> IS NOT VALUED </td>
+
+          <td valign="top" headers="d5171e41" class="stentry">Value for field not found. Value is NULL. </td>
+
+          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 </table>
@@ -219,45 +220,45 @@ CASE | WHEN | THEN | ELSE | END
 
       
       <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
-          <th valign="bottom" align="left" id="d4889e285" class="stentry">Operator</th>
+          <th valign="bottom" align="left" id="d5171e287" class="stentry">Operator</th>
 
-          <th valign="bottom" align="left" id="d4889e288" class="stentry">Description</th>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e285" class="stentry">+</td>
-
-          <td valign="top" headers="d4889e288" class="stentry">Add values.</td>
+          <th valign="bottom" align="left" id="d5171e290" class="stentry">Description</th>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e285" class="stentry">-</td>
+          <td valign="top" headers="d5171e287" class="stentry">+</td>
 
-          <td valign="top" headers="d4889e288" class="stentry">Subtract right value from left.</td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e285" class="stentry">*</td>
-
-          <td valign="top" headers="d4889e288" class="stentry">Multiply values</td>
+          <td valign="top" headers="d5171e290" class="stentry">Add values.</td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e285" class="stentry">/</td>
+          <td valign="top" headers="d5171e287" class="stentry">-</td>
 
-          <td valign="top" headers="d4889e288" class="stentry">Divide left value by right.</td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d4889e285" class="stentry">%</td>
-
-          <td valign="top" headers="d4889e288" class="stentry">Modulo. Divide left value by right and return the rmainder.</td>
+          <td valign="top" headers="d5171e290" class="stentry">Subtract right value from left.</td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d4889e285" class="stentry">-value</td>
+          <td valign="top" headers="d5171e287" class="stentry">*</td>
 
-          <td valign="top" headers="d4889e288" class="stentry">Negate value.</td>
+          <td valign="top" headers="d5171e290" class="stentry">Multiply values</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e287" class="stentry">/</td>
+
+          <td valign="top" headers="d5171e290" class="stentry">Divide left value by right.</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e287" class="stentry">%</td>
+
+          <td valign="top" headers="d5171e290" class="stentry">Modulo. Divide left value by right and return the rmainder.</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5171e287" class="stentry">-value</td>
+
+          <td valign="top" headers="d5171e290" class="stentry">Negate value.</td>
 
         </tr>
 </table>

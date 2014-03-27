@@ -38,11 +38,13 @@
 
     <div class="section"><h2 class="title sectiontitle">Example</h2>
       
-    <p class="p">Precede any N1QL statement with the EXPLAIN clause to get JSON output describing how the query would execute.</p>
+    <p class="p">Precede any N1QL statement with the EXPLAIN clause to get JSON output describing how the query executes.</p>
 
 
     <pre class="pre codeblock language-sql">
-EXPLAIN <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong>, age <strong class="hl-keyword" style="color:#7f0055">FROM</strong> contacts LIMIT <span class="hl-number">2</span>
+EXPLAIN <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> *
+  <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
+    <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> fname = <span class="hl-string" style="color:#2a00ff">'Ian'</span>
     </pre>
 
 
@@ -51,56 +53,59 @@ EXPLAIN <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong
 
 <pre class="pre codeblock language-sql">
 {
-"resultset": [
-{
-"root": {
-"<strong class="hl-keyword" style="color:#7f0055">type</strong>": "limit",
-"<strong class="hl-keyword" style="color:#7f0055">input</strong>": {
-"<strong class="hl-keyword" style="color:#7f0055">type</strong>": "projector",
-"<strong class="hl-keyword" style="color:#7f0055">input</strong>": {
-"<strong class="hl-keyword" style="color:#7f0055">type</strong>": "<strong class="hl-keyword" style="color:#7f0055">fetch</strong>",
-"<strong class="hl-keyword" style="color:#7f0055">input</strong>": {
-"<strong class="hl-keyword" style="color:#7f0055">type</strong>": "scan",
-"scanner": "_design//_view/_all_docs",
-"bucket": "contacts"
-},
-"bucket": "contacts",
-"projection": {
-"<strong class="hl-keyword" style="color:#7f0055">type</strong>": "<strong class="hl-keyword" style="color:#7f0055">function</strong>",
-"<strong class="hl-keyword" style="color:#7f0055">name</strong>": "<strong class="hl-keyword" style="color:#7f0055">VALUE</strong>",
-"operands": []
-},
-"<strong class="hl-keyword" style="color:#7f0055">as</strong>": "contacts"
-},
-"<strong class="hl-keyword" style="color:#7f0055">result</strong>": [
-{
-"star": <strong class="hl-keyword" style="color:#7f0055">true</strong>,
-"expr": {
-"<strong class="hl-keyword" style="color:#7f0055">type</strong>": "property",
-"<strong class="hl-keyword" style="color:#7f0055">path</strong>": "<strong class="hl-keyword" style="color:#7f0055">default</strong>"
-},
-"<strong class="hl-keyword" style="color:#7f0055">as</strong>": ""
-}
-]
-},
-"<strong class="hl-keyword" style="color:#7f0055">value</strong>": <span class="hl-number">2</span>
-}
-}
-],
-"info": [
-{
-"caller": "http:<span class="hl-number">161</span>",
-"code": <span class="hl-number">100</span>,
-"<strong class="hl-keyword" style="color:#7f0055">key</strong>": "total_rows",
-"message": "<span class="hl-number">1</span>"
-},
-{
-"caller": "http:<span class="hl-number">163</span>",
-"code": <span class="hl-number">101</span>,
-"<strong class="hl-keyword" style="color:#7f0055">key</strong>": "total_elapsed_time",
-"message": "<span class="hl-number">38.192789</span>ms"
-}
-]
+  "resultset": [
+    {
+      "<strong class="hl-keyword" style="color:#7f0055">input</strong>": {
+        "expr": {
+          "<strong class="hl-keyword" style="color:#7f0055">left</strong>": {
+            "<strong class="hl-keyword" style="color:#7f0055">left</strong>": {
+              "<strong class="hl-keyword" style="color:#7f0055">path</strong>": "tutorial",
+              "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "property"
+            },
+            "<strong class="hl-keyword" style="color:#7f0055">right</strong>": {
+              "<strong class="hl-keyword" style="color:#7f0055">path</strong>": "fname",
+              "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "property"
+            },
+            "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "dot_member"
+          },
+          "<strong class="hl-keyword" style="color:#7f0055">right</strong>": {
+            "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "literal_string",
+            "<strong class="hl-keyword" style="color:#7f0055">value</strong>": "Ian"
+          },
+          "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "<strong class="hl-keyword" style="color:#7f0055">equals</strong>"
+        },
+        "<strong class="hl-keyword" style="color:#7f0055">input</strong>": {
+          "<strong class="hl-keyword" style="color:#7f0055">as</strong>": "tutorial",
+          "bucket": "tutorial",
+          "ids": <strong class="hl-keyword" style="color:#7f0055">null</strong>,
+          "<strong class="hl-keyword" style="color:#7f0055">input</strong>": {
+            "<strong class="hl-keyword" style="color:#7f0055">as</strong>": "",
+            "bucket": "tutorial",
+            "cover": <strong class="hl-keyword" style="color:#7f0055">false</strong>,
+            "index": "all_docs",
+            "pool": "<strong class="hl-keyword" style="color:#7f0055">default</strong>",
+            "ranges": <strong class="hl-keyword" style="color:#7f0055">null</strong>,
+            "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "scan"
+          },
+          "pool": "<strong class="hl-keyword" style="color:#7f0055">default</strong>",
+          "projection": <strong class="hl-keyword" style="color:#7f0055">null</strong>,
+          "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "<strong class="hl-keyword" style="color:#7f0055">fetch</strong>"
+        },
+        "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "<strong class="hl-keyword" style="color:#7f0055">filter</strong>"
+      },
+      "<strong class="hl-keyword" style="color:#7f0055">result</strong>": [
+        {
+          "<strong class="hl-keyword" style="color:#7f0055">as</strong>": "",
+          "expr": {
+            "<strong class="hl-keyword" style="color:#7f0055">path</strong>": "tutorial",
+            "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "property"
+          },
+          "star": <strong class="hl-keyword" style="color:#7f0055">true</strong>
+        }
+      ],
+      "<strong class="hl-keyword" style="color:#7f0055">type</strong>": "projector"
+    }
+  ]
 }
 </pre>
 
