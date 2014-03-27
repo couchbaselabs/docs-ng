@@ -238,7 +238,7 @@ navbar:
         href: /couchbase-devguide-2.5/
     
       - label: Query Language Developer Preview
-        href: /couchbase-query-language-0.1/
+        href: /prebuilt/n1ql/n1ql-dp3/
 
   - label: SDKs
     subnav:
