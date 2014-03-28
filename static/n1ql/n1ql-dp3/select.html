@@ -2,7 +2,7 @@
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en-us" lang="en-us">
-<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects. Syntax ALL ORDER BY expr [ asc | desc ] LIMIT int [OFFSET int ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="SELECT statement"/><meta name="abstract" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta name="DC.Relation" scheme="URI" content="selectClause.html"/><meta name="DC.Relation" scheme="URI" content="distinct.html"/><meta name="DC.Relation" scheme="URI" content="from.html"/><meta name="DC.Relation" scheme="URI" content="where.html"/><meta name="DC.Relation" scheme="URI" content="groupby.html"/><meta name="DC.Relation" scheme="URI" content="orderby.html"/><meta name="DC.Relation" scheme="URI" content="join.html"/><meta name="DC.Relation" scheme="URI" content="keys.html"/><meta name="DC.Relation" scheme="URI" content="nest.html"/><meta name="DC.Relation" scheme="URI" content="unnest.html"/><meta name="DC.Relation" scheme="URI" content="limit.html"/><meta name="DC.Relation" scheme="URI" content="expressions.html"/><meta name="DC.Relation" scheme="URI" content="operators.html"/><meta name="DC.Relation" scheme="URI" content="functions.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_gbn_1qx_gn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>SELECT statement</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects. Syntax SELECT [ ALL | DISTINCT ] result -expr [ , ... ] [ FROM ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="SELECT statement"/><meta name="abstract" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta name="DC.Relation" scheme="URI" content="selectClause.html"/><meta name="DC.Relation" scheme="URI" content="distinct.html"/><meta name="DC.Relation" scheme="URI" content="from.html"/><meta name="DC.Relation" scheme="URI" content="where.html"/><meta name="DC.Relation" scheme="URI" content="groupby.html"/><meta name="DC.Relation" scheme="URI" content="orderby.html"/><meta name="DC.Relation" scheme="URI" content="keys.html"/><meta name="DC.Relation" scheme="URI" content="join.html"/><meta name="DC.Relation" scheme="URI" content="nest.html"/><meta name="DC.Relation" scheme="URI" content="unnest.html"/><meta name="DC.Relation" scheme="URI" content="limit.html"/><meta name="DC.Relation" scheme="URI" content="expressions.html"/><meta name="DC.Relation" scheme="URI" content="operators.html"/><meta name="DC.Relation" scheme="URI" content="functions.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_gbn_1qx_gn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>SELECT statement</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -20,22 +20,48 @@
  <div class="section"><h2 class="title sectiontitle">Syntax</h2>
    
    <pre class="pre codeblock language-sql">
-  <strong class="hl-keyword" style="color:#7f0055">ALL</strong> 
-      <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expr</em> [<strong class="hl-keyword" style="color:#7f0055">asc</strong>|<strong class="hl-keyword" style="color:#7f0055">desc</strong>]
-      LIMIT <em class="ph i">int</em> [OFFSET <em class="ph i">int</em>]
-  <strong class="hl-keyword" style="color:#7f0055">UNION</strong>
-      <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expr</em> [<strong class="hl-keyword" style="color:#7f0055">asc</strong>|<strong class="hl-keyword" style="color:#7f0055">desc</strong>]
-      LIMIT <em class="ph i">int</em> [OFFSET <em class="ph i">int</em>]
-  <strong class="hl-keyword" style="color:#7f0055">SELECT</strong>
-      <strong class="hl-keyword" style="color:#7f0055">FROM</strong>
-      LET
-      <strong class="hl-keyword" style="color:#7f0055">WHERE</strong>
-      <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong>
-  <strong class="hl-keyword" style="color:#7f0055">FROM</strong>... <strong class="hl-keyword" style="color:#7f0055">SELECT</strong>...
-      LET <em class="ph i">expr</em>
-      <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <em class="ph i">expr</em>
-      <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expr</em> 
-      <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <em class="ph i">expr</em>
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> [ <strong class="hl-keyword" style="color:#7f0055">ALL</strong> | <strong class="hl-keyword" style="color:#7f0055">DISTINCT</strong> ] <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr [ , ... ]
+  [ <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> ]
+  [ <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> expr ]
+  [ <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> expr [ , ... ] [ <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> expr ] ]
+  [ <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <strong class="hl-keyword" style="color:#7f0055">ordering</strong>-term [ , ... ] ]
+  [ LIMIT non-neg-<strong class="hl-keyword" style="color:#7f0055">int</strong> ]
+  [ OFFSET non-neg-<strong class="hl-keyword" style="color:#7f0055">int</strong> ]
+
+
+// <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">is</strong> one <strong class="hl-keyword" style="color:#7f0055">of</strong> the <strong class="hl-keyword" style="color:#7f0055">following</strong>:
+  *
+  <strong class="hl-keyword" style="color:#7f0055">path</strong> . *
+  expr [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias
+    // alias <strong class="hl-keyword" style="color:#7f0055">is</strong> an identifier
+
+// <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> one <strong class="hl-keyword" style="color:#7f0055">of</strong> the <strong class="hl-keyword" style="color:#7f0055">following</strong>:
+  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong>
+    // <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong>:
+      [ ‘:’ pool-<strong class="hl-keyword" style="color:#7f0055">name</strong> ‘.<span class="hl-string" style="color:#2a00ff">' ] bucket-name [ ‘.’ path ] [ [ AS ]  alias ] [ keys-clause ]
+</span>    // pool-<strong class="hl-keyword" style="color:#7f0055">name</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> identifier
+    // keys-clause <strong class="hl-keyword" style="color:#7f0055">is</strong> KEYS expr
+            
+  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">join</strong>-clause
+    // <strong class="hl-keyword" style="color:#7f0055">join</strong>-clause <strong class="hl-keyword" style="color:#7f0055">is</strong>:
+      [ <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> ] <strong class="hl-keyword" style="color:#7f0055">JOIN</strong> <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> [ [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias ] keys-clause
+    // <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> [ <strong class="hl-keyword" style="color:#7f0055">INNER</strong> | [ <strong class="hl-keyword" style="color:#7f0055">LEFT</strong> ] <strong class="hl-keyword" style="color:#7f0055">OUTER</strong> ]
+            
+  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> nest-clause
+    // nest-clause <strong class="hl-keyword" style="color:#7f0055">is</strong>:
+      [ <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> ] NEST <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> [ [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias ] keys-clause
+    // <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> [ <strong class="hl-keyword" style="color:#7f0055">INNER</strong> | [ <strong class="hl-keyword" style="color:#7f0055">LEFT</strong> ] <strong class="hl-keyword" style="color:#7f0055">OUTER</strong> ]
+              
+  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">unnest</strong>-clause
+    // <strong class="hl-keyword" style="color:#7f0055">unnest</strong>-clause <strong class="hl-keyword" style="color:#7f0055">is</strong>:
+      [ <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> ] <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> <strong class="hl-keyword" style="color:#7f0055">path</strong> [ [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias ] 
+        // <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong>: 
+          [ <strong class="hl-keyword" style="color:#7f0055">INNER</strong> | [ <strong class="hl-keyword" style="color:#7f0055">LEFT</strong> ] <strong class="hl-keyword" style="color:#7f0055">OUTER</strong> ]
+        // <strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> : identifier [ ‘[<span class="hl-string" style="color:#2a00ff">' non-neg-int '</span>]<span class="hl-string" style="color:#2a00ff">' ] [ ‘.’ path ]
+</span> 
+ // <strong class="hl-keyword" style="color:#7f0055">ordering</strong>-term <strong class="hl-keyword" style="color:#7f0055">is</strong>:
+     expr [ <strong class="hl-keyword" style="color:#7f0055">ASC</strong> | <strong class="hl-keyword" style="color:#7f0055">DESC</strong> ]
+    
     </pre>
       
  </div>
@@ -86,19 +112,18 @@
     
 <div class="section"><h2 class="title sectiontitle">Examples</h2>
   
-  <p class="p">The following examples are based on the N1QL tutorial.&gt;</p>
+  <p class="p">The following examples are based on the N1QL tutorial.</p>
   
   
 </div>
 
     
-    <div class="example"><h2 class="title sectiontitle">SELECT syntax and examples</h2>
+    <div class="example"><h2 class="title sectiontitle">Select from tutorial</h2>
       
     <pre class="pre codeblock language-sql">
-    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <em class="ph i">field</em> 
-      <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <em class="ph i">bucketName</em> 
-        <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <em class="ph i">expression</em>
-        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">expression</em>
+    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <em class="ph i">result-expr</em> <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <em class="ph i">data-source</em> 
+        <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <em class="ph i">expr</em>
+        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">ordering-term</em>
     </pre>
     
 
@@ -122,14 +147,35 @@
 
     </div>
 
-    
 
-    
-    
-    
-    <div class="example"><h2 class="title sectiontitle">Customer Order data bucket</h2>
+
+    <div class="example"><h2 class="title sectiontitle">Select orders</h2>
       
-      <pre class="pre codeblock">{
+      <p class="p">This query returns all values from the following Orders data bucket.</p>
+
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> orders.billToAddress.<strong class="hl-keyword" style="color:#7f0055">state</strong>
+      </pre>
+
+      <p class="p">Returns a list of all billing states from the order data bucket.</p>
+
+      <pre class="pre codeblock">
+   "results":  
+   [
+     {
+       "state": "CA"
+     }
+   ]
+      </pre>
+
+    </div>
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Orders data bucket</h2>
+      
+      <pre class="pre codeblock">
+ {
   "type": "customer-order",
   "grand_total": 1000,
   "billToAddress": 
@@ -151,34 +197,45 @@
      { "productId": "coffee", "qty": 1 },
      { "productId": "tea", "qty": 1 }
     ]
- }     </pre>
+ }       
+      </pre>
 
     </div>
 
     
-    
-    
-    
-      <div class="example"><h2 class="title sectiontitle">Select orders</h2>
+    <div class="example"><h2 class="title sectiontitle">Complex SELECT statement</h2>
       
-      <p class="p">The following query returns all values from the Orders data bucket.</p>
+      <pre class="pre codeblock language-sql">
+<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> t.relation, <strong class="hl-keyword" style="color:#7f0055">count</strong>(*) <strong class="hl-keyword" style="color:#7f0055">as</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>, <strong class="hl-keyword" style="color:#7f0055">avg</strong>(<strong class="hl-keyword" style="color:#7f0055">c</strong>.age) <strong class="hl-keyword" style="color:#7f0055">as</strong> avg_age
+    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial t
+    <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> t.children <strong class="hl-keyword" style="color:#7f0055">c</strong>
+    <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">c</strong>.age &gt; <span class="hl-number">10</span>
+    <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> t.relation
+    <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>(*) &gt; <span class="hl-number">1</span>
+    <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> avg_age <strong class="hl-keyword" style="color:#7f0055">DESC</strong>
+    LIMIT <span class="hl-number">1</span> OFFSET <span class="hl-number">1</span>
+    </pre>
+  
+      
+      <p class="p">Returns:</p>
 
+      
       <pre class="pre codeblock">
-SELECT * FROM orders.billToAddress.state
+{
+  "resultset": [
+    {
+      "avg_age": 17,
+      "count": 2,
+      "relation": "friend"
+    }
+  ]
+}         
       </pre>
 
-      <p class="p">Returns a list of all billing states from the order data bucket.</p>
-
-      <pre class="pre codeblock">
-   "results":  
-   [
-     {
-       "state": "CA"
-     }
-   ]
-      </pre>
-
+      
     </div>
+   
+    
 
    
     
@@ -199,10 +256,10 @@ Any expression in the clause is evaluated for objects in a result set.      If i
      The GROUP BY clause collects items from multiple result objects and      groups the elements by one or more expressions. This is an aggregate query.       The optional HAVING clause follows the GROUP BY clause.   </li>
 <li class="link ulchildlink"><strong><a href="orderby.html">ORDER BY clause</a></strong><br/>
 The order of items in the result set is determined by expression in this clause.      Objects are sorted first by the left-most expression in the list of expressions.      Any items with the same sort value will be sorted with the next expression in the list.      This process repeats until all items are sorted and all expressions in the list are evaluated.</li>
+<li class="link ulchildlink"><strong><a href="keys.html">KEYS clause</a></strong><br/>
+The KEYS clause is an optional clause that follows the FROM clause. The KEYS clause is     based on primary keys within a bucket. Only values having those primary keys are included as     inputs to the query. </li>
 <li class="link ulchildlink"><strong><a href="join.html">JOIN clause</a></strong><br/>
 This optional clause follows the `FROM`clause and      allows you to create new input objects by combining two or more source objects.      The `KEYS` clause is required after each JOIN.      It specifies the primary keys for the second bucket in the join.</li>
-<li class="link ulchildlink"><strong><a href="keys.html">KEYS clause</a></strong><br/>
-The KEYS clause is an optional clause that follows the FROM clause.      The KEYS clause is based on primary keys within a bucket.      Only values having those primary keys are included as inputs to the query.      KEYS is mandatory for the primary bucket.</li>
 <li class="link ulchildlink"><strong><a href="nest.html">NEST clause</a></strong><br/>
 Nesting performs a join across two buckets.      But instead of producing a cross-product of the left and right hand inputs,      a single result is produced for each left hand input,      while the corresponding right hand inputs are collected into an array and      nested as a single array-valued field in the result object.</li>
 <li class="link ulchildlink"><strong><a href="unnest.html">UNNEST clause</a></strong><br/>
@@ -212,7 +269,7 @@ The LIMIT clause imposes a specific number of objects returned in a result set b
 </ul>
 <div class="relinfo relref"><strong>Related reference</strong><br/>
 <div><a class="navheader_parent_path" href="expressions.html" title="N1QL expressions are like formulas written in a query language. They include operators, symbols and values to evaluate and filter result objects.">Expressions</a></div>
-<div><a class="navheader_parent_path" href="operators.html" title="N1QL operators follow a logical order of precedence with the parenthesis having the highest order. Parenthesis are used to combine expressions and operators. If parenthesis are used to group operators and expressions, these items are evaluated first and the result is used in other operations.">Operators</a></div>
+<div><a class="navheader_parent_path" href="operators.html" title="When a complex expression has multiple operators, operator precedence determines the sequence in which the operations are performed. The order of execution can significantly affect the resulting value.">Operators</a></div>
 <div><a class="navheader_parent_path" href="functions.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Functions</a></div>
 </div>
 </div> 

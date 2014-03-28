@@ -19,91 +19,103 @@
 
  
     <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
-        <th valign="bottom" align="left" id="d7129e18" class="stentry" width="30%">Function</th>
+        <th valign="bottom" align="left" id="d7597e18" class="stentry" width="30%">Function</th>
 
-        <th valign="bottom" align="left" id="d7129e21" class="stentry" width="46.19047619047619%">Description</th>
+        <th valign="bottom" align="left" id="d7597e21" class="stentry" width="46.19047619047619%">Description</th>
 
-        <th valign="bottom" align="left" id="d7129e24" class="stentry" width="23.80952380952381%">Returns</th>
+        <th valign="bottom" align="left" id="d7597e24" class="stentry" width="23.80952380952381%">Returns</th>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">LENGTH(expr)</td>
+        <td valign="top" headers="d7597e18" class="stentry">LENGTH(expr)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">Returns the length of the value after evaluating the expression. For example,
+        <td valign="top" headers="d7597e21" class="stentry">Returns the length of the value after evaluating the expression. For example,
           length(orders.items). If string, length of string. For arrays, length of array. For
           objects, returns the number of pairs in object. For all others, returns NULL</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">Value or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">Value or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">LOWER(expr)</td>
+        <td valign="top" headers="d7597e18" class="stentry">LOWER(expr)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">If the expression is a string, transforms the string into all lowercase. Otherwise,
+        <td valign="top" headers="d7597e21" class="stentry">If the expression is a string, transforms the string into all lowercase. Otherwise,
           returns NULL.</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">LTRIM(expr, charset)</td>
+        <td valign="top" headers="d7597e18" class="stentry">LTRIM(expr, charset)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">Removes the longest string containing the characters in <samp class="ph codeph">charset</samp>
+        <td valign="top" headers="d7597e21" class="stentry">Removes the longest string containing the characters in <samp class="ph codeph">charset</samp>
           from start of string.</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">RTRIM( expr, charset )</td>
+        <td valign="top" headers="d7597e18" class="stentry">RTRIM( expr, charset )</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">Removes the longest string containing only the characters in the specified
+        <td valign="top" headers="d7597e21" class="stentry">Removes the longest string containing only the characters in the specified
           character set starting at the end</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">SUBSTR(value, position)</td>
+        <td valign="top" headers="d7597e18" class="stentry">SUBSTR(value, position)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">For the value of a string and the numeric position, retrieves the substring from
+        <td valign="top" headers="d7597e21" class="stentry">For the value of a string and the numeric position, retrieves the substring from
           the position to the end of string. The string position starts at 1. If the position is 0,
           the string position is still 1. If string is at a negative position, characters are
           counted from the end of string. Otherwise, returns NULL.</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">SUBSTR(value, position, length)</td>
+        <td valign="top" headers="d7597e18" class="stentry">SUBSTR(value, position, length)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">If length is positive integer, returns substring starting at position up to length
+        <td valign="top" headers="d7597e21" class="stentry">If length is positive integer, returns substring starting at position up to length
           characters. Otherwise, returns NULL</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">TRIM(expr, charset)</td>
+        <td valign="top" headers="d7597e18" class="stentry">TRIM(expr, charset)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">Functional equivalent of LTRIM(RTRIM(expr, charset))</td>
+        <td valign="top" headers="d7597e21" class="stentry">Functional equivalent of LTRIM(RTRIM(expr, charset))</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 <tr class="strow">
-        <td valign="top" headers="d7129e18" class="stentry">UPPER(expr)</td>
+        <td valign="top" headers="d7597e18" class="stentry">UPPER(expr)</td>
 
-        <td valign="top" headers="d7129e21" class="stentry">If the expression is a string, transforms the string into all uppercase letters.
+        <td valign="top" headers="d7597e21" class="stentry">If the expression is a string, transforms the string into all uppercase letters.
           Otherwise, returns NULL</td>
 
-        <td valign="top" headers="d7129e24" class="stentry">String or NULL</td>
+        <td valign="top" headers="d7597e24" class="stentry">String or NULL</td>
 
       </tr>
 </table>
 
  
- 
+ <div class="section"><h2 class="title sectiontitle">Example</h2>
+   <p class="p">The following example shows a LOWER string function via the N1QL tutorial.</p>
+
+   <pre class="pre codeblock language-sql">
+ <strong class="hl-keyword" style="color:#7f0055">SELECT</strong>
+    product 
+    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> product
+    <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> product.categories <strong class="hl-keyword" style="color:#7f0055">as</strong> categories
+    <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">LOWER</strong>(categories) = "appliances"     
+   </pre>
+  
+ </div>
+
  
   </div>
 

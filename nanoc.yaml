@@ -107,7 +107,7 @@ versions:
   couchbase-query-language:
     name: "Query Language N1QL"
     versions:
-      - 0.1
+      - 0.3
 
   couchbase-sdk-c:
     name: "C SDK"

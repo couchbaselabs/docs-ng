@@ -2,7 +2,7 @@
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en-us" lang="en-us">
-<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="N1QL operators follow a logical order of precedence with the parenthesis having the highest order. Parenthesis are used to combine expressions and operators. If parenthesis are used to group operators ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="Operators"/><meta name="abstract" content="N1QL operators follow a logical order of precedence with the parenthesis having the highest order. Parenthesis are used to combine expressions and operators. If parenthesis are used to group operators and expressions, these items are evaluated first and the result is used in other operations."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="N1QL operators follow a logical order of precedence with the parenthesis having the highest order. Parenthesis are used to combine expressions and operators. If parenthesis are used to group operators and expressions, these items are evaluated first and the result is used in other operations."/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_myl_blw_3n"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Operators</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="When a complex expression has multiple operators, operator precedence determines the sequence in which the operations are performed. The order of execution can significantly affect the resulting ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="Operators"/><meta name="abstract" content="When a complex expression has multiple operators, operator precedence determines the sequence in which the operations are performed. The order of execution can significantly affect the resulting value."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="When a complex expression has multiple operators, operator precedence determines the sequence in which the operations are performed. The order of execution can significantly affect the resulting value."/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_myl_blw_3n"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Operators</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -13,197 +13,292 @@
   <h1 class="title topictitle1">Operators</h1>
 
   
-  <div class="body refbody"><p class="shortdesc">N1QL operators follow a logical order of precedence with the parenthesis 
-    having the highest order. Parenthesis are used to combine expressions and operators. 
-    If parenthesis are used to group operators and expressions, 
-    these items are evaluated first and the result is used in other operations.
+  <div class="body refbody"><p class="shortdesc">When a complex expression has multiple operators, operator precedence 
+    determines the sequence in which the operations are performed. 
+    The order of execution can significantly affect the resulting value.
   </p>
 
- 
+    
+
     <div class="section"><h2 class="title sectiontitle">Order of precedence</h2>
       
-      <p class="p">The following list shows the order of precedence. Top-level items have precedence over
-        lower-level items. For example, IS NULL has precedence over LIKE.</p>
+      <p class="p">N1QL operators follow a logical order of precedence with the parenthesis 
+        having the highest order. Parenthesis are used to combine expressions and operators. 
+        If parenthesis are used to group operators and expressions, 
+        these items are evaluated first and the result is used in other operations.</p>
 
-      
-      <pre class="pre codeblock">
-CASE | WHEN | THEN | ELSE | END
- .
-  []
-   -
-    */%
-     +-
-      IS NULL | IS MISSING | IS VALUED
-       IS NOT NULL | IS NOT MISSING | IS NOT VALUED
-        LIKE
-          =, &lt;, &gt;, &lt;=, and =&gt;
-           NOT
-            AND
-             OR
-    </pre>
-    
+        
+        <p class="p">The following table shows operator precedence level. An operator at a higher level is
+        evaluated before an operator at a lower level.</p>
+
+ 
+ <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
+          <th valign="bottom" align="left" id="d5307e29" class="stentry" width="20.408163265306122%">Precedence level</th>
+
+          <th valign="bottom" align="left" id="d5307e32" class="stentry" width="79.59183673469387%">Operator</th>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">1</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">CASE</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">2</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">. (period)</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">3</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">[ ] (left and right bracket) </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">4</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">- (unary)</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">5</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">* (multiply), / (divide), % (modulo)</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">6</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">+, - (binary)</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">7</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">IS</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">8</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">IN</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">9</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">BETWEEN</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">10</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">LIKE</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">11</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">&lt; (less than, &gt; (greater than), &lt;= (less than or equal to, and =&gt;
+            (equal to or greater than)</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">12</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">= (equal to) , == (equal to), &lt;&gt; (less than or greater than), != (not equal
+            to)</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">13</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">NOT</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">15</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">AND</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">16</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">OR</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e29" class="stentry">17</td>
+
+          <td valign="top" headers="d5307e32" class="stentry">UNION</td>
+
+        </tr>
+</table>
+
+ 
     </div>
-    
- 
- 
+
     <div class="section"><h2 class="title sectiontitle">Relational operators</h2>
       
       <p class="p">Relational operators allow two expressions to be compared.</p>
 
       <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
-          <th valign="bottom" align="left" id="d5171e38" class="stentry" width="25.23809523809524%">Comparison</th>
+          <th valign="bottom" align="left" id="d5307e196" class="stentry" width="25.188916876574307%">Comparison</th>
 
-          <th valign="bottom" align="left" id="d5171e41" class="stentry" width="50.952380952380956%">Description</th>
+          <th valign="bottom" align="left" id="d5307e199" class="stentry" width="47.858942065491185%">Description</th>
 
-          <th valign="bottom" align="left" id="d5171e44" class="stentry" width="23.80952380952381%">Returns</th>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> = </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">Equals to </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <th valign="bottom" align="left" id="d5307e202" class="stentry" width="26.95214105793451%">Returns</th>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> == </td>
+          <td valign="top" headers="d5307e196" class="stentry"> = </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Equals to </td>
+          <td valign="top" headers="d5307e199" class="stentry">Equals to </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> != </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">Not equal to </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> &lt;&gt; </td>
+          <td valign="top" headers="d5307e196" class="stentry"> == </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Not equal to </td>
+          <td valign="top" headers="d5307e199" class="stentry">Equals to </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> &gt; </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">Greater than </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> &gt;= </td>
+          <td valign="top" headers="d5307e196" class="stentry"> != </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Greater than or equal to </td>
+          <td valign="top" headers="d5307e199" class="stentry">Not equal to </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> &lt; </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">Less than </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> &lt;= </td>
+          <td valign="top" headers="d5307e196" class="stentry"> &lt;&gt; </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Less than or equal to </td>
+          <td valign="top" headers="d5307e199" class="stentry">Not equal to </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> BETWEEN </td>
+          <td valign="top" headers="d5307e196" class="stentry"> &gt; </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Search criteria for a query where the value is between two values, including the
+          <td valign="top" headers="d5307e199" class="stentry">Greater than </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> &gt;= </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Greater than or equal to </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> &lt; </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Less than </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> &lt;= </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Less than or equal to </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> BETWEEN </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Search criteria for a query where the value is between two values, including the
             end values specified in the range. Values can be numbers, text, or dates.</td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> Value</td>
+          <td valign="top" headers="d5307e202" class="stentry"> Value</td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> NOT BETWEEN </td>
+          <td valign="top" headers="d5307e196" class="stentry"> NOT BETWEEN </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Search criteria for a query where the value is outside the range of two values,
+          <td valign="top" headers="d5307e199" class="stentry">Search criteria for a query where the value is outside the range of two values,
             including the end values specified in the range. Values can be numbers, text, or
             dates.</td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> Value</td>
+          <td valign="top" headers="d5307e202" class="stentry"> Value</td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> LIKE </td>
+          <td valign="top" headers="d5307e196" class="stentry"> LIKE </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Match string with wildcard expression. <samp class="ph codeph">%</samp> for zero or more
+          <td valign="top" headers="d5307e199" class="stentry">Match string with wildcard expression. <samp class="ph codeph">%</samp> for zero or more
             wildcards, <samp class="ph codeph">_</samp> to match any character at this place in a string </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> NOT LIKE </td>
+          <td valign="top" headers="d5307e196" class="stentry"> NOT LIKE </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Inverse of LIKE. Return TRUE if string is not similar to given string. </td>
+          <td valign="top" headers="d5307e199" class="stentry">Inverse of LIKE. Return TRUE if string is not similar to given string. </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> IS NULL </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">Field has value of NULL. </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> IS NOT NULL </td>
+          <td valign="top" headers="d5307e196" class="stentry"> IS NULL </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Field has value or is missing. </td>
+          <td valign="top" headers="d5307e199" class="stentry">Field has value of NULL. </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> IS MISSING </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">No value for field found. </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> IS NOT MISSING </td>
+          <td valign="top" headers="d5307e196" class="stentry"> IS NOT NULL </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Value for field found or value is NULL. </td>
+          <td valign="top" headers="d5307e199" class="stentry">Field has value or is missing. </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> IS VALUED </td>
-
-          <td valign="top" headers="d5171e41" class="stentry">Value for field found. Value is neither missing nor NULL </td>
-
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e38" class="stentry"> IS NOT VALUED </td>
+          <td valign="top" headers="d5307e196" class="stentry"> IS MISSING </td>
 
-          <td valign="top" headers="d5171e41" class="stentry">Value for field not found. Value is NULL. </td>
+          <td valign="top" headers="d5307e199" class="stentry">No value for field found. </td>
 
-          <td valign="top" headers="d5171e44" class="stentry"> TRUE or FALSE </td>
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> IS NOT MISSING </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Value for field found or value is NULL. </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> IS VALUED </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Value for field found. Value is neither missing nor NULL </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e196" class="stentry"> IS NOT VALUED </td>
+
+          <td valign="top" headers="d5307e199" class="stentry">Value for field not found. Value is NULL. </td>
+
+          <td valign="top" headers="d5307e202" class="stentry"> TRUE or FALSE </td>
 
         </tr>
 </table>
@@ -220,45 +315,45 @@ CASE | WHEN | THEN | ELSE | END
 
       
       <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletable"><tr class="sthead">
-          <th valign="bottom" align="left" id="d5171e287" class="stentry">Operator</th>
+          <th valign="bottom" align="left" id="d5307e445" class="stentry">Operator</th>
 
-          <th valign="bottom" align="left" id="d5171e290" class="stentry">Description</th>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e287" class="stentry">+</td>
-
-          <td valign="top" headers="d5171e290" class="stentry">Add values.</td>
+          <th valign="bottom" align="left" id="d5307e448" class="stentry">Description</th>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e287" class="stentry">-</td>
+          <td valign="top" headers="d5307e445" class="stentry">+</td>
 
-          <td valign="top" headers="d5171e290" class="stentry">Subtract right value from left.</td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e287" class="stentry">*</td>
-
-          <td valign="top" headers="d5171e290" class="stentry">Multiply values</td>
+          <td valign="top" headers="d5307e448" class="stentry">Add values.</td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e287" class="stentry">/</td>
+          <td valign="top" headers="d5307e445" class="stentry">-</td>
 
-          <td valign="top" headers="d5171e290" class="stentry">Divide left value by right.</td>
-
-        </tr>
-<tr class="strow">
-          <td valign="top" headers="d5171e287" class="stentry">%</td>
-
-          <td valign="top" headers="d5171e290" class="stentry">Modulo. Divide left value by right and return the rmainder.</td>
+          <td valign="top" headers="d5307e448" class="stentry">Subtract right value from left.</td>
 
         </tr>
 <tr class="strow">
-          <td valign="top" headers="d5171e287" class="stentry">-value</td>
+          <td valign="top" headers="d5307e445" class="stentry">*</td>
 
-          <td valign="top" headers="d5171e290" class="stentry">Negate value.</td>
+          <td valign="top" headers="d5307e448" class="stentry">Multiply values</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e445" class="stentry">/</td>
+
+          <td valign="top" headers="d5307e448" class="stentry">Divide left value by right.</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e445" class="stentry">%</td>
+
+          <td valign="top" headers="d5307e448" class="stentry">Modulo. Divide left value by right and return the remainder.</td>
+
+        </tr>
+<tr class="strow">
+          <td valign="top" headers="d5307e445" class="stentry">-value</td>
+
+          <td valign="top" headers="d5307e448" class="stentry">Negate value.</td>
 
         </tr>
 </table>

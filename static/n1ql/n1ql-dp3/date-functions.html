@@ -134,7 +134,37 @@
    
  </div>
 
- 
+
+<div class="section"><h2 class="title sectiontitle">Example</h2>
+  
+  <p class="p">The following query example retrieves purchase information for an e-commerce report. 
+    The report lists unique customers that purchased something on the company website in the last month. 
+    This information is used to identify user activity and growth.</p>
+
+  
+  <pre class="pre codeblock">
+SELECT distinct count(purchases.customerId) 
+    FROM purchases
+    WHERE str_to_millis(purchases.purchasedAt) between str_to_millis("2014-02-01") and str_to_millis("2014-03-01")       
+  </pre>
+
+  
+  <p class="p">Returns:</p>
+
+  <pre class="pre codeblock">
+{
+  "resultset": [
+    {
+      "$1": 3831
+    }
+  ]
+}    
+  </pre>
+
+
+
+</div>
+
  
   </div>
 
