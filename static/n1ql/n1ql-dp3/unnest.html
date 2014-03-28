@@ -21,8 +21,8 @@
  
     <div class="section"><h2 class="title sectiontitle">Syntax</h2>
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> <strong class="hl-keyword" style="color:#7f0055">path</strong> [<strong class="hl-keyword" style="color:#7f0055">AS</strong>] [alias]
+      <pre class="pre codeblock">
+FROM data-source join-type UNNEST path [AS] [alias]
       </pre>
 
     </div>
@@ -45,10 +45,10 @@
         collects the reviewerName and publication from each element in the array. 
         This collection of objects can be used as input for other query operations.</p>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> review.reviewerName, review.publication
-  <strong class="hl-keyword" style="color:#7f0055">FROM</strong> beers <strong class="hl-keyword" style="color:#7f0055">AS</strong> b 
-    <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> review <strong class="hl-keyword" style="color:#7f0055">IN</strong> b.reviews
+      <pre class="pre codeblock">
+SELECT review.reviewerName, review.publication
+  FROM beers AS b 
+    UNNEST review IN b.reviews
       </pre>
 
       

@@ -22,15 +22,15 @@
 
     <div class="section"><h2 class="title sectiontitle">Syntax</h2>
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> expr letting-clause <strong class="hl-keyword" style="color:#7f0055">having</strong>-clause
+      <pre class="pre codeblock">
+SELECT result-expr FROM data-source GROUP BY expr letting-clause having-clause
       </pre>
 
       <p class="p">The HAVING clause optionally follows the GROUP BY clause. 
         It filters result objects from the GROUP BY clause with a given expression.</p>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> expr <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> expr
+      <pre class="pre codeblock">
+SELECT result-expr FROM data-source GROUP BY expr HAVING expr
       </pre>
 
     </div>
@@ -59,8 +59,8 @@
       <p class="p">Books in the result set are grouped together and 
         returned in an object and films are grouped and returned in another object.</p>
 
-     <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> title, <strong class="hl-keyword" style="color:#7f0055">type</strong>, <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) <strong class="hl-keyword" style="color:#7f0055">AS</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong> <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">catalog</strong> <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <strong class="hl-keyword" style="color:#7f0055">type</strong>       
+     <pre class="pre codeblock">
+SELECT title, type, COUNT(*) AS count FROM catalog GROUP BY type       
      </pre>
 
     </div>
@@ -69,17 +69,17 @@
     <div class="example">
       <p class="p">The following example shows the GROUP BY clause used in the N1QL tutorial.</p>
 
-      <pre class="pre codeblock language-sql">    
-// <strong class="hl-keyword" style="color:#7f0055">Group</strong> <strong class="hl-keyword" style="color:#7f0055">by</strong> relation
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> relation, <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) <strong class="hl-keyword" style="color:#7f0055">AS</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>
-    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
-        <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> relation
+      <pre class="pre codeblock">    
+// Group by relation
+SELECT relation, COUNT(*) AS count
+    FROM tutorial
+        GROUP BY relation
 
-// <strong class="hl-keyword" style="color:#7f0055">Group</strong> <strong class="hl-keyword" style="color:#7f0055">by</strong> relations <strong class="hl-keyword" style="color:#7f0055">and</strong> <strong class="hl-keyword" style="color:#7f0055">filter</strong> groups <strong class="hl-keyword" style="color:#7f0055">by</strong> <strong class="hl-keyword" style="color:#7f0055">size</strong>
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> relation, <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) <strong class="hl-keyword" style="color:#7f0055">AS</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>
-    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
-        <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> relation
-            <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> <strong class="hl-keyword" style="color:#7f0055">COUNT</strong>(*) &gt; <span class="hl-number">1</span>
+// Group by relations and filter groups by size
+SELECT relation, COUNT(*) AS count
+    FROM tutorial
+        GROUP BY relation
+            HAVING COUNT(*) &gt; 1
       </pre>
 
     </div>

@@ -21,8 +21,8 @@
 
     <div class="section"><h2 class="title sectiontitle">Syntax</h2>
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">JOIN</strong> <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> [<strong class="hl-keyword" style="color:#7f0055">AS</strong>] alias KEYS expr
+      <pre class="pre codeblock">
+SELECT result-expr FROM data-source join-type JOIN from-path [AS] alias KEYS expr
       </pre>
 
     </div>
@@ -39,12 +39,12 @@
     
     <div class="section"><h2 class="title sectiontitle">Example</h2>
       
-      <p class="p">The following example show single and multiple keys specified.</p>
+      <p class="p">The following example shows queries on single and multiple keys.</p>
 
-      <pre class="pre codeblock language-sql">       
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> customer KEYS "acme-uuid-<span class="hl-number">1234</span>-<span class="hl-number">5678</span>"
+      <pre class="pre codeblock">       
+SELECT * FROM customer KEYS "acme-uuid-1234-5678"
 
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> customer KEYS [ "acme-uuid-<span class="hl-number">1234</span>-<span class="hl-number">5678</span>", "roadster-uuid-<span class="hl-number">4321</span>-<span class="hl-number">8765</span>" ]
+SELECT * FROM customer KEYS [ "acme-uuid-1234-5678", "roadster-uuid-4321-8765" ]
       </pre>
 
     </div>

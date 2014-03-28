@@ -57,8 +57,8 @@ SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
       <div class="example"><h2 class="title sectiontitle">Hello World!</h2>
         <p class="p">This query displays "Hello World!".</p>
 
-        <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <span class="hl-string" style="color:#2a00ff">'Hello World!'</span> <strong class="hl-keyword" style="color:#7f0055">AS</strong> Greeting
+        <pre class="pre codeblock">
+SELECT 'Hello World!' AS Greeting
       </pre>
 
         
@@ -82,8 +82,8 @@ SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
       <div class="example"><h2 class="title sectiontitle">System buckets</h2>
         <p class="p">This query lists all the buckets on the system.</p>
 
-        <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> :<strong class="hl-keyword" style="color:#7f0055">system</strong>.buckets
+        <pre class="pre codeblock">
+SELECT * FROM :system.buckets
       </pre>
 
         
@@ -169,8 +169,8 @@ SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
       <div class="example"><h2 class="title sectiontitle">Jungleville</h2>
         <p class="p">This query retrieves one document from the jungleville bucket.</p>
 
-        <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> jungleville LIMIT <span class="hl-number">1</span>
+        <pre class="pre codeblock">
+SELECT * FROM jungleville LIMIT 1
       </pre>
 
         
@@ -218,8 +218,8 @@ SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
     <div class="example"><h2 class="title sectiontitle">Jungleville piggies</h2>
       <p class="p">This query retrieves all piggies from the jungleville bucket.</p>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> gameworld.piggies <strong class="hl-keyword" style="color:#7f0055">FROM</strong> jungleville
+      <pre class="pre codeblock">
+SELECT gameworld.piggies FROM jungleville
       </pre>
 
       

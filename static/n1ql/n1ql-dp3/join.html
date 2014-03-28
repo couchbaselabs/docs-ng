@@ -22,8 +22,8 @@
 
     <div class="section"><h2 class="title sectiontitle">Syntax</h2>
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">JOIN</strong> <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> [<strong class="hl-keyword" style="color:#7f0055">AS</strong>] alias KEYS expr
+      <pre class="pre codeblock">
+SELECT result-expr FROM data-source join-type JOIN from-path [AS] alias KEYS expr
       </pre>
 
     </div>
@@ -84,8 +84,8 @@
 
       
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">FROM</strong> invoice inv <strong class="hl-keyword" style="color:#7f0055">JOIN</strong> customer cust KEYS inv.customer_key
+      <pre class="pre codeblock">
+FROM invoice inv JOIN customer cust KEYS inv.customer_key
       </pre>
 
  <p class="p">Results: </p>
@@ -121,8 +121,8 @@
     }
         </pre>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">FROM</strong> invoice <strong class="hl-keyword" style="color:#7f0055">JOIN</strong> invoice_item item KEYS invoice.invoice_item_key        
+      <pre class="pre codeblock">
+FROM invoice JOIN invoice_item item KEYS invoice.invoice_item_key        
       </pre>
 
       

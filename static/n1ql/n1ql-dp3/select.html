@@ -2,7 +2,7 @@
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en-us" lang="en-us">
-<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects. Syntax SELECT [ ALL | DISTINCT ] result -expr [ , ... ] [ FROM ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="SELECT statement"/><meta name="abstract" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta name="DC.Relation" scheme="URI" content="selectClause.html"/><meta name="DC.Relation" scheme="URI" content="distinct.html"/><meta name="DC.Relation" scheme="URI" content="from.html"/><meta name="DC.Relation" scheme="URI" content="where.html"/><meta name="DC.Relation" scheme="URI" content="groupby.html"/><meta name="DC.Relation" scheme="URI" content="orderby.html"/><meta name="DC.Relation" scheme="URI" content="keys.html"/><meta name="DC.Relation" scheme="URI" content="join.html"/><meta name="DC.Relation" scheme="URI" content="nest.html"/><meta name="DC.Relation" scheme="URI" content="unnest.html"/><meta name="DC.Relation" scheme="URI" content="limit.html"/><meta name="DC.Relation" scheme="URI" content="expressions.html"/><meta name="DC.Relation" scheme="URI" content="operators.html"/><meta name="DC.Relation" scheme="URI" content="functions.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_gbn_1qx_gn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>SELECT statement</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects. Syntax SELECT [ ALL | DISTINCT ] result-expr [ , ... ] [ FROM ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="reference"/><meta name="DC.Title" content="SELECT statement"/><meta name="abstract" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The SELECT statement is used to extract data from Couchbase Server. The query is against data buckets and results in one or more objects."/><meta name="DC.Relation" scheme="URI" content="selectClause.html"/><meta name="DC.Relation" scheme="URI" content="distinct.html"/><meta name="DC.Relation" scheme="URI" content="from.html"/><meta name="DC.Relation" scheme="URI" content="where.html"/><meta name="DC.Relation" scheme="URI" content="groupby.html"/><meta name="DC.Relation" scheme="URI" content="orderby.html"/><meta name="DC.Relation" scheme="URI" content="keys.html"/><meta name="DC.Relation" scheme="URI" content="join.html"/><meta name="DC.Relation" scheme="URI" content="nest.html"/><meta name="DC.Relation" scheme="URI" content="unnest.html"/><meta name="DC.Relation" scheme="URI" content="limit.html"/><meta name="DC.Relation" scheme="URI" content="expressions.html"/><meta name="DC.Relation" scheme="URI" content="operators.html"/><meta name="DC.Relation" scheme="URI" content="aggregate-function.html"/><meta name="DC.Relation" scheme="URI" content="scalar-function.html"/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="reference_gbn_1qx_gn"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>SELECT statement</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="couchbase.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -19,49 +19,48 @@
  
  <div class="section"><h2 class="title sectiontitle">Syntax</h2>
    
-   <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> [ <strong class="hl-keyword" style="color:#7f0055">ALL</strong> | <strong class="hl-keyword" style="color:#7f0055">DISTINCT</strong> ] <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr [ , ... ]
-  [ <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> ]
-  [ <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> expr ]
-  [ <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> expr [ , ... ] [ <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> expr ] ]
-  [ <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <strong class="hl-keyword" style="color:#7f0055">ordering</strong>-term [ , ... ] ]
-  [ LIMIT non-neg-<strong class="hl-keyword" style="color:#7f0055">int</strong> ]
-  [ OFFSET non-neg-<strong class="hl-keyword" style="color:#7f0055">int</strong> ]
+   <pre class="pre codeblock">
+SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
+  [ FROM data-source ]
+  [ WHERE expr ]
+  [ GROUP BY expr [ , ... ] [ HAVING expr ] ]
+  [ ORDER BY ordering-term [ , ... ] ]
+  [ LIMIT non-neg-int ]
+  [ OFFSET non-neg-int ]
 
 
-// <strong class="hl-keyword" style="color:#7f0055">result</strong>-expr <strong class="hl-keyword" style="color:#7f0055">is</strong> one <strong class="hl-keyword" style="color:#7f0055">of</strong> the <strong class="hl-keyword" style="color:#7f0055">following</strong>:
+SELECT result-expr is one of the following:
   *
-  <strong class="hl-keyword" style="color:#7f0055">path</strong> . *
-  expr [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias
-    // alias <strong class="hl-keyword" style="color:#7f0055">is</strong> an identifier
+  path . *
+  expr [ AS ] alias   // where alias is an identifier
 
-// <strong class="hl-keyword" style="color:#7f0055">data</strong>-<strong class="hl-keyword" style="color:#7f0055">source</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> one <strong class="hl-keyword" style="color:#7f0055">of</strong> the <strong class="hl-keyword" style="color:#7f0055">following</strong>:
-  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong>
-    // <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong>:
-      [ ‘:’ pool-<strong class="hl-keyword" style="color:#7f0055">name</strong> ‘.<span class="hl-string" style="color:#2a00ff">' ] bucket-name [ ‘.’ path ] [ [ AS ]  alias ] [ keys-clause ]
-</span>    // pool-<strong class="hl-keyword" style="color:#7f0055">name</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> identifier
-    // keys-clause <strong class="hl-keyword" style="color:#7f0055">is</strong> KEYS expr
+data-source is one of the following:
+  from-path
+  from-path join-clause
+  from-path nest-clause
+  from-path unnest-clause
+
+
+from-path:
+  [ ‘:’ pool-name ‘.' ] bucket-name [ ‘.’ path ] [ [ AS ]  alias ] [ keys-clause ]
+    where pool-name is identifier
+    where keys-clause is KEYS expr
             
-  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">join</strong>-clause
-    // <strong class="hl-keyword" style="color:#7f0055">join</strong>-clause <strong class="hl-keyword" style="color:#7f0055">is</strong>:
-      [ <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> ] <strong class="hl-keyword" style="color:#7f0055">JOIN</strong> <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> [ [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias ] keys-clause
-    // <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> [ <strong class="hl-keyword" style="color:#7f0055">INNER</strong> | [ <strong class="hl-keyword" style="color:#7f0055">LEFT</strong> ] <strong class="hl-keyword" style="color:#7f0055">OUTER</strong> ]
+from-path join-clause
+  [ join-type ] JOIN from-path [ [ AS ] alias ] keys-clause
+    where join-type is [ INNER | [ LEFT ] OUTER ]
             
-  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> nest-clause
-    // nest-clause <strong class="hl-keyword" style="color:#7f0055">is</strong>:
-      [ <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> ] NEST <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> [ [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias ] keys-clause
-    // <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> [ <strong class="hl-keyword" style="color:#7f0055">INNER</strong> | [ <strong class="hl-keyword" style="color:#7f0055">LEFT</strong> ] <strong class="hl-keyword" style="color:#7f0055">OUTER</strong> ]
+from-path nest-clause
+  [ join-type ] NEST from-path [ [ AS ] alias ] keys-clause
+    where join-type is [ INNER | [ LEFT ] OUTER ]
               
-  <strong class="hl-keyword" style="color:#7f0055">from</strong>-<strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">unnest</strong>-clause
-    // <strong class="hl-keyword" style="color:#7f0055">unnest</strong>-clause <strong class="hl-keyword" style="color:#7f0055">is</strong>:
-      [ <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> ] <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> <strong class="hl-keyword" style="color:#7f0055">path</strong> [ [ <strong class="hl-keyword" style="color:#7f0055">AS</strong> ] alias ] 
-        // <strong class="hl-keyword" style="color:#7f0055">join</strong>-<strong class="hl-keyword" style="color:#7f0055">type</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong>: 
-          [ <strong class="hl-keyword" style="color:#7f0055">INNER</strong> | [ <strong class="hl-keyword" style="color:#7f0055">LEFT</strong> ] <strong class="hl-keyword" style="color:#7f0055">OUTER</strong> ]
-        // <strong class="hl-keyword" style="color:#7f0055">path</strong> <strong class="hl-keyword" style="color:#7f0055">is</strong> : identifier [ ‘[<span class="hl-string" style="color:#2a00ff">' non-neg-int '</span>]<span class="hl-string" style="color:#2a00ff">' ] [ ‘.’ path ]
-</span> 
- // <strong class="hl-keyword" style="color:#7f0055">ordering</strong>-term <strong class="hl-keyword" style="color:#7f0055">is</strong>:
-     expr [ <strong class="hl-keyword" style="color:#7f0055">ASC</strong> | <strong class="hl-keyword" style="color:#7f0055">DESC</strong> ]
-    
+from-path unnest-clause
+  [ join-type ] UNNEST path [ [ AS ] alias ] 
+    where join-type is [ INNER | [ LEFT ] OUTER ]
+    where path is identifier [ ‘[' non-neg-int ']' ] [ ‘.’ path ]
+  
+ORDER BY ordering-term is:
+  expr [ ASC | DESC ]    
     </pre>
       
  </div>
@@ -76,14 +75,10 @@
     
 <div class="section"><h2 class="title sectiontitle">Description</h2>
   
-  <p class="p">
-    The SELECT statement queries a data source. 
-    A JSON array is returned that contains zero or more result objects. 
-    SELECT behaves as a sequence of steps in a process. 
-    Each step in the process produces result objects which are then used as 
-    inputs in the next step until all steps in the process are complete. 
-    The possible elements and operations in a query include:
-  </p>
+  <p class="p">The SELECT statement queries a data source. A JSON array is returned that contains zero or more
+        result objects. SELECT behaves as a sequence of steps in a process. Each step in the process
+        produces result objects which are then used as inputs in the next step until all steps in
+        the process are complete. The possible elements and operations in a query include: </p>
 
   <ul class="ul">
     <li class="li">Data Source - The Couchbase data bucket that is queried. 
@@ -91,8 +86,6 @@
       Alternately, provide a path as data source.</li>
 
     <li class="li">Filtering - Results objects from the SELECT can be filtered by adding a WHERE clause.</li>
-
-    <li class="li">Sorting - You can order objects in a result set and provide range limits by using ORDER BY, LIMIT, and OFFSET</li>
 
     <li class="li">Result Set - You generate a set of result objects with GROUP BY or HAVING clauses 
       along with a result expression list, <samp class="ph codeph">result-expr-list</samp>.</li>
@@ -119,13 +112,7 @@
 
     
     <div class="example"><h2 class="title sectiontitle">Select from tutorial</h2>
-      
-    <pre class="pre codeblock language-sql">
-    <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <em class="ph i">result-expr</em> <strong class="hl-keyword" style="color:#7f0055">FROM</strong> <em class="ph i">data-source</em> 
-        <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <em class="ph i">expr</em>
-        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> <em class="ph i">ordering-term</em>
-    </pre>
-    
+        
 
     <pre class="pre codeblock language-sql">
     <strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial
@@ -153,8 +140,8 @@
       
       <p class="p">This query returns all values from the following Orders data bucket.</p>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> orders.billToAddress.<strong class="hl-keyword" style="color:#7f0055">state</strong>
+      <pre class="pre codeblock">
+SELECT * FROM orders.billToAddress.state
       </pre>
 
       <p class="p">Returns a list of all billing states from the order data bucket.</p>
@@ -205,15 +192,15 @@
     
     <div class="example"><h2 class="title sectiontitle">Complex SELECT statement</h2>
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> t.relation, <strong class="hl-keyword" style="color:#7f0055">count</strong>(*) <strong class="hl-keyword" style="color:#7f0055">as</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>, <strong class="hl-keyword" style="color:#7f0055">avg</strong>(<strong class="hl-keyword" style="color:#7f0055">c</strong>.age) <strong class="hl-keyword" style="color:#7f0055">as</strong> avg_age
-    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial t
-    <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> t.children <strong class="hl-keyword" style="color:#7f0055">c</strong>
-    <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">c</strong>.age &gt; <span class="hl-number">10</span>
-    <strong class="hl-keyword" style="color:#7f0055">GROUP</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> t.relation
-    <strong class="hl-keyword" style="color:#7f0055">HAVING</strong> <strong class="hl-keyword" style="color:#7f0055">count</strong>(*) &gt; <span class="hl-number">1</span>
-    <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> avg_age <strong class="hl-keyword" style="color:#7f0055">DESC</strong>
-    LIMIT <span class="hl-number">1</span> OFFSET <span class="hl-number">1</span>
+      <pre class="pre codeblock">
+SELECT t.relation, count(*) as count, avg(c.age) as avg_age
+    FROM tutorial t
+    UNNEST t.children c
+    WHERE c.age &gt; 10
+    GROUP BY t.relation
+    HAVING count(*) &gt; 1
+    ORDER BY avg_age DESC
+    LIMIT 1 OFFSET 1
     </pre>
   
       
@@ -270,7 +257,8 @@ The LIMIT clause imposes a specific number of objects returned in a result set b
 <div class="relinfo relref"><strong>Related reference</strong><br/>
 <div><a class="navheader_parent_path" href="expressions.html" title="N1QL expressions are like formulas written in a query language. They include operators, symbols and values to evaluate and filter result objects.">Expressions</a></div>
 <div><a class="navheader_parent_path" href="operators.html" title="When a complex expression has multiple operators, operator precedence determines the sequence in which the operations are performed. The order of execution can significantly affect the resulting value.">Operators</a></div>
-<div><a class="navheader_parent_path" href="functions.html" title="Scalar functions perform calculations on data. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Functions</a></div>
+<div><a class="navheader_parent_path" href="aggregate-function.html" title="Aggregate functions take multiple values from documents, perform calculations and return a single value as the result. The function names are case insensitive.">Aggregate functions</a></div>
+<div><a class="navheader_parent_path" href="scalar-function.html" title="Scalar functions are functions that can be applied to N1QL expressions. These functions allow more flexible N1QL statements by performing transformations on data at runtime. Scalar functions take a single item in a result set and returns a single value. All function names are case insensitive.">Scalar functions</a></div>
 </div>
 </div> 
   

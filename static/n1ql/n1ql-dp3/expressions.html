@@ -77,8 +77,8 @@
  
       <p class="p">The following query returns emails from contacts where the contact name is ‘dave’.</p>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> email <strong class="hl-keyword" style="color:#7f0055">FROM</strong> contacts <strong class="hl-keyword" style="color:#7f0055">AS</strong> contact <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> contact.<strong class="hl-keyword" style="color:#7f0055">name</strong> = <span class="hl-string" style="color:#2a00ff">'dave'</span>
+      <pre class="pre codeblock">
+SELECT email FROM contacts AS contact WHERE contact.name = 'dave'
   
 {
   "email": "dave@gmail.com"
@@ -100,7 +100,7 @@
           <samp class="ph codeph">person.lastName</samp> evaluates to the value, Irving. </p>
 
       
-      <pre class="pre codeblock language-sql">
+      <pre class="pre codeblock">
    `{
    "firstName" : "Geremy"
    "lastName" : "Irving"
@@ -193,12 +193,12 @@ expr [ expr : expr ]
 
       
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">CASE</strong> <strong class="hl-keyword" style="color:#7f0055">WHEN</strong> `shipped-<strong class="hl-keyword" style="color:#7f0055">on</strong>` <strong class="hl-keyword" style="color:#7f0055">IS</strong> <strong class="hl-keyword" style="color:#7f0055">NOT</strong> <strong class="hl-keyword" style="color:#7f0055">NULL</strong> <strong class="hl-keyword" style="color:#7f0055">THEN</strong> `shipped-<strong class="hl-keyword" style="color:#7f0055">on</strong>` <strong class="hl-keyword" style="color:#7f0055">ELSE</strong> \"<strong class="hl-keyword" style="color:#7f0055">not</strong>-shipped-yet\" <strong class="hl-keyword" style="color:#7f0055">END</strong> <strong class="hl-keyword" style="color:#7f0055">AS</strong> shipped <strong class="hl-keyword" style="color:#7f0055">FROM</strong> orders
+      <pre class="pre codeblock">
+SELECT CASE WHEN `shipped-on` IS NOT NULL THEN `shipped-on` ELSE \"not-shipped-yet\" END AS shipped FROM orders
    
-      { "shipped": "<span class="hl-number">2013</span>/<span class="hl-number">01</span>/<span class="hl-number">02</span>" },
-      { "shipped": "<span class="hl-number">2013</span>/<span class="hl-number">01</span>/<span class="hl-number">12</span>" },
-      { "shipped": "<strong class="hl-keyword" style="color:#7f0055">not</strong>-shipped-yet" },
+      { "shipped": "2013/01/02" },
+      { "shipped": "2013/01/12" },
+      { "shipped": "not-shipped-yet" },
       ....
       </pre>
 
@@ -225,17 +225,19 @@ expr [ expr : expr ]
 
           <li class="li"><samp class="ph codeph">FIRST</samp> - Returns the evaluated expression using the first array element (that satisfies the <samp class="ph codeph">WHEN</samp> clause, if provided).</li>
 
-          <li class="li"><samp class="ph codeph">ARRAY</samp> - Returns a new array of the evaluated expression using each element of the <samp class="ph codeph">OVER</samp> array (that satisifies the <samp class="ph codeph">WHEN</samp> clause, if provided).</li>
+          <li class="li"><samp class="ph codeph">ARRAY</samp> - Returns a new array of the evaluated expression (that
+          satisifies the <samp class="ph codeph">WHEN</samp> clause, if provided).</li>
 
         </ul>
 
 
-<p class="p">ANY returns any record with one or more items that meet the condition or expression. In the following query, all contacts who have one or more children over the age of 14 are retrieved. This query returns at one item for 'dave' because one of his children is 17.
-</p>
+<p class="p">ANY returns TRUE if one or more items meet the condition. In the following query, all contacts
+        who have one or more children over the age of 14 are retrieved. This query returns at one
+        item for 'dave' because one of his children is 17. </p>
 
 
 <pre class="pre codeblock">
-SELECT name FROM contacts WHERE ANY child.age &gt; 14 SATISFIES children
+SELECT name FROM contacts WHERE ANY child IN children SATISFIES child.age &gt; 14 END
 
 
 "results": [
@@ -248,12 +250,15 @@ SELECT name FROM contacts WHERE ANY child.age &gt; 14 SATISFIES children
 
 
 
-<p class="p">EVERY returns records with fields that meet all conditions or expression provided in the query. For example, this query is almost identical to the one above with `ANY` with `EVERY` substituted. This query scans all contacts and returns the name of any contact that has children over the age of 10. This tells us that out of all of the contacts only 'ian' has children who are both over the age 10.
-</p>
+<p class="p">EVERY returns TRUE if all items meet the condition. For example, this query is almost identical
+        to the one above with the ANY clause except EVERY is substituted. This query scans all
+        contacts and returns the name of any contact that has children over the age of 10. This
+        tells us that out of all of the contacts only 'ian' has children who are both over the age
+        10. </p>
 
 
 <pre class="pre codeblock">
-SELECT name FROM tutorial WHERE EVERY child.age &gt; 10 SATISTIES tutorial.children AS child
+SELECT name FROM contacts WHERE EVERY child IN children SATISFIES child.age &gt; 10 END
 
 
 {
@@ -279,12 +284,12 @@ SELECT name FROM tutorial WHERE EVERY child.age &gt; 10 SATISTIES tutorial.child
 
 
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong> <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">LENGTH</strong>(children) &gt; <span class="hl-number">0</span> <strong class="hl-keyword" style="color:#7f0055">AND</strong> email <strong class="hl-keyword" style="color:#7f0055">LIKE</strong> <span class="hl-string" style="color:#2a00ff">'%@gmail.com'</span>
+      <pre class="pre codeblock">
+SELECT name FROM tutorial WHERE LENGTH(children) &gt; 0 AND email LIKE '%@gmail.com'
 
 
 {
-	"<strong class="hl-keyword" style="color:#7f0055">name</strong>": "dave"
+	"name": "dave"
 	...
 },
       </pre>
@@ -341,15 +346,15 @@ SELECT name FROM tutorial WHERE EVERY child.age &gt; 10 SATISTIES tutorial.child
     The % indicates any characters prior to @ can appear.
   </p>
 
-      <pre class="pre codeblock language-sql">
+      <pre class="pre codeblock">
 
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong>, email
-            <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
-                <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> email <strong class="hl-keyword" style="color:#7f0055">LIKE</strong> <span class="hl-string" style="color:#2a00ff">'%@yahoo.com'</span>
+SELECT name, email
+            FROM tutorial 
+                WHERE email LIKE '%@yahoo.com'
 
 {
             "email": "harry@yahoo.com",
-            "<strong class="hl-keyword" style="color:#7f0055">name</strong>": "harry"
+            "name": "harry"
  },
       </pre>
 
@@ -385,15 +390,15 @@ SELECT name, email
       <p class="p">This query selects the document where name is 'dave' and return the name, age and age times 12</p>
 
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong>, age, age*<span class="hl-number">12</span> <strong class="hl-keyword" style="color:#7f0055">AS</strong> age_in_months
-            <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
-                <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">name</strong> = <span class="hl-string" style="color:#2a00ff">'dave'</span>
+      <pre class="pre codeblock">
+SELECT name, age, age*12 AS age_in_months
+            FROM tutorial 
+                WHERE name = 'dave'
 
 {
-          "age": <span class="hl-number">45</span>,
-          "age_in_months": <span class="hl-number">540</span>,
-          "<strong class="hl-keyword" style="color:#7f0055">name</strong>": "dave"
+          "age": 45,
+          "age_in_months": 540,
+          "name": "dave"
 }
       </pre>
       
@@ -409,10 +414,10 @@ SELECT name, email
       The folloiwng example shows concatenation of two strings.</p>
 
         
-        <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> firstName || " " || lastName <strong class="hl-keyword" style="color:#7f0055">as</strong> fullName
-  <strong class="hl-keyword" style="color:#7f0055">FROM</strong> customer
-  <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> emailAddress <strong class="hl-keyword" style="color:#7f0055">LIKE</strong> "%.biz”    
+        <pre class="pre codeblock">
+SELECT firstName || " " || lastName as fullName
+  FROM customer
+  WHERE emailAddress LIKE "%.biz”    
       </pre>
 
       

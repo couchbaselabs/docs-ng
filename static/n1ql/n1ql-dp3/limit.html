@@ -24,7 +24,7 @@
 
     <div class="section"><h2 class="title sectiontitle">Syntax</h2>
       
-      <pre class="pre codeblock language-sql">
+      <pre class="pre codeblock">
 LIMIT expr
 LIMIT expr OFFSET expr
       </pre>
@@ -60,11 +60,11 @@ LIMIT expr OFFSET expr
     
     <div class="example"><h2 class="title sectiontitle">Name and age list: limit by 2</h2>
       
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> fname, age
-    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
-        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> age 
-            LIMIT <span class="hl-number">2</span> 
+      <pre class="pre codeblock">
+SELECT fname, age
+    FROM tutorial 
+        ORDER BY age 
+            LIMIT 2 
       </pre>
 
       
@@ -89,11 +89,11 @@ LIMIT expr OFFSET expr
 
     
     <div class="example"><h2 class="title sectiontitle">Name and age list: limit and offset by 2</h2>
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> fname, age
-    <strong class="hl-keyword" style="color:#7f0055">FROM</strong> tutorial 
-        <strong class="hl-keyword" style="color:#7f0055">ORDER</strong> <strong class="hl-keyword" style="color:#7f0055">BY</strong> age 
-            LIMIT <span class="hl-number">2</span> OFFSET <span class="hl-number">2</span>        
+      <pre class="pre codeblock">
+SELECT fname, age
+    FROM tutorial 
+        ORDER BY age 
+            LIMIT 2 OFFSET 2        
       </pre>
 
       <p class="p">Returns:</p>
@@ -120,10 +120,10 @@ LIMIT expr OFFSET expr
     
     <div class="example"><h2 class="title sectiontitle">Golf products list: limit and offset by 10</h2>
 
-      <pre class="pre codeblock language-sql">
-<strong class="hl-keyword" style="color:#7f0055">SELECT</strong> * <strong class="hl-keyword" style="color:#7f0055">FROM</strong> product 
-    <strong class="hl-keyword" style="color:#7f0055">UNNEST</strong> product.categories <strong class="hl-keyword" style="color:#7f0055">as</strong> cat
-        <strong class="hl-keyword" style="color:#7f0055">WHERE</strong> <strong class="hl-keyword" style="color:#7f0055">lower</strong>(cat) <strong class="hl-keyword" style="color:#7f0055">in</strong> ["golf"] LIMIT <span class="hl-number">10</span> OFFSET <span class="hl-number">10</span>       
+      <pre class="pre codeblock">
+SELECT * FROM product 
+    UNNEST product.categories as cat
+        WHERE lower(cat) in ["golf"] LIMIT 10 OFFSET 10       
       </pre>
 
     </div>

@@ -147,10 +147,10 @@
     result set, which is a JSON array containing any result values.</p>
  
   
-  <p class="p">N1QL assumes that a query is performed on a single data bucket in Couchbase Server. 
-    Therefore, when N1QL is used for queries, information is found for a single bucket.
-    A single server instance can have one or more buckets and an entire Couchbase cluster has 
-    more than one bucket. However, N1QL does not support JOINs across multiple data buckets.</p>
+   <p class="p">A single Couchbase server instance can have one or more buckets and an entire Couchbase cluster has 
+     more than one bucket. N1QL functionality not only allow queries against single bucket 
+     but also across multiple buckets. In addition, JOINs can be performed across multiple data buckets. 
+   </p>
 
   
   <p class="p">Besides a command, each query can have multiple optional
