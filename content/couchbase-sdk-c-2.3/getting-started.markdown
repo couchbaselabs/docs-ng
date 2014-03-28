@@ -159,26 +159,24 @@ the development of libcouchbase, but not required when installing a release.
 
 ## Installing from Source: Microsoft Windows
 
-Building and installing on Microsoft Windows requires `nmake` and tools in
-Microsoft Visual Studio 2010.
 
-Open the Visual Studio Command Prompt and navigate to the directory for the
-extracted archive for libcouchbase. The NMakefile defines an `INSTALL` variable
-as `C:\local`. Edit the NMakefile if you want to change the installation
-location. Then build and install libcouchbase:
+Spin up your visual studio shell and run cmake from there. It is best
+practice that you make an out-of-tree build; thus like so:
 
+Assuming Visual Studio 2010
 
 ```
-shell> nmake -f NMakefile install
+C:\> git clone git://github.com/couchbase/libcouchbase.git
+C:\> mkdir lcb-build
+C:\> cd lcb-build
+C:\> cmake -G "Visual Studio 10" ..\libcouchbase
+C:\> msbuild /M libcouchbase.sln
 ```
 
-From libcouchbase version 2.1.0, you can also use CMake system to generate
-correct MS Visual Studio project, for example:
+This will generate and build a Visual Studio `.sln` file.
 
-
-```
-shell> cmake -G "Visual Studio 10"
-```
+Windows builds are known to work on Visual Studio versions 2008, 2010 and
+2012.
 
 <a id="hello_couchbase-c-sdk"></a>
 

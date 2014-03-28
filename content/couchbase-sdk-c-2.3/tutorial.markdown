@@ -33,172 +33,117 @@ Before getting into a more complex example of the programming model to this
 library, we will walk through a straightforward example of a program which
 builds with libcouchbase, connects to a server, and sets and gets a value:
 
-
-```
-/* -*- Mode: C; tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*- */
-/*
- *     Copyright 2012 Couchbase, Inc.
- *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- */
-
-/*
- * BUILD:
- *
- *      cc -o minimal minimal.c -lcouchbase
- *      cl /DWIN32 /Iinclude minimal.c lib\libcouchbase.lib
- *
- * RUN:
- *
- *      valgrind -v --tool=memcheck  --leak-check=full --show-reachable=yes ./minimal
- *      ./minimal <host:port> <bucket> <passwd>
- *      mininal.exe <host:port> <bucket> <passwd>
- */
+```c
 #include <stdio.h>
-#include <libcouchbase/couchbase.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
-#ifdef _WIN32
-#define PRIu64 "I64u"
-#else
-#include <inttypes.h>
-#endif
+#include <libcouchbase/couchbase.h>
 
-static void error_callback(lcb_t instance, lcb_error_t error, const char *errinfo)
+static void die(const char *msg, lcb_error_t err)
 {
-    fprintf(stderr, "ERROR: %s (0x%x), %s\n",
-            lcb_strerror(instance, error), error, errinfo);
-    exit(EXIT_FAILURE);
+	fprintf(stderr, "Got error %s. Code=0x%x, %s\n",
+			msg, err, lcb_strerror(NULL, err));
+	exit(EXIT_FAILURE);
 }
 
-static void store_callback(lcb_t instance, const void *cookie,
-                           lcb_storage_t operation,
-                           lcb_error_t error,
-                           const lcb_store_resp_t *item)
+static void get_callback(
+	lcb_t instance,
+	const void *cookie,
+	lcb_error_t err,
+	const lcb_get_resp_t *resp
+);
+
+static const char *key = "My Key";
+static const char *value = "My Value";
+
+int main(void)
 {
-    if (error == LCB_SUCCESS) {
-        fprintf(stderr, "STORED \"");
-        fwrite(item->v.v0.key, sizeof(char), item->v.v0.nkey, stderr);
-        fprintf(stderr, "\" CAS: %"PRIu64"\n", item->v.v0.cas);
-    } else {
-        fprintf(stderr, "STORE ERROR: %s (0x%x)\n",
-                lcb_strerror(instance, error), error);
-        exit(EXIT_FAILURE);
-    }
-    (void)cookie;
-    (void)operation;
+	lcb_t instance;
+	lcb_error_t err;
+	lcb_store_cmd_t s_cmd = { 0 }, *s_cmdlist = &s_cmd;
+	lcb_get_cmd_t g_cmd = { 0 }, *g_cmdlist = &g_cmd;
+	char scratch[4096];
+	
+	err = lcb_create(&instance, NULL);
+	if (err != LCB_SUCCESS) {
+		die("Couldn't create instance", err);
+	}
+	
+	lcb_set_get_callback(instance, get_callback);
+	err = lcb_connect(instance);
+	if (err != LCB_SUCCESS) {
+		die("Couldn't schedule connection", err);
+	}
+	lcb_wait(instance);
+	
+	s_cmd.v.v0.key = key;
+	s_cmd.v.v0.nkey = strlen(key);
+	s_cmd.v.v0.bytes = value;
+	s_cmd.v.v0.nbytes = strlen(value);
+	s_cmd.v.v0.operation = LCB_SET;
+	
+	err = lcb_store(instance, NULL, 1,
+			(const lcb_store_cmd_t * const *)&s_cmdlist);
+
+	if (err != LCB_SUCCESS) {
+		die("Couldn't schedule store operation!", err);
+	}
+	lcb_wait(instance);
+	
+	g_cmd.v.v0.key = s_cmd.v.v0.key;
+	g_cmd.v.v0.nkey = s_cmd.v.v0.nkey;
+	err = lcb_get(instance, scratch, 1,
+			(const lcb_get_cmd_t * const *)&g_cmdlist);
+	if (err != LCB_SUCCESS) {
+		die("Couldn't schedule get operation!", err);
+	}
+	lcb_wait(instance);
+	
+	/**
+	 * Inside the get callback we've copied over the value data from the
+	 * callback into the scratch buffer which we passed as a cookie
+	 */
+	{
+		char reversed[4096];
+		int ii;
+		int curlen = strlen(scratch);
+		curlen--;
+		for (ii = curlen; ii >= 0; ii--) {
+			reversed[curlen-ii] = scratch[ii];
+		}
+		s_cmd.v.v0.bytes = reversed;
+		s_cmd.v.v0.operation = LCB_APPEND;
+		/** Since it's reversed there's no need to re-set the size again */
+		err = lcb_store(instance, NULL, 1,
+				(const lcb_store_cmd_t * const *)&s_cmdlist);
+		if (err != LCB_SUCCESS) {
+			die("Couldn't schedule second APPEND", err);
+		}
+		lcb_wait(instance);
+	}
+	/** Now get the key back again */
+	err = lcb_get(instance, scratch, 1,
+			(const lcb_get_cmd_t * const *)&g_cmdlist);
+	if (err != LCB_SUCCESS) {
+		die("Could not schedule final get operation", err);
+	}
+	lcb_wait(instance);
+	printf("Buffer in server is now %s\n", scratch);
+	lcb_destroy(instance);
 }
 
-static void get_callback(lcb_t instance, const void *cookie, lcb_error_t error,
-                         const lcb_get_resp_t *item)
+static void get_callback(
+	lcb_t instance,
+	const void *cookie,
+	lcb_error_t err,
+	const lcb_get_resp_t *resp)
 {
-    if (error == LCB_SUCCESS) {
-        fprintf(stderr, "GOT \"");
-        fwrite(item->v.v0.key, sizeof(char), item->v.v0.nkey, stderr);
-        fprintf(stderr, "\" CAS: %"PRIu64" FLAGS:0x%x SIZE:%lu\n",
-                item->v.v0.cas, item->v.v0.flags, (unsigned long)item->v.v0.nbytes);
-        fwrite(item->v.v0.bytes, sizeof(char), item->v.v0.nbytes, stderr);
-        fprintf(stderr, "\n");
-    } else {
-        fprintf(stderr, "GET ERROR: %s (0x%x)\n",
-                lcb_strerror(instance, error), error);
-    }
-    (void)cookie;
-}
-
-int main(int argc, char *argv[])
-{
-    lcb_error_t err;
-    lcb_t instance;
-    struct lcb_create_st create_options;
-    struct lcb_create_io_ops_st io_opts;
-
-    io_opts.version = 0;
-    io_opts.v.v0.type = LCB_IO_OPS_DEFAULT;
-    io_opts.v.v0.cookie = NULL;
-
-    memset(&create_options, 0, sizeof(create_options));
-    err = lcb_create_io_ops(&create_options.v.v0.io, &io_opts);
-    if (err != LCB_SUCCESS) {
-        fprintf(stderr, "Failed to create IO instance: %s\n",
-                lcb_strerror(NULL, err));
-        return 1;
-    }
-
-    if (argc > 1) {
-        create_options.v.v0.host = argv[1];
-    }
-    if (argc > 2) {
-        create_options.v.v0.user = argv[2];
-        create_options.v.v0.bucket = argv[2];
-    }
-    if (argc > 3) {
-        create_options.v.v0.passwd = argv[3];
-    }
-    err = lcb_create(&instance, &create_options);
-    if (err != LCB_SUCCESS) {
-        fprintf(stderr, "Failed to create libcouchbase instance: %s\n",
-                lcb_strerror(NULL, err));
-        return 1;
-    }
-    (void)lcb_set_error_callback(instance, error_callback);
-    /* Initiate the connect sequence in libcouchbase */
-    if ((err = lcb_connect(instance)) != LCB_SUCCESS) {
-        fprintf(stderr, "Failed to initiate connect: %s\n",
-                lcb_strerror(NULL, err));
-        lcb_destroy(instance);
-        return 1;
-    }
-    (void)lcb_set_get_callback(instance, get_callback);
-    (void)lcb_set_store_callback(instance, store_callback);
-    /* Run the event loop and wait until we've connected */
-    lcb_wait(instance);
-    {
-        lcb_store_cmd_t cmd;
-        const lcb_store_cmd_t *commands[1];
-
-        commands[0] = &cmd;
-        memset(&cmd, 0, sizeof(cmd));
-        cmd.v.v0.operation = LCB_SET;
-        cmd.v.v0.key = "foo";
-        cmd.v.v0.nkey = 3;
-        cmd.v.v0.bytes = "bar";
-        cmd.v.v0.nbytes = 3;
-        err = lcb_store(instance, NULL, 1, commands);
-        if (err != LCB_SUCCESS) {
-            fprintf(stderr, "Failed to set: %s\n", lcb_strerror(NULL, err));
-            return 1;
-        }
-    }
-    lcb_wait(instance);
-    {
-        lcb_get_cmd_t cmd;
-        const lcb_get_cmd_t *commands[1];
-        commands[0] = &cmd;
-        memset(&cmd, 0, sizeof(cmd));
-        cmd.v.v0.key = "foo";
-        cmd.v.v0.nkey = 3;
-        err = lcb_get(instance, NULL, 1, commands);
-        if (err != LCB_SUCCESS) {
-            fprintf(stderr, "Failed to get: %s\n", lcb_strerror(NULL, err));
-            return 1;
-        }
-    }
-    lcb_wait(instance);
-    lcb_destroy(instance);
-
-    return 0;
+	char *target = (char *)cookie;
+	if (err != LCB_SUCCESS) {
+		die("Got error inside get callback", err);
+	}
+	memcpy(target, resp->v.v0.bytes, resp->v.v0.nbytes);
+	target[resp->v.v0.nbytes] = '\0';
 }
 ```
 
@@ -212,7 +157,5 @@ In addition to the other sections of this manual, such as the Getting Started
 guide and the API reference, the libcouchbase package includes an examples
 directory and a tools directory. Each of these show simple Couchbase tools and
 an example libcouchbase programs.
-
-On Linux you may find these examples in TODO...
 
 <a id="tutorial_integration"></a>
