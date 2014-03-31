@@ -1,9 +1,54 @@
 
-# Couchbase Server Release Notes for 2.5 GA
+# Couchbase Server Release Notes for 2.5.1 GA
 
 Couchbase Server 2.5 (February 2014) is a minor release following 
 Couchbase Server 2.2. This includes some important new features and bug fixes.
 
+## Couchbase Server 2.5.1
+
+Couchbase Server 2.5.1 (April 2014) is an incremental release for Couchbase Server 2.5.
+
+### Fixed or resolved issues in 2.5.1
+
+
+
+**Server operations**
+
+
+* [MB-9457](http://www.couchbase.com/issues/browse/MB-9457): Pass +swt low to erlang
+* [MB-10051](http://www.couchbase.com/issues/browse/MB-10051): Way to modify % metadata warning
+
+**XDCR**
+
+* [MB-10057](http://www.couchbase.com/issues/browse/MB-10057): Rebalance should reset xdcr checkpoints
+* [MB-10059](http://www.couchbase.com/issues/browse/MB-10059): Replica vbucket simply ignores rev_seq values of new items from the active bucket.
+* [MB-10127](http://www.couchbase.com/issues/browse/MB-10127): Several Erlang crashes on source XDCR nodes: Cannot allocate 21240272840 bytes of memory (of type "heap")
+
+**Command-line tool**
+
+* [MB-10102](http://www.couchbase.com/issues/browse/MB-10102): Need a packaged tool or couch_dbdump option to extract _local docs out of couchstore file
+* [MB-10103](http://www.couchbase.com/issues/browse/MB-10103): Couch_dbdump --byid option is not working
+* [MB-10116](http://www.couchbase.com/issues/browse/MB-10116): <code>cbcollectinfo</code> may leak private key
+* [MB-10171](http://www.couchbase.com/issues/browse/MB-10171): Need at least hack-ful way to include _local/ docs of master vbucket into cbcollectinfos
+
+**Cluster operations** 
+
+* [MB-10114](http://www.couchbase.com/issues/browse/MB-10114): An item should not be removed from cache when SET operation for that item fails due to ENGINE_ENGINE_E2BIG or ENGINE_ENOMEM
+* [MB-10277](http://www.couchbase.com/issues/browse/MB-10277): TOUCH command for a non-resident item causes a segmentation fault when an item's expiration time remains in the same
+
+
+
+**Installation and upgrade** 
+
+* [MB-10220](http://www.couchbase.com/issues/browse/MB-10220): vBuckets shuffle in online upgrade from 2.2.0-837 to 2.5.0-1059 in 1 replica bucket
+* [MB-10515](http://www.couchbase.com/issues/browse/MB-10515) Online upgrade failed from 2.5.0-1059 -> 2.5.1-1073 as 2.5.1-1073 node doesn't appear in orchestrator after adding to the cluster. 
+
+
+
+# Couchbase Server Release Notes for 2.5 GA
+
+Couchbase Server 2.5 (February 2014) is a minor release following 
+Couchbase Server 2.2. This includes some important new features and bug fixes.
 
 ## Enhancements in 2.5
 
