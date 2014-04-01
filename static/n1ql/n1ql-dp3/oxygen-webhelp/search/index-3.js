@@ -1,5 +1,6 @@
 
 // Auto generated index for searching.
+w["orders"]="7*1,16*1,33*20,34*5,35*0";
 w["orders.billto.street"]="7*0";
 w["orders.billtoaddress.state"]="33*0";
 w["orders_with_users"]="34*1";

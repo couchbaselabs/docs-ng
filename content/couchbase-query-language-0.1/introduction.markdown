@@ -1,5 +1,6 @@
 #Introduction
 
+
 Couchbase Query Language, known as N1QL or 'Nickel', helps you to find and change data in Couchbase Server. 
 We designed the language to be human -readable and -writable; it is an extensible language designed for ad-hoc querying. The query language is a standard semantic you use to build querying ability in other programming languages.
 
