@@ -16,7 +16,7 @@ This section shows how to create a simple Hello World app for an Android device 
 
 1. Launch Eclipse.
 
-2. Choose **File > Android Application Project**.
+2. Select **File > New > Android Application Project**.
 
 3. In the New Project window, enter the application name, module name, package name, and project location.
 
@@ -30,7 +30,14 @@ This section shows how to create a simple Hello World app for an Android device 
 
 5. Click **Next**, and then move through the remaining setup screens and enter settings as necessary (or just accept the defaults).
 
-6. Click **Finish**.
+6. When you get to the last setup screen, click **Finish**.
+
+7. Open the **AndroidManifest.xml** file (it's located at the root level of your project directory), and add the following line to the file as a child of the `<manifest>` element.
+
+		<uses-permission android:name="android.permission.INTERNET" />
+
+8. Save the **AndroidManifest.xml** file.
+
 
 #### Step 2: Add Couchbase Lite
 
