@@ -24,6 +24,8 @@ to change these settings as the library will detemine the best method available.
 
 ### Configuration Sources
 
+<a id="cccp"></a>
+
 The cluster configuration may be obtained either the Memcached protocol (in
 what is called **C**luster **C**onfiguration **C**arrier **P**ublication, or
 _CCCP_) as well as via the legacy mode which utilizes a connection to the REST
@@ -37,11 +39,6 @@ and then fallback to HTTP if the former fails. `CCCP` bootstrap is preferrable
 as it does not require a dedicated "Configuration Socket", does not require the
 latency and overhead of the HTTP protocol, and is more efficient to the internals
 of the cluster as well.
-
-It is recommended to explicitly enable or disable one of the configuration
-sources. The only reason why the library attempts _CCCP_ and then HTTP is to
-support legacy environments where a < 2.5 cluster is available, and/or a mixed
-version cluster where some nodes may support _CCCP_ and some may not.
 
 To explicitly define the set of configuration modes to use specify this inside
 the `lcb_create_st` structure
@@ -77,7 +74,7 @@ specified.
 
 
 > #### Memcached Buckets
-> Memcached buckets do **not** support _CCCP_. You must ensure that HTTP
+> Memcached buckets do **not** support [CCCP](#cccp). You must ensure that HTTP
 > is enabled for them (which is the default)
 
 
@@ -171,7 +168,14 @@ if (is_loaded) {
 }
 ```
 
-> _Memcached_ buckets are not supported with the configuration cache
+##### Limitations
+
+* **_Memcached_** buckets are not supported with the configuration cache
+
+* The file-based provider is recommended only for _short lived clients_ and is
+  intended to reduce network I/O and latency during the initial bootstrap
+  process. It is not a recommended solution for reducing the total number
+  of connections to the cluster.
 
 
 ## Timeouts

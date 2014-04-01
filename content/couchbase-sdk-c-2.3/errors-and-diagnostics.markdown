@@ -7,31 +7,64 @@ defined by the return code of `LCB_SUCCESS`. A full listing of error codes may
 be found inside the `<libcouchbase/error.h>` header.
 
 In order to handle the errors properly, the application and developer must
-understand what the errors mean and whether they indicate a retriable or fatal
-error.
+understand what the errors mean and whether they indicate a data error, a
+retriable error, or a fatal error.
+
+_Data Errors_ are errors received from the cluster as a result of a
+requrested operation on a given item. For example, if an `lcb_get`
+is performed on a key that does not exist the callback will receive an
+`LCB_KEY_ENOENT` error. Other examples of conditions which may result
+in data errors include:
+
+* Adding a key that already exists
+* Replacing a key that does not already exist
+* Appending/Prepending/Incrementing an item which does not already exist
+* Modifying an item while specifying a CAS, where the CAS on the server has
+  already been modified.
+
+
+Other types of errors may be received in exceptional conditions, and are
+related to load or network issues. While in normal well provisioned
+deployments these errors should not be received a robust application
+design should be prepared to handle them and take proper action.
+
+The latter type of errors may be further divided into two subgroups:
+
+* **Transient**
+  This error type indicates an environment and/or resource limitation
+  either on the server or on the network link between the client and
+  the server. Transient errors are typically best handled in the application
+  side by backing off and retrying again, with the intent of reducing
+  stress on the exhausted resource. Some examples of transient error
+  causes:
+
+    * Insufficient cache memory on the server
+    * Overutilization of the network link between client and server
+      or between several servers
+    * Router or switch failure
+    * Failover of a node
+    * Overutilization of application-side CPU
+    
+
+* **Fatal**
+  This error type indicates that the client has potentially entered
+  into an irrecoverable failed state, either because of invalid user
+  input (or client configuration), or because an administrator has
+  modified settings on the cluster (for example, a bucket has been
+  removed). Fatal errors will typically require inspection of the
+  client configuration and a restart of the client application or
+  a reversal of the change performed at the cluster.
+  Examples of fatal error causes:
+
+    * Bucket does not exist
+    * Bucket password is wrong
+
 
 Examples of _transient_ errors include timeout errors or temporary
 failures such as `LCB_ETIMEDOUT` (took too long to get a reply),
 or `LCB_ETMPFAIL` (server was too busy). Examples of _fatal_ errors include
 `LCB_AUTH_ERROR` (authentication failed) or `LCB_BUCKET_ENOENT`
 (bucket does not exist).
-
-The distinguishing factor between a fatal and transient error is that a fatal
-error would require external intervention (possibly reconfiguring the client
-or cluster manually) whereas a transient error does not typically require
-intervention as it may be caused by temporary load issues. However depending
-on environmental factors an excessive amount of transient errors received over
-a prolonged duration of time may also indicate a need for external intervention.
-
-In the examples above, an `LCB_ETIMEDOUT` error indicates a degree of load
-on either the server or the network. The load would typically be temporary -
-perhaps it is caused by an unusual spike in traffic on an application server
-and the `LCB_ETIMEDOUT` errors will likely disappear once the load returns to
-normal. On the other hand, a wrong password or bucket name (`LCB_AUTH_ERROR`
-and `LCB_BUCKET_ENOENT`) are typically not load related and are more likely
-caused by a misconfigured client (bucket name or password was spelled wrong)
-or an administrative issue (bucket password was suddenly changed, or bucket
-was deleted).
 
 The `lcb_errflags_t` enumeration defines a set of flags which are associated
 with each error code. These flags define the _type_ of error e.g.
@@ -72,7 +105,7 @@ static void get_callback(
 ### Success and Failure
 Success and failure depend on the context. A successful return code for one of
 the data operation APIs (for example `lcb_store`) does not mean the operation
-itself was succeeded and the key was successfuly stored. Rather it means the
+itself succeeded and the key was successfuly stored. Rather it means the
 key was successfuly placed inside the library's internal queue. The actual
 error code is delivered within the response itself.
 
@@ -104,8 +137,9 @@ $ LCB_LOGLEVEL=5 ./my_app
 
 and logging information will be displayed.
 
-The value of the `LCB_LOGLEVEL` is an integer from 1 and higher. The higher
-the value the more verbose the details.
+The value of the `LCB_LOGLEVEL` is an integer from 1 to 5. The higher
+the value the more verbose the details. The value of 0 disables the
+console logging.
 
 To set up your own logger, you must first define a logging callback to be
 invoked whenever the library emits a logging message
@@ -145,7 +179,8 @@ The arguments to the logging function are:
   instances running in your application
 * `module` - A short string representing the subsystem which emitted the message
 * `severity` An integer describing the severity of the message
-  (higher is more severe)
+  (higher is more severe). Refer to the `lcb_log_severity_t` enum
+  within `<libcouchbase/types.h>` for a full listing.
 * `srcfile`, `srcline` - File and line where this message was emitted
 * `fmt` - a format string
 * `ap` - arguments to the format string
