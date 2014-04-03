@@ -809,19 +809,19 @@ To install:
  1. Delete any previous installs of Couchbase Server at the command line or by
     dragging the icon to the Trash can.
 
- 1. Remove remaining files from previous installations:
+ 2. Remove remaining files from previous installations:
 
 	```
-     	> rm -rf ~/Library/Application Support/Couchbase
-     	> rm -rf ~/Library/Application Support/Membase
+	> rm -rf ~/Library/Application\ Support/Couchbase
+	> rm -rf ~/Library/Application\ Support/Membase
 	```
 
- 1. Download the Mac OS X zip file.
+ 3. Download the Mac OS X zip file.
 
- 1. Double-click the downloaded Zip installation file to extract the server. This
+ 4. Double-click the downloaded Zip installation file to extract the server. This
     creates a single folder, the `Couchbase Server.app` application.
 
- 1. Drag and Drop `Couchbase Server.app` to your chosen installation folder, such as
+ 5. Drag and Drop `Couchbase Server.app` to your chosen installation folder, such as
     the system `Applications` folder.
 
 After the installation completes, you can double-click on `Couchbase Server.app` to

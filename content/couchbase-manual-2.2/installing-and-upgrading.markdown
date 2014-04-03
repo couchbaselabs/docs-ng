@@ -660,9 +660,9 @@ To install:
  1. Remove remaining files from previous installations:
 
 	```
-     	> rm -rf ~/Library/Application Support/Couchbase
-     	> rm -rf ~/Library/Application Support/Membase
-	```
+> rm -rf ~/Library/Application\ Support/Couchbase
+> rm -rf ~/Library/Application\ Support/Membase
+```
 
  1. Download the Mac OS X zip file.
 
