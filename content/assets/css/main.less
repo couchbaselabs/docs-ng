@@ -88,12 +88,12 @@ div.notebox p code {
 
 #sidenav.affix {
     bottom: 0;
-    top: 160px;
+    top: 200px;
     overflow: auto;
 }
 #sidenav.affix-top {
     position: absolute;
-    top: 160px;
+    top: 200px;
 }
 
 .mdcontent {
@@ -109,7 +109,6 @@ div.notebox p code {
   padding-right: 1em;
   background: white;
   z-index: 1;
-  padding-top: 10px;
   h3 {
     margin-top: 0px;
   }
@@ -123,7 +122,7 @@ margin-left: 100px;
 .jumptarget:before {
   content:"";
   display:block;
-  height:155px; /* fixed header height*/
+  height:200px; /* fixed header height*/
   margin:-110px 0 0; /* negative fixed header height */
 }
 
@@ -131,6 +130,7 @@ margin-left: 100px;
 @media (max-width: 767px) {
   .masthead {
     position: relative;
+    padding-top: 10px;
   }
 
   .mdcontent {
@@ -139,7 +139,7 @@ margin-left: 100px;
 }
 
 #cse-search {
-  width: 282px; /* protect navbar from shaking while loading */
+  width: 300px; /* protect navbar from shaking while loading */
 }
 
 #cse-search .gsc-search-box {
@@ -239,9 +239,6 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 #header-main .block-google_cse {
   display: none;
 }
-#sidenav.affix-top {
-  top: 160px;
-}
 .gsc-search-box input.gsc-input {
   width: 95%;
   margin-bottom: 0;
@@ -266,14 +263,17 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 #header .block-menu_block li {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   float: left;
   list-style: none;
   height: 72px;
 }
+#header .block-menu_block li:hover {
+  background: url(/assets/img/nav_active_bg.png) no-repeat top right;
+}
 #header .block-menu_block li a {
-  padding: 0 8px;
+  padding: 0 10px;
   color: #333;
   height: 72px;
   line-height: 64px;
@@ -281,6 +281,7 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 }
 #header .block-menu_block li a:hover {
   color: #99549f;
+  text-decoration: none;
 }
 #header .block-menu_block li.active,
 #header .block-menu_block li.active-trail {
@@ -292,8 +293,8 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 }
 #header .block-google_cse {
   position: absolute;
-  right: 10px;
-  top: 16px;
+  right: 150px;
+  top: -3px;
   width: 225px;
 }
 #header .block-google_cse form {
@@ -313,8 +314,6 @@ h1:hover, h2:hover, h3:hover, h4:hover {
   line-height: 14px;
   color: #ccc;
 }
-@include border-radius(3px);
-@include box-shadow(#bfc7cb 0 1px 1px inset);
 #header .block-google_cse .form-text:focus {
   border: 1px solid #51aa43;
   color: #666;
@@ -342,7 +341,7 @@ h1:hover, h2:hover, h3:hover, h4:hover {
     padding-top: 10px;
   }
   #header-main {
-    background: url(/assets/img//header_inner.png) no-repeat top right;
+    background: url(/assets/img/header_inner.png) no-repeat top right;
     padding-right: 15px;
     height: 64px;
     margin: 0 auto;
@@ -386,11 +385,51 @@ h1:hover, h2:hover, h3:hover, h4:hover {
   .show-for-small {
     display: none;
   }
-  
-
-
-  
 }
 
+#eyebrow {
+  height: 45px;
+  @media (max-width: 768px) {
+    display: none
+  }
+}
+
+.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius: @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius: @bottomleft;
+  -webkit-border-top-left-radius: @topleft;
+  -moz-border-radius-topright: @topright;
+  -moz-border-radius-bottomright: @bottomright;
+  -moz-border-radius-bottomleft: @bottomleft;
+  -moz-border-radius-topleft: @topleft;
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+  .background-clip(padding-box);
+}
+
+#request-demo {
+  text-align: right;
+  a {
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFF;
+    border: 1px solid #B6B6B6;
+    .border-radius(0, 5px, 5px, 0);
+    background: linear-gradient(#9DC23B, #50AA43);
+    display: inline-block;
+    line-height: 13px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+#header .block-google_cse table.gsc-search-box td.gsc-input {
+  padding-right: 6px;
+}
 
 @import "print.less";

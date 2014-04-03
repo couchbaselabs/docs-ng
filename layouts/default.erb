@@ -14,7 +14,6 @@
       <meta name="description" content="<%= @item[:metadescr] %>">
       <meta name="viewport" content="width=device-width">
       <%= css_link("/assets/css/main") %>
-        <link rel="stylesheet" href="/assets/css/header.css">
       <link rel="stylesheet" type="text/css" media="print" href="print.css" />
       
       <link type="image/x-icon" href="/assets/img/nosql_favicon.ico" rel="shortcut icon">
@@ -41,7 +40,14 @@
          
         <div class="masthead">
                                 <!-- if masthead height changes, make sure you also change jumptarget height in main.less-->
+                                
             <div id="header">
+	              <div id="eyebrow">
+                    <div id="request-demo"><a href="/request-demo">Request A Demo</a></div>
+                      <div class="clear-block block block-google_cse" id="block-google_cse-0">
+                        <gcse:searchbox></gcse:searchbox>
+                      </div>  
+                </div>
                   <div id="header-main">
                     <div id="header-inner">
                       <div id="logo">
@@ -52,18 +58,18 @@
                           <div class="menu-block-12 menu-name-primary-links parent-mlid-0 menu-level-1">
                             <ul class="menu">
                               <li class="leaf first menu-mlid-13118"><a title="" href="http://www.couchbase.com/why-nosql/nosql-database">Why NoSQL?</a></li>
-                              <li class="leaf menu-mlid-13119 has-children"><a title="" href="http://www.couchbase.com/couchbase-server/overview">Couchbase Server</a></li>
+                              <li class="leaf menu-mlid-13119 has-children"><a title="" href="http://www.couchbase.com/couchbase-server/overview">Products</a></li>
+                              <li class="leaf menu-mlid-13119 has-children"><a title="" href="http://training.couchbase.com">Training</a></li>
                               <li class="leaf menu-mlid-13120"><a title="" href="http://www.couchbase.com/download">Download</a></li>
                               <li class="leaf menu-mlid-13122"><a title="" href="http://www.couchbase.com/learn">Resources</a></li>
                               <li class="leaf menu-mlid-16593"><a title="" href="http://www.couchbase.com/communities/">Communities</a></li>
-                              <li class="leaf last menu-mlid-13123"><a title="" href="http://www.couchbase.com/customer-stories">Customers</a></li>
+                              <li class="leaf menu-mlid-13123"><a title="" href="http://www.couchbase.com/customer-stories">Customers</a></li>
+                              <li class="leaf last menu-mlid-13123"><a title="" href="http://www.couchbase.com/couchbase-support">Subscriptions</a></li>
+                              
                             </ul>
                           </div>
                         </div>
-                      </div>
-                      <div class="clear-block block block-google_cse" id="block-google_cse-0">
-                        <gcse:searchbox></gcse:searchbox>
-                      </div>              
+                      </div>             
 
                     </div>
                   </div>
