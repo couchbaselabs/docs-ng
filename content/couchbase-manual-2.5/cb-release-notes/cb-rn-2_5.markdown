@@ -1,14 +1,9 @@
 
 # Couchbase Server Release Notes for 2.5.1 GA
 
-Couchbase Server 2.5 (February 2014) is a minor release following 
-Couchbase Server 2.2. This includes some important new features and bug fixes.
+Couchbase Server 2.5.1 (April 2014) is a maintenance release for Couchbase Server 2.5 that includes bug fixes.
 
-## Couchbase Server 2.5.1
-
-Couchbase Server 2.5.1 (April 2014) is an incremental release for Couchbase Server 2.5.
-
-### Fixed or resolved issues in 2.5.1
+## Fixed or resolved issues in 2.5.1
 
 
 
