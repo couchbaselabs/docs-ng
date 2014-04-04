@@ -34,7 +34,7 @@ To enable the GUEST account,  set its `disabled` property to false. You might al
 
 ```sh
 $ curl -X PUT localhost:4985/$DB/_user/GUEST --data \
-   '{"disabled":false, "admin_channels":[“public”]}'
+   '{"disabled":false, "admin_channels":["public"]}'
 ```
 
 
