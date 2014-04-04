@@ -201,7 +201,7 @@ and/or resolutions are discovered.
     Try running as root or requesting smaller maxconns value.
     ```
 
-   Alternatively you may additional see or optionally see:
+   Alternatively, you may additionally see or optionally see:
 
     ```
     ns_port_server:0:info:message - Port server memcached on node 'ns_1@127.0.0.1' exited with status 71. »

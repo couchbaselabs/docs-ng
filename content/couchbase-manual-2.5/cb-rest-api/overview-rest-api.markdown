@@ -40,7 +40,7 @@ The REST API is built on a number of basic principles:
  * **JSON Responses**
 
    The Couchbase Management REST API returns many responses as JavaScript Object
-   Notation (JSON). On that node, you may find it convenient to read responses in a
+   Notation (JSON). On that note, you may find it convenient to read responses in a
    JSON reader. Some responses may have an empty body, but indicate the response
    with standard HTTP codes. For more information, see RFC 4627 (
    [http://www.ietf.org/rfc/rfc4627.txt](http://www.ietf.org/rfc/rfc4627.txt) ) and

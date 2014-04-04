@@ -375,7 +375,7 @@ not numbers:
 }
 ```
 
-One important question to make is, why do you see the errors when querying with
+One important question to answer is, why do you see the errors when querying with
 `stale=false` but do not see them when querying with `stale=update_after`
 (default) or `stale=ok` ? The answer is simple:
 
@@ -384,7 +384,7 @@ One important question to make is, why do you see the errors when querying with
     index build/update failed, so the client gets an error, describing why it
     failed, from all nodes where it failed.
 
- 1. `stale=update` \_after means start streaming the index contents immediately and
+ 1. `stale=update_after` means start streaming the index contents immediately and
     after trigger an index update (if index is not up to date already), so query
     responses won't see indexing errors as they do for the `stale=false` scenario.
     For this particular example, the error happened during the initial index build,
@@ -539,7 +539,7 @@ The documents included in each row don't match the value field of each row, that
 is, the documents included are the latest (updated) versions but the index row
 values still reflect the previous (first) version of the documents.
 
-Why this behavior? Well, `include_docs=true` works by at query time, for each
+Why this behavior? Well, `include_docs=true` works at query time, for each
 row, to fetch from disk the latest revision of each document. There's no way to
 include a previous revision of a document. Previous revisions are not accessible
 through the latest vbucket databases MVCC snapshots (
