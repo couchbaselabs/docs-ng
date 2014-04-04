@@ -235,7 +235,7 @@ HTTP/1.1 200 OK
 
 ## Getting bucket statistics
 
-You can use the REST API to get statistics with the at the bucket level from
+You can use the REST API to get statistics at the bucket level from
 Couchbase Server. Your request URL should be taken from stats.uri property of a
 bucket response. By default this request returns stats samples for the last
 minute and for heavily used keys. You use provide additional query parameters in

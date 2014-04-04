@@ -1,4 +1,4 @@
-<title="Clusters REST API">
+<title>Clusters REST API</title>
 
 <a id="cb-restapi-clusters"></a>
 # Clusters REST API
@@ -82,7 +82,7 @@ requests of the cluster.
 <p>
 Since buckets could be renamed and there is no way to determine the
 name for the default bucket for a cluster, the system attempts to connect
-non-SASL, non-proxied to a bucket clients to a bucket named "default". If it
+non-SASL, non-proxied to a bucket named "default". If it
 does not exist, Couchbase Server drops the connection.
 </p></div>
 

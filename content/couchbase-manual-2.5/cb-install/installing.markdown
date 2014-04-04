@@ -186,26 +186,7 @@ that you need to open these ports.
 The following table lists the ports used for different types of communication
 with Couchbase Server, as follows:
 
-### Node to node
 
-   Where noted, these ports are used by Couchbase Server for communication between
-   all nodes within the cluster. You must have these ports open on all to enable
-   nodes to communicate with each other.
-
-### Node to client
-
-   Where noted, these ports should be open between each node within the cluster and
-   any client nodes accessing data within the cluster.
-
-### Cluster administration
-
-   Where noted, these ports should be open and accessible to allow administration,
-   whether using the REST API, command-line clients, and Web browser.
-
-### XDCR
-
-   Ports are used for XDCR communication between all nodes in both the source and
-   destination clusters.
 
 <a id="table-couchbase-network-ports"></a>
 
@@ -222,8 +203,6 @@ Port                       | Description                   | Node to Node | Node
 18092                      | Internal CAPI HTTPS for SSL   | No           | No             | No                     | Yes              | Yes
 4369                       | Erlang Port Mapper ( `epmd` ) | Yes          | No             | No                     | No               | No 
 21100 to 21199 (inclusive) | Node data exchange            | Yes          | No             | No                     | No               | No  
-
-
 
 
 
@@ -245,7 +224,26 @@ Ports 11214, 11215, 18091, and 18092
 : Used for SSL XDCR data encryptions.
 
 All other Ports
-: Used for other Couchbase Server communictions.
+: Used for other Couchbase Server communications.
+
+Node to node
+: Where noted, these ports are used by Couchbase Server for communication between
+   all nodes within the cluster. You must have these ports open on all to enable
+   nodes to communicate with each other.
+
+Node to client
+: Where noted, these ports should be open between each node within the cluster and
+   any client nodes accessing data within the cluster.
+
+Cluster administration
+: Where noted, these ports should be open and accessible to allow administration,
+   whether using the REST API, command-line clients, and Web browser.
+
+XDCR
+: These ports are used for XDCR communication between all nodes in both the source and
+   destination clusters.
+
+
 
 
 <a id="install-user-defined-ports"></a>

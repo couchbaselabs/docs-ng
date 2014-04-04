@@ -102,7 +102,7 @@ You can perform a swap rebalance to upgrade your nodes to Couchbase Server,
 without reducing the performance of your cluster. This is the preferred method
 for performing an online upgrade of your cluster because cluster capacity is
 always maintained throughout the upgrade. If you are unable to perform an
-upgrade via swap rebalance, perform an standard online upgrade, see
+upgrade via swap rebalance, perform a standard online upgrade, see
 [Standard online upgrades](#couchbase-getting-started-upgrade-online). For
 general information on swap rebalance, see [Swap
 rebalance](../cb-admin/#couchbase-admin-tasks-addremove-rebalance-swap).
