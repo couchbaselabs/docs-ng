@@ -22,9 +22,9 @@ first parameter to a value from the `StoreMode` enumeration.
  * `StoreMode.Set` - Add a key to the database, replacing the key if it already
    exists
 
-JavaScript can store numbers up to a maximum size of 2 `53`. If you are storing
+JavaScript can store numbers up to a maximum size of 2^53. If you are storing
 64-bit integers within Couchbase and want to use the numbers through the
-Map/Reduce engine, numbers larger than 2 `53` should be stored as a string to
+MapReduce engine, store numbers larger than 2^53 as a string to
 prevent number rounding errors.
 
 <a id="table-couchbase-sdk_net_store"></a>
