@@ -25,8 +25,7 @@ To get the software:
 	
 ## Setting up a project
 
-Create a new console project in Visual Studio. Add references to the
-**Couchbase.dll**, **Enyim.Memcached.dll**, **Newtonsoft.Json.dll**, and **RestSharp.dll** assemblies that are in the release zip file.
+Create a new console project in Visual Studio. Add references to the **Couchbase.dll**, **Enyim.Memcached.dll**, and **Newtonsoft.Json.dll** assemblies that are in the release zip file.
 
 Visual Studio console applications target the .NET Framework Client Profile by
 default, so you need to change the project properties to target the
