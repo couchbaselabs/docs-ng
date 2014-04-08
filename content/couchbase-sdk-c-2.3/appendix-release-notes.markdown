@@ -1,7 +1,7 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
-Couchbase Client Library C. To browse or submit new issues, see [Couchbase
+the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 <a id="couchbase-sdk-rn_2-3-0"></a>
@@ -11,83 +11,77 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 **New Features and Behavior Changes in 2.3.0**
 
 
-* Implementation of
-  [Cluster Configuration Carrier Publication][cccp-wiki]. This is the new and
+* [Cluster Configuration Carrier Publication]([cccp-wiki](http://www.couchbase.com/wiki/display/couchbase/Cluster+Configuration+Carrier+Publication)) (CCCP) 
+
+	CCCP is the new and
   more efficient way to bootstrap from a cluster using the native memcached
   protocol and is quicker than the previous HTTP bootstrap mechanism, dramatically
   improving startup times and reducing load on the server. This feature is
-  available in server verions 2.5 and greater. The existing HTTP configuration is
-  still supported and will be employed as a fallback in the event that `CCCP`
+  available in Couchbase Server version 2.5 and later. The existing HTTP configuration is
+  still supported and is employed as a fallback in the event that CCCP
   is not supported.
 
-  In conjunction with this, a new struct version has been added to the
-  `lcb_create_st` parameters structure for use with `lcb_create`. This allows
-  you to get more control over how the client is initialized:
+	In conjunction with this, a new struct version has been added to the `lcb_create_st` parameters structure for use with `lcb_create`. The new struct allows you to get more control over how the client is initialized. The following example configures a client to _always_ use the CCCP protocol and never attempt to fall back on HTTP:
 
-  ```c
-  lcb_t instance;
-  struct lcb_create_st options;
-  lcb_config_transport_t enabled_transports = {
-    LCB_CONFIG_TRANSPORT_CCCP,
-    LCB_CONFIG_TRANSPORT_LIST_END
-  };
+		lcb_t instance;
+		struct lcb_create_st options;
+		lcb_config_transport_t enabled_transports = {
+		LCB_CONFIG_TRANSPORT_CCCP,
+		LCB_CONFIG_TRANSPORT_LIST_END
+		};
+		
+		memset(&options, 0, sizeof(options));
+		options.version = 2;
+		options.v.v2.mchosts = "example.com:11210";
+		options.v.v2.transports = enabled_transports;
 
-  memset(&options, 0, sizeof(options));
-  options.version = 2;
-  options.v.v2.mchosts = "example.com:11210";
-  options.v.v2.transports = enabled_transports;
-
-  lcb_error_t rc = lcb_create(&instance, &options);
-  if (rc != LCB_SUCCESS) {
-    fprintf(stderr, "Failed to create instance: %s\n", lcb_strerror(instance, rc));
-  }
-  ```
-
-  The above snippet will configure a client to _always_ use the `CCCP` protocol
-  and never attempt to fall back on HTTP
+		lcb_error_t rc = lcb_create(&instance, &options);
+		if (rc != LCB_SUCCESS) {
+		fprintf(stderr, "Failed to create instance: %s\n", lcb_strerror(instance, rc));
+		}
 
   The CCCP implementation required a significant rewrite in how sockets were
   created and re-used. Particularly, a connection pooling feature was implemented.
 
-  Additionally, the `cbc` command now has an additional `-C` option which accepts
-  the preferred configuration mechanism to use.
+	The `cbc` command now has an additional `-C` option that accepts the preferred configuration mechanism to use.
 
-  *Issues*: [CCBC-234](http://couchbase.com/issues/browse/CCBC-234)
+	*Issues*: [CCBC-234](http://couchbase.com/issues/browse/CCBC-234)
 
-* Implement logging hooks.
+* Logging hooks
 
-  This improvements adds various levels of diagnostic logging with the library
+	This improvements adds various levels of diagnostic logging with the library
   itself. It may be utilized via the environment (by setting the `LCB_LOGLEVEL`
   environment variable to a positive integer -- the higher the number the more
   verbose the logging).
 
-  Integrators may also use the logging API specified in `<libcouchbase/types.h>`
+	Integrators may also use the logging API specified in `<libcouchbase/types.h>`
   to proxy the library's logging messages into your own application.
 
-  Current events logged include connection initialization, destruction, connection
-  pool management, configuration changes, and timeouts.
+	Current events logged include connection initialization, destruction, connection pool management, configuration changes, and timeouts.
 
-  By default the library is silent.
+	By default the library is silent.
 
-  *Issues*: [CCBC-305](http://couchbase.com/issues/browse/CCBC-305)
+	*Issues*: [CCBC-305](http://couchbase.com/issues/browse/CCBC-305)
 
 
-* Allow per-node bootstrap/config timeouts.
-  This change allows more finer grained control over how long to wait per-node
-  to receive updated configuration info. This setting helps adjust the initial
+* Per-node bootstrap/config timeouts
+
+	This change provides fine-grained control over how long to wait per-node
+  to receive updated configuration information. This setting helps adjust the initial
   and subsequent bootstrap processes to help ensure each node gets a slice of
   time.
 
-  *Issues*: [CCBC-316](http://couchbase.com/issues/browse/CCBC-316)
+	*Issues*: [CCBC-316](http://couchbase.com/issues/browse/CCBC-316)
 
 
-* Provide a master-only observe option. This adds a new
-  struct version to the `lcb_observe_cmd_t` which allows to select only the
-  master node. One can use this to efficiently check if the key exists (without
-  retrieving it). It also allows one to get the CAS of the item without fetching
-  it.
+* Master-only observe option 
 
-  *Issues*: [CCBC-152](http://couchbase.com/issues/browse/CCBC-152)
+	This adds a new
+  struct version to the `lcb_observe_cmd_t` which allows you to select only the
+  master node. You can use this to efficiently check whether the key exists (without
+  retrieving it). It also allows you to get the item's CAS without fetching it.
+
+	*Issues*: [CCBC-152](http://couchbase.com/issues/browse/CCBC-152)
 
 
 **Fixes in 2.3.0**
@@ -96,8 +90,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   This issue caused odd errors on Windows when large amounts of data
   would be received on the socket.
 
-  *Issues*: [CCBC-297](http://couchbase.com/issues/browse/CCBC-297)
-
+	*Issues*: [CCBC-297](http://couchbase.com/issues/browse/CCBC-297)
 
 * Correctly parse `""`, `"0"` and `"1"` for environment
   variables. In previous versions having the entry set to an empty string
@@ -105,7 +98,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   environment variables. This has been fixed so that clear "False" values
   such as the empty string or 0 are treated as such.
 
-  *Issues*: [CCBC-340](http://couchbase.com/issues/browse/CCBC-340)
+	*Issues*: [CCBC-340](http://couchbase.com/issues/browse/CCBC-340)
 
 * Fix spurious callback deliveries on failed multi-packet commands.
   Multi-packet commands will no longer deliver spurious
@@ -115,7 +108,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   had been completed, and when the next response arrived it would incorrectly
   map it to a different request.
 
-  *Issues*: [CCBC-150](http://couchbase.com/issues/browse/CCBC-150)
+	*Issues*: [CCBC-150](http://couchbase.com/issues/browse/CCBC-150)
 
 
 **Known Issues in 2.3.0**
@@ -123,19 +116,19 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 * SASL password stored in plaintext with configuration cache. This should be
   stripped from the file before it is written to disk
 
-  *Issues*: [CCBC-347](http://couchbase.com/issues/browse/CCBC-347)
+	*Issues*: [CCBC-347](http://couchbase.com/issues/browse/CCBC-347)
 
 
 * Memcached buckets may receive operation failures during rebalance. The library
   should attempt to rehash the key and forward the item to the appropriate server
 
-  *Issues*: [CCBC-331](http://couchbase.com/issues/browse/CCBC-331)
+	*Issues*: [CCBC-331](http://couchbase.com/issues/browse/CCBC-331)
 
 
 * New `rev` field in configuration not used. Ideally the library should use this
   to compare the validity of two configurations.
 
-  *Issues*: [CCBC-332](http://couchbase.com/issues/browse/CCBC-332)
+	*Issues*: [CCBC-332](http://couchbase.com/issues/browse/CCBC-332)
 
 
 <a id="couchbase-sdk-c-rn_2-2-0"></a>
