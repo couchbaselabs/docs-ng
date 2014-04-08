@@ -240,7 +240,7 @@ navbar:
   - label: SDKs
     subnav:
       - label: C Developer Guide
-        href: /couchbase-sdk-c-2.2/
+        href: /couchbase-sdk-c-2.3/
 
       - label: C API Reference
         href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
