@@ -122,15 +122,15 @@ client.shutdown();
 <a id="api-reference-summary"></a>
 
 ## Understanding and Using Asynchronous Operations
-For all important operations, the Couchbase Java SDK exposes both asynchronous and synchronous methods to the user application. Nearly alwasys, the synchronous methods are wrappers around their asynchronous counterparts. You can identify those methods easily, because they return a `Future` of some kind: `OperationFuture`, `GetFuture`, `ViewFuture` and so on.
+For all important operations, the Couchbase Java SDK exposes both asynchronous and synchronous methods to the user application. Nearly always, the synchronous methods are wrappers around their asynchronous counterparts. You can identify those methods easily, because they return a future of some kind: `OperationFuture`, `GetFuture`, `ViewFuture` and so on.
 
-The first question we need to answer is: why do we need those constructs at all and not just stick with a purely synchronous style at all? Asynchronous programming as a principle (and the concept of Futures or closures/anonymous classes as their vehicle to implement it) allows you to write applications which are more performant, provide better throughput, lower latency and ultimately lead to higher ressource utilization (for example the number of CPU cores concurrently used in the application server).
+Why do we need those constructs at all and not just stick with a purely synchronous style? Asynchronous programming as a principle (and the concept of futures or closures/anonymous classes as their vehicle to implement it) allows you to write applications that are more performant, provide better throughput, lower latency and ultimately lead to higher resource utilization (for example, the number of CPU cores concurrently used in the application server).
 
-While this is all good, the ideas and concepts used to implement such behavior doesn't go well with traditional style java programming. That said, the concepts are very easy to understand and once that has happend, they can be applied safely to any program written (not just with the Couchbase Java SDK).
+While this is all good, the ideas and concepts used to implement such behavior don't go well with traditional-style java programming. That said, after you understand these concepts, you can safely apply them to any program you write (not just Couchbase Java SDK programs).
 
-If a method returns a `Future<T>`, it means that the method which you call will not wait until the response is computed, but instead your thread immediately gets the control back. The `Future` will contain the result of the computation eventually. Now this is a good thing, because you are free to do something else until the result is computed. This is especially important if you are dealing with IO of some form (disk, networking), because the time spent on IO is significant, and since CPUs and RAM are much faster than disks or the network, using your ressources in a meaningful way instead of waiting is a good thing.
+If a method returns a `Future<T>`, it means that the method you call does not wait until the response is computed, but instead your thread immediately gets the control back. The future will contain the result of the computation eventually. Getting control back immediately is a good thing because you are then free to do something else until the result is computed. This is especially important if you are dealing with I/O of some form (such as disk or network), because the time spent on I/O is significant. CPUs and RAM are much faster than disks or the network, so using your resources in a meaningful way instead of waiting is a good thing.
 
-Let's look at the [Future](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) interface (which is delivered with the JDK):
+Here's the [Future](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) interface that is delivered with the JDK:
 
 ```java
 public interface Future<V> {
@@ -149,11 +149,11 @@ public interface Future<V> {
 }
 ```
 
-This interface clearly defines the contract that a `Future` has, which will set the tone for the upcoming examples and principles. If you call `get()` on a Future, it will block your current thread (similar to a synchronous method) until the result is computed. So if you call `asyncMethod().get()` you basically turned it into a synchronous one. The overloaded `get(long, TimeUnit)` method is intended so that you can provide a custom time until a `TimeoutException` is raised for example. When using the Couchbase Java SDK, the plain `get()` method will use the configured default timeout.
+The interface clearly defines the contract that a `Future` has, which sets the tone for the upcoming examples and principles. If you call `get()` on a future, it blocks your current thread (similar to a synchronous method) until the result is computed. If you call `asyncMethod().get()`, you basically turned it into a synchronous call. The overloaded `get(long, TimeUnit)` method is intended so that you can provide a custom time until a `TimeoutException` is raised for example. When using the Couchbase Java SDK, the plain `get()` method will use the configured default timeout.
 
-You can also proactively `cancel()` a future, which means that the underlying task will not be computed if it has not been started. If it has already been computed, this method will fail (or just be plainly ignored). You can also check if the future is cancelled through the `isCancelled()` method, and also check if it is already done through `isDone()`. Both methods are non-blocking, which means they'll return the current state without waiting for it to change.
+You can also proactively `cancel()` a future, which means that the underlying task will not be computed if it has not been started. If it has already been computed, this method will fail (or just be ignored). You can also check if the future is cancelled through the `isCancelled()` method, and check if it is already done through `isDone()`. Both methods are non-blocking, which means they return the current state without waiting for it to change.
 
-With this in mind, let's now look at a corresponding method on the Couchbase Java SDK - the `CouchbaseClient.set()` method:
+With this in mind, take a look at a corresponding method in the Couchbase Java SDK, the `CouchbaseClient.set()` method:
 
 ```java
 // Doing a asynchronous set, returning immediately (maybe even before it has been sent out to the server)
@@ -169,52 +169,50 @@ boolean isDone = future.isDone();
 boolean isCancelled = future.isCancelled();
 ```
 
-The generic type `Boolean` in this case contains the information if the operation has succeeded or not. The `OperationFuture` has much more information associated, but the general principle applies. Note that a lot of those methods can return Exceptions in various ways, how to handle those are extensively covered in the "going to production" and "troubleshooting" sections.
+The generic type `boolean` in this case indicates whether the operation succeeded. The `OperationFuture` has much more information associated with it, but the general principle applies. A lot of those methods can return exceptions in various ways. For information about handling those exceptions, see the [going to production](#going-to-production) and [troubleshooting](#troubleshooting) sections.
 
-### More on The SDK Futures
-The Couchbase Java SDK (and the underlying spymemcached library) implement a variety of future types, which are dependent on their usage. If you are mutating values, you will come across the `OperationFuture<T>`, which is the most common one. In addition to the already described ones, you need to know
-about the following (there are others exposed as well, but they are generally for internal usage and should not be used by the application directly):
+### SDK Futures
+The Couchbase Java SDK and the underlying spymemcached library implement a variety of future types, which are dependent on their usage. If you are mutating values, you will come across the `OperationFuture<T>`, which is the most common one. In addition to the methods already described, you need to know
+about the following methods (there are others exposed as well, but they are generally for internal use and should not be used by the application directly):
 
  - `String getKey()`: Returns the key for this operation
  - `Long getCas()`: Returns the current CAS value for the document (which has changed after the mutation, for example)
- - `OperationStatus getStatus()`: Contains the `OperationStatus`, which gives you also more insight what happened in case of a failure.
+ - `OperationStatus getStatus()`: Contains the `OperationStatus`, which gives you more insight into what happened in case of a failure.
 
-Due to the nature of the last two methods, those are blocking, which means they call `get()` first. So if you want to use them, but with a different timeout than the default one, make sure to manually execute `get(long, TimeUnit)` first.
+Due to the nature of the last two methods, those are blocking, which means they call `get()` first. If you want to use them with a different timeout than the default one, make sure to manually execute `get(long, TimeUnit)` first.
 
-Next up are two futures related to get requests: `GetFuture` and `BulkGetFuture`. They get returned from `get(String key,...)` requests (so, retrieving documents) - do not confuse them with the general `.get()` method to block on the future. For all practical purposes, you can think of the `GetFuture` like as a `OperationFuture`, but it doesn't give you access to the key and the cas value. This is because of historical reasons, but we can use the `client.asyncGets` to get the CAS value nevertheless.
+The following futures are related to get requests: `GetFuture` and `BulkGetFuture`. They get returned from `get(String key,...)` requests (retrieving documents)—do not confuse them with the general `.get()` method to block on the future. For all practical purposes, you can think of the `GetFuture` method as a `OperationFuture`, but it doesn't give you access to the key and the CAS value. This is because of historical reasons, but you can use the `client.asyncGets` to get the CAS value nevertheless.
 
-The `BulkGetFuture` provides us with a one more method: `getSome(long, TimeUnit)`. To understand it, we need to know that if you call `.get()` on a bulk future, it will wait until either all documents are returned or the timeout is reached. Now if only one of the requested documents does not return in our time interval, the whole thing will timeout. Since sometimes you can live with just the documents that got returned until the timeout is reached, you can use the ´getSome` method for this alternative behaviour. If you are dealing with replica reads, you also come across a `ReplicaGetFuture`. Treat it exactly like a `GetFuture`.
+The `BulkGetFuture` class provides an additional method: `getSome(long, TimeUnit)`. To understand it, you need to know that if you call `.get()` on a bulk future, it  waits until either all documents are returned or the timeout is reached. Now if only one of the requested documents does not return in the time interval, the whole thing times out. Because sometimes you can live with just the documents that got returned until the timeout is reached, you can use the `getSome` method for this alternative behavior. If you are dealing with replica reads, you also come across a `ReplicaGetFuture`. Treat it exactly like a `GetFuture`.
 
-If you are curious about the internal differences: Since the client sends multiple get requests to all replica nodes when a `getFromReplica()` is issued, a `ReplicaGetFuture` needs to keep track of those to find out the correct one that returns. A `GetFuture` only has to keep track of exactly one request.
+If you are curious about the internal differences: Because the client sends multiple get requests to all replica nodes when a `getFromReplica()` is issued, a `ReplicaGetFuture` needs to keep track of those to find out the correct one that returns. A `GetFuture` only has to keep track of exactly one request.
 
-When dealing with Views and Design Documents, you'll get both `HttpFuture`s and `ViewFuture`s returned. Since the `ViewFuture` is a specialized version of the `HttpFuture`, you can treat them the same. They also expose a `getStatus()` method facilitate better error handling.
+When dealing with views and design documents, you get both `HttpFuture` and `ViewFuture` objects returned. Because the `ViewFuture` is a specialized version of the `HttpFuture`, you can treat them the same. They also expose a `getStatus()` method that facilitates better error handling.
 
-So while there are many future implementations around, they all work mostly the same but just differ with their internal implementation in terms of what they have to do and what underlying operations they facilitate.
-
-Next up is the final piece to asynchronous masterhood: listeners and callbacks.
+While there are many future implementations around, they all work mostly the same but just differ with their internal implementation in terms of what they have to do and what underlying operations they facilitate.
 
 ### Understanding and working with Listeners
-Even if the Java SDK returns futures, most of the times your application is designed in a synchronous fashion. This is true especially in environments like servlets or traditional Spring applications. Reactive programming and fully asynchronous webstacks are becoming more popular though, for example you can take a look at the [Play Framework](http://www.playframework.org).
+Even if the Java SDK returns futures, most of the times your application is designed in a synchronous fashion. This is true especially in environments like servlets or traditional Spring applications. Reactive programming and fully asynchronous web stacks are becoming more popular though. For an example, take a look at the [Play Framework](http://www.playframework.org).
 
-Also, a common use case is to perform a database operation (like a get request), and then doing something with it. Writing code like this doesn't buy you much (since synchronous behaviour is forced through the `.get()` call):
+Also, a common use case is to perform a database operation (like a get request), and then doing something with it. Writing code like this doesn't buy you much (because synchronous behavior is forced through the `.get()` call):
 
 ```java
 Object document = client.asyncGet("key").get();
 modifyAndReturnToUser(document);
 ```
 
-In order to use our ressources better, what we can do is to do the corresponding modification right after the object is returned, but we actually don't care when that is. We want the SDK to "call us back" once the response is here from the database, therefore we can add a callback to our future. A callback is also called a listener. Let's modify our simple example to be completely asynchronous:
+To use resources better, you can do the corresponding modification right after the object is returned, but you actually don't need to care when that is. The SDK calls you back after the response is here from the database. Therefore, you can add a callback to the future. A callback is also known as a listener. The following example is completely asynchronous version of the previous example:
 
 ```java
 client.asyncGet("key").addListener(new GetCompletionListener() {
     @Override
     public void onComplete(GetFuture<?> future) throws Exception {
-        modifyAndReturnTouser(future.get());
+        modifyAndReturnToUser(future.get());
     }
 });
 ```
 
-Our callback will be executed once the result is returned, and whatever we put in the `onComplete` method will be executed on a different thread. We are still calling `.get()` on the future to get the result returned, but since we know this is already the case it is a "instant" operation.
+The callback is executed after the result is returned, and whatever you put in the `onComplete` method is executed in a different thread. You are still calling `.get()` on the future to get the result returned, but because you know this is already the case it is an "instant" operation.
 
 To get the true power out of callbacks, you can nest them to build a completely asynchronous computation chain:
 
@@ -235,7 +233,7 @@ client.asyncGet("key").addListener(new GetCompletionListener() {
 });
 ```
 
-Both callbacks will be executed in different threads in a threadpool. Note that this looks a bit ugly because with Java 6 and 7, the only way to implement this kind of behaviour is with anonymous classes (`*CompletionListener`). We can bring some Java 8 love to it with lambda expressions and
+Both callbacks are executed in different threads in a thread pool. This looks a bit ugly because with Java 6 and 7, the only way to implement this kind of behavior is with anonymous classes (`*CompletionListener`). We can bring some Java 8 love to it with lambda expressions and
 make it much more concise (similar constructs can also be used from languages like Scala and Groovy):
 
 ```java
@@ -248,9 +246,9 @@ client.asyncGet("key").addListener(getFuture -> {
 });
 ```
 
-If we want to run this example in a traditional synchronous application, we are in trouble if we want to compute the result asynchronously, but make the calling thread wait for a result at some point (since maybe we need to pass a response back to the user). For this purpose, the `CountDownLatch` of the java concurrent package comes in handy. It is part of the JDK, so it is always accessible to you.
+If you want to run this example in a traditional synchronous application, you are in trouble if you want to compute the result asynchronously, but make the calling thread wait for a result at some point (because you might need to pass a response back to the user). For this purpose, the `CountDownLatch` of the java concurrent package comes in handy. It is part of the JDK, so it is always accessible to you.
 
-Let's modify our example from above to make the calling thread wait for the async computation (still using Java 8 here to make the code samples shorter, but the same concepts apply to Java 6/7 and anonymous classes):
+This example modifies the previous example to make the calling thread wait for the asynchronous computation (still using Java 8 here to make the code samples shorter, but the same concepts apply to Java 6 and 7 and anonymous classes):
 
 ```java
 CountDownLatch latch = new CountDownLatch(1);
@@ -266,7 +264,7 @@ client.asyncGet("key").addListener(getFuture -> {
 boolean success = latch.await(10, TimeUnit.SECONDS);
 ```
 
-The calling thread waits until the latch is counted down to 0, which eventually happens after the set call. If it does not get counted down (in case of a failure for examlpe), then after 10 seconds success will be false and you can act upon it correctly. One more question still stands: we need a way to get the computed result out of the callback chain and back to the calling thread. Since the latch doesn't carry much information, we need to add an additional construct (also from the concurrent package): the `AtomicReference`. Say we want to grab the `OperationStatus` from the set response and pass it up the stack for further investigation:
+The calling thread waits until the latch is counted down to 0, which eventually happens after the set call. If it does not get counted down (in case of a failure for example), then after 10 seconds `success` will be false and you can act upon it correctly. You still need a way to get the computed result out of the callback chain and back to the calling thread. Because the latch doesn't carry much information, you need to add an additional construct (also from the concurrent package): the `AtomicReference`. Say you want to grab the `OperationStatus` from the set response and pass it up the stack for further investigation:
 
 ```java
 CountDownLatch latch = new CountDownLatch(1);
@@ -290,12 +288,12 @@ if (success) {
 
 You can think of the `AtomicReference` as a thread safe container that you can use to pass around objects. If you need to pass around primitives, there are also direct implementations like `AtomicBoolean`, `AtomicInteger` and so forth.
 
-One more word on the thread pool for listeners: by default a dynamic thread pool is created and managed per `CouchbaseClient`, but you can pass in your own one if you wan to share pool resources either from your application or if you are using listeners on multiple `CouchbaseClient` instances. See the configuration section for details, but if you pass in your own one don't forget to shut it down on your own when it is not needed anymore.
+One more word on the thread pool for listeners: by default a dynamic thread pool is created and managed per `CouchbaseClient`, but you can pass in your own thread pool if you wan to share pool resources either from your application or if you are using listeners on multiple `CouchbaseClient` instances. See the configuration section for details, but if you pass in your own, don't forget to shut it down when it is not needed anymore.
 
 ### Bullet-Proof Futures and Listeners
-Asynchronous operations differ a little to their synchronous counterparts in that they don't raise an exception if something goes wrong - since there is no thread where it makes sense. Of course, if you decide to block finally then there will be exceptions raised.
+Asynchronous operations differ a little to their synchronous counterparts in that they don't raise an exception if something goes wrong because there is no thread where it makes sense. Of course, if you decide to block finally then there will be exceptions raised.
 
-Even if a method that returns a future doesn't block the calling thread until done, there can be an exception raised during a call like `client.set()`. Every key-based operation eventually goes down to a node, which has a input queue. If this queue is full (because the supplier (you) outpaces the consumer (the network)), a `InvalidStateException` is raised, telling you that it tried to wait for a given amount of time to inser the operation, but it still wasn't possible. This setting (`opQueueMaxBlockTime`) is set to 10 seconds by default and is tunable. The default (and also tunable) size of this input queue is 16384 (per node). 
+Even if a method that returns a future doesn't block the calling thread until done, there can be an exception raised during a call like `client.set()`. Every key-based operation eventually goes down to a node, which has an input queue. If this queue is full (because the supplier (you) outpaces the consumer (the network)), an `InvalidStateException` is raised, telling you that it tried to wait for a given amount of time to insert the operation, but it still wasn't possible. This setting, `opQueueMaxBlockTime`, is set to 10 seconds by default and is tunable. The default size of this input queue is 16384 (per node), which is also tunable. 
 
 ```java
 try {
@@ -306,13 +304,13 @@ try {
 }
 ```
 
-For completeness sake, there are two other reasons why a `IllegalStateException` could be thrown in this case: if the thread has been interrupted while it tried to put it onto the input queue or if the application is shutting down. Since both case are rare in a the regular flow, the most common reason is always the input queue.
+For completeness sake, there are two other reasons why an `IllegalStateException` could be thrown in this case: if the thread has been interrupted while it tried to put it onto the input queue or if the application is shutting down. Because both cases are rare in a the regular flow, the most common reason is the input queue.
 
-Note that since Views are handled differently, this does not need to be done for view and design document operations.
+Because views are handled differently, this does not need to be done for view and design document operations.
 
-You also need to take care once you block on the future through `.get()` or `.get(long, TimeUnit)`. There are two main reasons why this call will raise an exception: the underlying operation was either cancelled or timed out. Depending on which of those you are using, you need to be on the lookout for `TimeoutException`s, `ExecutionException`s and `RuntimeException`s.
+You also need to take care after you block on the future through `.get()` or `.get(long, TimeUnit)`. There are two main reasons why this call will raise an exception: the underlying operation was either cancelled or timed out. Depending on which of those you are using, you need to be on the lookout for the following exceptions: `TimeoutException`, `ExecutionException` and `RuntimeException`.
 
-There are different exceptions to catch between those two, since the java `Future` interface doesn't define a `TimeoutException` on the `get()` method - this is because the original intent is to block until done, which only makes limited sense with IO based operations and distributed systems. So, let's discuss the `.get(long, TimeUnit)` first. Here is the gist:
+There are different exceptions to catch between those two, because the java `Future` interface doesn't define a `TimeoutException` on the `get()` method. This is because the original intent is to block until done, which only makes limited sense with I/O-based operations and distributed systems. So, let's discuss the `.get(long, TimeUnit)` first. Here is the gist:
 
 ```java
 try {
@@ -324,7 +322,7 @@ try {
 } catch(TimeoutException ex) {
     // operation timed out
 } catch(ExecutionException ex) {
-    // operation was cancelled or a exception was raised somewhere in the
+    // operation was cancelled or an exception was raised somewhere in the
     // internal code path
 } 
 ```
@@ -343,7 +341,7 @@ try {
        // operation timed out 
     }
 } catch(ExecutionException ex) {
-    // operation was cancelled or a exception was raised somewhere in the
+    // operation was cancelled or an exception was raised somewhere in the
     // internal code path
 } 
 ```
@@ -435,7 +433,7 @@ This doesn't only work for strings, but also for numbers and so on. By default, 
 You can easily verify the output by calling `toString` on the Query class, which outputs the on the wire representation of the query.
 
 ##### Including Documents
-As you have already been warned in the Couchbase Server documentation, you should never put the full document in the emit body. A map function like this is not recommended and bloats your index unecessarily (because you are essentially storing the document both on disk and in the index):
+As you have already been warned in the Couchbase Server documentation, you should never put the full document in the emit body. A map function like this is not recommended and bloats your index unnecessarily (because you are essentially storing the document both on disk and in the index):
 
 ```javascript
 // Don't do this!
