@@ -14,18 +14,18 @@ in this section:
 
  1. Explore some of the API methods that provide more specialized functions.
 
-At this point we assume that you have a Couchbase Server 2.2 release running and
+At this point we assume that you have a Couchbase Server 2.5 release running and
 you have the **beer-sample** bucket configured. If you need help setting up
 everything, see the following documents:
 
  * [Using the Couchbase Web
-   Console](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-web-console) for information about using the Couchbase Administrative Console
+   Console](http://docs.couchbase.com/couchbase-manual-2.5/#using-the-web-console) for information about using the Couchbase Administrative Console
 
  * [Couchbase
-   CLI](http://docs.couchbase.com/couchbase-manual-2.2/#command-line-interface-for-administration) for information about the command line interface
+   CLI](http://docs.couchbase.com/couchbase-manual-2.5/#command-line-interface-for-administration) for information about the command line interface
 
  * [Couchbase REST
-   API](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-rest-api) for information about creating and managing Couchbase resources
+   API](http://docs.couchbase.com/couchbase-manual-2.5/#using-the-rest-api) for information about creating and managing Couchbase resources
 
 The TCP/IP port allocation on Microsoft Windows by default includes a restricted number of
 ports available for client communication. For more information about this issue,
@@ -40,13 +40,13 @@ To get ready to build your first app, you need to install Couchbase Server, down
 **Installing Couchbase Server**
 
 Get the [latest
-Couchbase Server 2.2](http://couchbase.com/download) release and install it.
+Couchbase Server 2.5](http://couchbase.com/download) release and install it.
 
 As you follow the download instructions and setup wizard, make sure you install the
 **beer-sample** default bucket. It contains beer and brewery sample data,
 which you use with the examples.
 
-If you already have Couchbase Server 2.2 but do not have the **beer-sample**
+If you already have Couchbase Server 2.5 but do not have the **beer-sample**
 bucket installed, open the Couchbase Web Console and select
 **Settings > Sample Buckets**. Select the **beer-sample** checkbox, and then click
 **Create**. A notification box in the upper-right corner disappears when the bucket is ready to use.
@@ -64,9 +64,9 @@ all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allo
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.3.2.jar, or latest version available
+ * couchbase-client-1.4.0.jar, or latest version available
 
- * spymemcached-2.10.5.jar
+ * spymemcached-2.11.1.jar
 
  * commons-codec-1.5.jar
 
@@ -87,7 +87,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.3.2</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 
@@ -97,7 +97,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.3.2"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.4.0"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -108,7 +108,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.3.2"
+  compile "com.couchbase.client:couchbase-client:1.4.0"
 }
 ```
 
@@ -149,7 +149,7 @@ NetBeans IDE and open it:
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.3.2
+     * **Version**: 1.4.0
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
@@ -263,7 +263,7 @@ Couchbase community forums or through Couchbase Customer Support.
 
 ## Reading Documents
 
-With Couchbase Server 2.0, you have two ways of fetching your documents: either
+With Couchbase Server 2.0 and later, you have two ways of fetching your documents: either
 by the unique key through the `get` method, or through Views. Because Views are
 more complex we will discuss them later in this guide. In the meantime, we show
 `get` first:
@@ -384,7 +384,7 @@ to delete a document that is not there, the result of the `OperationFuture` is `
 immediately remove a copy of that document from disk, instead it performs lazy
 deletion for items that expired or deleted items. For more information about how
 the server handles lazy expiration, see [About Document
-Expiration](http://docs.couchbase.com/couchbase-devguide-2.2/#about-document-expiration) in the *Couchbase Server Developer Guide*.
+Expiration](http://docs.couchbase.com/couchbase-devguide-2.5/#about-document-expiration) in the *Couchbase Server Developer Guide*.
 
 <a id="next-steps"></a>
 
@@ -392,5 +392,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.2/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.3.0/index.html).
+Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.4.0/index.html).
 

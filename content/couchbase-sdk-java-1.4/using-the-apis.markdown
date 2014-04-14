@@ -1,14 +1,12 @@
 # Using the APIs
 
 The Client libraries provides an interface to both Couchbase and Memcached
-clients using a consistent interface. The interface between your Java
-application and your Couchbase or Memcached servers is provided through the
-instantiation of a single object class, `CouchbaseClient`.
+buckets using a consistent interface. The interface between your Java
+application and your Couchbase cluster is provided through the
+instantiation of a single class, the `CouchbaseClient`.
 
-Creating a new object based on this class opens the connection to each
-configured server and handles all the communication with the servers when
-setting, retrieving and updating values. A number of different methods are
-available for creating the object specifying the connection address and methods.
+Creating a new object based on this class opens connections to each
+configured server in the cluster and handles all the communication with the servers when setting, retrieving and updating values. A number of different methods are available for creating the object specifying the connection address and methods.
 
 <a id="couchbase-sdk-java-started-connection-bucket"></a>
 
@@ -20,11 +18,10 @@ using the Couchbase `URI` for one or more Couchbase nodes and specifying the
 bucket name and password (if required) when creating the new `CouchbaseClient`
 object.
 
-For example, to connect to the local host and the `default` bucket:
-
+For example, to connect to localhost and the `default` bucket:
 
 ```java
-List<URI> uris = new LinkedList<URI>();
+List<URI> uris = new ArrayList<URI>();
 uris.add(URI.create("http://127.0.0.1:8091/pools"));
 
 try {
@@ -37,51 +34,25 @@ try {
 
 The format of this constructor is:
 
-
-```
-CouchbaseClient(URIs,BUCKETNAME,BUCKETPASSWORD)
+```java
+CouchbaseClient client = new CouchbaseClient(List<URI> uris, String bucket, String password);
 ```
 
 Where:
 
- * `URIS` is a `List` of URIs to the Couchbase nodes. The format of the URI is the
-   hostname, port and path `/pools`.
+ * `URIs` is a list of URIs to the Couchbase nodes. The format of the URI is the hostname, port and path `/pools`. Note that in production systems, you should always pass in more than one node. It doesn't have to be all nodes in the cluster, but in case one of the given bootstrap nodes is down you will still be able to connect to the cluster initially.
 
- * `BUCKETNAME` is the name of the bucket on the cluster that you want to use.
-   Specified as a `String`.
+ * `bucket` is the name of the bucket on the cluster that you want to use.
+   Specified as a `String`. Note that this **is not** the administrator username.
 
- * `BUCKETPASSWORD` is the password for this bucket. Specified as a `String`.
-
-The returned `CouchbaseClient` object can be used as with any other
-`CouchbaseClient` object.
-
-<a id="couchbase-sdk-java-started-connection-sasl"></a>
-
-## Connecting using Hostname and Port with SASL
-
-If you want to use SASL to provide secure connectivity to your Couchbase server,
-create a `CouchbaseConnectionFactory` that defines the SASL
-connection type, user bucket, and password.
-
-The connection to Couchbase uses the underlying protocol for SASL. This is
-similar to the earlier example except that it uses the
-`CouchbaseConnectionFactory` class.
-
-
-```java
-List<URI> baseURIs = new ArrayList<URI>();
-baseURIs.add(base);
-
-CouchbaseConnectionFactory cf = new CouchbaseConnectionFactory(baseURIs, "userbucket", "password");
-client = new CouchbaseClient((CouchbaseConnectionFactory) cf);
-```
+ * `password` is the password for this bucket. Specified as a `String`. Note that this **is not** the administrator password. If no password is used, specify an empty string.
 
 <a id="couchbase-sdk-ccfb"></a>
 
 ## Setting runtime Parameters for the CouchbaseConnectionFactoryBuilder
 
-A final approach to creating the connection is using the
-`CouchbaseConnectionFactoryBuilder` and `CouchbaseConnectionFactory` classes.
+A more custom approach to creating the connection is using the
+`CouchbaseConnectionFactoryBuilder`.
 
 It's possible to override some of the default parameters that are defined in
 `CouchbaseConnectionFactoryBuilder` for a variety of reasons and customize the
@@ -102,25 +73,13 @@ baseURIs.add(base);
 CouchbaseConnectionFactoryBuilder cfb = new CouchbaseConnectionFactoryBuilder();
 
 // Ovveride default values on CouchbaseConnectionFactoryBuilder
-
 // For example - wait up to 10 seconds for an operation to succeed
 cfb.setOpTimeout(10000);
 
-CouchbaseConnectionFactory cf = cfb.buildCouchbaseConnection(baseURIs, "default", "", "");
+CouchbaseConnectionFactory cf = cfb.buildCouchbaseConnection(baseURIs, "default", "");
 
-client = new CouchbaseClient((CouchbaseConnectionFactory) cf);
+client = new CouchbaseClient(cf);
 ```
-
-For example, the following code snippet sets the `OpTimeOut` value to 10000 ms before creating the connection as we saw in the code above.
-
-
-```java
-cfb.setOpTimeout(10000);
-```
-
-These parameters can be set at run time by setting a property on the command line
-(such as *-DopTimeout=1000* ) or via properties in a file *cbclient.properties*
-in that order of precedence.
 
 The following table summarizes the parameters that you can set. The table provides
 the parameter name, a brief description, the default value, and why the
@@ -136,46 +95,258 @@ Parameter | Description | Default | When to Override the default value
 `maxReconnectDelay`         | Maximum number of milliseconds to wait between reconnect attempts.                               | 30000 ms | You can set this value lower when there is intermittent and frequent connection failures.                                                                                                                                                                  
 `MinReconnectInterval`      | Default minimum reconnect interval in milliseconds                                               | 1100             | This means that if a reconnect is needed, it won't try to reconnect more frequently than the default value. The internal connections take up to 500 ms per request. You can set this value higher to try reconnecting less frequently.                             
 `obsPollInterval`           | Wait for the specified interval before the observe operation polls the nodes.                    | 400              | Set this higher or lower depending on whether the polling needs to happen less or more frequently depending on the tolerance limits for the observe operation as compared to other operations.                                                             
-`obsPollMax`                | The maximum number of times to poll the master and replicas to meet the desired durability requirements. | 10               | You could set this value higher if the observe operations do not complete after the normal polling.                                                                                                                                                        
+`obsPollMax`                | The maximum number of times to poll the master and replicas to meet the desired durability requirements. | 10               | You could set this value higher if the observe operations do not complete after the normal polling.                                                                                                                                            
 
 <a id="couchbase-sdk-java-started-disconnection"></a>
 
 ## Shutting down the Connection
 
 The preferred method for closing a connection is to cleanly shut down the active
-connection with a timeout using the `shutdown()` method with an optional timeout
+connection with a timeout using the `shutdown()` method with an timeout
 period and unit specification. The following example shuts down the active connection
-to all the configured servers after 60 seconds:
-
+to all the configured servers and waits a minute to drain all the internal queues and complete operations, while not accepting new incoming operations:
 
 ```java
 client.shutdown(60, TimeUnit.SECONDS);
 ```
 
-The unit specification relies on the `TimeUnit` object enumerator, which
-supports the following values:
-
-Constant                | Description              
-------------------------|--------------------------
-`TimeUnit.NANOSECONDS`  | Nanoseconds 
-`TimeUnit.MICROSECONDS` | Microseconds 
-`TimeUnit.MILLISECONDS` | Milliseconds
-`TimeUnit.SECONDS`      | Seconds        
-
 The method returns a Boolean value that indicates whether the shutdown request
 completed successfully.
 
-You also can shut down an active connection immediately by using the `shutdown()`
-method to your Couchbase object instance. For example:
-
+You also can shut down an active connection immediately by using the `shutdown()` method to your Couchbase object instance. This is not recommended though since it doesn't give the underlying queues a chance to drain and therefore may lead to a "unclean" shutdown.
 
 ```java
 client.shutdown();
 ```
 
-In this form the `shutdown()` method returns no value.
-
 <a id="api-reference-summary"></a>
+
+## Understanding and Using Asynchronous Operations
+For all important operations, the Couchbase Java SDK exposes both asynchronous and synchronous methods to the user application. Nearly alwasys, the synchronous methods are wrappers around their asynchronous counterparts. You can identify those methods easily, because they return a `Future` of some kind: `OperationFuture`, `GetFuture`, `ViewFuture` and so on.
+
+The first question we need to answer is: why do we need those constructs at all and not just stick with a purely synchronous style at all? Asynchronous programming as a principle (and the concept of Futures or closures/anonymous classes as their vehicle to implement it) allows you to write applications which are more performant, provide better throughput, lower latency and ultimately lead to higher ressource utilization (for example the number of CPU cores concurrently used in the application server).
+
+While this is all good, the ideas and concepts used to implement such behavior doesn't go well with traditional style java programming. That said, the concepts are very easy to understand and once that has happend, they can be applied safely to any program written (not just with the Couchbase Java SDK).
+
+If a method returns a `Future<T>`, it means that the method which you call will not wait until the response is computed, but instead your thread immediately gets the control back. The `Future` will contain the result of the computation eventually. Now this is a good thing, because you are free to do something else until the result is computed. This is especially important if you are dealing with IO of some form (disk, networking), because the time spent on IO is significant, and since CPUs and RAM are much faster than disks or the network, using your ressources in a meaningful way instead of waiting is a good thing.
+
+Let's look at the [Future](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) interface (which is delivered with the JDK):
+
+```java
+public interface Future<V> {
+
+    V get() throws InterruptedException, ExecutionException;
+
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+
+    boolean cancel(boolean mayInterruptIfRunning);
+
+    boolean isCancelled();
+
+    boolean isDone();
+
+}
+```
+
+This interface clearly defines the contract that a `Future` has, which will set the tone for the upcoming examples and principles. If you call `get()` on a Future, it will block your current thread (similar to a synchronous method) until the result is computed. So if you call `asyncMethod().get()` you basically turned it into a synchronous one. The overloaded `get(long, TimeUnit)` method is intended so that you can provide a custom time until a `TimeoutException` is raised for example. When using the Couchbase Java SDK, the plain `get()` method will use the configured default timeout.
+
+You can also proactively `cancel()` a future, which means that the underlying task will not be computed if it has not been started. If it has already been computed, this method will fail (or just be plainly ignored). You can also check if the future is cancelled through the `isCancelled()` method, and also check if it is already done through `isDone()`. Both methods are non-blocking, which means they'll return the current state without waiting for it to change.
+
+With this in mind, let's now look at a corresponding method on the Couchbase Java SDK - the `CouchbaseClient.set()` method:
+
+```java
+// Doing a asynchronous set, returning immediately (maybe even before it has been sent out to the server)
+OperationFuture<Boolean> future = client.set("key", "value");
+
+// Wait until the response is returned (blocks the current thread!)
+boolean success = future.get(); // or with custom timeout
+
+// Check if its done already
+boolean isDone = future.isDone(); 
+
+// Check if it has been cancelled
+boolean isCancelled = future.isCancelled();
+```
+
+The generic type `Boolean` in this case contains the information if the operation has succeeded or not. The `OperationFuture` has much more information associated, but the general principle applies. Note that a lot of those methods can return Exceptions in various ways, how to handle those are extensively covered in the "going to production" and "troubleshooting" sections.
+
+### More on The SDK Futures
+The Couchbase Java SDK (and the underlying spymemcached library) implement a variety of future types, which are dependent on their usage. If you are mutating values, you will come across the `OperationFuture<T>`, which is the most common one. In addition to the already described ones, you need to know
+about the following (there are others exposed as well, but they are generally for internal usage and should not be used by the application directly):
+
+ - `String getKey()`: Returns the key for this operation
+ - `Long getCas()`: Returns the current CAS value for the document (which has changed after the mutation, for example)
+ - `OperationStatus getStatus()`: Contains the `OperationStatus`, which gives you also more insight what happened in case of a failure.
+
+Due to the nature of the last two methods, those are blocking, which means they call `get()` first. So if you want to use them, but with a different timeout than the default one, make sure to manually execute `get(long, TimeUnit)` first.
+
+Next up are two futures related to get requests: `GetFuture` and `BulkGetFuture`. They get returned from `get(String key,...)` requests (so, retrieving documents) - do not confuse them with the general `.get()` method to block on the future. For all practical purposes, you can think of the `GetFuture` like as a `OperationFuture`, but it doesn't give you access to the key and the cas value. This is because of historical reasons, but we can use the `client.asyncGets` to get the CAS value nevertheless.
+
+The `BulkGetFuture` provides us with a one more method: `getSome(long, TimeUnit)`. To understand it, we need to know that if you call `.get()` on a bulk future, it will wait until either all documents are returned or the timeout is reached. Now if only one of the requested documents does not return in our time interval, the whole thing will timeout. Since sometimes you can live with just the documents that got returned until the timeout is reached, you can use the ´getSome` method for this alternative behaviour. If you are dealing with replica reads, you also come across a `ReplicaGetFuture`. Treat it exactly like a `GetFuture`.
+
+If you are curious about the internal differences: Since the client sends multiple get requests to all replica nodes when a `getFromReplica()` is issued, a `ReplicaGetFuture` needs to keep track of those to find out the correct one that returns. A `GetFuture` only has to keep track of exactly one request.
+
+When dealing with Views and Design Documents, you'll get both `HttpFuture`s and `ViewFuture`s returned. Since the `ViewFuture` is a specialized version of the `HttpFuture`, you can treat them the same. They also expose a `getStatus()` method facilitate better error handling.
+
+So while there are many future implementations around, they all work mostly the same but just differ with their internal implementation in terms of what they have to do and what underlying operations they facilitate.
+
+Next up is the final piece to asynchronous masterhood: listeners and callbacks.
+
+### Understanding and working with Listeners
+Even if the Java SDK returns futures, most of the times your application is designed in a synchronous fashion. This is true especially in environments like servlets or traditional Spring applications. Reactive programming and fully asynchronous webstacks are becoming more popular though, for example you can take a look at the [Play Framework](http://www.playframework.org).
+
+Also, a common use case is to perform a database operation (like a get request), and then doing something with it. Writing code like this doesn't buy you much (since synchronous behaviour is forced through the `.get()` call):
+
+```java
+Object document = client.asyncGet("key").get();
+modifyAndReturnToUser(document);
+```
+
+In order to use our ressources better, what we can do is to do the corresponding modification right after the object is returned, but we actually don't care when that is. We want the SDK to "call us back" once the response is here from the database, therefore we can add a callback to our future. A callback is also called a listener. Let's modify our simple example to be completely asynchronous:
+
+```java
+client.asyncGet("key").addListener(new GetCompletionListener() {
+    @Override
+    public void onComplete(GetFuture<?> future) throws Exception {
+        modifyAndReturnTouser(future.get());
+    }
+});
+```
+
+Our callback will be executed once the result is returned, and whatever we put in the `onComplete` method will be executed on a different thread. We are still calling `.get()` on the future to get the result returned, but since we know this is already the case it is a "instant" operation.
+
+To get the true power out of callbacks, you can nest them to build a completely asynchronous computation chain:
+
+```java
+client.asyncGet("key").addListener(new GetCompletionListener() {
+    @Override
+    public void onComplete(GetFuture<?> future) throws Exception {
+        Object document = future.get();
+        modifyDocument(document);
+        client.set("key", document).addListener(new OperationCompletionListener() {
+            @Override
+            public void onComplete(OperationFuture<?> future) throws Exception {
+                System.out.println("I'm done!");    
+            }
+        });
+
+    }
+});
+```
+
+Both callbacks will be executed in different threads in a threadpool. Note that this looks a bit ugly because with Java 6 and 7, the only way to implement this kind of behaviour is with anonymous classes (`*CompletionListener`). We can bring some Java 8 love to it with lambda expressions and
+make it much more concise (similar constructs can also be used from languages like Scala and Groovy):
+
+```java
+client.asyncGet("key").addListener(getFuture -> {
+    Object document = getFuture.get();
+    modifyDocument(document);
+    client.set("key", document).addListener(setFuture -> {
+        System.out.println("I'm done!");
+    });
+});
+```
+
+If we want to run this example in a traditional synchronous application, we are in trouble if we want to compute the result asynchronously, but make the calling thread wait for a result at some point (since maybe we need to pass a response back to the user). For this purpose, the `CountDownLatch` of the java concurrent package comes in handy. It is part of the JDK, so it is always accessible to you.
+
+Let's modify our example from above to make the calling thread wait for the async computation (still using Java 8 here to make the code samples shorter, but the same concepts apply to Java 6/7 and anonymous classes):
+
+```java
+CountDownLatch latch = new CountDownLatch(1);
+client.asyncGet("key").addListener(getFuture -> {
+    Object document = getFuture.get();
+    modifyDocument(document);
+    client.set("key", document).addListener(setFuture -> {
+        System.out.println("I'm done!");
+        latch.countDown();
+    });
+});
+
+boolean success = latch.await(10, TimeUnit.SECONDS);
+```
+
+The calling thread waits until the latch is counted down to 0, which eventually happens after the set call. If it does not get counted down (in case of a failure for examlpe), then after 10 seconds success will be false and you can act upon it correctly. One more question still stands: we need a way to get the computed result out of the callback chain and back to the calling thread. Since the latch doesn't carry much information, we need to add an additional construct (also from the concurrent package): the `AtomicReference`. Say we want to grab the `OperationStatus` from the set response and pass it up the stack for further investigation:
+
+```java
+CountDownLatch latch = new CountDownLatch(1);
+AtomicReference<OperationStatus> reference = new AtomicReference<>();
+client.asyncGet("key").addListener(getFuture -> {
+    Object document = getFuture.get();
+    modifyDocument(document);
+    client.set("key", document).addListener(setFuture -> {
+        reference.set(setFuture.getStatus());
+        latch.countDown();
+    });
+});
+
+boolean success = latch.await(10, TimeUnit.SECONDS);
+if (success) {
+    return reference.get();
+} else {
+    // something happend down the chain, log and report the error.
+}
+```
+
+You can think of the `AtomicReference` as a thread safe container that you can use to pass around objects. If you need to pass around primitives, there are also direct implementations like `AtomicBoolean`, `AtomicInteger` and so forth.
+
+One more word on the thread pool for listeners: by default a dynamic thread pool is created and managed per `CouchbaseClient`, but you can pass in your own one if you wan to share pool resources either from your application or if you are using listeners on multiple `CouchbaseClient` instances. See the configuration section for details, but if you pass in your own one don't forget to shut it down on your own when it is not needed anymore.
+
+### Bullet-Proof Futures and Listeners
+Asynchronous operations differ a little to their synchronous counterparts in that they don't raise an exception if something goes wrong - since there is no thread where it makes sense. Of course, if you decide to block finally then there will be exceptions raised.
+
+Even if a method that returns a future doesn't block the calling thread until done, there can be an exception raised during a call like `client.set()`. Every key-based operation eventually goes down to a node, which has a input queue. If this queue is full (because the supplier (you) outpaces the consumer (the network)), a `InvalidStateException` is raised, telling you that it tried to wait for a given amount of time to inser the operation, but it still wasn't possible. This setting (`opQueueMaxBlockTime`) is set to 10 seconds by default and is tunable. The default (and also tunable) size of this input queue is 16384 (per node). 
+
+```java
+try {
+    OperationFuture<Boolean> future = client.set("key", "value");
+} catch (IllegalStateException ex) {
+    // outpacing the network, probably back off and retry 
+    // or backpressure to upper layers
+}
+```
+
+For completeness sake, there are two other reasons why a `IllegalStateException` could be thrown in this case: if the thread has been interrupted while it tried to put it onto the input queue or if the application is shutting down. Since both case are rare in a the regular flow, the most common reason is always the input queue.
+
+Note that since Views are handled differently, this does not need to be done for view and design document operations.
+
+You also need to take care once you block on the future through `.get()` or `.get(long, TimeUnit)`. There are two main reasons why this call will raise an exception: the underlying operation was either cancelled or timed out. Depending on which of those you are using, you need to be on the lookout for `TimeoutException`s, `ExecutionException`s and `RuntimeException`s.
+
+There are different exceptions to catch between those two, since the java `Future` interface doesn't define a `TimeoutException` on the `get()` method - this is because the original intent is to block until done, which only makes limited sense with IO based operations and distributed systems. So, let's discuss the `.get(long, TimeUnit)` first. Here is the gist:
+
+```java
+try {
+    OperationFuture<Boolean> future = client.set("key", "value");
+    boolean result = future.get(10, TimeUnit.SECONDS);
+} catch (IllegalStateException ex) {
+    // outpacing the network, probably back off and retry
+    // or backpressure to upper layers
+} catch(TimeoutException ex) {
+    // operation timed out
+} catch(ExecutionException ex) {
+    // operation was cancelled or a exception was raised somewhere in the
+    // internal code path
+} 
+```
+
+To achieve the same thing with the regular `get()` method, the `TimeoutException` needs to be wrapped inside a `RuntimeException`:
+
+```java
+try {
+    OperationFuture<Boolean> future = client.set("key", "value");
+    boolean result = future.get();
+} catch (IllegalStateException ex) {
+    // outpacing the network, probably back off and retry
+    // or backpressure to upper layers
+} catch(RuntimeException ex) {
+    if (e.getCause() instanceof TimeoutException) {
+       // operation timed out 
+    }
+} catch(ExecutionException ex) {
+    // operation was cancelled or a exception was raised somewhere in the
+    // internal code path
+} 
+```
 
 ## Querying Views
 
