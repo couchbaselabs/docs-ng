@@ -121,8 +121,7 @@ you install homebrew, install libcouchbase:
 
 
 ```
-shell> brew install \
-          https://github.com/couchbase/homebrew/raw/stable/Library/Formula/libcouchbase.rb
+shell> brew install libcouchbase
 ```
 
 <a id="c-install-linux_and_mac"></a>
