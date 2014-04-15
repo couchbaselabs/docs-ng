@@ -6,11 +6,19 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 <a id="couchbase-sdk-java-rn_1-4-0c"></a>
 
-## Release Notes for Couchbase Client Library Java 1.4.0 GA (?? April 2014)
+## Release Notes for Couchbase Client Library Java 1.4.0 GA (15 April 2014)
 
-**New Features and Behavior Changes in 1.4.0**
+The 1.4.0 release is the first production ready release for the 1.4 series.
 
-**Fixes in 1.4.0**
+Here are some of the highlights, for more specific information read down further on the developer preview release notes.
+
+* Transparent, optimized connection management (support for Couchbase Server 2.5+ carrier publication feature)
+* The total number of view rows are exposed on the `ViewResult`.
+* (Async)ReplicaRead methods have been added that also return the CAS value in addition to the document itself.
+* Additional asynchronous mutation methods have been exposed (increment and decrement with expiration and default).
+* Typesafe status codes on the `OperationStatus` make it easier to check for error and success states.
+* Authentication timeouts are now customizable, the error handling is much better around redistribution during authentication.
+* A development pom.xml has been added to make it easier to contribute.
 
 **Known Issues in 1.4.0**
 
