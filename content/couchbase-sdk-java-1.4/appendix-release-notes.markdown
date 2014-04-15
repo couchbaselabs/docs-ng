@@ -1,4 +1,4 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
@@ -8,16 +8,16 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.4.0 GA (15 April 2014)
 
-The 1.4.0 release is the first production ready release for the 1.4 series.
+The 1.4.0 release is the first production-ready release for the 1.4 series.
 
-Here are some of the highlights, for more specific information read down further on the developer preview release notes.
+Here are some of the highlights of the 1.4.0 release. For more specific information, read the release notes for Developer Preview 1 and Developer Preview 2.
 
 * Transparent, optimized connection management (support for Couchbase Server 2.5+ carrier publication feature)
 * The total number of view rows are exposed on the `ViewResult`.
 * (Async)ReplicaRead methods have been added that also return the CAS value in addition to the document itself.
 * Additional asynchronous mutation methods have been exposed (increment and decrement with expiration and default).
-* Typesafe status codes on the `OperationStatus` make it easier to check for error and success states.
-* Authentication timeouts are now customizable, the error handling is much better around redistribution during authentication.
+* Type-safe status codes on the `OperationStatus` make it easier to check for error and success states.
+* Authentication timeouts are now customizable, and the error handling is much better around redistribution during authentication.
 * A development pom.xml has been added to make it easier to contribute.
 
 **Known Issues in 1.4.0**
@@ -34,14 +34,13 @@ The 1.4.0-dp2 release is the second developer preview for the 1.4 series.
 **New Features and Behavior Changes in 1.4.0-dp2**
 
 * [JCBC-421](http://www.couchbase.com/issues/browse/JCBC-421): Rewriting the Query internals for better performance.
-The <code>Query</code> view object has been rewritten completely for much better performance, removing bottlenecks and allowing much quicker creation (especially if fields with a JSON type are used).
+The <code>Query</code> view object has been rewritten completely for much better performance, removing bottlenecks and allowing much quicker creation (especially if fields with a JSON type are used). The rewrite is completely transparent to the user, nothing needs to be changed on the application side.
 
-The rewrite is completely transparent to the user, nothing needs to be changed on the application side.
 * [JCBC-426](http://www.couchbase.com/issues/browse/JCBC-426): Since Carrier Configuration and/or HTTP are selected automatically, there is now also a way to disable one of the two bootstrap phases manually. This is only exposed through a system property since it is not intended for everyday use. It should only be used when a failure is discovered in the new carrier configuration process and old behaviour needs to be used temporarily.
 
-Either <code>cbclient.disableCarrierBootstrap</code> or <code>cbclient.disableHttpBootstrap</code> can be set to <code>"true"</code> in order to force disabling the bootstrap type. Note that if you disable http bootstrap against clusters < 2.5.0 or if you use memcached bucket types, bootstrapping will fail since they solely rely on the HTTP mechanism.
+Either <code>cbclient.disableCarrierBootstrap</code> or <code>cbclient.disableHttpBootstrap</code> can be set to <code>"true"</code> to force disabling the bootstrap type. If you disable HTTP bootstrap against clusters < 2.5.0 or if you use memcached bucket types, bootstrapping will fail because they solely rely on the HTTP mechanism.
 
-* [JCBC-436](http://www.couchbase.com/issues/browse/JCBC-436): In some scenarios, it might be needed to specify a larger auth timeout per node. This can be done through the <code>setAuthWaitTime</code> setting in the <code>CouchbaseConnectionFactoryBuilder</code> class (in milliseconds, default is 2500).
+* [JCBC-436](http://www.couchbase.com/issues/browse/JCBC-436): In some scenarios, you might need to specify a larger auth timeout per node. This can be done through the <code>setAuthWaitTime</code> setting in the <code>CouchbaseConnectionFactoryBuilder</code> class (in milliseconds, default is 2500).
 
 * [SPY-156:](http://www.couchbase.com/issues/browse/SPY-156): More (async) mutate methods are exposed, which helps with default settings and expirations. Their sync counterparts have been exposed previously already. The following async methods are now available:
 
@@ -57,17 +56,17 @@ Future<Long> asyncDecr(String key, long by, long def, int exp);
 Future<Long> asyncDecr(String key, int by, long def, int exp);
 ```
 
-* Add development pom.xml: A maven pom file has been added to the source code in order to make it easier to get setup with all the dependencies and therefore making it easier to contribute.
+* Add development pom.xml: A maven pom file has been added to the source code to make it easier to get set up with all the dependencies and therefore making it easier to contribute.
 
 **Fixes in 1.4.0-dp2**
 
-* General fixes and stabilisation around the new carrier publication feature.
+* General fixes and stabilization around the new carrier publication feature.
 * [SPY-158:](http://www.couchbase.com/issues/browse/SPY-158): The "max reconnect delay" on the factory builder incorrectly assumed seconds instead of the advertised milliseconds, leading to wrong reconnect behavior. This is now fixed and works as advertised on the builder.
 * [SPY-161:](http://www.couchbase.com/issues/browse/SPY-161): When an operation gets cancelled, now all its "children" get cancelled as well. Children get created if an operation needs to be cloned, for example on "not my vbucket" responses. This avoids the situation where operations are kept around longer than needed because their parent cancellation was never passed to them appropriately.
 
 **Known Issues in 1.4.0-dp2**
 
-* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom timeout (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higer than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The workaround
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom timeout (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higher than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The workaround
 here is to set a higher value through the `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
 
 <a id="couchbase-sdk-java-rn_1-4-0a"></a>
@@ -97,7 +96,7 @@ The client now exposes the <code>(async)GetsFromReplica</code> methods, which wo
 
 The <code>#getTotalRows</code> method exposes the total number of rows, which may be a superset of the rows returned (because the result has been filtered for one reason or another). Note that if used together with pagination (or any other "state imposing" mechanism), keep in mind that the total rows can change if the view itself changes.
 
-* [SPY-153](http://www.couchbase.com/issues/browse/SPY-153): A typesafe <code>StatusCode</code> has been added to the <code>OperationStatus</code> instances, which makes it easier to compare responses, instead of having to compare strings which is rather error prone.
+* [SPY-153](http://www.couchbase.com/issues/browse/SPY-153): A type-safe <code>StatusCode</code> has been added to the <code>OperationStatus</code> instances, which makes it easier to compare responses, instead of having to compare strings which is rather error prone.
 
 Here is a usage example:
 

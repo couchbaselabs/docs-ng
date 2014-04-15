@@ -117,10 +117,10 @@ versions:
   couchbase-sdk-java:
     name: "Java SDK"
     versions:
+      - 1.4
       - 1.3
       - 1.2
       - 1.1
-      - 1.0
 
   couchbase-sdk-net:
     name: ".Net SDK"
@@ -246,7 +246,7 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
 
       - label: Java Developer Guide
-        href: /couchbase-sdk-java-1.3/
+        href: /couchbase-sdk-java-1.4/
 
       - label: Java API Reference
         href: http://www.couchbase.com/autodocs/couchbase-java-client-latest/index.html
