@@ -25,9 +25,8 @@ reference](http://www.couchbase.com/docs/couchbase-sdk-c-1.0/index.html).
 
 ## Downloading the Couchbase Client Library
 
-Download the latest client library from the [Coucbase download
-site](http://files.couchbase.com/developer-previews/clients/couchbase-server-2.0.0-compatible/c/).
-It is available as a source archive in both `.zip` and `.tar.gz`
+Download the latest client library from <http://www.couchbase.com/communities/c-client-library>.
+It is available as a source archive in both .zip and .tar.gz formats.
 
 <a id="c-install-linux_and_mac"></a>
 
