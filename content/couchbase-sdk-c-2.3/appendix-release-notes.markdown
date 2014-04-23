@@ -109,6 +109,9 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   map it to a different request.
 
 	*Issues*: [CCBC-150](http://couchbase.com/issues/browse/CCBC-150)
+              [CCBC-321](http://couchbase.com/issues/browse/CCBC-321)
+              [CCBC-320](http://couchbase.com/issues/browse/CCBC-320)
+              [CCBC-281](http://couchbase.com/issues/browse/CCBC-281)
 
 
 **Known Issues in 2.3.0**
