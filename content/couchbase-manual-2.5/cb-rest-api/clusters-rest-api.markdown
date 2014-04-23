@@ -905,12 +905,15 @@ change this value. In response to this request, Couchbase Server sends a test
 email with the current configurations. This request uses the same parameters
 used in setting alerts and additionally an email subject and body.
 
-    curl -i -u admin:password http://localhost:8091/settings/alerts/sendTestEmail \
+```
+    curl -i -u admin:password http://localhost:8091/settings/alerts/testEmail \
     -d 'subject=Test+email+from+Couchbase& \
     body=This+email+was+sent+to+you+to+test+the+email+alert+email+server+settings.&enabled=true& \
     recipients=vmx%40localhost&sender=couchbase%40localhost& \
     emailUser=&emailPass=&emailHost=localhost&emailPort=25&emailEncrypt=false& \
     alerts=auto_failover_node%2Cauto_failover_maximum_reached%2Cauto_failover_other_nodes_down%2Cauto_failover_cluster_too_small'
+```
+
 
 Replace the *admin*, *password*, *localhost*, *vmx%40localhost*,
 *couchbase%40localhost*, *25*, and *false* values in the above example with

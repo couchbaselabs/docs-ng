@@ -1,13 +1,13 @@
 # Modeling Documents
 
 This section describes core elements you will use to handle data in Couchbase
-Server; it will describe the ways you can structure individual JSON documents
+Server. It describes the ways you can structure individual JSON documents
 for your application, how to store the documents from a Couchbase SDK, and
 describe different approaches you may take when you structure data in documents.
 
 Couchbase Server is a *document database* ; unlike traditional relational
 databases, you store information in documents rather than table rows. Couchbase
-has a much more flexible data format; documents generally contains all the
+has a much more flexible data format; documents generally contain all the
 information about a data entity, including compound data rather than the data
 being normalized across tables.
 
@@ -59,7 +59,7 @@ In a document-oriented model, data objects are stored as documents; each
 document stores your data and enables you to update the data or delete it.
 Instead of columns with names and data types, we describe the data in the
 document, and provide the value for that description. If we wanted to add
-attributes to a beer in a relational mode, we would need to modify the database
+attributes to a beer in a relational model, we would need to modify the database
 schema to include the additional columns and their data types. In the case of
 document-based data, we would add additional key-value pairs into our documents
 to represent the new fields.
