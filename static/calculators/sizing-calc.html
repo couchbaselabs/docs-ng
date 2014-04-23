@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"> -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="http://www.couchbase.com/sites/default/files/couchbase_favicon_0.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <meta name="robots" content="noodp" />
+    <meta name="robots" content="noydir" />
+    <meta name="viewport" content="width=1000" />
+    <title>Couchbase Cluster Size Calculator</title>
+    
+    <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+          var typekitHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+          document.write(unescape("%3Cscript src='" + typekitHost + "use.typekit.com/lkj5otb.js' type='text/javascript'%3E%3C/script%3E"));
+    //--><!]]>
+    </script>
+    <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    try{Typekit.load();}catch(e){}
+    //--><!]]>
+    </script>
+	 
+    <script type="text/javascript"> 
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7763794-10']);
+        _gaq.push(['_setDomainName', '.couchbase.com']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_setAllowHash', false]);
+        _gaq.push(['_trackPageview']);
+  
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+	 
+	 <script src="/assets/js/main.js"></script>
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script>
+	      (function() {
+	        var cx = '018016427239405524608:fkg1v30apnm';
+	        var gcse = document.createElement('script');
+	        gcse.type = 'text/javascript';
+	        gcse.async = true;
+	        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	            '//www.google.com/cse/cse.js?cx=' + cx;
+	        var s = document.getElementsByTagName('script')[0];
+	        s.parentNode.insertBefore(gcse, s);
+	      })();
+	    </script>
+	 
+
+    <script type="text/javascript" src="sizing.js">
+    </script>
+
+  </head>
+  
+	  <body>
+
+
+<div class="container-fluid">
+<div id="header">
+	              <div id="eyebrow">
+                    <div id="request-demo"><a href="/request-demo">Request A Demo</a></div>
+                      <div class="clear-block block block-google_cse" id="block-google_cse-0">
+                        <gcse:searchbox></gcse:searchbox>
+                      </div>  
+                </div>
+                  <div id="header-main">
+                    <div id="header-inner">
+                      <div id="logo">
+                        <a title="Couchbase" href="http://www.couchbase.com/"><img width="86" height="36" alt="Couchbase" src="/assets/img/logo.png"> </a>
+                      </div>
+                      <div class="clear-block block block-menu_block" id="block-menu_block-12">
+                        <div class="content">
+                          <div class="menu-block-12 menu-name-primary-links parent-mlid-0 menu-level-1">
+                            <ul class="menu">
+                              <li class="leaf first menu-mlid-13118"><a title="" href="http://www.couchbase.com/why-nosql/nosql-database">Why NoSQL?</a></li>
+                              <li class="leaf menu-mlid-13119 has-children"><a title="" href="http://www.couchbase.com/couchbase-server/overview">Products</a></li>
+                              <li class="leaf menu-mlid-13119 has-children"><a title="" href="http://training.couchbase.com">Training</a></li>
+                              <li class="leaf menu-mlid-13120"><a title="" href="http://www.couchbase.com/download">Download</a></li>
+                              <li class="leaf menu-mlid-13122"><a title="" href="http://www.couchbase.com/learn">Resources</a></li>
+                              <li class="leaf menu-mlid-16593"><a title="" href="http://www.couchbase.com/communities/">Communities</a></li>
+                              <li class="leaf menu-mlid-13123"><a title="" href="http://www.couchbase.com/customer-stories">Customers</a></li>
+                              <li class="leaf last menu-mlid-13123"><a title="" href="http://www.couchbase.com/couchbase-support">Subscriptions</a></li>
+                              
+                            </ul>
+                          </div>
+                        </div>
+                      </div>             
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+ 
+    
+  <div id="page-head" class="clearfix">
+    <div id="page-inner" class="container-6">
+      <div id="main">
+        <div class="breadcrumb"><a title="Documentation home" href="/index.html"><img src="/assets/img/home_icon.png" height="22" width="24" /></a></div>
+        <h1 id="main-title">Cluster Sizing Estimator</h1>
+      </div>
+      <div class="clear-line"></div>
+    </div>
+  </div> <!-- /page -->
+  
+  <div id="tab-content">
+    <div class="container-6">
+          <div class="body-intro">
+            <p>
+              The cluster sizing estimator calculates the estimated cluster size based
+              on the input values you provide in the following form. This is a rough estimate
+              of the number of nodes required. Actual requirements will depend on other factors,
+              including the complexity and precise read and write rates of your application,
+              bucket configuration, and individual node characteristics.
+              </p> <!-- update for 2.0 when ready -->
+          </div>
+
+<h2>Input Values</h2> 
+
+<p style="font-size:large;font-weight:bold">All input values are required.</p>         
+
+<form id="inputvalues" method="GET" action="">
+<table>
+ <tr>
+		<td>Couchbase Server Version</td>
+		<td><select id="versions" name="versions">
+		<option selected="selected">2.1 or 2.5</option><option>2.0</option><option>1.8</option></select></td>
+ </tr> 
+	
+<tr>
+	<td>Key name size</td>
+	<td><input type="text" id="keynamesize" name="keynamesize" value="70"/> bytes</td>
+</tr>
+<tr><td>Average value size</td><td><input type="text" id="valuesize" name="valuesize" value="500"/> bytes</td></tr>
+<tr><td>Number of replicas</td><td><select id="replicas" name="replicas"><option selected="selected">1</option><option>2</option><option>3</option></select></td></tr>
+<tr><td>RAM per node</td><td><input type="text" id="rampernode" name="rampernode" value="128"/>GB</td></tr>
+<tr><td>Number of keys</td><td><input type="text" id="keycount" name="keycount" value="1000000000"/></td></tr>
+<tr><td>Desired Working Set</td><td><input type="text" id="workingset" name="workingset" value="100"/>%</td></tr>
+<tr><td>Storage Type</td><td><select id="storagetype" name="storagetype"><option value="HHD" selected="selected">Hard Disk</option><option value="SSD">Solid State Disk</option><option value="EBS">Elastic Block Storage</option></select></td></tr>
+<tr><td>Sustained Read Ops/sec</td><td><input type="text" id="readops" name="readops" value="20000"/></td></tr>
+<tr><td>Sustained Write Ops/sec</td><td><input type="text" id="writeops" name="writeops" value="10000"/></td></tr>
+<tr><td>Deletion/Expiration Ops/sec</td><td><input type="text" id="deleteops" name="deleteops" value=""/></td></tr>
+<tr><td>Purge Frequency in Days</td><td><input type="text" id="purgefrequency" name="purgefrequency" value=""/></td></tr>
+</table>
+</form>
+<p><input type="submit" onclick="calculate();" value="Estimate Recommended Cluster Configuration"></p>
+
+<div id="results" style="visibility: hidden;display:none;">
+<h2>Results</h2>
+
+<p>Based on the figures you have provided, you will need <i>approximately</i> <span id="resultnodes" style="color: #A30A0A;">0</span> nodes to support your cluster. Your cluster is <span id="resulttype" style="color: #A30A0A;"></span> bound.</p>
+
+<h3>Recommendations</h3>
+<table>
+  <tr><td>Nodes Recommended</td><td><span id="recommended_nodes"></span> nodes</td></tr>
+  <tr><td>Minimum Disk Capacity Per Node</td><td><span id="nodes_storage"></span> GB</td></tr>
+  <tr><td>Memory Bucket Quota Per Node</td><td><span id="recommended_rampernode"></span> GB</td></tr>
+  <tr><td>Tombstone Space Required Per Node</td><td><span id="tombstone_space_required"></span> GB</td></tr>
+  <tr><td>Tombstone Space Required on Purge Freq Per Node</td><td><span id="tombstone_space_required_purge"></span> GB</td></tr>
+</table>
+
+</div>
+
+<div id="growth" style="visibility: hidden;display:none;">
+
+<h3>Growth Estimates</h3>
+
+<table>
+  <tr><th></th><th>Base</th><th>50% Growth</th><th>100% Growth</th><th>200% Growth</th></tr>
+  <tr><td>Nodes Required with Key Count Growth</td><td><span id="nodes_growth_keys_base"></span></td><td><span id="nodes_growth_keys_one"></span></td><td><span id="nodes_growth_keys_two"></span></td><td><span id="nodes_growth_keys_three"></span></td></tr>
+  <tr><td>Nodes Required with Value Size Growth</td><td><span id="nodes_growth_values_base"></span></td><td><span id="nodes_growth_values_one"></span></td><td><span id="nodes_growth_values_two"></span></td><td><span id="nodes_growth_values_three"></span></td></tr>
+  <tr><td>Nodes Required with Write Ops Growth</td><td><span id="nodes_growth_ops_base"></span></td><td><span id="nodes_growth_ops_one"></span></td><td><span id="nodes_growth_ops_two"></span></td><td><span id="nodes_growth_ops_three"></span></td></tr>
+</table>
+
+</div>
+
+<div id="detail" style="visibility: hidden;display:none;">
+<h3>Calculation Detail</h3>
+
+<table>
+  <tr><td colspan="2"><b>RAM Calculations</b></td></tr>
+  <tr><td>Nodes Required By RAM</td><td><span id="nodes_by_ram"></span> nodes</td></tr>
+  <tr><td>Total Cluster Metadata</td><td><span id="total_metadata"></span> GB</td></tr>
+  <tr><td>Total Cluster Dataset</td><td><span id="total_dataset"></span> GB</td></tr>
+  <tr><td>Total Cluster Working Set Size</td><td><span id="total_workingset"></span> GB</td></tr>
+  <tr><td>Total Cluster Data</td><td><span id="total_data"></span> GB</td></tr>
+  <tr><td>Estimated RAM used per node</td><td><span id="ram_pernode"></span> GB</td></tr>
+  <tr><td colspan="2">&nbsp</td></tr>
+  <tr><td colspan="2"><b>Disk Calculations</b></td></tr>
+  <tr><td>Nodes Required By I/O</td><td><span id="nodes_by_disk"></span> nodes</td></tr>
+  <tr><td>Required Cluster Write Rate</td><td><span id="total_write_rate"></span> ops/second</td></tr>
+  <tr><td>Approximate Write Rate Available</td><td><span id="update_write_rate"></span> ops/second</td></tr>
+</table>
+
+</div>
+
+<div id="storagecomparison" style="visibility: hidden;display:none;">
+  <h3>Storage Types Comparison</h3>
+
+  <table>
+    <tr><th></th><th>Using Hard Disk</th><th>Using SSD</th><th>Using EBS</th></tr>
+    <tr><td>Nodes Required</td><td><span id="nodes_by_disk_hhd"></span> nodes</td><td><span id="nodes_by_disk_ssd"></span> nodes</td><td><span id="nodes_by_disk_ebs"></span> nodes</td></tr>
+    <tr><td>Minimum Disk Capacity Required Per Node</td><td><span id="nodes_storage_hhd"></span> GB</td><td><span id="nodes_storage_ssd"></span> GB</td><td><span id="nodes_storage_ebs"></span> GB</td></tr>
+  </table>
+  
+</div>
+
+  </div>
+  </div>
+    
+
+</div>
+    </div>
+  </div>
+</div> <!-- container-fluid block -->
+
+	 <script src="/assets/js/main.js"></script>
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script>
+	      (function() {
+	        var cx = '018016427239405524608:fkg1v30apnm';
+	        var gcse = document.createElement('script');
+	        gcse.type = 'text/javascript';
+	        gcse.async = true;
+	        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	            '//www.google.com/cse/cse.js?cx=' + cx;
+	        var s = document.getElementsByTagName('script')[0];
+	        s.parentNode.insertBefore(gcse, s);
+	      })();
+	    </script>
+
+
+    </body>
+</html>
