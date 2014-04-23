@@ -1,9 +1,69 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
 Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
+
+## 1.3.7 (18 April 2014)
+
+* [major] Allow the selection of bootstrap providers. Since libcouchbase
+  2.3.0 there is a new bootstrapping transport available: Cluster
+  Configuration Carrier Publication (CCCP). It is a more efficient way
+  to keep the cluster configuration up-to-date using Carrier Publication
+  instead of HTTP connection.
+
+	```
+nodes = ["example.com", "example.org"]
+Couchbase.connect(node_list: nodes, bootstrap_transports: [:cccp, :http])
+```
+
+	  Read more about it here: <http://www.couchbase.com/wiki/display/couchbase/Cluster+Configuration+Carrier+Publication>
+
+* [major] RCBC-168 An experimental DNS SRV helper for connection
+  constructor. The DNS SRV records need to be configured on a reachable
+  DNS server. An example configuration could look like the following
+  (note that the service ids might change):
+
+
+	```
+	_cbmcd._tcp.example.com.  0  IN  SRV  20  0  11210 node2.example.com.
+	_cbmcd._tcp.example.com.  0  IN  SRV  10  0  11210 node1.example.com.
+	_cbmcd._tcp.example.com.  0  IN  SRV  30  0  11210 node3.example.com.
+	
+	_cbhttp._tcp.example.com.  0  IN  SRV  20  0  8091 node2.example.com.
+	_cbhttp._tcp.example.com.  0  IN  SRV  10  0  8091 node1.example.com.
+	_cbhttp._tcp.example.com.  0  IN  SRV  30  0  8091 node3.example.com.
+```
+
+  	Now if "example.com" is passed in as the argument, the three nodes
+  configured will be parsed and put in the returned URI list. Note
+  that the priority is respected (in this example, node1 will be the
+  first one in the list, followed by node2 and node3). As of now,
+  weighting is not supported. This is how it could be used to
+  bootstrap the connection:
+
+
+    ```
+	transport = :http
+	nodes = Couchbase::DNS.locate('example.com', transport)
+	if nodes.empty?
+		nodes = ["example.com:8091"]
+	end
+	Couchbase.connect(node_list: nodes, bootstrap_transports: [transport])
+```
+
+  	NOTE: This is experimental and subject to change at any time. Watch
+  the release notes for changes in future releases.
+
+* [major] RCBC-166 Fix a crash with `eventmachine`. In `eventmachine` event
+  handlers are separated and run separately and in the following order:
+  [READ, WRITE]. So it was possible to cancel WRITE event handler from
+  the READ handler, which could cause a crash when the reactor run it in the next
+  turn.
+
+* [minor] Fixed a typo that  doesn't allow you to use bundler in the project
+  directory.
 
 ## Release notes for Couchbase client library Ruby 1.3.6 (17 February 2014)
 
