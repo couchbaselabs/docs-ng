@@ -137,6 +137,13 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 	*Issues*: [CCBC-332](http://couchbase.com/issues/browse/CCBC-332)
 
+* Users of the `lcb_compat_st` structure will need to recompile their application
+  to work with the new library. This is because the embedded `lcb_create_st`
+  structure has change. **This affects any application using the configuration
+  cache** as it is created using said structure.
+
+    *Issues*: [CCBC-392](http://couchbase.com/issues/browse/CCBC-392)
+
 
 <a id="couchbase-sdk-c-rn_2-2-0"></a>
 
