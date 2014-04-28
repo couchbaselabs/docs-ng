@@ -10,7 +10,7 @@ information about setting up and using these components, see the
 following links:
 
  * [Couchbase Plug-in for
-   Elasticsearch](https://github.com/couchbaselabs/elasticsearch-transport-couchbase). Be aware that this plug-in is compatible with **Elasticsearch 1.0.1 and earlier**.
+   Elasticsearch](https://github.com/couchbaselabs/elasticsearch-transport-couchbase). **Be aware that the Couchbase plug-in v1.3.0 is compatible only with Elasticsearch 1.0.1**.
 
  * [Couchbase Server
    requirements](http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#getting-started). This topic describes supported platforms, hardware requirements, software requirements, and network settings.
@@ -21,8 +21,8 @@ following links:
  * [Elasticsearch
    installation](http://www.elasticsearch.org/guide/reference/setup/installation.html).
    installation instructions and system prerequisites for Elasticsearch. **Be aware
-   that the Couchbase Plug-in for Elasticsearch has been tested for compatibility
-   with Elasticsearch 0.20.2, 0.90.2, 0.90.5, and 1.0.1**.
+   that the Couchbase Plug-in 1.3.0 for Elasticsearch is only compatibility
+   with Elasticsearch 1.0.1**. See the release notes for Couchbase plug-ins that are compatible with earlier versions of Elasticsearch.
 
 For now you probably need only one instance of Couchbase Server running in
 a cluster and one instance of the Elasticsearch engine. Later as you test your
@@ -44,8 +44,8 @@ Couchbase using a protocol understood by Elasticsearch. The plug-in ensures that
 information from Couchbase can be mapped and converted into data which
 Elasticsearch will index and query.
 
-This plug-in is compatible with Couchbase Server 2.5.1 and earlier and Elasticsearch
-1.0.1 and earlier. For more information about the administrative tool for
+This plug-in is compatible only with Elasticsearch
+1.0.1 and with Couchbase Server 2.5.1 and earlier and  and earlier. For more information about the administrative tool for
 Elasticsearch, see [Elasticsearch
 head.](http://mobz.github.com/elasticsearch-head/) For more information about
 setting up Elasticsearch, see [Elasticsearch

@@ -6,7 +6,7 @@ This appendix contains release notes for individual versions of Couchbase Plug-i
 <a id="elastic-relnotes-1.3.0"></a>
 ## Release Notes for Couchbase Plug-in for Elasticsearch 1.3.0 GA (April 2014)
 
-This release adds compatibility with Elasticsearch 1.0.1.
+This release is compatibility only with Elasticsearch 1.0.1.
 
 This release is compatible with Couchbase Server 2.5.x, and it is backward compatible with earlier 2.x releases. 
 
