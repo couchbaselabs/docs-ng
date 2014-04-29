@@ -12,9 +12,9 @@ The following operating systems were or will be deprecated.
 
 Operating System | Description/Status | Deprecated version
 ---------------- | ----------- | -------
-Linux | 32-bit operating system will not be supported. | Will be deprecated in 3.0 
-Windows | 32-bit operating system will not be supported for production systems, however, will be supported for development purposes. | Will be deprecated in 3.0 
-Centos 5 | Centos 5 will not be supported after Couchbase Server version 3.0. | Will be deprecated in a release post-3.0
+Linux | 32-bit operating systems (CentOS, Ubuntu, RHEL) will not be supported. | Will be deprecated in 3.0 
+Windows | 32-bit operating systems will only be supported for development purposes. 32-bit production systems will not be supported. | Will be deprecated in 3.0 
+CentOS 5 | Centos 5 will not be supported after Couchbase Server version 3.0. | Will be deprecated in a release post-3.0
 Ubuntu 10.04 | Ubuntu 10.04 will not be supported after Couchbase Server version 3.0. | Will be deprecated in a release post-3.0
 
 ## REST API
