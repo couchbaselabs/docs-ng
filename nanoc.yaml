@@ -177,6 +177,9 @@ navbar:
       - label:  "--  REST API Reference"
         href: /couchbase-manual-2.5/cb-rest-api/
         
+      - label:  "--  Deprecated items"
+        href: /couchbase-manual-2.5/deprecated/
+        
       - label: Couchbase 2.2
         href: /couchbase-manual-2.2/
 

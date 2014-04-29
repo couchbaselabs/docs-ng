@@ -809,7 +809,7 @@ Note that tcmalloc stats are not available on some operating systems
 
 ## Warmup
 
-Stats =warmup= shows statistics related to warmup logic
+Stats `_warmup_` shows statistics related to warmup logic
 
 | Stat                          | Description |               
 | ------------- |:-------------:|
@@ -1068,7 +1068,7 @@ ep\_warmup\_dups                    | Number of failures due to duplicate keys  
 ep\_warmup\_estimated\_key\_count   | Estimated number of keys in database                         | Integer (DEFAULT = "unknown")      
 ep\_warmup\_estimated\_value\_count | Estimated number of key data to read based on the access log | Integer (DEFAULT = "unknown")      
 ep\_warmup\_keys\_time              | Total time spent by loading persisted keys                   | Integer                            
-ep\_warmup\_min\_item\_threshold    | Enable data traffic after loading this number of key data    | Integer                            
+ep\_warmup\_min\_items\_threshold    | Enable data traffic after loading this percentage of key data    | Integer                            
 ep\_warmup\_min\_memory\_threshold  | Enable data traffic after filling this % of memory           | Integer (%)                        
 ep\_warmup\_oom                     | Number of out of memory failures during warmup               | Integer                            
 ep\_warmup\_state                   | What is current warmup state                                 | String, refer to *WarmupStateTable*
@@ -1095,7 +1095,7 @@ ep\_warmup\_dups                    | Number of failures due to duplicate keys  
 ep\_warmup\_estimated\_key\_count   | Estimated number of keys in database                         | Integer (DEFAULT = "unknown")      
 ep\_warmup\_estimated\_value\_count | Estimated number of key data to read based on the access log | Integer (DEFAULT = "unknown")      
 ep\_warmup\_keys\_time              | Total time spent by loading persisted keys                   | Integer                            
-ep\_warmup\_min\_item\_threshold    | Enable data traffic after loading this number of key data    | Integer                            
+ep\_warmup\_min\_items\_threshold    | Enable data traffic after loading this percentage of key data    | Integer                            
 ep\_warmup\_min\_memory\_threshold  | Enable data traffic after filling this % of memory           | Integer (%)                        
 ep\_warmup\_oom                     | Number of out of memory failures during warmup               | Integer                            
 ep\_warmup\_state                   | What is current warmup state                                 | String, refer to *WarmupStateTable*

@@ -1,7 +1,20 @@
 # Appendix: Release Notes
 
-This appendix contains release notes for individual versions of Couchbase
-Plug-in for Elasticsearch
+This appendix contains release notes for individual versions of Couchbase Plug-in for Elasticsearch.
+
+
+<a id="elastic-relnotes-1.3.0"></a>
+## Release Notes for Couchbase Plug-in for Elasticsearch 1.3.0 GA (April 2014)
+
+This release is compatibility only with Elasticsearch 1.0.1.
+
+This release is compatible with Couchbase Server 2.5.x, and it is backward compatible with earlier 2.x releases. 
+
+* Support for new XDCR checkpointing protocol [CBES-26](https://www.couchbase.com/issues/browse/CBES-26).
+* Fixed failure handling due to bounded queue with Elasticsearch 1.x [CBES-27](https://www.couchbase.com/issues/browse/CBES-27).
+
+
+<a id="elastic-relnotes-1.2.0"></a>
 
 ## Release Notes for Couchbase Plug-in for Elasticsearch 1.2.0 GA (October 2013)
 

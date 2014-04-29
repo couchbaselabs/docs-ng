@@ -2015,7 +2015,7 @@ shopping cart document in the server, you can provide the correct application
 logic to handle the document state. If you know you are unable to recover the
 shopping cart data, you might want to provide an error message to the user and
 ask them to reselect items for the cart; if you are able to recover a persisted
-or replica document, you can provide another message and the provide the most
+or replica document, you can provide another message and provide the most
 current recovered shopping cart items.
 
 The following illustrates two different scenarios using an observe-function. The

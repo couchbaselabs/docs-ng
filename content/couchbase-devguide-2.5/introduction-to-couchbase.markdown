@@ -167,14 +167,14 @@ to change how the document is handled:
 ### Couchbase SDKs
 
 Couchbase SDKs, sometimes also referred to as client libraries, are the
-language-specific SDKs provided by Couchbase and third-party providers and that
+language-specific SDKs provided by Couchbase and third-party providers that
 are installed on your web application server. A Couchbase SDK is responsible for
 communicating with the Couchbase Server and provides language-specific
 interfaces your web application can use to perform database operations.
 
 All Couchbase SDKs automatically read and write data to the right node in a
 cluster. If database topology changes, the SDK responds automatically and
-correctly distribute read/write requests to the right cluster nodes. Similarly,
+correctly distributes read/write requests to the right cluster nodes. Similarly,
 if your cluster experiences server failure, SDKs will automatically direct
 requests to still-functioning nodes. SDKs are able to determine the locations of
 information, the status of nodes, and the status of the cluster using a REST API
@@ -269,7 +269,7 @@ data structure, and high performance, a NoSQL solution such as Couchbase is well
 suited. If you want to handle multi-record transactions, have complex security
 needs, or need to perform rollback of operations, a traditional RDBMS may be the
 better alternative for your application. There may also be many cases in which
-you perform and analysis of your application needs and determine you use both a
+you perform an analysis of your application needs and determine you use both a
 RDBMS and Couchbase Server for your data. For more detailed information about
 the topic, see our resource library, webinars and whitepapers on the topic at
 [Couchbase, Why NoSQL, Why
@@ -280,7 +280,7 @@ Now?](http://www.couchbase.com/on-demand/webinar/WhyNoSQLWebinarSeries)
 The Couchbase Server is completely compatible with the *memcached protocol*,
 which is a widely adopted protocol for storing information in high-performance,
 in-memory caches. This means than any existing memcached client libraries and
-applications using these libraries can be migrated to with Couchbase Server with
+applications using these libraries can be migrated to Couchbase Server with
 little or no modification.
 
 There are numerous challenges faced by developers who currently use memcached
@@ -322,7 +322,7 @@ the _Couchbase Server Manual_.
 During node failure, Couchbase SDKs receive errors trying to read or write any
 data that is on a failed node. Couchbase SDKs are still able to read and write
 to all other functioning nodes in the cluster. After the node failure has been
-detected and the node has been failed-over, SDKs is updated by the
+detected and the node has been failed-over, SDKs are updated by the
 Couchbase Server and will resume functioning with the cluster and nodes as they
 normally would. In this way, Couchbase SDKs and the applications you build on
 them are able to cope with transient node failures and still conduct reads and
