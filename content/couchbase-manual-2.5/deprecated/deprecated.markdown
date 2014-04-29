@@ -64,7 +64,7 @@ Tool                         | Server Versions | Description/Status
 `mbvbucketctl`               | 1.7             | Deprecated in 1.8, replaced by `cbvbucketctl`                 
 
 
-## Deprecated parameters
+### Deprecated parameters
 
 The following CLI parameter is deprecated.
 
