@@ -13,6 +13,6 @@ bundle exec nanoc
 if [ "${branch}" == "master" ]
 then
     echo "On master branch, deploying to docs.couchbase.com"
-    s3cmd sync --delete-removed -P output/ s3://docs.couchbase.com/
+    s3cmd sync -P output/ s3://docs.couchbase.com/
 fi
 echo "Done at $(date)"
