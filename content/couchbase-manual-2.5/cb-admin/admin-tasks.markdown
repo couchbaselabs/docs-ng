@@ -3796,9 +3796,10 @@ bi-directional replications.
 *  The source cluster must use the destination cluster's certificate. The certificate is a self-signed certificate used by SSL to initiate secure sessions.
 *  The reserved ports for XDCR data encryption must be available.
 
-<div class="notebox warning"><p>Important</p>
-<p>Ensure that the Secure Socket Layer (SSL) reserved ports are available prior to using XDCR data encryption. Otherwise, XDCR data encryption is unavailable.
+<div class="notebox"><p>Note</p>
+<p>The certificate is an internal self-signed certificate used by SSL to initiate secure sessions.
 </p></div>
+
 
 With XDCR data encryption, the following ports are reserved:
 
@@ -3808,6 +3809,10 @@ Port | Description
 11215 | Internal Outgoing SSL Proxy
 18091 | Internal REST HTTPS for SSL
 18092 | Internal CAPI HTTPS for SSL   
+
+<div class="notebox warning"><p>Important</p>
+<p>Ensure that the Secure Socket Layer (SSL) reserved ports are available prior to using XDCR data encryption. Otherwise, XDCR data encryption is unavailable.
+</p></div>
 
 
 #### To enable XDCR data security

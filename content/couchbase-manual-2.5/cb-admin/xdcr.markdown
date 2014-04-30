@@ -313,7 +313,10 @@ it is recommended that a VPN gateway be configured between the two data centers 
 
 With the XDCR data encryption feature, the XDCR traffic from the source cluster is secured by 
 enabling the XDCR encryption option, providing the destination cluster's certificate, and then replicating. 
-The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+
+<div class="notebox"><p>Note</p>
+<p>The certificate is an internal self-signed certificate used by SSL to initiate secure sessions.
+</p></div>
 
 
 Data encryption is established between the source and destination clusters. 

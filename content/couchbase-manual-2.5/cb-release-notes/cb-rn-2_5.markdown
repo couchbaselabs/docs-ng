@@ -82,7 +82,10 @@ The data replicated between clusters can be SSL-encrypted in both uni and bi-dir
 
 With the XDCR data security feature, the XDCR traffic can be secured by selecting the 
 XDCR encryption option and providing the remote cluster's certificate. 
-The certificate is a self-signed certificate used by SSL to initiate secure sessions.
+
+<div class="notebox"><p>Note</p>
+<p>The certificate is an internal self-signed certificate used by SSL to initiate secure sessions.
+</p></div>
 
 See the following for more information about XDCR data encryption:
 
