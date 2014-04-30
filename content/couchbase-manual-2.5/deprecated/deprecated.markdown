@@ -12,10 +12,10 @@ The following operating systems were or will be deprecated.
 
 Operating System | Description/Status | Deprecated version
 ---------------- | ----------- | -------
-Linux | 32-bit operating systems (CentOS, Ubuntu, RHEL) will not be supported. | Will be deprecated in 3.0 
-Windows | 32-bit operating systems will only be supported for development purposes. 32-bit production systems will not be supported. | Will be deprecated in 3.0 
-CentOS 5 | Centos 5 will not be supported after Couchbase Server version 3.0. | Will be deprecated in a release post-3.0
-Ubuntu 10.04 | Ubuntu 10.04 will not be supported after Couchbase Server version 3.0. | Will be deprecated in a release post-3.0
+Linux | 32-bit operating systems (CentOS, Ubuntu, RHEL) will not be supported. | 3.0 
+Windows | 32-bit operating systems will only be supported for development purposes. 32-bit production systems will not be supported. | 3.0 
+CentOS 5 | Centos 5 will not be supported after Couchbase Server version 3.0. | Post-3.0
+Ubuntu 10.04 | Ubuntu 10.04 will not be supported after Couchbase Server version 3.0. | Post-3.0
 
 ## REST API
 
@@ -23,7 +23,7 @@ The following REST API URI was or will be deprecated.
 
 REST API | URI | Description | Deprecated version 
 -------- | --- | ----------- | ------------------
-Server nodes  | /pools/nodes | URI for obtaining information about nodes in a Couchbase cluster. | Will be deprecated in a release post-3.0
+Server nodes  | /pools/nodes | URI for obtaining information about nodes in a Couchbase cluster. | Post-3.0
 
 
 * To obtain information about nodes in a Couchbase cluster, use the '/pools/default/buckets/default' URI.
@@ -68,9 +68,9 @@ Tool                         | Server Versions | Description/Status
 
 The following CLI parameter is deprecated.
 
-Tool | Parameter | Description | Status 
+Tool | Parameter | Description | Deprecated version 
 ---- | --------- | ----------- | ------ 
-cbepctl | flush_param flushall_enabled | The `flushall_enabled` parameter is deprecated. | Deprecated in 2.5
+cbepctl | flush_param flushall_enabled | The `flushall_enabled` parameter is deprecated. | 2.5
 
 
 ### Unsupported CLI tools
