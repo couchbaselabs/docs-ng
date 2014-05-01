@@ -160,8 +160,9 @@ snippet:
 ```python
 import zlib
 
+from couchbase import Couchbase
 from couchbase.transcoder import Transcoder
-from couchbase import FMT_MASK
+from couchbase import FMT_MASK, FMT_BYTES
 
 # We'll define our own flag.
 FMT_ZLIB = (FMT_MASK << 1) & ~FMT_MASK
@@ -175,9 +176,9 @@ class ZlibTranscoder(Transcoder):
         return (converted, flags)
 
     def decode_value(self, value, flags):
-        if (format & FMT_ZLIB):
+        if (flags & FMT_ZLIB):
             value = zlib.decompress(value)
-            format &= FMT_MASK
+            flags &= FMT_MASK
         return super(ZlibTranscoder, self).decode_value(value, flags)
 ```
 
@@ -217,7 +218,7 @@ This can all be used like so from Python:
 # assuming the ZlibTrancoder class is defined above
 
 c = Couchbase.connect(transcoder=ZlibTranscoder(), bucket='default')
-c.set("foo", "long value" * 1000, format=FMT_BYTES|FMT_ZLIB)
+c.set("foo", b"long value" * 1000, format=FMT_BYTES|FMT_ZLIB)
 c.get("foo")
 ```
 
