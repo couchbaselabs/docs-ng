@@ -107,7 +107,7 @@ cluster. You must take the node out of the cluster then follow the steps below:
 
  1. Copy all the data files from their original location into the new location.
 
- 1. [Start the service again andmonitor](#couchbase-monitoring) the "warmup" of the
+ 1. [Start the service again and monitor](#couchbase-monitoring) the "warmup" of the
     data.
 
 <a id="couchbase-admin-basics-running"></a>
