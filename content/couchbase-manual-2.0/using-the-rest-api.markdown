@@ -992,7 +992,7 @@ Content-Length: nnn
 
 <a id="couchbase-admin-restapi-creating-buckets"></a>
 
-### Creating and Editing Data Buckets
+### Creating or Editing Data Buckets
 
 You can create a new bucket with a POST command sent to the URI for buckets in a
 cluster. This can be used to create either a Couchbase or a Memcached type
@@ -2235,7 +2235,7 @@ used in setting alerts and additionally an email subject and body.
 
 
 ```
-shell> curl -i -u Administrator:letmein http://localhost:8091/settings/alerts/sendTestEmail \
+shell> curl -i -u Administrator:letmein http://localhost:8091/settings/alerts/TestEmail \
   -d 'subject=Test+email+from+Couchbase& \
   body=This+email+was+sent+to+you+to+test+the+email+alert+email+server+settings.&enabled=true& \
   recipients=vmx%40localhost&sender=couchbase%40localhost& \

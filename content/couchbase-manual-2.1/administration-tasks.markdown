@@ -348,7 +348,7 @@ conditions is met during warmup:
  * The server has finished loading documents for every key stored on disk for all
    vBuckets, or
 
- * The total number of documents loaded into memory is greater than, or equal to,
+ * The percentage of documents loaded into memory is greater than, or equal to,
    the setting for `ep_warmup_min_items_threshold`, or
 
  * If total % of RAM filled by documents is greater than, or equal to, the setting
@@ -433,7 +433,7 @@ Information](#couchbase-admin-cmdline-cbstats-warmup).
 
 To modify warmup behavior by changing the setting for
 `ep_warmup_min_items_threshold` use the command-line tool provided with your
-Couchbase Server installation, `cbepctl`. This indicates the number of items
+Couchbase Server installation, `cbepctl`. This indicates the percentage of items
 loaded in RAM that must be reached for Couchbase Server to begin serving data.
 The lower this number, the sooner your server can begin serving data. Be aware,
 however that if you set this value to be too low, once requests come in for
