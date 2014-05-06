@@ -3,27 +3,30 @@
 # Deprecated items
 
 
-The following are items that are deprecated or will be deprecated in the future.
+The following are items that are deprecated, will be deprecated, or are unsupported.
+
+* The <code>_all_docs</code> view is not supported.
+
 
 
 ## Platforms
 
 The following operating systems were or will be deprecated.
 
-Operating System | Description/Status | Deprecated version
----------------- | ----------- | -------
-Linux | 32-bit operating systems (CentOS, Ubuntu, RHEL) will not be supported. | 3.0 
-Windows | 32-bit operating systems will only be supported for development purposes. 32-bit production systems will not be supported. | 3.0 
-CentOS 5 | Centos 5 will not be supported after Couchbase Server version 3.0. | Post-3.0
-Ubuntu 10.04 | Ubuntu 10.04 will not be supported after Couchbase Server version 3.0. | Post-3.0
+Operating System | Description/Status | Deprecated version | Unsupported version 
+---------------- | ----------- | ------- | --------
+Linux | 32-bit operating systems (CentOS, Ubuntu, RHEL) will not be supported. | 2.5.x | 3.0.0 
+Windows | 32-bit operating systems will only be supported for development purposes. 32-bit production systems will not be supported. | 2.5.x | 3.0.0 
+CentOS 5 | Centos 5 will not be supported after Couchbase Server version 3.0. | 3.0.0 |3.0.x
+Ubuntu 10.04 | Ubuntu 10.04 will not be supported after Couchbase Server version 3.0.0 | 3.0.0 | 3.0.x
 
 ## REST API
 
 The following REST API URI was or will be deprecated.
 
-REST API | URI | Description | Deprecated version 
--------- | --- | ----------- | ------------------
-Server nodes  | /pools/nodes | URI for obtaining information about nodes in a Couchbase cluster. | Post-3.0
+REST API | URI | Description | Deprecated version | Unsupported version 
+-------- | --- | ----------- | ------------------ | ----------
+Server nodes  | /pools/nodes | URI for obtaining information about nodes in a Couchbase cluster. | 3.0.0 | 3.0.x
 
 
 * To obtain information about nodes in a Couchbase cluster, use the '/pools/default/buckets/default' URI.
@@ -68,9 +71,9 @@ Tool                         | Server Versions | Description/Status
 
 The following CLI parameter is deprecated.
 
-Tool | Parameter | Description | Deprecated version 
----- | --------- | ----------- | ------ 
-cbepctl | flush_param flushall_enabled | The `flushall_enabled` parameter is deprecated. | 2.5
+Tool | Parameter | Description | Deprecated version | Unsupported version 
+---- | --------- | ----------- | ------ | ------
+cbepctl | flush_param flushall_enabled | The `flushall_enabled` parameter is deprecated. | 2.2 | 2.5
 
 
 ### Unsupported CLI tools
