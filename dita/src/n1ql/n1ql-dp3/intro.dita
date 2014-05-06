@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ox4_ycp_fn">
+  <title>Introduction to N1QL</title>
+  <shortdesc>
+    Couchbase Query Language, known as N1QL and pronounced "Nickel", is a query language for 
+    finding data in Couchbase Server. 
+    N1QL is designed to be human readable and writable. It is a language designed for ad-hoc querying. 
+    The query language is a standard semantic used to build querying ability in other databases.
+  </shortdesc>
+</topic>

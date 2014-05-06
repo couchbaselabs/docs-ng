@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_mv5_2wd_ln">
+  <title>Meta and value functions</title>
+  <shortdesc>Meta and value functions retrieve information about the document or item as well as
+    perform Base64 encoding. The following table list the meta and value functions.</shortdesc>
+  <refbody>
+ 
+    <simpletable relcolwidth="1.24* 1.96* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>
+      </sthead>
+      <strow>
+        <stentry>BASE64_VALUE(value)</stentry>
+        <stentry>Computes the Base64 encoded value. This function could be used with non-JSON values
+          stored in a bucket.</stentry>
+        <stentry>Base64 encoded value</stentry>
+      </strow>
+      <strow>
+        <stentry>META()</stentry>
+        <stentry>Retrieves the metadata for the document.</stentry>
+        <stentry>Metadata object</stentry>
+      </strow>
+      <strow>
+        <stentry>VALUE()</stentry>
+        <stentry>Retrieves the full value for the item in the current context.</stentry>
+        <stentry>Value or NULL</stentry>
+      </strow>
+    </simpletable>
+ 
+ <section><title>Example</title>
+ <p>The following example shows the META() function via the N1QL tutorial.</p>
+   <codeblock>
+SELECT META() FROM customer LIMIT 1   
+   </codeblock>
+   <p>Returns:</p>
+   <codeblock>
+{
+  "resultset": [
+    {
+      "$1": {
+        "id": "customer0"
+      }
+    }
+  ]
+}       
+   </codeblock>
+ 
+ 
+ 
+ </section>
+ 
+  </refbody>
+</reference>

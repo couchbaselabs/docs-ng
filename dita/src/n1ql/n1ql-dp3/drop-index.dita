@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_yyf_kgq_kn">
+  <title>DROP INDEX statement</title>
+  <shortdesc>This statement removes a named index in the given bucket.</shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+DROP INDEX [ :pool-name. ] bucket-name . index-name
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    
+    
+    <section>
+      <title>Example</title>
+      
+      <codeblock>
+DROP INDEX contacts.contact_name
+      </codeblock>
+    </section>   
+
+
+
+  </refbody>
+</reference>

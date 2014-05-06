@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_h5n_35q_3n">
+  <title>DISTINCT clause</title>
+  <shortdesc>The DISTINCT clause removes duplicate result objects from the query's result set. 
+    If the DISTINCT clause is not used, 
+    the query returns all objects that meet the query conditions in a result set.</shortdesc>
+  <refbody>
+ 
+ 
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2 and higher</p>
+    </section> 
+    
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT DISTINCT <i>resultExpression</i>              
+      </codeblock>
+    </section>  
+    
+    
+ 
+ 
+    <section>
+      <title>Example</title>
+      <p>The following examples show a simple DISTINCT clause using the Couchbase beer-sample bucket and 
+        N1QL tutorial.</p>
+      <codeblock>
+SELECT DISTINCT * FROM beer-sample LIMIT 1               
+      </codeblock>
+
+      <codeblock outputclass='language-sql'>
+SELECT DISTINCT *
+  FROM tutorial
+     WHERE fname = 'Ian'              
+      </codeblock>
+    </section>   
+
+
+  </refbody>
+</reference>

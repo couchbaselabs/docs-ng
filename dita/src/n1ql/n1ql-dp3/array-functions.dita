@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ixr_v5d_ln">
+  <title>Array functions</title>
+  <shortdesc>Array functions perform operations on arrays such as concatenate, append, prepend,
+    remove, and length. The following table lists the array functions.</shortdesc>
+  <refbody>
+ 
+    <simpletable relcolwidth="1.33* 1.88* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>
+      </sthead>
+      <strow>
+        <stentry>ARRAY_CONCAT(array1, array2)</stentry>
+        <stentry>Concatenates the array with the input arrays.</stentry>
+        <stentry>Array</stentry>
+      </strow>
+      <strow>
+        <stentry>ARRAY_APPEND(array, value)</stentry>
+        <stentry>New array with an appended value.</stentry>
+        <stentry>Array</stentry>
+      </strow>
+      <strow>
+        <stentry>ARRAY_PREPEND(value, array)</stentry>
+        <stentry>New array with a prepended value.</stentry>
+        <stentry>Array</stentry>
+      </strow>
+      <strow>
+        <stentry>ARRAY_REMOVE(array, value)</stentry>
+        <stentry>New array with all occurrences of the value removed.</stentry>
+        <stentry>Array</stentry>
+      </strow>
+      <strow>
+        <stentry>ARRAY_LENGTH(array)</stentry>
+        <stentry>Retrieves the number of elements in the array.</stentry>
+        <stentry>Integer</stentry>
+      </strow>     
+    </simpletable>
+ 
+ 
+ 
+  </refbody>
+</reference>

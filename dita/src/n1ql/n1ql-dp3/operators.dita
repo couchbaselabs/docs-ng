@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_myl_blw_3n">
+  <title>Operators</title>
+  <shortdesc>When a complex expression has multiple operators, operator precedence 
+    determines the sequence in which the operations are performed. 
+    The order of execution can significantly affect the resulting value.
+  </shortdesc>
+  <refbody>
+    
+
+    <section>
+      <title>Order of precedence</title>
+      <p>N1QL operators follow a logical order of precedence with the parenthesis 
+        having the highest order. Parenthesis are used to combine expressions and operators. 
+        If parenthesis are used to group operators and expressions, 
+        these items are evaluated first and the result is used in other operations.</p>
+        
+        <p>The following table shows operator precedence level. An operator at a higher level is
+        evaluated before an operator at a lower level.</p>
+ 
+ <simpletable relcolwidth="1.0* 3.9*">
+        <sthead>
+          <stentry>Precedence level</stentry>
+          <stentry>Operator</stentry>
+        </sthead>
+        <strow>
+          <stentry>1</stentry>
+          <stentry>CASE</stentry>
+        </strow>
+        <strow>
+          <stentry>2</stentry>
+          <stentry>. (period)</stentry>
+        </strow>
+        <strow>
+          <stentry>3</stentry>
+          <stentry>[ ] (left and right bracket) </stentry>
+        </strow>
+        <strow>
+          <stentry>4</stentry>
+          <stentry>- (unary)</stentry>
+        </strow>
+        <strow>
+          <stentry>5</stentry>
+          <stentry>* (multiply), / (divide), % (modulo)</stentry>
+        </strow>
+        <strow>
+          <stentry>6</stentry>
+          <stentry>+, - (binary)</stentry>
+        </strow>
+        <strow>
+          <stentry>7</stentry>
+          <stentry>IS</stentry>
+        </strow>
+        <strow>
+          <stentry>8</stentry>
+          <stentry>IN</stentry>
+        </strow>
+        <strow>
+          <stentry>9</stentry>
+          <stentry>BETWEEN</stentry>
+        </strow>
+        <strow>
+          <stentry>10</stentry>
+          <stentry>LIKE</stentry>
+        </strow>
+        <strow>
+          <stentry>11</stentry>
+          <stentry>&lt; (less than, &gt; (greater than), &lt;= (less than or equal to, and =&gt;
+            (equal to or greater than)</stentry>
+        </strow>
+        <strow>
+          <stentry>12</stentry>
+          <stentry>= (equal to) , == (equal to), &lt;&gt; (less than or greater than), != (not equal
+            to)</stentry>
+        </strow>
+        <strow>
+          <stentry>13</stentry>
+          <stentry>NOT</stentry>
+        </strow>
+        <strow>
+          <stentry>15</stentry>
+          <stentry>AND</stentry>
+        </strow>
+        <strow>
+          <stentry>16</stentry>
+          <stentry>OR</stentry>
+        </strow>
+      </simpletable>
+ 
+    </section>
+    <section>
+      <title>Relational operators</title>
+      <p>Relational operators allow two expressions to be compared.</p>
+      <simpletable relcolwidth="1.0* 1.9* 1.07*">
+        <sthead>
+          <stentry>Comparison</stentry>
+          <stentry>Description</stentry>
+          <stentry>Returns</stentry>
+        </sthead>
+        <strow>
+          <stentry> = </stentry>
+          <stentry>Equals to </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> == </stentry>
+          <stentry>Equals to </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> != </stentry>
+          <stentry>Not equal to </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> &lt;&gt; </stentry>
+          <stentry>Not equal to </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> &gt; </stentry>
+          <stentry>Greater than </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> &gt;= </stentry>
+          <stentry>Greater than or equal to </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> &lt; </stentry>
+          <stentry>Less than </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> &lt;= </stentry>
+          <stentry>Less than or equal to </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> BETWEEN </stentry>
+          <stentry>Search criteria for a query where the value is between two values, including the
+            end values specified in the range. Values can be numbers, text, or dates.</stentry>
+          <stentry> Value</stentry>
+        </strow>
+        <strow>
+          <stentry> NOT BETWEEN </stentry>
+          <stentry>Search criteria for a query where the value is outside the range of two values,
+            including the end values specified in the range. Values can be numbers, text, or
+            dates.</stentry>
+          <stentry> Value</stentry>
+        </strow>
+        <strow>
+          <stentry> LIKE </stentry>
+          <stentry>Match string with wildcard expression. <codeph>%</codeph> for zero or more
+            wildcards, <codeph>_</codeph> to match any character at this place in a string </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> NOT LIKE </stentry>
+          <stentry>Inverse of LIKE. Return TRUE if string is not similar to given string. </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> IS NULL </stentry>
+          <stentry>Field has value of NULL. </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> IS NOT NULL </stentry>
+          <stentry>Field has value or is missing. </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> IS MISSING </stentry>
+          <stentry>No value for field found. </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> IS NOT MISSING </stentry>
+          <stentry>Value for field found or value is NULL. </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> IS VALUED </stentry>
+          <stentry>Value for field found. Value is neither missing nor NULL </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+        <strow>
+          <stentry> IS NOT VALUED </stentry>
+          <stentry>Value for field not found. Value is NULL. </stentry>
+          <stentry> TRUE or FALSE </stentry>
+        </strow>
+      </simpletable>    
+    </section>
+
+    
+    
+    <section>
+      <title>Arithmetic operators</title>
+      <p>Arithmetic operators only function on numeric values. 
+        If either operand is non-numeric, and expression evaluates to NULL.</p>
+      
+      <simpletable>
+        <sthead>
+          <stentry>Operator</stentry>
+          <stentry>Description</stentry>
+        </sthead>
+        <strow>
+          <stentry>+</stentry>
+          <stentry>Add values.</stentry>
+        </strow>
+        <strow>
+          <stentry>-</stentry>
+          <stentry>Subtract right value from left.</stentry>
+        </strow>
+        <strow>
+          <stentry>*</stentry>
+          <stentry>Multiply values</stentry>
+        </strow>
+        <strow>
+          <stentry>/</stentry>
+          <stentry>Divide left value by right.</stentry>
+        </strow>
+        <strow>
+          <stentry>%</stentry>
+          <stentry>Modulo. Divide left value by right and return the remainder.</stentry>
+        </strow>
+        <strow>
+          <stentry>-value</stentry>
+          <stentry>Negate value.</stentry>
+        </strow>
+      </simpletable>
+      
+        
+      
+      
+      
+    </section>
+  </refbody>
+</reference>

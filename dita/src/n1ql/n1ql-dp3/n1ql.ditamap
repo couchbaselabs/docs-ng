@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+ <title>N1QL Language Reference</title>
+ 
+ <topicref href="intro.dita">
+    <topicref href="concepts.dita"></topicref>
+    <topicref href="goals.dita"></topicref>
+    <topicref href="conventions.dita"></topicref>
+    <topicref href="reserved-words.dita"/>
+ </topicref>
+   <topicref href="select.dita">
+      <topicref href="selectClause.dita"/>
+     <topicref href="distinct.dita"/>
+      <topicref href="from.dita"/>
+    <topicref href="where.dita"/>
+      <topicref href="groupby.dita"/>
+    <topicref href="orderby.dita"/>
+    <topicref href="keys.dita"/>
+      <topicref href="join.dita"/>
+    <topicref href="nest.dita"/>
+    <topicref href="unnest.dita"/>
+      <topicref href="limit.dita"/>
+   </topicref>
+    <topicref href="explain.dita"></topicref>
+  <topicref href="indexStatements.dita">
+    <topicref href="create-index.dita"/>
+    <topicref href="create-primary-index.dita"/>
+    <topicref href="drop-index.dita"/>
+  </topicref>
+   <topicref href="expressions.dita"/>
+   <topicref href="operators.dita"/>
+   <topicref href="aggregate-function.dita"/>
+   <topicref href="scalar-function.dita">
+      <topicref href="date-functions.dita"/>
+      <topicref href="string-functions.dita"/>
+      <topicref href="number-functions.dita"/>
+      <topicref href="array-functions.dita"/>
+      <topicref href="comparison-functions.dita"/>
+      <topicref href="conditional-functions.dita"/>
+      <topicref href="meta-value-functions.dita"/>
+      <topicref href="type-functions.dita"/>
+   </topicref>
+ <topicref href="N1QLreleasenotes.dita">
+   <topicref href="DP3releasenotes.dita"/>
+   <topicref href="DP2releasenotes.dita"/>
+   <topicref href="DP1releasenotes.dita"/>
+ </topicref>
+   
+ 
+</map>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_z4j_k3k_nn">
+  <title>DP2 release notes</title>
+  <body>
+    <p>This is the second developer preview edition of Couchbase Query Language released November 2013.</p>
+    
+    <section><title>New features</title></section>
+    <ul>
+      <li>Introducing date/time features in this release. 
+        Specifically two new functions DATE_PART and NOW_STR have been added. 
+        We will likely expand capabilities in this area in subsequent releases.</li>
+      <li>Performance Improvements: Better use of indexes. 
+        These are internal improvements in the engine, for example, 
+        queries covered by index can eliminate the Fetch operator; 
+        find by id queries need not scan the index at all; MIN changed to use index.e</li>
+      <li>Minor syntax improvements – Example, AS keyword is now optional</li>
+      <li>Stability – various bug fixes to help improve the stability of query engine</li>
+    </ul>
+    
+    
+    <section><title>Changed features</title></section>
+    <ul>
+      <li>Not applicable</li>
+    </ul>    
+    
+    <section><title>Fixes</title></section>
+    <ul>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9325">MB-9325 - Add initial date and time features.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9189">MB-9189 - Queries covered by index now avoid the FETCH operator.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9187">MB-9187 - Find by id queries now optimized to not scan an index at all.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9138">MB-9138 - Make AS keyword optional.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9060">MB-9060 - MIN now optimized to use index.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9206">MB-9206 - DISTINCT behaved unexpectedly when used in combination with the GROUP BY clause.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9136">MB-9136 - Make IN optional in OVER..IN clauses.</xref></li>
+    </ul>    
+    
+    <section><title>Known issues</title></section>
+    
+    <p>This release is a Developer Preview and is not meant to be used in Production.</p>
+    
+    
+  </body>
+</topic>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_oxm_btd_ln">
+  <title>Date functions</title>
+  <shortdesc>Date functions are scalar functions that determine or process date information. The
+    following table lists the date functions.</shortdesc>
+  
+  <refbody>
+    
+    <simpletable relcolwidth="1.48* 1.85* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>
+      </sthead>
+      <strow>
+        <stentry>DATE_PART_STR(expr, part)</stentry>
+        <stentry>Date part as an integer. The date expression is in ISO 8601 format and part is a
+          date part string.</stentry>
+        <stentry>Integer</stentry>
+      </strow>
+      <strow>
+        <stentry>DATE_PART_MILLIS(expr, part)</stentry>
+        <stentry>Date part as an integer. The date expression is in UNIX milliseconds and part is
+          date part strings. For more information on date part strings, see the following section,
+          DATE_PART_MILLIS date part strings.</stentry>
+        <stentry>Integer</stentry>
+      </strow>
+      <strow>
+        <stentry>NOW_STR([ fmt ])</stentry>
+        <stentry>Retrieves the current date and time in ISO 8601 format.</stentry>
+        <stentry>Integer</stentry>
+      </strow>
+      <strow>
+        <stentry>NOW_MILLIS()</stentry>
+        <stentry>Retrieves the current date and time in UNIX milliseconds.</stentry>
+        <stentry>Integer</stentry>
+      </strow>
+      <strow>
+        <stentry>STR_TO_MILLIS(expr, MILLIS(expr)</stentry>
+        <stentry>Converts the date from ISO 8601 format to UNIX milliseconds.</stentry>
+        <stentry>Integer</stentry>
+      </strow>
+      <strow>
+        <stentry>MILLIS_TO_STR(expr [, fmt ])</stentry>
+        <stentry>Converts the date from UNIX milliseconds to ISO 8601</stentry>
+        <stentry>Integer</stentry>
+      </strow>
+    </simpletable>    
+ 
+ <section>
+   <title>DATE_PART_MILLIS date part strings</title>
+   
+   <ul>
+     <li>millenium</li>
+     <li>century</li>
+     <li>decade - floor(year / 10)</li>
+     <li>year</li>
+     <li>quarter - 1 to 4</li>
+     <li>month - 1 to 12</li>
+     <li>day - 1 to 31</li>
+     <li>hour - 0 to 23</li>
+     <li>minute - 0 to 59</li>
+     <li>second - 0 to 59</li>
+     <li>millisecond - 0 to 999</li>
+     <li>week - 1 to 53</li>
+     <li>day_of_year, doy - 1 to 366</li>
+     <li>day_of_week, dow - 0 to 6</li>
+     <li>iso_week - 1 to 53; use with iso_year</li>
+     <li>iso_year - use with iso_week</li>
+     <li>iso_dow - 1 to 7</li>
+     <li>timezone - offset from UTC in seconds</li>
+     <li>timezone_hour - hour component of timezone offset</li>
+     <li>timezone_minute - minute component of timezone offset</li>
+   </ul>
+   
+ </section>
+
+<section>
+  <title>Example</title>
+  <p>The following query example retrieves purchase information for an e-commerce report. 
+    The report lists unique customers that purchased something on the company website in the last month. 
+    This information is used to identify user activity and growth.</p>
+  
+  <codeblock>
+SELECT distinct count(purchases.customerId) 
+    FROM purchases
+    WHERE STR_TO_MILLIS(purchases.purchasedAt) 
+      BETWEEN STR_TO_MILLIS("2014-02-01") and STR_TO_MILLIS("2014-03-01")       
+  </codeblock>
+  
+  <p>Returns:</p>
+  <codeblock>
+{
+  "resultset": [
+    {
+      "$1": 3831
+    }
+  ]
+}    
+  </codeblock>
+
+
+</section>
+ 
+  </refbody>
+</reference>

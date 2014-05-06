@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_tj5_qk4_mn">
+  <title>ORDER BY clause</title>
+  <shortdesc>The order of items in the result set is determined by expression in this clause. 
+    Objects are sorted first by the left-most expression in the list of expressions. 
+    Any items with the same sort value will be sorted with the next expression in the list. 
+    This process repeats until all items are sorted and all expressions in the list are evaluated.</shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT result-expr FROM data-source ORDER BY ordering-term [ , ...]
+
+  where ordering-term is: expr [ ASC | DESC ]
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+   
+    <section><title>Description</title>
+      <p>The ORDER BY clause can evaluate any JSON value. 
+        This means it can compare values of different types. 
+        For instance 'four' and 4 order by type. 
+        The following describes order by type from highest to lowest precedence:</p>
+        <ul>
+          <li>missing value, known as MISSING</li>
+          <li>null value, known as NULL</li>
+          <li>false</li>
+          <li>true</li>
+          <li>number</li>
+          <li>string</li>
+          <li>arrays - Where each element in the array is compared with the corresponding element in another array. 
+            A longer array sort after a shorter array.</li>
+          <li>object - Where key-values from one object are compared to key-values from another object. 
+            Keys are evaluated in sorted order for strings. Larger objects sort after smaller objects.</li>
+      </ul></section>
+    <section>
+      <title>Example</title>
+      <p>The following example shows the ORDER BY clause.</p>
+      
+      <codeblock>
+SELECT fname, age 
+    FROM tutorial 
+        ORDER BY age 
+      </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock>
+{
+  "resultset": [
+    {
+      "age": 18,
+      "fname": "Fred"
+    },
+    {
+      "age": 20,
+      "fname": "Harry"
+    },
+    {
+      "age": 40,
+      "fname": "Jane"
+    },
+    {
+      "age": 46,
+      "fname": "Dave"
+    }
+  ]
+}        
+      </codeblock>
+    </section>   
+    
+
+
+
+  </refbody>
+</reference>

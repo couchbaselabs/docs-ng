@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_im3_w5n_4n">
+  <title>SELECT clause</title>
+  <shortdesc>The SELECT clause queries data from the Couchbase database.</shortdesc>
+  <refbody>
+ 
+    <section>
+      <title>Syntax</title>
+      <codeblock outputclass="language-java">
+SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    <section>
+      <title>Examples</title>
+      <p>The following examples are based on the N1QL tutorial.
+      <ul>
+        <li>Hello World!</li>
+        <li>System buckets</li>
+        <li>Jungleville</li>
+          <li>Jungleville piggies</li>
+      </ul></p>
+      
+      </section>
+        
+      <example><title>Hello World!</title>
+        <p>This query displays "Hello World!".</p>
+        <codeblock>
+SELECT 'Hello World!' AS Greeting
+      </codeblock>
+        
+        <p>Returns:</p>
+        <codeblock>
+{
+  "resultset": [
+    {
+      "Greeting": "Hello World!"
+    }
+  ]
+}
+      </codeblock>     
+      </example>
+
+      
+      
+      <example><title>System buckets</title>
+        <p>This query lists all the buckets on the system.</p>
+        <codeblock>
+SELECT * FROM :system.buckets
+      </codeblock>
+        
+        <p>Returns:</p>
+        <codeblock>
+{
+  "resultset": [
+    {
+      "id": "customer",
+      "name": "customer",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "jungleville",
+      "name": "jungleville",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "jungleville_inbox",
+      "name": "jungleville_inbox",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "jungleville_stats",
+      "name": "jungleville_stats",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "orders",
+      "name": "orders",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "orders_with_users",
+      "name": "orders_with_users",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "product",
+      "name": "product",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "purchases",
+      "name": "purchases",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "reviews",
+      "name": "reviews",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "tutorial",
+      "name": "tutorial",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    },
+    {
+      "id": "users_with_orders",
+      "name": "users_with_orders",
+      "pool_id": "default",
+      "site_id": "/home/couchbase/tuqtng/data"
+    }
+  ]
+}
+      </codeblock>      
+            
+      </example>
+ 
+      <example><title>Jungleville</title>
+        <p>This query retrieves one document from the jungleville bucket.</p>
+        <codeblock>
+SELECT * FROM jungleville LIMIT 1
+      </codeblock>
+        
+        <p>Returns:</p>
+        <codeblock>
+{
+  "resultset": [
+    {
+      "friends": [
+        "zid-jungle-0002",
+        "zid-jungle-0003"
+      ],
+      "gameworld": {
+        "farm-length": 32,
+        "farm-width": 64,
+        "piggies": [
+          "nero",
+          "hero",
+          "coma"
+        ],
+        "position": [
+          23,
+          45,
+          12
+        ]
+      },
+      "lastLogin": "22nd December 2013",
+      "level": 4,
+      "loggedIn": false,
+      "name": "Don Pinto",
+      "payer": false,
+      "score": 663,
+      "type": "player",
+      "uuid": "zid-jungle-0001"
+    }
+  ]
+}                
+        </codeblock>
+      </example>
+
+
+    <example><title>Jungleville piggies</title>
+      <p>This query retrieves all piggies from the jungleville bucket.</p>
+      <codeblock>
+SELECT gameworld.piggies FROM jungleville
+      </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock>
+{
+  "resultset": [
+    {
+      "piggies": [
+        "nero",
+        "hero",
+        "coma"
+      ]
+    },
+    {
+      "piggies": [
+        "zero",
+        "moriaty",
+        "los-lobos",
+        "rascala"
+      ]
+    },
+    {
+      "piggies": [
+        "bolero",
+        "bambino",
+        "kool and the gang"
+      ]
+    },
+    {
+      "piggies": [
+        "britney",
+        "beiber",
+        "kama",
+        "sutra"
+      ]
+    }
+  ]
+}        
+      </codeblock>
+    </example>
+ 
+  </refbody>
+</reference>

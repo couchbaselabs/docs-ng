@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_ivr_zv4_fn">
+<title>Concepts</title>
+<shortdesc>N1QL is a query language for Couchbase Server - a document database. N1QL queries
+ documents that store information about a data items and about relationships between documents. </shortdesc>
+<conbody>
+
+ <section>
+  <title>Couchbase Server</title>
+
+ <p>Document-oriented databases, such as Couchbase Server, use documents to store information as
+        well as relationships among documents. This model is flexible enough so that 
+        application objects can be changed without having to migrate the database schema or plan for significant
+        application downtime. Even the same type of object in an application can have a different
+        data structures. For instance, a user name can initially be represented as a single document
+        field. Later, a user document can be structured so that the first name and last name are
+        separate fields in the document. These changes can be done without any application
+        downtime and without having to update all user documents in the system. </p>
+   <p>The other advantage
+        to the flexible, document-based data model is that it is well suited to representing real-world items.
+        Documents support nested structures, as well as fields representing object
+        properties. Both of these attributes enable realistically represented objects in an application.
+        To find information in a document-oriented database, a language is needed that
+        provides the correct logic for navigating documents and document structures 
+        including navigation within a single document and searches across multiple documents.
+        </p>
+ </section>
+
+ <section>
+  <title>Data Modeling</title>
+  <p>Couchbase Server is a document database: data is stored in the form of documents rather than rows or columns. 
+    Couchbase has a much more flexible data format; documents generally contain all
+        the information about a data entity, including compound data. In the case of traditional,
+        relational databases, data may need to be spread from a single object across multiple
+        tables, a process known as normalization. </p>
+        
+       <p>Consider an application for contacts and their families. The contact information 
+         could be stored in a table row via a relational database or as  
+        in an individual document per contact via a document-based model. In traditional
+     relational databases, a table is used to represent a real-world object and its
+     respective attributes. For instance, in a contacts database, a table would have
+     contacts, such as id, first name, last name, and so on. In the following diagram, the
+     relational model conforms to a rigid schema with a specified number of fields which
+     represent a specific purpose in an application and a fixed datatype for each code
+     column. Instead of a table, an object is represented as one or more documents.</p>
+   
+        <fig><title>Contact documents vs table</title>
+        <image href="images/rel_vs_doc_model.png" align="left" width="700"/></fig>
+  
+  <p>A document in a document-oriented database is a JSON object consisting of a number of fields
+   that are defined. An object can be one or more documents and object attributes can be fields in the document. 
+   In comparison, a relational database
+   has columns in a table which hold a type of attribute, such as name or zip code. There is no
+   schema in document-oriented databases; every JSON document can have its own individual set of
+   keys, although one or more informal schemas could be adopted for data. Unlike the
+   relational mode, attributes within a document do not have to have a predefined type.</p>
+  
+  <p> For instance, a zip code can be an integer or a string using the document
+        model. Even documents belonging to the same class of application objects, such as a customer
+        document can have different attributes than other customer documents. For example, 
+        some customers can have an extra field for shipping insurance, while other customer
+        documents do not have that field at all. </p>
+ </section>
+
+ <section>
+  <title>Nested Structures and Paths</title>
+  <p>In traditional relational databases, each record is represented by a table row and attributes
+   for a record are represented by each column in a table. In a document-database, a record is
+   represented by one or more documents. Attributes for a business object are represented by fields
+   in the document. For example, imagine a simple document representing a customer: </p>
+  
+  <codeblock>
+ {
+ "id": "7983345",
+ "name": "Liam Kilpatrick",
+ "type": "retail"
+ ....
+ }
+ 
+ A document field can contain nested data structures such as arrays and objects; within an array or object, you can further nest data. For example, consider a more complex document representing a customer order:
+ 
+ {
+ "type": "customer-order",
+ "grand_total": 1000,
+ "billTo": {
+ "street": "123 foo",
+ "state": "CA",
+ },
+ "shipTo": {
+ "street": "123 foo",
+ "state": "CA"
+ },
+ items: [
+ { "productId": "coffee", "qty": 1 },
+ { "productId": "tea", "qty": 1 }
+ ]
+ }
+ </codeblock>
+  <p>This makes N1QL a unique querying language compared to SQL. In order to navigate nested data in
+    document arrays and objects, N1QL supports the concept of paths. A path uses a dot notation
+    syntax and provides the logical location of an attribute within a document. For example, to get
+    the street from a customer order, the path, <codeph>orders.billTo.street</codeph> is used. This path refers to the
+    value for 'street' in the 'billTo' object. A path is used with a arrays or nested objects 
+    to get to attributes within the data structure. Array syntax in the path
+    can also be used to get to information. For example,</p>
+  <codeblock>orders.items[0].productId</codeblock>
+  <p>This path evaluates to the value, coffee, since coffe is the productID for the first array
+   element under the order item, items. Paths provide a mothod for finding data in document structures without having
+   to retrieve the entire document or handle it within an application. Any document data can be
+   requested and returned to an application. When only relevant information is returned to an application,
+   querying bandwidth is reduced.</p>
+ </section>
+
+ <section>
+  <title>Queries and Result Sets</title>
+  <p>Queries consist of a single command and zero or more optional clauses, which can filter, run
+    operations, or perform functions on data. The query command along with any clauses are known as
+    a query string. When you perform a query, Couchbase Server takes the query string and produces a
+    result set, which is a JSON array containing any result values.</p> 
+  
+   <p>A single Couchbase server instance can have one or more buckets and an entire Couchbase cluster has 
+     more than one bucket. N1QL functionality not only allow queries against single bucket 
+     but also across multiple buckets. In addition, JOINs can be performed across multiple data buckets. 
+   </p>
+  
+  <p>Besides a command, each query can have multiple optional
+    parts, including clauses, expressions and functions.</p>
+  
+   <ul>
+    <li>Expressions are the parts of a query that compare values against one another or perform
+     arithmetic calculations.</li>
+    <li>Clauses are typically used for the limiting the scope of a query.</li>
+   </ul>
+<p>When a query is performed, a sequence of steps are
+   executed. Each step corresponds to the different clauses and expressions in a query. The
+   expressions evaluated first produce an intermediate result set, which is also known as
+   output objects. The output objects from a step then become the input for the next step and
+   produce the next result set. 
+   After all expressions have been evaluated in a query, the final result set is returned. </p>
+ </section>
+
+
+</conbody>
+</concept>

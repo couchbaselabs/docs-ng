@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_jyn_nlq_kn">
+  <title>WHERE clause</title>
+  <shortdesc>Any expression in the clause is evaluated for objects in a result set. 
+    If it evaluates as TRUE for an object, 
+    the object is included in the remainder of the query.</shortdesc>
+  <refbody>
+    
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT result-expr FROM data-source WHERE expr 
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    <section>
+      <title>Example</title>
+      
+      <codeblock>
+SELECT * FROM tutorial WHERE fname = 'Ian'
+      </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock>
+{
+  "resultset": [
+    {
+      "age": 56,
+      "children": [
+        {
+          "age": 17,
+          "fname": "Abama",
+          "gender": "m"
+        },
+        {
+          "age": 21,
+          "fname": "Bebama",
+          "gender": "m"
+        }
+      ],
+      "email": "ian@gmail.com",
+      "fname": "Ian",
+      "hobbies": [
+        "golf",
+        "surfing"
+      ],
+      "lname": "Taylor",
+      "relation": "cousin",
+      "title": "Mr.",
+      "type": "contact"
+    }
+  ]
+}
+      </codeblock>
+    </section>   
+    
+    
+    
+  </refbody>
+</reference>

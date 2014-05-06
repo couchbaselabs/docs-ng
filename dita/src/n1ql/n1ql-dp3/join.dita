@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_xnv_qcn_mn">
+  <title>JOIN clause</title>
+  <shortdesc>This optional clause follows the `FROM`clause and 
+    allows you to create new input objects by combining two or more source objects. 
+    The `KEYS` clause is required after each JOIN. 
+    It specifies the primary keys for the second bucket in the join.</shortdesc>
+  
+  <refbody>
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT result-expr FROM data-source join-type JOIN from-path [AS] alias KEYS expr
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    <section><title>Description</title>
+      <p>Joins can be chained. By default, an INNER join is performed. 
+        This means that for each joined object produced, 
+        both the left and right hand source objects must be non-missing and non-null.</p>
+      <ul>
+        <li>If LEFT or LEFT OUTER is specified, then a left outer join is performed. 
+          At least one joined object is produced for each left hand source object. </li>
+        <li>If the right hand source object is NULL or MISSING, 
+          then the joined object's right-hand side value is also NULL or MISSING (omitted), respectively.</li>
+      </ul>
+    </section>
+ 
+ 
+ 
+    
+    <section>
+      <title>Example</title>
+      
+      <p>The following customer and invoice objects are used to illustrate the JOIN clause and
+        results. </p>
+      
+      <codeblock>
+    // customer object
+    {
+        "name": ...,
+        "primary_contact": ...,
+        "address": [ ... ]
+    }
+
+
+    // invoice object
+    {
+        "customer_key": ...,
+        "invoice_date": ...,
+        "invoice_item_keys": [ ... ],
+        "total": ...
+    }  
+      </codeblock>
+      
+      
+      <codeblock>
+FROM invoice inv JOIN customer cust KEYS inv.customer_key
+      </codeblock>
+ <p>Results: </p>    
+      <codeblock>
+    {
+        "inv" : {
+            "customer_key": ...,
+            "invoice_date": ...,
+            "invoice_item_keys": [ ... ],
+            "total": ...
+        },
+        "cust" : {
+            "name": ...,
+            "primary_contact": ...,
+            "address": [ ... ]
+        }
+    }
+      </codeblock>
+    
+    
+      <p>If the invoice_item_ objects are:</p>
+        <codeblock>
+
+    {
+        "invoice_key": ...,
+        "product_key": ...,
+        "unit_price": ...,
+        "quantity": ...,
+        "item_subtotal": ...
+    }
+        </codeblock>
+      <codeblock>
+FROM invoice JOIN invoice_item item KEYS invoice.invoice_item_key        
+      </codeblock>
+      
+      <p>Results:</p>
+      
+      <codeblock>
+    {
+        "invoice" : {
+            "customer_key": ...,
+            "invoice_date": ...,
+            "invoice_item_keys": [ ... ],
+            "total": ...
+        },
+        "item" : {
+            "invoice_key": ...,
+            "product_key": ...,
+            "unit_price": ...,
+            "quantity": ...,
+            "item_subtotal": ...
+        }
+    },
+    {
+        "invoice" : {
+            "customer_key": ...,
+            "invoice_date": ...,
+            "invoice_item_keys": [ ... ],
+            "total": ...
+        },
+        "item" : {
+            "invoice_key": ...,
+            "product_key": ...,
+            "unit_price": ...,
+            "quantity": ...,
+            "item_subtotal": ...
+        }
+    },
+      </codeblock>
+        
+    </section>
+
+
+
+
+  </refbody>
+</reference>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ox4_ycp_fn">
+  <title>Goals</title>
+    
+  <shortdesc>N1QL builds on the SQL language and includes many of SQL's features in addition to 
+    features associated with document-oriented databases. 
+    This guide describes key concepts about the language, 
+    provides examples describing how to use the 
+    language, discusses advanced operations you can perform with the language, 
+    and includes a language reference for language syntax and language elements.</shortdesc>   
+ 
+  <body>
+    <section>
+      <title>Goals of N1QL</title>
+      <p>N1QL is designed to be a concise, intuitive, expressive language for building complex queries.
+        It is designed for document-oriented databases which store application objects as well as their relationships in 
+        documents instead of tables. Application data can be expressed as atomic values or in 
+        nested structures within the document, such as objects or arrays. Relationships between documents can be expressed as values or values in nested structures.  To find information in a document-oriented database, you need the correct logic and expressions for navigating documents and document structures. N1QL provides a clear, easy-to-understand abstraction layer to query and retrieve information in your document-database.
+      </p>
+    </section>
+    
+    <section><title>Who uses N1QL</title>
+      <p>Application developers and data analysts can use N1QL to perform ad-hoc querying. </p>
+    </section>
+    
+    <section><title>Ways to use N1QL</title>
+    
+    <p>The typical use case is to use the command-line interactive query tool, cbq.</p>
+      <ol>
+        <li>On the command line, navigate to the local directory where N1QL resides.</li>
+        <li>Connect to a Couchbase server: <codeph>./cbq-engine -couchbase http://HOST:8091</codeph></li>
+        <li>Run the command-line interactive tool (cbq): ./cbq -engine=http://HOST:8093/</li>
+        <li>Open from the browser: <codeph>http://localhost:8093/tutorial</codeph>. Do not substitute "localhost"; type it in exactly.</li>
+        <li>Run a query: <codeph>SELECT * FROM :system.buckets</codeph></li>        
+      </ol>
+
+    </section>
+    
+  </body>
+
+  <related-links>
+    <link format="html" scope="external" href="http://www.couchbase.com/communities/n1ql"><linktext>N1QL community page</linktext></link>
+  </related-links> 
+ 
+</topic>

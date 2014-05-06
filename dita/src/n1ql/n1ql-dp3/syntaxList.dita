@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_qjl_3hz_gn">
+  <title>Syntax summary</title>
+  <shortdesc>N1QL ("nickel") is the query language from Couchbase. N1QL is designed to meet the
+    query needs of distributed document-oriented databases. N1QL stands for Non-1st Query Language.
+    The name reflects the fact that the Couchbase document-oriented data model is based on Non-1st
+    Normal Form (N1NF). This document specifies the syntax and semantics of the SELECT statement in
+    N1QL.</shortdesc>
+  <refbody>
+   
+   <table rowsep="1">
+     <tgroup cols="3">
+        <colspec colnum="1" colname="c1" colwidth="1*"/>
+        <colspec colnum="2" colname="c2" colwidth="1.33*"/>
+        <colspec colnum="3" colname="c3" colwidth="2.86*"/>
+        <thead>
+          <row>
+            <entry>Clause</entry>
+            <entry>Type</entry>
+            <entry>Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>EXPLAIN</entry>
+            <entry>statement</entry>
+            <entry>Returns information about how the statement works.</entry>
+          </row>
+          <row>
+            <entry>SELECT</entry>
+            <entry>Primary statement (required)</entry>
+            <entry>Selects and returns data from the document.</entry>
+          </row>
+          <row>
+            <entry>DISTINCT</entry>
+            <entry>clause</entry>
+            <entry>Returns child data associated with a field TYPE in a data bucket. Example: SELECT
+              DISTINCT doc_type FROM profiles.</entry>
+          </row>
+          <row>
+            <entry>AS</entry>
+            <entry>clause</entry>
+            <entry>Alias</entry>
+          </row>
+          <row>
+            <entry>DISTINCT</entry>
+            <entry>clause</entry>
+            <entry>Removes duplicate result object from the result set.</entry>
+          </row>
+          <row>
+            <entry>FROM</entry>
+            <entry>Primary clause</entry>
+            <entry>Specfies the data source for the query. The data source is a data bucket name,
+              data store, or path. Using FROM with AS, provides the data bucket or path as an
+              alias.</entry>
+          </row>
+          <row/>
+          <row>
+            <entry>WHERE</entry>
+            <entry>Primary clause</entry>
+            <entry>Conditions that the query must satisfy.</entry>
+          </row>
+          <row>
+            <entry>GROUP BY</entry>
+            <entry>clause</entry>
+            <entry>Groups data by one or more expressions.Groups data by a specific criteria.
+              Example, GROUP BY age.</entry>
+          </row>
+          <row>
+            <entry>HAVING</entry>
+            <entry>clause following GROUP BY</entry>
+            <entry>Filters result objects from the GROUP BY clause with a given expression.</entry>
+          </row>
+          <row>
+            <entry>ORDER BY</entry>
+            <entry>clause</entry>
+            <entry>List the output by the specified order. Example: ORDER BY age.</entry>
+          </row>
+          <row>
+            <entry>LIMIT</entry>
+            <entry>clause</entry>
+            <entry>Imposes a specific number of objects to be returned. The limit must be a
+              non-negative integer.</entry>
+          </row>
+          <row>
+            <entry>OFFSET</entry>
+            <entry>clause following LIMIT</entry>
+            <entry>Specifies the next two results after the results from the limit. The offset must
+              be a non-negative integer.</entry>
+          </row>
+          <row>
+            <entry>LIKE, NOT LIKE</entry>
+            <entry>clause following WHERE</entry>
+            <entry>Used to specify an argument that is a pattern that the expression must match.
+              Example: '%@yahoo.com'.</entry>
+          </row>
+          <row>
+            <entry>IS, IS NOT NULL, IS MISSING</entry>
+            <entry>operator</entry>
+            <entry>Operators to test conditions such as explicit NULL values and to omit fields
+              entirely.</entry>
+          </row>
+          <row>
+            <entry>ANY, EVERY</entry>
+            <entry>operator</entry>
+            <entry>Condition that much be satisfied by at least one (ANY) or every (EVERY) elements
+              in the array. The condition query stops with the END keyword.</entry>
+          </row>
+          <row>
+            <entry>AND, OR</entry>
+            <entry>operator</entry>
+            <entry>Allows document matching to satisfy two or more conditions (AND) or one of two
+              conditions (OR).</entry>
+          </row>
+          <row>
+            <entry>END</entry>
+            <entry>operator</entry>
+            <entry>Indicates the end of the condition in the query.</entry>
+          </row>
+          <row>
+            <entry>COUNT()</entry>
+            <entry>function</entry>
+            <entry>Returns information about a whole group of data.</entry>
+          </row>
+          <row>
+            <entry>AVG()</entry>
+            <entry>function</entry>
+            <entry>Returns the average value of a field. Example: AVG(age)</entry>
+          </row>
+          <row>
+            <entry>MIN()</entry>
+            <entry>function</entry>
+            <entry>Returns the minimum value.</entry>
+          </row>
+          <row>
+            <entry>MAX()</entry>
+            <entry>function</entry>
+            <entry>Returns the maximum value.</entry>
+          </row>
+          <row>
+            <entry>LENGTH()</entry>
+            <entry>function</entry>
+            <entry>Specifies a period of time.</entry>
+          </row>
+          <row>
+            <entry>ARRAY</entry>
+            <entry>array comprehension</entry>
+            <entry>Builds new arrays from existing ones.</entry>
+          </row>
+          <row>
+            <entry>IN</entry>
+            <entry>join</entry>
+            <entry>Takes the contents of nested arrays andjoins them with the parent object.</entry>
+          </row>
+          <row>
+            <entry>ASC, DESC</entry>
+            <entry/>
+            <entry>Displays the results as ascending or descending. The results must be
+              numerical.</entry>
+          </row>
+          <row>
+            <entry>MIN, MAX</entry>
+            <entry/>
+            <entry>Returns the minimum and maximum value respectively.</entry>
+          </row>
+          <row>
+            <entry>WHEN</entry>
+            <entry/>
+            <entry>Specifies a search criteria. Terminated by the END keyword.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+   </table>
+    
+  </refbody>
+  <related-links>
+    <link format="html" scope="external"
+      href="http://en.wikipedia.org/wiki/Database_normalization#Non-first_normal_form_.28NF.C2.B2_or_N1NF.29">
+      <linktext>Non-1st Normal Form (N1NF)</linktext>
+    </link>
+  </related-links> 
+
+</reference>

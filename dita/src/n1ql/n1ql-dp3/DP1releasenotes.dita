@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_nyp_wlk_nn">
+  <title>DP1 release notes</title>
+  <body>
+    <p>This is the first developer preview edition of Couchbase Query Language released September 2013.</p>
+    
+    <section><title>New features</title></section>
+    <ul>
+      <li>Initial release of N1QL developer preview.</li>
+    </ul>
+    
+    
+    <section><title>Changed features</title></section>
+    <ul>
+      <li>Not applicable</li>
+    </ul>    
+    
+    <section><title>Fixes</title></section>
+    <sl>
+      <sli>Not applicable</sli>
+    </sl>    
+    
+    <section><title>Known issues</title></section>
+    
+    <p>This release is a Developer Preview and is not meant to be used in Production.</p>
+  </body>
+</topic>

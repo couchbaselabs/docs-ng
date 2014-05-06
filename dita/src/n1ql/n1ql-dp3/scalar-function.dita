@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_dsj_jrv_kn">
+  <title>Scalar functions</title>
+  <shortdesc>Scalar functions are functions that can be applied to N1QL expressions. These functions
+    allow more flexible N1QL statements by performing transformations on data at runtime.  Scalar
+    functions take a single item in a result set and returns a single value. All function names are
+    case insensitive.</shortdesc>
+  
+  <refbody>
+    
+
+
+  </refbody>
+</reference>

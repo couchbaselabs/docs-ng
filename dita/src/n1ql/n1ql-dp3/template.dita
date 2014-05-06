@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ljj_dfq_kn">
+  <title>ReferenceTitle</title>
+  <shortdesc>Short reference description.</shortdesc>
+  <refbody>
+    
+    <section>
+      <title>Syntax</title>
+      <codeblock outputclass="language-sql">
+EXPLAIN statement 
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    
+    
+    <section>
+      <title>Example</title>
+      <p></p>
+      
+      <codeblock outputclass="language-sql">
+EXPLAIN SELECT name, age FROM contacts LIMIT 2
+      </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock outputclass="language-sql">
+      </codeblock>
+    </section>   
+    
+    
+  </refbody>
+</reference>

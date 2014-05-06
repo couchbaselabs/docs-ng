@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_fgp_zq4_kn">
+ <title>Couchbase concepts</title>
+<shortdesc>Couchbase Server is a NoSQL document database for interactive web applications.
+  Before developing applications on the Couchbase Server, review the key concepts and components 
+  that are related to application development on Couchbase Server including the underlying functions 
+  data storage, and cluster management.</shortdesc>
+
+ 
+ <conbody>
+  <p>The primary unit of data storage in Couchbase Server is a JSON document,
+   which is a data structure capable of holding arrays and other complex
+   information. JSON documents are information-rich, flexible structures that
+   enable you to model objects as individual documents. By using JSON documents to
+   model your data, you can construct your application data as individual documents
+   which would otherwise require rigidly-defined relational database tables. This
+   provides storage for your web application which is well suited to serialized
+   objects and the programming languages that use them. 
+  </p>
+  
+  <p>Note</p>
+  <p>Binary objects,
+   such as integers and strings, can also be stored.</p>
+  
+  
+  <p>Because application objects are modeled as documents, schema migrations do not need to be performed. The documents and the fields they store
+   indicate the relationships between application objects; therefore, to update the
+   structure of objects you store, change the document structure that
+   is written to Couchbase Server.</p>
+  
+  <p>When Couchbase Server is used as a store for JSON documents, the records can be indexed and queried. Couchbase Server provides a
+   JavaScript-based query engine to find records based on field values.</p>
+  
+ </conbody>
+ 
+ 
+ <related-links>
+  <link format="html" href="http://docs.couchbase.com/couchbase-manual-2.5/"
+   scope="external">
+   <linktext>Couchbase Server Manual</linktext>
+  </link>
+ </related-links>
+ 
+</concept>
