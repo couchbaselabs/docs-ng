@@ -11,47 +11,49 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-438">NCBC-438: Add finalizer to CouchbaseClient to ensure resources are released</a>
 
-    Add a destructor to CouchbaseClient which disposes the SocketPool which gives
+    Add a destructor to CouchbaseClient that disposes the SocketPool. This gives
     reliable socket tear down for applications cleanly terminating.
 
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-425">NCBC-425: SetSocketOption throws exception under mono runtime</a>
 
-    This fixes the bug that threw the exception and makes the LingerOptions an
-    optional configuration by adding lingerEnabled and lingerTime options to the
-    socketPool configuration in the app.config. The socket will use the
-    default linger options (as defined by the IP stack) if lingerEnabled is
-    false or not set in the configuration. If lingerEnabled is true and the
-    lingerTime value is specified is zero, then no linger time will be used.
-    If lingerEnabled is true and the lingerTime is greater than zero, the
-    linger time will be set to the value specified in the lingerTime option.
-    You can change these values like so in the App.Config:
-    <socketPool lingerEnabled=true lingerTime=00:00:10/>
+    This fixes the bug that threw the exception and makes the `LingerOptions` an
+    optional configuration by adding `lingerEnabled` and `lingerTime` options to the
+    socketPool configuration in the `app.config`. The socket uses the
+    default linger options (as defined by the IP stack) if `lingerEnabled` is
+    false or not set in the configuration. If `lingerEnabled` is true and the
+    `lingerTime` value is specified as 0, then no linger time is used.
+    If `lingerEnabled` is true and `lingerTime` is greater than 0, the
+    linger time is set to the value specified in the `lingerTime` option.
+    You can change these values
+     in the App.Config:
+    
+    	<socketPool lingerEnabled=true lingerTime=00:00:10/>
 
-    Ref: LingerOption Class MSDN
-
-* <a href="http://www.couchbase.com/issues/browse/NCBC-388">NCBC-388: Improve NUnit Tests</a>    
+    For information about linger options from Microsoft, see <a href="http://msdn.microsoft.com/en-us/library/system.net.sockets.lingeroption(v=vs.110).aspx">LingerOption class</a>.
+        
+* <a href="http://www.couchbase.com/issues/browse/NCBC-388">NCBC-388: Improve NUnit tests</a>    
 
     DeleteBucket() should be called before checking that the bucket is deleted and is no longer listed.
 
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-415">NCBC-415: Fixes regression bug in which wrong GetView overload was called</a>
 
-    This is the same fix as NCBC-425 but adds Unit Tests.
+    This is the same fix as NCBC-425 but adds unit tests.
 
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-416">NCBC-416: Method overloading ambiguity with named parameters</a>
 
     This is a fix for a regression bug where the method overloading was
-    differentiated with return type only; hence wrong method was invoked from
-    public IView GetView(string designName, string viewName). This caused
+    differentiated with return type only; hence the wrong method was invoked from
+    `public IView GetView(string designName, string viewName)`. This caused
     the rows to be null when iterating over a view with no output other than
-    it's keys.
+    its keys.
 
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-399">NCBC-399: Standardize to SPACES for indenting in source files</a>
+* <a href="http://www.couchbase.com/issues/browse/NCBC-399">NCBC-399: Standardize to spaces for indenting code in source files</a>
 
-    Replaced all tabs \t with four spaces per the VS standard
+    Replaced all tabs (\t) with four spaces per the Visual Studio (VS) standard
 
 
 ## Release Notes for Couchbase Client Library .NET 1.3.4 GA (4 March 2014)
