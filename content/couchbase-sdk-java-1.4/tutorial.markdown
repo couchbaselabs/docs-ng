@@ -137,9 +137,9 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full **pom.xml*
 
     <dependencies>
         <dependency>
-            <groupId>couchbase</groupId>
+            <groupId>com.couchbase.client</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.4.0</version>
+            <version>1.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
