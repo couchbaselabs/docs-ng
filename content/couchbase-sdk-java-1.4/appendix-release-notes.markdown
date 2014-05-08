@@ -8,27 +8,26 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.4.1 GA (8 May 2014)
 
-The 1.4.1 release is the first bugfix release for the 1.4 series. It fixes very important issues found on the 1.4 branch, so all users running on 1.4.0 are asked to upgrade.
+The 1.4.1 release is the first bug fix release for the 1.4 series. It fixes very important issues found on the 1.4 branch, so all users running on 1.4.0 should upgrade.
 
 **Fixes in 1.4.1**
 
-* [SPY-163](http://www.couchbase.com/issues/browse/SPY-163): A deadlock has been fixed in the asyncGetBulk method (which is also facilitated by the view querying mechanism if `setIncludeDocs(true)` is used) which happened when a empty list of keys is passed in. This can happen also if a view request does not return results, so the empty list is passed down the stack, resulting in a non-responding thread.
+* [SPY-163](http://www.couchbase.com/issues/browse/SPY-163): A deadlock has been fixed in the `asyncGetBulk` method (which is also facilitated by the view querying mechanism if `setIncludeDocs(true)` is used) that happened when an empty list of keys is passed in. This can happen also if a view request does not return results, so the empty list is passed down the stack, resulting in a thread that does not respond.
 
-* [SPY-167](http://www.couchbase.com/issues/browse/SPY-167): A deadlock has been fixed which occasionally comes up as a race condition between adding a listener and notifying the already subscribed listeners. The behavior also has been cleared up so that a listener only is ever notified once.
+* [SPY-167](http://www.couchbase.com/issues/browse/SPY-167): A deadlock has been fixed that occasionally comes up as a race condition between adding a listener and notifying the already subscribed listeners. The behavior also has been cleared up so that a listener is notified only once.
 
-* [JCBC-453](http://www.couchbase.com/issues/browse/JCBC-453), [JCBC-457](http://www.couchbase.com/issues/browse/JCBC-457): Faster config fetching under certain conditions (if the new carrier config mechanism is used) if the cluster is unstable.
+* [JCBC-453](http://www.couchbase.com/issues/browse/JCBC-453), [JCBC-457](http://www.couchbase.com/issues/browse/JCBC-457): Faster configuration fetching under certain conditions (if the new carrier configuration mechanism is used) if the cluster is unstable.
 
 * [SPY-164](http://www.couchbase.com/issues/browse/SPY-164), [SPY-166](http://www.couchbase.com/issues/browse/SPY-166), [SPY-169](http://www.couchbase.com/issues/browse/SPY-169): Increased robustness when cloning (redistributing/retrying) operations.
 
-* [SPY-162](http://www.couchbase.com/issues/browse/SPY-162): If a custom nagle setting has been set through the builder, it is now also applied if a node gets reconnected after a socket close/service interruption.
+* [SPY-162](http://www.couchbase.com/issues/browse/SPY-162): If a custom Nagle setting has been set through the builder, it is now also applied if a node gets reconnected after a socket close/service interruption.
 
-* [SPY-168](http://www.couchbase.com/issues/browse/SPY-168): The utility method `isJsonObject` has been hardened to perform a null and empty string check upfront before doing regex and string matching afterwards. This should prevent regex exceptions on specific JDK versions.
+* [SPY-168](http://www.couchbase.com/issues/browse/SPY-168): The utility method `isJsonObject` has been hardened to perform a null and empty string check before doing regular expression and string matching. This should prevent regex exceptions on specific JDK versions.
 
 **Known Issues in 1.4.1**
 
-* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The workaround
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The work-around
  is to set a higher value through `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
-
 
 <a id="couchbase-sdk-java-rn_1-4-0c"></a>
 
@@ -144,9 +143,9 @@ See the client documentation for a full list of status codes that can be returne
 
 **Fixes in 1.4.0-dp**
 
-* [SPY-155](http://www.couchbase.com/issues/browse/SPY-155): A bug has been fixed where future listeners where not notified because of a race condition.
+* [SPY-155](http://www.couchbase.com/issues/browse/SPY-155): A bug has been fixed where future listeners were not notified because of a race condition.
 
 **Known Issues in 1.4.0-dp**
 
-* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom timeout (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higer than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The workaround
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (PersistTo/ReplicateTo) are used, a custom timeout (for example `.get(1, TimeUnit.MINUTES))` is ignored if it is higer than the default `obsTimeout` setting on the `CouchbaseConnectionFactory`. The work-around
 here is to set a higher value through the `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
