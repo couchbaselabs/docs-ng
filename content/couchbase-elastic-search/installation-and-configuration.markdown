@@ -57,25 +57,25 @@ Install](http://www.elasticsearch.org/guide/reference/setup/installation.html)
      cd elasticsearch-<version>
      ```
 
- 1. Install the Couchbase Plug-in:
+ 1. Install the Couchbase Plug-in. Replace the version number with the appropriate one.
 
-     ```
-     bin/plugin -install transport-couchbase -url \
-     http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/<version>/elasticsearch-transport-couchbase-<version>.zip
-     ```
+```
+bin/plugin -install transport-couchbase -url \
+http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.3.0/elasticsearch-transport-couchbase-1.3.0.zip
+```
 
-    After a successful installation, the plug-in installer returns:
+After a successful installation, the plug-in installer returns:
 
-     ```
-     DONE Installed transport-couchbase
-     ```
+```
+DONE Installed transport-couchbase
+```
 
  1. Set the username and password for the plug-in:
 
      ```
      echo "couchbase.password: password" >> config/elasticsearch.yml
      echo "couchbase.username: Administrator" >> config/elasticsearch.yml
-     ```
+```
 
  1. The other plug-in to install is a third party plug-in for Elasticsearch called
     `head` ; this plug-in provides a simple web user interface you can use to
