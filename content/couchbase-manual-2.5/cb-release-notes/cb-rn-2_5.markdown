@@ -9,7 +9,7 @@ Couchbase Server 2.5.1 (April 2014) is a maintenance release for Couchbase Serve
 
 **Server operations**
 
-
+* [MB-8039](http://www.couchbase.com/issues/browse/MB-8039): Failover is slow when nodes do not respond.
 * [MB-9457](http://www.couchbase.com/issues/browse/MB-9457): Pass +swt low to erlang
 * [MB-10051](http://www.couchbase.com/issues/browse/MB-10051): Need a way to modify % metadata warning
 * [MB-10227](http://www.couchbase.com/issues/browse/MB-10227): Scheduled compaction crashing on GET operation.
