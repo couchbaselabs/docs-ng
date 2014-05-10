@@ -1,8 +1,7 @@
 # C Method Summary
 
 `libcouchbase` provides a well defined API for accessing the data stored in a
-Couchbase cluster. A summary of the supported methods are listed in **Couldn't
-resolve xref tag: table-couchbase-sdk-c-summary**.
+Couchbase cluster. The supported methods are listed in the following tables.
 
 <a id="table-couchbase-sdk_c_lcb_arithmetic"></a>
 
