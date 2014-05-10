@@ -65,8 +65,12 @@ Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
 This path can be changed for each node at setup either via the Web UI setup
 wizard, using the [REST API](../cb-rest-api/#couchbase-admin-restapi) or using the Couchbase CLI:
 
-Changing the data path for a node that is already part of a cluster will
-permanently delete the data stored.
+<div class="notebox warning">
+<p>Warning</p>
+<p>Changing the data path for a node that is already part of a cluster will
+permanently delete the data stored.</p>
+</div>
+
 
 Linux:
 
@@ -85,12 +89,15 @@ Windows:
     node_IP:8091 --node-init-data-path=new_path \
     -u user -p password
 ```
-
-When using the command line tool, you cannot change the data file and index file
+<div class="notebox">
+<p>Note</p>
+<p>When using the command line tool, you cannot change the data file and index file
 path settings individually. If you need to configure the data file and index
 file paths individually, use the REST API. For more information, see
-[Configuring Index Path for a
-Node](../cb-rest-api/#couchbase-admin-restapi-provisioning-diskpath)
+<a href=../cb-rest-api/#couchbase-admin-restapi-provisioning-diskpath>Configuring Index Path for a
+Node</a>.</p>
+</div>
+
 
 Once a node or cluster has already been setup and is
 storing data, you cannot change the path while the node is part of a running
@@ -161,8 +168,13 @@ On Windows, Couchbase Server is installed as a Windows service. You can use the
 `Services` tab within the Windows Task Manager to start and stop Couchbase
 Server.
 
-You will need Power User or Administrator privileges, or have been separately
-granted the rights to manage services to start and stop Couchbase Server.
+
+<div class="notebox">
+<p>Note</p>
+<p>You will need Power User or Administrator privileges or have been separately
+granted the rights to manage services to start and stop Couchbase Server.</p>
+</div>
+
 
 By default, the service should start automatically when the machine boots. To
 manually start the service, open the Windows Task Manager and choose the
@@ -252,9 +264,13 @@ The individual menu options perform the following actions:
    Once the installation has been completed you will be asked whether you want to
    automatically update Couchbase Server in the future.
 
-   Using the update service also sends anonymous usage data to Couchbase on the
+
+   <div class="notebox">
+   <p>Note</p>
+   <p>Using the update service also sends anonymous usage data to Couchbase on the
    current version and cluster used in your organization. This information is used
-   to improve our service offerings.
+   to improve our service offerings.</p>
+   </div>
 
    You can also enable automated updates by selecting the `Automatically download
    and install updates in the future` checkbox.
