@@ -1,7 +1,7 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
-Couchbase Client Library PHP. To browse or submit new issaues, see [Couchbase
+Couchbase Client Library PHP. To browse or submit new issues, see [Couchbase
 Client Library PHP Issues Tracker](http://www.couchbase.com/issues/browse/PCBC).
 
 
