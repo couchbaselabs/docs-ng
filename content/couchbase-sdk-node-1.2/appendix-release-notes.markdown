@@ -1,4 +1,4 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
 Couchbase Node.js Client Library. To browse or submit new issues, see [Couchbase
@@ -15,7 +15,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
  * Added support for specifying hosts via SRV record (experimental).
  * Fixed SmartOS support.
  * Added additional error details for build issues.
- * Various minor bug, docs and test fixes.
+ * Various minor bug, documentation, and test fixes.
 
 <a id="couchbase-sdk-node-rn_1-2-1"></a>
 
