@@ -124,12 +124,14 @@ to disk (the High Water Mark).
 How much memory and disk space per node you will need depends on several
 different variables, which are defined below:
 
-**Calculations are per bucket**
 
-The calculations below are per-bucket calculations. The calculations need to be
+<div class="notebox">
+<p>Calculations Are Per Bucket</p>
+<p>The calculations below are per-bucket calculations. The calculations need to be
 summed up across all buckets. If all your buckets have the same configuration,
 you can treat your total data as a single bucket. There is no per-bucket
-overhead that needs to be considered.
+overhead that needs to be considered.</p>
+</div>
 
 <a id="couchbase-bestpractice-sizing-ram-inputvars"></a>
 
@@ -146,12 +148,15 @@ Use the following items to calculate how much memory you need:
 
 <a id="couchbase-bestpractice-sizing-ram-constants"></a>
 
-Constant                                        | Description                                                                                                                                                                                                                                                      
-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Metadata per document (metadata\_per\_document) | This is the amount of memory that Couchbase needs to store metadata per document. Metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
-SSD or Spinning                                 | SSDs give better I/O performance.                                                                                                                                                                                                                                
-headroom                                        | The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset. Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
-High Water Mark (high\_water\_mark)             | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
+Constant                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                      
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Metadata per document (metadata\_per\_document)                                                                                                                                                  | This is the amount of memory that Couchbase needs to store metadata per document. Metadata uses 56 bytes. All the metadata needs to live in memory while a node is running and serving data.
+SSD or Spinning                                                                                                                                                                                  | SSDs give better I/O performance.                                                                                                                                                                                                                                
+headroom<sup>1</sup>| Since SSDs are faster than spinning (traditional) hard disks, you should set aside 25% of memory for SSDs and 30% of memory for spinning hard disks.                                                                                                             
+High Water Mark (high\_water\_mark)                                                                                                                                                              | By default, the high water mark for a node's RAM is set at 85%.                                                                                                                                                                                                  
+
+<sup><sup>[1]</sup> The cluster needs additional overhead to store metadata. That space is called the headroom. This requires approximately 25-30% more space than the raw RAM requirements for your dataset.</sup> 
+
 
 This is a rough guideline to size your cluster:
 
@@ -160,14 +165,19 @@ This is a rough guideline to size your cluster:
 Variable                                                     | Calculation                                                           
 -------------------------------------------------------------|-----------------------------------------------------------------------
 no\_of\_copies                                               | `1 + number_of_replicas`                                              
-total\_metadata All the documents need to live in the memory. | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
+total\_metadata<sup>2</sup>  | `(documents_num) * (metadata_per_document + ID_size) * (no_of_copies)`
 total\_dataset                                               | `(documents_num) * (value_size) * (no_of_copies)`                     
 working\_set                                                 | `total_dataset * (working_set_percentage)`                            
 Cluster RAM quota required                                   | `(total_metadata + working_set) * (1 + headroom) / (high_water_mark)` 
 number of nodes                                              | `Cluster RAM quota required / per_node_ram_quota`                     
 
-You will need at least the number of replicas + 1 nodes regardless of your data
-size.
+<sup><sup>[2]</sup> All the documents need to live in the memory.</sup>
+
+<div class="notebox">
+<p>Note</p>
+<p>You will need at least the number of replicas + 1 nodes regardless of your data
+size.</p>
+</div>
 
 Here is a sample sizing calculation:
 
@@ -333,9 +343,13 @@ examples:
    over. If a second node goes down, you can fail it over as well. Should a third
    one go down, you now no longer have replicas to fail over.
 
-After a node goes down and is failed over, try to replace that node as soon as
+
+<div class="notebox">
+<p>Note</p>
+<p>After a node goes down and is failed over, try to replace that node as soon as
 possible and rebalance. The rebalance will recreate the replica copies (if you
-still have enough nodes to do so).
+still have enough nodes to do so).</p>
+</div>
 
 As a rule of thumb, we recommend that you configure the following:
 
@@ -506,9 +520,11 @@ mem_used:
 get_misses:
 get_hits:
 ```
-
-Make sure you monitor the disk space, CPU usage, and swapping on all your nodes,
-using the standard monitoring tools.
+<div class="notebox">
+<p>Note</p>
+<p>Make sure you monitor the disk space, CPU usage, and swapping on all your nodes,
+using the standard monitoring tools.</p>
+</div>
 
 <a id="couchbase-bestpractice-ongoing-ui"></a>
 
@@ -656,17 +672,21 @@ can be accomplished by using a dynamic DNS service such as DNSMadeEasy which
 will allow you to automatically update the hostname when an underlying IP
 address changes.
 
-The following steps completely destroys any data and configuration from the
-node, so you should start with a fresh Couchbase install. If you already have a
-running cluster, you can rebalance a node out of the cluster, make the change,
-and then rebalance it back into the cluster. For more information, see
+
 [Upgrading to Couchbase Server](../cb-install/#couchbase-getting-started-upgrade).
 
-Nodes with both IPs and hostnames can exist in the same cluster. When you set
+<div class="notebox warning">
+<p>Warning</p>
+<p>The following steps will completely destroy any data and configuration from the
+node, so you should start with a fresh Couchbase install. If you already have a
+running cluster, you can rebalance a node out of the cluster, make the change,
+and then rebalance it back into the cluster. For more information, see <a href="../cb-install/#couchbase-getting-started-upgrade">Upgrading to Couchbase Server</a>.</p>
+
+<p>Nodes with both IPs and hostnames can exist in the same cluster. When you set
 the IP address using this method, you should not specify the address as
-`localhost` or `127.0.0.1` as this will be invalid when used as the identifier
-for multiple nodes within the cluster. Instead, use the correct IP address for
-your host.
+<code>localhost</code> or <code>127.0.0.1</code> as this will be invalid when used as the identifier for multiple nodes within the cluster. Instead, use the correct IP address for
+your host.</p>
+</div>
 
 **Linux and Windows 2.1 and above**
 
