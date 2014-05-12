@@ -4,6 +4,108 @@ The following sections provide release notes for individual release versions of
 the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-rn_2-3-1"</a>
+
+## Release Notes for Couchbase Client Library C 2.3.1 GA (09 May 2014)
+
+**New Features and Behavior Changes in 2.3.1**
+
+
+* Add `lcb_cntl()` interface for configuration cache
+  Configuration cache options may be set after instantiation using `lcb_cntl()`
+  with the new `LCB_CNTL_CONFIGCACHE` operation. The old-style `lcb_create_compat`
+  creation path is deprecated.
+
+  *Issues*: [CCBC-395](http://couchbase.com/issues/browse/CCBC-395)
+  
+* Compare configuration revision information
+  for memcached cluster bootstrap. Previously we would refresh the
+  configuration upon receipt
+  of any new configuration update from memcached. This is fixed in 2.3.1 where
+  the configuration will only be applied if it is deemed to be newer than the
+  current configuration. With memcached bootstrap this is only true if the
+  configuration's `rev` field is higher than the current one.
+
+  *Issues*: [CCBC-332](http://couchbase.com/issues/browse/CCBC-392)
+            [CCBC-364](http://couchbase.com/issues/browse/CCBC-364)
+
+**Fixes in 2.3.1**
+
+* Segfault in `connmgr_invoke_request`
+  Occasionally a segmentation fault would happen when a connection was being
+  released as a result of a connection failure. This was because of invalid
+  list tracking.
+
+  *Issues*: [CCBC-404](http://couchbase.com/issues/browse/CCBC-404)
+
+* Get-with-replica occasionally crashes on Windows and UV
+  during topology changes. This was due to not allocating a buffer if one did
+  not exist.
+  
+  *Issues* [CCBC-394](http://couchbase.com/issues/browse/CCBC-394)
+
+
+* ABI compatibility broken between 2.x and 2.3 for
+  `lcb_create_compat`. This has been fixed by symbol aliasing between versions.
+  Developers are recommended to use the `lcb_cntl()` API to set the
+  configuration cache, as specified in CCBC-395
+
+  *Issues*: [CCBC-392](http://couchbase.com/issues/browse/CCBC-392)
+
+* Failed assertion on get-with-replica when connection fails.
+  If a connection fails with a `CMD_GET_REPLICA` command still in the queue an
+  assertion failure will crash the library. This has been fixed by handling the
+  opcode in the `failout_single_request` function.
+
+  *Issues*: [CCBC-385](http://couchbase.com/issues/browse/CCBC-385)
+
+* Unknown Winsock error codes crash application. This was fixed
+  by providing proper handlers for Winsock codes which were not explicitly
+  converted into their POSIX equivalents.
+
+  *Issues*: [CCBC-384](http://couchbase.com/issues/browse/CCBC-384)
+
+* Fix memory leak in configuration parsing. A leak was
+  introduced in version 2.3.0 by not freeing the JSON pool structure. This has
+  been fixed in 2.3.1
+
+  *Issues*: [CCBC-376](http://couchbase.com/issues/browse/CCBC-376)
+
+
+* `lcb_get_host` and `lcb_get_port` may return host-port
+  combinations from different servers. If multiple servers are listening on
+  different ports this may result in yielding an invalid endpoint by combining
+  the output from those two functions. This has been fixed in 2.3.1 by returning
+  the host and port from the first host, in lieu of a currently-connected REST
+  endpoint.
+
+  *Issues*: [CCBC-370](http://couchbase.com/issues/browse/CCBC-370)
+
+* Initial bootstrapping failure may mask `LCB_BUCKET_ENOENT`
+  calls with `LCB_ETIMEDOUT`. This has been fixed by not retrying configuration
+  retrieval if an explicit HTTP 404 code is received. Note that when using
+  bootstrap over memcached, a missing bucket may still be manifest as
+  `LCB_AUTH_ERROR`.
+ 
+  *Issues*: [CCBC-368](http://couchbase.com/issues/browse/CCBC-368)
+
+* Ensure `lcb_get_host` does not return `NULL` when the
+  associated `lcb_t` is of `LCB_TYPE_CLUSTER`. This would cause crashes in some
+  applications which relied on this function to not return `NULL`.
+
+  *Issues*: [CCBC-367](http://couchbase.com/issues/browse/CCBC-367)
+
+* Fixed Spurious timeouts being delivered in asynchronous
+  use cases.
+  In applications which do not use `lcb_wait()` the library will potentially
+  time out commands internally triggering an erroneous configuration refresh.
+  While this issue would not end up failing operations it will cause unnecessary
+  network traffic for retrieving configurations. Applications using `lcb_wait()`
+  are not affected as that function resets the timeout handler.
+
+  *Issues*: [CCBC-389](http://couchbase.com/issues/browse/CCBC-389)
+
+
 <a id="couchbase-sdk-rn_2-3-0"></a>
 
 ## Release Notes for Couchbase Client Library C 2.3.0 GA (07 April 2014)
@@ -25,7 +127,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 		lcb_t instance;
 		struct lcb_create_st options;
-		lcb_config_transport_t enabled_transports = {
+		lcb_config_transport_t enabled_transports[] = {
 		LCB_CONFIG_TRANSPORT_CCCP,
 		LCB_CONFIG_TRANSPORT_LIST_END
 		};
