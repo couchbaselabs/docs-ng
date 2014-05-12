@@ -127,7 +127,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 		lcb_t instance;
 		struct lcb_create_st options;
-		lcb_config_transport_t enabled_transports = {
+		lcb_config_transport_t enabled_transports[] = {
 		LCB_CONFIG_TRANSPORT_CCCP,
 		LCB_CONFIG_TRANSPORT_LIST_END
 		};
