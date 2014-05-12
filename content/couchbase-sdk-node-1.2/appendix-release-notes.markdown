@@ -5,6 +5,18 @@ Couchbase Node.js Client Library. To browse or submit new issues, see [Couchbase
 Node.js Client Library Issues
 Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 
+<a id="couchbase-sdk-node-rn_1-2-4"></a>
+
+## Release Notes for Couchbase Node.js Client Library 1.2.4 GA (11 May 2014)
+
+**New Features and Behavior Changes in 1.2.4**
+
+ * Updated embedded libcouchbase to 2.3.1.
+ * Added support for specifying hosts via SRV record (experimental).
+ * Fixed SmartOS support.
+ * Added additional error details for build issues.
+ * Various minor bug, docs and test fixes.
+
 <a id="couchbase-sdk-node-rn_1-2-1"></a>
 
 ## Release Notes for Couchbase Node.js Client Library 1.2.1 GA (4 February 2014)
@@ -12,7 +24,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 **New Features and Behavior Changes in 1.2.1**
 
  * Added a mock version of Couchnode for easier testing.
- * Made `total_rows` available from view requests. 
+ * Made `total_rows` available from view requests.
  * Added initial experimental N1QL querying support.
  * Minor internal refactoring and bug fixes.
 
@@ -23,7 +35,7 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 **New Features and Behavior Changes in 1.2.0**
 
  * Added missing touchMulti method.
- * Added missing arithmeticMulti and removed broken incrMulti and decrMulti. 
+ * Added missing arithmeticMulti and removed broken incrMulti and decrMulti.
  * Added support for Node.js v0.11.
 
 <a id="couchbase-sdk-node-rn_1-1-1"></a>
@@ -88,6 +100,6 @@ Tracker](http://www.couchbase.com/issues/browse/JSCBC).
 **New Features and Behavior Changes in 0.1.0**
 
  * Complete rewrite of the 0.0.x series of couchnode.
- * Brand new libcouchbase binding layer, which brings huge performance and stability 
+ * Brand new libcouchbase binding layer, which brings huge performance and stability
    benefits.
  * Refactored user-facing API to be cleaner and easier to use.
