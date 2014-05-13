@@ -920,16 +920,21 @@ serviced by the proxy. The proxy hashes the document ID to a vBucket, looks up
 the host server in the vBucket table, and then sends the operation to the
 appropriate Couchbase Server on port 11210.
 
-For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
-1.8 Manual](http://www.couchbase.com/docs/moxi-manual-1.8/index.html).
+<div class="notebox">
+<p>Note</p>
+<p>For the corresponding Moxi product, please use the Moxi 1.8 series. See <a href=http://www.couchbase.com/docs/moxi-manual-1.8/index.html>Moxi 1.8 Manual</a>.</p>
+</div>
 
 <a id="couchbase-deployment-embedproxy"></a>
 
 ### Using server-side (Couchbase embedded) proxy
 
-We do not recommend server-side proxy configuration for production use. You
+<div class="notebox warning">
+<p>Warning</p>
+<p>We do not recommend server-side proxy configuration for production use. You
 should use either a smart client or the client-side proxy configuration unless
-your platform and environment do not support that deployment type.
+your platform and environment do not support that deployment type.</p>
+</div>
 
 The server-side (embedded) proxy exists within Couchbase Server using port
 11211. It supports the memcached protocol and allows an existing application to
@@ -944,7 +949,8 @@ proxy) with an additional round trip network hop introduced.
 
 ![](../images/couchbase-060711-1157-32_img_279.jpg)
 
-For the corresponding Moxi product, please use the Moxi 1.8 series. See [Moxi
-1.8 Manual](http://www.couchbase.com/docs/moxi-manual-1.8/index.html).
-
+<div class="notebox">
+<p>Note</p>
+<p>For the corresponding Moxi product, please use the Moxi 1.8 series. See <a href=http://www.couchbase.com/docs/moxi-manual-1.8/index.html>Moxi 1.8 Manual</a>.</p>
+</div>
 <a id="couchbase-admin-tasks"></a>

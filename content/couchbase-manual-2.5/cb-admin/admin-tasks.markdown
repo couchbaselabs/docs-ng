@@ -976,7 +976,14 @@ specific settings are identical:
    you could configure compaction to take place between 01:00 and 06:00.
 
    If compaction is identified as required outside of these hours, compaction will
-   be delayed until the specified time period is reached. The time period is applied every day while the Couchbase Server is active. The time period cannot be configured on a day-by-day basis.
+   be delayed until the specified time period is reached.   
+   
+   <div class="notebox">
+	<p>Note</p>
+   <p>The time period is applied every day while the Couchbase Server is active. The
+   time period cannot be configured on a day-by-day basis.</p>
+   </div>
+
 
  * **Compaction abortion**
 
@@ -1340,15 +1347,14 @@ Server to use replicated data from other functioning nodes in the cluster.
 
 <div class="notebox bp">
 <p>Important</p>
-<p>Before you indicate the failover for a node, read [Failing Over
-Nodes](#couchbase-admin-tasks-failover). Do not use failover to remove a
+<p>Before you indicate the failover for a node, read <a href="#couchbase-admin-tasks-failover">Failing Over</a>. Do not use failover to remove a
 functioning node from the cluster for administration or upgrade. This is because
 initiating a failover for a node activates replicated data at other nodes
 which reduces the overall capacity of the cluster. Data from the failover
 node that has not yet been replicated at other nodes or persisted on disk will
-be lost. For information about removing and adding a node, see [Performing a
+be lost. For information about removing and adding a node, see <a href="../cb-admin/#couchbase-admin-tasks-addremove-rebalance">Performing a
 Rebalance, Adding a Node to a
-Cluster](../cb-admin/#couchbase-admin-tasks-addremove-rebalance).
+Cluster</a>.
 </p></div>
 
 
@@ -1767,14 +1773,18 @@ The `cbbackup` command takes the following arguments:
 cbbackup [options] [source] [backup_dir]
 ```
 
-The `cbbackup` tool is located within the standard Couchbase command-line
-directory. See the [Command-line interface](../cb-cli/#couchbase-admin-cmdline).
 
-Be aware that `cbbackup` does not support external IP addresses. This means that
+<div class="notebox">
+<p>Note</p>
+<p>The <code>cbbackup</code> tool is located within the standard Couchbase command-line
+directory. See <a href="../cb-cli/#couchbase-admin-cmdline">Command-line Interface</a>.</p>
+
+<p>Be aware that <code>cbbackup</code> does not support external IP addresses. This means that
 if you install Couchbase Server with the default IP address, you cannot use an
 external hostname to access it. To change the address format into a hostname
-format for the server, see [Using Hostnames with Couchbase
-Server](../cb-install/#couchbase-getting-started-hostnames).
+format for the server, see <a href="../cb-install/#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+</div>
+
 
 Where the arguments are as described below:
 
@@ -2021,7 +2031,7 @@ backup file will be restored.
 <div class="notebox warning">
 <p>Warning</p>
 <p>The regular expression match is performed client side. This means that the
-entire bucket contents must be accessed by the `cbbackup` command and then
+entire bucket contents must be accessed by the <code>cbbackup</code> command and then
 discarded if the regular expression does not match.</p>
 </div>
 
@@ -2524,6 +2534,8 @@ When choosing whether to shrink a cluster:
    failed over, there might be some data loss for the replication data that was in
    flight during that operation. Using the remove functionality will ensure that
    all data is properly replicated and continuously available.
+   
+   <a name="whentoshrinkcluster"></a>
 
 **Choosing when to rebalance**
 
@@ -2756,10 +2768,9 @@ be updated or upgraded.
 <p>Important</p>
 <p> Before you remove a node from the cluster, ensure that you have the
 capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, see Choosing when to shrink your cluster.
+more information on the considerations, see <a href="#whentoshrinkcluster">Choosing When to Shrink Your Cluster</a>.
 For the best results, use swap rebalance to swap the node you want to remove
-out, and swap in a replacement node. For more information on swap rebalance, see
-[Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
+out, and swap in a replacement node. For more information on swap rebalance, see <a href="#couchbase-admin-tasks-addremove-rebalance-swap">Swap Rebalance</a>.
 </p></div>
 
 
@@ -3250,23 +3261,25 @@ named destination clusters you can select when you configure replication. When
 you configure XDCR, the destination cluster reference should point to the IP
 address of one of the nodes in the destination cluster.
 
-Before you set up replication via XDCR, you should be certain that a destination
+<div class="notebox warning">
+<p>Warning</p>
+<p>Before you set up replication via XDCR, you should be certain that a destination
 bucket already exists. If this bucket does not exist, replication via XDCR may
 not find some shards on the destination cluster; this will result in replication
 of only some data from the source bucket and will significantly delay
 replication. This would also require you to retry replication multiple times to
-get a source bucket to be fully replicated to a destination.
+get a source bucket to be fully replicated to a destination.</p>
 
-Therefore make sure that you check that a destination bucket exists. The
-recommended approach is try to read on any key from the bucket. If you receive a
+<p>Therefore make sure that you check that a destination bucket exists. The
+recommended approach is to try to read on any key from the bucket. If you receive a
 'key not found' error, or the document for the key, the bucket exists and is
 available to all nodes in a cluster. You can do this via a Couchbase SDK with
-any node in the cluster. See [Couchbase Developer Guide Performing Connect,
-Set and
-Get](http://docs.couchbase.com/couchbase-devguide-2.5/#cb-basic-connect-get-set).
+any node in the cluster. See <a href="http://docs.couchbase.com/couchbase-devguide-2.5/#cb-basic-connect-get-set">Couchbase Developer Guide 2.0: Performing Connect,
+Set and Get</a>.</p>
 
-For more information about creating  buckets via the REST API, see [Creating and
-Editing Data Buckets](../cb-rest-api/#couchbase-admin-restapi-creating-buckets).
+<p>For more information about creating  buckets via the REST API, see <a href="../cb-rest-api/#couchbase-admin-restapi-creating-buckets">Creating and Editing Data Buckets</a>.</p>
+</div>
+
 
 ### Setting source and destination clusters
 

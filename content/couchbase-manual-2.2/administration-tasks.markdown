@@ -1767,13 +1767,13 @@ cbbackup [options] [source] [backup_dir]
 <div class="notebox">
 <p>Note</p>
 <p>The <code>cbbackup</code> tool is located within the standard Couchbase command-line
-directory. See <a herf="#couchbase-admin-cmdline">Command-line Interface for
+directory. See <a href="#couchbase-admin-cmdline">Command-line Interface for
 Administration</a>.</p>
 
 <p>Be aware that <code>cbbackup</code> does not support external IP addresses. This means that
 if you install Couchbase Server with the default IP address, you cannot use an
 external hostname to access it. To change the address format into a hostname
-format for the server, see <a herf="#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+format for the server, see <a href="#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
 </div>
 
 Where the arguments are as described below:
