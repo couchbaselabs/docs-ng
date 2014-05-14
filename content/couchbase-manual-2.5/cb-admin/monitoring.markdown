@@ -65,11 +65,13 @@ To access a bucket other than the default, you will need to supply the bucket
 name and/or password on the end of the command. Any bucket created on a
 dedicated port does not require a password.
 
-The TCP/IP port allocation on Windows by default includes a restricted number of
+<div class="notebox warning">
+<p>Warning</p>
+<p>The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
+available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx> MSDN: Avoiding TCP/IP Port Exhaustion</a>.</p>
+</div>
 
 <a id="couchbase-monitoring-startup"></a>
 

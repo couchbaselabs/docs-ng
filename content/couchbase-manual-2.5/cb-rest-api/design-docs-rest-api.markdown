@@ -26,11 +26,14 @@ Put Design Document | Description
 201                         | Document created successfully.                                                                           
 401                         | The item requested was not available using the supplied authorization, or authorization was not supplied.
 
-When creating a design document through the REST API, we recommend that you
-create a development ( `dev` ) view. We recommend that you create a dev design
+<div class="notebox">
+<p>Note</p>
+<p>When creating a design document through the REST API, we recommend that you
+create a development ( <code>dev</code> ) view. We recommend that you create a dev design
 document and views first, and then check the output of the configured views in
-your design document. To create a dev view you *must* explicitly use the `dev_`
-prefix for the design document name.
+your design document. To create a dev view you <i>must</i> explicitly use the <code>dev_</code>
+prefix for the design document name.</p>
+</div>
 
 For example, using `curl`, you can create a design document, `byfield`, by
 creating a text file (with the name `byfield.ddoc` ) with the design document
@@ -63,8 +66,11 @@ In the above example:
    bucket password. If the bucket does not have a password, then the authentication
    information is not required.
 
-   The view being accessed in this case is a development view. To create a
-   development view, you *must* use the `dev_` prefix to the view name.
+<div class="notebox">
+<p>Note</p>
+<p>The view being accessed in this case is a development view. To create a
+   development view, you <i>must</i> use the <code>dev_</code> prefix to the view name.</p>
+   </div>
 
    As a `PUT` command, the URL is also significant, in that the location designates
    the name of the design document. In the example, the URL includes the name of

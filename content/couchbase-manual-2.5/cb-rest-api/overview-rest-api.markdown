@@ -15,10 +15,7 @@ query data based on functions that you define.
 
 <div class="notebox tip">
 <p>Tip</p>
-<p>
-The REST API should *not* be used to read or write data to the server. Data
-operations such as `set` and `get` for example, are handled by Couchbase SDKs.
-See the <a href="http://couchbase.com/develop">Couchbase SDKs</a>.
+<p>The REST API should <i>not</i> be used to read or write data to the server. Data operations, such as <code>set</code> and <code>get</code> for example, are handled by Couchbase SDKs. See the <a href="http://couchbase.com/develop">Couchbase SDKs</a>.
 </p></div>
 
 In addition, the Couchbase Web Console uses many of the same REST API endpoints that are used for a REST API request. This is especially for administrative tasks such as creating a new bucket, adding a node to a cluster, or changing cluster settings. 

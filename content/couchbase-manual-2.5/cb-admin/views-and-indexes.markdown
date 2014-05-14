@@ -1774,13 +1774,16 @@ Reduce functions must be written to cope with this scenario in order to cope
 with the incremental nature of the view and index building. If this is not
 handled correctly, the index will fail to be built correctly.
 
-The `reduce()` function is designed to reduce and summarize the data emitted
-during the `map()` phase of the process. It should only be used to summarize the
+<div class="notebox">
+<p>Note</p>
+<p>The <code>reduce()</code> function is designed to reduce and summarize the data emitted
+during the <code>map()</code> phase of the process. It should only be used to summarize the
 data, and not to transform the output information or concatenate the information
-into a single structure.
+into a single structure.</p>
 
-When using a composite structure, the size limit on the composite structure
-within the `reduce()` function is 64KB.
+<p>When using a composite structure, the size limit on the composite structure
+within the <code>reduce()</code> function is 64KB.</p>
+</div>
 
 <a id="couchbase-views-writing-nonjson"></a>
 
@@ -2059,7 +2062,10 @@ You should keep the following in mind while developing and deploying your views:
         }
     ```
 
-   The above view may have significant performance and index size effects.
+ <div class="notebox warning">
+<p>Warning</p>
+<p>The above view may have significant performance and index size effects.</p>
+</div>
 
    This will include the full document content in the index.
 
@@ -2256,9 +2262,14 @@ returned by the view. Key selection is made after the view results (including
 the reduction function) are executed, and after the items in the view output
 have been sorted.
 
+
+<div class="notebox">
+<p>Important</p>
 When specifying keys to the selection mechanism, the key must be expressed in
 the form of a JSON value. For example, when specifying a single key, a string
-must be quoted ("string").
+must be quoted ("string").</p>
+</div>
+
 
 When specifying the key selection through a parameter, the keys must match the
 format of the keys emitted by the view. Compound keys, for example where an
@@ -2288,10 +2299,11 @@ The following selection types are supported:
    `["tomato","avocado"]`, then all results with a key of 'tomato' *or* 'avocado'
    will be returned.
 
-   When using this query option, the output results are not sorted by key. This is
-   because key sorting of these values would require collating and sorting all the
-   rows before returning the requested information.
-
+<div class="notebox">
+<p>Note</p>
+<p>When using this query option, the output results are not sorted by key. This is because key sorting of these values would require collating and sorting all the rows before returning the requested information.</p>
+</div>
+   
    In the event of using a compound key, each compound key must be specified in the
    query. For example:
 
@@ -2683,8 +2695,11 @@ format, with the basic order for all basic and compound follows as follows:
 The natural sorting is therefore by default close to natural sorting order both
 alphabetically (A-Z) and numerically (0-9).
 
-There is no collation or foreign language support. Sorting is always according
-to the above rules based on UTF-8 values.
+<div class="notebox">
+<p>Note</p>
+<p>There is no collation or foreign language support. Sorting is always according
+to the above rules based on UTF-8 values.</p>
+</div>
 
 You can alter the direction of the sorting (reverse, highest to lowest
 numerically, Z-A alphabetically) by using the `descending` option. When set to
@@ -2726,10 +2741,14 @@ be reversed:
 The above selection will start generating results when 'zucchini' is identified
 in the key, and stop returning results when 'tomato' is identified in the key.
 
-View output and selection are case sensitive. Specifying the key 'Apple' will
+<div class="notebox">
+<p>Note</p>
+<p>View output and selection are case sensitive. Specifying the key 'Apple' will
 not return 'apple' or 'APPLE' or other case differences. Normalizing the view
 output and query input to all lowercase or upper case will simplify the process
-by eliminating the case differences.
+by eliminating the case differences.</p>
+</div>
+
 
 <a id="couchbase-views-ordering-unicode-collation"></a>
 
@@ -3016,9 +3035,12 @@ Or to obtain a list of objects within a given range:
 ?startkey="object100"&endkey="object199"
 ```
 
-For all views, the document ID is automatically included as part of the view
+<div class="notebox">
+<p>Note</p>
+<p>For all views, the document ID is automatically included as part of the view
 response. But the without including the document ID within the key emitted by
-the view, it cannot be used as a search or querying mechanism.
+the view, it cannot be used as a search or querying mechanism.</p>
+</div>
 
 <a id="couchbase-views-sample-patterns-second"></a>
 
@@ -3412,9 +3434,13 @@ Which generates the following output:
 }
 ```
 
-Keep in mind that you can create multiple views to provide different views and
+
+<div class="notebox">
+<p>Note</p>
+<p>Keep in mind that you can create multiple views to provide different views and
 queries on your document data. In the above example, you could create individual
-views for the limited datatypes of logtype to create a `warningsbydate` view.
+views for the limited data types of logtype to create a <code>warningsbydate</code> view.</p>
+</div>
 
 <a id="couchbase-views-sample-patterns-selectivemap"></a>
 
@@ -3745,11 +3771,15 @@ single operation. However, if your data and document structure do not allow it
 then you can use a multi-phase transaction process to perform the operation in a
 number of distinct stages.
 
-This method is not reliant on views, but the document structure and update make
+<div class="notebox warning">
+<p>Warning</p>
+<p>This method is not reliant on views, but the document structure and update make
 it easy to find out if there are 'hanging' or trailing transactions that need to
-be processed without additional document updates. Using views and the Observe
+be processed without additional document updates. Using views and the <code>observe</code>
 operation to monitor changes could lead to long wait times during the
-transaction process while the view index is updated.
+transaction process while the view index is updated.</p>
+</div>
+
 
 To employ this method, you use a similar transaction record as in the previous
 example, but use the transaction record to record each stage of the update
@@ -4051,10 +4081,13 @@ the view has been requested through the client library. For more information on
 this parameter and the performance impact, see [View Writing Best
 Practice](#couchbase-views-writing-bestpractice).
 
-Within a `SELECT` statement it is common practice to include the primary key for
+<div class="notebox">
+<p>Note</p>
+<p>Within a <code>SELECT</code> statement it is common practice to include the primary key for
 a given record in the output. Within a view this is not normally required, since
 the document ID that generated each row is always included within the view
-output.
+output.</p>
+</div>
 
 <a id="couchbase-views-writing-sql-where"></a>
 
