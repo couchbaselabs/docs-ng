@@ -345,27 +345,26 @@ an individual nodes in a cluster remain the same:
 
 ###RHEL/CentOS
 
-    You can perform an upgrade install using the RPM package — this will keep the
-    data and existing configuration.
+You can perform an upgrade install using the RPM package — this will keep the
+data and existing configuration.
 
-     ```
-     root-> rpm -U couchbase-server-architecture___meta_current_version__.rpm
-     ```
+```
+root-> rpm -U couchbase-server-architecture___meta_current_version__.rpm
+```
 
-##Ubuntu/Debian Linux
+###Ubuntu/Debian Linux
 
-    You can perform a package upgrade by installing the updated `.pkg` package:
+You can perform a package upgrade by installing the updated `.pkg` package:
 
-     ```
-     > sudo dpkg -i couchbase-server-architecture___meta_current_release.deb
-     ```
+```
+> sudo dpkg -i couchbase-server-architecture___meta_current_release.deb
+```
 
 ###Windows
 
-    The Install Wizard will upgrade your server installation using the same
-    installation location. For example, if you have installed Couchbase Server in
-    the default location, `C:\Program Files\Couchbase\Server`, the Couchbase Server
-    installer will put the latest version at the same location.
+The Install Wizard will upgrade your server installation using the same 
+installation location. For example, if you have installed Couchbase Server in 
+the default location, `C:\Program Files\Couchbase\Server`, the Couchbase Server installer will put the latest version at the same location.
     
     
 ## Upgrade to 2.5 notes
