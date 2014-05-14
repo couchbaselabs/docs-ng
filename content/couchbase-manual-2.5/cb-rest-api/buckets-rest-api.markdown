@@ -988,14 +988,12 @@ deleted.
 <p>This operation is data destructive. The service makes no attempt to confirm or
 double check the request. Client applications using this are advised to double
 check with the end user before sending such a request. You can control and limit
-the ability to flush individual buckets by setting the `flushEnabled` parameter
-on a bucket in Couchbase Web Console or via `cbepctl flush_param`.
-</p></div>
+the ability to flush individual buckets by setting the <code>flushEnabled</code> parameter
+on a bucket in Couchbase Web Console or via <code>cbepctl flush_param</code>.</p>
 
-For information about changing this setting in the Web Console, see [Viewing
-data buckets](../cb-admin/#couchbase-admin-web-console-data-buckets). For information about
-flushing data buckets via REST, see [Flushing a
-bucket](#couchbase-admin-restapi-flushing-bucket).
+<p>For information about changing this setting in the Web Console, see <a href="../cb-admin/#couchbase-admin-web-console-data-buckets">Viewing
+Data Buckets</a>.</p>
+</div>
 
 The `doFlush` operation empties the contents of the specified bucket, deleting
 all stored data. The operation will only succeed if flush is enabled on

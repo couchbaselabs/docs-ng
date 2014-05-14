@@ -123,9 +123,12 @@ File               | Log Contents
 `stats`            | Contains periodic reports of the core statistics.                                                                                                          
 `memcached.log`    | Contains information relating to the core memcache component, including vBucket and replica and rebalance data streams requests.                           
 
-Each log file group will also include a `.idx` and `.siz` file which holds meta
+<div class="notebox">
+<p>Note</p>
+<p>Each log file group will also include a <code>.idx</code> and <code>.siz</code> file which holds meta
 information about the log file group. These files are automatically updated by
-the logging system.
+the logging system.</p>
+</div>
 
 ### Changing log file location
 The default file log location is /opt/couchbase/var/lib/couchbase/logs, however, if you want to change the default log location to a different directory, change the log file configuration option. 

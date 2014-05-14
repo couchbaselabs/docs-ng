@@ -1,8 +1,7 @@
 # Java Method Summary
 
 The `couchbase-client` and `spymemcached` libraries support the full suite of
-API calls to Couchbase. A summary of the supported methods are listed in
-**Couldn't resolve xref tag: table-couchbase-sdk-java-summary**.
+API calls to Couchbase. 
 
 <a id="couchbase-sdk-java-summary-synchronous"></a>
 

@@ -381,7 +381,7 @@ the <a href="#couchbase-introduction-architecture-rebalancing">
 rebalance</a> operation; the
 updated map is then sent to all the cluster participants, including
 the other nodes, any connected "smart" clients, and the Moxi proxy service.</p>
-</div>
+</div>data path
 
 Within the new four-node cluster model, when a client again wants to `get` the
 value of KEY, the hashing algorithm will still resolve to vBucket 8 ( `vB8` ).

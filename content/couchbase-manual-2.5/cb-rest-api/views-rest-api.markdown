@@ -162,10 +162,15 @@ more detailed `reason` field. For example:
 }
 ```
 
-If you supply incorrect parameters to the query, an error message is returned by
+
+<div class="notebox">
+<p>Note</p>
+<p>If you supply incorrect parameters to the query, an error message is returned by
 the server. Within the Client Libraries the precise behavior may differ between
 individual language implementations, but in all cases, an invalid query should
-trigger an appropriate error or exception.
+trigger an appropriate error or exception.</p>
+</div>
+
 
 
 <a id="couchbase-restapi-request-limits"></a>

@@ -253,9 +253,12 @@ algorithms such as Ketama to cope with changes to the topology. The structure is
 also more flexible and able to cope better with changes than the typical sharding
 arrangement used in an RDBMS environment.
 
-vBuckets are not a user-accessible component, but they are a critical component
-of Couchbase Server and are vital to the availability support and the elastic
-nature.
+<div class="notebox">
+<p>Note</p>
+<p>vBuckets are not a user-accessible component, but they are a critical component of Couchbase Server and are vital to the availability support and the elastic
+nature.</p>
+</div>
+
 
 Every document ID belongs to a vBucket. A mapping function is used to calculate
 the vBucket in which a given document belongs. In Couchbase Server, that mapping
@@ -281,10 +284,13 @@ node, Server D is added to the cluster and the vBucket Map is updated.
 
 ![](../images/vbuckets-after.png)
 
-The vBucket map is updated during
-the [rebalance](#couchbase-introduction-architecture-rebalancing) operation; the
+<div class="notebox">
+<p>Note</p>
+<p>The vBucket map is updated during
+the <a href="#couchbase-introduction-architecture-rebalancing">rebalance</a> operation; the
 updated map is then sent to all the cluster participants, including
-the other nodes, any connected "smart" clients, and the Moxi proxy service.
+the other nodes, any connected "smart" clients, and the Moxi proxy service.</p>
+</div>
 
 Within the new four-node cluster model, when a client again wants to `get` the
 value of KEY, the hashing algorithm still resolves to vBucket 8 ( `vB8` ).

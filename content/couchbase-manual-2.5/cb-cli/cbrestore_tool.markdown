@@ -7,14 +7,16 @@ The `cbrestore` tool restores data from a file to an entire cluster or to a
 single bucket in the cluster. Items that had been written to file on disk will
 be restored to RAM.
 
-`cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP
+<div class="notebox">
+<p>Note</p>
+<p><code>cbbackup</code>, <code>cbrestore</code> and <code>cbtransfer</code> do not communicate with external IP
 addresses for server nodes outside of a cluster. They can only communicate with
 nodes from a node list obtained within a cluster. You should perform backup,
 restore, or transfer to data from a node within a Couchbase cluster. This also
 means that if you install Couchbase Server with the default IP address, you
 cannot use an external hostname to access it. For general information about
-hostnames for the server, see [Using Hostnames with Couchbase
-Server](../cb-install/#couchbase-getting-started-hostnames).
+hostnames for the server, see <a href="../cb-install/#couchbase-getting-started-hostnames">Using Hostnames with Couchbase Server</a>.</p>
+</div>
 
 The tool is in the following locations, depending on your platform:
 
