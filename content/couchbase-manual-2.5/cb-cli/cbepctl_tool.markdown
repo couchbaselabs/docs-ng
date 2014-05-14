@@ -9,8 +9,11 @@ configuration, memory and disk persistence behavior. This tool was formerly
 provided as the separate tools, `cbvbucketctl` and `cbflushctl` in Couchbase
 1.8.
 
-Changes to the cluster configuration using `cbepctl` are not persisted over a
-cluster restart.
+<div class="notebox warning">
+<p> Caution </p>
+<p>Changes to the cluster configuration using <code>cbepctl</code> are not persisted over a
+cluster restart.</p>
+</div>
 
 <a id="table-couchbase-admin-cmdline-cbepctl-locs"></a>
 
@@ -320,13 +323,13 @@ buckets with couchbase-cli](#couchbase-admin-cli-flushing).
 
 <div class="notebox warning">
 <p>Warning</p>
-<p>Flushing a bucket is data destructive. If you use **cbepctl**, it makes no
+<p>Flushing a bucket is data destructive. If you use <code>cbepctl</code>, it makes no
 attempt to confirm or double check the request. Client applications using this
 are advised to double check with the end user before sending such a request. You
 can control and limit the ability to flush individual buckets by setting the
-`flushEnabled` parameter on a bucket in Couchbase Web Console or via `cbepctl
-flush_param`.
-</p></div>
+<code>flushEnabled</code> parameter on a bucket in Couchbase Web Console or via <code>cbepctl
+flush_param</code>.</p>
+</div>
 
 **Be aware that this tool is a per-node, per-bucket operation.** That means that
 if you want to perform this operation, you must specify the IP address of a node

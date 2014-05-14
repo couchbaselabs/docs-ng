@@ -495,7 +495,7 @@ this time to be quickly available after server restart.
 <p>Note</p>
 <p>If you want to change this setting for an entire Couchbase cluster, you
 will need to perform this command on per-node and per-bucket in the cluster. By
-default, any setting you change with `cbepctl` will only be for the named bucket
+default, any setting you change with <code>cbepctl</code> will only be for the named bucket
 at the specific node you provide in the command.</p>
 <p>This means that if you have a data bucket that is shared by two nodes, you will
 nonetheless need to issue this command twice and provide the different host
@@ -677,7 +677,7 @@ to perform the command for every node/bucket combination that exists for that
 cluster.
 
 For more information about changing this setting, see [cbepctl
-Tool](#couchbase-admin-cmdline-cbepctl). You can also monitor the progress of
+Tool](../cb-cli/#couchbase-admin-cmdline-cbepctl). You can also monitor the progress of
 this backoff operation in Couchbase Web Console under Tap Queue Statistics |
 back-off rate. For more information, see [Monitoring TAP
 Queues](#couchbase-admin-web-console-data-buckets-tapqueues).
