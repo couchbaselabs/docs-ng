@@ -1458,22 +1458,25 @@ overwriting changes from another `append/prepend` request. Note however that the
 order in which Couchbase Server appends or prepends data is not guaranteed for
 concurrent `append/prepend` requests.
 
-Non-linear, hierarchical formats in the database will merely have the new
+<div class="notebox">
+<p>Note</p>
+<p>Non-linear, hierarchical formats in the database will merely have the new
 information added at the start or end. There will be no logic which adds the
-information to a certain place in a stored document structure or object.
+information to a certain place in a stored document structure or object.</p>
 
-Therefore, if you have a serialized object in Couchbase Server and then append,
+<p>Therefore, if you have a serialized object in Couchbase Server and then append,
 or prepend, the existing content in the serialized object will not be extended.
-For instance, if you `append` an integer to an Array stored in Couchbase, this
+For instance, if you <code>append</code> an integer to an Array stored in Couchbase, this
 will result in the document containing a serialized array, and then the
-serialized integer.
+serialized integer.</p>
 
-Similarly, if you have JSON document with nested attributes, when you prepend
+<p>Similarly, if you have JSON document with nested attributes, when you prepend
 and append, the new data will appear either before or after the entire JSON
-object, but not within the JSON object, nor any nested attributes in the JSON.
+object, but not within the JSON object, nor any nested attributes in the JSON.</p>
 
-De-serialization of objects that have data appended or prepended may result in
-data corruption, due to the behavior previously described.
+<p>De-serialization of objects that have data appended or prepended may result in
+data corruption, due to the behavior previously described.</p>
+</div>
 
 Both `append` and `prepend` originated from the request that Couchbase Server
 supports 'lists' or sets. Developers wanted to maintain documents representing
@@ -1720,10 +1723,10 @@ Both `incr` and `decr` are considered 'binary' methods in that they operate on
 binary data, not JSON documents. Because of this, keys used by `incr` and `decr`
 cannot be queried or indexed with Couchbase Server.
 
-<div class-"notebox tip">
+<div class="notebox tip">
 <p>Tip</p>
 <p>
-Couchbase Server stores and transmits numbers as **unsigned numbers**, therefore
+Couchbase Server stores and transmits numbers as <strong>unsigned numbers</strong>, therefore
 if you try to store negative number and then increment, it will cause overflow.
 In this case, an integer overflow value will be returned. See the integer
 overflow example that follows. In the case of decrement, if you attempt to
@@ -1824,7 +1827,7 @@ deletes a document, it returns a status code indicating success or failure.
 
 <div class="notebox">
 <p>Note</p>
-<p>Be aware that when you `delete` a key it may not be removed immediately from the
+<p>Be aware that when you <code>delete</code> a key it may not be removed immediately from the
 server. Instead Couchbase Server flags an item for deletion and if the key
 is requested by another client, the server returns a 'key not found' error.
 Couchbase Server will actually remove the item from the server upon the next
@@ -1897,20 +1900,17 @@ as destroy all cached data.
 </p>
 </div>
 
+
 <div class="notebox warning">
 <p>Warning</p>
-<p>
-Third-party client testing tools may perform a `flush_all` operation as part of
+<p>Third-party client testing tools may perform a <code>flush_all</code> operation as part of
 their test scripts. Be aware of the scripts run by your testing tools and avoid
 triggering these test cases/operations unless you are certain they are being
-performed on your sample/test database.
-</p>
-<p>
-Inadvertent use of `flush_all` on production databases, or other data stores you
+performed on your sample/test database.</p>
+<p>Inadvertent use of <code>flush_all</code> on production databases, or other data stores you
 intend to use will result in permanent loss of data. Moreover the operation as
 applied to a large data store will take many hours to remove persisted
-documents.
-</p>
+documents.</p>
 </div>
 
 This next example demonstrates how to perform a synchronous and asynchronous
