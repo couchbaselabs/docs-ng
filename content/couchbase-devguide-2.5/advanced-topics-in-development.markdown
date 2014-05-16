@@ -586,27 +586,29 @@ versions are available on Github:
  * [PHP Advanced Transaction](https://gist.github.com/3155762), includes checks,
    JSON helpers, encapsulation, and counters.
 
-**Caveats On this Approach**
+<div class="notebox bp">
+<p>Caveats On this Approach</p>
 
-The following approach we illustrate below is still an optimistic approach that
+<p>The following approach we illustrate below is still an optimistic approach that
 assumes we can recover correct information about the two-phase commit state from
 the server after failure. It is possible that a system failure occurs and the
 information is not yet persisted, and therefore information used to rollback a
-transaction is not adequate. As of Couchbase Server 2.0 + we provide new
-functionality in the `observe()` command which enables you to find out whether
+transaction is not adequate. As of Couchbase Server 2.0+ we provide new
+functionality in the <code>observe()</code> command which enables you to find out whether
 an item is persisted or not. This provides better assurance for you that a
-commit state is accurate so you can perform any required rollbacks.
+commit state is accurate so you can perform any required rollbacks.</p>
 
-The second major caveat for this approach is that if you perform this across
+<p>The second major caveat for this approach is that if you perform this across
 thousands of documents or more, you may have a larger number of remaining
 documents which represent the transfers. We suggest you delete documents
 representing transfers is an orderly way, otherwise you will have a larger
-number of stale, pending documents.
+number of stale, pending documents.</p>
 
-You should only use these patterns in production only after you test your
+<p>You should only use these patterns in production only after you test your
 application in all failure scenarios; for data that requires the highest level
 of integrity and reliability, such as cash balances, you may want to use a
-traditional database which provides absolute guarantees of data integrity.
+traditional database which provides absolute guarantees of data integrity.</p>
+</div>
 
 With Couchbase Server, you can generally provide something functional analogous
 to an atomic transaction by performing a two-phase commit. You follow this
@@ -1323,20 +1325,20 @@ do two requests. The following is a summary of recommended alternative calls:
 
 <div class="notebox tip">
 <p>Tip</p>
-<p>`Append()/Prepend()` can add raw serialized data to existing data for a key. The
+<p>
+<code>Append()/Prepend()</code> can add raw serialized data to existing data for a key. The
 Couchbase Server treats an existing value as a binary stream and concatenates
 the new content to either beginning or end. Non-linear, hierarchical formats in
 the database will merely have the new information added at the start or end.
 There will be no logic which adds the information to a certain place in a stored
-document structure or object.
-</p>
+document structure or object. </p>
 
 <p>Therefore, if you have a serialized object in Couchbase Server and then append
 or prepend, the existing content in the serialized object will not be extended.
-For instance, if you `append()` an integer to an Array stored in Couchbase, this
+For instance, if you <code>append()</code> an integer to an Array stored in Couchbase, this
 will result in the record containing a serialized array, and then the serialized
-integer.
-</p></div>
+integer.</p>
+</div>
 
 <a id="optimizing-client-instances"></a>
 

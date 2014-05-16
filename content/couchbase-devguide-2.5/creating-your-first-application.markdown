@@ -79,9 +79,8 @@ Libraries:
 <p>The TCP/IP port allocation on Windows by default includes a restricted number of
 ports available for client communication. For more information on this issue,
 including information on how to adjust the configuration and increase the
-available ports, see [MSDN: Avoiding TCP/IP Port
-Exhaustion](http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx).
-</p></div>
+available ports, see <a href=http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx> MSDN: Avoiding TCP/IP Port Exhaustion</a>.</p>
+</div>
 
 Depending upon the OS for your development platform and web application server
 platform, choose the 32- or 64- bit versions of the SDK. Download and install
@@ -239,18 +238,15 @@ an expiration of 10 seconds. Then gets the value for the "spoon" key and outputs
 it. If the Couchbase client receives and error, it outputs "There is no spoon."
 
 <div class="notebox tip">
-<p>Tip</p>
-<p>
-(Optional) Depending on the language you are using, you may need to be
+<p>Tip </p>
+<p>Depending on the language you are using, you may need to be
 responsible for explicitly destroying the Couchbase client object, and thereby
 destroying the connection. Typically it is a best practice to try to reuse the
 same client instance across multiple processes and threads, rather than
 constantly create and destroy clients. This will provide better application
 performance and reduce processing times. For more information about client
-instance reuse and connection pooling, see [Optimizing Client
-Instances](optimizing-client-instances) and [Maintaining Persistent
-Connections](cb-persistent-connections).
-</p></div>
+instance reuse and connection pooling, see <a href="#optimizing-client-instances">Optimizing Client Instances</a> and <a href="#cb-persistent-connections">Maintaining Persistent Connections</a>.</p>
+</div>
 
 The next example in Java we demonstrate how it is safest to create at least two
 possible node URIs while creating an initial connection with the server. This
