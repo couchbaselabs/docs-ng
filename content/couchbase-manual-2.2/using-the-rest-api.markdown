@@ -923,23 +923,23 @@ The following are sample requests at this endpoint with optional parameters.
 Replace the *admin*, *password*, *localhost*, *bucket_name*, and
 *1376963720000* values in the below examples with your actual values.
 
-    curl -u admin:password  -d zoom=minute http://localhost:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u admin:password  -d zoom=minute http://localhost:8091/pools/default/buckets/bucket_name/stats
 
 This will sample statistics from a bucket for the last minute.
 
-    curl -u admin:password  -d zoom=day http://localhost:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u admin:password  -d zoom=day http://localhost:8091/pools/default/buckets/bucket_name/stats
 
 This will sample statistics from a bucket for the past day.
 
 Using zoom level of a month:
 
-    curl -u admin:password  -d zoom=month http://localhost:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u admin:password  -d zoom=month http://localhost:8091/pools/default/buckets/bucket_name/stats
 
 This will sample statistics from a bucket for the last month.
 
 Using zoom level of an hour from a specific timestamp:
 
-    curl -u admin:password  -d zoom=hour&haveTStamp=1376963720000 http://localhost:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u admin:password  -d zoom=hour&haveTStamp=1376963720000 http://localhost:8091/pools/default/buckets/bucket_name/stats
 
 This will sample statistics from a bucket from the timestamp until the server
 receives the REST request.

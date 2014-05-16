@@ -890,13 +890,13 @@ Content-Length: nnn
 The follow are sample requests at this endpoint with optional parameters:
 
  *  ```
-    curl -u user:password  -d zoom=minute http://hostname:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u user:password  -d zoom=minute http://hostname:8091/pools/default/buckets/bucket_name/stats
     ```
 
    This will sample statistics from a bucket for the last minute.
 
  *  ```
-    curl -u user:password  -d zoom=day http://hostname:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u user:password  -d zoom=day http://hostname:8091/pools/default/buckets/bucket_name/stats
     ```
 
    This will sample statistics from a bucket for the past day.
@@ -904,7 +904,7 @@ The follow are sample requests at this endpoint with optional parameters:
  * Using zoom level of a month:
 
     ```
-    curl -u user:password  -d zoom=month http://hostname:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u user:password  -d zoom=month http://hostname:8091/pools/default/buckets/bucket_name/stats
     ```
 
    This will sample statistics from a bucket for the last month.
@@ -912,7 +912,7 @@ The follow are sample requests at this endpoint with optional parameters:
  * Using zoom level of an hour from a specific timestamp:
 
     ```
-    curl -u user:password  -d zoom=hour&haveTStamp=1376963720000 http://hostname:8091/pools/default/buckets/bucket_name/stats
+    curl -X GET -u user:password  -d zoom=hour&haveTStamp=1376963720000 http://hostname:8091/pools/default/buckets/bucket_name/stats
     ```
 
    This will sample statistics from a bucket from the timestamp until the server
