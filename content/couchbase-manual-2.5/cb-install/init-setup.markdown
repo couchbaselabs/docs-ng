@@ -120,14 +120,15 @@ Your server is now running and ready to use. After you install your server and
 finish initial setup you can also optionally configure other settings, such as
 the port, RAM, using any of the following methods:
 
-## Using command-line tools
+* Using command-line tools
+* Using the REST API
 
    The command line tools provided with your Couchbase Server installation includes
    `couchbase-cli`. This tool provides access to the core functionality of the
    Couchbase Server by providing a wrapper to the REST API. For information about
    CLI, see [couchbase-cli tool](../cb-cli/#couchbase-admin-cmdline-couchbase-cli).
 
-## Using the REST API
+
 
    Couchbase Server can be configured and controlled using a REST API. In fact, the
    REST API is the basis for both the command-line tools and Web interface to
@@ -135,6 +136,54 @@ the port, RAM, using any of the following methods:
 
    For more information on using the REST API see, the Couchbase [REST
    API](../cb-rest-api/#couchbase-admin-restapi).
+
+<a id="install-user-defined-ports"></a>
+
+## Using user-defined ports
+
+This section describes how to install and run Couchbase server with user-defined ports rather than with the default 8091 port.
+
+To run Couchbase server on user-defined ports, ensure that the minimum RAM and CPU are available for the Couchbase instance. See [Red Hat Linux installation](../cb-install/#red-hat-linux-installation). 
+
+
+<div class="notebox"><p>Note</p>
+<p>Refer to the reserved Couchbase Server 
+<a href="#network-ports">Network ports</a> before creating user-defined ports.
+</p></div>
+
+**Setting up Couchbase with user-defined ports**
+
+1. Install Couchbase. 
+	* If Couchbase is already installed and running, stop the Couchbase server.
+2. Add the new user-defined ports to the **/opt/couchbase/etc/couchbase/static_config** file. 
+	* The /opt/couchbase/etc/couchbase/static_config file is where Couchbase picks up the configuration parameters from. 
+	* If port numbers are not specified, default ports are used. 
+	* To override some or all default ports, append the user-defined ports to the file. 
+3. (Optional) CAPI port (default 8092) can be edited in the **/opt/couchbase/etc/couchdb/default.d/capi.ini** file by replacing 8092 with the new port name.
+4. If the Couchbase server was previously configured, delete the **opt/couchbase/var/lib/couchbase/config/config.dat** file to remove the old configuration.
+5. Start the Couchbase server
+
+The following are the user-defined ports to add, replace, or append to the **/opt/couchbase/etc/couchbase/static_config** file.  
+
+
+```
+{rest_port, 9000}.                                   
+{mccouch_port, 8999}.                         
+{memcached_port, 12000}.
+{memcached_dedicated_port, 11999}.
+{moxi_port, 12001}.
+{short_name, "ns_1"}.
+{ssl_rest_port,11000}.                       
+{ssl_capi_port,11001}.
+{ssl_proxy_downstream_port,11002}.
+{ssl_proxy_upstream_port,11003}.
+```
+
+
+<div class="notebox"><p>Note</p>
+<p>If the newly configured ports overlap with ports used by other running applications, Couchbase fails to start. If the newly configured ports overlap with ports used by Couchbase buckets, erlang crash notifications display in the log file.
+</p></div>
+
 
 <a id="couchbase-getting-started-hostnames"></a>
 
