@@ -121,6 +121,7 @@ you install homebrew, install libcouchbase:
 
 
 ```
+shell> brew update
 shell> brew install libcouchbase
 ```
 
