@@ -1,5 +1,12 @@
 
 # Introduction
+
+<div class="notebox warning">
+<p>Obsolete documentation</p>
+<p>For the latest Couchbase Mobile documentation, visit the <a href="http://developer.couchbase.com/mobile/develop/guides/couchbase-lite/index.html">Couchbase Mobile developer portal</a>.
+</p>
+</div>
+
 This guide provides a platform-independent overview of Couchbase Lite that focuses on what it is and how it works with your data.
 
 # What is Couchbase Lite?

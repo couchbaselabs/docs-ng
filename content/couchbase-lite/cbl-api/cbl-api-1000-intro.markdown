@@ -1,5 +1,11 @@
 # Introduction
 
+<div class="notebox warning">
+<p>Obsolete documentation</p>
+<p>For the latest Couchbase Mobile documentation, visit the <a href="http://developer.couchbase.com/mobile/develop/guides/couchbase-lite/index.html">Couchbase Mobile developer portal</a>.
+</p>
+</div>
+
 This reference manual provides information for developers who want to use the Couchbase Lite REST API to develop apps for mobile devices. To get an overview of Couchbase Lite, read the [Couchbase Lite Concepts Guide](/couchbase-lite/cbl-concepts/).
 
 <div class=notebox>

@@ -1,5 +1,11 @@
 # Introduction
 
+<div class="notebox warning">
+<p>Obsolete documentation</p>
+<p>For the latest Couchbase Mobile documentation, visit the <a href="http://developer.couchbase.com/mobile/develop/guides/couchbase-lite/index.html">Couchbase Mobile developer portal</a>.
+</p>
+</div>
+
 The Couchbase Lite Plug-in for PhoneGap enables you to develop cross-platform mobile apps that use Couchbase Lite by using PhoneGap and standard web technologies (HTML5, CSS, and JavaScript). 
 
 [PhoneGap](http://phonegap.com) is a web application framework that provides a container to wrap your app in. You develop an app that uses Couchbase Lite and standard web technologies, wrap it in a PhoneGap container, and then build executables for iOS and Android devices from the same code base. 
