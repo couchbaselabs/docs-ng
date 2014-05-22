@@ -112,16 +112,18 @@ To use the configuration cache you must use a special form of initialization:
 ```c
 lcb_error_t err;
 lcb_t instance;
-struct lcb_cached_config_st cacheinfo;
-
-memset(&cacheinfo, 0, sizeof(cacheinfo));
-cacheinfo.cachefile = "/tmp/lcb_cache";
-/** Access the normal lcb_create_st structure via the 'createopt' field */
-cacheinfo.createopt.v.v0.host = "foo.com";
-
-err = lcb_create_compat(LCB_CACHED_CONFIG, &cacheinfo, &instance, NULL);
+struct lcb_create_st cropts;
+cropts.v.v0.host = "foo.com";
+err = lcb_create(&instance, &cropts);
 if (err != LCB_SUCCESS) {
-	die("Couldn't create cached info", err)
+    die("Couldn't create instance", err);
+}
+
+/* now set the cache */
+const char *cachefile = "some_file";
+err = lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_CONFIGCACHE, (void*)cachefile);
+if (err != LCB_SUCCESS) {
+    die("Couldn't assign the configuration cache!\n");
 }
 ```
 
