@@ -814,9 +814,3 @@ Server as the underlying data source. If you want to dig a little bit deeper,
 the full source code in the couchbaselabs repository on GitHub has more code to
 learn from. This code might be extended and updated from time to time.
 
-The tutorial presents an easy approach to start a web application with Couchbase
-Server as the underlying data source. If you want to dig a little bit deeper,
-the full source code in the couchbaselabs repository on GitHub has more code to
-learn from. This code might be extended and updated from time to time.
-
-<a id="advanced-usage"></a>

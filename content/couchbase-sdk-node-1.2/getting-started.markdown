@@ -374,7 +374,7 @@ be found in the API documentation.
 
  * `stale`
 
-   This string parameter controls the tradeoff between performance and freshness
+   This string parameter controls the trade-off between performance and freshness
    of data.  Possible values include "false" (force update), "update_after" (force
    after view request) and "ok" (default: do not force any updates).
 

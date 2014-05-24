@@ -2,12 +2,12 @@
 
 <a id="datatypes_with_nodejs"></a>
 
-## Datatypes with Node.js
+## Data types with Node.js
 
-All Javascript datatypes that are able to be serialized via the JSON functions
+All Javascript data types that are able to be serialized via the JSON functions
 are supported by default. It is worth noting that recursive structures cannot be
 serialized. It is also possible to encode data using the raw Node.js formats or
-in UTF8 as well by using the format option on the storage operations.
+in UTF-8 as well by using the format option on the storage operations.
 
 
 ```
@@ -24,18 +24,18 @@ bucket.set(‘test-key’, 'test-value', {
 
 The Node.js Couchbase driver employs a callback pattern to notify the
 application when results are ready. These callbacks are passed to the operation
-methods and the callbacks are invoked later once the result(s) or error(s) are
+methods and the callbacks are invoked later once the results or errors are
 ready. All storage and retrieval operations follow the same callback pattern and
 have the following parameters:
 
  * `error`
 
-   For singluar operations, this parameter will contain an Error object
-   representing any error that occured during the execution of the operation, or
-   alternatively will contain null if no errors occured.
+   For singular operations, this parameter will contain an Error object
+   representing any error that occurred during the execution of the operation, or
+   alternatively will contain null if no errors occurred.
 
    For a batch operation, this will contain either 1 or 0 representing if an error
-   occured on any of the batched operations.
+   occurred on any of the batched operations.
 
  * `result/results`
 
@@ -53,7 +53,7 @@ have the following parameters:
 
     * `error`
 
-      This will contain an Error object representing any errors that occured during
+      This will contain an Error object representing any errors that occurred during
       execution of this particular batch operation.
 
     * `cas`
@@ -69,7 +69,7 @@ have the following parameters:
 In production deployments, it is possible that you will have more than a single
 instance of your application trying to modify the same key. In this case a race
 condition happens in which a modification one instance has made is immediately
-overidden.
+overridden.
 
 Consider this code:
 
