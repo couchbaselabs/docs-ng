@@ -249,19 +249,6 @@ the destination cluster is unavailable for more than 30 seconds, a source
 cluster continues polling the destination cluster which may result in 
 numerous errors over time. 
 
-In case of a network interruption:
-
-1. Delete the replication in 
-the Web Console.
-1. Fix the system issue.
-1. Re-create the replication. 
-
-The new XDCR replication will resume replicating items from where the old 
-replication had been stopped. 
-
-Your configurations is retained over host restarts and reboots. 
-The replication configuration does not need to be re-configured 
-in the event of a system failure.
 
 ### XDCR document handling
 
