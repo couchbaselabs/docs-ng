@@ -1,4 +1,4 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
 Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
@@ -17,41 +17,41 @@ the built in libcouchbase has been upgraded to version 2.3.1
 
 * Use compact JSON encoding when serializing documents to JSON.
 
-    The default Python `json.dumps` will insert whitespace around
+    The default Python `json.dumps` inserts white space around
     commas and other JSON tokens, while increasing readability when
-    printing to the screen, this also inflates the value size stored
-    inside the database as well as the transfer size when sending
+    printing to the screen. This also inflates the value size stored
+    inside the database and the transfer size when sending
     and receiving the item to and from the cluster. Version 1.2.1
     now uses the `separators` argument to only use the tokens without
-    their whitespace padding.
+    their white space padding.
 
     *Issues*: [PYCBC-231](http://couchbase.com/issues/browse/PYCBC-231)
 
 * Added _master-only_ `observe()` method to efficiently check for the
-  existence and CAS of an item
+  existence and CAS of an item.
 
     This feature utilizes functionality from libcouchbase 2.3.x and allows
     the usage of the `observe()` method to check for the existence of an
-    item. In contrast to a normal observe which probes the item's master
+    item. In contrast to a normal observe that probes the item's master
     and replica nodes resulting in multiple packets, the _master-only_
-    observe will contact the master only. Note that the return value for
+    observe contacts the master only. The return value for
     the `observe()` method is still the same, so the actual results are
-    present inside the `value` field which is an array - however since
-    only one node is contacted there is only ever a single element.
+    present inside the `value` field, which is an array. Because
+    only one node is contacted there is only ever a single element in the array.
 
     ```
     result = cb.observe("key", master_only=True).value[0]
     print "CAS for item is {0}".format(result.cas)
     ```
 
-    Note that this feature requires _libcouchbase_ 2.3.0 or greater
+    This feature requires libcouchbase 2.3.0 or later.
 
     *Issues*: [PYCBC-225](http://couchbase.com/issues/browse/PYCBC-225)
 
-* Provide semantic base exception classes
+* Provide semantic base exception classes.
 
     This adds support for additional semantically-grouped base exceptions
-    which may act as the superclasses of other exceptions thrown within
+    that may act as the superclasses of other exceptions thrown within
     the library. This means that applications are now able to catch
     the semantic base class and filter further exception handling based
     on the specified categories. This also allows the library to return
@@ -60,13 +60,13 @@ the built in libcouchbase has been upgraded to version 2.3.1
     application-side expectations and `try`/`except` logic. The new base
     classes include `CouchbaseNetworkError` (for network-based failures),
     `CouchbaseDataError` (for CRUD failures), and `CouchbaseTransientError`
-    (for errors which are likely to be corrected if the operation is retried).
+    (for errors that are likely to be corrected if the operation is retried).
 
-    Note that this feature requires _libcouchbase_ 2.3.0 or greater.
+    This feature requires _ibcouchbase 2.3.0 or later.
 
     *Issues*: [PYCBC-241](http://couchbase.com/issues/browse/PYCBC-241)
 
-* Twisted and gevent Integration modules are no longer _experimental_
+* Twisted and gevent Integration modules are no longer experimental.
 
     The inclusion of the `couchbase.experimental` module is no longer
     needed to enable the functionality of Twisted and gevent. Existing
@@ -78,17 +78,17 @@ the built in libcouchbase has been upgraded to version 2.3.1
 
 * New `--batch` parameter for `bench.py` benchmark script
 
-    This option will allow benchmarking using multi operations. If this
-    value is set to more than `1` then _n_ commands will be batched.
+    This option allows benchmarking using multi operations. If this
+    value is set to more than `1`, then _n_ commands are batched.
 
-* Provide `_cntl` method to directly manipulate libcouchbase settings
+* Provide `_cntl` method to directly manipulate libcouchbase settings.
 
-    This _unsupported_ method will proxy calls into `lcb_cntl()` to better
+    This **unsupported** method sends proxy calls into `lcb_cntl()` to better
     help adjust and tune library settings when deemed necessary. This exists
-    mainly as a path to debug and test certain situations, as well provide
-    an upgrade path to newer versions of libcouchbase which contain features
+    mainly as a path to debug and test certain situations, and to provide
+    an upgrade path to newer versions of libcouchbase that contain features
     not yet directly exposed by this library. As the documentation and the
-    method name suggest, this is not considered public API and should not be
+    method name suggest, this is not considered a public API and should not be
     used unless otherwise specified.
 
     *Issues*: [PYCBC-224](http://couchbase.com/issues/browse/PYCBC-224)
@@ -96,22 +96,22 @@ the built in libcouchbase has been upgraded to version 2.3.1
 
 **Fixes in 1.2.1**
 
-* Fix build failures when building in a subdirectory of a git repository
+* Fix build failures when building in a subdirectory of a Git repository.
 
-    Errors would be encountered when building in a subdirectory of a git
-    repository as the `couchbase_version.py` script would invoke
+    Errors would be encountered when building in a subdirectory of a Git
+    repository because the `couchbase_version.py` script would invoke
     `git describe` to determine the version being used. If the distribution
-    directory was not a git repository but the parent directory was a git
+    directory was not a Git repository but the parent directory was a Git
     repository, `git describe` would output the parent project's version
     information. This has been fixed in 1.2.1 where `git describe` is
-    only invoked if the top-level `.git` directory exists within the
-    distribution
+     invoked only if the top-level `.git` directory exists within the
+    distribution.
 
     *Issues*: [PYCBC-220](http://couchbase.com/issues/browse/PYCBC-220)
 
-* Fix hanging in `select` module when no I/O was pending
+* Fix hanging in `select` module when no I/O was pending.
 
-    This applies to the `select` module which is used when the
+    This applies to the `select` module that is used when the
     `enable_experiemental_gevent_support` option is used (which should
     _not_ be confused with `gcouchbase`). A symptom of this issue is
     that certain events would not be delivered and the application
@@ -121,38 +121,38 @@ the built in libcouchbase has been upgraded to version 2.3.1
 * Fix hang in `txcouchbase` when connection is dropped.
 
     A `write` event is delivered to libcouchbase when the connection is
-    dropped, so that it can detect the connection has errored and close
+    dropped, so that it can detect a connection error and close
     the socket. Previously this would manifest itself as infinitely
     hanging in the case of connection failures (or excessive timeouts)
-    because events on the socket would no longer be delivered
+    because events on the socket would no longer be delivered.
 
 * Correct erroneous conflation of `persist_to` and `replicate_to` in `set()` method.
 
-    This fixes a typo which resulted in the meanings of these two parameters to
+    This fixes a typo that resulted in the meanings of these two parameters to
     be inverted, such that `persist_to` would mean how many nodes to replicate
     to, and `replicate_to` would mean how many nodes the item should be persisted
-    on. This issue is manifest in unexpected timeouts at times.
+    on. This issue is manifest in unexpected timeouts.
 
     *Issues*: [PYCBC-228](http://couchbase.com/issues/browse/PYCBC-228)
         [PYCBC-242](http://couchbase.com/issues/browse/PYCBC-242)
 
-* Prevent application core dump when python exception is thrown in a
-  user-defined transcoder
+* Prevent application core dump when a python exception is thrown in a
+  user-defined transcoder.
 
     Previously if an exception was thrown in a user defined `Transcoder` object
-    (e.g. because conversion failed) this would not properly be caught by the
+    (for example, because conversion failed) this would not properly be caught by the
     library and would result in an application crash. This has been fixed and
     Python exceptions are now wrapped inside a `CouchbaseError` which is now
     propagated back to the application
 
     *Issues*: [PYCBC-232](http://couchbase.com/issues/browse/PYCBC-232)
 
-* Fix truncated row results and/or crashes when invoking other methods during
+* Fix truncated row results and crashes when invoking other methods during
   iteration over a `View` object, or when using `include_docs`.
 
-    This fixes an errnous assumption that the internal fetch method for
-    the iterator (i.e. `_fetch()` was the only entry point in which new results
-    would be returned. However if a `get()` or other Couchbase method was invoked
+    This fixes an erroneous assumption that the internal fetch method for
+    the iterator (that is, `_fetch()`) was the only entry point in which new results
+    would be returned. However if a `get()` or other Couchbase method was invoked,
     then any pending socket data would also be delivered to the callback. This has
     now been corrected to no longer assume that `_fetch()` is the only entry point.
     The library now relies on the completion callback from libcouchbase only.
@@ -161,10 +161,10 @@ the built in libcouchbase has been upgraded to version 2.3.1
         [PYCBC-236](http://couchbase.com/issues/browse/PYCBC-236)
 
 
-* Rename `conncache` parameter to `config_cache`
+* Rename `conncache` parameter to `config_cache`.
 
     This renames the constructor parameter for the _Configuration Cache_ feature.
-    The older name is still accepted but should be considered deprecated.
+    The older name is still accepted but is deprecated.
 
     *issues*: [PYCBC-221](http://couchbase.com/issues/browse/PYCBC-221)
 
