@@ -1560,6 +1560,11 @@ instance.
 
 <a id="couchbase-admin-web-console-settings-updatenotifications"></a>
 
+### Cluster settings
+Cluster settings show the available RAM on your cluster and the per server RAM quota. The Per Server RAM Quota is adjustable. In addition, if you have the Enterprise Edition, a Couchbase Server self-signed SSL certification is provided to set up secure communication in an XDCR environment. The SSL certificate can be regenerated. See [XDCR data encryption](../cb-admin/#xdcr-data-encrypt) for more information.
+
+
+![](../images/web-console-server-settings-cluster.png)
 ### Update notification settings
 
 You can enable or disable Update Notifications by checking the `Enable software
@@ -1571,7 +1576,7 @@ only notify you of your currently installed version, and no alert will be
 provided.
 
 
-![](../images/web-console-server-settings-updatenotifications.png)
+![](../images/web-console-server-settings-update-notifications.png)
 
 For more information on how Update Notifications work, see [Updating
 Notifications](#couchbase-admin-web-console-update-notifications).
@@ -1585,13 +1590,8 @@ auto-failover process is started when a cluster node failure is detected.
 
 To enable Auto-Failover, check the `Enable auto-failover` checkbox. To set the
 delay, in seconds, before auto-failover is started, enter the number of seconds
-it the `Timeout` box. The default timeout is 30 seconds.
-
-
+it the `Timeout` box. The default timeout is 30 seconds. For more information on Auto-Failover, see [Using Automatic Failover](#couchbase-admin-tasks-failover-automatic).
 ![](../images/web-console-server-settings-autofailover.png)
-
-For more information on Auto-Failover, see [Using Automatic
-Failover](#couchbase-admin-tasks-failover-automatic).
 
 <a id="couchbase-admin-web-console-settings-alerts"></a>
 
@@ -1599,7 +1599,7 @@ Failover](#couchbase-admin-tasks-failover-automatic).
 
 You can enable email alerts to be raised when a significant error occurs on your
 Couchbase Server cluster. The email alert system works by sending email directly
-to a configured SMTP server. Each alert email is send to the list of configured
+to a configured SMTP server. Each alert email is sent to the list of configured
 email recipients.
 
 The available settings are:
@@ -1652,50 +1652,15 @@ The available settings are:
    You can enable individual alert messages that can be sent by using the series of
    checkboxes. The supported alerts are:
 
-    * `Node was auto-failovered`
-
-      The sending node has been auto-failovered.
-
-    * `Maximum number of auto-failovered nodes was reached`
-
-      The auto-failover system will stop auto-failover when the maximum number of
-      spare nodes available has been reached.
-
-    * `Node wasn't auto-failovered as other nodes are down at the same time`
-
-      Auto-failover does not take place if there are no spare nodes within the current
-      cluster.
-
-    * `Node wasn't auto-failovered as the cluster was too small (less than 3 nodes)`
-
-      You cannot support auto-failover with less than 3 nodes.
-
-    * `Node's IP address has changed unexpectedly`
-
-      The IP address of the node has changed, which may indicate a network interface,
-      operating system, or other network or system failure.
-
-    * `Disk space used for persistent storage has reach at least 90% of capacity`
-
-      The disk device configured for storage of persistent data is nearing full
-      capacity.
-
-    * `Metadata overhead is more than 50%`
-
-      The amount of data required to store the metadata information for your dataset
-      is now greater than 50% of the available RAM.
-
-    * `Bucket memory on a node is entirely used for metadata`
-
-      All the available RAM on a node is being used to store the metadata for the
-      objects stored. This means that there is no memory available for caching
-      values,. With no memory left for storing metadata, further requests to store
-      data will also fail.
-
-    * `Writing data to disk for a specific bucket has failed`
-
-      The disk or device used for persisting data has failed to store persistent data
-      for a bucket.
+* `Node was auto-failovered` - The sending node has been auto-failovered.
+* `Maximum number of auto-failovered nodes was reached` -  The auto-failover system will stop auto-failover when the maximum number of spare nodes available has been reached.
+* `Node wasn't auto-failovered as other nodes are down at the same time` - Auto-failover does not take place if there are no spare nodes within the current cluster.
+* `Node wasn't auto-failovered as the cluster was too small (less than 3 nodes)` - You cannot support auto-failover with less than 3 nodes.
+* `Node's IP address has changed unexpectedly` - The IP address of the node has changed, which may indicate a network interface, operating system, or other network or system failure.
+ * `Disk space used for persistent storage has reach at least 90% of capacity` -  The disk device configured for storage of persistent data is nearing full 
+* `Metadata overhead is more than 50%` - The amount of data required to store the metadata information for your dataset is now greater than 50% of the available RAM.
+* `Bucket memory on a node is entirely used for metadata` - All the available RAM on a node is being used to store the metadata for the  objects stored. This means that there is no memory available for caching values,. With no memory left for storing metadata, further requests to store data will also fail.
+* `Writing data to disk for a specific bucket has failed` - The disk or device used for persisting data has failed to store persistent data for a bucket.
 
 
 ![](../images/web-console-server-settings-alerts.png)
@@ -1718,7 +1683,7 @@ You can provide a purge interval to remove the key and metadata
 for items that have been deleted or are expired. This is known as 'tombstone purging'. 
 For background information, see [Introduction, Tombstone Purging](#couchbase-introduction-tombstone-purge).
 
-![](../images/purge_interval2.2.png)
+![](../images/web-console-server-settings-autocompaction.png)
 
 The settings tab sets the following default parameters:
 
@@ -1778,13 +1743,20 @@ data has not already been loaded in the system. For more information on the
 sample data available, see [Couchbase Sample Buckets](#couchbase-sampledata).
 
 
-![](../images/web-console-server-settings-sample.png)
+![](../images/web-console-server-settings-sample-buckets.png)
 
 If the sample bucket data was not loaded during setup, select the sample buckets
 that you want to load using the checkboxes, and click *Create*.
 
 If the sample bucket data has already been loaded, it will be listed under the
 `Installed Samples` section of the page.
+
+
+###  Account management settings
+Account management settings allows you to set up and modify the read-only user's user name and password. This user has read-only access and cannot make any changes to the system. The user can only view existing servers, buckets, views and monitor stats.
+
+![](../images/web-console-server-settings-account-mgmt.png)
+
 
 <a id="couchbase-admin-web-console-update-notifications"></a>
 
@@ -1838,6 +1810,8 @@ updates.
 To view the available updates, click on the `Settings` link. This displays your
 current version and update availability. From here you can be taken to the
 download location to obtain the updated release package.
+
+
 
 <a id="couchbase-admin-web-console-alerting"></a>
 
