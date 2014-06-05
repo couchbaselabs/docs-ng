@@ -4,6 +4,39 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.6 GA (5 June 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-6"></a>
+
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-503">NCBC-503: CouchbaseCluster construction is missing un/pw</a>
+
+    This patch fixes a bug where the username and password was not being included in the REST call to the API. This
+    would cause the API to return a 401 Unauthorized evan if the password and username were included within object
+    creation.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-457">NCBC-457: Change verbosity of HB logging to DEBUG</a>
+
+    This patch changes the verbosity of the logging within the heartbeat component from INFO to DEBUG. 
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-485">NCBC-485: Small TTL values can get lost by client/server clock-drift</a>
+
+    This patch fixes a bug where differences between the server clock and the client clock would cause small timespans to provide
+    inconsistent and unexpected results. 
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-499">NCBC-499: Refactor InternalPoolImpl so that NRE is not thrown</a>
+
+    This patch provides a more defensive Dispose method implmentation so that when multiple threads try to dispose on the pool,
+    only one thread will perform the dispose. It also protects against NullReferenceExceptions by checking for nullity of internal
+    references before calling their dispose methods.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-494">NCBC-494: Finalizer throws NRE if Pools has already been finalized/GC'd</a>
+
+    Fixes a race condition where the internal CouchbasePool may have already been GC'd before the finalizer is run on the parent object,
+    causing a NullReferenceException (NRE) to be thrown.
+
+
+
 ## Release Notes for Couchbase Client Library .NET 1.3.5 GA (6 May 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-5"></a>
