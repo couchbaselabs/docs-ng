@@ -11,7 +11,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 * <a href="http://www.couchbase.com/issues/browse/NCBC-503">NCBC-503: CouchbaseCluster construction is missing un/pw</a>
 
     This patch fixes a bug where the user name and password was not being included in the REST call to the API. This
-    would cause the API to return a 401 Unauthorized evan if the password and username were included within object
+    would cause the API to return a 401 Unauthorized even if the password and user name were included within object
     creation.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-457">NCBC-457: Change verbosity of HB logging to DEBUG</a>
