@@ -29,10 +29,10 @@ running to false, which makes it terminate even if something goes wrong during t
 phase (preventing it from being active).
 
 * [JCBC-424, SPY-172](http://www.couchbase.com/issues/browse/JCBC-424): The NIO selector 
-is now woken up manually if now load is going through, giving the java client a chance 
+is now woken up manually if no load is going through, giving the Java client a chance 
 to perform tasks. One of the currently implemented tasks is sending a NOOP broadcast if the 
 last write is longer behind than 5 seconds. This helps to discover broken channels if no 
-load is going through and also prevent restrictive firewalls from timing out the connections 
+load is going through and also prevents restrictive firewalls from timing out the connections 
 prematurely.
 
 * [JCBC-413](http://www.couchbase.com/issues/browse/JCBC-413): A race condition has been 
