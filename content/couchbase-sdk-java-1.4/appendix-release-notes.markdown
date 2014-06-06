@@ -14,17 +14,17 @@ The 1.4.2 release is the second bug fix release for the 1.4 series. It fixes ver
 
  * [JCBC-460](http://www.couchbase.com/issues/browse/JCBC-460): A bug has been fixed where 
 pushed configurations with replica-vbucket changes only did not count as significant 
-and got discarded. This can be an issue if persistence/replication constraints are used 
+and got discarded. This can be an issue if persistence or replication constraints are used 
 since config changes might not be picked up correctly.
 
 * [SPY-170](http://www.couchbase.com/issues/browse/SPY-170): A concurrency issue has been 
-fixed in StringUtils.isJSONObject(), which could lead to false negatives when validating 
+fixed in `StringUtils.isJSONObject()`, which could lead to false negatives when validating 
 in a concurrent environment.
 
 * [JCBC-463, SPY-171](http://www.couchbase.com/issues/browse/JCBC-463): There have been 
 some changes made which help with hardening the shutdown procedure in general and making 
-it more fault tolerant. The code now makes sure to also shutdown the JCBC-opened resources 
-even if shutting down the spy IO thread fails. Also, the spy IO thread now always sets 
+it more fault tolerant. The code now makes sure to also shut down the JCBC-opened resources 
+even if shutting down the spy I/O thread fails. Also, the spy I/O thread now always sets 
 running to false, which makes it terminate even if something goes wrong during the shutdown 
 phase (preventing it from being active).
 
@@ -39,17 +39,15 @@ prematurely.
 fixed in the ClusterManager, now making sure that the consumer is notified once the result 
 is set properly.
 
-* [JCBC-359, JCBC-408, JCBC-409](http://www.couchbase.com/issues/browse/JCBC-359): Javadocs 
-have been enhanced in various places, most notably in the `CouchbaseConnectionFactoryBuilder` 
-where the builder methods are not better documented.
-
+* [JCBC-359, JCBC-408, JCBC-409](http://www.couchbase.com/issues/browse/JCBC-359): The API documentation (Javadoc) has been enhanced in various places, most notably in the `CouchbaseConnectionFactoryBuilder` class.
+ 
 * [JCBC-461](http://www.couchbase.com/issues/browse/JCBC-461): Since only one streaming 
-connection can be open, the number of netty worker threads have been limited to 1, reducing the 
+connection can be open, the number of Netty worker threads has been limited to 1, reducing the 
 risk of opening more threads than needed in failure cases.
 
 **Known Issues in 1.4.1**
 
-* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The workaround
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The work-around
  is to set a higher value through `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
 
 <a id="couchbase-sdk-java-rn_1-4-1a"></a>
