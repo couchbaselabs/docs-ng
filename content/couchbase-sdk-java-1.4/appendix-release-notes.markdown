@@ -4,6 +4,52 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-2a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.2 GA (5 June 2014)
+
+The 1.4.2 release is the second bug fix release for the 1.4 series. It fixes very important issues found on the 1.4 branch, so all users running on 1.4.0 or 1.4.1 should upgrade.
+
+**Fixes in 1.4.2**
+
+ * [JCBC-460](http://www.couchbase.com/issues/browse/JCBC-460): A bug has been fixed where 
+pushed configurations with replica-vbucket changes only did not count as significant 
+and got discarded. This can be an issue if persistence or replication constraints are used 
+since config changes might not be picked up correctly.
+
+* [SPY-170](http://www.couchbase.com/issues/browse/SPY-170): A concurrency issue has been 
+fixed in `StringUtils.isJSONObject()`, which could lead to false negatives when validating 
+in a concurrent environment.
+
+* [JCBC-463, SPY-171](http://www.couchbase.com/issues/browse/JCBC-463): There have been 
+some changes made which help with hardening the shutdown procedure in general and making 
+it more fault tolerant. The code now makes sure to also shut down the JCBC-opened resources 
+even if shutting down the spy I/O thread fails. Also, the spy I/O thread now always sets 
+running to false, which makes it terminate even if something goes wrong during the shutdown 
+phase (preventing it from being active).
+
+* [JCBC-424, SPY-172](http://www.couchbase.com/issues/browse/JCBC-424): The NIO selector 
+is now woken up manually if no load is going through, giving the Java client a chance 
+to perform tasks. One of the currently implemented tasks is sending a NOOP broadcast if the 
+last write is longer behind than 5 seconds. This helps to discover broken channels if no 
+load is going through and also prevents restrictive firewalls from timing out the connections 
+prematurely.
+
+* [JCBC-413](http://www.couchbase.com/issues/browse/JCBC-413): A race condition has been 
+fixed in the ClusterManager, now making sure that the consumer is notified once the result 
+is set properly.
+
+* [JCBC-359, JCBC-408, JCBC-409](http://www.couchbase.com/issues/browse/JCBC-359): The API documentation (Javadoc) has been enhanced in various places, most notably in the `CouchbaseConnectionFactoryBuilder` class.
+ 
+* [JCBC-461](http://www.couchbase.com/issues/browse/JCBC-461): Since only one streaming 
+connection can be open, the number of Netty worker threads has been limited to 1, reducing the 
+risk of opening more threads than needed in failure cases.
+
+**Known Issues in 1.4.1**
+
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The work-around
+ is to set a higher value through `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
+
 <a id="couchbase-sdk-java-rn_1-4-1a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.1 GA (8 May 2014)

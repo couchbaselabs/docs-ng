@@ -1,9 +1,173 @@
-# Appendix: Release Notes
+# Release Notes
 
 The following sections provide release notes for individual release versions of
 Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
 Client Library Python Issues
 Tracker](http://www.couchbase.com/issues/browse/PYCBC).
+
+
+<a id="couchbase-sdk-python-rn_1-2-1g"></a>
+## Release Notes for Couchbase Python SDK 1.2.1 GA (5 June 2014)
+
+This release provides many bug fixes for 1.2.0. This also includes
+added functionality via _libcouchbase_ 2.3.1. For Windows distributions,
+the built in libcouchbase has been upgraded to version 2.3.1
+
+**New Features and Behavior Changes in 1.2.1**
+
+* Use compact JSON encoding when serializing documents to JSON.
+
+    The default Python `json.dumps` inserts white space around
+    commas and other JSON tokens, while increasing readability when
+    printing to the screen. This also inflates the value size stored
+    inside the database and the transfer size when sending
+    and receiving the item to and from the cluster. Version 1.2.1
+    now uses the `separators` argument to only use the tokens without
+    their white space padding.
+
+    *Issues*: [PYCBC-231](http://couchbase.com/issues/browse/PYCBC-231)
+
+* Added _master-only_ `observe()` method to efficiently check for the
+  existence and CAS of an item.
+
+    This feature utilizes functionality from libcouchbase 2.3.x and allows
+    the usage of the `observe()` method to check for the existence of an
+    item. In contrast to a normal observe that probes the item's master
+    and replica nodes resulting in multiple packets, the _master-only_
+    observe contacts the master only. The return value for
+    the `observe()` method is still the same, so the actual results are
+    present inside the `value` field, which is an array. Because
+    only one node is contacted there is only ever a single element in the array.
+
+    ```
+    result = cb.observe("key", master_only=True).value[0]
+    print "CAS for item is {0}".format(result.cas)
+    ```
+
+    This feature requires libcouchbase 2.3.0 or later.
+
+    *Issues*: [PYCBC-225](http://couchbase.com/issues/browse/PYCBC-225)
+
+* Provide semantic base exception classes.
+
+    This adds support for additional semantically-grouped base exceptions
+    that may act as the superclasses of other exceptions thrown within
+    the library. This means that applications are now able to catch
+    the semantic base class and filter further exception handling based
+    on the specified categories. This also allows the library to return
+    more detailed exception codes in the future (for example, a possible
+    `ConnectionRefusedError` rather than `NetworkError`) without breaking
+    application-side expectations and `try`/`except` logic. The new base
+    classes include `CouchbaseNetworkError` (for network-based failures),
+    `CouchbaseDataError` (for CRUD failures), and `CouchbaseTransientError`
+    (for errors that are likely to be corrected if the operation is retried).
+
+    This feature requires _ibcouchbase 2.3.0 or later.
+
+    *Issues*: [PYCBC-241](http://couchbase.com/issues/browse/PYCBC-241)
+
+* Twisted and gevent Integration modules are no longer experimental.
+
+    The inclusion of the `couchbase.experimental` module is no longer
+    needed to enable the functionality of Twisted and gevent. Existing
+    code importing the `experimental` module will still function and
+    will still retain the full stability of the Twisted and gevent
+    modules.
+
+    *Issues*: [PYCBC-221](http://couchbase.com/issues/browse/PYCBC-221)
+
+* New `--batch` parameter for `bench.py` benchmark script
+
+    This option allows benchmarking using multi operations. If this
+    value is set to more than `1`, then _n_ commands are batched.
+
+* Provide `_cntl` method to directly manipulate libcouchbase settings.
+
+    This **unsupported** method sends proxy calls into `lcb_cntl()` to better
+    help adjust and tune library settings when deemed necessary. This exists
+    mainly as a path to debug and test certain situations, and to provide
+    an upgrade path to newer versions of libcouchbase that contain features
+    not yet directly exposed by this library. As the documentation and the
+    method name suggest, this is not considered a public API and should not be
+    used unless otherwise specified.
+
+    *Issues*: [PYCBC-224](http://couchbase.com/issues/browse/PYCBC-224)
+
+
+**Fixes in 1.2.1**
+
+* Fix build failures when building in a subdirectory of a Git repository.
+
+    Errors would be encountered when building in a subdirectory of a Git
+    repository because the `couchbase_version.py` script would invoke
+    `git describe` to determine the version being used. If the distribution
+    directory was not a Git repository but the parent directory was a Git
+    repository, `git describe` would output the parent project's version
+    information. This has been fixed in 1.2.1 where `git describe` is
+     invoked only if the top-level `.git` directory exists within the
+    distribution.
+
+    *Issues*: [PYCBC-220](http://couchbase.com/issues/browse/PYCBC-220)
+
+* Fix hanging in `select` module when no I/O was pending.
+
+    This applies to the `select` module that is used when the
+    `enable_experiemental_gevent_support` option is used (which should
+    _not_ be confused with `gcouchbase`). A symptom of this issue is
+    that certain events would not be delivered and the application
+    would be blocked.
+
+
+* Fix hang in `txcouchbase` when connection is dropped.
+
+    A `write` event is delivered to libcouchbase when the connection is
+    dropped, so that it can detect a connection error and close
+    the socket. Previously this would manifest itself as infinitely
+    hanging in the case of connection failures (or excessive timeouts)
+    because events on the socket would no longer be delivered.
+
+* Correct erroneous conflation of `persist_to` and `replicate_to` in `set()` method.
+
+    This fixes a typo that resulted in the meanings of these two parameters to
+    be inverted, such that `persist_to` would mean how many nodes to replicate
+    to, and `replicate_to` would mean how many nodes the item should be persisted
+    on. This issue is manifest in unexpected timeouts.
+
+    *Issues*: [PYCBC-228](http://couchbase.com/issues/browse/PYCBC-228)
+        [PYCBC-242](http://couchbase.com/issues/browse/PYCBC-242)
+
+* Prevent application core dump when a python exception is thrown in a
+  user-defined transcoder.
+
+    Previously if an exception was thrown in a user defined `Transcoder` object
+    (for example, because conversion failed) this would not properly be caught by the
+    library and would result in an application crash. This has been fixed and
+    Python exceptions are now wrapped inside a `CouchbaseError` which is now
+    propagated back to the application
+
+    *Issues*: [PYCBC-232](http://couchbase.com/issues/browse/PYCBC-232)
+
+* Fix truncated row results and crashes when invoking other methods during
+  iteration over a `View` object, or when using `include_docs`.
+
+    This fixes an erroneous assumption that the internal fetch method for
+    the iterator (that is, `_fetch()`) was the only entry point in which new results
+    would be returned. However if a `get()` or other Couchbase method was invoked,
+    then any pending socket data would also be delivered to the callback. This has
+    now been corrected to no longer assume that `_fetch()` is the only entry point.
+    The library now relies on the completion callback from libcouchbase only.
+
+    *Issues*: [PYCBC-223](http://couchbase.com/issues/browse/PYCBC-223)
+        [PYCBC-236](http://couchbase.com/issues/browse/PYCBC-236)
+
+
+* Rename `conncache` parameter to `config_cache`.
+
+    This renames the constructor parameter for the _Configuration Cache_ feature.
+    The older name is still accepted but is deprecated.
+
+    *issues*: [PYCBC-221](http://couchbase.com/issues/browse/PYCBC-221)
+
 
 <a id="couchbase-sdk-python-rn_1-2-0g"></a>
 ## Release Notes for Couchbase Python SDK 1.2.0 GA (7 January 2014)
