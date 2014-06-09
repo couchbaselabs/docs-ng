@@ -3601,9 +3601,9 @@ If you want to change the replication protocol for an existing XDCR replication,
 
     - `XDCR Optimistic Replication Threshold`. This will improve latency for XDCR.
 
-      This is document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
+      This is compressed document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256 Bytes. XDCR
       will get metadata for documents larger than this size on a single time before
-      replicating the document to a destination cluster. For background information, see 
+      replicating the uncompressed document to a destination cluster. For background information, see 
       ['Optimistic Replication' in XDCR](#xdcr-optimistic-replication)
 
 4. Click Replicate. 
