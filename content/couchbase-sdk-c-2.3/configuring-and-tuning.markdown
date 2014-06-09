@@ -27,7 +27,7 @@ The following snippet disables HTTP bootstrapping:
 ```c
 struct lcb_create_st crparams = { 0 };
 
-lcb_config_transport transports[] = {
+lcb_config_transport_t transports[] = {
 	LCB_CONFIG_TRANSPORT_CCCP,
 	LCB_CONFIG_TRANSPORT_LIST_END
 };
