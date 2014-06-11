@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_bzz_fty_5n">
+  <title>Views REST API</title>
+  <body>
+    <p>You can index and query JSON documents using views. Views are
+      functions written in JavaScript that can serve several purposes in your
+      application. You can use them to: find all the documents in your database,
+      create a copy of data in a document and present it in a specific order, create
+      an index to efficiently find documents by a particular value or by a particular
+      structure in the document, represent relationships between documents, and
+      perform calculations on data contained in documents.</p>
+    
+    <p>You store view functions in a design document as JSON and can use the REST API
+        to manage your design documents.</p>
+  </body>
+</topic>

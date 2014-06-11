@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3761"><title>Getting TAP information</title><body><p>Couchbase Server uses an internal protocol known as TAP to stream information
+about data changes between cluster nodes. Couchbase Server uses the TAP protocol
+during 1) rebalance, 2) replication at other cluster nodes, and 3) persistence
+of items to disk.</p><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><p>The following statistics will be output in response to a <codeph>cbstats tap</codeph> request:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>ep_tap_total_queue</entry>
+	<entry>Sum of tap queue sizes on the current tap queues</entry>
+</row></thead><tbody><row>
+	<entry>ep_tap_total_fetched</entry>
+	<entry>Sum of all tap messages sent</entry>
+</row><row>
+	<entry>ep_tap_bg_max_pending</entry>
+	<entry>The maximum number of background jobs a tap connection may have</entry>
+</row><row>
+	<entry>ep_tap_bg_fetched</entry>
+	<entry>Number of tap disk fetches</entry>
+</row><row>
+	<entry>ep_tap_bg_fetch_requeued</entry>
+	<entry>Number of times a tap background fetch task is requeued.</entry>
+</row><row>
+	<entry>ep_tap_fg_fetched</entry>
+	<entry>Number of tap memory fetches</entry>
+</row><row>
+	<entry>ep_tap_deletes</entry>
+	<entry>Number of tap deletion messages sent</entry>
+</row><row>
+	<entry>ep_tap_throttled</entry>
+	<entry>Number of tap messages refused due to throttling.</entry>
+</row><row>
+	<entry>ep_tap_keepalive</entry>
+	<entry>How long to keep tap connection state after client disconnect.</entry>
+</row><row>
+	<entry>ep_tap_count</entry>
+	<entry>Number of tap connections.</entry>
+</row><row>
+	<entry>ep_tap_bg_num_samples</entry>
+	<entry>The number of tap background fetch samples included in the average</entry>
+</row><row>
+	<entry>ep_tap_bg_min_wait</entry>
+	<entry>The shortest time (µs) for a tap item before it is serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_tap_bg_max_wait</entry>
+	<entry>The longest time (µs) for a tap item before it is serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_tap_bg_wait_avg</entry>
+	<entry>The average wait time (µs) for a tap item before it is serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_tap_bg_min_load</entry>
+	<entry>The shortest time (µs) for a tap item to be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_tap_bg_max_load</entry>
+	<entry>The longest time (µs) for a tap item to be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_tap_bg_load_avg</entry>
+	<entry>The average time (µs) for a tap item to be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_tap_noop_interval</entry>
+	<entry>The number of secs between a no-op is added to an idle connection</entry>
+</row><row>
+	<entry>ep_tap_backoff_period</entry>
+	<entry>The number of seconds the tap connection should back off after receiving ETMPFAIL</entry>
+</row><row>
+	<entry>ep_tap_queue_fill</entry>
+	<entry>Total enqueued items</entry>
+</row><row>
+	<entry>ep_tap_queue_drain</entry>
+	<entry>Total drained items</entry>
+</row><row>
+	<entry>ep_tap_queue_backoff</entry>
+	<entry>Total back-off items</entry>
+</row><row>
+	<entry>ep_tap_queue_backfill</entry>
+	<entry>Number of backfill remaining</entry>
+</row><row>
+	<entry>ep_tap_queue_itemondisk</entry>
+	<entry>Number of items remaining on disk</entry>
+</row><row>
+	<entry>ep_tap_throttle_threshold</entry>
+	<entry>Percentage of memory in use before we throttle tap streams</entry>
+</row><row>
+	<entry>ep_tap_throttle_queue_cap</entry>
+	<entry>Disk write queue cap to throttle tap streams </entry>
+</row></tbody></tgroup></table><p>You use the <codeph>cbstats tapagg</codeph> to get statistics from named tap connections which
+are logically grouped and aggregated together by prefixes.</p><p>For example, if all of your tap connections started with <codeph>rebalance_</codeph> or
+<codeph>replication_</codeph>, you could call <codeph>cbstats tapagg _</codeph> to request stats grouped by
+the prefix starting with <codeph>_</codeph>. This would return a set of statistics for
+<codeph>rebalance</codeph> and a set for <codeph>replication</codeph>. The following are possible values
+returned by <codeph>cbstats tapagg</codeph> :</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>[prefix]:count</entry>
+	<entry>Number of connections matching this prefix</entry>
+</row></thead><tbody><row>
+	<entry>[prefix]:qlen</entry>
+	<entry>Total length of queues with this prefix</entry>
+</row><row>
+	<entry>[prefix]:backfill_remaining</entry>
+	<entry>Number of items needing to be backfilled</entry>
+</row><row>
+	<entry>[prefix]:backoff</entry>
+	<entry>Total number of backoff events</entry>
+</row><row>
+	<entry>[prefix]:drain</entry>
+	<entry>Total number of items drained</entry>
+</row><row>
+	<entry>[prefix]:fill</entry>
+	<entry>Total number of items filled</entry>
+</row><row>
+	<entry>[prefix]:itemondisk</entry>
+	<entry>Number of items remaining on disk</entry>
+</row><row>
+	<entry>[prefix]:total_backlog_size</entry>
+	<entry>Number of remaining items for replication </entry>
+</row></tbody></tgroup></table></body></topic>

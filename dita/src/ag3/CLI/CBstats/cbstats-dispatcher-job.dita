@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic799"><title>Dispatcher stats and job logs</title><body><p>This provides the stats from AUX dispatcher and non-IO dispatcher, and
+from all the reader and writer threads running for the specific bucket.
+Along with stats, the job logs for each of the dispatchers and worker
+threads is also made available.</p><p>The following stats are available for the workers and dispatchers:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>state</entry>
+	<entry>Threads’s current status: running, sleeping etc.</entry>
+</row><row>
+	<entry>runtime</entry>
+	<entry>The amount of time since the thread started running</entry>
+</row><row>
+	<entry>task</entry>
+	<entry>The activity/job the thread is involved with at the moment</entry>
+</row></tbody></tgroup></table><p>The following stats are for individual job logs:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>starttime</entry>
+	<entry>The timestamp when the job started</entry>
+</row><row>
+	<entry>runtime</entry>
+	<entry>Time it took for the job to run</entry>
+</row><row>
+	<entry>task</entry>
+	<entry>The activity/job the thread ran during that time</entry>
+</row></tbody></tgroup></table></body></topic>

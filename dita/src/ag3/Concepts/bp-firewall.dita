@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic245"><title>Couchbase behind a secondary firewall</title><body><p>If Couchbase is being deployed behind a secondary firewall, ensure that the reserved
+Couchbase network ports are open. For more information about the ports that Couchbase Server uses, see <xref href="../cb-install/#network-ports" format="html">Network ports</xref>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-install/#network-ports" format="html"><linktext>Network ports</linktext></link></linklist></related-links></topic>

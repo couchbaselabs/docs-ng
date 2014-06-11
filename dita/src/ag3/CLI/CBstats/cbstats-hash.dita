@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1751"><title>Hash stats</title><body><p>Hash stats provide information on your vbucket hash tables.</p><p>Requesting these stats does affect performance, so don’t do it too
+regularly, but it’s useful for debugging certain types of performance
+issues. For example, if your hash table is tuned to have too few
+buckets for the data load within it, the =max_depth= will be too large
+and performance will suffer.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>avg_count</entry>
+	<entry>The average number of items per vbucket</entry>
+</row><row>
+	<entry>avg_max</entry>
+	<entry>The average max depth of a vbucket hash table</entry>
+</row><row>
+	<entry>avg_min</entry>
+	<entry>The average min depth of a vbucket hash table</entry>
+</row><row>
+	<entry>largest_max</entry>
+	<entry>The largest hash table depth of in all vbuckets</entry>
+</row><row>
+	<entry>largest_min</entry>
+	<entry>The largest minimum hash table depth of all vbuckets</entry>
+</row><row>
+	<entry>max_count</entry>
+	<entry>The largest number of items in a vbucket</entry>
+</row><row>
+	<entry>min_count</entry>
+	<entry>The smallest number of items in a vbucket</entry>
+</row><row>
+	<entry>total_counts</entry>
+	<entry>The total number of items in all vbuckets</entry>
+</row></tbody></tgroup></table><p>It is also possible to get more detailed hash tables stats by using
+‘hash detail’. This will print per-vbucket stats.</p><p>Each stat is prefixed with =vb_= followed by a number, a colon, then
+the individual stat name.</p><p>For example, the stat representing the size of the hash table for
+vbucket 0 is =vb_0:size=.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>state</entry>
+	<entry>The current state of this vbucket</entry>
+</row><row>
+	<entry>size</entry>
+	<entry>Number of hash buckets</entry>
+</row><row>
+	<entry>locks</entry>
+	<entry>Number of locks covering hash table operations</entry>
+</row><row>
+	<entry>min_depth</entry>
+	<entry>Minimum number of items found in a bucket</entry>
+</row><row>
+	<entry>max_depth</entry>
+	<entry>Maximum number of items found in a bucket</entry>
+</row><row>
+	<entry>reported</entry>
+	<entry>Number of items this hash table reports having</entry>
+</row><row>
+	<entry>counted</entry>
+	<entry>Number of items found while walking the table</entry>
+</row><row>
+	<entry>resized</entry>
+	<entry>Number of times the hash table resized</entry>
+</row><row>
+	<entry>mem_size</entry>
+	<entry>Running sum of memory used by each item</entry>
+</row><row>
+	<entry>mem_size_counted</entry>
+	<entry>Counted sum of current memory used by each item</entry>
+</row></tbody></tgroup></table></body></topic>

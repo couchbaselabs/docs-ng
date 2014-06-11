@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2862"><title>Changing disk write queue quotas</title><body><p>One of the specific uses of <codeph>cbepctl</codeph> is to the change the default maximum items
+for a disk write queue. This impacts replication of data that occurs between
+source and destination nodes within a cluster. Both data that a node receives
+from client applications, and replicated items that it receives are placed on a
+disk write queue. If there are too many items waiting in the disk write queue at
+any given destination, Couchbase Server will reduce the rate of data that is
+sent to a destination. This is process is also known as <i>backoff</i>.</p><p>By default, when a disk write queue contains one million items, a Couchbase node
+will reduce the rate it sends out data to be replicated. You can change this
+setting to be the greater of 10% of the items at a destination node or a number
+you specify. For instance:</p><codeblock><codeph>&gt; ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
+</codeph></codeblock><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><p>In this example we specify that a replica node send a request to backoff when it
+has two million items or 10% of all items, whichever is greater. You will see a
+response similar to the following:</p><codeblock><codeph>setting param: tap_throttle_queue_cap 2000000
+</codeph></codeblock><p>In this next example, we change the default percentage used to manage the
+replication stream. If the items in a disk write queue reach the greater of this
+percentage or a specified number of items, replication requests will slow down:</p><codeblock><codeph>&gt; ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_cap_pcnt 15
+</codeph></codeblock><p>In this example, we set the threshold to 15% of all items at a replica node.
+When a disk write queue on a replica node reaches this point, it will request
+replication backoff. For more information about replicas, replication and
+backoff from replication, see <xref href="../cb-admin/#couchbase-introduction-architecture-replication" format="html">Replicas and
+Replication</xref>. The other
+command options for <codeph>tap_param</codeph> are:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Parameter</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry><b>tap_keepalive</b></entry>
+	<entry>Seconds to hold a named tap connection.</entry>
+</row><row>
+	<entry><b>tap_throttle_queue_cap</b></entry>
+	<entry>Max disk write queue size when tap streams will put into a temporary, 5-second pause. ‘Infinite’ means there is no cap.</entry>
+</row><row>
+	<entry><b>tap_throttle_cap_pcnt</b></entry>
+	<entry>Maximum items in disk write queue as percentage of all items on a node. At this point tap streams will put into a temporary, 5-second pause.</entry>
+</row><row>
+	<entry><b>tap_throttle_threshold</b></entry>
+	<entry>Percentage of memory in use when tap streams will be put into a temporary, 5-second pause. </entry>
+</row></tbody></tgroup></table></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-introduction-architecture-replication" format="html"><linktext>Replicas and
+Replication</linktext></link></linklist></related-links></topic>

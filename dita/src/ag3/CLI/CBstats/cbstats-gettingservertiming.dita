@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2459"><title>Getting server timings</title><body><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><p>The following is sample output from <codeph>cbstats timings</codeph> :</p><codeblock><codeph>disk_insert (10008 total)
+   8us - 16us    : ( 94.80%)8 ###########################################
+   16us - 32us   : ( 97.70%)  290 #
+   32us - 64us   : ( 98.43%)   73
+   64us - 128us  : ( 99.29%)   86
+   128us - 256us : ( 99.77%)   48
+   256us - 512us : ( 99.79%)    2
+   512us - 1ms   : ( 99.91%)   12
+   1ms - 2ms     : ( 99.92%)    1
+disk_commit (1 total)
+    0 - 1s        : (100.00%) 1 #############################################################
+disk_vbstate_snapshot (2 total)
+    4s - 8s       : (100.00%) 2 #############################################################
+get_stats_cmd (1535 total)
+    ....
+set_vb_cmd (1024 total)
+    4us - 8us     : ( 97.95%) 1003 ########################################################
+    8us - 16us    : ( 98.83%)    9
+    ....
+</codeph></codeblock><p>The first statistic tells you that <codeph>disk_insert</codeph> took 8–16µs8 times, 16–32µs 290
+times, and so forth.</p><p>The following are the possible return values provided by <codeph>cbstats timings</codeph>. The
+return values provided by this command depend on what has actually occurred on a
+data bucket:</p><p><!--Removed anchor point table-couchbase-admin-cmdline-couchbase-cbstats-timings--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>bg_load</entry>
+	<entry>Background fetches waiting for disk</entry>
+</row></thead><tbody><row>
+	<entry>bg_wait</entry>
+	<entry>Background fetches waiting in the dispatcher queue</entry>
+</row><row>
+	<entry>data_age</entry>
+	<entry>Age of data written to disk</entry>
+</row><row>
+	<entry>disk_commit</entry>
+	<entry>Time waiting for a commit after a batch of updates</entry>
+</row><row>
+	<entry>disk_del</entry>
+	<entry>Wait for disk to delete an item</entry>
+</row><row>
+	<entry>disk_insert</entry>
+	<entry>Wait for disk to store a new item</entry>
+</row><row>
+	<entry>disk_vbstate_snapshot</entry>
+	<entry>Time spent persisting vbucket state changes</entry>
+</row><row>
+	<entry>disk_update</entry>
+	<entry>Wait time for disk to modify an existing item</entry>
+</row><row>
+	<entry>get_cmd</entry>
+	<entry>Servicing get requests</entry>
+</row><row>
+	<entry>get_stats_cmd</entry>
+	<entry>Servicing get_stats requests</entry>
+</row><row>
+	<entry>set_vb_cmd</entry>
+	<entry>Servicing vbucket set state commands</entry>
+</row><row>
+	<entry>item_alloc_sizes</entry>
+	<entry>Item allocation size counters (in bytes)</entry>
+</row><row>
+	<entry>notify_io</entry>
+	<entry>Time for waking blocked connections</entry>
+</row><row>
+	<entry>storage_age</entry>
+	<entry>Time since most recently persisted item was initially queued for storage.</entry>
+</row><row>
+	<entry>tap_mutation</entry>
+	<entry>Time spent servicing tap mutations </entry>
+</row></tbody></tgroup></table></body></topic>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1514"><title>Using the Document Editor</title><body><p>The Document Viewer and Editor enables you to browse, view, and edit individual
+documents stored in Couchbase Server buckets. To get to the <codeph>Documents</codeph> editor,
+click on the <codeph>Documents</codeph> button within the <codeph>Data Buckets</codeph> view. This will open a
+list of available documents. You are shown only a selection of the available
+documents, rather than all documents. The maximum size of editable documents is 2.5 KB.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-document-list.png"><alt/></image>
+</ph></required-cleanup><p>You can select a different Bucket by using the bucket selection popup on the
+left. You can also page through the list of documents shown by using the
+navigation arrows on the right. To jump to a specific document ID, enter the ID
+in the box provided and click <codeph>Lookup Id</codeph>. To edit an existing document, click
+the <codeph>Edit Document</codeph> button. To delete the document from the bucket, click
+<codeph>Delete</codeph>.</p><p>To create a new document, click the <codeph>Create Document</codeph> button. This will open a
+prompt to specify the document Id of the created document.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-document-create.png"><alt/></image>
+</ph></required-cleanup><p>Once the document Id has been set, you will be presented with the document
+editor. The document editor will also be opened when you click on the document
+ID within the document list. To edit the contents of the document, use the
+textbox to modify the JSON of the stored document.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-document-edit.png"><alt/></image>
+</ph></required-cleanup><p>Within the document editor, you can click <codeph>Delete</codeph> to delete the current
+document, <codeph>Save As...</codeph> will copy the currently displayed information and create
+a new document with the document Id you specify. The <codeph>Save</codeph> will save the
+current document and return you to the list of documents.</p></body></topic>

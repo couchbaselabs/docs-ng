@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+ <title>Couchbase Administration Guide</title>
+ <topicref href="Features/features.dita">
+  <topicref href="Features/bcp.dita"/>
+  <topicref href="Features/global-thread-pool.dita"/>
+  <topicref href="Features/bucket-priority.dita"/>
+  <topicref href="Features/bucket-eviction.dita"/>
+  <topicref href="Features/index-updates.dita"/>
+  <topicref href="Features/rebalancing-enhancements.dita"/>
+  <topicref href="Features/increment-backup.dita"/>
+  <topicref href="Features/graceful-failover.dita"/>
+  <topicref href="Features/incremental-recovery.dita"/>
+  <topicref href="Features/xdcr-memory-replication.dita"/>
+  <topicref href="Features/xdcr-pause-resume.dita"/>
+  <topicref href="Features/security-admin-access.dita"/>
+  <topicref href="Features/security-clientServer-comm.dita"/>
+  <topicref href="Features/cli-change-summary.dita"/>
+  <topicref href="Features/UI-diagnostics.dita"/>
+ </topicref>
+ <topicref href="Basics/admin-basics.dita">
+  <topicref href="Basics/admin-datafiles.dita"/>
+ </topicref>
+ <topicref href="Concepts/concept-intro.dita">
+  <topicref href="Concepts/concept-nodesCluster.dita"/>
+  <topicref href="Concepts/concept-clusterMgr.dita"/>
+  <topicref href="Concepts/concept-dataStorage.dita"/>
+  <topicref href="Concepts/concept-ramQuota.dita"/>
+  <topicref href="Concepts/concept-vBucket.dita"/>
+  <topicref href="Concepts/concept-cacheLayer.dita"/>
+  <topicref href="Concepts/concept-diskStorage.dita">
+   <topicref href="Concepts/concept-readerWriter.dita"/>
+   <topicref href="Concepts/concept-doc-delete.dita"/>
+   <topicref href="Concepts/concept-tombstone.dita"/>
+  </topicref>
+  <topicref href="Concepts/concept-workingset-mgmt.dita"/>
+  <topicref href="Concepts/concept-docExpiration.dita"/>
+  <topicref href="Concepts/concept-serverWarmup.dita"/>
+  <topicref href="Concepts/concept-rebalancing.dita"/>
+  <topicref href="Concepts/concept-replication.dita"/>
+  <topicref href="Concepts/concept-rack-awareness.dita"/>
+  <topicref href="Concepts/concept-nodeFailover.dita"/>
+  <topicref href="Concepts/concepts-TAP.dita"/>
+  <topicref href="Concepts/concepts-adminTools.dita"/>
+  <topicref href="Concepts/concepts-statsMonitor.dita"/>
+ </topicref>
+ <topicref href="Tasks/tasks-common.dita">
+  <topicref href="Tasks/tasks-create-readUser.dita"/>
+  <topicref href="Tasks/tasks-manage-ReadWrite.dita">
+   <topicref href="Tasks/tasks-create-readwrite-new.dita"/>
+   <topicref href="Tasks/tasks-create-readwrite-existing.dita"/>
+   <topicref href="Tasks/tasks-view-readwrite.dita"/>
+  </topicref>
+  <topicref href="Tasks/tasks-manage-serverWarmup.dita"/>
+  <topicref href="Tasks/tasks-manage-replication.dita"/>
+  <topicref href="Tasks/tasks-manage-workingset.dita"/>
+  <topicref href="Tasks/tasks-compaction.dita"/>
+  <topicref href="Tasks/tasks-nodeFailover.dita"/>
+  <topicref href="Tasks/tasks-dataRecovery.dita"/>
+  <topicref href="Tasks/tasks-backupRestore.dita"/>
+  <topicref href="Tasks/tasks-rebalance.dita"/>
+  <topicref href="Tasks/rza-manage-group.dita">
+   <topicref href="Tasks/rza-create-group.dita"/>
+   <topicref href="Tasks/rza-delete-group.dita"/>
+   <topicref href="Tasks/rza-move-server.dita"/>
+   <topicref href="Tasks/rza-add-server.dita"/>
+   <topicref href="Tasks/rza-remove-server.dita"/>
+   <topicref href="Tasks/rza-rename-group.dita"/>
+  </topicref>
+  <topicref href="Tasks/tasks-manage-xdcr.dita">
+   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
+   <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
+   <topicref href="Tasks/xdcr-configure-replications.dita"/>
+   <topicref href="Tasks/xdcr-create-replications.dita"/>
+   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
+   <topicref href="Tasks/xdcr-secure-communication.dita"/>
+   <topicref href="Tasks/xdcr-specify-adv-settings.dita"/>
+   <topicref href="Tasks/xdcr-modify-settings.dita"/>
+   <topicref href="Tasks/xdcr-tuning-optimistic-replication.dita"/>
+   <topicref href="Tasks/xdcr-cancel-replication.dita"/>
+   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
+   <topicref href="Tasks/xdcr-adv-settings.dita"/>
+   <topicref href="Tasks/xdcr-conflictResolution.dita"/>
+  </topicref>
+  <topicref href="Tasks/tasks-change-diskpath.dita"/>
+ </topicref>
+ <topicref href="Best-practices/bp-deployment-considerations.dita">
+  <topicref href="Best-practices/bp-clusterDesign.dita"/>
+  <topicref href="Best-practices/bp-sizingGuidelines.dita"/>
+  <topicref href="Best-practices/bp-deployment-strategies.dita"/>
+  <topicref href="Best-practices/bp-maintenance.dita"/>
+  <topicref href="Best-practices/bp-firewall.dita"/>
+  <topicref href="Best-practices/bp-cloudDeployment.dita"/>
+  <topicref href="Tasks/tasks-use-xdcrCloud.dita"/>
+ </topicref>
+ <topicref href="UI/ui-intro.dita">
+  <topicref href="UI/ui-cluster-summary.dita"/>
+  <topicref href="UI/ui-server-nodes.dita"/>
+  <topicref href="UI/ui-data-buckets.dita"/>
+  <topicref href="UI/ui-monitoring-statistics.dita"/>
+  <topicref href="UI/ui-views-editor.dita"/>
+  <topicref href="UI/ui-document-editor.dita"/>
+  <topicref href="UI/ui-logs.dita"/>
+  <topicref href="UI/ui-settings.dita">
+   <topicref href="UI/ui-settings-cluster.dita"/>
+   <topicref href="UI/ui-settings-update-notifications.dita"/>
+   <topicref href="UI/ui-settings-autofailover.dita"/>
+   <topicref href="UI/ui-settings-alerts.dita"/>
+   <topicref href="UI/ui-settings-autocompaction.dita"/>
+   <topicref href="UI/ui-settings-sample-buckets.dita"/>
+   <topicref href="UI/ui-settings-account-mgmt.dita"/>
+  </topicref>
+ </topicref>
+ <topicref href="Monitoring/monitor-intro.dita">
+  <topicref href="Monitoring/monitor-underlying-processes.dita"/>
+  <topicref href="Monitoring/monitor-port-access.dita"/>
+  <topicref href="Monitoring/monitor-warmup.dita"/>
+  <topicref href="Monitoring/monitor-diskqueue.dita"/>
+  <topicref href="Monitoring/monitor-statistics.dita"/>
+  <topicref href="Monitoring/monitor-moxi-statistics.dita"/>
+ </topicref>
+ <topicref href="Views/views-intro.dita">
+  <topicref href="Views/views-basics.dita"/>
+  <topicref href="Views/views-operation.dita"/>
+  <topicref href="Views/views-storedData.dita"/>
+  <topicref href="Views/views-development.dita"/>
+  <topicref href="Views/views-production.dita"/>
+  <topicref href="Views/views-writing.dita"/>
+  <topicref href="Views/views-schemaless.dita"/>
+  <topicref href="Views/views-querying.dita"/>
+  <topicref href="Views/views-querySample.dita"/>
+  <topicref href="Views/views-translateSQL.dita"/>
+  <topicref href="Views/views-geospatial.dita"/>
+ </topicref>
+ <topicref href="XDCR/xdcr-intro.dita">
+  <topicref href="XDCR/xdcr-usecases.dita"/>
+  <topicref href="XDCR/xdcr-architecture.dita"/>
+  <topicref href="XDCR/xdcr-topologies.dita"/>
+  <topicref href="XDCR/xdcr-topologies-adv.dita"/>
+  <topicref href="XDCR/xxdcr-memcachedReplication.dita"/>
+  <topicref href="XDCR/xdcr-systemOutage.dita"/>
+  <topicref href="XDCR/xdcr-docs.dita"/>
+  <topicref href="XDCR/xdcr-flushRequests.dita"/>
+  <topicref href="XDCR/xdcr-streamMgmt.dita"/>
+  <topicref href="XDCR/xdcr-dataEncryption.dita"/>
+ </topicref>
+ <topicref href="Miscellaneous/faq.dita"/>
+ <topicref href="Miscellaneous/limits.dita"/>
+ <topicref href="Miscellaneous/sample-bucket-beer.dita"/>
+ <topicref href="Miscellaneous/sample-bucket-game.dita"/>
+ <topicref href="Miscellaneous/Trbl-intro.dita">
+  <topicref href="Miscellaneous/Trbl-commonErrors.dita"/>
+  <topicref href="Miscellaneous/Trbl-generalTips.dita"/>
+  <topicref href="Miscellaneous/Trbl-logs.dita"/>
+  <topicref href="Miscellaneous/Trbl-beam-smp-issue.dita"/>
+  <topicref href="Miscellaneous/Trbl-blockedIndexer.dita"/>
+  <topicref href="Miscellaneous/Trbl-common.dita"/>
+  <topicref href="Miscellaneous/Trbl-datamissing-server.dita"/>
+  <topicref href="Miscellaneous/Trbl-datamissing-user.dita"/>
+  <topicref href="Miscellaneous/Trbl-designdocs.dita"/>
+  <topicref href="Miscellaneous/Trbl-expireddocs.dita"/>
+  <topicref href="Miscellaneous/Trbl-indexFileSystem.dita"/>
+  <topicref href="Miscellaneous/Trbl-issuesReport.dita"/>
+  <topicref href="Miscellaneous/Trbl-queryResults.dita"/>
+  <topicref href="Miscellaneous/Trbl-replicaIndex.dita"/>
+  <topicref href="Miscellaneous/Trbl-staleFalse-debug.dita"/>
+  <topicref href="Miscellaneous/Trbl-timeoutErrors.dita"/>
+  <topicref href="Miscellaneous/Trbl-total_row-debug.dita"/>
+  <topicref href="Miscellaneous/Trbl-wrongdocs.dita"/>
+ </topicref>
+</map>

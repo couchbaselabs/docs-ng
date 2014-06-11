@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2706"><title>Startup and shutdown on Mac OS X</title><body><p>On Mac OS X, Couchbase Server is supplied as a standard application. You can
+start Couchbase Server by double clicking on the application. Couchbase Server
+runs as a background application which installs a menu bar item through which you
+can control the server.</p><required-cleanup remap="figure"><ph>
+<image href="../images/macosx-menubar.png"><alt/></image>
+</ph></required-cleanup><p>The individual menu options perform the following actions:</p><ul>
+<li><codeph>About Couchbase</codeph></li>
+</ul><p>Opens a standard About dialog containing the licensing and version information
+ for the Couchbase Server installed.</p><ul>
+<li><codeph>Open Admin Console</codeph></li>
+</ul><p>Opens the Web Administration Console in your configured default browser.</p><ul>
+<li><codeph>Visit Support Forum</codeph></li>
+</ul><p>Opens the Couchbase Server support forum within your default browser at the
+ Couchbase website where you can ask questions to other users and Couchbase
+ developers.</p><ul>
+<li><codeph>Check for Updates</codeph></li>
+</ul><p>Checks for updated versions of Couchbase Server. This checks the currently
+ installed version against the latest version available at Couchbase and offers
+ to download and install the new version. If a new version is available, you will
+ be presented with a dialog containing information about the new release.</p><p>If a new version is available, you can choose to skip the update, notify the
+ existence of the update at a later date, or to automatically update the software
+ to the new version.</p><p>If you choose the last option, the latest available version of Couchbase Server
+ will be downloaded to your machine, and you will be prompted to allow the
+ installation to take place. Installation will shut down your existing Couchbase
+ Server process, install the update, and then restart the service once the
+ installation has been completed.</p><p>Once the installation has been completed you will be asked whether you want to
+ automatically update Couchbase Server in the future.</p><p>Using the update service also sends anonymous usage data to Couchbase on the
+ current version and cluster used in your organization. This information is used
+ to improve our service offerings.</p><p>You can also enable automated updates by selecting the <codeph>Automatically download
+   and install updates in the future</codeph> checkbox.</p><ul>
+<li><codeph>Launch Admin Console at Start</codeph></li>
+</ul><p>If this menu item is checked, then the Web Console for administrating Couchbase
+ Server will be opened whenever the Couchbase Server is started. Selecting the
+ menu item will toggle the selection.</p><ul>
+<li><codeph>Automatically Start at Login</codeph></li>
+</ul><p>If this menu item is checked, then Couchbase Server will be automatically
+ started when the Mac OS X machine starts. Selecting the menu item will toggle
+ the selection.</p><ul>
+<li><codeph>Quit Couchbase</codeph></li>
+</ul><p>Selecting this menu option will shut down your running Couchbase Server, and
+ close the menu bar interface. To restart, you must open the Couchbase Server
+ application from the installation folder.</p></body></topic>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_s15_tlh_14">
+  <title>Incremental node recovery</title>
+  <shortdesc>Incremental node recovery provides the option to specify whether the replacement server node's disk is initialized or not. 
+    For a new server node, the disk is initialized (data is removed) and re-populated. 
+    For the same server node, the disk is not initialized or re-populated; the data buckets remain.</shortdesc>
+  
+  
+  <body>
+    <p>When re-adding a server node to the cluster, a new server node is initialized and re-populated,  
+      that is, the disk is wiped out (a warning is generated) and then re-populated with the original data buckets. 
+      This operation ensures a clean disk, but also has overhead in terms of resource use and downtime due to disk re-population.
+      The same server node is not initialized nor re-populated. 
+      The data and data buckets are retained so that the cluster can start functioning without downtime. 
+      This operation improves recovery time and network resource usage. 
+      For example, an environment with a large data footprint might re-add the server node as the same.
+      </p>
+    
+    <p>Server nodes are removed from clusters under many circumstances. 
+      Depending on the circumstance, the server node is added back to the cluster as either a new or the same server. 
+      The following are circumstances (among many others) where the server node might be re-added as the same server.</p>
+      
+    <ul>
+      <li>Node goes down for a short period of time</li>
+      <li>Routine maintenance is scheduled</li>
+      <li>Network connectivity is briefly disrupted</li>
+
+    </ul>
+    
+ 
+
+    <section><title>Impacted documentation</title>
+    <ul>
+      <li>Failover</li>
+      <li>Re-add a server</li>
+    </ul>
+    </section>
+    
+    
+  </body>
+  
+  <related-links>
+    <linklist>
+      <link href="graceful-failover.dita"></link>
+      <link href="../CLI/CBcli/cbcli-servers.dita"/>
+      <link href="../REST/rest-server-nodes.dita"/>
+      <link href="http://hub.internal.couchbase.com/confluence/display/PM/Couchbase+Server+3.0+-+Delta+Node+Recovery+After+Failover" scope="external" format="html">
+        <linktext>PM Feature description and requirements</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

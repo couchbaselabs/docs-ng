@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2084"><title>Server nodes CLI</title><body><p>To set a data path for an unprovisioned cluster:</p><codeblock><codeph>
+couchbase-cli node-init -c 192.168.0.1:8091 \
+       --node-init-data-path=/tmp/data \
+       --node-init-index-path=/tmp/index
+</codeph></codeblock><p>To list servers in a cluster:</p><codeblock><codeph> 
+couchbase-cli server-list -c 192.168.0.1:8091
+</codeph></codeblock><section><title>Retrieving server information</title><codeblock><codeph>couchbase-cli server-info -c 192.168.0.1:8091
+</codeph></codeblock></section><section><title>Adding nodes to clusters</title><p>The following example adds a node to a cluster but does not rebalance:</p><codeblock><codeph>couchbase-cli server-add -c 192.168.0.1:8091 \
+    --server-add=192.168.0.2:8091 \
+    --server-add-username=Administrator \
+    --server-add-password=password
+</codeph></codeblock><p>The following example adds a node to a cluster and rebalances:</p><codeblock><codeph>couchbase-cli rebalance -c 192.168.0.1:8091 \
+    --server-add=192.168.0.2:8091 \
+    --server-add-username=Administrator \
+    --server-add-password=password
+</codeph></codeblock></section><section><title>Removing nodes</title><p>The following example removes a node from a cluster and rebalances:</p><codeblock><codeph>couchbase-cli rebalance -c 192.168.0.1:8091 \
+    --server-remove=192.168.0.2:8091
+</codeph></codeblock><p>The following example removes and adds nodes from/to a cluster and rebalances:</p><codeblock><codeph>couchbase-cli rebalance -c 192.168.0.1:8091 \
+    --server-remove=192.168.0.2 \
+    --server-add=192.168.0.4 \
+    --server-add-username=Administrator \
+    --server-add-password=password
+</codeph></codeblock></section><section><title>Stopping rebalance</title><p>The following example stops the current rebalancing:</p><codeblock><codeph>couchbase-cli rebalance-stop -c 192.168.0.1:8091
+</codeph></codeblock></section><section><title>Setting cluster parameters</title><p>The following example sets the username, password, port and ram quota:</p><codeblock><codeph>couchbase-cli cluster-init -c 192.168.0.1:8091 \
+    --cluster-init-username=Administrator \
+    --cluster-init-password=password \
+    --cluster-init-port=8080 \
+    --cluster-init-ramsize=300
+</codeph></codeblock><p>The following example changes the cluster username, password, port and ram quota:</p><codeblock><codeph>    couchbase-cli cluster-edit -c 192.168.0.1:8091 \
+       --cluster-username=Administrator \
+       --cluster-password=password \
+       --cluster-port=8080 \
+       --cluster-ramsize=300
+</codeph></codeblock></section><section><title>Changing data paths</title><p>The following example changes the data path:</p><codeblock><codeph>     couchbase-cli node-init -c 192.168.0.1:8091 \
+       --node-init-data-path=/tmp
+</codeph></codeblock></section></body></topic>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_yvq_lh3_wn">
+ <title>Document deletion</title>
+ <shortdesc>Couchbase Server never deletes entire items from disk 
+  unless a client explicitly deletes the item from the database or the expiration
+  value for the item is reached.</shortdesc>
+ <conbody>
+  <p>The ejection mechanism removes an item from RAM, while
+   keeping a copy of the key and metadata for that document in RAM and also keeping copy of
+   that document on disk.
+  </p>
+  <note type="important">
+   If only memcached buckets are used with Couchbase Server, 
+   the server provides only a caching layer as storage and no data persistence
+   on disk. If your server runs out of space in RAM, items are evicted from RAM
+   on a least recently used basis (LRU). Eviction means the server removes the
+   key, metadata and all other data for the item from RAM. After eviction, the item
+   is irretrievable.
+  </note>
+ </conbody>
+ <related-links>
+  <linklist>
+   <link href="../Concepts/concept-intro.dita"></link>
+  </linklist>
+ </related-links>
+</concept>

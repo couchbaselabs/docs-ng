@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic11951"><title>Toplevel stats</title><body><p>The following provides the stats that are created by <codeph>cbstats</codeph>:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>uuid</entry>
+	<entry>The unique identifier for the bucket</entry>
+</row><row>
+	<entry>ep_version</entry>
+	<entry>Version number of ep_engine</entry>
+</row><row>
+	<entry>ep_storage_age</entry>
+	<entry>Seconds since most recently</entry>
+</row><row>
+	<entry/>
+	<entry>stored object was initially queued</entry>
+</row><row>
+	<entry>ep_storage_age_highwat</entry>
+	<entry>ep_storage_age high water mark</entry>
+</row><row>
+	<entry>ep_startup_time</entry>
+	<entry>System-generated engine startup time</entry>
+</row><row>
+	<entry>ep_max_txn_size</entry>
+	<entry>Max number of updates per transaction</entry>
+</row><row>
+	<entry>ep_data_age</entry>
+	<entry>Seconds since most recently</entry>
+</row><row>
+	<entry/>
+	<entry>stored object was modified</entry>
+</row><row>
+	<entry>ep_data_age_highwat</entry>
+	<entry>ep_data_age high water mark</entry>
+</row><row>
+	<entry>ep_too_young</entry>
+	<entry>Number of times an object was</entry>
+</row><row>
+	<entry/>
+	<entry>not stored due to being too young</entry>
+</row><row>
+	<entry>ep_too_old</entry>
+	<entry>Number of times an object was</entry>
+</row><row>
+	<entry/>
+	<entry>stored after being dirty too long</entry>
+</row><row>
+	<entry>ep_total_enqueued</entry>
+	<entry>Total number of items queued for</entry>
+</row><row>
+	<entry/>
+	<entry>persistence</entry>
+</row><row>
+	<entry>ep_total_new_items</entry>
+	<entry>Total number of persisted new items</entry>
+</row><row>
+	<entry>ep_total_del_items</entry>
+	<entry>Total number of persisted deletions</entry>
+</row><row>
+	<entry>ep_total_persisted</entry>
+	<entry>Total number of items persisted</entry>
+</row><row>
+	<entry>ep_item_flush_failed</entry>
+	<entry>Number of times an item failed to</entry>
+</row><row>
+	<entry/>
+	<entry>flush due to storage errors</entry>
+</row><row>
+	<entry>ep_item_commit_failed</entry>
+	<entry>Number of times a transaction failed</entry>
+</row><row>
+	<entry/>
+	<entry>to commit due to storage errors</entry>
+</row><row>
+	<entry>ep_item_begin_failed</entry>
+	<entry>Number of times a transaction failed</entry>
+</row><row>
+	<entry/>
+	<entry>to start due to storage errors</entry>
+</row><row>
+	<entry>ep_expired_access</entry>
+	<entry>Number of times an item was expired on</entry>
+</row><row>
+	<entry/>
+	<entry>application access.</entry>
+</row><row>
+	<entry>ep_expired_pager</entry>
+	<entry>Number of times an item was expired by</entry>
+</row><row>
+	<entry/>
+	<entry>ep engine item pager</entry>
+</row><row>
+	<entry>ep_item_flush_expired</entry>
+	<entry>Number of times an item is not flushed</entry>
+</row><row>
+	<entry/>
+	<entry>due to the expiry of the item</entry>
+</row><row>
+	<entry>ep_queue_size</entry>
+	<entry>Number of items queued for storage</entry>
+</row><row>
+	<entry>ep_flusher_todo</entry>
+	<entry>Number of items currently being</entry>
+</row><row>
+	<entry/>
+	<entry>written</entry>
+</row><row>
+	<entry>ep_flusher_state</entry>
+	<entry>Current state of the flusher thread</entry>
+</row><row>
+	<entry>ep_commit_num</entry>
+	<entry>Total number of write commits</entry>
+</row><row>
+	<entry>ep_commit_time</entry>
+	<entry>Number of milliseconds of most recent</entry>
+</row><row>
+	<entry/>
+	<entry>commit</entry>
+</row><row>
+	<entry>ep_commit_time_total</entry>
+	<entry>Cumulative milliseconds spent</entry>
+</row><row>
+	<entry/>
+	<entry>committing</entry>
+</row><row>
+	<entry>ep_vbucket_del</entry>
+	<entry>Number of vbucket deletion events</entry>
+</row><row>
+	<entry>ep_vbucket_del_fail</entry>
+	<entry>Number of failed vbucket deletion</entry>
+</row><row>
+	<entry/>
+	<entry>events</entry>
+</row><row>
+	<entry>ep_vbucket_del_max_walltime</entry>
+	<entry>Max wall time (µs) spent by deleting</entry>
+</row><row>
+	<entry/>
+	<entry>a vbucket</entry>
+</row><row>
+	<entry>ep_vbucket_del_avg_walltime</entry>
+	<entry>Avg wall time (µs) spent by deleting</entry>
+</row><row>
+	<entry/>
+	<entry>a vbucket</entry>
+</row><row>
+	<entry>ep_flush_duration_total</entry>
+	<entry>Cumulative seconds spent flushing</entry>
+</row><row>
+	<entry>ep_flush_all</entry>
+	<entry>True if disk flush_all is scheduled</entry>
+</row><row>
+	<entry>ep_num_ops_get_meta</entry>
+	<entry>Number of getMeta operations</entry>
+</row><row>
+	<entry>ep_num_ops_set_meta</entry>
+	<entry>Number of setWithMeta operations</entry>
+</row><row>
+	<entry>ep_num_ops_del_meta</entry>
+	<entry>Number of delWithMeta operations</entry>
+</row><row>
+	<entry>ep_num_ops_set_meta_res_failed</entry>
+	<entry>Number of setWithMeta ops that failed</entry>
+</row><row>
+	<entry/>
+	<entry>conflict resolution</entry>
+</row><row>
+	<entry>ep_num_ops_del_meta_res_failed</entry>
+	<entry>Number of delWithMeta ops that failed</entry>
+</row><row>
+	<entry/>
+	<entry>conflict resolution</entry>
+</row><row>
+	<entry>ep_num_ops_set_ret_meta</entry>
+	<entry>Number of setRetMeta operations</entry>
+</row><row>
+	<entry>ep_num_ops_del_ret_meta</entry>
+	<entry>Number of delRetMeta operations</entry>
+</row><row>
+	<entry>curr_items</entry>
+	<entry>Num items in active vbuckets (temp +</entry>
+</row><row>
+	<entry/>
+	<entry>live)</entry>
+</row><row>
+	<entry>curr_temp_items</entry>
+	<entry>Num temp items in active vbuckets</entry>
+</row><row>
+	<entry>curr_items_tot</entry>
+	<entry>Num current items including those not</entry>
+</row><row>
+	<entry/>
+	<entry>active (replica, dead and pending</entry>
+</row><row>
+	<entry/>
+	<entry>states)</entry>
+</row><row>
+	<entry>ep_kv_size</entry>
+	<entry>Memory used to store item metadata,</entry>
+</row><row>
+	<entry/>
+	<entry>keys and values, no matter the</entry>
+</row><row>
+	<entry/>
+	<entry>vbucket’s state. If an item’s value is</entry>
+</row><row>
+	<entry/>
+	<entry>ejected, this stats will be</entry>
+</row><row>
+	<entry/>
+	<entry>decremented by the size of the item’s</entry>
+</row><row>
+	<entry/>
+	<entry>value.</entry>
+</row><row>
+	<entry>ep_value_size</entry>
+	<entry>Memory used to store values for</entry>
+</row><row>
+	<entry/>
+	<entry>resident keys</entry>
+</row><row>
+	<entry>ep_overhead</entry>
+	<entry>Extra memory used by transient data</entry>
+</row><row>
+	<entry/>
+	<entry>like persistence queues, replication</entry>
+</row><row>
+	<entry/>
+	<entry>queues, checkpoints, etc</entry>
+</row><row>
+	<entry>ep_mem_low_wat</entry>
+	<entry>Low water mark for auto-evictions</entry>
+</row><row>
+	<entry>ep_mem_high_wat</entry>
+	<entry>High water mark for auto-evictions</entry>
+</row><row>
+	<entry>ep_total_cache_size</entry>
+	<entry>The total byte size of all items, no</entry>
+</row><row>
+	<entry/>
+	<entry>matter the vbucket’s state, no matter</entry>
+</row><row>
+	<entry/>
+	<entry>if an item’s value is ejected</entry>
+</row><row>
+	<entry>ep_oom_errors</entry>
+	<entry>Number of times unrecoverable OOMs</entry>
+</row><row>
+	<entry/>
+	<entry>happened while processing operations</entry>
+</row><row>
+	<entry>ep_tmp_oom_errors</entry>
+	<entry>Number of times temporary OOMs</entry>
+</row><row>
+	<entry/>
+	<entry>happened while processing operations</entry>
+</row><row>
+	<entry>ep_mem_tracker_enabled</entry>
+	<entry>True if memory usage tracker is</entry>
+</row><row>
+	<entry/>
+	<entry>enabled</entry>
+</row><row>
+	<entry>ep_bg_fetched</entry>
+	<entry>Number of items fetched from disk</entry>
+</row><row>
+	<entry>ep_bg_meta_fetched</entry>
+	<entry>Number of meta items fetched from disk</entry>
+</row><row>
+	<entry>ep_bg_remaining_jobs</entry>
+	<entry>Number of remaining bg fetch jobs</entry>
+</row><row>
+	<entry>ep_max_bg_remaining_jobs</entry>
+	<entry>Max number of remaining bg fetch jobs</entry>
+</row><row>
+	<entry/>
+	<entry>that we have seen in the queue so far</entry>
+</row><row>
+	<entry>ep_tap_bg_fetched</entry>
+	<entry>Number of tap disk fetches</entry>
+</row><row>
+	<entry>ep_tap_bg_fetch_requeued</entry>
+	<entry>Number of times a tap bg fetch task is</entry>
+</row><row>
+	<entry/>
+	<entry>requeued</entry>
+</row><row>
+	<entry>ep_num_pager_runs</entry>
+	<entry>Number of times we ran pager loops</entry>
+</row><row>
+	<entry/>
+	<entry>to seek additional memory</entry>
+</row><row>
+	<entry>ep_num_expiry_pager_runs</entry>
+	<entry>Number of times we ran expiry pager</entry>
+</row><row>
+	<entry/>
+	<entry>loops to purge expired items from</entry>
+</row><row>
+	<entry/>
+	<entry>memory/disk</entry>
+</row><row>
+	<entry>ep_num_access_scanner_runs</entry>
+	<entry>Number of times we ran access scanner</entry>
+</row><row>
+	<entry/>
+	<entry>to snapshot working set</entry>
+</row><row>
+	<entry>ep_access_scanner_num_items</entry>
+	<entry>Number of items that last access</entry>
+</row><row>
+	<entry/>
+	<entry>scanner task swept to access log.</entry>
+</row><row>
+	<entry>ep_access_scanner_task_time</entry>
+	<entry>Time of the next access scanner task</entry>
+</row><row>
+	<entry/>
+	<entry>(GMT)</entry>
+</row><row>
+	<entry>ep_access_scanner_last_runtime</entry>
+	<entry>Number of seconds that last access</entry>
+</row><row>
+	<entry/>
+	<entry>scanner task took to complete.</entry>
+</row><row>
+	<entry>ep_items_rm_from_checkpoints</entry>
+	<entry>Number of items removed from closed</entry>
+</row><row>
+	<entry/>
+	<entry>unreferenced checkpoints</entry>
+</row><row>
+	<entry>ep_num_value_ejects</entry>
+	<entry>Number of times item values got</entry>
+</row><row>
+	<entry/>
+	<entry>ejected from memory to disk</entry>
+</row><row>
+	<entry>ep_num_eject_failures</entry>
+	<entry>Number of items that could not be</entry>
+</row><row>
+	<entry/>
+	<entry>ejected</entry>
+</row><row>
+	<entry>ep_num_not_my_vbuckets</entry>
+	<entry>Number of times Not My VBucket</entry>
+</row><row>
+	<entry/>
+	<entry>exception happened during runtime</entry>
+</row><row>
+	<entry>ep_tap_keepalive</entry>
+	<entry>Tap keepalive time</entry>
+</row><row>
+	<entry>ep_dbname</entry>
+	<entry>DB path</entry>
+</row><row>
+	<entry>ep_io_num_read</entry>
+	<entry>Number of io read operations</entry>
+</row><row>
+	<entry>ep_io_num_write</entry>
+	<entry>Number of io write operations</entry>
+</row><row>
+	<entry>ep_io_read_bytes</entry>
+	<entry>Number of bytes read (key + values)</entry>
+</row><row>
+	<entry>ep_io_write_bytes</entry>
+	<entry>Number of bytes written (key + values)</entry>
+</row><row>
+	<entry>ep_pending_ops</entry>
+	<entry>Number of ops awaiting pending</entry>
+</row><row>
+	<entry/>
+	<entry>vbuckets</entry>
+</row><row>
+	<entry>ep_pending_ops_total</entry>
+	<entry>Total blocked pending ops since reset</entry>
+</row><row>
+	<entry>ep_pending_ops_max</entry>
+	<entry>Max ops seen awaiting 1 pending</entry>
+</row><row>
+	<entry/>
+	<entry>vbucket</entry>
+</row><row>
+	<entry>ep_pending_ops_max_duration</entry>
+	<entry>Max time (µs) used waiting on pending</entry>
+</row><row>
+	<entry/>
+	<entry>vbuckets</entry>
+</row><row>
+	<entry>ep_bg_num_samples</entry>
+	<entry>The number of samples included in the</entry>
+</row><row>
+	<entry/>
+	<entry>average</entry>
+</row><row>
+	<entry>ep_bg_min_wait</entry>
+	<entry>The shortest time (µs) in the wait</entry>
+</row><row>
+	<entry/>
+	<entry>queue</entry>
+</row><row>
+	<entry>ep_bg_max_wait</entry>
+	<entry>The longest time (µs) in the wait</entry>
+</row><row>
+	<entry/>
+	<entry>queue</entry>
+</row><row>
+	<entry>ep_bg_wait_avg</entry>
+	<entry>The average wait time (µs) for an item</entry>
+</row><row>
+	<entry/>
+	<entry>before it’s serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_bg_min_load</entry>
+	<entry>The shortest load time (µs)</entry>
+</row><row>
+	<entry>ep_bg_max_load</entry>
+	<entry>The longest load time (µs)</entry>
+</row><row>
+	<entry>ep_bg_load_avg</entry>
+	<entry>The average time (µs) for an item to</entry>
+</row><row>
+	<entry/>
+	<entry>be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_num_non_resident</entry>
+	<entry>The number of non-resident items</entry>
+</row><row>
+	<entry>ep_bg_wait</entry>
+	<entry>The total elapse time for the wait</entry>
+</row><row>
+	<entry/>
+	<entry>queue</entry>
+</row><row>
+	<entry>ep_bg_load</entry>
+	<entry>The total elapse time for items to be</entry>
+</row><row>
+	<entry/>
+	<entry>loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_allow_data_loss_during_shutdown</entry>
+	<entry>Whether data loss is allowed during</entry>
+</row><row>
+	<entry/>
+	<entry>server shutdown</entry>
+</row><row>
+	<entry>ep_alog_block_size</entry>
+	<entry>Access log block size</entry>
+</row><row>
+	<entry>ep_alog_path</entry>
+	<entry>Path to the access log</entry>
+</row><row>
+	<entry>ep_alog_sleep_time</entry>
+	<entry>Interval between access scanner runs</entry>
+</row><row>
+	<entry/>
+	<entry>in minutes</entry>
+</row><row>
+	<entry>ep_alog_task_time</entry>
+	<entry>Hour in GMT time when access scanner</entry>
+</row><row>
+	<entry/>
+	<entry>task is scheduled to run</entry>
+</row><row>
+	<entry>ep_backend</entry>
+	<entry>The backend that is being used for</entry>
+</row><row>
+	<entry/>
+	<entry>data persistence</entry>
+</row><row>
+	<entry>ep_bg_fetch_delay</entry>
+	<entry>The amount of time to wait before</entry>
+</row><row>
+	<entry/>
+	<entry>doing a background fetch</entry>
+</row><row>
+	<entry>ep_chk_max_items</entry>
+	<entry>The number of items allowed in a</entry>
+</row><row>
+	<entry/>
+	<entry>checkpoint before a new one is created</entry>
+</row><row>
+	<entry>ep_chk_period</entry>
+	<entry>The maximum lifetime of a checkpoint</entry>
+</row><row>
+	<entry/>
+	<entry>before a new one is created</entry>
+</row><row>
+	<entry>ep_chk_persistence_remains</entry>
+	<entry>Number of remaining vbuckets for</entry>
+</row><row>
+	<entry/>
+	<entry>checkpoint persistence</entry>
+</row><row>
+	<entry>ep_chk_persistence_timeout</entry>
+	<entry>Timeout for vbucket checkpoint</entry>
+</row><row>
+	<entry/>
+	<entry>persistence</entry>
+</row><row>
+	<entry>ep_chk_remover_stime</entry>
+	<entry>The time interval for purging closed</entry>
+</row><row>
+	<entry/>
+	<entry>checkpoints from memory</entry>
+</row><row>
+	<entry>ep_config_file</entry>
+	<entry>The location of the ep-engine config</entry>
+</row><row>
+	<entry/>
+	<entry>file</entry>
+</row><row>
+	<entry>ep_couch_bucket</entry>
+	<entry>The name of this bucket</entry>
+</row><row>
+	<entry>ep_couch_host</entry>
+	<entry>The hostname that the CouchDB views</entry>
+</row><row>
+	<entry/>
+	<entry>server is listening on</entry>
+</row><row>
+	<entry>ep_couch_port</entry>
+	<entry>The port the CouchDB views server is</entry>
+</row><row>
+	<entry/>
+	<entry>listening on</entry>
+</row><row>
+	<entry>ep_couch_reconnect_sleeptime</entry>
+	<entry>The amount of time to wait before</entry>
+</row><row>
+	<entry/>
+	<entry>reconnecting to CouchDB</entry>
+</row><row>
+	<entry>ep_couch_response_timeout</entry>
+	<entry>Length of time to wait for a response</entry>
+</row><row>
+	<entry/>
+	<entry>from CouchDB before reconnecting</entry>
+</row><row>
+	<entry>ep_data_traffic_enabled</entry>
+	<entry>Whether or not data traffic is enabled</entry>
+</row><row>
+	<entry/>
+	<entry>for this bucket</entry>
+</row><row>
+	<entry>ep_degraded_mode</entry>
+	<entry>True if the engine is either warming</entry>
+</row><row>
+	<entry/>
+	<entry>up or data traffic is disabled</entry>
+</row><row>
+	<entry>ep_exp_pager_stime</entry>
+	<entry>The time interval for purging expired</entry>
+</row><row>
+	<entry/>
+	<entry>items from memory</entry>
+</row><row>
+	<entry>ep_expiry_window</entry>
+	<entry>Expiry window to not persist an object</entry>
+</row><row>
+	<entry/>
+	<entry>that is expired</entry>
+</row><row>
+	<entry>ep_failpartialwarmup</entry>
+	<entry>True if we want kill the bucket if</entry>
+</row><row>
+	<entry/>
+	<entry>warmup fails</entry>
+</row><row>
+	<entry>ep_flushall_enabled</entry>
+	<entry>True if this bucket allows the use of</entry>
+</row><row>
+	<entry/>
+	<entry>the flush_all command</entry>
+</row><row>
+	<entry>ep_getl_default_timeout</entry>
+	<entry>The default getl lock duration</entry>
+</row><row>
+	<entry>ep_getl_max_timeout</entry>
+	<entry>The maximum getl lock duration</entry>
+</row><row>
+	<entry>ep_ht_locks</entry>
+	<entry>The amount of locks per vb hashtable</entry>
+</row><row>
+	<entry>ep_ht_size</entry>
+	<entry>The initial size of each vb hashtable</entry>
+</row><row>
+	<entry>ep_item_num_based_new_chk</entry>
+	<entry>True if the number of items in the</entry>
+</row><row>
+	<entry/>
+	<entry>current checkpoint plays a role in a</entry>
+</row><row>
+	<entry/>
+	<entry>new checkpoint creation</entry>
+</row><row>
+	<entry>ep_keep_closed_chks</entry>
+	<entry>True if we want to keep the closed</entry>
+</row><row>
+	<entry/>
+	<entry>checkpoints for each vbucket unless</entry>
+</row><row>
+	<entry/>
+	<entry>the memory usage is above high water</entry>
+</row><row>
+	<entry/>
+	<entry>mark</entry>
+</row><row>
+	<entry>ep_max_checkpoints</entry>
+	<entry>The maximum amount of checkpoints that</entry>
+</row><row>
+	<entry/>
+	<entry>can be in memory per vbucket</entry>
+</row><row>
+	<entry>ep_max_item_size</entry>
+	<entry>The maximum value size</entry>
+</row><row>
+	<entry>ep_max_size</entry>
+	<entry>The maximum amount of memory this</entry>
+</row><row>
+	<entry/>
+	<entry>bucket can use</entry>
+</row><row>
+	<entry>ep_max_vbuckets</entry>
+	<entry>The maximum amount of vbuckets that</entry>
+</row><row>
+	<entry/>
+	<entry>can exist in this bucket</entry>
+</row><row>
+	<entry>ep_mutation_mem_threshold</entry>
+	<entry>The ratio of total memory available</entry>
+</row><row>
+	<entry/>
+	<entry>that we should start sending temp oom</entry>
+</row><row>
+	<entry/>
+	<entry>or oom message when hitting</entry>
+</row><row>
+	<entry>ep_pager_active_vb_pcnt</entry>
+	<entry>Active vbuckets paging percentage</entry>
+</row><row>
+	<entry>ep_tap_ack_grace_period</entry>
+	<entry>The amount of time to wait for a tap</entry>
+</row><row>
+	<entry/>
+	<entry>acks before disconnecting</entry>
+</row><row>
+	<entry>ep_tap_ack_initial_sequence_number</entry>
+	<entry>The initial sequence number for a tap</entry>
+</row><row>
+	<entry/>
+	<entry>ack when a tap stream is created</entry>
+</row><row>
+	<entry>ep_tap_ack_interval</entry>
+	<entry>The amount of messages a tap producer</entry>
+</row><row>
+	<entry/>
+	<entry>should send before requesting an ack</entry>
+</row><row>
+	<entry>ep_tap_ack_window_size</entry>
+	<entry>The maximum amount of ack requests</entry>
+</row><row>
+	<entry/>
+	<entry>that can be sent before the consumer</entry>
+</row><row>
+	<entry/>
+	<entry>sends a response ack. When the window</entry>
+</row><row>
+	<entry/>
+	<entry>is full the tap stream is paused.</entry>
+</row><row>
+	<entry>ep_tap_backfill_resident</entry>
+	<entry>The resident ratio for deciding how to</entry>
+</row><row>
+	<entry/>
+	<entry>do backfill. If under the ratio we</entry>
+</row><row>
+	<entry/>
+	<entry>schedule full disk backfill. If above</entry>
+</row><row>
+	<entry/>
+	<entry>the ratio then we do bg fetches for</entry>
+</row><row>
+	<entry/>
+	<entry>non-resident items.</entry>
+</row><row>
+	<entry>ep_tap_backlog_limit</entry>
+	<entry>The maximum amount of backfill items</entry>
+</row><row>
+	<entry/>
+	<entry>that can be in memory waiting to be</entry>
+</row><row>
+	<entry/>
+	<entry>sent to the tap consumer</entry>
+</row><row>
+	<entry>ep_tap_backoff_period</entry>
+	<entry>The number of seconds the tap</entry>
+</row><row>
+	<entry/>
+	<entry>connection</entry>
+</row><row>
+	<entry>ep_tap_bg_fetch_requeued</entry>
+	<entry>Number of times a tap bg fetch task is</entry>
+</row><row>
+	<entry/>
+	<entry>requeued</entry>
+</row><row>
+	<entry>ep_tap_bg_max_pending</entry>
+	<entry>The maximum number of bg jobs a tap</entry>
+</row><row>
+	<entry/>
+	<entry>connection may have</entry>
+</row><row>
+	<entry>ep_tap_noop_interval</entry>
+	<entry>Number of seconds between a noop is</entry>
+</row><row>
+	<entry/>
+	<entry>sent on an idle connection</entry>
+</row><row>
+	<entry>ep_tap_requeue_sleep_time</entry>
+	<entry>The amount of time to wait before a</entry>
+</row><row>
+	<entry/>
+	<entry>failed tap item is requeued</entry>
+</row><row>
+	<entry>ep_tap_throttle_cap_pcnt</entry>
+	<entry>Percentage of total items in write</entry>
+</row><row>
+	<entry/>
+	<entry>queue at which we throttle tap input</entry>
+</row><row>
+	<entry>ep_tap_throttle_queue_cap</entry>
+	<entry>Max size of a write queue to throttle</entry>
+</row><row>
+	<entry/>
+	<entry>incoming tap input</entry>
+</row><row>
+	<entry>ep_tap_throttle_threshold</entry>
+	<entry>Percentage of max mem at which we</entry>
+</row><row>
+	<entry/>
+	<entry>begin NAKing tap input</entry>
+</row><row>
+	<entry>ep_uncommitted_items</entry>
+	<entry>The amount of items that have not been</entry>
+</row><row>
+	<entry/>
+	<entry>written to disk</entry>
+</row><row>
+	<entry>ep_vb0</entry>
+	<entry>Whether vbucket 0 should be created by</entry>
+</row><row>
+	<entry/>
+	<entry>default</entry>
+</row><row>
+	<entry>ep_waitforwarmup</entry>
+	<entry>True if we should wait for the warmup</entry>
+</row><row>
+	<entry/>
+	<entry>process to complete before enabling</entry>
+</row><row>
+	<entry/>
+	<entry>traffic</entry>
+</row><row>
+	<entry>ep_warmup</entry>
+	<entry>Shows if warmup is enabled / disabled</entry>
+</row><row>
+	<entry>ep_warmup_batch_size</entry>
+	<entry>The size of each batch loaded during</entry>
+</row><row>
+	<entry/>
+	<entry>warmup</entry>
+</row><row>
+	<entry>ep_warmup_dups</entry>
+	<entry>Number of Duplicate items encountered</entry>
+</row><row>
+	<entry/>
+	<entry>during warmup</entry>
+</row><row>
+	<entry>ep_warmup_min_items_threshold</entry>
+	<entry>Percentage of total items warmed up</entry>
+</row><row>
+	<entry/>
+	<entry>before we enable traffic</entry>
+</row><row>
+	<entry>ep_warmup_min_memory_threshold</entry>
+	<entry>Percentage of max mem warmed up before</entry>
+</row><row>
+	<entry/>
+	<entry>we enable traffic</entry>
+</row><row>
+	<entry>ep_warmup_oom</entry>
+	<entry>The amount of oom errors that occurred</entry>
+</row><row>
+	<entry/>
+	<entry>during warmup</entry>
+</row><row>
+	<entry>ep_warmup_thread</entry>
+	<entry>The status of the warmup thread</entry>
+</row><row>
+	<entry>ep_warmup_time</entry>
+	<entry>The amount of time warmup took</entry>
+</row></tbody></tgroup></table></body></topic>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3716">
+  <title>Common administrative tasks</title>
+  <body>
+    <p>For general running and configuration, Couchbase Server is self-managing. The management
+      infrastructure and components of the Couchbase Server system are able to adapt to the
+      different events within the cluster. There are only a few different configuration variables.
+      The majority of these configuration variables do not need to be modified or altered in most
+      installations.</p>
+    <p>However, there are a number of different tasks that are performed over the lifetime of the
+      cluster environment including:</p>
+    <ul>
+      <li>Expand your cluster when you need to expand the RAM or disk I/O capabilities.</li>
+      <li>Failover and altering the size of your cluster as your application demands change.</li>
+      <li>Monitoring and reacting to the various statistics reported by the server to ensure that
+        your cluster is operating at the highest performance level.</li>
+      <li>Backing up the cluster.</li>
+    </ul>
+    
+    <section><title>Increasing or reducing your cluster size</title>
+    <p>When your cluster requires additional RAM, disk I/O or network capacity, you will need to
+      expand the size of your cluster. If the increased load is only a temporary event, then you may
+      later want to reduce the size of your cluster.</p>
+    <p>You can add or remove multiple nodes from your cluster at the same time. Once the new node
+      arrangement has been configured, the process redistributing the data and bringing the nodes
+      into the cluster is called <i>rebalancing</i>. The rebalancing process moves the
+      data around the cluster to match the new structure, and can be performed live while the
+      cluster is still servicing application data requests.</p>
+    </section>
+    
+
+    <section><title>Warming up a server</title>
+    
+    <p>There may be cases where you want to explicitly shutdown a server
+      and then restart it. Typically the server had been running for a while and has data stored on
+      disk when you restart it. In this case, the server needs to undergo a warmup process before it
+      can again serve data requests. </p>
+    </section>
+    
+    <section><title>Handling a failover situation</title>
+    <p>A failover situation occurs when one of the nodes within your cluster fails, usually due to a
+      significant hardware or network problem. Couchbase Server is designed to cope with this
+      situation through the use of replicas which provide copies of the data around the cluster
+      which can be activated when a node fails.</p>
+    <p>Couchbase Server provides two mechanisms for handling failover. Automated Failover allows the
+      cluster to operate autonomously and react to failovers without human intervention. Monitored
+      failover enables you to perform a controlled failure by manually failing over a node. There
+      are additional considerations for each failover type, and you should read the notes to ensure
+      that you know the best solution for your specific situation.</p>
+    </section>
+    
+    <section><title>Managing database and view fragmentation</title>
+    <p>The database and view index files created by Couchbase Server can become fragmented. This can
+      cause performance problems, as well as increasing the space used on disk by the files,
+      compared to the size of the information they hold. Compaction reduces this fragmentation to
+      reclaim the disk space.</p>
+    </section>
+
+    <section><title>Backing up and restoring your cluster data</title>
+    <p>Couchbase Server automatically distributes your data across the nodes within the cluster, and
+      supports replicas of that data. It is good practice, however, to have a backup of your bucket
+      data in the event of a more significant failure.</p>
+    </section>
+
+  </body>
+  
+  <related-links>
+    <linklist>
+      <link href="../CLI/cli-overview.dita"></link>
+      <link href="../REST/overview-rest-api.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

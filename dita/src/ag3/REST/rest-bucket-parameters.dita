@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1027">
+  <title>Modifying bucket parameters</title>
+  <shortdesc>To modify bucket parameters, use the <codeph>POST</codeph> operation with the 
+    <codeph>/pools/default/buckets/bucketName</codeph> URI with the bucket name as the REST API endpoint. </shortdesc>
+  <body>
+    <p>You can modify existing bucket parameters by posting the updated parameters used to create
+      the bucket to the bucket’s URI. Do not omit a parameter in your request since this is
+      equivalent to not setting it in many cases. We recommend you do a request to get current
+      bucket settings, make modifications as needed and then make your POST request to the bucket
+      URI.</p>
+    <p>For example, to edit the bucket <codeph>customer</codeph> :</p>
+    <codeblock><codeph>curl -v -X POST -u admin:password -d name=customer \
+-d flushEnabled=0 -d replicaNumber=1 -d authType=none \
+-d ramQuotaMB=200 -d proxyPort=11212 \
+ http://localhost:8091/pools/default/buckets/customer
+</codeph></codeblock>
+    <p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>customer</i>, <i>0</i>,
+        <i>1</i>, <i>200</i>, <i>11212</i>, and <i>customer</i> values in the above example with
+      your actual values.</p>
+
+    <p>If the request is successful, HTTP response 200 will be returned with an empty data
+      content.</p>
+    <p>Warning</p>
+    <p> The bucket name cannot be changed via the REST API. </p>
+  </body>
+</topic>

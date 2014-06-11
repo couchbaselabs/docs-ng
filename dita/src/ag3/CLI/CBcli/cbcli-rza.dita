@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2887">
+   <title>Rack-Zone Awareness CLI</title>
+   <shortdesc>Rack-Zone Awareness allows logical groupings of servers on a cluster where each server
+      group physically belongs to a rack or availability zone. </shortdesc>
+
+
+   <body>
+      <p>The Rack-Zone Awareness feature provides the ability to specify that active and
+         corresponding replica partitions be created on servers that are part of a separate rack or
+         zone. To enable Rack-Zone Awareness, all servers in a cluster must be upgraded. </p>
+
+      
+      <note type="note">The Rack Awareness feature with its server group capability is an Enterprise Edition
+         feature.</note>
+      <p>To configure servers into groups, use the <codeph>couchbase-cli</codeph> tool with the
+            <codeph>group-manage</codeph> command.</p>
+      <p>General syntax with <codeph>group-manage</codeph>:</p>
+      
+      <codeblock>
+couchbase-cli group-manage -c HOST:PORT 
+    -u USERNAME -p PASSWORD
+    [OPTIONS]
+</codeblock>
+      <dl>
+         <dlentry>
+            <dt><codeph>-c HOST:PORT or --cluster=HOST:PORT</codeph></dt>
+            <dd>Cluster location</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>-u USERNAME or --username=USERNAME</codeph></dt>
+            <dd>Administrator username for the cluster</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>-p PASSWORD or --password=PASSWORD</codeph></dt>
+            <dd>Administrator password for the cluster</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>--list</codeph></dt>
+            <dd>Shows the server groups and the servers assigned to each server group.</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>--create --group-name=groupName</codeph></dt>
+            <dd>Creates a server group .</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>--delete --group-name=groupName</codeph></dt>
+            <dd>Removes an empty server group.</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>--rename=newGroupName --group-name=oldGroupName</codeph></dt>
+            <dd>Renames an existing server group.</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>--group-name=groupName --add-servers="HOST:PORT;HOST:PORT"</codeph></dt>
+            <dd>Adds servers to a group.</dd>
+         </dlentry>
+
+
+         <dlentry>
+            <dt><codeph>--from-group=groupName --to-group=groupName
+                  --move-servers="HOST:PORT;HOST:PORT"</codeph></dt>
+            <dd>Moves one or more servers from one group to another.</dd>
+         </dlentry>
+
+      </dl>
+      <section><title>Creating server groups</title>
+         <p>In the following example, a server group is
+            created.</p>
+         
+         
+         <note type="note">The <codeph>-create --group-name</codeph> command may fail when an
+            exclamation (!) is present inside the group name.
+         </note>
+         
+         <codeblock>
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --create --group-name=myGroupName
+</codeblock></section>
+      
+      <section><title>Adding servers to server groups</title>
+         
+         <p>In the following example, two
+            servers are added to a server group using the <codeph>group-manage</codeph>
+            command.</p>
+         
+         <codeblock>
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --group-name=myNewGroup
+   --add-servers="10.1.1.1:8091;10.1.1.2:8091"
+</codeblock>
+         
+         <p>In
+            the following example, a server is added to the server group using the
+               <codeph>server-add</codeph> command.</p>
+         
+         
+         <note type="note">The <codeph>couchbase-cli
+            group-manage</codeph> command is the preferred method of adding servers to server
+            group.</note>
+         
+         <p>If the <codeph>--group-name</codeph> option is not specified with the <codeph>server-add</codeph>
+            command, the server is added to the default
+         group.</p>
+         
+         <codeblock>
+couchbase-cli server-add -c 192.168.0.1:8091
+   --server-add=192.168.0.2:8091
+   --server-add-username=Administrator
+   --server-add-password=password
+   --group-name=groupName
+</codeblock></section>
+      
+      
+      <section><title>Moving servers from server groups</title>
+         
+         <p>In the following example, two
+            servers are moved from one server group to another using the
+               <codeph>group-manage</codeph>
+         command.</p>
+         
+         <codeblock>
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --from-group=myFirstGroup
+   --to-group=mySecondGroup
+   --move-servers="10.1.1.1:8091;10.1.1.2:8091"
+</codeblock>
+      </section>
+   </body>
+</topic>

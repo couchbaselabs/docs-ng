@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_fs1_tfg_rn">
+  <title>FAQs</title>
+  <body>
+    <p>Topic paragraph</p>
+    <dl>
+      <dlentry>
+        <dt>What clients do I use with Couchbase?</dt>
+        <dd>Couchbase Server is compatible with existing memcached clients. 
+          If a memcached client already exists, just point it at couchbase. 
+          Regular testing is done with spymemcached (Java client), libmemcached, and fauna (Ruby client).</dd>
+      </dlentry>
+      <dlentry>
+        <dt>What is a vBucket?</dt>
+        <dd>A vBucket is conceptually a computed subset of all possible mapping keys. 
+          vBuckets are mapped to servers statically and have a consistent key through bBucket computations. 
+          The number of vBuckets in a cluster remains constant regardless of server topology which means that 
+        a key always maps to the same vBucket given the same hash.</dd>
+      </dlentry>
+      <dlentry>
+        <dt>What is a TAP stream?</dt>
+        <dd>A TAP stream is a when a client requests a stream of item updates from the
+          server. That is, as other clients are requesting item mutations (for example,
+          SET's and DELETE's), a TAP stream client can "wire-tap" the server to receive a
+          stream of item change notifications.
+          
+          When a TAP stream client starts its connection, it may also optionally request a
+          stream of all items stored in the server, even if no other clients are making
+          any item changes. On the TAP stream connection setup options, a TAP stream
+          client may request to receive just current items stored in the server (all items
+          until "now"), or all item changes from now onward into in the future, or both.</dd>
+      </dlentry>
+      <dlentry>
+        <dt>Which ports does Couchbase Server need?</dt>
+        <dd>
+          <ul>
+            <li>4369 - Erlang port mapper (epmd)</li>
+            <li>8091 - GUI and REST interface</li>
+            <li>8092 - Couchbase API port</li>
+            <li>11209, 11210, 11211, 11214, 11215 - Bucket and proxy ports</li>
+            <li>18091, 18092 - Internal REST and CAPI HTTPS for SSL</li>
+            <li>21100 to 21199 - Inclusive for dynamic cluster communication</li>
+          </ul></dd>
+      </dlentry>
+      <dlentry>
+        <dt>What hardware and platforms does Couchbase Server support?</dt>
+        <dd>
+          <ul>
+            <li>Red Hat and CentOS versions 5, update 2 and higher</li>
+            <li>Ubuntu 9</li>
+            <li>Windows Server 2008</li>
+            <li>Mac OS X (Community support only)</li>
+            <li>32-bit and 64-bit versions</li>
+          </ul>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>How can I get Couchbase on a different OS?</dt>
+        <dd>The Couchbase source code is quite portable and is known to have been built on
+          several other UNIX and Linux based OSs.</dd>
+      </dlentry>
+      <dlentry>
+        <dt>Can I query Couchbase by something other than the key name?</dt>
+        <dd>Not directly. It's possible to build these kinds of solutions atop TAP. For
+          instance, it is possible to stream out the data, process it with Cascading, then create
+          indexes in Elasticsearch.
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>What is the maximum item size in Couchbase></dt>
+        <dd>The default item size for Couchbase buckets is 20 MBytes. 
+          The default item size for memcached buckets is 1 MByte.</dd>
+      </dlentry>
+      <dlentry>
+        <dt>How do I the change password?</dt>
+        <dd>With the command-line tool (CLI), use <codeph>couchbase-cli cluster-init</codeph>:
+        <codeblock>
+couchbase-cli cluster-init -c cluster_IP:8091
+  -u current_username-p current password
+  --cluster-init-username=new_username
+  --cluster-init-password=new_password         
+        </codeblock>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>How do I change the per-node RAM quota?</dt>
+        <dd>With the command-line tool (CLI), use <codeph>couchbase-cli</codeph>:
+        <codeblock>
+couchbase-cli cluster-init -c cluster_IP:8091 
+  -u username-p password
+  --cluster-init-ramsize=RAM_in_M          
+        </codeblock>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>How do I change the disk path?
+        </dt>
+        <dd>With the command-line tool (CLI), use <codeph>node-init</codeph>:
+        <codeblock>
+couchbase-cli node-init -c cluster_IP:8091 
+  -u username-p password--node-init-data-path=/tmp
+        </codeblock>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>Why are some clients getting different results than others for the same
+          requests?</dt>
+        <dd>This should never happen in a correctly configured Ccouchbase cluster, since
+          Couchbase ensures a consistent view of all data in a cluster. 
+          However, if some clients can't reach all the nodes in a cluster (due to firewall or routing
+          rules, for example), it is possible for the same key to end up on more than one
+          cluster node, resulting in inconsistent duplication. 
+          Always ensure that all cluster nodes are reachable from every smart client or client-side moxi host.</dd>
+      </dlentry>
+    </dl>
+  </body>
+  
+  <related-links>
+    <link format="html" scope="external" href="http://www.couchbase.com/develop/">
+      <linktext>Client libraries</linktext>
+    </link>
+    <link format="html" scope="external" href="http://dustin.github.com/2010/06/29/memcached-vbuckets.html">
+    <linktext>memcached and vBuckets (by Dustin Sallings)</linktext>
+    </link> 
+    <link format="html" scope="external" href="http://blog.couchbase.com/want-know-what-your-memcached-servers-are-doing-tap-them">
+      <linktext>TAP interface (by Trond Norbye)</linktext>
+    </link>
+    <link format="html" scope="external" href="http://www.couchbase.com/downloads/">
+      <linktext>Couchbase consolidated downloads</linktext>
+    </link>
+    <link format="html" scope="external" href="http://www.cascading.org/2010/09/memcached-membase-and-elastics.html">
+      <linktext>Cascading</linktext>
+    </link>
+  </related-links>
+  
+  
+</topic>

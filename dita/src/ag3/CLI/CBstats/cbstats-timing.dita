@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic124"><title>Timing stats</title><body><p>Timing stats provide histogram data from high resolution timers over
+various operations within the system.</p></body></topic>

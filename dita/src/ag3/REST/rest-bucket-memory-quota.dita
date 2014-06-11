@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic994">
+  <title>Increasing bucket memory quota</title>
+  <shortdesc>To increase bucket memory quota, use the <codeph>POST</codeph> operation with the
+      <codeph>/pools/default/buckets/newBucket</codeph> URI and <codeph>ramQuotaMB</codeph>
+    option.</shortdesc>
+
+  <body>
+    <p>You can increase and decrease a bucket’s ramQuotaMB from its current level. However, while
+      increasing will do no harm, decreasing should be done with proper sizing. Decreasing the
+      bucket’s ramQuotaMB lowers the watermark, and some items may be unexpectedly ejected if the
+      ramQuotaMB is set too low.</p>
+
+    <note type="note"> There are some known issues with changing the ramQuotaMB for memcached bucket types. </note>
+    <p>Example of a request:</p>
+    <codeblock>
+curl -X POST -u admin:password -d ramQuotaMB=25 -d authType=none \
+  -d proxyPort=11215 http://localhost:8091/pools/default/buckets/newBucket
+</codeblock>
+    <p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>25</i>, <i>11215</i>, and
+        <i>newBucket</i> values in the above example with your actual values.</p>
+    <p>A 202 response indicates that the quota will be changed asynchronously throughout the
+      servers in the cluster.</p>
+    <codeblock>HTTP/1.1 202 OK
+Server: Couchbase Server 1.6.0
+Pragma: no-cache
+Date: Wed, 29 Sep 2010 20:01:37 GMT
+Content-Length: 0
+Cache-Control: no-cache no-store max-age=0
+</codeblock>
+  </body>
+</topic>

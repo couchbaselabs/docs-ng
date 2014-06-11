@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ayq_cd4_14">
+  <title>Modifying XDCR settings</title>
+  <shortdesc>To modify XDCR advanced settings, use either the Couchbase Server CLI or REST API.</shortdesc>
+  <body>
+    <section><title></title>
+      
+      <p>Besides Couchbase Web Console, you can use
+        several Couchbase REST API endpoints to modify XDCR settings. Some of these settings are
+        references used in XDCR and some of these settings will change XDCR behavior or performance:</p>
+      
+      <p>For the XDCR retry interval, you can provide an environment variable or make a PUT request. By
+        default if XDCR is unable to replicate for any reason like network failures, it will stop and
+        try to reach the remote cluster every 30 seconds if the network is back, XDCR will resume
+        replicating. You can change this default behavior by changing an environment variable or by
+        changing the server parameter <codeph>xdcr_failure_restart_interval</codeph> with a PUT
+        request:</p>
+      <note type="note">If you are using XDCR on multiple nodes in cluster and want to change this
+        setting throughout the cluster, you must perform this operation on every node in the
+        cluster.</note>
+      <ul>
+        <li>By an environment variable:</li>
+      </ul>
+      <codeblock>
+export XDCR_FAILURE_RESTART_INTERVAL=60
+</codeblock>
+      <ul>
+        <li>By server setting:</li>
+      </ul>
+      <codeblock>
+curl -X POST 
+  http://Administrator: asdasd@127.0.0.1:8091/diag/eval 
+  -d 'rpc:call(node(), ns_config, set, [xdcr_failure_restart_interval, 60]).'
+</codeblock>
+      <p>You can put the system environment variable in a system configuration file on your nodes. When
+        the server restarts, it loads this parameter. If both the environment variable and the server
+        parameter are set, the value for the environment parameter will supersede.</p>
+    </section>
+  </body>
+</topic>

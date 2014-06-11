@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic520"><title>XDCR flush requests</title><body><p>Flush requests to delete the entire contents of bucket are not replicated to the
+ remote cluster. Performing a flush operation will only delete data on the local
+ cluster. Flush is disabled if there is an active outbound replica stream
+ configured.</p><p>Important</p><p>When replicating to or from a bucket, do not flush that bucket on  the source or destination cluster. Flushing causes the vBucket state becomes temporarily unaccessible and results in a "not_found” error. The error suspends replication.
+</p></body></topic>

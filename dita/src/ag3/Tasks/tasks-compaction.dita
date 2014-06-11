@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic11042">
+ <title>Database and view compaction</title>
+ <shortdesc>Database and view compaction helps to reclaim disk space and reduce fragmentation.</shortdesc>
+ <body>
+  <p>The data files in which information is stored in a persistent state for a Couchbase Bucket are
+   written to and updated as information is appended, updated and deleted. This process can
+   eventually lead to gaps within the data file (particularly when data is deleted) which can be
+   reclaimed using a process called compaction.</p>
+  <p>The index files that are created each time a view is built are also written in a sequential
+   format. Updated index information is appended to the file as updates to the stored information is
+   indexed.</p>
+  <p>In both these cases, frequent compaction of the files on disk can help to reclaim disk space
+   and reduce fragmentation.</p>
+
+  <section><title>Compaction process</title><p><b>How it works</b></p><p>Couchbase compacts views
+    and data files. For database compaction, a new file is created into which the active (non-stale)
+    information is written. Meanwhile, the existing database files stay in place and continue to be
+    used for storing information and updating the index data. This process ensures that the database
+    continues to be available while compaction takes place. Once compaction is completed, the old
+    database is disabled and saved. Then any incoming updates continue in the newly created database
+    files. The old database is then deleted from the system.</p><p>View compaction occurs in the
+    same way. Couchbase creates a new index file for each active design document. Then Couchbase
+    takes this new index file and writes active index information into it. Old index files are
+    handled in the same way old data files are handled during compaction. Once compaction is
+    complete, the old index files are deleted from the system.</p><p><b>How to use
+    it</b></p><p>Compaction takes place as a background process while Couchbase Server is running.
+    You do not need to shutdown or pause your database operation, and clients can continue to access
+    and submit requests while the database is running. While compaction takes place in the
+    background, you need to pay attention to certain factors.</p><p>Make sure you perform
+    compaction…</p><ul>
+    <li><p><b>… on every server:</b> Compaction operates on only a single server within your
+      Couchbase Server cluster. You will need to perform compaction on each node in your cluster, on
+      each database in your cluster.</p></li>
+    <li><p><b>… during off-peak hours:</b> The compaction process is both disk and CPU intensive. In
+      heavy-write based databases where compaction is required, the compaction should be scheduled
+      during off-peak hours (use auto-compact to schedule specific times).</p></li>
+   </ul><p>If compaction isn’t scheduled during off-peak hours, it can cause problems. Because the
+    compaction process can take a long to complete on large and busy databases, it is possible for
+    the compaction process to fail to complete properly while the database is still active. In
+    extreme cases, this can lead to the compaction process never catching up with the database
+    modifications, and eventually using up all the disk space. Schedule compaction during off-peak
+    hours to prevent this!</p><ul>
+    <li><b>… with adequate disk space:</b> Because compaction occurs by creating new files and
+     updating the information, you may need as much as twice the disk space of your current database
+     and index files for compaction to take place.</li>
+   </ul><p>However, it is important to keep in mind that the exact amount of the disk space required
+    depends on the level of fragmentation, the amount of dead data and the activity of the database,
+    as changes during compaction will also need to be written to the updated data
+    files.</p><p>Before compaction takes place, the disk space is checked. If the amount of
+    available disk space is less than twice the current database size, the compaction process does
+    not take place and a warning is issued in the log.</p><p><b>Compaction
+    Behavior</b></p><ul>
+    <li><p><b>Stop/Restart:</b> The compaction process can be stopped and restarted. However, you
+      should be aware that the if the compaction process is stopped, further updates to database are
+      completed, and then the compaction process is restarted, the updated database may not be a
+      clean compacted version. This is because any changes to the portion of the database file that
+      were processed before the compaction was canceled and restarted have already been
+      processed.</p></li>
+    <li><p><b>Auto-compaction:</b> Auto-compaction automatically triggers the compaction process on
+      your database. You can schedule specific hours when compaction can take place.</p></li>
+    <li><p><b>Compaction activity log:</b> Compaction activity is reported in the Couchbase Server
+      log. You will see entries similar to following showing the compaction operation and
+      duration:</p></li>
+    <li><p><b>Compaction activity log:</b> Compaction activity is reported in the Couchbase Server
+      log. You can see the following items for compaction:</p>
+     <ul>
+      <li><p><b>Autocompaction</b> Indicates compaction cannot be performed because of inadequate
+        disk space</p></li>
+      <li><p><b>Manually triggered compaction</b></p></li>
+      <li><p>Compaction completed successfully</p></li>
+      <li><p>Compaction failed</p></li>
+      <li><p><b>Purge deletes compaction</b></p></li>
+      <li><p>Compaction started/completed</p></li>
+      <li><p>Compaction failed</p></li>
+     </ul>
+     </li>
+   </ul>
+  </section>
+  <section><title>Auto-compaction configuration</title><p>Couchbase Server incorporates an automated
+    compaction mechanism that can compact both data files and the view index files, based on
+    triggers that measure the current fragmentation level within the database and view index data
+    files.</p><p>Note</p><p>Spatial indexes are not automatically compacted. Spatial indexes must be
+    compacted manually.</p><p>Auto-compaction can be configured in two ways:</p><ul>
+    <li><p><i>Default Auto-Compaction</i> affects all the Couchbase Buckets within your Couchbase
+      Server. If you set the default Auto-Compaction settings for your Couchbase server then
+      auto-compaction is enabled for all Couchbase Buckets automatically. </p></li>
+    <li><p><i>Bucket Auto-Compaction</i> can be set on individual Couchbase Buckets. The
+      bucket-level compaction always overrides any default auto-compaction settings, including if
+      you have not configured any default auto-compaction settings. You can choose to explicitly
+      override the Couchbase Bucket specific settings when editing or creating a new Couchbase
+      Bucket. </p></li>
+   </ul><p>The available settings for both default Auto-Compaction and Couchbase Bucket specific
+    settings are identical:</p><ul>
+    <li><b>Database Fragmentation</b></li>
+   </ul><p>The primary setting is the percentage level within the database at which compaction
+    occurs. The figure is expressed as a percentage of fragmentation for each item, and you can set
+    the fragmentation level at which the compaction process will be triggered.</p><p>For example, if
+    you set the fragmentation percentage at 10%, the moment the fragmentation level has been
+    identified, the compaction process will be started, unless you have time limited
+    auto-compaction. SeeTime Period.</p><ul>
+    <li><b>View Fragmentation</b></li>
+   </ul><p>The View Fragmentation specifies the percentage of fragmentation within all the view
+    index files at which compaction will be triggered, expressed as a percentage.</p><ul>
+    <li><b>Time Period</b></li>
+   </ul><p>To prevent auto compaction taking place when your database is in heavy use, you can
+    configure a time during which compaction is allowed. This is expressed as the hour and minute
+    combination between which compaction occurs. For example, you could configure compaction to take
+    place between 01:00 and 06:00.</p><p>If compaction is identified as required outside of these
+    hours, compaction will be delayed until the specified time period is reached. The time period is
+    applied every day while the Couchbase Server is active. The time period cannot be configured on
+    a day-by-day basis.</p><ul>
+    <li><b>Compaction abortion</b></li>
+   </ul><p>The compaction process can be configured so that if the time period during which
+    compaction is allowed ends while the compaction process is still completing, the entire
+    compaction process will be terminated. This option affects the compaction process:</p><p>If this
+    option is enabled, and compaction is running, the process will be stopped. The files generated
+    during the compaction process will be kept, and compaction will be restarted when the next time
+    period is reached.</p><p>This can be a useful setting if want to ensure the performance of your
+    Couchbase Server during a specified time period, as this will ensure that compaction is never
+    running outside of the specified time period.</p><p>If this option is disabled and the
+    compaction is running when the time period ends, compaction will continue suntil the process has
+    been completed.</p><p>Using this option can be useful if you want to ensure that the compaction
+    process completes.</p><ul>
+    <li><b>Parallel Compaction</b></li>
+   </ul><p>By default, compaction operates sequentially, executing first on the database and then
+    the Views if both are configured for auto-compaction. If you enable parallel compaction, both
+    the databases and the views can be compacted at the same time. This requires more CPU and
+    database activity for both to be processed simultaneously, but if you have CPU cores and disk
+    I/O (for example, if the database and view index information is stored on different physical
+    disk devices), the two can complete in a shorter time.</p><ul>
+    <li><b>Metadata Purge Interval</b></li>
+   </ul><p>You can remove tombstones for expired and deleted items as part of the auto-compaction
+    process. Tombstones are records containing the key and metadata for deleted and expired items
+    and are used for eventually consistency between clusters and for views.</p><p>Configuration of
+    auto-compaction is through Couchbase Web Console. Information on
+    per-bucket settings is through the Couchbase Bucket create/edit screen. . You can also view and change these settings using the REST API,</p>
+   
+  </section>
+  <section><title>Auto-compaction strategies</title><p>The exact fragmentation and scheduling
+    settings for auto-compaction should be chosen carefully to ensure that your database performance
+    and compaction performance meet your requirements.</p><p>You want to consider the following:</p><ul>
+    <li><p>You should monitor the compaction process to determine how long it takes to compact your
+      database. This will help you identify and schedule a suitable time-period for auto-compaction
+      to occur.</p></li>
+    <li><p>Compaction affects the disk space usage of your database, but should not affect
+      performance. Frequent compaction runs on a small database file are unlikely to cause problems,
+      but frequent compaction on a large database file may impact the performance and disk
+      usage.</p></li>
+    <li><p>Compaction can be terminated at any time. This means that if you schedule compaction for
+      a specific time period, but then require the additional resources being used for compaction
+      you can terminate the compaction and restart during another off-peak period.</p></li>
+    <li><p>Because compaction can be stopped and restarted it is possible to indirectly trigger an
+      incremental compaction. For example, if you configure a one-hour compaction period, enable
+      Compaction abortion, and compaction takes 4 hours to complete, compaction will incrementally
+      take place over four days.</p></li>
+    <li><p>When you have a large number of Couchbase buckets on which you want to use
+      auto-compaction, you may want to schedule your auto-compaction time period for each bucket in
+      a staggered fashion so that compaction on each bucket can take place within a it’s own unique
+      time period.</p></li>
+   </ul></section>
+ </body>
+ <related-links>
+  <linklist>
+   <link href="../UI/ui-settings.dita"></link>
+   <link href="../UI/ui-logs.dita"></link>
+   <link href="../UI/ui-data-buckets.dita"></link>
+   <link href="../REST/compaction-rest-api.dita"></link>
+  </linklist>
+ </related-links>
+</topic>

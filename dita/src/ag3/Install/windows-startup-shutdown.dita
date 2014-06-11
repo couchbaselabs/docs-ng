@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1367"><title>Startup and shutdown on Windows</title><body><p>On Windows, Couchbase Server is installed as a Windows service. You can use the
+<codeph>Services</codeph> tab within the Windows Task Manager to start and stop Couchbase
+Server.</p><p>You will need Power User or Administrator privileges, or have been separately
+granted the rights to manage services to start and stop Couchbase Server.</p><p>By default, the service should start automatically when the machine boots. To
+manually start the service, open the Windows Task Manager and choose the
+<codeph>Services</codeph> tab, or select the <codeph>Start</codeph>, choose <codeph>Run</codeph> and then type <codeph>Services.msc</codeph>
+to open the Services management console.</p><p>Once open, find the <codeph>CouchbaseServer</codeph> service, right-click and then choose to
+Start or Stop the service as appropriate. You can also alter the configuration
+so that the service is not automatically started during boot.</p><p>Alternatively, you can start and stop the service from the command-line, either
+by using the system <codeph>net</codeph> command. For example, to start Couchbase Server:</p><codeblock><codeph>&gt; net start CouchbaseServer
+</codeph></codeblock><p>To stop Couchbase Server:</p><codeblock><codeph>&gt; net stop CouchbaseServer
+</codeph></codeblock><p>Start and Stop scripts are also provided in the standard Couchbase Server
+installation in the <codeph>bin</codeph> directory. To start the server using this script:</p><codeblock><codeph>&gt; C:\Program Files\Couchbase\Server\bin\service_start.bat
+</codeph></codeblock><p>To stop the server using the supplied script:</p><codeblock><codeph>&gt; C:\Program Files\Couchbase\Server\bin\service_stop.bat
+</codeph></codeblock></body></topic>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1393"><title>couchbase-cli tool</title><body><p>The couchbase-cli tool is located in the following paths, depending upon the platform.
+This tool can perform operations on an entire cluster, on a bucket shared across
+an entire cluster, or on a single node in a cluster. For instance, if this tool is used to create a data bucket,
+all nodes in the cluster have access the bucket.</p><p>Note</p><p>Many of these same settings can be performed using the REST API.
+</p><p><!--Removed anchor point table-couchbase-admin-cmdline-couchbase-cli-locs--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Operating System</entry>
+	<entry>Directory Locations</entry>
+</row></thead><tbody><row>
+	<entry><b>Linux</b></entry>
+	<entry><codeph>/opt/couchbase/bin/couchbase-cli</codeph></entry>
+</row><row>
+	<entry><b>Windows</b></entry>
+	<entry><codeph>C:\Program Files\Couchbase\Server\bin\couchbase-cli.exe</codeph></entry>
+</row><row>
+	<entry><b>Mac OS X</b></entry>
+	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/couchbase-cli</codeph></entry>
+</row></tbody></tgroup></table><p>This tool provides access to various management operations for Couchbase Server
+clusters, nodes and buckets. The basic usage format is:</p><codeblock><codeph>couchbase-cli COMMAND [BUCKET_NAME] CLUSTER [OPTIONS]
+</codeph></codeblock><p>Where:</p><ul>
+<li><p><codeph>COMMAND</codeph> is a command listed below.</p></li>
+<li><p><codeph>CLUSTER</codeph> is a cluster specification. The following shows both short and long form syntax:</p></li>
+</ul><codeblock><codeph>// Short form
+    -c HOST[:PORT]
+// Long form
+    --cluster=HOST[:PORT]
+</codeph></codeblock><ul>
+<li><codeph>OPTIONS</codeph> are zero or more options as follows:</li>
+</ul><p><!--Removed anchor point table-couchbase-admin-couchbase-cli-options--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Option</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry><codeph>-u USERNAME, --user=USERNAME</codeph></entry>
+	<entry>Admin username of the cluster</entry>
+</row><row>
+	<entry><codeph>-p PASSWORD, --password=PASSWORD</codeph></entry>
+	<entry>Admin password of the cluster</entry>
+</row><row>
+	<entry><codeph>-o KIND, --output=KIND</codeph></entry>
+	<entry>Type of document: JSON or standard</entry>
+</row><row>
+	<entry><codeph>-d, --debug</codeph></entry>
+	<entry>Output debug information</entry>
+</row></tbody></tgroup></table></body></topic>

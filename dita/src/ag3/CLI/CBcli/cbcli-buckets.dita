@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3692">
+        <title>Buckets CLI</title>
+        <shortdesc>Buckets are managed with the <codeph>couchbase-cli</codeph> tool and the <codeph>bucket-*</codeph> commands.</shortdesc>
+        
+        <body>
+                <p>This section provides examples for listing, creating, modifying, flushing, and
+                        compacting buckets.</p>
+                
+                <section><title>Listing bucketss</title><p>To list buckets in a
+                        cluster:</p>
+                        
+                        <codeblock>
+couchbase-cli bucket-list -c 192.168.0.1:8091
+</codeblock></section>
+                
+                <section><title>Creating buckets</title>
+                        <p>To create a new dedicated port couchbase bucket:</p>
+                        <codeblock>
+couchbase-cli bucket-create -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-type=couchbase \
+       --bucket-port=11222 \
+       --bucket-ramsize=200 \
+       --bucket-replica=1
+</codeblock>
+        
+        <p>To create a couchbase bucket and wait for bucket
+                                ready:</p>
+                        <codeblock>
+couchbase-cli bucket-create -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-type=couchbase \
+       --bucket-port=11222 \
+       --bucket-ramsize=200 \
+       --bucket-replica=1 \
+       --wait
+</codeblock>
+                        
+         
+        <p>To create a new sasl memcached bucket:</p>
+        <codeblock>
+couchbase-cli bucket-create -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-type=memcached \
+       --bucket-password=password \
+       --bucket-ramsize=200 \
+       --enable-flush=1 \
+       --enable-index-replica=1
+</codeblock></section>
+                
+                
+                <section><title>Modifying buckets</title>
+                        
+                        <p>To modify a dedicated port bucket:</p>
+                        <codeblock>
+couchbase-cli bucket-edit -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-port=11222 \
+       --bucket-ramsize=400 \
+       --enable-flush=1
+</codeblock></section>
+                
+                <section><title>Deleting buckets</title>
+                        <p>To delete a bucket:</p>
+                        <codeblock>
+couchbase-cli bucket-delete -c 192.168.0.1:8091 \
+       --bucket=test_bucket
+</codeblock></section>
+                
+                <section><title>Flushing buckets</title>
+                        <p>Flushing buckets involves:</p>
+                        <ol>
+                                <li>Enable the flush buckets option.</li>
+                                <li>Flush the bucket.</li>
+                        </ol>
+                        
+                        <p>To enable the flush bucket option:</p>
+                        <p>When you want to flush a data bucket you must first enable this option 
+                                then actually issue the command to flush the data bucket. 
+</p>
+                        <note type="note">We do not advise that you enable this option if
+                                your data bucket is in a production environment. Be aware that this
+                                is one of the preferred methods for enabling data bucket flush.
+                                </note>
+                        
+                        <p>You can enable this option when you actually create the data
+                                bucket, or when you edit the bucket
+                                properties:</p>
+                        
+                        <codeblock>
+// To enable, set bucket flush to 1. Default:0
+// To enable bucket flush when creating a bucket:
+
+couchbase-cli bucket-create [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]
+
+// To enable bucket flush when editing the bucket properties:
+
+couchbase-cli bucket-edit [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]
+</codeblock>
+                        <p>After
+                                you enable this option, you can then flush the data bucket.</p><p>To
+                                flush a bucket:</p><p>After you explicitly enable data bucket flush,
+                                flush the data from the bucket. Flushing a bucket is data
+                                destructive. Client applications using this are advised to double
+                                check with the end user before sending such a request. You can
+                                control and limit the ability to flush individual buckets by setting
+                                the <codeph>flushEnabled</codeph> parameter on a bucket in Couchbase
+                                Web Console or via <codeph>couchbase-cli</codeph> as described in
+                                the previous section. </p>
+                        
+                        <p><b>Syntax</b></p>
+                        <codeblock>
+
+&gt; couchbase-cli bucket-flush [cluster_admin:pass] [bucket_name OPTIONS]
+
+                        </codeblock>
+                        <p>By default, this command confirms whether or not you truly want to
+                                flush the data bucket. You can optionally call this command with the
+                                        <codeph>--force</codeph> option to flush data without
+                                confirmation.</p>
+                        
+                        <p><b>Example</b></p>
+                        <codeblock>
+couchbase-cli bucket-flush -c 192.168.0.1:8091 \
+       --force
+</codeblock></section>
+                
+                <section><title>Compacting buckets</title>
+                        
+                        <p>To compact a bucket for both data and view:</p>
+                        
+                        <codeblock>
+couchbase-cli bucket-compact -c 192.168.0.1:8091 \
+        --bucket=test_bucket
+</codeblock><p>To compact a bucket for data only:</p>
+                        <codeblock>
+couchbase-cli bucket-compact -c 192.168.0.1:8091 \
+        --bucket=test_bucket \
+        --data-only
+</codeblock><p>To compact a bucket for view only:</p>
+                        <codeblock>
+couchbase-cli bucket-compact -c 192.168.0.1:8091 \
+        --bucket=test_bucket \
+        --view-only
+</codeblock></section>
+        </body>
+
+</topic>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2131"><title>Cluster design considerations</title><body><ul>
+<li><p>RAM: Memory is a key factor for smooth cluster performance. Couchbase best fits
+ applications that want most of their active dataset in memory. It is very
+ important that all the data you actively use (the working set) lives in memory.
+ When there is not enough memory left, some data is ejected from memory and will
+ only exist on disk. Accessing data from disk is much slower than accessing data
+ in memory. As a result, if ejected data is accessed frequently, cluster
+ performance suffers. Use the formula provided in the next section to verify your
+ configuration, optimize performance, and avoid this situation.</p></li>
+<li><p>Number of Nodes: Once you know how much memory you need, you must decide whether
+ to have a few large nodes or many small nodes.</p>
+
+<ul>
+<li><p>Many small nodes: You are distributing I/O across several machines. However, you
+ also have a higher chance of node failure (across the whole cluster).</p></li>
+<li><p>Few large nodes: Should a node fail, it greatly impacts the application.</p></li>
+<li><p>It is a trade off between reliability and efficiency.</p></li>
+</ul></li>
+<li><p>Couchbase prefers a client-side moxi (or a smart client) over a
+ server-side moxi. However, for development environments or for faster, easier
+ deployments, you can use server-side moxis. A server-side moxi is not recommended
+ because of the following drawback: if a server receives a client request and doesn’t have
+ the requested data, there’s an additional hop. See
+ <xref href="http://www.couchbase.com/develop" scope="external" format="html">client development</xref> and <xref href="#topic2131/couchbase-deployment">Deployment
+ Strategies</xref> for more information.</p></li>
+<li><p>Number of cores: Couchbase is relatively more memory or I/O bound than is CPU
+ bound. However, Couchbase is more efficient on machines that have at least two
+ cores.</p></li>
+<li><p>Storage type: You may choose either SSDs (solid state drives) or spinning disks
+ to store data. SSDs are faster than rotating media but, currently, are more
+ expensive. Couchbase needs less memory if a cluster uses SSDs as their I/O queue
+ buffer is smaller.</p></li>
+<li><p>WAN Deployments: Couchbase is not intended to be used in WAN configurations.
+ Couchbase requires that the latency should be very low between server nodes and
+ between servers nodes and Couchbase clients.</p></li>
+</ul></body><related-links><linklist><title>Collected links</title><link href="http://www.couchbase.com/develop" scope="external" format="html"><linktext>client development</linktext></link></linklist></related-links></topic>

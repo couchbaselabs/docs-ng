@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ygn_4p4_14">
+  <title>Cluster REST API</title>
+  <body>
+    <p>Cluster operations through the Couchbase REST API include managing server nodes, viewing cluster details, viewing cluster information, and managing auto-failover.</p>
+  </body>
+</topic>

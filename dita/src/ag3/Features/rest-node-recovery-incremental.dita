@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ycn_14b_k4">
+  <title>Setting incremental node recovery (REST API)</title>
+  <shortdesc>The REST request to add a node to a cluster uses the <codeph>/controller/addNode</codeph> endpoint URI. 
+    </shortdesc>
+  <refbody>
+
+    
+<example><title>Adding a server node to a cluster</title>
+  <p>In the following example, server node at <codeph>10.2.2.64</codeph> is added to the cluster at <codeph>10.2.2.60</codeph>.</p>
+  
+  <note type="note">QUESTION: What's the recovery type paramenter??</note>
+      
+      <codeblock>
+CURL -u admin:PASSWORD \
+  10.2.2.60:8091/controller/addNode \
+  -d "hostname=10.2.2.64&amp;user=admin&amp;password=PASSWORD"      
+      </codeblock>
+      
+      <note type="note">Replace the admin, password, and IP address values with your actual values.</note>
+      
+      <title>Returns</title>    
+      <codeblock>
+HTTP/1.1 200 OK
+{"otpNode":"ns_1@10.4.2.6"}        
+      </codeblock>
+      
+      <title>Re-adding a server to a server group:</title>
+      <p><codeph>POST /pools/default/serverGroups/UUID/addNode</codeph> adds a server to a cluster and assigns it to the specified server group.</p>
+</example>
+      
+  <example><title>Syntax</title>
+      
+      <codeblock>curl -X POST -dhostname=HOST:PORT 
+   -u Administrator:PASSWORD
+   http://HOST:PORT/pools/default/serverGroups/UUID/addNode
+          </codeblock>
+  </example>
+      
+      
+    <example><title>Example</title>
+      
+      <codeblock>
+              
+curl -X POST -dhostname=192.168.0.2:8091 
+    -u Admin:myPassword 
+    http://192.168.0.1:8091/pools/default/serverGroups/246b5de857e100dbfd8b6dee0406420a/addNode
+              </codeblock>
+      </example>
+      
+    
+    
+    
+  </refbody>
+</reference>

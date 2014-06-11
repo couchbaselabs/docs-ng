@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1307">
+  <title>Nodes and clusters</title>
+  <shortdesc>Couchbase Server can be used either in a standalone configuration or cluster
+    configuration. A cluster configuration is multiple Couchbase Servers connected together to provide a single,
+    distributed data store.</shortdesc>
+  
+  <body>
+    
+    <dl>
+      <dlentry>
+        <dt>Couchbase Server or Node</dt>
+        <dd>A single instance of the Couchbase Server software running on a machine, whether a
+          physical machine, virtual machine, EC2 instance or other environment. <p>All instances of
+            Couchbase Server are identical, provide the same functionality, interfaces, and systems,
+            and consist of the same components.</p></dd>
+      </dlentry>
+      <dlentry>
+        <dt>Cluster</dt>
+        <dd>A cluster is a collection of one or more instances of Couchbase Server that are
+          configured as a logical cluster. All nodes within the cluster are identical and provide
+          the same functionality. Each node is capable of managing the cluster and each node can
+          provide aggregate statistics and operational information about the cluster. User data is
+          stored across the entire cluster through the vBucket system. <p>Clusters operate in a
+            completely horizontal fashion. To increase the size of a cluster, add another node.
+            There are no parent/child relationships or hierarchical structures involved. This means
+            that Couchbase Server scales linearly, both in terms of increasing the storage capacity
+            and performance and scalability.</p>
+        </dd>
+      </dlentry>
+    </dl>
+  </body>
+</topic>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic7277">
+  <title>Settings</title>
+  <shortdesc>The <uicontrol>Settings</uicontrol> section provides configuration and information 
+    for the cluster, update notifications, auto failover, alerts, auto compaction, sample buckets, and account management.</shortdesc>
+  <body>
+    <p>The <codeph>Settings</codeph> interface sets the global settings for your Couchbase Server
+      instance.</p>
+    
+
+  </body>
+
+</topic>

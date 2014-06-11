@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic5374">
+  <title>Multiple readers and writers</title>
+  <shortdesc>Multi-threaded readers and writers provide 
+    multiple processes to simultaneously read and write data on disk. 
+    Simultaneous reads and writes increases disk speed and improves the read rate from disk. </shortdesc>
+  
+  <body>
+    
+    <p>Multiple readers and writers are supported to persist data onto disk. For earlier versions of
+      Couchbase Server, each server instance had only single disk reader and writer threads. Disk
+      speeds have now increased to the point where single read/write threads do not efficiently keep
+      up with the speed of disk hardware. The other problem caused by single read/writes threads is
+      that if you have a good portion of data on disk and not RAM, you can experience a high level
+      of cache misses when you request this data. </p>
+
+
+    
+    <p>This multi-threaded engine includes additional synchronization among threads that are
+      accessing the same data cache to avoid conflicts. To maintain performance while avoiding
+      conflicts over data, Couchbase uses a form of locking between threads as well as thread allocation
+      among vBuckets with static partitioning. When Couchbase Server creates multiple reader and
+      writer threads, the server assesses a range of vBuckets for each thread and assigns each
+      thread exclusively to certain vBuckets. With this static thread coordination, the server
+      schedules threads so that only a single reader and single writer thread can access the same
+      vBucket at any given time. The previous image shows six pre-allocated threads and
+      two data Buckets. Each thread has the range of vBuckets that is statically partitioned for
+      read and write access.</p>
+    
+    <image href="../images/threads_read_write.png" width="500"></image>
+    
+
+  </body>
+
+</topic>

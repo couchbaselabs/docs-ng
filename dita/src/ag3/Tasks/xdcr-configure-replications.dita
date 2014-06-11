@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_cyy_wh4_14">
+  <title>Configuring XDCR replications</title>
+  <shortdesc>Configuration of XDCR replications is done on a per-bucket basis.</shortdesc>
+  <body>
+
+      <p>Replications are configured from the <uicontrol>XDCR</uicontrol> tab of the Web
+        Console. You configure replication on a bucket basis. To replicate data from all
+        buckets in a cluster, individually configure replication for each bucket.</p>
+    
+      <p>Before configuring XDCR:</p>
+      <ul>
+        <li>Configure all nodes within each cluster to communicate with all the nodes on the
+          destination cluster. XDCR uses any node in a cluster to replicate between the two
+          clusters.</li>
+        <li>Ensure that all Couchbase Server versions and platforms match. For instance, if you want to replicate
+          from a Linux-based cluster, you need to do so with another Linux-based cluster.</li>
+        <li>When XDCR performs replication, it exchanges data between clusters over TCP/IP port 8092;
+          Couchbase Server uses TCP/IP port 8091 to exchange cluster configuration information. If you
+          are communicating with a destination cluster over a dedicated connection or the Internet you
+          should ensure that all the nodes in the destination and source clusters can communicate with
+          each other over ports 8091 and 8092.</li>
+      </ul>
+      <p><codeph>Ongoing Replications</codeph> are those replications that are currently configured and
+        operating. You can monitor the current configuration, current status, and the last time a
+        replication process was triggered for each configured replication.</p><p>Under the XDCR tab you
+          can also configure <codeph>Remote Clusters</codeph> for XDCR; these are named destination
+          clusters you can select when you configure replication. When you configure XDCR, the destination
+          cluster reference should point to the IP address of one of the nodes in the destination
+          cluster.</p><p>Before you set up replication via XDCR, you should be certain that a destination
+            bucket already exists. If this bucket does not exist, replication via XDCR may not find some
+            shards on the destination cluster; this will result in replication of only some data from the
+            source bucket and will significantly delay replication. This would also require you to retry
+            replication multiple times to get a source bucket to be fully replicated to a destination.</p>
+      <p>Therefore, make sure that you check that a destination bucket exists. The recommended approach
+        is try to read on any key from the bucket. If you receive a ‘key not found’ error, or the
+        document for the key, the bucket exists and is available to all nodes in a cluster. You can do
+        this via a Couchbase SDK with any node in the cluster. </p>
+    
+  </body>
+</topic>

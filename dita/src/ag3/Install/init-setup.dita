@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic12527"><title>Initial server setup</title><body><p><!--Removed anchor point couchbase-getting-started-setup--></p><p>Recommendation</p><p>
+Couchbase recommends that you clear your browser cache before doing the setup process.
+You can find notes and tips on how to do this on different browsers and
+platforms on [wikihow.com](http://www.wikihow.com/Clear-Your-Browser's-Cache).
+</p><p>On all platforms you can access the web console by connecting to the embedded
+web server on port 8091. For example, if your server can be identified on your
+network as <codeph>servera</codeph>, you can access the web console by opening
+<codeph>http://servera:8091/</codeph>. You can also use an IP address or, if you are on the
+same machine, <codeph>http://localhost:8091</codeph>. If you set up Couchbase Server on another
+port other than <codeph>8091</codeph>, go to that port.</p><ol>
+<li><p>Open Couchbase Web Console.</p></li>
+<li><p>Set the disk storage and cluster configuration.</p>
+
+<p>The <codeph>Configure Disk Storage</codeph> option specifies the location of the persistent
+storage used by Couchbase Server. The setting affects only this node and sets
+the directory where all the data will be stored on disk. This will also set
+where the indices created by views will be stored. If you are not indexing data
+with views you can accept the default setting. For the best performance, you may
+want to configure different disks for the server, for storing your document and
+for index data. For more information on best practices and disk storage, see
+<xref href="../cb-admin/#couchbase-bestpractice-sizing-disk" format="html">Disk Throughput and Sizing</xref>.</p>
+
+<p>The <codeph>Configure Server Memory</codeph> section sets the amount of physical RAM that will
+be allocated by Couchbase Server for storage. For more information and
+guidelines, see <xref href="../cb-admin/#couchbase-bestpractice-sizing-ram" format="html">RAM Sizing</xref>.</p>
+
+<p>If you are creating a new cluster, this is the amount of memory that will be
+allocated on each node within your Couchbase cluster. The memory for each node
+in a cluster must be the same amount. You must specify a value that can be
+supported by all the nodes in your cluster as this setting will apply to the
+entire cluster.</p>
+
+<p>The default value is 60% of your total free RAM. This figure is designed to
+allow RAM capacity for use by the operating system caching layer when accessing
+and using views.</p></li>
+<li><p>Provide a node IP or hostname under Configure Server Hostname. For more details
+about using hostnames see <xref href="#topic12527/couchbase-getting-started-hostnames">Using Hostnames with Couchbase
+Server</xref>.</p>
+
+<required-cleanup remap="figure"><ph>
+<image href="../images/configure_server1.png"><alt/></image>
+</ph></required-cleanup></li>
+<li><p>Provide the IP Address or hostname of an existing node, and administrative
+credentials for that existing cluster.</p></li>
+<li><p>To join an existing cluster, Check Join a cluster now.</p></li>
+<li><p>Click Next.</p>
+
+<p>The Sample Buckets panel appears where you can select the sample data buckets
+you want to load.</p></li>
+<li><p>Click the names of sample buckets to load Couchbase Server. These data sets
+demonstrate Couchbase Server and help you understand and develop views. If you
+decide to install sample data, the installer creates one Couchbase bucket for
+each set of sample data you choose.</p>
+
+<required-cleanup remap="figure"><ph>
+<image href="../images/web-console-startup-3.png"><alt/></image>
+</ph></required-cleanup>
+
+<p>For more information on the contents of the sample buckets, see <xref href="../cb-admin/#couchbase-sampledata" format="html">Couchbase
+Sample Buckets</xref>. After you create sample data buckets a
+Create Bucket panel appears where you create new data buckets</p></li>
+<li><p>Set up a test bucket for Couchbase Server. You can change all bucket settings
+later except for the bucket name.</p>
+
+<p>Enter ‘default’ as the bucket name and accept all other defaults in this panel.
+For more information about creating buckets, see <xref href="../cb-admin/#couchbase-admin-web-console-data-buckets-createedit" format="html">Creating and Editing Data
+Buckets</xref>.</p>
+
+<p>Couchbase Server will create a new data bucket named ‘default.’ You can use this
+test bucket to learn more about Couchbase and can use it in a test environment.</p></li>
+<li><p>Select <codeph>Update Notifications</codeph>.</p>
+
+<p>Couchbase Web Console communicates with Couchbase nodes and confirms the version
+numbers of each node. As long as you have internet access, this information will
+be sent anonymously to Couchbase corporate.. Couchbase corporate only uses this
+information to provide you with updates and information that will help us
+improve Couchbase Server and related products.</p>
+
+<p>When you provide an email address we will add it to the Couchbase community
+mailing list for news and update information about Couchbase and related
+products. You can unsubscribe from the mailing list at any time using the
+unsubscribe link provided in each newsletter. Web Console communicates the
+following information:</p>
+
+<ul>
+<li><p>The current version. When a new version of Couchbase Server exists, you get
+ information on where you can download the new version.</p></li>
+<li><p>Information about the size and configuration of your Couchbase cluster to
+ Couchbase corporate. This information helps us prioritize our development
+ efforts.</p></li>
+</ul></li>
+<li><p>Enter a username and password. Your username must have no more than 24
+characters, and your password must have 6 to 24 characters. You use these
+credentials each time you add a new server into the cluster. These are the same
+credentials you use for Couchbase REST API. See the Couchbase <xref href="../cb-rest-api/#couchbase-admin-restapi" format="html">REST
+API</xref>.</p></li>
+</ol><p>Once you finish this setup, you see Couchbase Web Console with the Cluster
+Overview page:</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-startup-7.png"><alt/></image>
+</ph></required-cleanup><p>Your server is now running and ready to use. After you install your server and
+finish initial setup you can also optionally configure other settings, such as
+the port, RAM, using any of the following methods:</p><section><title>Using command-line tools</title><p>The command line tools provided with your Couchbase Server installation includes
+ <codeph>couchbase-cli</codeph>. This tool provides access to the core functionality of the
+ Couchbase Server by providing a wrapper to the REST API. For information about
+ CLI, see <xref href="../cb-cli/#couchbase-admin-cmdline-couchbase-cli" format="html">couchbase-cli tool</xref>.</p></section><section><title>Using the REST API</title><p>Couchbase Server can be configured and controlled using a REST API. In fact, the
+ REST API is the basis for both the command-line tools and Web interface to
+ Couchbase Server.</p><p>For more information on using the REST API see, the Couchbase <xref href="../cb-rest-api/#couchbase-admin-restapi" format="html">REST
+ API</xref>.</p><p><!--Removed anchor point couchbase-getting-started-hostnames--></p></section><section><title>Using hostnames</title><p>When you first install Couchbase Server you can access using a default IP
+address. There may be cases where you want to provide a hostname for each
+instance of a server. Each hostname you provide should be a valid one and will
+ultimately resolve to a valid IP Address. This section describes how you provide
+hostnames on Windows and Linux for the different versions of Couchbase Server.
+If you restart a node, it will use the hostname once again. If you failover or
+remove a node from a cluster, the node needs to be configured with the hostname
+once again.</p></section><section><required-cleanup><title>Couchbase 2.1+ Linux and Windows</title><p>There are several ways you can provide hostnames for Couchbase 2.1+. You can
+provide a hostname when you install a Couchbase Server on a machine, when
+you add the node to an existing cluster for online upgrade, or via a REST API
+call. Couchbase Server stores this in a config file on disk. For earlier
+versions of Couchbase Server you must follow a manual process where you edit
+config files for each node which we describe below.</p><ul>
+<li><b>On Initial Setup</b> In the first screen that appears when you first log into Couchbase Server, you
+can provide either a hostname or IP address under <b>Configure Server Hostname</b>.
+Any hostname you provide will survive node restart:</li>
+</ul><required-cleanup remap="figure"><ph>
+<image href="../images/configure_server1.png"><alt/></image>
+</ph></required-cleanup><ul>
+<li><b>While Adding a Node</b> If you add a new 2.1+ node to an existing 2.0.1 or older Couchbase cluster you
+should first setup the hostname for the 2.1+ node in the setup wizard. If you
+add a new 2.1+ node to a 2.1 cluster you can provide either a hostname or IP
+address under <b>Add Server</b>. You provide it in the <b>Server IP Address</b> field:</li>
+</ul><required-cleanup remap="figure"><ph>
+<image href="../images/hostname_add_node.png"><alt/></image>
+</ph></required-cleanup><ul>
+<li><b>Providing Hostnames via REST API</b> The third way you can provide a node a hostname is to do a REST request at the
+endpoint <codeph>http://127.0.0.1:8091/node/controller/rename</codeph>. If you use this method,
+you should provide the hostname before you add a node to a cluster. If you
+provide a hostname for a node that is already part of a Couchbase cluster; the
+server will reject the request and return <codeph>error 400 reason: unknown ["Renaming
+is disallowed for nodes that are already part of a cluster"]</codeph>.:</li>
+</ul><codeblock><codeph>curl -v -X POST -u Administrator:asdasd \
+http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
+</codeph></codeblock><p>Where you provide the IP address and port for the node and administrative
+credentials for the cluster. The value you provide for <codeph>hostname</codeph> should be a
+valid hostname for the node. Possible errors that may occur when you do this
+request:</p><ul>
+<li><p>Could not resolve the hostname. The hostname you provide as a parameter does not
+ resolve to a IP address.</p></li>
+<li><p>Could not listen. The hostname resolves to an IP address, but no network
+ connection exists for the address.</p></li>
+<li><p>Could not rename the node because name was fixed at server start-up.</p></li>
+<li><p>Could not save address after rename.</p></li>
+<li><p>Requested name hostname is not allowed. Invalid hostname provided.</p></li>
+<li><p>Renaming is disallowed for nodes that are already part of a cluster.</p></li>
+</ul></required-cleanup></section><section><required-cleanup><title>Hostnames when upgrading to 2.1</title><p>If you perform an offline upgrade from Couchbase 1.8.1+ to 2.1 (Linux and Windows)and you have a
+configured hostname using the instructions from <xref href="../cb-admin/#couchbase-bestpractice-cloud-ip" format="html">Handling Changes in IP
+Addresses</xref>, a 2.1 server will use this
+configuration.</p><p>If you perform an online upgrade from 1.8.1+ to 2.1, you should add the hostname
+when you create the new 2.1 node. For more information about upgrading between
+versions, see <xref href="#topic12527/couchbase-getting-started-upgrade">Upgrading to Couchbase Server
+2.1</xref></p><p><b>Hostnames and the Cloud (such as EC2, Azure, etc)</b>. For more information about handling
+IP addresses and hostnames, see <xref href="../cb-admin/#couchbase-bestpractice-cloud-ip" format="html">Handling Changes in IP
+Addresses</xref>.</p><p><!--Removed anchor point couchbase-getting-started-hostnames-pre2.0--></p></required-cleanup></section><section><required-cleanup><title>Hostnames for Couchbase Server 2.0.1 and earlier</title><p>For 2.0.1 please follow the same steps for 2.0 and earlier. The one difference
+between versions is the name and location of the file you change.</p><p>Warning</p><p>
+This operation on both Linux and Windows is data destructive. This process 
+reinitializes the node and removes all data on the node. Couchbase recommend that 
+all node data be backed up before performing this operation, see [cbbackup
+tool](../cb-cli/#couchbase-admin-cmdline-cbbackup).
+</p><ul>
+<li><p><b>Hostnames for Linux 2.0.1 and earlier</b></p></li>
+<li><p>Install Couchbase Server.</p></li>
+<li><p>Execute:</p>
+
+<p><codeph>
+ sudo /etc/init.d/couchbase-server stop
+</codeph></p></li>
+<li><p>For 2.0, edit the <codeph>start()</codeph> function in the script located at
+<codeph>/opt/couchbase/bin/couchbase-server</codeph>. You do not need to edit this file for
+2.0.1.</p>
+
+<p>Under the line that reads:</p>
+
+<p><codeph>
+ -run ns_bootstrap -- \
+</codeph></p>
+
+<p>Add a new line that reads:</p>
+
+<p><codeph>
+ -name ns_1@hostname \
+</codeph></p>
+
+<p>Where <codeph>hostname</codeph> is either a DNS name or an IP address that you want this server
+to identify the node (the ‘ns_1@’ prefix is mandatory). For example:</p>
+
+<p><codeph>
+ ...
+      -run ns_bootstrap -- \
+      -name ns_1@couchbase1.company.com \
+      -ns_server config_path "\"/opt/couchbase/etc/couchbase/static_config\"" \
+ ...
+</codeph></p></li>
+<li><p>Edit the IP address configuration file.</p>
+
+<p>For Linux 2.0 this is <codeph>/opt/couchbase/var/lib/couchbase/ip</codeph>. This file contains
+the identified IP address of the node once it is part of a cluster. Open the
+file, and add a single line containing the <codeph>hostname</codeph>, as configured in the
+previous step.</p>
+
+<p>For Linux 2.0.1. You update the ip_start file with the hostname. The file is at
+this location: /opt/couchbase/var/lib/couchbase/ip_start.</p></li>
+<li><p>Delete the files under:</p>
+
+<ul>
+<li><p><codeph>/opt/couchbase/var/lib/couchbase/data/*</codeph></p></li>
+<li><p><codeph>/opt/couchbase/var/lib/couchbase/mnesia/*</codeph></p></li>
+<li><p><codeph>/opt/couchbase/var/lib/couchbase/config/config.dat</codeph></p></li>
+</ul></li>
+<li><p>Execute:</p>
+
+<p><codeph>
+ sudo /etc/init.d/couchbase-server start
+</codeph></p></li>
+<li><p>You can see the correctly identified node as the hostname under the Manage
+Servers page. You will again see the setup wizard since the configuration was
+cleared out; but after completing the wizard the node will be properly
+identified.</p></li>
+<li><p><b>Hostnames for Windows 2.0.1 and earlier</b></p></li>
+<li><p>Install Couchbase Server.</p></li>
+<li><p>Stop the service by running:</p>
+
+<p><codeph>
+ &gt; C:\Program Files\Couchbase\Server\bin\service_stop.bat
+</codeph></p></li>
+<li><p>Unregister the service by running:</p>
+
+<p><codeph>
+ &gt; C:\Program Files\Couchbase\Server\bin\service_unregister.bat
+</codeph></p></li>
+<li><p>For 2.0, edit the script located at
+<codeph>C:\Program Files\Couchbase\Server\bin\service_register.bat</codeph>. You do not need
+this step for 2.0.1.</p>
+
+<ul>
+<li><p>On the 7th line it says: <codeph>set NS_NAME=ns_1@%IP_ADDR%</codeph></p></li>
+<li><p>Replace <codeph>%IP_ADDR%</codeph> with the hostname/IP address that you want to use.</p></li>
+</ul></li>
+<li><p>Edit the IP address configuration file.</p>
+
+<p>For Windows 2.0 edit <codeph>C:\Program Files\Couchbase\Server\var\lib\couchbase\ip</codeph>.
+This file contains the identified IP address of the node once it is part of a
+cluster. Open the file, and add a single line containing the <codeph>hostname</codeph>, as
+configured in the previous step.</p>
+
+<p>For Windows 2.0.1. Provide the hostname in <codeph>C:\Program
+Files\Couchbase\Server\var\lib\couchbase\ip_start.</codeph></p></li>
+<li><p>Register the service by running the modified script:
+<codeph>C:\Program Files\Couchbase\Server\bin\service_register.bat</codeph></p></li>
+<li><p>Delete the files located under:
+<codeph>C:\Program Files\Couchbase\Server\var\lib\couchbase\mnesia</codeph>.</p></li>
+<li><p>Start the service by running:</p>
+
+<p><codeph>
+ &gt; C:\Program Files\Couchbase\Server\bin\service_start.bat
+</codeph></p></li>
+<li><p>See the node correctly identifying itself as the hostname in the GUI under the
+Manage Servers page. Note you will be taken back to the setup wizard since the
+configuration was cleared out, but after completing the wizard the node will be
+named properly.</p></li>
+</ul></required-cleanup></section></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-bestpractice-sizing-disk" format="html"><linktext>Disk Throughput and Sizing</linktext></link><link href="../cb-admin/#couchbase-bestpractice-sizing-ram" format="html"><linktext>RAM Sizing</linktext></link><link href="../cb-admin/#couchbase-sampledata" format="html"><linktext>Couchbase
+Sample Buckets</linktext></link><link href="../cb-admin/#couchbase-admin-web-console-data-buckets-createedit" format="html"><linktext>Creating and Editing Data
+Buckets</linktext></link><link href="../cb-rest-api/#couchbase-admin-restapi" format="html"><linktext>REST
+API</linktext></link><link href="../cb-cli/#couchbase-admin-cmdline-couchbase-cli" format="html"><linktext>couchbase-cli tool</linktext></link><link href="../cb-rest-api/#couchbase-admin-restapi" format="html"><linktext>REST
+ API</linktext></link><link href="../cb-admin/#couchbase-bestpractice-cloud-ip" format="html"><linktext>Handling Changes in IP
+Addresses</linktext></link><link href="../cb-admin/#couchbase-bestpractice-cloud-ip" format="html"><linktext>Handling Changes in IP
+Addresses</linktext></link></linklist></related-links></topic>

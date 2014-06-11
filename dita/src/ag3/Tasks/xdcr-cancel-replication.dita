@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_w25_yvn_14">
+    <title>Canceling replication</title>
+    <shortdesc>To cancel the replication, delete the active replication.</shortdesc>
+    <taskbody>
+        <context>
+            <p>Canceled replications that were terminated while the replication was still active are
+                displayed within the <uicontrol>Past Replications</uicontrol> section of
+                    <uicontrol>Replications</uicontrol>.</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>From the XDCR section, click <uicontrol>Delete</uicontrol> next to the active replication that is to be canceled.</cmd>
+            </step>
+            <step>
+                <cmd>Confirm the deletion of the configured replication. Once the replication has been stopped,
+                    replication ceases on the originating cluster on a document boundary. </cmd></step>
+        </steps>
+
+        
+    </taskbody>
+</task>

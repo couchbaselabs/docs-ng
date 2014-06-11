@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic203"><title>Beam.smp uses excessive memory</title><body><p>On Linux, if XDCR Max Replications per Bucket are set to a value in the higher limit (such as 128), then beam.sm uses excessive memory. Solution: Reset to 32 or lower.</p></body></topic>

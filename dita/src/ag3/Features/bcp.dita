@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_wzx_szg_14">
+  <title>Database Change Protocol</title>  
+  <shortdesc>Database Change Protocol (DCR) is the protocol used to stream data changes to buckets.</shortdesc>
+  
+  <body>
+    <p>TBD</p>
+    
+    <section><title>Impacted documentation</title>
+      <ul>
+        <li>TAP section in concepts</li>
+        <li>cbstats - tap statistics, per tap client stats, and tap aggregate stats</li>
+      </ul>
+    </section>
+
+  </body>
+ 
+</topic>

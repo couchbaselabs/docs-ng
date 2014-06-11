@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic6788">
+  <title>Using multi-readers and writers</title>
+  <shortdesc>Multiple readers and writers are supported to increase disk I/O throughput.</shortdesc>
+  <body>
+    <p>Multiple readers and writers are supported to persist data onto disk. By
+      default this is set to three total workers per data bucket, with two reader workers and one
+      writer worker for the bucket. This feature helps increase disk I/O throughput. If
+      disk utilization is below the optimal level, increase the setting to improve disk
+      utilization. If disk utilization is near the maximum and heavy I/O contention occurs,
+      decrease this setting. By default, three total readers and writers are allocated.</p>
+    
+    <p>The multi-reader and writer setting depends on the following hardware in your Couchbase cluster:</p>
+    
+    <ul>
+      <li>If you deploy your cluster on the minimum hardware requirement which is dual-core CPUs
+          running on 2GHz and 4GB of physical RAM, stay with the default setting of
+          three.</li>
+      <li>If you deploy your servers on recommended hardware requirements or above, 
+          this setting can be increased to eight. The recommended hardware requirements are quad-core
+          processes on 64-bit CPU and 3GHz, 16GB RAM physical storage. Solid state
+          drives are also recommended.</li>
+      <li>If you have a hardware configuration which conforms to pre–2.1 hardware requirements,
+          change this setting to the minimum: two (2) workers per data bucket.</li>
+    </ul>
+ 
+    
+      <note type="note">In a Couchbase Server cluster, since earlier version of Couchbase Server 
+        coexists with higher versions of Couchbase Server. 
+        Pre-2.1 nodes remain with single readers and writer for the data bucket. 
+        Post-2.1 nodes have multiple readers and writers. 
+        When server nodes are upgraded the multiple readers and writers setting is implemented with bucket restart and warmup.
+        In this case, install the new node, add it to the cluster, 
+        edit the existing bucket setting for readers and writers. 
+        After rebalancing the cluster, the new node performs reads and writes with multiple readers and
+      writers and the data bucket does not restart or go through a warmup. All existing pre–2.1 nodes
+      remain with a single readers and writers for the data bucket. 
+      As pre-2.1 nodes are upgraded and added to the cluster, these new nodes automatically pick
+      up the setting and use multiple readers and writers for the bucket.</note>
+      
+      
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../REST/overview-rest-api.dita"/>
+      <link href="../REST/rest-bucket-intro.dita"/>
+      <link href="../REST/rest-bucket-readwrite.dita"/>
+      <link href="../CLI/CBstats/cbstats-readwrite.dita"/>
+      <link href="../Tasks/tasks-manage-serverWarmup.dita"/>
+    </linklist>
+  </related-links>
+</topic>

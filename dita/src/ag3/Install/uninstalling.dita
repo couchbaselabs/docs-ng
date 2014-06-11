@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2232"><title>Uninstalling</title><body><p>If you want to uninstall Couchbase Server from your system you must choose the
+method appropriate for your operating system.</p><p>Before removing Couchbase Server from your system, you should do the following:</p><ul>
+<li><p>Shutdown your Couchbase Server. For more information on the methods of shutting
+ down your server for your platform, see <xref href="../cb-admin/#couchbase-admin-basics-running" format="html">Server Startup and
+ Shutdown</xref>.</p></li>
+<li><p>If your machine is part of an active cluster, you should rebalance your cluster
+ to take the node out of your configuration. See
+ <xref href="../cb-admin/#couchbase-admin-tasks-addremove" format="html">Rebalancing</xref>.</p></li>
+<li><p>Update your clients to point to an available node within your Couchbase Server
+ cluster.</p></li>
+</ul><p><!--Removed anchor point couchbase-uninstalling-redhat--></p><section><title>Uninstalling on Red Hat Linux</title><p>To uninstall the software on a Red Hat Linux system, run the following command:</p><codeblock><codeph>&gt; sudo rpm -e couchbase-server
+</codeph></codeblock><p>Refer to the Red Hat RPM documentation for more information about uninstalling
+packages using RPM.</p><p>You may need to delete the data files associated with your installation. The
+default installation location is <codeph>/opt</codeph>. If you selected an alternative location
+for your data files, you will need to separately delete each data directory from
+your system.</p><p><!--Removed anchor point couchbase-uninstalling-debian--></p></section><section><title>Uninstalling on Debian/Ubuntu Linux</title><p>To uninstall the software on a Ubuntu Linux system, run the following command:</p><codeblock><codeph>&gt; sudo dpkg -r couchbase-server
+</codeph></codeblock><p>Refer to the Ubuntu documentation for more information about uninstalling
+packages using <codeph>dpkg</codeph>.</p><p>You may need to delete the data files associated with your installation. The
+default installation location is <codeph>/opt</codeph>. If you selected an alternative location
+for your data files, you will need to separately delete each data directory from
+your system.</p><p><!--Removed anchor point couchbase-uninstalling-windows--></p></section><section><title>Uninstalling on Windows</title><p>To uninstall the software on a Windows system you must have Administrator or
+Power User privileges to uninstall Couchbase.</p><p>To remove, choose <codeph>Start</codeph> &gt; <codeph>Settings</codeph> &gt; <codeph>Control Panel</codeph>, choose <codeph>Add or Remove
+Programs</codeph>, and remove the Couchbase Server software.</p><p><!--Removed anchor point couchbase-uninstalling-macosx--></p></section><section><title>Uninstalling on Mac OS X</title><p>To uninstall on Mac OS X:</p><ol>
+<li><p>Open the <codeph>Applications</codeph> folder, and then drag the <codeph>Couchbase Server</codeph> application
+to the trash. You may be asked to provide administrator credentials to complete
+the deletion.</p></li>
+<li><p>To remove the application data, you will need to delete the <codeph>Couchbase</codeph> folder
+from the <codeph>~/Library/Application Support</codeph> folder for the user that ran Couchbase
+Server.</p></li>
+</ol></section></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-admin-basics-running" format="html"><linktext>Server Startup and
+ Shutdown</linktext></link><link href="../cb-admin/#couchbase-admin-tasks-addremove" format="html"><linktext>Rebalancing</linktext></link></linklist></related-links></topic>

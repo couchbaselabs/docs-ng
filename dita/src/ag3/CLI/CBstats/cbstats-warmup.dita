@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1174"><title>Warmup</title><body><p>Stats <codeph>_warmup_</codeph> shows statistics related to warmup logic</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>ep_warmup</entry>
+	<entry>Shows if warmup is enabled / disabled</entry>
+</row><row>
+	<entry>ep_warmup_estimated_key_count</entry>
+	<entry>Estimated number of keys in database</entry>
+</row><row>
+	<entry>ep_warmup_estimated_value_count</entry>
+	<entry>Estimated number of values in database</entry>
+</row><row>
+	<entry>ep_warmup_state</entry>
+	<entry>The current state of the warmup thread</entry>
+</row><row>
+	<entry>ep_warmup_thread</entry>
+	<entry>Warmup thread status</entry>
+</row><row>
+	<entry>ep_warmup_key_count</entry>
+	<entry>Number of keys warmed up</entry>
+</row><row>
+	<entry>ep_warmup_value_count</entry>
+	<entry>Number of values warmed up</entry>
+</row><row>
+	<entry>ep_warmup_dups</entry>
+	<entry>Duplicates encountered during warmup</entry>
+</row><row>
+	<entry>ep_warmup_oom</entry>
+	<entry>OOMs encountered during warmup</entry>
+</row><row>
+	<entry>ep_warmup_item_expired</entry>
+	<entry>Number of items expired during warmup</entry>
+</row><row>
+	<entry>ep_warmup_time</entry>
+	<entry>Time (µs) spent by warming data</entry>
+</row><row>
+	<entry>ep_warmup_keys_time</entry>
+	<entry>Time (µs) spent by warming keys</entry>
+</row><row>
+	<entry>ep_warmup_mutation_log</entry>
+	<entry>Number of keys present in mutation log</entry>
+</row><row>
+	<entry>ep_warmup_access_log</entry>
+	<entry>Number of keys present in access log</entry>
+</row><row>
+	<entry>ep_warmup_min_items_threshold</entry>
+	<entry>Percentage of total items warmed up</entry>
+</row><row>
+	<entry/>
+	<entry>before we enable traffic</entry>
+</row><row>
+	<entry>ep_warmup_min_memory_threshold</entry>
+	<entry>Percentage of max mem warmed up before</entry>
+</row><row>
+	<entry/>
+	<entry>we enable traffic</entry>
+</row><row>
+	<entry>ep_warmup_estimate_time</entry>
+	<entry>Estimated time in microseconds to do warmup</entry>
+</row></tbody></tgroup></table></body></topic>

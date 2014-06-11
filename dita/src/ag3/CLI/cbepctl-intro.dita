@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2697"><title>cbepctl tool</title><body><p>The <codeph>cbepctl</codeph> command enables you to control many of the configuration, RAM and
+disk parameters of a running cluster. This tool is for controlling the vBucket
+states on a Couchbase Server node. It is also responsible for controlling the
+configuration, memory and disk persistence behavior. This tool was formerly
+provided as the separate tools, <codeph>cbvbucketctl</codeph> and <codeph>cbflushctl</codeph> in Couchbase
+1.8.</p><p>Changes to the cluster configuration using <codeph>cbepctl</codeph> are not persisted over a
+cluster restart.</p><p><!--Removed anchor point table-couchbase-admin-cmdline-cbepctl-locs--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry><b>Linux</b></entry>
+	<entry><codeph>/opt/couchbase/bin/cbepctl</codeph></entry>
+</row></thead><tbody><row>
+	<entry><b>Windows</b></entry>
+	<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbepctl.exe</codeph></entry>
+</row><row>
+	<entry><b>Mac OS X</b></entry>
+	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbepctl</codeph></entry>
+</row></tbody></tgroup></table><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><codeblock><codeph>cbepctl host:11210 -b bucket_name -p bucket_password start
+cbepctl host:11210 -b bucket_name -p bucket_password stop
+cbepctl host:11210 -b bucket_name -p bucket_password set type param value
+</codeph></codeblock><p>For this command, <codeph>host</codeph> is the IP address for your Couchbase cluster, or node
+in the cluster. The port will always be the standard port used for cluster-wide
+stats and is at <codeph>11210</codeph>. You also provide the named bucket and the password for
+the named bucket. After this you provide command options and authentication.</p><p>You can use the following command options to manage persistence:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Option</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry><b>stop</b></entry>
+	<entry>stop persistence</entry>
+</row><row>
+	<entry><b>start</b></entry>
+	<entry>start persistence</entry>
+</row><row>
+	<entry><b>drain</b></entry>
+	<entry>wait until queues are drained</entry>
+</row><row>
+	<entry><b>set</b></entry>
+	<entry>to set <codeph>checkpoint_param</codeph>, <codeph>flush_param</codeph>, and <codeph>tap_param</codeph>. This changes how or when persistence occurs.</entry>
+</row></tbody></tgroup></table><p>You can use the following command options, combined with the parameters to set
+<codeph>checkpoint_param</codeph>, <codeph>flush_param</codeph>, and <codeph>tap_param</codeph>. These changes the behavior
+of persistence in Couchbase Server.</p><p>The command options for <codeph>checkpoint_param</codeph> are:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Parameter</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry><b>chk_max_items</b></entry>
+	<entry>Max number of items allowed in a checkpoint.</entry>
+</row><row>
+	<entry><b>chk_period</b></entry>
+	<entry>Time bound (in sec.) on a checkpoint.</entry>
+</row><row>
+	<entry><b>item_num_based_new_chk</b></entry>
+	<entry>True if a new checkpoint can be created based on. the number of items in the open checkpoint.</entry>
+</row><row>
+	<entry><b>keep_closed_chks</b></entry>
+	<entry>True if we want to keep closed checkpoints in memory, as long as the current memory usage is below high water mark.</entry>
+</row><row>
+	<entry><b>max_checkpoints</b></entry>
+	<entry>Max number of checkpoints allowed per vbucket. </entry>
+</row></tbody></tgroup></table></body></topic>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2417">
+  <title>Using XDCR in cloud deployments</title>
+  <body>
+    <p>If you want to use XDCR within a cloud deployment to replicate between two or more clusters
+      that are deployed in the cloud, there are some additional configuration requirements:</p>
+    <ul>
+      <li>Use a public DNS names and public IP addresses for nodes in your clusters.</li>
+    </ul>
+    <p>Cloud services support the use of a public IP address to allow communication to the nodes
+      within the cluster. Within the cloud deployment environment, the public IP address will
+      resolve internally within the cluster, but allow external communication. In Amazon EC2, for
+      example, ensure that you have enabled the public interface in your instance configuration,
+      that the security parameters allow communication to the required ports, and that public DNS
+      record exposed by Amazon is used as the reference name.</p>
+    <p>You should configure the cluster with a fixed IP address and the public DNS name according to
+      the information in <xref href="#topic2417/couchbase-bestpractice-cloud-ip">Handling Changes in
+        IP Addresses</xref>.</p>
+    <ul>
+      <li>Use a DNS service to identify or register a CNAME that points to the public DNS address of
+        each node within the cluster. This will allow you to configure XDCR to use the CNAME to a
+        node in the cluster. The CNAME will be constant, even though the underlying public DNS
+        address may change within the cloud service.</li>
+    </ul>
+    <p>The CNAME record entry can then be used as the destination IP address when configuring
+      replication between the clusters using XDCR. If a transient failure causes the public DNS
+      address for a given cluster node to change, update the CNAME to point to the updated public
+      DNS address provided by the cloud service.</p>
+    <p>By updating the CNAME records, replication should be able to persist over a public, internet-
+      based connection, even though the individual IP of different nodes within each cluster
+      configured in XDCR.</p>
+    <p>For additional security, you should configure your security groups to allow traffic only on
+      the required ports between the IP addresses for each cluster. To configure security groups,
+      you will need to specify the inbound port and IP address range. You will also need to ensure
+      that the security also includes the right port and IP addresses for the remainder of your
+      cluster to allow communication between the nodes within the cluster.</p>
+    <p>For more information about reserved Couchbase ports, see <xref
+        href="../cb-install/#table-couchbase-network-ports" format="html">Network ports</xref> in
+        <xref href="../cb-install/#couchbase-getting-started" format="html">Getting started</xref>.
+      For more information in general about using Couchbase Server in the cloud, see <xref
+        href="#topic2417/couchbase-bestpractice-cloud">Using Couchbase in the Cloud</xref>.</p>
+  </body>
+  <related-links>
+    <linklist>
+      <title>Collected links</title>
+      <link href="../cb-install/#table-couchbase-network-ports" format="html">
+        <linktext>Network ports</linktext>
+      </link>
+      <link href="../cb-install/#couchbase-getting-started" format="html">
+        <linktext>Getting started</linktext>
+      </link>
+    </linklist>
+  </related-links>
+</topic>

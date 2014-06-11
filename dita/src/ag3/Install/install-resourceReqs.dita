@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1723"><title>Resource requirements</title><body><p>The following hardware requirements are recommended for installation:</p><ul>
+<li><p>Quad-core for key-value store, 64-bit CPU running at 3GHz</p></li>
+<li><p>Six cores if you use XDCR and views.</p></li>
+<li><p>16GB RAM (physical)</p></li>
+<li><p>Block-based storage device (hard disk, SSD, EBS, iSCSI). Network filesystems
+ (e.g. CIFS, NFS) are not supported.</p></li>
+</ul><p>A minimum specification machine should have the following characteristics:</p><ul>
+<li><p>Dual-core CPU running at 2GHz for key-value store</p></li>
+<li><p>4GB RAM (physical)</p></li>
+</ul><p>Note</p><p>
+For development and testing purposes a reduced CPU and RAM than the minimum
+specified can be used. This can be as low as 1GB of free RAM beyond operating
+system requirements and a single CPU core. However, you should not use a
+configuration lower than that specified in production. Performance on machines
+lower than the minimum specification will be significantly lower and should not
+be used as an indication of the performance on a production machine.
+</p><p>View performance on machines with less than 2 CPU cores will be significantly
+reduced.
+</p><p>You must have enough memory to run your operating system and the memory reserved
+for use by Couchbase Server. For example, if you want to dedicate 8GB of RAM to
+Couchbase Server you must have enough RAM to host your operating system. If you
+are running additional applications and servers, you will need additional RAM.
+For smaller systems, such as those with less than 16GB you should allocate at
+least 40% of RAM to your operating system.</p><p>You must have the following amount of storage available:</p><ul>
+<li><p>1GB for application logging</p></li>
+<li><p>At least twice the disk space to match your physical RAM for persistence of
+ information</p></li>
+</ul><p>For information and recommendations on server and cluster sizing, see <xref href="../cb-admin/#couchbase-bestpractice-sizing" format="html">Sizing
+Guidelines</xref>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-bestpractice-sizing" format="html"><linktext>Sizing
+Guidelines</linktext></link></linklist></related-links></topic>

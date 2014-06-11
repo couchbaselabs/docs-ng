@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3383">
+	<title>Changing internal XDCR settings</title>
+	<shortdesc>The XDCR advanced and internal settings change the replication behavior,
+		performance, and timing.</shortdesc>
+	<body>
+		<p>The URI endpoints are available to change global settings for replications
+			for a cluster and to change settings for a specific replication ID.
+			
+			<table frame="all"
+				id="table_xdcr_settings_uri">
+				<title>XDCR URI paths for settings</title>
+				<tgroup cols="2">
+					<colspec colname="c1" colnum="1" colwidth="1*"/>
+					<colspec colname="c2" colnum="2" colwidth="1.35*"/>
+					<thead>
+						<row>
+							<entry>URI path</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>/settings/replications/</entry>
+							<entry>Global setting spplied to all replications for a cluster.</entry>
+						</row>
+						<row>
+							<entry>/settings/replications/replication_id</entry>
+							<entry>Settings for specific replication for a bucket.</entry>
+						</row>
+						<row>
+							<entry>/internalSettings</entry>
+							<entry>Settings applied to all replications for a cluster. Applicable
+								for Couchbase 2.0 and higher.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></p>
+		
+		<p>In the REST API you can change these
+			settings globally for all replications for a cluster or for a specific replication ID. </p>
+		<table frame="all"
+			id="table_xdcr_settings">
+			<title>XDCR advanced settings</title>
+			<tgroup cols="3">
+				<colspec colname="col1" colwidth="1.48*"/>
+				<colspec colname="col2" colwidth="1*"/>
+				<colspec colname="col3" colwidth="1.95*"/>
+				<thead>
+					<row>
+						<entry>Parameter</entry>
+						<entry>Value</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><codeph>xdcrMaxConcurrentReps</codeph></entry>
+						<entry>Integer</entry>
+						<entry>Same as Web Console setting <codeph>XDCR Max Replications per
+								Bucket</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>xdcrCheckpointInterval</codeph></entry>
+						<entry>Integer</entry>
+						<entry>Same as Web Console setting<codeph>XDCR Checkpoint
+							Interval</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>xdcrWorkerBatchSize</codeph></entry>
+						<entry>Integer</entry>
+						<entry>Same as Web Console setting <codeph>XDCR Batch
+							Count</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>xdcrDocBatchSizeKb</codeph></entry>
+						<entry>Integer</entry>
+						<entry>Same as Web Console setting <codeph>XDCR Batch Size
+							(KB)</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>xdcrFailureRestartInterval</codeph></entry>
+						<entry>Integer</entry>
+						<entry>Same as Web Console setting<codeph>XDCR Failure Retry
+								Interval</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>xdcrOptimisticReplicationThreshold</codeph></entry>
+						<entry>Integer</entry>
+						<entry>Same as Web Console setting <codeph>XDCR Optimistic Replication
+								Threshold</codeph>.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>The following settings are additional internal settings for XDCR that are only available
+			via the REST API. </p>
+		<table frame="all"
+			id="table_xdcr_internal_settings">
+			<title>XDCR internal settings</title>
+			<tgroup cols="3">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="1.08*"/>
+				<colspec colname="col3" colwidth="1.68*"/>
+				<thead>
+					<row>
+						<entry>Parameter</entry>
+						<entry>Value</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><codeph>workerProcesses</codeph></entry>
+						<entry>Integer from 1 to 32. Default 32.</entry>
+						<entry>The number of worker processes for each vbucket replicator in XDCR.
+							Setting is available for replications using either memcached or REST for
+							replication.</entry>
+					</row>
+					<row>
+						<entry><codeph>httpConnections</codeph></entry>
+						<entry>Integer from 1 to 100. Default 2.</entry>
+						<entry>Number of maximum simultaneous HTTP connections used for REST
+							protocol.</entry>
+					</row>
+					<row>
+						<entry><codeph>xmemWorker</codeph></entry>
+						<entry>Integer from 1 to 32. Default 1.</entry>
+						<entry>Used in memcached protocol for XDCR at the data transport layer. The
+							number of work processes per vbucket replicator. A memcached work
+							process is responsible for sending memcached operations to a remote
+							node.</entry>
+					</row>
+					<row>
+						<entry><codeph>enablePipelineOps</codeph></entry>
+						<entry>Boolean. Defaults to true.</entry>
+						<entry>Used for memcached protocol with XDCR for backwards computability.
+							True indicates pipelined operations and false indicates non-pipelined
+							memcached operations.</entry>
+					</row>
+					<row>
+						<entry><codeph>localConflictResolution</codeph></entry>
+						<entry>Boolean, default is false.</entry>
+						<entry>Used for backwards compatibility with pre–2.2 clusters. Perform
+							conflict resolution on source cluster before replication to destination.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		<example><title>Modifying the number of parallel replication streams</title>
+		<p>The following example updates an XDCR setting for parallel replication streams per
+			node:</p>
+		<codeblock><codeph>curl -X POST -u admin:password1  \
+http://10.4.2.4:8091/settings/replications/  \
+-d xdcrMaxConcurrentReps=64
+</codeph></codeblock>
+		<note type="note">Replace the <i>admin</i>, <i>password1</i>, <i>10.4.2.4</i>, and <i>64</i> values in the
+			above example with your actual values.</note>
+		</example>
+		
+			<example><title>Returns:</title>
+		<p>If Couchbase Server successfully updates this setting, a response (similar to the following) is
+				sent:</p>
+		<codeblock><codeph>HTTP/1.1 200 OK
+Server: Couchbase Server 2.0.0-1941-rel-community
+Pragma: no-cache
+Date: Wed, 28 Nov 2012 18:20:22 GMT
+Content-Type: application/json
+Content-Length: 188
+Cache-Control: no-cache
+</codeph></codeblock>
+		</example>
+
+
+	</body>
+	<related-links>
+		<linklist>
+			<link href="../Tasks/">
+				<linktext>XDCR, Providing Advanced Settings</linktext>
+			</link>
+		</linklist>
+	</related-links>
+</topic>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3554">
+	<title>Managing XDCR data encryption</title>
+	<body>
+		<p>The cross data center (XDCR) data security feature (Enterprise Edition only) provides
+			secure cross data center replication using Secure Socket Layer (SSL) data encryption.
+			The data replicated between clusters can be encrypted in both uni-directional and
+			bi-directional replications. </p>
+		<section><title>XDCR data encryption prerequisites</title><ul>
+				<li>Couchbase servers on both source and destination clusters must have Couchbase
+					2.5 Enterprise Edition and above installed.</li>
+				<li>The source cluster must use the destination cluster’s certificate. The
+					certificate is a self-signed certificate used by SSL to initiate secure
+					sessions.</li>
+				<li>The reserved ports for XDCR data encryption must be available.</li>
+			</ul><p>Important</p><p>Ensure that the Secure Socket Layer (SSL) reserved ports are
+				available prior to using XDCR data encryption. Otherwise, XDCR data encryption is
+				unavailable. </p><p>With XDCR data encryption, the following ports are reserved:</p><table>
+				<tgroup cols="2">
+					<colspec colname="col1"/>
+					<colspec colname="col2"/>
+					<thead>
+						<row>
+							<entry>Port</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>11214</entry>
+							<entry>Incoming SSL Proxy</entry>
+						</row>
+						<row>
+							<entry>11215</entry>
+							<entry>Internal Outgoing SSL Proxy</entry>
+						</row>
+						<row>
+							<entry>18091</entry>
+							<entry>Internal REST HTTPS for SSL</entry>
+						</row>
+						<row>
+							<entry>18092</entry>
+							<entry>Internal CAPI HTTPS for SSL </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+		<section><title>To enable XDCR data security</title><p>To enable XDCR data security using
+				SSL and create replication:</p><ol>
+				<li>On the destination cluster, navigate to Settings &gt; Cluster and copy the
+					certificate. <ul>
+						<li>(Optional) To regenerate the existing destination certificate, click
+								<b>Regenerate</b> before copying.</li>
+					</ul></li>
+				<li>On the source cluster, select the XDCR tab.</li>
+				<li>On the Remote Clusters panel, click <b>Create Cluster Reference</b> to verify or
+					create the cluster reference.</li>
+				<li>Select the <b>Enable Encryption</b> box and paste the certificate in the
+					provided area and click <b>Save</b>.</li>
+				<li>On the Ongoing Replications panel, click <b>Create Replication</b>, provide the
+					cluster and bucket information, and click <b>Replicate</b>.</li>
+			</ol></section>
+		<section><title>To change XDCR data encryption</title><p>In some situations (such as
+				updating SSL data security), the SSL certificate is regenerated and the XDCR data
+				encryption is updated. To change XDCR data encryption:</p><ol>
+				<li>On the destination cluster, navigate to Settings &gt; Cluster.</li>
+				<li>Click <b>Regenerate</b> and copy the certificate.</li>
+				<li>On the source cluster, select the XDCR tab.</li>
+				<li>On the <b>Remote Clusters</b> panel, for the destination cluster, click
+						<b>Edit</b>.</li>
+				<li>Paste the regenerated certificate in the provided area and click
+					<b>Save</b>.</li>
+			</ol><p>Anytime a destination cluster’s certificate is regenerated, the corresponding
+				source cluster(s) must be updated with the regenerated certificate.</p><p>For
+				example, if source clusters A, B, and C use XDCR data encryption to replicate to
+				destination cluster D, each of the source clusters must be updated whenever the
+				certificate on the destination cluster D is regenerated
+				(changed).</p><p>Important</p><p>If a destination cluster's certificate is
+				regenerated and the source cluster(s) are not updated with the new certificate,
+				replication stops. </p></section>
+		<section><title>SSL certificate</title><p>The following is an example of an SSL certificate
+				and where the certificate is obtained on the cluster.</p><p><image
+					href="../images/xdcr-remote-cert3.png">
+					<alt>Remote SSL Certificate</alt>
+				</image></p></section>
+		<section><title>Create Cluster Reference</title><p>The following is an example of the Create
+				Cluster Reference pop-up.</p><p><image href="../images/xdcr-source-encrypt.png">
+					<alt>Create Cluster Reference</alt>
+				</image></p></section>
+		<section><title>XDCR data security error messages</title><p>When creating the cluster
+				reference, if the SSL certificates are not the same on the destination and source
+				clusters, the following error message
+				displays:</p><codeblock><codeph>Attention - Got certificate mismatch while trying to send https request to HOST:18091
+</codeph></codeblock><p>If
+				the SSL certificates become mismatched (for example, if the certificate on the
+				destination cluster is regenerated and the source cluster is not updated with the
+				new certificate), vBucket replication stops and the following error message
+				displays:</p><codeblock><codeph>Error replicating vbucket &lt;bucketNumber&gt;. Please see logs for details.
+</codeph></codeblock></section>
+	</body>
+</topic>

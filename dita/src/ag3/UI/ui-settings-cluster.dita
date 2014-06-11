@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_gvn_qmc_34">
+  <title>Cluster tab</title>
+  <body>
+    <p>Cluster settings show the available RAM on your cluster and the per server RAM quota. 
+    The Per Server RAM Quota is adjustable. 
+    In addition, if you have the Enterprise Edition, a Couchbase Server self-signed SSL certification is provided 
+    to set up secure communication in an XDCR environment. 
+    The SSL certificate can be regenerated. </p>
+    
+    <image href="../images/web-console-server-settings-cluster.png" width="720"></image>
+    
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../Concepts/concept-ramQuota.dita"></link>
+      <link href="../XDCR/xdcr-dataEncryption.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

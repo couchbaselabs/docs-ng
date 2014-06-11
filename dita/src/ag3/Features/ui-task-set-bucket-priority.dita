@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_usx_5y1_k4">
+    <title>Setting bucket priority (UI)</title>
+    <shortdesc>The bucket disk I/O priority is set via the <uicontrol>Data Bucket</uicontrol> panel either 
+        when creating a data bucket or when editing a data bucket.</shortdesc>
+    <taskbody>
+
+        <context>
+            <p>To set Bucket disk I/O priority:</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Navigate to <uicontrol>Data Buckets > Create New Bucket</uicontrol> (new bucket) or 
+                    <uicontrol>Data Buckets > bucket_name link > ???</uicontrol> (existing bucket).</cmd>
+            </step>
+            <step>
+                <cmd>Select Disk I/O Optimization.</cmd>
+            </step>
+            <step>
+                <cmd>For the Set bucket disk I/O priority option, specify either High or Low. Low is the default.</cmd>
+                <info>SCREENSHOT</info>
+            </step>
+        </steps>
+    </taskbody>
+</task>

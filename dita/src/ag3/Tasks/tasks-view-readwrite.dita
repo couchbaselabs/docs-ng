@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_of4_bgt_24">
+    <title>Viewing the impact of read-write changes</title>
+    <shortdesc>Through the Web Console, the impact of reader/writer changes for a bucket is viewable
+        via that bucket analytics: <uicontrol>Data Buckets > Bucket Name > DISK
+        QUEUES</uicontrol>.</shortdesc>
+    <taskbody>
+        <context>
+            <p>A change to the number of readers/writers is reflected in the change in the active
+                and replica <i>fill rate</i>, <i>drain rate</i>, and <i>average age</i>.</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Click the <uicontrol>Data Buckets</uicontrol> tab.</cmd>
+            </step>
+            <step>
+                <cmd>Click on the bucket name (rather than the expander icon) to view the analytics for the bucket.</cmd>
+            </step>
+            <step>
+                <cmd>Expand the <uicontrol>DISK QUEUE</uicontrol> section to view active, replica, pending, and total summary.</cmd>
+                <info>Additionaly, the number of items, fill rate, drain rate, and average age is summarized and displayed on a per server basis.</info>
+            </step>
+        </steps>
+        
+    </taskbody>
+</task>

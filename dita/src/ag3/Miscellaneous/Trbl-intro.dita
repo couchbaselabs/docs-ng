@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic199"><title>Troubleshooting</title><body><p>When troubleshooting your Couchbase Server deployment there are a number of
+different approaches available to you. For specific answers to individual
+problems, see <xref href="#topic199/couchbase-troubleshooting-common-errors">Common Errors</xref>.</p></body></topic>

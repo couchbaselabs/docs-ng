@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_fm2_lps_g4">
+  <title>Prerequisites</title>
+  <body>
+    <p>Before you install, make sure you check the supported platforms. The
+      Red Hat installation uses the RPM package.</p>
+    
+    <section><title>OpenSSL dependency checking</title>
+        <p>For Red Hat Enterprise Linux version 6.0, Couchbase Server RPM performs dependency checks
+          for OpenSSL using <codeph>pkg-config</codeph>. Check that this pkg-config is installed and if
+          not, install it: </p>
+          <codeblock>
+root-&gt; sudo yum install -y pkgconfig </codeblock>
+          <p>Upon successful install the following output displays:</p>
+          <codeblock>Loaded plugins .... Installed: pkgconfig.x86_64 1:0.21-2.el5 Complete!
+      </codeblock>
+    </section>
+    
+    <section><title>OpenSSL 0983 installation</title></section>
+        <p>For Red Hat Enterprise Linux version 6.0 and above, install a specific
+          OpenSSL dependency by running:</p>
+          <codeblock>
+root-&gt; yum install openssl098e</codeblock>
+          <p>Some users can not install <codeph>openssl098e</codeph> with this
+            command without having administrative privileges. 
+            If this issue is experienced, put the
+            contents of the <codeph>lib64</codeph>directory into <codeph>opt/couchbase/lib</codeph>:</p>
+          
+          <ul>
+            <li>Download `openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm’.</li>
+            <li>Go to the directory where you extracted Couchbase Server: <codeph>cd
+              opt/couchbase</codeph>.</li>
+            <li>Extract the openssl098e RPM:
+        <codeblock>rpm2cpio
+openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+--make-directories --no-absolute-filenames</codeblock>
+      </li>
+            <li>Move the extracted files to the <codeph>/lib</codeph> directory for Couchbase Server:
+              <codeph>mv usr/lib64/* lib/</codeph></li>
+          </ul>
+ 
+       
+  </body>
+</topic>

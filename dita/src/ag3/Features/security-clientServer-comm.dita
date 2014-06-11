@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_kgh_xdh_14">
+  <title>Secure client-server communication</title>
+  <shortdesc>Encrypted communication connection between client and Couchbase Server cluster. Enterprise Edition only.</shortdesc>
+  
+  <body>
+    <ul>
+    <li>Option is at the client api end of things</li>
+    <li>Server needs to detect the encrypted "packet". Connect to the cluster and at the bucket-level
+      authenticate.</li>
+    <li>UI: Enable cluster security: provide SSL communication between (CLI/REST?)</li>
+    <li>Will need SSL information getting self-signed certificates, CA certificates, ... needs to be
+      put on both the client and server-side</li>
+    <li>Needs to go through a specific port(s)???/ At the port, a switch to accept or not accept ssl
+      (secured or encrypted communication)</li>
+    </ul>
+
+  </body>
+</topic>

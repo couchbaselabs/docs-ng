@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic7000"><title>Tap stats</title><body><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>ep_tap_ack_grace_period</entry>
+	<entry>The amount of time to wait for a tap acks</entry>
+</row><row>
+	<entry/>
+	<entry>before disconnecting</entry>
+</row><row>
+	<entry>ep_tap_ack_interval</entry>
+	<entry>The amount of messages a tap producer</entry>
+</row><row>
+	<entry/>
+	<entry>should send before requesting an ack</entry>
+</row><row>
+	<entry>ep_tap_ack_window_size</entry>
+	<entry>The maximum amount of ack requests that</entry>
+</row><row>
+	<entry/>
+	<entry>can be sent before the consumer sends a</entry>
+</row><row>
+	<entry/>
+	<entry>response ack. When the window is full the</entry>
+</row><row>
+	<entry/>
+	<entry>tap stream is paused</entry>
+</row><row>
+	<entry>ep_tap_queue_backfillremaining</entry>
+	<entry>Number of items needing to be backfilled</entry>
+</row><row>
+	<entry>ep_tap_total_backlog_size</entry>
+	<entry>Number of remaining items for replication</entry>
+</row><row>
+	<entry>ep_tap_total_queue</entry>
+	<entry>Sum of tap queue sizes on the current</entry>
+</row><row>
+	<entry/>
+	<entry>tap queues</entry>
+</row><row>
+	<entry>ep_tap_total_fetched</entry>
+	<entry>Sum of all tap messages sent</entry>
+</row><row>
+	<entry>ep_tap_bg_max_pending</entry>
+	<entry>The maximum number of bg jobs a tap</entry>
+</row><row>
+	<entry/>
+	<entry>connection may have</entry>
+</row><row>
+	<entry>ep_tap_bg_fetched</entry>
+	<entry>Number of tap disk fetches</entry>
+</row><row>
+	<entry>ep_tap_bg_fetch_requeued</entry>
+	<entry>Number of times a tap bg fetch task is</entry>
+</row><row>
+	<entry/>
+	<entry>requeued</entry>
+</row><row>
+	<entry>ep_tap_fg_fetched</entry>
+	<entry>Number of tap memory fetches</entry>
+</row><row>
+	<entry>ep_tap_deletes</entry>
+	<entry>Number of tap deletion messages sent</entry>
+</row><row>
+	<entry>ep_tap_throttled</entry>
+	<entry>Number of tap messages refused due to</entry>
+</row><row>
+	<entry/>
+	<entry>throttling</entry>
+</row><row>
+	<entry>ep_tap_count</entry>
+	<entry>Number of tap connections</entry>
+</row><row>
+	<entry>ep_tap_bg_num_samples</entry>
+	<entry>The number of tap bg fetch samples</entry>
+</row><row>
+	<entry/>
+	<entry>included in the avg</entry>
+</row><row>
+	<entry>ep_tap_bg_min_wait</entry>
+	<entry>The shortest time (µs) for a tap item</entry>
+</row><row>
+	<entry/>
+	<entry>before it is serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_tap_bg_max_wait</entry>
+	<entry>The longest time (µs) for a tap item</entry>
+</row><row>
+	<entry/>
+	<entry>before it is serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_tap_bg_wait_avg</entry>
+	<entry>The average wait time (µs) for a tap item</entry>
+</row><row>
+	<entry/>
+	<entry>before it is serviced by the dispatcher</entry>
+</row><row>
+	<entry>ep_tap_bg_min_load</entry>
+	<entry>The shortest time (µs) for a tap item to</entry>
+</row><row>
+	<entry/>
+	<entry>be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_tap_bg_max_load</entry>
+	<entry>The longest time (µs) for a tap item to</entry>
+</row><row>
+	<entry/>
+	<entry>be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_tap_bg_load_avg</entry>
+	<entry>The average time (µs) for a tap item to</entry>
+</row><row>
+	<entry/>
+	<entry>be loaded from the persistence layer</entry>
+</row><row>
+	<entry>ep_tap_noop_interval</entry>
+	<entry>The number of secs between a noop is</entry>
+</row><row>
+	<entry/>
+	<entry>added to an idle connection</entry>
+</row><row>
+	<entry>ep_tap_backoff_period</entry>
+	<entry>The number of seconds the tap connection</entry>
+</row><row>
+	<entry/>
+	<entry>should back off after receiving ETMPFAIL</entry>
+</row><row>
+	<entry>ep_tap_queue_fill</entry>
+	<entry>Total enqueued items</entry>
+</row><row>
+	<entry>ep_tap_queue_drain</entry>
+	<entry>Total drained items</entry>
+</row><row>
+	<entry>ep_tap_queue_backoff</entry>
+	<entry>Total back-off items</entry>
+</row><row>
+	<entry>ep_tap_queue_backfill</entry>
+	<entry>Number of backfill remaining</entry>
+</row><row>
+	<entry>ep_tap_queue_itemondisk</entry>
+	<entry>Number of items remaining on disk</entry>
+</row><row>
+	<entry>ep_tap_throttle_threshold</entry>
+	<entry>Percentage of memory in use before we</entry>
+</row><row>
+	<entry/>
+	<entry>throttle tap streams</entry>
+</row><row>
+	<entry>ep_tap_throttle_queue_cap</entry>
+	<entry>Disk write queue cap to throttle</entry>
+</row><row>
+	<entry/>
+	<entry>tap streams</entry>
+</row></tbody></tgroup></table><section><title>Per Tap client stats</title><p>Each stat begins with =ep_tapq:= followed by a unique /client_id/ and
+another colon. For example, if your client is named, =slave1=, the
+=qlen= stat would be =ep_tapq:slave1:qlen=.</p><table><tgroup cols="3"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+	<entry>P/C</entry>
+</row></thead><tbody><row>
+	<entry>type</entry>
+	<entry>The kind of tap connection (producer or</entry>
+	<entry>PC</entry>
+</row><row>
+	<entry/>
+	<entry>consumer)</entry>
+</row><row>
+	<entry>created</entry>
+	<entry>Creation time for the tap connection</entry>
+	<entry>PC</entry>
+</row><row>
+	<entry>supports_ack</entry>
+	<entry>true if the connection use acks</entry>
+	<entry>PC</entry>
+</row><row>
+	<entry>connected</entry>
+	<entry>true if this client is connected</entry>
+	<entry>PC</entry>
+</row><row>
+	<entry>disconnects</entry>
+	<entry>Number of disconnects from this client</entry>
+	<entry>PC</entry>
+</row><row>
+	<entry>reserved</entry>
+	<entry>true if the tap stream is reserved</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>suspended</entry>
+	<entry>true if the tap stream is suspended</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>qlen</entry>
+	<entry>Queue size for the given client_id</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>qlen_high_pri</entry>
+	<entry>High priority tap queue items</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>qlen_low_pri</entry>
+	<entry>Low priority tap queue items</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>vb_filters</entry>
+	<entry>Size of connection vbucket filter set</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>vb_filter</entry>
+	<entry>The content of the vbucket filter</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>rec_fetched</entry>
+	<entry>Tap messages sent to the client</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>rec_skipped</entry>
+	<entry>Number of messages skipped due to</entry>
+	<entry>P</entry>
+</row><row>
+	<entry/>
+	<entry>tap reconnect with a different filter</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>idle</entry>
+	<entry>True if this connection is idle</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>has_queued_item</entry>
+	<entry>True if there are any remaining items</entry>
+	<entry>P</entry>
+</row><row>
+	<entry/>
+	<entry>from hash table or disk</entry>
+</row><row>
+	<entry>bg_result_size</entry>
+	<entry>Number of ready background results</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>bg_jobs_issued</entry>
+	<entry>Number of background jobs started</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>bg_jobs_completed</entry>
+	<entry>Number of background jobs completed</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>flags</entry>
+	<entry>Connection flags set by the client</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>pending_disconnect</entry>
+	<entry>true if we’re hanging up on this client</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>paused</entry>
+	<entry>true if this client is blocked</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>pending_backfill</entry>
+	<entry>true if we’re still backfilling keys</entry>
+	<entry>P</entry>
+</row><row>
+	<entry/>
+	<entry>for this connection</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>pending_disk_backfill</entry>
+	<entry>true if we’re still backfilling keys</entry>
+	<entry>P</entry>
+</row><row>
+	<entry/>
+	<entry>from disk for this connection</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>backfill_completed</entry>
+	<entry>true if all items from backfill is</entry>
+	<entry>P</entry>
+</row><row>
+	<entry/>
+	<entry>successfully transmitted to the client</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>backfill_start_timestamp</entry>
+	<entry>Timestamp of backfill start</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>reconnects</entry>
+	<entry>Number of reconnects from this client</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>backfill_age</entry>
+	<entry>The age of the start of the backfill</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>ack_seqno</entry>
+	<entry>The current tap ACK sequence number</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>recv_ack_seqno</entry>
+	<entry>Last receive tap ACK sequence number</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>ack_log_size</entry>
+	<entry>Tap ACK backlog size</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>ack_window_full</entry>
+	<entry>true if our tap ACK window is full</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>seqno_ack_requested</entry>
+	<entry>The seqno of the ack message that the</entry>
+	<entry>P</entry>
+</row><row>
+	<entry/>
+	<entry>producer is wants to get a response for</entry>
+</row><row>
+	<entry>expires</entry>
+	<entry>When this ACK backlog expires</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>queue_memory</entry>
+	<entry>Memory used for tap queue</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>queue_fill</entry>
+	<entry>Total queued items</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>queue_drain</entry>
+	<entry>Total drained items</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>queue_backoff</entry>
+	<entry>Total back-off items</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>queue_backfillremaining</entry>
+	<entry>Number of backfill remaining</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>queue_itemondisk</entry>
+	<entry>Number of items remaining on disk</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>total_backlog_size</entry>
+	<entry>Num of remaining items for replication</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>total_noops</entry>
+	<entry>Number of NOOP messages sent</entry>
+	<entry>P</entry>
+</row><row>
+	<entry>num_checkpoint_end</entry>
+	<entry>Number of chkpoint end operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_checkpoint_end_failed</entry>
+	<entry>Number of chkpoint end operations failed</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_checkpoint_start</entry>
+	<entry>Number of chkpoint end operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_checkpoint_start_failed</entry>
+	<entry>Number of chkpoint end operations failed</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_delete</entry>
+	<entry>Number of delete operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_delete_failed</entry>
+	<entry>Number of failed delete operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_flush</entry>
+	<entry>Number of flush operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_flush_failed</entry>
+	<entry>Number of failed flush operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_mutation</entry>
+	<entry>Number of mutation operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_mutation_failed</entry>
+	<entry>Number of failed mutation operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_opaque</entry>
+	<entry>Number of opaque operation</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_opaque_failed</entry>
+	<entry>Number of failed opaque operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_vbucket_set</entry>
+	<entry>Number of vbucket set operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_vbucket_set_failed</entry>
+	<entry>Number of failed vbucket set operations</entry>
+	<entry>C</entry>
+</row><row>
+	<entry>num_unknown</entry>
+	<entry>Number of unknown operations</entry>
+	<entry>C</entry>
+</row></tbody></tgroup></table></section><section><title>Tap aggregated stats</title><p>Aggregated tap stats allow named tap connections to be logically
+grouped and aggregated together by prefixes.</p><p>For example, if all of your tap connections started with =rebalance<i>=
+or =replication</i>=, you could call =stats tapagg <i>= to request stats
+grouped by everything before the first =</i>= character, giving you a set
+for =rebalance= and a set for =replication=.</p><p><b>Results</b></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>[prefix]:count</entry>
+	<entry>Number of connections matching this prefix</entry>
+</row><row>
+	<entry>[prefix]:qlen</entry>
+	<entry>Total length of queues with this prefix</entry>
+</row><row>
+	<entry>[prefix]:backfill_remaining</entry>
+	<entry>Number of items needing to be backfilled</entry>
+</row><row>
+	<entry>[prefix]:backoff</entry>
+	<entry>Total number of backoff events</entry>
+</row><row>
+	<entry>[prefix]:drain</entry>
+	<entry>Total number of items drained</entry>
+</row><row>
+	<entry>[prefix]:fill</entry>
+	<entry>Total number of items filled</entry>
+</row><row>
+	<entry>[prefix]:itemondisk</entry>
+	<entry>Number of items remaining on disk</entry>
+</row><row>
+	<entry>[prefix]:total_backlog_size</entry>
+	<entry>Num of remaining items for replication</entry>
+</row></tbody></tgroup></table></section></body></topic>

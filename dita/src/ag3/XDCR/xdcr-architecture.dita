@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3175"><title>XDCR architecture</title><body><p>There are a number of key elements in Couchbase Server’s XDCR architecture
+including:</p><p><b>Continuous Replication.</b> XDCR in Couchbase Server provides continuous
+replication across geographically distributed datacenters. Data mutations are
+replicated to the destination cluster after they are written to disk. There are
+multiple data streams (32 by default) that are shuffled across all shards
+(called vBuckets in Couchbase Server) on the source cluster to move data in
+parallel to the destination cluster. The vBucket list is shuffled so that
+replication is evenly load balanced across all the servers in the cluster. The
+clusters scale horizontally, more the servers, more the replication streams,
+faster the replication rate. For information on changing the number of data
+streams for replication, see <xref href="#topic3175/couchbase-admin-xdcr-rest-crossref">Changing XDCR
+settings</xref></p><p><b>Cluster Aware.</b> XDCR is cluster topology aware. The source and destination
+clusters could have different number of servers. If a server in the source or
+destination cluster goes down, XDCR is able to get the updated cluster topology
+information and continue replicating data to available servers in the
+destination cluster.</p><p><b>Push based connection resilient replication.</b> XDCR in Couchbase Server is
+push-based replication. The source cluster regularly checkpoints the replication
+queue per vBucket and keeps track of what data the destination cluster last
+received. If the replication process is interrupted for example due to a server
+crash or intermittent network connection failures, it is not required to restart
+replication from the beginning. Instead, once the replication link is restored,
+replication can continue from the last checkpoint seen by the destination
+cluster.</p><p><b>Efficient.</b> For the sake of efficiency, Couchbase Server is able to
+de-duplicate information that is waiting to be stored on disk. For instance, if
+there are three changes to the same document in Couchbase Server, and these
+three changes are waiting in queue to be persisted, only the last version of the
+document is stored on disk and later gets pushed into the XDCR queue to be
+replicated.</p><p><b>Active-Active Conflict Resolution.</b> Within a cluster, Couchbase Server
+provides strong consistency at the document level. On the other hand, XDCR also
+provides eventual consistency across clusters. Built-in conflict resolution will
+pick the same “winner” on both the clusters if the same document was mutated on
+both the clusters. If a conflict occurs, the document with the most updates will
+be considered the “winner.” If the same document is updated the same number of
+times on the source and destination, additional metadata such as numerical
+sequence, CAS value, document flags and expiration TTL value are used to pick
+the “winner.” XDCR applies the same rule across clusters to make sure document
+consistency is maintained:</p><required-cleanup remap="figure"><ph>
+<image href="../images/xdcr_conflict_res.png"><alt/></image>
+</ph></required-cleanup><p>As shown in above, bidirectional replication is set up between Datacenter 1 and
+Datacenter 2 and both the clusters start off with the same JSON document (Doc
+1). In addition, two additional updates to Doc 1 happen on Datacenter 2. In the
+case of a conflict, Doc 1 on Datacenter 2 is chosen as the winner because it has
+seen more updates.</p></body></topic>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic180"><title>Log</title><body><p>The <codeph>Log</codeph> section of the website allows you to view the built-in event log for
+Couchbase Server so that you can identify activity and errors within your
+Couchbase cluster.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-server-log.png"><alt/></image>
+</ph></required-cleanup></body></topic>

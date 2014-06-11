@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1903"><title>cbstats tool</title><body><p>You use the <codeph>cbstats</codeph> tool to get node- and cluster-level statistics about
+performance and items in storage. The tool can be found in the following
+locations, depending on your platform:</p><p><!--Removed anchor point table-couchbase-admin-cmdline-cbstats-locs--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry><b>Linux</b></entry>
+	<entry><codeph>/opt/couchbase/bin/cbstats</codeph></entry>
+</row></thead><tbody><row>
+	<entry><b>Windows</b></entry>
+	<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbstats.exe</codeph></entry>
+</row><row>
+	<entry><b>Mac OS X</b></entry>
+	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbstats</codeph></entry>
+</row></tbody></tgroup></table><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><p>Use this tool to get the <xref href="../cb-admin/#couchbase-monitoring-nodestats" format="html">couchbase node
+statistics</xref>. The general format for the command
+is:</p><codeblock><codeph>&gt; cbstats &lt;IP&gt;:11210 &lt;command&gt; -b &lt;bucket_name&gt; [-p &lt;bucket_password&gt;]
+</codeph></codeblock><p>Where <codeph>BUCKET_HOST</codeph> is the hostname and port ( <codeph>HOSTNAME[:PORT]</codeph> ) combination
+for a Couchbase bucket, and <codeph>username</codeph> and <codeph>password</codeph> are the authentication for
+the named bucket. <codeph>COMMAND</codeph> (and <codeph>[options]</codeph> ) are one of the follow options:</p><codeblock><codeph>all
+allocator
+checkpoint [vbid]
+dispatcher [logs]
+hash [detail]
+items
+kvstore
+kvtimings
+raw argument
+reset
+slabs
+tap [username password]
+tapagg
+timings
+vkey keyname vbid
+</codeph></codeblock><p>From these options, <codeph>all</codeph> and <codeph>timings</codeph> will be the main ones you will use to
+understand cluster or node performance. The other options are used by Couchbase
+internally and to help resolve customer support incidents.</p><p>For example, the <codeph>cbstats</codeph> output can be used with other command-line tools to
+sort and filter the data.</p><codeblock><codeph>&gt; watch --diff "cbstats \
+    ip-10-12-19-81:11210 -b bucket_name -p bucket_password all | egrep 'item|mem|flusher|ep_queue|bg|eje|resi|warm'"
+</codeph></codeblock></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-monitoring-nodestats" format="html"><linktext>couchbase node
+statistics</linktext></link></linklist></related-links></topic>

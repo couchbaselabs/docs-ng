@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+ <title>Couchbase Installation Guide</title>
+ <topicref href="Install/install-intro.dita"/>
+ <topicref href="Install/pre-install.dita">
+  <topicref href="Install/install-resourceReqs.dita"/>
+  <topicref href="Install/install-platforms.dita"/>
+  <topicref href="Install/install-networkPorts.dita"/>
+  <topicref href="Install/install-browsers.dita"/>
+ </topicref>
+ <topicref href="Install/RHEL-install-intro.dita">
+  <topicref href="Install/rhel-prerequisites.dita"/>
+  <topicref href="Install/rhel-installing.dita"/>
+  <topicref href="Install/user-defined-ports.dita"/>
+  <topicref href="Install/rhel-non-root-sudo.dita"/>
+  <topicref href="Install/rhel-multiple-instances.dita"/>
+ </topicref>
+ <topicref href="Install/Ubuntu-install.dita"/>
+ <topicref href="Install/Windows-install.dita"/>
+ <topicref href="Install/Mac-install.dita"/>
+ <topicref href="Install/post-install.dita">
+  <topicref href="Install/init-setup.dita"/>
+  <topicref href="Install/linux-startup-shutdown.dita"/>
+  <topicref href="Install/windows-startup-shutdown.dita"/>
+  <topicref href="Install/mac-startup-shutdown.dita"/>
+  <topicref href="Install/testing.dita"/>
+ </topicref>
+ <topicref href="Install/uninstalling.dita"/>
+ <topicref href="Install/upgrading.dita">
+  <topicref href="Install/upgrade-xdcr.dita"/>
+ </topicref>
+ <topicref href="Install/migrating.dita"/>
+
+
+ 
+</map>

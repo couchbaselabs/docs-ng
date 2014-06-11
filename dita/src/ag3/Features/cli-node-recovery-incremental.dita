@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_lgt_jnb_k4">
+  <title>Setting incremental node recovery (CLI)</title>
+  <shortdesc>To re-add a server node to a cluster, use the <codeph>couchbase-cli</codeph> tool and the 
+    <codeph>recovery</codeph> command with the <codeph>--recovery-type</codeph> parameter. </shortdesc>
+  <refbody>
+    <section>
+      
+      <p>Recovery options are either <codeph>full</codeph> or <codeph>delta</codeph>.</p>
+      
+      <codeblock>
+			--server-recovery=HOST[:PORT] server to recover	
+			--recovery-type=TYPE[delta|full] type of recovery to be performed for a node
+        
+      </codeblock>
+    </section>
+      
+      <example><title>Setting recovery type</title>
+        <p>To set recovery type for a server:</p>
+        
+        <codeblock>       
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+			--server-recovery=192.168.0.2          \\	
+			--recovery-type=full                   \\	
+			-u Administrator -p password
+      </codeblock>
+      </example>
+      
+      
+      <example><title>Setting failover, readd, recovery, and rebalance operations.</title>
+        <p>To set a failover, readd, recovery and rebalance sequence operations:</p>
+        
+        <codeblock>
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+			--server-failover=192.168.0.2 \\	
+			-u Administrator -p password	
+				
+couchbase-cli server-readd -c 192.168.0.1:8091 \\	
+			--server-add=192.168.0.2 \\	
+			-u Administrator -p password	
+			
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+			--server-recovery=192.168.0.2 \\	
+			--recovery-type=delta \\	
+			-u Administrator -p password	
+				
+couchbase-cli rebalance -c 192.168.0.1:8091 \\	
+			-u Administrator -p password    
+        
+      </codeblock>
+      </example>
+      
+
+  </refbody>
+</reference>

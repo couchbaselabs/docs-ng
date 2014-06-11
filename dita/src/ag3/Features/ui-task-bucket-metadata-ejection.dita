@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_flr_nr5_j4">
+    <title>Ejecting metadata (UI)</title>
+    <shortdesc>The type of bucket eviction from memory is set when creating or editing the bucket properties.</shortdesc>
+    <taskbody>
+        <context>
+            <p>
+                To specify the bucket memory size:</p>
+        </context>
+
+            <steps>
+                <step><cmd>Navigate to ... <uicontrol>Data Buckets > Create New Data Bucket</uicontrol> (new bucket) or 
+                    <uicontrol>Data Buckets > bucket_name link > Edit</uicontrol> (existing bucket).</cmd></step>
+                <step><cmd>In the Memory Size section, specify either Value (default) or Full eviction.</cmd>
+                    <info><p>SCREENSHOT</p></info></step>
+                <step><cmd>Click <uicontrol>Save</uicontrol>.</cmd></step>
+            </steps>
+            
+    </taskbody>
+</task>

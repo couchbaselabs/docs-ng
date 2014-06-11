@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2361"><title>Users REST API</title><body><p>As of Couchbase Server 2.2+ you can create one read-only user with the REST API.
+For more information about this type of user, see <xref href="../cb-admin/#couchbase-admin-tasks-read-only" format="html">Read-Only Users</xref>.</p><p>To create a read-only user, you need administrative access:</p><codeblock><codeph>curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=a_password 
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>a_name</i>, and <i>a_password</i>
+values in the above example with your actual values.</p><p>Upon success, you will get this response:</p><codeblock><codeph>success: 200 | []
+</codeph></codeblock><p>The endpoint has one additional, optional parameter <codeph>just_validate=1</codeph>. If you provide this in
+your request the server will validate the username and password for a read-only user but will not
+actually create the user.</p><p>The following are the endpoints, parameters, expected return values and possible errors:</p><table><tgroup cols="6"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><colspec colname="col4"/><colspec colname="col5"/><colspec colname="col6"/><thead><row>
+	<entry>Request</entry>
+	<entry>Description</entry>
+	<entry>Parameters</entry>
+	<entry>Returns</entry>
+	<entry>Errors</entry>
+</row></thead><tbody><row>
+	<entry>POST /settings/readOnlyUser</entry>
+	<entry>Create read-only user</entry>
+	<entry>username, password, just_validate</entry>
+	<entry>success: 200 []</entry>
+	<entry>error: 400</entry>
+	<entry>{“errors”:{field_name:error_message}}</entry>
+</row><row>
+	<entry>PUT /settings/readOnlyUser</entry>
+	<entry>Change read-only user password</entry>
+	<entry>password</entry>
+	<entry>success: 200 []</entry>
+	<entry>error: 400</entry>
+	<entry>{“errors”:{field_name:error_message}}</entry>
+</row><row>
+	<entry>DELETE /settings/readOnlyUser</entry>
+	<entry>Delete user</entry>
+	<entry>none</entry>
+	<entry>success: 200 []</entry>
+	<entry>error: 400</entry>
+	<entry>{“errors”:{field_name:error_message}}</entry>
+</row><row>
+	<entry>GET /settings/readOnlyAdminName</entry>
+	<entry>Get the read-only username</entry>
+	<entry>none</entry>
+	<entry>success: 200 “username”</entry>
+	<entry>not found: 404 </entry>
+</row></tbody></tgroup></table><p>A <codeph>username</codeph> is a UTF–8 string that does not contain spaces, control characters or any of these characters: ()&lt;&gt;@,;:\"/[]?={} characters. Any <codeph>password</codeph> must be UTF–8 with no control characters and must be at least six characters long. </p><p>To change the password for a read-only user:</p><codeblock><codeph>curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=new_password
+</codeph></codeblock><p>To delete this user:</p><codeblock><codeph>curl -X DELETE -u admin:password http://localhost:8091/settings/readOnlyUser 
+</codeph></codeblock><p>To get the read-only username, you can have administrative or read-only permissions:</p><codeblock><codeph>curl -u username:password  http://localhost:8091/settings/readOnlyAdminName
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>username</i>, <i>a_name</i>, and
+<i>new_password</i> values in the above examples with your actual values.</p><p>This will return a response with the read-only username as payload, <codeph>success: 200 | "username"</codeph>. If there is no
+read-only user you will get this error <codeph>not found: 404</codeph>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-admin-tasks-read-only" format="html"><linktext>Read-Only Users</linktext></link></linklist></related-links></topic>

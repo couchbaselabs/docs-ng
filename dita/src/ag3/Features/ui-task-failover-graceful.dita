@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_wkh_ccb_k4">
+    <title>Failing over gracefully (UI)</title>
+    <shortdesc/>
+    <taskbody>
+        
+        <context>
+            <p>To manage failover:</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Navigate to ....</cmd>
+            </step>
+            <step>
+                <cmd>Select xxx to use graceful failover. Alternatively, select zzz to force failover.</cmd>
+                    <info>Pending status displays until the process completes.</info>
+                <info><p>SCREENSHOT</p></info>
+            </step>
+            <step>
+                <cmd>something else?</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

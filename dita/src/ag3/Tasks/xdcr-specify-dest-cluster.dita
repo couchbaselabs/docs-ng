@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_zqk_l34_14">
+    <title>Specifying a destination cluster</title>
+    <shortdesc>The destination cluster for XDCR replication is specified via <uicontrol>XDCR > Remote Cluster >
+        Create Cluster Reference</uicontrol>.</shortdesc>
+    <taskbody>
+        <context>
+            <p>To create a uni-directional replication (from cluster A to cluster B):
+                <fig><image href="../images/xdcr-cluster-reference.png"/></fig></p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Verify that a destination bucket exists on the cluster where you will be
+                    replicating.</cmd>
+                <info>To check that a destination bucket exists, issue a REST API request using the
+                    following syntax, GET HTTP method, and URI path:
+                    <codeblock>
+curl GET -u Admin:password http://ip.for.destination.cluster:8091/pools/default/buckets
+                    </codeblock>
+                </info>
+            </step>
+            <step><cmd>Navigate to the XDCR section, <uicontrol>XDCR > Remote Cluster section > Create Cluster
+                        Reference</uicontrol>.</cmd></step>
+            <step>
+                <cmd>Click the <uicontrol>Create Cluster Reference</uicontrol> button.</cmd>       
+            </step>
+            <step><cmd>Provide the following information for identifying and accessing the destination cluster.</cmd>
+                <choices>
+                    <choice>Cluster Name</choice>
+                    <choice>IP address or hostname of a node in the destination cluster</choice>
+                    <choice>Administrator username and password for the destination cluster</choice>
+                    <choice>Enable Encryption - If selected, XDCR data encryption occurs using SSL.</choice>
+            </choices>
+            </step>
+            <step><cmd>Click <uicontrol>Save</uicontrol> to store new reference to the destination cluster. This
+                cluster information is now be available when configuring replication for the source
+                cluster.</cmd></step>
+        </steps>
+
+    </taskbody>
+</task>

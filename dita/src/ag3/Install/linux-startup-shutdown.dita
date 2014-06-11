@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic762"><title>Startup and shutdown on Linux</title><body><p>On Linux, Couchbase Server is installed as a standalone application with support
+for running as a background (daemon) process during startup through the use of a
+standard control script, <codeph>/etc/init.d/couchbase-server</codeph>. The startup script is
+automatically installed during installation from one of the Linux packaged
+releases (Debian/Ubuntu or Red Hat/CentOS). By default Couchbase Server is
+configured to be started automatically at run levels 2, 3, 4, and 5, and
+explicitly shutdown at run levels 0, 1 and 6.</p><p>To manually start Couchbase Server using the startup/shutdown script:</p><codeblock><codeph>&gt; sudo /etc/init.d/couchbase-server start
+</codeph></codeblock><p>To manually stop Couchbase Server using the startup/shutdown script:</p><codeblock><codeph>&gt; sudo /etc/init.d/couchbase-server stop
+</codeph></codeblock></body></topic>

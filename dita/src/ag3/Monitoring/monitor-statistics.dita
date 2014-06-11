@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3970"><title>Couchbase Server statistics</title><body><p>Couchbase Server provides statistics at multiple levels throughout the cluster.
+These are used for regular monitoring, capacity planning and to identify the
+performance characteristics of your cluster deployment. The most visible
+statistics are those in the Web UI, but components such as the REST interface,
+the proxy and individual nodes have directly accessible statistics interfaces.</p><p><!--Removed anchor point couchbase-monitoring-stats-rest--></p><section><title>REST interface statistics</title><p>To interact with statistics provided by REST, use the
+<xref href="#topic3970/couchbase-admin-web-console">Couchbase Web Console</xref>. This GUI gathers
+statistics via REST and displays them to your browser. The REST interface has a
+set of resources that provide access to the current and historic statistics the
+cluster gathers and stores. See the <xref href="../cb-rest-api/#couchbase-admin-restapi" format="html">REST API</xref>
+for more information.</p><p><!--Removed anchor point couchbase-monitoring-nodestats--></p></section><section><title>Couchbase Server node statistics</title><p><xref href="http://github.com/membase/ep-engine/blob/master/docs/stats.org" scope="external" format="html">Detailed stats
+documentation</xref>
+can be found in the repository.</p><p>Along with stats at the REST and UI level, individual nodes can also be queried
+for statistics either through a client which uses binary protocol or through
+the <xref href="../cb-cli/#couchbase-admin-cmdline-cbstats" format="html">cbstats utility</xref> shipped with Couchbase
+Server.</p><p>For example:</p><codeblock><codeph>&gt; cbstats localhost:11210 all
+ auth_cmds:                   9
+ auth_errors:                 0
+ bucket_conns:                10
+ bytes_read:                  246378222
+ bytes_written:               289715944
+ cas_badval:                  0
+ cas_hits:                    0
+ cas_misses:                  0
+ cmd_flush:                   0
+ cmd_get:                     134250
+ cmd_set:                     115750
+…
+</codeph></codeblock><p>The most commonly needed statistics are surfaced through the Web Console and
+have descriptions there and in the associated documentation. Software developers
+and system administrators wanting lower level information have it available
+through the stats interface.</p><p>There are seven commands available through the stats interface:</p><ul>
+<li><p><codeph>stats</codeph> (referred to as ‘all’)</p></li>
+<li><p><codeph>dispatcher</codeph></p></li>
+<li><p><codeph>hash</codeph></p></li>
+<li><p><codeph>tap</codeph></p></li>
+<li><p><codeph>timings</codeph></p></li>
+<li><p><codeph>vkey</codeph></p></li>
+<li><p><codeph>reset</codeph></p></li>
+</ul><p><!--Removed anchor point couchbase-monitoring-nodestats-stats--></p></section><section><title>stats command</title><p>This displays a large list of statistics related to the Couchbase process
+including the underlying engine (ep_* stats).</p><p><!--Removed anchor point couchbase-monitoring-nodestats-dispatcher--></p></section><section><title>dispatcher command</title><p>This statistic will show what the dispatcher is currently doing:</p><codeblock><codeph>dispatcher
+     runtime: 45ms
+       state: dispatcher_running
+      status: running
+        task: Running a flusher loop.
+nio_dispatcher
+       state: dispatcher_running
+      status: idle
+</codeph></codeblock><p>The first entry, dispatcher, monitors the process responsible for disk access.
+The second entry is a non-IO (non disk) dispatcher. There may also be a
+ro_dispatcher dispatcher present if the engine is allowing concurrent reads and
+writes. When a task is actually running on a given dispatcher, the “runtime”
+tells you how long the current task has been running. Newer versions will show
+you a log of recently run dispatcher jobs so you can see what’s been happening.</p></section><section><title>Changing statistics collection</title><p>The default Couchbase Server statistics collection is set to collect every second.
+The tuning that is available for statistic collection is by collecting statistics less frequently. </p><p>Note</p><p>If statistic collection is changed from the default, the Couchbase service must be restarted.</p><p>To change statistic collection:</p><ol>
+<li>Log in as root or sudo and navigate to the directory where Couchbase is installed. For example:
+<codeph>/opt/couchbase/etc/couchbase/static_config</codeph></li>
+<li>Edit the static_config file.</li>
+<li>Add the following parameter: {grab_stats_every_n_ticks, 10}, where 10 is the number of ticks.
+In the Couchbase environment one tick is one second (default). It is recommended that the statistics
+collection be more frequent (and accurate). However, assign an appropriate tick value for you environment.</li>
+<li>Restart the Couchbase service.</li>
+</ol><p>After restarting the Couchbase service, the statistics collection rate will be changed.</p></section><section><required-cleanup><title>Changing the stats file location</title><p>The default stats file location is <codeph>/opt/couchbase/var/lib/couchbase/stats</codeph>, however, if you want to
+change the default stats file location, create a symlink location to the new directory.</p><p>Note</p><p>When creating a symlink, stop and restart the Couchbase service.
+</p></required-cleanup></section></body><related-links><linklist><title>Collected links</title><link href="../cb-rest-api/#couchbase-admin-restapi" format="html"><linktext>REST API</linktext></link><link href="http://github.com/membase/ep-engine/blob/master/docs/stats.org" scope="external" format="html"><linktext>Detailed stats
+documentation</linktext></link><link href="../cb-cli/#couchbase-admin-cmdline-cbstats" format="html"><linktext>cbstats utility</linktext></link></linklist></related-links></topic>

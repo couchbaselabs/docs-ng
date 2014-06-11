@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic25606">
+ <title>Managing XDCR</title>
+ <shortdesc>Cross datacenter replication (XDCR) provides an easy method of replicating data from one
+  cluster to another for disaster recovery as well as better data locality (getting data closer to
+  its users).</shortdesc>
+
+ <body>
+
+
+ </body>
+
+ <related-links>
+  <linklist>
+   <link href="../REST/XDCR/rest-xdcr-intro.dita"/>
+   <link href="../CLI/CBcli/cbcli-xdcr.dita"/>
+   <link href="http://docs.couchbase.com/couchbase-elastic-search/" scope="external" format="html">
+    <linktext>Couchbase Elasticsearch Guide</linktext>
+   </link>
+   <link href="http://aws.amazon.com/vpc/faqs/" scope="external" format="html">
+    <linktext>Amazon Virtual Private Cloud FAQs</linktext>
+   </link>
+  </linklist>
+ </related-links>
+
+</topic>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1577"><title>Available stats</title><body><p>The following histograms are available from “timings” in the general
+form to describe when time was spent doing various things:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>bg_wait</entry>
+	<entry>bg fetches waiting in the dispatcher queue</entry>
+</row><row>
+	<entry>bg_load</entry>
+	<entry>bg fetches waiting for disk</entry>
+</row><row>
+	<entry>bg_tap_wait</entry>
+	<entry>tap bg fetches waiting in the dispatcher queue</entry>
+</row><row>
+	<entry>bg_tap_load</entry>
+	<entry>tap bg fetches waiting for disk</entry>
+</row><row>
+	<entry>pending_ops</entry>
+	<entry>client connections blocked for operations</entry>
+</row><row>
+	<entry/>
+	<entry>in pending vbuckets</entry>
+</row><row>
+	<entry>storage_age</entry>
+	<entry>Analogous to ep_storage_age in main stats</entry>
+</row><row>
+	<entry>data_age</entry>
+	<entry>Analogous to ep_data_age in main stats</entry>
+</row><row>
+	<entry>get_cmd</entry>
+	<entry>servicing get requests</entry>
+</row><row>
+	<entry>arith_cmd</entry>
+	<entry>servicing incr/decr requests</entry>
+</row><row>
+	<entry>get_stats_cmd</entry>
+	<entry>servicing get_stats requests</entry>
+</row><row>
+	<entry>get_vb_cmd</entry>
+	<entry>servicing vbucket status requests</entry>
+</row><row>
+	<entry>set_vb_cmd</entry>
+	<entry>servicing vbucket set state commands</entry>
+</row><row>
+	<entry>del_vb_cmd</entry>
+	<entry>servicing vbucket deletion commands</entry>
+</row><row>
+	<entry>chk_persistence_cmd</entry>
+	<entry>waiting for checkpoint persistence</entry>
+</row><row>
+	<entry>tap_vb_set</entry>
+	<entry>servicing tap vbucket set state commands</entry>
+</row><row>
+	<entry>tap_vb_reset</entry>
+	<entry>servicing tap vbucket reset commands</entry>
+</row><row>
+	<entry>tap_mutation</entry>
+	<entry>servicing tap mutations</entry>
+</row><row>
+	<entry>notify_io</entry>
+	<entry>waking blocked connections</entry>
+</row><row>
+	<entry>paged_out_time</entry>
+	<entry>time (in seconds) objects are non-resident</entry>
+</row><row>
+	<entry>disk_insert</entry>
+	<entry>waiting for disk to store a new item</entry>
+</row><row>
+	<entry>disk_update</entry>
+	<entry>waiting for disk to modify an existing item</entry>
+</row><row>
+	<entry>disk_del</entry>
+	<entry>waiting for disk to delete an item</entry>
+</row><row>
+	<entry>disk_vb_del</entry>
+	<entry>waiting for disk to delete a vbucket</entry>
+</row><row>
+	<entry>disk_commit</entry>
+	<entry>waiting for a commit after a batch of updates</entry>
+</row><row>
+	<entry>disk_vbstate_snapshot</entry>
+	<entry>Time spent persisting vbucket state changes</entry>
+</row><row>
+	<entry>item_alloc_sizes</entry>
+	<entry>Item allocation size counters (in bytes)</entry>
+</row></tbody></tgroup></table></body></topic>

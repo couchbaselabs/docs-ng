@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic976">
+  <title>XDCR and network or system outages</title>
+  <shortdesc>XDCR is resilient to intermittent network failures. </shortdesc>
+  <body>
+    <p>In the event that the destination cluster
+      is unavailable due to a network interruption, XDCR pauses replication and then retries the
+      connection to the cluster every 30 seconds. Once XDCR can successfully reconnect with a
+      destination cluster, it resumes replication. In the event of a more prolonged network failure
+      where the destination cluster is unavailable for more than 30 seconds, a source cluster
+      continues polling the destination cluster which may result in numerous errors over time. </p>
+    
+  </body>
+</topic>

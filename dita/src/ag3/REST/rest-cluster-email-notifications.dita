@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic4726"><title>View settings for email notifications</title><body><p>The response to this request will specify whether you have email alerts set, and
+which events will trigger emails. This is a global setting for all clusters. You
+need to be authenticated to read this value:</p><codeblock><codeph>curl -u admin:password http://localhost:8091/settings/alerts
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
+with your actual values.</p><codeblock><codeph>GET /settings/alerts HTTP/1.1
+Host: localhost:8091
+Authorization: Basic YWRtaW46YWRtaW4= Accept: */*
+</codeph></codeblock><codeblock><codeph>{
+    "recipients": ["root@localhost"],
+    "sender":"couchbase@localhost",
+    "enabled":true,
+    "emailServer":{"user":"","pass":"","host":"localhost","port":25,"encrypt":false},
+    "alerts":
+      ["auto_failover_node",
+      "auto_failover_maximum_reached",
+      "auto_failover_other_nodes_down",
+      "auto_failover_cluster_too_small"]
+  }
+</codeph></codeblock><p>Possible errors include:</p><codeblock><codeph>This endpoint isn't available yet.
+</codeph></codeblock><p><!--Removed anchor point couchbase-admin-restapi-enbling-disabling-email--></p><section><title>Enabling and disabling email notifications</title><p>This is a global setting for all clusters. You need to be authenticated to
+change this value. If this is enabled, Couchbase Server sends an email when
+certain events occur. Only events related to auto-failover trigger
+notification:</p><codeblock><codeph>curl -i -u admin:password \
+    -d 'enabled=true&amp;sender=couchbase@localhost&amp;recipients=admin@localhost,membi@localhost&amp;emailHost=localhost&amp;emailPort=25&amp;emailEncrypt=false' http://localhost:8091/settings/alerts
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>couchbase@localhost</i>,
+<i>admin@localhost</i>, <i>membi@localhost</i>, <i>25</i>, and <i>false</i> values in the above
+example with your actual values.</p><p>Possible parameters include:</p><ul>
+<li><p><codeph>enabled</codeph> : (true|false) (required). Whether to enable or disable email
+ notifications</p></li>
+<li><p><codeph>sender</codeph> (string) (optional, default: couchbase@localhost). Email address of the
+ sender.</p></li>
+<li><p><codeph>recipients</codeph> (string) (required). A comma separated list of recipients of the of
+ the emails.</p></li>
+<li><p><codeph>emailHost</codeph> (string) (optional, default: localhost). Host address of the SMTP
+ server</p></li>
+<li><p><codeph>emailPort</codeph> (integer) (optional, default: 25). Port of the SMTP server</p></li>
+<li><p><codeph>emailEncrypt</codeph> (true|false) (optional, default: false). Whether you want to use
+ TLS or not</p></li>
+<li><p><codeph>emailUser</codeph> (string) (optional, default: ""): Username for the SMTP server</p></li>
+<li><p><codeph>emailPass</codeph> (string) (optional, default: ""): Password for the SMTP server</p></li>
+<li><p><codeph>alerts</codeph> (string) (optional, default: auto_failover_node,
+ auto_failover_maximum_reached, auto_failover_other_nodes_down,
+ auto_failover_cluster_too_small). Comma separated list of alerts that should
+ cause an email to be sent. Possible values are: auto_failover_node,
+ auto_failover_maximum_reached, auto_failover_other_nodes_down,
+ auto_failover_cluster_too_small.</p></li>
+</ul><codeblock><codeph>POST /settings/alerts HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Length: 14 enabled=true&amp;sender=couchbase@localhost&amp;recipients=admin@localhost,membi@localhost&amp;emailHost=localhost&amp;emailPort=25&amp;emailEncrypt=false�
+</codeph></codeblock><codeblock><codeph>HTTP/1.1 200 OK
+</codeph></codeblock><p>Possible HTTP errors include:</p><codeblock><codeph>400 Bad Request
+401 Unauthorized
+JSON object ({"errors": {"key": "error"}}) with errors.
+</codeph></codeblock><ul>
+<li><p>Possible errors returned in a JSON document include:</p></li>
+<li><p>alerts: alerts contained invalid keys. Valid keys are: [list_of_keys].</p></li>
+<li><p>email_encrypt: emailEncrypt must be either true or false.</p></li>
+<li><p>email_port: emailPort must be a positive integer less than 65536.</p></li>
+<li><p>enabled: enabled must be either true or false.</p></li>
+<li><p>recipients: recipients must be a comma separated list of valid email addresses.</p></li>
+<li><p>sender: sender must be a valid email address.</p></li>
+<li><p>general: No valid parameters given.</p></li>
+</ul><p><!--Removed anchor point couchbase-admin-restapi-sending-test-emails--></p></section><section><title>Sending test emails</title><p>This is a global setting for all clusters. You need to be authenticated to
+change this value. In response to this request, Couchbase Server sends a test
+email with the current configurations. This request uses the same parameters
+used in setting alerts and additionally an email subject and body.</p><codeblock><codeph>    curl -i -u admin:password http://localhost:8091/settings/alerts/testEmail \
+    -d 'subject=Test+email+from+Couchbase&amp; \
+    body=This+email+was+sent+to+you+to+test+the+email+alert+email+server+settings.&amp;enabled=true&amp; \
+    recipients=vmx%40localhost&amp;sender=couchbase%40localhost&amp; \
+    emailUser=&amp;emailPass=&amp;emailHost=localhost&amp;emailPort=25&amp;emailEncrypt=false&amp; \
+    alerts=auto_failover_node%2Cauto_failover_maximum_reached%2Cauto_failover_other_nodes_down%2Cauto_failover_cluster_too_small'
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>vmx%40localhost</i>,
+<i>couchbase%40localhost</i>, <i>25</i>, and <i>false</i> values in the above example with
+your actual values.</p><codeblock><codeph>POST /settings/alerts/sendTestEmail HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YWRtaW46YWRtaW4=
+</codeph></codeblock><p>200 OK</p><p>Possible errors include:</p><codeblock><codeph>400 Bad Request: Unknown macro: {"error"} 401 Unauthorized
+This endpoint isn't available yet.
+</codeph></codeblock></section></body></topic>

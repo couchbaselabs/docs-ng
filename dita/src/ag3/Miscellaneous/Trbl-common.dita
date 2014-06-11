@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1211"><title>Responding to specific errors</title><body><p>The following table outlines some specific areas to check when experiencing
+different problems:</p><p><!--Removed anchor point table-couchbase-troubleshooting-specific-errors--></p><table><tgroup cols="3"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><thead><row>
+	<entry>Severity</entry>
+	<entry>Issue</entry>
+	<entry>Suggested Action(s)</entry>
+</row></thead><tbody><row>
+	<entry>Critical</entry>
+	<entry>Couchbase Server does not start up.</entry>
+	<entry>Check that the service is running.</entry>
+</row><row>
+	<entry/>
+	<entry/>
+	<entry>Check error logs.</entry>
+</row><row>
+	<entry/>
+	<entry/>
+	<entry>Try restarting the service.</entry>
+</row><row>
+	<entry>Critical</entry>
+	<entry>A server is not responding.</entry>
+	<entry>Check that the service is running.</entry>
+</row><row>
+	<entry/>
+	<entry/>
+	<entry>Check error logs.</entry>
+</row><row>
+	<entry/>
+	<entry/>
+	<entry>Try restarting the service.</entry>
+</row><row>
+	<entry>Critical</entry>
+	<entry>A server is down.</entry>
+	<entry>Try restarting the server.</entry>
+</row><row>
+	<entry/>
+	<entry/>
+	<entry>Use the command-line interface to check connectivity.</entry>
+</row><row>
+	<entry>Informational</entry>
+	<entry>Bucket authentication failure.</entry>
+	<entry>Check the properties of the bucket that you are attempting to connect to.</entry>
+</row></tbody></tgroup></table><p>The primary source for run-time logging information is the Couchbase Server Web
+Console. Run-time logs are automatically set up and started during the
+installation process. However, the Couchbase Server gives you access to
+lower-level logging details if needed for diagnostic and troubleshooting
+purposes. Log files are stored in a binary format in the logs directory under
+the Couchbase installation directory. You must use <codeph>browse_logs</codeph> to extract the
+log contents from the binary format to a text file.</p></body></topic>

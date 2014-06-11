@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_pjr_d24_14">
+  <title>Tuning XDCR performance</title>
+  <shortdesc>XDCR performance can be tuned via the <codeph>xdcrOptimisticReplicationThreshold</codeph> parameter.</shortdesc>
+  <body>
+      
+      <p> By default, XDCR
+        gets metadata twice for documents over 256 bytes before it performs conflict resolution for at a
+        destination cluster. If the document fails conflict resolution it will be discarded at the
+        destination cluster.</p>
+      
+      <p>When a document is smaller than the number of bytes provided as this
+        parameter, XDCR immediately puts it into the replication queue without getting metadata on the
+        source cluster. If the document is deleted on a source cluster, XDCR will no longer fetch
+        metadata for the document before it sends this update to a destination cluster. Once a document
+        reaches the destination cluster, XDCR will fetch the metadata and perform conflict resolution
+        between documents. If the document ‘loses’ conflict resolution, Couchbase Server discards it on
+        the destination cluster and keeps the version on the destination. This new feature improves
+        replication latency, particularly when you replicate small documents.</p>
+      
+      <p>There are tradeoffs
+        when you change this setting. If you set this low relative to document size, XDCR will
+        frequently check metadata. This will increase latency during replication, it also means that it
+        will get metadata before it puts a document into the replication queue, and will get it again
+        for the destination to perform conflict resolution. The advantage is that you do not waste
+        network bandwidth since XDCR will send less documents that will ‘lose.’</p>
+      
+      <p>If you set this
+        very high relative to document size, XDCR will fetch less metadata which will improve latency
+        during replication. This also means that you will increase the rate at which XDCR puts items
+        immediately into the replication queue which can potentially overwhelm your network, especially
+        if you set a high number of parallel replicators. This may increase the number of documents sent
+        by XDCR which ultimately ‘lose’ conflicts at the destination which wastes network
+        bandwidth.</p>
+      
+      <note type="note">DCR does not fetch metadata for documents that are
+        deleted.</note>
+      
+      <section><title>Changing the document threshold</title>
+        
+        <p>You can change this setting with
+          the REST API as one of the internal settings for XDCR. For more information, see <xref
+            href="../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings" format="html">Changing
+            Internal XDCR Settings</xref>.</p>
+      </section>
+      
+      
+      <section><title>Monitoring ’Optimistic Replication"</title>
+        <p>The
+          easiest way you can monitor the impact of this setting is in Couchbase Web Console. On the Data
+          Buckets tab under Incoming XDCR Operations, you can compare <codeph>metadata reads per
+            sec</codeph> to <codeph>sets per sec</codeph>. </p>
+        
+        <image href="../images/monitor_optmized_xdcr.png"></image>
+        
+        <p>If you set a low threshold relative to document size,
+          <codeph>metadata reads per sec</codeph> will be roughly twice the value of <codeph>sets per
+            sec</codeph>. If you set a high threshold relative to document size, this will virtually
+          eliminate the first fetch of metadata and therefore <codeph>metadata reads per sec</codeph> will
+          roughly equal <codeph>sets per sec</codeph></p>
+        
+        <p>The other option is to check the log files for
+          XDCR, which you can find in <codeph>/opt/couchbase/var/lib/couchbase/logs</codeph> on the nodes
+          for a source bucket. The log files following the naming convention <codeph>xdcr.1</codeph>,
+          <codeph>xdcr.2</codeph> and so on. In the logs you will see a series of entries as
+          follows:</p>
+        
+        <codeblock>
+out of all 11 docs, number of small docs (including dels: 2) is 4,
+number of big docs is 7, threshold is 256 bytes,
+after conflict resolution at target ("http://Administrator:asdasd@127.0.0.1:9501/default%2f3%3ba19c9d4e733a97fa7cb38daa4113d034/"),
+out of all big 7 docs the number of docs we need to replicate is: 5;
+total # of docs to be replicated is: 9, total latency: 142 ms
+</codeblock>
+        
+        <p>The
+          first line means that 4 documents are under the threshold and XDCR checked metadata twice for
+          all 7 documents and replicated 5 larger documents and 4 smaller documents. The amount of time to
+          check and replicate all 11 documents was 142 milliseconds.</p>
+      </section>
+  </body>
+</topic>

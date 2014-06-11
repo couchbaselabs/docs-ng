@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3925"><title>Server Nodes</title><body><p>In addition to monitoring buckets over all the nodes within the cluster,
+Couchbase Server also includes support for monitoring the statistics for an
+individual node.</p><p>The Server Nodes monitoring overview shows summary data for the Swap Usage, RAM
+Usage, CPU Usage and Active Items across all the nodes in your cluster.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-server-summary.png"><alt/></image>
+</ph></required-cleanup><p>Clicking the triangle next to a server displays server node specific
+information, including the IP address, OS, Couchbase version and Memory and Disk
+allocation information.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-server-node.png"><alt/></image>
+</ph></required-cleanup><p>The detail display shows the following information:</p><ul>
+<li><b>Node information</b></li>
+</ul><p>The node information provides detail node configuration data:</p><codeblock><codeph>* `Server Name`
+
+  The server IP address and port number used to communicated with this sever.
+
+* `Uptime`
+
+  The uptime of the Couchbase Server process. This displays how long Couchbase
+  Server has been running as a node, not the uptime for the server.
+
+* `OS`
+
+  The operating system identifier, showing the platform, environment, operating
+  system and operating system derivative.
+
+* `Version`
+
+  The version number of the Couchbase Server installed and running on this node.
+</codeph></codeblock><ul>
+<li><b>Memory cache</b></li>
+</ul><p>The Memory Cache section shows you the information about memory usage, both for
+ Couchbase Server and for the server as a whole. You can use this to compare RAM
+ usage within Couchbase Server to the overall available RAM. The specific details
+ tracked are:</p><codeblock><codeph>* **Couchbase Quota**
+
+  Shows the amount of RAM in the server allocated specifically to Couchbase
+  Server.
+
+* **In Use**
+
+  Shows the amount of RAM currently in use by stored data by Couchbase Server.
+
+* **Other Data**
+
+  Shows the RAM used by other processes on the server.
+
+* **Free**
+
+  Shows the amount of free RAM out of the total RAM available on the server.
+
+* **Total**
+
+  Shows the total amount of free RAM on the server available for all processes.
+</codeph></codeblock><ul>
+<li><b>Disk Storage</b></li>
+</ul><p>This section displays the amount of disk storage available and configured for
+ Couchbase. Information will be displayed for each configured disk.</p><codeblock><codeph>* **In Use**
+
+  Shows the amount of disk space currently used to stored data for Couchbase
+  Server.
+
+* **Other Data**
+
+  Shows the disk space used by other files on the configured device, not
+  controlled by Couchbase Server.
+
+* **Free**
+
+  Shows the amount of free disk storage on the server out of the total disk space
+  available.
+
+* **Total**
+
+  Shows the total disk size for the configured storage device.
+</codeph></codeblock><p>Selecting a server from the list shows the server-specific version of the Bucket
+Monitoring overview, showing server-specific performance information.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-server-individual.png"><alt/></image>
+</ph></required-cleanup><p>The graphs specific to the server are:</p><ul>
+<li><b>swap usage</b></li>
+</ul><p>Amount of swap space in use on this server.</p><ul>
+<li><b>free RAM</b></li>
+</ul><p>Amount of RAM available on this server.</p><ul>
+<li><b>CPU utilization</b></li>
+</ul><p>Percentage of CPU utilized across all cores on the selected server.</p><ul>
+<li><b>connection count</b></li>
+</ul><p>Number of connections to this server of all types for client, proxy, TAP
+ requests and internal statistics.</p><p>By clicking on the blue triangle against an individual statistic within the
+server monitoring display, you can optionally select to view the information for
+a specific bucket-statistic on an individual server, instead of across the
+entire cluster.</p><required-cleanup remap="figure"><ph>
+<image href="../images/web-console-server-specific.png"><alt/></image>
+</ph></required-cleanup><p>For more information on the data bucket statistics, see <xref href="#topic3925/couchbase-admin-web-console-data-buckets">Viewing Data
+Buckets</xref>.</p><p><!--Removed anchor point couchbase-admin-web-console-server-states--></p><section><title>Understanding server states</title><p>Couchbase Server nodes can be in a number of different states depending on their
+current activity and availability. The displayed states are:</p><ul>
+<li><b>Up</b></li>
+</ul><p>Host is up, replicating data between nodes and servicing requests from clients.</p><ul>
+<li><b>Down</b></li>
+</ul><p>Host is down, not replicating data between nodes and not servicing requests from
+ clients.</p><p><image href="../images/web-console-server-states-down.png"><alt/></image></p><ul>
+<li><b>Pend</b></li>
+</ul><p>Host is up and currently filling RAM with data, but is not servicing requests
+ from clients. Client access will be supported once the RAM has been pre-filled
+ with information.</p><p><image href="../images/web-console-server-states-pend.png"><alt/></image></p><p>You can monitor the current server status using both the <codeph>Manage: Server Nodes</codeph>
+and <codeph>Monitor: Server Nodes</codeph> screens within the Web Console.</p></section></body></topic>

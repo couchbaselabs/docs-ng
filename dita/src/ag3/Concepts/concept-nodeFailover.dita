@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic907">
+  <title>Failover</title>
+  <shortdesc>Failover is the process of indicating that a node in a cluster is unavailable and that 
+  enabling replica vBuckets.</shortdesc>
+  <body>
+    <p>Information is distributed around a cluster using a series of replicas. For Couchbase buckets
+      you can configure the number of <codeph>replicas</codeph> (complete copies of the data stored
+      in the bucket) that should be kept within the Couchbase Server Cluster.</p>
+    <p>In the event of a failure in a server (either due to transient failure, or for administrative
+      purposes), you can use a technique called <codeph>failover</codeph> to indicate that a node
+      within the Couchbase Cluster is no longer available, and that the replica vBuckets for the
+      server are enabled.</p>
+    <p>The failover process contacts each server that was acting as a replica and updates the
+      internal table that maps client requests for documents to an available server.</p>
+    <p>Failover can be performed manually, or you can use the built-in automatic failover that
+      reacts after a preset time when a node within the cluster becomes unavailable.</p>
+
+  </body>
+  
+  <related-links>
+    <linklist>
+      <link href="../Tasks/tasks-nodeFailover.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

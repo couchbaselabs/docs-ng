@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3481"><title>Changing thresholds for ejection</title><body><p>The item pager process ejects items from RAM when too much space is
+being taken up in RAM. Ejection means that documents are removed from RAM but the key and metadata remain. </p><p>If the amount of RAM used by items reaches the high water mark (upper threshold), both active and replica data are ejected until the memory usage (amount of RAM consumed) reaches the low water mark (lower threshold). </p><p>The server determines that items are not
+frequently used based on a not-recently-used (NRU) boolean. There a few settings you can adjust to change server
+behavior during the ejection process. In general, we do not recommend you change
+ejection defaults for Couchbase Server unless you are required to do so.</p><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> To perform this operation, the IP address of a node
+in the cluster and a named bucket must be specified. If a named bucket is not provided, the
+server applies the setting to any default bucket that exists at the specified
+node. To perform this operation for an entire cluster, perform the command for every node/bucket combination that exists for that
+cluster.</p><p>For technical information about the ejection process, the role of NRU and server
+processes related to ejection, see <xref href="../cb-admin/#couchbase-admin-tasks-working-set-mgmt" format="html">Ejection and Working Set
+Management</xref>.</p><section><title>Setting the low water mark</title><p>This represents the lower threshold of RAM to be consumed on a node. The item pager stops ejecting items once the low water mark is reached. To change this percentage amount of RAM, use the <codeph>cpepctl</codeph> tool:</p><codeblock><codeph>&gt;    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 70
+</codeph></codeblock></section><section><title>Setting the high water mark</title><p>This represents the amount of RAM consumed by items that must be breached before
+infrequently used active and replica items are ejected. To change this amount, use the
+<codeph>cbepctl</codeph> tool. In the following example, the high water mark is set to 80% of RAM for a specific data bucket on a
+given node. </p><p>This means that items in RAM on this node can consume up to 80% of
+RAM before the item pager begins ejecting items.</p><codeblock><codeph>&gt;    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_high_wat 80
+</codeph></codeblock></section><section><title>Setting percentage of ejected items</title><p>Based on the NRU algorithm, the server ejects active and replica data from a node.
+By default, the server is configured to 40% active items and 60% replica data from a node.</p><p>To change default percentage for ejecting active and replica items, use the <codeph>cbepctl</codeph> tool. The following example increases the percentage of active items that can be ejected from a node to 50%.</p><codeblock><codeph>&gt;    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
+</codeph></codeblock><p>Be aware of potential performance implications when making this change.
+It may seem more desirable to eject as many replica items
+as possible and limit the amount of active data that can be ejected. In doing
+so, you will be able to maintain as much active data from a source node as
+possible, and maintain incoming requests to that node. However, if you have the
+server eject a very large percentage of replica data, should a node fail, the
+replica data is not immediately available. In that case, the items are retrieved from disk and put back into RAM. Once in RAM, the request can be fulfilled. Couchbase recommends that you do not change these defaults.</p><p>For technical information about the ejection process, the role of NRU and server
+processes related to ejection, see <xref href="../cb-admin/#couchbase-admin-tasks-working-set-mgmt" format="html">Ejection and Working Set
+Management</xref>.</p></section></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-admin-tasks-working-set-mgmt" format="html"><linktext>Ejection and Working Set
+Management</linktext></link><link href="../cb-admin/#couchbase-admin-tasks-working-set-mgmt" format="html"><linktext>Ejection and Working Set
+Management</linktext></link></linklist></related-links></topic>

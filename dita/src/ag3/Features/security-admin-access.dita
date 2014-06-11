@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_pgw_k2h_14">
+  <title>Secure administrative access</title>
+  <shortdesc>Administrator login access is secured with secure socket layer (SSL) authentication.
+    Enterprise Edition only.</shortdesc>
+  <body>
+    <ul>
+    <li>Can be specified with initial installation.</li>
+    <li>CLI setting that specifies whether or not Admin wants to encrypt the xyz.</li>
+    <li>REST API equivalent</li>
+    <li>Needs to go through a specific port? so you enable and disable the "switch" at the port side.
+      Setting up the certificate is a different thing.</li>
+    </ul>
+  </body>
+</topic>

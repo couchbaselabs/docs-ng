@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3291"><title>Testing Couchbase Server</title><body><p><!--Removed anchor point couchbase-getting-started-testing--></p><p>Testing the connection to the Couchbase Server can be performed in a number of
+different ways. Connecting to the node using the web client to connect to the
+admin console should provide basic confirmation that your node is available.
+Using the <codeph>couchbase-cli</codeph> command to query your Couchbase Server node will
+confirm that the node is available.</p><p>Note</p><p>The Couchbase Server web console uses the same port number as clients use when
+communicated with the server. If you can connect to the Couchbase Server web
+console, administration and database clients should be able to connect to the
+core cluster port and perform operations. The Web Console will also warn if the
+console loses connectivity to the node.
+</p><p>To verify your installation works for clients, you can use either the
+<codeph>cbworkloadgen</codeph> command, or <codeph>telnet</codeph>. The <codeph>cbworkloadgen</codeph> command uses the
+Python Client SDK to communicate with the cluster, checking both the cluster
+administration port and data update ports. For more information, see <xref href="#topic3291/couchbase-getting-started-testing-cbworkloadgen">Testing
+with cbworkloadgen</xref>.</p><p>Using <codeph>telnet</codeph> only checks the Memcached compatibility ports and the memcached
+text-only protocol. For more information, see <xref href="#topic3291/couchbase-getting-started-testing-telnet">Testing with Telnet</xref>.</p><p><!--Removed anchor point couchbase-getting-started-testing-cbworkloadgen--></p><section><title>Testing with cbworkloadgen</title><p>The <codeph>cbworkloadgen</codeph> is a basic tool that can be used to check the availability
+and connectivity of a Couchbase Server cluster. The tool executes a number of
+different operations to provide basic testing functionality for your server.</p><p>Note</p><p>`cbworkloadgen` provides basic testing functionality. It does not provide
+performance or workload testing.
+</p><p>To test a Couchbase Server installation using <codeph>cbworkloadgen</codeph>, execute the
+command supplying the IP address of the running node:</p><codeblock><codeph>&gt; cbworkloadgen -n localhost:8091
+Thread 0 - average set time : 0.0257480939229 seconds , min : 0.00325512886047 seconds , max : 0.0705931186676 seconds , operation timeouts 0
+</codeph></codeblock><p>The progress and activity of the tool can also be monitored within the web
+console.</p><p>For a longer test you can increase the number of iterations:</p><codeblock><codeph>&gt; cbworkloadgen -n localhost:8091 --items=100000
+</codeph></codeblock><p><!--Removed anchor point couchbase-getting-started-testing-telnet--></p></section><section><title>Testing with telnet</title><p>You can test your Couchbase Server installation by using Telnet to connect to
+the server and using the Memcached text protocol. This is the simplest method
+for determining if Couchbase Server is running.</p><p>Note</p><p>You will not need to use the Telnet method for communicating with your server
+within your application. Instead, use one of the Couchbase SDKs.
+</p><p>You will need to have <codeph>telnet</codeph> installed on your server to connect to Couchbase
+Server using this method. Telnet is supplied as standard on most platforms, or
+may be available as a separate package that should be easily installable via
+your operating systems standard package manager.</p><p>Connect to the server:</p><codeblock><codeph>&gt; telnet localhost1
+Trying 127.0.0.1...
+Connected to localhost.localdomain (127.0.0.1).
+Escape character is '^]'.
+</codeph></codeblock><p>Make sure it’s responding (stats is a great way to check basic health):</p><codeblock><codeph>stats
+STAT delete_misses 0
+STAT ep_io_num_write 0
+STAT rejected_conns 0
+...
+STAT time 1286678223
+...
+STAT curr_items_tot 0
+...
+STAT threads 4
+STAT pid 23871
+...
+END
+</codeph></codeblock><p>Put a key in:</p><codeblock><codeph>set test_key 0 0 1
+a
+STORED
+</codeph></codeblock><p>Retrieve the key:</p><codeblock><codeph>get test_key
+VALUE test_key 0 1
+a
+END
+</codeph></codeblock><p>Disconnect:</p><codeblock><codeph>quit
+Connection closed by foreign host.
+&gt;
+</codeph></codeblock><p>All of the Memcached protocols commands will work through Telnet.</p></section></body></topic>

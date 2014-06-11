@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_fwj_gnc_34">
+  <title>Update Notifications tab</title>
+  <body>
+    <p>You can enable or disable Update
+      Notifications by checking the <codeph>Enable software update notifications</codeph> checkbox
+      within the <codeph>Update Notifications</codeph> screen. Once you have changed the option,
+      click <codeph>Save</codeph> to record the change.</p>
+    
+    <p>If update notifications are
+        disabled, then the Update Notifications screen only notifies you of your currently
+        installed version, and no alert is provided.</p>
+    
+          <image href="../images/web-console-server-settings-update-notifications.png"></image>
+    
+    
+    <p>During installation you can select to enable the Update Notification function. Update
+      notifications allow a client accessing the Couchbase Web Console to determine whether a newer
+      version of Couchbase Server is available for download.</p>
+    <p>If <codeph>Enable software update notifications</codeph> is selected, the web console
+      communicates with Couchbase servers to confirm the version number of your Couchbase
+      installation. During this process, the client submits the following information to the
+      Couchbase server:</p>
+    <ul>
+      <li><p>The current version of your Couchbase Server installation. 
+        When a new version of  Couchbase Server becomes available, 
+        you are provided with notification of the new version and information on where to download the new version.</p></li>
+      <li><p>Basic information about the size and configuration of your Couchbase cluster. This
+        information is used to help Couchbase prioritize development efforts.</p></li>
+    </ul>
+    <p>You can enable/disable software update notifications. 
+    The process occurs within the browser accessing the web console, not within the server itself. 
+      No further configuration or internet access is required on the server to enable
+      this functionality. Providing the client accessing the Couchbase server console has internet
+      access, the information can be communicated to the Couchbase servers.</p>
+    <p>The update notification process the information anonymously, and the data cannot be tracked.
+      The information is only used to provide you with update notification and to provide
+      information that will help improve future development process for Couchbase Server and
+      related products.</p>
+    <note type="note">If the browser or computer that you are using to connect to your Couchbase Server web console
+      does not have Internet access, the update notification system does not work.</note>
+    
+        
+  </body>
+  <related-links>
+    <linklist>
+      <link href="ui-notifications.dita"></link>
+    </linklist>
+  </related-links>
+
+</topic>

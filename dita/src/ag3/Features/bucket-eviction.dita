@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_dl3_clp_yn">
+ <title>Bucket metadata ejection</title>
+ <shortdesc>Metadata ejection allows both value and full bucket ejection from memory.</shortdesc>
+ <conbody>
+  
+  
+  <p>Value bucket ejection removes the data but keeps all keys and metadata in memory (default). 
+   Value-bucket ejection is the standard method of ejection. 
+   Full-bucket ejection removes all data including keys, metadata, and key-values. 
+   Full-bucket ejection reduces the RAM requirement for large buckets.</p>
+  
+  <p>Full-bucket ejection allows large data footprints are supported with efficient cache managment and 
+   reduced warmup times are possible when the working sets in memory are smaller. 
+   This method addresses an environment where there are very large datasets (large number of items/keys), 
+   and a small working set in memory. 
+   Metadata ejection operates at the bucket-level for manageability purposes. 
+   The workload characteristics can be categorized.</p>
+  
+  <p><b>GRAPHICs: Ejection Logic Table</b></p>
+
+  
+  <section><title>Questions</title>
+   <p>Is it incremental, meaning that item's value is evicted in the first eviction phase and 
+    then its key and meta data in the second phase if the memory usage is still high.</p>
+  </section>
+  
+  
+
+
+  
+  <section><title>Impacted documentation</title>
+   <ul>
+    <li>Added to Document Metadata material (Under Views and data storage). Also, move the the Document
+      Metadata and data storage material to a more appropriate section.</li>
+    <li>Warm up operations</li>
+    <li>Global thread pool</li>
+    <li>Other ejection from hitting thresholds</li>
+   </ul>
+  </section>
+  
+  
+  <section><title>Backward compatibility</title>
+   <p>Behavioral changes are also described.</p>
+   <ul>
+    <li>EJECTION LOGIC GRAPHIC</li>
+    <li>OLD 2.x release: val for all active datasets are ejected. Metadata + key is not ejected for all active datasets</li>
+    <li>3.0: both value and metadata+key are ejected.</li>
+   </ul>
+  </section> 
+  
+  
+ </conbody>
+ 
+ <related-links>
+  <linklist>
+   <link href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita">
+    <linktext>Ejecting bucket metadata (CLI)</linktext>
+   </link>
+   <link href="../CLI/CBcli/cbcli-buckets.dita"></link>
+   <link href="../rest/rest-bucket-metadata-ejection.dita">
+    <linktext>Ejecting bucket metadata (REST)</linktext>
+   </link>
+   <link href="../rest/rest-bucket-intro.dita"></link>
+  </linklist>
+ </related-links>
+</concept>

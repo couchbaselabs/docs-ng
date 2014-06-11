@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic733"><title>Resetting auto-failover</title><body><p>This resets the number of nodes that Couchbase Server has automatically
+failed-over. You can send a request to set the auto-failover number to 0. This
+is a global setting for all clusters. You need to be authenticated to change
+this value. No parameters are required:</p><codeblock><codeph>curl -X POST -i -u admin:password \
+    http://localhost:8091/settings/autoFailover/resetCount
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
+with your actual values.</p><codeblock><codeph>POST /settings/autoFailover/resetCount HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YWRtaW46YWRtaW4=
+</codeph></codeblock><codeblock><codeph>HTTP/1.1 200 OK
+</codeph></codeblock><p>Possible errors include:</p><codeblock><codeph>This endpoint isn't available yet.
+401 Unauthorized
+</codeph></codeblock></body></topic>
