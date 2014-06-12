@@ -964,7 +964,7 @@ The statistics in this section are detailed below:
 
 <a id="couchbase-admin-web-console-data-buckets-memcached"></a>
 
-### Bucket Memcached muckets
+### Memcached buckets
 
 For Memcached buckets, Web Console displays a separate group of statistics:
 
