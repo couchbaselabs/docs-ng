@@ -1590,7 +1590,7 @@ auto-failover process is started when a cluster node failure is detected.
 
 To enable Auto-Failover, check the `Enable auto-failover` checkbox. To set the
 delay, in seconds, before auto-failover is started, enter the number of seconds
-it the `Timeout` box. The default timeout is 30 seconds. For more information on Auto-Failover, see [Using Automatic Failover](#couchbase-admin-tasks-failover-automatic).
+it the `Timeout` box. The default timeout is 120 seconds. For more information on Auto-Failover, see [Using Automatic Failover](#couchbase-admin-tasks-failover-automatic).
 ![](../images/web-console-server-settings-autofailover.png)
 
 <a id="couchbase-admin-web-console-settings-alerts"></a>
