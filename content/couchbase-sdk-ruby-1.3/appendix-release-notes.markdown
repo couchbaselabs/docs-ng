@@ -13,7 +13,7 @@ Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
 **Known issues in 1.3.8**
 
-* [RCBC-176](http://www.couchbase.com/issues/browse/RCBC-176). When the Couchbase client is used in an `em-synchrony` context, connection errors might not be propagated to the client. This leads to a runtime assertion in EventMachine. 
+* [RCBC-176](http://www.couchbase.com/issues/browse/RCBC-176). When the Couchbase client is used in an em-synchrony context, connection errors might not be propagated to the client. This leads to a runtime assertion in EventMachine. 
 
 ## 1.3.7 (18 April 2014)
 
