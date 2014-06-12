@@ -481,8 +481,7 @@ for more information. Two important statistics related to water marks include:
 
  * Low Water Mark ( `ep_mem_low_wat` )
 
-   When a threshold known as low water mark is reached, this process starts
-   ejecting inactive replica data from RAM on the node.
+   When the low water mark threshold is reached, it indicates that memory usage is moving toward a critical point and system administration action is should be taken before the high water mark is reached
 
 You can find values for these important stats with the following command:
 
