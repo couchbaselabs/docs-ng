@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1604">
+  <title>Release Notes</title>
+  <body>
+    <p>This appendix contains release notes for individual versions of Couchbase Plug-in for
+      Elasticsearch.</p>
+    <section><title>Release Notes for Couchbase Plug-in for Elasticsearch 1.3.0 GA (April
+        2014)</title><p>This release is compatibility only with Elasticsearch 1.0.1.</p><p>This
+        release is compatible with Couchbase Server 2.5.x, and it is backward compatible with
+        earlier 2.x releases. </p><ul>
+        <li>Support for new XDCR checkpointing protocol.</li>
+        <li>Fixed failure handling due to bounded queue with Elasticsearch 1.x.</li>
+      </ul></section>
+    <section><title>Release Notes for Couchbase Plug-in for Elasticsearch 1.2.0 GA (October
+        2013)</title><p>This release adds compatibility with Elasticsearch 0.90.5.</p><p>This
+        release is compatible with Couchbase Server 2.2, and it is backward compatible with earlier
+        2.x releases.</p></section>
+    <section><title>Release Notes for Couchbase Plug-in for Elasticsearch 1.1.0 GA (August
+        2013)</title><p>This release adds compatibility with Elasticsearch 0.90.2.</p></section>
+    <section><title>Release Notes for Couchbase Plug-in for Elasticsearch 1.0.0 GA (February
+        2013)</title><p>This is the first general availability (GA) release. It contains the
+        following enhancements and bug fixes:</p><ul>
+        <li><p>Now compatible with version 0.20.2 of Elasticsearch.</p></li>
+        <li><p>Now supports document expiration using Elasticsearch TTL.</p></li>
+        <li><p>Now supports XDCR conflict resolution to reduce bandwidth usage in some
+          cases.</p></li>
+        <li><p>Fixed Couchbase index template to allow searching on the document metadata.</p></li>
+        <li><p>Fixed data corruption under high load.</p></li>
+        <li><p>Fixed recognition of non-JSON documents.</p></li>
+        <li><p>Improved log information when indexing stub documents.</p></li>
+      </ul></section>
+    <section><title>Release Notes for Couchbase Plug-in for Elasticsearch 1.0.0 Beta (February
+        2013)</title><p>This is the beta release of the plug-in.</p></section>
+  </body>
+  <related-links>
+    <linklist>
+
+      <link href="https://www.couchbase.com/issues/browse/CBES-26" scope="external" format="html">
+        <linktext>CBES–26</linktext>
+      </link>
+      <link href="https://www.couchbase.com/issues/browse/CBES-27" scope="external" format="html">
+        <linktext>CBES–27</linktext>
+      </link>
+      <link href="http://www.couchbase.com/issues/browse/CBES-11" scope="external" format="html">
+        <linktext>(CBES–11)</linktext>
+      </link>
+      <link href="http://www.couchbase.com/issues/browse/CBES-11" scope="external" format="html">
+        <linktext>(CBES–11)</linktext>
+      </link>
+    </linklist>
+  </related-links>
+</topic>
