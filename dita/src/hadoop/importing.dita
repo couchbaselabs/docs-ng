@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic666"><title>Importing</title><body><p>Importing data to your cluster requires the use of the Sqoop import command
+followed by the parameters <codeph>--connect</codeph> and <codeph>--table</codeph>. Below are some example
+imports.</p><p><codeph>
+shell&gt; bin/sqoop import –connect http://10.2.1.55:8091/pools –table DUMP
+</codeph></p><p>This will dump all key-value pairs from Couchbase into HDFS.</p><p><codeph>
+shell&gt; bin/sqoop import –connect http://10.2.1.55:8091/pools –table BACKFILL_10
+</codeph></p><p>This will stream all key-value mutations from Couchbase into HDFS.</p><p>Sqoop provides many more options to the import command than we will cover in
+this document. Run <codeph>bin/sqoop import help</codeph> for a list of all options and see the
+Sqoop documentation for more details about these options.</p></body></topic>

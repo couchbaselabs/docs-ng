@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic171"><title>Using Sqoop</title><body><p>The Couchbase Sqoop Plugin can be used with a variety of command line tools that
+are provided by Sqoop. In this section we discuss the usage of each tool.</p></body></topic>

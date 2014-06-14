@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic621"><title>Import all tables</title><body><p>In the Couchbase plugin the import-all-tables tool dumps all keys in Couchbase
+into HDFS and then streams all key-value mutations into Hadoop for five minutes.
+This command is a direct result of running import on each table from the
+list-tables command. Below is an example of this command.</p><p><codeph>
+shell&gt; bin/sqoop import-all-tables -connect http://10.2.1.55:8091/pools
+</codeph></p><p>Sqoop provides many more options to the import-all-tables command than we will
+cover in this document. Run <codeph>bin/sqoop import-all-tables help</codeph> for a list of all
+options and see the Sqoop documentation for more details about these options.</p></body></topic>

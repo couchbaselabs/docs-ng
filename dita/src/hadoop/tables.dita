@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic984"><title>Tables</title><body><p>Since Sqoop is built for a relational model it requires that the user specifies
+a table to import and export into Couchbase. The Couchbase plugin uses the
+<codeph>--table</codeph> option to specify the type of tap stream for importing and exporting
+into Couchbase. For exports the user must enter a value for the <codeph>--table</codeph> option
+even though what is entered will not actually be used by the plugin. For imports
+the table command can take on only two values.</p><ul>
+<li><p><codeph>DUMP</codeph> — Causes all keys currently in Couchbase to be read into HDFS.</p></li>
+<li><p><codeph>BACKFILL_##</codeph> — Streams all key mutations for a given amount of time (in
+ minutes).</p></li>
+</ul><p>For the <codeph>--table</codeph> value for the <codeph>BACKFILL</codeph> table that a time should be put in
+place of the brackets. For example <codeph>BACKFILL_5</codeph> means stream key mutations in
+the Couchbase server for 5 minutes and then stop the stream.</p><p>For exports a value for <codeph>--table</codeph> is required, but the value will not be used.
+Any value used for the <codeph>--table</codeph> option when doing export will be ignored by the
+Couchbase plugin.</p></body></topic>
