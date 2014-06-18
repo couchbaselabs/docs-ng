@@ -7,12 +7,9 @@
 
  * **Couchbase Webコンソール**
 
-　　CouchbaseにはビルトインのWebサーバーと管理インターフェイスが含まれ、
-　　クラスタに関するアドミンと統計情報を提供します。
+　　CouchbaseにはビルトインのWebサーバーと管理インターフェイスが含まれ、クラスタに関するアドミンと統計情報を提供します。
    
-　　詳細については、[Couchbase Web
-   コンソール](#couchbase-admin-web-console)
-　　を参照してください。
+　　詳細については、[Couchbase Webコンソール](#couchbase-admin-web-console)を参照してください。
 
  * **コマンドラインツールキット**
 
@@ -31,11 +28,9 @@
 　　Couchbase Serverクラスタの構築、運用についての事例は[ベストプラクティス（事例）](#couchbase-bestpractice)、更に詳細については[運用ストラテジ](#couchbase-deployment)を参照してください。
 
 
-既にmemcachedのプロトコルを使用するアプリケーションを運用または開発している場合、
-memcachedをつなげるのと同様にアプリケーションをCouchbase Serverに容易につなぎ直すことができます。
+既にmemcachedのプロトコルでアプリケーションを運用または開発している場合、memcachedをつなげるのと同様にアプリケーションをCouchbase Serverに容易につなぎ直すことができます。
 その際コードの変更や特別なライブラリを必要とせず、memcachedとつなげている時と同様に正確に動作します。
-クライアント側ではmemcachedとcouchbaseの入れ替えについて認識する必要がなく、データの永続化および複製が行われ
-クラスタの拡張または縮小を透過的に行うことができます。
+クライアント側ではmemcachedとcouchbaseの入れ替えについて認識する必要がなく、データの永続化および複製が行われ、クラスタの拡張または縮小を透過的に行うことができます。
 
 memcachedのプロトコルを使用すたアプリケーションを運用または開発していない場合、Couchbaseのクライアントライブラリをサーバに接続して情報を改めて格納します。詳細については[Couchbase 
 SDK](http://www.couchbase.com/develop)を参照してください。
@@ -93,9 +88,7 @@ Windows:
 クラスタからノードを削除する場合、以下の手順に従う必要があります。
 
  
-1. [REST APIで稼働中のノードに対するパスを変更](../cb-rest-api/#couchbase-admin-restapi) またはCouchbase CLI(上記コマンドを参照)を使用します。 
-　　パスの変更はノードを再起動するまで有効となりません。
-   クラスタからノードを排出するためのREST API要求を使用する方法の詳細については、
+1. [REST APIで稼働中のノードに対するパスを変更](../cb-rest-api/#couchbase-admin-restapi) またはCouchbase CLI(上記コマンドを参照)を使用します。 パスの変更はノードを再起動するまで有効となりません。クラスタからノードを排出するためのREST API要求を使用する方法の詳細については、
     [クラスタからノードを削除する](../cb-rest-api/#couchbase-admin-restapi-remove-node-from-cluster)を参照してください。
 
  1. ノードを停止します。
