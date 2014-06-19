@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic750"><title>Internals</title><body><p>The Couchbase plugin consists of two parts. The first part is the addition of
+code that allows the mappers in Hadoop to read the values sent to it from
+Couchbase. The second part is the use of the Spymemcached client to get data to
+and from Couchbase. For imports the plugin uses the tap stream feature in
+Spymemcached. Tap streams allow users to stream large volumes of data from
+Couchbase into other applications and are also at the heart of replication in
+Couchbase. They enable a fast way to move data from Couchbase to Hadoop for
+further processing. Getting data back into Couchbase runs through the front end
+of Couchbase using the memcached protocol.</p><p>For more information about the internals of Sqoop see the Sqoop documentation.</p></body></topic>

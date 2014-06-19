@@ -5,6 +5,16 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+## 1.3.8 (11 June 2014)
+
+**Fixes in 1.3.8**
+
+* Update runtime (connection_pool) and build (libcouchbase) dependencies to the latest versions.
+
+**Known issues in 1.3.8**
+
+* [RCBC-176](http://www.couchbase.com/issues/browse/RCBC-176). When the Couchbase client is used in an em-synchrony context, connection errors might not be propagated to the client. This leads to a runtime assertion in EventMachine. 
+
 ## 1.3.7 (18 April 2014)
 
 * [major] Allow the selection of bootstrap providers. Since libcouchbase

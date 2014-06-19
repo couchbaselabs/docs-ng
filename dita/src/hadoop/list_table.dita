@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic868"><title>List table</title><body><p>Sqoop has a tool called list tables that in a relational database has a lot of
+meaning since it shows us what kinds of things we can import. As noted in
+previous sections, Couchbase doesn’t have a notion of tables, but we use <codeph>DUMP</codeph>
+and <codeph>BACKFILL_##</codeph> as values to the <codeph>--table</codeph> option. As a result using the
+list-tables tool does the following.</p><p><codeph>
+shell&gt; bin/sqoop list-tables –connect http://10.2.1.55:8091/pools DUMP BACKFILL_5
+</codeph></p><p>All this does in the case of the Couchbase plugin is remind us what we can use
+as an argument to the <codeph>--table</codeph> option. We give <codeph>BACKFILL</codeph> a time of 5 minutes
+so that the import-all-tables tool functions properly.</p><p>Sqoop provides many more options to the list-tables command than we will cover
+in this document. Run <codeph>bin/sqoop list-tables help</codeph> for a list of all options and
+see the Sqoop documentation for more details about these options.</p></body></topic>
