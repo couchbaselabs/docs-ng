@@ -206,32 +206,6 @@ navbar:
       - label: Elasticsearch Plug-in
         href: /couchbase-elastic-search/        
           
-  - label: Mobile
-    subnav:
-      - label: Couchbase Lite Concepts Guide
-        href: /couchbase-lite/cbl-concepts/
-
-      - label: Couchbase Lite iOS Developer Guide
-        href: /couchbase-lite/cbl-ios/
-
-      - label: Couchbase Lite iOS API Reference
-        href: http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html
-
-      - label: Couchbase Lite Android Developer Guide
-        href: /couchbase-lite/cbl-android/cbl-android-1.0b2/
-        
-      - label: Couchbase Lite Android API Reference
-        href: http://www.couchbase.com/autodocs/couchbase-lite-android-latest/index.html
-
-      - label: Couchbase Lite PhoneGap Developer Guide
-        href: /couchbase-lite/cbl-phonegap/
-
-      - label: Couchbase Lite REST API Reference
-        href: /couchbase-lite/cbl-api/
-
-      - label: Couchbase Sync Gateway Guide
-        href: /sync-gateway/
-
   - label: Developer
     subnav:
       - label: Couchbase Developer Guide
@@ -282,4 +256,4 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-ruby-client-latest/index.html
 
   - label: Archive
-    href: http://www.couchbase.com/documentation-archives
+    href: /archive-index/
