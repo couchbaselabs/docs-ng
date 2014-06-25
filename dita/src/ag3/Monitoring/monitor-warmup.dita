@@ -1,87 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic2157"><title>Monitoring startup (warmup)</title><body><p>If a Couchbase Server node is starting up for the first time, it will create
-whatever DB files necessary and begin serving data immediately. However, if
-there is already data on disk (likely because the node rebooted or the service
-restarted) the node needs to read all of this data off of disk before it can
-begin serving data. This is called “warmup”. Depending on the size of data, this
-can take some time. For more information about server warmup, see <xref href="#topic2157/couchbase-admin-tasks-warmup-access">Handling
-Server Warmup</xref>.</p><p>When starting up a node, there are a few statistics to monitor. Use the
-<codeph>cbstats</codeph> command to watch the warmup and item stats:</p><codeblock><codeph>&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
+<topic xml:lang="en-us" id="topic2157">
+	<title>Monitoring startup (warmup)</title>
+	<body>
+		<p>If a Couchbase Server node is starting up for the first time, it creates whatever DB
+			files necessary and begin serving data immediately. However, if there is already data on
+			disk (likely because the node rebooted or the service restarted) the node needs to read
+			all of this data off of disk before it can begin serving data. This is called “warmup”.
+			Depending on the size of data, this can take some time. </p>
+		<p>When starting up a node, there are a few statistics to monitor. Use the
+				<codeph>cbstats</codeph> command to watch the warmup and item stats:</p>
+		<codeblock><codeph>&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
     egrep "warm|curr_items"
-</codeph></codeblock><p><!--Removed anchor point table-couchbase-monitoring-startup--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>curr_items:</entry>
-	<entry>0</entry>
-</row></thead><tbody><row>
-	<entry>curr_items_tot:</entry>
-	<entry>15687</entry>
-</row><row>
-	<entry>ep_warmed_up:</entry>
-	<entry>15687</entry>
-</row><row>
-	<entry>ep_warmup:</entry>
-	<entry>false</entry>
-</row><row>
-	<entry>ep_warmup_dups:</entry>
-	<entry>0</entry>
-</row><row>
-	<entry>ep_warmup_oom:</entry>
-	<entry>0</entry>
-</row><row>
-	<entry>ep_warmup_thread:</entry>
-	<entry>running</entry>
-</row><row>
-	<entry>ep_warmup_time:</entry>
-	<entry>787 </entry>
-</row></tbody></tgroup></table><p>And when it is complete:</p><codeblock><codeph>&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
+</codeph></codeblock>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>curr_items:</entry>
+						<entry>0</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>curr_items_tot:</entry>
+						<entry>15687</entry>
+					</row>
+					<row>
+						<entry>ep_warmed_up:</entry>
+						<entry>15687</entry>
+					</row>
+					<row>
+						<entry>ep_warmup:</entry>
+						<entry>false</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_dups:</entry>
+						<entry>0</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_oom:</entry>
+						<entry>0</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_thread:</entry>
+						<entry>running</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_time:</entry>
+						<entry>787 </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>And when it is complete:</p>
+		<codeblock><codeph>&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
     egrep "warm|curr_items"
-</codeph></codeblock><p><!--Removed anchor point table-couchbase-monitoring-startup-update--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>curr_items:</entry>
-	<entry>10000</entry>
-</row></thead><tbody><row>
-	<entry>curr_items_tot:</entry>
-	<entry>20000</entry>
-</row><row>
-	<entry>ep_warmed_up:</entry>
-	<entry>20000</entry>
-</row><row>
-	<entry>ep_warmup:</entry>
-	<entry>true</entry>
-</row><row>
-	<entry>ep_warmup_dups:</entry>
-	<entry>0</entry>
-</row><row>
-	<entry>ep_warmup_oom:</entry>
-	<entry>0</entry>
-</row><row>
-	<entry>ep_warmup_thread:</entry>
-	<entry>complete</entry>
-</row><row>
-	<entry>ep_warmup_time</entry>
-	<entry>1400 </entry>
-</row></tbody></tgroup></table><p><!--Removed anchor point table-couchbase-monitoring-startup-stats--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Stat</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry>curr_items</entry>
-	<entry>The number of items currently active on this node. During warmup, this will be 0 until complete</entry>
-</row><row>
-	<entry>curr_items_tot</entry>
-	<entry>The total number of items this node knows about (active and replica). During warmup, this will be increasing and should match ep_warmed_up</entry>
-</row><row>
-	<entry>ep_warmed_up</entry>
-	<entry>The number of items retrieved from disk. During warmup, this should be increasing.</entry>
-</row><row>
-	<entry>ep_warmup_dups</entry>
-	<entry>The number of duplicate items found on disk. Ideally should be 0, but a few is not a problem</entry>
-</row><row>
-	<entry>ep_warmup_oom</entry>
-	<entry>How many times the warmup process received an Out of Memory response from the server while loading data into RAM</entry>
-</row><row>
-	<entry>ep_warmup_thread</entry>
-	<entry>The status of the warmup thread. Can be either running or complete</entry>
-</row><row>
-	<entry>ep_warmup_time</entry>
-	<entry>How long the warmup thread was running for. During warmup this number should be increasing, when complete it will tell you how long the process took</entry>
-</row></tbody></tgroup></table></body></topic>
+</codeph></codeblock>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>curr_items:</entry>
+						<entry>10000</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>curr_items_tot:</entry>
+						<entry>20000</entry>
+					</row>
+					<row>
+						<entry>ep_warmed_up:</entry>
+						<entry>20000</entry>
+					</row>
+					<row>
+						<entry>ep_warmup:</entry>
+						<entry>true</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_dups:</entry>
+						<entry>0</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_oom:</entry>
+						<entry>0</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_thread:</entry>
+						<entry>complete</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_time</entry>
+						<entry>1400 </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Stat</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>curr_items</entry>
+						<entry>The number of items currently active on this node. During warmup,
+							this will be 0 until complete</entry>
+					</row>
+					<row>
+						<entry>curr_items_tot</entry>
+						<entry>The total number of items this node knows about (active and replica).
+							During warmup, this will be increasing and should match
+							ep_warmed_up</entry>
+					</row>
+					<row>
+						<entry>ep_warmed_up</entry>
+						<entry>The number of items retrieved from disk. During warmup, this should
+							be increasing.</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_dups</entry>
+						<entry>The number of duplicate items found on disk. Ideally should be 0, but
+							a few is not a problem</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_oom</entry>
+						<entry>How many times the warmup process received an Out of Memory response
+							from the server while loading data into RAM</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_thread</entry>
+						<entry>The status of the warmup thread. Can be either running or
+							complete</entry>
+					</row>
+					<row>
+						<entry>ep_warmup_time</entry>
+						<entry>How long the warmup thread was running for. During warmup this number
+							should be increasing, when complete it will tell you how long the
+							process took</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+	<related-links>
+		<linklist>
+			<link href="../concepts/concept-serverWarmup.dita"></link>
+		</linklist>
+	</related-links>
+</topic>

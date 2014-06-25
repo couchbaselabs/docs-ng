@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic1635"><title>Underlying server processes</title><body><p>There are several different server processes that constantly run in Couchbase
-Server whether or not the server is actively handling reads/writes or handling
-other operations from a client application. Right after you start up a node, you
-may notice a spike in CPU utilization, and the utilization rate will plateau at
-some level greater than zero. The following describes the ongoing processes that
-are running on your node:</p><ul>
-<li><b>beam.smp on Linux: erl.exe on Windows</b></li>
-</ul><p>These processes are responsible for monitoring and managing all other underlying
- server processes such as ongoing XDCR replications, cluster operations, and
- views.</p><p>There is a separate monitoring/babysitting process
- running on each node. The process is small and simple and therefore unlikely to
- crash due to lack of memory. It is responsible for spawning and monitoring the
- second, larger process for cluster management, XDCR and views. It also spawns
- and monitors the processes for Moxi and memcached. If any of these three
- processes fail, the monitoring process will re-spawn them.</p><p>The main benefit of this approach is that an Erlang VM crash will not cause the
- Moxi and memcached processes to also crash. You will also see two <codeph>beam.smp</codeph> or
- <codeph>erl.exe</codeph> processes running on Linux or Windows respectively.</p><p>The set of log files for this monitoring process is <codeph>ns_server.babysitter.log</codeph>
- which you can collect with <codeph>cbcollect_info</codeph>. See the <xref href="../cb-cli/#couchbase-admin-cmdline-cbcollect_info" format="html">cbcollect_info
- tool</xref>.</p><ul>
-<li><p><b>memcached</b> : This process is responsible for caching items in RAM and
- persisting them to disk.</p></li>
-<li><p><b>moxi</b> : This process enables third-party memcached clients to connect to the
- server.</p></li>
-</ul></body><related-links><linklist><title>Collected links</title><link href="../cb-cli/#couchbase-admin-cmdline-cbcollect_info" format="html"><linktext>cbcollect_info
- tool</linktext></link></linklist></related-links></topic>
+<topic xml:lang="en-us" id="topic1635">
+  <title>Underlying server processes</title>
+  <shortdesc>There are several server processes that constantly run in Couchbase Server.</shortdesc>
+  <body>
+    <p>These processes occur whether
+      or not the server is actively handling reads/writes or handling other operations from a client
+      application. Right after you start up a node, you may notice a spike in CPU utilization, and
+      the utilization rate will plateau at some level greater than zero. The following describes the
+      ongoing processes that are running on your node:</p>
+    <ul>
+      <li><b>beam.smp on Linux: erl.exe on Windows</b></li>
+    </ul>
+    <p>These processes are responsible for monitoring and managing all other underlying server
+      processes such as ongoing XDCR replications, cluster operations, and views.</p>
+    <p>There is a separate monitoring/babysitting process running on each node. The process is small
+      and simple and therefore unlikely to crash due to lack of memory. It is responsible for
+      spawning and monitoring the second, larger process for cluster management, XDCR and views. It
+      also spawns and monitors the processes for Moxi and memcached. If any of these three processes
+      fail, the monitoring process will re-spawn them.</p>
+    <p>The main benefit of this approach is that an Erlang VM crash will not cause the Moxi and
+      memcached processes to also crash. You will also see two <codeph>beam.smp</codeph> or
+        <codeph>erl.exe</codeph> processes running on Linux or Windows respectively.</p>
+    <p>The set of log files for this monitoring process is <codeph>ns_server.babysitter.log</codeph>
+      which you can collect with <codeph>cbcollect_info</codeph>. </p>
+    <ul>
+      <li><b>memcached</b> : This process is responsible for caching items in RAM and persisting
+          them to disk.</li>
+      <li><b>moxi</b> : This process enables third-party memcached clients to connect to the
+          server.</li>
+    </ul>
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../cli/cbcollect_info_tool.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

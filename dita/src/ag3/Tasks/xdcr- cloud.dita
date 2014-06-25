@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic2417">
-  <title>Using XDCR in cloud deployments</title>
+  <title>XDCR in cloud deployments</title>
   <body>
     <p>If you want to use XDCR within a cloud deployment to replicate between two or more clusters
       that are deployed in the cloud, there are some additional configuration requirements:</p>
@@ -15,9 +15,8 @@
       example, ensure that you have enabled the public interface in your instance configuration,
       that the security parameters allow communication to the required ports, and that public DNS
       record exposed by Amazon is used as the reference name.</p>
-    <p>You should configure the cluster with a fixed IP address and the public DNS name according to
-      the information in <xref href="#topic2417/couchbase-bestpractice-cloud-ip">Handling Changes in
-        IP Addresses</xref>.</p>
+    <p>Configure the cluster with a fixed IP address and the public DNS name according to
+      the recommendations for using Couchbase in the cloud.</p>
     <ul>
       <li>Use a DNS service to identify or register a CNAME that points to the public DNS address of
         each node within the cluster. This will allow you to configure XDCR to use the CNAME to a
@@ -36,21 +35,14 @@
       you will need to specify the inbound port and IP address range. You will also need to ensure
       that the security also includes the right port and IP addresses for the remainder of your
       cluster to allow communication between the nodes within the cluster.</p>
-    <p>For more information about reserved Couchbase ports, see <xref
-        href="../cb-install/#table-couchbase-network-ports" format="html">Network ports</xref> in
-        <xref href="../cb-install/#couchbase-getting-started" format="html">Getting started</xref>.
-      For more information in general about using Couchbase Server in the cloud, see <xref
-        href="#topic2417/couchbase-bestpractice-cloud">Using Couchbase in the Cloud</xref>.</p>
+    
   </body>
   <related-links>
     <linklist>
       <title>Collected links</title>
-      <link href="../cb-install/#table-couchbase-network-ports" format="html">
-        <linktext>Network ports</linktext>
-      </link>
-      <link href="../cb-install/#couchbase-getting-started" format="html">
-        <linktext>Getting started</linktext>
-      </link>
+      <link href="../Install/install-intro.dita"></link>
+      <link href="../Install/install-networkPorts.dita"></link>
+      <link href="../Concepts/bp-cloudDeployment.dita"></link>
     </linklist>
   </related-links>
 </topic>

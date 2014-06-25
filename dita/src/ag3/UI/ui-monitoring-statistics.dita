@@ -49,48 +49,30 @@
     Console has been updated to show additional detailed information. The following statistic groups
     are available for Couchbase bucket types.</p><ul>
     <li><b>Summary</b></li>
-   </ul><p>The summary section provides a quick overview of the cluster activity. For more
-    information, see <xref href="#topic16695/couchbase-admin-web-console-data-buckets-summary"
-     >Bucket Monitoring — Summary Statistics</xref>.</p><ul>
+   </ul><p>The summary section provides a quick overview of the cluster activity. </p><ul>
     <li><b>vBucket Resources</b></li>
    </ul><p>This section provides detailed information on the vBucket resources across the cluster,
-    including the active, replica and pending operations. For more information, see <xref
-     href="#topic16695/couchbase-admin-web-console-data-buckets-vbucket">Monitoring vBucket
-     Resources</xref>.</p><ul>
+    including the active, replica and pending operations. </p><ul>
     <li><b>Disk Queues</b></li>
    </ul><p>Disk queues show the activity on the backend disk storage used for persistence within a
-    data bucket. The information displayed shows the active, replica and pending activity. For more
-    information, see <xref href="#topic16695/couchbase-admin-web-console-data-buckets-diskqueues"
-     >Monitoring Disk Queues</xref>.</p><ul>
+    data bucket. The information displayed shows the active, replica and pending activity. </p><ul>
     <li><b>TAP Queues</b></li>
    </ul><p>The TAP queues section provides information on the activity within the TAP queues across
-    replication, rebalancing and client activity. For more information, see <xref
-     href="#topic16695/couchbase-admin-web-console-data-buckets-tapqueues">Monitoring TAP
-     Queues</xref>.</p><ul>
+    replication, rebalancing and client activity.</p><ul>
     <li><b>XDCR Destination</b></li>
    </ul><p>The XDCR Destination section show you statistical information about the Cross Datacenter
-    Replication (XDCR), if XDCR has been configured. For more information on XDCR, see <xref
-     href="#topic16695/couchbase-admin-tasks-xdcr">Cross Datacenter Replication (XDCR)</xref>. For
-    more information on the available statistics, see <xref
-     href="#topic16695/couchbase-admin-web-console-data-buckets-xdcr">Monitoring Outgoing
-     XDCR</xref>.</p><ul>
+    Replication (XDCR), if XDCR has been configured.</p><ul>
     <li><b>View Stats</b></li>
    </ul><p>The View Stats section allows you to monitor the statistics for each production view
-    configured within the bucket or system. For more information on the available statistics, see
-     <xref href="#topic16695/couchbase-admin-web-console-data-buckets-views">Monitoring View
-     Statistics</xref>.</p><ul>
+    configured within the bucket or system.</p><ul>
     <li><b>Top Keys</b></li>
    </ul><p>This shows a list of the top 10 most actively used keys within the selected data
-    bucket.</p><p>For Memcached bucket types, the Memcached statistic summary is provided. See <xref
-     href="#topic16695/couchbase-admin-web-console-data-buckets-memcached">Bucket Memcached
-     Buckets</xref>.</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-summary--></p></section>
+    bucket.</p><p>For Memcached bucket types, the Memcached statistic summary is provided. </p></section>
   <section><title>Bucket monitoring — summary statistics</title><p>The summary section is designed
     to provide a quick overview of the cluster activity. Each graph (or selected graph) shows
-    information based on the currently selected bucket.</p><required-cleanup remap="figure"><ph>
-     <image href="../images/web-console-server-stats-summary.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The following graph types are available:</p>
+    information based on the currently selected bucket.</p>
+     <image href="../images/web-console-server-stats-summary.png" width="720"></image>
+    <p>The following graph types are available:</p>
    
    <dl>
     <dlentry>
@@ -203,11 +185,10 @@
     for all vBucket types within the cluster across three different states. Within the statistic
     display the table of statistics is organized in four columns, showing the Active, Replica and
     Pending states for each individual statistic. The final column provides the total value for each
-    statistic.</p><required-cleanup remap="figure"><ph>
-     <image href="../images/web-console-server-stats-vbucket.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The Active column displays the information for vBuckets within the
+    statistic.</p>
+     <image href="../images/web-console-server-stats-vbucket.png" width="720"></image>
+    
+   <p>The Active column displays the information for vBuckets within the
     Active state. The Replica column displays the statistics for vBuckets within the Replica state
     (i.e. currently being replicated). The Pending columns shows statistics for vBuckets in the
     Pending state, i.e. while data is being exchanged during rebalancing.</p><p>These states are
@@ -231,16 +212,14 @@
    </ul><p>Size of user data within vBuckets of the specified state that are resident in RAM.</p><ul>
     <li><codeph>metadata in RAM</codeph></li>
    </ul><p>Size of item metadata within the vBuckets of the specified state that are resident in
-    RAM.</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-diskqueues--></p></section>
+    RAM.</p></section>
+  
   <section><title>Monitoring disk queues</title><p>The Disk Queues statistics section displays the
     information for data being placed into the disk queue. Disk queues are used within Couchbase
     Server to store the information written to RAM on disk for persistence. Information is displayed
-    for each of the disk queue states, Active, Replica and Pending.</p><required-cleanup
-    remap="figure"><ph>
-     <image href="../images/web-console-server-stats-diskqueues.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The Active column displays the information for the Disk Queues within
+    for each of the disk queue states, Active, Replica and Pending.</p>
+     <image href="../images/web-console-server-stats-diskqueues.png" width="720"></image>
+    <p>The Active column displays the information for the Disk Queues within
     the Active state. The Replica column displays the statistics for the Disk Queues within the
     Replica state (i.e. currently being replicated). The Pending columns shows statistics for the
     disk Queues in the Pending state, i.e. while data is being exchanged during
@@ -258,16 +237,15 @@
     state.</p><ul>
     <li><codeph>average age</codeph></li>
    </ul><p>The average age of items (in seconds) within the disk queue for the specified
-    state.</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-tapqueues--></p></section>
+    state.</p></section>
+  
   <section><title>Monitoring TAP queues</title><p>The TAP queues statistics are designed to show
     information about the TAP queue activity, both internally, between cluster nodes and clients.
     The statistics information is therefore organized as a table with columns showing the statistics
-    for TAP queues used for replication, rebalancing and clients.</p><required-cleanup
-    remap="figure"><ph>
-     <image href="../images/web-console-server-stats-tapqueues.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The statistics in this section are detailed below:</p><ul>
+    for TAP queues used for replication, rebalancing and clients.</p>
+     <image href="../images/web-console-server-stats-tapqueues.png" width="720"></image>
+   
+    <p>The statistics in this section are detailed below:</p><ul>
     <li><codeph>TAP senders</codeph></li>
    </ul><p>Number of TAP queues in this bucket for internal (replica), rebalancing or client
     connections.</p><ul>
@@ -285,13 +263,12 @@
     <li><codeph>remaining on disk</codeph></li>
    </ul><p>Number of items still on disk that need to be loaded in order to service the TAP
     connection to this
-    bucket.</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-memcached--></p></section>
-  <section><title>Bucket Memcached buckets</title><p>For Memcached buckets, Web Console displays a
-    separate group of statistics:</p><required-cleanup remap="figure"><ph>
-     <image href="../images/web-console-server-stats-memcached.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The Memcached statistics are:</p><ul>
+    bucket.</p></section>
+  
+  <section><title>Memcached buckets</title><p>For Memcached buckets, Web Console displays a
+    separate group of statistics:</p>
+     <image href="../images/web-console-server-stats-memcached.png" width="720"></image>
+    <p>The Memcached statistics are:</p><ul>
     <li><codeph>Operations per sec.</codeph></li>
    </ul><p>Total operations per second serviced by this bucket</p><ul>
     <li><codeph>Hit Ratio %</codeph></li>
@@ -333,17 +310,15 @@
     contains</p><ul>
     <li><codeph>CAS misses per sec.</codeph></li>
    </ul><p>Number of CAS operations per second for data that this bucket does not
-    contain</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-xdcr--></p></section>
+    contain</p></section>
+  
   <section><title>Monitoring outgoing XDCR</title><p>The Outgoing XDCR shows the XDCR operations
     that are supporting cross datacenter replication from the current cluster to a destination
-    cluster. For more information on XDCR, see <xref href="#topic16695/couchbase-admin-tasks-xdcr"
-     >Cross Datacenter Replication (XDCR)</xref>.</p><p>You can monitor the current status for all
+    cluster. </p><p>You can monitor the current status for all
     active replications in the <codeph>Ongoing Replications</codeph> section under the XDCR
-    tab:</p><required-cleanup remap="figure"><ph>
-     <image href="../images/xdcr_ongoing.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The <codeph>Ongoing Replications</codeph> section shows the following
+    tab:</p>
+   <image href="../images/xdcr_ongoing.png" width="720"></image>
+    <p>The <codeph>Ongoing Replications</codeph> section shows the following
     information:</p><table>
     <tgroup cols="2">
      <colspec colname="col1"/>
@@ -394,12 +369,11 @@
      XDCR</codeph> and <codeph>Incoming XDCR Operations</codeph>. Both provides statistics about
     ongoing replication for the particular bucket. Under the <codeph>Outgoing XDCR</codeph> panel if
     you have multiple replication streams you will see statistics for each
-    stream.</p><required-cleanup remap="figure"><ph>
-     <image href="../images/outbound_xdcr_2.2.png">
+    stream.</p>
+     <image href="../images/outbound_xdcr_2.2.png" width="720">
       <alt>outbound xdcr stats 2.2</alt>
      </image>
-     <required-cleanup remap="figcaption"><ph>outbound xdcr stats 2.2</ph></required-cleanup>
-    </ph></required-cleanup><p>The statistics shown are:</p><ul>
+     <p>The statistics shown are:</p><ul>
     <li><codeph>outbound XDCR mutation</codeph></li>
    </ul><p>Number of changes in the queue waiting to be sent to the destination cluster.</p><ul>
     <li><codeph>mutations checked</codeph></li>
@@ -444,37 +418,30 @@
     statistics appear and have the labels <b>changes queue, documents checked, and documents
      replicated</b> respectively. You can also get XDCR statistics using the Couchbase REST API. All
     of the statistics in Web Console are based on statistics via the REST API or values derived from
-    them. For more information including a full list of available statistics, see <xref
-     href="../cb-rest-api/#couchbase-admin-restapi-xdcr-stats" format="html">Getting XDCR Stats via
-     REST</xref>.</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-xdcr-recv--></p></section>
+    them.</p></section>
+  
+  
   <section><title>Monitoring incoming XDCR</title><p>The Incoming XDCR section shows the XDCR
-    operations that are coming into to the current cluster from a remote cluster. For more
-    information on XDCR, see <xref href="#topic16695/couchbase-admin-tasks-xdcr">Cross Datacenter
-     Replication (XDCR)</xref>.</p><required-cleanup remap="figure"><ph>
-     <image href="../images/inbound_xdcr_web_console.png">
-      <alt/>
-     </image>
-    </ph></required-cleanup><p>The statistics shown are:</p><ul>
+    operations that are coming into to the current cluster from a remote cluster. </p>
+      <image href="../images/inbound_xdcr_web_console.png" width="720"></image>
+   <p>The statistics shown are:</p><ul>
     <li><codeph>metadata reads per sec.</codeph></li>
    </ul><p>Number of documents XDCR scans for metadata per second. XDCR uses this information for
-    conflict resolution. See, <xref href="#topic16695/couchbase-admin-tasks-xdcr-functionality"
-     >Behavior and Limitations</xref>.</p><ul>
+    conflict resolution.</p><ul>
     <li><codeph>sets per sec.</codeph></li>
    </ul><p>Set operations per second for incoming XDCR data.</p><ul>
     <li><codeph>deletes per sec.</codeph></li>
    </ul><p>Delete operations per second as a result of the incoming XDCR data stream.</p><ul>
     <li><codeph>total ops per sec.</codeph></li>
    </ul><p>Total of all the operations per
-    second.</p><p><!--Removed anchor point couchbase-admin-web-console-data-buckets-views--></p></section>
+    second.</p></section>
+  
   <section><title>Monitoring view statistics</title><p>The View statistics show information about
     individual design documents within the selected bucket. One block of stats will be shown for
-    each production-level design document. For more information on Views, see <xref
-     href="#topic16695/couchbase-views">Views and Indexes</xref>.</p><required-cleanup
-    remap="figure"><ph>
-     <image href="../images/web-console-server-stats-views.png">
-      <alt/>
+    each production-level design document.</p>
+     <image href="../images/web-console-server-stats-views.png" width="720">
      </image>
-    </ph></required-cleanup><p>The statistics shown are:</p><ul>
+    <p>The statistics shown are:</p><ul>
     <li><codeph>data size</codeph></li>
    </ul><p>Size of the data required for this design document.</p><ul>
     <li><codeph>disk size</codeph></li>
@@ -484,10 +451,8 @@
  </body>
  <related-links>
   <linklist>
-   <title>Collected links</title>
-   <link href="../cb-rest-api/#couchbase-admin-restapi-xdcr-stats" format="html">
-    <linktext>Getting XDCR Stats via REST</linktext>
-   </link>
+   <link href="../REST/rest-bucket-stats.dita"></link>
+   <link href="../REST/rest-xdcr-statistics.dita"></link>
   </linklist>
  </related-links>
 </topic>

@@ -28,7 +28,7 @@ individual user through the <codeph>ownerId</codeph> field of the item JSON.</p>
     "uuid": "f72b98c2-e84b-4b17-9e2a-bcec52b0ce1c"
 }
 </codeph></codeblock><p>For each of the three records, the <codeph>jsonType</codeph> field is used to define the type
-of the object being stored.</p><p><!--Removed anchor point couchbase-sampledata-gamesim-views-leaderboard--></p><section><title>leaderboard view</title><p>The <codeph>leaderboard</codeph> view is designed to generate a list of the players and their
+of the object being stored.</p><section><title>leaderboard view</title><p>The <codeph>leaderboard</codeph> view is designed to generate a list of the players and their
 current score:</p><codeblock><codeph>function (doc) {
   if (doc.jsonType == "player") {
   emit(doc.experience, null);
@@ -91,7 +91,7 @@ reverses the sort order (by using <codeph>descending=true</codeph>, for example:
       }
    ]
 }
-</codeph></codeblock><p><!--Removed anchor point couchbase-sampledata-gamesim-views-playerlist--></p></section><section><title>playerlist view</title><p>The <codeph>playerlist</codeph> view creates a list of all the players by using a map function
+</codeph></codeblock></section><section><title>playerlist view</title><p>The <codeph>playerlist</codeph> view creates a list of all the players by using a map function
 that looks for “player” records.</p><codeblock><codeph>function (doc, meta) {
   if (doc.jsonType == "player") {
     emit(meta.id, null);

@@ -185,9 +185,5 @@ name=newbucket&amp;ramQuotaMB=20&amp;authType=none&amp;replicaNumber=2&amp;proxy
 	
 	
 	</body>
-	<related-links>
-		<linklist>
-			<link href="../../Tasks/tasks-manage-ReadWrite.dita"></link>
-		</linklist>
-	</related-links>
+
 </topic>

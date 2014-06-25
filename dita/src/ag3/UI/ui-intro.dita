@@ -4,8 +4,7 @@
 <topic xml:lang="en-us" id="topic1980">
  <title>Couchbase web console</title>
  
- <shortdesc>The Couchbase web console is the main tool for managing the Couchbase
-  environment.</shortdesc>
+ <shortdesc>The Couchbase web console is the main tool for managing the Couchbase environment.</shortdesc>
  
  <body>
   <p> The web console provides the following tabs:</p>

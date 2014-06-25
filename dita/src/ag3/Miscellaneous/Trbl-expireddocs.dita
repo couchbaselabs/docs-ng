@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE topic
-  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic154"><title>Expired documents still have their associated key-value pairs returned in queries with stale=false</title><body><p>See
-<xref href="http://www.couchbase.com/issues/browse/MB-6219" scope="external" format="html">http://www.couchbase.com/issues/browse/MB–6219</xref></p></body><related-links><linklist><title>Collected links</title><link href="http://www.couchbase.com/issues/browse/MB-6219" scope="external" format="html"><linktext>http://www.couchbase.com/issues/browse/MB–6219</linktext></link></linklist></related-links></topic>

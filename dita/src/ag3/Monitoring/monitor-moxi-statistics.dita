@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic3000"><title>Couchbase Server Moxi statistics</title><body><p>Moxi, as part of it’s support of memcached protocol, has support for the
-memcached <codeph>stats</codeph> command. Regular memcached clients can request statistics
-through the memcached stats command. The stats command accepts optional
-arguments, and in the case of Moxi, there is a stats proxy sub-command. A
-detailed description of statistics available through Moxi can be found in the <xref href="http://docs.couchbase.com/moxi-manual-1.8" scope="external" format="html">Moxi 1.8 Manual</xref>.</p><p>For example, one simple client one may use is the commonly available netcat
-(output elided with ellipses):</p><codeblock><codeph>$ echo "stats proxy" | nc localhost 11211
+<topic xml:lang="en-us" id="topic3000">
+  <title>Couchbase Server Moxi statistics</title>
+  <shortdesc>Regular memcached clients can request statistics through the memcached stats command.</shortdesc>
+  <body>
+    <p>Moxi, as part of it’s support of memcached protocol, has support for the memcached
+        <codeph>stats</codeph> command. The stats command accepts optional arguments, and in the case of
+      Moxi, there is a stats proxy sub-command. A detailed description of statistics available
+      through Moxi can be found in the Moxi 1.8 Manual.</p>
+    <p>For example, one simple client one may use is the commonly available netcat (output elided
+      with ellipses):</p>
+    <codeblock><codeph>$ echo "stats proxy" | nc localhost 11211
 STAT basic:version 1.6.0
 STAT basic:nthreads 5
 …
@@ -63,4 +68,13 @@ STAT 11211:default:pstd_stats:tot_downstream_connect_interval 0
 STAT 11211:default:pstd_stats:tot_downstream_connect_max_reached 0
 …
 END
-</codeph></codeblock></body><related-links><linklist><title>Collected links</title><link href="http://docs.couchbase.com/moxi-manual-1.8" scope="external" format="html"><linktext>Moxi 1.8 Manual</linktext></link></linklist></related-links></topic>
+</codeph></codeblock>
+  </body>
+  <related-links>
+    <linklist>
+      <link href="http://docs.couchbase.com/moxi-manual-1.8" scope="external" format="html">
+        <linktext>Moxi 1.8 Manual</linktext>
+      </link>
+    </linklist>
+  </related-links>
+</topic>

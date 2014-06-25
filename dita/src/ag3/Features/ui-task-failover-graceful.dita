@@ -10,15 +10,20 @@
         </context>
         <steps>
             <step>
-                <cmd>Navigate to ....</cmd>
+                <cmd>Navigate to <uicontrol>Server Nodes</uicontrol>.</cmd>
             </step>
             <step>
-                <cmd>Select xxx to use graceful failover. Alternatively, select zzz to force failover.</cmd>
-                    <info>Pending status displays until the process completes.</info>
-                <info><p>SCREENSHOT</p></info>
+                <cmd>For the server node, select <uicontrol>Fail Over</uicontrol>.</cmd>
+                    
             </step>
             <step>
-                <cmd>something else?</cmd>
+                <cmd>Select <uicontrol>Graceful Failover</uicontrol> to gracefully failover. Alternatively, select <uicontrol>Hard
+                    Fail Over</uicontrol> to force the failover.</cmd>
+                <stepresult><image href="../images/ui-node-failover-options.png" width="500"></image></stepresult>
+                
+            </step>
+            <step>
+                <cmd>Click <uicontrol>Fail Over</uicontrol>.</cmd>
             </step>
         </steps>
     </taskbody>

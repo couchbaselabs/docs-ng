@@ -2,10 +2,18 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
  <title>Couchbase 3.0 Features</title>
- 
  <topicref href="Features/features.dita">
-  <topicref href="Features/bcp.dita"/>
+  <topicref href="Features/bcp.dita">
+   <topicref href="UI/ui-upr-queues.dita"/>
+   <topicref href="CLI/cli-cbstats-upr.dita"/>
+  </topicref>
   <topicref href="Features/global-thread-pool.dita"/>
+  <topicref href="Features/xdcr-memory-replication.dita"/>
+  <topicref href="Features/bucket-eviction.dita">
+   <topicref href="Features/ui-task-bucket-metadata-ejection.dita"/>
+   <topicref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>
+   <topicref href="REST/rest-bucket-metadata-ejection.dita"/>
+  </topicref>
   <topicref href="Features/bucket-priority.dita">
    <topicref href="Features/ui-task-set-bucket-priority.dita"/>
    <topicref href="Features/cli-set-disk-priority.dita"/>
@@ -16,13 +24,6 @@
    <topicref href="Features/cli-failover-graceful.dita"/>
    <topicref href="Features/rest-failover-graceful.dita"/>
   </topicref>
-  <topicref href="Features/bucket-eviction.dita">
-   <topicref href="Features/ui-task-bucket-metadata-ejection.dita"/>
-   <topicref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>
-   <topicref href="REST/rest-bucket-metadata-ejection.dita"/>
-  </topicref>
-  <topicref href="Features/index-updates.dita"/>
-  <topicref href="Features/xdcr-memory-replication.dita"/>
   <topicref href="Features/incremental-recovery.dita">
    <topicref href="Features/ui-task-node-recovery-incremental.dita"/>
    <topicref href="Features/cli-node-recovery-incremental.dita"/>
@@ -32,10 +33,10 @@
    <topicref href="Features/cli-increment-backup.dita"/>
    <topicref href="Features/cli-incremental-restore.dita"/>
   </topicref>
+  <topicref href="Features/xdcr-pause-resume.dita"/>
+  <topicref href="Features/index-updates.dita"/>
   <topicref href="Features/security-admin-access.dita"/>
   <topicref href="Features/security-clientServer-comm.dita"/>
-  <topicref href="Features/xdcr-pause-resume.dita"/>
   <topicref href="Features/cli-change-summary.dita"/>
  </topicref>
-
 </map>

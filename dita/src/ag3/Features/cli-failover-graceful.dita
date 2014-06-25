@@ -8,79 +8,68 @@
     
     <section>
 
-      <p>To failover the node from the cluster immediately use the <codeph>--force</codeph> option. 
-        If this option is not specified, graceful failover is implemented (default).</p>
-      <codeblock>
-couchbase-cli failover --force
-   </codeblock> 
-      
-      <p>To re-add a server node to a cluster, use the <codeph>couchbase-cli</codeph> tool and the 
-        <codeph>recovery</codeph> command with the <codeph>--recovery-type</codeph> parameter. 
-        Recovery options are either <codeph>full</codeph> or <codeph>delta</codeph>.</p>
-      <p>
-        <table frame="all" id="table_u2j_m3n_c4">
-          <title/>
-          <tgroup cols="2">
-            <colspec colname="c1" colnum="1" colwidth="1.0*"/>
-            <colspec colname="c2" colnum="2" colwidth="1.0*"/>
-            <thead>
-              <row>
-                <entry>Option</entry>
-                <entry>Description</entry>
-              </row>
-            </thead>
-            <tbody>
-              <row>
-                <entry>--server-recovery=HOST[:PORT]</entry>
-                <entry>Server to recover</entry>
-              </row>
-              <row>
-                <entry>--recovery-type=TYPE[delta|full]</entry>
-                <entry>Type of recovery to be performed for a node</entry>
-              </row>
-            </tbody>
-          </tgroup>
-        </table>
-      </p>
+      <p>Graceful failover is implemented as the default when <codeph>couchbase-cli
+          failover</codeph> is used without the <codeph>--force</codeph> option . The
+          <codeph>--force</codeph> option fails over the node from the cluster immediately.</p>
       
       <note type="note">Be sure to update any scripts that implement failover.</note>
     </section>
+    
+    <section><title>Syntax</title>
+      <codeblock>
+couchbase-cli failover
+    --cluster=HOST:PORT
+    --server-failover=HOST:PORT
+    --user=ADMIN 
+    --password=PASSWORD  
+    
+couchbase-cli failover
+    -c HOST:PORT
+    --server-failover=HOST:PORT
+    -u ADMIN -p PASSWORD     
+      </codeblock>
+    
+    </section>
 
       
-      <example><title>Setting recovery type</title>
-      <p>To set recovery type for a server:</p>
-        
-      <codeblock>       
-couchbase-cli recovery -c 192.168.0.1:8091 \\	
-			--server-recovery=192.168.0.2          \\	
-			--recovery-type=full                   \\	
-			-u Administrator -p password
-      </codeblock>
-      </example>
+
       
       
-      <example><title>Setting failover, readd, recovery, and rebalance operations.</title>
-      <p>To set a failover, readd, recovery and rebalance sequence operations:</p>
+      <example><title>Setting failover, readd, recovery, and rebalance operations</title>
+      <p>The following example shows a failover, readd, recovery and rebalance sequence operations,
+        where as, a node in a cluster is gracefully failed over, the node is re-added to the
+        cluster, a delta recovery is implemented for the node, and rebalance is performed on the
+        cluster:</p>
       
       <codeblock>
 couchbase-cli failover -c 192.168.0.1:8091 \\	
-			--server-failover=192.168.0.2 \\	
-			-u Administrator -p password	
+    --server-failover=192.168.0.2 \\	
+    -u Administrator -p password	
 				
 couchbase-cli server-readd -c 192.168.0.1:8091 \\	
-			--server-add=192.168.0.2 \\	
-			-u Administrator -p password	
+    --server-add=192.168.0.2 \\	
+    -u Administrator -p password	
 			
 couchbase-cli recovery -c 192.168.0.1:8091 \\	
-			--server-recovery=192.168.0.2 \\	
-			--recovery-type=delta \\	
-			-u Administrator -p password	
+    --server-recovery=192.168.0.2 \\	
+    --recovery-type=delta \\	
+    -u Administrator -p password	
 				
 couchbase-cli rebalance -c 192.168.0.1:8091 \\	
-			-u Administrator -p password    
-        
+    -u Administrator -p password          
       </codeblock>
       </example>
+    
+    <example><title>Failing over a node immediately</title>
+      <p>The following example shows a node failing over immediates, that is, 
+        graceful failover is not implemented.</p>
+      <codeblock>
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    --force  \\
+    -u Administrator -p password             
+      </codeblock>
+    </example>
       
     
     

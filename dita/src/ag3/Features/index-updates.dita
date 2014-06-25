@@ -36,7 +36,8 @@
   <section><title>Impacted documentation</title>
   <ul>
    <li>Developer guide: SDK semantics</li>
-   <li>stale=false query might not need to be needed. This query is used to get the most up-to-date data.</li>
+   <li>stale=false query might not be needed. This query is used to get the most up-to-date
+     data.</li>
   </ul>
   </section> 
 

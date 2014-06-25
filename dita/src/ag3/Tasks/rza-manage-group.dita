@@ -32,6 +32,6 @@
     
     <related-links>
         <link href="../CLI/cbcli-intro.dita"></link>
-        <link href="../REST/rack-aware-rest-api.dita"></link>
+        <link href="../REST/rest-rza.dita"></link>
     </related-links>
 </task>

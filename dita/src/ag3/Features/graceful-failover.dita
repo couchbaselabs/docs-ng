@@ -37,8 +37,8 @@
    <title>Impacted documentation</title>
    <ul>
    <li>Failover</li>
-    <li>rebalance</li> 
-    <li>swap rebalance</li>
+    <li>Rebalance</li> 
+    <li>Swap rebalance</li>
    </ul>
   </section>
   
@@ -48,9 +48,7 @@
  <related-links>
   <linklist>
    <link href="incremental-recovery.dita"/>
-   <link href="http://hub.internal.couchbase.com/confluence/display/PM/Couchbase+Server+3.0+-+Graceful+failover" format="html">
-    <linktext>Graceful failover spec</linktext>
-   </link>
+
   </linklist>
  </related-links>
 </concept>

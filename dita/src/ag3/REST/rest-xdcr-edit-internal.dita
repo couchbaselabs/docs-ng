@@ -177,11 +177,5 @@ Cache-Control: no-cache
 
 
 	</body>
-	<related-links>
-		<linklist>
-			<link href="../Tasks/">
-				<linktext>XDCR, Providing Advanced Settings</linktext>
-			</link>
-		</linklist>
-	</related-links>
+
 </topic>

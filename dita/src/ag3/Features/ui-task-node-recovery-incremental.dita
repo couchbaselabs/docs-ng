@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_g25_qmb_k4">
-    <title>Setting incremental node recovery (UI)</title>
+    <title>Setting delta node recovery (UI)</title>
     <shortdesc/>
     <taskbody>
 
@@ -10,16 +10,16 @@
         </context>
         <steps>
             <step>
-                <cmd>Navigate to ...</cmd>
+                <cmd>Navigate to<uicontrol>Server Nodes</uicontrol>.</cmd>
             </step>
             <step>
-                <cmd>Click <uicontrol>xxxx</uicontrol></cmd>
+                <cmd>Click <uicontrol>Add Server</uicontrol></cmd>
             </step>
             <step>
-                <cmd>Select xyz</cmd>
+                <cmd>Provide the Server group, administrator username and password.</cmd>          
             </step>
             <step>
-                <cmd>Click <uicontrol>Save</uicontrol></cmd>
+                <cmd>Click <uicontrol>Add Server</uicontrol></cmd>
                 <info>SCREENSHOT</info>
             </step>
         </steps>

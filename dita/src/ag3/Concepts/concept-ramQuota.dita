@@ -32,7 +32,7 @@
       the overall RAM quota and the bucket quota, increasing the amount of information that can be
       kept in RAM.</p>
     
-    <image href="../images/ram-quotas.png"></image>
+    <image href="../images/ram-quotas.png" width="720"></image>
     
     <p>Bucket Quota is used by the system to determine when data should be ejected from memory.
       Bucket Quotas are dynamically configurable, within the Server Quota limits, and enable

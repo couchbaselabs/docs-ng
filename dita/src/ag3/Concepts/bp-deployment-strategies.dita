@@ -1,40 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic3524"><title>Deployment strategies</title><body><p>Here are a number of deployment strategies that you may want to use. Smart
-clients are the preferred deployment option if your language and development
-environment supports a smart client library. If not, use the client-side Moxi
-configuration for the best performance and functionality.</p><p><!--Removed anchor point couchbase-deployment-vbucket-client--></p><section><title>Using a smart (vBucket aware) client</title><p>When using a smart client, the client library provides an interface to the
-cluster and performs server selection directly via the vBucket mechanism. The
-clients communicate with the cluster using a custom Couchbase protocol. This
-allows the clients to share the vBucket map, locate the node containing the
-required vBucket, and read and write information from there.</p><required-cleanup remap="figure"><ph>
-<image href="../images/couchbase-060711-1157-32_img_281.jpg"><alt/></image>
-</ph></required-cleanup><p>In releases prior to Couchbase Server 2.5, a developer, via a client library of their choice, randomly selects a host from which to request an initial topology configuration. Any future changes to the cluster map following the initial bootstrap are based on the NOT_MY_VBUCKET response from the server. This connection is made to port 8091 and is based on an HTTP connection. </p><p>Starting with Couchbase Server 2.5, client libraries query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities.</p><p>Note</p><p>This change is only applicable to Couchbase type buckets (not memcached buckets). An error is returned if a configuration request is received on port 8091.
-</p><p>See also <xref href="http://dustin.github.com/2010/06/29/memcached-vbuckets.html" scope="external" format="html">vBuckets</xref>
-for an in-depth description.</p><p><!--Removed anchor point couchbase-deployment-standaloneproxy--></p></section><section><title>Client-side (standalone) proxy</title><p>If a smart client is not available for your chosen platform, you can deploy a
-standalone proxy. This provides the same functionality as the smart client while
-presenting a <codeph>memcached</codeph> compatible interface layer locally. A standalone proxy
-deployed on a client may also be able to provide valuable services, such as
-connection pooling. The diagram below shows the flow with a standalone proxy
-installed on the application server.</p><required-cleanup remap="figure"><ph>
-<image href="../images/couchbase-060711-1157-32_img_280.jpg"><alt/></image>
-</ph></required-cleanup><p>We configured the memcached client to have just one server in its server list
-(localhost), so all operations are forwarded to <codeph>localhost:11211</codeph> — a port
-serviced by the proxy. The proxy hashes the document ID to a vBucket, looks up
-the host server in the vBucket table, and then sends the operation to the
-appropriate Couchbase Server on port 11210.</p><p>For the corresponding Moxi product, please use the Moxi 1.8 series. See <xref href="http://www.couchbase.com/docs/moxi-manual-1.8/index.html" scope="external" format="html">Moxi
-1.8 Manual</xref>.</p><p><!--Removed anchor point couchbase-deployment-embedproxy--></p></section><section><title>Using server-side (Couchbase embedded) proxy</title><p>We do not recommend server-side proxy configuration for production use. You
-should use either a smart client or the client-side proxy configuration unless
-your platform and environment do not support that deployment type.</p><p>The server-side (embedded) proxy exists within Couchbase Server using port
-11211. It supports the memcached protocol and allows an existing application to
-communicate with Couchbase Cluster without installing another piece of proxy
-software. The downside to this approach is performance.</p><p>In this deployment option versus a typical memcached deployment, in a worse-case
-scenario, server mapping will happen twice (e.g. using Ketama hashing to a
-server list on the client, then using vBucket hashing and server mapping on the
-proxy) with an additional round trip network hop introduced.</p><required-cleanup remap="figure"><ph>
-<image href="../images/couchbase-060711-1157-32_img_279.jpg"><alt/></image>
-</ph></required-cleanup><p>For the corresponding Moxi product, please use the Moxi 1.8 series. See <xref href="http://www.couchbase.com/docs/moxi-manual-1.8/index.html" scope="external" format="html">Moxi
-1.8 Manual</xref>.</p></section></body><related-links><linklist><title>Collected links</title><link href="http://dustin.github.com/2010/06/29/memcached-vbuckets.html" scope="external" format="html"><linktext>vBuckets</linktext></link><link href="http://www.couchbase.com/docs/moxi-manual-1.8/index.html" scope="external" format="html"><linktext>Moxi
-1.8 Manual</linktext></link><link href="http://www.couchbase.com/docs/moxi-manual-1.8/index.html" scope="external" format="html"><linktext>Moxi
-1.8 Manual</linktext></link></linklist></related-links></topic>
+<topic xml:lang="en-us" id="topic3524">
+  <title>Deployment strategies</title>
+  <body>
+    <p>Here are a number of deployment strategies that you may want to use. Smart clients are the
+      preferred deployment option if your language and development environment supports a smart
+      client library. If not, use the client-side Moxi configuration for the best performance and
+      functionality.</p>
+    <section><title>Using a smart (vBucket-aware) client</title><p>When using a smart client, the
+        client library provides an interface to the cluster and performs server selection directly
+        via the vBucket mechanism. The clients communicate with the cluster using a custom Couchbase
+        protocol. This allows the clients to share the vBucket map, locate the node containing the
+        required vBucket, and read and write information from there.</p>
+      <image href="../images/couchbase-060711-1157-32_img_281.jpg" width="720"/>
+      <p>In releases prior to Couchbase Server 2.5, a developer, via a client library of their
+        choice, randomly selects a host from which to request an initial topology configuration. Any
+        future changes to the cluster map following the initial bootstrap are based on the
+        NOT_MY_VBUCKET response from the server. This connection is made to port 8091 and is based
+        on an HTTP connection. </p><p>With Couchbase Server 2.5 or higher, client libraries query a
+        cluster for initial topology configuration for a bucket from one of the nodes in the
+        cluster. This is similar to prior releases. However, this information is transmitted via the
+        memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091).
+        This significantly improves connection scaling capabilities.</p>
+      <note type="note">This change is only applicable to Couchbase-type buckets (not memcached
+        buckets). An error is returned if a configuration request is received on port 8091.
+      </note></section>
+    <section><title>Client-side (standalone) proxy</title>
+      <p>If a smart client is not available for your chosen platform, you can deploy a standalone
+        proxy. This provides the same functionality as the smart client while presenting a memcached
+        compatible interface layer locally. A standalone proxy deployed on a client may also be able
+        to provide valuable services, such as connection pooling. The diagram below shows the flow
+        with a standalone proxy installed on the application server.</p>
+      <image href="../images/couchbase-060711-1157-32_img_280.jpg" width="720"/>
+      <p>We configured the memcached client to have just one server in its server list (localhost),
+        so all operations are forwarded to <codeph>localhost:11211</codeph> — a port serviced by the
+        proxy. The proxy hashes the document ID to a vBucket, looks up the host server in the
+        vBucket table, and then sends the operation to the appropriate Couchbase Server on port
+        11210.</p><p>For the corresponding Moxi product, use the Moxi 1.8 series.</p>
+    </section>
+    
+    <section><title>Using server-side (Couchbase embedded) proxy</title>
+      <note type="attention">Server-side proxy configuration is <i>not</i> recommended for
+        production use. Use either a smart client or the client-side proxy configuration unless your
+        platform and environment do not support that deployment type.</note><p>The server-side
+        (embedded) proxy exists within Couchbase Server using port 11211. It supports the memcached
+        protocol and allows an existing application to communicate with Couchbase Cluster without
+        installing another piece of proxy software. The downside to this approach is
+        performance.</p><p>In this deployment option versus a typical memcached deployment, in a
+        worse-case scenario, server mapping happens twice (e.g. using Ketama hashing to a server
+        list on the client, then using vBucket hashing and server mapping on the proxy) with an
+        additional round trip network hop introduced.</p>
+      <image href="../images/couchbase-060711-1157-32_img_279.jpg" width="720"/>
+    </section>
+    
+  </body>
+  <related-links>
+    <linklist>
+      <link href="http://dustin.github.com/2010/06/29/memcached-vbuckets.html" scope="external"
+        format="html">
+        <linktext>vBucket article</linktext>
+      </link>
+      <link href="http://docs.couchbase.com/moxi-guide/" scope="external"
+        format="html">
+        <linktext>Moxi 1.8 Manual</linktext>
+      </link>
+    </linklist>
+  </related-links>
+</topic>

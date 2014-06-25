@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic5338"><title>Verifying replica index and querying it (debug/testing)</title><body><p>It’s not easy to test/verify from the outside that the replica index is working.
-Remember, replica index is optional, and it’s just an optimization for faster
-<codeph>stale=false</codeph> queries after rebalance - it doesn’t cope with correctness of the
-results.</p><p>There’s a non-public query parameter named <codeph>_type</codeph> used only for debugging and
-testing. Its default value is <codeph>main</codeph>, and the other possible value is <codeph>replica</codeph>.
-Here follows an example of querying the main (default) and replica indexes on a
-2 nodes cluster (for sake of simplicity), querying the main (normal) index
-gives:</p><codeblock><codeph>&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?limit=20&amp;stale=false&amp;debug=true'
+<topic xml:lang="en-us" id="topic5338">
+  <title>Debugging replica index</title>
+  <shortdesc>Description of how to test and verify that the replica index is working.</shortdesc>
+  <body>
+    <p>It’s not easy to test/verify from the outside that the replica index is working. Remember,
+      replica index is optional, and it’s just an optimization for faster
+        <codeph>stale=false</codeph> queries after rebalance - it doesn’t cope with correctness of
+      the results.</p>
+    <p>There’s a non-public query parameter named <codeph>_type</codeph> used only for debugging and
+      testing. Its default value is <codeph>main</codeph>, and the other possible value is
+        <codeph>replica</codeph>. Here follows an example of querying the main (default) and replica
+      indexes on a 2 nodes cluster (for sake of simplicity), querying the main (normal) index
+      gives:</p>
+    <codeblock><codeph>&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?limit=20&amp;stale=false&amp;debug=true'
 {"total_rows":20000,"rows":[
 {"id":"0017131","key":2,"partition":43,"node":"http://192.168.1.80:9501/_view_merge/","value":"0017131"},
 {"id":"0000225","key":10,"partition":33,"node":"http://192.168.1.80:9501/_view_merge/","value":"0000225"},
@@ -31,12 +37,15 @@ gives:</p><codeblock><codeph>&gt; curl -s 'http://localhost:9500/default/_design
 {"id":"0015913","key":88,"partition":41,"node":"http://192.168.1.80:9501/_view_merge/","value":"0015913"},
 {"id":"0019606","key":90,"partition":22,"node":"local","value":"0019606"}
 ],
-</codeph></codeblock><p>Note that the <codeph>debug=true</codeph> parameter, for map views, add 2 row fields,
-<codeph>partition</codeph> which is the vbucket ID where the document that produced this row
-(emitted by the map function) lives, and <codeph>node</codeph> which tells from which node in
-the cluster the row came (value “local” for the node which received the query,
-an URL otherwise).</p><p>Now, doing the same query but against the replica index ( <codeph>_type=replica</codeph> )
-gives:</p><codeblock><codeph>&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?limit=20&amp;stale=false&amp;_type=replica&amp;debug=true'
+</codeph></codeblock>
+    <p>Note that the <codeph>debug=true</codeph> parameter, for map views, add 2 row fields,
+        <codeph>partition</codeph> which is the vbucket ID where the document that produced this row
+      (emitted by the map function) lives, and <codeph>node</codeph> which tells from which node in
+      the cluster the row came (value “local” for the node which received the query, an URL
+      otherwise).</p>
+    <p>Now, doing the same query but against the replica index ( <codeph>_type=replica</codeph> )
+      gives:</p>
+    <codeblock><codeph>&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?limit=20&amp;stale=false&amp;_type=replica&amp;debug=true'
 {"total_rows":20000,"rows":[
 {"id":"0017131","key":2,"partition":43,"node":"local","value":"0017131"},
 {"id":"0000225","key":10,"partition":33,"node":"local","value":"0000225"},
@@ -59,9 +68,18 @@ gives:</p><codeblock><codeph>&gt; curl -s 'http://localhost:9500/default/_design
 {"id":"0015913","key":88,"partition":41,"node":"local","value":"0015913"},
 {"id":"0019606","key":90,"partition":22,"node":"http://192.168.1.80:9501/_view_merge/","value":"0019606"}
 ],
-</codeph></codeblock><p>Note that you get exactly the same results (id, key and value for each row).
-Looking at the row field <codeph>node</codeph>, you can see there’s a duality when compared to
-the results we got from the main index, which is very easy to understand for the
-simple case of a 2 nodes cluster.</p><p>To find out which replica vbuckets exist in each node, see section <xref href="#topic5338/couchbase-views-debugging-datamissing">Data missing
-in query response or it’s wrong (potentially due to server
-issues)</xref>.</p></body></topic>
+</codeph></codeblock>
+    <p>Note that you get exactly the same results (id, key and value for each row). Looking at the
+      row field <codeph>node</codeph>, you can see there’s a duality when compared to the results we
+      got from the main index, which is very easy to understand for the simple case of a 2 nodes
+      cluster.</p>
+    <p>To find out which replica vbuckets exist in each node, see section <xref
+        href="#topic5338/couchbase-views-debugging-datamissing">Data missing in query response or
+        it’s wrong (potentially due to server issues)</xref>.</p>
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../Misc/trbl-datamissing-server.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

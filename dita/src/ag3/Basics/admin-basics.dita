@@ -37,10 +37,10 @@
  </body>
  <related-links>
   <linklist>
-   <title>Collected links</title>
+
    <link href="../CLI/cli-overview.dita"></link>
    <link href="../REST/overview-rest-api.dita"></link>
-   <link href="../Best-practices/bp-deployment-considerations.dita"></link>
+   <link href="../concepts/bp-deployment-considerations.dita"></link>
     <link href="http://www.couchbase.com/develop" scope="external" format="html">
     <linktext>Couchbase SDKs</linktext>
    </link>

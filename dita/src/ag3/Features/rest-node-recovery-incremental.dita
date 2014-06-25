@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ycn_14b_k4">
-  <title>Setting incremental node recovery (REST API)</title>
+  <title>Setting delta node recovery (REST API)</title>
   <shortdesc>The REST request to add a node to a cluster uses the <codeph>/controller/addNode</codeph> endpoint URI. 
     </shortdesc>
   <refbody>

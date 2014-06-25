@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_s15_tlh_14">
-  <title>Incremental node recovery</title>
-  <shortdesc>Incremental node recovery provides the option to specify whether the replacement server node's disk is initialized or not. 
-    For a new server node, the disk is initialized (data is removed) and re-populated. 
-    For the same server node, the disk is not initialized or re-populated; the data buckets remain.</shortdesc>
+  <title>Delta node recovery</title>
+  <shortdesc>Delta node recovery provides the option to specify whether the replacement server
+    node's disk is initialized or not. For a new server node, the disk is initialized (data is
+    removed) and re-populated. For the same server node, the disk is not initialized or
+    re-populated; the data buckets remain.</shortdesc>
   
   
   <body>
@@ -45,8 +46,6 @@
       <link href="graceful-failover.dita"></link>
       <link href="../CLI/CBcli/cbcli-servers.dita"/>
       <link href="../REST/rest-server-nodes.dita"/>
-      <link href="http://hub.internal.couchbase.com/confluence/display/PM/Couchbase+Server+3.0+-+Delta+Node+Recovery+After+Failover" scope="external" format="html">
-        <linktext>PM Feature description and requirements</linktext></link>
     </linklist>
   </related-links>
 </topic>

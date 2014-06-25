@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic2722"><title>Ongoing monitoring and maintenance</title><body><p>To fully understand how your cluster is working, and whether it is working
-effectively, there are a number of different statistics that you should monitor
-to diagnose and identify problems. Some of these key statistics include the
-following:</p><ul>
-<li>Memory Used ( <codeph>mem_used</codeph> )</li>
-</ul><p>This is the current size of memory used. If <codeph>mem_used</codeph> hits the RAM quota then
- you will get <codeph>OOM_ERROR</codeph>. The <codeph>mem_used</codeph> must be less than <codeph>ep_mem_high_wat</codeph>,
- which is the mark at which data is ejected from the disk.</p><ul>
-<li>Disk Write Queue Size ( <codeph>ep_queue_size</codeph> )</li>
-</ul><p>This is the amount of data waiting to be written to disk.</p><ul>
-<li>Cache Hits ( <codeph>get_hits</codeph> )</li>
-</ul><p>As a rule of thumb, this should be at least 90% of the total requests.</p><ul>
-<li>Cache Misses ( <codeph>get_misses</codeph> )</li>
-</ul><p>Ideally this should be low, and certainly lower than <codeph>get_hits</codeph>. Increasing or
- high values mean that data that your application expects to be stored is not in
- memory.</p><p>The water mark is another key statistic to monitor cluster performance. The
-‘water mark’ determines when it is necessary to start freeing up available
-memory. See <xref href="#topic2722/couchbase-introduction-architecture-diskstorage">disk storage</xref>
-for more information. Two important statistics related to water marks include:</p><ul>
-<li>High Water Mark ( <codeph>ep_mem_high_wat</codeph> )</li>
-</ul><p>The system will start ejecting values out of memory when this water mark is met.
- Ejected values need to be fetched from disk when accessed before being returned
- to the client.</p><ul>
-<li>Low Water Mark ( <codeph>ep_mem_low_wat</codeph> )</li>
-</ul><p>When a threshold known as low water mark is reached, this process starts
- ejecting inactive replica data from RAM on the node.</p><p>You can find values for these important stats with the following command:</p><codeblock><codeph>shell&gt; cbstats IP:11210 all | \
+<topic xml:lang="en-us" id="topic2722">
+ <title>Ongoing monitoring and maintenance</title>
+ <shortdesc>There are a number of different statistics</shortdesc>
+ <body>
+  <p>To understand how your cluster is working and whether it is working effectively, there
+   are a number of different statistics that you should monitor to diagnose and identify problems.</p>
+   <p>Key statistics include the following:</p>
+  <ul>
+   <li>Memory Used ( <codeph>mem_used</codeph> ) - This is the current size of memory used. If <codeph>mem_used</codeph> hits the RAM quota then
+   you will get <codeph>OOM_ERROR</codeph>. The <codeph>mem_used</codeph> must be less than
+    <codeph>ep_mem_high_wat</codeph>, which is the mark at which data is ejected from the disk.</li>
+  <li>Disk Write Queue Size ( <codeph>ep_queue_size</codeph> ) - This is the amount of data waiting to be written to disk.</li>
+  <li>Cache Hits ( <codeph>get_hits</codeph> ) - As a rule of thumb, this should be at least 90% of the total requests.</li>
+  <li>Cache Misses ( <codeph>get_misses</codeph> ) - Ideally this should be low, and certainly lower than <codeph>get_hits</codeph>. 
+   Increasing or high values mean that data that your application expects to be stored is not in memory.</li>
+  </ul>
+  <p>The water mark is another key statistic to monitor cluster performance. The ‘water mark’
+   determines when it is necessary to start freeing up available memory. Two important statistics related to water marks include:</p>
+  <ul>
+   <li>High Water Mark ( <codeph>ep_mem_high_wat</codeph> ) - The system starts ejecting data out of
+    memory when this water mark is met. Ejected values need to be fetched from disk when accessed
+    before being returned to the client.</li>
+   <li>Low Water Mark ( <codeph>ep_mem_low_wat</codeph> ) - When the low water mark threshold is
+    reached, it indicates that memory usage is moving toward a critical point and system
+    administration action is should be taken before the high water mark is reached.</li>
+  </ul>
+  
+  <note type="tip">Use the following command to get statistic information :
+    <codeblock>shell&gt; cbstats IP:11210 all | \
     egrep "todo|ep_queue_size|_eject|mem|max_data|hits|misses"
-</codeph></codeblock><p>This will output the following statistics:</p><codeblock><codeph>ep_flusher_todo:
+</codeblock><p>The following statistic information is provided:</p>
+   <codeblock>ep_flusher_todo:
 ep_max_data_size:
 ep_mem_high_wat:
 ep_mem_low_wat:
@@ -38,23 +42,32 @@ ep_queue_size:
 mem_used:
 get_misses:
 get_hits:
-</codeph></codeblock><p>Make sure you monitor the disk space, CPU usage, and swapping on all your nodes,
-using the standard monitoring tools.</p><p><!--Removed anchor point couchbase-bestpractice-ongoing-ui--></p><section><title>Important UI stats to watch</title><p>You can add the following graphs to watch on the Couchbase console. These graphs
-can be de/selected by clicking on the <codeph>Configure View</codeph> link at the top of the
-<codeph>Bucket Details</codeph> on the Couchbase Web Console.</p><ul>
-<li><codeph>Disk write queues</codeph></li>
-</ul><p>The value should not keep growing; the actual numbers will depend on your
- application and deployment.</p><ul>
-<li><codeph>Ram ejections</codeph></li>
-</ul><p>There should be no sudden spikes.</p><ul>
-<li><codeph>Vbucket errors</codeph></li>
-</ul><p>An increasing value for vBucket errors is bad.</p><ul>
-<li><codeph>OOM errors per sec</codeph></li>
-</ul><p>This should be 0.</p><ul>
-<li><codeph>Temp OOM errors per sec</codeph></li>
-</ul><p>This should be 0.</p><ul>
-<li><codeph>Connections count</codeph></li>
-</ul><p>This should remain flat in a long running deployment.</p><ul>
-<li><p><codeph>Get hits per second</codeph></p></li>
-<li><p><codeph>Get misses per second</codeph></p></li>
-</ul><p>This should be much lower than Get hits per second.</p></section></body></topic>
+</codeblock>
+  </note>
+  
+  <note type="tip">Monitor the disk space, CPU usage, and swapping on all nodes, using the standard monitoring tools.</note>
+  
+  <section><title>Important UI stats to watch</title>
+   <p>You can add the following graphs to watch on
+    the Couchbase console. These graphs can be de/selected by clicking on the <uicontrol>Configure
+     View</uicontrol> link at the top of the <uicontrol>Bucket Details</uicontrol> on the Couchbase web console.</p>
+   
+   <ul>
+    <li>Disk write queues - The value should not keep growing. The actual numbers depend on your
+     application and deployment.</li>
+    <li>Ram ejections - There should be no sudden spikes.</li>
+    <li>Vbucket errors - An increasing value for vBucket errors is bad.</li>
+    <li>OOM errors per sec - This should be 0.</li>
+    <li>Temp OOM errors per sec - This should be 0.</li>
+    <li>Connections count - This should remain flat in a long running deployment.</li>
+    <li>Get hits per second</li>
+    <li>Get misses per second - This should be much lower than Get hits per second.</li>
+   </ul>
+  </section>
+ </body>
+ <related-links>
+  <linklist>
+   <link href="concept-diskStorage.dita"></link>
+  </linklist>
+ </related-links>
+</topic>

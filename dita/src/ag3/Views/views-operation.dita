@@ -81,7 +81,7 @@
 </ul><p>Because the value and key information from the defined map function are stored
  in the index, the overall size of the index can be larger than the stored data
  if the emitted key/value information is larger than the original source document
- data.</p><p><!--Removed anchor point couchbase-views-expiration--></p><section><title>How expiration impacts views</title><p>Be aware that Couchbase Server does lazy expiration, that is, expired items are
+ data.</p><section><title>How expiration impacts views</title><p>Be aware that Couchbase Server does lazy expiration, that is, expired items are
 flagged as deleted rather than being immediately erased. Couchbase Server has a
 maintenance process, called <i>expiry pager</i> that will periodically look through
 all information and erase expired items. This maintenance process will run every

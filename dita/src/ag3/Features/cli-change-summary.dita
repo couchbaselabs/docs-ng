@@ -149,7 +149,8 @@ couchbase-cli rebalance -c 192.168.0.1:8091 \\
     
     
     
-    <section><title>Incremental node recovery</title>
+    
+    <section><title>Delta node recovery</title>
     
         <p>To re-add a server node to a cluster, use the <codeph>couchbase-cli</codeph> tool and the 
           <codeph>recovery</codeph> command with the <codeph>--recovery-type</codeph> parameter. </p>
@@ -191,6 +192,104 @@ couchbase-cli rebalance -c 192.168.0.1:8091 \\
 			-u Administrator -p password    
         
       </codeblock>      
+    </section>
+    
+    
+    <section><title>Incremental backup and restore</title>
+      
+      <p>With <codeph>cbrestore</codeph>, data from a specific period of time is restored. The <codeph>cbrestore</codeph> tool
+        browses through meta.json files under the latest backup chains and finds all related
+        Couchbase backup files to restore.</p>
+
+      <codeblock>
+cbrestore /backups/backup-1 http://HOST:8091       
+     </codeblock>
+    
+      <p>The <codeph>backup</codeph> tool provides provides differential, accumulative, or full
+        backup.</p>
+      
+      
+      <codeblock>cbbackup [options] source backup_dir</codeblock>
+      
+      <codeblock>cbbackup http://HOST:8091 /backups/backup-1
+cbbackup couchbase://HOST:8091 /backups/backup-1</codeblock>
+      
+      
+      
+      <table frame="all" id="table_qsw_rw5_c4">
+        <title>cbbackup options</title>
+        <tgroup cols="4">
+          <colspec colname="c1" colnum="1" colwidth="3.13*"/>
+          <colspec colname="newCol3" colnum="2" colwidth="5.66*"/>
+          <colspec colname="newCol2" colnum="3" colwidth="3.44*"/>
+          <colspec colname="c2" colnum="4" colwidth="10.37*"/>
+          <colspec colnum="5" colname="c5" colwidth="1.03*"/>
+          <colspec colnum="6" colname="c6" colwidth="1*"/>
+          <thead>
+            <row>
+              <entry>Tool</entry>
+              <entry>Option</entry>
+              <entry>Mode</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>cbbackup</entry>
+              <entry>--mode [full | incr-diff | incr-accu | auto ]</entry>
+              <entry/>
+              <entry>Backup running mode: full, incr-diff, incr-accu, auto</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry>full</entry>
+              <entry>Forces a full backup</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry>incr-diff</entry>
+              <entry>Differential incremental backup. Backs up the delta change from the last full
+                or incremental backup</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry>incr-accu</entry>
+              <entry>Accumulative incremental backup. Backs up the delta change from the full
+                backup.</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry>auto</entry>
+              <entry>The cbbackup tool determines the best mode to use. If there is no backup data,
+                then a full backup is performed. Otherwise, a differential backup is
+                performed.</entry>
+            </row>
+            <row>
+              <entry>cbrestore</entry>
+              <entry>--from-data</entry>
+              <entry>n/a</entry>
+              <entry>Data collected from this specified date. Data collected sooner than this date
+                is not restored.</entry>
+              <entry/>
+              <entry/>
+            </row>
+            <row>
+              <entry>cbrestore</entry>
+              <entry>--to-date</entry>
+              <entry>n/a</entry>
+              <entry>Data collected up to this specified date. Data collected later than this date
+                is not restored.</entry>
+              <entry/>
+              <entry/>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
     </section>
     
     
@@ -289,6 +388,50 @@ couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \\
     </section>
     
     
+    <section><title>DCP statistics</title>
+      <table frame="all" id="table_psm_zxz_n4">
+        <title>DCP statistics</title>
+        <tgroup cols="2">
+          <colspec colname="c1" colnum="1" colwidth="1*"/>
+          <colspec colname="c2" colnum="2" colwidth="2.03*"/>
+          <thead>
+            <row>
+              <entry>Option</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>upr</entry>
+              <entry>tbd</entry>
+            </row>
+            <row>
+              <entry>upr -takeover vb name</entry>
+              <entry>tbd</entry>
+            </row>
+            <row>
+              <entry>upragg</entry>
+              <entry>tbd</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+      <p>DCP statistics syntax:</p>
+        <codeblock>
+cbstats HOST:PORT upr
+
+cbstats HOST:PORT upr -takeover vb name
+
+cbstats HOST:PORT upragg
+    </codeblock>
+     
+    
+    
+    
+    
+    
+    </section>
 
     
 

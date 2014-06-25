@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
-    <title>Couchbase Server Documentation</title>
-    <topicref href="Install.ditamap" format="ditamap" collection-type="family" />
-    <topicref href="Admin.ditamap" format="ditamap" collection-type="family"/>
-    <topicref href="CLI.ditamap" format="ditamap" collection-type="family"/>
-    <topicref href="REST.ditamap" format="ditamap" collection-type="family"/>
+    <title>Couchbase Server 3.0 Documentation</title>
+    <topichead navtitle="Installation">
+        <topicref href="Install.ditamap" format="ditamap" collection-type="family" /></topichead>
+    <topicref href="30Features.ditamap" format="ditamap"/>
+    <topichead navtitle="Administration"> 
+        <topicref href="Admin.ditamap" format="ditamap" collection-type="family"/></topichead>
+    <topichead navtitle="Command-line interface">
+        <topicref href="CLI.ditamap" format="ditamap" collection-type="family"/></topichead>
+    <topichead navtitle="REST API">
+        <topicref href="REST.ditamap" format="ditamap" collection-type="family"/></topichead>
 </map>
