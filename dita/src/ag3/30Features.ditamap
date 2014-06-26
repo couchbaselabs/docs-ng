@@ -38,5 +38,7 @@
   <topicref href="Features/security-admin-access.dita"/>
   <topicref href="Features/security-clientServer-comm.dita"/>
   <topicref href="Features/cli-change-summary.dita"/>
+  <topicref href="Features/cbcollect-info/cluster-wide-info.ditamap" format="ditamap" />
+
  </topicref>
 </map>
