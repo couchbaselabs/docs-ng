@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept464">
+	<title>Data types with Node.js</title>
+	<conbody>
+		<p>All JavaScript data types that are able to be serialized via the JSON functions are
+			supported by default. It is worth noting that recursive structures cannot be serialized. It
+			is also possible to encode data using the raw Node.js formats or in UTF–8 as well by using
+			the format option on the storage operations.</p>
+<codeblock outputclass="language-javascript">
+bucket.set(‘test-key’, 'test-value', {
+  format:couchbase.format.utf8
+}, function(err, result) {
+  console.log(result);
+});
+</codeblock>
+	</conbody>
+</concept>

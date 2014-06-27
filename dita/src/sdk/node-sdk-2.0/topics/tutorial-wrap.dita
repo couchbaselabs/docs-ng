@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept915">
+	<title>Wrapping Up</title>
+	<conbody>
+		<p>While you may notice that the breweries management code has been implemented in the
+			repository, it is left as an exercise to the user to work out the details of this.
+			Additionally, here are some things that are not implemented in the example which you might
+			add while learning to use the SDK:</p>
+		<ul>
+			<li><p>When deleting a brewery, ensure it has no beers dependent on it.</p></li>
+			<li><p>Provide a search where one can query beers belonging to a given brewery.</p></li>
+			<li><p>Handle concurrent updates to a beer and/or brewery.</p></li>
+			<li><p>Implement a like feature, where one can like a beer or a brewery; likewise, they can
+					unlike one as well!</p></li>
+		</ul>
+		<p>The tutorial presents an easy approach to start a web application with Couchbase Server as
+			the underlying data source. If you want to dig a little bit deeper, the full source code in
+			the couchbaselabs repository on GitHub has more code to learn from. This code might be
+			extended and updated from time to time.</p>
+	</conbody>
+</concept>

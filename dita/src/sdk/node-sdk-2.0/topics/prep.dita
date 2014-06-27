@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept4364">
+	<title>Preparations</title>
+	<conbody>
+
+		<section>
+			<title>Project Setup</title>
+			<p>In this section we’ll talk a bit about setting up your directory layout and adding some
+				views in the server before we start dealing with the Node.js SDK and express+jade
+				itself.</p>
+			<p>Create a project directory named <filepath>beer</filepath>:</p>
+			<codeblock>
+shell&gt; mkdir beer 
+shell&gt; cd beer 
+shell&gt; mkdir views 
+shell&gt; mkdir views/beer 
+shell&gt; mkdir views/brewery 
+shell&gt; mkdir static 
+shell&gt; mkdir static/js 
+shell&gt; mkdir static/css
+</codeblock>
+			<p>Showing your directory contents displays something like this:</p>
+			<codeblock>
+shell&gt; find . -type d
+./static
+./static/js
+./static/css
+./views
+./views/brewery
+./views/beer
+</codeblock>
+			<p>To make the application look pretty, we’re incorporating jQuery and Twitter Bootstrap.
+				You can either download the libraries and put them in their appropriate
+					<filepath>css</filepath> and <filepath>js</filepath> directories (under
+					<filepath>static</filepath>), or clone the project repository and use it from there.
+				If you followed the quick start steps, you already have the files in your
+					<filepath>beersample-node</filepath> directory. Either way, make sure you have the
+				following files in place:</p>
+			<ul>
+				<li><filepath>static/css/beersample.css</filepath></li>
+				<li><filepath>static/css/bootstrap.min.css</filepath> (the minified Twitter Bootstrap
+					library)</li>
+				<li><filepath>static/css/bootstrap-responsive.min.css</filepath> (the minified responsive layout
+					classes from Bootstrap)</li>
+				<li><filepath>static/js/beersample.js</filepath></li>
+				<li><filepath>static/js/jquery.min.js</filepath> (the jQuery JavaScript library)</li>
+			</ul>
+			<p>From here on, you should have a bare bones web application configured that has all the
+				dependencies included. We’ll now move on and configure the beer-sample bucket the way we
+				need it. </p>
+		</section>
+
+		<section>
+			<title>Preparing the Views</title>
+			<p>The beer-sample bucket comes with a small set of
+				predefined views, but to make our application function correctly we need some more. This
+				is also a good chance to explore the view management possibilities inside the
+				Web-UI.</p>
+			<p>Because we want to list beers and breweries by name, we need to define one
+				view for each. Head over to the Web-UI and click on the Views menu. Select beer-sample
+				from the drop-down list to switch to the correct bucket. Now click on Development Views
+				and then Create Development View to define your first view. You need to give it the name
+				of both the design document and the actual view. Insert the following names:</p>
+			<ul>
+				<li><p>Design Document Name: _design/dev_beer</p></li>
+				<li><p>View Name: by_name</p></li>
+			</ul>
+			<p>The next step is to define the map and (optional) reduce functions. In our
+				examples, we won’t use the reduce functions at all but you can play around and see what
+				happens. Insert the following map function (that’s JavaScript) and click
+				Save.</p>
+<codeblock outputclass="language-javascript">
+function (doc, meta) {
+  if(doc.type &amp;&amp; doc.type == "beer") {
+    emit(doc.name, null);
+  }
+}
+</codeblock>
+			<p>Every
+				map function takes the full document (doc) and its associated metadata (meta) as the
+				arguments. You are then free to inspect this data and emit a result when you want to
+				have it in your index. In our case, we emit the name of the beer (doc.name) when the
+				document both has a type field and the type is beer. We don’t need to emit a value —
+				that’s why we are using null here. It’s always advisable to keep the index as small as
+				possible. Resist the urge to include the full document through emit(meta.id, doc),
+				because it will increase the size of your view indexes. If you need to access the full
+				document you can call db.get(result.key) to get the individual doc for a single row. The
+				resulting retrieval of the document might be slightly out of sync with your view, but it
+				will be fast and efficient.</p><p>Now we need to define a view for our breweries. You
+				already know how to do this — here is all the information you need to create a brewery
+				view:</p>
+			<ul>
+				<li><p>Design Document Name: _design/dev_brewery</p></li>
+				<li><p>View Name: by_name</p></li>
+				<li><p>Map Function:</p>
+<codeblock outputclass="language-javascript">
+function (doc, meta) {
+  if(doc.type &amp;&amp; doc.type == "brewery") {
+    emit(doc.name, null);
+  }
+}
+</codeblock></li>
+			</ul><p>The final step is to push the design documents in production. While the design
+				documents are in development, the index is applied only to a deterministic subset of the
+				data. Because we want to have the index on the whole data set, click the Publish button
+				on both design documents (and accept any pop-up windows that warn you about overriding
+				the old design documents).</p><p>For more information about using views for indexing and
+				querying from Couchbase Server, see the following helpful resources in the Couchbase
+				Server Manual:</p>
+			<ul>
+				<li><p>General information: <xref
+							href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views.html"
+							scope="external" format="html">Views and Indexes</xref></p></li>
+				<li><p>Sample patterns: <xref
+							href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-sample-patterns.html"
+							scope="external" format="html">View and Query Pattern Samples</xref></p></li>
+				<li><p>Time stamp patterns: Many developers ask about extracting information based on
+						date or time. To find out more, see <xref
+							href="http://www.couchbase.com/docs/couchbase-manual-2.1.0/couchbase-views-sample-patterns-timestamp.html"
+							scope="external" format="html">Date and Time Selection</xref></p></li>
+			</ul>
+		</section>
+	</conbody>
+
+</concept>

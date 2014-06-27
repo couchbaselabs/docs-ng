@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept716">
+	<title>Sample app walk-through</title>
+	<conbody>
+		<p>In this chapter we build on the foundations of the Getting Started guide and build a simple
+			web application. Make sure you have the beer-sample bucket installed, because we’ll be
+			using it. The sample application will allow you to edit and manage various beers and
+			breweries.</p>
+		<p>This tutorial is not entirely complete, and leaves some features that remain to be
+			implemented. Implementing them is left as an exercise for the reader.</p>
+		<p>The full source code for the sample application is available in the beersample-node project
+			through couchbaselabs on GitHub.</p>
+		<p>Note that the sample application provides more content than described in this tutorial, but
+			it should be simple to navigate while reading this tutorial.</p>
+	</conbody>
+</concept>

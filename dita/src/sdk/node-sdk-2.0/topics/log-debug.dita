@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept1383">
+	<title>Logging &amp; Debugging</title>
+	<conbody>
+		<p>This section explains how to uncover bugs in your application (or in the SDK itself).</p>
+
+
+		<p>To debug anything, you must be able to identify in which domain a problem is found.
+			Specifically, the following components participate in typical Couchbase operations:</p>
+		<ul>
+			<li><i>Couchbase Server</i>
+				<p>This is the server itself, which stores your data. Errors can happen here if your
+					data does not exist, or if there are connectivity issues with one or more nodes in
+					the server. Note that while Couchbase Server is scalable and fault tolerant, there
+					are naturally some conditions that would cause failures (for example, if all nodes
+					are unreachable).</p></li>
+
+			<li><i>libcouchbase</i>
+				<p>This is the underlying layer that handles network communication and protocol handling
+					between a client and a Couchbase node. Network connectivity issues tend to happen
+					here.</p></li>
+
+			<li><i>Node.js C++ Binding Layer</i>
+				<p>This is the C++ code that provides the bulk of the SDK. It interfaces with the
+					libcouchbase component, handles marshaling of information between libcouchbase and
+					your application, performs input validation, and encoding and decoding of keys and
+					values.</p></li>
+
+			<li><i>Node.js Layer</i>
+				<p>This is written in pure JavaScript. For simple key-value operations these normally
+					just dispatch to the C++ layer. Most of the view operations are handled here as well,
+					with the C++ layer just performing the lower level network handling.</p></li>
+		</ul>
+
+	</conbody>
+</concept>

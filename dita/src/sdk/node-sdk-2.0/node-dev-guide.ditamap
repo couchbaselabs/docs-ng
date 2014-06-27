@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+ <title>Node.js developer guide</title>
+	<topicref href="topics/intro.dita" />
+	<topicref href="topics/getting-started.dita">
+		<topicref href="topics/download-install.dita" />
+		<topicref href="topics/hello-couchbase.dita" />	
+	</topicref>
+	<topicref href="topics/tutorial-intro.dita">
+		<topicref href="topics/quick-start.dita" />
+		<topicref href="topics/prep.dita" />
+		<topicref href="topics/wecome.dita" />
+		<topicref href="topics/manage-beers.dita" />
+		<topicref href="topics/tutorial-wrap.dita" />
+	</topicref>
+	<topicref href="topics/work-documents.dita">
+		<topicref href="topics/data-types.dita" />
+		<topicref href="topics/replica-reads.dita" />
+		<topicref href="topics/bulk-loading.dita" />
+	</topicref>
+	<topicref navtitle="Using the APIs">
+		<topicref href="topics/concurrency.dita" />
+		<topicref href="topics/callback.dita" />
+		<topicref href="topics/error-handling.dita" />
+	</topicref>
+	<topicref href="topics/log-debug.dita" />
+</map>

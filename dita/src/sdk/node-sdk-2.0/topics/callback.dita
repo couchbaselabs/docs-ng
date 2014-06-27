@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept1505">
+	<title>Callback and MultiCallback Format</title>
+	<conbody>
+		<p>The Node.js Couchbase driver employs a callback pattern to notify the application when
+			results are ready. These callbacks are passed to the operation methods and the callbacks
+			are invoked later once the results or errors are ready. All storage and retrieval
+			operations follow the same callback pattern and have the following parameters:</p>
+
+		<ul>
+			<li><codeph>error</codeph>
+				<p>For singular operations, this parameter will contain an Error object representing any
+					error that occurred during the execution of the operation, or alternatively will
+					contain null if no errors occurred.</p>
+				<p>For a batch operation, this will contain either 1 or 0 representing if an error
+					occurred on any of the batched operations.</p>
+			</li>
+
+			<li><codeph>result/results</codeph>
+				<p>For a singular operation, this parameter will contain an object with the properties
+					as listed below.</p>
+				<p>For a batched operation, this will be an object where the keys match the keys your
+					operation targeted, and the values will contain an object containing the fields
+					listed below.</p>
+				
+				<ul>
+					<li><codeph>value</codeph> This will contain the value of the key that was requested
+				if the operation was a retrieval type operation.</li>
+					
+				<li><codeph>error</codeph> This will contain an Error
+				object representing any errors that occurred during execution of this particular batch
+				operation.</li>
+				
+				<li><codeph>cas</codeph> This will contain an opaque object representing the resulting CAS
+				value of the key that was operated upon. This value is not meant to be user-facing, but
+				should be passed directly to other operations for locking purposes.</li>
+				</ul> 
+			
+			</li>
+		</ul>
+	</conbody>
+</concept>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept1544">
+	<title>Concurrency with CAS and Locking</title>
+	<conbody>
+		<p>In production deployments, it is possible that you will have more than a single instance of
+			your application trying to modify the same key. In this case a race condition happens in
+			which a modification one instance has made is immediately overridden.</p>
+		<p>Consider this code:</p>
+<codeblock outputclass="language-javascript">
+function add_friend(user_id, friend_id) {
+  bucket.get('user_id-' + user_id, function(err, result) {
+    result.value.friends[friend_id] = { 'added': new Date() };
+    bucket.set('user_id-' + user_id, result.value, function(err, result) { } );
+  });
+}
+</codeblock>
+		<p>In this case, friends is an array of friends the user has added, with the keys being the
+			friend IDs, and the values being the time when they were added.</p>
+		<p>When the friend has been added to the array, the document is stored again on the
+			server.</p>
+		<p>Assume that two users add the same friend at the same time, in this case there is a race
+			condition where one version of the friends array ultimately wins.</p>
+		<p>Couchbase provides two means by which to solve for this problem. The first is called
+			Opportunistic Locking and the second is called Pessimistic Locking.</p>
+		<p>Both forms of locking involve using a CAS value. This value indicates the state of a
+			document at a specific time. Whenever a document is modified, this value changes. The
+			contents of this value are not significant to the application, however it can be used to
+			ensure consistency. You can pass the CAS of the value as it is known to the application and
+			have the server make the operation fail if the current (server-side) CAS value differs.</p>
+	</conbody>
+</concept>

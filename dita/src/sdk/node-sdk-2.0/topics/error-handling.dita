@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept634">
+	<title>Error Handling</title>
+	<conbody>
+		<p>When something goes wrong, an Error object will be returned into the callback passed to the
+			operation. This Error object contains a lot of information that can be helpful to identify
+			what went wrong. Logging this object will typically contain a stack trace as well as
+			contain the error code and message that was generated within libcouchbase.</p>
+		<p>An Error object contains all of the default JavaScript error properties, but is also
+			enhanced with a numeric code value which is represents the error encountered within
+			libcouchbase. This error code can be used for quick identification of errors and easier
+			error handling.</p>
+	</conbody>
+</concept>

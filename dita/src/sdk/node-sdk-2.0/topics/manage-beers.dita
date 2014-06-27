@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept15641">
+	<title>Managing Beers</title>
+
+	<conbody>
+
+		<p>Now we’re finally getting into the cooler stuff of this tutorial. </p>
+		<section>
+			<title>Showing Beers</title>
+			<p>In the beer listing page, we want to display each beer along with a link to the brewery
+				that produces it. However, we’ve defined the beer/by_name view to return only the name
+				of the beer. To obtain the brewery, we need to fetch each beer document and examine it.
+				The document contains the brewery that we need later.</p>
+			<p>After we’ve retrieved a list of all the beers, we create a list of document IDs to fetch
+				by using the underscore libraries pluck function. We pass this list to
+				getMulti.</p><p>While we could have made this simpler by performing an individual get on
+				each beer’s id, that would be less efficient in terms of network usage.</p><p>Now that
+				we have the beer documents, we iterate through the list of values we retrieved and
+				assign the key (which is the object key) to a property of the beer object itself to
+				allow usage of it in the template.</p><p>Now let’s put this all together:</p>
+			
+<codeblock outputclass="language-javascript" spectitle="beer_app.js (showing beer listings)">
+function list_beers(req, res) {
+      var q = {
+        limit : ENTRIES_PER_PAGE,   // configure max number of entries.
+        stale : false               // We don't want stale views here.
+      };
+
+      db.view( "beer", "by_name", q).query(function(err, values) {
+        // 'by_name' view's map function emits beer-name as key and value as
+        // null. So values will be a list of
+        //      [ {id: &lt;beer-id&gt;, key: &lt;beer-name&gt;, value: &lt;null&gt;}, ... ]
+
+        // we will fetch all the beer documents based on its id.
+        var keys = _.pluck(values, 'id');
+
+        db.getMulti( keys, null, function(err, results) {
+
+          // Add the id to the document before sending to template
+          var beers = _.map(results, function(v, k) {
+            v.value.id = k;
+            return v.value;
+          });
+
+          res.render('beer/index', {'beers':beers});
+        })
+      });
+    }
+    app.get('/beers', list_beers);
+</codeblock>
+			<p>We also tell Express to route requests for /beers to this function, we then direct
+				express to render the beer/index.jade template. Here is the beer/index.jade
+				template:</p>
+			<codeblock outputclass="language-xml" spectitle="views/index.jade">
+extends ../layout
+  block content
+
+    h3 Browse Beers
+    form(class="navbar-search pull-left")
+      input#beer-search(class="search-query" type="text" placeholder="Search for Beers")
+
+    table#beer-table(class="table table-striped")
+      thead
+        tr
+          th Name
+          th Brewery
+          th
+      tbody
+        for beer in beers
+          tr
+            td: a(href="/beers/show/#{beer.id}") #{beer.name}
+            td: a(href="/breweries/show/#{beer.brewery_id}") To Brewery
+            td
+              a(class="btn btn-small btn-warning" href="/beers/edit/#{beer.id}") Edit
+              a(class="btn btn-small btn-danger" href="/beers/delete/#{beer.id}") Delete
+
+    div
+      a(class="btn btn-small btn-success" href="/beers/create") Add Beer
+</codeblock>
+			<p>Navigate to <filepath>http://localhost:1337/beers</filepath> to see a listing of beers.
+				Each beer has <uicontrol>To Brewery</uicontrol>, <uicontrol>Edit</uicontrol>, and
+					<uicontrol>Delete</uicontrol> buttons.</p>
+			<p>On the bottom of the page, you can also see an <uicontrol>Add Beer</uicontrol> button,
+				which allows you to define new beers.</p>
+			<p>Let’s implement the Delete button next!</p>
+		</section>
+
+		<section><title>Deleting Beers</title><p>Due to the simplicity of Couchbase and Express, we
+				can implement a single method to delete both beers and breweries.</p>
+			<codeblock outputclass="language-javascript" spectitle="beer_app.js (showing beer listings):">
+function delete_object( req, res ) {
+    db.remove( req.params.object_id, function(err, meta) {
+      if( err ) {
+        console.log( 'Unable to delete document `' + req.params.object_id + '`' );
+      }
+
+      res.redirect('/welcome');
+    });
+  }
+  app.get('/beers/delete/:object_id', delete_object);
+  app.get('/breweries/delete/:object_id', delete_object);
+</codeblock>
+			<p>Here we tell Express to route our two deletion URLs to the same method. We attempt to
+				delete the object in our Couchbase cluster that is passed through the url then redirect
+				the user to our Welcome page. If this delete fails, we also log an error to the
+				console.</p>
+			<p>If you find that a beer is still displayed after you click the delete button, you can
+				wait a moment and refresh the browser page to verify that the beer has been deleted.
+				Deleted objects may not immediately get removed from our view, but may instead need to
+				wait for a view index update.</p>
+			<p>Another way to verify that a beer has been deleted is by clicking the delete button
+				again and getting a 404 error.</p>
+		</section>
+
+		<section>
+			<title>Displaying Beers</title>
+			<codeblock spectitle="beer_app.js (showing a single beer):" outputclass="language-javascript">
+function show_beer(req, res) {
+    db.get( req.params.beer_id, function(err, result) {
+      var doc = result.value;
+      if( doc === undefined ) {
+        res.send(404);
+      } else {
+        doc.id = req.params.beer_id;
+
+        var view = {
+          'beer': doc,
+          'beerfields': _.map(doc, function(v,k){return {'key':k,'value':v};})
+        };
+        res.render('beer/show', view);
+      }
+    });
+  }
+  app.get('/beers/show/:beer_id', show_beer);
+</codeblock>
+			<p>Like for the delete example, we first check if the document actually exists within our
+				cluster. We pass the beer ID through the URL, this is passed to use as beer_id, as seen
+				in the express route.</p>
+			<p>In order to retrieve the information or this particular
+				beer, we simply call the connections get method with the beer_id we received through the
+				route. We first check the ensure we received a document and if not return a HTTP 404
+				error.</p>
+			<p>If the beer exists, we build prepare a view object to pass to the template
+				which contains the beer object as well as a mapped list of all fields and values that
+				are inside of the beer object. We pass this data to the views/beer/show.jade template,
+				which you is shown below.</p>
+<codeblock outputclass="language-javascript" spectitle="views/beer/show.jade:">
+extends ../layout
+block content
+
+  h3 Show Details for Beer #{beer.name}
+  table(class="table table-striped")
+    tbody
+      tr
+        td: strong #{beer.brewery_id}
+        td: a(href="/breweries/show/#{beer.brewery_id}") #{beer.brewery_id}
+      for beerfield in beerfields
+        tr
+          td: strong #{beerfield.key}
+          td #{beerfield.value}
+
+  a(class="btn btn-medium btn-warning" href="/beers/edit/#{beer.id}") Edit
+  a(class="btn btn-medium btn-danger" href="/beers/delete/#{beer.id}") Delete
+</codeblock>
+			<p>Here we extract the brewery_id, and create a special entry with a link pointing to the
+				page to display the actual brewery.</p>
+			<p>Then we is iterate over the rest of the fields, printing out the key and value of
+				each.</p>
+			<p>Finally, we provide links at the bottom to edit and delete the beer.</p>
+		</section>
+
+		<section>
+			<title>Editing Beers</title>
+<codeblock spectitle="beer_app.js (beer editing):" outputclass="language-javascript">
+function normalize_beer_fields(data) {
+    var doc = {};
+    _.each(data, function(value, key) {
+      if(key.substr(0,4) == 'beer') {
+        doc[key.substr(5)] = value;
+      }
+    });
+
+    if (!doc['name']) {
+      throw new Error('Must have name');
+    }
+    if (!doc['brewery_id']) {
+      throw new Error('Must have brewery ID');
+    }
+
+    return doc;
+  }
+
+  function begin_edit_beer(req, res) {
+    db.get(req.params.beer_id, function(err, result) {
+      var doc = result.value;
+      if( doc === undefined ) { // Trying to edit non-existing doc ?
+        res.send(404);
+      } else { // render form.
+        doc.id = req.params.beer_id;
+        var view = { is_create: false, beer: doc };
+        res.render('beer/edit', view);
+      }
+    });
+  }
+  function done_edit_beer(req, res) {
+    var doc = normalize_beer_fields(req.body);
+
+    db.get( rc.doc.brewery_id, function(err, result) {
+      if (result.value === undefined) { // Trying to edit non-existing doc ?
+        res.send(404);
+      } else {    // Set and redirect.
+        db.set( req.params.beer_id, doc, function(err, doc, meta) {
+          res.redirect('/beers/show/'+req.params.beer_id);
+        })
+      }
+    });
+  }
+  app.get('/beers/edit/:beer_id', begin_edit_beer);
+  app.post('/beers/edit/:beer_id', done_edit_beer);
+</codeblock>
+			<p>We define two handlers for editing. The first handler is the GET method for
+				/beers/edit/:beer_id, which displays a nice HTML form that we can use to edit the beer.
+				It passes the following parameters to the template: the beer object and a boolean that
+				indicates this is not a new beer (because the same template is also used for the Create
+				Beer form).</p>
+			<p>The second handler is the POST method, which validates the input. The post handler calls
+				the normalize_beer_fields function, which converts the form fields into properly formed
+				names for the beer document, checks to see that the beer has a valid name, and checks to
+				see that a brewery_id is specified and that it indeed exists. If all the checks pass,
+				the function returns the formatted document. If an exception is thrown, express will
+				catch this error and render it to the user. Otherwise, the document is set to Couchbase
+				using the set method and the user is redirected to the newly created beer’s show
+				page.</p>
+			<p>This template is rather wordy because we enumerate all the possible fields with a nice
+				description.</p>
+			<codeblock spectitle="views/beer/edit.jade:">
+extends ../layout
+block content
+
+  if is_create
+    h3 Create Beer
+  else
+    h3 Editing #{beer.name}
+
+  form(method="post" action="")
+    fieldset
+      legend General Info
+      .span12
+        .span6
+          label Type
+          input(type="text" name="beer_type" placeholder="Type of the document" value="#{beer.type}")
+          label Name
+          input(type="text" name="beer_name" placeholder="The name of the beer" value="#{beer.name}")
+          label Description
+          input(type="text" name="beer_description" placeholder="A short description" value="#{beer.description}")
+        .span6
+          label Style
+          input(type="text" name="beer_style" placeholder="Bitter? Sweet? Hoppy?" value="#{beer.style}")
+          label Category
+          input(type="text" name="beer_category" placeholder="Ale? Stout? Lager?" value="#{beer.category}")
+    fieldset
+      legend Details
+      .span12
+        .span6
+          label Alcohol (ABV)
+          input(type="text" name="beer_abv" placeholder="The beer's ABV" value="#{beer.abv}")
+          label Biterness (IBU)
+          input(type="text" name="beer_ibu" placeholder="The beer's IBU" value="#{beer.ibu}")
+        .span6
+          label Beer Color (SRM)
+          input(type="text" name="beer_srm" placeholder="The beer's SRM" value="#{beer.srm}")
+          label Universal Product Code (UPC)
+          input(type="text" name="beer_upc" placeholder="The beer's UPC" value="#{beer.upc}")
+    fieldset
+      legend Brewery
+      .span12
+        .span6
+          label Brewery
+            input(type="text" name="beer_brewery_id" placeholder="The brewery" value="#{beer.brewery_id}")
+
+    .form-actions
+      button(type="submit" class="btn btn-primary") Save changes
+</codeblock>
+			<p>The template first checks the is_create variable. If it’s false, then we’re editing an
+				existing beer, and the caption is filled with that name. Otherwise, it’s titled as
+				Create Beer.</p>
+		</section>
+
+		<section><title>Creating Beers</title>
+			<p>Creating beers is largely the same as editing beers:</p>
+			<codeblock outputclass="language-javascript" spectitle="beer_app.js (create beer):">
+function begin_create_beer(req, res) {
+    var view = { is_create : true, beer:{
+      type: '',
+      name: '',
+      description: '',
+      style: '',
+      category: '',
+      abv: '',
+      ibu: '',
+      srm: '',
+      upc: '',
+      brewery_id: ''
+    } };
+    res.render('beer/edit', view);
+  }
+  function done_create_beer(req, res) {
+    var doc = normalize_beer_fields(req.body);
+    var beer_id = doc.brewery_id + '-' +
+                  doc.name.replace(' ', '-').toLowerCase();
+    db.add( beer_id, doc, function(err, result) {
+      if (err) throw err;
+      res.redirect('/beers/show/'+beer_id);
+    });
+  }
+  app.get('/beers/create', begin_create_beer);
+  app.post('/beers/create', done_create_beer);
+</codeblock>
+			<p>Here we display the same form as the one for editing beers, except we set the is_create
+				parameter to true, and pass an empty beer object. This is necessary because the template
+				still tries to populate the form fields with existing values.</p><p>In the POST handler,
+				we call normalize_beer_field as above when editing beers.</p><p>Because we’re creating a
+				new beer, we use the add method instead. This raise will cause the callback to be
+				invoked with an error if the beer already exists. We catch this and display it to the
+				user.</p><p>If everything went well, the user is redirected to the beer display page for
+				the newly created beer.</p>
+		</section>
+
+
+		<section>
+			<title>Searching Beers</title>
+			<p>In the beer listing page above, you might have noticed a search box at the top. We can
+				use it to dynamically filter our table based on user input. We’ll use JavaScript at the
+				client layer to perform the querying and filtering, and views with range queries at the
+				server (nodejs/express) layer to return the results.</p>
+			<p>Before we implement the server-side search method, we need to put the following in the
+				static/js/beersample.js file (if it’s not there already) to listen on search box changes
+				and update the table with the resulting JSON (which is returned from the search
+				method):</p>
+			<codeblock outputclass="language-javascript" spectitle="static/js/beersample.js (snippet):">
+$(document).ready(function() {
+
+    /**
+     * AJAX Beer Search Filter
+     */
+    $("#beer-search").keyup(function() {
+       var content = $("#beer-search").val();
+       if(content.length &gt;= 0) {
+           $.getJSON("/beers/search", {"value": content}, function(data) {
+               $("#beer-table tbody tr").remove();
+               for(var i=0;i&lt;data.length;i++) {
+                   var html = "&lt;tr&gt;";
+                   html += "&lt;td&gt;&lt;a href=\"/beers/show/"+data[i].id+"\"&gt;"+data[i].name+"&lt;/a&gt;&lt;/td&gt;";
+                   html += "&lt;td&gt;&lt;a href=\"/breweries/show/"+data[i].brewery+"\"&gt;To Brewery&lt;/a&gt;&lt;/td&gt;";
+                   html += "&lt;td&gt;";
+                   html += "&lt;a class=\"btn btn-small btn-warning\" href=\"/beers/edit/"+data[i].id+"\"&gt;Edit&lt;/a&gt;\n";
+                   html += "&lt;a class=\"btn btn-small btn-danger\" href=\"/beers/delete/"+data[i].id+"\"&gt;Delete&lt;/a&gt;";
+                   html += "&lt;/td&gt;";
+                   html += "&lt;/tr&gt;";
+                   $("#beer-table tbody").append(html);
+               }
+           });
+       }
+    });
+});
+</codeblock>
+			<p>The code waits for key up events on the search field, and if they happen, it issues an
+				AJAX query on the search function within the app. The search handler computes the result
+				(using views) and returns it as JSON. The JavaScript then clears the table, iterates
+				over the results, and creates new rows.</p>
+			<p>The search handler looks like this:</p>
+			<codeblock outputclass="language-javascript" spectitle="beer_app.js (ajax search response):">
+function search_beer(req, res) {
+    var value = req.query.value;
+    var q = { startkey : value,
+              endkey : value + JSON.parse('"\u0FFF"'),
+              stale : false,
+              limit : ENTRIES_PER_PAGE }
+    db.view( "beer", "by_name", q).query(function(err, values) {
+      var keys = _.pluck(values, 'id');
+      db.getMulti( keys, null, function(err, results) {
+        var beers = [];
+        for(var k in results) {
+          beers.push({
+            'id': k,
+            'name': results[k].value.name,
+            'brewery_id': results[k].value.brewery_id
+          });
+        }
+
+        res.send(beers);
+      });
+    });
+  };
+  app.get('/beers/search', search_beer);
+</codeblock>
+			<p>The beer_search function first extracts the user input by examining the query string
+				from the request.</p>
+			<p>It then builds an options object which will be passed to the view query api. We pass the
+				users input for the startkey, and pass the users input appended with a Unicode \u0FFF,
+				which for the view engine means “end here.” You need to get used to it a bit, but it’s
+				actually very neat and efficient.</p>
+			<p>We use getMulti (as has been seen in list beers page in a previous tutorial section) to
+				retrieve the complete data for each beer. However, unlike before, rather than rendering
+				a template using the data we have retrieved, we send the object directly to express,
+				which will kindly serialize it to JSON for us.</p>
+			<p>Now your search box should work nicely.</p>
+		</section>
+	</conbody>
+</concept>

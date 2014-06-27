@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept155">
+	<title>NodeJS SDK overview</title>
+	<conbody>
+		<p>This guide provides information for developers who want to use the Couchbase Node.js SDK to
+			build applications that use Couchbase Server.</p>
+	</conbody>
+</concept>

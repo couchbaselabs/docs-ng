@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept978">
+	<title>Bulk Loading</title>
+	<conbody>
+		<p>Most API functions have both single and multi-key (batched) variants. The batched variant
+			has the same name as the single-key variant, but its method name has Multi appended to
+			it.</p>
+		<p>The batched operations are significantly quicker and more efficient, especially when
+			dealing with many small values, because they allow pipelining of requests and responses,
+			saving on network latency.</p>
+		<p>Batched operations tend to accept an array of keys and return an object where the object
+			key matches the key requested and the value of said keys are the same as if a singular
+			operation was done.</p>
+
+		<p>Sometimes a single (or many) keys in a batched operation will fail. In this case, the
+			callback will receive an error parameter containing 1 (rather than the usual 0), and the
+			keys that failed will have a result object which contains an error key containing an error
+			object rather than value key which would normally contain the value that was retrieved.</p>
+
+	</conbody>
+</concept>

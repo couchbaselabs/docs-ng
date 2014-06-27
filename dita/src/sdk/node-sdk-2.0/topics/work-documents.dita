@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept xml:lang="en-us" id="concept8684">
+	<title>Working with Documents</title>
+	<conbody>
+		<p>A document in Couchbase server consists of a key, value, and metadata.</p>
+		<ul>
+			<li>
+				<p><i>Key</i></p>
+				<p>A key is a unique identifier for your data. Each document must have a unique key. The
+					key can be any valid string.</p>
+			</li>
+
+			<li>
+				<p><i>Value</i></p>
+				<p>The value is your own application data that exists under the key. The format of the
+					value can be anything, couchnode will automatically choose the best storage
+					format.</p>
+			</li>
+			<li>
+				<p><i>Metadata</i></p>
+				<p>The metadata contains information concerning the format of the value that is, whether
+					it’s JSON, a raw type, or something else. It also contains revision information such
+					as the CAS, which we’ll read about later.</p></li>
+		</ul>
+
+		<p>You can store documents by providing the unique key under which the document will be
+			stored, and the value which contains the actual document. You can retrieve documents either
+			by directly specifying the unique key under which the document was stored or by querying
+			views that retrieve documents based on specific criteria.</p>
+
+
+		<section>
+			<title>Getting a document by key</title>
+			<p>Couchbase provides two ways to fetch your documents: you can retrieve a document by its
+				key, or you can retrieve a set of documents that match some constraint by using Views.
+				Because views are more complex, we’ll first demonstrate getting documents by their
+				keys.</p></section>
+	
+		<section><title>Getting A Single Document</title>
+			<p>To get a single document, simply supply
+				the key as the first argument to the get method. It returns a result object on success
+				that can then be used to extract the value.</p> 
+				<codeblock>
+bucket.get(‘test1’, function(err, result) {
+   console.log(result.value);
+});
+				</codeblock>
+		</section>
+
+		<section><title>Getting Multiple Documents</title><p>To get multiple documents, you can use
+				the more efficient getMulti method. You can pass it an array of keys and it will return
+				an object containing keys that match the keys you passed into getMulti and result
+				objects similar to the get call as values.</p>
+			<codeblock>
+bucket.getMulti([‘test1’, ‘test2’],function(err, results) { 
+   for(key in results) {
+      console.log(key + ‘: ‘ + results[key].value);
+   }
+}); 
+			</codeblock>
+		</section>
+
+		<section><title>Error Handling</title><p>If the key does not exist on the server, the callback
+				will be invoked with an unset value property on the result objects (it will not set the
+				callbacks error parameter). In the case of a getMulti call, it is possible that some
+				results will be returned, while others will not. For every other kinds of error such as
+				temporaryError, it is possible that some result objects will have error set, while
+				others do not. If any of the results from a getMulti call failed, there error parameter
+				of the callback will be set to 1 to signify that at least one operation failed to
+				execute successfully.</p>
+		</section>
+
+		<section>
+			<title>Storing a Document</title>
+			<p>This section provides a bit more insight on how to store documents. This is a
+				prerequisite to demonstrate how to retrieve documents because there must be something to
+				retrieve.</p><p>There are additional storage methods beyond those described here, which
+				are covered in the Advanced section, see Chapter 4, Advanced Usage. These include
+				manipulating numeric counters, setting expiration times for documents, and
+				appending/prepending to existing values.</p>
+			<p>The Connection object provides the following store operations, which conform to the CRUD
+				model:</p>
+			<ul>
+				<li><p><codeph>set(key, value, options)</codeph></p>
+					<p>Stores the document value under the key. If the key did not previously exist, it
+						is created. If the key already exists, its existing value is overwritten with the
+						new contents of value.</p></li>
+
+				<li><p><codeph>add(key, value, options)</codeph></p>
+					<p>Stores the document value under the key, but only if key does not already exist.
+						If key already exists, an exception is thrown.</p></li>
+
+				<li><p><codeph>replace(key, value, options)</codeph></p>
+					<p>Replace is the inverse of add. It sets the contents of key to value, but only if
+						the key already exists. If the key does not already exist, an exception is
+						thrown.</p></li>
+
+				<li><p><codeph>remove(key, options)</codeph></p>
+					<p>Deletes the key from the bucket. Future attempts to access this key via get raise
+						an exception until something is stored again for this key using one of the set
+						methods.</p></li>
+
+			</ul>
+			<p>The following code demonstrates the store operations.</p>
+			<codeblock>var couchbase = require('couchbase');
+
+var key = "demo_key";
+var value = "demo_value";
+
+// We use the 'default' bucket.
+bucket = new couchbase.Connection({bucket: 'default', host:'localhost'}, function(err) {
+  if (err) throw err;
+
+  console.log('Setting key ' + key + ' with value ' + value);
+  bucket.set(key, value, function(err, result) {
+    if (err) throw err;
+    console.log(result);
+
+    console.log('Getting value for key ' + key);
+    bucket.get(key, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+
+      console.log('Creating new key ' + key + ' with value "new_value"');
+      console.log('This will fail as ' + key + ' already exists');
+      bucket.add(key, 'new_value', function(err, result) {
+        console.log(err);
+
+        console.log('Replacing existing key ' + key + ' with new value');
+        bucket.replace(key, 'new value', function(err, result) {
+          if (err) throw err;
+          console.log(result);
+
+          console.log('Getting new value for key ' + key);
+          bucket.get(key, function(err, result) {
+            if (err) throw err;
+            console.log(result);
+
+            console.log('Deleting key ' + key);
+            bucket.remove(key, function(err, result) {
+              if (err) throw err;
+              console.log(result);
+
+              console.log('Getting value for key ' + key);
+              console.log('This will fail as it has been deleted');
+              bucket.get(key, function(err, result) {
+                console.log(err);
+
+                // Done
+                process.exit(0);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+</codeblock>
+			<p>Output:</p>
+			<codeblock>
+Setting key demo_key with value demo_value { cas: { '0': 467599872, '1': 461666438 } }
+Getting value for key demo_key { cas: { '0': 467599872, '1': 461666438 }, flags: 4, value: 'demo_value' } 
+Creating new key demo_key with value "new_value" 
+This will fail as demo_key already exists { [Error: Key exists (with a different CAS value)] code: 12 } 
+Replacing existing key demo_key with new value { cas: { '0': 467599872, '1': 3664555910 } } 
+Getting new value for key demo_key { cas: { '0': 467599872, '1': 3664555910 }, flags: 4, value: 'new value' } 
+Deleting key demo_key { cas: { '0': 467599872, '1': 3681333126 } } 
+Getting value for key demo_key
+This will fail as it has been deleted { [Error: No such key] code: 13 }
+			</codeblock>
+		</section>
+
+		<section>
+			<title>Querying a view</title>
+			<p>In addition to fetching documents by keys, you can also employ Views to retrieve
+				information using secondary indexes. This guide gets you started on how to use them from
+				the Node.js SDK. If you want to learn more about views, see the chapter in the Couchbase
+				Server 2.0 documentation.</p><p>First, create your view definition using by the web UI
+				(though you may also do this directly from the Node.js SDK, as will be shown
+				later).</p><p>You can then query the view results by calling the query method on the
+				Connection object. Simply pass it the design and view name.</p>
+			<p>The view method returns a ViewQuery object which provides an interface for accessing the
+				data stored in a view. The view can be then queried via the ViewQuery method through the
+				use of the query or firstPage methods which return a full list of results, or only the
+				first page respectively. Both the view method as well as the query methods accept
+				additional optional options that control the behavior of the results returned. You can
+				thus use it as follows:</p>
+			<codeblock>
+var viewQuery = bucket.view('beer', 'brewery_beers', {opt1: value1, opt2: value2});
+viewQuery.query(function(err, results) {
+  for(key in results) {
+    // Do something with the results
+  }
+});
+</codeblock>
+			<p>Or alternatively like this to retrieve only the first 30 results:</p>
+			<codeblock>var viewQuery = bucket.view('beer', 'brewery_beers', {opt1: value1, opt2: value2});
+viewQuery.firstPage({limit:30}, function(err, results) {
+  for(key in results) {
+    // Do something with the results
+  }
+});
+</codeblock>
+			<p>Here are some of the available options for the query methods. A full listing can be
+				found in the API documentation.</p>
+			<ul>
+				<li><p><codeph>reduce</codeph></p>
+			<p>This Boolean parameter indicates whether the server should also pass the results to
+				the view’s reduce function. An error is triggered if the view does not have a reduce
+				method defined.</p>
+				</li>
+				<li><p><codeph>limit</codeph></p>
+			<p>This numeric parameter indicates the maximum amount of results to fetch from the
+				query. This parameter is handy if your query can produce a lot of results.</p>
+				</li>
+				<li><p><codeph>descending</codeph></p>
+			<p>This Boolean parameter indicates that the results should be returned in reverse
+				order.</p></li>
+				<li><p><codeph>stale</codeph></p>
+			<p>This string parameter controls the trade-off between performance and freshness of
+				data. Possible values include “false” (force update), “update_after” (force after view
+				request) and “ok” (default: do not force any updates).</p>
+				</li>
+				<li><p><codeph>debug</codeph></p>
+			<p>This Boolean parameter fetches low-level debugging information from the view
+				engine.</p></li>
+				</ul>
+		</section>
+	</conbody>
+</concept>
