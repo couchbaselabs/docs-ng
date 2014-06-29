@@ -1,5 +1,25 @@
 # Configuring and Tuning
 
+## Connection String
+
+The client library may be configured via a URI-like connection string as well as
+through more advanced interfaces. The connection string follows the format of
+`couchbase://${hosts}/${bucket}?${options}`.
+
+The _host_ component of the connection string should identify one or more hosts
+which are members of the cluster you wish to connect to. Note that the library
+only needs a single host to be able to properly perform operations but adding
+multiple hosts to the list is recommended for redundancy.
+
+To specify multiple hosts, separate them by a comma (`,`) in the connection
+string, e.g.
+
+```
+couchbase://host1,host2,host3
+```
+
+
+
 ## SASL
 
 libcouchbase version 2.2 and later supports the CRAM-MD5 authentication mechanism, which enables you to avoid passing the bucket password as plain text over the wire.
@@ -20,31 +40,25 @@ You can obtain the cluster configuration by using either the memcached protocol 
 
 The default behavior of the library is to first attempt bootstrap over CCCP and then fall back to HTTP if CCCP fails. CCCP bootstrap is preferable because it does not require a dedicated configuration socket, does not require the latency and overhead of the HTTP protocol, and is more efficient to the internals of the cluster.
 
-To explicitly define the set of configuration modes to use, specify the modes inside the `lcb_create_st` structure.
+To explicitly control the policy of which bootstrap method to use, employ the use of
+the `bootstrap_on` option within the connection string:
 
 The following snippet disables HTTP bootstrapping:
 
 ```c
 struct lcb_create_st crparams = { 0 };
-
-lcb_config_transport_t transports[] = {
-	LCB_CONFIG_TRANSPORT_CCCP,
-	LCB_CONFIG_TRANSPORT_LIST_END
-};
-
-/** Requires version 2 */
-cparams.version = 2;
-crparams.v.v2.transports = transports;
-crparams.v.v2.host = "foo.com;bar.org;baz.net";
+crparams.version = 3;
+crparams.connstr = "couchbase://foo.com,bar.org,baz.net?bootstrap_on=cccp";
 
 lcb_t instance;
 lcb_create(&instance, &crparams);
 
 ```
 
-The `transports` field accepts an array of enabled transports followed by the
-end-of-list element (`LCB_CONFIG_TRANSPORT_LIST_END`). If this parameter is
-specified, the library _only_ uses the transports that are specified in the list.
+The `bootstrap_on` option can be assigned the value of `cccp` (for CCCP bootstrap only),
+`http` (for HTTP bootstrap only), or `both` (which initially tries CCCP and then falls
+back to HTTP; this is the default).
+
 
 The enabled transports remain valid for the duration of the instance. This means that it is used for the initial bootstrap and any subsequent configuration updates.
 
