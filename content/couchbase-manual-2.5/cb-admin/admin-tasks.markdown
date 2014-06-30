@@ -3553,7 +3553,6 @@ Consider the following upgrade scenarios:
 	2. Upgrade the source cluster. 
 	3. Upgrade the destination cluster. 
 	4. Re-create your XDCR replications and select the correct mode for your clusters. 
-* Both source and destination clusters are upgraded from pre-2.2 to 2.2. This is also not a safe upgrade path because the cluster upgrades are not synchronized. You may complete source upgrade prior to destination upgrade. This may lead to incorrect data replication and failures in conflict resolution. 
 * Both source and destination clusters are upgraded from pre-2.2 to 2.2. This is not a safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade is completed prior to destination upgrade, incorrect data replication and failures in conflict resolution may occur.  For this scenario:
 	1. Delete all XDCR replications on your source cluster. 
 	2. Upgrade the source cluster. 
@@ -3565,7 +3564,7 @@ Consider the following upgrade scenarios:
 	1. Allow the rebalance upgrade to complete.
 	2. Delete the `capi` replications.
 	2. Create `xmem` replications.
-* Source is pre-2.2 and destination is Elastic Search. If you upgrade your source cluster to 2.2, you need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
+* The source cluster is upgraded from pre-2.2 to 2.2 or higher and the destination cluster is Elastic Search. You need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
 * Both source and destination clusters are upgraded from pre-2.2 to 2.5 or higher This is not a safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade is completed prior to destination upgrade, incorrect data replication and failures in conflict resolution may occur. 
 	1. Delete all XDCR replications on your source cluster. 
 	2. Upgrade the source cluster. 
