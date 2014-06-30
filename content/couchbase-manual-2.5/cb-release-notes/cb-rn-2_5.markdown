@@ -106,11 +106,13 @@ and [Managing XDCR data encryption CLI](../cb-cli/#cb-cli-xdcr-data-encrypt).
 
 In releases prior to Couchbase Server 2.5, a developer, via a client library of their choice, randomly selects a host from which to request an initial topology configuration. Any future changes to the cluster map following the initial bootstrap are based on the NOT_MY_VBUCKET response from the server. This connection is made to port 8091 and is based on an HTTP connection. 
 
-Starting with Couchbase Server 2.5, client libraries may instead query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities. 
+Starting with Couchbase Server 2.5, client libraries may instead query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities.  
+
+Optimized connection management is backward compatible. Old client libraries can connect to Couchbase Server 2.5, and updated client libraries can connect to Couchbase Server 2.5 and earlier. 
 
 <div class="notebox"><p>Note</p>
-<p>This change is only applicable to Couchbase type buckets (not memcached buckets). An error is returned if a configuration request is received on port 8091.</p>
-<p>An updated client library is required take advantage of optimized connection management. Old client libraries will continue to use the port 8091 HTTP connection. See the client library release notes for details.</p>
+<p>This change is only applicable to Couchbase type buckets (not memcached buckets).</p>
+<p>An updated client library is required take advantage of optimized connection management. Older client libraries will continue to use the port 8091 HTTP connection. See the client library release notes for details.</p>
 </div>
 
 For more information, see [Using a smart (vBucket aware) client](../cb-admin/#couchbase-deployment-vbucket-client) in Deployment strategies.
