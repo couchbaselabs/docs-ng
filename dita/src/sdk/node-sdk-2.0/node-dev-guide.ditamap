@@ -7,7 +7,7 @@
 		<topicref href="topics/download-install.dita" />
 		<topicref href="topics/hello-couchbase.dita" />	
 	</topicref>
-	<topicref href="topics/tutorial-intro.dita">
+	<topicref href="topics/tutorial-intro.dita" chunk="to-content">
 		<topicref href="topics/quick-start.dita" />
 		<topicref href="topics/prep.dita" />
 		<topicref href="topics/wecome.dita" />
