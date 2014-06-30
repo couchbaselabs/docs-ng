@@ -2,65 +2,94 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_zxk_p14_14">
   <title>Upgrading with XDCR</title>
-  <shortdesc>The upgrade process depends on the scenario, </shortdesc>
+  <shortdesc>The upgrade process depends on the scenario.</shortdesc>
   
   
   <body>
+    
+    
+    
+
+    
+
+
+    
       
-      <p>The <codeph>smem</codeph> replication mode performs
+      <p>The <codeph>xmem</codeph> replication mode performs
         replication on a destination cluster with the memcached protocol. This is the default mode for
         Couchbase Server replications. The <codeph>capi</codeph> mode performs replications over a REST
         protocol. </p>
+    
+    <ul>
+      <li><codeph>xmem</codeph> - only 2.2 servers and above support it.</li>
+      <li><codeph>capi</codeph> - both 2.2 and pre–2.2 servers support it.</li>
+    </ul>
       
       <p>The following prerequisites need to be considered:</p>
       
       <ul>
-        <li>When upgrading Couchbase Server, make sure that both the source and destination clusters
-          support the desired replication mode.</li>
         <li>Network port 11210 needs to be open between nodes for ‘xmem’ mode of replication to
           work.</li>
-        <li>Alternatively, delete the replication, complete the upgrade, then recreate the
+        <li>In general, delete the replication, complete the upgrade, then recreate the
           replication.</li>
+        <li>When upgrading Couchbase Server, make sure that both the source and destination clusters
+          support the desired replication mode.</li>
         <li>To use XDCR data encryption with Secure Socket Layer (SSL), all nodes must be upgraded to at
           least Couchbase Server 2.5 Enterprise Edition.</li>
       </ul>
       
-      <p>If you do not, you could experience data loss during replication:</p>
+      <p>If you do not, you could experience data loss during replication</p>
       
-      <ul>
-        <li><codeph>xmem</codeph> - only 2.2 servers and above support it.</li>
-        <li><codeph>capi</codeph> - both 2.2 and pre–2.2 servers support it.</li>
-      </ul>
+
       
       <p>Consider the following upgrade scenarios:</p>
       
-      <ol>
-        <li>Both source and destination clusters are pre–2.2 and you upgrade both to pre–2.2 versions.
-          This scenario is supported since both clusters will use <codeph>capi</codeph>.</li>
-        <li>Both source and destination clusters are pre–2.2 and you upgrade the destination to 2.2 or
-          higher. This is a safe upgrade path since the source cluster will still communicate by default
-          via <codeph>capi</codeph> to the destination.</li>
-        <li>Upgrade only the source cluster to 2.2 or higher with the destination is pre–2.2. This
-        is not a safe upgrade path because the destination cannot receive replication via
+      <ul>
+        <li>Both source and destination clusters are pre-2.2 and both are upgrading to pre-2.2
+        versions. This scenario is supported since both clusters use <codeph>capi</codeph>.</li>
+        <li>Both source and destination clusters are pre-2.2 and the destination is upgrading to
+        2.2. This is a safe upgrade path since the source cluster communicates via
+          <codeph>capi</codeph> to the destination.</li>
+        <li>The source cluster is upgrading to 2.2 or higher and the destination is pre-2.2. This is
+        not a safe upgrade path because the destination cannot receive replication via
           <codeph>xmem</codeph>. This results in incorrect data replication and failures in conflict
-        resolution.</li>
-        <li>Upgrade both source and destination clusters from pre–2.2 to 2.2. This is also not a
-        safe upgrade path because the cluster upgrades are not synchronized. You may complete source
-        upgrade prior to destination upgrade. This may lead to incorrect data replication and
-        failures in conflict resolution.</li>
-        <li>Source is pre–2.2 and the destination cluster is Elastic Search. To upgrade the source
-        cluster to 2.2 or higher, delete the replication, create it once again, and specifically use
-          <codeph>capi</codeph> mode.</li>
-      </ol>
-      
-      <p>For these scenarios 3–4, use the following process:</p><ol>
-        <li>Delete all XDCR replications on your source cluster.</li>
-        <li>Upgrade the source cluster.</li>
-        <li>Upgrade the destination cluster.</li>
-        <li>Re-create your XDCR replications and select the correct mode for your clusters. If both
-          clusters are upgraded to 2.2 you can use <codeph>xmem</codeph> otherwise you should use
-          <codeph>capi</codeph> mode.</li>
-      </ol>
+        resolution. For this scenario, upgrade both source and destinatin clusters to 2.2 or higher. </li>
+        <li>Both source and destination clusters are upgrading from pre-2.2 to 2.2. This is not a
+        safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade
+        completes prior to destination upgrade, incorrect data replication and failures in conflict
+        resolution may occur.  For this scenario:<ol>
+          <li>Delete all XDCR replications on your source cluster. </li>
+          <li>Upgrade the source cluster to 2.2 or higher. </li>
+          <li>Upgrade the destination cluster to 2.2 or higher.</li>
+          <li>Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is
+              <codeph>xmem</codeph> replication. </li>
+        </ol><p>Alternatively:</p><ol>
+          <li>Allow the rebalance upgrade to complete.</li>
+          <li>Delete the version 1 (<codeph>capi</codeph>) XDCR protocol replications.</li>
+          <li>Create version 2 (<codeph>xmem</codeph>) XDCR protocol replications.</li>
+        </ol>
+      </li>
+        <li>The source cluster is upgrading from pre–2.2 to 2.2 or higher and the destination cluster is Elastic Search. 
+          Since the source cluster must use <codeph>capi</codeph> for replication:  
+          <ol>
+            <li>Delete all XDCR replications on your source cluster. </li>
+            <li>Upgrade the source cluster to 2.2 or higher. </li>
+            <li>Re-create the XDCR replications using Version 1 for the XDCR protocol. Version 1 is <codeph>capi</codeph> replication.</li>
+          </ol>
+        </li>
+        <li>Both source and destination clusters are upgraded from pre-2.2 to 2.5 or higher. This is
+        not a safe upgrade path because the cluster upgrades are not synchronized. If the source
+        upgrade completes prior to destination upgrade, incorrect data replication and failures in
+        conflict resolution may occur. <ol>
+          <li>Delete all XDCR replications on your source cluster. </li>
+          <li>Upgrade the source cluster to 2.5 or higher. </li>
+          <li>Upgrade the destination cluster 2.5 or higher.</li>
+          <li>Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is
+              <codeph>xmem</codeph> replication.</li>
+        </ol>
+      </li>
+      </ul>
+
       
   </body>
 </topic>
