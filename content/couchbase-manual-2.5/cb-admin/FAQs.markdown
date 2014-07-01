@@ -32,15 +32,11 @@
 
    The following TCP ports should be available:
 
-    * 8091 — GUI and REST interface
-
-    * 11211 — Server-side Moxi port for standard memcached client access
-
-    * 11210 — native `couchbase` data port
-
-    * 21100 to 21199 — inclusive for dynamic cluster communication
-
- * What hardware and platforms does `couchbase` Server support?
+* 4369 - Erlang port mapper (epmd)
+* 8091 - GUI and REST interface8092 - Couchbase API port
+* 11209, 11210, 11211, 11214, 11215 - Bucket and proxy ports
+* 18091, 18092 - Internal REST and CAPI HTTPS for SSL
+* 21100 to 21199 - Inclusive for dynamic cluster communication
 
    Couchbase Server supports Red Hat (and CentOS) versions 5 starting with update
    2, Ubuntu 9 and Windows Server 2008 (other versions have been shown to work
