@@ -617,7 +617,7 @@ updateInterval=10000&updateMinChanges=7000
 
 If successful, the return value is the JSON of the updated configuration.
 
-To configure the update values explicitly on individual design documents, you
+To configure the updateMinChanges or replicaUpdateMinChanges values explicitly on individual design documents, you
 must specify the parameters within the `options` section of the design document.
 For example:
 
