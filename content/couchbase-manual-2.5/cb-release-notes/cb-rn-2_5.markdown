@@ -44,7 +44,7 @@ Couchbase Server 2.5.1 (April 2014) is a maintenance release for Couchbase Serve
 **XDCR may not replicate some mutations:**
 
 * [MB-11411](http://www.couchbase.com/issues/browse/MB-11411): Warmup with an access log always sets the loaded document's rev-id to 1.
-* [MB-10059](http://www.couchbase.com/issues/browse/MB-110059): Replica vbucket  ignores rev_seq values of new items from the active vbucket (pre-2.5.1 release).
+
 
 Symptoms:
 : Users of XDCR may notice that the replica bucket has old revisions of documents and can also contain documents which have been deleted in the source bucket. This symptom  typically occurs following a  restart of a Couchbase Server node.
