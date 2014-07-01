@@ -13,10 +13,10 @@
       </dlentry>
       <dlentry>
         <dt>What is a vBucket?</dt>
-        <dd>A vBucket is conceptually a computed subset of all possible mapping keys. 
-          vBuckets are mapped to servers statically and have a consistent key through bBucket computations. 
-          The number of vBuckets in a cluster remains constant regardless of server topology which means that 
-        a key always maps to the same vBucket given the same hash.</dd>
+        <dd>A vBucket is conceptually a computed subset of all possible mapping keys. vBuckets are
+          mapped to servers statically and have a consistent key through vBucket computations. The
+          number of vBuckets in a cluster remains constant regardless of server topology which means
+          that a key always maps to the same vBucket given the same hash.</dd>
       </dlentry>
       <dlentry>
         <dt>What is a TAP stream?</dt>
