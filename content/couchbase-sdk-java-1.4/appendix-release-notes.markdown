@@ -8,7 +8,7 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.4.3 GA (1 July 2014)
 
-This is the third bugfix release for the 1.4 series and provides important bugfixes if you are using replica reads as well as the new carrier publication mechanism. It also includes a heap memory optimization for larger get responses.
+This is the third bug fix release for the 1.4 series and provides important bug fixes if you are using replica reads and the new carrier publication mechanism. It also includes a heap memory optimization for larger get responses.
 
 **Enhancements in 1.4.3**
 
@@ -16,15 +16,15 @@ This is the third bugfix release for the 1.4 series and provides important bugfi
 
 **Fixes in 1.4.3**
 
-* [JCBC-480](http://www.couchbase.com/issues/browse/JCBC-480), [JCBC-482](http://www.couchbase.com/issues/browse/JCBC-482): replica read (getFromReplica, getsFromReplica and their async variants) are now reacting properly during certain failure conditions (when the document on the replica does not exist). In addition, an important bug with getsFromReplica has been fixed which makes sure it gets scheduled appropriately to target the replica nodes.
+* [JCBC-480](http://www.couchbase.com/issues/browse/JCBC-480), [JCBC-482](http://www.couchbase.com/issues/browse/JCBC-482): Replica reads (`getFromReplica`, `getsFromReplica` and their async variants) are now reacting properly during certain failure conditions (when the document on the replica does not exist). In addition, an important bug with `getsFromReplica` has been fixed to make sure it gets scheduled appropriately to target the replica nodes.
 
-* [JCBC-477](http://www.couchbase.com/issues/browse/JCBC-477): Before this change, the bulk get (which is used internally when setIncludeDocs is set 
-to true), has not been supplied with the timeout used for the view request
-itself. This is normally not an issue, since key/value operations are much
-quicker than the default view timeout. In certain scenarios, it can come
+* [JCBC-477](http://www.couchbase.com/issues/browse/JCBC-477): Before this change, the bulk get, which is used internally when `setIncludeDocs` is set 
+to true, was not supplied with the timeout used for the view request
+itself. This is normally not an issue because key-value operations are much
+quicker than the default view timeout. In certain scenarios it can come
 up, so the timeout is now properly passed down.
 
-* [JCBC-476](http://www.couchbase.com/issues/browse/JCBC-476): The "Node expected to receive data is inactive." log message has been reworked to INFO level and a more clear message of what is reflected underneath. It now says that the operation is queued properly, will be retried and the SDK checks for a new configuration eventually.
+* [JCBC-476](http://www.couchbase.com/issues/browse/JCBC-476): The `Node expected to receive data is inactive` log message has been changed to the INFO level and contains a clearer message of what is reflected underneath. It now says that the operation is queued properly, will be retried and the SDK checks for a new configuration eventually.
 
 * [JCBC-475](http://www.couchbase.com/issues/browse/JCBC-475): The configuration management (especially with the carrier mode and during shutdown) has been reworked a little and hardened so it reacts better during node restarts and in the shutdown process of the SDK (to avoid running threads after shutdown).
 
