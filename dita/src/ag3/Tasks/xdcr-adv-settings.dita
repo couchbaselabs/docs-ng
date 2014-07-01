@@ -2,7 +2,8 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_l3v_lh4_14">
   <title>XDCR advanced settings</title>
-  <shortdesc>XDCR advanced internal setting include maximum replications, batch count, batch size, failure retry interval, and optimistic replication threshold.</shortdesc>
+  <shortdesc>XDCR advanced settings are internal settings that are available for
+    configuration.</shortdesc>
   <body>
 
       <p>Advanced settings that can be updated include:</p>

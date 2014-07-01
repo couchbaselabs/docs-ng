@@ -125,28 +125,6 @@
 						<entry>Number of maximum simultaneous HTTP connections used for REST
 							protocol.</entry>
 					</row>
-					<row>
-						<entry><codeph>xmemWorker</codeph></entry>
-						<entry>Integer from 1 to 32. Default 1.</entry>
-						<entry>Used in memcached protocol for XDCR at the data transport layer. The
-							number of work processes per vbucket replicator. A memcached work
-							process is responsible for sending memcached operations to a remote
-							node.</entry>
-					</row>
-					<row>
-						<entry><codeph>enablePipelineOps</codeph></entry>
-						<entry>Boolean. Defaults to true.</entry>
-						<entry>Used for memcached protocol with XDCR for backwards computability.
-							True indicates pipelined operations and false indicates non-pipelined
-							memcached operations.</entry>
-					</row>
-					<row>
-						<entry><codeph>localConflictResolution</codeph></entry>
-						<entry>Boolean, default is false.</entry>
-						<entry>Used for backwards compatibility with pre–2.2 clusters. Perform
-							conflict resolution on source cluster before replication to destination.
-						</entry>
-					</row>
 				</tbody>
 			</tgroup>
 		</table>

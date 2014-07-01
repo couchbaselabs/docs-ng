@@ -1,22 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic808"><title>Viewing internal XDCR settings</title><body><p>There are internal settings for XDCR which are only exposed via the REST API.
-These settings will change the replication behavior, performance, and timing. To
-view an XDCR internal settings, for instance:</p><codeblock><codeph>curl -u admin:password1  \
-http://10.4.2.4:8091/internalSettings
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password1</i>, and <i>10.4.2.4</i> values in the above example
-with your actual values.</p><p>You will receive a response similar to the following. For the sake of brevity,
-we are showing only the XDCR-related items:</p><codeblock><codeph>{
-....
+<topic xml:lang="en-us" id="topic808">
+  <title>Viewing internal XDCR settings</title>
+  <body>
+    <p>There are internal settings for XDCR which are only exposed via the REST API. These settings
+      change replication behavior, performance, and timing. To view an XDCR internal
+      settings:</p>
+    
+    <section><title>HTTP method and URI path</title>
+      
+      <codeblock>
+  GET /internalSettings
+      </codeblock>
+    </section>
+    
+    <example><title>Curl syntax</title>
+curl --username=ADMIN --password=PASSWORD
+    HOST:PORT/internalSettings  
+    </example>
+    
+    <codeblock>
+curl -u admin:password1  \
+    http://10.4.2.4:8091/internalSettings
+</codeblock>
+    
+    <p>You will receive a response similar to the following. For the sake of brevity, we are showing
+      only the XDCR-related items:</p>
+    
+    <codeblock>
+{
+     ....
+    "xdcrMaxConcurrentReps":32,
+    "xdcrCheckpointInterval":1800,
+    "xdcrWorkerBatchSize":500,
+    "xdcrDocBatchSizeKb":2048,
+    "xdcrFailureRestartInterval":30,
+    "xdcrOptimisticReplicationThreshold":256,
+    "xdcrAnticipatoryDelay":0
+     ....
+}      
+      
+    </codeblock>
+    
 
-"xdcrMaxConcurrentReps":33,
-"xdcrCheckpointInterval":222,
-"xdcrWorkerBatchSize":555,
-"xdcrDocBatchSizeKb":999,
-"xdcrFailureRestartInterval":44
-....
-}
-</codeph></codeblock><p>For more information about these settings and their usage, see <xref href="../cb-admin/#admin-tasks-xdcr-advanced" format="html">Cross Datacenter Replication
-(XDCR), Providing Advanced Settings</xref>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#admin-tasks-xdcr-advanced" format="html"><linktext>Cross Datacenter Replication
-(XDCR), Providing Advanced Settings</linktext></link></linklist></related-links></topic>
+
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../tasks/xdcr-adv-settings.dita"></link>
+    </linklist>
+  </related-links>
+</topic>
