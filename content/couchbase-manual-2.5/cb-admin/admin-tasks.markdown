@@ -3529,39 +3529,50 @@ active will be displayed within the `Past Replications` section of the
 
 ### Upgrading with XDCR
 
-The `smem` replication mode performs replication on a destination cluster with the memcached protocol. 
-This is the default mode for Couchbase Server replications. The `capi` mode performs 
-replications over a REST protocol. 
- 
- These are prerequistes that needs to be considered:
- 
- 1. When upgrading Couchbase Server, make sure that both the 
- source and destination clusters support the desired replication mode. 
- 2. Network port 11210 needs to be open between nodes for 'xmem' mode of replication to work.
- 3. Alternatively, delete the replication, complete the upgrade, then recreate the replication. 
- 4. To use XDCR data encryption with Secure Socket Layer (SSL), all nodes must be upgraded 
- to at least Couchbase Server 2.5 Enterprise Edition.
- 
- If you do not, you could experience data loss during replication:
- 
+The `xmem` replication mode performs replication on a destination cluster with the memcached protocol. This is the default mode for Couchbase Server replications. The `capi` mode performs replications over a REST protocol. 
+
  - `xmem` - only 2.2 servers and above support it.
  - `capi` - both 2.2 and pre-2.2 servers support it.
-
+ 
+ These are prerequisites that needs to be considered:
+ 
+* Network port 11210 needs to be open between nodes for 'xmem' mode of replication to work.
+* In general, delete the replication, complete the upgrade, then recreate the replication. 
+* When upgrading Couchbase Server, make sure that both the 
+ source and destination clusters support the desired replication mode. 
+* To use XDCR data encryption with Secure Socket Layer (SSL), all nodes must be upgraded to at least Couchbase Server 2.5 Enterprise Edition.
+ 
+ If you do not, you could experience data loss during replication.
+ 
 Consider the following upgrade scenarios:
 
-1. Both source and destination clusters are pre-2.2 and you upgrade both to pre-2.2 versions. This scenario is supported since both clusters will use `capi`.
-2. Both source and destination clusters are pre-2.2 and you upgrade the destination to 2.2 or higher. 
-This is a safe upgrade path since the source cluster will still communicate by default via `capi` to the destination.
-3. You upgrade only the source cluster to 2.2 or higher and the destination is pre-2.2. This is not a safe upgrade path because the destination cannot receive replication via `xmem`. This results in incorrect data replication and failures in conflict resolution.
-4. You upgrade both source and destination clusters from pre-2.2 to 2.2. This is also not a safe upgrade path because the cluster upgrades are not synchronized. You may complete source upgrade prior to destination upgrade. This may lead to incorrect data replication and failures in conflict resolution.
-5. Source is pre-2.2 an destination is Elastic Search. If you upgrade your source cluster to 2.2 or higher, you need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
+*  Both source and destination clusters are pre-2.2 and both are upgraded to pre-2.2 versions. This scenario is supported since both clusters use `capi`.
+*  Both source and destination clusters are pre-2.2 and the destination is upgraded to 2.2. This is a safe upgrade path since the source cluster communicates via `capi` to the destination.
+* The source cluster is upgraded to 2.2 or higher and the destination is pre-2.2. This is not a safe upgrade path because the destination cannot receive replication via `xmem`. This results in incorrect data replication and failures in conflict resolution.  For this scenario:
+	1. Delete all XDCR replications on your source cluster. 
+	2. Upgrade the source cluster. 
+	3. Upgrade the destination cluster. 
+	4. Re-create your XDCR replications and select the correct mode for your clusters. 
+* Both source and destination clusters are upgraded from pre-2.2 to 2.2. This is not a safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade is completed prior to destination upgrade, incorrect data replication and failures in conflict resolution may occur.  For this scenario:
+	1. Delete all XDCR replications on your source cluster. 
+	2. Upgrade the source cluster. 
+	3. Upgrade the destination cluster. 
+	4. Re-create the XDCR replications and select the correct mode for your clusters. 
 
-For these scenarios 3-4 you should follow this process:
+	Alternatively: 
+	
+	1. Allow the rebalance upgrade to complete.
+	2. Delete the `capi` replications.
+	2. Create `xmem` replications.
+* The source cluster is upgraded from pre-2.2 to 2.2 or higher and the destination cluster is Elastic Search. You need to delete the replication, create it once again, and specifically use `capi` mode. See [Providing Advanced XDCR Settings](#admin-tasks-xdcr-advanced).
+* Both source and destination clusters are upgraded from pre-2.2 to 2.5 or higher This is not a safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade is completed prior to destination upgrade, incorrect data replication and failures in conflict resolution may occur. 
+	1. Delete all XDCR replications on your source cluster. 
+	2. Upgrade the source cluster. 
+	3. Upgrade the destination cluster. 
+	4. Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is `xmem` replication. 
+ 
+If both clusters are upgraded to 2.2 or higher, use `xmem` mode replication.
 
-1. Delete all XDCR replications on your source cluster.
-2. Upgrade the source cluster.
-3. Upgrade the destination cluster.
-4. Re-create your XDCR replications and select the correct mode for your clusters. If both clusters are upgraded to 2.2 you can use `xmem` otherwise you should use `capi` mode.
 
 <a id="couchbase-xdcr-conflict-resolution"></a>
 

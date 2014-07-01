@@ -4,6 +4,35 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-3a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.3 GA (1 July 2014)
+
+This is the third bug fix release for the 1.4 series and provides important bug fixes if you are using replica reads and the new carrier publication mechanism. It also includes a heap memory optimization for larger get responses.
+
+**Enhancements in 1.4.3**
+
+* [SPY-175](http://www.couchbase.com/issues/browse/SPY-175): The memory usage for get responses with payloads has been reduced, which will be more noticeable on the heap with larger payloads and higher traffic.
+
+**Fixes in 1.4.3**
+
+* [JCBC-480](http://www.couchbase.com/issues/browse/JCBC-480), [JCBC-482](http://www.couchbase.com/issues/browse/JCBC-482): Replica reads (`getFromReplica`, `getsFromReplica` and their async variants) are now reacting properly during certain failure conditions (when the document on the replica does not exist). In addition, an important bug with `getsFromReplica` has been fixed to make sure it gets scheduled appropriately to target the replica nodes.
+
+* [JCBC-477](http://www.couchbase.com/issues/browse/JCBC-477): Before this change, the bulk get, which is used internally when `setIncludeDocs` is set 
+to true, was not supplied with the timeout used for the view request
+itself. This is normally not an issue because key-value operations are much
+quicker than the default view timeout. In certain scenarios it can come
+up, so the timeout is now properly passed down.
+
+* [JCBC-476](http://www.couchbase.com/issues/browse/JCBC-476): The `Node expected to receive data is inactive` log message has been changed to the INFO level and contains a clearer message of what is reflected underneath. It now says that the operation is queued properly, will be retried and the SDK checks for a new configuration eventually.
+
+* [JCBC-475](http://www.couchbase.com/issues/browse/JCBC-475): The configuration management (especially with the carrier mode and during shutdown) has been reworked a little and hardened so it reacts better during node restarts and in the shutdown process of the SDK (to avoid running threads after shutdown).
+
+**Known Issues in 1.4.3**
+
+* [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The work-around
+ is to set a higher value through `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
+
 <a id="couchbase-sdk-java-rn_1-4-2a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.2 GA (5 June 2014)
@@ -45,7 +74,7 @@ is set properly.
 connection can be open, the number of Netty worker threads has been limited to 1, reducing the 
 risk of opening more threads than needed in failure cases.
 
-**Known Issues in 1.4.1**
+**Known Issues in 1.4.2**
 
 * [JCBC-401](http://www.couchbase.com/issues/browse/JCBC-401): When durability requirements (`PersistTo` or `ReplicateTo`) are used, a custom timeout such as  `.get(1, TimeUnit.MINUTES)` is ignored if it is higher than the default `obsTimeout` setting for the `CouchbaseConnectionFactory` class. The work-around
  is to set a higher value through `CouchbaseConnectionFactoryBuilder` and then just use `.get()` or a possibly lower timeout setting.
