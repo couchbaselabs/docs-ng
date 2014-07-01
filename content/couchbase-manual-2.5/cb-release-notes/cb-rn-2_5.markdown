@@ -66,6 +66,14 @@ Recommendations:
 Couchbase Server 2.5 (February 2014) is a minor release following 
 Couchbase Server 2.2. This includes some important new features and bug fixes.
 
+## Deprecated settings in 2.5
+
+The following REST API XDCR internal settings are deprecated and unavailable:
+
+* `xmemWorker` 
+* `enablePipelineOps`
+* `localConflictResolution`
+
 ## Enhancements in 2.5
 
 Couchbase Server 2.5 includes the following new features and enhancement:
