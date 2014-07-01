@@ -39,6 +39,26 @@ Couchbase Server 2.5.1 (April 2014) is a maintenance release for Couchbase Serve
 * [MB-10220](http://www.couchbase.com/issues/browse/MB-10220): vBuckets shuffle in online upgrade from 2.2.0-837 to 2.5.0-1059 in 1 replica bucket
 * [MB-10515](http://www.couchbase.com/issues/browse/MB-10515) Online upgrade failed from 2.5.0-1059 -> 2.5.1-1073 as 2.5.1-1073 node doesn't appear in orchestrator after adding to the cluster. 
 
+## Known issues in 2.5.1
+
+**XDCR may not replicate some mutations:**
+
+* [MB-11411](http://www.couchbase.com/issues/browse/MB-11411): Warmup with an access log always sets the loaded document's rev-id to 1.
+* [MB-10059](http://www.couchbase.com/issues/browse/MB-110059): Replica vbucket  ignores rev_seq values of new items from the active vbucket (pre-2.5.1 release).
+
+Symptoms:
+: Users of XDCR may notice that the replica bucket has old revisions of documents and can also contain documents which have been deleted in the source bucket. This symptom  typically occurs following a  restart of a Couchbase Server node.
+
+: Under uni-directional XDCR replication, resetting of revision IDs may cause mutations to be missed at the destination cluster for a period of time.
+
+:Under bi-directional XDCR, resetting of revisions IDs may cause updates to be overwritten by out-of-date data for a period of time while XDCR re-synchronizes data in both directions.
+
+Recommendations:
+: Contact Couchbase Support (support@couchbase.com) to obtain the hotfix and repair XDCR. If you are running Couchbase Server versions 2.0, 2.0.1, 2.1 or 2.2, upgrade to Couchbase Server 2.5.1 and apply the hotfix.
+
+: To repair uni-directional XDCR: stop XDCR, delete and recreate the destination bucket, and start XDCR.
+
+: To repair bi-directional XDCR: contact Couchbase support for assistance. 
 
 
 # Couchbase Server Release Notes for 2.5 GA
