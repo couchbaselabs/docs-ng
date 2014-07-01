@@ -24,7 +24,12 @@
   <topicref href="Install/linux-startup-shutdown.dita"/>
   <topicref href="Install/windows-startup-shutdown.dita"/>
   <topicref href="Install/mac-startup-shutdown.dita"/>
-  <topicref href="Install/testing.dita"/>
+  <topicref href="Install/testing.dita">
+   <?oxy_insert_start author="Ruth" timestamp="20140630T185017-0700"?>
+   <topicref href="Install/testing-cbworkloadgen.dita"/>
+   <topicref href="Install/testing-telnet.dita"/>
+   <?oxy_insert_end?>
+  </topicref>
  </topicref>
  <topicref href="Install/uninstalling.dita"/>
  <topicref href="Install/upgrading.dita">
@@ -35,3 +40,4 @@
 
  
 </map>
+<?oxy_options track_changes="on"?>

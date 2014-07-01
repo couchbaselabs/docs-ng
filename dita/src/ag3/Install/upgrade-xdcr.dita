@@ -38,11 +38,9 @@
           least Couchbase Server 2.5 Enterprise Edition.</li>
       </ul>
       
-      <p>If you do not, you could experience data loss during replication</p>
-      
 
       
-      <p>Consider the following upgrade scenarios:</p>
+    <section> <title>Upgrade scenarios</title>
       
       <ul>
         <li>Both source and destination clusters are pre-2.2 and both are upgrading to pre-2.2
@@ -62,7 +60,7 @@
           <li>Upgrade the source cluster to 2.2 or higher. </li>
           <li>Upgrade the destination cluster to 2.2 or higher.</li>
           <li>Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is
-              <codeph>xmem</codeph> replication. </li>
+                <codeph>xmem</codeph> replication. </li>
         </ol><p>Alternatively:</p><ol>
           <li>Allow the rebalance upgrade to complete.</li>
           <li>Delete the version 1 (<codeph>capi</codeph>) XDCR protocol replications.</li>
@@ -89,6 +87,7 @@
         </ol>
       </li>
       </ul>
+    </section>
 
       
   </body>

@@ -328,9 +328,10 @@ cluster on the administration port using the URL
 values. For example, to update the time interval to 10 seconds, and document
 changes to 7000 each:</p><codeblock><codeph>POST http://nodename:8091/settings/viewUpdateDaemon
 updateInterval=10000&amp;updateMinChanges=7000
-</codeph></codeblock><p>If successful, the return value is the JSON of the updated configuration.</p><p>To configure the update values explicitly on individual design documents, you
-must specify the parameters within the <codeph>options</codeph> section of the design document.
-For example:</p><codeblock><codeph>{
+</codeph></codeblock><p>If successful, the return value is the JSON of the updated configuration.</p>
+ <p>To configure the <codeph>updateMinChanges</codeph> or <codeph>replicaUpdateMinChanges</codeph> values explicitly on individual
+    design documents, specify the parameters within the <codeph>options</codeph> section of the
+    design document. For example:</p><codeblock><codeph>{
    "_id": "_design/myddoc",
    "views": {
       "view1": {

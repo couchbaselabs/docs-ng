@@ -23,19 +23,14 @@ performing this initial upgrade, upgrade to a higher release of Couchbase Server
  perform this process: as a standard online upgrade, or as a swap rebalance. We
  highly recommend using a swap rebalance for online upgrade so that cluster
  capacity is always maintained. The standard online upgrade should only be used
- if swap rebalance is not possible.</p><p>Using the standard online upgrade, you take down one or two nodes from a
- cluster, and rebalance so that remaining nodes handle incoming requests. This is
- an approach you use if you have enough remaining cluster capacity to handle the
- nodes you remove and upgrade. You will need to perform rebalance twice for every
- node you upgrade: the first time to move data onto remaining nodes, and a second
- time to move data onto the new nodes. For more information about a standard
- online upgrade, see <xref href="#topic19310/couchbase-getting-started-upgrade-online">Standard online
- upgrades</xref>.</p><p>Standard online upgrades may take a while because each node must be taken out of
- the cluster, upgraded to a current version, brought back into the cluster, and
- then rebalanced. However since you can upgrade the cluster without taking the
- cluster down, you may prefer this upgrade method. For instructions on online
- upgrades, see <xref href="#topic19310/couchbase-getting-started-upgrade-online">Standard online
- upgrades</xref>.</p><p>For swap rebalance, you add a node to the cluster then perform a swap rebalance
+ if swap rebalance is not possible.</p><p>Using the standard online upgrade, you take down one or two nodes from a cluster, and rebalance
+        so that remaining nodes handle incoming requests. This is an approach you use if you have
+        enough remaining cluster capacity to handle the nodes you remove and upgrade. You will need
+        to perform rebalance twice for every node you upgrade: the first time to move data onto
+        remaining nodes, and a second time to move data onto the new nodes. </p><p>Standard online upgrades may take a while because each node must be taken out of the cluster,
+        upgraded to a current version, brought back into the cluster, and then rebalanced. However
+        since you can upgrade the cluster without taking the cluster down, you may prefer this
+        upgrade method. </p><p>For swap rebalance, you add a node to the cluster then perform a swap rebalance
  to shift data from an old node to a new node. You might prefer this approach if
  you do not have enough cluster capacity to handle data when you remove an old
  node. This upgrade process is also much quicker than performing a standard
@@ -47,11 +42,9 @@ performing this initial upgrade, upgrade to a higher release of Couchbase Server
  that Couchbase Server has stored all items onto disk from during shutdown. You
  then perform an install of the latest version of Couchbase onto the machine. The
  installer will automatically detect the files from the older install and convert
- them to the correct format, if needed.</p><p>Offline upgrades can take less time than online upgrades because you can upgrade
- every node in the cluster at once. The cluster must be shut down for the upgrade
- to take place. Both the cluster and all the applications built on it will not be
- available during this time. For full instructions on performing an offline
- upgrade, see <xref href="#topic19310/couchbase-getting-started-upgrade-offline">Offline upgrade process</xref>.</p><p><!--Removed anchor point table-couchbase-getting-started-upgrade--></p><table><tgroup cols="3"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><thead><row>
+ them to the correct format, if needed.</p><p>Offline upgrades can take less time than online upgrades because you can upgrade every node in
+        the cluster at once. The cluster must be shut down for the upgrade to take place. Both the
+        cluster and all the applications built on it will not be available during this time. </p><p/><table><tgroup cols="3"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><thead><row>
 	<entry>Feature</entry>
 	<entry>Online Upgrades</entry>
 	<entry>Offline Upgrades</entry>
@@ -73,7 +66,7 @@ performing this initial upgrade, upgrade to a higher release of Couchbase Server
 	<entry>All nodes in Cluster Upgraded at Once</entry>
 </row></tbody></tgroup></table><p>Recommendation</p><p>Before performing an upgrade, whether it is online or offline, 
 backup your data, see <xref href="../cb-admin/#couchbase-backup-restore" format="html">Backup and restore</xref>.
-</p><p><!--Removed anchor point couchbase-getting-started-upgrade-online-swap--></p></section><section><title>Online upgrade with swap rebalance</title><p>You can perform a swap rebalance to upgrade your nodes to Couchbase Server,
+</p><p/></section><section><title>Online upgrade with swap rebalance</title><p>You can perform a swap rebalance to upgrade your nodes to Couchbase Server,
 without reducing the performance of your cluster. This is the preferred method
 for performing an online upgrade of your cluster because cluster capacity is
 always maintained throughout the upgrade. If you are unable to perform an
@@ -112,7 +105,7 @@ and remove multiple nodes from a cluster, however you should always add the same
 number of nodes from the cluster as you remove. For instance if you add one
 node, remove one node and if you add two nodes, you can remove two.</p><p>Until all nodes in a cluster are upgraded from 1.8.1 or earlier, features in the new Couchbase Server release are disabled.
 This means views or XDCR do not function until all nodes in your cluster are migrated.
-After all nodes are upgraded, the features are enabled.</p><p>For general information on swap rebalance, see <xref href="../cb-admin/#couchbase-admin-tasks-addremove-rebalance-swap" format="html">Swap rebalance</xref>.</p><p><!--Removed anchor point couchbase-getting-started-upgrade-online--></p></section><section><title>Standard online upgrades</title><p>This is also known as a standard online upgrade process and it can take place
+After all nodes are upgraded, the features are enabled.</p><p>For general information on swap rebalance, see <xref href="../cb-admin/#couchbase-admin-tasks-addremove-rebalance-swap" format="html">Swap rebalance</xref>.</p></section><section><title>Standard online upgrades</title><p>This is also known as a standard online upgrade process and it can take place
 without taking down the cluster or your application. This means that the cluster
 and applications can continue running while you upgrade the individual nodes in
 a cluster to the latest Couchbase version. You should only use this online

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_am2_cnr_p4">
+  <title>Testing with cbworkloadgen</title>
+  <shortdesc>The <codeph>cbworkloadgen</codeph> is a
+  basic tool that can be used to check the availability and connectivity of a Couchbase Server
+  cluster.</shortdesc>
+  <body>
+    
+      <p>The <codeph>cbworkloadgen</codeph> executes a number of different operations to provide basic testing
+      functionality for your server.<codeph>cbworkloadgen</codeph> provides basic testing
+        functionality. It does not provide performance or workload testing. </p>
+    
+    <p>To test a
+          Couchbase Server installation using <codeph>cbworkloadgen</codeph>, execute the command
+          supplying the IP address of the running
+          node:</p>
+    <codeblock>>&gt; cbworkloadgen -n localhost:8091
+Thread 0 - average set time : 0.0257480939229 seconds , min : 0.00325512886047 seconds , max : 0.0705931186676 seconds , operation timeouts 0
+</codeblock>
+    <p>The
+  progress and activity of the tool can also be monitored within the web console.</p><p>For a
+    longer test you can increase the number of
+    iterations:</p>
+    <codeblock>&gt; cbworkloadgen -n localhost:8091 --items=100000
+</codeblock>
+  </body>
+</topic>

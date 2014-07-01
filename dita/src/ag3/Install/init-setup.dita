@@ -4,11 +4,10 @@
 <topic xml:lang="en-us" id="topic12527">
  <title>Initial server setup</title>
  <body>
-  <p><!--Removed anchor point couchbase-getting-started-setup--></p>
-  <p>Recommendation</p>
-  <p> Couchbase recommends that you clear your browser cache before doing the setup process. You can
-   find notes and tips on how to do this on different browsers and platforms on
-   [wikihow.com](http://www.wikihow.com/Clear-Your-Browser's-Cache). </p>
+  
+  <note type="tip">Clear your browser cache before doing the setup process. You can
+   find notes and tips on how to do this on different browsers and platforms on www.wikihow.com.</note>
+   
   <p>On all platforms you can access the web console by connecting to the embedded web server on
    port 8091. For example, if your server can be identified on your network as
     <codeph>servera</codeph>, you can access the web console by opening
@@ -272,6 +271,9 @@ http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
    <link href="../cb-admin/#couchbase-bestpractice-cloud-ip" format="html">
     <linktext>Handling Changes in IP Addresses</linktext>
    </link>
+    <link href="http://www.wikihow.com/Clear-Your-Browser's-Cache" scope="external" format="html">
+      <linktext>wikihow.com</linktext>
+    </link>
   </linklist>
  </related-links>
 </topic>
