@@ -4,6 +4,46 @@ The following sections provide release notes for individual release versions of
 the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sd-rn_2-3-2"></a>
+## Release Notes for Couchbase Client Library C 2.3.2 GA (01 July 2014)
+
+**Fixes in 2.3.1**
+
+* Fixed bug where randomizing hostlists during initial
+  connect would skip first node in list
+
+  **Issues**: [CCBC-433](http://couchbase.com/issues/browse/CCBC-433)
+
+* Assign the `cccp_cookie` to the provider. This fixes
+  an issue where a configuration request over CCCP to an already-connected
+  node would not be received, potentially causing delays in the client
+  receiving the newest cluster topology
+
+  **Issues**: [CCBC-414](http://couchbase.com/issues/browse/CCBC-414)
+
+* Fixed bug where stale commands (and their cookies) would
+  be confused with newer responses. This issue caused segfaults when requesting
+  a new configuration on a connected node via CCCP, since the CCCP cookie
+  format was being overlayed on a different area of memory. This bug also
+  manifested itself during multi get responses where some items were not found.
+
+  **Issues**: [CCBC-435](http://couchbase.com/issues/browse/CCBC-435)
+
+* Don't attempt to remap keys to nodes without any vBuckets.
+  When a `NOT_MY_VBUCKET` is received the behavior of the library is to attempt
+  to map the key to another node in the cluster - determining the node by the
+  forward map, and if that doesn't exist - by selecting a random node in the
+  cluster. Sometimes a node will exist within the cluster map only because it
+  is in an 'eject wait' state where the node has already been ejected from the
+  cluster and is simply returning `NOT_MY_VBUCKET` for all new requests. The
+  issue arises when the library attempts to connect to this node - in this
+  case the node may either not respond to the new connection or it may respond
+  with an authentication failure (since the node is really no longer part of
+  the cluster). This new version fixes this issue by only remapping items to
+  nodes which actually contain at least one vBucket.
+
+  **Issues**: [CCBC-420](http://couchbase.com/issues/browse/CCBC-420)
+
 <a id="couchbase-sdk-rn_2-3-1"</a>
 
 ## Release Notes for Couchbase Client Library C 2.3.1 GA (09 May 2014)
