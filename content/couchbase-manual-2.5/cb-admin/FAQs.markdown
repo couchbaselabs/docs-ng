@@ -34,11 +34,11 @@
 
     * 8091 — GUI and REST interface
 
-    * 1 — Server-side Moxi port for standard memcached client access
+    * 11211 — Server-side Moxi port for standard memcached client access
 
-    * 0 — native `couchbase` data port
+    * 11210 — native `couchbase` data port
 
-    * 0 to 21199 — inclusive for dynamic cluster communication
+    * 21100 to 21199 — inclusive for dynamic cluster communication
 
  * What hardware and platforms does `couchbase` Server support?
 
