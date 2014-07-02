@@ -12,7 +12,7 @@ This release provides some minor bug fixes for 1.2.1
 
 **New Features and Behavior Changes in 1.2.2**
 
-* The `_cntl()` method now accepts a `value_type` argument. This may be used to
+* The `_cntl()` method now accepts a `value_type` argument. This can be used to
   further modify settings not exposed in the SDK itself. The `value_type` describes
   the underlying C type to be used for the setting.
 
@@ -28,7 +28,7 @@ This release provides some minor bug fixes for 1.2.1
   operational immediately after the `design_publish()` method returns.
 
 * Fixed potential freed memory access within the `stats()` method when
-  using async frameworks like Twisted or gevent
+  using asynchronous frameworks like Twisted or gevent.
 
   **Issues**: [PYCBC-248](http://couchbase.com/issues/browse/PYCBC-248)
 
