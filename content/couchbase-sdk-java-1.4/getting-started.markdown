@@ -164,7 +164,7 @@ application with Couchbase.
 ## Hello Couchbase
 
 To follow the tradition of first programming tutorials, we start with a "Hello
-Couchbase" example. In this example, we connect to the a Couchbase node, set a
+Couchbase" example. In this example, we connect to a Couchbase node, set a
 simple document, retrieve the document, and then print the value out. This first
 example contains the full source code, but in later examples we omit the import
 statements and also assume an existing connection to the cluster.
@@ -224,7 +224,7 @@ little more discussion:
     from a Couchbase SDK. You use `set` to create or overwrite a document and you
     use `get` to read it from the server. There are lots of arguments and variations
     for these two methods, but if you use them as shown in the previous example it
-    will get you pretty fair in your application development.
+    will get you pretty far in your application development.
 
     Note that the `get` operation will read all types of information, including
     binary, from the server, so you need to cast it into the data format you want.
