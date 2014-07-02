@@ -5,8 +5,7 @@
   <body>
     
     <p>To install Couchbase Server, use the <codeph>rpm</codeph> command-line tool with the RPM
-      package that you downloaded. You must be logged in as root (Superuser) to complete the
-      installation:</p>
+      package that was downloaded. Log in as root (Superuser) to complete the installation:</p>
       <codeblock>
 root-&gt; rpm --install couchbase-server version.rpm 
      </codeblock>

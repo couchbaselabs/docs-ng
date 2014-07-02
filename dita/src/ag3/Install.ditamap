@@ -21,6 +21,9 @@
  <topicref href="Install/Mac-install.dita"/>
  <topicref href="Install/post-install.dita">
   <topicref href="Install/init-setup.dita"/>
+  <?oxy_insert_start author="Ruth" timestamp="20140701T171224-0700"?>
+  <topicref href="Install/hostnames.dita"/>
+  <?oxy_insert_end?>
   <topicref href="Install/linux-startup-shutdown.dita"/>
   <topicref href="Install/windows-startup-shutdown.dita"/>
   <topicref href="Install/mac-startup-shutdown.dita"/>
@@ -31,11 +34,35 @@
    <?oxy_insert_end?>
   </topicref>
  </topicref>
- <topicref href="Install/uninstalling.dita"/>
- <topicref href="Install/upgrading.dita">
-  <topicref href="Install/upgrade-xdcr.dita"/>
+ <topicref href="Install/uninstalling.dita">
+  <?oxy_insert_start author="Ruth" timestamp="20140701T172921-0700"?>
+  <topicref href="Install/uninstall-rhel.dita"/>
+  <topicref href="Install/uninstall-ubuntu.dita"/>
+  <topicref href="Install/uninstall-windows.dita"/>
+  <?oxy_insert_end?>
  </topicref>
- <topicref href="Install/migrating.dita"/>
+ <topicref href="Install/upgrading.dita">
+  <?oxy_insert_start author="Ruth" timestamp="20140701T190722-0700"?>
+  <topicref href="Install/upgrade-online.dita"/>
+  <topicref href="Install/upgrade-offline.dita"/>
+  <topicref href="Install/upgrade-individual-nodes.dita"/>
+  <?oxy_insert_end?>
+  <topicref href="Install/upgrade-xdcr.dita"/>
+  <?oxy_insert_start author="Ruth" timestamp="20140701T190609-0700"?>
+  <topicref href="Install/upgrade-from-1.8.dita"/>
+  <topicref href="Install/upgrade-to-2.5.dita"/>
+  <topicref href="Install/upgrade-mac.dita"/>
+  <topicref href="Install/upgrade-rhel.dita"/>
+  <topicref href="Install/upgrade-ubuntu.dita"/>
+  <topicref href="Install/upgrade-windows.dita"/>
+  <?oxy_insert_end?>
+ </topicref>
+ <topicref href="Install/migrating.dita">
+  <?oxy_insert_start author="Ruth" timestamp="20140701T191316-0700"?>
+  <topicref href="Install/migrate-couchdb.dita"/>
+  <topicref href="Install/migrate-membase.dita"/>
+  <?oxy_insert_end?>
+ </topicref>
 
 
  

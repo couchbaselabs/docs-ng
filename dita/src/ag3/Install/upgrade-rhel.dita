@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_flq_fsy_p4">
+  <title>Upgrading on RHEL</title>
+  <body>
+    <p>For RHEL or CentoOS, you can perform an upgrade install using
+      the RPM package — this will keep the data and existing
+      configuration.</p>
+    
+    <codeblock>rpm -U couchbase-server-architecture___meta_current_version__.rpm</codeblock>
+    
+    <section><title>Linux upgrade from 1.8.1 notes</title>
+      
+      <p>When you upgrade from
+      Couchbase Server 1.8 to a higher release of Couchbase Server on Linux, be aware of the
+      <b>OpenSSL</b> requirement. OpenSSL is a required component and an error message occurs
+      during upgrade if it is not installed. To install it Red Hat-based systems, use
+      <codeph>yum</codeph>:</p>
+      
+      
+      <codeblock>root-&gt; yum install openssl098e
+</codeblock>
+      
+
+    
+    </section>
+  </body>
+</topic>

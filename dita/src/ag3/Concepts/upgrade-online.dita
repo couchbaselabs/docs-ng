@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_dgv_nky_p4">
+  <title>Online upgrades</title>
+  <body>
+    <p>You can upgrade your cluster without taking your
+      cluster down and so your application keeps running during the upgrade process. There are two
+      ways you can perform this process: as a standard online upgrade, or as a swap rebalance. We
+      highly recommend using a swap rebalance for online upgrade so that cluster capacity is
+      always maintained. The standard online upgrade should only be used if swap rebalance is not
+      possible.</p>
+    <p>Using the standard online upgrade, you take down one or two nodes from a
+        cluster, and rebalance so that remaining nodes handle incoming requests. This is an approach
+        you use if you have enough remaining cluster capacity to handle the nodes you remove and
+        upgrade. You will need to perform rebalance twice for every node you upgrade: the first time
+        to move data onto remaining nodes, and a second time to move data onto the new nodes.
+      </p>
+    <p>Standard online upgrades may take a while because each node must be taken out of the
+        cluster, upgraded to a current version, brought back into the cluster, and then rebalanced.
+        However since you can upgrade the cluster without taking the cluster down, you may prefer
+        this upgrade method. </p>
+    <p>For swap rebalance, you add a node to the cluster then perform a
+          swap rebalance to shift data from an old node to a new node. You might prefer this approach
+          if you do not have enough cluster capacity to handle data when you remove an old node. This
+          upgrade process is also much quicker than performing a standard online upgrade because you
+          only need to rebalance each upgraded node once. </p>
+    
+    <section><title>Standard online upgrades</title><p>This is also known as a standard online
+      upgrade process and it can take place without taking down the cluster or your application.
+      This means that the cluster and applications can continue running while you upgrade the
+      individual nodes in a cluster to the latest Couchbase version. You should only use this
+      online upgrade method if you are not able to perform online upgrade via swap rebalance.</p>
+      
+      <p>Best practice</p><p> Always add the same number of nodes to a
+          cluster as the number that were removed and then perform rebalance. While it is technically
+          possible, avoid removing a node, rebalancing, and then adding back nodes into the cluster.
+          This reduces cluster capacity until the new node is added back into the cluster, which could
+          lead to data being ejected to disk. </p>
+      
+     
+      <p>To perform an standard, online upgrade of your cluster:</p>
+      
+      <ol>
+              <li>Create a backup of your cluster data using <codeph>cbbackup</codeph>.</li>
+              <li>Choose a node to remove from the cluster and upgrade. You can upgrade one node at a
+                time, or if you have enough cluster capacity, two nodes at a time. We do not recommend
+                that you remove more than two nodes at a time for this upgrade.</li>
+              <li>In Couchbase Web Console under <uicontrol>Manage Server Nodes</uicontrol> screen, click
+                <uicontrol>Remove Server</uicontrol>. This marks the server for removal from the cluster,
+                but does not actually remove it.
+                  <fig><image href="../images/online-upgrade-removenode.png" width="720"></image></fig></li>
+              <li>The <uicontrol>Pending Rebalance</uicontrol> shows servers that require a
+          rebalance. Click the <uicontrol>Rebalance</uicontrol> button next to the node you will
+          remove. <fig>
+            <image href="../images/online-upgrade-rebalance.png" width="720"/>
+          </fig>
+          <p>This moves data from the node to remaining nodes in cluster. Once rebalancing has been
+            completed, the <codeph>Server Nodes</codeph> display should display only the remaining,
+            active nodes in your cluster.</p><fig>
+            <image href="../images/online-upgrade-noderemoved.png" width="720"/>
+          </fig></li>
+              <li>Perform an individual node upgrade to the latest version of Couchbase Server.
+                <p>Couchbase Server starts automatically after the upgrade. You now need to add the node
+                  back to the cluster.</p></li>
+              <li>Open Web Console for an existing node in the cluster.</li>
+              <li>Navigate to <uicontrol>Manage Server Nodes</uicontrol>.</li>
+              <li>Click the <uicontrol>Add Server</uicontrol> button. You will see a prompt to add a node to
+                the cluster.
+                  <fig><image href="../images/online-upgrade-addnode.png"  width="720"></image></fig>
+                <p>After the new node is added, the Pending Rebalance count indicates that servers need to
+                  be rebalanced into the cluster.</p></li>
+              <li>Click <codeph>Rebalance</codeph> to rebalance the cluster and bring the new node into
+                an active state.</li>
+            </ol>
+      
+      <p>Repeat these steps for each node in the cluster in order to upgrade the entire cluster
+              to a new
+              version.</p>
+    
+    </section>
+    
+    
+    <section><title>Online upgrade with swap rebalance</title><p>You can perform a swap rebalance to
+      upgrade your nodes to Couchbase Server, without reducing the performance of your cluster.
+      This is the preferred method for performing an online upgrade of your cluster because
+      cluster capacity is always maintained throughout the upgrade. If you are unable to perform
+      an upgrade via swap rebalance, perform a standard online upgrade. </p>
+      <p>You will need at least one extra node to perform a swap
+            rebalance.</p>
+      
+      <ol>
+              <li>Install Couchbase Server on one extra machine that is not yet in the cluster.</li>
+              <li>Create a backup of your cluster data using the <codeph>cbbackup</codeph> tool.</li>
+              <li>Open Couchbase Web Console at an existing node in the cluster.</li>
+              <li>Go to <uicontrol>Manage-&gt;Server Nodes</uicontrol>. In the Server panel you can view and
+                managing servers in the cluster.
+                  <fig><image href="../images/upgrade_addserver.png" width="720"></image></fig>
+                  </li>
+              <li>Click <uicontrol>Add Server</uicontrol>. A panel appears where you can provide credentials and either
+                a host name or IP address for the new node.
+                  <fig><image href="../images/online-upgrade-addnode.png" width="720"></image></fig>
+                  </li>
+              <li>Remove one of your existing old nodes from the cluster. Under Server Nodes | Server
+                panel, Click Remove Server for the node you want to remove. This will flag this server
+                for removal.</li>
+              <li>In the Server panel, click Rebalance.
+                <p>The rebalance automatically takes all data from the node flagged for removal and move
+                  it to your new node.</p></li>
+            </ol>
+      
+      <p>Repeat these steps for all the remaining old nodes in the cluster. You can add and
+              remove multiple nodes from a cluster, however you should always add the same number of nodes
+              from the cluster as you remove. For instance if you add one node, remove one node and if you
+              add two nodes, you can remove two.</p><p/>
+    </section>
+    
+    <section><title>Online upgrade to Enterprise Edition</title>
+      <p>Here you remove
+      one node from the cluster and rebalance. On the nodes you have taken out of the cluster,
+      uninstall Couchbase Server Community Edition package, and install Couchbase Server
+      Enterprise Edition. You can then add the new nodes back into the cluster and rebalance.
+      Repeat this process until the entire cluster is using the Enterprise Edition.</p>
+    </section>
+    
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../Tasks/tasks-rebalance.dita"></link>
+      <link href="../cli/cbbackup_tool.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

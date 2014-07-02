@@ -3,8 +3,8 @@
 <topic id="topic_fm2_lps_g4">
   <title>Prerequisites</title>
   <body>
-    <p>Before you install, make sure you check the supported platforms. The
-      Red Hat installation uses the RPM package.</p>
+    <p>Before you install, check the supported platforms. The Red Hat installation uses the RPM
+      package.</p>
     
     <section><title>OpenSSL dependency checking</title>
         <p>For Red Hat Enterprise Linux version 6.0, Couchbase Server RPM performs dependency checks

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_kjx_2ty_p4">
+  <title>Upgrading on Ubuntu</title>
+  <body>
+    <p>You can perform a package
+      upgrade for Ubuntu/Debian Linux by installing the updated <codeph>.pkg</codeph>
+      package:</p>
+    
+    <codeblock>
+ &gt; sudo dpkg -i couchbase-server-architecture___meta_current_release.deb
+</codeblock>
+    
+    <section><title>Linux upgrade from 1.8.1 notes</title>
+      
+      <p>When you upgrade from
+        Couchbase Server 1.8 to a higher release of Couchbase Server on Linux, be aware of the
+        <b>OpenSSL</b> requirement. OpenSSL is a required component and an error message occurs
+        during upgrade if it is not installed.</p>
+      
+      <p>On Debian-based systems, use <codeph>apt-get</codeph> to install the required OpenSSL package:</p>
+      <codeblock>&gt; sudo apt-get install libssl0.9.8
+</codeblock>
+    </section>
+    
+  </body>
+</topic>

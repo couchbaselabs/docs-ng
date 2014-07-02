@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_tc1_vry_p4">
+  <title>Upgrading individual nodes</title>
+  <body>
+    <p>Whether you are performing an online or
+      offline upgrade, the steps for upgrading an individual nodes in a cluster remain the
+      same.</p>
+    
+    <ol>
+        <li>Download Couchbase Server</li>
+        <li>Backup data for that node. To backup an existing Couchbase Server installation, use
+          <codeph>cbbackup</codeph>. See <xref
+            href="../cb-admin/#couchbase-backup-restore-backup-cbbackup" format="html">Backing up
+            using cbbackup</xref>.</li>
+        <li>Backup the node-specific configuration files. While the upgrade script perform a
+          backup of the configuration and data files, as a best practice, make your own
+          backup of these files.</li>
+        <li>Stop Couchbase Server.</li>
+        <li>Check your hostname configurations. If you have deployed Couchbase Server in a cloud
+          service, or you are using hostnames rather than IP addresses, you must ensure that the
+          hostname has been configured correctly before performing the upgrade. </li>
+        <li>Check for required components and if needed, install them. This ensures that
+          Couchbase Server upgrades and migrates your existing data files. </li>
+        <li>Perform the installation upgrade for your platform:</li>
+      </ol> 
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../install/linux-startup-shutdown.dita"></link>
+      <link href="../install/windows-startup-shutdown.dita"></link>
+      <link href="../install/hostnames.dita"></link>
+      <link href="../cli/cbbackup_tool.dita"></link>
+    </linklist>
+  </related-links>
+</topic>
