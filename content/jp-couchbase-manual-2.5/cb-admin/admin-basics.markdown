@@ -1,27 +1,21 @@
 <a id="couchbase-admin-basics"></a>
 
-# アドミンについて
+# Couchbase Server管理の基本
 
 この章では、CouchbaseのSeverのクラスタ管理について解説します。
-アドミンはは3つの方法で行うことができます。
+Couchbase Serverの管理は3つの方法で行うことができます。
 
  * **Couchbase Webコンソール**
 
-　　CouchbaseにはビルトインのWebサーバーと管理インターフェイスが含まれ、クラスタに関するアドミンと統計情報を提供します。
-   
-　　詳細については、[Couchbase Webコンソール](#couchbase-admin-web-console)を参照してください。
+　　CouchbaseにはビルトインのWebサーバーと管理インターフェイスが含まれ、クラスタに関する管理と統計情報を提供します。詳細については、[Couchbase Webコンソール](#couchbase-admin-web-console)を参照してください。
 
  * **コマンドラインツールキット**
 
-　　Couchbaseのパッケージにはいくつかのコマンドラインツールが含まれ、クラスタの管理やコミュニケーションをサポートします。
-
-　　詳細については[コマンドライン インターフェース](../cb-cli/#couchbase-admin-cmdline)を参照してください。
+　　Couchbaseのパッケージにはいくつかのコマンドラインツールが含まれ、クラスタの管理やコミュニケーションをサポートします。詳細については[コマンドライン インターフェース](../cb-cli/#couchbase-admin-cmdline)を参照してください。
 
  * **Couchbase REST API**
  
-　　Couchbase ServerにはRESTful APIが含まれ、HTTPを介してクラスタの管理と監視をすることができます。
-
-   詳細については [REST API](../cb-rest-api/#couchbase-admin-restapi)を参照してください。
+　　Couchbase ServerにはRESTful APIが含まれ、HTTPを介してクラスタの管理と監視をすることができます。詳細については [REST API](../cb-rest-api/#couchbase-admin-restapi)を参照してください。
 
  * **ベストプラクティス**
 
@@ -116,17 +110,17 @@ Couchbaseの起動と停止について詳細は格プラットフォームの�
 
 ### Linuxで起動と停止
 
-Couchbase ServerをLinux上に起動時にバックグラウンド（デーモン）プロセスとして実行するためのサポートを持つスタンドアロンのアプリケーションとしてインストールされます。
+LinuxではCouchbase Serverはスタンドアロンのアプリケーションとしてインストールされ、起動時にバックグラウンド（デーモン）プロセスとして実行するためのサポートを持ちます。
 起動スクリプトはインストール時にLinuxのパッケージ（Debian/ UbuntuまたはRed Hat / CentOSの）の中から自動的にインストールされます。
 デフォルト設定によりCouchbase Serverは実行レベル2、3、4、5、およびランレベル0,1、および6でシャットダウン時に自動的に起動するように構成されています。
 
-起動と停止スクリプトを使用してCouchbase Serverを手動で起動するには、次のスクリプトを参考にしてください。
+Couchbase Serverを手動で起動するには、次のスクリプトを参考にしてください。
 
 ```
 > sudo /etc/init.d/couchbase-server start
 ```
 
-起動と停止スクリプトを使用してCouchbase Serverを手動で停止するには、次のスクリプトを参考にしてください。
+Couchbase Serverを手動で停止するには、次のスクリプトを参考にしてください。
 
 ```
 > sudo /etc/init.d/couchbase-server stop
@@ -137,7 +131,7 @@ Couchbase ServerをLinux上に起動時にバックグラウンド（デーモ�
 ### Windowsで起動と停止
 
 WindowsではCouchbase ServerはWindowsのサービスとしてインストールされます。
-Couchbase Serverを起動または停止させるには、Windowsタスクマネージャ内の ”サービス”タブを使用することができます。
+Couchbase Serverを起動または停止させるには、Windowsタスクマネージャ内の ”Service (サービス)”タブを使用することができます。
 
 <div class="notebox">
 <p>備考</p>
@@ -146,7 +140,7 @@ Couchbase Serverを起動または停止させるには、Windowsタスクマネ
 
 
 サービスの起動はデフォルト設定によってマシンのブート時に自動的に行われます。
-サービスを手動で開始するには、Windowsタスクマネージャを開き、”サービス”タブを選択するか、”開始”タブ選択後に”実行”を選択して、”services.msc”と入力して管理コンソールを開きます。
+サービスを手動で開始するには、Windowsタスクマネージャを開き、”Service (サービス)”タブを選択するか、”Start (開始)”タブ選択後に”Run (実行)”を選択して、”services.msc”と入力して管理コンソールを開きます。
 
 一度開いて、”CouchbaseServer”を確認した後、右クリックし、必要に応じてサービスを起動または停止します。
 また、ブート時にサービスが自動的に起動時しないよう設定を変更することができます。
@@ -184,13 +178,12 @@ Couchbase Serverを停止させるには次のコマンドを使用します。
 
 ### Mac OS Xで起動と停止
 
-Mac OS XでCouchbase Serverは標準アプリケーションとして提供されており、アプリケーションをダブルクリックしてCouchbase Serverを起動することができます。
+Mac OS XではCouchbase Serverは標準アプリケーションとして提供されており、アプリケーションをダブルクリックしてCouchbase Serverを起動することができます。
 Couchbase Serverはバックグラウンドアプリケーションとして実行され、サーバーを制御できるメニューバーをインストールします。 
 
 
 ![](../images/macosx-menubar.png)
 
-The individual menu options perform the following actions:
 メニューの格オプションは次の操作で実行されます。
 
 * `Couchbaseについて`
