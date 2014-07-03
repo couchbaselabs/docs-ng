@@ -10,12 +10,12 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-500">NCBC-500: IsArrayOrCollection does not support IEnumerable</a>
 
-    This patch fixes a bug where the IsArrayOrCollection method would return false for types supporting IEnumerable.
+    This patch fixes a bug where the `IsArrayOrCollection` method would return false for types supporting `IEnumerable`.
 
 * <a href="http://www.couchbase.com/issues/browse/NCBC-513">NCBC-513: Use Timespan.TotalSeconds instead of Timespan.Seconds</a>
 
-    This patch fixes a bug that was introduced in 1.3.6 by the NCBC-485 patch. The Timespan.TotalSeconds property should be used in 
-    place of Timespan.Seconds.
+    This patch fixes a bug that was introduced in 1.3.6 by the NCBC-485 patch. The `Timespan.TotalSeconds` property should be used in 
+    place of `Timespan.Seconds`.
 
 ## Release Notes for Couchbase Client Library .NET 1.3.6 GA (5 June 2014)
 
