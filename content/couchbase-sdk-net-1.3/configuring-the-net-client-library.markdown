@@ -69,10 +69,10 @@ config.Bucket = "default";
 var client = new CouchbaseClient(config);
 ```
 
- * The `socketPool` element is used to configure the behavior of the client as it
-   connects to the Couchbase cluster. It uses the following attributes (defaults are in parentheses): 
+The `socketPool` element is used to configure the behavior of the client as it
+connects to the Couchbase cluster. It uses the following attributes (defaults are in parentheses): 
 
-* `minPoolSize`  (10) The minimum number of connections in the connection pool
+ * `minPoolSize`  (10) The minimum number of connections in the connection pool
 
  * `maxPoolSize` (20) The maximum number of connections in the connection pool
 
