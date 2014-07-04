@@ -55,6 +55,8 @@
         performing backups.</p><p>Keep in mind that you will have to update the per-node disk path
         when configuring Couchbase to point to wherever you have mounted an external
         volume.</p></section>
+    
+    
     <section><title>Handling changes in IP addresses</title><p>When you use Couchbase Server in the
         cloud, server nodes can use internal or public IP addresses. Because IP addresses in the
         cloud may change quite frequently, you can configure Couchbase to use a hostname instead of
@@ -84,6 +86,8 @@
       <p><b>Linux and Windows 2.0.1 and earlier</b></p><p>For
         Couchbase Server 2.0.1 and earlier you must follow a manual process where you edit config
         files for each node which we describe below for Couchbase in the cloud. </p></section>
+    
+    
     <section><title>Security groups/firewall settings</title><p>It’s important to make sure you have
         both allowed AND restricted access to the appropriate ports in a Couchbase deployment. Nodes
         must be able to talk to one another on various ports, and it is important to restrict
@@ -91,6 +95,8 @@
         deployment, cloud systems are open to the world by default, and steps must be taken to
         restrict
       access.</p></section>
+    
+    
     <section><title>Swap space</title><p>On Linux, swap space is used when the physical memory (RAM)
         is full. If the system needs more memory resources and the RAM is full, inactive pages in
         memory are moved to the swap space. Swappiness indicates how frequently a system should use
@@ -111,6 +117,8 @@
         kernel parameters configuration file, <codeph>sysctl.conf</codeph>, ensures that the
         operating system always uses swap in accordance with Couchbase recommendations even when the
         node is rebooted.</p></section>
+    
+    
     <section><title>Using Couchbase Server on RightScale</title><p>Couchbase partners with RightScale to
         provide preconfigured RightScale ServerTemplates that you can use to create an individual or
         array of servers and start them as a cluster. Couchbase Server RightScale ServerTemplates
@@ -127,6 +135,7 @@
      <note type="note">As of Couchbase Server 2.2, non-Chef
         templates are deprecated. Do not choose non-Chef templates for new installations.
         </note>
+      
       <p>Before you can set up Couchbase Server on RightScale, you need a RightScale account
         and an AWS account that is connected to your RightScale account. </p><p>At a
         minimum, you need RightScale user role privileges to work with the
@@ -135,7 +144,10 @@
           &gt; Users</b> and modify the permission list.</p><p>To set up Couchbase Server on
         RightScale, you need to import and customize a ServerTemplate. After the template is
         customized, you can launch server and cluster instances. The following figure illustrates
-        the workflow:</p><p><image href="../images/rightscale-workflow.png" width="720"/></p><p>The following
+        the workflow:</p>
+      <p><image href="../images/rightscale-workflow.png" width="480"/></p>
+      
+      <p>The following
         procedures do not describe every parameter that you can modify when working with the
         RightScale ServerTemplates. If you need more information about a parameter, click the info
         button located near the parameter name.</p><p><b>To import the Couchbase Server RightScale
@@ -144,14 +156,16 @@
             ServerTemplates</b>.</li>
         <li>In the <b>Keywords</b> box on the left under Search, type <b>couchbase</b>, and then
           click <b>Go</b>.</li>
-        <li><p>In the search results list, click on the latest version of the Couchbase Server
-            ServerTemplate.</p>
+        <li>In the search results list, click on the latest version of the Couchbase Server
+            ServerTemplate.
           <p>The name of each Couchbase template in the list contains the Couchbase Server version
             number.</p></li>
         <li>Click <b>Import</b>.</li>
         <li>Review each page of the end user license agreement, and then click <b>Finish</b> to
           accept the agreement.</li>
-      </ol><p><b>To create a new deployment:</b></p><ol>
+      </ol>
+      
+      <p><b>To create a new deployment:</b></p><ol>
         <li>From the RightScale menu bar, select <b>Manage &gt; Deployments &gt; New</b>.</li>
         <li>Enter a Nickname and Description for the new deployment.</li>
         <li>Click <b>Save</b>.</li>
@@ -244,37 +258,42 @@
           </ul></li>
         <li>Click <b>Save</b>.</li>
         <li>If you are ready to launch the server or cluster right now, click <b>Launch</b>.</li>
-      </ol><p><b>To launch servers or clusters:</b></p><ol>
+      </ol>
+      
+      <p><b>To launch servers or clusters:</b></p><ol>
         <li>From the RightScale menu bar, select <b>Manage &gt; Deployments</b>.</li>
         <li>Click the nickname of the deployment that the server or cluster is in.</li>
         <li>Click the nickname of the server or cluster.</li>
         <li>On the Server or Server Array page, click <b>Launch</b>.</li>
-      </ol><p><b>To log in to the Couchbase Web Console:</b></p><p>You can log in to the Couchbase
+      </ol>
+      
+      <p><b>To log in to the Couchbase Web Console:</b></p><p>You can log in to the Couchbase
         Web Console by using your web browser to connect to the public IP address on port 8091. The
         general format is <codeph>http://&lt;server:port&gt;</codeph>. For example: if the public IP
         address is 192.236.176.4, enter <codeph>http://192.236.176.4:8091/</codeph> in the web
         browser location bar.</p></section>
+    
+    
   </body>
   <related-links>
     <linklist>
-      <title>Collected links</title>
+      <link href="../Install/install-intro.dita"></link>
+      <link href="../Install/init-setup.dita"></link>
+      <link href="../Install/upgrading.dita"></link>
       <link href="http://www.rightscale.com/" scope="external" format="html">
         <linktext>RightScale</linktext>
       </link>
       <link href="http://support.rightscale.com/27-Partners/Membase" scope="external" format="html">
         <linktext>Couchbase on RightScale</linktext>
       </link>
-      <link href="../Install/install-intro.dita"></link>
-      <link href="../Install/init-setup.dita"></link>
-      <link href="../Install/upgrading.dita"></link>
       <link href="http://www.rightscale.com" scope="external" format="html">
         <linktext>RightScale</linktext>
       </link>
-      <link href="http://aws.amazon.com/ec2/" scope="external" format="html">
-        <linktext>Amazon Elastic Compute Cloud</linktext>
-      </link>
       <link href="http://aws.amazon.com" scope="external" format="html">
         <linktext>Amazon Web Services</linktext>
+      </link>
+      <link href="http://aws.amazon.com/ec2/" scope="external" format="html">
+        <linktext>Amazon Elastic Compute Cloud</linktext>
       </link>
       <link href="http://aws.amazon.com/ebs/" scope="external" format="html">
         <linktext>Amazon Elastic Block Store</linktext>

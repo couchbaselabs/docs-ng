@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/CBepctl?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/CBepctl/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2862" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="title:1;5:9">Changing disk write queue quotas</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="p:1;7:6">One of the specific uses of <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeph:1;7:42">cbepctl</codeph> is to the change the default maximum
+			items for a disk write queue. This impacts replication of data that occurs between
+			source and destination nodes within a cluster. Both data that a node receives from
+			client applications, and replicated items that it receives are placed on a disk write
+			queue. If there are too many items waiting in the disk write queue at any given
+			destination, Couchbase Server will reduce the rate of data that is sent to a
+			destination. This is process is also known as <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="i:1;13:53">backoff</i>.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="p:2;14:6">By default, when a disk write queue contains one million items, a Couchbase node will
+			reduce the rate it sends out data to be replicated. You can change this setting to be
+			the greater of 10% of the items at a destination node or a number you specify. For
+			instance:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeblock:1;18:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeph:2;18:22">&gt; ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="p:3;20:6"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="b:1;20:9">Be aware that this tool is a per-node, per-bucket operation.</b> That means that if
+			you want to perform this operation, you must specify the IP address of a node in the
+			cluster and a named bucket. If you do not provided a named bucket, the server will apply
+			the setting to any default bucket that exists at the specified node. If you want to
+			perform this operation for an entire cluster, you will need to perform the command for
+			every node/bucket combination that exists for that cluster.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="p:4;26:6">In this example we specify that a replica node send a request to backoff when it has two
+			million items or 10% of all items, whichever is greater. You will see a response similar
+			to the following:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeblock:2;29:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeph:3;29:22">setting param: tap_throttle_queue_cap 2000000
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="p:5;31:6">In this next example, we change the default percentage used to manage the replication
+			stream. If the items in a disk write queue reach the greater of this percentage or a
+			specified number of items, replication requests will slow down:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeblock:3;34:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeph:4;34:22">&gt; ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_cap_pcnt 15
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="p:6;36:6">In this example, we set the threshold to 15% of all items at a replica node. When a disk
+			write queue on a replica node reaches this point, it will request replication backoff.
+			For more information about replicas, replication and backoff from replication. The other command options for
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="codeph:5;39:13">tap_param</codeph> are:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="table:1;40:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="tgroup:1;41:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="colspec:1;42:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="colspec:2;43:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="thead:1;44:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="row:1;45:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:1;46:14">Parameter</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:2;47:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="tbody:1;50:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="row:2;51:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:3;52:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="b:2;52:17">tap_keepalive</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:4;53:14">Seconds to hold a named tap connection.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="row:3;55:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:5;56:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="b:3;56:17">tap_throttle_queue_cap</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:6;57:14">Max disk write queue size when tap streams will put into a temporary,
+							5-second pause. ‘Infinite’ means there is no cap.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="row:4;60:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:7;61:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="b:4;61:17">tap_throttle_cap_pcnt</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:8;62:14">Maximum items in disk write queue as percentage of all items on a
+							node. At this point tap streams will put into a temporary, 5-second
+							pause.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="row:5;66:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:9;67:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="b:5;67:17">tap_throttle_threshold</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="entry:10;68:14">Percentage of memory in use when tap streams will be put into a
+							temporary, 5-second pause. </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="related-links:1;75:17"><linkpool class="- topic/linkpool " xtrc="topicref:16;21:61" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:12;17:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbepctl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>cbepctl tool</linktext></link></linkpool>
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="linklist:1;76:13">
+			<link href="../../Concepts/concept-replication.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-diskwritequeue.dita" xtrc="link:1;77:58" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Replicas and replication</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Replicas are copies of data that are proved on another node in a cluster.</desc></link>
+		</linklist>
+	</related-links>
+</topic>

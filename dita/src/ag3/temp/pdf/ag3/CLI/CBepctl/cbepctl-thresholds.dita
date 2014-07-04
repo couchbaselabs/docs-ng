@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/CBepctl?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/CBepctl/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3481" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="title:1;5:10">Changing thresholds for ejection</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:1;7:8">The item pager process ejects items from RAM when too much space is being taken up in RAM.
+      Ejection means that documents are removed from RAM but the key and metadata remain. </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:2;9:8">If the amount of RAM used by items reaches the high water mark (upper threshold), both active
+      and replica data are ejected until the memory usage (amount of RAM consumed) reaches the low
+      water mark (lower threshold). </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:3;12:8">The server determines that items are not frequently used based on a not-recently-used (NRU)
+      boolean. There a few settings you can adjust to change server behavior during the ejection
+      process. In general, we do not recommend you change ejection defaults for Couchbase Server
+      unless you are required to do so.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:4;16:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="b:1;16:11">Be aware that this tool is a per-node, per-bucket operation.</b> To perform this
+      operation, the IP address of a node in the cluster and a named bucket must be specified. If a
+      named bucket is not provided, the server applies the setting to any default bucket that exists
+      at the specified node. To perform this operation for an entire cluster, perform the command
+      for every node/bucket combination that exists for that cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:5;21:8">For technical information about the ejection process, the role of NRU and server processes
+      related to ejection.</p>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="section:1;23:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="title:2;23:21">Setting the low water mark</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:6;23:58">This represents the lower threshold of RAM
+        to be consumed on a node. The item pager stops ejecting items once the low water mark is
+        reached. To change this percentage amount of RAM, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeph:1;25:75">cpepctl</codeph>
+      tool:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeblock:1;26:27"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeph:2;26:35">&gt;    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_low_wat 70
+</codeph></codeblock></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="section:2;28:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="title:3;28:21">Setting the high water mark</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:7;28:59">This represents the amount of RAM consumed
+        by items that must be breached before infrequently used active and replica items are
+        ejected. To change this amount, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeph:3;30:57">cbepctl</codeph> tool. In the following
+        example, the high water mark is set to 80% of RAM for a specific data bucket on a given
+        node. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:8;32:22">This means that items in RAM on this node can consume up to 80% of RAM before
+        the item pager begins ejecting
+      items.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeblock:2;34:28"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeph:4;34:36">&gt;    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mem_high_wat 80
+</codeph></codeblock></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="section:3;36:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="title:4;36:21">Setting percentage of ejected items</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:9;36:67">Based on the NRU algorithm, the
+        server ejects active and replica data from a node. By default, the server is configured to
+        40% active items and 60% replica data from a node.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:10;38:66">To change default percentage for
+        ejecting active and replica items, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeph:5;39:60">cbepctl</codeph> tool. The following
+        example increases the percentage of active items that can be ejected from a node to
+        50%.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeblock:3;41:28"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="codeph:6;41:36">&gt;    ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param pager_active_vb_pcnt 50
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:11;42:25">Be
+        aware of potential performance implications when making this change. It may seem more
+        desirable to eject as many replica items as possible and limit the amount of active data
+        that can be ejected. In doing so, you will be able to maintain as much active data from a
+        source node as possible, and maintain incoming requests to that node. However, if you have
+        the server eject a very large percentage of replica data, should a node fail, the replica
+        data is not immediately available. In that case, the items are retrieved from disk and put
+        back into RAM. Once in RAM, the request can be fulfilled. Couchbase recommends that you do
+        not change these defaults.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="p:12;50:42">For technical information about the ejection process, the
+        role of NRU and server processes related to ejection.</p></section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="related-links:1;53:18"><linkpool class="- topic/linkpool " xtrc="topicref:13;18:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:12;17:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbepctl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>cbepctl tool</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="linklist:1;54:15">
+      <link href="../../Tasks/tasks-manage-workingset.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-thresholds.dita" xtrc="link:1;55:62" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Ejection and working set management</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Working set management refers to the ejection of data from RAM.  		Couchbase Server ejects data to create free space and to maintain system performance.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

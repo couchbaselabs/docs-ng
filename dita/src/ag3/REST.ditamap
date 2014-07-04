@@ -21,7 +21,15 @@
   <topicref href="REST/rest-cluster-max-buckets.dita"/>
   <topicref href="REST/rest-cluster-max-index.dita"/>
  </topicref>
- <topicref href="REST/rest-server-nodes.dita"/>
+ <topicref href="REST/rest-server-nodes.dita">
+  <topicref href="REST/rest-node-provisioning.dita"/>
+  <topicref href="REST/rest-node-failover.dita"/>
+  <topicref href="REST/rest-node-hostname.dita"/>
+  <topicref href="REST/rest-node-set-username.dita"/>
+  <topicref href="REST/rest-node-memory-quota.dita"/>
+  <topicref href="REST/rest-node-index-path.dita"/>
+  <topicref href="REST/rest-node-retrieve-stats.dita"/>
+ </topicref>
  <topicref href="REST/rest-rza.dita"/>
  <topicref href="REST/rest-bucket-intro.dita">
   <topicref href="REST/rest-bucket-info.dita"/>

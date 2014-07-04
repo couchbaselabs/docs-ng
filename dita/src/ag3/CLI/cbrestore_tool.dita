@@ -1,82 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic4987"><title>cbrestore tool</title><body><p><!--Removed anchor point couchbase-admin-cmdline-cbrestore--></p><p>The <codeph>cbrestore</codeph> tool restores data from a file to an entire cluster or to a
-single bucket in the cluster. Items that had been written to file on disk will
-be restored to RAM.</p><p><codeph>cbbackup</codeph>, <codeph>cbrestore</codeph> and <codeph>cbtransfer</codeph> do not communicate with external IP
-addresses for server nodes outside of a cluster. They can only communicate with
-nodes from a node list obtained within a cluster. You should perform backup,
-restore, or transfer to data from a node within a Couchbase cluster. This also
-means that if you install Couchbase Server with the default IP address, you
-cannot use an external hostname to access it. For general information about
-hostnames for the server, see <xref href="../cb-install/#couchbase-getting-started-hostnames" format="html">Using Hostnames with Couchbase
-Server</xref>.</p><p>The tool is in the following locations, depending on your platform:</p><p><!--Removed anchor point table-couchbase-admin-cmdline-cbrestore-locs--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry><b>Linux</b></entry>
-	<entry><codeph>/opt/couchbase/bin/cbrestore</codeph></entry>
-</row></thead><tbody><row>
-	<entry><b>Windows</b></entry>
-	<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbrestore</codeph></entry>
-</row><row>
-	<entry><b>Mac OS X</b></entry>
-	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbrestore</codeph></entry>
-</row></tbody></tgroup></table><p>The format of the <codeph>cbrestore</codeph> command is:</p><codeblock><codeph>cbrestore [options] [host:ip] [source] [destination]
-</codeph></codeblock><p>Where:</p><ul>
-<li><codeph>[options]</codeph></li>
-</ul><p>Command options for <codeph>cbrestore</codeph> are the same options for <codeph>cbtransfer</codeph>, see
- <xref href="#topic4987/couchbase-admin-cmdline-cbtransfer">cbtransfer Tool</xref>.</p><ul>
-<li><codeph>[host:ip]</codeph></li>
-</ul><p>Hostname and port for a node in cluster.</p><ul>
-<li><codeph>[source]</codeph></li>
-</ul><p>Source bucket name for the backup data. This is in the directory created by
- <codeph>cbbackup</codeph> when you performed the backup.</p><ul>
-<li><codeph>[destination]</codeph></li>
-</ul><p>The destination bucket for the restored information. This is a bucket in an
- existing cluster. If you restore the data to a single node in a cluster, provide
- the hostname and port for the node you want to restore to. If you restore an
- entire data bucket, provide the URL of one of the nodes within the cluster.</p><p>All command options for <codeph>cbrestore</codeph> are the same options available for
-<codeph>cbtransfer</codeph>. For a list of standard and special-use options, see <xref href="#topic4987/couchbase-admin-cmdline-cbtransfer">cbtransfer
-Tool</xref>.</p><p><b>Using cbrestore for Design Documents Only</b></p><p>You can restore design documents to a server node
-with the option, <codeph>design_doc_only=1</codeph>. You can restore from a backup file you
-create with <codeph>cbbackup</codeph>, see <xref href="#topic4987/couchbase-admin-cmdline-cbbackup">cbbackup Tool</xref> :</p><codeblock><codeph>&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b a_bucket -B my_bucket
+<topic xml:lang="en-us" id="topic4987">
+  <title>cbrestore tool</title>
+  <body>
+    <p>The <codeph>cbrestore</codeph> tool restores data from a file to an entire cluster or to a
+      single bucket in the cluster. Items that had been written to file on disk will be restored to
+      RAM.</p>
+    <p><codeph>cbbackup</codeph>, <codeph>cbrestore</codeph> and <codeph>cbtransfer</codeph> do not
+      communicate with external IP addresses for server nodes outside of a cluster. They can only
+      communicate with nodes from a node list obtained within a cluster. You should perform backup,
+      restore, or transfer to data from a node within a Couchbase cluster. This also means that if
+      you install Couchbase Server with the default IP address, you cannot use an external hostname
+      to access it. </p>
+    <p>The tool is in the following locations, depending on your platform:</p>
+    <table>
+      <tgroup cols="2">
+        <colspec colname="col1"/>
+        <colspec colname="col2"/>
+        <thead>
+          <row>
+            <entry><b>Linux</b></entry>
+            <entry><codeph>/opt/couchbase/bin/cbrestore</codeph></entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><b>Windows</b></entry>
+            <entry><codeph>C:\Program Files\Couchbase\Server\bin\cbrestore</codeph></entry>
+          </row>
+          <row>
+            <entry><b>Mac OS X</b></entry>
+            <entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbrestore</codeph></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <p>The format of the <codeph>cbrestore</codeph> command is:</p>
+    <codeblock><codeph>cbrestore [options] [host:ip] [source] [destination]
+</codeph></codeblock>
+    <p>Where:</p>
+    <ul>
+      <li><codeph>[options]</codeph></li>
+    </ul>
+    <p>Command options for <codeph>cbrestore</codeph> are the same options for
+        <codeph>cbtransfer</codeph>.</p>
+    <ul>
+      <li><codeph>[host:ip]</codeph></li>
+    </ul>
+    <p>Hostname and port for a node in cluster.</p>
+    <ul>
+      <li><codeph>[source]</codeph></li>
+    </ul>
+    <p>Source bucket name for the backup data. This is in the directory created by
+        <codeph>cbbackup</codeph> when you performed the backup.</p>
+    <ul>
+      <li><codeph>[destination]</codeph></li>
+    </ul>
+    <p>The destination bucket for the restored information. This is a bucket in an existing cluster.
+      If you restore the data to a single node in a cluster, provide the hostname and port for the
+      node you want to restore to. If you restore an entire data bucket, provide the URL of one of
+      the nodes within the cluster.</p>
+    <p>All command options for <codeph>cbrestore</codeph> are the same options available for
+        <codeph>cbtransfer</codeph>.</p>
+    
+    
+    
+    <section><title>Using cbrestore for design documents</title>
+    <p>You can restore design documents to a server node with the option,
+        <codeph>design_doc_only=1</codeph>. You can restore from a backup file you create with
+        <codeph>cbbackup</codeph>.</p>
+    <codeblock><codeph>&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b a_bucket -B my_bucket
 
 transfer design doc only. bucket msgs will be skipped.
 done
-</codeph></codeblock><p>This will restore design documents from the backup file <codeph>~/backup/a_bucket</codeph> to
-the destination bucket <codeph>my_bucket</codeph> in a cluster. If you backed up more than one
-source bucket, you will need to perform this command more than once. For
-instance, imagine you did a backup for a cluster with two data buckets and have
-the backup files <codeph>~/backup/bucket_one/design.json</codeph> and
-<codeph>~/backup/bucket_two/design.json</codeph> :</p><codeblock><codeph>&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_one -B my_bucket
+</codeph></codeblock>
+    <p>This will restore design documents from the backup file <codeph>~/backup/a_bucket</codeph> to
+      the destination bucket <codeph>my_bucket</codeph> in a cluster. If you backed up more than one
+      source bucket, you will need to perform this command more than once. For instance, imagine you
+      did a backup for a cluster with two data buckets and have the backup files
+        <codeph>~/backup/bucket_one/design.json</codeph> and
+        <codeph>~/backup/bucket_two/design.json</codeph> :</p>
+    <codeblock><codeph>&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_one -B my_bucket
 
 &gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_two -B my_bucket
-</codeph></codeblock><p>This will restore design documents in both backup files to a bucket in your
-cluster named <codeph>my_bucket</codeph> After you restore the design documents you can see
-them in Couchbase Web Console under the Views tab. For more information about
-the Views Editor, see <xref href="../cb-install/#couchbase-views-editor" format="html">Using the Views Editor</xref>.</p><p><b>Using cbrestore from Couchbase Server 2.0 with 1.8.x</b></p><p>You can use <codeph>cbrestore</codeph> 2.0 to backup data from a Couchbase 1.8.x cluster,
-including 1.8. To do so you use the same command options you use when you backup
-a 2.0 cluster except you provide it the hostname and port for the 1.8.x cluster.
-You do not need to even install Couchbase Server 2.0 in order to use <codeph>cbrestore</codeph>
-2.0 to backup Couchbase Server 1.8.x. You can get a copy of the tool from the
-<xref href="https://github.com/couchbase/couchbase-cli" scope="external" format="html">Couchbase command-line tools GitHub
-repository</xref>. After you get the tool,
-go to the directory where you cloned the tool and perform the command. For
-instance:</p><codeblock><codeph>./cbrestore ~/backup http://10.3.3.11:8091 -u Administrator -p password -B saslbucket_destination -b saslbucket_source
-</codeph></codeblock><p>This restores all data in the <codeph>bucket-saslbucket_source</codeph> directory under
-<codeph>~/backups</codeph> on the physical machine where you run <codeph>cbbackup</codeph>. It will restore
-this data into a bucket named <codeph>saslbucket_destination</codeph> in the cluster with the
-node host:port of <codeph>10.3.3.11:8091</codeph>.</p><p>Be aware that if you are trying to restore data to a different cluster, that you
-should make sure that cluster should have the same number of vBuckets as the
-cluster that you backed up. If you attempt to restore data from a cluster to a
-cluster with a different number of vBuckets, it will fail when you use the
-default port of <codeph>8091</codeph>. The default number of vBuckets for Couchbase 2.0 is
-1024; in earlier versions of Couchbase, you may have a different number of
-vBuckets. If you do want to restore data to a cluster with a different number of
-vBuckets, you should perform this command with port <codeph>11211</codeph>, which will
-accommodate the difference in vBuckets:</p><codeblock><codeph>cbrestore /backups/backup-42 memcached://HOST:11211 \
+</codeph></codeblock>
+    <p>This will restore design documents in both backup files to a bucket in your cluster named
+        <codeph>my_bucket</codeph> After you restore the design documents you can see them in
+      Couchbase Web Console under the Views tab.</p>
+    </section>
+    
+    
+    
+    <section><title>Using cbrestore for 1.8.x</title>
+    <p>You can use <codeph>cbrestore</codeph> to backup data from a Couchbase 1.8.x cluster,
+      including 1.8. To do so you use the same command options you use when you backup a 2.0 cluster
+      except you provide it the hostname and port for the 1.8.x cluster. You do not need to even
+      install Couchbase Server 2.0 in order to use <codeph>cbrestore</codeph> 2.0 to backup
+      Couchbase Server 1.8.x. . After you get the tool, go to the directory
+      where you cloned the tool and perform the command. For instance:</p>
+    <codeblock>./cbrestore ~/backup http://10.3.3.11:8091 -u Administrator -p password -B saslbucket_destination -b saslbucket_source
+</codeblock>
+    <p>This restores all data in the <codeph>bucket-saslbucket_source</codeph> directory under
+        <codeph>~/backups</codeph> on the physical machine where you run <codeph>cbbackup</codeph>.
+      It will restore this data into a bucket named <codeph>saslbucket_destination</codeph> in the
+      cluster with the node host:port of <codeph>10.3.3.11:8091</codeph>.</p>
+    <p>Be aware that if you are trying to restore data to a different cluster, that you should make
+      sure that cluster should have the same number of vBuckets as the cluster that you backed up.
+      If you attempt to restore data from a cluster to a cluster with a different number of
+      vBuckets, it will fail when you use the default port of <codeph>8091</codeph>. The default
+      number of vBuckets for Couchbase 2.0 is 1024; in earlier versions of Couchbase, you may have a
+      different number of vBuckets. If you do want to restore data to a cluster with a different
+      number of vBuckets, you should perform this command with port <codeph>11211</codeph>, which
+      will accommodate the difference in vBuckets:</p>
+    <codeblock>cbrestore /backups/backup-42 memcached://HOST:11211 \
     --bucket-source=sessions --bucket-destination=sessions2
-</codeph></codeblock><p>If you want more information about using <codeph>cbbackup</codeph> 2.0 tool to backup data onto
-a 1.8.x cluster. See <xref href="#topic4987/couchbase-admin-cmdline-cbbackup">cbbackup Tool</xref>.</p><p>For general information on using <codeph>cbbackup</codeph>, see <xref href="../cb-admin/#couchbase-backup-restore-cbrestore" format="html">Restoring using cbrestore
-tool</xref>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-install/#couchbase-getting-started-hostnames" format="html"><linktext>Using Hostnames with Couchbase
-Server</linktext></link><link href="../cb-install/#couchbase-views-editor" format="html"><linktext>Using the Views Editor</linktext></link><link href="https://github.com/couchbase/couchbase-cli" scope="external" format="html"><linktext>Couchbase command-line tools GitHub
-repository</linktext></link><link href="../cb-admin/#couchbase-backup-restore-cbrestore" format="html"><linktext>Restoring using cbrestore
-tool</linktext></link></linklist></related-links></topic>
+</codeblock>
+    </section>
+    
+  </body>
+  <related-links>
+    <linklist>
+      <link href="https://github.com/couchbase/couchbase-cli" scope="external" format="html">
+        <linktext>Couchbase command-line tools GitHub repository</linktext></link>
+      <link href="../install/hostnames.dita"/>
+      <link href="../ui/ui-views-editor.dita"/>
+      <link href="../cli/cbbackup_tool.dita"/>
+      <link href="../cli/cbtransfer_tool.dita"/>
+    </linklist>
+  </related-links>
+</topic>

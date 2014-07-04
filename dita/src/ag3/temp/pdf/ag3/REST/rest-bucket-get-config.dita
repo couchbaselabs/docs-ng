@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1116" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="topic:1;4:40">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="title:1;5:12">Getting bucket configuration</title>
+    <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="shortdesc:1;6:16">To retrieve information about an existing bucket, 
+        use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="codeph:1;7:25">GET</codeph> operation with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="codeph:2;7:65">/pools/default/buckets/bucketName</codeph> URI.</shortdesc>
+    
+    <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="body:1;9:11">
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="p:1;10:12">The main REST API bucket endpoint is ends with the bucket name.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="p:2;11:12">Clients MUST use the nodes list from the bucket, not the pool to indicate which are the
+            appropriate nodes to connect to.</p>
+
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="codeblock:1;14:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="codeph:3;14:28">GET /pools/default/buckets/bucketName
+</codeph></codeblock>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="codeblock:2;16:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-get-config.dita" xtrc="codeph:4;16:28">HTTP/1.1 200 OK
+Content-Type: application/com.couchbase.store+json
+Content-Length: nnn
+{
+    "name" : "Another bucket",
+    "bucketRules" :
+    {
+        "cacheRange" :
+        {
+            "min" : 1,
+            "max" : 599
+        },
+        "replicationFactor" : 2
+    }
+    "nodes" : [
+        {
+            "hostname" : "10.0.1.20",
+            "uri" : "/addresses/10.0.1.20",
+            "status" : "healthy",
+            "ports" :
+            {
+                "routing" : 11211,
+                "kvcache" :1
+            }
+        },
+        {
+            "hostname" : "10.0.1.21",
+            "uri" : "/addresses/10.0.1.21",
+            "status" : "healthy",
+            "ports" :
+            {
+                "routing" : 11211,
+                "kvcache" :1
+            }
+        }
+    ]
+}
+</codeph></codeblock>
+
+    </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:29;36:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

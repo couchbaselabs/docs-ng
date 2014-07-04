@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_w2n_fqt_24" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="title:1;4:10">Changing bucket read-write threads</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="shortdesc:1;5:14">To change the disk readers and writers setting, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeph:1;5:78">POST</codeph> operation with the 
+    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeph:2;6:13">/pools/default/bucket/bucket_name</codeph> URI.</shortdesc>
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="refbody:1;7:12">
+   
+   
+    <properties class="- topic/simpletable reference/properties " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="properties:1;10:17">
+      <property class="- topic/strow       reference/property " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="property:1;11:17">
+        <proptype class="- topic/stentry     reference/proptype " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="proptype:1;12:19">POST /pools/default/buckets/bucket_name</proptype>
+        <propvalue class="- topic/stentry     reference/propvalue " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="propvalue:1;13:20">threadsNumber</propvalue>
+      </property>
+    </properties>
+    
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="section:1;19:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="title:2;19:21">View bucket read-write threads</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="p:1;20:10">The number of read-write threads are included with the data bucket properties via a REST call:</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeblock:1;22:18">
+curl -x GET -u Admin:password http://localhost:8091/pools/default/buckets/bucket_name
+</codeblock>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="p:2;26:10">This provides information about the named bucket as a JSON response, including the total
+        number of threads:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeblock:2;28:18">
+{"name":"bucket_name","bucketType":"couchbase"
+....
+"replicaNumber":1,
+"threadsNumber":5,
+....
+}
+      </codeblock>
+    </section>
+    
+   
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="section:2;39:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="title:3;39:23">Change bucket read-write threads</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="p:3;40:10">To change the bucket read-write thread setting, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeph:3;40:74">threadsNumber</codeph> parameter with
+        a value from two to eight. The following is an example REST call:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeblock:3;42:18">
+curl -X POST -u Admin:password http://10.3.3.72:8091/pools/default/buckets/bucket_name \
+  -d ramQuotaMB=4000 -d threadsNumber=3 -v
+</codeblock>
+      </section>
+        
+        <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="section:3;48:18"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="title:4;48:25">Request</title>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="p:4;50:10">You see the following request via HTTP:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeblock:4;51:18">
+About to connect() to 10.3.3.72 port 8091 (#0)
+ Trying 10.3.3.72... connected
+ Connected to 10.3.3.72 (10.3.3.72) port 8091 (#0)
+ Server auth using Basic with user 'Administrator'
+ POST /pools/default/buckets/bucket_name HTTP/1.1
+ ....
+</codeblock>
+        </section>
+        
+
+      
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="example:1;63:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="title:5;63:21">Successful response:</title>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeblock:5;64:16">
+HTTP/1.1 200 OK
+....
+    </codeblock>
+    </example>
+
+        
+      
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="example:2;72:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="title:6;72:21">Unsuccessful response</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="p:5;73:10">If an invalid number of threads is provides, a response similar to the
+        following occurs:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-readwrite.dita" xtrc="codeblock:6;75:18">
+HTTP/1.1 400 Bad Request
+....
+{"errors":{"threadsNumber":"The number of threads can't be greater than 8"},"
+</codeblock>
+    </example>
+        
+
+      
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:37;44:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</reference>

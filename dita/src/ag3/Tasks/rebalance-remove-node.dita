@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_byh_lbg_q4">
+  <title>Removing nodes from clusters</title>
+  <shortdesc>Removing a node marks
+    the node for removal from the cluster and completely disables the node from serving any
+    requests across the cluster.</shortdesc>
+  <body>
+    <p>Once a node is removed, a node is no longer part of the cluster in any way
+      and can be switched off, or can be updated or upgraded.</p><p>Important</p><p> Before you
+        remove a node from the cluster, ensure that you have the capacity within the remaining nodes of
+        your cluster to handle your workload. For more information on the considerations, see Choosing
+        when to shrink your cluster. For the best results, use swap rebalance to swap the node you want
+        to remove out, and swap in a replacement node. </p>
+    
+    <note type="note">Removing a node does not stop the node from servicing requests.
+      Instead, it only marks the node ready for removal from the cluster. You must perform a
+      rebalance operation to complete the removal
+      process.</note>
+    
+    <p>Like adding nodes, node can be removed either via the Web Console or CLI.</p>
+      
+            <section><title>Web Console</title>
+          <p>You can remove a node from the cluster from within the <codeph>Manage Server
+            Nodes</codeph> section of the Web Console, as shown in the figure below.</p><p>To remove a
+              node, click the <codeph>Remove Server</codeph> button next to the node you want to remove. You
+              will be provided with a warning to confirm that you want to remove the node. Click
+              <codeph>Remove</codeph> to mark the node for removal.</p>
+            </section>
+                
+                
+                
+                <section><title>Using the Command-line</title>
+              <p>You cannot mark a node for removal from the command-line without also initiating a
+                rebalance operation. The <codeph>rebalance</codeph> command accepts one or more
+                <codeph>--server-add</codeph> and/or <codeph>--server-remove</codeph> options. This adds or
+                removes the server from the cluster, and immediately initiates a rebalance operation.</p>
+                  
+                  <p>For example, to remove a node during a rebalance
+                  operation:</p>
+                  
+                  <codeblock>
+&gt; couchbase-cli rebalance --cluster=127.0.0.1:8091 \
+          -u Administrator -p Password \
+          --server-remove=192.168.0.73
+</codeblock>
+                  
+                </section>
+
+  </body>
+</topic>

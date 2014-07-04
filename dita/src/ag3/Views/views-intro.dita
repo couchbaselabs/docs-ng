@@ -1,48 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic2724"><title>Views and indexes</title><body><p>Views within Couchbase Server process the information stored in your Couchbase
-Server database, allowing you to index and query your data. A view creates an
-index on the stored information according to the format and structure defined
-within the view. The view consists of specific fields and information extracted
-from the objects stored in Couchbase. Views create indexes on your information
-allowing you to search and select information stored within Couchbase Server.</p><p>Views are eventually consistent compared to the underlying stored documents.
-Documents are included in views when the document data is persisted to disk, and
-documents with expiry times are removed from indexes only when the expiration
-pager operates to remove the document from the database. For more information,
-read <xref href="#topic2724/couchbase-views-operation">View Operation</xref>.</p><p>Views can be used within Couchbase Server for a number of reasons, including:</p><ul>
-<li><p>Indexing and querying data from your stored objects</p></li>
-<li><p>Producing lists of data on specific object types</p></li>
-<li><p>Producing tables and lists of information based on your stored data</p></li>
-<li><p>Extracting or filtering information from the database</p></li>
-<li><p>Calculating, summarizing or reducing the information on a collection of stored
- data</p></li>
-</ul><p>You can create multiple views and therefore multiple indexes and routes into the
-information stored in your database. By exposing specific fields from the stored
-information, views enable you to create and query the information stored within
-your Couchbase Server, perform queries and selection on the information, and
-paginate through the view output. The View Builder provides an interface for
-creating your views within the Couchbase Server Web Console. Views can be
-accessed using a suitable client library to retrieve matching records from the
-Couchbase Server database.</p><ul>
-<li><p>For background information on the creation of views and how they relate to the
- contents of your Couchbase Server database, see <xref href="#topic2724/couchbase-views-basics">View
- Basics</xref>.</p></li>
-<li><p>For more information on how views work with stored information, see <xref href="#topic2724/couchbase-views-datastore">Views and
- Stored Data</xref>.</p></li>
-<li><p>For information on the rules and implementation of views, see <xref href="#topic2724/couchbase-views-operation">View
- Operation</xref>.</p></li>
-<li><p>Two types of views, development and production, are used to help optimize
- performance and view development. See <xref href="#topic2724/couchbase-views-types">Development and Production
- Views</xref>.</p></li>
-<li><p>Writing views, including the language and options available are covered in
- <xref href="#topic2724/couchbase-views-types">Development and Production Views</xref>.</p></li>
-<li><p>For a detailed background and technical information on troubleshooting views,
- see <xref href="#topic2724/couchbase-views-troubleshooting">Troubleshooting Views (Technical
- Background)</xref>.</p></li>
-<li><p>The Couchbase Server Web Console includes an editor for writing and developing
- new views. See <xref href="#topic2724/couchbase-views-editor">Using the Views Editor</xref>. You can also
- use a REST API to create, update and delete design documents. See the <xref href="../cb-rest-api/#couchbase-views-designdoc-api" format="html">REST API, Design
- Documents</xref>.</p></li>
-</ul></body><related-links><linklist><title>Collected links</title><link href="../cb-rest-api/#couchbase-views-designdoc-api" format="html"><linktext>REST API, Design
- Documents</linktext></link></linklist></related-links></topic>
+<topic xml:lang="en-us" id="topic2724">
+ <title>Views and indexes</title>
+ <body>
+  <p>Views within Couchbase Server process the information stored in your Couchbase Server database,
+   allowing you to index and query your data. A view creates an index on the stored information
+   according to the format and structure defined within the view. The view consists of specific
+   fields and information extracted from the objects stored in Couchbase. Views create indexes on
+   your information allowing you to search and select information stored within Couchbase
+   Server.</p>
+  <p>Views are eventually consistent compared to the underlying stored documents. Documents are
+   included in views when the document data is persisted to disk, and documents with expiry times
+   are removed from indexes only when the expiration pager operates to remove the document from the
+   database.</p>
+  <p>Views can be used within Couchbase Server for a number of reasons, including:</p>
+  <ul>
+   <li>Indexing and querying data from your stored objects</li>
+   <li>Producing lists of data on specific object types</li>
+   <li>Producing tables and lists of information based on your stored data</li>
+   <li>Extracting or filtering information from the database</li>
+   <li>Calculating, summarizing or reducing the information on a collection of stored
+    data</li>
+  </ul>
+  <p>You can create multiple views and therefore multiple indexes and routes into the information
+   stored in your database. By exposing specific fields from the stored information, views enable
+   you to create and query the information stored within your Couchbase Server, perform queries and
+   selection on the information, and paginate through the view output. The View Builder provides an
+   interface for creating your views within the Couchbase Server Web Console. Views can be accessed
+   using a suitable client library to retrieve matching records from the Couchbase Server
+   database.</p>
+ </body>
+ <related-links>
+  <linklist>
+   <link href="../rest/design-docs-rest-api.dita"/>
+  </linklist>
+ </related-links>
+</topic>

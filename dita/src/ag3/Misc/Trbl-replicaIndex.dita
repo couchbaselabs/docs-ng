@@ -73,9 +73,7 @@
       row field <codeph>node</codeph>, you can see there’s a duality when compared to the results we
       got from the main index, which is very easy to understand for the simple case of a 2 nodes
       cluster.</p>
-    <p>To find out which replica vbuckets exist in each node, see section <xref
-        href="#topic5338/couchbase-views-debugging-datamissing">Data missing in query response or
-        it’s wrong (potentially due to server issues)</xref>.</p>
+
   </body>
   <related-links>
     <linklist>

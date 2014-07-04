@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic6148" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="title:1;5:9">Creating and editing buckets</title>
+
+	<shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="shortdesc:1;7:13">To create and edit buckets, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:1;7:57">POST</codeph> operation with the 
+			<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:2;8:12">/pools/default/bucket</codeph> URI.
+			</shortdesc>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="body:1;10:8">		
+		
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:1;12:6">Buckets are created and edited with a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:3;12:52">POST</codeph> sent to the REST URI endpoint for buckets
+			in a cluster. This can be used to create either a Couchbase or a Memcached type bucket.
+			Bucket names cannot have a leading underscore.</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="ul:1;15:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:1;16:8">Method and URI - <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:4;16:33">POST /pools/default/buckets</codeph></li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:2;17:8">Request Data - List of payload parameters for the new bucket</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:3;18:8">Response Data - JSON of the bucket confirmation or an error condition</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:4;19:8">Authentication Required - yes </li>
+		</ul>
+		
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:2;22:6">This endpoint is also used to get a list of buckets that exist for a cluster.</p>
+		<note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="note:1;23:26"> When editing bucket properties, be sure to  specify all bucket properties.
+			If a bucket property is not specified (whether or not you are changing the existing
+			value), Couchbase Server may reset the property to the default. Even if you do not
+			intend to change a certain property, re-specify the existing value to avoid this
+			behavior.</note>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:3;28:6">The REST API returns a successful response when preliminary files for a data bucket are created
+			on one node. However, if a multi-node cluster is implemented, bucket creation may not
+			have completed for all nodes when a response is sent. Therefore, it is possible that the
+			bucket is not available for operations immediately after this REST call successful
+			returns.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:4;33:6">To verify that a bucket is available, try to read a key from the bucket. If a ‘key not found’
+			error is received or the document for the key is returned, then the bucket exists and is
+			available to all nodes in a cluster. Key requests can be issued via a Couchbase SDK with
+			any node in the cluster. See the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:1;36:40">Couchbase Developer Guide</i> for more
+			information.</p>
+		
+
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="table:1;40:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="tgroup:1;41:21">
+				<colspec colname="col1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="colspec:1;42:44"/>
+				<colspec colname="col2" colwidth="1.63*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="colspec:2;43:47"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="thead:1;44:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:1;45:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:1;46:14">Payload Arguments</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:2;47:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="tbody:1;50:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:2;51:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:3;52:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:5;52:22">authType</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:4;53:14">Required parameter. Type of authorization to be enabled for the new
+							bucket as a string. Defaults to blank password if not specified. “sasl”
+							enables authentication. “none” disables authentication.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:3;57:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:5;58:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:6;58:22">bucketType</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:6;59:14">Required parameter. Type of bucket to be created. String value.
+							“memcached” configures as Memcached bucket. “couchbase” configures as
+							Couchbase bucket</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:4;63:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:7;64:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:7;64:22">flushEnabled</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:8;65:14">Optional parameter. Enables the ‘flush all’ functionality on the
+							specified bucket. Boolean. 1 enables flush all support, 0 disables flush
+							all support. Defaults to 0.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:5;69:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:9;70:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:8;70:22">name</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:10;71:14">Required parameter. Name for new bucket.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:6;73:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:11;74:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:9;74:22">parallelDBAndViewCompaction</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:12;75:14">Optional parameter. String value. Indicates whether database and view
+							files on disk can be compacted simultaneously. Defaults to
+							“false.”</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:7;79:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:13;80:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:10;80:22">proxyPort</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:14;81:14">Required parameter. Numeric. Proxy port on which the bucket
+							communicates. Must be a valid network port which is not already in use.
+							You must provide a valid port number if the authorization type is not
+							SASL.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:8;86:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:15;87:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:11;87:22">ramQuotaMB</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:16;88:14">Required parameter. RAM Quota for new bucket in MB. Numeric. The
+							minimum you can specify is 100, and the maximum can only be as great as
+							the memory quota established for the node. If other buckets are
+							associated with a node, RAM Quota can only be as large as the amount
+							memory remaining for the node, accounting for the other bucket memory
+							quota.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:9;95:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:17;96:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:12;96:22">replicaIndex</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:18;97:14">Optional parameter. Boolean. 1 enable replica indexes for replica
+							bucket data while 0 disables. Default of 1.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:10;100:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:19;101:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:13;101:22">replicaNumber</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:20;102:14">Optional parameter. Numeric. Number of replicas to be configured for
+							this bucket. Required parameter when creating a Couchbase bucket.
+							Default 1, minimum 0, maximum 3.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:11;106:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:21;107:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:14;107:22">saslPassword</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:22;108:14">Optional Parameter. String. Password for SASL authentication.
+							Required if SASL authentication has been enabled.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:12;111:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:23;112:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:15;112:22">threadsNumber</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:24;113:14">Optional Parameter. Integer from 2 to 8. Change the number of
+							concurrent readers and writers for the data bucket. For detailed
+							information about this feature, see <xref href="../cb-admin/#couchbase-admin-tasks-mrw" format="html" class="- topic/xref " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="xref:1;116:69"><?ditaot usertext?>Using
+								Multi- Readers and Writers</xref>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:13;119:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:25;120:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="b:1;120:17">Return Codes</b></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:14;122:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:26;123:14">202</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:27;124:14">Accepted</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:15;126:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:28;127:14">204</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:29;128:14">Bad Request JSON with errors in the form of {“errors”: {…. }} name:
+							Bucket with given name already exists ramQuotaMB: RAM Quota is too large
+							or too small replicaNumber: Must be specified and must be a non-negative
+							integer proxyPort: port is invalid, port is already in use</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="row:16;133:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:30;134:14">404</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="entry:31;135:14">Object Not Found</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:5;140:6">When you create a bucket you must provide the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:16;140:60">authType</codeph> parameter:</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="ul:2;141:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:5;142:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:6;142:11">If you set <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:17;142:30">authType</codeph> to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:18;142:59">none</codeph>, then you must
+					specify a proxyPort number.</p></li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:6;144:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:7;144:11">If you set <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:19;144:30">authType</codeph> to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:20;144:59">sasl</codeph>, then you may
+					optionally provide a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:21;145:35">saslPassword</codeph> parameter.</p></li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:8;147:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:22;147:18">ramQuotaMB</codeph> parameter specifies how much memory, in megabytes, you
+			want to allocate to each node for the bucket. The minimum supported value is 100MB.</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="ul:3;149:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:7;150:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:9;150:11">If the items stored in a memcached bucket take space beyond the
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:23;151:15">ramQuotaMB</codeph>, Couchbase Sever typically will evict items on
+					least-requested-item basis. Couchbase Server may evict other infrequently used
+					items depending on object size, or whether or not an item is being
+					referenced.</p></li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="li:8;155:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:10;155:11">In the case of Couchbase buckets, the system may return temporary failures if the
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:24;156:15">ramQuotaMB</codeph> is reached. The system will try to keep 25% of
+					the available ramQuotaMB free for new items by ejecting old items from occupying
+					memory. In the event these items are later requested, they will be retrieved
+					from disk.</p></li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:11;161:6">In the following example, replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:2;161:47">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:3;161:61">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:4;161:78">localhost</i>,
+				<i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:5;162:8">newbucket</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:6;162:26">200</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:7;162:38">2</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="i:8;162:52">11215</i> values with your actual
+			values.</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeblock:1;164:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:25;164:22">curl -X POST -u admin:password -d name=newbucket -d ramQuotaMB=200 -d authType=none \
+-d replicaNumber=2 -d proxyPort=11215 http://localhost:8091/pools/default/buckets
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:12;167:6">The parameters for configuring the bucket are provided as payload data, with each parameter and
+			value provided as a key/value pair, separated by an ampersand.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:13;169:6">The HTTP request should include the parameters setting in the payload of the
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:26;170:13">POST</codeph> request:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeblock:2;171:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:27;171:22">POST /pools/default/buckets
+HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Length: xx
+name=newbucket&amp;ramQuotaMB=20&amp;authType=none&amp;replicaNumber=2&amp;proxyPort=11215
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:14;179:6">If the bucket creation was successful, HTTP response 202 (Accepted) will be returned with
+			empty content.</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeblock:3;181:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="codeph:28;181:22">202 Accepted
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-create.dita" xtrc="p:15;183:6">If the bucket could not be created, because the parameter was missing or incorrect, HTTP
+			response 400 will be returned, with a JSON payload containing the error reason.</p>
+	
+	
+	</body>
+
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:33;40:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

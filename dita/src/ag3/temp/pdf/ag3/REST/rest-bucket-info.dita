@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1568" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="topic:1;4:40">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="title:1;5:12">Getting single bucket information</title>
+    <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="shortdesc:1;6:16">To retrieve information about existing buckets and the default bucket, 
+        use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="codeph:1;7:25">GET</codeph> operation with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="codeph:2;7:65">/pools/default/buckets/default</codeph> URI.</shortdesc>
+
+
+
+    <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="body:1;11:11">
+
+
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="p:1;14:12">To retrieve information for a single bucket associated with a cluster, you make this
+            request, where the last default can be replaced with the name of a specific bucket, if
+            you have named buckets:</p>
+
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="codeblock:1;18:20">
+curl -u admin:password \
+    http://localhost:8091/pools/default/buckets/default
+</codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="p:2;22:12">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="i:1;22:27">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="i:2;22:41">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="i:3;22:62">localhost</i> values in the above
+            example with actual values.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="p:3;24:12">Couchbase Server returns a large JSON document with bucket information including internal
+            vBucket information:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="codeblock:2;26:20">{
+    "name":"default",
+    "bucketType":"membase",
+    "authType":"sasl",
+    "saslPassword":"",
+    "proxyPort":0,
+    "uri":"/pools/default/buckets/default",
+    "streamingUri":"/pools/default/bucketsStreaming/default",
+    "flushCacheUri":"/pools/default/buckets/default/controller/doFlush",
+    "nodes":[
+        {
+            "systemStats":
+            {
+                "cpu_utilization_rate":1.5151515151515151,
+                "swap_total":6140452864.0,
+                "swap_used":0
+            },
+
+                ......
+
+            "replicaNumber":1,
+            "quota":
+            {
+                "ram":10246684672.0,
+                "rawRAM":5123342336.0
+            },
+            "basicStats":
+            {
+                "quotaPercentUsed":0.5281477251650123,
+                "opsPerSec":0,"diskFetches":0,
+                "itemCount":0,
+                "diskUsed":7518856,
+                "memUsed":54117632
+            }
+        }
+    ]
+}
+</codeblock>
+        
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="codeblock:3;65:20">GET http://10.4.2.5:8091/pools/default/buckets/default?_=1340926633052
+</codeblock>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-info.dita" xtrc="codeblock:4;67:20">HTTP/1.1 200 OK
+</codeblock>
+    </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:28;35:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

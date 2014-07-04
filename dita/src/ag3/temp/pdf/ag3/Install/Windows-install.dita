@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic4669" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="title:1;5:10">Microsoft Windows installation</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:1;7:8">Before installing, check the supported platforms. To
+      install on Windows, download the Windows installer package. This is supplied as a Windows
+      executable. You can install the package either using the wizard, or by doing an unattended
+      installation process. In either case, make sure that you have no anti-virus software running on
+      the machine before you start the installation process. You also need administrator privileges
+      on the machine where you install it.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:2;14:8">The TCP/IP port allocation on Windows by default includes a restricted number of ports
+      available for client communication. For more information on this issue, including information
+      on how to adjust the configuration and increase the available ports, see the MSDN: Avoiding
+      TCP/IP Port Exhaustion article. </p>
+    
+   
+    <note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="note:1;20:28">Couchbase Server uses the Microsoft C++ redistributable package, which
+      automatically downloads during installation. However, if another application on your machine
+      is already using the package, your installation process may fail. To ensure that your
+      installation process completes successfully, shut down all other running applications during
+      installation. <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:3;24:24">For Windows 2008, you must upgrade your Windows Server 2008 R2 installation
+        with Service Pack 1 installed before running Couchbase Server. You can obtain Service Pack 1
+        from [Microsoft TechNet](http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx).
+        </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:4;27:16">The standard Microsoft Server installation does not provide an adequate number of
+        ephemeral ports for Couchbase clusters. Without the correct number of open ephemeral ports,
+        you may experience errors during rebalance, timeouts on clients, and failed backups. The
+        Couchbase Server installer will check for your current port setting and adjust it if needed.
+        See [Microsoft KB-196271](http://support.microsoft.com/kb/196271). </p>
+    </note>
+      
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="section:1;35:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="title:2;35:21">Installation wizard</title>
+      <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="ol:1;36:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="li:1;37:13">Double click on the downloaded executable file.
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:5;38:14">The installer for windows will detect
+            if any redistributable packages included with Couchbase need to be installed or not. If
+            these packaged are not already on your system, the install will automatically install
+            them along with Couchbase Server.</p>
+        </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="li:2;43:13">Follow the install wizard to complete the installation.
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:6;44:14">You will be prompted with the
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:1;45:23">Installation Location</codeph> screen. You can change the location where the
+            Couchbase Server application is located. Note that this does not configure the location
+            of where the persistent data will be stored, only the location of the server
+            itself.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:7;48:27">The installer copies necessary files to the system. During the
+            installation process, the installer will also check to ensure that the default
+            administration port is not already in use by another application. If the default port is
+            unavailable, the installer will prompt for a different port to be used for
+            administration of the Couchbase server. The installer asks you to set up sufficient
+            ports available for the node. By default Microsoft Server will not have an adequate
+            number of ephemeral ports, see <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="i:1;54:47">Microsoft Knowledge Base Article 196271</i></p>
+              <image href="../images/windows_port_check.png" width="300" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="image:1;55:74"/>
+            </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="li:3;57:13">Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="uicontrol:1;57:30">Yes</uicontrol>.
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:8;58:14">Without a sufficient number of ephemeral ports, a Couchbase cluster
+            fails during rebalance and backup; other operations such as client requests will
+            timeout. If you already changed this setting you can click no. The installer will
+            display this panel to confirm the update:</p>
+              <image href="../images/windows_port_check2.png" width="300" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="image:2;62:75"/>
+            </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="li:4;64:13">Restart the server for the port changes to be applied.</li>
+      </ol>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:9;66:10">After installation you should follow the server setup instructions. </p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="section:2;69:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="title:3;69:21">Unattended installation</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:10;69:55">To use the unattended installation process,
+        you first record your installation settings in wizard installation. These settings are saved
+        to a file. You can use this file to silently install other nodes of the same
+        version.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:11;73:10">To record your install options, open a Command Terminal or Power and start
+        the installation executable with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:2;74:54">/r</codeph> command-line
+        option:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeblock:1;75:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:3;75:39">&gt; couchbase_server_version.exe /r /f1your_file_name.iss
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:12;76:25">You
+        will be prompted with installation options, and the wizard will complete the server install.
+        We recommend you accept an increase in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:4;78:56">MaxUserPort</codeph>. A file with your
+        options will be recorded at <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:5;79:45">C:\Windows\your_file_name.iss</codeph>.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:13;80:10">To perform
+        an installation using this recorded setup file, copy the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:6;81:74">your_file_name.iss</codeph>
+        file into the same directory as the installer executable. Run the installer from the
+        command-line using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:7;83:40">/s</codeph>
+        option:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeblock:2;84:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:8;84:39">&gt; couchbase_server_version.exe /s -f1your_file_name.iss
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="p:14;85:25">You
+        can repeat this process on multiple machines by copying the install package and the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="codeph:9;87:19">your_file_name.iss</codeph> file to the same directory on each
+      machine.</p>
+    </section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="related-links:1;91:18">
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="linklist:1;92:15">
+      <link href="../install/install-platforms.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="link:1;93:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Supported platforms</linktext></link>
+      <link href="../install/windows-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="link:2;94:61" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Windows</linktext></link>
+      <link href="http://support.microsoft.com/kb/196271" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="link:3;95:90"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="linktext:1;96:19">Microsoft Knowledge Base Article 196271</linktext></link>
+        <link href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="link:4;97:117"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Windows-install.dita" xtrc="linktext:2;98:21">MSDN: Avoiding TCP/IP Port Exhaustion</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

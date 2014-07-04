@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_qjx_5xy_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="title:1;4:10">Migrating for CouchDB users</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:1;6:8">Although Couchbase Server incorporates the
+      view engine functionality built into CouchDB, the bulk of the rest of the functionality is
+      supported through the components and systems of Membase Server.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:2;8:77">This change introduces
+        a number of significant differences for CouchDB users that want to use Couchbase Server,
+        particularly when migrating existing applications. However, you also gain the scalability
+        and performance advantages of the Membase Server components.</p>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="section:1;13:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="title:2;13:21">Term and concept differences</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:3;13:60">Within CouchDB
+      information is stored into the database using the concept of a document ID (either
+      explicit or automatically generated), against which the document (JSON) is stored. Within
+      Couchbase, there is no document ID, instead information is stored in the form of a
+      key/value pair, where the key is equivalent to the document ID, and the value is
+      equivalent to the document. The format of the data is the same.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:4;18:77">Almost all of the
+        HTTP REST API that makes up the interface for communicating with CouchDB does not exist
+        within Couchbase Server. The basic document operations for creating, retrieving, updating
+        and deleting information are entirely supported by the memcached protocol.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:5;21:90">Also,
+          beyond views, many of the other operations are unsupported at the client level within
+          CouchDB. For example, you cannot create a new database as a client, store attachments, or
+          perform administration-style functions, such as view compaction.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:6;24:82">Couchbase Server
+            does not support the notion of databases, instead information is stored within logical
+            containers called Buckets. These are logically equivalent and can be used to
+            compartmentalize information according to projects or needs. With Buckets you get the
+            additional capability to determine the number of replicas of the information, and the port
+            and authentication required to access the information.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="section:2;31:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="title:3;31:21">Consistent functionality</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:7;31:56">The operation and interface
+      for querying and creating view definitions in Couchbase Server is mostly identical. Views
+      are still based on the combination of a map/reduce function, and you should be able to
+      port your map/reduce definitions to Couchbase Server without any issues. The main
+      difference is that the view does not output the document ID, but, as previously noted,
+      outputs the key against which the key/value was stored into the database.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:8;36:87">Querying
+        views is also the same, and you use the same arguments to the query, such as a start and
+        end docids, returned row counts and query value specification, including the requirement
+        to express your key in the form of a JSON value if you are using compound (array or hash)
+        types in your view key specification. Stale views are also supported, and just as with
+        CouchDB, accessing a stale view prevents Couchbase Server from updating the
+        index.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="section:3;44:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="title:4;44:21">Changed functionality</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:9;44:53">There are many changes in the
+      functionality and operation of Couchbase Server than CouchDB,
+      including:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="codeblock:1;46:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="codeph:1;46:40">* Basic data storage operations must use the memcached API.
+
+* Explicit replication is unsupported. Replication between nodes within a cluster
+  is automatically configured and enabled and is used to help distribute
+  information around the cluster.
+
+* You cannot replicate between a CouchDB database and Couchbase Server.
+
+* Explicit attachments are unsupported, but you can store additional files as new
+  key/value pairs into the database.
+
+* CouchApps are unsupported.
+
+* Update handlers, document validation functions, and filters are not supported.
+
+* Futon does not exist, instead there is an entire Web Administration Console
+  built into Couchbase Server that provides cluster configuration, monitoring and
+  view/document update functionality.
+</codeph></codeblock></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="section:4;66:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="title:5;66:21">Operational and deployment differences</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:10;66:70">From a
+      practical level the major difference between CouchDB and Couchbase Server is that options
+      for clustering and distribution of information are significantly different. With CouchDB
+      you would need to handle the replication of information between multiple nodes and then
+      use a proxy service to distribute the load from clients over multiple machines.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:11;70:93">With
+        Couchbase Server, the distribution of information is automatic within the cluster, and any
+        Couchbase Server client library will automatically handle and redirect queries to the
+        server that holds the information as it is distributed around the cluster. This process is
+        automatic.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="section:5;76:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="title:6;76:21">Client and application changes</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:12;76:62">As your CouchDB based
+      application already uses JSON for the document information, and a document ID to identify
+      each document, the bulk of your application logic and view support remain identical.
+      However, the HTTP REST API for basic CRUD operations must be updated to use the memcached
+      protocol.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/migrate-couchdb.dita" xtrc="p:13;80:23">Additionally, because CouchApps are unsupported you will need to develop a
+        client side application to support any application logic.</p></section>
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:41;62:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:40;60:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/migrating.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Migrating</linktext></link></linkpool></related-links>
+</topic>

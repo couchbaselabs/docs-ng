@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1948" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="topic:1;4:40"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="title:1;4:47">Retrieving cluster information</title><body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="body:1;4:91"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:1;4:94">One of the first ways to discover the URI endpoints for the REST API is to find
+the clusters available. For this you provide the Couchbase Server IP address,
+port number, and append ‘/pools’.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:2;6:41"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="b:1;6:44">Example Request</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeblock:1;6:78"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeph:1;6:86">curl -u admin:password http://localhost:8091/pools
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:3;7:25">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="i:1;7:40">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="i:2;7:54">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="i:3;7:75">localhost</i> values in the above example
+with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:4;8:32">As a raw HTTP request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeblock:2;8:69"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeph:2;8:77">GET /pools
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:5;13:25">The corresponding HTTP response contains a JSON document describing the cluster
+configuration:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeblock:3;14:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeph:3;14:38">
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+
+
+{"pools": [
+            {
+            "name":"default",
+            "uri":"/pools/default",
+            "streamingUri":"/poolsStreaming/default"
+            }
+          ],
+          "isAdminCreds":false,
+          "uuid":"c25913df-59a2-4886-858c-7119d42e36ab",
+          "implementationVersion":"1.8.1-927-rel-enterprise",
+          "componentsVersion":
+             {
+             "ale":"8cffe61",
+             "os_mon":"2.2.6",
+             "mnesia":"4.4.19",
+             "inets":"5.6",
+             "kernel":"2.14.4",
+             "sasl":"2.1.9.4",
+             "ns_server":"1.8.1-927-rel-enterprise",
+             "stdlib":"1.17.4"}
+ }
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:6;41:25">Couchbase Server returns only one cluster per group of systems and the cluster
+will typically have a default name.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:7;42:43">Couchbase Server returns the build number for the server in
+<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeph:4;43:9">implementation_version</codeph>, the specifications supported are in the
+<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="codeph:5;44:9">componentsVersion</codeph>. While this node can only be a member of one cluster, there
+is flexibility which allows for any given node to be aware of other pools.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-get.dita" xtrc="p:8;45:82">The Client-Specification-Version is optional in the request, but advised. It
+allows for implementations to adjust representation and state transitions to the
+client, if backward compatibility is desirable.</p></body><related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:3;7:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-cluster-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cluster REST API</linktext></link></linkpool></related-links>
+</topic>

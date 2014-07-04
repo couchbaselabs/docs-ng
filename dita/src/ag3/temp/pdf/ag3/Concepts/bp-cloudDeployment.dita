@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic13930" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="topic:1;4:41">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:1;5:10">Couchbase in the cloud</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="shortdesc:1;6:14">Couchbase Server is extremely easy to deploy in the cloud.</shortdesc>
+  
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:1;9:8">From the software’s perspective, there is really no difference between being installed on
+      bare-metal or virtualized operating systems. On the other hand, the management and deployment
+      characteristics of the cloud warrant a separate discussion on the best ways to use
+      Couchbase.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:2;13:8">For the purposes of this discussion, “the cloud” is referred to as Amazon’s EC2 environment
+      since that is by far the most common cloud-based environment. However, the same considerations
+      apply to any environment that acts like EC2 (an organization’s private cloud for example). In
+      terms of the software itself, extensive testing has been done within EC2 (and some of Couchbase's 
+      largest customers have already deployed Couchbase there for production use). Because of this,
+      we have encountered and resolved a variety of bugs only exposed by the sometimes unpredictable
+      characteristics of this environment.</p>
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:3;21:8">We have written a number of RightScale templates to help you deploy within Amazon. Sign up for a
+      free RightScale account to try it out. The templates handle almost all of the special
+      configuration needed to make your experience within EC2 successful. Direct integration with
+      RightScale also allows us to do some pretty cool things with auto-scaling and pre-packaged
+      deployment.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:4;26:8">We’ve also authored an AMI for use within EC2 independent of RightScale. When using these,
+      you will have to handle the specific complexities yourself. You can find this AMI by searching
+      for ‘couchbase’ in Amazon’s EC2 portal.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:5;29:8">When deploying within the cloud, consider the following areas:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ul:1;30:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:1;31:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:6;31:14">Local storage being ephemeral</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:2;32:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:7;32:14">IP addresses of a server changing from runtime to runtime</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:3;33:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:8;33:14">Security groups/firewall settings</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:4;34:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:9;34:14">Swap Space</p></li>
+    </ul>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="section:1;36:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:2;36:21">Handling instance reboot in cloud</title>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:10;37:8">Many cloud providers warn users that they need to reboot certain instances for maintenance.
+      Couchbase Server ensures these reboots won’t disrupt your application. Take the following
+      steps to make that happen:</p>
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:1;40:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:5;41:11">Install Couchbase on the new node.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:6;42:11">From the user interface, add the new node to the cluster.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:7;43:11">From the user interface, remove the node that you wish to reboot.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:8;44:11">Rebalance the cluster.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:9;45:11">Shut down the instance.</li>
+    </ol>
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="section:2;49:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:3;49:21">Local storage</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:11;49:45">Dealing with local storage is not very much different
+        than a data center deployment. However, EC2 provides an interesting solution. Through the
+        use of EBS storage, you can prevent data loss when an instance fails. Writing Couchbase data
+        and configuration to EBS creates a reliable medium of storage. There is direct support for
+        using EBS within RightScale and, of course, you can set it up manually.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:12;53:87">Using EBS is
+        definitely not required, but you should make sure to follow the best practices around
+        performing backups.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:13;55:35">Keep in mind that you will have to update the per-node disk path
+        when configuring Couchbase to point to wherever you have mounted an external
+        volume.</p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="section:3;60:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:4;60:21">Handling changes in IP addresses</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:14;60:64">When you use Couchbase Server in the
+        cloud, server nodes can use internal or public IP addresses. Because IP addresses in the
+        cloud may change quite frequently, you can configure Couchbase to use a hostname instead of
+        an IP address.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:15;63:30">For Amazon EC2 we recommend you use Amazon-generated hostnames which
+        then will automatically resolve to either the internal or external address.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:16;64:91">By default
+        Couchbase Servers use specific IP addresses as a unique identifier. If the IP changes, an
+        individual node will not be able to identify its own address, and other servers in the same
+        cluster will not be able to access it. To configure Couchbase Server instances in the cloud
+        to use hostnames, follow the steps later in this section. Note that RightScale server
+        templates provided by Couchbase can automatically configure a node with a provided
+        hostname.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:17;70:25">Make sure that your hostname always resolves to the IP address of the node.
+        This can be accomplished by using a dynamic DNS service such as DNSMadeEasy which will allow
+        you to automatically update the hostname when an underlying IP address changes.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:18;72:95">The
+        following steps completely destroys any data and configuration from the node, so you should
+        start with a fresh Couchbase install. If you already have a running cluster, you can
+        rebalance a node out of the cluster, make the change, and then rebalance it back into the
+        cluster. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:19;76:25">Nodes with both IPs and hostnames can exist in the same
+        cluster. When you set the IP address using this method, you should not specify the address
+        as <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:1;78:20">localhost</codeph> or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:2;78:50">127.0.0.1</codeph> as this will be invalid when
+        used as the identifier for multiple nodes within the cluster. Instead, use the correct IP
+        address for your host.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:20;80:38"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:1;80:41">Linux and Windows 2.1 and above</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:21;80:83">As a rule, you
+        should set the hostname before you add a node to a cluster. You can also provide a hostname
+        in these ways: when you install a Couchbase Server node or when you do a REST API call
+        before the node is part of a cluster. You can also add a hostname to an existing cluster for
+        an online upgrade. If you restart, any hostname you establish with one of these methods will
+        be used. </p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:22;86:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:2;86:13">Linux and Windows 2.0.1 and earlier</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:23;86:59">For
+        Couchbase Server 2.0.1 and earlier you must follow a manual process where you edit config
+        files for each node which we describe below for Couchbase in the cloud. </p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="section:4;91:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:5;91:21">Security groups/firewall settings</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:24;91:65">It’s important to make sure you have
+        both allowed AND restricted access to the appropriate ports in a Couchbase deployment. Nodes
+        must be able to talk to one another on various ports, and it is important to restrict
+        external and/or internal access to only authorized individuals. Unlike a typical data center
+        deployment, cloud systems are open to the world by default, and steps must be taken to
+        restrict
+      access.</p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="section:5;100:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:6;100:21">Swap space</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:25;100:42">On Linux, swap space is used when the physical memory (RAM)
+        is full. If the system needs more memory resources and the RAM is full, inactive pages in
+        memory are moved to the swap space. Swappiness indicates how frequently a system should use
+        swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most
+        Linux platforms have swappiness set to 60.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:26;104:58">Recommendation</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:27;104:79">For optimal Couchbase
+        Server operations, set the swappiness to <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:3;105:53">0</b> (zero). </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:28;105:74">To change the swap
+        configuration:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:2;106:31">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:10;107:13">Execute <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:3;107:29">cat /proc/sys/vm/swappiness</codeph> on each node to determine the
+          current swap usage configuration.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:11;109:13">Execute <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:4;109:29">sudo sysctl vm.swappiness=0</codeph> to immediately change the swap
+          configuration and ensure that it persists through server restarts.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:12;111:13">Using sudo or root user privileges, edit the kernel parameters configuration file,
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:5;112:21">/etc/sysctl.conf</codeph>, so that the change is always in effect.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:13;113:13">Append <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:6;113:28">vm.swappiness = 0</codeph> to the file.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:14;114:13">Reboot your system.</li>
+      </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:29;115:15"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:4;115:18">Note</b>: Executing <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:7;115:46">sudo sysctl vm.swappiness=0</codeph> ensures that the
+        operating system no longer uses swap unless memory is completely exhausted. Updating the
+        kernel parameters configuration file, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:8;117:55">sysctl.conf</codeph>, ensures that the
+        operating system always uses swap in accordance with Couchbase recommendations even when the
+        node is rebooted.</p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="section:6;122:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="title:7;122:21">Using Couchbase Server on RightScale</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:30;122:68">Couchbase partners with RightScale to
+        provide preconfigured RightScale ServerTemplates that you can use to create an individual or
+        array of servers and start them as a cluster. Couchbase Server RightScale ServerTemplates
+        enable you to quickly set up Couchbase Server on Amazon Elastic Compute Cloud (Amazon EC2) servers in
+        the Amazon Web
+          Services (AWS) cloud through RightScale. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:31;127:59">The templates also provide support
+        for Amazon Elastic
+          Block Store (Amazon EBS) standard volumes and Provisioned IOPS volumes. (IOPS is an
+        acronym for input/output operations per second.) For more information about Amazon EBS
+        volumes and their capabilities and limitations, see Amazon EBS Volume Types. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:32;131:93">Couchbase provides
+        RightScale ServerTemplates based on Chef and, for compatibility with existing systems,
+        non-Chef-based ServerTemplates. </p>
+      
+     <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="note:1;135:24">As of Couchbase Server 2.2, non-Chef
+        templates are deprecated. Do not choose non-Chef templates for new installations.
+        </note>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:33;139:10">Before you can set up Couchbase Server on RightScale, you need a RightScale account
+        and an AWS account that is connected to your RightScale account. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:34;140:81">At a
+        minimum, you need RightScale user role privileges to work with the
+        Couchbase RightScale ServerTemplates: actor, designer, library, observer, and server_login.
+        To add privileges: from the RightScale menu bar, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:5;143:67">Settings &gt; Account Settings
+          &gt; Users</b> and modify the permission list.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:35;144:64">To set up Couchbase Server on
+        RightScale, you need to import and customize a ServerTemplate. After the template is
+        customized, you can launch server and cluster instances. The following figure illustrates
+        the workflow:</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:36;148:10"><image href="../images/rightscale-workflow.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="image:1;148:71"/></p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:37;150:10">The following
+        procedures do not describe every parameter that you can modify when working with the
+        RightScale ServerTemplates. If you need more information about a parameter, click the info
+        button located near the parameter name.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:38;153:55"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:6;153:58">To import the Couchbase Server RightScale
+          ServerTemplate:</b></p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:3;154:38">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:15;155:13">From the RightScale menu bar, select <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:7;155:53">Design &gt; MultiCloud Marketplace &gt;
+            ServerTemplates</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:16;157:13">In the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:8;157:23">Keywords</b> box on the left under Search, type <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:9;157:74">couchbase</b>, and then
+          click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:10;158:20">Go</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:17;159:13">In the search results list, click on the latest version of the Couchbase Server
+            ServerTemplate.
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:39;161:14">The name of each Couchbase template in the list contains the Couchbase Server version
+            number.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:18;163:13">Click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:11;163:22">Import</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:19;164:13">Review each page of the end user license agreement, and then click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:12;164:83">Finish</b> to
+          accept the agreement.</li>
+      </ol>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:40;168:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:13;168:13">To create a new deployment:</b></p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:4;168:52">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:20;169:13">From the RightScale menu bar, select <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:14;169:53">Manage &gt; Deployments &gt; New</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:21;170:13">Enter a Nickname and Description for the new deployment.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:22;171:13">Click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:15;171:22">Save</b>.</li>
+      </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:41;172:15"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:16;172:18">To add a server or cluster to a deployment:</b></p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:5;172:73">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:23;173:13">From the RightScale menu bar, select <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:17;173:53">Manage &gt; Deployments</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:24;174:13">Click the nickname of the deployment that you want to place the server or cluster
+          in.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:25;176:13">From the deployment page menu bar, add the server or cluster: <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ul:2;176:79">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:26;177:17">To add a server, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:18;177:43">Add Server</b>.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:27;178:17">To add a cluster, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:19;178:44">Add Array</b>.</li>
+          </ul></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:28;180:13">In the Add to Deployment window, select a cloud and click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:20;180:74">Continue</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:29;181:13">On the Server Template page, select a template from the list.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:42;181:77">If you have many server
+            templates in your account, you can reduce the number of entries in the list by typing a
+            keyword from the template name into the Server Template Name box under Filter
+            Options.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:30;185:13">Click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:21;185:22">Server Details</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:31;186:13">On the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:22;186:23">Server Details</b> page, choose settings for Hardware:<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:43;186:80"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:23;186:83">Server Name</b> or
+              <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:24;187:18">Array Name</b>—Enter a name for the new server or array.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:44;187:81"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:25;187:84">Instance
+            Type</b>—The default is extra large. The template supports only large or extra large
+            instances and requires a minimum of 4 cores.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:45;189:64"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:26;189:67">EBS Optimized</b>—Select the check
+            box to enable EBS-optimized volumes for Provisioned IOPS.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:32;191:13">Choose settings for Networking:<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ul:3;191:48">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:33;192:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:46;193:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:27;193:21">SSH Key</b>—Choose an SSH key.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:34;195:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:47;196:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:28;196:21">Security Groups</b>—Choose one or more security groups.</p>
+            </li>
+          </ul></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:35;199:13">If you are adding a cluster, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:29;199:51">Array Details</b>, and then choose settings for
+          Autoscaling Policy and Array Type Details.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:48;200:56">Under Autoscaling Policy, you can set the
+            minimum and maximum number of active servers in the cluster by modifying the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:30;201:93">Min
+              Count</b> and <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:31;202:32">Max Count</b> parameters. If you want a specific number of servers,
+            set both parameters to the same value.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:36;204:13">Click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:32;204:22">Finish</b>.</li>
+      </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:49;205:15"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:33;205:18">To customize the template for a server or a cluster:</b></p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:6;205:82">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:37;206:13">From the RightScale menu bar, select <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:34;206:53">Manage &gt; Deployments</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:38;207:13">Click the nickname of the deployment that the server or cluster is in.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:39;208:13">Click the nickname of the server or cluster.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:40;209:13">On the Server or Server Array page, click the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:35;209:62">Inputs</b> tab, and then click
+            <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:36;210:16">edit</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:41;211:13">Expand the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:37;211:27">BLOCK_DEVICE</b> category and modify inputs as needed.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:50;211:84">The BLOCK_DEVICE
+            category contains input parameters that are specific to storage. Here’s a list of some
+            advanced inputs that you might want to modify:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ul:4;213:67">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:42;214:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:38;214:20">I/O Operations per Second</b>—Number of input/output operations per second (IOPS)
+              that the volume can support</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:43;216:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:39;216:20">Volume Type</b>—Type of storage device</li>
+          </ul></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:44;218:13">Expand the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:40;218:27">DB_COUCHBASE</b> category and modify inputs as needed.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:51;218:84">The DB_COUCHBASE
+            category contains input parameters that are specific to Couchbase Server. In general,
+            the default values are suitable for one server. If you want to create a cluster, you
+            need to modify the input parameter values. Here’s a list of the advanced inputs that you
+            can modify:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ul:5;222:32">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:45;223:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:52;224:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:41;224:21">Bucket Name</b>—Name of the bucket. The default bucket name is
+                  <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:9;225:27">default</codeph>.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:46;227:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:53;228:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:42;228:21">Bucket Password</b>—Password for the bucket.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:47;230:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:54;231:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:43;231:21">Bucket RAM Quota</b>—RAM quota for the bucket in MB.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:48;233:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:55;234:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:44;234:21">Bucket Replica Count</b>—Bucket replica count.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:49;236:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:56;237:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:45;237:21">Cluster REST/Web Password</b>—Password for the administrator account. The
+                default is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:10;238:36">password</codeph>.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:50;240:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:57;241:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:46;241:21">Cluster REST/Web Username</b>—Administrator account user name for access to the
+                cluster via the REST or web interface. The default is
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:11;243:25">Administrator</codeph>.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:51;245:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:58;246:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:47;246:21">Cluster Tag</b>—Tag for nodes in the cluster that are automatically joined.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:52;248:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:59;249:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:48;249:21">Couchbase Server Edition</b>—The edition of Couchbase Server. The default is
+                  <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:12;250:27">enterprise</codeph>.</p>
+            </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:53;252:17">
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:60;253:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:49;253:21">Rebalance Count</b>—The number of servers to launch before doing a rebalance.
+                Set this value to the total number of target servers you plan to have in the
+                cluster. If you set the value to 0, Couchbase Server does a rebalance after each
+                server joins the cluster.</p>
+            </li>
+          </ul></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:54;259:13">Click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:50;259:22">Save</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:55;260:13">If you are ready to launch the server or cluster right now, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:51;260:82">Launch</b>.</li>
+      </ol>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:61;263:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:52;263:13">To launch servers or clusters:</b></p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="ol:7;263:55">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:56;264:13">From the RightScale menu bar, select <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:53;264:53">Manage &gt; Deployments</b>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:57;265:13">Click the nickname of the deployment that the server or cluster is in.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:58;266:13">Click the nickname of the server or cluster.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="li:59;267:13">On the Server or Server Array page, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:54;267:58">Launch</b>.</li>
+      </ol>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:62;270:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="b:55;270:13">To log in to the Couchbase Web Console:</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="p:63;270:63">You can log in to the Couchbase
+        Web Console by using your web browser to connect to the public IP address on port 8091. The
+        general format is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:13;272:35">http://&lt;server:port&gt;</codeph>. For example: if the public IP
+        address is 192.236.176.4, enter <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="codeph:14;273:49">http://192.236.176.4:8091/</codeph> in the web
+        browser location bar.</p></section>
+    
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="related-links:1;278:18"><linkpool class="- topic/linkpool " xtrc="topicref:32;39:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:26;33:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../concepts/bp-deployment-considerations.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linklist:1;279:15">
+      <link href="../Install/install-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:1;280:50" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Introduction</linktext></link>
+      <link href="../Install/init-setup.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:2;281:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Initial server setup</linktext></link>
+      <link href="../Install/upgrading.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:3;282:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Upgrading</linktext></link>
+      <link href="http://www.rightscale.com/" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:4;283:78"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:1;284:19">RightScale</linktext></link>
+      <link href="http://support.rightscale.com/27-Partners/Membase" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:5;286:101"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:2;287:19">Couchbase on RightScale</linktext></link>
+      <link href="http://www.rightscale.com" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:6;289:77"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:3;290:19">RightScale</linktext></link>
+      <link href="http://aws.amazon.com" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:7;292:73"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:4;293:19">Amazon Web Services</linktext></link>
+      <link href="http://aws.amazon.com/ec2/" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:8;295:78"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:5;296:19">Amazon Elastic Compute Cloud</linktext></link>
+      <link href="http://aws.amazon.com/ebs/" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:9;298:78"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:6;299:19">Amazon Elastic Block Store</linktext></link>
+      <link href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html#EBSVolumeTypes" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:10;302:40"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:7;303:19">Amazon EBS Volume Types</linktext></link>
+      <link href="http://www.opscode.com/chef/" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:11;305:80"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:8;306:19">Chef</linktext></link>
+      <link href="http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:12;310:40"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:9;311:19">Add AWS Credentials to RightScale</linktext></link>
+      <link href="http://support.rightscale.com/15-References/Tables/User_Role_Privileges" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="link:13;314:40"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-cloudDeployment.dita" xtrc="linktext:10;315:19">RightScale user role privileges</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

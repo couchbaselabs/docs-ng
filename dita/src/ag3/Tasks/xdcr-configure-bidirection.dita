@@ -13,7 +13,7 @@
                 <note type="note">You do not need identical topologies for both clusters. You can have a different number
                     of nodes in each cluster, RAM configuration, and persistence configuration.</note>
                 
-                <p>To configure a bidirectional replication:</p>
+                <p>To configure a bi-directional replication:</p>
         </context>
         <steps>
             <step>

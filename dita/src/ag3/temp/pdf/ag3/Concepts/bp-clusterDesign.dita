@@ -1,0 +1,37 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2131" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="topic:1;4:40">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="title:1;5:9">Cluster design considerations</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="shortdesc:1;6:13">Cluster design takes into account topics such as RAM, number of nodes and cores, clied
+  or server-side moxi.</shortdesc>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="body:1;8:8">
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="ul:1;9:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:1;10:8">RAM: Memory is a key factor for smooth cluster performance. Couchbase best fits applications
+    that want most of their active dataset in memory. It is very important that all the data you
+    actively use (the working set) lives in memory. When there is not enough memory left, some data
+    is ejected from memory and will only exist on disk. Accessing data from disk is much slower than
+    accessing data in memory. As a result, if ejected data is accessed frequently, cluster
+    performance suffers. Use the formula provided in the next section to verify your configuration,
+    optimize performance, and avoid this situation.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:2;17:8">Number of nodes: Once you know how much memory you need, you must decide whether to have a
+    few large nodes or many small nodes. <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="ul:2;18:46">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:3;19:10">Many small nodes: You are distributing I/O across several machines. However, you also have
+      a higher chance of node failure (across the whole cluster).</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:4;21:10">Few large nodes: Should a node fail, it greatly impacts the application.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:5;22:10">It is a trade off between reliability and efficiency.</li>
+    </ul></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:6;24:8">Couchbase prefers a client-side moxi (or a smart client) over a server-side moxi. However,
+    for development environments or for faster, easier deployments, you can use server-side moxis. A
+    server-side moxi is not recommended because of the following drawback: if a server receives a
+    client request and doesn’t have the requested data, there’s an additional hop.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:7;28:8">Number of cores: Couchbase is relatively more memory or I/O bound than is CPU bound. However,
+    Couchbase is more efficient on machines that have at least two cores.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:8;30:8">Storage type: You may choose either SSDs (solid state drives) or spinning disks to store
+    data. SSDs are faster than rotating media but, currently, are more expensive. Couchbase needs
+    less memory if a cluster uses SSDs as their I/O queue buffer is smaller.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-clusterDesign.dita" xtrc="li:9;33:8">WAN Deployments: Couchbase is not intended to be used in WAN configurations. Couchbase
+    requires that the latency should be very low between server nodes and between servers nodes and
+    Couchbase clients.</li>
+  </ul>
+ </body>
+
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:27;34:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:26;33:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../concepts/bp-deployment-considerations.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc " >Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link></linkpool></related-links>
+</topic>

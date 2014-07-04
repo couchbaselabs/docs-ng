@@ -83,7 +83,7 @@
 	<entry><codeph>help show longer</codeph></entry>
 	<entry>usage/help and examples </entry>
 </row></tbody></tgroup></table><section><title>couchbase-cli command options</title><p>The following are options which can be used with their respective commands.
-Administration — <codeph>couchbase-cli</codeph> Tool commands options:</p><p><!--Removed anchor point couchbase-admin-cmdline-couchbase-commands-stdopts--></p></section><section><title>server-list option</title><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+Administration — <codeph>couchbase-cli</codeph> Tool commands options:</p></section><section><title>server-list option</title><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
 	<entry>server-list options</entry>
 	<entry>Description</entry>
 </row></thead><tbody><row>

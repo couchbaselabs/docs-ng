@@ -44,6 +44,9 @@
 				application actively uses at any point in time. Ideally, all of the working set
 				lives in memory. This impacts how much memory is needed.</p>
 		</section>
+		
+		
+		
 		<section><title>Memory quota</title>
 			<p>It is very important that your Couchbase cluster’s
 				size corresponds to the working set size and total data you expect.</p>
@@ -52,13 +55,18 @@
 				document ID meta data, and the working set values fit. The memory should rest just
 				below the point at which Couchbase will start evicting values to disk (the High
 				Water Mark).</p>
+			
+			<note type="important">You will not be able to allocate all your machine RAM to the Couchbase server node 
+				(<codeph>per_node_ram_quota</codeph> parameter) because other programs might be running on your
+				machine.</note>
+			
 			<p>How much memory and disk space per node you will need depends on
 				several different variables, which are defined below:</p>
 			
-			<p><b>Calculations are per bucket</b></p>
+			
 			<p>The following calculations are per-bucket calculations. The
-				calculations need to be summed up across all buckets. If all your buckets have the
-				same configuration, you can treat your total data as a single bucket. There is no
+				calculations need to be summed up across all buckets. If all the buckets have the
+				same configuration, treat the total data as a single bucket. There is no
 				per-bucket overhead that needs to be considered.</p>
 			
 			<table>
@@ -189,8 +197,8 @@
 				</tgroup>
 			</table>
 			
-			<p>You will need at least the number of replicas + 1 nodes regardless of your
-				data size.</p>
+			<note type="important">You will need at least the number of replicas + 1 nodes regardless of your
+				data size.</note>
 			<p>The following is a sample sizing calculation:</p>
 			
 			<table>
@@ -303,11 +311,7 @@
     7.9 GB/6GB = 1.3 or 2 nodes
 </codeblock>
 			
-			<p><b>RAM
-					quota</b></p>
-			<p>You will not be able to allocate all your machine RAM to the
-				per_node_ram_quota as there may be other programs running on your
-				machine.</p>
+			
 		</section>
 		
 		<section><title>Disk throughput and sizing</title>

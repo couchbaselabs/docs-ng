@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic1280"><title>Setting maximum parallel indexers</title><body><p>You can set the number of parallel indexers that will be used on each node when
-view indexes are updated. To get the current setting of the number of parallel
-indexers, use a <codeph>GET</codeph> request.</p><p><!--Removed anchor point table-couchbase-admin-restapi-settings-maxparallelindexers-get--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+<topic xml:lang="en-us" id="topic1280"><title>Setting maximum parallel indexers</title><body><p>You can set the number of parallel indexers that will be used on each node when view indexes are
+			updated. To get the current setting of the number of parallel indexers, use a
+				<codeph>GET</codeph> request.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
 	<entry>Get Maximum Parallel Indexers</entry>
 	<entry>Description</entry>
 </row></thead><tbody><row>
@@ -27,7 +27,7 @@ globally configured value, and individual node configuration:</p><codeblock><cod
    }
 }
 </codeph></codeblock><p>To set the value, <codeph>POST</codeph> to the URL specifying a URL-encoded value to the
-<codeph>globalValue</codeph> argument.</p><p><!--Removed anchor point table-couchbase-admin-restapi-settings-maxparallelindexers-post--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+				<codeph>globalValue</codeph> argument.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
 	<entry>Set Maximum Parallel Indexers</entry>
 	<entry>Description</entry>
 </row></thead><tbody><row>

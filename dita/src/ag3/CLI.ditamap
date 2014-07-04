@@ -19,7 +19,6 @@
   <topicref href="CLI/CBepctl/cbepctl-accesslog.dita"/>
   <topicref href="CLI/CBepctl/cbepctl-diskcleanup.dita"/>
   <topicref href="CLI/CBepctl/cbepctl-diskwritequeue.dita"/>
-  <topicref href="CLI/CBepctl/cbepctl-flushbucket.dita"/>
   <topicref href="CLI/CBepctl/cbepctl-timeout.dita"/>
  </topicref>
   <topicref href="CLI/cbhealthchecker_tool.dita"/>

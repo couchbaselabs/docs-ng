@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Views?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/views/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic38908" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="topic:1;4:41">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:1;5:11">Writing views</title>
+   <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="body:1;6:10">
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:1;7:10">The fundamentals of a view are straightforward. A view creates a perspective on the data
+         stored in your Couchbase buckets in a format that can be used to represent the data in a
+         specific way, define and filter the information, and provide a basis for searching or
+         querying the data in the database based on the content. During the view creation process,
+         you define the output structure, field order, content and any summary or grouping
+         information desired in the view.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:2;13:10">Views achieve this by defining an output structure that translates the stored JSON object
+         data into a JSON array or object across two components, the key and the value. This
+         definition is performed through the specification of two separate functions written in
+         JavaScript. The view definition is divided into two parts, a map function and a reduce
+         function:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:1;18:11">
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:1;19:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:1;19:17">Map function</b></li>
+      </ul>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:3;21:10">As the name suggests, the map function creates a mapping between the input data (the JSON
+         objects stored in your database) and the data as you want it displayed in the results
+         (output) of the view. Every document in the Couchbase bucket for the view is submitted to
+         the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:1;24:22">map()</codeph> function in each view once, and it is the output from the
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:2;25:21">map()</codeph> function that is used as the result of the view.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:4;26:10">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:3;26:22">map()</codeph> function is supplied two arguments by the views processor. The
+         first argument is the JSON document data. The optional second argument is the associated
+         metadata for the document, such as the expiration, flags, and revision information.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:5;29:10">The map function outputs zero or more ‘rows’ of information using an
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:4;30:21">emit()</codeph> function. Each call to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:5;30:72">emit()</codeph> function is
+         equivalent to a row of data in the view result. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:6;31:70">emit()</codeph> function can be
+         called multiple times within the single pass of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:7;32:70">map()</codeph> function. This
+         functionality allows you to create views that may expose information stored in a compound
+         format within a single stored JSON record, for example generating a row for each item in an
+         array.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:6;36:10">You can see this in the figure below, where the name, salary and city fields of the stored
+         JSON documents are translated into a table (an array of fields) in the generated view
+         content.</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:2;39:11">
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:2;40:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:2;40:17">Reduce function</b></li>
+      </ul>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:7;42:10">The reduce function is used to summarize the content generated during the map phase. Reduce
+         functions are optional in a view and do not have to be defined. When they exist, each row
+         of output (from each <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:8;44:39">emit()</codeph> call in the corresponding
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:9;45:21">map()</codeph> function) is processed by the corresponding
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:10;46:21">reduce()</codeph> function.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:8;47:10">If a reduce function is specified in the view definition it is automatically used. You can
+         access a view without enabling the reduce function by disabling reduction (
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:11;49:21">reduce=false</codeph> ) when the view is accessed.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:9;50:10">Typical uses for a reduce function are to produce a summarized count of the input data, or
+         to provide sum or other calculations on the input data. For example, if the input data
+         included employee and salary data, the reduce function could be used to produce a count of
+         the people in a specific location, or the total of all the salaries for people in those
+         locations.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:10;55:10">The combination of the map and the reduce function produce the corresponding view. The two
+         functions work together, with the map producing the initial material based on the content
+         of each JSON document, and the reduce function summarizing the information generated during
+         the map phase. The reduction process is selectable at the point of accessing the view, you
+         can choose whether to the reduce the content or not, and, by using an array as the key, you
+         can specifying the grouping of the reduce information.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:11;61:10">Each row in the output of a view consists of the view key and the view value. When
+         accessing a view using only the map function, the contents of the view key and value are
+         those explicitly stated in the definition. In this mode the view will also always contain
+         an <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:12;64:21">id</codeph> field which contains the document ID of the source record (i.e. the
+         string used as the ID when storing the original data record).</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:12;66:10">When accessing a view employing both the map and reduce functions the key and value are
+         derived from the output of the reduce function based on the input key and group level
+         specified. A document ID is not automatically included because the document ID cannot be
+         determined from reduced data where multiple records may have been merged into one. Examples
+         of the different explicit and implicit values in views will be shown as the details of the
+         two functions are discussed.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:13;72:10">You can see an example of the view creation process in the figure below.</p>
+      <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="fig:1;73:12">
+            <image href="../images/view-building.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="image:1;74:67">
+               <alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="alt:1;75:22"/>
+            </image>
+         </fig>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:14;78:10">Because of the separation of the two elements, you can consider the two functions
+         individually.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:15;80:10">For information on how to write map functions, and how the output of the map function
+         affects and supports searching.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:16;82:10">View names must be specified using one or more UTF–8 characters. You cannot have a blank
+         view name. View names cannot have leading or trailing whitespace characters (space, tab,
+         newline, or carriage-return).</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:17;85:10">To create views, you can use either the Admin Console View editor, use the REST
+         API for design documents, or use one of the client libraries that support view management.</p>
+      
+      
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:1;92:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:2;92:23">Map functions</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:18;92:47">The map function is the most critical part of any view
+            as it provides the logical mapping between the input fields of the individual objects
+            stored within Couchbase to the information output when the view is
+            accessed.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:19;95:29">Through this mapping process, the map function and the view provide:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:3;95:105">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:3;96:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:20;96:20">The output format and structure of the view on the bucket.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:4;97:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:21;97:20">Structure and information used to query and select individual documents using the
+                  view information.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:5;99:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:22;99:20">Sorting of the view results.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:6;100:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:23;100:20">Input information for summarizing and reducing the view content.</p></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:24;101:18">Applications access views through the REST API, or through a Couchbase client
+            library. All client libraries provide a method for submitting a query into the view
+            system and obtaining and processing the results.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:25;103:68">The basic operation of the map
+            function can be seen in the figure below.</p>
+         
+         <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="fig:2;106:15">
+               <image href="../images/views-basic-overview.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="image:2;107:77">
+                  <alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="alt:2;108:25"/>
+               </image>
+            </fig>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:26;111:13">In this example, a map function is taking the Name, City, and
+            Salary fields from the JSON documents stored in the Couchbase bucket and mapping them to
+            a table of these fields. The map function which produces this output might look like
+            this:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:1;114:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:13;114:41">function(doc, meta)
+{
+  emit(doc.name, [doc.city, doc.salary]);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:27;118:25">When
+            the view is generated the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:14;119:47">map()</codeph> function is supplied two arguments for
+            each stored document, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:15;120:43">doc</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:16;120:68">meta</codeph> :</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:4;120:91">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:7;121:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:17;121:25">doc</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:28;122:18">The stored document from the Couchbase bucket, either the JSON or binary content.
+            Content type can be identified by accessing the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:18;123:69">type</codeph> field of the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:19;124:24">meta</codeph> argument object.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:5;124:62">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:8;125:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:20;125:25">meta</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:29;126:18">The metadata for the stored document, containing expiry time, document ID, revision
+            and other information.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:30;127:42">Every document in the Couchbase bucket is submitted to the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:21;128:24">map()</codeph> function in turn. After the view is created, only the
+            documents created or changed since the last update need to be processed by the view.
+            View indexes and updates are materialized when the view is accessed. Any documents added
+            or changed since the last access of the view will be submitted to the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:22;132:24">map()</codeph> function again so that the view is updated to reflect the
+            current state of the data bucket.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:31;133:53">Within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:23;133:72">map()</codeph> function
+            itself you can perform any formatting, calculation or other detail. To generate the view
+            information, you use calls to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:24;135:55">emit()</codeph> function. Each call to the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:25;136:24">emit()</codeph> function outputs a single row or record in the generated view
+            content.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:32;137:28">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:26;137:40">emit()</codeph> function accepts two arguments, the key and
+            the value for each record in the generated view:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:6;138:69">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:9;139:17"><i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="i:1;139:20">key</i></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:33;140:18">The emitted key is used by Couchbase Server both for sorting and querying the
+            content in the database.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:34;141:44">The key can be formatted in a variety of ways, including
+            as a string or compound value (such as an array or JSON object). The content and
+            structure of the key is important, because it is through the emitted key structure that
+            information is selected within the view.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:35;144:60">All views are output in a sorted order
+            according to the content and structure of the key. Keys using a numeric value are sorted
+            numerically, for strings, UTF–8 is used. Keys can also support compound values such as
+            arrays and hashes. </p>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:36;148:13">The key content is used for querying by using a combination of
+            this sorting process and the specification of either an explicit key or key range within
+            the query specification. For example, if a view outputs the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:27;150:81">RECIPE
+               TITLE</codeph> field as a key, you could obtain all the records matching ‘Lasagne’ by
+            specifying that only the keys matching ‘Lasagne’ are returned.</p>
+         
+         <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:7;154:14">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:10;155:17"><i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="i:2;155:20">value</i></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:37;156:18">The value is the information that you want to output in each view row. The value
+            can be anything, including both static data, fields from your JSON objects, and
+            calculated values or strings based on the content of your JSON objects.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:38;158:91">The
+            content of the value is important when performing a reduction, since it is the value
+            that is used during reduction, particularly with the built-in reduction functions. For
+            example, when outputting sales data, you might put the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:28;161:76">SALESMAN</codeph> into
+            the emitted key, and put the sales amounts into the value. The built-in
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:29;163:24">_sum</codeph> function will then total up the content of the corresponding
+            value for each unique key.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:39;164:46">The format of both key and value is up to you. You can
+            format these as single values, strings, or compound values such as arrays or JSON. The
+            structure of the key is important because you must specify keys in the same format as
+            they were generated in the view specification.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:40;167:66">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:30;167:78">emit()</codeph>
+            function can be called multiple times in a single map function, with each call
+            outputting a single row in the generated view. This can be useful when you want to
+            supporting querying information in the database based on a compound field. For a sample
+            view definition and selection criteria.</p>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:41;172:13">Views and map generation are also very forgiving. If you elect to
+            output fields in from the source JSON objects that do not exist, they will simply be
+            replaced with a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:31;174:37">null</codeph> value, rather than generating an error.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:42;174:97">For
+            example, in the view below, some of the source records do contain all of the fields in
+            the specified view. The result in the view result is just the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:32;176:83">null</codeph>
+            entry for that field in the value output.</p>
+         
+         <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="fig:3;179:15">
+            <image href="../images/views-basic-overview-missing.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="image:3;180:82">
+                  <alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="alt:3;181:25"/>
+               </image>
+            </fig>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:43;184:13">You should check that the field or data source exists during
+            the map processing before emitting the data.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:44;185:64">To better understand how the map
+               function works to output different types of information and retrieve it, see View and Query Pattern
+               Samples. </p>
+      </section>
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:2;192:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:3;192:23">Reduce functions</title>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:45;194:13">Often the information that you are searching or
+            reporting on needs to be summarized or reduced. There are a number of different
+            occasions when this can be useful. For example, if you want to obtain a count of all the
+            items of a particular type, such as comments, recipes matching an ingredient, or blog
+            entries against a keyword.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:46;198:46">When using a reduce function in your view, the value
+            that you specify in the call to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:33;199:53">emit()</codeph> is replaced with the value
+            generated by the reduce function. This is because the value specified by
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:34;201:24">emit()</codeph> is used as one of the input parameters to the reduce
+            function. The reduce function is designed to reduce a group of values emitted by the
+            corresponding <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:35;203:35">map()</codeph> function.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:47;203:66">Alternatively, reduce can be used
+            for performing sums, for example totalling all the invoice values for a single client,
+            or totalling up the preparation and cooking times in a recipe. Any calculation that can
+            be performed on a group of the emitted data.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:48;206:64">In each of the above cases, the raw
+            data is the information from one or more rows of information produced by a call to
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:36;208:24">emit()</codeph>. The input data, each record generated by the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:37;209:24">emit()</codeph> call, is reduced and grouped together to produce a new record
+            in the output.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:49;210:34">The grouping is performed based on the value of the emitted key,
+            with the rows of information generated during the map phase being reduced and collated
+            according to the uniqueness of the emitted key.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:50;212:67">When using a reduce function the
+            reduction is applied as follows:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:8;213:53">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:11;214:17">For each record of input, the corresponding reduce function is applied on the row,
+               and the return value from the reduce function is the resulting row.</li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:51;216:18">For example, using the built-in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:38;216:58">_sum</codeph> reduce function, the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:39;217:24">value</codeph> in each case would be totaled based on the emitted
+            key:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:2;218:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:40;218:40">```
+{
+   "rows" : [
+      {"value" : 13000, "id" : "James", "key" : "James" },
+      {"value" : 20000, "id" : "James", "key" : "James" },
+      {"value" : 5000,  "id" : "Adam",  "key" : "Adam"  },
+      {"value" : 8000,  "id" : "Adam",  "key" : "Adam"  },
+      {"value" : 10000, "id" : "John",  "key" : "John"  },
+      {"value" : 34000, "id" : "John",  "key" : "John"  }
+   ]
+}
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:52;230:25">Using
+            the unique key of the name, the data generated by the map above would be reduced, using
+            the key as the collator, to the produce the following
+            output:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:3;235:21">
+{
+   "rows" : [
+      {"value" : 33000, "key" : "James" },
+      {"value" : 13000, "key" : "Adam"  },
+      {"value" : 44000, "key" : "John"  },
+   ]
+}
+</codeblock>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:53;245:13">In
+            each case the values for the common keys (John, Adam, James), have been totalled, and
+            the six input rows reduced to the 3 rows shown here.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:9;247:73">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:12;248:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:54;248:20">Results are grouped on the key from the call to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:41;248:76">emit()</codeph> if
+                  grouping is selected during query time. As shown in the previous example, the
+                  reduction operates by the taking the key as the group value as using this as the
+                  basis of the reduction.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:13;252:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:55;252:20">If you use an array as the key, and have selected the output to be grouped during
+                  querying you can specify the level of the reduction function, which is analogous
+                  to the element of the array on which the data should be grouped. </p></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:56;255:18">The view definition is flexible. You can select whether the reduce function is
+            applied when the view is accessed. This means that you can access both the reduced and
+            unreduced (map-only) content of the same view. You do not need to create different views
+            to access the two different types of data.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:57;258:62">Whenever the reduce function is called,
+            the generated view content contains the same key and value fields for each row, but the
+            key is the selected group (or an array of the group elements according to the group
+            level), and the value is the computed reduction value.</p>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:58;263:13">Couchbase includes the following built-in reduce functions: </p>
+         <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:10;264:14">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:14;265:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:42;265:25">_count</codeph></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:15;266:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:43;266:25">_sum</codeph></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:16;267:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:44;267:25">_stats</codeph>.</li>
+         </ul>
+         
+         <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="note:1;270:28">You can also write your own custom reduction functions.</note>
+         
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:59;273:13">The reduce function also has a final additional benefit. The
+            results of the computed reduction are stored in the index along with the rest of the
+            view information. This means that when accessing a view with the reduce function
+            enabled, the information comes directly from the index content. This results in a very
+            low impact on the Couchbase Server to the query (the value is not computed at runtime),
+            and results in very fast query times, even when accessing information based on a
+            range-based query.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:60;279:38">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:45;279:50">reduce()</codeph> function is designed to reduce
+            and summarize the data emitted during the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:46;280:63">map()</codeph> phase of the process.
+            It should only be used to summarize the data, and not to transform the output
+            information or concatenate the information into a single structure.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:61;282:87">When using a
+            composite structure, the size limit on the composite structure within the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:47;284:24">reduce()</codeph> function is
+            64KB.</p>
+      </section>
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:3;290:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:4;290:23">Built-in _count</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:62;290:49">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:48;290:61">_count</codeph> function provides a
+            simple count of the input rows from the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:49;291:61">map()</codeph> function, using the keys
+            and group level to provide a count of the correlated items. The values generated during
+            the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:50;293:25">map()</codeph> stage are ignored.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:63;293:65">For example, using the
+            input:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:4;294:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:51;294:42">{
+   "rows" : [
+      {"value" : 13000, "id" : "James", "key" : ["James", "Paris"] },
+      {"value" : 20000, "id" : "James", "key" : ["James", "Tokyo"] },
+      {"value" : 5000,  "id" : "James", "key" : ["James", "Paris"] },
+      {"value" : 7000,  "id" : "Adam",  "key" : ["Adam",  "London"] },
+      {"value" : 19000, "id" : "Adam",  "key" : ["Adam",  "Paris"] },
+      {"value" : 17000, "id" : "Adam",  "key" : ["Adam",  "Tokyo"] },
+      {"value" : 22000, "id" : "John",  "key" : ["John",  "Paris"] },
+      {"value" : 3000,  "id" : "John",  "key" : ["John",  "London"] },
+      {"value" : 7000,  "id" : "John",  "key" : ["John",  "London"] },
+    ]
+}
+</codeph></codeblock>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:64;309:13">Enabling
+            the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:52;310:25">reduce()</codeph> function and using a group level of 1 would
+            produce:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:5;313:21">{
+   "rows" : [
+      {"value" : 3, "key" : ["Adam" ] },
+      {"value" : 3, "key" : ["James"] },
+      {"value" : 3, "key" : ["John" ] }
+   ]
+}
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:65;320:16">The
+            reduction has produce a new result set with the key as an array based on the first
+            element of the array from the map output. The value is the count of the number of
+            records collated by the first element.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:66;323:58">Using a group level of 2 would generate the
+            following:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:6;326:21">{
+   "rows" : [
+      {"value" : 1, "key" : ["Adam", "London"] },
+      {"value" : 1, "key" : ["Adam", "Paris" ] },
+      {"value" : 1, "key" : ["Adam", "Tokyo" ] },
+      {"value" : 2, "key" : ["James","Paris" ] },
+      {"value" : 1, "key" : ["James","Tokyo" ] },
+      {"value" : 2, "key" : ["John", "London"] },
+      {"value" : 1, "key" : ["John", "Paris" ] }
+   ]
+}
+</codeblock>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:67;339:13">Now
+            the counts are for the keys matching both the first two elements of the map
+            output.</p>
+      </section>
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:4;346:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:5;346:23">Built-in _sum</title>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:68;348:13">The built-in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:53;348:34">_sum</codeph> function sums the
+            values from the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:54;349:37">map()</codeph> function call, this time summing up the
+            information in the value for each row. The information can either be a single number or
+            during a rereduce an array of numbers.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:69;351:58">The input values must be a number, not a
+            string-representation of a number. The entire map/reduce will fail if the reduce input
+            is not in the correct format. You should use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:55;353:70">parseInt()</codeph> or
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:56;354:24">parseFloat()</codeph> function calls within your <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:57;354:81">map()</codeph>
+            function stage to ensure that the input data is a number.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:70;355:77">For example, using the
+            same sales source data, accessing the group level 1 view would produce the total sales
+            for each
+            salesman:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:7;360:21">{
+   "rows" : [
+      {"value" : 43000, "key" : [ "Adam"  ] },
+      {"value" : 38000, "key" : [ "James" ] },
+      {"value" : 32000, "key" : [ "John"  ] }
+   ]
+}
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:71;367:16">Using
+            a group level of 2 you get the information summarized by salesman and
+            city:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:8;369:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:58;369:41">{
+   "rows" : [
+      {"value" : 7000,  "key" : [ "Adam",  "London" ] },
+      {"value" : 19000, "key" : [ "Adam",  "Paris"  ] },
+      {"value" : 17000, "key" : [ "Adam",  "Tokyo"  ] },
+      {"value" : 18000, "key" : [ "James", "Paris"  ] },
+      {"value" : 20000, "key" : [ "James", "Tokyo"  ] },
+      {"value" : 10000, "key" : [ "John",  "London" ] },
+      {"value" : 22000, "key" : [ "John",  "Paris"  ] }
+   ]
+}
+</codeph></codeblock>
+      </section>
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:5;385:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:6;385:23">Built-in _stats</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:72;385:49">The built-in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:59;385:70">_stats</codeph> reduce function
+            produces statistical calculations for the input data. As with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:60;386:87">_sum</codeph>
+            function, the corresponding value in the emit call should be a number. The generated
+            statistics include the sum, count, minimum ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:61;388:66">min</codeph> ), maximum (
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:62;389:24">max</codeph> ) and sum squared ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:63;389:65">sumsqr</codeph> ) of the input
+            rows.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:73;390:25">Using the sales data, a slightly truncated output at group level one would
+            be:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:9;391:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:64;391:39">{
+   "rows" : [
+      {
+         "value" : {
+            "count" : 3,
+            "min" : 7000,
+            "sumsqr" : 699000000,
+            "max" : 19000,
+            "sum" : 43000
+         },
+         "key" : [
+            "Adam"
+         ]
+      },
+      {
+         "value" : {
+            "count" : 3,
+            "min" : 5000,
+            "sumsqr" : 594000000,
+            "max" : 20000,
+            "sum" : 38000
+         },
+         "key" : [
+            "James"
+         ]
+      },
+      {
+         "value" : {
+            "count" : 3,
+            "min" : 3000,
+            "sumsqr" : 542000000,
+            "max" : 22000,
+            "sum" : 32000
+         },
+         "key" : [
+            "John"
+         ]
+      }
+   ]
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:74;431:25">The
+            same fields in the output value are provided for each of the reduced output
+            rows.</p>
+      </section>
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:6;438:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:7;438:23">Writing custom reduce functions</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:75;438:65">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:65;438:77">reduce()</codeph>
+            function has to work slightly differently to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:66;439:70">map()</codeph> function. In the
+            primary form, a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:67;440:37">reduce()</codeph> function must convert the data supplied to it
+            from the corresponding <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:68;441:44">map()</codeph> function.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:76;441:75">The core structure of the
+            reduce function execution is shown the figure below.</p>
+         
+         
+         <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="fig:4;445:15">
+               <image href="../images/custom-reduce.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="image:4;446:70">
+                  <alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="alt:4;447:25"/>
+               </image>
+            </fig>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:77;450:13">The base format of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:69;450:44">reduce()</codeph> function is
+            as
+            follows:</p>
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:10;453:21">function(key, values, rereduce) {
+…
+
+return retval;
+}
+</codeblock>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:78;459:13">The
+            reduce function is supplied three arguments:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:11;460:65">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:17;461:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:70;461:25">key</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:79;462:18">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:71;462:30">key</codeph> is the unique key derived from the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:72;462:86">map()</codeph>
+            function and the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:73;463:38">group_level</codeph> parameter.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:12;463:77">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:18;464:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:74;464:25">values</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:80;465:18">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:75;465:30">values</codeph> argument is an array of all of the values that match a
+            particular key. For example, if the same key is output three times,
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:76;467:24">data</codeph> will be an array of three items containing, with each item
+            containing the value output by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:77;468:56">emit()</codeph> function.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:13;468:89">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:19;469:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:78;469:25">rereduce</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:81;470:18">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:79;470:30">rereduce</codeph> indicates whether the function is being called as
+            part of a re-reduce, that is, the reduce function being called again to further reduce
+            the input data.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:82;472:35">When <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:80;472:48">rereduce</codeph> is
+            false:</p>
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:11;474:21">* The supplied `key` argument will be an array where the first argument is the
+  `key` as emitted by the map function, and the `id` is the document ID that
+  generated the key.
+
+* The values is an array of values where each element of the array matches the
+  corresponding element within the array of `keys`.
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:83;480:16">When
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:81;481:24">rereduce</codeph> is
+            true:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:12;484:21">* `key` will be null.
+
+* `values` will be an array of values as returned by a previous `reduce()`
+  function.
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:84;488:16">The
+            function should return the reduced version of the information by calling the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:82;490:24">return()</codeph> function. The format of the return value should match the
+            format required for the specified
+            key.</p>
+      </section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:7;496:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:8;496:23">Re-writing the built-in reduce functions</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:85;496:74">Using this model as a
+            template, it is possible to write the full implementation of the built-in functions
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:83;498:24">_sum</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:84;498:50">_count</codeph> when working with the sales data
+            and the standard <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:85;499:38">map()</codeph> function
+            below:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:13;500:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:86;500:42">function(doc, meta)
+{
+  emit(meta.id, null);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:86;504:25">The
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:87;505:24">_count</codeph> function returns a count of all the records for a given key.
+            Since argument for the reduce function contains an array of all the values for a given
+            key, the length of the array needs to be returned in the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:88;507:78">reduce()</codeph>
+            function:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:14;508:37"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:89;508:45">function(key, values, rereduce) {
+   if (rereduce) {
+       var result = 0;
+       for (var i = 0; i &lt; values.length; i++) {
+           result += values[i];
+       }
+       return result;
+   } else {
+       return values.length;
+   }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:87;519:25">To
+            explicitly write the equivalent of the built-in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:90;520:69">_sum</codeph> reduce function,
+            the sum of supplied array of values needs to be
+            returned:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:15;522:37"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:91;522:45">function(key, values, rereduce) {
+  var sum = 0;
+  for(i=0; i &lt; values.length; i++) {
+    sum = sum + values[i];
+  }
+  return(sum);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:88;529:25">In
+            the above function, the array of data values is iterated over and added up, with the
+            final value being
+            returned.</p>
+      </section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:8;536:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:9;536:23">Handling re-reduce</title>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:89;537:13">For <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:92;537:25">reduce()</codeph> functions, they
+            should be both transparent and standalone. For example, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:93;538:81">_sum</codeph>
+            function did not rely on global variables or parsing of existing data, and didn’t need
+            to call itself, hence it is also transparent.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:90;540:65">In order to handle incremental
+            map/reduce functionality (i.e. updating an existing view), each function must also be
+            able to handle and consume the functions own output. This is because in an incremental
+            situation, the function must be handle both the new records, and previously computed
+            reductions.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:91;544:31">This can be explicitly written as
+            follows:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:16;547:21">f(keys, values) = f(keys, [ f(keys, values) ])
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:92;548:16">This
+            can been seen graphically in the illustration below, where previous reductions are
+            included within the array of information are re-supplied to the reduce function as an
+            element of the array of values supplied to the reduce function.</p>
+         
+         
+         <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="fig:5;554:15"><image href="../images/custom-rereduce.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="image:5;554:71"/></fig>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:93;556:13">That is, the input of a reduce function can be not only the
+            raw data from the map phase, but also the output of a previous reduce phase. This is
+            called <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:94;558:28">rereduce</codeph>, and can be identified by the third argument to the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:95;559:24">reduce()</codeph>. When the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:96;559:60">rereduce</codeph> argument is true, both
+            the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:97;560:25">key</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:98;560:50">values</codeph> arguments are arrays, with the
+            corresponding element in each containing the relevant key and value. I.e.,
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:99;562:24">key[1]</codeph> is the key related to the value of
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:100;563:21">value[1]</codeph>.</p>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:94;565:13">An example of this can be seen by considering an
+            expanded version of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:101;566:45">sum</codeph> function showing the supplied values for
+            the first iteration of the view index
+            building:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:17;570:21">function('James', [ 13000,20000,5000 ]) {...}
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:95;571:16">When
+            a document with the ‘James’ key is added to the database, and the view operation is
+            called again to perform an incremental update, the equivalent call
+            is:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:18;576:21">function('James', [ 19000, function('James', [ 13000,20000,5000 ]) ]) { ... }
+</codeblock>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:96;578:13">In
+            reality, the incremental call is supplied the previously computed value, and the newly
+            emitted value from the new
+            document:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:19;583:21">function('James', [ 19000, 38000 ]) { ... }
+</codeblock>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:97;586:13">Fortunately,
+            the simplicity of the structure for <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:102;587:57">sum</codeph> means that the function both
+            expects an array of numbers, and returns a number, so these can easily be
+            recombined.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:98;589:31">If writing more complex reductions, where a compound key is output,
+            the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:103;590:25">reduce()</codeph> function must be able to handle processing an argument of
+            the previous reduction as the compound value in addition to the data generated by the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:104;592:24">map()</codeph> phase. For example, to generate a compound output showing both
+            the total and count of values, a suitable <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:105;593:63">reduce()</codeph> function could be
+            written like
+            this:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:20;597:21">function(key, values, rereduce) {
+  var result = {total: 0, count: 0};
+  for(i=0; i &lt; values.length; i++) {
+    if(rereduce) {
+        result.total = result.total + values[i].total;
+        result.count = result.count + values[i].count;
+    } else {
+        result.total = sum(values);
+        result.count = values.length;
+    }
+  }
+  return(result);
+}
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:99;610:16">Each
+            element of the array supplied to the function is checked using the built-in
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:106;612:24">typeof</codeph> function to identify whether the element was an object (as
+            output by a previous reduce), or a number (from the map phase), and then updates the
+            return value accordingly.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:100;614:45">Using the sample sales data, and group level of two, the
+            output from a reduced view may look like
+            this:</p>
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:21;617:21">{"rows":[
+{"key":["Adam", "London"],"value":{"total":7000,  "count":1}},
+{"key":["Adam", "Paris"], "value":{"total":19000, "count":1}},
+{"key":["Adam", "Tokyo"], "value":{"total":17000, "count":1}},
+{"key":["James","Paris"], "value":{"total":118000,"count":3}},
+{"key":["James","Tokyo"], "value":{"total":20000, "count":1}},
+{"key":["John", "London"],"value":{"total":10000, "count":2}},
+{"key":["John", "Paris"], "value":{"total":22000, "count":1}}
+]
+}
+</codeblock>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:101;629:13">Reduce
+            functions must be written to cope with this scenario in order to cope with the
+            incremental nature of the view and index building. If this is not handled correctly, the
+            index will fail to be built correctly.</p>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:102;634:13">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:107;634:25">reduce()</codeph> function is
+            designed to reduce and summarize the data emitted during the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:108;635:82">map()</codeph>
+            phase of the process. It should only be used to summarize the data, and not to transform
+            the output information or concatenate the information into a single
+            structure.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:103;638:30">When using a composite structure, the size limit on the composite
+            structure within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:109;639:42">reduce()</codeph> function is
+            64KB.</p>
+      </section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:9;644:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:10;644:23">Views on non-JSON data</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:104;644:56">If the data stored within your buckets is not
+            JSON formatted or JSON in nature, then the information is stored in the database as an
+            attachment to a JSON document returned by the core database layer.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:105;646:86">This does not
+            mean that you cannot create views on the information, but it does limit the information
+            that you can output with your view to the information exposed by the document key used
+            to store the information.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:106;649:45">At the most basic level, this means that you can still
+            do range queries on the key information. For
+            example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:22;651:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:110;651:44">function(doc, meta)
+{
+    emit(meta.id, null);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:107;655:25">You
+            can now perform range queries by using the emitted key data and an appropriate
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:111;657:24">startkey</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:112;657:54">endkey</codeph> value.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:108;657:83">If you use a
+            structured format for your keys, for example using a prefix for the data type, or
+            separators used to identify different elements, then your view function can output this
+            information explicitly in the view. For example, if you use a key structure where the
+            document ID is defined as a series of values that are colon
+            separated:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:23;662:38"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:113;662:46">OBJECTYPE:APPNAME:OBJECTID
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:109;663:25">You
+            can parse this information within the JavaScript map/reduce query to output each item
+            individually. For
+            example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:24;666:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:114;666:44">function(doc, meta)
+{
+    values = meta.id.split(':',3);
+    emit([values[0], values[1], values[2]], null);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:110;671:25">The
+            above function will output a view that consists of a key containing the object type,
+            application name, and unique object ID. You can query the view to obtain all entries of
+            a specific object type
+            using:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:25;675:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:115;675:42">startkey=['monster', null, null]&amp;endkey=['monster','\u0000' ,'\u0000']
+</codeph></codeblock>
+      </section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:10;680:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:11;680:23">Built-in utility functions</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:111;680:60">Couchbase Server incorporates different
+            utility function beyond the core JavaScript functionality that can be used within
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:116;682:24">map()</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:117;682:51">reduce()</codeph> functions where relevant.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:14;682:102">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:20;683:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:118;683:25">dateToArray(date)</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:112;684:18">Converts a JavaScript Date object or a valid date string such as
+            “2012–07–30T23:58:22.193Z” into an array of individual date components. For example, the
+            previous string would be converted into a JavaScript
+            array:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:26;687:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:119;687:42">```
+[2012, 7, 30, 23, 58, 22]
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:113;690:25">The
+            function can be particularly useful when building views using dates as the key where the
+            use of a reduce function is being used for counting or rollup. </p>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:114;694:13">Currently, the function works only on UTC values. Timezones are not supported.</p>
+         
+         <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:15;696:14">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:21;697:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:120;697:25">decodeBase64(doc)</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:115;698:18">Converts a binary (base64) encoded value stored in the database into a string. This
+            can be useful if you want to output or parse the contents of a document that has not
+            been identified as a valid JSON value.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:16;700:59">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:22;701:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:121;701:25">sum(array)</codeph></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:116;702:18">When supplied with an array containing numerical values, each value is summed and
+            the resulting total is returned.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:117;703:52">For
+            example:</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:27;706:21">
+sum([12,34,56,78])
+</codeblock>
+      </section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="section:11;712:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="title:12;712:23">View writing best practice</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:118;712:60">Although you are free to write views
+            matching your data, you should keep in mind the performance and storage implications of
+            creating and organizing the different design document and view definitions.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:119;714:95">You
+            should keep the following in mind while developing and deploying your views:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:17;715:97">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:23;716:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:3;716:20">Quantity of Views per Design Document</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:120;717:18">Because the index for each map/reduce combination within each view within a given
+            design document is updated at the same time, avoid declaring too many views within the
+            same design document. For example, if you have a design document with five different
+            views, all five views will be updated simultaneously, even if only one of the views is
+            accessed.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:121;721:29">This can result in increase view index generation times, especially for
+            frequently accessed views. Instead, move frequently used views out to a separate design
+            document.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:122;723:29">The exact number of views per design document should be determined from
+            a combination of the update frequency requirements on the included views and grouping of
+            the view definitions. For example, if you have a view that needs to be updated with a
+            high frequency (for example, comments on a blog post), and another view that needs to be
+            updated less frequently (e.g. top blogposts), separate the views into two design
+            documents so that the comments view can be updated frequently, and independently, of the
+            other view.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:123;729:31">You can always configure the updating of the view through the use of
+            the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:122;730:25">stale</codeph> parameter. You can also configure different automated view update times for
+            individual design documents</p>
+         
+         
+         <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:18;734:14">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:24;735:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:4;735:20">Modifying Existing Views</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:124;736:18">If you modify an existing view definition, or are executing a full build on a
+            development view, the entire view will need to be recreated. In addition, all the views
+            defined within the same design document will also be recreated.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:125;738:83">Rebuilding all the
+            views within a single design document is an expensive operation in terms of I/O and CPU
+            requirements, as each document will need to be parsed by each views
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:123;741:24">map()</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:124;741:51">reduce()</codeph> functions, with the resulting
+            index stored on disk.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:126;742:41">This process of rebuilding will occur across all the nodes
+            within the cluster and increases the overall disk I/O and CPU requirements until the
+            view has been recreated. This process will take place in addition to any production
+            design documents and views that also need to be kept up to date.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:19;745:85">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:25;746:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:5;746:20">Don’t Include Document ID</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:127;747:18">The document ID is automatically output by the view system when the view is
+            accessed. When accessing a view without reduce enabled you can always determine the
+            document ID of the document that generated the row. You should not include the document
+            ID (from <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:125;750:30">meta.id</codeph> ) in your key or value data.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:20;750:83">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:26;751:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:6;751:20">Check Document Fields</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:128;752:18">Fields and attributes from source documentation in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:126;752:77">map()</codeph> or
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:127;753:24">reduce()</codeph> functions should be checked before their value is checked
+            or compared. This can cause issues because the view definitions in a design document are
+            processed at the same time. A common cause of runtime errors in views is missing or
+            invalid field and attribute checking.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:129;756:57">The most common issue is a field within a
+            null object being accessed. This generates a runtime error that will cause execution of
+            all views within the design document to fail. To address this problem, you should check
+            for the existence of a given object before it is used, or the content value is checked.
+            For example, the following view will fail if the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:128;760:70">doc.ingredient</codeph> object
+            does not exist, because accessing the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:129;761:59">length</codeph> attribute on a null object
+            will
+            fail:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:28;763:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:130;763:41">```
+function(doc, meta)
+{
+    emit(doc.ingredient.ingredtext, null);
+}
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:130;769:25">Adding
+            a check for the parent object before calling <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:131;770:66">emit()</codeph> ensures that the
+            function is not called unless the field in the source document
+            exists:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:29;772:35"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:132;772:43">```
+function(doc, meta)
+{
+  if (doc.ingredient)
+  {
+     emit(doc.ingredient.ingredtext, null);
+  }
+}
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:131;781:25">The
+            same check should be performed when comparing values within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:133;782:85">if</codeph>
+            statement.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:132;783:30">This test should be performed on all objects where you are checking the
+            attributes or child values (for example, indices of an array).</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:21;784:83">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:27;785:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:7;785:20">View Size, Disk Storage and I/O</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:133;786:18">Within the map function, the information declared within your
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:134;787:24">emit()</codeph> statement is included in the view index data and stored on
+            disk. Outputting this information will have the following effects on your
+            indexes:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:30;789:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:135;789:44">* *Increased index size on disk* — More detailed or complex key/value combinations
+  in generated views will result in more information being stored on disk.
+
+* *Increased disk I/O* — in order to process and store the information on disk,
+  and retrieve the data when the view is queried. A larger more complex key/value
+  definition in your view will increase the overall disk I/O required both to
+  update and read the data back.
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:134;796:25">The
+            result is that the index can be quite large, and in some cases, the size of the index
+            can exceed the size of the original source data by a significant factor if multiple
+            views are created, or you include large portions or the entire document data in the view
+            output.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:135;800:27">For example, if each view contains the entire document as part of the
+            value, and you define ten views, the size of your index files will be more than 10 times
+            the size of the original data on which the view was created. With a 500-byte document
+            and 1 million documents, the view index would be approximately 5GB with only 500MB of
+            source data.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:22;804:33">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:28;805:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:8;805:20">Including Value Data in Views</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:136;806:18">Views store both the key and value emitted by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:136;806:76">emit()</codeph>. To
+            ensure the highest performance, views should only emit the minimum key data required to
+            search and select information. The value output by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:137;808:72">emit()</codeph> should only
+            be used when you need the data to be used within a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:138;809:72">reduce()</codeph>.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:137;809:97">You
+            can obtain the document value by using the core Couchbase API to get individual
+            documents or documents in bulk. Some SDKs can perform this operation for you
+            automatically. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:138;812:35">Using this model will also prevent issues
+            where the emitted view data may be inconsistent with the document state and your view is
+            emitting value data from the document which is no longer stored in the document
+            itself.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:139;815:27">For views that are not going to be used with reduce, you should output a
+            null
+            value:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:31;817:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:139;817:42">```
+function(doc, meta)
+    {
+    if(doc.type == 'object')
+    emit(doc.experience, null);
+    }
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:140;824:25">This
+            will create an optimized view containing only the information required, ensuring the
+            highest performance when updating the view, and smaller disk usage.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:23;826:88">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:29;827:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:9;827:20">Don’t Include Entire Documents in View output</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:141;828:18">A view index should be designed to provide base information and through the
+            implicitly returned document ID point to the source document. It is bad practice to
+            include the entire document within your view output.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:142;830:72">You can always access the
+            full document data through the client libraries by later requesting the individual
+            document data. This is typically much faster than including the full document data in
+            the view index, and enables you to optimize the index performance without sacrificing
+            the ability to load the full document data.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:143;834:63">For example, the following is an
+            example of a bad
+            view:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:32;836:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:140;836:41">```
+function(doc, meta)
+    {
+    if(doc.type == 'object')
+    emit(doc.experience, doc);
+    }
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:144;843:25">The
+            above view may have significant performance and index size effects.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:145;844:87">This will
+            include the full document content in the index.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:146;845:67">Instead, the view should be
+            defined
+            as:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:33;847:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:141;847:39">```
+function(doc, meta)
+    {
+    if(doc.type == 'object')
+    emit(doc.experience, null);
+    }
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:147;854:25">You
+            can then either access the document data individually through the client libraries, or
+            by using the built-in client library option to separately obtain the document data.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:24;856:104">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:30;857:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:10;857:20">Using Document Types</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:148;858:18">If you are using a document type (by using a field in the stored JSON to indicate
+            the document structure), be aware that on a large database this can mean that the view
+            function is called to update the index for document types that are not being updated or
+            added to the index.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:149;861:39">For example, within a database storing game objects with a
+            standard list of objects, and the users that interact with them, you might use a field
+            in the JSON to indicate ‘object’ or ‘player’. With a view that outputs information when
+            the document is an
+            object:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeblock:34;865:35"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:142;865:43">```
+function(doc, meta)
+{
+  emit(doc.experience, null);
+}
+```
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:150;871:25">If
+            only players are added to the bucket, the map/reduce functions to update this view will
+            be executed when the view is updated, even though no new objects are being added to the
+            database. Over time, this can add a significant overhead to the view building
+            process.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:151;875:28">In a database organization like this, it can be easier from an
+            application perspective to use separate buckets for the objects and players, and
+            therefore completely separate view index update and structure without requiring to check
+            the document type during progressing.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="ul:25;878:58">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="li:31;879:17"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="b:11;879:20">Use Built-in Reduce Functions</b></li>
+         </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:152;880:18">Where possible, use
+               one of the supplied built-in reduce functions, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:143;881:71">_sum</codeph>,
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:144;882:24">_count</codeph>](#couchbase-views-writing-reduce-count),
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="codeph:145;883:24">_stats</codeph>](#couchbase-views-writing-reduce-stats).</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="p:153;883:87">These
+            functions are highly optimized. Using a custom reduce function requires additional
+            processing and may impose additional build time on the production of the
+         index.</p></section>
+   </body>
+   <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="related-links:1;888:19"><linkpool class="- topic/linkpool " xtrc="topicref:109;126:46" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:103;120:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Views/views-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Views and indexes</linktext></link></linkpool>
+      <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="linklist:1;889:17">
+            <link href="../views/views-operation.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="link:1;890:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views operation</linktext></link>
+            <link href="../views/views-querySample.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="link:2;891:59" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">View and query pattern samples</linktext></link>
+            <link href="../views/views-storedData.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="link:3;892:58" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views and stored data</linktext></link>
+            <link href="../views/views-writing.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="link:4;893:55" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Writing views</linktext></link>
+            <link href="../rest/design-docs-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="link:5;894:61" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Managing design documents</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Design documents are used to store one or more view definitions. Views can be defined 		within a design document and uploaded to the server through the REST API.</desc></link>
+            <link href="docs.couchbase.com" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="link:6;896:30"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/views/views-writing.dita" xtrc="linktext:1;897:26">Couchbase SDKs</linktext></link>
+      </linklist>
+   </related-links>
+</topic>

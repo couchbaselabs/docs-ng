@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/rest/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic5938" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="title:1;5:10">Rebalancing nodes</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:1;7:8">To start a rebalance process through the REST API you must supply two arguments containing
+      the list of nodes that have been marked to be ejected, and the list of nodes that are known
+      within the cluster. </p>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="section:1;12:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="title:2;12:21">Initiating a rebalance</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:2;12:54">You can obtain the information about ejected
+        and known node by getting the current node configuration..
+        This is to ensure that the client making the REST API request is aware of the current
+        cluster configuration. Nodes should have been previously added or marked for removal as
+        appropriate.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:3;16:28">The information must be supplied via the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:1;16:77">ejectedNodes</codeph>
+        and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:2;17:21">knownNodes</codeph> parameters as a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:3;17:65">POST</codeph> operation to the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:4;18:19">/controller/rebalance</codeph> endpoint.
+        </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:4;19:16"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="b:1;19:19">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:1;19:45"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:5;19:53">curl -v -X -u admin:password POST 'http://192.168.0.77:8091/controller/rebalance' \
+-d 'ejectedNodes=&amp;knownNodes=ns_1%40192.168.0.77%2Cns_1%40192.168.0.56'
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:5;21:25">Replace
+        the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:1;22:16">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:2;22:30">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:3;22:47">192.168.0.77</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:4;22:72">192.168.0.56</i> values in
+        the above example with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:6;23:58">The corresponding raw HTTP
+        request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:2;24:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:6;24:40">POST /controller/rebalance HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpUYW1zaW4=
+User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+Host: 192.168.0.77:8091
+Accept: */*
+Content-Length: 63
+Content-Type: application/x-www-form-urlencoded
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:7;31:25">The
+        response will be 200 (OK) if the operation was successfully submitted.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:8;32:86">If the wrong
+        node information has been submitted, JSON with the mismatch error will be
+        returned:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:3;34:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:7;34:41">{"mismatch":1}
+</codeph></codeblock>
+    </section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="section:2;39:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="title:3;39:21">Getting rebalance progress</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:9;39:58">There are two endpoints for rebalance
+        progress. One is a general request which outputs high-level percentage completion at
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:8;41:19">/pools/default/rebalanceProgress</codeph>. The second possible endpoint is one
+        corresponds to the detailed rebalance report available in Web Console.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:10;42:86"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="b:2;42:89">Example</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:11;42:107">This first request returns a JSON structure
+        containing the current progress
+        information:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:4;44:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:9;44:44">curl -u admin:password '192.168.0.77:8091/pools/default/rebalanceProgress'
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:12;45:25">Replace
+        the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:5;46:16">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:6;46:30">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:7;46:47">localhost</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:8;46:69">192.168.0.77</i> values in the
+        above example with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:13;47:54">As a pure REST API call, it appears as
+        follows:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:5;48:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:10;48:40">GET /pools/default/rebalanceProgress HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpUYW1zaW4=
+User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+Host: 192.168.0.77:8091
+Accept: */*
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:14;53:25">The
+        response data packet contains a JSON structure showing the rebalance progress for each node.
+        The progress figure is provided as a percentage (shown as a floating point value between 0
+        and
+        1).</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:6;57:27"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:11;57:35">{
+    "status":"running",
+    "ns_1@192.168.0.56":{"progress":0.2734375},
+    "ns_1@192.168.0.77":{"progress":0.09114583333333337}
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:15;62:25">For
+        more details about the rebalance, use the following
+        request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:7;64:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:12;64:40">curl -u admin:password 'http://localhost:8091/pools/default/tasks'
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:16;65:25">Replace
+        the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:9;66:16">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:10;66:30">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:11;66:51">localhost</i> values in the above example with
+        your actual
+        values.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:8;68:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:13;68:39">GET /pools/default/rebalanceProgress HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpUYW1zaW4=
+User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+Host: 192.168.0.77:8091
+Accept: */*
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:17;73:25">The
+        response data packet contains a JSON structure showing detailed
+        progress:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:9;75:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:14;75:41">
+{
+  type: "rebalance",
+  recommendedRefreshPeriod: 0.25,
+  status: "running",
+  progress: 9.049479166666668,
+  perNode: {
+    ns_1@10.3.3.61: {
+      progress: 13.4765625
+    },
+    ns_1@10.3.2.55: {
+      progress: 4.6223958333333375
+    }
+  },
+  detailedProgress: {
+    bucket: "default",
+    bucketNumber: 1,
+    bucketsCount: 1,
+    perNode: {
+      ns_1@10.3.3.61: {
+        ingoing: {
+          docsTotal: 0,
+          docsTransferred: 0,
+          activeVBucketsLeft: 0,
+          replicaVBucketsLeft: 0
+        },
+        outgoing: {
+          docsTotal: 512,
+          docsTransferred: 69,
+          activeVBucketsLeft: 443,
+          replicaVBucketsLeft: 511
+        }
+      },
+      ns_1@10.3.2.55: {
+        ingoing: {
+          docsTotal: 512,
+          docsTransferred: 69,
+          activeVBucketsLeft: 443,
+          replicaVBucketsLeft: 0
+        },
+        outgoing: {
+          docsTotal: 0,
+          docsTransferred: 0,
+          activeVBucketsLeft: 0,
+          replicaVBucketsLeft: 443
+        }
+      }
+    }
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:18;125:25">This
+        shows percentage complete for each individual node undergoing rebalance. For each specific
+        node, it provides the current number of docs transferred and other items. For details and
+        definitions of these items.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:19;128:43">If you rebalance fails, you will see this
+        response:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:10;129:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:15;129:41">[
+  {
+    "type": "rebalance",
+    "status": "notRunning",
+    "errorMessage": "Rebalance failed. See logs for detailed reason. You can try rebalance again."
+  }
+]
+</codeph></codeblock></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="section:3;138:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="title:4;138:21">Adjusting rebalance during compaction</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:20;138:69">If you perform a rebalance while
+        a node is undergoing index compaction, you may experience delays in rebalance. There is REST
+        API parameter as of Couchbase Server 2.0.1 you can use to improve rebalance performance. If
+        you do make this selection, you will reduce the performance of index compaction which can
+        result in larger index file size.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:21;142:49"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="b:3;142:52">Example</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:22;142:70">To make this
+        request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeblock:11;143:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:16;143:40">curl -X POST -u admin:password 'http://localhost:8091/internalSettings' 
+    -d 'rebalanceMovesBeforeCompaction=256'
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:23;145:25">Replace
+        the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:12;146:16">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:13;146:30">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:14;146:47">localhost</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="i:15;146:69">256</i> values in the above
+        example with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="p:24;147:48">This needs to be made as POST request to the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="codeph:17;148:19">/internalSettings</codeph> endpoint. By default this setting is 16, which
+        specifies the number of vBuckets which will moved per node until all vBucket movements
+        pauses. After this pause the system triggers index compaction. Index compaction will not be
+        performed while vBuckets are being moved, so if you specify a larger value, it means that
+        the server will spend less time compacting the index, which will result in larger index
+        files that take up more disk space.</p>
+    </section>
+    
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="related-links:1;158:18"><linkpool class="- topic/linkpool " xtrc="topicref:7;11:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-cluster-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cluster REST API</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="linklist:1;159:15">
+      <link href="../rest/rebalance-monitoring.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="link:1;160:55" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Monitoring a rebalance</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">You should monitor the system during and     immediately after a rebalance operation until you are confident that replication has completed     successfully.</desc></link>
+      <link href="../rest/rest-server-nodes.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="link:2;161:52" type="reference"><?ditaot gentext?><linktext class="- topic/linktext ">Server nodes REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server.      Each node is as a member of a cluster.</desc></link>
+      <link href="../rest/rest-node-provisioning.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="link:3;162:57" type="reference"><?ditaot gentext?><linktext class="- topic/linktext ">Provisioning nodes</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Provisioning refers to creating a new cluster or adding a node to a cluster.</desc></link>
+      <link href="../tasks/tasks-rebalance.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rest-cluster-rebalance.dita" xtrc="link:4;163:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Rebalancing</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

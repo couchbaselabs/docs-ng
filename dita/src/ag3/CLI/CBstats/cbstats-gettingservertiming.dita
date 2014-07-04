@@ -29,7 +29,7 @@ set_vb_cmd (1024 total)
 </codeph></codeblock><p>The first statistic tells you that <codeph>disk_insert</codeph> took 8–16µs8 times, 16–32µs 290
 times, and so forth.</p><p>The following are the possible return values provided by <codeph>cbstats timings</codeph>. The
 return values provided by this command depend on what has actually occurred on a
-data bucket:</p><p><!--Removed anchor point table-couchbase-admin-cmdline-couchbase-cbstats-timings--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+data bucket:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
 	<entry>bg_load</entry>
 	<entry>Background fetches waiting for disk</entry>
 </row></thead><tbody><row>

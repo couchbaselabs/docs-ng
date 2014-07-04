@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/UI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_d3l_t4c_34" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="title:1;4:10">Sample Buckets tab</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="p:1;6:8">The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="uicontrol:1;6:23">Sample Buckets</uicontrol> tab enables you to install the sample bucket data if the data has not already been loaded in the
+      system. 
+      If the sample bucket data was not loaded during setup, select the
+      sample buckets that you want to load using the checkboxes, and click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="uicontrol:2;9:87">Create</uicontrol>.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="p:2;10:8">If  the sample bucket data has already been loaded, it is listed under the
+      Installed Samples section of the
+      page.</p>
+          
+          <image href="../images/web-console-server-settings-sample-buckets.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-sample-buckets.dita" xtrc="image:1;14:82"/>
+        
+         
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:94;108:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:88;102:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-settings.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Settings</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrc="uicontrol:1;6:29" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings.dita">Settings</uicontrol> section provides configuration and information      for the cluster, update notifications, auto failover, alerts, auto compaction, sample buckets, and account management.</desc></link></linkpool></related-links>
+</topic>

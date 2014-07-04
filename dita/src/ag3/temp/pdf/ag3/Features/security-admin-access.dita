@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_pgw_k2h_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:1;4:10">Secure administrative access</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="shortdesc:1;5:14">Secure administrator access provides encrypted REST API access using Secure Socket Layer (SSL) authentication.
+    Enterprise Edition only.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="body:1;7:9">
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="p:1;9:8">The encrypted communication allows a connection to be configured for security using Secure Sockets Layer (SSL) encryption. 
+      Encryption protects data-in-flight from a remote machines to a Couchbase cluster using SSL. 
+      A secure channel is established between the remote machine and the server.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="p:2;13:8">The self-signed certification for the initial node is progated throughout the server nodes in the cluster. 
+      If the self-signed certificate is regenerated or updated as part of setting up XDCR data encryption (or for any other reason), 
+      the certificate retrieved by the client must be obtained again before secure client-server communication is re-established. 
+      The secure connection is on the cluster-level (rather than bucket-level) and is 
+      through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="p:3;19:8">Encrypted administrator access is used under a variety of situations: 
+      
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="ul:1;21:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="li:1;22:13">An administrator is physically located in a different data center.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="li:2;23:13">An administrator is outside of the firewall.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="li:3;24:13">An additional level of security is required.</li>  
+      </ul></p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="p:4;27:8">Secure administrative access is configured using the same method used for encrypted client-server communication:</p>
+    
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="ol:1;29:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="li:4;30:11">Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and 
+        using the administratrator username and password.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="li:5;32:11">Retrieve the SSL self-signed certificate and store in the local file,
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeph:1;33:19">remoteCert.pem</codeph>.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="li:6;34:11">Create the cluster remote reference using the an encrypted port, 18091 REST HTTP or
+        18092 CAPI HTTP, and enabling data encryption.</li>
+    </ol>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="section:1;38:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:2;38:21">Secure client-server REST API</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="p:5;39:10">The following summarizes the HTTP methods used for defining data encryption:</p>
+      
+      
+    </section>
+    <table frame="all" id="table_dnc_hzf_44" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="table:1;43:46">
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:3;44:14">URI paths for setting secure communication</title>
+      <tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="tgroup:1;45:24">
+        <colspec colname="col1" colnum="1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="colspec:1;46:57"/>
+        <colspec colname="col2" colnum="2" colwidth="1.37*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="colspec:2;47:60"/>
+        <colspec colname="col3" colnum="3" colwidth="1.71*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="colspec:3;48:60"/>
+        <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="thead:1;49:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="row:1;50:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:1;51:20">HTTP method</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:2;52:20">URI path</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:3;53:20">Destription</entry>
+          </row>
+        </thead>
+        <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="tbody:1;56:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="row:2;57:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:4;58:20">GET</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:5;59:20">/pools/default/certificate</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:6;60:20">Retrieves the SSL self-signed certificate from the remote cluster.</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="row:3;62:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:7;63:20">GET</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:8;64:20">/pools/default/remoteClusters</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:9;65:20">Retrieves the remote cluster reference.</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="row:4;67:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:10;68:20">POST</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:11;69:20">/pools/default/remoteClusters</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:12;70:20">Creates the remote cluster referece.</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="row:5;72:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:13;73:20">PUT</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:14;74:20">/pools/default/remoteClusters</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="entry:15;75:20">Modifies the remote cluster reference.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="section:2;82:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:4;82:21">Syntax for retrieving the remote certificate</title>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeblock:1;83:18">
+curl –X GET  -u adminName:adminPassword
+    http://localHost:Port/pools/default/certificate       
+    </codeblock>
+    </section>
+    
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="example:1;89:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:5;89:21">Retrieving and storing the certificate</title>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeblock:2;90:18">curl http://10.5.2.54:8091/pools/default/certificate &gt; ./remoteCert.pem</codeblock>
+      
+    </example>
+    
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="example:2;94:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:6;94:21">SSL certificate</title>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeblock:3;95:18">-----BEGIN CERTIFICATE-----
+MIIC/jCCAeigAwIBAgIIE3jc9BofgigwCwYJKoZIhvcNAQEFMCQxIjAgBgNVBAMT
+GUNvdWNoYmFzZSBTZXJ2ZXIgOTRmYTE3YTUwHhcNMTMwMTAxMDAwMDAwWhcNNDkx
+MjMxMjM1OTU5WjAkMSIwIAYDVQQDExlDb3VjaGJhc2UgU2VydmVyIDk0ZmExN2E1
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxaaXsKm06xxzzYqejDAO
+3qW1x6vLz9jcLdZkNQgxGk4+/ulrfK4PSLHARf4vml8Ev3bcOzCwfyDCp2/TCSX0
+qDTn4iBRp9CJtxVyY/xqWkYkld+GGtj28P0CtZ1UKOHCRB7KInzxesxITg/a0vsL
+M8GrcwFpmZEJjeY7HGdUuBRcoMfm2Yn28drmr92SNSsz+npdfEFkQloYStqemOOG
+h1Jn7ldU5rBj/B2zcvh6guDXKKz/bMMeCTX84BmkG3rmiKQwxyizuxtYi5u1BthC
+X3aO58lC9uRMja1lA5TrJnZOCRT24G6VTh2bYhN98W6YmvF9l4ESDR4I7nE8E6Gt
+eQIDAQABozgwNjAOBgNVHQ8BAf8EBAMCAKQwEwYDVR0lBAwwCgYIKwYBBQUHAwEw
+DwYDVR0TAQH/BAUwAwEB/zALBgkqhkiG9w0BAQUDggEBAF0Bz2MpQoBEdOdDRix3
+j0/XGKjH7kI5zDFiOlUvANMeErVZf9kM8xqS7Yd3bCa2rjT1Y8BM3Sciurtrd/Cy
+iTVzpXjQOR/K1AFtiBtuNb2Hx5SXvgeW4p4uNmK74u1UUNmAyb3mwSQ+duuqK/Ef
+D4wTolPTZP5gcricyWI3qUCi3pTeCz/2jcAWn3DI4KVtlAsOy9sFFo4RxBDgmOuS
+klUAb8eu4e2XxcLJ++geYoum0VIKa3ygjpZ800PupwZZetjD8/6tfbYFuoBTXL+r
+27M9ArsOxkVbh3fDQ8b8qnr5sam1P7IfSzqq/Lq4vjh1mvred62zuJlMvY9KmNJU
+rqw=
+-----END CERTIFICATE-----</codeblock>
+    </example>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="section:3;116:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:7;116:21">Syntax for creating an encrypted client-server connection</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="p:6;117:10">A POST to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeph:2;117:28">/pools/default/remoteClusters</codeph> creates the remote cluster reference. 
+        Setting the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeph:3;118:29">demandEncryption</codeph> to one (1) and providing the certificate name and location enables data encryption.</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeblock:4;120:18">
+curl –X POST  -u Admin:myPassword
+    https://localHost:sslPort/pools/default/remoteClusters
+    -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat remoteCert.pem)"
+      </codeblock>
+      
+    </section>
+    
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="example:3;128:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="title:8;128:21">Creating an encrypted client-server connection</title>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/security-admin-access.dita" xtrc="codeblock:5;129:18">curl –X POST
+    https://Administrator:asdasd@192.168.0.1:18091/pools/default/remoteClusters/
+    -d demandEncryption=1 --data-urlencode "certificate=$(cat remoteCert.pem)"     </codeblock>
+    </example>
+    
+    
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:28;38:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link></linkpool></related-links>
+</topic>

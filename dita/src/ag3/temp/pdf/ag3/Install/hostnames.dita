@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_ggq_hfy_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="title:1;4:10">Using hostnames</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:1;6:8">When you first install Couchbase Server you can access
+      using a default IP address. There may be cases where you want to provide a hostname for each
+      instance of a server. Each hostname you provide should be a valid one and will ultimately
+      resolve to a valid IP Address. If you restart a node, it will use
+      the hostname once again. If you failover or remove a node from a cluster, the node needs to
+      be configured with the hostname once again.</p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:2;13:10">There are several ways you can provide hostnames. You can provide a
+        hostname when installing a Couchbase Server on a machine, when adding a node to an
+        existing cluster for online upgrade, or via a REST API call. Couchbase Server stores this in
+        a config file on disk.</p>
+      
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="ul:1;18:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:1;19:13">On initial setup 
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:3;20:14">In the first screen, provide either a hostname or IP address under <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="uicontrol:1;20:92">Configure
+            Server Hostname</uicontrol>. The provided hostname survives node restart.</p>
+          <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="fig:1;22:16"><image href="../images/configure_server1.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="image:1;22:74"/></fig>
+        </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:2;24:13">While adding a node
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:4;25:14">If a new node is being added to an existing 2.0.1 or older
+            Couchbase cluster, first setup the hostname for the new node in the setup
+            wizard. Add a new node to a cluster by providing either a hostname or
+            IP address under <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="uicontrol:2;28:41">Add Server &gt; Server IP Address field</uicontrol>.</p>
+          <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="fig:2;29:16"><image href="../images/hostname_add_node.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="image:2;29:74"/></fig>
+        </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:3;31:13">Via REST API 
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:5;32:14">Provide a hostname for a node a hostname with the REST request at the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="codeph:1;32:92">/node/controller/rename</codeph> endpoint. </p>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:6;33:14">If this method is used, provide the hostname before adding a node to a cluster. 
+            If a hostname is provided for a node that is already part of a Couchbase cluster, 
+            the server rejects the request and returns <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="codeph:2;35:64">error 400 reason: unknown ["Renaming is disallowed for
+              nodes that are already part of a cluster"]</codeph>.</p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="codeblock:1;37:22">curl -v -X POST -u Administrator:asdasd \
+http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
+</codeblock>
+        </li>
+      </ul>
+    
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="section:1;44:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="title:2;44:23">Hostname errors</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:7;45:10">Where you provide the IP address and port for the node and administrative credentials for the
+        cluster. The value you provide for <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="codeph:3;46:52">hostname</codeph> should be a valid hostname for
+        the node. Possible errors that may occur when you do this request:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="ul:2;48:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:4;49:13">Could not resolve the hostname. The hostname you provide as a parameter does not
+          resolve to a IP address.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:5;51:13">Could not listen. The hostname resolves to an IP address, but no network connection
+          exists for the address.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:6;53:13">Could not rename the node because name was fixed at server start-up.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:7;54:13">Could not save address after rename.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:8;55:13">Requested name hostname is not allowed. Invalid hostname provided.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="li:9;56:13">Renaming is disallowed for nodes that are already part of a cluster.</li>
+      </ul>
+      </section>
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="section:2;60:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="title:3;60:23">Hostnames when upgrading from 1.8.1</title>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="p:8;61:12">If you perform an offline upgrade from Couchbase 1.8.1+ and you have a configured hostname using the instructions from 
+          cloud deployment informaiton, the uses this configuration. 
+          If an online upgrade from 1.8.1 is performed, add the hostname when creating the new node.
+            node. </p>
+      </section>
+    
+      
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="related-links:1;69:18"><linkpool class="- topic/linkpool " xtrc="topicref:18;25:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:16;22:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/post-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Post-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Post-installation activities includes setting up the initial server and testing the server connection.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="linklist:1;70:15">
+      <link href="../Concepts/bp-cloudDeployment.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/hostnames.dita" xtrc="link:1;71:56" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Couchbase in the cloud</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server is extremely easy to deploy in the cloud.</desc></link>
+    </linklist>
+  </related-links>
+  
+</topic>

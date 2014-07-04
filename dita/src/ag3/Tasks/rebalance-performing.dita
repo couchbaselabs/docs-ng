@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ctg_g1g_q4">
+  <title>Performing a rebalance</title>
+  <shortdesc>Once you have configured the
+    nodes that you want to add or remove from your cluster, you must perform a rebalance operation.</shortdesc>
+  <body>
+
+      <p>A rebalance moves the data around the cluster so that the data is distributed across the entire
+        cluster, removing and adding data to different nodes in the process. </p>
+      
+      <p>If Couchbase Server
+        identifies that a rebalance is required, either through explicit addition or removal, or
+        through a failover, then the cluster is in a <codeph>pending rebalance</codeph> state. This
+        does not affect the cluster operation, it merely indicates that a rebalance operation is
+        required to move the cluster into its configured state. To start a rebalance:</p>
+       
+       
+       <section><title>Rebalancing via UI</title>
+         
+      <p>Within the <uicontrol>Manage Server Nodes</uicontrol> area of the Couchbase Administration Web
+        Console, a cluster pending a rebalance operation will have enabled the
+        <codeph>Rebalance</codeph> button. Click <uicontrol>Rebalance</uicontrol> to immediately initiates a rebalance operation. You can
+        monitor the progress of the rebalance operation through the web console.</p>
+
+      <fig><image href="../images/admin-tasks-rebalance-starting-console.png" width="720"></image></fig>
+      
+      <p>Stop the rebalance operation at any time during the process by clicking the <uicontrol>Stop
+            Rebalance</uicontrol> button. This only stops the rebalance operation, it does not cancel the
+          operation. You should complete the rebalance operation.</p>
+       </section>
+          
+          
+          <section><title>Rebalancing via CLI</title>
+    
+    <p>To initiate a rebalance using the <codeph>couchbase-cli</codeph> and the
+            <codeph>rebalance</codeph> command:</p>
+      
+      <codeblock>
+&gt; couchbase-cli rebalance -c 127.0.0.1:8091 -u Administrator -p Password
+  INFO: rebalancing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . .
+  SUCCESS: rebalanced cluster
+</codeblock>
+      
+      <p>You
+        can also use this method to add and remove nodes and initiate the rebalance operation using a
+        single command. You can specify nodes to be added using the <codeph>--server-add</codeph>
+        option, and nodes to be removed using the <codeph>--server-remove</codeph>. You can use
+        multiple options of each type. For example, to add two nodes, and remove two nodes, and
+        immediately initiate a rebalance
+        operation:</p>
+      
+      <codeblock>
+&gt; couchbase-cli rebalance -c 127.0.0.1:8091 \
+          -u Administrator -p Password \
+          --server-add=192.168.0.72 \
+          --server-add=192.168.0.73 \
+          --server-remove=192.168.0.70 \
+          --server-remove=192.168.0.69
+</codeblock>
+      
+      <p>The
+        command-line provides an active view of the progress and will only return once the rebalance
+        operation has either completed successfully, or in the event of a failure. 
+        The time taken for a rebalance operation depends on the number of servers, 
+        quantity of data, cluster performance and any existing cluster activity, 
+        and is therefore difficult to accurately predict or estimate. 
+        Throughout any rebalance operation, monitor the process to ensure that it completes successfully.</p>
+            
+            <p>Stop the rebalance operation by using the <codeph>stop-rebalance</codeph> command to
+              <codeph>couchbase-cli</codeph>.</p>
+          </section>
+      
+  </body>
+</topic>

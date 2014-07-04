@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2033" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="title:1;5:10">Using user-defined ports</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="p:1;7:8">This section describes how to install and run Couchbase server with user-defined ports rather
+      than with the default 8091 port.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="p:2;9:8">To run Couchbase server on user-defined ports, ensure that the minimum RAM and CPU are
+      available for the Couchbase instance. For information about Red Hat Linux installation, see
+      http://docs.couchbase.com/couchbase-manual–2.5/cb-install/#red-hat-linux-installation. </p>
+        <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="note:1;12:27">Refer to the reserved network ports before creating user-defined ports. </note>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="section:1;13:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="title:2;13:21">Setting up Couchbase with user-defined ports</title>
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="ol:1;14:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:1;15:11">Install Couchbase. <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="ul:1;15:34">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:2;16:15">If Couchbase is already installed and running, stop the Couchbase server.</li>
+        </ul></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:3;18:11">Add the new user-defined ports to the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="b:1;18:52">/opt/couchbase/etc/couchbase/static_config</b>
+        file. <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="ul:2;19:19">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:4;20:15">The /opt/couchbase/etc/couchbase/static_config file is where Couchbase picks up the
+            configuration parameters from.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:5;22:15">If port numbers are not specified, default ports are used.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:6;23:15">To override some or all default ports, append the user-defined ports to the file.</li>
+        </ul></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:7;25:11">(Optional) CAPI port (default 8092) can be edited in the
+          <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="b:2;26:14">/opt/couchbase/etc/couchdb/default.d/capi.ini</b> file by replacing 8092 with the new
+        port name.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:8;28:11">If the Couchbase server was previously configured, delete the
+          <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="b:3;29:14">opt/couchbase/var/lib/couchbase/config/config.dat</b> file to remove the old
+        configuration.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="li:9;31:11">Start the Couchbase server</li>
+    </ol>
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="section:2;35:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="title:3;35:21">Ports to change</title>
+      
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="p:3;37:8">The following are the user-defined ports to add, replace, or append to the
+        <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="b:4;38:12">/opt/couchbase/etc/couchbase/static_config</b> file. </p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="codeblock:1;39:16">
+{rest_port, 9000}.                                   
+{mccouch_port, 8999}.                         
+{memcached_port, 12000}.
+{memcached_dedicated_port, 11999}.
+{moxi_port, 12001}.
+{short_name, "ns_1"}.
+{ssl_rest_port,11000}.                       
+{ssl_capi_port,11001}.
+{ssl_proxy_downstream_port,11002}.
+{ssl_proxy_upstream_port,11003}.
+</codeblock>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="note:2;52:23">If the newly configured ports overlap with ports used by other running applications,
+      Couchbase fails to start. If the newly configured ports overlap with ports used by Couchbase
+      buckets, erlang crash notifications display in the log file. </note>
+      
+    </section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="related-links:1;58:18"><linkpool class="- topic/linkpool " xtrc="topicref:10;15:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:7;12:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/RHEL-install-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Red Hat Linux installation</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="linklist:1;59:15">
+      <link href="install-networkPorts.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/user-defined-ports.dita" xtrc="link:1;60:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Network ports</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server specific network ports for communication between server components and  		for communicating with the clients that access the data stored in the Couchbase cluster.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

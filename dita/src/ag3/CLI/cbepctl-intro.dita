@@ -1,66 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic2697"><title>cbepctl tool</title><body><p>The <codeph>cbepctl</codeph> command enables you to control many of the configuration, RAM and
-disk parameters of a running cluster. This tool is for controlling the vBucket
-states on a Couchbase Server node. It is also responsible for controlling the
-configuration, memory and disk persistence behavior. This tool was formerly
-provided as the separate tools, <codeph>cbvbucketctl</codeph> and <codeph>cbflushctl</codeph> in Couchbase
-1.8.</p><p>Changes to the cluster configuration using <codeph>cbepctl</codeph> are not persisted over a
-cluster restart.</p><p><!--Removed anchor point table-couchbase-admin-cmdline-cbepctl-locs--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry><b>Linux</b></entry>
-	<entry><codeph>/opt/couchbase/bin/cbepctl</codeph></entry>
-</row></thead><tbody><row>
-	<entry><b>Windows</b></entry>
-	<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbepctl.exe</codeph></entry>
-</row><row>
-	<entry><b>Mac OS X</b></entry>
-	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbepctl</codeph></entry>
-</row></tbody></tgroup></table><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
-if you want to perform this operation, you must specify the IP address of a node
-in the cluster and a named bucket. If you do not provided a named bucket, the
-server will apply the setting to any default bucket that exists at the specified
-node. If you want to perform this operation for an entire cluster, you will need
-to perform the command for every node/bucket combination that exists for that
-cluster.</p><codeblock><codeph>cbepctl host:11210 -b bucket_name -p bucket_password start
+<topic xml:lang="en-us" id="topic2697">
+	<title>cbepctl tool</title>
+	<body>
+		<p>The <codeph>cbepctl</codeph> command enables you to control many of the configuration,
+			RAM and disk parameters of a running cluster. This tool is for controlling the vBucket
+			states on a Couchbase Server node. It is also responsible for controlling the
+			configuration, memory and disk persistence behavior. This tool was formerly provided as
+			the separate tools, <codeph>cbvbucketctl</codeph> and <codeph>cbflushctl</codeph> in
+			Couchbase 1.8.</p>
+		<p>Changes to the cluster configuration using <codeph>cbepctl</codeph> are not persisted
+			over a cluster restart.</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Operating system</entry>
+						<entry><codeph>Location</codeph></entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Linux</entry>
+						<entry><codeph>/opt/couchbase/bin/cbepctl</codeph></entry>
+					</row>
+					<row>
+						<entry>Windows</entry>
+						<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbepctl.exe</codeph></entry>
+					</row>
+					<row>
+						<entry>Mac OS X</entry>
+						<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbepctl</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that if
+			you want to perform this operation, you must specify the IP address of a node in the
+			cluster and a named bucket. If you do not provided a named bucket, the server will apply
+			the setting to any default bucket that exists at the specified node. If you want to
+			perform this operation for an entire cluster, you will need to perform the command for
+			every node/bucket combination that exists for that cluster.</p>
+		<codeblock><codeph>cbepctl host:11210 -b bucket_name -p bucket_password start
 cbepctl host:11210 -b bucket_name -p bucket_password stop
 cbepctl host:11210 -b bucket_name -p bucket_password set type param value
-</codeph></codeblock><p>For this command, <codeph>host</codeph> is the IP address for your Couchbase cluster, or node
-in the cluster. The port will always be the standard port used for cluster-wide
-stats and is at <codeph>11210</codeph>. You also provide the named bucket and the password for
-the named bucket. After this you provide command options and authentication.</p><p>You can use the following command options to manage persistence:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Option</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry><b>stop</b></entry>
-	<entry>stop persistence</entry>
-</row><row>
-	<entry><b>start</b></entry>
-	<entry>start persistence</entry>
-</row><row>
-	<entry><b>drain</b></entry>
-	<entry>wait until queues are drained</entry>
-</row><row>
-	<entry><b>set</b></entry>
-	<entry>to set <codeph>checkpoint_param</codeph>, <codeph>flush_param</codeph>, and <codeph>tap_param</codeph>. This changes how or when persistence occurs.</entry>
-</row></tbody></tgroup></table><p>You can use the following command options, combined with the parameters to set
-<codeph>checkpoint_param</codeph>, <codeph>flush_param</codeph>, and <codeph>tap_param</codeph>. These changes the behavior
-of persistence in Couchbase Server.</p><p>The command options for <codeph>checkpoint_param</codeph> are:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Parameter</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry><b>chk_max_items</b></entry>
-	<entry>Max number of items allowed in a checkpoint.</entry>
-</row><row>
-	<entry><b>chk_period</b></entry>
-	<entry>Time bound (in sec.) on a checkpoint.</entry>
-</row><row>
-	<entry><b>item_num_based_new_chk</b></entry>
-	<entry>True if a new checkpoint can be created based on. the number of items in the open checkpoint.</entry>
-</row><row>
-	<entry><b>keep_closed_chks</b></entry>
-	<entry>True if we want to keep closed checkpoints in memory, as long as the current memory usage is below high water mark.</entry>
-</row><row>
-	<entry><b>max_checkpoints</b></entry>
-	<entry>Max number of checkpoints allowed per vbucket. </entry>
-</row></tbody></tgroup></table></body></topic>
+</codeph></codeblock>
+		<p>For this command, <codeph>host</codeph> is the IP address for your Couchbase cluster, or
+			node in the cluster. The port will always be the standard port used for cluster-wide
+			stats and is at <codeph>11210</codeph>. You also provide the named bucket and the
+			password for the named bucket. After this you provide command options and
+			authentication.</p>
+		<p>You can use the following command options to manage persistence:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="4.41*"/>
+				<thead>
+					<row>
+						<entry>Option</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>stop</entry>
+						<entry>Stop persistence</entry>
+					</row>
+					<row>
+						<entry>start</entry>
+						<entry>Start persistence</entry>
+					</row>
+					<row>
+						<entry>drain</entry>
+						<entry>Wait until queues are drained</entry>
+					</row>
+					<row>
+						<entry>set</entry>
+						<entry>To set <codeph>checkpoint_param</codeph>,
+								<codeph>flush_param</codeph>, and <codeph>tap_param</codeph>. This
+							changes how or when persistence occurs.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>You can use the following command options, combined with the parameters to set
+				<codeph>checkpoint_param</codeph>, <codeph>flush_param</codeph>, and
+				<codeph>tap_param</codeph>. These changes the behavior of persistence in Couchbase
+			Server.</p>
+		
+		<section><title>cbepctl set checkpoint_param</title>
+		<p>The command options for <codeph>checkpoint_param</codeph> are:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Parameter</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>chk_max_items</entry>
+						<entry>Max number of items allowed in a checkpoint.</entry>
+					</row>
+					<row>
+						<entry>chk_period</entry>
+						<entry>Time bound (in sec.) on a checkpoint.</entry>
+					</row>
+					<row>
+						<entry>item_num_based_new_chk</entry>
+						<entry>True if a new checkpoint can be created based on. the number of items
+							in the open checkpoint.</entry>
+					</row>
+					<row>
+						<entry>keep_closed_chks</entry>
+						<entry>True if we want to keep closed checkpoints in memory, as long as the
+							current memory usage is below high water mark.</entry>
+					</row>
+					<row>
+						<entry>max_checkpoints</entry>
+						<entry>Max number of checkpoints allowed per vbucket. </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		</section>
+	
+		
+		<section><title>cbepctl set flush_param</title>
+			
+			<p>The complete list of options for <codeph>flush_param</codeph> are:</p>
+			<table>
+				<tgroup cols="2">
+					<colspec colname="col1"/>
+					<colspec colname="col2"/>
+					<thead>
+						<row>
+							<entry>Parameter</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>alog_sleep_time</entry>
+							<entry>Access scanner interval (minute)</entry>
+						</row>
+						<row>
+							<entry>alog_task_time</entry>
+							<entry>Access scanner next task time (UTC)</entry>
+						</row>
+						<row>
+							<entry>bg_fetch_delay</entry>
+							<entry>Delay before executing a bg fetch (test feature).</entry>
+						</row>
+						<row>
+							<entry>couch_response_timeout</entry>
+							<entry>timeout in receiving a response from CouchDB.</entry>
+						</row>
+						<row>
+							<entry>exp_pager_stime</entry>
+							<entry>Expiry Pager interval. Time interval that Couchbase Server waits
+								before it performs cleanup and removal of expired items from
+								disk.</entry>
+						</row>
+						<row>
+							<entry>flushall_enabled</entry>
+							<entry>Enable flush operation. <b>To be deprecated. Use <codeph>couchbase-cli --enable-flush</codeph>.</b></entry>
+						</row>
+						<row>
+							<entry>pager_active_vb_pcnt</entry>
+							<entry>Percentage of active vBuckets items among all ejected items by item pager.</entry>
+						</row>
+						<row>
+							<entry>max_size</entry>
+							<entry>Maximum memory used by the server.</entry>
+						</row>
+						<row>
+							<entry>mem_high_wat</entry>
+							<entry>Low water mark.</entry>
+						</row>
+						<row>
+							<entry>mem_low_wat</entry>
+							<entry>High water mark.</entry>
+						</row>
+						<row>
+							<entry>mutation_mem_threshold</entry>
+							<entry>Amount of RAM that can be consumed in that caching layer before
+								clients start receiving temporary out of memory messages.</entry>
+						</row>
+						<row>
+							<entry>timing_log</entry>
+							<entry>Path to log detailed timing stats. </entry>
+						</row>
+						<row>
+							<entry>warmup_min_memory_threshold</entry>
+							<entry>Memory threshold (%) during warmup to enable traffic.</entry>
+						</row>
+						<row>
+							<entry>warmup_min_item_threshold</entry>
+							<entry>Item number threshold (%) during warmup to enable traffic.</entry>
+						</row>
+						<row>
+							<entry>klog_compactor_queue_cap</entry>
+							<entry>queue cap to throttle the log compactor.</entry>
+						</row>
+						<row>
+							<entry>klog_max_log_size</entry>
+							<entry>maximum size of a mutation log file allowed.</entry>
+						</row>
+						<row>
+							<entry>klog_max_entry_ratio</entry>
+							<entry>max ratio of # of items logged to # of unique items.</entry>
+						</row>
+						
+						<row>
+							<entry>pager_unbiased_period</entry>
+							<entry>Period after last access scanner run during which item pager preserve
+								working set.</entry>
+						</row>
+						<row>
+							<entry>queue_age_cap</entry>
+							<entry>Maximum queue age before flushing data.</entry>
+						</row>
+						
+						<row>
+							<entry>max_txn_size</entry>
+							<entry>Maximum number of items in a flusher transaction.</entry>
+						</row>
+						<row>
+							<entry>min_data_age</entry>
+							<entry>Minimum data age before flushing data.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+			<note type="warning">Flushing a bucket is data destructive. <p>By default, this setting for
+					enablng bucket flush appears in Couchbase Web Console and is disabled; when it
+					is enabled, Couchbase Server is able to flush all the data in a bucket. <b>Be
+						also aware that this operation will be deprecated as a way to enable data
+						bucket flushes.</b> This is because <b>cbepctl</b> is designed for
+					individual node configuration not operating on data buckets shared by multiple
+					nodes.</p><p>If you use <codeph>cbepctl</codeph>, it makes no attempt to confirm
+					or double check the request. Client applications using this are advised to
+					double check with the end user before sending such a request. You can control
+					and limit the ability to flush individual buckets by setting the
+						<codeph>flushEnabled</codeph> parameter on a bucket in Couchbase Web Console
+					or via <codeph>cbepctl flush_param</codeph>. </p><p><b>Be aware that this tool
+						is a per-node, per-bucket operation.</b> That means that if you want to
+					perform this operation, you must specify the IP address of a node in the cluster
+					and a named bucket. If you do not provided a named bucket, the server will apply
+					the setting to any default bucket that exists at the specified node. If you want
+					to perform this operation for an entire cluster, you will need to perform the
+					command for every node/bucket combination that exists for that
+						cluster.</p><p><b>The preferred way to enable data bucket flush is either 1)
+						Couchbase Web Console or via 2) couchbase-cli</b>.</p>
+			</note>
+			
+		
+		</section>
+		
+		<section><title>cbepctl set tap_param</title>
+		
+			<table>
+				<tgroup cols="2">
+					<colspec colname="col1"/>
+					<colspec colname="col2"/>
+					<thead>
+						<row>
+							<entry>Parameter</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>tap_keepalive</entry>
+							<entry>Seconds to hold a named tap connection.</entry>
+						</row>
+						<row>
+							<entry>tap_throttle_queue_cap</entry>
+							<entry>Maximum disk write queue size to throttle tap streams (infinite means no cap).</entry>
+						</row>
+						<row>
+							<entry>tap_throttle_cap_pcnt</entry>
+							<entry>Percentage of total items in write queue at which we throttle tap input.</entry>
+						</row>
+						<row>
+							<entry>tap_throttle_threshold</entry>
+							<entry>Percentage of memory in use to throttle tap streams</entry>
+						</row>
+						
+					</tbody>
+				</tgroup>
+			</table>
+		
+		</section>
+		
+	</body>
+	<related-links>
+		<linklist>
+			<link href="CBcli/cbcli-buckets.dita"/>
+			<link href="../REST/rest-bucket-flush.dita"/>
+			<link href="../UI/ui-data-buckets.dita"/>
+		</linklist>
+	</related-links>
+</topic>

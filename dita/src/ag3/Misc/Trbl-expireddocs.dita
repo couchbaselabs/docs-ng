@@ -6,7 +6,7 @@
   <shortdesc>Expired documents have their associated key-value pairs returned in queries with
     <codeph>stale=false</codeph>.</shortdesc>
   <body>
-    <p>See MB-6219.</p>
+    <p>See Couchbase issuee MB-6219.</p>
   </body>
   <related-links>
     <linklist>

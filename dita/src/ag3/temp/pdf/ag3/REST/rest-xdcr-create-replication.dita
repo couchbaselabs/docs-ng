@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1498" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="title:1;5:10">Creating XDCR replications</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="p:1;7:8">To replicate data to an established destination cluster from a source cluster, you can use
+      the REST API or Couchbase Web Console. Once you create a replication it will automatically
+      begin between the clusters. As a REST call:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="codeblock:1;10:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="codeph:1;10:24">curl -v -X POST -u admin:password1 http://10.4.2.4:8091/controller/createReplication
+-d uuid=9eee38236f3bf28406920213d93981a3
+-d fromBucket=beer-sample
+-d toCluster=remote1
+-d toBucket=remote_beer
+-d replicationType=continuous
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="p:2;17:8">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:1;17:23">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:2;17:37">password1</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:3;17:55">10.4.2.4</i>,
+        <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:4;18:12">9eee38236f3bf28406920213d93981a3</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:5;18:53">beer-sample</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:6;18:73">remote1</i>,
+        <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:7;19:12">remote_beer</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="i:8;19:36">continuous</i> values in the above example with your actual
+      values.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="p:3;21:8">This will send a request similar to the following example:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="codeblock:2;22:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="codeph:2;22:24">POST / HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZDE=
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: 10.4.2.4:8091
+Accept: */*
+Content-Length: 126
+Content-Type: application/x-www-form-urlencoded
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="p:4;30:8">If Couchbase Server successfully creates the replication, it will immediately begin
+      replicating data from the source to destination cluster. You will get a response similar to
+      the following JSON:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="codeblock:3;33:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="codeph:3;33:24">{
+  "id": "9eee38236f3bf28406920213d93981a3/beer-sample/remote_beer",
+  "database": "http://10.4.2.4:8092/_replicator"
+}
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="p:5;38:8">The unique document ID returned in the JSON is a reference you can use if you want to delete
+      the replication.</p>
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="related-links:1;42:18"><linkpool class="- topic/linkpool " xtrc="topicref:46;55:60" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:44;53:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="linklist:1;43:15">
+      <link href="../tasks/xdcr-configure-replications.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-replication.dita" xtrc="link:1;44:63" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Configuring XDCR replications</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Configuration of XDCR replications is done on a per-bucket basis.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

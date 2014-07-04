@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2927" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="title:1;5:10">Caching layer</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="shortdesc:1;6:14">Couchbase Server includes a built-in caching layer which 
+    acts as a central part of the server and provides very rapid reads and writes of data.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="body:1;8:9">
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="p:1;10:8">Couchbase Server automatically manages the caching layer and coordinates with
+      disk space to ensure that enough cache space exists to maintain performance. Couchbase Server
+      automatically places items that come into the caching layer into disk queue so that it can
+      write these items to disk. If the server determines that a cached item is infrequently used,
+      it removes it from RAM to free space for other items. Similarly the server retrieves
+      infrequently-used items from disk and stores them into the caching layer when the items are
+      requested. In order to provide the most frequently-used
+      data while maintaining high performance, Couchbase Server manages a <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="i:1;17:78">working set</i> of your
+      entire information. The working set is the data most frequently accessed and is kept
+      in RAM for high performance.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="p:2;20:8">Couchbase automatically moves data from RAM to disk asynchronously, in the background, 
+      to keep frequently used information in memory and less frequently used data on disk.
+      Couchbase constantly monitors the information accessed by clients and decides how to keep the
+      active data within the caching layer. Data is ejected to disk from memory 
+      while the server continues to service active requests. During sequences of high writes to the
+      database, clients are notified that the server is temporarily out of memory until enough
+      items have been ejected from memory to disk. The asynchronous nature and use of queues in this
+      way enables reads and writes to be handled at a very fast rate, while removing the typical
+      load and performance spikes that would otherwise cause a traditional RDBMS to produce erratic
+      performance.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="p:3;30:8">When the server stores data on disk and a client requests the data, an individual
+      document ID is sent and then the server determines whether the information exists or not. Couchbase Server
+      does this with metadata structures. The metadata holds information about each
+      document in the database and this information is held in RAM. This means that the server 
+      returns a ‘document ID not found’ response for an invalid document ID, 
+      returns the data from RAM, or returns the data after being fetched from disk.</p>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-cacheLayer.dita" xtrc="note:1;37:23">Other database solutions read and write data from disk, which results in much slower performance.
+      One approach used by other database solutions is to install and manage a caching layer as a separate component
+      which works with a database. This approach has drawbacks because of the significant custom code and effort 
+      due to the burden of managing the caching layer and the data transfers between the caching layer and database.</note>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:12;17:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc "> Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool></related-links>
+</topic>

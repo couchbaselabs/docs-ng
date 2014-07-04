@@ -2,14 +2,14 @@
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_ywf_5j4_14">
     <title>Creating replications</title>
-    <shortdesc></shortdesc>
+    <shortdesc>After references to the source and destination clusters are created, replication can be created 
+        between the clusters.</shortdesc>
     <taskbody>
         <context>
-            <p>After references to the source and destination clusters are created, replication can be created 
-                between the clusters. Then after replication has been configured and started, view current status
+            <p>After replication has been configured and started, view current status
                 and list of replications in the <uicontrol>Ongoing Replications</uicontrol> section.</p>
-            <fig><image href="../images/xdcr-cluster-monitor.png"/> </fig>
-            <fig><image href="../images/create_xdcr_rep2.2.png"/></fig>
+            <fig><image href="../images/xdcr-cluster-monitor.png" width="720"/> </fig>
+            <fig><image href="../images/create_xdcr_rep2.2.png" width="720"/></fig>
         </context>
         <steps>
             <step><cmd>Click <uicontrol>Create Replication</uicontrol> to configure a new XDCR replication. A panel

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic8465"><title>Getting XDCR stats via REST</title><body><p>You can get XDCR statistics from either Couchbase Web Console, or the REST API.
-You perform all of these requests on a source cluster to get information about a
-destination cluster. All of these requests use the UUID, a unique identifier for
-destination cluster. You can get this ID by using the REST API if you do not
-already have it. For instructions, see <xref href="../cb-admin/#couchbase-admin-restapi-xdcr-destination" format="html">Getting a Destination Cluster
-Reference</xref>. The endpoints are as
-follows:</p><codeblock><codeph>
+<topic xml:lang="en-us" id="topic8465">
+    <title>Getting XDCR stats via REST</title>
+    <body>
+        <p>You can get XDCR statistics from either Couchbase Web Console, or the REST API. You
+            perform all of these requests on a source cluster to get information about a destination
+            cluster. All of these requests use the UUID, a unique identifier for destination
+            cluster. You can get this ID by using the REST API if you do not already have it. The endpoints are as
+            follows:</p>
+        <codeblock><codeph>
 http://hostname:port/pools/default/buckets/[bucket_name]/stats/[destination_endpoint]
 
 # where a possible [destination endpoint] includes:
@@ -66,12 +68,17 @@ replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_wt
 replications/[UUID]/[source_bucket]/[destination_bucket]/rate_replication
 # number of docs sent optimistically 
 replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
-</codeph></codeblock><p>You need to provide properly URL-encoded
-<codeph>/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]</codeph>. To get the number of
-documents written:</p><codeblock><codeph>curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>,
-<i>8ba6870d88cd72b3f1db113fc8aee675</i>, <i>source_bucket</i>, and <i>destination_bucket</i>
-values in the above example with your actual values.</p><p>The above command produces the following output:</p><codeblock><codeph>{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685106753,"interval":1000,
+</codeph></codeblock>
+        <p>You need to provide properly URL-encoded
+                <codeph>/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]</codeph>. To get
+            the number of documents written:</p>
+        <codeblock><codeph>curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
+</codeph></codeblock>
+        <p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>,
+                <i>8ba6870d88cd72b3f1db113fc8aee675</i>, <i>source_bucket</i>, and
+                <i>destination_bucket</i> values in the above example with your actual values.</p>
+        <p>The above command produces the following output:</p>
+        <codeblock><codeph>{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685106753,"interval":1000,
 "timestamp":[1371685048753,1371685049754,1371685050753,1371685051753,1371685052753,1371685053753,1371685054753,
 1371685055753,1371685056753,1371685057753,1371685058752,1371685059753,1371685060753,1371685061753,1371685062753,
 1371685063753,1371685064753,1371685065753,1371685066753,1371685067753,1371685068753,1371685069753,1371685070753,
@@ -85,11 +92,16 @@ values in the above example with your actual values.</p><p>The above command pro
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
 1000000,1000000,1000000,1000000,1000000,1000000,1000000]}}
-</codeph></codeblock><p>This shows that XDCR transferred 1 million documents at each of the timestamps
-provided. To get the rate of replication, make this REST request:</p><codeblock><codeph>curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Frate_replication
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>,
-<i>8ba6870d88cd72b3f1db113fc8aee675</i>, <i>source_bucket</i>, and <i>destination_bucket</i>
-values in the above example with your actual values.</p><p>This will produce the following output:</p><codeblock><codeph>{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685006753,"interval":1000,
+</codeph></codeblock>
+        <p>This shows that XDCR transferred 1 million documents at each of the timestamps provided.
+            To get the rate of replication, make this REST request:</p>
+        <codeblock><codeph>curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Frate_replication
+</codeph></codeblock>
+        <p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>,
+                <i>8ba6870d88cd72b3f1db113fc8aee675</i>, <i>source_bucket</i>, and
+                <i>destination_bucket</i> values in the above example with your actual values.</p>
+        <p>This will produce the following output:</p>
+        <codeblock><codeph>{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685006753,"interval":1000,
 "timestamp":[1371684948753,1371684949753,1371684950753,1371684951753,1371684952753,1371684953753,1371684954753,
 1371684955754,1371684956753,1371684957753,1371684958753,1371684959753,1371684960753,1371684961753,1371684962753,
 1371684963753,1371684964753,1371684965753,1371684966753,1371684967753,1371684968752,1371684969753,1371684970753,
@@ -99,19 +111,30 @@ values in the above example with your actual values.</p><p>This will produce the
 1371684995753,1371684996753,1371684997753,1371684998776,1371684999753,1371685000753,1371685001753,1371685002753,
 1371685003753,1371685004753,1371685005753,1371685006753],
 "nodeStats":{"127.0.0.1:8091":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
-</codeph></codeblock><p>To get <codeph>docs_opt_repd</codeph> you first get the replication id for a source and destination bucket. First get a list active tasks for a cluster:</p><codeblock><codeph>    curl -s -u admin:password \
+</codeph></codeblock>
+        <p>To get <codeph>docs_opt_repd</codeph> you first get the replication id for a source and
+            destination bucket. First get a list active tasks for a cluster:</p>
+        <codeblock><codeph>    curl -s -u admin:password \
     http://localhost:8091/pools/default/tasks
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
-with your actual values.</p><p>This will result in output as follows:</p><codeblock><codeph>    ....
+</codeph></codeblock>
+        <p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above
+            example with your actual values.</p>
+        <p>This will result in output as follows:</p>
+        <codeblock><codeph>    ....
     "id": "def03dbf5e968a47309194ebe052ed21\/bucket_source\/bucket_destination", 
     "source": "bucket_source",
     "target":"\/remoteClusters\/def03dbf5e968a47309194ebe052ed21\/buckets\/bucket_name", 
     "continuous": true, 
     "type": "xdcr", 
     ....
-</codeph></codeblock><p>With this replication id you can get a sampling of stats for <codeph>docs_opt_repd</codeph>:</p><codeblock><codeph>http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
+</codeph></codeblock>
+        <p>With this replication id you can get a sampling of stats for
+                <codeph>docs_opt_repd</codeph>:</p>
+        <codeblock><codeph>http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
 replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destination%2fdocs_opt_repd 
-</codeph></codeblock><p>This results in output similar to the following:</p><codeblock><codeph>    { 
+</codeph></codeblock>
+        <p>This results in output similar to the following:</p>
+        <codeblock><codeph>    { 
        "samplesCount":60, 
        "isPersistent":true, 
        "lastTStamp":1378398438975, 
@@ -120,19 +143,28 @@ replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destina
           1378398380976, 
           1378398381976,
           ....
-</codeph></codeblock><p>You can also see the incoming write operations that occur on a destination
-cluster due to replication via XDCR. For this REST request, you need to make the
-request on your destination cluster at the following endpoint:</p><codeblock><codeph>http://[Destination_IP]:8091/pools/default/buckets/[bucket_name]/stats
-</codeph></codeblock><p>This returns results for all stats as follows. Within the JSON you find an
-array <codeph>xdc_ops</codeph> and the value for this attribute will be the last sampling of
-write operations on the destination due to XDCR:</p><codeblock><codeph>{
+</codeph></codeblock>
+        <p>You can also see the incoming write operations that occur on a destination cluster due to
+            replication via XDCR. For this REST request, you need to make the request on your
+            destination cluster at the following endpoint:</p>
+        <codeblock><codeph>http://[Destination_IP]:8091/pools/default/buckets/[bucket_name]/stats
+</codeph></codeblock>
+        <p>This returns results for all stats as follows. Within the JSON you find an array
+                <codeph>xdc_ops</codeph> and the value for this attribute will be the last sampling
+            of write operations on the destination due to XDCR:</p>
+        <codeblock><codeph>{
 .................
 "xdc_ops":[0.0,0.0,0.0,0.0,633.3666333666333,1687.6876876876877, \
 2610.3896103896104,3254.254254254254,3861.138861138861,4420.420420420421, \
 ................
 }
-</codeph></codeblock><p>Many of these statistics are exposed in the Couchbase Web
-Console. For more information, see <xref href="../cb-admin/#couchbase-admin-web-console-data-buckets-xdcr" format="html">Monitoring Outgoing
-XDCR</xref>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-admin-restapi-xdcr-destination" format="html"><linktext>Getting a Destination Cluster
-Reference</linktext></link><link href="../cb-admin/#couchbase-admin-web-console-data-buckets-xdcr" format="html"><linktext>Monitoring Outgoing
-XDCR</linktext></link></linklist></related-links></topic>
+</codeph></codeblock>
+        <p>Many of these statistics are exposed in the Couchbase Web Console.</p>
+    </body>
+    <related-links>
+        <linklist>
+            <link href="../ui/ui-data-buckets.dita"/>
+            <link href="../ui/ui-xdcr-panel.dita"/>
+        </linklist>
+    </related-links>
+</topic>

@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic1059"><title>Deleting a destination cluster reference</title><body><p>You can remove a reference to destination cluster using the REST API. A
-destination cluster is a cluster to which you replicate data. After you remove
-it, it will no longer be available for replication via XDCR:</p><codeblock><codeph>curl -v -X DELETE -u admin:password1 10.4.2.4:8091/pools/default/remoteClusters/remote1
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password1</i>, <i>10.4.2.4</i>, and <i>remote1</i> values in the
-above example with your actual values.</p><p>This will send a request similar to the following example:</p><codeblock><codeph>DELETE /pools/default/remoteClusters/remote1 HTTP/1.1
+<topic xml:lang="en-us" id="topic1059">
+  <title>Deleting a destination cluster reference</title>
+  <body>
+    <p>You can remove a reference to destination cluster using the REST API. A destination cluster
+      is a cluster to which you replicate data. After you remove it, it will no longer be available
+      for replication via XDCR:</p>
+    <codeblock><codeph>curl -v -X DELETE -u admin:password1 10.4.2.4:8091/pools/default/remoteClusters/remote1
+</codeph></codeblock>
+    <p>Replace the <i>admin</i>, <i>password1</i>, <i>10.4.2.4</i>, and <i>remote1</i> values in the
+      above example with your actual values.</p>
+    <p>This will send a request similar to the following example:</p>
+    <codeblock><codeph>DELETE /pools/default/remoteClusters/remote1 HTTP/1.1
 Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZDE=
 User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
 Host: 10.4.2.4:8091
 Accept: */*
-</codeph></codeblock><p>If successful, Couchbase Server will respond with a 200 response as well as the
-string, ‘OK’:</p><codeblock><codeph>HTTP/1.1 200 OK
+</codeph></codeblock>
+    <p>If successful, Couchbase Server will respond with a 200 response as well as the string,
+      ‘OK’:</p>
+    <codeblock><codeph>HTTP/1.1 200 OK
 Server: Couchbase Server 2.0.0-1941-rel-community
 Pragma: no-cache
 
 ....
 
 "ok"
-</codeph></codeblock><p>For more information about XDCR and references to destination clusters via the
-Couchbase Web Console, see <xref href="../cb-admin/#couchbase-admin-tasks-xdcr-configuration" format="html">Configuring
-Replication</xref>.</p></body><related-links><linklist><title>Collected links</title><link href="../cb-admin/#couchbase-admin-tasks-xdcr-configuration" format="html"><linktext>Configuring
-Replication</linktext></link></linklist></related-links></topic>
+</codeph></codeblock>
+    
+  </body>
+  <related-links>
+    <linklist>
+      <link href="../tasks/xdcr-configure-replications.dita"/>
+    </linklist>
+  </related-links>
+</topic>

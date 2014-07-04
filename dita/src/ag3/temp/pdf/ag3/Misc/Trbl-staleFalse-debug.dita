@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic9362" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="topic:1;4:40">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="title:1;5:11">Debugging stale=false queries</title>
+   <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="shortdesc:1;6:15">Debugging stale=false queries for missing/unexpected data</shortdesc>
+   <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="body:1;7:10">
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:1;8:10">The query parameter <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:1;8:38">debug=true</codeph> can be used to debug queries with
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:2;9:21">stale=false</codeph> that are not returning all expected data or return
+         unexpected data. This is particularly useful when clients issue a
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:3;11:21">stale=false</codeph> query right after being unblocked by a memcached OBSERVE
+         command. .</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:2;13:10">Here follows an example of how to debug this sort of issues on a simple scenario where
+         there’s only 16 vbuckets (instead of 1024) and 2 nodes. The tools
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:4;15:21">couchdb_dump</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:5;15:55">couchdb_info</codeph> (from the couchstore git
+         project) are used to help analyze this type of issues (available under
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:6;17:21">install/bin</codeph> directory).</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:3;18:10">Querying a view with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:7;18:39">debug=true</codeph> will add an extra field, named
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:8;19:21">debug_info</codeph> in the view response. This field has one entry per node in
+         the cluster (if no errors happened, like down/timed out nodes for example). Example:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeblock:1;21:18"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:9;21:26">&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?stale=false&amp;limit=5&amp;debug=true' | json_xs
+ {
+    "debug_info" : {
+       "local" : {
+          "main_group" : {
+             "passive_partitions" : [],
+             "wanted_partitions" : [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+             ],
+             "wanted_seqs" : {
+                "0002" :00,
+                "0001" :00,
+                "0006" :00,
+                "0005" :00,
+                "0004" :00,
+                "0000" :00,
+                "0007" :00,
+                "0003" :00
+             },
+             "indexable_seqs" : {
+                "0002" :00,
+                "0001" :00,
+                "0006" :00,
+                "0005" :00,
+                "0004" :00,
+                "0000" :00,
+                "0007" :00,
+                "0003" :00
+             },
+             "cleanup_partitions" : [],
+             "stats" : {
+                "update_history" : [
+                   {
+                      "deleted_ids" : 0,
+                      "inserted_kvs" :00,
+                      "inserted_ids" :00,
+                      "deleted_kvs" : 0,
+                      "cleanup_kv_count" : 0,
+                      "blocked_time" : 0.000258,
+                      "indexing_time" : 103.222201
+                   }
+                ],
+                "updater_cleanups" : 0,
+                "compaction_history" : [],
+                "full_updates" : 1,
+                "accesses" : 1,
+                "cleanups" : 0,
+                "compactions" : 0,
+                "partial_updates" : 0,
+                "stopped_updates" : 0,
+                "cleanup_history" : [],
+                "update_errors" : 0,
+                "cleanup_stops" : 0
+             },
+             "active_partitions" : [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+             ],
+             "pending_transition" : null,
+             "unindexeable_seqs" : {},
+             "replica_partitions" : [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+             ],
+             "original_active_partitions" : [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+             ],
+             "original_passive_partitions" : [],
+             "replicas_on_transfer" : []
+          }
+       },
+       "http://10.17.30.98:9501/_view_merge/" :   {
+          "main_group" : {
+             "passive_partitions" : [],
+             "wanted_partitions" : [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+             ],
+             "wanted_seqs" : {
+                "0008" :00,
+                "0009" :00,
+                "0011" :00,
+                "0012" :00,
+                "0015" :00,
+                "0013" :00,
+                "0014" :00,
+                "0010" :00
+             },
+             "indexable_seqs" : {
+                "0008" :00,
+                "0009" :00,
+                "0011" :00,
+                "0012" :00,
+                "0015" :00,
+                "0013" :00,
+                "0014" :00,
+                "0010" :00
+             },
+             "cleanup_partitions" : [],
+             "stats" : {
+                "update_history" : [
+                   {
+                      "deleted_ids" : 0,
+                      "inserted_kvs" :00,
+                      "inserted_ids" :00,
+                      "deleted_kvs" : 0,
+                      "cleanup_kv_count" : 0,
+                      "blocked_time" : 0.000356,
+                      "indexing_time" : 103.651148
+                   }
+                ],
+                "updater_cleanups" : 0,
+                "compaction_history" : [],
+                "full_updates" : 1,
+                "accesses" : 1,
+                "cleanups" : 0,
+                "compactions" : 0,
+                "partial_updates" : 0,
+                "stopped_updates" : 0,
+                "cleanup_history" : [],
+                "update_errors" : 0,
+                "cleanup_stops" : 0
+             },
+             "active_partitions" : [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+             ],
+             "pending_transition" : null,
+             "unindexeable_seqs" : {},
+             "replica_partitions" : [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+             ],
+             "original_active_partitions" : [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+             ],
+             "original_passive_partitions" : [],
+             "replicas_on_transfer" : []
+          }
+       }
+    },
+    "total_rows" : 1000000,
+    "rows" : [
+       {
+          "value" : {
+             "ratio" : 1.8,
+             "type" : "warrior",
+             "category" : "orc"
+          },
+          "id" : "0000014",
+          "node" : "http://10.17.30.98:9501/_view_merge/",
+          "partition" : 14,
+          "key" : 1
+       },
+       {
+          "value" : {
+             "ratio" : 1.8,
+             "type" : "warrior",
+             "category" : "orc"
+          },
+          "id" : "0000017",
+          "node" : "local",
+          "partition" : 1,
+          "key" : 1
+       },
+       {
+          "value" : {
+             "ratio" : 1.8,
+             "type" : "priest",
+             "category" : "human"
+          },
+          "id" : "0000053",
+          "node" : "local",
+          "partition" : 5,
+          "key" : 1
+       },
+       {
+          "value" : {
+             "ratio" : 1.8,
+             "type" : "priest",
+             "category" : "orc"
+          },
+          "id" : "0000095",
+          "node" : "http://10.17.30.98:9501/_view_merge/",
+          "partition" : 15,
+          "key" : 1
+       },
+       {
+          "value" : {
+             "ratio" : 1.8,
+             "type" : "warrior",
+             "category" : "elf"
+          },
+          "id" : "0000151",
+          "node" : "local",
+          "partition" : 7,
+          "key" : 1
+       }
+    ]
+ }
+</codeph></codeblock>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:4;273:10">For each node, there are 2 particular fields of interest when debugging
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:10;274:21">stale=false</codeph> queries that apparently miss some data:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="ul:1;275:11">
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="li:1;276:14"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:5;276:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:11;276:25">wanted_seqs</codeph> - This field has an object (dictionary) value where
+               keys are vbucket IDs and values are vbucket database sequence numbers for an
+               explanation of sequence numbers). This field tells us the sequence number of each
+               vbucket database file (at the corresponding node) at the moment the query arrived at
+               the server (all these vbuckets are <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:12;280:59">active vbuckets</codeph> ).</p></li>
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="li:2;281:14"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:6;281:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:13;281:25">indexable_seqs</codeph> - This field has an object (dictionary) value where
+               keys are vbucket IDs and values are vbucket database sequence numbers. This field
+               tells us, for each active vbucket database, up to which sequence the index has
+               processed/indexed documents (remember, each vbucket database sequence number is
+               associated with 1, and only 1, document).</p></li>
+      </ul>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="p:7;287:10">For queries with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:14;287:35">stale=false</codeph>, all the sequences in
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:15;288:21">indexable_seqs</codeph> must be greater or equal then the sequences in
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:16;289:21">wanted_seqs</codeph> - otherwise the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:17;289:66">stale=false</codeph> option can be
+         considered broken. What happens behind the scenes is, at each node, when the query request
+         arrives, the value for <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:18;291:41">wanted_seqs</codeph> is computed (by asking each active
+         vbucket database for its current sequence number), and if any sequence is greater than the
+         corresponding entry in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:19;293:41">indexable_seqs</codeph> (stored in the index), the client is
+         blocked, the indexer is started to update the index, the client is unblocked when the
+         indexer finishes updating the index, and finally the server starts streaming rows to the
+         client - note that at this point, all sequences in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:20;296:69">indexable_seqs</codeph> are
+         necessarily greater or equal then the corresponding sequences in
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:21;298:21">wanted_sequences</codeph>, otherwise the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="codeph:22;298:70">stale=false</codeph>
+         implementation is broken.</p>
+   </body>
+   <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="related-links:1;301:19"><linkpool class="- topic/linkpool " xtrc="topicref:144;163:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:129;148:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/Trbl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Troubleshooting</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Troubleshooting covers general tips, common errors, log information, and other issues.</desc></link></linkpool>
+      <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="linklist:1;302:17">
+         <link href="http://www.couchbase.com/issues/browse/MB-7161" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="link:1;303:101"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-staleFalse-debug.dita" xtrc="linktext:1;304:23">MB–7161</linktext></link>
+      </linklist>
+   </related-links>
+</topic>

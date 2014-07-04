@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_e1d_xlf_q4">
+  <title>Provisioning nodes</title>
+  <shortdesc>Provisioning refers to creating a new cluster or adding a node to a cluster.</shortdesc>
+  <refbody>
+    
+    <section><title>Process for provisioning a node.</title>
+    <p> To provision a node:</p>
+      <ul>
+        <li>Create a new node by installing a new Couchbase Server.</li>
+        <li>Configure disk path for the node.</li>
+        <li>Optionally configure memory quota for each node within the cluster. 
+          <p>Any nodes you add
+          to a cluster will inherit the configured memory quota. The default memory quota for the
+          first node in a cluster is 60% of the physical RAM.</p></li>
+        <li>Add the node to your existing cluster.</li>
+      </ul>
+      
+      <p>Whether you are adding a node to an existing cluster or starting a new cluster, the node’s
+        disk path must be configured. Your next steps depends on whether you create a new cluster or
+        add a node to an existing cluster. If you create a new cluster, secure it by providing an
+        administrative username and password. If you add a node to an existing cluster, obtain the
+        URI and credentials to use the REST API with that cluster.</p>
+    </section>
+  </refbody>
+</reference>

@@ -5,8 +5,7 @@
    <title>Reporting issues</title>
    <shortdesc>A description on what to include when reporting an issue (JIRA).</shortdesc>
    <body>
-      <p>When reporting issues to Couchbase (using <xref href="http://www.couchbase.com/issues"
-            scope="external" format="html">couchbase.com/issues</xref> ), you should always add the
+      <p>When reporting issues to Couchbase, you should always add the
          following information to JIRA issues:</p>
       <ul>
          <li><p>Environment description (package installation? cluster_run? build number?
@@ -85,7 +84,6 @@
    </body>
    <related-links>
       <linklist>
-         <title>Collected links</title>
          <link href="http://www.couchbase.com/issues" scope="external" format="html">
             <linktext>couchbase.com/issues</linktext>
          </link>

@@ -36,11 +36,9 @@
     --xdcr-hostname=10.3.121.123:8091  
     --xdcr-username=Administrator  
     --xdcr-password=password
-</codeph></codeblock><p/><p>To
+</codeph></codeblock><p>To
         set a XDCR protocol:</p><p>An XDCR protocol for the mode of replication can be specified for
-        XDCR. For information about this feature, see <xref
-          href="../cb-admin/#couchbase-admin-tasks-xdcr-functionality" format="html">XDCR Behavior
-          and Limitations</xref>. </p><p>To change a XDCR replication protocol for an existing XDCR
+        XDCR. </p><p>To change a XDCR replication protocol for an existing XDCR
         replication:</p><p>If you change want the replication protocol for an existing XDCR
         replication:</p><ol>
         <li>Delete the replication.</li>
@@ -86,6 +84,8 @@
         {u'errors': {u'_': u'Replication to the same remote cluster and bucket already exists'}}
 ERROR: Replication to the same remote cluster and bucket already exists
 </codeph></codeblock></section>
+    
+    
     <section><title>Managing XDCR data encryption</title><p>The Couchbase Server command line
         interface (CLI) enables XDCR data encryption (Enterprise Edition only) when an XDCR cluster
         reference is created or modified. The CLI provides the <codeph>couchbase-cli</codeph> tool
@@ -93,11 +93,10 @@ ERROR: Replication to the same remote cluster and bucket already exists
           <codeph>--xdcr-demand-encryption=1</codeph> enables XDCR data encryption
           <codeph>-xdcr-certificate=CERTIFICATE</codeph> provides the SSL certificate for data
         security.</p></section>
-    <section><required-cleanup><title>Enabling XDCR data encryption</title><p>To setup XDCR with SSL
-          data encryption:</p><ol>
-          <li>Retrieve the certificate from the destination cluster. See <xref
-              href="#topic7920/cb-cli-ssl-cert">Managing SSL certificates</xref> for more
-            information</li>
+    
+    
+      <p>To setup XDCR with SSL data encryption:</p><ol>
+          <li>Retrieve the certificate from the destination cluster.</li>
           <li>Create or modify the XDCR configuration to allow data encryption and provide the SSL
             certificate.</li>
           <li>Define the replication.</li>
@@ -119,16 +118,21 @@ ERROR: Replication to the same remote cluster and bucket already exists
           following is an example of results for a successful XDCR
         configuration.</p><codeblock><codeph>SUCCESS: init/edit test 
 &lt;&lt;replication reference created&gt;&gt; 
-</codeph></codeblock></required-cleanup></section>
-    <section><required-cleanup><title>Disabling XDCR data encryption</title><p>To disable XDCR data
-          encryption, execute <codeph>couchbase-cli xdcr-setup</codeph> with
+</codeph></codeblock>
+    
+    
+    <p>To disable XDCR data encryption, execute <codeph>couchbase-cli xdcr-setup</codeph> with
             <codeph>--xdcr-demand-encryption=0</codeph>.
-          </p><p><b>Example</b></p><codeblock><codeph>couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+          </p><p><b>Example</b></p>
+      
+      <codeblock><codeph>couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
   --create --xdcr-cluster-name=Omaha 
   --xdcr-hostname=10.3.4.187:8091 
   --xdcr-username=Peyton --xdcr-password=Manning 
   --xdcr-demand-encryption=0 
-</codeph></codeblock><p><!--Removed anchor point cb-cli-ssl-cert--></p></required-cleanup></section>
+</codeph></codeblock>
+    
+    
     <section><title>Managing SSL certificates</title><p>Retrieving an SSL certificate for XDCR data
         encryption, should be done in a secure manner, such as with <codeph>ssh</codeph> and
           <codeph>scp</codeph>. For example:</p><ol>
@@ -138,8 +142,7 @@ ERROR: Replication to the same remote cluster and bucket already exists
           command.</li>
         <li>Use a secure method to transfer the certificate from the destination cluster to the
           source cluster. For example: <codeph>scp</codeph>.</li>
-        <li>Proceed with setting up XDCR with SSL data encryption. See <xref
-            href="#topic7920/cb-cli-xdcr-data-encrypt">Managing XDCR data encryption</xref>.</li>
+        <li>Proceed with setting up XDCR with SSL data encryption.</li>
       </ol><p>The <codeph>couchbase-cli ssl-manage</codeph> command provides the following options
         for regenerating and retrieving certificates.</p><dl>
         <dlentry>
@@ -158,9 +161,9 @@ ERROR: Replication to the same remote cluster and bucket already exists
         </dlentry>
 
       </dl></section>
-    <section><required-cleanup><title>Retrieving certificates</title><p>To retrieve an existing
-          self-signed certificate, the <codeph>ssl-manage</codeph> command is
-            used.</p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage -c localHost:port 
+    
+    <p>To retrieve an existing self-signed certificate, use the <codeph>ssl-manage</codeph>
+      command.</p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage -c localHost:port 
   -u Administrator -p password 
   --retrieve-cert=./&lt;newCert&gt;.pem 
 </codeph></codeblock><p><b>Example</b></p><codeblock><codeph>couchbase-cli ssl-manage -c 10.3.4.187:8091 
@@ -170,40 +173,54 @@ ERROR: Replication to the same remote cluster and bucket already exists
           following is an example of results for a successful retrieval of the
         certificate:</p><codeblock><codeph>SUCCESS: retrieve certificate to './newCert.pem' 
 Certificate matches what seen on GUI 
-</codeph></codeblock></required-cleanup></section>
-    <section><required-cleanup><title>Regenerating certificates</title><p>To regenerate a
-          self-signed certificate, use <codeph>couchbase-cli ssl-manage</codeph> command.
-            </p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage 
+</codeph></codeblock>
+    
+    
+    <p>To regenerate a self-signed certificate, use the <codeph>couchbase-cli ssl-manage</codeph>
+      command. </p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage 
   -c remoteHost:port 
   -u adminName -p adminPassword 
   --regenerate-cert=CERTIFICATE 
-</codeph></codeblock><p><b>Example</b></p><p>The
+</codeph></codeblock>
+    
+    <p><b>Example</b></p><p>The
           following is an example of the CLI commands and options for regenerating a self-signed
           certificate with the <codeph>ssl-manage</codeph>
             command:</p><codeblock><codeph>couchbase-cli ssl-manage 
   -c 10.3.4.187:8091 
   -u Administrator -p password 
   --regenerate-cert=./new.pem 
-</codeph></codeblock><p><b>Results</b></p><p>The
+</codeph></codeblock>
+    
+    <p><b>Results</b></p><p>The
           following is an example of results for a successful regeneration of the
           certification:</p><codeblock><codeph>SUCCESS: regenerate certificate to './new.pem' 
-</codeph></codeblock><p>To
+</codeph></codeblock>
+    
+    <p>To
           retrieve an existing self-signed certificate, the <codeph>ssl-manage</codeph> command is
           used.</p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage -c localHost:port 
   -u Administrator -p password 
   --retrieve-cert=./&lt;newCert&gt;.pem 
-</codeph></codeblock><p><b>Example</b></p><codeblock><codeph>couchbase-cli ssl-manage -c 10.3.4.187:8091 
+</codeph></codeblock>
+    
+    <p><b>Example</b></p><codeblock><codeph>couchbase-cli ssl-manage -c 10.3.4.187:8091 
   -u Administrator -p password 
   --retrieve-cert=./newCert.pem 
-</codeph></codeblock><p><b>Results</b></p><p>The
+</codeph></codeblock>
+    
+    <p><b>Results</b></p><p>The
           following is an example of results for a successful retrieval of the
         certificate:</p><codeblock><codeph>SUCCESS: retrieve certificate to './newCert.pem' 
 Certificate matches what seen on GUI 
-</codeph></codeblock></required-cleanup></section>
+</codeph></codeblock>
+    
   </body>
   <related-links>
     <linklist>
-      <link href="../../XDCR/xdcr-intro.dita"></link>
+      <link href="../XDCR/xdcr-intro.dita"></link>
+      <link href="../../tasks/tasks-manage-xdcr-dataEncryption.dita"/>
+      <link href="../../tasks/tasks-manage-xdcr.dita"/>
     </linklist>
   </related-links>
 </topic>

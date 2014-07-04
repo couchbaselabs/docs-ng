@@ -2,8 +2,11 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
  <title>Couchbase Administration Guide</title>
- <topicref href="Basics/admin-basics.dita">
-  <topicref href="Basics/admin-datafiles.dita"/>
+ <topicref href="Misc/admin-basics.dita">
+  <topicref href="Misc/start-stop-couchbase.dita"/>
+  <topicref href="Misc/admin-tools.dita"/>
+  <topicref href="Misc/admin-datafiles.dita"/>
+  <topicref href="Misc/limits.dita"/>
  </topicref>
  <topicref href="Concepts/concept-intro.dita">
   <topicref href="Concepts/concept-nodesCluster.dita"/>
@@ -25,7 +28,6 @@
   <topicref href="Concepts/concept-rack-awareness.dita"/>
   <topicref href="Concepts/concept-nodeFailover.dita"/>
   <topicref href="Concepts/concepts-TAP.dita"/>
-  <topicref href="Concepts/concepts-adminTools.dita"/>
   <topicref href="Concepts/concepts-statsMonitor.dita"/>
  </topicref>
  <topicref href="concepts/bp-deployment-considerations.dita">
@@ -51,7 +53,17 @@
   <topicref href="Tasks/tasks-nodeFailover.dita"/>
   <topicref href="Tasks/tasks-dataRecovery.dita"/>
   <topicref href="Tasks/tasks-backupRestore.dita"/>
-  <topicref href="Tasks/tasks-rebalance.dita"/>
+  <topicref href="Tasks/tasks-rebalance.dita">
+   <topicref href="Tasks/rebalance-behind-the-scenes.dita"/>
+   <topicref href="Tasks/rebalance-bucket-types.dita"/>
+   <topicref href="Tasks/rebalance-swap-rebalance.dita"/>
+   <topicref href="Tasks/rebalance-cluster.dita"/>
+   <topicref href="Tasks/rebalance-factors.dita"/>
+   <topicref href="Tasks/rebalance-performing.dita"/>
+   <topicref href="Tasks/rebalance-adding-nodes.dita"/>
+   <topicref href="Tasks/rebalance-remove-node.dita"/>
+   <topicref href="Tasks/rebalance-questions.dita"/>
+  </topicref>
   <topicref href="Tasks/rza-manage-group.dita">
    <topicref href="Tasks/rza-create-group.dita"/>
    <topicref href="Tasks/rza-delete-group.dita"/>
@@ -61,19 +73,19 @@
    <topicref href="Tasks/rza-rename-group.dita"/>
   </topicref>
   <topicref href="Tasks/tasks-manage-xdcr.dita">
-   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
-   <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
    <topicref href="Tasks/xdcr-configure-replications.dita"/>
-   <topicref href="Tasks/xdcr-create-replications.dita"/>
-   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
-   <topicref href="Tasks/xdcr-secure-communication.dita"/>
-   <topicref href="Tasks/xdcr-specify-adv-settings.dita"/>
-   <topicref href="Tasks/xdcr-modify-settings.dita"/>
-   <topicref href="Tasks/xdcr-tuning-optimistic-replication.dita"/>
-   <topicref href="Tasks/xdcr-cancel-replication.dita"/>
-   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
-   <topicref href="Tasks/xdcr-adv-settings.dita"/>
    <topicref href="Tasks/xdcr-conflictResolution.dita"/>
+   <topicref href="Tasks/xdcr-secure-communication.dita"/>
+   <topicref href="Tasks/xdcr-tuning-optimistic-replication.dita"/>
+   <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
+   <topicref href="Tasks/xdcr-create-replications.dita"/>
+   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
+   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
+   <topicref href="Tasks/xdcr-specify-adv-settings.dita"/>
+   <topicref href="Tasks/xdcr-adv-settings.dita"/>
+   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
+   <topicref href="Tasks/xdcr-cancel-replication.dita"/>
+   <topicref href="Tasks/xdcr-modify-settings.dita"/>
   </topicref>
   <topicref href="Tasks/tasks-change-diskpath.dita"/>
  </topicref>
@@ -131,7 +143,6 @@
   <topicref href="XDCR/xdcr-dataEncryption.dita"/>
  </topicref>
  <topicref href="Misc/faq.dita"/>
- <topicref href="Misc/limits.dita"/>
  <topicref href="Misc/sample-bucket-beer.dita"/>
  <topicref href="Misc/sample-bucket-game.dita"/>
  <topicref href="Misc/Trbl-intro.dita">

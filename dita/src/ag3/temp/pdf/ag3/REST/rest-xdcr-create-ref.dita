@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2103" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="title:1;5:10">Creating a destination cluster reference</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:1;7:8">When you use XDCR, you establish <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:1;7:44">source</i> and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:2;7:62">destination</i> cluster. A source
+      cluster is the cluster from which you want to copy data; a destination cluster is the cluster
+      where you want the replica data to be stored. To create a reference to a destination
+      cluster:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="codeblock:1;11:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="codeph:1;11:24">curl -v -u admin:password1 http://10.4.2.4:8091/pools/default/remoteClusters \
+-d uuid=9eee38236f3bf28406920213d93981a3  \
+-d name=remote1
+-d hostname=10.4.2.6:8091
+-d username=admin -d password=password2
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:2;17:8">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:3;17:23">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:4;17:37">password1</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:5;17:55">password2</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:6;17:73">10.4.2.4</i>,
+        <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:7;18:12">10.4.2.6</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:8;18:29">9eee38236f3bf28406920213d93981a3</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="i:9;18:74">remote1</i> values in the
+      above example with your actual values.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:3;20:8">You provide credentials for the source cluster and information, including credentials and
+      UUID for destination cluster. This will generate a request similar to the following
+      sample:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="codeblock:2;23:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="codeph:2;23:24">POST /pools/default/remoteClusters HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: 10.4.2.4:8091
+Accept: */*
+Content-Length: 114
+Content-Type: application/x-www-form-urlencoded
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:4;31:8">If successful, Couchbase Server will respond with a JSON response similar to the
+      following:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="codeblock:3;33:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="codeph:3;33:24">{"name":"remote1","uri":"/pools/default/remoteClusters/remote1",
+"validateURI":"/pools/default/remoteClusters/remote1?just_validate=1",
+"hostname":"10.4.2.6:8091",
+"username":"Administrator",
+"uuid":"9eee38236f3bf28406920213d93981a3",
+"deleted":false}
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:5;40:8">The following describes the response elements:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="ul:1;41:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="li:1;42:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:6;42:14">(String) name: Name of the destination cluster referenced for XDCR.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="li:2;43:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:7;43:14">(String) validateURI: URI to validate details of cluster reference.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="li:3;44:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:8;44:14">(String) hostname: Hostname/IP (and :port) of the remote cluster.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="li:4;45:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:9;45:14">(String) username: Username for the destination cluster administrator.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="li:5;46:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:10;46:14">(String) uuid: UUID of the remote cluster reference.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="li:6;47:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:11;47:14">(Boolean) deleted: Indicates whether the reference to the destination cluster has been
+          deleted or not.</p></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="p:12;50:8">For more information about XDCR and creating references to destination clusters via the
+      Couchbase Web Console.</p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="related-links:1;53:18"><linkpool class="- topic/linkpool " xtrc="topicref:45;54:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:44;53:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="linklist:1;54:15">
+      <link href="../tasks/xdcr-configure-replications.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-create-ref.dita" xtrc="link:1;55:63" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Configuring XDCR replications</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Configuration of XDCR replications is done on a per-bucket basis.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

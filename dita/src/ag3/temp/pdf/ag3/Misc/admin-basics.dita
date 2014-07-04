@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1647" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="topic:1;4:40">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="title:1;5:9">Administration basics</title>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="body:1;6:8">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="p:1;7:6">Administration is supported through three primary methods:</p>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="section:1;9:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="title:2;9:19">Couchbase Web Console</title>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="p:2;10:6">Couchbase includes a built-in web server and administration interface that provides access to
+   the administration and statistic information for your cluster.</p>
+  </section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="section:2;14:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="title:3;14:19">Command-line interface</title>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="p:3;15:6">Provided within the Couchbase package are a number of command-line tools that allow you to
+   communicate and control your Couchbase cluster.</p>
+  </section>
+  
+   <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="section:3;19:13"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="title:4;19:20">REST API</title>
+
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="p:4;21:6">Couchbase Server includes a RESTful API that enables any tool capable of communicating over
+   HTTP to administer and monitor a Couchbase cluster.</p>
+   </section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="section:4;25:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="title:5;25:19">Best practices</title>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="p:5;26:6">If you already have an application that uses the Memcached protocol then you can start using
+   your Couchbase Server immediately. If so, you can simply point your application to this server
+   like you would any other memcached server. No code changes or special libraries are needed, and
+   the application will behave exactly as it would against a standard memcached server. Without the
+   client knowing anything about it, the data is being replicated, persisted, and the cluster can be
+   expanded or contracted completely transparently.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="p:6;32:6">If you do not already have an application, then you should investigate one of the available
+   Couchbase client libraries to connect to your server and start storing and retrieving
+   information.</p>
+  </section>
+  
+ </body>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="related-links:1;38:17"><linkpool class="- topic/linkpool " xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><linkpool class="- topic/linkpool " xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:2;6:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/start-stop-couchbase.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Starting and stopping Couchbase</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Summary of starting and stopping Couchbase on Linux (RHEL and Ubuntu), Windows, and     Mac.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:3;7:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/admin-tools.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Administration tools</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The administration tools are the Web Console, Command-line interface (CLI) and REST API.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:4;8:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/admin-datafiles.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase data files</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Couchbase data files are in a <uicontrol class="+ topic/ph ui-d/uicontrol " xtrc="uicontrol:1;6:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-datafiles.dita">var &gt; lib &gt; couchbase &gt; data</uicontrol> location  	whereas the initial file structure is dependent on the operating system.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:5;9:38" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/limits.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Limits</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server limits and limitations may affect server usage and implementation.</desc></link></linkpool></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="linklist:1;39:13">
+
+   <link href="../CLI/cli-overview.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="link:1;41:42" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Command-line interface overview</linktext></link>
+   <link href="../REST/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="link:2;42:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
+   <link href="../concepts/bp-deployment-considerations.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="link:3;43:63" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link>
+    <link href="http://www.couchbase.com/develop" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="link:4;44:82"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-basics.dita" xtrc="linktext:1;45:15">Couchbase SDKs</linktext></link>
+  </linklist>
+ </related-links>
+</topic>

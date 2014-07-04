@@ -1,0 +1,481 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic13047" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="topic:1;4:41">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:1;5:9">Sizing guidelines</title>
+	<shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="shortdesc:1;6:13">The primary considerations for sizing a Couchbase Server cluster are the number of
+		nodes and node size.</shortdesc>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="body:1;8:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:1;9:6">When sizing your Couchbase Server cluster, ask the following questions:</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:1;10:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:1;11:8">How many nodes do I need?</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:2;12:8">How large (RAM, CPU, disk space) should those nodes be?</li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:2;14:6">To determine the number of nodes needed for a cluster, consider the following:.</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:2;15:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:3;16:8">RAM</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:4;17:8">Disk throughput and sizing</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:5;18:8">Network bandwidth</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:6;19:8">Data distribution and safety</li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:3;21:6">Due to the in-memory nature of Couchbase Server, RAM is usually the determining factor
+			for sizing. But ultimately, the primary factor depends on the data set and information
+			being stored.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:4;24:6">For example:</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:3;25:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:7;26:8">If you have a very small data set that gets a very high load, you’ll need to base
+				your size more off of network bandwidth than RAM.</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:8;28:8">If you have a very high write rate, you’ll need more nodes to support the disk
+				throughput needed to persist all that data (and likely more RAM to buffer the
+				incoming writes).</li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:9;31:8">Even with a very small dataset under low load, you may want three nodes for proper
+				distribution and safety.</li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:5;34:6">With Couchbase Server, you can increase the capacity of your cluster (RAM, Disk, CPU, or
+			network) by increasing the number of nodes within your cluster, since each limit will be
+			increased linearly as the cluster size is increased.</p>
+
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:1;38:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:2;38:19">RAM sizing</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:6;39:7">RAM is usually the most critical sizing parameter. It’s
+				also the one that can have the biggest impact on performance and
+			stability.</p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:2;42:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:3;42:19">Working set</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:7;43:7">The working set is the data that the client
+				application actively uses at any point in time. Ideally, all of the working set
+				lives in memory. This impacts how much memory is needed.</p>
+		</section>
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:3;50:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:4;50:19">Memory quota</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:8;51:7">It is very important that your Couchbase cluster’s
+				size corresponds to the working set size and total data you expect.</p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:9;53:7">The goal
+				is to size the available RAM to Couchbase so that all your document IDs, the
+				document ID meta data, and the working set values fit. The memory should rest just
+				below the point at which Couchbase will start evicting values to disk (the High
+				Water Mark).</p>
+			
+			<note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="note:1;59:27">You will not be able to allocate all your machine RAM to the Couchbase server node 
+				(<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:1;60:14">per_node_ram_quota</codeph> parameter) because other programs might be running on your
+				machine.</note>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:10;63:7">How much memory and disk space per node you will need depends on
+				several different variables, which are defined below:</p>
+			
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:11;67:7">The following calculations are per-bucket calculations. The
+				calculations need to be summed up across all buckets. If all the buckets have the
+				same configuration, treat the total data as a single bucket. There is no
+				per-bucket overhead that needs to be considered.</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="table:1;72:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tgroup:1;73:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:1;74:31"></colspec>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:2;75:31"></colspec>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="thead:1;76:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:1;77:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:1;78:15">Variable</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:2;79:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tbody:1;82:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:2;83:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:3;84:15">documents_num</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:4;85:15">The total number of documents you expect in your working
+								set</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:3;88:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:5;89:15">ID_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:6;90:15">The average size of document IDs</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:4;92:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:7;93:15">value_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:8;94:15">The average size of values</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:5;96:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:9;97:15">number_of_replicas</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:10;98:15">The number of copies of the original data you want to
+								keep</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:6;101:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:11;102:15">working_set_percentage</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:12;103:15">The percentage of your data you want in memory</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:7;105:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:13;106:15">per_node_ram_quota</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:14;107:15">How much RAM can be assigned to Couchbase </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:12;113:7">Use the following items to calculate how much memory you need:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="table:2;115:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tgroup:2;116:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:3;117:31"></colspec>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:4;118:31"></colspec>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="thead:2;119:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:8;120:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:15;121:15">Constant</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:16;122:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tbody:2;125:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:9;126:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:17;127:15">Metadata per document (metadata_per_document)</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:18;128:15">This is the amount of memory that Couchbase needs to store
+								metadata per document. Metadata uses 56 bytes. All the metadata
+								needs to live in memory while a node is running and serving
+								data.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:10;133:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:19;134:15">SSD or Spinning</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:20;135:15">SSDs give better I/O performance.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:11;137:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:21;138:15">headroom</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:22;139:15">The cluster needs additional overhead to store metadata. That
+								space is called the headroom. This requires approximately 25–30%
+								more space than the raw RAM requirements for your dataset. Since
+								SSDs are faster than spinning (traditional) hard disks, you should
+								set aside 25% of memory for SSDs and 30% of memory for spinning hard
+								disks.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:12;146:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:23;147:15">High Water Mark (high_water_mark)</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:24;148:15">By default, the high water mark for a node’s RAM is set at 85%.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:13;153:15">This is a rough guideline to size your
+				cluster:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="table:3;156:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tgroup:3;157:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:5;158:31"></colspec>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:6;159:31"></colspec>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="thead:3;160:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:13;161:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:25;162:15">Variable</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:26;163:15">Calculation</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tbody:3;166:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:14;167:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:27;168:15">no_of_copies</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:28;169:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:2;169:23">1 + number_of_replicas</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:15;171:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:29;172:15">total_metadata All the documents need to live in the
+								memory.</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:30;174:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:3;174:23">(documents_num) * (metadata_per_document + ID_size) *
+									(no_of_copies)</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:16;177:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:31;178:15">total_dataset</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:32;179:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:4;179:23">(documents_num) * (value_size) *
+								(no_of_copies)</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:17;182:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:33;183:15">working_set</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:34;184:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:5;184:23">total_dataset * (working_set_percentage)</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:18;186:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:35;187:15">Cluster RAM quota required</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:36;188:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:6;188:23">(total_metadata + working_set) * (1 + headroom) /
+									(high_water_mark)</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:19;191:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:37;192:15">number of nodes</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:38;193:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:7;193:23">Cluster RAM quota required / per_node_ram_quota</codeph>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+			<note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="note:2;200:27">You will need at least the number of replicas + 1 nodes regardless of your
+				data size.</note>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:14;202:7">The following is a sample sizing calculation:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="table:4;204:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tgroup:4;205:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:7;206:31"></colspec>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:8;207:31"></colspec>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="thead:4;208:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:20;209:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:39;210:15">Input Variable</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:40;211:15">value</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tbody:4;214:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:21;215:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:41;216:15">documents_num</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:42;217:15">1,000,000</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:22;219:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:43;220:15">ID_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:44;221:15">100</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:23;223:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:45;224:15">value_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:46;225:15">10,000</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:24;227:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:47;228:15">number_of_replicas</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:48;229:15">1</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:25;231:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:49;232:15">working_set_percentage</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:50;233:15">20% </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+				
+				<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="table:5;239:12">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tgroup:5;240:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:9;241:31"></colspec>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:10;242:31"></colspec>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="thead:5;243:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:26;244:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:51;245:15">Constants</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:52;246:15">value</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tbody:5;249:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:27;250:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:53;251:15">Type of Storage</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:54;252:15">SSD</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:28;254:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:55;255:15">overhead_percentage</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:56;256:15">25%</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:29;258:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:57;259:15">metadata_per_document</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:58;260:15">56 for 2.1 and higher, 64 for 2.0.x</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:30;262:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:59;263:15">high_water_mark</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:60;264:15">85% </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="table:6;270:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tgroup:6;271:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:11;272:31"></colspec>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="colspec:12;273:31"></colspec>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="thead:6;274:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:31;275:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:61;276:15">Variable</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:62;277:15">Calculation</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="tbody:6;280:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:32;281:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:63;282:15">no_of_copies</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:64;283:15">= 1 for original and 1 for replica</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:33;285:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:65;286:15">total_metadata</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:66;287:15">= 1,000,000 * (100 + 56) * (2) = 312,000,000</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:34;289:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:67;290:15">total_dataset</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:68;291:15">= 1,000,000 * (10,000) * (2) = 20,000,000,000</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:35;293:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:69;294:15">working_set</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:70;295:15">= 20,000,000,000 * (0.2) = 4,000,000,000</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="row:36;297:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:71;298:15">Cluster RAM quota required</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="entry:72;299:15">= (440,000,000 + 4,000,000,000) * (1+0.25)/(0.7) =
+								7,928,000,000</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:15;306:7">For example, if you have 8GB machines and you want to use 6 GB for
+				Couchbase…</p>
+			
+			<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeblock:1;309:15">number of nodes =
+    Cluster RAM quota required/per_node_ram_quota =
+    7.9 GB/6GB = 1.3 or 2 nodes
+</codeblock>
+			
+			
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:4;317:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:5;317:19">Disk throughput and sizing</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:16;318:7">Couchbase Server decouples RAM from the
+				I/O layer. Decoupling allows high scaling at very low and consistent latencies and
+				enables very high write loads without affecting client application performance.
+				</p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:17;322:7">Couchbase Server implements an append-only format and a built-in automatic
+				compaction process. Previously, in Couchbase Server 1.8.x, an “in-place-update” disk
+				format was implemented, however, this implementation occasionally produced a
+				performance penalty due to fragmentation of the on-disk files under workloads with
+				frequent updates/deletes. </p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:18;327:7">The requirements of your disk subsystem are broken
+				down into two components: size and IO. </p>
+			
+			<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:6;330:11">Size</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:19;331:7">Disk size requirements are impacted by the Couchbase file write format,
+				append-only, and the built-in automatic compaction process. Append-only format means
+				that every write (insert/update/delete) creates a new entry in the
+				file(s).</p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:20;335:7">The required disk size increases from the update and delete workload
+				and then shrinks as the automatic compaction process runs. The size increases
+				because of the data expansion rather than the actual data using more disk space.
+				Heavier update and delete workloads increases the size more dramatically than heavy
+				insert and read workloads.</p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:21;340:7">Size recommendations are available for key-value data only. 
+				If views and indexes or XDCR are implemented, contact Couchbase support for analysis and recommendations.</p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:22;342:7">Depending on the workload, the required disk size is <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="b:1;342:63">2–3x</b> your total dataset size (active
+				and replica data combined). </p>
+			<note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="note:3;344:27">The disk size requirement of 2-3x
+				your total dataset size applies to key-value data only and does not take into
+				account other data formats and the use of views and indexes or XDCR.</note>
+			
+			<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:7;348:11">IO</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:23;349:7">IO is a combination of the sustained write rate, the need for compacting the
+				database files, and anything else that requires disk access. Couchbase Server
+				automatically buffers writes to the database in RAM and eventually persists them to
+				disk. Because of this, the software can accommodate much higher write rates than a
+				disk is able to handle. However, sustaining these writes eventually requires enough
+				IO to get it all down to disk. </p>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:24;355:7">To manage IO, configure the thresholds and
+				schedule when the compaction process kicks in or doesn’t kick in keeping in mind
+				that the successful completion of compaction is critical to keeping the disk size in
+				check. Disk size and disk IO become critical to size correctly when using views and
+				indexes and cross-data center replication (XDCR) as well as taking backup and
+				anything else outside of Couchbase that need space or is accessing the disk.
+				</p>
+			
+			<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:8;363:11">Best practice</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:25;364:7">Use the available configuration options to separate data files, indexes and the
+				installation/config directories on separate drives/devices to ensure that IO and
+				space are allocated effectively. </p>
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:5;369:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:9;369:19">Network bandwidth</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:26;370:7">Network bandwidth is not normally a significant
+				factor to consider for cluster sizing. However, clients require network bandwidth to
+				access information in the cluster. Nodes also need network bandwidth to exchange
+				information (node to node).</p>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:27;375:7">In general, calculate your network bandwidth requirements using the followingformula:</p>
+			
+			<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeblock:2;377:15">Bandwidth = (operations per second * item size) + overhead for rebalancing </codeblock>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:28;379:7">Calculate the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeph:8;379:29">operations per second</codeph> with the following formula:</p>
+			
+			<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="codeblock:3;381:15">Operations per second = Application reads + (Application writes * Replica copies) </codeblock>
+			</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:6;384:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:10;384:19">Data safety</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:29;385:7">Make sure you have enough nodes (and the right
+				configuration) in your cluster to keep your data safe. There are two areas to keep
+				in mind: how you distribute data across nodes and how many replicas you store across
+				your
+				cluster.</p>
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:7;392:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:11;392:19">Data distribution</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:30;393:7">Basically, more nodes are better than less. If
+				you only have two nodes, your data is split across the two nodes, half and half. 
+				This means that half of your dataset is impacted if one goes away. 
+				On the other hand, with ten nodes, only 10% of the dataset is impacted if one nodes goes away. 
+				Even with automatic failover, there still is some period of time when data is unavailable if nodes fail. 
+				This is mitigated by having more nodes.</p>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:31;400:7">After a failover, the cluster takes on an extra load. 
+				The question is - how heavy is that extra load and are you prepared for it? 
+				Again, with only two nodes, each one needs to be ready to handle the entire load. 
+				With ten, each node only needs to be able to take on an extra tenth of the workload should one fail.</p>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:32;405:7">While two nodes does provide a minimal level of redundancy, we recommend
+				that you always use at least three nodes.</p>
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:8;409:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:12;409:19">Replication</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:33;410:7">Couchbase Server allows you to configure up to three replicas (creating four copies of the dataset). 
+				In the event of a failure, you can only “failover” (either manually or automatically) as many nodes as you have
+				replicas. 
+				For example:</p>
+			<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:4;414:8">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:10;415:9">In a five node cluster with one replica, if one node goes down, you can fail
+						it over. If a second node goes down, you no longer have enough replica
+						copies to fail over to and will have to go through a slower process to
+						recover.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:11;419:9">In a five node cluster with two replicas, if one node goes down, you can fail
+						it over. If a second node goes down, you can fail it over as well. Should a
+						third one go down, you now no longer have replicas to fail over.</li>
+			</ul>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:34;423:7">After a node goes down and is failed over, try to replace that node as soon as
+				possible and rebalance. The rebalance recreates the replica copies (if you still
+				have enough nodes to do so).</p>
+			
+			<note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="note:4;427:21">As a rule of thumb, configure the following:
+			<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:5;428:8">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:12;429:9">One replica for up to five nodes.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:13;430:9">One or two replicas for five to ten nodes.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:14;431:9">One, two, or three replicas for over ten nodes.</li>
+			</ul>
+				While there may be variations to this, there are diminishing returns from having more replicas in smaller clusters.
+			</note>
+			
+			</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:9;438:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:13;438:19">Hardware requirements</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:35;439:7">In general, Couchbase Server has very low
+				hardware requirements and is designed to be run on commodity or virtualized systems.
+				However, as a rough guide to the primary concerns for your servers, the following is recommended:
+				</p>
+			<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:6;443:8">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:15;444:9">RAM: This is your primary consideration. We use RAM to store active items,
+						and that is the key reason Couchbase Server has such low latency.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:16;446:9">CPU: Couchbase Server has very low CPU requirements. The server is
+						multi-threaded and therefore benefits from a multi-core system. We recommend
+						machines with at least four or eight physical cores.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:17;449:9">Disk: By decoupling the RAM from the I/O layer, Couchbase Server can support
+						low-performance disks better than other databases. 
+						As a best practice, have separate devices for server install, data
+						directories, and index directories.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:18;453:9">Network: Most configurations work with Gigabit Ethernet interfaces. Faster
+					solutions such as 10GBit and Infiniband will provide spare capacity.</li>
+			</ul>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:36;456:7">Known working configurations include SAN, SAS, SATA, SSD, and EBS with the
+				following recommendations:</p>
+			
+			<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="ul:7;459:8">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:19;460:9">SSDs have been shown to provide a great performance boost both in terms of
+  draining the write queue and also in restoring data from disk (either on
+  cold-boot or for purposes of rebalancing).</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:20;463:9">RAID generally provides better throughput and reliability.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="li:21;464:9">Striping across EBS volumes (in Amazon EC2) has been shown to increase throughput.</li>
+			</ul>
+
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="section:10;469:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="title:14;469:19">Considerations for Cloud environments (i.e. Amazon EC2)</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="p:37;470:7">Due to the
+				unreliability and general lack of consistent I/O performance in cloud environments,
+				we highly recommend lowering the per-node RAM footprint and increasing the number of
+				nodes. This will give better disk throughput as well as improve rebalancing since
+				each node will have to store (and therefore transmit) less data. By distributing the
+				data further, it lessens the impact of losing a single node (which could be fairly
+				common).</p>
+		</section>
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="related-links:1;479:17"><linkpool class="- topic/linkpool " xtrc="topicref:28;35:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:26;33:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../concepts/bp-deployment-considerations.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc " >Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link></linkpool>
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="linklist:1;480:13">
+			<link href="../Concepts/bp-cloudDeployment.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-sizingGuidelines.dita" xtrc="link:1;481:53"></link>
+		</linklist>
+	</related-links>
+</topic>

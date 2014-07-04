@@ -9,7 +9,7 @@
       Editor either by clicking the <codeph>Views</codeph> for a given data bucket within the
         <codeph>Data Buckets</codeph> display, or by selecting the <codeph>Views</codeph> page from
       the main navigation panel.</p>
-    <image href="../images/views-overview.png" width="720"/>
+    <image href="../images/views-overview.png" width="600"/>
     <p>The individual elements of this interface are:</p>
     <ul>
       <li><p>The pop-up, at the top-left, provides the selection of the data bucket where you are
@@ -81,7 +81,7 @@
         Within a development view, the results shown for the view are executed either over a small
         subset of the full document set (which is quicker and places less load on the system), or
         the full data set.</p>>
-          <image href="../images/views-editing.png" width="720"></image>
+          <image href="../images/views-editing.png" width="600"></image>
         <p>The top portion of the interface provides navigation between the
         available design documents and views.</p><p>The <codeph>Sample Document</codeph> section
         allows you to view a random document from the database to help you write your view functions
@@ -111,7 +111,7 @@
         and show the view output within the table below. You can configure the different parameters
         by clicking the arrow next to <codeph>Filter Results</codeph>. This shows the view selection
         criteria, as seen in the figure below. </p>
-            <image href="../images/views-filters.png" width="720"> </image>
+            <image href="../images/views-filters.png" width="300"> </image>
         <p>Clicking on the <codeph>Filter Results</codeph> query string
         opens a new window containing the raw, JSON formatted, version of the View results. </p>
       <p>By default, Views during the development stage are executed only over
@@ -142,7 +142,7 @@
         client library to obtain the information.</p><p>To examine the output of a view, click icon
         next to the view name within the view list. This will present you with a view similar to
         that shown in the figure below.</p>
-          <image href="../images/views-detail.png" width="720"> </image>
+          <image href="../images/views-detail.png" width="600"> </image>
         <p>The top portion of the interface provides navigation between the
         available design documents and views.</p><p>The <codeph>Sample Document</codeph> section
         allows you to view a random document from the database so that you can compare the document

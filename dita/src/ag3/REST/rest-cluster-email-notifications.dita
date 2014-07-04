@@ -20,7 +20,7 @@ Authorization: Basic YWRtaW46YWRtaW4= Accept: */*
       "auto_failover_cluster_too_small"]
   }
 </codeph></codeblock><p>Possible errors include:</p><codeblock><codeph>This endpoint isn't available yet.
-</codeph></codeblock><p><!--Removed anchor point couchbase-admin-restapi-enbling-disabling-email--></p><section><title>Enabling and disabling email notifications</title><p>This is a global setting for all clusters. You need to be authenticated to
+</codeph></codeblock><section><title>Enabling and disabling email notifications</title><p>This is a global setting for all clusters. You need to be authenticated to
 change this value. If this is enabled, Couchbase Server sends an email when
 certain events occur. Only events related to auto-failover trigger
 notification:</p><codeblock><codeph>curl -i -u admin:password \
@@ -65,7 +65,7 @@ JSON object ({"errors": {"key": "error"}}) with errors.
 <li><p>recipients: recipients must be a comma separated list of valid email addresses.</p></li>
 <li><p>sender: sender must be a valid email address.</p></li>
 <li><p>general: No valid parameters given.</p></li>
-</ul><p><!--Removed anchor point couchbase-admin-restapi-sending-test-emails--></p></section><section><title>Sending test emails</title><p>This is a global setting for all clusters. You need to be authenticated to
+</ul></section><section><title>Sending test emails</title><p>This is a global setting for all clusters. You need to be authenticated to
 change this value. In response to this request, Couchbase Server sends a test
 email with the current configurations. This request uses the same parameters
 used in setting alerts and additionally an email subject and body.</p><codeblock><codeph>    curl -i -u admin:password http://localhost:8091/settings/alerts/testEmail \

@@ -1,132 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic3414"><title>Command-line interface overview</title><body><p><!--Removed anchor point couchbase-admin-cmdline--></p><p>Couchbase Server includes a number of command-line tools that can be used to
-manage and monitor a Couchbase Server cluster or server. All operations are
-mapped to their appropriate <xref href="../cb-rest-api/#couchbase-admin-restapi" format="html">REST API</xref> call
-(where available).</p><p>There are a number of command-line tools that perform different functions and
-operations, these are described individually within the following sections.
-Tools can be located in a number of directories, dependent on the tool in
-question in each case.</p><p><!--Removed anchor point couchbase-admin-cmdline-rename-remove-new--></p><section><title>Command line tools and availability</title><p>As of Couchbase Server 2.0, the following publicly available tools have been
-renamed, consolidated or removed. This is to provide better usability, and
-reduce the number of commands required to manage Couchbase Server:</p><p>By default, the command-line tools are installed into the following locations on
-each platform:</p><p><!--Removed anchor point table-couchbase-admin-cmdline-locs--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Operating System</entry>
-	<entry>Directory Locations</entry>
-</row></thead><tbody><row>
-	<entry><b>Linux</b></entry>
-	<entry><codeph>/opt/couchbase/bin</codeph>, <codeph>/opt/couchbase/bin/install</codeph>, <codeph>/opt/couchbase/bin/tools</codeph>, <codeph>/opt/couchbase/bin/tools/unsupported</codeph></entry>
-</row><row>
-	<entry><b>Windows</b></entry>
-	<entry><codeph>C:\Program Files\couchbase\server\bin</codeph>, <codeph>C:\Program Files\couchbase\server\bin\install</codeph>, and <codeph>C:\Program Files\couchbase\server\bin\tools</codeph>.</entry>
-</row><row>
-	<entry><b>Mac OS X</b></entry>
-	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin</codeph> </entry>
-</row></tbody></tgroup></table><p><!--Removed anchor point couchbase-admin-cmdline-unsupported--></p></section><section><title>Unsupported tools</title><p>The following are tools that are visible in Couchbase Server 2.0 installation;
-however the tools are unsupported. This means they are meant for Couchbase
-internal use and will not be supported by Couchbase Technical Support:</p><ul>
-<li><p><codeph>cbbrowse_logs</codeph></p></li>
-<li><p><codeph>cbdump-config</codeph></p></li>
-<li><p><codeph>cbenable_core_dumps.sh</codeph></p></li>
-<li><p><codeph>couch_compact</codeph></p></li>
-<li><p><codeph>couch_dbdump</codeph></p></li>
-<li><p><codeph>couch_dbinfo</codeph></p></li>
-<li><p><codeph>memslap</codeph></p></li>
-</ul><p><!--Removed anchor point couchbase-admin-cmdline-deprecated-removed--></p></section><section><title>Deprecated and removed tools</title><p>The following are tools that existed in previous versions but have been
-deprecated and removed as of Couchbase Server 1.8:</p><p><!--Removed anchor point table-couchbase-admin-cmdline-deprecated--></p><table><tgroup cols="3"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><thead><row>
-	<entry>Tool</entry>
-	<entry>Server Versions</entry>
-	<entry>Description/Status</entry>
-</row></thead><tbody><row>
-	<entry><codeph>tap.py</codeph></entry>
-	<entry>1.8</entry>
-	<entry>Deprecated in 1.8.</entry>
-</row><row>
-	<entry><codeph>cbclusterstats</codeph></entry>
-	<entry>1.8</entry>
-	<entry>Deprecated in 1.8. Replaced by <codeph>cbstats</codeph> in 1.8.</entry>
-</row><row>
-	<entry><codeph>membase</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8. Replaced by <codeph>couchbase-cli</codeph> in 1.8.1</entry>
-</row><row>
-	<entry><codeph>mbadm-online-restore</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8. Replaced by <codeph>cbadm-online-restore</codeph> in 1.8.1</entry>
-</row><row>
-	<entry><codeph>membase</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>couchbase-cli</codeph></entry>
-</row><row>
-	<entry><codeph>mbadm-online-restore</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbadm-online-restore</codeph></entry>
-</row><row>
-	<entry><codeph>mbadm-online-update</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbadm-online-update</codeph></entry>
-</row><row>
-	<entry><codeph>mbadm-tap-registration</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbadm-tap-registration</codeph></entry>
-</row><row>
-	<entry><codeph>mbbackup-incremental</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbbackup-incremental</codeph></entry>
-</row><row>
-	<entry><codeph>mbbackup-merge-incremental</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbbackup-merge-incremental</codeph></entry>
-</row><row>
-	<entry><codeph>mbbackup</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbbackup</codeph></entry>
-</row><row>
-	<entry><codeph>mbbrowse_logs</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbbrowse_logs</codeph></entry>
-</row><row>
-	<entry><codeph>mbcollect_info</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbcollect_info</codeph></entry>
-</row><row>
-	<entry><codeph>mbdbconvert</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbdbconvert</codeph></entry>
-</row><row>
-	<entry><codeph>mbdbmaint</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbdbmaint</codeph></entry>
-</row><row>
-	<entry><codeph>mbdbupgrade</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbdbupgrade</codeph></entry>
-</row><row>
-	<entry><codeph>mbdumpconfig.escript</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbdumpconfig.escript</codeph></entry>
-</row><row>
-	<entry><codeph>mbenable_core_dumps.sh</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbenable_core_dumps.sh</codeph></entry>
-</row><row>
-	<entry><codeph>mbflushctl</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbflushctl</codeph></entry>
-</row><row>
-	<entry><codeph>mbrestore</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbrestore</codeph></entry>
-</row><row>
-	<entry><codeph>mbstats</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbstats</codeph></entry>
-</row><row>
-	<entry><codeph>mbupgrade</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbupgrade</codeph></entry>
-</row><row>
-	<entry><codeph>mbvbucketctl</codeph></entry>
-	<entry>1.7</entry>
-	<entry>Deprecated in 1.8, replaced by <codeph>cbvbucketctl</codeph> </entry>
-</row></tbody></tgroup></table></section></body><related-links><linklist><title>Collected links</title><link href="../cb-rest-api/#couchbase-admin-restapi" format="html"><linktext>REST API</linktext></link></linklist></related-links></topic>
+<topic xml:lang="en-us" id="topic3414">
+	<title>Command-line interface overview</title>
+	<body>
+		
+		<p>Couchbase Server includes a number of command-line tools that can be used to manage and
+			monitor a Couchbase Server cluster or server. All operations are mapped to their
+			appropriate REST API call (where available).</p>
+		<p>There are a number of command-line tools that perform different functions and operations,
+			these are described individually within the following sections. Tools can be located in
+			a number of directories, dependent on the tool in question in each case.</p>
+		
+		
+		
+		
+		<section><title>Command line tools and availability</title><p>As of Couchbase Server 2.0,
+				the following publicly available tools have been renamed, consolidated or removed.
+				This is to provide better usability, and reduce the number of commands required to
+				manage Couchbase Server:</p><p>By default, the command-line tools are installed into
+				the following locations on each
+				platform:</p>
+			
+			<table>
+				<tgroup cols="2">
+					<colspec colname="col1"/>
+					<colspec colname="col2"/>
+					<thead>
+						<row>
+							<entry>Operating System</entry>
+							<entry>Directory Locations</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry><b>Linux</b></entry>
+							<entry><codeph>/opt/couchbase/bin</codeph>,
+									<codeph>/opt/couchbase/bin/install</codeph>,
+									<codeph>/opt/couchbase/bin/tools</codeph>,
+									<codeph>/opt/couchbase/bin/tools/unsupported</codeph></entry>
+						</row>
+						<row>
+							<entry><b>Windows</b></entry>
+							<entry><codeph>C:\Program Files\couchbase\server\bin</codeph>,
+									<codeph>C:\Program Files\couchbase\server\bin\install</codeph>,
+								and
+								<codeph>C:\Program Files\couchbase\server\bin\tools</codeph>.</entry>
+						</row>
+						<row>
+							<entry><b>Mac OS X</b></entry>
+							<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin</codeph>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+		
+		
+		
+		<section><title>Unsupported tools</title><p>The following are tools that are visible in
+				Couchbase Server 2.0 installation; however the tools are unsupported. This means
+				they are meant for Couchbase internal use and will not be supported by Couchbase
+				Technical Support:</p><ul>
+				<li><p><codeph>cbbrowse_logs</codeph></p></li>
+				<li><p><codeph>cbdump-config</codeph></p></li>
+				<li><p><codeph>cbenable_core_dumps.sh</codeph></p></li>
+				<li><p><codeph>couch_compact</codeph></p></li>
+				<li><p><codeph>couch_dbdump</codeph></p></li>
+				<li><p><codeph>couch_dbinfo</codeph></p></li>
+				<li><p><codeph>memslap</codeph></p></li>
+			</ul></section>
+		
+		
+		
+		<section><title>Deprecated and removed tools</title><p>The following are tools that existed
+				in previous versions but have been deprecated and removed as of Couchbase Server
+				1.8:</p>
+			
+			<table>
+				<tgroup cols="3">
+					<colspec colname="col1"/>
+					<colspec colname="col2"/>
+					<colspec colname="col3"/>
+					<thead>
+						<row>
+							<entry>Tool</entry>
+							<entry>Server Versions</entry>
+							<entry>Description/Status</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry><codeph>tap.py</codeph></entry>
+							<entry>1.8</entry>
+							<entry>Deprecated in 1.8.</entry>
+						</row>
+						<row>
+							<entry><codeph>cbclusterstats</codeph></entry>
+							<entry>1.8</entry>
+							<entry>Deprecated in 1.8. Replaced by <codeph>cbstats</codeph> in
+								1.8.</entry>
+						</row>
+						<row>
+							<entry><codeph>membase</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8. Replaced by <codeph>couchbase-cli</codeph> in
+								1.8.1</entry>
+						</row>
+						<row>
+							<entry><codeph>mbadm-online-restore</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8. Replaced by
+									<codeph>cbadm-online-restore</codeph> in 1.8.1</entry>
+						</row>
+						<row>
+							<entry><codeph>membase</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+								<codeph>couchbase-cli</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbadm-online-restore</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbadm-online-restore</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbadm-online-update</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbadm-online-update</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbadm-tap-registration</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbadm-tap-registration</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbbackup-incremental</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbbackup-incremental</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbbackup-merge-incremental</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbbackup-merge-incremental</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbbackup</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by <codeph>cbbackup</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbbrowse_logs</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+								<codeph>cbbrowse_logs</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbcollect_info</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+								<codeph>cbcollect_info</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbdbconvert</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+								<codeph>cbdbconvert</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbdbmaint</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by <codeph>cbdbmaint</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbdbupgrade</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+								<codeph>cbdbupgrade</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbdumpconfig.escript</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbdumpconfig.escript</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbenable_core_dumps.sh</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+									<codeph>cbenable_core_dumps.sh</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbflushctl</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by
+								<codeph>cbflushctl</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbrestore</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by <codeph>cbrestore</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbstats</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by <codeph>cbstats</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbupgrade</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by <codeph>cbupgrade</codeph></entry>
+						</row>
+						<row>
+							<entry><codeph>mbvbucketctl</codeph></entry>
+							<entry>1.7</entry>
+							<entry>Deprecated in 1.8, replaced by <codeph>cbvbucketctl</codeph>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+	</body>
+	<related-links>
+		<linklist>
+			<link href="../rest/overview-rest-api.dita"/>
+		</linklist>
+	</related-links>
+</topic>

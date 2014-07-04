@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Monitoring?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Monitoring/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3970" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:1;5:10">Couchbase Server statistics</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="shortdesc:1;6:14">Couchbase Server provides statistics at multiple levels throughout the cluster.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:1;8:8">The statistics
+      used for regular monitoring, capacity planning and to identify the performance characteristics
+      of your cluster deployment. The most visible statistics are those in the Web UI, but
+      components such as the REST interface, the proxy and individual nodes have directly accessible
+      statistics interfaces.</p>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="section:1;13:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:2;13:21">REST interface statistics</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:2;13:57">To interact with statistics provided by
+        REST, use the Couchbase web console. 
+        This GUI gathers statistics via REST and displays them to your browser.
+        The REST interface has a set of resources that provide access to the current and historic
+        statistics the cluster gathers and stores.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="section:2;19:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:3;19:21">Couchbase Server node statistics</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:3;19:64">Detailed stats documentation can be found in the
+        repository.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:4;20:27">Along with stats at the REST and UI level, individual nodes can also be
+        queried for statistics either through a client which uses binary protocol or through the
+          cbstats utility.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:5;22:34">For
+        example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeblock:1;23:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:1;23:40">&gt; cbstats localhost:11210 all
+ auth_cmds:                   9
+ auth_errors:                 0
+ bucket_conns:                10
+ bytes_read:                  246378222
+ bytes_written:               289715944
+ cas_badval:                  0
+ cas_hits:                    0
+ cas_misses:                  0
+ cmd_flush:                   0
+ cmd_get:                     134250
+ cmd_set:                     115750
+…
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:6;36:25">The
+        most commonly needed statistics are surfaced through the Web Console and have descriptions
+        there and in the associated documentation. Software developers and system administrators
+        wanting lower level information have it available through the stats interface.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:7;39:94">There
+        are seven commands available through the stats interface:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="ul:1;40:74">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:1;41:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:8;41:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:2;41:24">stats</codeph> (referred to as ‘all’)</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:2;42:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:9;42:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:3;42:24">dispatcher</codeph></p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:3;43:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:10;43:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:4;43:24">hash</codeph></p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:4;44:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:11;44:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:5;44:24">tap</codeph></p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:5;45:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:12;45:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:6;45:24">timings</codeph></p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:6;46:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:13;46:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:7;46:24">vkey</codeph></p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:7;47:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:14;47:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:8;47:24">reset</codeph></p></li>
+      </ul></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="section:3;49:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:4;49:21">stats command</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:15;49:45">This displays a large list of statistics related to the
+        Couchbase process including the underlying engine (ep_* stats).</p></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="section:4;51:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:5;51:21">dispatcher command</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:16;51:50">This statistic will show what the dispatcher is
+        currently
+        doing:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeblock:2;53:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:9;53:38">dispatcher
+     runtime: 45ms
+       state: dispatcher_running
+      status: running
+        task: Running a flusher loop.
+nio_dispatcher
+       state: dispatcher_running
+      status: idle
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:17;61:25">The
+        first entry, dispatcher, monitors the process responsible for disk access. The second entry
+        is a non-IO (non disk) dispatcher. There may also be a ro_dispatcher dispatcher present if
+        the engine is allowing concurrent reads and writes. When a task is actually running on a
+        given dispatcher, the “runtime” tells you how long the current task has been running. Newer
+        versions will show you a log of recently run dispatcher jobs so you can see what’s been
+        happening.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="section:5;69:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:6;69:21">Changing statistics collection</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:18;70:10">The default Couchbase Server statistics
+        collection is set to collect every second. The tuning that is available for statistic
+        collection is by collecting statistics less frequently. </p>
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="note:1;73:25">If statistic
+        collection is changed from the default, the Couchbase service must be restarted.</note>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:19;76:10">To change statistic collection:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="ol:1;76:49">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:8;77:13">Log in as root or sudo and navigate to the directory where Couchbase is installed. For
+          example: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:10;78:28">/opt/couchbase/etc/couchbase/static_config</codeph></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:9;79:13">Edit the static_config file.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:10;80:13">Add the following parameter: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:11;80:50">grab_stats_every_n_ticks, 10</codeph>, where 10 is the number of
+          ticks. In the Couchbase environment one tick is one second (default). It is recommended
+          that the statistics collection be more frequent (and accurate). However, assign an
+          appropriate tick value for you environment.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="li:11;84:13">Restart the Couchbase service.</li>
+      </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:20;85:15">After restarting the Couchbase service, the statistics collection rate is changed.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="section:6;87:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="title:7;87:21">Changing the stats file location</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="p:21;87:64">The default stats
+          file location is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="codeph:12;88:36">/opt/couchbase/var/lib/couchbase/stats</codeph>, however, if you
+          want to change the default stats file location, create a symlink location to the new
+          directory.</p>
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="note:2;91:25">When creating a symlink, stop and restart the Couchbase
+          service. </note></section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="related-links:1;94:18"><linkpool class="- topic/linkpool " xtrc="topicref:101;117:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:96;112:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Monitoring/monitor-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">There are a number of different ways to monitor Couchbase servers      including underlying processes, ports, and queueing.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="linklist:1;95:15">
+      <link href="../rest/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="link:1;96:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
+      <link href="../cli/cbstats-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="link:2;97:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbstats tool</linktext></link>
+      <link href="http://github.com/membase/ep-engine/blob/master/docs/stats.org" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="link:3;99:23"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-statistics.dita" xtrc="linktext:1;100:19">Detailed stats documentation</linktext></link>
+      
+    </linklist>
+  </related-links>
+</topic>

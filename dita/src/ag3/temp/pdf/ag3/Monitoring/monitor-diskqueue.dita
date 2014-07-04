@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Monitoring?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/monitoring/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2232" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="title:1;5:10">Disk write queue</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="shortdesc:1;6:14">Disk writing is implemented as a 2-queue system: commit to DRAM and then queued to be written to disk</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="p:1;8:8">Couchbase Server is a persistent database which means that part of monitoring the system is
+      understanding how we interact with the disk subsystem.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="p:2;10:8">Since Couchbase Server is an asynchronous system, any mutation operation is committed first
+      to DRAM and then queued to be written to disk. The client is returned an acknowledgment almost
+      immediately so that it can continue working. There is replication involved here too, but we’re
+      ignoring it for the purposes of this discussion.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="p:3;14:8">Disk writing is implemented as a 2-queue system and are tracked by the stats. The
+      first queue is where mutations are immediately placed. Whenever there are items in that queue,
+      our “flusher” (disk writer) comes along and takes all the items off of that queue, places them
+      into the other one and begins writing to disk. Since disk performance is so dramatically
+      different than RAM, this allows us to continue accepting new writes while we are (possibly
+      slowly) writing new ones to the disk.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="p:4;20:8">The flusher will process 250k items a a time, then perform a disk commit and continue this
+      cycle until its queue is drained. When it has completed everything in its queue, it will
+      either grab the next group from the first queue or essentially sleep until there are more
+      items to write.</p>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="section:1;25:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="title:2;25:21">Monitoring the disk write queue</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="p:5;26:10">There are basically two ways to
+        monitor the disk queue, at a high-level from the Web UI or at a low-level from the
+        individual node statistics.</p>
+      <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="ol:1;29:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="li:1;30:13">From the Web UI, click on Monitor Data Buckets and select the particular bucket that you
+          want to monitor.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="li:2;32:13">Click “Configure View” in the top right corner and select the “Disk Write Queue”
+          statistic. Closing this window shows that there is a new mini-graph.</li>
+      </ol>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="p:6;35:10">This graph is showing the Disk Write Queue for all nodes in the cluster. 
+        To get a deeper view into this statistic, monitor each node individually using the ‘stats’ output. 
+        The statistics to watch are <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="codeph:1;37:45">ep_queue_size</codeph> (where new mutations are placed) and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="codeph:2;37:113">flusher_todo</codeph>
+        (the queue of items currently being written to disk).</p></section>
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="related-links:1;41:18"><linkpool class="- topic/linkpool " xtrc="topicref:100;116:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:96;112:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Monitoring/monitor-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">There are a number of different ways to monitor Couchbase servers      including underlying processes, ports, and queueing.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="linklist:1;42:15">
+      <link href="../ui/ui-server-nodes.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="link:1;43:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Server Nodes</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-server-nodes.dita" xtrc="uicontrol:1;6:29">Server Nodes</uicontrol> section shows statistics across the server nodes in the cluster.</desc></link>
+      <link href="monitor-statistics.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-diskqueue.dita" xtrc="link:2;44:58" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Couchbase Server statistics</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server provides statistics at multiple levels throughout the cluster.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

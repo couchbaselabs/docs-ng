@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1367" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="title:1;5:10">Startup and shutdown on Windows</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:1;7:8">On Windows, Couchbase Server is installed as a Windows service. You can use the
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:1;8:17">Services</codeph> tab within the Windows Task Manager to start and stop Couchbase
+      Server.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:2;11:8">You will need power user or administrator privileges, or have been separately granted the
+      rights to manage services to start and stop Couchbase Server. 
+      By default, the service automatically starts when the machine boots. </p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:3;15:8">Couchbase can be started and stopped via:
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="ul:1;16:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="li:1;17:13">Windows Task Manager</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="li:2;18:13">Windows system <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:2;18:36">net</codeph> command</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="li:3;19:13">Couchbase-supplied <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:3;19:40">.bat</codeph> scripts</li>
+      </ul>
+    </p>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="section:1;23:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="title:2;23:21">Via Windows Task Manager</title>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:4;25:8">To manually start the service from the Windows interface:
+      <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="ol:1;26:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="li:4;27:13">Open the Windows Task Manager and choose the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="uicontrol:1;27:69">Services</uicontrol> tab to open
+            the Services management console. <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:5;28:49">Alternatively, select the
+                <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="uicontrol:2;29:28">Start</uicontrol>, choose <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="uicontrol:3;29:65">Run</uicontrol> and then type
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:4;30:25">Services.msc</codeph> to open the Services management console.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="li:5;31:13">Find the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:5;31:30">CouchbaseServer</codeph> service and right-click.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="li:6;32:13">Select <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="uicontrol:4;32:31">Start</uicontrol> or <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="uicontrol:5;32:63">Stop</uicontrol> as appropriate.</li>
+      </ol>
+    </p>
+      
+   
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="note:1;38:23">You can also alter the configuration so that the service is not automatically started during boot.</note>
+    </section>
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="section:2;41:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="title:3;41:23">Via Windows system <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:6;41:50">net</codeph> command</title>
+        
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:6;43:12">To start and stop Couchbase Server using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:7;43:61">net</codeph>:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeblock:1;44:20">net start CouchbaseServer</codeblock>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeblock:2;45:20">net stop CouchbaseServer</codeblock>
+
+      </section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="section:3;50:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="title:4;50:23">Via Couchbase-supplied <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:8;50:54">.bat</codeph> scripts</title>
+        
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:7;52:12">The Couchbase-supplied start and stop scripts are provided in the standard installation in the
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeph:9;53:17">bin</codeph> directory.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="p:8;54:12">To start and stop the server using these scripts:</p>
+        
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeblock:3;56:20">C:\Program Files\Couchbase\Server\bin\service_start.bat</codeblock>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/windows-startup-shutdown.dita" xtrc="codeblock:4;57:20">C:\Program Files\Couchbase\Server\bin\service_stop.bat</codeblock>
+      </section>
+    
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:20;28:59" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:16;22:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/post-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Post-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Post-installation activities includes setting up the initial server and testing the server connection.</desc></link></linkpool></related-links>
+</topic>

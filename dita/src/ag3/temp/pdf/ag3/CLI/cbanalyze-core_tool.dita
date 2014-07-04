@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic377" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="topic:1;4:39">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="title:1;5:9">cbanalyze-core tool</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="p:1;7:6">Helper script to parse and analyze core dump from a Couchbase node. Depending upon your
+			platform, this tool is at the following locations:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="table:1;9:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="tgroup:1;10:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="colspec:1;11:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="colspec:2;12:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="thead:1;13:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="row:1;14:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:1;15:14">Operating System</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:2;16:14">Location</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="tbody:1;19:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="row:2;20:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:3;21:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="b:1;21:17">Linux</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:4;22:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="codeph:1;22:22">/opt/couchbase/bin/tools/</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="row:3;24:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:5;25:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="b:2;25:17">Windows</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:6;26:14">Not Available on this platform.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="row:4;28:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:7;29:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="b:3;29:17">Mac OS X</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="entry:8;30:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbanalyze-core_tool.dita" xtrc="codeph:2;30:22">/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+</topic>

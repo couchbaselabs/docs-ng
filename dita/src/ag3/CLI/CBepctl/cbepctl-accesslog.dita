@@ -4,14 +4,12 @@
 <topic xml:lang="en-us" id="topic1898">
   <title>Changing access log settings</title>
   <body>
-    <p>In Couchbase Server 2.0, we provide a more optimized disk warmup. In past versions of
-      Couchbase Server, the server would load all keys and data sequentially from vBuckets in RAM.
-      Now the server pre-fetches a list of most-frequently accessed keys and fetches these documents
-      first. The server runs a periodic scanner process which will determine which keys are most
-      frequently-used. You can use <codeph>cbepctl flush_param</codeph> to change the initial time
-      and the interval for the process. You may want to do this, for instance, if you have a peak
-      time for your application when you want the keys used during this time to be quickly available
-      after server restart.</p>
+    <p>Couchbase Server has an optimized disk warmup. Couchbase Server pre-fetches a list of
+      most-frequently accessed keys and fetches these documents first. The server runs a periodic
+      scanner process which determines which keys are most frequently-used. The <codeph>cbepctl
+        flush_param</codeph> command is used to change the initial time and the interval for the
+      process. You may want to do this, for example, if you have a peak time for your application
+      when you want the keys used during this time to be quickly available after server restart.</p>
     
     <note type="note">If you want to change this setting for
       an entire Couchbase cluster, you will need to perform this command on per-node and per-bucket in

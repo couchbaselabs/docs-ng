@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3414" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="title:1;5:9">Command-line interface overview</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="body:1;6:8">
+		
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:1;8:6">Couchbase Server includes a number of command-line tools that can be used to manage and
+			monitor a Couchbase Server cluster or server. All operations are mapped to their
+			appropriate REST API call (where available).</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:2;11:6">There are a number of command-line tools that perform different functions and operations,
+			these are described individually within the following sections. Tools can be located in
+			a number of directories, dependent on the tool in question in each case.</p>
+		
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="section:1;18:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="title:2;18:19">Command line tools and availability</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:3;18:65">As of Couchbase Server 2.0,
+				the following publicly available tools have been renamed, consolidated or removed.
+				This is to provide better usability, and reduce the number of commands required to
+				manage Couchbase Server:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:4;21:36">By default, the command-line tools are installed into
+				the following locations on each
+				platform:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="table:1;25:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="tgroup:1;26:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="colspec:1;27:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="colspec:2;28:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="thead:1;29:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:1;30:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:1;31:15">Operating System</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:2;32:15">Directory Locations</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="tbody:1;35:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:2;36:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:3;37:15"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="b:1;37:18">Linux</b></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:4;38:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:1;38:23">/opt/couchbase/bin</codeph>,
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:2;39:18">/opt/couchbase/bin/install</codeph>,
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:3;40:18">/opt/couchbase/bin/tools</codeph>,
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:4;41:18">/opt/couchbase/bin/tools/unsupported</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:3;43:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:5;44:15"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="b:2;44:18">Windows</b></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:6;45:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:5;45:23">C:\Program Files\couchbase\server\bin</codeph>,
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:6;46:18">C:\Program Files\couchbase\server\bin\install</codeph>,
+								and
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:7;48:17">C:\Program Files\couchbase\server\bin\tools</codeph>.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:4;50:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:7;51:15"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="b:3;51:18">Mac OS X</b></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:8;52:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:8;52:23">/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin</codeph>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="section:2;61:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="title:3;61:19">Unsupported tools</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:5;61:47">The following are tools that are visible in
+				Couchbase Server 2.0 installation; however the tools are unsupported. This means
+				they are meant for Couchbase internal use and will not be supported by Couchbase
+				Technical Support:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="ul:1;64:31">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:1;65:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:6;65:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:9;65:20">cbbrowse_logs</codeph></p></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:2;66:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:7;66:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:10;66:20">cbdump-config</codeph></p></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:3;67:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:8;67:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:11;67:20">cbenable_core_dumps.sh</codeph></p></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:4;68:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:9;68:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:12;68:20">couch_compact</codeph></p></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:5;69:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:10;69:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:13;69:20">couch_dbdump</codeph></p></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:6;70:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:11;70:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:14;70:20">couch_dbinfo</codeph></p></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="li:7;71:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:12;71:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:15;71:20">memslap</codeph></p></li>
+			</ul></section>
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="section:3;76:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="title:4;76:19">Deprecated and removed tools</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="p:13;76:58">The following are tools that existed
+				in previous versions but have been deprecated and removed as of Couchbase Server
+				1.8:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="table:2;80:11">
+				<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="tgroup:2;81:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="colspec:3;82:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="colspec:4;83:31"/>
+					<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="colspec:5;84:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="thead:2;85:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:5;86:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:9;87:15">Tool</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:10;88:15">Server Versions</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:11;89:15">Description/Status</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="tbody:2;92:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:6;93:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:12;94:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:16;94:23">tap.py</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:13;95:15">1.8</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:14;96:15">Deprecated in 1.8.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:7;98:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:15;99:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:17;99:23">cbclusterstats</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:16;100:15">1.8</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:17;101:15">Deprecated in 1.8. Replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:18;101:54">cbstats</codeph> in
+								1.8.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:8;104:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:18;105:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:19;105:23">membase</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:19;106:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:20;107:15">Deprecated in 1.8. Replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:20;107:54">couchbase-cli</codeph> in
+								1.8.1</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:9;110:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:21;111:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:21;111:23">mbadm-online-restore</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:22;112:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:23;113:15">Deprecated in 1.8. Replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:22;114:18">cbadm-online-restore</codeph> in 1.8.1</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:10;116:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:24;117:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:23;117:23">membase</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:25;118:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:26;119:15">Deprecated in 1.8, replaced by
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:24;120:17">couchbase-cli</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:11;122:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:27;123:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:25;123:23">mbadm-online-restore</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:28;124:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:29;125:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:26;126:18">cbadm-online-restore</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:12;128:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:30;129:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:27;129:23">mbadm-online-update</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:31;130:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:32;131:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:28;132:18">cbadm-online-update</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:13;134:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:33;135:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:29;135:23">mbadm-tap-registration</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:34;136:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:35;137:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:30;138:18">cbadm-tap-registration</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:14;140:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:36;141:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:31;141:23">mbbackup-incremental</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:37;142:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:38;143:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:32;144:18">cbbackup-incremental</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:15;146:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:39;147:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:33;147:23">mbbackup-merge-incremental</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:40;148:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:41;149:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:34;150:18">cbbackup-merge-incremental</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:16;152:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:42;153:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:35;153:23">mbbackup</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:43;154:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:44;155:15">Deprecated in 1.8, replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:36;155:54">cbbackup</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:17;157:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:45;158:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:37;158:23">mbbrowse_logs</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:46;159:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:47;160:15">Deprecated in 1.8, replaced by
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:38;161:17">cbbrowse_logs</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:18;163:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:48;164:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:39;164:23">mbcollect_info</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:49;165:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:50;166:15">Deprecated in 1.8, replaced by
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:40;167:17">cbcollect_info</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:19;169:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:51;170:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:41;170:23">mbdbconvert</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:52;171:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:53;172:15">Deprecated in 1.8, replaced by
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:42;173:17">cbdbconvert</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:20;175:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:54;176:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:43;176:23">mbdbmaint</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:55;177:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:56;178:15">Deprecated in 1.8, replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:44;178:54">cbdbmaint</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:21;180:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:57;181:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:45;181:23">mbdbupgrade</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:58;182:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:59;183:15">Deprecated in 1.8, replaced by
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:46;184:17">cbdbupgrade</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:22;186:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:60;187:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:47;187:23">mbdumpconfig.escript</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:61;188:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:62;189:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:48;190:18">cbdumpconfig.escript</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:23;192:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:63;193:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:49;193:23">mbenable_core_dumps.sh</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:64;194:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:65;195:15">Deprecated in 1.8, replaced by
+									<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:50;196:18">cbenable_core_dumps.sh</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:24;198:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:66;199:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:51;199:23">mbflushctl</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:67;200:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:68;201:15">Deprecated in 1.8, replaced by
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:52;202:17">cbflushctl</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:25;204:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:69;205:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:53;205:23">mbrestore</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:70;206:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:71;207:15">Deprecated in 1.8, replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:54;207:54">cbrestore</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:26;209:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:72;210:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:55;210:23">mbstats</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:73;211:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:74;212:15">Deprecated in 1.8, replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:56;212:54">cbstats</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:27;214:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:75;215:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:57;215:23">mbupgrade</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:76;216:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:77;217:15">Deprecated in 1.8, replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:58;217:54">cbupgrade</codeph></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="row:28;219:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:78;220:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:59;220:23">mbvbucketctl</codeph></entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:79;221:15">1.7</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="entry:80;222:15">Deprecated in 1.8, replaced by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="codeph:60;222:54">cbvbucketctl</codeph>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="related-links:1;229:17">
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="linklist:1;230:13">
+			<link href="../rest/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="link:1;231:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
+		</linklist>
+	</related-links>
+</topic>

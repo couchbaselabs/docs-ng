@@ -1,11 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE topic
-  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic11656"><title>Server nodes REST API</title><body><p><!--Removed anchor point couchbase-admin-restapi-node-management--></p><p>A Couchbase Server instance, also known as ‘node’, is a physical or virtual
-machine running Couchbase Server. Each node is as a member of a cluster.</p><p>To view information about nodes that exist in a Couchbase Cluster, you use
-this request:</p><codeblock><codeph>curl -u admin:password http://localhost:8091/pools/nodes
-</codeph></codeblock><p>Replace <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example with
-your actual values.</p><p>Couchbase server returns this response in JSON:</p><codeblock><codeph>{"storageTotals":
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_g3v_drf_q4">
+  <title>Server nodes REST API</title>
+  <shortdesc>A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server. 
+    Each node is as a member of a cluster.</shortdesc>
+  <refbody>
+    
+    <section><title>HTTP method and URI</title>
+      <codeblock>GET /pools/nodes</codeblock>
+    </section>
+      
+      
+      
+      <section><title>Curl syntax and example</title>
+      <codeblock>curl -u admin:password http://localhost:port/pools/nodes</codeblock>
+        <p>To view information about nodes that exist in a Couchbase Cluster, you use this request:</p>
+
+        <codeblock>curl -u admin:password http://10.5.2.118:8091/pools/nodes</codeblock>
+
+    </section>
+      
+    
+    <section><title>Response</title>
+    <p>Couchbase server returns this response in JSON:</p>
+    
+    <codeblock>
+      {"storageTotals":
                     {
                     "ram":
                     {
@@ -73,141 +93,16 @@ your actual values.</p><p>Couchbase server returns this response in JSON:</p><co
                                 "stats":{"uri":"/pools/nodes/stats"},
                                 "counters":{"rebalance_success":1,"rebalance_start":1},
                                 "stopRebalanceIsSafe":true}
-</codeph></codeblock><p><!--Removed anchor point couchbase-admin-restapi-bucket-stats-on-node--></p><section><title>Retrieving statistics</title><p>To retrieve statistics about a node, you can first retrieve a list of nodes in a
-cluster with this request:</p><codeblock><codeph>curl -u admin:password http://localhost:8091/pools/default/buckets/default/nodes
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and values in the above example with your
-actual values.</p><p>You can send this request using the IP address and port for any node in the
-cluster. This sends the following HTTP request:</p><codeblock><codeph>GET /pools/default/buckets/default/nodes HTTP/1.1
-User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
-Host: 10.4.2.4:8091
-Accept: */*
-</codeph></codeblock><p>If Couchbase Server successfully handles the request, you will get a response
-similar to the following example:</p><codeblock><codeph>{"servers":[
-  {"hostname":"10.4.2.6:8091",
-  "uri":"/pools/default/buckets/default/nodes/10.4.2.6%3A8091",
-  "stats":
-      {"uri":"/pools/default/buckets/default/nodes/10.4.2.6%3A8091/stats"}}
-    ....
-</codeph></codeblock><p>You can then make a REST request to the specific IP address and port of given
-node shown in the response and add <codeph>/stats</codeph> as the endpoint:</p><codeblock><codeph>curl -u admin:password http://10.4.2.4:8091/pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>10.4.2.4</i> values in the above example
-with your actual values.</p><p>This sends the following HTTP request:</p><codeblock><codeph>GET /pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats HTTP/1.1
-User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
-Host: 10.4.2.4:8091
-Accept: */*
-</codeph></codeblock><p>If Couchbase Server successfully handles the request, you will get a response
-similar to the following example:</p><codeblock><codeph>{"hostname":"10.4.2.4:8091","hot_keys":[{"name":"[2012-11-05::3:47:01]"
-....
-"samplesCount":60,"isPersistent":true,"lastTStamp":1352922180718,"interval":1000}}
-</codeph></codeblock><p>The statistics returned will be for the individual bucket associated with that
-node.</p><p><!--Removed anchor point couchbase-admin-restapi-provisioning--></p></section><section><title>Provisioning nodes</title><p>Creating a new cluster or adding a node to a cluster is called <codeph>provisioning</codeph>.
-You need to:</p><ul>
-<li><p>Create a new node by installing a new Couchbase Server.</p></li>
-<li><p>Configure disk path for the node.</p></li>
-<li><p>Optionally configure memory quota for each node within the cluster. Any nodes
- you add to a cluster will inherit the configured memory quota. The default
- memory quota for the first node in a cluster is 60% of the physical RAM.</p></li>
-<li><p>Add the node to your existing cluster.</p></li>
-</ul><p>Whether you are adding a node to an existing cluster or starting a new cluster,
-the node’s disk path must be configured. Your next steps depends on whether you
-create a new cluster or you want to add a node to an existing cluster. If you
-create a new cluster you will need to secure it by providing an administrative
-username and password. If you add a node to an existing cluster you will need
-the URI and credentials to use the REST API with that cluster.</p><p><!--Removed anchor point couchbase-admin-restapi-provisioning-diskpath--></p></section><section><title>Configuring index paths</title><p>The path for the index files can be configured through the use of the
-<codeph>index_path</codeph> parameter:</p><p>Example as follows:</p><codeblock><codeph>curl -X POST -u admin:password \
--d index_path=/var/tmp/text-index \
-http://localhost:8091/nodes/self/controller/settings
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>/var/tmp/text-index</i>
-values in the above example with your actual values.</p><p>As a raw HTTP request:</p><codeblock><codeph>POST /nodes/self/controller/settings HTTP/1.1
-Host: localhost:8091
-Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-Authorization: Basic YWRtaW46YWRtaW4=
-Content-Length: xx path=/var/tmp/test
-</codeph></codeblock><p>The HTTP response will contain the response code and optional error message:</p><codeblock><codeph>HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 0
-</codeph></codeblock><p>As of Couchbase Server 2.0.1 if you try to set the data path at this endpoint,
-you will receive this error:</p><codeblock><codeph>ERROR: unable to init 10.3.4.23 (400) Bad Request
-{u'error': u'Changing data of nodes that are part of provisioned cluster is not supported'}
-</codeph></codeblock><p><!--Removed anchor point couchbase-admin-restapi-node-username-pass--></p></section><section><title>Setting usernames and passwords</title><p>While this can be done at any time for a cluster, it is typically the last step
-you complete when you add node into being a new cluster. The response will
-indicate the new base URI if the parameters are valid. Clients will want to send
-a new request for cluster information based on this response.</p><p>For example, using <codeph>curl</codeph> :</p><codeblock><codeph>curl -u admin:password -d username=Administrator \
--d password=letmein \
--d port=8091 \
-http://localhost:8091/settings/web
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>letmein</i>, and <i>Administrator</i>
-values in the above example with your actual values.</p><p>The raw HTTP request:</p><codeblock><codeph>POST /settings/web HTTP/1.1
-Host: localhost:8091
-Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-Authorization: Basic YWRtaW46YWRtaW4=
-Content-Length: xx
-username=Administrator&amp;password=letmein&amp;port=8091
-</codeph></codeblock><p>The corresponding HTTP response data:</p><codeblock><codeph>HTTP/1.1 200 OK
-Content-Type: application/json
-Server: Couchbase Server 2.0
-Pragma: no-cache
-Date: Mon, 09 Aug 2010 18:50:00 GMT
-Content-Type: application/json
-Content-Length: 39
-Cache-Control: no-cache no-store max-age=0
-{"newBaseUri":"http://localhost:8091/"}
-</codeph></codeblock><p>Note</p><p>
-The port number must be specified when username/password is updated.
-</p><p><!--Removed anchor point couchbase-admin-restapi-cluster-memory-quota--></p></section><section><title>Configuring node memory quota</title><p>The node memory quota configures how much RAM to be allocated to Couchbase for
-every node within the cluster.</p><p><!--Removed anchor point table-couchbase-admin-restapi-settings-cluster-set-param-post--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Set Memory</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry><b>Method</b></entry>
-	<entry><codeph>POST /pools/default</codeph></entry>
-</row><row>
-	<entry><b>Request Data</b></entry>
-	<entry>Payload with memory quota setting</entry>
-</row><row>
-	<entry><b>Response Data</b></entry>
-	<entry>Empty</entry>
-</row><row>
-	<entry><b>Authentication Required</b></entry>
-	<entry>yes</entry>
-</row><row>
-	<entry><b>Return Codes</b></entry>
-</row><row>
-	<entry>200</entry>
-	<entry>OK</entry>
-</row><row>
-	<entry>400</entry>
-	<entry>Bad Request JSON: The RAM Quota value is too small.</entry>
-</row><row>
-	<entry>401</entry>
-	<entry>Unauthorized </entry>
-</row></tbody></tgroup></table><p>For example, to set the memory quota for a cluster at 400MB:</p><codeblock><codeph>curl -X POST -u admin:password -d memoryQuota=400 http://localhost:8091/pools/default
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>400</i> values in the above
-example with your actual values.</p><p>As a raw HTTP request:</p><codeblock><codeph>POST /pools/default HTTP/1.1
-Host: localhost:8091
-Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-Authorization: Basic YWRtaW46YWRtaW4=
-Content-Length: xx
-memoryQuota=400
-</codeph></codeblock><p>The HTTP response will contain the response code and optional error message:</p><codeblock><codeph>HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 0
-</codeph></codeblock><p><!--Removed anchor point couchbase-admin-restapi-hostname--></p></section><section><title>Providing hostnames</title><p>There are several ways you can provide hostnames for Couchbase. You can
-provide a hostname when you install a Couchbase Server node, when you add it
-to an existing cluster for online upgrade, or via a REST API call. If a node
-restarts, any hostname you establish will be used. You cannot provide a hostname
-for a node that is already part of a Couchbase cluster; the server will reject
-the request and return <codeph>error 400 reason: unknown ["Renaming is disallowed for
-nodes that are already part of a cluster"]</codeph>.</p><p>To see the specific REST request, see <xref href="../cb-install/#couchbase-getting-started-hostnames" format="html">Using hostnames</xref>.</p><p><!--Removed anchor point couchbase-admin-restapi-failover-node--></p></section><section><title>Requesting node failover</title><p>You can use this request to failover a node in the cluster. When you failover a
-node, it indicates the node is no longer available in a cluster and replicated
-data at another node should be available to clients. You can also choose to
-perform node failover using the Web Console.</p><p>Using the REST API endpoint <codeph>host:port/controller/failOver</codeph>, provide your
-administrative credentials and the parameter <codeph>optNode</codeph> which is an internal name
-for the node:</p><codeblock><codeph>curl -v -X POST -u admin:password http://localhost:8091/controller/failOver -d otpNode=ns_2@10.3.3.63
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>10.3.3.63</i>, values in the
-above example with your actual values.</p><p>The HTTP request will be similar to the following:</p><codeblock><codeph>POST /controller/failOver HTTP/1.1
-Authorization: Basic
-</codeph></codeblock><p>Upon success, Couchbase Server will send a response as follows:</p><codeblock><codeph>HTTP/1.1 200 OK
-</codeph></codeblock><p>If you try to failover a node that does not exist in the cluster, you will get a
-HTTP 404 error. To learn more about how to retrieve <codeph>optNode</codeph> information for
-the nodes in a cluster, see <xref href="#topic11656/couchbase-admin-restapi-clusterops">Managing Clusters</xref>.</p></section></body><related-links><linklist><title>Collected links</title><link href="../cb-install/#couchbase-getting-started-hostnames" format="html"><linktext>Using hostnames</linktext></link></linklist></related-links></topic>
+</codeblock>
+    </section>
+
+  </refbody>
+  
+  <related-links>
+    <linklist>
+      <link href="../rest/rest-cluster-intro.dita"/>
+      <link href="../install/hostnames.dita"/>
+      
+    </linklist>
+  </related-links>
+</reference>

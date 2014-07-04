@@ -15,9 +15,7 @@
          only communicate with nodes from a node list obtained within a cluster. You should perform
          backup, restore, or transfer to data from a node within a Couchbase cluster. This also
          means that if you install Couchbase Server with the default IP address, you cannot use an
-         external hostname to access it. For general information about hostnames for the server, see
-            <xref href="../cb-install/#couchbase-getting-started-hostnames" format="html">Using
-            Hostnames with Couchbase Server</xref>.</p>
+         external hostname to access it.</p>
       <p>Depending upon your platform, this tool is the following directories:</p>
 
       <table>
@@ -49,8 +47,7 @@
       <ul>
          <li><codeph>[options]</codeph></li>
       </ul>
-      <p>Same options available for <codeph>cbtransfer</codeph>, see <xref
-            href="#topic7940/couchbase-admin-cmdline-cbtransfer">cbtransfer Tool</xref></p>
+      <p>Same options available for <codeph>cbtransfer</codeph> tool.</p>
       <ul>
          <li><codeph>[source]</codeph></li>
       </ul>
@@ -70,8 +67,7 @@
          <li><p>Backup one named buckets on a specified node,</p></li>
       </ul>
       <p>All command options for <codeph>cbbackup</codeph> are the same options available for
-            <codeph>cbtransfer</codeph>. For a list of standard and special-use options, see <xref
-            href="#topic7940/couchbase-admin-cmdline-cbtransfer">cbtransfer Tool</xref>.</p>
+         <codeph>cbtransfer</codeph>. For a list of standard and special-use options, see <codeph>cbtransfer</codeph> yool.</p>
       <p>You can backup an entire cluster, which includes all of the data buckets and data at all
          nodes. This will also include all design documents; do note however that you will need to
          rebuild any indexes after you restore the data. To backup an entire cluster and all buckets
@@ -122,14 +118,11 @@
   -k '^object.*'
 </codeph></codeblock>
       <p>For more information on using <codeph>cbbackup</codeph> scenarios when you may want to use
-         it and best practices for backup and restore of data with Couchbase Server, see <xref
-            href="../cb-admin/#couchbase-backup-restore-backup-cbbackup" format="html">Backing Up
-            Using cbbackup</xref>.</p>
+         it and best practices for backup and restore of data with Couchbase Server.</p>
       <p><b>Backing Up Design Documents Only</b></p>
       <p>You can backup only design documents from a cluster or bucket with the option,
             <codeph>design_doc_only=1</codeph>. You can later restore the design documents only with
-            <codeph>cbrestore</codeph>, see <xref
-            href="#topic7940/couchbase-admin-cmdline-cbrestore">cbrestore Tool</xref> :</p>
+            <codeph>cbrestore</codeph>:</p>
       <codeblock><codeph>&gt; ./cbbackup http://10.5.2.30:8091 ~/backup -x design_doc_only=1 -b bucket_name
 
 transfer design doc only. bucket msgs will be skipped.
@@ -209,9 +202,7 @@ done
          including 1.8. To do so you use the same command options you use when you backup a 2.0
          cluster except you provide it the hostname and port for the 1.8.x cluster. You do not need
          to even install Couchbase Server 2.0 in order to use <codeph>cbbackup 2.x</codeph> to
-         backup Couchbase Server 1.8.x. You can get a copy of the tool from the <xref
-            href="https://github.com/couchbase/couchbase-cli" scope="external" format="html"
-            >Couchbase command-line tools GitHub repository</xref>. After you get the tool, go to
+         backup Couchbase Server 1.8.x. After you get the tool, go to
          the directory where you cloned the tool and perform the command. For instance:</p>
       <codeblock><codeph>./cbbackup http://1.8_host_name:port ~/backup -u Administrator -p password
 </codeph></codeblock>
@@ -223,18 +214,17 @@ done
          bucket, backup the default bucket, or backup the data buckets associated with a single
          node.</p>
       <note type="note">The <codeph>cbrestore</codeph> tool can also be used to restore backup
-         data onto a 1.8.x cluster. See <xref href="#topic7940/couchbase-admin-cmdline-cbrestore"
-            >cbrestore Tool</xref>.</note>
+         data onto a 1.8.x cluster.</note>
    </body>
    <related-links>
       <linklist>
-         <title>Collected links</title>
-         <link href="../cb-install/#couchbase-getting-started-hostnames" format="html">
-            <linktext>Using Hostnames with Couchbase Server</linktext>
-         </link>
-         <link href="../cb-admin/#couchbase-backup-restore-backup-cbbackup" format="html">
-            <linktext>Backing Up Using cbbackup</linktext>
-         </link>
+
+         
+         
+         <link href="../Install/hostnames.dita"/>
+         <link href="../cli/cbcli-intro.dita"/>
+         <link href="../cli/cbrestore_tool.dita"/>
+         <link href="../cli/cbtransfer_tool.dita"/>
          <link href="https://github.com/couchbase/couchbase-cli" scope="external" format="html">
             <linktext>Couchbase command-line tools GitHub repository</linktext>
          </link>

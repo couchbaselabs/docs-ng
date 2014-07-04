@@ -1,37 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic1640"><title>Joining nodes into clusters</title><body><p>This is a REST request made to an individual Couchbase node to add that node to
-a given cluster. You cannot merge two clusters together into a single cluster
-using the REST API, however, you can add a single node to an existing cluster.
-You will need to provide several parameters to add a node to a cluster:</p><codeblock><codeph>curl -u admin:password -d clusterMemberHostIp=192.168.0.1 \
+<topic xml:lang="en-us" id="topic1640">
+	<title>Joining nodes into clusters</title>
+	<body>
+		<p>This is a REST request made to an individual Couchbase node to add that node to a given
+			cluster. You cannot merge two clusters together into a single cluster using the REST
+			API, however, you can add a single node to an existing cluster. You will need to provide
+			several parameters to add a node to a cluster.</p>
+		
+		<p>The following arguments are required:</p>
+		
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Argument</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>clusterMemberHostIp</entry>
+						<entry>Hostname or IP address to
+							a member of the cluster the node receiving this POST will be joining.</entry>
+					</row>
+					<row>
+						<entry>clusterMemberPort</entry>
+						<entry>Port number for the RESTful interface to the
+							system. If your cluster requires
+							credentials, provide the administrator username and password.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		
+		
+		<section><title>Curl example</title>
+		
+		<codeblock>curl -u admin:password -d clusterMemberHostIp=192.168.0.1 \
 -d clusterMemberPort=8091 \
 -d user=admin -d password=password
 http://localhost:8091/node/controller/doJoinCluster
-</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>192.168.0.1</i> values in the above
-example with your actual values.</p><p>The following arguments are required:</p><p><!--Removed anchor point table-restapi-add-node-to-cluster-args--></p><p>Argument | Description<!--A BR tag was used here in the original source.-->
-——————–|———————————————————————————————–
-clusterMemberHostIp | Hostname or IP address to a member of the cluster the node receiving this POST will be joining
-clusterMemberPort | Port number for the RESTful interface to the system<!--A BR tag was used here in the original source.-->
-If your cluster requires credentials, you will need to provide the following
-parameters in your request:</p><p><!--Removed anchor point table-restapi-add-node-to-cluster-args-additional--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Argument</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry>user</entry>
-	<entry>Administration user</entry>
-</row><row>
-	<entry>password</entry>
-	<entry>Password associated with the Administration user</entry>
-</row></tbody></tgroup></table><codeblock><codeph>POST /node/controller/doJoinCluster
+</codeblock>
+		<p>Replace the <i>admin</i>, <i>password</i>, and <i>192.168.0.1</i> values in the above
+			example with your actual values.</p>
+		</section>
+		
+		<section><title>HTTP request</title>
+		<codeblock>POST /node/controller/doJoinCluster
 Host: localhost:8091
 Authorization: Basic xxxxxxxxxxxx
 Accept: */*
 Content-Length: xxxxxxxxxx
 Content-Type: application/x-www-form-urlencoded
 clusterMemberHostIp=192.168.0.1&amp;clusterMemberPort=8091&amp;user=admin&amp;password=admin123
-</codeph></codeblock><codeblock><codeph>200 OK with Location header pointing to pool details of pool just joined - successful join
+</codeblock>
+		</section>
+		
+		<section><title>Response</title>
+
+		<codeblock>200 OK with Location header pointing to pool details of pool just joined - successful join
 400 Bad Request - missing parameters, etc.
 401 Unauthorized - credentials required, but not supplied
 403 Forbidden bad credentials - invalid credentials
-</codeph></codeblock></body></topic>
+</codeblock>
+		</section>
+	</body>
+</topic>

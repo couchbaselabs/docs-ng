@@ -3,17 +3,19 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic1880">
   <title>View basics</title>
+  <shortdesc>Views allow you to extract specific fields and information from data and create an index.</shortdesc>
   <body>
     <p>The purpose of a view is take the un-structured, or semi-structured, data stored within your
       Couchbase Server database, extract the fields and information that you want, and to produce an
-      index of the selected information. Storing information in Couchbase Server using JSON makes
+      index of the selected information. 
+      Storing information in Couchbase Server using JSON makes
       the process of selecting individual fields for output easier. The resulting generated
       structure is a <i>view</i> on the stored data. The view that is created during this process
       allows you to iterate, select and query the information in your database from the raw data
       objects that have been stored.</p>
     <p>A brief overview of this process is shown in the figure below.</p>
 
-        <image href="../images/views-basic-overview.png" width="720"></image>
+        <image href="../images/views-basic-overview.png" width="600"></image>
 
     <p>In the above example, the view takes the Name, City and Salary fields from the stored
       documents and then creates a array of this information for each document in the view. A view

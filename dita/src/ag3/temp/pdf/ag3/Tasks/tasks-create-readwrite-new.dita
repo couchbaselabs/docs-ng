@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><task xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="task_kxg_mns_24" ditaarch:DITAArchVersion="1.2" domains="(topic task)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)                            (topic task strictTaskbody-c)    " class="- topic/topic task/task " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="task:1;3:28">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="title:1;4:12">Specifying read-write for new buckets</title>
+    <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="shortdesc:1;5:16">The number of readers and writer are typically set when creating a data bucket: 
+        <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="uicontrol:1;6:20">Data Buckets &gt; Create New Data Bucket &gt; Disk Read-Write Concurrency</uicontrol>.</shortdesc>
+    <taskbody class="- topic/body task/taskbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="taskbody:1;7:15">
+        <context class="- topic/section task/context " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="context:1;8:18">
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="p:1;9:16">The number of readers and writers are typically specified (default: 3) when a new bucket is created. 
+            Although, the read-write setting can also be modified on existing buckets.</p>
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="p:2;11:16">This default bucket is now ready to receive and serve requests. If  named
+                bucket is created, a similar status indicator displays next to the named bucket.</p>
+        </context>
+        
+        <steps class="- topic/ol task/steps " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="steps:1;15:16">
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="step:1;16:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="cmd:1;17:22">Under Data Buckets, click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="uicontrol:2;17:59">Create New Data Bucket</uicontrol>.</cmd>
+                <info class="- topic/itemgroup task/info " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="info:1;18:23">A Configure Bucket panel appears where you can provide settings for the new
+                    bucket.</info>
+            </step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="step:2;21:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="cmd:2;22:22">Under Disk Read-Write Concurrency, specify a number of reader/writers.</cmd>
+                <stepresult class="- topic/itemgroup task/stepresult " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="stepresult:1;23:29">
+                    <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="fig:1;24:26"><image href="../images/mrw_setting_panel.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="image:1;24:84"/></fig>
+                    </stepresult>
+            </step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="step:3;27:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="cmd:3;28:22">Provide other bucket-level settings of your choice.</cmd></step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="step:4;29:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="cmd:4;30:22">Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="uicontrol:3;30:39">Create</uicontrol>.</cmd>
+                    <stepresult class="- topic/itemgroup task/stepresult " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="stepresult:2;31:33">The new bucket displays with a yellow indicator while in warmup phase and 
+                        a green indicator after warmup is complete:
+                        <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="fig:2;33:30"><image href="../images/mrw_bucket_warmup.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="image:2;33:88"/></fig>
+                        <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="fig:3;34:30"><image href="../images/mrw_bucket_ready2.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-create-readwrite-new.dita" xtrc="image:3;34:88"/></fig>
+                    </stepresult>
+            </step>
+        </steps>
+        
+    </taskbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:37;45:60" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:36;44:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-ReadWrite.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Using multi-readers and writers</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Multiple readers and writers are supported to increase disk I/O throughput.</desc></link></linkpool></related-links>
+</task>

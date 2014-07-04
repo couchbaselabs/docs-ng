@@ -37,8 +37,7 @@
 				separated from the base URL using a question mark ( <codeph>?</codeph> ). Additional
 				arguments should be separated using an ampersand ( <codeph>&amp;</codeph> ). Special
 				characters should be quoted or escaped according to the HTTP standard
-				rules.</p><p>The additional supported arguments are detailed in the table
-				below.</p><p><!--Removed anchor point table-couchbase-querying-arguments--></p><table>
+				rules.</p><p>The additional supported arguments are detailed in the following table</p><table>
 				<tgroup cols="2">
 				<colspec colname="col1" colwidth="1*"/>
 				<colspec colname="col2" colwidth="3.96*"/>

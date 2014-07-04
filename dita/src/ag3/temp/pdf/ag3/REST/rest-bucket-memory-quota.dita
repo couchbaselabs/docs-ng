@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic994" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="title:1;5:10">Increasing bucket memory quota</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="shortdesc:1;6:14">To increase bucket memory quota, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="codeph:1;6:63">POST</codeph> operation with the
+      <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="codeph:2;7:15">/pools/default/buckets/newBucket</codeph> URI and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="codeph:3;7:73">ramQuotaMB</codeph>
+    option.</shortdesc>
+
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="body:1;10:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="p:1;11:8">You can increase and decrease a bucket’s ramQuotaMB from its current level. However, while
+      increasing will do no harm, decreasing should be done with proper sizing. Decreasing the
+      bucket’s ramQuotaMB lowers the watermark, and some items may be unexpectedly ejected if the
+      ramQuotaMB is set too low.</p>
+
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="note:1;16:23"> There are some known issues with changing the ramQuotaMB for memcached bucket types. </note>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="p:2;17:8">Example of a request:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="codeblock:1;18:16">
+curl -X POST -u admin:password -d ramQuotaMB=25 -d authType=none \
+  -d proxyPort=11215 http://localhost:8091/pools/default/buckets/newBucket
+</codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="p:3;22:8">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="i:1;22:23">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="i:2;22:37">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="i:3;22:54">localhost</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="i:4;22:72">25</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="i:5;22:83">11215</i>, and
+        <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="i:6;23:12">newBucket</i> values in the above example with your actual values.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="p:4;24:8">A 202 response indicates that the quota will be changed asynchronously throughout the
+      servers in the cluster.</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-memory-quota.dita" xtrc="codeblock:2;26:16">HTTP/1.1 202 OK
+Server: Couchbase Server 1.6.0
+Pragma: no-cache
+Date: Wed, 29 Sep 2010 20:01:37 GMT
+Content-Length: 0
+Cache-Control: no-cache no-store max-age=0
+</codeblock>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:38;45:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

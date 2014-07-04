@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1211" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="title:1;5:9">Server issues</title>
+	<shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="shortdesc:1;6:13">Basic action associated with critical and informational issues.</shortdesc>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="body:1;7:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="p:1;8:6">The following table outlines some specific areas to check when experiencing different
+			problems:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="table:1;10:10">
+			<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="tgroup:1;11:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="colspec:1;12:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="colspec:2;13:30"/>
+				<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="colspec:3;14:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="thead:1;15:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:1;16:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:1;17:14">Severity</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:2;18:14">Issue</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:3;19:14">Suggested Action(s)</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="tbody:1;22:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:2;23:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:4;24:14">Critical</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:5;25:14">Couchbase Server does not start up.</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:6;26:14">Check that the service is running.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:3;28:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:7;29:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:8;30:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:9;31:14">Check error logs.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:4;33:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:10;34:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:11;35:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:12;36:14">Try restarting the service.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:5;38:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:13;39:14">Critical</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:14;40:14">A server is not responding.</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:15;41:14">Check that the service is running.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:6;43:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:16;44:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:17;45:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:18;46:14">Check error logs.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:7;48:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:19;49:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:20;50:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:21;51:14">Try restarting the service.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:8;53:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:22;54:14">Critical</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:23;55:14">A server is down.</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:24;56:14">Try restarting the server.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:9;58:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:25;59:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:26;60:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:27;61:14">Use the command-line interface to check connectivity.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="row:10;63:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:28;64:14">Informational</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:29;65:14">Bucket authentication failure.</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="entry:30;66:14">Check the properties of the bucket that you are attempting to connect
+							to.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="p:2;72:6">The primary source for run-time logging information is the Couchbase Server Web Console.
+			Run-time logs are automatically set up and started during the installation process.
+			However, the Couchbase Server gives you access to lower-level logging details if needed
+			for diagnostic and troubleshooting purposes. Log files are stored in a binary format in
+			the logs directory under the Couchbase installation directory. You must use
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-common.dita" xtrc="codeph:1;77:13">browse_logs</codeph> to extract the log contents from the binary format to a
+			text file.</p>
+	</body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:136;155:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:129;148:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/Trbl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Troubleshooting</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Troubleshooting covers general tips, common errors, log information, and other issues.</desc></link></linkpool></related-links>
+</topic>

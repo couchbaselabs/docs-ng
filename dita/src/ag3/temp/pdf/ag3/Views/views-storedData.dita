@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Views?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Views/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic7568" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="title:1;5:10">Views and stored data</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:1;7:8">The view system relies on the information stored within your cluster being formatted as a
+      JSON document. The formatting of the data in this form allows the individual fields of the
+      data to be identified and used at the components of the index.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:2;10:8">Information is stored into your Couchbase database the data stored is parsed, if the
+      information can be identified as valid JSON then the information is tagged and identified in
+      the database as valid JSON. If the information cannot be parsed as valid JSON then it is
+      stored as a verbatim binary copy of the submitted data.</p>
+    
+    <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="fig:1;15:10"><image href="../images/view-types-datastore.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="image:1;15:71"/></fig>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:3;17:8">When retrieving the stored data, the format of the information depends on whether the data
+      was tagged as valid JSON or not:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:1;19:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:1;20:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="b:1;20:14">JSON</b></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:4;22:8">Information identified as JSON data may not be returned in a format identical to that stored.
+      The information will be semantically identical, in that the same fields, data and structure as
+      submitted will be returned. Metadata information about the document is presented in a separate
+      structure available during view processing.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:5;26:8">The white space, field ordering may differ from the submitted version of the JSON
+      document.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:6;28:8">For example, the JSON document below, stored using the key <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:1;28:75">mykey</codeph> :</p>
+
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeblock:1;30:16">
+{
+   "title" : "Fish Stew",
+   "servings" : 4,
+   "subtitle" : "Delicious with fresh bread"
+}
+</codeblock>
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:7;38:8">May be returned within the view processor as:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeblock:2;39:16">
+{
+    "servings": 4,
+    "subtitle": "Delicious with fresh bread",
+    "title": "Fish Stew"
+}
+
+ </codeblock>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:2;47:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:2;48:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="b:2;48:14">Non-JSON</b></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:8;50:8">Information not parsable as JSON will always be stored and returned as a binary copy of the
+      information submitted to the database. If you store an image, for example, the data returned
+      will be an identical binary copy of the stored image.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:9;53:8">Non-JSON data is available as a base64 string during view processing. A non-JSON document can
+      be identified by examining the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:2;54:46">type</codeph> field of the metadata structure.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:10;55:8">The significance of the returned structure can be seen when editing the view within the Web
+      Console.</p>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="section:1;59:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="title:2;59:21">JSON basics</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:11;60:10">JSON is used because it is a lightweight, easily parsed,
+        cross-platform data representation format. There are a multitude of libraries and tools
+        designed to help developers work efficiently with data represented in JSON format, on every
+        platform and every conceivable language and application framework, including, of course,
+        most web browsers.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:12;65:10">JSON supports the same basic types as supported by JavaScript,
+        these are:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:3;67:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:3;68:13">Number (either integer or floating-point).</li>
+      </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:13;69:15">JavaScript supports a maximum numerical value of 2<sup class="+ topic/ph hi-d/sup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="sup:1;69:70">53</sup>. If you are working
+        with numbers larger than this from within your client library environment (for example,
+        64-bit numbers), you must store the value as a string.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:4;71:71">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:4;72:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:14;72:16">String — this should be enclosed by double-quotes and supports Unicode characters and
+            backslash escaping. For example:</p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeblock:3;74:22">"A String"</codeblock></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:5;75:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:15;75:16">Boolean — a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:3;75:36">true</codeph> or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:4;75:61">false</codeph> value. You can use these
+            strings directly. For example:</p><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:5;76:55">{ "value": true}</codeph></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:6;77:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:16;77:16">Array — a list of values enclosed in square brackets. For example:</p>
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:6;78:19">["one", "two", "three"]</codeph></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:7;79:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:17;79:16">Object — a set of key/value pairs (i.e. an associative array, or hash). The key must
+            be a string, but the value can be any of the supported JSON values. For example:</p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeblock:4;81:22">{
+   "servings" : 4,
+   "subtitle" : "Easy to make in advance, and then cook when ready",
+   "cooktime" : 60,
+   "title" : "Chicken Coriander"
+}
+</codeblock></li>
+      </ul>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:18;89:10">If the submitted data cannot be parsed as a JSON, the information will be stored as a
+        binary object, not a JSON document.</p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="section:2;93:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="title:3;93:21">Document metadata</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:19;94:10">During view processing, metadata about individual
+        documents is exposed through a separate JSON object, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:7;95:70">meta</codeph>, that can be
+        optionally defined as the second argument to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:8;96:66">map()</codeph>. This metadata can
+        be used to further identify and qualify the document being processed.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:20;98:10">The
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:9;99:19">meta</codeph> structure contains the following fields and associated
+        information:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:5;101:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:8;102:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:10;102:21">id</codeph></li>
+      </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:21;103:15">The ID or key of the stored data object. This is the same as the key used when writing
+        the object to the Couchbase database.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:6;104:54">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:9;105:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:11;105:21">rev</codeph></li>
+      </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:22;106:15">An internal revision ID used internally to track the current revision of the
+        information. The information contained within this field is not consistent or trackable and
+        should not be used in client applications.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:7;108:59">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:10;109:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:12;109:21">type</codeph></li>
+      </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:23;110:15">The type of the data that has been stored. A valid JSON document will have the type
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:13;111:19">json</codeph>. Documents identified as binary data will have the type
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:14;112:19">base64</codeph>.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:8;112:43">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:11;113:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:15;113:21">flags</codeph></li>
+      </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:24;114:15">The numerical value of the flags set when the data was stored. The availability and
+        value of the flags is dependent on the client library you are using to store your data.
+        Internally the flags are stored as a 32-bit integer.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ul:9;116:69">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:12;117:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:16;117:21">expiration</codeph></li>
+      </ul>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:25;119:10">The expiration value for the stored object. The stored expiration time is always
+        stored as an absolute Unix epoch time value.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:26;120:60">These additional fields are only exposed
+        when processing the documents within the view server. These fields are not returned when you
+        access the object through the Memcached/Couchbase protocol as part of the
+        document.</p>
+    </section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="section:3;127:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="title:4;127:21">Non-JSON data</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:27;127:45">All documents stored in Couchbase Server will return a
+        JSON structure, however, only submitted information that could be parsed into a JSON
+        document will be stored as a JSON document. If you store a value that cannot be parsed as a
+        JSON document, the original binary data is stored. This can be identified during view
+        processing by using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:17;131:41">meta</codeph> object supplied to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:18;131:86">map()</codeph>
+        function.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:28;132:25">Information that has been identified and stored as binary documents instead
+        of JSON documents can still be indexed through the views system by creating an index on the
+        key data. This can be particularly useful when the document key is significant. For example,
+        if you store information using a prefix to the key to identify the record type, you can
+        create document-type specific indexes.</p></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="section:4;139:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="title:5;139:21">Document storage and indexing sequence</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:29;139:70">The method of storage of
+        information into the Couchbase Server affects how and when the indexing information is
+        built, and when data written to the cluster is incorporated into the indexes. In addition,
+        the indexing of data is also affected by the view system and the settings used when the view
+        is accessed.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:30;143:28">The basic storage and indexing sequence is:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="ol:1;143:79">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:13;144:13">A document is stored within the cluster. Initially the document is stored only in
+          RAM.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:14;146:13">The document is persisted to disk through the standard disk write queue mechanism.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="li:15;147:13">Once the document has been persisted to disk, the document can be indexed by the view
+          mechanism.</li>
+      </ol>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:31;150:10">This sequence means that the view results are <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:19;150:64">eventually consistent</codeph>
+        with what is stored in memory based on whether documents have been persisted to disk. It is
+        possible to write a document to the cluster, and access the index, without the newly written
+        document appearing in the generated view index.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:32;154:10">Conversely, documents that have been
+        stored with an expiry may continue to be included within the view index until the document
+        has been removed from the database by the expiry pager.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:33;157:10">Couchbase Server supports the
+        Observe command, which enables the current state of a document and whether the document has
+        been persisted to disk and/or whether it has been considered for inclusion in an
+        index.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="p:34;161:10">When accessing a view, the contents of the view are asynchronous to the stored
+        documents. In addition, the creation and updating of the view is subject to the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="codeph:20;163:19">stale</codeph> parameter. This controls how and when the view is updated when the
+        view content is queried. </p>
+    </section>
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="related-links:1;168:18"><linkpool class="- topic/linkpool " xtrc="topicref:106;123:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:103;120:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Views/views-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Views and indexes</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="linklist:1;169:15">
+      <link href="../views/views-operation.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-storedData.dita" xtrc="link:1;170:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views operation</linktext></link>
+    </linklist>
+  </related-links>
+  
+</topic>

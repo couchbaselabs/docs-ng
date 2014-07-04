@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_qwy_nmf_q4">
+  <title>Retrieving statistics</title>
+  <shortdesc>To retrieve statistics for a node, first retrieve a list of nodes </shortdesc>
+  <refbody>
+    <section><title>HTTP method and URI</title>
+      
+      <codeblock>
+        GET /pools/default/buckets/default/nodes/host:port/stats
+ 
+      </codeblock>
+      
+      <p>To obtain statistics for a node:
+        <ol>
+          <li>Retrieve a list of nodes in a cluster.</li>
+          <li>Send the statistics request using the IP address and port for a node in the cluster.</li>
+          
+        </ol>
+      
+      </p>
+    </section>
+    
+    <section><title>HTTP request</title>
+      
+      <p>The curl request for a node list sends the following HTTP request:</p>
+      
+      <codeblock>GET /pools/default/buckets/default/nodes HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: 10.5.2.118:8091
+Accept: */*
+</codeblock>
+      
+      <p> The curl request for a node's statistics sends the following HTTP request:</p>
+
+      <codeblock>GET /pools/default/buckets/default/nodes/10.4.2.4%3A8091/stats HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: 10.4.2.4:8091
+Accept: */*
+</codeblock>       
+
+    </section>
+      
+
+      <section><title>Curl syntax</title>
+        <p>To retrieve a list of nodes:</p>
+        <codeblock>curl -u admin:password http://localhost:port/pools/default/buckets/default/nodes
+</codeblock>
+        <p>To retrieve statistics about a node:</p>
+        <codeblock>curl -u admin:password http://host:port/pools/default/buckets/default/nodes/localhost%3Aport/stats</codeblock>
+      </section>
+    
+    <section><title>Curl example</title>
+      <p>The following example retrieves a list of nodes from a cluster:</p>
+      
+      <codeblock>curl -u admin:password http://10.5.2.118:8091/pools/default/buckets/default/nodes
+</codeblock>
+        
+      
+      
+      <p>If Couchbase Server successfully handles the request, a response similar to the following
+        displays:</p>
+      
+      <codeblock>{"servers":[
+  {"hostname":"10.5.2.118:8091",
+  "uri":"/pools/default/buckets/default/nodes/10.5.2.118%3A8091",
+  "stats":
+      {"uri":"/pools/default/buckets/default/nodes/10.5.2.118%3A8091/stats"}}
+    ....
+</codeblock>
+
+      <p>You can then make a REST request to the specific IP address and port of given node shown in the
+  response and add <codeph>/stats</codeph> as the endpoint:</p>
+      
+      <codeblock>curl -u admin:password http://10.5.2.118:8091/pools/default/buckets/default/nodes/10.5.2.118%3A8091/stats
+</codeblock>
+      
+      
+      </section>
+      
+      <section><title>Response</title>
+      
+        <p>The following statistics returned are for the individual bucket associated with that node.</p>
+      
+      <codeblock>{"hostname":"10.5.2.118:8091","hot_keys":[{"name":"[2012-11-05::3:47:01]"
+....
+"samplesCount":60,"isPersistent":true,"lastTStamp":1352922180718,"interval":1000}}
+</codeblock>
+      
+      
+    </section>
+  </refbody>
+</reference>

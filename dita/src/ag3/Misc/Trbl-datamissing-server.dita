@@ -664,13 +664,11 @@ Total docs: 2
          file.</p>
       <p>An example where using these tools and the information from the URL
          /_set_view/bucketname/_design/ddocid/_info was very important to find which component was
-         misbehaving is at <xref href="http://www.couchbase.com/issues/browse/MB-5534"
-            scope="external" format="html">http://www.couchbase.com/issues/browse/MB–5534</xref>. In
+         misbehaving. In
          this case Tommie was able to identify that the problem was in ep-engine.</p>
    </body>
    <related-links>
       <linklist>
-         <title>Collected links</title>
          <link href="http://www.couchbase.com/issues/browse/MB-5534" scope="external" format="html">
             <linktext>http://www.couchbase.com/issues/browse/MB–5534</linktext>
          </link>

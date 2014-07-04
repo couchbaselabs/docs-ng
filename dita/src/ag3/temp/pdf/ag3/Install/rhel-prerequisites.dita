@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_fm2_lps_g4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="title:1;4:10">Prerequisites</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="p:1;6:8">Before you install, check the supported platforms. The Red Hat installation uses the RPM
+      package.</p>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="section:1;9:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="title:2;9:21">OpenSSL dependency checking</title>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="p:2;10:12">For Red Hat Enterprise Linux version 6.0, Couchbase Server RPM performs dependency checks
+          for OpenSSL using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:1;11:37">pkg-config</codeph>. Check that this pkg-config is installed and if
+          not, install it: </p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeblock:1;13:22">
+root-&gt; sudo yum install -y pkgconfig </codeblock>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="p:3;15:14">Upon successful install the following output displays:</p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeblock:2;16:22">Loaded plugins .... Installed: pkgconfig.x86_64 1:0.21-2.el5 Complete!
+      </codeblock>
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="section:2;20:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="title:3;20:21">OpenSSL 0983 installation</title></section>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="p:4;21:12">For Red Hat Enterprise Linux version 6.0 and above, install a specific
+          OpenSSL dependency by running:</p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeblock:3;23:22">
+root-&gt; yum install openssl098e</codeblock>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="p:5;25:14">Some users can not install <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:2;25:49">openssl098e</codeph> with this
+            command without having administrative privileges. 
+            If this issue is experienced, put the
+            contents of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:3;28:37">lib64</codeph>directory into <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:4;28:74">opt/couchbase/lib</codeph>:</p>
+          
+          <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="ul:1;30:15">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="li:1;31:17">Download `openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm’.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="li:2;32:17">Go to the directory where you extracted Couchbase Server: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:5;32:83">cd
+              opt/couchbase</codeph>.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="li:3;34:17">Extract the openssl098e RPM:
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeblock:4;35:20">rpm2cpio
+openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+--make-directories --no-absolute-filenames</codeblock>
+      </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="li:4;39:17">Move the extracted files to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:6;39:57">/lib</codeph> directory for Couchbase Server:
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-prerequisites.dita" xtrc="codeph:7;40:23">mv usr/lib64/* lib/</codeph></li>
+          </ul>
+ 
+       
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:8;13:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:7;12:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/RHEL-install-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Red Hat Linux installation</linktext></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/ui/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_mcl_p5p_k4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="title:1;4:10">XDCR</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="shortdesc:1;5:14">The XDCR panel is used to create a remote cluster reference and specify replication.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="body:1;6:9">
+    
+ 
+    <image href="../images/ui-xdcr-panel.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="image:1;9:47"/>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="section:1;11:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="title:2;11:21">Create cluster reference</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="p:1;12:10">To create a cluster reference, provide the cluster name, IP or hostname, administrator username and password 
+        and whether or not to enable encryption (Enterprise Edition only).</p>
+      <image href="../images/xdcr-cluster-reference.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="image:2;14:58"/>
+    
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="section:2;18:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="title:3;18:21">Create replication</title>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="p:2;19:8">To create a replication, provide the bucket to replicaed on the remote cluster, the remote cluster and bucket, 
+    and modify any advanced XDCR settings.</p>
+      <image href="../images/create_rep_xdcr_advance2.2.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-xdcr-panel.dita" xtrc="image:3;21:62"/>
+      
+    </section>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:86;100:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:79;92:36" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase web console</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Couchbase web console is the main tool for managing the Couchbase environment.</desc></link></linkpool></related-links>
+</topic>

@@ -1,524 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic34000"><title>Rebalancing tasks</title><body><p>As you store data into your Couchbase Server cluster, you may need to alter the
-number of nodes in your cluster to cope with changes in your application load,
-RAM, disk I/O and networking performance requirements.</p><p>Couchbase Server is designed to actively change the number of nodes configured
-within the cluster to cope with these requirements, all while the cluster is up
-and running and servicing application requests. The overall process is broken
-down into two stages; the addition and/or removal of nodes in the cluster, and
-the <codeph>rebalancing</codeph> of the information across the nodes.</p><p>The addition and removal process merely configures a new node into the cluster,
-or marks a node for removal from the cluster. No actual changes are made to the
-cluster or data when configuring new nodes or removing existing ones.</p><p>During the rebalance operation:</p><ul>
-<li><p>Using the new Couchbase Server cluster structure, data is moved between the
- vBuckets on each node from the old structure. This process works by exchanging
- the data held in vBuckets on each node across the cluster. This has two effects:</p>
+<topic xml:lang="en-us" id="topic34000">
+ <title>Rebalancing</title>
+ <body>
+  <p>As you store data into your Couchbase Server cluster, you may need to alter the number of nodes
+   in your cluster to cope with changes in your application load, RAM, disk I/O and networking
+   performance requirements.</p>
+  <p>Couchbase Server is designed to actively change the number of nodes configured within the
+   cluster to cope with these requirements, all while the cluster is up and running and servicing
+   application requests. The overall process is broken down into two stages; the addition and/or
+   removal of nodes in the cluster, and the <codeph>rebalancing</codeph> of the information across
+   the nodes.</p>
+  <p>The addition and removal process merely configures a new node into the cluster, or marks a node
+   for removal from the cluster. No actual changes are made to the cluster or data when configuring
+   new nodes or removing existing ones.</p>
+  <p>During the rebalance operation:</p>
+  <ul>
+   <li><p>Using the new Couchbase Server cluster structure, data is moved between the vBuckets on
+     each node from the old structure. This process works by exchanging the data held in vBuckets on
+     each node across the cluster. This has two effects:</p>
+    <ul>
+     <li><p>Removes the data from machines being removed from the cluster. By totally removing the
+       storage of data on these machines, it allows for each removed node to be taken out of the
+       cluster without affecting the cluster operation.</p></li>
+     <li><p>Adds data and enables new nodes so that they can serve information to clients. By moving
+       active data to the new nodes, they will be made responsible for the moved vBuckets and for
+       servicing client requests.</p></li>
+    </ul></li>
+   <li><p>Rebalancing moves both the data stored in RAM, and the data stored on disk for each
+     bucket, and for each node, within the cluster. The time taken for the move is dependent on the
+     level of activity on the cluster and the amount of stored information.</p></li>
+   <li><p>The cluster remains up, and continues to service and handle client requests. Updates and
+     changes to the stored data during the migration process are tracked and will be updated and
+     migrated with the data that existed when the rebalance was requested.</p></li>
+   <li><p>The current vBucket map, used to identify which nodes in the cluster are responsible for
+     handling client requests, is updated incrementally as each vBucket is moved. The updated
+     vBucket map is communicated to Couchbase client libraries and enabled smart clients (such as
+     Moxi), and allows clients to use the updated structure as the rebalance completes. This ensures
+     that the new structure is used as soon as possible to help spread and even out the load during
+     the rebalance operation.</p></li>
+  </ul>
+  <p>Because the cluster stays up and active throughout the entire process, clients can continue to
+   store and retrieve information and do not need to be aware that a rebalance operation is taking
+   place.</p>
+  <p>There are four primary reasons that you perform a rebalance operation:</p>
+  <ul>
+   <li><p>Adding nodes to expand the size of the cluster.</p></li>
+   <li><p>Removing nodes to reduce the size of the cluster.</p></li>
+   <li><p>Reacting to a failover situation, where you need to bring the cluster back to a healthy
+     state.</p></li>
+   <li><p>You need to temporarily remove one or more nodes to perform a software, operating system
+     or hardware upgrade.</p></li>
+  </ul>
+  <p>Regardless of the reason for the rebalance, the purpose of the rebalance is migrate the cluster
+   to a healthy state, where the configured nodes, buckets, and replicas match the current state of
+   the cluster.</p>
+  
 
-<ul>
-<li><p>Removes the data from machines being removed from the cluster. By totally
- removing the storage of data on these machines, it allows for each removed node
- to be taken out of the cluster without affecting the cluster operation.</p></li>
-<li><p>Adds data and enables new nodes so that they can serve information to clients.
- By moving active data to the new nodes, they will be made responsible for the
- moved vBuckets and for servicing client requests.</p></li>
-</ul></li>
-<li><p>Rebalancing moves both the data stored in RAM, and the data stored on disk for
- each bucket, and for each node, within the cluster. The time taken for the move
- is dependent on the level of activity on the cluster and the amount of stored
- information.</p></li>
-<li><p>The cluster remains up, and continues to service and handle client requests.
- Updates and changes to the stored data during the migration process are tracked
- and will be updated and migrated with the data that existed when the rebalance
- was requested.</p></li>
-<li><p>The current vBucket map, used to identify which nodes in the cluster are
- responsible for handling client requests, is updated incrementally as each
- vBucket is moved. The updated vBucket map is communicated to Couchbase client
- libraries and enabled smart clients (such as Moxi), and allows clients to use
- the updated structure as the rebalance completes. This ensures that the new
- structure is used as soon as possible to help spread and even out the load
- during the rebalance operation.</p></li>
-</ul><p>Because the cluster stays up and active throughout the entire process, clients
-can continue to store and retrieve information and do not need to be aware that
-a rebalance operation is taking place.</p><p>There are four primary reasons that you perform a rebalance operation:</p><ul>
-<li><p>Adding nodes to expand the size of the cluster.</p></li>
-<li><p>Removing nodes to reduce the size of the cluster.</p></li>
-<li><p>Reacting to a failover situation, where you need to bring the cluster back to a
- healthy state.</p></li>
-<li><p>You need to temporarily remove one or more nodes to perform a software,
- operating system or hardware upgrade.</p></li>
-</ul><p>Regardless of the reason for the rebalance, the purpose of the rebalance is
-migrate the cluster to a healthy state, where the configured nodes, buckets, and
-replicas match the current state of the cluster.</p><p>For information and guidance on choosing how, and when, to rebalance your
-cluster, read <xref href="#topic34000/couchbase-admin-tasks-addremove-deciding">Choosing When to
-Rebalance</xref>. This will provide
-background information on the typical triggers and indicators that your cluster
-requires changes to the node configuration, and when a good time to perform the
-rebalance is required.</p><p>Instructions on how to expand and shrink your cluster, and initiate the
-rebalance operation are provided in <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-rebalancing">Performing a
-Rebalance</xref>.</p><p>Once the rebalance operation has been initiated, you should monitor the
-rebalance operation and progress. You can find information on the statistics and
-events to monitor using <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-monitoring">Monitoring a
-Rebalance</xref>.</p><p>Common questions about the rebalancing operation are located in <xref href="#topic34000/couchbase-admin-tasks-addremove-questions">Common
-Rebalancing Questions</xref>.</p><p>For a deeper background on the rebalancing and how it works, see <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-background">Rebalance
-Behind-the-Scenes</xref>.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-deciding--></p><section><title>Choosing when to rebalance</title><p>Choosing when each of situations applies is not always straightforward. Detailed
-below is the information you need to choose when, and why, to rebalance your
-cluster under different scenarios.</p><p><b>Choosing when to expand the size of your cluster</b></p><p>You can increase the size of your cluster by adding more nodes. Adding more
-nodes increases the available RAM, disk I/O and network bandwidth available to
-your client applications and helps to spread the load around more machines.
-There are a few different metrics and statistics that you can use on which to
-base your decision:</p><ul>
-<li><b>Increasing RAM capacity</b></li>
-</ul><p>One of the most important components in a Couchbase Server cluster is the amount
- of RAM available. RAM not only stores application data and supports the
- Couchbase Server caching layer, it is also actively used for other operations by
- the server, and a reduction in the overall available RAM may cause performance
- problems elsewhere.</p><p>There are two common indicators for increasing your RAM capacity within your
- cluster:</p><codeblock><codeph>* If you see more disk fetches occurring, that means that your application is
-  requesting more and more data from disk that is not available in RAM. Increasing
-  the RAM in a cluster will allow it to store more data and therefore provide
-  better performance to your application.
+   
+   
+  
 
-* If you want to add more buckets to your Couchbase Server cluster you may need
-  more RAM to do so. Adding nodes will increase the overall capacity of the system
-  and then you can shrink any existing buckets in order to make room for new ones.
-</codeph></codeblock><ul>
-<li><b>Increasing disk I/O throughput</b></li>
-</ul><p>By adding nodes to a Couchbase Server cluster, you will increase the aggregate
- amount of disk I/O that can be performed across the cluster. This is especially
- important in high-write environments, but can also be a factor when you need to
- read large amounts of data from the disk.</p><ul>
-<li><b>Increasing disk capacity</b></li>
-</ul><p>You can either add more disk space to your current nodes or add more nodes to
- add aggregate disk space to the cluster.</p><ul>
-<li><b>Increasing network bandwidth</b></li>
-</ul><p>If you see that you are or are close to saturating the network bandwidth of your
- cluster, this is a very strong indicator of the need for more nodes. More nodes
- will cause the overall network bandwidth required to be spread out across
- additional nodes, which will reduce the individual bandwidth of each node.</p><p><b>Choosing when to shrink your cluster</b></p><p>Choosing to shrink a Couchbase cluster is a more subjective decision. It is
-usually based upon cost considerations, or a change in application requirements
-not requiring as large a cluster to support the required load.</p><p>When choosing whether to shrink a cluster:</p><ul>
-<li><p>You should ensure you have enough capacity in the remaining nodes to support
- your dataset and application load. Removing nodes may have a significant
- detrimental effect on your cluster if there are not enough nodes.</p></li>
-<li><p>You should avoid removing multiple nodes at once if you are trying to determine
- the ideal cluster size. Instead, remove each node one at a time to understand
- the impact on the cluster as a whole.</p></li>
-<li><p>You should remove and rebalance a node, rather than using failover. When a node
- fails and is not coming back to the cluster, the failover functionality will
- promote its replica vBuckets to become active immediately. If a healthy node is
- failed over, there might be some data loss for the replication data that was in
- flight during that operation. Using the remove functionality will ensure that
- all data is properly replicated and continuously available.</p></li>
-</ul><p><b>Choosing when to rebalance</b></p><p>Once you decide to add or remove nodes to your Couchbase Server cluster, there
-are a few things to take into consideration:</p><ul>
-<li><p>If you’re planning on adding and/or removing multiple nodes in a short period of
- time, it is best to add them all at once and then kick-off the rebalancing
- operation rather than rebalance after each addition. This will reduce the
- overall load placed on the system as well as the amount of data that needs to be
- moved.</p></li>
-<li><p>Choose a quiet time for adding nodes. While the rebalancing operation is meant
- to be performed online, it is not a “free” operation and will undoubtedly put
- increased load on the system as a whole in the form of disk IO, network
- bandwidth, CPU resources and RAM usage.</p></li>
-<li><p>Voluntary rebalancing (i.e. not part of a failover situation) should be
- performed during a period of low usage of the system. Rebalancing is a
- comparatively resource intensive operation as the data is redistributed around
- the cluster and you should avoid performing a rebalance during heavy usage
- periods to avoid having a detrimental affect on overall cluster performance.</p></li>
-<li><p>Rebalancing requires moving large amounts of data around the cluster. The more
- RAM that is available will allow the operating system to cache more disk access
- which will allow it to perform the rebalancing operation much faster. If there
- is not enough memory in your cluster the rebalancing may be very slow. It is
- recommended that you don’t wait for your cluster to reach full capacity before
- adding new nodes and rebalancing.</p></li>
-</ul><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance--></p></section><section><title>Rebalancing a cluster</title><p>Rebalancing a cluster involves marking nodes to be added or removed from the
-cluster, and then starting the rebalance operation so that the data is moved
-around the cluster to reflect the new structure.</p><p>Important</p><p>Until you complete a rebalance, avoid using the failover
-functionality since that may result in loss of data that has not yet been
-replicated.
-</p><ul>
-<li><p>For information on adding nodes to your cluster, see <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-add">Adding a Node to a
- Cluster</xref>.</p></li>
-<li><p>For information on removing nodes to your cluster, see <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-remove">Removing a Node from a
- Cluster</xref>.</p></li>
-<li><p>In the event of a failover situation, a rebalance is required to bring the
- cluster back to a healthy state and re-enable the configured replicas. For more
- information on how to handle a failover situation, see <xref href="#topic34000/couchbase-admin-tasks-failover">Failing Over
- Nodes</xref></p></li>
-</ul><p>The Couchbase Admin Web Console will indicate when the cluster requires a
-rebalance because the structure of the cluster has been changed, either through
-adding a node, removing a node, or due to a failover. The notification is
-through the count of the number of servers that require a rebalance. You can see
-a sample of this in the figure below, here shown on the <codeph>Manage Server Nodes</codeph>
-page.</p><required-cleanup remap="figure"><ph>
-<image href="../images/admin-tasks-pending-rebalance.png"><alt/></image>
-</ph></required-cleanup><p>To rebalance the cluster, you must initiate the rebalance process, detailed in
-<xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-rebalancing">Performing a
-Rebalance</xref>.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-add--></p></section><section><required-cleanup><title>Adding a node to a cluster</title><p>There are a number of methods available for adding a node to a cluster. The
-result is the same in each case, the node is marked to be added to the cluster,
-but the node is not an active member until you have performed a rebalance
-operation. The methods are:</p><ul>
-<li><b>Web Console — During Installation</b></li>
-</ul><p>When you are performing the Setup of a new Couchbase Server installation (see
- <xref href="../cb-install/#couchbase-getting-started-setup" format="html">Initial Server Setup</xref> ), you have the option
- of joining the new node to an existing cluster.</p><p>During the first step, you can select the <codeph>Join a cluster now</codeph> radio button, as
- shown in the figure below:</p><p><image href="../images/admin-tasks-rebalance-add-setup.png"><alt/></image></p><p>You are prompted for three pieces of information:</p><codeblock><codeph>* `IP Address`
-
-  The IP address of any existing node within the cluster you want to join.
-
-* `Username`
-
-  The username of the administrator of the target cluster.
-
-* `Password`
-
-  The password of the administrator of the target cluster.
-</codeph></codeblock><p>The node will be created as a new cluster, but the pending status of the node
- within the new cluster will be indicated on the Cluster Overview page, as seen
- in the example below:</p><p><image href="../images/admin-tasks-rebalance-node-added.png"><alt/></image></p><ul>
-<li><b>Web Console — After Installation</b></li>
-</ul><p>You can add a new node to an existing cluster after installation by clicking the
- <codeph>Add Server</codeph> button within the <codeph>Manage Server Nodes</codeph> area of the Admin Console.
- You can see the button in the figure below.</p><p><image href="../images/admin-tasks-rebalance-add-button.png"><alt/></image></p><p>You will be presented with a dialog box, as shown below. Couchbase Server should
- be installed, and should have been configured as per the normal setup
- procedures. You can also add a server that has previously been part of this or
- another cluster using this method. The Couchbase Server must be running.</p><p><image href="../images/admin-tasks-rebalance-add-console.png"><alt/></image></p><p>You need to fill in the requested information:</p><codeblock><codeph>* `Server IP Address`
-
-  The IP address of the server that you want to add.
-
-* `Username`
-
-  The username of the administrator of the target node.
-
-* `Password`
-
-  The password of the administrator of the target node.
-</codeph></codeblock><p>You will be provided with a warning notifying you that the operation is
- destructive on the destination server. Any data currently stored on the server
- will be deleted, and if the server is currently part of another cluster, it will
- be removed and marked as failed over in that cluster.</p><p>Once the information has been entered successfully, the node will be marked as
- ready to be added to the cluster, and the servers pending rebalance count will
- be updated.</p><ul>
-<li><b>Using the REST API</b></li>
-</ul><p>With the REST API, you can add nodes to the cluster by providing the IP
- address, administrator username and password as part of the data payload. For
- example, using <codeph>curl</codeph> you could add a new node:</p><codeblock><codeph>```
-&gt; curl -u cluster-username:cluster-password\
-    localhost:8091/controller/addNode \
-    -d "hostname=192.168.0.68&amp;user=node-username&amp;password=node-password"
-```
-</codeph></codeblock><p>For more information, see <xref href="../cb-rest-api/#restapi-create-new-node" format="html">Adding a node to a
- cluster</xref>.</p><ul>
-<li><b>Using the Command-line interface</b></li>
-</ul><p>You can use the <codeph>couchbase-cli</codeph> command-line tool to add one or more nodes to an
- existing cluster. The new nodes must have Couchbase Server installed, and
- Couchbase Server must be running on each node.</p><p>To add, run the command:</p><codeblock><codeph>```
-&gt; couchbase-cli server-add \
-      --cluster=localhost:8091 \
-      -u cluster-username -p cluster-password \
-      --server-add=192.168.0.72:8091 \
-      --server-add-username=node-username \
-      --server-add-password=node-password
-```
-</codeph></codeblock><p>Where:</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-add-cmdline--></p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Parameter</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry><codeph>--cluster</codeph></entry>
-	<entry>The IP address of a node in the existing cluster.</entry>
-</row><row>
-	<entry><codeph>-u</codeph></entry>
-	<entry>The username for the existing cluster.</entry>
-</row><row>
-	<entry><codeph>-p</codeph></entry>
-	<entry>The password for the existing cluster.</entry>
-</row><row>
-	<entry><codeph>--server-add</codeph></entry>
-	<entry>The IP address of the node to be added to the cluster.</entry>
-</row><row>
-	<entry><codeph>--server-add-username</codeph></entry>
-	<entry>The username of the node to be added.</entry>
-</row><row>
-	<entry><codeph>--server-add-password</codeph></entry>
-	<entry>The password of the node to be added.</entry>
-</row></tbody></tgroup></table><p>If the add process is successful, you will see the following response:</p><codeblock><codeph>```
-SUCCESS: server-add 192.168.0.72:8091
-```
-</codeph></codeblock><p>If you receive a failure message, you will be notified of the type of failure.</p><p>You can add multiple nodes in one command by supplying multiple <codeph>--server-add</codeph>
- command-line options to the command.</p><p>Note</p><p>Once a server has been successfully added, the Couchbase Server cluster will
-indicate that a rebalance is required to complete the operation.
-</p><p>You can cancel the addition of a node to a cluster without having to perform a
-rebalance operation. Canceling the operation will remove the server from the
-cluster without having transferred or exchanged any data, since no rebalance
-operation took place. You can cancel the operation through the web interface.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-remove--></p></required-cleanup></section><section><required-cleanup><title>Removing a node from a cluster</title><p>Removing a node marks the node for removal from the cluster and completely
-disables the node from serving any requests across the cluster. Once removed, a
-node is no longer part of the cluster in any way and can be switched off, or can
-be updated or upgraded.</p><p>Important</p><p> Before you remove a node from the cluster, ensure that you have the
-capacity within the remaining nodes of your cluster to handle your workload. For
-more information on the considerations, see Choosing when to shrink your cluster.
-For the best results, use swap rebalance to swap the node you want to remove
-out, and swap in a replacement node. For more information on swap rebalance, see
-[Swap Rebalance](#couchbase-admin-tasks-addremove-rebalance-swap).
-</p><p>Like adding nodes, there are a number of solutions for removing a node:</p><ul>
-<li><b>Web Console</b></li>
-</ul><p>You can remove a node from the cluster from within the <codeph>Manage Server Nodes</codeph>
- section of the Web Console, as shown in the figure below.</p><p>To remove a node, click the <codeph>Remove Server</codeph> button next to the node you want to
- remove. You will be provided with a warning to confirm that you want to remove
- the node. Click <codeph>Remove</codeph> to mark the node for removal.</p><ul>
-<li><b>Using the Command-line</b></li>
-</ul><p>You cannot mark a node for removal from the command-line without also initiating
- a rebalance operation. The <codeph>rebalance</codeph> command accepts one or more
- <codeph>--server-add</codeph> and/or <codeph>--server-remove</codeph> options. This adds or removes the server
- from the cluster, and immediately initiates a rebalance operation.</p><p>For example, to remove a node during a rebalance operation:</p><codeblock><codeph>```
-&gt; couchbase-cli rebalance --cluster=127.0.0.1:8091 \
-          -u Administrator -p Password \
-          --server-remove=192.168.0.73
-```
-</codeph></codeblock><p>For more information on the rebalance operation, see <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-rebalancing">Performing a
- Rebalance</xref>.</p><p>Removing a node does not stop the node from servicing requests. Instead, it only
-marks the node ready for removal from the cluster. You must perform a rebalance
-operation to complete the removal process.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-rebalancing--></p></required-cleanup></section><section><required-cleanup><title>Performing a rebalance</title><p>Once you have configured the nodes that you want to add or remove from your
-cluster, you must perform a rebalance operation. This moves the data around the
-cluster so that the data is distributed across the entire cluster, removing and
-adding data to different nodes in the process.</p><p>If Couchbase Server identifies that a rebalance is required, either through
-explicit addition or removal, or through a failover, then the cluster is in a
-<codeph>pending rebalance</codeph> state. This does not affect the cluster operation, it merely
-indicates that a rebalance operation is required to move the cluster into its
-configured state. To start a rebalance:</p><ul>
-<li><b>Using the Web Console</b></li>
-</ul><p>Within the <codeph>Manage Server Nodes</codeph> area of the Couchbase Administration Web
- Console, a cluster pending a rebalance operation will have enabled the
- <codeph>Rebalance</codeph> button.</p><p><image href="../images/admin-tasks-rebalance-starting-console.png"><alt/></image></p><p>Clicking this button will immediately initiate a rebalance operation. You can
- monitor the progress of the rebalance operation through the web console.</p><p>You can stop a rebalance operation at any time during the process by clicking
- the <codeph>Stop Rebalance</codeph> button. This only stops the rebalance operation, it does
- not cancel the operation. You should complete the rebalance operation.</p><ul>
-<li><b>Using the command-line interface</b></li>
-</ul><p>You can initiate a rebalance using the <codeph>couchbase-cli</codeph> and the <codeph>rebalance</codeph>
- command:</p><codeblock><codeph>```
-&gt; couchbase-cli rebalance -c 127.0.0.1:8091 -u Administrator -p Password
-  INFO: rebalancing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  . . . . . . . . . . .
-  SUCCESS: rebalanced cluster
-```
-</codeph></codeblock><p>You can also use this method to add and remove nodes and initiate the rebalance
- operation using a single command. You can specify nodes to be added using the
- <codeph>--server-add</codeph> option, and nodes to be removed using the <codeph>--server-remove</codeph>. You
- can use multiple options of each type. For example, to add two nodes, and remove
- two nodes, and immediately initiate a rebalance operation:</p><codeblock><codeph>```
-&gt; couchbase-cli rebalance -c 127.0.0.1:8091 \
-          -u Administrator -p Password \
-          --server-add=192.168.0.72 \
-          --server-add=192.168.0.73 \
-          --server-remove=192.168.0.70 \
-          --server-remove=192.168.0.69
-```
-</codeph></codeblock><p>The command-line provides an active view of the progress and will only return
- once the rebalance operation has either completed successfully, or in the event
- of a failure.</p><p>You can stop the rebalance operation by using the <codeph>stop-rebalance</codeph> command to
- <codeph>couchbase-cli</codeph>.</p><p>The time taken for a rebalance operation depends on the number of servers,
-quantity of data, cluster performance and any existing cluster activity, and is
-therefore difficult to accurately predict or estimate.</p><p>Throughout any rebalance operation you should monitor the process to ensure that
-it completes successfully, see <xref href="#topic34000/couchbase-admin-tasks-addremove-rebalance-monitoring">Monitoring a
-Rebalance</xref>.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-swap--></p></required-cleanup></section><section><title>Swap rebalance</title><p>Swap Rebalance is an automatic feature that optimizes the movement of data when
-you are adding and removing the same number of nodes within the same operation.
-The swap rebalance optimizes the rebalance operation by moving data directly
-from the nodes being removed to the nodes being added. This is more efficient
-than standard rebalancing which would normally move data across the entire
-cluster.</p><p>Swap rebalance only occurs if the following are true:</p><ul>
-<li><p>You are removing and adding the same number of nodes during rebalance. For
- example, if you have marked two nodes to be removed, and added another two nodes
- to the cluster.</p></li>
-<li><p>When Couchbase Server identifies that a rebalance is taking place and that there
-are an even number of nodes being removed and added to the cluster, the swap
-rebalance method is used to perform the rebalance operation.</p></li>
-</ul><p>Swap rebalance occurs automatically if the number of nodes being added and
-removed are identical. There is no configuration or selection mechanism to force
-a swap rebalance. If a swap rebalance cannot take place, then a normal rebalance
-operation will be used instead.</p><p>When a swap rebalance takes place, the rebalance operates as follows:</p><ul>
-<li><p>Data will be moved directly from a node being removed to a node being added on a
- one-to-one basis. This eliminates the need to restructure the entire vBucket
- map.</p></li>
-<li><p>Active vBuckets are moved, one at a time, from a source node to a destination
- node.</p></li>
-<li><p>Replica vBuckets are created on the new node and populated with existing data
- before being activated as the live replica bucket. This ensures that if there is
- a failure during the rebalance operation, that your replicas are still in place.</p></li>
-</ul><p>For example, if you have a cluster with 20 nodes in it, and configure two nodes
-(X and Y) to be added, and two nodes to be removed (A and B):</p><ul>
-<li><p>vBuckets from node A will be moved to node X.</p></li>
-<li><p>vBuckets from node B will be moved to node Y.</p></li>
-</ul><p>The benefits of swap rebalance are:</p><ul>
-<li><p>Reduced rebalance duration. Since the move takes place directly from the nodes
- being removed to the nodes being added.</p></li>
-<li><p>Reduced load on the cluster during rebalance.</p></li>
-<li><p>Reduced network overhead during the rebalance.</p></li>
-<li><p>Reduced chance of a rebalance failure if a failover occurs during the rebalance
- operation, since replicas are created in tandem on the new hosts while the old
- host replicas still remain available.</p></li>
-<li><p>Because data on the nodes are swapped, rather than performing a full rebalance,
- the capacity of the cluster remains unchanged during the rebalance operation,
- helping to ensure performance and failover support.</p></li>
-</ul><p>The behavior of the cluster during a failover and rebalance operation with the
-swap rebalance functionality affects the following situations:</p><ul>
-<li><b>Stopping a rebalance</b></li>
-</ul><p>If rebalance fails, or has been deliberately stopped, the active and replica
- vBuckets that have been transitioned will be part of the active vBucket map. Any
- transfers still in progress will be canceled. Restarting the rebalance operation
- will continue the rebalance from where it left off.</p><ul>
-<li><b>Adding back a failed node</b></li>
-</ul><p>When a node has failed, removing it and adding a replacement node, or adding the
- node back, will be treated as swap rebalance.</p><p>Best practice</p><p>With swap rebalance functionality, after a node has failed over, 
-either clean up and re-add the failed over node, or add a new node and perform a
-   rebalance as normal. The rebalance will be handled as a swap rebalance which
-   minimize the data movements without affecting the overall capacity of the
-   cluster.
-</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-monitoring--></p></section><section><title>Monitoring a rebalance</title><p>You should monitor the system during and immediately after a rebalance operation
-until you are confident that replication has completed successfully.</p><p>A detailed rebalance report is available in the Web
-Console. As the server moves vBuckets within the cluster, Web Console provides a
-detailed report. You can view the same statistics in this report via a REST API
-call, see <xref href="../cb-rest-api/#couchbase-admin-restapi-rebalance-progress" format="html">Getting Rebalance
-Progress</xref>. If you click on the
-drop-down next to each node, you can view the detailed rebalance status:</p><required-cleanup remap="figure"><ph>
-<image href="../images/rebalance_detail_report.png"><alt/></image>
-</ph></required-cleanup><p>The section <codeph>Data being transferred out</codeph> means that a node sends data to other
-nodes during rebalance. The section <codeph>Data being transferred in</codeph> means that a
-node receives data from other nodes during rebalance. A node can be either a
-source, a destination, or both a source and destination for data. The progress
-report displays the following information:</p><ul>
-<li><p><b>Bucket</b> : Name of bucket undergoing rebalance. Number of buckets transferred
- during rebalance out of total buckets in cluster.</p></li>
-<li><p><b>Total number of keys</b> : Total number of keys to be transferred during the
- rebalance.</p></li>
-<li><p><b>Estimated number of keys</b> : Number of keys transferred during rebalance.</p></li>
-<li><p><b>Number of Active# vBuckets and Replica# vBuckets</b> : Number of active
- vBuckets and replica vBuckets to be transferred as part of rebalance.</p></li>
-</ul><p>You can also use <codeph>cbstats</codeph> to see underlying rebalance statistics:</p><ul>
-<li><b>Backfilling</b></li>
-</ul><p>The first stage of replication reads all data for a given active vBucket and
- sends it to the server that is responsible for the replica. This can put
- increased load on the disk as well as network bandwidth but it is not designed
- to impact any client activity. You can monitor the progress of this task by
- watching for ongoing TAP disk fetches. You can also watch <codeph>cbstats tap</codeph>, for
- example:</p><codeblock><codeph>```
-cbstats &lt;node_IP&gt;:11210 -b bucket_name -p bucket_password tap | grep backfill
-```
-</codeph></codeblock><p>This will return a list of TAP backfill processes and whether they are still
- running (true) or done (false). During the backfill process for a particular tap
- stream you will see output as follows:</p><codeblock><codeph>```
-eq_tapq:replication_building_485_'n_1@127.0.0.1':backfill_completed: false
- eq_tapq:replication_building_485_'n_1@127.0.0.1':backfill_start_timestamp: 1371675343
- eq_tapq:replication_building_485_'n_1@127.0.0.1':flags: 85 (ack,backfill,vblist,checkpoints)
- eq_tapq:replication_building_485_'n_1@127.0.0.1':pending_backfill: true
- eq_tapq:replication_building_485_'n_1@127.0.0.1':pending_disk_backfill: true
- eq_tapq:replication_building_485_'n_1@127.0.0.1':queue_backfillremaining: 202
-```
-</codeph></codeblock><p>When all have completed, you should see the Total Item count ( <codeph>curr_items_tot</codeph>
- ) be equal to the number of active items multiplied by replica count. The output
- you see for a TAP stream after backfill completes is as follows:</p><codeblock><codeph>```
-eq_tapq:replication_building_485_'n_1@127.0.0.1':backfill_completed: true
- eq_tapq:replication_building_485_'n_1@127.0.0.1':backfill_start_timestamp: 1371675343
- eq_tapq:replication_building_485_'n_1@127.0.0.1':flags: 85 (ack,backfill,vblist,checkpoints)
- eq_tapq:replication_building_485_'n_1@127.0.0.1':pending_backfill: false
- eq_tapq:replication_building_485_'n_1@127.0.0.1':pending_disk_backfill: false
- eq_tapq:replication_building_485_'n_1@127.0.0.1':queue_backfillremaining: 0
-```
-</codeph></codeblock><p>If you are continuously adding data to the system, these values may not
- correspond exactly at a given instant in time. However you should be able to
- determine whether there is a significant difference between the two figures.</p><ul>
-<li><b>Draining</b></li>
-</ul><p>After the backfill process is complete, all nodes that had replicas materialized
- on them will then need to persist those items to disk. It is important to
- continue monitoring the disk write queue and memory usage until the rebalancing
- operation has been completed, to ensure that your cluster is able to keep up
- with the write load and required disk I/O.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-questions--></p></section><section><title>Common rebalancing questions</title><p>Provided below are some common questions and answers for the rebalancing
-operation.</p><ul>
-<li><b>How long will rebalancing take?</b></li>
-</ul><p>Because the rebalancing operation moves data stored in RAM and on disk, and
- continues while the cluster is still servicing client requests, the time
- required to perform the rebalancing operation is unique to each cluster. Other
- factors, such as the size and number of objects, speed of the underlying disks
- used for storage, and the network bandwidth and capacity will also impact the
- rebalance speed.</p><p>Busy clusters may take a significant amount of time to complete the rebalance
- operation. Similarly, clusters with a large quantity of data to be moved between
- nodes on the cluster will also take some time for the operation to complete. A
- busy cluster with lots of data may take a significant amount of time to fully
- rebalance.</p><ul>
-<li><b>How many nodes can be added or removed?</b></li>
-</ul><p>Functionally there is no limit to the number of nodes that can be added or
- removed in one operation. However, from a practical level you should be
- conservative about the numbers of nodes being added or removed at one time.</p><p>When expanding your cluster, adding more nodes and performing fewer rebalances
- is the recommend practice.</p><p>When removing nodes, you should take care to ensure that you do not remove too
- many nodes and significantly reduce the capability and functionality of your
- cluster.</p><p>Remember as well that you can remove nodes, and add nodes, simultaneously. If
- you are planning on performing a number of addition and removals simultaneously,
- it is better to add and remove multiple nodes and perform one rebalance, than to
- perform a rebalance operation with each individual move.</p><p>If you are swapping out nodes for servicing, then you can use this method to
- keep the size and performance of your cluster constant.</p><ul>
-<li><b>Will cluster performance be affected during a rebalance?</b></li>
-</ul><p>By design, there should not be any significant impact on the performance of your
- application. However, it should be obvious that a rebalance operation implies a
- significant additional load on the nodes in your cluster, particularly the
- network and disk I/O performance as data is transferred between the nodes.</p><p>Ideally, you should perform a rebalance operation during the quiet periods to
- reduce the impact on your running applications.</p><ul>
-<li><b>Can I stop a rebalance operation?</b></li>
-</ul><p>The vBuckets within the cluster are moved individually. This means that you can
- stop a rebalance operation at any time. Only the vBuckets that have been fully
- migrated will have been made active. You can re-start the rebalance operation at
- any time to continue the process. Partially migrated vBuckets are not activated.</p><p>The one exception to this rule is when removing nodes from the cluster. Stopping
- the rebalance cancels their removal. You will need to mark these nodes again for
- removal before continuing the rebalance operation.</p><p>To ensure that the necessary clean up occurs, stopping a rebalance incurs a five
- minute grace period before the rebalance can be restarted. This ensures that the
- cluster is in a fixed state before rebalance is requested again.</p><p><!--Removed anchor point couchbase-admin-tasks-addremove-buckets--></p></section><section><title>Rebalance effect on bucket types</title><p>The rebalance operation works across the cluster on both Couchbase and
-<codeph>memcached</codeph> buckets, but there are differences in the rebalance operation due to
-the inherent differences of the two bucket types.</p><p>For Couchbase buckets:</p><ul>
-<li><p>Data is rebalance across all the nodes in the cluster to match the new
- configuration.</p></li>
-<li><p>Updated vBucket map is communicated to clients as each vBucket is successfully
- moved.</p></li>
-<li><p>No data is lost, and there are no changes to the caching or availability of
- individual keys.</p></li>
-</ul><p>For <codeph>memcached</codeph> buckets:</p><ul>
-<li><p>If new nodes are being added to the cluster, the new node is added to the
- cluster, and the node is added to the list of nodes supporting the memcached
- bucket data.</p></li>
-<li><p>If nodes are being removed from the cluster, the data stored on that node within
- the memcached bucket will be lost, and the node removed from the available list
- of nodes.</p></li>
-<li><p>In either case, the list of nodes handling the bucket data is automatically
- updated and communicated to the client nodes. Memcached buckets use the Ketama
- hashing algorithm which is designed to cope with server changes, but the change
- of server nodes may shift the hashing and invalidate some keys once the
- rebalance operation has completed.</p></li>
-</ul><p><!--Removed anchor point couchbase-admin-tasks-addremove-rebalance-background--></p></section><section><title>Rebalance behind-the-scenes</title><p>The rebalance process is managed through a specific process called the
-<codeph>orchestrator</codeph>. This examines the current vBucket map and then combines that
-information with the node additions and removals in order to create a new
-vBucket map.</p><p>The orchestrator starts the process of moving the individual vBuckets from the
-current vBucket map to the new vBucket structure. The process is only started by
-the orchestrator - the nodes themselves are responsible for actually performing
-the movement of data between the nodes. The aim is to make the newly calculated
-vBucket map match the current situation.</p><p>Each vBucket is moved independently, and a number of vBuckets can be migrated
-simultaneously in parallel between the different nodes in the cluster. On each
-destination node, a process called <codeph>ebucketmigrator</codeph> is started, which uses the
-TAP system to request that all the data is transferred for a single vBucket, and
-that the new vBucket data will become the active vBucket once the migration has
-been completed.</p><p>While the vBucket migration process is taking place, clients are still sending
-data to the existing vBucket. This information is migrated along with the
-original data that existed before the migration was requested. Once the
-migration of the all the data has completed, the original vBucket is marked as
-disabled, and the new vBucket is enabled. This updates the vBucket map, which is
-communicated back to the connected clients which will now use the new location.</p><p><b>Changing the number of vBucket moves</b></p><p>The number of vBucket moves that occur during the rebalance operation can be modified. The default is one (1), that is, only one vBucket is moved at a time during the rebalance operation.</p><p>To change the number of vBucket moves, execute a curl POST command using the following syntax with the <codeph>/internalSettings</codeph> endpoint and <codeph>rebalanceMovesPerNode</codeph> option.</p><codeblock><codeph>
-curl -X POST -u admin:password
- -d rebalanceMovesPerNode=1
- http://HOST:PORT/internalSettings
-</codeph></codeblock><p>For example:</p><codeblock><codeph>
-curl -X POST -u Administrator:password
- -d rebalanceMovesPerNode=14
- http://soursop-s11201.sc.couchbase.com:8091/internalSettings
-</codeph></codeblock></section></body><related-links><linklist><title>Collected links</title><link href="../cb-install/#couchbase-getting-started-setup" format="html"><linktext>Initial Server Setup</linktext></link><link href="../cb-rest-api/#restapi-create-new-node" format="html"><linktext>Adding a node to a
- cluster</linktext></link><link href="../cb-rest-api/#couchbase-admin-restapi-rebalance-progress" format="html"><linktext>Getting Rebalance
-Progress</linktext></link></linklist></related-links></topic>
+ 
+ </body>
+ <related-links>
+  <linklist>
+    <link href="../REST/rest-cluster-rebalance.dita"></link>
+    <link href="../rest/rebalance-monitoring.dita"></link>
+    <link href="../rest/rest-server-nodes.dita"></link>
+  </linklist>
+ </related-links>
+</topic>
