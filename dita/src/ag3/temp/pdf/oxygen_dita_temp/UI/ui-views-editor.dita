@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/ui/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic9764" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="title:1;5:10">Views</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="shortdesc:1;6:14">The Views section allows you to manage your development and production views.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:1;8:8">The Views Editor is available within the Couchbase web console. You can access the View
+      Editor either by clicking the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:1;9:45">Views</codeph> for a given data bucket within the
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:2;10:17">Data Buckets</codeph> display, or by selecting the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:3;10:76">Views</codeph> page from
+      the main navigation panel.</p>
+    <image href="../images/views-overview.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="image:1;12:61"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:2;13:8">The individual elements of this interface are:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="ul:1;14:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="li:1;15:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:3;15:14">The pop-up, at the top-left, provides the selection of the data bucket where you are
+          viewing or editing a view.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="li:2;17:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:4;17:14">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:4;17:26">Create Development View</codeph> enables you to create a new view either
+          within the current design document, or within a new document.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="li:3;19:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:5;19:14">You can switch between Production Views and Development
+            Views. </p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="li:4;21:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:6;21:14">The final section provides a list of the design documents, and within each document,
+          each defined view.</p></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:7;24:8">When viewing <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:5;24:29">Development Views</codeph>, you can perform the following actions:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeblock:1;25:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:6;25:24">* `Compact` the view index with an associated design document. This will compact
+  the view index and recover space used to store the view index on disk.
+
+* `Delete` a design document. This deletes all of the views defined within the
+  design document.
+
+* `Add Spatial View` creates a new spatial view within the corresponding design
+  document. See [Creating and Editing Views](#couchbase-views-editor-createedit).
+
+* `Add View` creates a new view within the corresponding design document. See
+  [Creating and Editing Views](#couchbase-views-editor-createedit).
+
+* `Publish` your design document (and all of the defined views) as a production
+  design document. See [Publishing Views](#couchbase-views-editor-publishing).
+
+* For each individual view listed:
+
+   * `Edit`, or clicking the view name
+
+     Opens the view editor for the current view name, see [Creating and Editing
+     Views](#couchbase-views-editor-createedit).
+
+   * `Delete`
+
+     Deletes an individual view.
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:8;51:8">When viewing <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:7;51:29">Production Views</codeph> you can perform the following operations on
+      each design document:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeblock:2;53:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:8;53:24">* `Compact` the view index with an associated design document. This will compact
+  the view index and recover space used to store the view index on disk.
+
+* `Delete` a design document. This will delete all of the views defined within the
+  design document.
+
+* `Copy to Dev` copies the view definition to the development area of the view
+  editor. This enables you edit the view definition. Once you have finished making
+  changes, using the `Publish` button will then overwrite the existing view
+  definition.
+
+* For each individual view:
+
+   * By clicking the view name, or the `Show` button, execute and examine the results
+     of a production view. See [Getting View Results](#couchbase-views-editor-view)
+     for more information.
+</codeph></codeblock>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="section:1;71:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="title:2;71:21">Creating and editing views</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:9;71:58">You can create a new design document and/or
+        view by clicking the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:9;72:38">Create Development View</codeph> button within the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:10;73:19">Views</codeph> section of the Web Console. If you are creating a new design
+        document and view you will be prompted to supply both the design document and view name. </p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:10;75:10">To create a new view as part of an existing design document, click the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:11;76:19">Add View</codeph> button against the corresponding design document.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:11;76:93">View
+        names must be specified using one or more UTF–8 characters. You cannot have a blank view
+        name. View names cannot have leading or trailing whitespace characters (space, tab, newline,
+        or carriage-return).</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:12;79:36">If you create a new view, or have selected a Development view,
+        you can create and edit the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:12;80:45">map()</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:13;80:72">reduce()</codeph> functions.
+        Within a development view, the results shown for the view are executed either over a small
+        subset of the full document set (which is quicker and places less load on the system), or
+        the full data set.</p>&gt;
+          <image href="../images/views-editing.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="image:2;84:65"/>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:13;85:12">The top portion of the interface provides navigation between the
+        available design documents and views.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:14;86:53">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:14;86:65">Sample Document</codeph> section
+        allows you to view a random document from the database to help you write your view functions
+        and so that you can compare the document content with the generated view output. Clicking
+        the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:15;89:21">Preview a Random Document</codeph> will randomly select a document from the
+        database. Clicking <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="uicontrol:1;90:39">Edit Document</uicontrol> takes you to the Views editor.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:15;91:10">Documents stored in the database that are identified as Non-JSON may
+        be displayed as binary, or text-encoded binary, within the UI.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:16;92:78">Document metadata is
+        displayed in a separate box on the right hand side of the associated document. This shows
+        the metadata for the displayed document, as supplied to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:16;94:77">map()</codeph> as the
+        second argument to the function. For more information on writing views and creating the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:17;96:19">map()</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:18;96:46">reduce()</codeph> functions.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:17;96:81">With the View Code
+        section, you should enter the function that you want to use for the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:19;97:85">map()</codeph>
+        and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:20;98:21">reduce()</codeph> portions of the view. The map function is required, the reduce
+        function is optional. When creating a new view a basic <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:21;99:72">map()</codeph> function will
+        be provided. You can modify this function to output the information in your view that you
+        require.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:18;101:24">Once you have edited your <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:22;101:58">map()</codeph> and
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:23;102:19">reduce()</codeph> functions, you must use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:24;102:73">Save</codeph> button to save
+        the view definition.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:19;103:36">The design document will be validated before it is created or
+        updated in the system. The validation checks for valid JavaScript and for the use of valid
+        built-in reduce functions. Any validation failure is reported as an error.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:20;105:90">You can
+        also save the modified version of your view as a new view using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:25;106:85">Save
+          As...</codeph> button.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:21;107:40">The lower section of the window will show you the list of
+        documents that would be generated by the view. You can use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:26;108:80">Show Results</codeph>
+        to execute the view.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:22;109:36">To execute a view and get a sample of the output generated by the
+        view operation, click the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:27;110:43">Show Results</codeph> button. This will create the index
+        and show the view output within the table below. You can configure the different parameters
+        by clicking the arrow next to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:28;112:47">Filter Results</codeph>. This shows the view selection
+        criteria, as seen in the figure below. </p>
+            <image href="../images/views-filters.png" width="300" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="image:3;114:67"> </image>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:23;115:12">Clicking on the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:29;115:36">Filter Results</codeph> query string
+        opens a new window containing the raw, JSON formatted, version of the View results. </p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:24;117:10">By default, Views during the development stage are executed only over
+        a subset of the full document set. This is indicated by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:30;118:77">Development Time
+          Subset</codeph> button. You can execute the view over the full document set by selecting
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:31;120:19">Full Cluster Data Set</codeph>. Because this executes the view in real-time on the
+        data set, the time required to build the view may be considerable. Progress for building the
+        view is shown at the top of the window.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:25;122:55">If you have edited either the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:32;123:19">map()</codeph> or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:33;123:45">reduce()</codeph> portions of your view definition, you
+          <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="i:1;124:14">must</i> save the definition. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:34;124:56">Show Results</codeph> button will remain
+        greyed out until the view definition has been saved.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:26;125:68">You can also filter the results
+        and the output using the built-in filter system. This filter provides similar options that
+        are available to clients for filtering results.</p>
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="section:2;130:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="title:3;130:21">Publishing views</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:27;131:10">Publishing a view moves the view definition from the
+        Development view to a Production View. Production views cannot be edited. The act of
+        publishing a view and moving the view from the development to the production view will
+        overwrite a view the same name on the production side. To edit a Production view, you copy
+        the view from production to development, edit the view definition, and then publish the
+        updated version of the view back to the production
+        side.</p></section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="section:3;139:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="title:4;139:21">Getting view results</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:28;139:52">Once a view has been published to be a production
+        view, you can examine and manipulate the results of the view from within the web console
+        view interface. This makes it easy to study the output of a view without using a suitable
+        client library to obtain the information.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:29;142:57">To examine the output of a view, click icon
+        next to the view name within the view list. This will present you with a view similar to
+        that shown in the figure below.</p>
+          <image href="../images/views-detail.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="image:4;145:64"> </image>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:30;146:12">The top portion of the interface provides navigation between the
+        available design documents and views.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:31;147:53">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:35;147:65">Sample Document</codeph> section
+        allows you to view a random document from the database so that you can compare the document
+        content with the generated view output. Clicking the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:36;149:70">Preview a Random
+          Document</codeph> will randomly select a document from the database. If you know the ID of
+        a document that you want to examine, enter the document ID in the box, and click the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:37;152:19">Lookup Id</codeph> button to load the specified document.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:32;152:83">To examine the
+        function that generate the view information, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:38;153:70">View Code</codeph> section of
+        the display. This will show the configured map and reduce functions.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:33;154:84">The lower portion
+        of the window will show you the list of documents generated by the view. You can use the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:39;156:19">Show Results</codeph> to execute the view.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:34;156:68">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:40;156:80">Filter
+          Results</codeph> interface allows you to query and filter the view results by selecting
+        the sort order, key range, or document range, and view result limits and offsets.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:35;158:97">To
+        specify the filter results, click on the pop-up triangle next to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:41;159:82">Filter
+          Results</codeph>. You can delete existing filters, and add new filters using the embedded
+        selection windows. Click <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="codeph:42;161:42">Show Results</codeph> when you have finished selecting
+        filter values. The filter values you specify are identical to those available when querying
+        from a standard client library. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="p:36;163:48">Due to the
+        nature of range queries, a special character may be added to query specifications when
+        viewing document ranges. The character may not show up in all web browsers, and may instead
+        appear instead as an invisible, but selectable, character. </p></section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="related-links:1;168:18"><linkpool class="- topic/linkpool " xtrc="topicref:85;99:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:79;92:36" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase web console</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Couchbase web console is the main tool for managing the Couchbase environment.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="linklist:1;169:15">
+      <link href="../Views/views-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="link:1;170:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views and indexes</linktext></link>
+      <link href="../Views/views-writing.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="link:2;171:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Writing views</linktext></link>
+      <link href="../REST/design-docs-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="link:3;172:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Managing design documents</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Design documents are used to store one or more view definitions. Views can be defined 		within a design document and uploaded to the server through the REST API.</desc></link>
+      <link href="../REST/rest-views-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-views-editor.dita" xtrc="link:4;173:50" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views REST API</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

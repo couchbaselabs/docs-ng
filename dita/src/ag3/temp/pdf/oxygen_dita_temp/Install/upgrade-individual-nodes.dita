@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_tc1_vry_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="title:1;4:10">Upgrading individual nodes</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="p:1;6:8">Whether you are performing an online or
+      offline upgrade, the steps for upgrading an individual nodes in a cluster remain the
+      same.</p>
+    
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="ol:1;10:9">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:1;11:13">Download Couchbase Server</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:2;12:13">Backup data for that node. To backup an existing Couchbase Server installation, use
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="codeph:1;13:19">cbbackup</codeph>. See <xref href="../cb-admin/#couchbase-backup-restore-backup-cbbackup" format="html" class="- topic/xref " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="xref:1;14:88"><?ditaot usertext?>Backing up
+            using cbbackup</xref>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:3;16:13">Backup the node-specific configuration files. While the upgrade script perform a
+          backup of the configuration and data files, as a best practice, make your own
+          backup of these files.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:4;19:13">Stop Couchbase Server.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:5;20:13">Check your hostname configurations. If you have deployed Couchbase Server in a cloud
+          service, or you are using hostnames rather than IP addresses, you must ensure that the
+          hostname has been configured correctly before performing the upgrade. </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:6;23:13">Check for required components and if needed, install them. This ensures that
+          Couchbase Server upgrades and migrates your existing data files. </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="li:7;25:13">Perform the installation upgrade for your platform:</li>
+      </ol> 
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="related-links:1;28:18"><linkpool class="- topic/linkpool " xtrc="topicref:32;48:59" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrading.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="linklist:1;29:15">
+      <link href="../install/linux-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="link:1;30:59" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Linux</linktext></link>
+      <link href="../install/windows-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="link:2;31:61" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Windows</linktext></link>
+      <link href="../install/hostnames.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="link:3;32:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Using hostnames</linktext></link>
+      <link href="../cli/cbbackup_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-individual-nodes.dita" xtrc="link:4;33:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbbackup tool</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="codeph:1;6:27">cbbackup</codeph> tool creates a copy of data from an entire running cluster,       an entire bucket, a single node, or a single bucket on a single functioning node. Your node       or cluster needs to be functioning in order to create the backup. Couchbase Server will       write a copy of data onto disk.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

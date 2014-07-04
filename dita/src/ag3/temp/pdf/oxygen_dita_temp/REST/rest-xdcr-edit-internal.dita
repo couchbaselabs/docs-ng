@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3383" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="title:1;5:9">Changing internal XDCR settings</title>
+	<shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="shortdesc:1;6:13">The XDCR advanced and internal settings change the replication behavior,
+		performance, and timing.</shortdesc>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="body:1;8:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="p:1;9:6">The URI endpoints are available to change global settings for replications
+			for a cluster and to change settings for a specific replication ID.
+			
+			<table frame="all" id="table_xdcr_settings_uri" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="table:1;13:34">
+				<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="title:2;14:12">XDCR URI paths for settings</title>
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="tgroup:1;15:22">
+					<colspec colname="col1" colnum="1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:1;16:54"/>
+					<colspec colname="col2" colnum="2" colwidth="1.35*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:2;17:57"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="thead:1;18:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:1;19:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:1;20:15">URI path</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:2;21:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="tbody:1;24:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:2;25:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:3;26:15">/settings/replications/</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:4;27:15">Global setting spplied to all replications for a cluster.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:3;29:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:5;30:15">/settings/replications/replication_id</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:6;31:15">Settings for specific replication for a bucket.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:4;33:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:7;34:15">/internalSettings</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:8;35:15">Settings applied to all replications for a cluster. Applicable
+								for Couchbase 2.0 and higher.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></p>
+		
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="p:2;42:6">In the REST API you can change these
+			settings globally for all replications for a cluster or for a specific replication ID. </p>
+		<table frame="all" id="table_xdcr_settings" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="table:2;45:29">
+			<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="title:3;46:11">XDCR advanced settings</title>
+			<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="tgroup:2;47:21">
+				<colspec colname="col1" colwidth="1.48*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:3;48:47"/>
+				<colspec colname="col2" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:4;49:44"/>
+				<colspec colname="col3" colwidth="1.95*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:5;50:47"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="thead:2;51:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:5;52:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:9;53:14">Parameter</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:10;54:14">Value</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:11;55:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="tbody:2;58:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:6;59:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:12;60:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:1;60:22">xdcrMaxConcurrentReps</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:13;61:14">Integer</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:14;62:14">Same as Web Console setting <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:2;62:50">XDCR Max Replications per
+								Bucket</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:7;65:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:15;66:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:3;66:22">xdcrCheckpointInterval</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:16;67:14">Integer</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:17;68:14">Same as Web Console setting<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:4;68:49">XDCR Checkpoint
+							Interval</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:8;71:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:18;72:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:5;72:22">xdcrWorkerBatchSize</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:19;73:14">Integer</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:20;74:14">Same as Web Console setting <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:6;74:50">XDCR Batch
+							Count</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:9;77:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:21;78:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:7;78:22">xdcrDocBatchSizeKb</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:22;79:14">Integer</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:23;80:14">Same as Web Console setting <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:8;80:50">XDCR Batch Size
+							(KB)</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:10;83:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:24;84:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:9;84:22">xdcrFailureRestartInterval</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:25;85:14">Integer</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:26;86:14">Same as Web Console setting<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:10;86:49">XDCR Failure Retry
+								Interval</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:11;89:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:27;90:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:11;90:22">xdcrOptimisticReplicationThreshold</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:28;91:14">Integer</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:29;92:14">Same as Web Console setting <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:12;92:50">XDCR Optimistic Replication
+								Threshold</codeph>.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="p:3;98:6">The following settings are additional internal settings for XDCR that are only available
+			via the REST API. </p>
+		<table frame="all" id="table_xdcr_internal_settings" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="table:3;101:38">
+			<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="title:4;102:11">XDCR internal settings</title>
+			<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="tgroup:3;103:21">
+				<colspec colname="col1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:6;104:44"/>
+				<colspec colname="col2" colwidth="1.08*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:7;105:47"/>
+				<colspec colname="col3" colwidth="1.68*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="colspec:8;106:47"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="thead:3;107:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:12;108:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:30;109:14">Parameter</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:31;110:14">Value</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:32;111:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="tbody:3;114:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:13;115:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:33;116:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:13;116:22">workerProcesses</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:34;117:14">Integer from 1 to 32. Default 32.</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:35;118:14">The number of worker processes for each vbucket replicator in XDCR.
+							Setting is available for replications using either memcached or REST for
+							replication.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="row:14;122:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:36;123:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:14;123:22">httpConnections</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:37;124:14">Integer from 1 to 100. Default 2.</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="entry:38;125:14">Number of maximum simultaneous HTTP connections used for REST
+							protocol.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		<example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="example:1;132:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="title:5;132:19">Modifying the number of parallel replication streams</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="p:4;133:6">The following example updates an XDCR setting for parallel replication streams per
+			node:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeblock:1;135:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:15;135:22">curl -X POST -u admin:password1  \
+http://10.4.2.4:8091/settings/replications/  \
+-d xdcrMaxConcurrentReps=64
+</codeph></codeblock>
+		<note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="note:1;139:21">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="i:1;139:36">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="i:2;139:50">password1</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="i:3;139:68">10.4.2.4</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="i:4;139:89">64</i> values in the
+			above example with your actual values.</note>
+		</example>
+		
+			<example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="example:2;143:13"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="title:6;143:20">Returns:</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="p:5;144:6">If Couchbase Server successfully updates this setting, a response (similar to the following) is
+				sent:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeblock:2;146:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-edit-internal.dita" xtrc="codeph:16;146:22">HTTP/1.1 200 OK
+Server: Couchbase Server 2.0.0-1941-rel-community
+Pragma: no-cache
+Date: Wed, 28 Nov 2012 18:20:22 GMT
+Content-Type: application/json
+Content-Length: 188
+Cache-Control: no-cache
+</codeph></codeblock>
+		</example>
+
+
+	</body>
+
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:50;59:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:44;53:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link></linkpool></related-links>
+</topic>

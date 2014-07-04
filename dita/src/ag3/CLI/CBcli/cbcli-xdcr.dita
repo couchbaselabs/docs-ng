@@ -218,7 +218,7 @@ Certificate matches what seen on GUI
   </body>
   <related-links>
     <linklist>
-      <link href="../XDCR/xdcr-intro.dita"></link>
+      <link href="../../XDCR/xdcr-intro.dita"></link>
       <link href="../../tasks/tasks-manage-xdcr-dataEncryption.dita"/>
       <link href="../../tasks/tasks-manage-xdcr.dita"/>
     </linklist>

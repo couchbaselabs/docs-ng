@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/XDCR?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/XDCR/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic513" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="title:1;5:10">XDCR document handling</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="shortdesc:1;6:14">XDCR does not replicate views and view indexes.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="p:1;8:8">To replicate views and view indexes, manually
+      exchange view definitions between clusters and re-generate the index on the destination
+      cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="p:2;11:8">Non UTF–8 encodable document IDs on the source cluster are automatically filtered out and
+      logged. The IDs are not transferred to the remote cluster. If there are any non UTF–8 keys,
+      the warning output, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-docs.dita" xtrc="codeph:1;13:35">xdcr_error.*</codeph> displays in the log files along with a list
+      of all non-UTF–8 keys found by XDCR.</p>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:122;140:41" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:115;133:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../XDCR/xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cross Datacenter Replication (XDCR)</linktext></link></linkpool></related-links>
+</topic>

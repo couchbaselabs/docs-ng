@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3281" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="topic:1;4:40"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="title:1;4:47">Logs REST API</title><body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="body:1;4:74"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:1;4:77">This section provides the REST API endpoints for retrieving log and diagnostic information as well as how an SDK can add entries into a log.</p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="table:1;4:228"><tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="tgroup:1;4:245"><colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="colspec:1;4:270"/><colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="colspec:2;4:295"/><colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="colspec:3;4:320"/><thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="thead:1;4:327"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="row:1;4:332">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:1;5:9">HTTP method</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:2;6:9">URI path</entry>
+	<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:3;7:9">Description</entry>
+</row></thead><tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="tbody:1;8:22"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="row:2;8:27">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:4;9:9">GET</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:5;10:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:1;10:17">/diag</codeph></entry>
+	<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:6;11:9">Retrieves log and additional server diagnostic information.</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="row:3;12:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:7;13:9">GET</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:8;14:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:2;14:17">/sasl_logs</codeph></entry>
+	<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="entry:9;15:9">Retrieves log information.</entry>
+</row></tbody></tgroup></table><section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="section:1;16:41"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="title:2;16:48">Retrieving log information</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:2;16:85">Couchbase Server logs various messages, which are available via the REST API.
+These log messages are optionally categorized by the module. A generic list of log entries or log entries for a particular category can be retrieved. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:3;17:158">Note</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:4;17:169">If the system is secured, administrator credentials are required to access logs.
+</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:5;18:8">To retrieve log and server diagnostic information, perform a GET with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:3;18:90">/diag</codeph> endpoint.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:1;18:129"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:4;18:137">curl -v -X GET -u Administrator:password
+   http://127.0.0.1:8091/diag
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:6;20:25">To retrieve a generic list of logs, perform a GET with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:5;20:92">/sasl_logs</codeph> endpoint.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:2;20:136"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:6;20:144">curl -v -X GET -u Administrator:password 
+  http://127.0.0.1:8091/sasl_logs
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:7;22:25">To retrieve a specific log file, perform a GET on the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:7;22:87">sasl_logs</codeph> endpoint and provide a specific log category.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:3;22:166"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:8;22:174">curl -v -X GET -u Administrator:password
+ http://127.0.0.1:8091/sasl_logs/&lt;logName&gt;
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:8;24:25">Where the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="i:1;24:38">logName</i> is one of the following log types:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="ul:1;24:92">
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:1;25:5">babysitter</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:2;26:5">couchdb</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:3;27:5">debug</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:4;28:5">error</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:5;29:5">info</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:6;30:5">mapreduce_errors</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:7;31:5">ssl_proxy</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:8;32:5">stats</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:9;33:5">view</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:10;34:5">xdcr</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="li:11;35:5">xdcr_errors</li>
+</ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:9;36:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="b:1;36:12">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:4;36:38"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:9;36:46">curl -v -X GET -u Administrator:password
+ http://127.0.0.1:8091/sasl_logs/ssl_proxy
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:10;38:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="b:2;38:28">Results</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:5;38:54"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:10;38:62">* About to connect() to 10.5.2.118 port 8091 (#0)
+*   Trying 10.5.2.118... connected
+* Connected to 10.5.2.118 (10.5.2.118) port 8091 (#0)
+* Server auth using Basic with user 'Administrator'
+&gt; GET /sasl_logs/ssl_proxy HTTP/1.1
+&gt; Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+&gt; User-Agent: curl/7.21.4 (x86_64-unknown-linux-gnu) libcurl/7.21.4 OpenSSL/0.9.8b zlib/1.2.3
+&gt; Host: 10.5.2.118:8091
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Transfer-Encoding: chunked
+&lt; Server: Couchbase Server
+&lt; Pragma: no-cache
+&lt; Date: Thu, 06 Feb 2014 22:50:12 GMT
+&lt; Content-Type: text/plain; charset=utf-8
+&lt; Cache-Control: no-cache
+&lt; 
+logs_node (ssl_proxy):
+-------------------------------
+[ns_server:info,2014-01-24T11:25:18.066,nonode@nohost:&lt;0.30.0&gt;:ns_ssl_proxy:init_logging:84]Brought up ns_ssl_proxy logging
+[error_logger:info,2014-01-24T11:25:18.082,nonode@nohost:error_logger&lt;0.5.0&gt;:ale_error_logger_handler:log_report:72]
+=========================PROGRESS REPORT=========================
+          supervisor: {local,ns_ssl_proxy_sup}
+             started: [{pid,&lt;0.64.0&gt;},
+                       {name,ns_ssl_proxy_server_sup},
+                       {mfargs,{ns_ssl_proxy_server_sup,start_link,[]}},
+                       {restart_type,permanent},
+                       {shutdown,infinity},
+                       {child_type,supervisor}]
+</codeph></codeblock></section><section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="section:2;68:41"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="title:3;68:48">Creating a client logging interface</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:11;68:94">Entries can be added to the central log from a custom Couchbase SDK. These entries are typically responses to exceptions such as difficulty handling a server response. For instance, the Web Console uses this functionality to log client error conditions. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="p:12;68:355">To add entries, provide a REST request similar to the following:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:6;68:434"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:11;68:442">POST /logClientError
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeph></codeblock><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeblock:7;73:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/logs-rest-api.dita" xtrc="codeph:12;73:41">200 - OK
+</codeph></codeblock></section></body></topic>

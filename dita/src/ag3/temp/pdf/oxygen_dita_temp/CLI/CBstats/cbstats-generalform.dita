@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBstats?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBstats/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic970" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="title:1;5:10">General form</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="p:1;7:8">As this data is multi-dimensional, some parsing may be required for machine processing. It’s
+      somewhat human readable, but the =stats= script mentioned in the Getting Started section above
+      will do fancier formatting for you.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="p:2;11:8">The following sample statistics show that =disk_insert= took 8–16µs 9,488 times, 16–32µs 290 times, and so on.</p>
+    
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="codeblock:1;13:18">
+STAT disk_insert_8,16 9488
+STAT disk_insert_16,32 290
+STAT disk_insert_32,64 73
+STAT disk_insert_64,128 86
+STAT disk_insert_128,256 48
+STAT disk_insert_256,512 2
+STAT disk_insert_512,1024 12
+STAT disk_insert_1024,2048 1
+      </codeblock>
+
+
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="p:3;26:8">The same statistics displayed through the =stats= CLI tool look like the following:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-generalform.dita" xtrc="codeblock:2;27:18">
+disk_insert (10008 total)
+8us - 16us : ( 94.80%) 9488 ###########################################
+16us - 32us : ( 97.70%) 290 #
+32us - 64us : ( 98.43%) 73
+64us - 128us : ( 99.29%) 86
+128us - 256us : ( 99.77%) 4
+256us - 512us : ( 99.79%) 2
+512us - 1ms : ( 99.91%) 12
+1ms - 2ms : ( 99.92%) 1
+      </codeblock>
+
+
+
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:25;31:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:21;27:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbstats-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>cbstats tool</linktext></link></linkpool></related-links>
+</topic>

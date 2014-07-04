@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_atz_r3s_g4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="title:1;4:10">Installing as non-root, non-sudo</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="shortdesc:1;5:14">Installing as non-root, non-sudo is for development purposes only.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="body:1;6:9">
+    <note type="attention" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="note:1;7:28">This installation is
+      for development purposes only.</note> 
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="p:1;9:8">There may be cases when you want to install the server as a
+      non-root, non-sudo user. 
+      A non-sudo, non-root installation still runs Couchbase Server and all Couchbase command-line tools. 
+      To do so on CentOS/Red Hat:</p>
+    
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="ol:1;14:9">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:1;15:13">After downloading the Couchbase RPM, go to the directory where it is located and extract
+        it: <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeblock:1;16:24">
+rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
+--no-absolute-filenames
+</codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="p:2;20:12">In the directory where the files were extracted, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:1;20:73">opt</codeph> and
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:2;21:21">etc</codeph> subdirectories are available.</p>
+      </li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:2;23:15">If you need to separately provide openssl098e, put the
+            contents of this library into <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:3;24:51">opt/couchbase/lib</codeph>:
+          <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="ol:2;25:15">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:3;26:17">Download `openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm’.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:4;27:17">Go to the directory where you extracted Couchbase Server: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:4;27:83">cd
+              opt/couchbase</codeph>.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:5;29:17">Extract the openssl098e RPM:
+            <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeblock:2;30:24">rpm2cpio
+openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+--make-directories --no-absolute-filenames</codeblock></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:6;33:17">Move the extracted files to the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:5;33:57">/lib</codeph> directory for Couchbase Server:
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:6;34:23">mv usr/lib64/* lib/</codeph></li>
+          </ol></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:7;36:13">After you extract the Couchbase Server install files, go to the subdirectory:
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:7;37:19"> cd opt/couchbase </codeph></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:8;38:13">Run the following password-related script: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:8;38:64"> ./bin/install/reloc.sh \`pwd` </codeph>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="p:3;39:14">This enables you to continue the install as a non-root, non-sudo user.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:9;40:13">To run the server:
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:9;41:19"> ./bin/couchbase-server \-- -noinput -detached </codeph></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="li:10;42:13">To stop the server: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/rhel-non-root-sudo.dita" xtrc="codeph:10;42:41"> ./bin/couchbase-server -k </codeph></li>
+      </ol>
+    
+   </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:11;16:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:7;12:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/RHEL-install-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Red Hat Linux installation</linktext></link></linkpool></related-links>
+</topic>

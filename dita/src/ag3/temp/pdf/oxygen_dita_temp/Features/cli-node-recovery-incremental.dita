@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_lgt_jnb_k4" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="title:1;4:10">Setting delta node recovery (CLI)</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="shortdesc:1;5:14">To re-add a server node to a cluster, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeph:1;5:68">couchbase-cli</codeph> tool and
+    the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeph:2;6:17">recovery</codeph> command with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeph:3;6:60">--recovery-type</codeph> parameter. </shortdesc>
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="refbody:1;7:12">
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="section:1;8:14">
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="p:1;9:10">Recovery options are either <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeph:4;9:46">full</codeph> or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeph:5;9:71">delta</codeph>.</p>
+      
+      <table frame="all" id="table_recovery-type" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="table:1;11:51">
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="title:2;12:16">Recovery type</title>
+        <tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="tgroup:1;13:26">
+          <colspec colname="col1" colnum="1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="colspec:1;14:59"/>
+          <colspec colname="col2" colnum="2" colwidth="1.99*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="colspec:2;15:62"/>
+          <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="thead:1;16:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="row:1;17:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="entry:1;18:22">Option</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="entry:2;19:22">Description</entry>
+            </row>
+          </thead>
+          <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="tbody:1;22:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="row:2;23:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="entry:3;24:22">--server-recovery=HOST[:PORT]</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="entry:4;25:22">Server to recover</entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="row:3;27:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="entry:5;28:22">--recovery-type=TYPE[delta|full]</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="entry:6;29:22">Type of recovery to be performed for the node</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="section:2;37:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="title:3;37:21">Syntax</title>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeblock:1;38:18">
+couchbase-cli failover
+    --cluster=HOST:PORT
+    --server-recovery=HOST:PORT
+    --recovery-type=[delta|full]
+    --user=ADMIN 
+    --password=PASSWORD  
+    
+couchbase-cli failover
+    -c HOST:PORT
+    --server-recovery=HOST:PORT
+    --recovery-type=[delta|full]
+    -u ADMIN -p PASSWORD     
+      </codeblock>
+    
+    
+    </section>
+    
+    
+    
+    
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="example:1;59:14">
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="title:4;60:14">Setting recovery type</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="p:2;61:10">To set incremental node recovery type for a server:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeblock:2;62:18">       
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+    --server-recovery=192.168.0.2          \\	
+    --recovery-type=delta                   \\	
+    -u Administrator -p password
+      </codeblock>
+    </example>     
+    
+    
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="example:2;71:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="title:5;71:21">Setting failover, readd, recovery, and rebalance operations</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="p:3;72:10">The following example shows a failover, readd, recovery and rebalance sequence operations,
+        where as, a node in a cluster is gracefully failed over, the node is re-added to the
+        cluster, a delta recovery is implemented for the node, and rebalance is performed on the
+        cluster:</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita" xtrc="codeblock:3;77:18">
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    -u Administrator -p password	
+				
+couchbase-cli server-readd -c 192.168.0.1:8091 \\	
+    --server-add=192.168.0.2 \\	
+    -u Administrator -p password	
+			
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+    --server-recovery=192.168.0.2 \\	
+    --recovery-type=delta \\	
+    -u Administrator -p password	
+				
+couchbase-cli rebalance -c 192.168.0.1:8091 \\	
+    -u Administrator -p password          
+      </codeblock>
+    </example>
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:21;29:66" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:19;27:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/incremental-recovery.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Delta node recovery</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Delta node recovery provides the option to specify whether the replacement server     node's disk is initialized or not. For a new server node, the disk is initialized (data is     removed) and re-populated. For the same server node, the disk is not initialized or     re-populated; the data buckets remain.</desc></link></linkpool></related-links>
+</reference>

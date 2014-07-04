@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic19310" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="topic:1;4:41">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="title:1;5:10">Upgrading</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="body:1;6:9">
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="p:1;8:8">The following are the officially supported upgrade paths for Couchbase Server for both online
+      upgrades or offline upgrades:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="ul:1;10:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="li:1;11:11">Couchbase 1.8.1 to Couchbase 2.0 or higher</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="li:2;12:11">Couchbase 2.0.x to Couchbase 2.1 or higher</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="li:3;13:11">Couchbase 2.1.x to Couchbase 2.2 or higher</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="li:4;14:11">Couchbase 2.2 to Couchbase 2.5 or higher</li>
+    </ul>
+        
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="p:2;17:8">You cannot perform a direct upgrade from Couchbase Server 1.8.0 to a higher release of
+      Couchbase Server. You must first upgrade from Couchbase Server 1.8 or earlier to Couchbase
+      Server 1.8.1 to provide data compatibility with a higher release of Couchbase Server. After
+      performing this initial upgrade, upgrade to a higher release of Couchbase Server.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="p:3;21:8">You can perform a cluster upgrade in two ways:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="ul:2;22:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="li:5;23:11">Online upgrades</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="li:6;24:11">Offline upgrades</li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="p:4;26:8">Prior to upgrade, perform a backup of the files.</p>
+      <table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="table:1;27:14">
+        <tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="tgroup:1;28:26">
+          <colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="colspec:1;29:36"/>
+          <colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="colspec:2;30:36"/>
+          <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="thead:1;31:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="row:1;32:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="entry:1;33:22">Platform</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="entry:2;34:22">Location</entry>
+            </row>
+          </thead>
+          <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="tbody:1;37:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="row:2;38:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="entry:3;39:22">Linux</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="entry:4;40:22"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="codeph:1;40:30">/opt/couchbase/var/lib/couchbase/config/config.dat</codeph></entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="row:3;42:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="entry:5;43:22">Windows</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="entry:6;44:22"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="codeph:2;44:30">C:\Program Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat</codeph></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="section:1;51:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="title:2;51:21">Upgrading from Community Edition to Enterprise Edition</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="p:5;52:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="b:1;52:13">Use the same
+          Couchbase Server version number when upgrading to the Enterprise Edition.</b> Version
+        differences may result in a failed upgrade. </p></section>
+    
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="related-links:1;58:18"><linkpool class="- topic/linkpool " xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><linkpool class="- topic/linkpool " xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:30;46:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-online.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Online upgrades</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:31;47:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-offline.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Offline upgrade</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:32;48:59" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-individual-nodes.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading individual nodes</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:33;50:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-xdcr.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading with XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The upgrade process depends on the scenario.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:34;52:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-from-1.8.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading from 1.8</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">To upgrade from version 1.8.0, upgrade to version 1.8.1 first.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:35;53:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-to-2.5.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading to 2.5</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:36;54:46" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-mac.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading on Mac</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:37;55:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-rhel.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading on RHEL</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:38;56:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-ubuntu.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading on Ubuntu</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:39;57:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrade-windows.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading on Windows</linktext></link></linkpool></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="linklist:1;59:15">
+      <link href="../cli/cbbackup_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="link:1;60:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbbackup tool</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="codeph:1;6:27">cbbackup</codeph> tool creates a copy of data from an entire running cluster,       an entire bucket, a single node, or a single bucket on a single functioning node. Your node       or cluster needs to be functioning in order to create the backup. Couchbase Server will       write a copy of data onto disk.</desc></link>
+      <link href="../cli/cbrestore_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrading.dita" xtrc="link:2;61:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbrestore tool</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

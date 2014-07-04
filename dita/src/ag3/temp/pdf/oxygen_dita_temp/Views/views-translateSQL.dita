@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Views?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Views/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic12355" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="topic:1;4:41">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="title:1;5:10">Translating SQL to map/reduce</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="body:1;6:9">
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:1;7:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:1;7:24">SELECT fieldlist FROM table \
+    WHERE condition \
+    GROUP BY groupfield \
+    ORDER BY orderfield \
+    LIMIT limitcount OFFSET offsetcount
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:1;13:8">The different elements within the source statement affect how a view is written in the
+      following ways:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:1;15:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:1;16:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:2;16:19">SELECT fieldlist</codeph></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:2;18:8">The field list within the SQL statement affects either the corresponding key or value within
+      the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:3;19:19">map()</codeph> function, depending on whether you are also selecting or reducing
+      your data. </p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:2;21:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:2;22:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:4;22:19">FROM table</codeph></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:3;24:8">There are no table compartments within Couchbase Server and you cannot perform views across
+      more than one bucket boundary. However, if you are using a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:5;25:74">type</codeph> field within
+      your documents to identify different record types, then you may want to use the
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:6;27:17">map()</codeph> function to make a selection.</p>
+    
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:3;29:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:3;30:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:7;30:19">WHERE condition</codeph></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:4;32:8">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:8;32:20">map()</codeph> function and the data generated into the view key directly affect
+      how you can query, and therefore how selection of records takes place.</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:4;34:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:4;35:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:9;35:19">ORDER BY orderfield</codeph></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:5;37:8">The order of record output within a view is directly controlled by the key specified during
+      the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:10;38:19">map()</codeph> function phase of the view generation.</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:5;39:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:5;40:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:11;40:19">LIMIT limitcount OFFSET offsetcount</codeph></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:6;42:8">There are a number of different paging strategies available within the map/reduce and views
+      mechanism.</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:6;44:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:6;45:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:12;45:19">GROUP BY groupfield</codeph></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:7;47:8">Grouping within SQL is handled within views through the use of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:13;47:83">reduce()</codeph>
+      function.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:8;49:8">The interaction between the view <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:14;49:49">map()</codeph> function, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:15;49:82">reduce()</codeph>
+      function, selection parameters and other miscellaneous parameters according to the table
+      below:</p>
+    
+    
+    
+    
+    <table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="table:1;56:12">
+      <tgroup cols="7" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="tgroup:1;57:24">
+        <colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:1;58:34"/>
+        <colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:2;59:34"/>
+        <colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:3;60:34"/>
+        <colspec colname="col4" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:4;61:34"/>
+        <colspec colname="col5" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:5;62:34"/>
+        <colspec colname="col6" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:6;63:34"/>
+        <colspec colname="col7" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="colspec:7;64:34"/>
+        <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="thead:1;65:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:1;66:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:1;67:20">SQL Statement Fragment</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:2;68:20">View Key</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:3;69:20">View Value</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:4;70:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:16;70:28">map()</codeph> Function</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:5;71:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:17;71:28">reduce()</codeph> Function</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:6;72:20">Selection Parameters</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:7;73:20">Other Parameters</entry>
+          </row>
+        </thead>
+        <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="tbody:1;76:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:2;77:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:8;78:20">SELECT fields</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:9;79:20">Yes</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:10;80:20">Yes</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:11;81:20">Yes</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:12;82:20">No: with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:18;82:37">GROUP BY</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:19;82:67">SUM()</codeph> or
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:20;83:25">COUNT()</codeph> functions only</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:13;84:20">No</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:14;85:20">No</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:3;87:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:15;88:20">FROM table</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:16;89:20">No</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:17;90:20">No</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:18;91:20">Yes</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:19;92:20">No</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:20;93:20">No</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:21;94:20">No</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:4;96:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:22;97:20">WHERE clause</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:23;98:20">Yes</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:24;99:20">No</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:25;100:20">Yes</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:26;101:20">No</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:27;102:20">Yes</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:28;103:20">No</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:5;105:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:29;106:20">ORDER BY field</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:30;107:20">Yes</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:31;108:20">No</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:32;109:20">Yes</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:33;110:20">No</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:34;111:20">No</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:35;112:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:21;112:28">descending</codeph></entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:6;114:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:36;115:20">LIMIT x OFFSET y</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:37;116:20">No</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:38;117:20">No</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:39;118:20">No</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:40;119:20">No</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:41;120:20">No</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:42;121:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:22;121:28">limit</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:23;121:52">skip</codeph></entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="row:7;123:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:43;124:20">GROUP BY field</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:44;125:20">Yes</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:45;126:20">Yes</entry>
+            <entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:46;127:20">Yes</entry>
+            <entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:47;128:20">Yes</entry>
+            <entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:48;129:20">No</entry>
+            <entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="entry:49;130:20">No </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:9;135:8">Within SQL, the basic query structure can be used for a multitude of different queries. For
+      example, the same ’ <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:24;136:35">SELECT fieldlist FROM table WHERE xxxx</codeph> can be used with a
+      number of different clauses.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:10;138:8">Within map/reduce and Couchbase Server, multiple views may be needed to be created to handled
+      different query types. For example, performing a query on all the blog posts on a specific
+      date will need a very different view definition than one needed to support selection by the
+      author.</p>
+    
+    
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="section:1;146:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="title:2;146:21">Translating SQL SELECT to map/reduce</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:11;146:68">The field selection within an SQL
+        query can be translated into a corresponding view definition, either by adding the fields to
+        the emitted key (if the value is also used for selection in a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:25;148:79">WHERE</codeph>
+        clause), or into the emitted value, if the data is separate from the required query
+        parameters.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:12;150:27">For example, to get the sales data by country from each stored document
+        using the following <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:26;151:37">map()</codeph>
+        function:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:2;152:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:27;152:41">function(doc, meta) {
+  emit([doc.city, doc.sales], null);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:13;155:25">If
+        you want to output information that can be used within a reduce function, this should be
+        specified in the value generated by each <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:28;157:58">emit()</codeph> call. For example, to
+        reduce the sales figures the above <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:29;158:52">map()</codeph> function could be rewritten
+        as:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:3;159:27"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:30;159:35">function(doc, meta) {
+  emit(doc.city, doc.sales);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:14;162:25">In
+        essence this does not produce significantly different output (albeit with a simplified key),
+        but the information can now be reduced using the numerical value.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:15;164:81">If you want to
+        output data or field values completely separate to the query values, then these fields can
+        be explicitly output within the value portion of the view. For
+        example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:4;167:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:31;167:40">function(doc, meta) {
+  emit(doc.city, [doc.name, doc.sales]);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:16;170:25">If
+        the entire document for each item is required, load the document data after the view has
+        been requested through the client library. For more information on this parameter and the
+        performance impact.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:17;173:35">Within a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:32;173:52">SELECT</codeph> statement it is
+        common practice to include the primary key for a given record in the output. Within a view
+        this is not normally required, since the document ID that generated each row is always
+        included within the view
+        output.</p></section>
+    
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="section:2;181:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="title:3;181:21">Translating SQL WHERE to map/reduce</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:18;181:67">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:33;181:79">WHERE</codeph> clause
+        within an SQL statement forms the selection criteria for choosing individual records. Within
+        a view, the ability to query the data is controlled by the content and structure of the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:34;184:19">key</codeph> generated by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:35;184:57">map()</codeph> function.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:19;184:88">In general,
+        for each <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:36;185:26">WHERE</codeph> clause you need to include the corresponding field in the
+        key of the generated view, and then use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:37;186:61">key</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:38;186:83">keys</codeph> or
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:39;187:19">startkey</codeph> / <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:40;187:47">endkey</codeph> combinations to indicate the data you
+        want to select.. The complexity occurs when you need to perform queries on multiple fields.
+        There are a number of different strategies that you can use for this.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:20;189:85">The simplest way
+        is to decide whether you want to be able to select a specific combination, or whether you
+        want to perform range or multiple selections. For example, using our recipe database, if you
+        want to select recipes that use the ingredient ‘carrot’ and have a cooking time of exactly
+        20 minutes, then you can specify these two fields in the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:41;193:74">map()</codeph>
+        function:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:5;194:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:42;194:41">function(doc, meta)
+{
+  if (doc.ingredients)
+  {
+    for(i=0; i &lt; doc.ingredients.length; i++)
+    {
+      emit([doc.ingredients[i].ingredient, doc.totaltime], null);
+    }
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:21;204:25">Then
+        the query is an array of the two selection
+        values:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:6;206:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:43;206:39">?key=["carrot",20]
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:22;207:25">This is equivalent
+        to the SQL
+        query:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:7;209:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:44;209:38">SELECT recipeid FROM recipe JOIN ingredients on ingredients.recipeid = recipe.recipeid
+    WHERE ingredient = 'carrot' AND totaltime = 20
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:23;211:25">If,
+        however, you want to perform a query that selects recipes containing carrots that can be
+        prepared in less than 20 minutes, a range query is possible with the same
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:45;214:19">map()</codeph>
+        function:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:8;215:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:46;215:41">?startkey=["carrot",0]&amp;endkey=["carrot",20]
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:24;216:25">This
+        works because of the sorting mechanism in a view, which outputs in the information
+        sequentially, fortunately nicely sorted with carrots first and a sequential
+        number.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:25;219:23">More complex queries though are more difficult. What if you want to select
+        recipes with carrots and rice, still preparable in under 20 minutes?</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:26;220:84">A standard
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:47;221:19">map()</codeph> function like that above wont work. A range query on both
+        ingredients will list all the ingredients between the two. There are a number of solutions
+        available to you. First, the easiest way to handle the timing selection is to create a view
+        that explicitly selects recipes prepared within the specified time.
+        I.E:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:9;225:28"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:48;225:36">function(doc, meta)
+{
+  if (doc.totaltime &lt;= 20)
+  {
+    ...
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:27;232:25">Although
+        this approach seems to severely limit your queries, remember you can create multiple views,
+        so you could create one for 10 mins, one for 20, one for 30, or whatever intervals you
+        select. It’s unlikely that anyone will really want to select recipes that can be prepared in
+        17 minutes, so such granular selection is overkill.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:28;236:67">The multiple ingredients is more
+        difficult to solve. One way is to use the client to perform two queries and merge the data.
+        For example, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:49;238:34">map()</codeph>
+        function:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:10;239:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:50;239:41">function(doc, meta)
+{
+  if (doc.totaltime &amp;amp;&amp;amp; doc.totaltime &lt;= 20)
+  {
+    if (doc.ingredients)
+    {
+      for(i=0; i &lt; doc.ingredients.length; i++)
+      {
+        emit(doc.ingredients[i].ingredient, null);
+      }
+    }
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:29;252:25">Two
+        queries, one for each ingredient can easily be merged by performing a comparison and count
+        on the document ID output by each view.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:30;254:55">The alternative is to output the ingredients
+        twice within a nested loop, like
+        this:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:11;256:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:51;256:37">function(doc, meta)
+{
+  if (doc.totaltime &amp;amp;&amp;amp; doc.totaltime &lt;= 20)
+  {
+    if (doc.ingredients)
+    {
+      for (i=0; i &lt; doc.ingredients.length; i++)
+      {
+        for (j=0; j &lt; doc.ingredients.length; j++)
+        {
+          emit([doc.ingredients[i].ingredient, doc.ingredients[j].ingredient], null);
+        }
+      }
+    }
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:31;272:25">Now
+        you can perform an explicit query on both
+        ingredients:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:12;274:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:52;274:44">?key=["carrot","rice"]
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:32;275:25">If you
+        really want to support flexible cooking times, then you can also add the cooking
+        time:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:13;277:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:53;277:37">function(doc, meta)
+{
+  if (doc.ingredients)
+  {
+    for (i=0; i &lt; doc.ingredients.length; i++)
+    {
+      for (j=0; j &lt; doc.ingredients.length; j++)
+      {
+        emit([doc.ingredients[i].ingredient, doc.ingredients[j].ingredient, recipe.totaltime], null);
+      }
+    }
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:33;290:25">And
+        now you can support a ranged query on the cooking time with the two ingredient
+        selection:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:14;292:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:54;292:42">?startkey=["carrot","rice",0]&amp;key=["carrot","rice",20]
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:34;293:25">This
+        would be equivalent
+        to:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:15;295:27"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:55;295:35">SELECT recipeid FROM recipe JOIN ingredients on ingredients.recipeid = recipe.recipeid
+    WHERE (ingredient = 'carrot' OR ingredient = 'rice') AND totaltime = 20
+</codeph></codeblock></section>
+    
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="section:3;301:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="title:4;301:21">Translating SQL ORDER BY to map/reduce</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:35;301:70">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:56;301:82">ORDER BY</codeph>
+        clause within SQL controls the order of the records that are output. Ordering within a view
+        is controlled by the value of the key. However, the key also controls and supports the
+        querying mechanism.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:36;304:35">In <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:57;304:46">SELECT</codeph> statements where there is no explicit
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:58;305:19">WHERE</codeph> clause, the emitted key can entirely support the sorting you want.
+        For example, to sort by the city and salesman name, the following <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:59;306:83">map()</codeph>
+        will achieve the required
+        sorting:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:16;308:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:60;308:40">function(doc, meta)
+{
+   emit([doc.city, doc.name], null)
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:37;312:25">If
+        you need to query on a value, and that query specification is part of the order sequence
+        then you can use the format above. For example, if the query basis is city, then you can
+        extract all the records for ‘London’ using the above view and a suitable range
+        query:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:17;316:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:61;316:38">?endkey=["London\u0fff"]&amp;startkey=["London"]
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:38;317:25">However,
+        if you want to query the view by the salesman name, you need to reverse the field order in
+        the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:62;319:21">emit()</codeph>
+        statement:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:18;320:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:63;320:42">function(doc, meta)
+{
+   emit([doc.name,doc.city],null)
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:39;324:25">Now
+        you can search for a name while still getting the information in city order.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:40;325:92">The order
+        the output can be reversed (equivalent to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:64;326:59">ORDER BY field DESC</codeph> ) by using
+        the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:65;327:21">descending</codeph> query parameter. </p></section>
+    
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="section:4;331:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="title:5;331:21">Translating SQL GROUP BY to map/reduce</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:41;331:70">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:66;331:82">GROUP BY</codeph>
+        parameter within SQL provides summary information for a group of matching records according
+        to the specified fields, often for use with a numeric field for a sum or total value, or
+        count operation.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:42;334:32">For
+        example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:19;335:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:67;335:40">SELECT name,city,SUM(sales) FROM sales GROUP BY name,city
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:43;336:25">This
+        query groups the information by the two fields ‘name’ and ‘city’ and produces a sum total of
+        these values. To translate this into a map/reduce function within Couchbase Server:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="ul:7;338:100">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:7;339:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:44;339:16">From the list of selected fields, identify the field used for the calculation. These
+            will need to be exposed within the value emitted by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:68;340:77">map()</codeph>
+            function.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:8;342:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:45;342:16">Identify the list of fields in the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:69;342:59">GROUP BY</codeph> clause. These will need
+            to be output within the key of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:70;343:56">map()</codeph> function.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="li:9;344:13"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:46;344:16">Identify the grouping function, for example <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:71;344:68">SUM()</codeph> or
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:72;345:23">COUNT()</codeph>. You will need to use the equivalent built-in function, or a
+            custom function, within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:73;346:49">reduce()</codeph> function of the view.</p></li>
+      </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:47;347:15">For example, in the above case, the corresponding map function can be written as
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:74;348:19">map()</codeph>
+        :</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:20;349:25"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:75;349:33">function(doc, meta)
+{
+   emit([doc.name,doc.city],doc.sales);
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:48;353:25">This
+        outputs the name and city as the key, and the sales as the value. Because the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:76;355:19">SUM()</codeph> function is used, the built-in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:77;355:73">reduce()</codeph> function
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:78;356:19">_sum</codeph> can be used.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:49;356:52">An example of this map/reduce combination can be
+        seen <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:79;357:22">_sum</codeph>.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:50;357:43">More complex grouping operations may require a custom reduce function.
+        </p></section>
+    
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="section:5;362:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="title:6;362:21">Translating SQL LIMIT and OFFSET</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:51;362:64">Within SQL, the
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:80;363:19">LIMIT</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:81;363:46">OFFSET</codeph> clauses to a given query are used as a
+        paging mechanism. For example, you might
+        use:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:21;365:28"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:82;365:36">SELECT recipeid,title FROM recipes LIMIT 100
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:52;366:25">To
+        get the first 100 rows from the database, and then use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:83;367:76">OFFSET</codeph> to get
+        the subsequent groups of
+        records:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:22;369:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:84;369:40">SELECT recipeid,title FROM recipes LIMIT 100 OFFSET 100
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:53;370:25">With
+        Couchbase Server, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:85;371:39">limit</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:86;371:66">skip</codeph> parameters when
+        supplied to the query provide the same basic
+        functionality:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeblock:23;373:38"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="codeph:87;373:46">?limit=100&amp;skip=100
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="p:54;374:25">Performance
+        for high values of skip can be affected.</p></section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="related-links:1;377:18"><linkpool class="- topic/linkpool " xtrc="topicref:113;130:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:103;120:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Views/views-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Views and indexes</linktext></link></linkpool>
+    <link href="../views/views-querySample.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="link:1;378:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">View and query pattern samples</linktext></link>
+    <link href="../views/views-querying.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="link:2;379:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Querying views</linktext></link>
+    <link href="../views/views-writing.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-translateSQL.dita" xtrc="link:3;380:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Writing views</linktext></link>
+  </related-links>
+</topic>

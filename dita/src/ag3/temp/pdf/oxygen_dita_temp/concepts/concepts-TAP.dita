@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3500" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="title:1;5:10">TAP</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="shortdesc:1;6:14">The TAP protocol is an internal part of the Couchbase Server system and is used to
+    exchange data throughout the system. </shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:1;9:8">TAP provides a stream of data of the changes that are occurring within the system. TAP is
+      used during replication, to copy data between vBuckets used for replicas. It is also used
+      during the rebalance procedure to move data between vBuckets and redistribute the information
+      across the system.</p>
+
+
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="section:1;15:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="title:2;15:21">Client interface</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:2;15:48">Within Couchbase Server, the techniques and systems
+        used to get information into and out of the database differ according to the level and
+        volume of data that you want to access. The different methods can be identified according to
+        the base operations of Create, Retrieve, Update and Delete:</p>
+      
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="title:3;20:14">Create</title>
+
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:3;22:10">Information is stored into the database using the memcached protocol interface to
+        store a <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="i:1;23:20">value</i> against a specified <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="i:2;23:53">key</i>. Bulk operations for setting the
+        key/value pairs of a large number of documents at the same time are available, and these are
+        more efficient than multiple smaller requests.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:4;25:62">The value stored can be any binary
+        value, including structured and unstructured strings, serialized objects (from the native
+        client language), native binary data (for example, images or audio). For use with the
+        Couchbase Server View engine, information must be stored using the JavaScript Object
+        Notation (JSON) format, which structures information as a object with nested fields, arrays,
+        and scalar datatypes.</p>
+      
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="title:4;32:16">Retrieve</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:5;33:10">To retrieve information from the database, there are two methods available: By Key and BY View</p>
+      
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="ul:1;35:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="li:1;36:13">By Key 
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:6;37:14">If you know the key used to store a particular value, then you can use the
+  memcached protocol (or an appropriate memcached compatible client-library) to
+  retrieve the value stored against a specific key. You can also perform bulk
+  operations.</p></li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="li:2;41:13">By View
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:7;42:14">f you do not know the key, you can use the View system to write a view that
+            outputs the information you need. The view generates one or more rows of
+            information for each JSON object stored in the database. The view definition
+            includes the keys (used to select specific or ranges of information) and values.
+            For example, you could create a view on contact information that outputs the
+            JSON record by the contact's name, and with a value containing the contacts
+            address. Each view also outputs the key used to store the original object. If 
+            the view doesn't contain the information you need, you can use the returned key
+            with the memcached protocol to obtain the complete record.</p>      
+        </li>
+      </ul>
+
+
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="title:5;55:16">Update</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:8;56:10">To update information in the database, you must use the memcached protocol interface.
+        The memcached protocol includes functions to directly update the entire contents, and also
+        to perform simple operations, such as appending information to the existing record, or
+        incrementing and decrementing integer values.</p>
+        
+        
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="title:6;62:16">Delete</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:9;63:10">To delete information from Couchbase Server you need to use the memcached protocol
+        which includes an explicit delete command to remove a key/value pair from the
+        server.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="p:10;65:23">However, Couchbase Server also allows information to be stored in the database
+        with an expiry value. The expiry value states when a key/value pair should be automatically
+        deleted from the entire database, and can either be specified as a relative time (for
+        example, in 60 seconds), or absolute time (31st December 2012, 12:00pm).</p>
+        
+        <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concepts-TAP.dita" xtrc="note:1;70:27">The methods of creating, updating and retrieving information are critical 
+          to the way you work with storing data in Couchbase Server.</note>
+    
+    </section>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:24;30:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc "> Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic4685" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="title:1;5:9">Logs and logging</title>
+	<shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="shortdesc:1;6:13">Couchbase Server creates a number of different log files depending on the component of
+		the system that produce the error, and the level and severity of the problem being
+		reported.</shortdesc>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="body:1;9:8">
+
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="table:1;11:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="tgroup:1;12:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="colspec:1;13:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="colspec:2;14:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="thead:1;15:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:1;16:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:1;17:14">Platform</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:2;18:14">Location</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="tbody:1;21:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:2;22:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:3;23:14">Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:4;24:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:1;24:22">/opt/couchbase/var/lib/couchbase/logs</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:3;26:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:5;27:14">Windows</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:6;28:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:2;28:22">C:\Program
+								Files\Couchbase\Server\var\lib\couchbase\logs</codeph> Assumes
+							default installation location</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:4;32:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:7;33:14">Mac OS X</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:8;34:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:3;34:22">/Users/couchbase/Library/Application
+								Support/Couchbase/var/lib/couchbase/logs </codeph>
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:1;41:6">Individual log files are automatically numbered, with the number suffix incremented for
+			each new log, with a maximum of 20 files per log. Individual log file sizes are limited
+			to 10MB by default.</p>
+		
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="table:2;45:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="tgroup:2;46:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="colspec:3;47:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="colspec:4;48:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="thead:2;49:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:5;50:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:9;51:14">File</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:10;52:14">Log Contents</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="tbody:2;55:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:6;56:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:11;57:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:4;57:22">couchdb</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:12;58:14">Errors relating to the couchdb subsystem that supports views, indexes
+							and related REST API issues</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:7;61:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:13;62:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:5;62:22">debug</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:14;63:14">Debug level error messages related to the core server management
+							subsystem, excluding information included in the
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:6;65:17">couchdb</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:7;65:43">xdcr</codeph> and
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:8;66:17">stats</codeph> logs.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:8;68:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:15;69:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:9;69:22">info</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:16;70:14">Information level error messages related to the core server
+							management subsystem, excluding information included in the
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:10;72:17">couchdb</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:11;72:43">xdcr</codeph> and
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:12;73:17">stats</codeph> logs.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:9;75:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:17;76:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:13;76:22">error</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:18;77:14">Error level messages for all subsystems excluding
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:14;78:17">xdcr</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:10;80:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:19;81:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:15;81:22">xcdr_error</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:20;82:14">XDCR error messages.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:11;84:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:21;85:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:16;85:22">xdcr</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:22;86:14">XDCR information messages.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:12;88:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:23;89:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:17;89:22">mapreduce_errors</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:24;90:14">JavaScript and other view-processing errors are reported in this
+							file.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:13;93:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:25;94:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:18;94:22">views</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:26;95:14">Errors relating to the integration between the view system and the
+							core server subsystem.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:14;98:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:27;99:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:19;99:22">stats</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:28;100:14">Contains periodic reports of the core statistics.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="row:15;102:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:29;103:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:20;103:22">memcached.log</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="entry:30;104:14">Contains information relating to the core memcache component,
+							including vBucket and replica and rebalance data streams requests.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:2;111:6">Each log file group will also include a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:21;111:54">.idx</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:22;111:80">.siz</codeph>
+			file which holds meta information about the log file group. These files are
+			automatically updated by the logging system.</p>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="section:1;116:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="title:2;116:19">Changing log file location</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:3;117:7">The default file log location is
+				/opt/couchbase/var/lib/couchbase/logs, however, if you want to change the default
+				log location to a different directory, change the log file configuration option.
+				</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:4;120:12">Note</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:5;120:23">To implement a log file location change (from the default), you
+				must be log in as either root or sudo and the Couchbase service must be
+				restarted.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:6;122:22">To change the log file configuration:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="ol:1;122:67">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:1;123:9">Log in as root or sudo and navigate to the directory where you installed
+					Couchbase. For example:
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:23;125:15">/opt/couchbase/etc/couchbase/static_config</codeph></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:2;126:9">Edit the static_config file and change the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:24;126:60">error_logger_mf_dir</codeph>
+					variable to a different directory. For example: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:25;127:62">{error_logger_mf_dir,
+						"/home/user/cb/opt/couchbase/var/lib/couchbase/logs"}</codeph></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:3;129:9">Restart the Couchbase service. After restarting the Couchbase service, all
+					subsequent logs will be in the new directory.</li>
+			</ol></section>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="section:2;134:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="title:3;134:19">Changing logging levels</title>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:7;136:7">The default logging level for all log
+				files are set to debug except for couchdb, which is set to info. If you want to
+				change the default logging level, modify the logging level configuration options.
+				</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:8;139:12">The configuration change can be performed in one of the following ways:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="ul:1;139:91">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:4;140:9">persistent</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:5;141:9">dynamic (on the fly, without restarting).</li>
+			</ul></section>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="section:3;145:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="title:4;145:19">Changing logging levels to be persistent</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:9;146:7">Logging
+					levels can be changed so that the changes are persistent, that is, the changes
+					continue to be implemented should a Couchbase Server reboot
+					occur.</p>
+			
+			<note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="note:1;151:22">To implement logging level changes, the Couchbase
+					service must be restarted.</note>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:10;154:7">To change logging levels to be persistent:</p>
+			
+			<ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="ol:2;156:8">
+					<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:6;157:10">Log in as root or sudo and navigate to the directory where you installed
+						Couchbase. For example:
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:26;159:16">/opt/couchbase/etc/couchbase/static_config</codeph></li>
+					<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:7;160:10">Edit the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="b:1;160:22">static_config</b> file and change the desired log component. For
+						example, parameters with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeph:27;161:44">loglevel_</codeph> prefix set the
+						logging level.</li>
+					<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="li:8;163:10">Restart the Couchbase service.</li>
+				</ol>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:11;166:7">After restarting the Couchbase service, logging levels for that component
+					will be changed.</p></section>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="section:4;170:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="title:5;170:19">Changing logging levels dynamically</title>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:12;172:7">If logging
+					levels are changed dynamically and if a Couchbase server reboot occurs, then the
+					changed logging levels revert to the default. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:13;174:59">To change logging levels
+					dynamically, execute a curl POST command using the following syntax:</p>
+			
+			<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeblock:1;177:15">
+curl -X POST -u adminName:adminPassword
+  HOST:PORT/diag/eval 
+  –d ‘ale:set_loglevel(&lt;log_component&gt;,&lt;logging_level&gt;).’
+</codeblock>
+					
+						<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="p:14;183:10">Where:</p>
+					<dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dl:1;184:10">
+					<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dlentry:1;185:15">
+						<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dt:1;186:11">Log_component</dt>
+						<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dd:1;187:11">The default log level (except couchdb) is debug. For example, ns_server.
+							The available loggers are ns_server, couchdb, user, Menelaus, ns_doctor,
+							stats, rebalance, cluster, views, mapreduce_errors , xdcr and
+							error_logger</dd>
+					</dlentry>
+
+
+					<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dlentry:2;194:15">
+						<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dt:2;195:11">Logging_level</dt>
+						<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="dd:2;196:11">The available log levels are debug, info, warning, and error.</dd>
+					</dlentry>
+					</dl>
+		</section>
+
+				<example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="example:1;201:14">
+			<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-logs.dita" xtrc="codeblock:2;202:15">
+curl -X POST -u Administrator:password 
+	http://127.0.0.1:8091/diag/eval 
+	-d 'ale:set_loglevel(ns_server,error).
+</codeblock></example>
+		
+	</body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:132;151:41" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:129;148:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/Trbl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Troubleshooting</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Troubleshooting covers general tips, common errors, log information, and other issues.</desc></link></linkpool></related-links>
+</topic>

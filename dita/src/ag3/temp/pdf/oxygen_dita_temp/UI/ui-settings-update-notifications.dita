@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/UI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_fwj_gnc_34" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="title:1;4:10">Update Notifications tab</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:1;6:8">You can enable or disable Update
+      Notifications by checking the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="codeph:1;7:45">Enable software update notifications</codeph> checkbox
+      within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="codeph:2;8:26">Update Notifications</codeph> screen. Once you have changed the option,
+      click <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="codeph:3;9:21">Save</codeph> to record the change.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:2;11:8">If update notifications are
+        disabled, then the Update Notifications screen only notifies you of your currently
+        installed version, and no alert is provided.</p>
+    
+          <image href="../images/web-console-server-settings-update-notifications.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="image:1;15:88"/>
+    
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:3;18:8">During installation you can select to enable the Update Notification function. Update
+      notifications allow a client accessing the Couchbase Web Console to determine whether a newer
+      version of Couchbase Server is available for download.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:4;21:8">If <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="codeph:4;21:19">Enable software update notifications</codeph> is selected, the web console
+      communicates with Couchbase servers to confirm the version number of your Couchbase
+      installation. During this process, the client submits the following information to the
+      Couchbase server:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="ul:1;25:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="li:1;26:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:5;26:14">The current version of your Couchbase Server installation. 
+        When a new version of  Couchbase Server becomes available, 
+        you are provided with notification of the new version and information on where to download the new version.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="li:2;29:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:6;29:14">Basic information about the size and configuration of your Couchbase cluster. This
+        information is used to help Couchbase prioritize development efforts.</p></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:7;32:8">You can enable/disable software update notifications. 
+    The process occurs within the browser accessing the web console, not within the server itself. 
+      No further configuration or internet access is required on the server to enable
+      this functionality. Providing the client accessing the Couchbase server console has internet
+      access, the information can be communicated to the Couchbase servers.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="p:8;37:8">The update notification process the information anonymously, and the data cannot be tracked.
+      The information is only used to provide you with update notification and to provide
+      information that will help improve future development process for Couchbase Server and
+      related products.</p>
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings-update-notifications.dita" xtrc="note:1;41:23">If the browser or computer that you are using to connect to your Couchbase Server web console
+      does not have Internet access, the update notification system does not work.</note>
+    
+        
+  </body>
+
+
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:90;104:63" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:88;102:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-settings.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Settings</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrc="uicontrol:1;6:29" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings.dita">Settings</uicontrol> section provides configuration and information      for the cluster, update notifications, auto failover, alerts, auto compaction, sample buckets, and account management.</desc></link></linkpool></related-links>
+</topic>

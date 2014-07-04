@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBepctl?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBepctl/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1898" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="title:1;5:10">Changing access log settings</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="p:1;7:8">Couchbase Server has an optimized disk warmup. Couchbase Server pre-fetches a list of
+      most-frequently accessed keys and fetches these documents first. The server runs a periodic
+      scanner process which determines which keys are most frequently-used. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="codeph:1;9:89">cbepctl
+        flush_param</codeph> command is used to change the initial time and the interval for the
+      process. You may want to do this, for example, if you have a peak time for your application
+      when you want the keys used during this time to be quickly available after server restart.</p>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="note:1;14:23">If you want to change this setting for
+      an entire Couchbase cluster, you will need to perform this command on per-node and per-bucket in
+      the cluster. By default, any setting you change with `cbepctl` will only be for the named bucket
+      at the specific node you provide in the command. This means that if you have a data bucket
+      that is shared by two nodes, you will nonetheless need to issue this command twice and provide
+      the different host names and ports for each node and the bucket name. Similarly, if you have two
+      data buckets for one node, you need to issue the command twice and provide the two data bucket
+      names. If you do not specify a named bucket, it will apply to the default bucket or return an
+      error if a default bucket does not exist.</note>
+    
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="p:2;25:8">By default the scanner process runs once every 24 hours with a default initial start time
+      of 2:00 AM UTC. This means after you install a new Couchbase Server 2.0 instance or restart
+      the server, by default the scanner will run every 24- hour time period at 2:00 AM GMT and then
+      2:00 PM GMT by default. To change the time interval when the access scanner process runs to
+      every 20 minutes:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="codeblock:1;30:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="codeph:2;30:24">&gt; ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param alog_sleep_time 20
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="p:3;32:8">To change the initial time that the access scanner process runs from the default of 2:00 AM
+      UTC:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="codeblock:2;34:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="codeph:3;34:24">&gt; ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param alog_task_time 23
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="p:4;36:8">In this example we set the initial time to 11:00 PM UTC.</p>
+    
+    <note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBepctl/cbepctl-accesslog.dita" xtrc="note:2;38:28">Be aware that this tool is a per-node, per-bucket operation. 
+      This means that in order to perform this operation, you must specify the IP address of a node in the cluster and a named bucket. 
+      If you do not provided a named bucket, the server applies the setting to any
+      default bucket that exists at the specified node. In order to perform this operation for an
+      entire cluster, perform the command for every node/bucket combination that
+      exists for that cluster.</note>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:14;19:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:12;17:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbepctl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>cbepctl tool</linktext></link></linkpool></related-links>
+</topic>

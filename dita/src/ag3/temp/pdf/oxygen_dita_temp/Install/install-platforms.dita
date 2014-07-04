@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1634" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="title:1;5:9">Supported platforms</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="p:1;7:6">Your system must meet the following system requirements.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="p:2;8:6">Couchbase Server provides platform support for Windows 2012 and separate packages for
+			Ubuntu 12.04 and CentOS 6.</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="table:1;10:10">
+			<tgroup cols="5" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="tgroup:1;11:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="colspec:1;12:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="colspec:2;13:30"/>
+				<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="colspec:3;14:30"/>
+				<colspec colname="col4" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="colspec:4;15:30"/>
+				<colspec colname="col5" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="colspec:5;16:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="thead:1;17:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:1;18:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:1;19:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="b:1;19:17">Platform</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:2;20:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="b:2;20:17">Version</b></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:3;21:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="b:3;21:17">32 / 64 bit</b></entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:4;22:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="b:4;22:17">Supported</b></entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:5;23:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="b:5;23:17">Recommended Version</b></entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="tbody:1;26:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:2;27:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:6;28:14">Red Hat Enterprise Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:7;29:14">5</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:8;30:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:9;31:14">Developer and Production</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:10;32:14">RHEL 5.8</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:3;34:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:11;35:14">Red Hat Enterprise Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:12;36:14">6</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:13;37:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:14;38:14">Developer and Production</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:15;39:14">RHEL 6.3</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:4;41:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:16;42:14">CentOS</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:17;43:14">5</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:18;44:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:19;45:14">Developer and Production</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:20;46:14">CentOS 5.8</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:5;48:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:21;49:14">CentOS</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:22;50:14">6</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:23;51:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:24;52:14">Developer and Production</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:25;53:14">CentOS 6.3</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:6;55:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:26;56:14">Amazon Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:27;57:14">2011.09</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:28;58:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:29;59:14">Developer and Production</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:7;61:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:30;62:14">Ubuntu Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:31;63:14">10.04</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:32;64:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:33;65:14">Developer and Production</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:8;67:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:34;68:14">Ubuntu Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:35;69:14">12.04</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:36;70:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:37;71:14">Developer and Production</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:38;72:14">Ubuntu 12.04</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:9;74:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:39;75:14">Windows 2008</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:40;76:14">R2 with SP1</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:41;77:14">64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:42;78:14">Developer and Production</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:43;79:14">Windows 2008</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:10;81:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:44;82:14">Windows 2012</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:45;83:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:46;84:14">64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:47;85:14">Developer and Production</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:11;87:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:48;88:14">Windows 7</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:49;89:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:50;90:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:51;91:14">Developer only</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:12;93:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:52;94:14">Windows 8</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:53;95:15"/>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:54;96:14">32 and 64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:55;97:14">Developer only</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:13;99:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:56;100:14">Mac OS</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:57;101:14">10.7</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:58;102:14">64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:59;103:14">Developer only</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="row:14;105:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:60;106:14">Mac OS</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:61;107:14">10.8</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:62;108:14">64 bit</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:63;109:14">Developer only</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="entry:64;110:14">Mac OS 10.8 </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+
+		<note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="note:1;116:26">Couchbase clusters with mixed platforms are not supported.
+			Specifically, Couchbase Server on Mac OS X uses 64 vBuckets as opposed to the 1024
+			vBuckets used by other platforms. Due to this difference, if you need to move data
+			between a Mac OS X cluster and a cluster hosted on another platform use
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="codeph:1;120:13">cbbackup</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="codeph:2;120:43">cbrestore</codeph>.</note>
+		
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="related-links:1;123:17"><linkpool class="- topic/linkpool " xtrc="topicref:4;8:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/pre-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Pre-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Pre-installation describes requirements, supported configurations,      reserved or restricted items that are taken under consideration prior to installing Couchbase Server.</desc></link></linkpool>
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="linklist:1;124:13">
+			<link href="../Tasks/tasks-backupRestore.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-platforms.dita" xtrc="link:1;125:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Backup and restore</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The predominant method for backing up and restoring data is using the CLI <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-backupRestore.dita" xtrc="codeph:1;6:96">cbbackup</codeph>    and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-backupRestore.dita" xtrc="codeph:2;7:15">cbrestore</codeph> tools.</desc></link>
+		</linklist>
+	</related-links>
+</topic>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><task xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="task_g25_qmb_k4" ditaarch:DITAArchVersion="1.2" domains="(topic task)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)                            (topic task strictTaskbody-c)    " class="- topic/topic task/task " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="task:1;3:28">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="title:1;4:12">Setting delta node recovery (UI)</title>
+    <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="shortdesc:1;5:17"/>
+    <taskbody class="- topic/body task/taskbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="taskbody:1;6:15">
+
+        <context class="- topic/section task/context " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="context:1;8:18">
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="p:1;9:16">The process for re-adding a server isomg tje delta node recovery method involves:
+            <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="ol:1;10:17">
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="li:1;11:21">Fail over the node using either the graceful or hard failover method. Graceful failover is recommended.</li>
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="li:2;12:21">After the node is failed over, specify whether delta or full recovery is to be used.</li>
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="li:3;13:21">During the next rebalance, the node is added back to the cluster using the specified recovery method.</li>
+            </ol></p>
+            
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="p:2;16:16">To use delta recovery during failover, recovery, and rebalance operations:</p>
+        </context>
+        
+        
+        <steps class="- topic/ol task/steps " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="steps:1;20:16">
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="step:1;21:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="cmd:1;22:22">Navigate to <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="uicontrol:1;22:45">Server Nodes</uicontrol>.</cmd>
+            </step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="step:2;24:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="cmd:2;25:22">Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="uicontrol:2;25:39">Failover</uicontrol>.</cmd>
+            </step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="step:3;27:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="cmd:3;28:22">Select <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="uicontrol:3;28:40">Graceful Failover</uicontrol>.</cmd>          
+            </step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="step:4;30:19">
+                <cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="cmd:4;31:22">Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="uicontrol:4;31:39">Delta Recovery</uicontrol>.</cmd>
+                <stepresult class="- topic/itemgroup task/stepresult " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="stepresult:1;32:29"><image href="../images/ui-delta-recovery.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="image:1;32:87"/></stepresult>
+            </step>
+            <step class="- topic/li task/step " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="step:5;34:19"><cmd class="- topic/ph task/cmd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="cmd:5;34:24">Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="uicontrol:5;34:41">Rebalance</uicontrol>.</cmd>
+            <info class="- topic/itemgroup task/info " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/ui-task-node-recovery-incremental.dita" xtrc="info:1;35:19">The failed server node is re-added to the cluster.</info></step>
+        </steps>
+    </taskbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:20;28:70" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:19;27:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/incremental-recovery.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Delta node recovery</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Delta node recovery provides the option to specify whether the replacement server     node's disk is initialized or not. For a new server node, the disk is initialized (data is     removed) and re-populated. For the same server node, the disk is not initialized or     re-populated; the data buckets remain.</desc></link></linkpool></related-links>
+</task>

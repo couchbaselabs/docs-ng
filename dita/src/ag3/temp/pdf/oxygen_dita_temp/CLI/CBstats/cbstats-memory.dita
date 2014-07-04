@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBstats?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBstats/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1756" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="topic:1;4:40"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="title:1;4:47">Memory stats</title><body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="body:1;4:73"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="p:1;4:76">This provides various memory-related stats including the stats from tcmalloc.
+Note that tcmalloc stats are not available on some operating systems
+(e.g., Windows) that do not support tcmalloc.</p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="table:1;6:57"><tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="tgroup:1;6:74"><colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="colspec:1;6:99"/><colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="colspec:2;6:124"/><thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="thead:1;6:131"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:1;6:136">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:1;7:9">Stat</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:2;8:9">Description</entry>
+</row></thead><tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="tbody:1;9:22"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:2;9:27">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:3;10:9">mem_used (deprecated)</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:4;11:9">Engine’s total memory usage</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:3;12:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:5;13:9">bytes</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:6;14:9">Engine’s total memory usage</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:4;15:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:7;16:9">ep_kv_size</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:8;17:9">Memory used to store item metadata,</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:5;18:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:9;19:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:10;20:9">keys and values, no matter the</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:6;21:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:11;22:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:12;23:9">vbucket’s state. If an item’s value</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:7;24:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:13;25:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:14;26:9">is ejected, this stat will be</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:8;27:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:15;28:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:16;29:9">decremented by the size of the</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:9;30:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:17;31:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:18;32:9">item’s value.</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:10;33:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:19;34:9">ep_value_size</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:20;35:9">Memory used to store values for</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:11;36:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:21;37:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:22;38:9">resident keys</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:12;39:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:23;40:9">ep_overhead</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:24;41:9">Extra memory used by transient data</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:13;42:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:25;43:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:26;44:9">like persistence queue, replication</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:14;45:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:27;46:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:28;47:9">queues, checkpoints, etc</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:15;48:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:29;49:9">ep_max_size</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:30;50:9">Max amount of data allowed in memory</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:16;51:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:31;52:9">ep_mem_low_wat</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:32;53:9">Low water mark for auto-evictions</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:17;54:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:33;55:9">ep_mem_high_wat</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:34;56:9">High water mark for auto-evictions</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:18;57:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:35;58:9">ep_oom_errors</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:36;59:9">Number of times unrecoverable OOMs</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:19;60:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:37;61:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:38;62:9">happened while processing operations</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:20;63:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:39;64:9">ep_tmp_oom_errors</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:40;65:9">Number of times temporary OOMs</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:21;66:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:41;67:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:42;68:9">happened while processing operations</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:22;69:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:43;70:9">ep_mem_tracker_enabled</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:44;71:9">If smart memory tracking is enabled</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:23;72:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:45;73:9">tcmalloc_allocated_bytes</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:46;74:9">Engine’s total memory usage reported</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:24;75:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:47;76:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:48;77:9">from tcmalloc</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:25;78:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:49;79:9">tcmalloc_heap_size</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:50;80:9">Bytes of system memory reserved by</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:26;81:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:51;82:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:52;83:9">tcmalloc</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:27;84:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:53;85:9">tcmalloc_free_bytes</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:54;86:9">Number of bytes in free, mapped</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:28;87:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:55;88:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:56;89:9">pages in page heap</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:29;90:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:57;91:9">tcmalloc_unmapped_bytes</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:58;92:9">Number of bytes in free, unmapped</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:30;93:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:59;94:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:60;95:9">pages in page heap. These are bytes</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:31;96:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:61;97:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:62;98:9">that have been released back to OS</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:32;99:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:63;100:9">tcmalloc_max_thread_cache_bytes</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:64;101:9">A limit to how much memory TCMalloc</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:33;102:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:65;103:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:66;104:9">dedicates for small objects</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:34;105:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:67;106:9">tcmalloc_current_thread_cache_bytes</entry>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:68;107:9">A measure of some of the memory</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="row:35;108:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:69;109:10"/>
+	<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-memory.dita" xtrc="entry:70;110:9">TCMalloc is using for small objects</entry>
+</row></tbody></tgroup></table></body><related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:32;38:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:21;27:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbstats-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>cbstats tool</linktext></link></linkpool></related-links>
+</topic>

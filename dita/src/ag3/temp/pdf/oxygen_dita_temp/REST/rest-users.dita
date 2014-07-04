@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2361" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="title:1;5:9">Users REST API</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:1;7:6">As of Couchbase Server 2.2+ you can create one read-only user with the REST API. For more
+			information about this type of user.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:2;9:6">To create a read-only user, you need administrative access:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeblock:1;10:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:1;10:22">curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=a_password 
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:3;12:6">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:1;12:21">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:2;12:35">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:3;12:52">localhost</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:4;12:70">a_name</i>, and
+				<i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:5;13:8">a_password</i> values in the above example with your actual values.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:4;14:6">Upon success, you will get this response:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeblock:2;15:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:2;15:22">success: 200 | []
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:5;17:6">The endpoint has one additional, optional parameter <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:3;17:66">just_validate=1</codeph>. If
+			you provide this in your request the server will validate the username and password for
+			a read-only user but will not actually create the user.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:6;20:6">The following are the endpoints, parameters, expected return values and possible
+			errors:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="table:1;22:10">
+			<tgroup cols="6" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="tgroup:1;23:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="colspec:1;24:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="colspec:2;25:30"/>
+				<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="colspec:3;26:30"/>
+				<colspec colname="col4" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="colspec:4;27:30"/>
+				<colspec colname="col5" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="colspec:5;28:30"/>
+				<colspec colname="col6" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="colspec:6;29:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="thead:1;30:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="row:1;31:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:1;32:14">Request</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:2;33:14">Description</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:3;34:14">Parameters</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:4;35:14">Returns</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:5;36:14">Errors</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="tbody:1;39:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="row:2;40:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:6;41:14">POST /settings/readOnlyUser</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:7;42:14">Create read-only user</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:8;43:14">username, password, just_validate</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:9;44:14">success: 200 []</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:10;45:14">error: 400</entry>
+						<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:11;46:14">{“errors”:{field_name:error_message}}</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="row:3;48:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:12;49:14">PUT /settings/readOnlyUser</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:13;50:14">Change read-only user password</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:14;51:14">password</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:15;52:14">success: 200 []</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:16;53:14">error: 400</entry>
+						<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:17;54:14">{“errors”:{field_name:error_message}}</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="row:4;56:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:18;57:14">DELETE /settings/readOnlyUser</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:19;58:14">Delete user</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:20;59:14">none</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:21;60:14">success: 200 []</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:22;61:14">error: 400</entry>
+						<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:23;62:14">{“errors”:{field_name:error_message}}</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="row:5;64:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:24;65:14">GET /settings/readOnlyAdminName</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:25;66:14">Get the read-only username</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:26;67:14">none</entry>
+						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:27;68:14">success: 200 “username”</entry>
+						<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="entry:28;69:14">not found: 404 </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:7;74:6">A <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:4;74:16">username</codeph> is a UTF–8 string that does not contain spaces, control
+			characters or any of these characters: ()&lt;&gt;@,;:\"/[]?={} characters. Any
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:5;76:13">password</codeph> must be UTF–8 with no control characters and must be at
+			least six characters long. </p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:8;78:6">To change the password for a read-only user:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeblock:3;79:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:6;79:22">curl -X POST -u admin:password http://localhost:8091/settings/readOnlyUser -d username=a_name -d password=new_password
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:9;81:6">To delete this user:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeblock:4;82:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:7;82:22">curl -X DELETE -u admin:password http://localhost:8091/settings/readOnlyUser 
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:10;84:6">To get the read-only username, you can have administrative or read-only permissions:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeblock:5;85:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:8;85:22">curl -u username:password  http://localhost:8091/settings/readOnlyAdminName
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:11;87:6">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:6;87:21">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:7;87:35">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:8;87:52">localhost</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:9;87:70">username</i>,
+				<i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:10;88:8">a_name</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="i:11;88:27">new_password</i> values in the above examples with your actual
+			values.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="p:12;90:6">This will return a response with the read-only username as payload, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:9;90:82">success: 200
+				| "username"</codeph>. If there is no read-only user you will get this error
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="codeph:10;92:13">not found: 404</codeph>.</p>
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="related-links:1;94:17">
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="linklist:1;95:13">
+			<link href="../Tasks/tasks-create-readUser.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-users.dita" xtrc="link:1;96:54" type="task"><?ditaot gentext?><linktext class="- topic/linktext ">Creating a read-only user</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">One non-administrative user can be created with read-only access for the Web Console and REST API.</desc></link>
+		</linklist>
+	</related-links>
+</topic>

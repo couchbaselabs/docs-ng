@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_byh_lbg_q4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="title:1;4:10">Removing nodes from clusters</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="shortdesc:1;5:14">Removing a node marks
+    the node for removal from the cluster and completely disables the node from serving any
+    requests across the cluster.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:1;9:8">Once a node is removed, a node is no longer part of the cluster in any way
+      and can be switched off, or can be updated or upgraded.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:2;10:69">Important</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:3;10:85"> Before you
+        remove a node from the cluster, ensure that you have the capacity within the remaining nodes of
+        your cluster to handle your workload. For more information on the considerations, see Choosing
+        when to shrink your cluster. For the best results, use swap rebalance to swap the node you want
+        to remove out, and swap in a replacement node. </p>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="note:1;16:23">Removing a node does not stop the node from servicing requests.
+      Instead, it only marks the node ready for removal from the cluster. You must perform a
+      rebalance operation to complete the removal
+      process.</note>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:4;21:8">Like adding nodes, node can be removed either via the Web Console or CLI.</p>
+      
+            <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="section:1;23:22"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="title:2;23:29">Web Console</title>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:5;24:14">You can remove a node from the cluster from within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeph:1;24:77">Manage Server
+            Nodes</codeph> section of the Web Console, as shown in the figure below.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:6;25:92">To remove a
+              node, click the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeph:2;26:39">Remove Server</codeph> button next to the node you want to remove. You
+              will be provided with a warning to confirm that you want to remove the node. Click
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeph:3;28:23">Remove</codeph> to mark the node for removal.</p>
+            </section>
+                
+                
+                
+                <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="section:2;33:26"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="title:3;33:33">Using the Command-line</title>
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:7;34:18">You cannot mark a node for removal from the command-line without also initiating a
+                rebalance operation. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeph:4;35:50">rebalance</codeph> command accepts one or more
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeph:5;36:25">--server-add</codeph> and/or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeph:6;36:62">--server-remove</codeph> options. This adds or
+                removes the server from the cluster, and immediately initiates a rebalance operation.</p>
+                  
+                  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="p:8;39:22">For example, to remove a node during a rebalance
+                  operation:</p>
+                  
+                  <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-remove-node.dita" xtrc="codeblock:1;42:30">
+&gt; couchbase-cli rebalance --cluster=127.0.0.1:8091 \
+          -u Administrator -p Password \
+          --server-remove=192.168.0.73
+</codeblock>
+                  
+                </section>
+
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:55;64:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:47;56:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-rebalance.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Rebalancing</linktext></link></linkpool></related-links>
+</topic>

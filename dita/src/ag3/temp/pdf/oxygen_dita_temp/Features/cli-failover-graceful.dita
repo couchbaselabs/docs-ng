@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_fjf_ncb_k4" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="title:1;4:10">Failing over gracefully (CLI)</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="shortdesc:1;5:14">By default, graceful failover is implemented with failing over a node from a cluster using 
+    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeph:1;6:13">couchbase-cli failover</codeph>.</shortdesc>
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="refbody:1;7:12">
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="section:1;9:14">
+
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="p:1;11:10">Graceful failover is implemented as the default when <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeph:2;11:71">couchbase-cli
+          failover</codeph> is used without the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeph:3;12:57">--force</codeph> option . The
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeph:4;13:19">--force</codeph> option fails over the node from the cluster immediately.</p>
+      
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="note:1;15:25">Be sure to update any scripts that implement failover.</note>
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="section:2;18:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="title:2;18:21">Syntax</title>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeblock:1;19:18">
+couchbase-cli failover
+    --cluster=HOST:PORT
+    --server-failover=HOST:PORT
+    --user=ADMIN 
+    --password=PASSWORD  
+    
+couchbase-cli failover
+    -c HOST:PORT
+    --server-failover=HOST:PORT
+    -u ADMIN -p PASSWORD     
+      </codeblock>
+    
+    </section>
+
+      
+
+      
+      
+      <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="example:1;38:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="title:3;38:23">Setting failover, readd, recovery, and rebalance operations</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="p:2;39:10">The following example shows a failover, readd, recovery and rebalance sequence operations,
+        where as, a node in a cluster is gracefully failed over, the node is re-added to the
+        cluster, a delta recovery is implemented for the node, and rebalance is performed on the
+        cluster:</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeblock:2;44:18">
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    -u Administrator -p password	
+				
+couchbase-cli server-readd -c 192.168.0.1:8091 \\	
+    --server-add=192.168.0.2 \\	
+    -u Administrator -p password	
+			
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+    --server-recovery=192.168.0.2 \\	
+    --recovery-type=delta \\	
+    -u Administrator -p password	
+				
+couchbase-cli rebalance -c 192.168.0.1:8091 \\	
+    -u Administrator -p password          
+      </codeblock>
+      </example>
+    
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="example:2;63:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="title:4;63:21">Failing over a node immediately</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="p:3;64:10">The following example shows a node failing over immediates, that is, 
+        graceful failover is not implemented.</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita" xtrc="codeblock:3;66:18">
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    --force  \\
+    -u Administrator -p password             
+      </codeblock>
+    </example>
+      
+    
+    
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:17;24:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="concept" xtrc="topicref:15;22:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/graceful-failover.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Graceful failover</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Graceful failover waits until data persists to disk and replica are up-to-date before failing over the server node.</desc></link></linkpool></related-links>
+</reference>

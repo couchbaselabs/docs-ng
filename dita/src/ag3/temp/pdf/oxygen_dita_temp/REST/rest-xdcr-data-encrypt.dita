@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2754" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="title:1;5:10">Managing XDCR data encryption</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:1;7:8">The process for configuring XDCR with data encryption (Enterprise Edition only) involves
+      configuring the XDCR cluster reference with data encryption enabled, providing the SSL
+      certificate, and configuring replication.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:2;10:8">The following summarizes the HTTP methods used for defining XDCR data encryption:</p>
+    <table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="table:1;11:12">
+      <tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="tgroup:1;12:24">
+        <colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="colspec:1;13:34"/>
+        <colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="colspec:2;14:34"/>
+        <colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="colspec:3;15:34"/>
+        <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="thead:1;16:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="row:1;17:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:1;18:20">HTTP method</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:2;19:20">URI path</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:3;20:20">Description</entry>
+          </row>
+        </thead>
+        <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="tbody:1;23:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="row:2;24:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:4;25:20">GET</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:5;26:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:1;26:28">/pools/default/remoteClusters</codeph></entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:6;27:20">Gets the destination cluster reference</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="row:3;29:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:7;30:20">POST</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:8;31:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:2;31:28">/pools/default/remoteClusters</codeph></entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:9;32:20">Creates a reference to the destination cluster</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="row:4;34:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:10;35:20">PUT</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:11;36:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:3;36:28">/pools/default/remoteClusters/UUID</codeph></entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:12;37:20">Modifies the destination cluster reference</entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="row:5;39:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:13;40:20">DELETE</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:14;41:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:4;41:28">/pools/default/remoteClusters/UUID</codeph></entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="entry:15;42:20">Deletes the reference to the destination cluster.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="section:1;47:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="title:2;47:21">Retrieving certificates</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:3;47:55">To retrieve the SSL certificate from the
+        destination cluster to the source cluster:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:4;48:58"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:1;48:61">Destination
+          endpoint</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:5;49:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:5;49:38">/pools/default/certificate</codeph></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:6;49:80"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:2;49:83">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeblock:1;49:109"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:6;49:117">curl http://remoteHost:port/pools/default/certificate &gt; ./remoteCert.pem
+</codeph></codeblock></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="section:2;51:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="title:3;51:21">Regenerating certificates</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:7;51:57">To regenerate a certificate on a destination
+        cluster:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:8;52:24"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:3;52:27">Destination
+          endpoint</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:9;53:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:7;53:38">/controller/regenerateCertificate</codeph></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:10;53:87"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:4;53:90">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeblock:2;53:116"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:8;53:124">curl -X POST http://Administrator:asdasd@remoteHost:8091/controller/regenerateCertificate
+</codeph></codeblock></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="section:3;57:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="title:4;57:21">Configuring XDCR with data encryption</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:11;57:69">A POST to
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:9;58:19">/pools/default/remoteClusters</codeph> creates the XDCR cluster reference from the
+        source cluster to the destination cluster. Setting the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:10;59:72">demandEncryption</codeph> to
+        one (1) and providing the certificate name and location enables data
+          encryption.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:12;61:29"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:5;61:32">Destination endpoint</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:13;61:63"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:11;61:71">POST
+          /pools/default/remoteClusters</codeph> creates the destination cluster
+          reference.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:14;63:28"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:12;63:36">PUT /pools/default/remoteClusters</codeph> modifies the
+        destination cluster
+          reference.</p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:15;67:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:6;67:13">Syntax</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeblock:3;67:38"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:13;67:46">curl –X POST  -u Admin:myPassword
+  http://localHost:port/pools/default/remoteClusters 
+  -d name=&lt;clusterName&gt;             // Remote cluster name
+  -d hostname=&lt;host&gt;:&lt;port&gt;         // FQDN of the remote host.
+  -d username=&lt;adminName&gt;           // Remote cluster Admin name
+  -d password=&lt;adminPassword&gt;       // Remote cluster Admin password
+  -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat remoteCert.pem)"
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:16;74:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:7;74:28">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeblock:4;74:54"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:14;74:62">curl –X POST 
+-d name=remoteName  
+-d hostname=10.3.4.187:8091
+-d username=remoteAdmin –d password=remotePassword
+-d demandEncryption=1 --data-urlencode "certificate=$(cat remoteCert.pem)"
+http://Administrator:asdasd@192.168.0.1:8091/pools/default/remoteClusters/
+</codeph></codeblock></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="section:4;81:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="title:5;81:21">Disabling data encryption</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:17;81:57">To modify the XDCR configuration so that SSL
+        data encryption is disabled, execute a PUT from the source cluster to the destination
+        cluster with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:15;83:30">demandEncryption=0</codeph>.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:18;83:65"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:8;83:68">Destination
+          endpoint</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:19;84:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:16;84:38">/pools/default/remoteClusters</codeph></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="p:20;84:83"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="b:9;84:86">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeblock:5;84:112"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-data-encrypt.dita" xtrc="codeph:17;84:120">curl –X PUT  -u Admin:myPassword
+  http://192.168.0.1:8091/pools/default/remoteClusters/
+-d name=remoteName 
+-d hostname=10.3.4.187:8091
+-d username=remoteAdmin –d password=remotePassword
+-d demandEncryption=0
+</codeph></codeblock></section>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:47;56:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:44;53:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link></linkpool></related-links>
+</topic>

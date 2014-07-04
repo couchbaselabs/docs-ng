@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_fs1_tfg_rn" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="title:1;4:10">FAQs</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="p:1;6:8">Topic paragraph</p>
+    <dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dl:1;7:9">
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:1;8:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:1;9:13">What clients do I use with Couchbase?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:1;10:13">Couchbase Server is compatible with existing memcached clients. 
+          If a memcached client already exists, just point it at couchbase. 
+          Regular testing is done with spymemcached (Java client), libmemcached, and fauna (Ruby client).</dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:2;14:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:2;15:13">What is a vBucket?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:2;16:13">A vBucket is conceptually a computed subset of all possible mapping keys. vBuckets are
+          mapped to servers statically and have a consistent key through vBucket computations. The
+          number of vBuckets in a cluster remains constant regardless of server topology which means
+          that a key always maps to the same vBucket given the same hash.</dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:3;21:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:3;22:13">What is a TAP stream?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:3;23:13">A TAP stream is a when a client requests a stream of item updates from the
+          server. That is, as other clients are requesting item mutations (for example,
+          SET's and DELETE's), a TAP stream client can "wire-tap" the server to receive a
+          stream of item change notifications.
+          
+          When a TAP stream client starts its connection, it may also optionally request a
+          stream of all items stored in the server, even if no other clients are making
+          any item changes. On the TAP stream connection setup options, a TAP stream
+          client may request to receive just current items stored in the server (all items
+          until "now"), or all item changes from now onward into in the future, or both.</dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:4;34:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:4;35:13">Which ports does Couchbase Server need?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:4;36:13">
+          <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="ul:1;37:15">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:1;38:17">4369 - Erlang port mapper (epmd)</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:2;39:17">8091 - GUI and REST interface</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:3;40:17">8092 - Couchbase API port</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:4;41:17">11209, 11210, 11211, 11214, 11215 - Bucket and proxy ports</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:5;42:17">18091, 18092 - Internal REST and CAPI HTTPS for SSL</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:6;43:17">21100 to 21199 - Inclusive for dynamic cluster communication</li>
+          </ul></dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:5;46:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:5;47:13">What hardware and platforms does Couchbase Server support?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:5;48:13">
+          <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="ul:2;49:15">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:7;50:17">Red Hat and CentOS versions 5, update 2 and higher</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:8;51:17">Ubuntu 9</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:9;52:17">Windows Server 2008</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:10;53:17">Mac OS X (Community support only)</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="li:11;54:17">32-bit and 64-bit versions</li>
+          </ul>
+        </dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:6;58:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:6;59:13">How can I get Couchbase on a different OS?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:6;60:13">The Couchbase source code is quite portable and is known to have been built on
+          several other UNIX and Linux based OSs.</dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:7;63:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:7;64:13">Can I query Couchbase by something other than the key name?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:7;65:13">Not directly. It's possible to build these kinds of solutions atop TAP. For
+          instance, it is possible to stream out the data, process it with Cascading, then create
+          indexes in Elasticsearch.
+        </dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:8;70:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:8;71:13">What is the maximum item size in Couchbase&gt;</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:8;72:13">The default item size for Couchbase buckets is 20 MBytes. 
+          The default item size for memcached buckets is 1 MByte.</dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:9;75:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:9;76:13">How do I the change password?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:9;77:13">With the command-line tool (CLI), use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="codeph:1;77:59">couchbase-cli cluster-init</codeph>:
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="codeblock:1;78:20">
+couchbase-cli cluster-init -c cluster_IP:8091
+  -u current_username-p current password
+  --cluster-init-username=new_username
+  --cluster-init-password=new_password         
+        </codeblock>
+        </dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:10;86:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:10;87:13">How do I change the per-node RAM quota?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:10;88:13">With the command-line tool (CLI), use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="codeph:2;88:59">couchbase-cli</codeph>:
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="codeblock:2;89:20">
+couchbase-cli cluster-init -c cluster_IP:8091 
+  -u username-p password
+  --cluster-init-ramsize=RAM_in_M          
+        </codeblock>
+        </dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:11;96:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:11;97:13">How do I change the disk path?
+        </dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:11;99:13">With the command-line tool (CLI), use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="codeph:3;99:59">node-init</codeph>:
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="codeblock:3;100:20">
+couchbase-cli node-init -c cluster_IP:8091 
+  -u username-p password--node-init-data-path=/tmp
+        </codeblock>
+        </dd>
+      </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dlentry:12;106:16">
+        <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dt:12;107:13">Why are some clients getting different results than others for the same
+          requests?</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="dd:12;109:13">This should never happen in a correctly configured Ccouchbase cluster, since
+          Couchbase ensures a consistent view of all data in a cluster. 
+          However, if some clients can't reach all the nodes in a cluster (due to firewall or routing
+          rules, for example), it is possible for the same key to end up on more than one
+          cluster node, resulting in inconsistent duplication. 
+          Always ensure that all cluster nodes are reachable from every smart client or client-side moxi host.</dd>
+      </dlentry>
+    </dl>
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="related-links:1;119:18">
+    <link format="html" scope="external" href="http://www.couchbase.com/develop/" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="link:1;120:83"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="linktext:1;121:17">Client libraries</linktext></link>
+    <link format="html" scope="external" href="http://dustin.github.com/2010/06/29/memcached-vbuckets.html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="link:2;123:109"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="linktext:2;124:15">memcached and vBuckets (by Dustin Sallings)</linktext></link> 
+    <link format="html" scope="external" href="http://blog.couchbase.com/want-know-what-your-memcached-servers-are-doing-tap-them" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="link:3;126:132"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="linktext:3;127:17">TAP interface (by Trond Norbye)</linktext></link>
+    <link format="html" scope="external" href="http://www.couchbase.com/downloads/" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="link:4;129:85"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="linktext:4;130:17">Couchbase consolidated downloads</linktext></link>
+    <link format="html" scope="external" href="http://www.cascading.org/2010/09/memcached-membase-and-elastics.html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="link:5;132:118"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/faq.dita" xtrc="linktext:5;133:17">Cascading</linktext></link>
+  </related-links>
+  
+  
+</topic>

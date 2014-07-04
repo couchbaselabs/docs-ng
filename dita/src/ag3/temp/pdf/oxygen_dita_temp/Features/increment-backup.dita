@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_plr_jwp_yn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="title:1;4:9">Incremental backup and restore</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="shortdesc:1;5:13">An incremental backup or restore is a backup (or restore) of the latest changes since
+    the last backup (any level). Enterprise Edition only. </shortdesc>
+ 
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="conbody:1;8:11">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="p:1;9:6">The purpose of an incremental backup is to preserve and protect data by creating copies that
+      are based on the differences in those data and thus minimize the amount of time needed to
+      perform the backup. With incremental backups, successive copies of the data contain only that
+      portion which has changed since the preceding backup copy was made. Incremental backups are
+      faster than full backups and reduce network utilization.</p>
+   
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="p:2;15:7">The following are the types of backups:</p>
+   
+   <dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dl:1;17:8">
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dlentry:1;18:15">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dt:1;19:10">Full backup</dt>
+       <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dd:1;20:12">A snapshot of the state of the database at a particular point-in-time on disk. 
+       A snapshot is a read-only copy of the dataset. 
+       The restoration process takes the last full backup 
+       plus all the incremental backups until the restoration point-in-time is reached.</dd>
+     </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dlentry:2;25:15">
+       <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dt:2;26:12">Cummulative backup</dt>
+       <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dd:2;27:12">An incremental backup that contains all data changes after the last full backup. 
+         A snapshot of the data changes between the last full backup and the current snapshot. 
+         </dd>
+     </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dlentry:3;31:15">
+       <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dt:3;32:12">Differential backup</dt>
+       <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="dd:3;33:12">An incremental backup that contains all data changes after the most recent incremental
+          backup. Differential backups are deltas between the following: <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="ul:1;34:78">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:1;35:17">Last full backup and the first snapshot</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:2;36:17">Last incremental snapshot the the current snapshot</li>
+          </ul>.</dd>
+     </dlentry>
+   </dl>
+
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="p:3;41:7"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="b:1;41:10">DIFFERENTIAL backup graphic</b></p>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="p:4;42:7"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="b:2;42:10">CUMMULATIVE backup graphic</b></p>
+   
+   <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="section:1;44:13"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="title:2;44:20">Impacted documentation</title>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="ul:2;45:8">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:3;46:10">cbbackup</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:4;47:10">cbrestore</li>
+   </ul>
+   </section>
+     
+     <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="section:2;51:15"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="title:3;51:22">Backward compatibility</title>
+       
+       <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="ul:3;53:12">
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:5;54:14">2.0+</li>
+       </ul>
+     </section>
+     
+     <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="section:3;58:15"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="title:4;58:22">Future Notes</title>
+       <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="note:1;59:26">This information is not applicable, but retained in case it gets into this release.</note>
+       
+       <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="ul:4;61:12">
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:6;62:14">Clients can compress and put data into the server</li>
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:7;63:14">cbbackup backs up the existing (compressed or uncompressed) data to a backup server.</li>
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:8;64:14">cbrestore restores the backed up data and also has the option to uncompress the data.</li>
+         <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/increment-backup.dita" xtrc="li:9;65:14">Issue: Restoring from server 3.0 backup (2/3 compressed data) to a 2.5 server doesn't work. 
+           Use a 2.5 client to read the 2/3 (compressed data)</li>
+       </ul>
+     </section>
+   
+ </conbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:23;32:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link><linkpool class="- topic/linkpool " xtrc="topicref:23;32:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:24;33:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/cli-increment-backup.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Setting incremental backup (CLI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Back up operations are performed by the <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;5:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita">cbbackup</codeph> tool.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:25;34:60" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/cli-incremental-restore.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Setting incremental restore (CLI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Restore operations are performed by the <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;5:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita">cbbackup</codeph> tool.      Incremental restore provides partial restore functionality. </desc></link></linkpool></linkpool></related-links>
+</concept>

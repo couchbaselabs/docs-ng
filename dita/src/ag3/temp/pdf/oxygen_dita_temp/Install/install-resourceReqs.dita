@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1723" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="title:1;5:10">Resource requirements</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:1;7:8">The following hardware requirements are recommended for installation:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="ul:1;8:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:1;9:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:2;9:14">Quad-core for key-value store, 64-bit CPU running at 3GHz</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:2;10:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:3;10:14">Six cores if XDCR and views are used.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:3;11:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:4;11:14">16GB RAM (physical)</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:4;12:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:5;12:14">Block-based storage device (hard disk, SSD, EBS, iSCSI). Network filesystems (e.g.
+          CIFS, NFS) are not supported.</p></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:6;15:8">A minimum specification machine should have the following characteristics:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="ul:2;16:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:5;17:11">Dual-core CPU running at 2GHz for key-value store</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:6;18:11">4GB RAM (physical)</li>
+    </ul>
+        <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="note:1;20:27">For development and testing purposes, a reduced CPU and RAM than the
+      minimum specified can be used. This can be as low as 1GB of free RAM beyond operating system
+      requirements and a single CPU core. However, for production, the minumum specification must be
+      implemented. Performance on machines lower than the minimum specification is significantly
+      lower and should not be used as an indication of the performance on a production machine. View
+      performance on machines with less than 2 CPU cores is significantly reduced.</note>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:7;26:8"> </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:8;27:8">You must have enough memory to run your operating system and the memory reserved for use by
+      Couchbase Server. For example, if 8GB of RAM is dedicated to Couchbase Server, there must be
+      enough RAM to host the operating system. If additional applications and servers are running,
+      additional RAM is required. For smaller systems, such as those with less than 16GB, allocate
+      at least 40% of RAM to the operating system.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="p:9;32:8">The following amount of storage must be available:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="ul:3;33:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:7;34:11">1GB for application logging</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="li:8;35:11">At least twice the disk space to match your physical RAM for persistence of
+          information</li>
+    </ul>
+
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="related-links:1;40:18"><linkpool class="- topic/linkpool " xtrc="topicref:3;7:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/pre-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Pre-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Pre-installation describes requirements, supported configurations,      reserved or restricted items that are taken under consideration prior to installing Couchbase Server.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="linklist:1;41:15">
+      <link href="../concepts/bp-sizingGuidelines.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-resourceReqs.dita" xtrc="link:1;42:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Sizing guidelines</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The primary considerations for sizing a Couchbase Server cluster are the number of 		nodes and node size.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

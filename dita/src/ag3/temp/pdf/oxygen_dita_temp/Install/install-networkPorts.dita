@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2659" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="title:1;5:9">Network ports</title>
+	<shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="shortdesc:1;6:13">Couchbase Server specific network ports for communication between server components and 
+		for communicating with the clients that access the data stored in the Couchbase cluster.</shortdesc>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="body:1;8:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="p:1;9:6">The ports listed must be available on the host for Couchbase Server to run and operate correctly. 
+			Couchbase Server configures these
+			ports automatically, but you must ensure that your firewall or IP tables configuration
+			allow communication on the specified ports for each usage type. On Linux, the installer
+			will notify you that you need to open these ports.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="p:2;14:6">The following table lists the ports used for different types of communication with
+			Couchbase Server, as follows:</p>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="section:1;16:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="title:2;16:19">Node to node</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="p:3;16:42">Where noted, these ports are used by Couchbase Server
+				for communication between all nodes within the cluster. You must have these ports
+				open on all to enable nodes to communicate with each other.</p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="section:2;19:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="title:3;19:19">Node to client</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="p:4;19:44">Where noted, these ports should be open between
+				each node within the cluster and any client nodes accessing data within the
+				cluster.</p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="section:3;22:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="title:4;22:19">Cluster administration</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="p:5;22:52">Where noted, these ports should be open and
+				accessible to allow administration, whether using the REST API, command-line
+				clients, and Web browser.</p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="section:4;25:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="title:5;25:19">XDCR</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="p:6;25:34">Ports are used for XDCR communication between all nodes in
+				both the source and destination clusters.</p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="table:1;26:57">
+				<tgroup cols="7" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="tgroup:1;27:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:1;28:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:2;29:31"/>
+					<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:3;30:31"/>
+					<colspec colname="col4" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:4;31:31"/>
+					<colspec colname="col5" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:5;32:31"/>
+					<colspec colname="col6" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:6;33:31"/>
+					<colspec colname="col7" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="colspec:7;34:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="thead:1;35:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:1;36:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:1;37:15">Port</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:2;38:15">Description</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:3;39:15">Node to Node</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:4;40:15">Node to Client</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:5;41:15">Cluster Administration</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:6;42:15">XDCR (version 1)</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:7;43:15">XDCR (version 2)</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="tbody:1;46:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:2;47:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:8;48:15">8091</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:9;49:15">Web Administration Port</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:10;50:15">Yes</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:11;51:15">Yes</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:12;52:15">Yes</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:13;53:15">Yes</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:14;54:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:3;56:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:15;57:15">8092</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:16;58:15">Couchbase API Port</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:17;59:15">Yes</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:18;60:15">Yes</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:19;61:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:20;62:15">Yes</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:21;63:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:4;65:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:22;66:15">11209</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:23;67:15">Internal Bucket Port</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:24;68:15">Yes</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:25;69:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:26;70:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:27;71:15">No</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:28;72:15">No</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:5;74:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:29;75:15">11210</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:30;76:15">Internal/External Bucket Port</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:31;77:15">Yes</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:32;78:15">Yes</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:33;79:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:34;80:15">No</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:35;81:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:6;83:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:36;84:15">11211</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:37;85:15">Client interface (proxy)</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:38;86:15">No</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:39;87:15">Yes</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:40;88:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:41;89:15">No</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:42;90:15">No</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:7;92:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:43;93:15">11214</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:44;94:15">Incoming SSL Proxy</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:45;95:15">No</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:46;96:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:47;97:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:48;98:15">Yes</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:49;99:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:8;101:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:50;102:15">11215</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:51;103:15">Internal Outgoing SSL Proxy</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:52;104:15">No</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:53;105:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:54;106:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:55;107:15">Yes</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:56;108:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:9;110:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:57;111:15">18091</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:58;112:15">Internal REST HTTPS for SSL</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:59;113:15">No</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:60;114:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:61;115:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:62;116:15">Yes</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:63;117:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:10;119:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:64;120:15">18092</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:65;121:15">Internal CAPI HTTPS for SSL</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:66;122:15">No</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:67;123:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:68;124:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:69;125:15">Yes</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:70;126:15">Yes</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:11;128:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:71;129:15">4369</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:72;130:15">Erlang Port Mapper ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="codeph:1;130:44">epmd</codeph> )</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:73;131:15">Yes</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:74;132:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:75;133:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:76;134:15">No</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:77;135:15">No</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="row:12;137:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:78;138:15">21100 to 21199 (inclusive)</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:79;139:15">Node data exchange</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:80;140:15">Yes</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:81;141:15">No</entry>
+							<entry colname="col5" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:82;142:15">No</entry>
+							<entry colname="col6" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:83;143:15">No</entry>
+							<entry colname="col7" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="entry:84;144:15">No </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table><dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dl:1;148:16">
+				<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dlentry:1;149:14">
+					<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dt:1;150:10">Port 8091</dt>
+					<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dd:1;151:10">Used by the Web Console from outside the second level firewall (for
+						REST/HTTP traffic).</dd>
+				</dlentry>
+
+
+				<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dlentry:2;156:14">
+					<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dt:2;157:10">Port 8092</dt>
+					<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dd:2;158:10">Used to access views, run queries, and update design documents.</dd>
+				</dlentry>
+
+
+				<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dlentry:3;162:14">
+					<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dt:3;163:10">Port 11210</dt>
+					<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dd:3;164:10">Used by smart client libraries or client-side Moxi to directly connect to
+						the data nodes.</dd>
+				</dlentry>
+
+
+				<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dlentry:4;169:14">
+					<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dt:4;170:10">Port 11211</dt>
+					<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dd:4;171:10">Used by pre-existing Couchbase and memcached (non-smart) client libraries
+						that are outside the second level firewall to work.</dd>
+				</dlentry>
+
+
+				<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dlentry:5;176:14">
+					<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dt:5;177:10">Ports 11214, 11215, 18091, and 18092</dt>
+					<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dd:5;178:10">Used for SSL XDCR data encryptions.</dd>
+				</dlentry>
+
+
+				<dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dlentry:6;182:14">
+					<dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dt:6;183:10">All other Ports</dt>
+					<dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/install/install-networkPorts.dita" xtrc="dd:6;184:10">Used for other Couchbase Server communictions.</dd>
+				</dlentry>
+
+			</dl></section>
+	</body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:5;9:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/pre-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Pre-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Pre-installation describes requirements, supported configurations,      reserved or restricted items that are taken under consideration prior to installing Couchbase Server.</desc></link></linkpool></related-links>
+</topic>

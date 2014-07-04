@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/UI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic16695" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="topic:1;4:41">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:1;5:9">Monitoring statistics</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="shortdesc:1;6:13">Within the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="uicontrol:1;6:35">Data Bucket</uicontrol> tab, information and statistics about
+  bucketsand nodes is displayed for the entire Couchbase Server cluster. The information is
+  aggregated from all the server nodes within the configured cluster for the selected
+  bucket.</shortdesc>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="body:1;10:8">
+
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:1;12:6">The following functionality is available through this display, and is common to all the graphs
+   and statistics display within the web console.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:1;14:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:1;15:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:1;15:16">Bucket Selection</codeph></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:2;17:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:2;17:18">Data Buckets</codeph> selection list allows you to select which of the buckets
+   configured on your cluster is to be used as the basis for the graph display. The statistics shown
+   are aggregated over the whole cluster for the selected bucket.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:2;20:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:2;21:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:3;21:16">Server Selection</codeph></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:3;23:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:4;23:18">Server Selection</codeph> option enables you to limit the display to an individual
+   server or entire cluster. The individual node selection displays information for the node. The
+   all server nodes selection displays information for the entire cluster.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:3;26:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:3;27:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:5;27:16">Interval Selection</codeph></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:4;29:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:6;29:18">Interval Selection</codeph> at the top of the main graph changes interval display
+   for all graphs displayed on the page. For example, selecting <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:7;30:73">Minute</codeph> shows
+   information for the last minute, continuously updating.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:5;32:6">As the selected interval increases, the amount of statistical data displayed will depend on how
+   long your cluster has been running.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:4;34:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:4;35:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:8;35:16">Statistic Selection</codeph></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:6;37:6">All of the graphs within the display update simultaneously. Clicking on any of the smaller
+   graphs will promote that graph to be displayed as the main graph for the page.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:5;39:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:5;40:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:9;40:16">Individual Server Selection</codeph></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:7;42:6">Clicking the blue triangle next to any of the smaller statistics graphs enables you to show the
+   selected statistic individual for each server within the cluster, instead of aggregating the
+   information for the entire cluster.</p>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:1;46:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:2;46:19">Individual bucket monitoring</title>
+   
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:8;48:7">Bucket monitoring within the Couchbase Web
+    Console has been updated to show additional detailed information. The following statistic groups
+    are available for Couchbase bucket types.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:6;50:54">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:6;51:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:1;51:12">Summary</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:9;52:12">The summary section provides a quick overview of the cluster activity. </p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:7;52:91">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:7;53:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:2;53:12">vBucket Resources</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:10;54:12">This section provides detailed information on the vBucket resources across the cluster,
+    including the active, replica and pending operations. </p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:8;55:67">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:8;56:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:3;56:12">Disk Queues</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:11;57:12">Disk queues show the activity on the backend disk storage used for persistence within a
+    data bucket. The information displayed shows the active, replica and pending activity. </p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:9;58:100">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:9;59:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:4;59:12">TAP Queues</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:12;60:12">The TAP queues section provides information on the activity within the TAP queues across
+    replication, rebalancing and client activity.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:10;61:58">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:10;62:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:5;62:12">XDCR Destination</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:13;63:12">The XDCR Destination section show you statistical information about the Cross Datacenter
+    Replication (XDCR), if XDCR has been configured.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:11;64:61">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:11;65:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:6;65:12">View Stats</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:14;66:12">The View Stats section allows you to monitor the statistics for each production view
+    configured within the bucket or system.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:12;67:52">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:12;68:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:7;68:12">Top Keys</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:15;69:12">This shows a list of the top 10 most actively used keys within the selected data
+    bucket.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:16;70:19">For Memcached bucket types, the Memcached statistic summary is provided. </p></section>
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:2;71:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:3;71:19">Bucket monitoring — summary statistics</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:17;71:68">The summary section is designed
+    to provide a quick overview of the cluster activity. Each graph (or selected graph) shows
+    information based on the currently selected bucket.</p>
+     <image href="../images/web-console-server-stats-summary.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:1;74:79"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:18;75:8">The following graph types are available:</p>
+   
+   <dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dl:1;77:8">
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:1;78:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:1;79:10">ops per second</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:1;80:10">The total number of operations per second on this bucket.</dd>
+    </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:2;82:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:2;83:10">cache miss ratio</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:2;84:10">Ratio of reads per second to this bucket which required a read from disk rather than
+      RAM.</dd>
+    </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:3;87:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:3;88:10">creates per second</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:3;89:10">Number of new items created in this bucket per second.</dd>
+    </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:4;91:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:4;92:10">updates per second</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:4;93:10">Number of existing items updated in this bucket per second.</dd>
+    </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:5;95:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:5;96:10">XDCR ops per sec</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:5;97:10">Number of XDCR related operations per second for this bucket.</dd>
+    </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:6;99:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:6;100:10">disk reads per sec</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:6;101:10">Number of reads per second from disk for this bucket.</dd>
+    </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:7;103:14">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:7;104:10">temp OOM per sec</dt>
+     <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:7;105:10">Number of temporary out of memory conditions per second.</dd>
+    </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:8;107:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:8;108:9">gets per second</dt>
+ <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:8;109:6">Number of get operations per second.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:9;111:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:9;112:9">sets per second</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:9;113:8">Number of set operations per second.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:10;115:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:10;116:9">deletes per second</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:10;117:8">Number of delete operations per second.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:11;119:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:11;120:9">items</dt>
+ <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:11;121:6">Number of items (documents) stored in the bucket.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:12;123:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:12;124:9">disk write queue</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:12;125:8">Size of the disk write queue.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:13;127:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:13;128:9">docs data size</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:13;129:8">Size of the stored document data.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:14;131:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:14;132:9">docs total disk size</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:14;133:8">Size of the persisted stored document data on disk.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:15;135:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:15;136:9">doc fragmentation %</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:15;137:8">Document fragmentation of persisted data as stored on disk.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:16;139:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:16;140:9">XDC replication queue</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:16;141:8">Size of the XDCR replication queue.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:17;143:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:17;144:9">total disk size</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:17;145:8">Total size of the information for this bucket as stored on disk, including persisted and view index data.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:18;147:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:18;148:9">views data size</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:18;149:8">Size of the view data information.</dd>
+ </dlentry>
+ <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:19;151:11">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:19;152:9">views total disk size</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:19;153:8">Size of the view index information as stored on disk.</dd>
+ </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:20;155:15">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:20;156:9">views fragmentation %</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:20;157:8">Percentage of fragmentation for a given view index.</dd>
+     </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:21;159:15">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:21;160:9">view reads per second</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:21;161:8">Number of view reads per second.</dd>
+     </dlentry>
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:22;163:16">
+     <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:22;164:10">memory used</dt>
+      <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:22;165:11">Amount of memory used for storing the information in this bucket.</dd>
+      </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:23;167:15">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:23;168:9">high water mark</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:23;169:8">High water mark for this bucket (based on the configured bucket RAM quota).</dd>
+      </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:24;171:15">
+    <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:24;172:9">low water mark</dt>
+   <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:24;173:8">Low water mark for this bucket (based on the configured bucket RAM quota).</dd>
+     </dlentry>
+     <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dlentry:25;175:15">
+      <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dt:25;176:11">disk update time</dt>
+      <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="dd:25;177:11">Time required to update data on disk.</dd>
+     </dlentry>
+      </dl>
+    
+  </section>
+    
+    
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:3;184:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:4;184:19">Monitoring vBucket resources</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:19;184:58">The vBucket statistics provide information
+    for all vBucket types within the cluster across three different states. Within the statistic
+    display the table of statistics is organized in four columns, showing the Active, Replica and
+    Pending states for each individual statistic. The final column provides the total value for each
+    statistic.</p>
+     <image href="../images/web-console-server-stats-vbucket.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:2;189:79"/>
+    
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:20;191:7">The Active column displays the information for vBuckets within the
+    Active state. The Replica column displays the statistics for vBuckets within the Replica state
+    (i.e. currently being replicated). The Pending columns shows statistics for vBuckets in the
+    Pending state, i.e. while data is being exchanged during rebalancing.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:21;194:81">These states are
+    shared across all the following statistics. For example, the graph <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:10;195:80">new items per
+     sec</codeph> within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:11;196:38">Active</codeph> state column displays the number of new items
+    per second created within the vBuckets that are in the active state.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:22;197:80">The individual
+    statistics, one for each state, shown are:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:13;198:55">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:13;199:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:12;199:17">vBuckets</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:23;200:12">The number of vBuckets within the specified state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:14;200:70">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:14;201:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:13;201:17">items</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:24;202:12">Number of items within the vBucket of the specified state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:15;202:78">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:15;203:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:14;203:17">resident %</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:25;204:12">Percentage of items within the vBuckets of the specified state that are resident (in
+    RAM).</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:16;205:18">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:16;206:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:15;206:17">new items per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:26;207:12">Number of new items created in vBuckets within the specified state. Note that new items
+    per second is not valid for the Pending state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:17;208:59">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:17;209:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:16;209:17">ejections per second</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:27;210:12">Number of items ejected per second within the vBuckets of the specified state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:18;210:98">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:18;211:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:17;211:17">user data in RAM</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:28;212:12">Size of user data within vBuckets of the specified state that are resident in RAM.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:19;212:102">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:19;213:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:18;213:17">metadata in RAM</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:29;214:12">Size of item metadata within the vBuckets of the specified state that are resident in
+    RAM.</p></section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:4;217:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:5;217:19">Monitoring disk queues</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:30;217:52">The Disk Queues statistics section displays the
+    information for data being placed into the disk queue. Disk queues are used within Couchbase
+    Server to store the information written to RAM on disk for persistence. Information is displayed
+    for each of the disk queue states, Active, Replica and Pending.</p>
+     <image href="../images/web-console-server-stats-diskqueues.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:3;221:82"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:31;222:8">The Active column displays the information for the Disk Queues within
+    the Active state. The Replica column displays the statistics for the Disk Queues within the
+    Replica state (i.e. currently being replicated). The Pending columns shows statistics for the
+    disk Queues in the Pending state, i.e. while data is being exchanged during
+    rebalancing.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:32;226:24">These states are shared across all the following statistics. For example, the
+    graph <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:19;227:19">fill rate</codeph> within the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:20;227:57">Replica</codeph> state column displays the
+    number of items being put into the replica disk queue for the selected bucket.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:33;228:90">The
+    displayed statistics are:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:20;229:38">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:20;230:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:21;230:17">items</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:34;231:12">The number of items waiting to be written to disk for this bucket for this state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:21;231:101">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:21;232:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:22;232:17">fill rate</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:35;233:12">The number of items per second being added to the disk queue for the corresponding
+    state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:22;234:19">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:22;235:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:23;235:17">drain rate</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:36;236:12">Number of items actually written to disk from the disk queue for the corresponding
+    state.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:23;237:19">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:23;238:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:24;238:17">average age</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:37;239:12">The average age of items (in seconds) within the disk queue for the specified
+    state.</p></section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:5;242:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:6;242:19">Monitoring TAP queues</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:38;242:51">The TAP queues statistics are designed to show
+    information about the TAP queue activity, both internally, between cluster nodes and clients.
+    The statistics information is therefore organized as a table with columns showing the statistics
+    for TAP queues used for replication, rebalancing and clients.</p>
+     <image href="../images/web-console-server-stats-tapqueues.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:4;246:81"/>
+   
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:39;248:8">The statistics in this section are detailed below:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:24;248:66">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:24;249:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:25;249:17">TAP senders</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:40;250:12">Number of TAP queues in this bucket for internal (replica), rebalancing or client
+    connections.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:25;251:25">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:25;252:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:26;252:17">items</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:41;253:12">Number of items in the corresponding TAP queue for this bucket.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:26;253:83">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:26;254:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:27;254:17">drain rate</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:42;255:12">Number of items per second being sent over the corresponding TAP queue connections to
+    this bucket.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:27;256:25">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:27;257:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:28;257:17">back-off rate</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:43;258:12">Number of back-offs per second sent when sending data through the corresponding TAP
+    connection to this bucket.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:28;259:39">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:28;260:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:29;260:17">backfill remaining</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:44;261:12">Number of items in the backfill queue for the corresponding TAP connection for this
+    bucket.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:29;262:20">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:29;263:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:30;263:17">remaining on disk</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:45;264:12">Number of items still on disk that need to be loaded in order to service the TAP
+    connection to this
+    bucket.</p></section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:6;268:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:7;268:19">Memcached buckets</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:46;268:47">For Memcached buckets, Web Console displays a
+    separate group of statistics:</p>
+     <image href="../images/web-console-server-stats-memcached.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:5;270:81"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:47;271:8">The Memcached statistics are:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:30;271:45">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:30;272:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:31;272:17">Operations per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:48;273:12">Total operations per second serviced by this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:31;273:71">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:31;274:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:32;274:17">Hit Ratio %</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:49;275:12">Percentage of get requests served with data from this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:32;275:80">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:32;276:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:33;276:17">Memory bytes used</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:50;277:12">Total amount of RAM used by this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:33;277:59">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:33;278:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:34;278:17">Items count</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:51;279:12">Number of items stored in this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:34;279:57">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:34;280:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:35;280:17">RAM evictions per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:52;281:12">Number of items per second evicted from this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:35;281:71">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:35;282:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:36;282:17">Sets per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:53;283:12">Number of set operations serviced by this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:36;283:68">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:36;284:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:37;284:17">Gets per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:54;285:12">Number of get operations serviced by this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:37;285:68">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:37;286:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:38;286:17">Net. bytes TX per sec</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:55;287:12">Number of bytes per second sent from this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:38;287:68">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:38;288:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:39;288:17">Net. bytes RX per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:56;289:12">Number of bytes per second sent into this bucket</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:39;289:68">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:39;290:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:40;290:17">Get hits per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:57;291:12">Number of get operations per second for data that this bucket contains</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:40;291:90">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:40;292:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:41;292:17">Delete hits per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:58;293:12">Number of delete operations per second for data that this bucket contains</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:41;293:93">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:41;294:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:42;294:17">Incr hits per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:59;295:12">Number of increment operations per second for data that this bucket contains</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:42;295:96">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:42;296:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:43;296:17">Decr hits per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:60;297:12">Number of decrement operations per second for data that this bucket contains</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:43;297:96">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:43;298:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:44;298:17">Delete misses per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:61;299:12">Number of delete operations per second for data that this bucket does not contain</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:44;299:101">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:44;300:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:45;300:17">Decr misses per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:62;301:12">Number of decr operations per second for data that this bucket does not contain</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:45;301:99">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:45;302:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:46;302:17">Get Misses per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:63;303:12">Number of get operations per second for data that this bucket does not contain</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:46;303:98">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:46;304:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:47;304:17">Incr misses per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:64;305:12">Number of increment operations per second for data that this bucket does not contain</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:47;305:104">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:47;306:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:48;306:17">CAS hits per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:65;307:12">Number of CAS operations per second for data that this bucket contains</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:48;307:90">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:48;308:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:49;308:17">CAS badval per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:66;309:12">Number of CAS operations per second using an incorrect CAS ID for data that this bucket
+    contains</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:49;310:21">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:49;311:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:50;311:17">CAS misses per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:67;312:12">Number of CAS operations per second for data that this bucket does not
+    contain</p></section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:7;315:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:8;315:19">Monitoring outgoing XDCR</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:68;315:54">The Outgoing XDCR shows the XDCR operations
+    that are supporting cross datacenter replication from the current cluster to a destination
+    cluster. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:69;317:21">You can monitor the current status for all
+    active replications in the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:51;318:40">Ongoing Replications</codeph> section under the XDCR
+    tab:</p>
+   <image href="../images/xdcr_ongoing.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:6;320:57"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:70;321:8">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:52;321:20">Ongoing Replications</codeph> section shows the following
+    information:</p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="table:1;322:28">
+    <tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="tgroup:1;323:22">
+     <colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="colspec:1;324:31"/>
+     <colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="colspec:2;325:31"/>
+     <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="thead:1;326:13">
+      <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="row:1;327:12">
+       <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:1;328:15">Column</entry>
+       <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:2;329:15">Description</entry>
+      </row>
+     </thead>
+     <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="tbody:1;332:13">
+      <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="row:2;333:12">
+       <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:3;334:15">Bucket</entry>
+       <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:4;335:15">The source bucket on the current cluster that is being replicated.</entry>
+      </row>
+      <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="row:3;337:12">
+       <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:5;338:15">From</entry>
+       <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:6;339:15">Source cluster name.</entry>
+      </row>
+      <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="row:4;341:12">
+       <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:7;342:15">To</entry>
+       <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:8;343:15">Destination cluster name.</entry>
+      </row>
+      <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="row:5;345:12">
+       <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:9;346:15">Status</entry>
+       <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:10;347:15">Current status of replications.</entry>
+      </row>
+      <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="row:6;349:12">
+       <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:11;350:15">When</entry>
+       <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="entry:12;351:15">Indicates when replication occurs. </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:71;355:15">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:53;355:27">Status</codeph> column indicates the current state of the replication
+    configuration. Possible include:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:50;356:45">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:50;357:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:8;357:12">Starting Up</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:72;358:12">The replication process has just started, and the clusters are determining what data
+    needs to be sent from the originating cluster to the destination cluster.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:51;359:86">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:51;360:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:9;360:12">Replicating</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:73;361:12">The bucket is currently being replicated and changes to the data stored on the
+    originating cluster are being sent to the destination cluster.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:52;362:75">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:52;363:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:10;363:12">Failed</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:74;364:12">Replication to the destination cluster has failed. The destination cluster cannot be
+    reached. The replication configuration may need to be deleted and recreated.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:75;365:88">Under the
+     <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:54;366:14">Data Buckets</codeph> tab you can click on a named Couchbase bucket and find more
+    statistics about replication for that bucket. Couchbase Web Console displays statistics for the
+    particular bucket; on this page you can find two drop-down areas called in the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:55;368:92">Outgoing
+     XDCR</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:56;369:32">Incoming XDCR Operations</codeph>. Both provides statistics about
+    ongoing replication for the particular bucket. Under the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:57;370:70">Outgoing XDCR</codeph> panel if
+    you have multiple replication streams you will see statistics for each
+    stream.</p>
+     <image href="../images/outbound_xdcr_2.2.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:7;373:64">
+      <alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="alt:1;374:12">outbound xdcr stats 2.2</alt>
+     </image>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:76;376:9">The statistics shown are:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:53;376:42">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:53;377:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:58;377:17">outbound XDCR mutation</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:77;378:12">Number of changes in the queue waiting to be sent to the destination cluster.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:54;378:97">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:54;379:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:59;379:17">mutations checked</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:78;380:12">Number of document mutations checked on source cluster.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:55;380:75">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:55;381:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:60;381:17">mutations replicated</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:79;382:12">Number of document mutations replicated to the destination cluster.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:56;382:87">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:56;383:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:61;383:17">data replicated</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:80;384:12">Size of data replicated in bytes.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:57;384:53">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:57;385:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:62;385:17">active vb reps</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:81;386:12">Number of parallel, active vBucket replicators. Each vBucket has one replicator which can
+    be active or waiting. By default you can only have 32 parallel active replicators at once per
+    node. Once an active replicator finishes, it will pass a token to a waiting replicator.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:58;388:100">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:58;389:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:63;389:17">waiting vb reps</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:82;390:12">Number of vBucket replicators that are waiting for a token to replicate.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:59;390:92">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:59;391:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:64;391:17">secs in replicating</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:83;392:12">Total seconds elapsed for data replication for all vBuckets in a cluster.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:60;392:93">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:60;393:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:65;393:17">secs in checkpointing</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:84;394:12">Time working in seconds including wait time for replication.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:61;394:80">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:61;395:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:66;395:17">checkpoints issued</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:85;396:12">Total number of checkpoints issued in replication queue. By default active vBucket
+    replicators issue a checkpoint every 30 minutes to keep track of replication progress.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:62;397:99">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:62;398:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:67;398:17">checkpoints failed</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:86;399:12">Number of checkpoints failed during replication. This can happen due to timeouts, due to
+    network issues or if a destination cluster cannot persist quickly enough.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:63;400:86">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:63;401:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:68;401:17">mutations in queue</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:87;402:12">Number of document mutations waiting in replication queue.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:64;402:78">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:64;403:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:69;403:17">XDCR queue size</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:88;404:12">Amount of memory used by mutations waiting in replication queue. In bytes.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:65;404:94">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:65;405:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:70;405:17">mutation replication rate</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:89;406:12">Number of mutations replicated to destination cluster per second.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:66;406:85">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:66;407:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:71;407:17">data replication rate</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:90;408:12">Bytes replicated to destination per second.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:67;408:63">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:67;409:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:72;409:17">ms meta ops latency</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:91;410:12">Weighted average time for requesting document metadata. In milliseconds.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:68;410:92">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:68;411:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:73;411:17">mutations replicated optimistically</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:92;412:12">Total number of mutations replicated with optimistic XDCR.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:69;412:78">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:69;413:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:74;413:17">ms docs ops latency</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:93;414:12">Weighted average time for sending mutations to destination cluster. In milliseconds.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:70;414:104">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:70;415:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:75;415:17">percent completed</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:94;416:12">Percent of total mutations checked for metadata.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:95;416:67">Be aware that if you use an
+    earlier version of Couchbase Server, such as Couchbase Server 2.0, only the first three
+    statistics appear and have the labels <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="b:11;418:46">changes queue, documents checked, and documents
+     replicated</b> respectively. You can also get XDCR statistics using the Couchbase REST API. All
+    of the statistics in Web Console are based on statistics via the REST API or values derived from
+    them.</p></section>
+  
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:8;424:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:9;424:19">Monitoring incoming XDCR</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:96;424:54">The Incoming XDCR section shows the XDCR
+    operations that are coming into to the current cluster from a remote cluster. </p>
+      <image href="../images/inbound_xdcr_web_console.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:8;426:72"/>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:97;427:7">The statistics shown are:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:71;427:40">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:71;428:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:76;428:17">metadata reads per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:98;429:12">Number of documents XDCR scans for metadata per second. XDCR uses this information for
+    conflict resolution.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:72;430:33">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:72;431:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:77;431:17">sets per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:99;432:12">Set operations per second for incoming XDCR data.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:73;432:69">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:73;433:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:78;433:17">deletes per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:100;434:12">Delete operations per second as a result of the incoming XDCR data stream.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:74;434:94">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:74;435:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:79;435:17">total ops per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:101;436:12">Total of all the operations per
+    second.</p></section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="section:9;439:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="title:10;439:19">Monitoring view statistics</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:102;439:56">The View statistics show information about
+    individual design documents within the selected bucket. One block of stats will be shown for
+    each production-level design document.</p>
+     <image href="../images/web-console-server-stats-views.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="image:9;442:77">
+     </image>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:103;444:8">The statistics shown are:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:75;444:41">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:75;445:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:80;445:17">data size</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:104;446:12">Size of the data required for this design document.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:76;446:71">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:76;447:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:81;447:17">disk size</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:105;448:12">Size of the stored index as stored on disk.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="ul:77;448:63">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="li:77;449:9"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="codeph:82;449:17">view reads per sec.</codeph></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="p:106;450:12">Number of read operations per second for this view.</p></section>
+ </body>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="related-links:1;452:17"><linkpool class="- topic/linkpool " xtrc="topicref:83;96:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:82;95:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-data-buckets.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Data Buckets</linktext></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="linklist:1;453:13">
+   <link href="../REST/rest-bucket-stats.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="link:1;454:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Getting bucket statistics</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">To retrieve bucket statistics, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-stats.dita" xtrc="codeph:1;6:63">GET</codeph> operation with the             <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-stats.dita" xtrc="codeph:2;7:21">/pools/default/buckets/bucket_name/stats</codeph> URI.</desc></link>
+   <link href="../REST/rest-xdcr-statistics.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="link:2;455:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Getting XDCR stats via REST</linktext></link>
+  </linklist>
+ </related-links>
+</topic>

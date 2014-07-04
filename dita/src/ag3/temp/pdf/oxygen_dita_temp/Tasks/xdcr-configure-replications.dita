@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_cyy_wh4_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="title:1;4:10">Configuring XDCR replications</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="shortdesc:1;5:14">Configuration of XDCR replications is done on a per-bucket basis.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="body:1;6:9">
+
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="p:1;8:10">Replications are configured from the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="uicontrol:1;8:58">XDCR</uicontrol> tab of the Web
+        Console. You configure replication on a bucket basis. To replicate data from all
+        buckets in a cluster, individually configure replication for each bucket.</p>
+    
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="p:2;12:10">Before configuring XDCR:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="ul:1;13:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="li:1;14:13">Configure all nodes within each cluster to communicate with all the nodes on the
+          destination cluster. XDCR uses any node in a cluster to replicate between the two
+          clusters.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="li:2;17:13">Ensure that all Couchbase Server versions and platforms match. For instance, if you want to replicate
+          from a Linux-based cluster, you need to do so with another Linux-based cluster.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="li:3;19:13">When XDCR performs replication, it exchanges data between clusters over TCP/IP port 8092;
+          Couchbase Server uses TCP/IP port 8091 to exchange cluster configuration information. If you
+          are communicating with a destination cluster over a dedicated connection or the Internet you
+          should ensure that all the nodes in the destination and source clusters can communicate with
+          each other over ports 8091 and 8092.</li>
+      </ul>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="p:3;25:10"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="codeph:1;25:18">Ongoing Replications</codeph> are those replications that are currently configured and
+        operating. You can monitor the current configuration, current status, and the last time a
+        replication process was triggered for each configured replication.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="p:4;27:82">Under the XDCR tab you
+          can also configure <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="codeph:2;28:38">Remote Clusters</codeph> for XDCR; these are named destination
+          clusters you can select when you configure replication. When you configure XDCR, the destination
+          cluster reference should point to the IP address of one of the nodes in the destination
+          cluster.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="p:5;31:26">Before you set up replication via XDCR, you should be certain that a destination
+            bucket already exists. If this bucket does not exist, replication via XDCR may not find some
+            shards on the destination cluster; this will result in replication of only some data from the
+            source bucket and will significantly delay replication. This would also require you to retry
+            replication multiple times to get a source bucket to be fully replicated to a destination.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-configure-replications.dita" xtrc="p:6;36:10">Therefore, make sure that you check that a destination bucket exists. The recommended approach
+        is try to read on any key from the bucket. If you receive a ‘key not found’ error, or the
+        document for the key, the bucket exists and is available to all nodes in a cluster. You can do
+        this via a Couchbase SDK with any node in the cluster. </p>
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:65;76:61" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:64;75:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-xdcr.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link></linkpool></related-links>
+</topic>

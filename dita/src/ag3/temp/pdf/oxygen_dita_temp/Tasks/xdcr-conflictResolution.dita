@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_dz3_wk4_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="title:1;4:10">Conflict resolution in XDCR</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="shortdesc:1;5:14">XDCR automatically performs conflict resolution for different document versions on source and
+    destination clusters.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="body:1;7:9">
+
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:1;9:10">The algorithm is designed to consistently select the same document on
+        either a source or destination cluster. For each stored document, XDCR perform checks of
+        metadata to resolve conflicts. It checks the following:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="ul:1;11:72">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="li:1;12:15"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:2;12:18">Numerical sequence, which is incremented on each mutation</p></li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="li:2;13:15"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:3;13:18">CAS value</p></li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="li:3;14:15"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:4;14:18">Document flags</p></li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="li:4;15:15"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:5;15:18">Expiration (TTL) value</p></li>
+        </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:6;16:17">If a document does not have the highest revision number, changes to this document will
+          not be stored or replicated; instead the document with the highest score will take precedence on
+          both clusters. Conflict resolution is automatic and does not require any manual correction or
+          selection of documents.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:7;19:41">By default XDCR fetches metadata twice from every document before
+            it replicates the document at a destination cluster. XDCR fetches metadata on the source cluster
+            and looks at the number of revisions for a document. It compares this number with the number of
+            revisions on the destination cluster and the document with more revisions is considered the
+            ‘winner.’</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:8;23:29">If XDCR determines a document from a source cluster will win conflict
+              resolution, it puts the document into the replication queue. If the document will lose conflict
+              resolution because it has a lower number of mutations, XDCR will not put it into the replication
+              queue. Once the document reaches the destination, this cluster will request metadata once again
+              to confirm the document on the destination has not changed since the initial check. If the
+              document from the source cluster is still the ‘winner’ it will be persisted onto disk at the
+              destination. The destination cluster will discard the document version with the lowest number of
+              mutations.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-conflictResolution.dita" xtrc="p:9;30:32">The key point is that the number of document mutations is the main factor that
+                determines whether XDCR keeps a document version or not. This means that the document that has
+                the most recent mutation may not be necessarily the one that wins conflict resolution. If both
+                documents have the same number of mutations, XDCR selects a winner based on other document
+                metadata. Precisely determining which document is the most recently changed is often difficult
+                in a distributed system. The algorithm Couchbase Server uses does ensure that each cluster can
+                independently reach a consistent decision on which document wins.</p>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:66;77:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:64;75:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-xdcr.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link></linkpool></related-links>
+</topic>

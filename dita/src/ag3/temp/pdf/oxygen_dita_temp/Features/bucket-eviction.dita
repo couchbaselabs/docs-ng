@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_dl3_clp_yn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="title:1;4:9">Bucket metadata ejection</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="shortdesc:1;5:13">Metadata ejection allows both value and full bucket ejection from memory.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="conbody:1;6:11">
+  
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="p:1;9:6">Value bucket ejection removes the data but keeps all keys and metadata in memory (default). 
+   Value-bucket ejection is the standard method of ejection. 
+   Full-bucket ejection removes all data including keys, metadata, and key-values. 
+   Full-bucket ejection reduces the RAM requirement for large buckets.</p>
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="p:2;14:6">Full-bucket ejection allows large data footprints are supported with efficient cache managment and 
+   reduced warmup times are possible when the working sets in memory are smaller. 
+   This method addresses an environment where there are very large datasets (large number of items/keys), 
+   and a small working set in memory. 
+   Metadata ejection operates at the bucket-level for manageability purposes. 
+   The workload characteristics can be categorized.</p>
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="p:3;21:6"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="b:1;21:9">GRAPHICs: Ejection Logic Table</b></p>
+
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="section:1;24:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="title:2;24:19">Questions</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="p:4;25:7">Is it incremental, meaning that item's value is evicted in the first eviction phase and 
+    then its key and meta data in the second phase if the memory usage is still high.</p>
+  </section>
+  
+  
+
+
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="section:2;33:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="title:3;33:19">Impacted documentation</title>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="ul:1;34:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:1;35:9">Added to Document Metadata material (Under Views and data storage). Also, move the the Document
+      Metadata and data storage material to a more appropriate section.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:2;37:9">Warm up operations</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:3;38:9">Global thread pool</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:4;39:9">Other ejection from hitting thresholds</li>
+   </ul>
+  </section>
+  
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="section:3;44:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="title:4;44:19">Backward compatibility</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="p:5;45:7">Behavioral changes are also described.</p>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="ul:2;46:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:5;47:9">EJECTION LOGIC GRAPHIC</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:6;48:9">OLD 2.x release: val for all active datasets are ejected. Metadata + key is not ejected for all active datasets</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="li:7;49:9">3.0: both value and metadata+key are ejected.</li>
+   </ul>
+  </section> 
+  
+  
+ </conbody>
+ 
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="related-links:1;56:17"><linkpool class="- topic/linkpool " xtrc="topicref:7;12:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link><linkpool class="- topic/linkpool " xtrc="topicref:7;12:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="task" xtrc="topicref:8;13:69" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/ui-task-bucket-metadata-ejection.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Ejecting metadata (UI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The type of bucket eviction from memory is set when creating or editing the bucket properties.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:9;14:68" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Ejecting metadata (CLI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Bucket ejection from memory is set with <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;6:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-bucket-metadata-ejection.dita">couchbase-cli</codeph> tool.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:10;15:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../REST/rest-bucket-metadata-ejection.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Ejecting metadata (REST API)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Bucket ejection from memory is set with <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;5:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-metadata-ejection.dita">POST     pools/default/buckets/default</codeph>.</desc></link></linkpool></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="linklist:1;57:13">
+   <link href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="link:1;58:66" type="reference"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="linktext:1;59:15">Ejecting bucket metadata (CLI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Bucket ejection from memory is set with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-bucket-metadata-ejection.dita" xtrc="codeph:1;6:62">couchbase-cli</codeph> tool.</desc></link>
+   <link href="../CLI/CBcli/cbcli-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="link:2;61:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Buckets CLI</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Buckets are managed with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-buckets.dita" xtrc="codeph:1;6:57">couchbase-cli</codeph> tool and the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-buckets.dita" xtrc="codeph:2;6:101">bucket-*</codeph> commands.</desc></link>
+   <link href="../rest/rest-bucket-metadata-ejection.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="link:3;62:60" type="reference"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="linktext:2;63:15">Ejecting bucket metadata (REST)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Bucket ejection from memory is set with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-metadata-ejection.dita" xtrc="codeph:1;5:62">POST     pools/default/buckets/default</codeph>.</desc></link>
+   <link href="../rest/rest-bucket-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/bucket-eviction.dita" xtrc="link:4;65:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link>
+  </linklist>
+ </related-links>
+</concept>

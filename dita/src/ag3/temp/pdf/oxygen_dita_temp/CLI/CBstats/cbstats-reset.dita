@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBstats?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBstats/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1182" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="topic:1;4:40"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="title:1;4:47">Stats reset</title><body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="body:1;4:72"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="p:1;4:75">Resets the list of stats below.</p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="table:1;4:117"><tgroup cols="1" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="tgroup:1;4:134"><colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="colspec:1;4:159"/><thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="thead:1;4:166"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:1;4:171">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:1;5:9">Reset Stats</entry>
+</row></thead><tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="tbody:1;6:22"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:2;6:27">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:2;7:9">ep_bg_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:3;8:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:3;9:9">ep_bg_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:4;10:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:4;11:9">ep_bg_max_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:5;12:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:5;13:9">ep_bg_min_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:6;14:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:6;15:9">ep_bg_max_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:7;16:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:7;17:9">ep_bg_min_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:8;18:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:8;19:9">ep_commit_time</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:9;20:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:9;21:9">ep_flush_duration</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:10;22:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:10;23:9">ep_flush_duration_highwat</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:11;24:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:11;25:9">ep_io_num_read</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:12;26:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:12;27:9">ep_io_num_write</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:13;28:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:13;29:9">ep_io_read_bytes</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:14;30:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:14;31:9">ep_io_write_bytes</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:15;32:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:15;33:9">ep_items_rm_from_checkpoints</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:16;34:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:16;35:9">ep_num_eject_failures</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:17;36:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:17;37:9">ep_num_pager_runs</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:18;38:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:18;39:9">ep_num_not_my_vbuckets</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:19;40:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:19;41:9">ep_num_value_ejects</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:20;42:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:20;43:9">ep_pending_ops_max</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:21;44:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:21;45:9">ep_pending_ops_max_duration</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:22;46:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:22;47:9">ep_pending_ops_total</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:23;48:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:23;49:9">ep_storage_age</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:24;50:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:24;51:9">ep_storage_age_highwat</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:25;52:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:25;53:9">ep_too_old</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:26;54:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:26;55:9">ep_too_young</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:27;56:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:27;57:9">ep_tap_bg_load_avg</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:28;58:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:28;59:9">ep_tap_bg_max_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:29;60:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:29;61:9">ep_tap_bg_max_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:30;62:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:30;63:9">ep_tap_bg_min_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:31;64:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:31;65:9">ep_tap_bg_min_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:32;66:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:32;67:9">ep_tap_bg_wait_avg</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:33;68:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:33;69:9">ep_tap_throttled</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:34;70:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:34;71:9">ep_tap_total_fetched</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:35;72:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:35;73:9">ep_vbucket_del_max_walltime</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:36;74:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:36;75:9">pending_ops</entry>
+</row></tbody></tgroup></table><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="table:2;76:39"><tgroup cols="1" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="tgroup:2;76:56"><colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="colspec:2;76:81"/><thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="thead:2;76:88"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:37;76:93">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:37;77:9">Reset Histograms stats</entry>
+</row></thead><tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="tbody:2;78:22"><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:38;78:27">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:38;79:9">bg_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:39;80:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:39;81:9">bg_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:40;82:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:40;83:9">bg_tap_load</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:41;84:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:41;85:9">bg_tap_wait</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:42;86:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:42;87:9">chk_persistence_cmd</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:43;88:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:43;89:9">data_age</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:44;90:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:44;91:9">del_vb_cmd</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:45;92:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:45;93:9">disk_insert</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:46;94:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:46;95:9">disk_update</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:47;96:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:47;97:9">disk_del</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:48;98:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:48;99:9">disk_vb_del</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:49;100:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:49;101:9">disk_commit</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:50;102:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:50;103:9">get_stats_cmd</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:51;104:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:51;105:9">item_alloc_sizes</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:52;106:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:52;107:9">get_vb_cmd</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:53;108:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:53;109:9">notify_io</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:54;110:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:54;111:9">pending_ops</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:55;112:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:55;113:9">set_vb_cmd</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:56;114:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:56;115:9">storage_age</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:57;116:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:57;117:9">tap_mutation</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:58;118:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:58;119:9">tap_vb_reset</entry>
+</row><row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="row:59;120:12">
+	<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBstats/cbstats-reset.dita" xtrc="entry:59;121:9">tap_vb_set</entry>
+</row></tbody></tgroup></table></body><related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:35;41:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:21;27:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbstats-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>cbstats tool</linktext></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3554" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:1;5:9">Managing XDCR data encryption</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:1;7:6">The cross data center (XDCR) data security feature (Enterprise Edition only) provides
+			secure cross data center replication using Secure Socket Layer (SSL) data encryption.
+			The data replicated between clusters can be encrypted in both uni-directional and
+			bi-directional replications. </p>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="section:1;11:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:2;11:19">XDCR data encryption prerequisites</title><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="ul:1;11:65">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:1;12:9">Couchbase servers on both source and destination clusters must have Couchbase
+					2.5 Enterprise Edition and above installed.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:2;14:9">The source cluster must use the destination cluster’s certificate. The
+					certificate is a self-signed certificate used by SSL to initiate secure
+					sessions.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:3;17:9">The reserved ports for XDCR data encryption must be available.</li>
+			</ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:2;18:12">Important</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:3;18:28">Ensure that the Secure Socket Layer (SSL) reserved ports are
+				available prior to using XDCR data encryption. Otherwise, XDCR data encryption is
+				unavailable. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:4;20:25">With XDCR data encryption, the following ports are reserved:</p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="table:1;20:96">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="tgroup:1;21:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="colspec:1;22:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="colspec:2;23:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="thead:1;24:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="row:1;25:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:1;26:15">Port</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:2;27:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="tbody:1;30:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="row:2;31:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:3;32:15">11214</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:4;33:15">Incoming SSL Proxy</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="row:3;35:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:5;36:15">11215</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:6;37:15">Internal Outgoing SSL Proxy</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="row:4;39:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:7;40:15">18091</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:8;41:15">Internal REST HTTPS for SSL</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="row:5;43:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:9;44:15">18092</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="entry:10;45:15">Internal CAPI HTTPS for SSL </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="section:2;50:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:3;50:19">To enable XDCR data security</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:5;50:58">To enable XDCR data security using
+				SSL and create replication:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="ol:1;51:40">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:4;52:9">On the destination cluster, navigate to Settings &gt; Cluster and copy the
+					certificate. <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="ul:2;53:23">
+						<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:5;54:11">(Optional) To regenerate the existing destination certificate, click
+								<b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:1;55:12">Regenerate</b> before copying.</li>
+					</ul></li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:6;57:9">On the source cluster, select the XDCR tab.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:7;58:9">On the Remote Clusters panel, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:2;58:48">Create Cluster Reference</b> to verify or
+					create the cluster reference.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:8;60:9">Select the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:3;60:23">Enable Encryption</b> box and paste the certificate in the
+					provided area and click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:4;61:33">Save</b>.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:9;62:9">On the Ongoing Replications panel, click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:5;62:53">Create Replication</b>, provide the
+					cluster and bucket information, and click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:6;63:51">Replicate</b>.</li>
+			</ol></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="section:3;65:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:4;65:19">To change XDCR data encryption</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:6;65:60">In some situations (such as
+				updating SSL data security), the SSL certificate is regenerated and the XDCR data
+				encryption is updated. To change XDCR data encryption:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="ol:2;67:67">
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:10;68:9">On the destination cluster, navigate to Settings &gt; Cluster.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:11;69:9">Click <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:7;69:18">Regenerate</b> and copy the certificate.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:12;70:9">On the source cluster, select the XDCR tab.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:13;71:9">On the <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:8;71:19">Remote Clusters</b> panel, for the destination cluster, click
+						<b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:9;72:10">Edit</b>.</li>
+				<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="li:14;73:9">Paste the regenerated certificate in the provided area and click
+					<b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="b:10;74:9">Save</b>.</li>
+			</ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:7;75:12">Anytime a destination cluster’s certificate is regenerated, the corresponding
+				source cluster(s) must be updated with the regenerated certificate.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:8;76:79">For
+				example, if source clusters A, B, and C use XDCR data encryption to replicate to
+				destination cluster D, each of the source clusters must be updated whenever the
+				certificate on the destination cluster D is regenerated
+				(changed).</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:9;80:22">Important</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:10;80:38">If a destination cluster's certificate is
+				regenerated and the source cluster(s) are not updated with the new certificate,
+				replication stops. </p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="section:4;83:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:5;83:19">SSL certificate</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:11;83:45">The following is an example of an SSL certificate
+				and where the certificate is obtained on the cluster.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:12;84:65"><image href="../images/xdcr-remote-cert3.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="image:1;85:45">
+					<alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="alt:1;86:11">Remote SSL Certificate</alt>
+				</image></p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="section:5;88:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:6;88:19">Create Cluster Reference</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:13;88:54">The following is an example of the Create
+				Cluster Reference pop-up.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:14;89:37"><image href="../images/xdcr-source-encrypt.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="image:2;89:85">
+					<alt class="- topic/alt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="alt:2;90:11">Create Cluster Reference</alt>
+				</image></p></section>
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="section:6;92:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="title:7;92:19">XDCR data security error messages</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:15;92:63">When creating the cluster
+				reference, if the SSL certificates are not the same on the destination and source
+				clusters, the following error message
+				displays:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="codeblock:1;95:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="codeph:1;95:37">Attention - Got certificate mismatch while trying to send https request to HOST:18091
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="p:16;96:25">If
+				the SSL certificates become mismatched (for example, if the certificate on the
+				destination cluster is regenerated and the source cluster is not updated with the
+				new certificate), vBucket replication stops and the following error message
+				displays:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="codeblock:2;100:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-xdcr-dataEncryption.dita" xtrc="codeph:2;100:37">Error replicating vbucket &lt;bucketNumber&gt;. Please see logs for details.
+</codeph></codeblock></section>
+	</body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:72;83:66" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:64;75:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-xdcr.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link></linkpool></related-links>
+</topic>

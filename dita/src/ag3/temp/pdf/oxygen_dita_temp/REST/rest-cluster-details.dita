@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3822" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="topic:1;4:40">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="title:1;5:12">Viewing cluster details</title>
+    <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="body:1;6:11">
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="p:1;7:12">At the highest level, the response for this request describes a cluster, as mentioned
+            previously. The response contains a number of properties which define attributes of the
+            cluster and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="i:1;9:28">controllers</i> which enable you to make certain requests of the
+            cluster.</p>
+        
+        <note type="warning" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="note:1;12:30"> Since buckets could be renamed and there is no way to determine the name for the default
+            bucket for a cluster, the system attempts to connect non-SASL, non-proxied to a bucket
+            named "default". If it does not exist, Couchbase Server drops the connection. </note>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="p:2;15:12">Do not rely on the node list returned by this request to connect to a Couchbase Server.
+            Instead, issue an HTTP Get call to the bucket to get the node list for that specific
+            bucket.</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="codeblock:1;18:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="codeph:1;18:28">GET /pools/default
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeph></codeblock>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="codeblock:2;24:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="codeph:2;24:28">
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+{
+    "name":"default",
+    "nodes":[{
+
+        "hostname":"10.0.1.20",
+
+        "status":"healthy",
+        "uptime":"14",
+        "version":"1.6.0",
+        "os":"i386-apple-darwin9.8.0",
+        "memoryTotal":3584844000.0,
+        "memoryFree":74972000,
+        "mcdMemoryReserved":64,
+        "mcdMemoryAllocated":48,
+        "ports":{
+
+            "proxy":11213,
+            "direct":11212
+        },
+        "otpNode":"ns_1@localhost",
+        "otpCookie":"fsekryjfoeygvgcd",
+        "clusterMembership":"active"
+    }],
+    "storageTotals":{
+
+        "ram":{
+            "total":2032558080,
+            "used":1641816064
+
+        },
+        "hdd":{
+            "total":239315349504.0,
+            "used": 229742735523.0
+        }
+    },
+    "buckets":{
+
+        "uri":"/pools/default/buckets"
+    },
+    "controllers":{
+        "ejectNode":{
+            "uri":"/pools/default/controller/ejectNode"
+        },
+        "addNode":{
+
+
+            "uri":"/controller/addNode"
+        },
+        "rebalance":{
+
+
+            "uri":"/controller/rebalance"
+        },
+        "failover":{
+
+
+            "uri":"/controller/failOver"
+        },
+        "reAddNode":{
+
+
+            "uri":"/controller/reAddNode"
+        },
+        "stopRebalance":{
+
+
+            "uri":"/controller/stopRebalance"
+        }
+    },
+    "rebalanceProgress":{
+
+
+        "uri":"/pools/default/rebalanceProgress"
+    },
+    "balanced": true,
+    "etag":"asdas123",
+    "initStatus":
+
+    "stats":{
+        "uri":"/pools/default/stats"
+    }
+}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="p:3;111:12">The controllers in this list all accept parameters as
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="codeph:3;112:25">x-www-form-urlencoded</codeph>, and perform the following functions:</p>
+        <table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="table:1;113:16">
+            <tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="tgroup:1;114:30">
+                <colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="colspec:1;115:42"/>
+                <colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="colspec:2;116:42"/>
+                <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="thead:1;117:24">
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:1;118:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:1;119:32">Function</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:2;120:32">Description</entry>
+                    </row>
+                </thead>
+                <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="tbody:1;123:24">
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:2;124:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:3;125:32">ejectNode</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:4;126:32">Eject a node from the cluster. Required parameter: “otpNode”, the
+                            node to be ejected.</entry>
+                    </row>
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:3;129:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:5;130:32">addNode</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:6;131:32">Add a node to this cluster. Required parameters: “hostname”, “user”
+                            and “password”. Username and password are for the Administrator for this
+                            node.</entry>
+                    </row>
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:4;135:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:7;136:32">rebalance</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:8;137:32">Rebalance the existing cluster. This controller requires both
+                            “knownNodes” and “ejectedNodes”. This allows a client to state the
+                            existing known nodes and which nodes should be removed from the cluster
+                            in a single operation. To ensure no cluster state changes have occurred
+                            since a client last got a list of nodes, both the known nodes and the
+                            node to be ejected must be supplied. If the list does not match the set
+                            of nodes, the request will fail with an HTTP 400 indicating a mismatch.
+                            Note rebalance progress is available via the rebalanceProgress
+                            uri.</entry>
+                    </row>
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:5;147:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:9;148:32">failover</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:10;149:32">Failover the vBuckets from a given node to the nodes which have
+                            replicas of data for those vBuckets. The “otpNode” parameter is required
+                            and specifies the node to be failed over.</entry>
+                    </row>
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:6;153:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:11;154:32">reAddNode</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:12;155:32">The “otpNode” parameter is required and specifies the node to be
+                            re-added.</entry>
+                    </row>
+                    <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="row:7;158:26">
+                        <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:13;159:32">stopRebalance</entry>
+                        <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-details.dita" xtrc="entry:14;160:32">Stop any rebalance operation currently running. This takes no
+                            parameters. </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:4;8:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-cluster-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cluster REST API</linktext></link></linkpool></related-links>
+</topic>

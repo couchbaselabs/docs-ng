@@ -1,0 +1,23 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic998" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="title:1;5:10">Expiration</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="shortdesc:1;6:14">Each document stored in the database has an optional expiration value (TTL, time to live) 
+  that is used to automatically deleted items.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="p:1;9:8">The expiration option can be used for data that has a limited life and could be automatically deleted. 
+    The expiration value is user-specified on a document basis at the point when the data is
+      stored. The expiration can also be updated when the data is updated or explicitly changed
+      through the Couchbase protocol. The expiration time can either be specified as a relative time
+      (for example, in 60 seconds) or absolute time (31st December 2012, 12:00pm).</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="p:2;15:8">The default is no expiration, that is, the information is stored indefinitely.
+    Typical uses for an expiration value include web session data where the actively stored
+      information needs to be removed from the system once the user activity has stopped. With an
+      expiration value, the data times out and is removed from the system without being explicitly
+      deleted. This frees up RAM and disk for more active data.</p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="related-links:1;21:18"><linkpool class="- topic/linkpool " xtrc="topicref:18;24:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc " > Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="linklist:1;22:15">
+      <link href="../CLI/cbepctl-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-docExpiration.dita" xtrc="link:1;23:46"></link>
+    </linklist>
+  </related-links>
+</topic>

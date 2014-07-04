@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_dgv_nky_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="title:1;4:10">Online upgrades</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="body:1;5:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="p:1;6:8">You can upgrade your cluster without taking your
+      cluster down and so your application keeps running during the upgrade process. There are two
+      ways you can perform this process: as a standard online upgrade, or as a swap rebalance. We
+      highly recommend using a swap rebalance for online upgrade so that cluster capacity is
+      always maintained. The standard online upgrade should only be used if swap rebalance is not
+      possible.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="p:2;12:8">Using the standard online upgrade, you take down one or two nodes from a
+        cluster, and rebalance so that remaining nodes handle incoming requests. This is an approach
+        you use if you have enough remaining cluster capacity to handle the nodes you remove and
+        upgrade. You will need to perform rebalance twice for every node you upgrade: the first time
+        to move data onto remaining nodes, and a second time to move data onto the new nodes.
+      </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="p:3;18:8">Standard online upgrades may take a while because each node must be taken out of the
+        cluster, upgraded to a current version, brought back into the cluster, and then rebalanced.
+        However since you can upgrade the cluster without taking the cluster down, you may prefer
+        this upgrade method. </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="p:4;22:8">For swap rebalance, you add a node to the cluster then perform a
+          swap rebalance to shift data from an old node to a new node. You might prefer this approach
+          if you do not have enough cluster capacity to handle data when you remove an old node. This
+          upgrade process is also much quicker than performing a standard online upgrade because you
+          only need to rebalance each upgraded node once. </p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="related-links:1;28:18"><linkpool class="- topic/linkpool " xtrc="topicref:30;46:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrading.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="linklist:1;29:15">
+      <link href="../Tasks/tasks-rebalance.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-online.dita" xtrc="link:1;30:50" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Rebalancing</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

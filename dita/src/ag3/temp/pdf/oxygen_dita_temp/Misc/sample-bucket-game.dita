@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3625" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="topic:1;4:40"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="title:1;4:47">Game Simulation sample bucket</title><body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="body:1;4:90"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:1;4:93">The Game Simulation sample bucket is designed to showcase a typical gaming
+application that combines records showing individual gamers, game objects and
+how this information can be merged together and then reported on using views.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:2;6:85">For example, a typical game player record looks like the one below:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:1;6:167"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:1;6:175">{
+    "experience": 14248,
+    "hitpoints": 23832,
+    "jsonType": "player",
+    "level": 141,
+    "loggedIn": true,
+    "name": "Aaron1",
+    "uuid": "78edf902-7dd2-49a4-99b4-1c94ee286a33"
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:3;15:25">A game object, in this case an Axe, is shown below:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:2;15:91"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:2;15:99">{
+   "jsonType" : "item",
+   "name" : "Axe_14e3ad7b-8469-444e-8057-ac5aefcdf89e",
+   "ownerId" : "Benjamin2",
+   "uuid" : "14e3ad7b-8469-444e-8057-ac5aefcdf89e"
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:4;21:25">In this example, you can see how the game object has been connected to an
+individual user through the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:3;22:37">ownerId</codeph> field of the item JSON.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:5;22:84">Monsters within the game are similarly defined through another JSON object type:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:3;22:179"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:4;22:187">{
+    "experienceWhenKilled": 91,
+    "hitpoints": 3990,
+    "itemProbability": 0.19239324085462631,
+    "jsonType": "monster",
+    "name": "Wild-man9",
+    "uuid": "f72b98c2-e84b-4b17-9e2a-bcec52b0ce1c"
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:6;30:25">For each of the three records, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:5;30:68">jsonType</codeph> field is used to define the type
+of the object being stored.</p><section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="section:1;31:41"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="title:2;31:48">leaderboard view</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:7;31:75">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:6;31:87">leaderboard</codeph> view is designed to generate a list of the players and their
+current score:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:4;32:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:7;32:38">function (doc) {
+  if (doc.jsonType == "player") {
+  emit(doc.experience, null);
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:8;37:25">The view looks for records with a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:8;37:67">jsonType</codeph> of “player”, and then outputs the
+<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:9;38:9">experience</codeph> field of each player record. Because the output from views is
+naturally sorted by the key value, the output of the view will be a sorted list
+of the players by their score. For example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:5;40:59"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:10;40:67">{
+   "total_rows" : 81,
+   "rows" : [
+      {
+         "value" : null,
+         "id" : "Bob0",
+         "key" : 1
+      },
+      {
+         "value" : null,
+         "id" : "Dustin2",
+         "key" : 1
+      },
+…
+      {
+         "value" : null,
+         "id" : "Frank0",
+         "key" : 26
+      }
+   ]
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:9;61:25">To get the top 10 highest scores (and ergo players), you can send a request that
+reverses the sort order (by using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:11;62:43">descending=true</codeph>, for example:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:6;62:96"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:12;62:104">http://127.0.0.1:8092/gamesim-sample/_design/dev_players/_view/leaderboard?descending=true&amp;connection_timeout=60000&amp;limit=10&amp;skip=0
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:10;63:25">Which generates the following:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:7;63:70"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:13;63:78">{
+   "total_rows" : 81,
+   "rows" : [
+      {
+         "value" : null,
+         "id" : "Tony0",
+         "key" : 23308
+      },
+      {
+         "value" : null,
+         "id" : "Sharon0",
+         "key" : 20241
+      },
+      {
+         "value" : null,
+         "id" : "Damien0",
+         "key" : 20190
+      },
+…
+      {
+         "value" : null,
+         "id" : "Srini0",
+         "key" :9
+      },
+      {
+         "value" : null,
+         "id" : "Aliaksey1",
+         "key" : 17263
+      }
+   ]
+}
+</codeph></codeblock></section><section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="section:2;94:41"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="title:3;94:48">playerlist view</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:11;94:74">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:14;94:86">playerlist</codeph> view creates a list of all the players by using a map function
+that looks for “player” records.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:8;95:48"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:15;95:56">function (doc, meta) {
+  if (doc.jsonType == "player") {
+    emit(meta.id, null);
+  }
+}
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="p:12;100:25">This outputs a list of players in the format:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeblock:9;100:85"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/misc/sample-bucket-game.dita" xtrc="codeph:16;100:93">{
+   "total_rows" : 81,
+   "rows" : [
+      {
+         "value" : null,
+         "id" : "Aaron0",
+         "key" : "Aaron0"
+      },
+      {
+         "value" : null,
+         "id" : "Aaron1",
+         "key" : "Aaron1"
+      },
+      {
+         "value" : null,
+         "id" : "Aaron2",
+         "key" : "Aaron2"
+      },
+      {
+         "value" : null,
+         "id" : "Aliaksey0",
+         "key" : "Aliaksey0"
+      },
+      {
+         "value" : null,
+         "id" : "Aliaksey1",
+         "key" : "Aliaksey1"
+      }
+   ]
+}
+</codeph></codeblock></section></body></topic>

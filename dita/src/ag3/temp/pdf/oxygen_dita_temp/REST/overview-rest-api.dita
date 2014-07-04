@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/rest/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic8607" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="title:1;5:9">REST API overview</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:1;7:6">The Couchbase REST API enables you to manage a Couchbase Server deployment as well as
+			perform operations such as storing design documents and querying for results. The REST
+			API conforms to Representational State Transfer (REST) constraints, in other words, the
+			REST API follows a <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="b:1;10:26">RESTful</b> architecture.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:2;11:6">Use the REST API to manage clusters, server nodes, and buckets, and to retrieve run-time
+			statistics within your Couchbase Server deployment. If you want to develop your own
+			Couchbase-compatible SDK, you will also use the REST API within your library to handle 
+			views. Views enable you to index and query data based on functions that you
+			define. </p>
+				<note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="note:1;16:22">The REST API should *not* be used to read or write data to the server. Data operations
+			such as `set` and `get` for example, are handled by Couchbase SDKs. </note>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:3;18:6">In addition, the Couchbase Web Console uses many of the same REST API endpoints that are
+			used for a REST API request. This is especially for administrative tasks such as
+			creating a new bucket, adding a node to a cluster, or changing cluster settings. </p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:4;21:6">Please provide RESTful requests; you will not receive any handling instructions, resource
+			descriptions, nor should you presume any conventions for URI structure for resources
+			represented. The URIs in the REST API may have a specific URI or may even appear as RPC
+			or some other architectural style using HTTP operations and semantics.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:5;25:6">In other words, build your request starting from Couchbase Cluster URIs, and be aware
+			that URIs for resources may change from version to version. Also note that the
+			hierarchies shown here enable your reuse of requests, since they follow a similar
+			pattern for accessing different parts of the system.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:6;29:6">The REST API is built on a number of basic principles:</p>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="ul:1;30:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:1;31:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="b:2;31:11">JSON Responses</b>
+				<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:7;32:8">The Couchbase Management REST API returns many responses as JavaScript Object Notation
+			(JSON). On that note, you may find it convenient to read responses in a JSON reader.
+			Some responses may have an empty body, but indicate the response with standard HTTP
+			codes. For more information, see RFC 4627 at www.json.org.</p></li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:2;36:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="b:3;36:11">HTTP Basic Access Authentication</b>
+				<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:8;37:8">The Couchbase Management REST API uses HTTP basic authentication. 
+			The browser-based Web Console and Command-line Interface also use HTTP basic authentication.</p></li>
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:3;39:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="b:4;39:11">Versatile Server Nodes</b>
+				<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:9;40:8">All server nodes in a cluster share the same properties and can handle any requests made
+			via the REST API.; you can make a REST API request on any node in a cluster you want to
+			access. If the server node cannot service a request directly, due to lack of access to
+			state or some other information, it will forward the request to the appropriate server
+			node, retrieve the results, and send the results back to the client.</p></li>
+		</ul>
+		
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:10;47:6">In order to use the REST API you should be aware of the different terms and concepts
+			discussed in the following sections.</p>
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="section:1;52:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="title:2;52:19">Types of resources</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:11;52:48">There are a number of different resources
+				within the Couchbase Server and these resources require a different
+				URI/RESTful-endpoint in order to perform an operations:</p>
+		
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="ul:2;56:7">
+		<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:4;57:7">Server nodes<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:12;57:22">A Couchbase Server instance, also
+					known as ‘node’, is a physical or virtual machine running Couchbase Server. Each
+					node is as a member of a cluster.</p></li>
+		<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:5;60:7">Cluster/Pool<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:13;60:22">A cluster is a group of one or more
+					nodes; it is a collection of physical resources that are grouped together and
+					provide services and a management interface. A single default cluster exists for
+					every deployment of Couchbase Server. A node, or instance of Couchbase Server,
+					is a member of a cluster. Couchbase Server collects run-time statistics for
+					clusters, maintaining an overall pool-level data view of counters and periodic
+					metrics of the overall system. The Couchbase Management REST API can be used to
+					retrieve historic statistics for a cluster.</p></li>
+		<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:6;68:7">Buckets<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:14;68:17">A bucket is a logical grouping of data
+					within a cluster. It provides a name space for all the related data in an
+					application; therefore you can use the same key in two different buckets and
+					they are treated as unique items by Couchbase Server.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:15;71:66">Couchbase Server
+					collects run-time statistics for buckets, maintaining an overall bucket-level
+					data view of counters and periodic metrics of the overall system. Buckets are
+					categorized by storage type: 1) memcached buckets are for in-memory, RAM-based
+					information, and 2) Couchbase buckets, which are for persisted
+				data.</p></li>
+		<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:7;77:7">Views<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:16;77:15">Views enable you to index and query data
+					based on logic you specify. You can also use views to perform calculations and
+					aggregations, such as statistics, for items in Couchbase Server.</p></li>
+		<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="li:8;80:7">Cross datacenter replication (XDCR)<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:17;80:45">Cross
+					Datacenter Replication (XDCR) is new functionality as of Couchbase Server 2.0.
+					It enables you to automatically replicate data between clusters and between data
+					buckets. There are two major benefits of using XDCR as part of your Couchbase
+					Server implementation: 1) enables you to restore data from one Couchbase cluster
+					to another cluster after system failure. 2) provide copies of data on clusters
+					that are physically closer to your end users.</p></li>
+		</ul>
+		</section>
+	
+	
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="section:2;93:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="title:3;93:19">HTTP request headers</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:18;94:7">The following HTTP request headers are used to create your request:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="table:1;96:11">
+				<tgroup cols="4" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="tgroup:1;97:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="colspec:1;98:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="colspec:2;99:31"/>
+					<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="colspec:3;100:31"/>
+					<colspec colname="col4" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="colspec:4;101:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="thead:1;102:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:1;103:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:1;104:15">Header</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:2;105:15">Supported Values</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:3;106:15">Description of Use</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:4;107:15">Required</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="tbody:1;110:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:2;111:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:5;112:15">Accept</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:6;113:15">Comma-delimited list of media types or media type
+								patterns.</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:7;115:15">Indicates to the server what media type(s) this client is
+								prepared to accept.</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:8;117:15">Recommended</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:3;119:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:9;120:15">Authorization</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:10;121:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="codeph:1;121:23">Basic</codeph> plus username and password (per RFC
+								2617).</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:11;123:15">Identifies the authorized user making this request.</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:12;124:15">No, unless secured</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:4;126:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:13;127:15">Content-Length</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:14;128:15">Body Length (in bytes)</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:15;129:15">Describes the size of the message body.</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:16;130:15">Yes, on requests that contain a message body.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:5;132:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:17;133:15">Content-Type</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:18;134:15">Content type</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:19;135:15">Describes the representation and syntax of the request message
+								body.</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:20;137:15">Yes, on requests that contain a message body.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:6;139:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:21;140:15">Host</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:22;141:15">Origin hostname</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:23;142:15">Required to allow support of multiple origin hosts at a single IP
+								address.</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:24;144:15">All requests</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:7;146:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:25;147:15">X-YYYYY-Client-Specification-Version</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:26;148:15">String</entry>
+							<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:27;149:15">Declares the specification version of the YYYYY API that this
+								client was programmed against.</entry>
+							<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:28;151:15">No </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		
+		</section>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="section:3;160:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="title:4;160:19">HTTP status codes</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="p:19;160:47">The Couchbase Server will return one of the
+				following HTTP status codes in response to your REST API
+				request:</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="table:2;164:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="tgroup:2;165:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="colspec:5;166:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="colspec:6;167:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="thead:2;168:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:8;169:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:29;170:15">HTTP Status</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:30;171:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="tbody:2;174:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:9;175:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:31;176:15">200 OK</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:32;177:15">Successful request and an HTTP response body returns. If this
+								creates a new resource with a URI, the 200 status will also have a
+								location header containing the canonical URI for the newly created
+								resource.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:10;182:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:33;183:15">201 Created</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:34;184:15">Request to create a new resource is successful, but no HTTP
+								response body returns. The URI for the newly created resource
+								returns with the status code.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:11;188:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:35;189:15">202 Accepted</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:36;190:15">The request is accepted for processing, but processing is not
+								complete. Per HTTP/1.1, the response, if any, SHOULD include an
+								indication of the request’s current status, and either a pointer to
+								a status monitor or some estimate of when the request will be
+								fulfilled.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:12;196:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:37;197:15">204 No Content</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:38;198:15">The server fulfilled the request, but does not need to return a
+								response body.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:13;201:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:39;202:15">400 Bad Request</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:40;203:15">The request could not be processed because it contains missing or
+								invalid information, such as validation error on an input field, a
+								missing required value, and so on.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:14;207:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:41;208:15">401 Unauthorized</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:42;209:15">The credentials provided with this request are missing or
+								invalid.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:15;212:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:43;213:15">403 Forbidden</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:44;214:15">The server recognized the given credentials, but you do not
+								possess proper access to perform this request.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:16;217:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:45;218:15">404 Not Found</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:46;219:15">URI you provided in a request does not exist.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:17;221:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:47;222:15">405 Method Not Allowed</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:48;223:15">The HTTP verb specified in the request (DELETE, GET, HEAD, POST,
+								PUT) is not supported for this URI.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:18;226:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:49;227:15">406 Not Acceptable</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:50;228:15">The resource identified by this request cannot create a response
+								corresponding to one of the media types in the Accept header of the
+								request.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:19;232:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:51;233:15">409 Conflict</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:52;234:15">A create or update request could not be completed, because it
+								would cause a conflict in the current state of the resources
+								supported by the server. For example, an attempt to create a new
+								resource with a unique identifier already assigned to some existing
+								resource.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:20;240:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:53;241:15">500 Internal Server Error</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:54;242:15">The server encountered an unexpected condition which prevented it
+								from fulfilling the request.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:21;245:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:55;246:15">501 Not Implemented</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:56;247:15">The server does not currently support the functionality required
+								to fulfill the request.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="row:22;250:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:57;251:15">503 Service Unavailable</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="entry:58;252:15">The server is currently unable to handle the request due to
+								temporary overloading or maintenance of the server. </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></section>
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="related-links:1;259:17">
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="linklist:1;260:13">
+			<link href="../xdcr/xdcr-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="link:1;261:42" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Cross Datacenter Replication (XDCR)</linktext></link>
+			<link href="../views/views-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="link:2;262:44" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views and indexes</linktext></link>
+			<link href="../cli/cbcli-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="link:3;263:42" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">couchbase-cli tool</linktext></link>
+			<link href="http://docs.couchbase.com/" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="link:4;264:75"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="linktext:1;265:15">Couchbase SDKs</linktext></link>
+			<link href="http://www.ietf.org/rfc/rfc4627.txt" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="link:5;267:84"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="linktext:2;268:15">http://www.ietf.org/rfc/rfc4627.txt</linktext></link>
+			<link href="http://www.json.org" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="link:6;270:68"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/overview-rest-api.dita" xtrc="linktext:3;271:15">www.json.org</linktext></link>
+
+
+				
+		</linklist>
+	</related-links>
+</topic>

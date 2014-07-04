@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_uyc_ldv_yn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="title:1;4:9">Memory-based XDCR replication</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="shortdesc:1;5:13">XDCR on the source cluster collects data changes from memory and streams the data changes directly 
+  to memory on the destination cluster.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="conbody:1;7:11">
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="p:1;9:6">With memory-based XDCR replication, the data changes on the source cluster are detected in memory 
+   and streamed directly to the destination cluster's memory. 
+  On the source cluster, the data changes (in memory) are queued and then persist to disk.
+  Correspondingly, on the destination cluster, the data changes (stream to memory) are queued and then persist to disk.</p>
+  
+
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="p:2;16:6">Memory-based XDCR replication provides:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="ul:1;17:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="li:1;18:8">Lower latency, that is, the time gap between data replication</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="li:2;19:8">High availability and disaster recovery</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="li:3;20:8">Improves recovery point objective (RPO)</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="li:4;21:8">Smaller data loss window</li>
+  </ul>
+  
+  <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="fig:1;24:8"><image href="../images/xdcr-memory-replication.png" width="720" alt="Memory-based XDCR replication diagram" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="image:1;24:117"/></fig>
+
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="section:1;27:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="title:2;27:19">Backward compatibility</title>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="ul:2;28:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="li:5;29:9">Internal changes which are made automatically through the upgrade.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="li:6;30:9">Only require thesource cluster to be upgraded. The destination cluster accepts the data
+     changes into memory without issue.</li>
+   </ul>
+  </section>
+  
+
+ </conbody>
+ 
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="related-links:1;38:17"><linkpool class="- topic/linkpool " xtrc="topicref:6;11:59" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="linklist:1;39:13">
+   <link href="xdcr-pause-resume.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/xdcr-memory-replication.dita" xtrc="link:1;40:42" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Pause and resume XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">During XDCR replication, the process can be paused and resumed. Performed via the     Couchbase command-line interface (CLI).</desc></link>
+  </linklist>
+ </related-links>
+</concept>

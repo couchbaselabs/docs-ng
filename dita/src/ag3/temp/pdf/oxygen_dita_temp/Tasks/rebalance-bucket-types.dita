@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_e1d_lxf_q4" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="title:1;4:9">Rebalance effect on bucket types</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="shortdesc:1;5:13">The rebalance operation works across the cluster on both Couchbase and memcached buckets</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="conbody:1;6:11">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="p:1;7:6">There are differences in the rebalance operation for Couchbase and memcached buckets due to the inherent differences of the two bucket types.</p>
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="p:2;9:6">For Couchbase buckets:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="ul:1;9:36">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="li:1;10:10">Data is rebalance across all the nodes in the cluster to match the new
+      configuration.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="li:2;12:10">Updated vBucket map is communicated to clients as each vBucket is successfully
+      moved.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="li:3;14:10">No data is lost, and there are no changes to the caching or availability of individual
+      keys.</li>
+    </ul>
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="p:3;18:6">For memcached buckets:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="ul:2;19:7">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="li:4;20:10">If new nodes are being added to the cluster, the new node is added to the cluster, and
+      the node is added to the list of nodes supporting the memcached bucket data.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="li:5;22:10">If nodes are being removed from the cluster, the data stored on that node within the
+      memcached bucket will be lost, and the node removed from the available list of nodes.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-bucket-types.dita" xtrc="li:6;24:10">In either case, the list of nodes handling the bucket data is automatically updated and
+      communicated to the client nodes. Memcached buckets use the Ketama hashing algorithm which is
+      designed to cope with server changes, but the change of server nodes may shift the hashing and
+      invalidate some keys once the rebalance operation has completed.</li>
+    </ul>
+
+ </conbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:49;58:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:47;56:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-rebalance.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Rebalancing</linktext></link></linkpool></related-links>
+</concept>

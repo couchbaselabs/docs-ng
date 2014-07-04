@@ -1,0 +1,25 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic907" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="title:1;5:10">Failover</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="shortdesc:1;6:14">Failover is the process of indicating that a node in a cluster is unavailable and that 
+  enabling replica vBuckets.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="p:1;9:8">Information is distributed around a cluster using a series of replicas. For Couchbase buckets
+      you can configure the number of <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="codeph:1;10:47">replicas</codeph> (complete copies of the data stored
+      in the bucket) that should be kept within the Couchbase Server Cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="p:2;12:8">In the event of a failure in a server (either due to transient failure, or for administrative
+      purposes), you can use a technique called <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="codeph:2;13:57">failover</codeph> to indicate that a node
+      within the Couchbase Cluster is no longer available, and that the replica vBuckets for the
+      server are enabled.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="p:3;16:8">The failover process contacts each server that was acting as a replica and updates the
+      internal table that maps client requests for documents to an available server.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="p:4;18:8">Failover can be performed manually, or you can use the built-in automatic failover that
+      reacts after a preset time when a node within the cluster becomes unavailable.</p>
+
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="related-links:1;23:18"><linkpool class="- topic/linkpool " xtrc="topicref:23;29:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc " > Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="linklist:1;24:15">
+      <link href="../Tasks/tasks-nodeFailover.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-nodeFailover.dita" xtrc="link:1;25:53"></link>
+    </linklist>
+  </related-links>
+</topic>

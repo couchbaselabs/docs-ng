@@ -1,0 +1,96 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Concepts/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_exs_rrg_rn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:1;4:9">Rack Awareness</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="shortdesc:1;5:13">The Rack Awareness feature allows logical groupings of servers on a cluster where each server 
+  group physically belongs to a rack or availability zone. </shortdesc>
+  
+  <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="conbody:1;8:12">
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:1;9:7">Rack Awareness provides the ability to 
+    specify that active and corresponding replica partitions be created on servers that are part of a separate rack or zone. 
+    To use and enable Rack Awareness, all servers in a cluster must be upgraded to Couchbase Server Enterprise Edition and minimally, version 2.5. 
+    By design, Couchbase Server evenly distributes data of active and replica vBuckets across the cluster for cluster performance and redundancy purposes. 
+   With Rack Awareness, server partitions are laid out so the replica partitions for servers in one server group are distributed in servers for a second group and vice versa. 
+   If one of the servers becomes unavailable or if an entire rack goes down, data is retained since the replicas are available on the second server group.
+  </p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:2;16:6">Replica vBuckets are evenly distributed from one server group to another server group to provide redundancy and data availability. 
+   The rebalance operation also evenly distributes the replica vBuckets from one server group to another server group across the cluster. 
+   If an imbalance occurs where there is an unequal number of servers in one server group, 
+   the rebalance operation performs a &quot;best effort&quot; of evenly distributing the replica vBuckets across the cluster.</p>
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="section:1;20:12">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:2;21:11">Distribution of vBuckets and replica vBuckets</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:3;22:7">The following example shows how Rack Awareness functionality implements replica vBuckets to provide redundancy.  
+    In this example, there are two (2) server groups in the cluster and four (4) servers in each server group. 
+    Since there is equal number of servers in each server group, 
+    the cluster is balanced which guarantees that replica vBuckets for one server group are on a different server group.</p>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:4;26:7">The following diagram shows a cluster of servers on two racks, Rack #1 and Rack #2, where each rack has a group of four (4) servers.</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="ul:1;27:9">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:1;28:10">Group 1 has Servers 1, 2, 3, and 4.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:2;29:10">Group 1 servers have their active vBuckets and replica vBuckets from Group 2.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:3;30:10">Group 2 has Servers 5, 6, 7, and 8.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:4;31:10">Group 2 servers have their active vBuckets and replica vBuckets from Group 1.</li>  
+    </ul>
+
+   <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="fig:1;34:9"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:3;34:16">Rack Awareness</title>
+    <image href="../images/RZASimple.png" align="left" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="image:1;35:69"></image></fig> 
+  </section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="section:2;38:12">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:4;39:11">Distribution with additional server</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:5;40:7">The following scenario shows how Rack Awareness functionality implements replica vBuckets 
+    when an imbalance is caused by an additional server being added to one server group. 
+    In this example, an additional server (Server 9) is added to a server group (Group 1). 
+    An imbalance occurs because one server group has more servers than the other server group. 
+    In this case, the rebalance operation performs a &quot;best effort&quot; of evenly distributing the replica vBuckets 
+    of the additional server across the nodes on all the racks in the cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:6;46:8">The following diagram shows a cluster of servers on two racks, 
+     Rack #1 and Rack #2, where one rack has a group of five (5) servers and the other rack has a group of four (4) servers.</p>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="ul:2;48:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:5;49:9">Group 1 has Servers 1, 2, 3, 4, and 9.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:6;50:9">Group 1 servers have their active vBuckets and replica vBuckets from Group 2.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:7;51:9">Group 1 Servers 1 - 4 also has replica vBuckets for Server 9.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:8;52:9">Group 2 has Servers 5, 6, 7, and 8.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:9;53:10">Group 2 servers have their active vBuckets and replica vBuckets from Group 1 including the replica vBuckets from Server 9 in Group 1.</li>  
+   </ul>
+   
+   <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="fig:2;56:9"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:5;56:16">Rack Awareness with additional server</title>
+    <image href="../images/RZAServerIN.png" align="left" width="650" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="image:2;57:71"></image></fig>
+  </section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="section:3;60:12">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:6;61:11">Distribution with unavailable server</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:7;62:7">The following scenario shows how Rack Awareness functionality 
+    implements replica vBuckets when an imbalance is caused by a server being removed or unavailable in a server group. 
+    In this example, a server (Server 2) is unavailable to a server group (Group 1). 
+    An imbalance occurs because one server group has fewer servers than the other server group. 
+    In this case, if the rebalance operation is performed, a &quot;best effort&quot; of evenly 
+    distributing the replica vBuckets across the cluster occurs.</p>
+   
+   <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="note:1;69:22">
+    If the cluster becomes imbalanced, add servers to balance the cluster. 
+    For optimal Rack Awareness functionality, a balanced cluster is recommended.
+    If there is only one server or only one server group, 
+    default behavior is automatically implemented, that is, Rack Awareness functionality is disabled.
+   </note>
+   
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="p:8;76:7">The following diagram shows the loss of a server resulting in an imbalance. 
+    In this case, Server 2 (from Group 1, Rack #1) becomes unavailable. 
+    The replica vBuckets for Server 2 in Group 2, Rack #2 become enabled and rebalancing occurs.</p>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="ul:3;79:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:10;80:9">Group 1 has Servers 1, 2, 3, and 4.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:11;81:9">Group 1 servers have their active vBuckets and replica vBuckets from Group 2.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:12;82:9">Group 1 Server 2 becomes unavailable.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:13;83:9">Group 2 has Servers 5, 6, 7, and 8.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:14;84:9">Group 2 servers have their active vBuckets and replica vBuckets from Group 1.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="li:15;85:9">Group 2 server activates the replica vBuckets for Server 2 in Group 1.</li>  
+   </ul>
+   
+   <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="fig:3;88:9"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="title:7;88:16">Rack Awareness with unavailable server</title>
+    <image href="../images/RZAServerOUT.png" align="left" width="650" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="image:3;89:72"></image></fig>
+  </section>
+ 
+ </conbody>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="related-links:1;93:17"><linkpool class="- topic/linkpool " xtrc="topicref:22;28:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc " > Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="linklist:1;94:13">
+  <link href="../Tasks/rza-manage-group.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rack-awareness.dita" xtrc="link:1;95:47"></link>
+  </linklist>
+ </related-links>
+</concept>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1678" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="title:1;5:10">Disabling consistent query results on rebalance</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:1;7:8">If you perform queries during rebalance, this new feature will ensure that you receive the
+      query results that you would expect from a node as if it is not being rebalanced. During node
+      rebalance, you will get the same results you would get as if the data were on an original node
+      and as if data were not being moved from one node to another. In other words, this new feature
+      ensures you get query results from a new node during rebalance that are consistent with the
+      query results you would have received from the node before rebalance started.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:2;13:8">By default this functionality is enabled; although it is possible to disable this
+      functionality via the REST API, under certain circumstances described below.</p>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="note:1;16:23">Be aware that rebalance may take significantly more time if you have implemented views for
+      indexing and querying. While this functionality is enabled by default, if rebalance time
+      becomes a critical factor for your application, you can disable this feature via the REST
+      API.</note>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:3;20:8">We do not recommend you disable this functionality for applications in production without
+      thorough testing. To do so may lead to unpredictable query results during rebalance. </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:4;22:8">To disable this feature, provide a request similar to the following:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="codeblock:1;23:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="codeph:1;23:24">curl -v -u admin:password -X POST http://localhost:8091/internalSettings \
+-d indexAwareRebalanceDisabled=true
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:5;26:8">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="i:1;26:23">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="i:2;26:37">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="i:3;26:58">localhost</i> values in the above example
+      with your actual values.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:6;28:8">If successful Couchbase Server will send a response:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="codeblock:2;29:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="codeph:2;29:24">HTTP/1.1 200 OK
+Content-Type: application/json
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="p:7;32:8">For more information about views and how they function within a cluster.</p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="related-links:1;34:18"><linkpool class="- topic/linkpool " xtrc="topicref:14;19:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:2;6:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-cluster-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cluster REST API</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="linklist:1;35:15">
+      <link href="../views/views-operation.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-cluster-disable-query.dita" xtrc="link:1;36:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views operation</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic1489"><title>cbworkloadgen Tool</title><body><p>Tool that generates random data and perform read/writes for Couchbase Server.
+<topic xml:lang="en-us" id="topic1489"><title>cbworkloadgen tool</title><body><p>Tool that generates random data and perform read/writes for Couchbase Server.
 This is useful for testing your Couchbase node.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
 	<entry>Operating System</entry>
 	<entry>Location</entry>

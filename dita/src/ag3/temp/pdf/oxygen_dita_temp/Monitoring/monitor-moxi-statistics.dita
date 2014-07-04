@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Monitoring?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Monitoring/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3000" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="title:1;5:10">Couchbase Server Moxi statistics</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="shortdesc:1;6:14">Regular memcached clients can request statistics through the memcached stats command.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="p:1;8:8">Moxi, as part of it’s support of memcached protocol, has support for the memcached
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="codeph:1;9:17">stats</codeph> command. The stats command accepts optional arguments, and in the case of
+      Moxi, there is a stats proxy sub-command. A detailed description of statistics available
+      through Moxi can be found in the Moxi 1.8 Manual.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="p:2;12:8">For example, one simple client one may use is the commonly available netcat (output elided
+      with ellipses):</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="codeblock:1;14:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="codeph:2;14:24">$ echo "stats proxy" | nc localhost 11211
+STAT basic:version 1.6.0
+STAT basic:nthreads 5
+…
+STAT proxy_main:conf_type dynamic
+STAT proxy_main:behavior:cycle 0
+STAT proxy_main:behavior:downstream_max 4
+STAT proxy_main:behavior:downstream_conn_max 0
+STAT proxy_main:behavior:downstream_weight 0
+…
+STAT proxy_main:stats:stat_configs 1
+STAT proxy_main:stats:stat_config_fails 0
+STAT proxy_main:stats:stat_proxy_starts 2
+STAT proxy_main:stats:stat_proxy_start_fails 0
+STAT proxy_main:stats:stat_proxy_existings 0
+STAT proxy_main:stats:stat_proxy_shutdowns 0
+STAT 11211:default:info:port 11211
+STAT 11211:default:info:name default
+…
+STAT 11211:default:behavior:downstream_protocol 8
+STAT 11211:default:behavior:downstream_timeout 0
+STAT 11211:default:behavior:wait_queue_timeout 0
+STAT 11211:default:behavior:time_stats 0
+STAT 11211:default:behavior:connect_max_errors 0
+STAT 11211:default:behavior:connect_retry_interval 0
+STAT 11211:default:behavior:front_cache_max 200
+STAT 11211:default:behavior:front_cache_lifespan 0
+STAT 11211:default:behavior:front_cache_spec
+STAT 11211:default:behavior:front_cache_unspec
+STAT 11211:default:behavior:key_stats_max
+STAT 11211:default:behavior:key_stats_lifespan 0
+STAT 11211:default:behavior:key_stats_spec
+STAT 11211:default:behavior:key_stats_unspec
+STAT 11211:default:behavior:optimize_set
+STAT 11211:default:behavior:usr default
+…
+STAT 11211:default:pstd_stats:num_upstream 1
+STAT 11211:default:pstd_stats:tot_upstream 2
+STAT 11211:default:pstd_stats:num_downstream_conn 1
+STAT 11211:default:pstd_stats:tot_downstream_conn 1
+STAT 11211:default:pstd_stats:tot_downstream_conn_acquired 1
+STAT 11211:default:pstd_stats:tot_downstream_conn_released 1
+STAT 11211:default:pstd_stats:tot_downstream_released 2
+STAT 11211:default:pstd_stats:tot_downstream_reserved 1
+STAT 11211:default:pstd_stats:tot_downstream_reserved_time 0
+STAT 11211:default:pstd_stats:max_downstream_reserved_time 0
+STAT 11211:default:pstd_stats:tot_downstream_freed 0
+STAT 11211:default:pstd_stats:tot_downstream_quit_server 0
+STAT 11211:default:pstd_stats:tot_downstream_max_reached 0
+STAT 11211:default:pstd_stats:tot_downstream_create_failed 0
+STAT 11211:default:pstd_stats:tot_downstream_connect 1
+STAT 11211:default:pstd_stats:tot_downstream_connect_failed 0
+STAT 11211:default:pstd_stats:tot_downstream_connect_timeout 0
+STAT 11211:default:pstd_stats:tot_downstream_connect_interval 0
+STAT 11211:default:pstd_stats:tot_downstream_connect_max_reached 0
+…
+END
+</codeph></codeblock>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="related-links:1;73:18"><linkpool class="- topic/linkpool " xtrc="topicref:102;118:61" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:96;112:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Monitoring/monitor-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">There are a number of different ways to monitor Couchbase servers      including underlying processes, ports, and queueing.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="linklist:1;74:15">
+      <link href="http://docs.couchbase.com/moxi-manual-1.8" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="link:1;75:93"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-moxi-statistics.dita" xtrc="linktext:1;76:19">Moxi 1.8 Manual</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

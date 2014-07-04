@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic12527" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="topic:1;4:41">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="title:1;5:10">Initial server setup</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="body:1;6:9">
+
+    <note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="note:1;8:22">Clear your browser cache before doing the setup process. You can find notes and
+      tips on how to do this on different browsers and platforms on www.wikihow.com.</note>
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:1;11:8">On all platforms you can access the web console by connecting to the embedded web server on
+      port 8091. For example, if your server can be identified on your network as
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:1;13:17">servera</codeph>, you can access the web console by opening
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:2;14:17">http://servera:8091/</codeph>. You can also use an IP address or, if you are on the
+      same machine, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:3;15:29">http://localhost:8091</codeph>. If you set up Couchbase Server on
+      another port other than <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:4;16:39">8091</codeph>, go to that port.</p>
+    
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="ol:1;18:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:1;19:11">Open Couchbase Web Console.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:2;20:11">Set the disk storage and cluster configuration.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:2;20:61">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:5;20:73">Configure Disk
+            Storage</codeph> option specifies the location of the persistent storage used by
+          Couchbase Server. The setting affects only this node and sets the directory where all the
+          data will be stored on disk. This will also set where the indices created by views will be
+          stored. If you are not indexing data with views you can accept the default setting. For
+          the best performance, you may want to configure different disks for the server, for
+          storing your document and for index data. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:3;26:60">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:6;26:72">Configure Server
+            Memory</codeph> section sets the amount of physical RAM that will be allocated by
+          Couchbase Server for storage. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:4;28:48">If you are creating a new cluster, this is the amount
+          of memory that will be allocated on each node within your Couchbase cluster. The memory
+          for each node in a cluster must be the same amount. You must specify a value that can be
+          supported by all the nodes in your cluster as this setting will apply to the entire
+          cluster.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:5;32:26">The default value is 60% of your total free RAM. This figure is designed to
+          allow RAM capacity for use by the operating system caching layer when accessing and using
+          views.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:3;35:11">Provide a node IP or hostname under Configure Server Hostname. 
+            <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="fig:1;36:18"><image href="../images/configure_server1.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="image:1;36:76"/></fig>
+          </li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:4;38:11">Provide the IP Address or hostname of an existing node, and administrative credentials for
+        that existing cluster.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:5;40:11">To join an existing cluster, Check Join a cluster now.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:6;41:11">Click Next.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:6;41:25">The Sample Buckets panel appears where you can select the sample data
+          buckets you want to load.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:7;43:11">Click the names of sample buckets to load Couchbase Server. These data sets demonstrate
+        Couchbase Server and help you understand and develop views. If you decide to install sample
+        data, the installer creates one Couchbase bucket for each set of sample data you
+          choose.
+            <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="fig:2;47:18"><image href="../images/web-console-startup-3.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="image:2;47:80"/></fig>
+            
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:7;49:16">After you create sample data buckets a Create Bucket panel appears where
+          you create new data buckets</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:8;51:11">Set up a test bucket for Couchbase Server. You can change all bucket settings later except
+        for the bucket name.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:8;52:32">Enter ‘default’ as the bucket name and accept all other defaults in
+          this panel. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:9;53:30">Couchbase Server will create a new data bucket named ‘default.’ You can
+          use this test bucket to learn more about Couchbase and can use it in a test
+          environment.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:9;56:11">Select <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:7;56:26">Update Notifications</codeph>.<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:10;56:59">Couchbase Web Console communicates with
+          Couchbase nodes and confirms the version numbers of each node. As long as you have
+          internet access, this information will be sent anonymously to Couchbase corporate..
+          Couchbase corporate only uses this information to provide you with updates and information
+          that will help us improve Couchbase Server and related products.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:11;60:82">When you provide an
+          email address we will add it to the Couchbase community mailing list for news and update
+          information about Couchbase and related products. You can unsubscribe from the mailing
+          list at any time using the unsubscribe link provided in each newsletter. Web Console
+          communicates the following information:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="ul:1;64:58">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:10;65:15">
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:12;66:16">The current version. When a new version of Couchbase Server exists, you get
+              information on where you can download the new version.</p>
+          </li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:11;69:15">
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:13;70:16">Information about the size and configuration of your Couchbase cluster to Couchbase
+              corporate. This information helps us prioritize our development efforts.</p>
+          </li>
+        </ul></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:12;74:11">Enter a username and password. Your username must have no more than 24 characters, and
+        your password must have 6 to 24 characters. You use these credentials each time you add a
+        new server into the cluster. These are the same credentials you use for Couchbase REST API.
+        See the Couchbase REST API.</li>
+    </ol>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:14;79:8">Once you finish this setup, you see Couchbase Web Console with the Cluster Overview page:</p>
+
+    <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="fig:3;81:10"><image href="../images/web-console-startup-7.png" width="600" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="image:3;81:72"/></fig>
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:15;83:8">Your server is now running and ready to use. After you install your server and finish initial
+      setup you can also optionally configure other settings, such as the port, RAM, using any of
+      the following methods:</p>
+    
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="ul:2;87:9">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:13;88:9">Using command-line tools<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:16;88:36">The command line tools provided with your
+        Couchbase Server installation includes <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="codeph:8;89:56">couchbase-cli</codeph>. This tool provides
+        access to the core functionality of the Couchbase Server by providing a wrapper to the REST
+        API. For information about CLI, see couchbase-cli tool.</p></li>
+
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="li:14;93:9">Using the REST API<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:17;93:30">Couchbase Server can be configured and controlled
+        using a REST API. In fact, the REST API is the basis for both the command-line tools and Web
+        interface to Couchbase Server.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="p:18;95:46">For more information on using the REST API see, the
+        Couchbase REST API.</p></li>
+    </ul>
+
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="related-links:1;101:18"><linkpool class="- topic/linkpool " xtrc="topicref:17;23:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:16;22:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/post-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Post-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Post-installation activities includes setting up the initial server and testing the server connection.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="linklist:1;102:15">
+      <link href="../concepts/bp-sizingGuidelines.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:1;103:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Sizing guidelines</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The primary considerations for sizing a Couchbase Server cluster are the number of 		nodes and node size.</desc></link>
+      <link href="../install/hostnames.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:2;104:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Using hostnames</linktext></link>
+      <link href="../misc/sample-bucket-beer.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:3;105:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Beer sample bucket</linktext></link>
+      <link href="../misc/sample-bucket-game.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:4;106:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Game Simulation sample bucket</linktext></link>
+      <link href="../ui/ui-data-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:5;107:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Data Buckets</linktext></link>
+      <link href="../cli/cli-overview.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:6;108:45" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Command-line interface overview</linktext></link>
+      <link href="../cli/cbcli-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:7;109:44" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">couchbase-cli tool</linktext></link>
+      <link href="../rest/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/init-setup.dita" xtrc="link:8;110:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

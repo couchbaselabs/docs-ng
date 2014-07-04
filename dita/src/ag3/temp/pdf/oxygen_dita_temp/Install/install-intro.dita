@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1601" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="title:1;5:10">Introduction</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="p:1;7:8">To start using Couchbase Server, follow these steps:</p>
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="ol:1;8:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="li:1;9:11">Make sure your machine meets the system requirements.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="li:2;10:11">Install Couchbase Server. <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="p:2;10:40">To install Couchbase Server on your machine, download the
+          appropriate package for your chosen platform. For each platform, follow the corresponding
+          platform-specific instructions. </p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="ul:1;12:51">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="li:3;13:15">To perfom a fresh installation (not an upgrade) over a previous Couchbase Server
+            installation, remove Couchbase Server and any associated data from your machine before
+            installing.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="li:4;16:15">To retain existing datasets from a previous Couchbase Server installation, perform an
+            upgrade installation.</li>
+        </ul></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="li:5;19:11">Test the installation by connecting and storing some data using the native Memcached
+          protocol.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="li:6;21:11">Setup the new Couchbase Server system by completing the web-based setup instructions.
+          </li>
+    </ol>
+    <note type="warning" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="note:1;24:26">Implement the same operating system on all machines within a cluster. If
+      XDCR is used, implement the same operating system on the other clusters. Mixed deployments,
+      such as a cluster with both Linux and Windows server nodes, are not supported. This
+      incompatibility is due to differences in the number of shards between platforms.    </note>
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="related-links:1;30:18">
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="linklist:1;31:15">
+      <link href="http://www.couchbase.com/downloads" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="link:1;32:86"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="linktext:1;33:19">Couchbase downloads</linktext></link>
+      <link href="init-setup.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="link:2;34:36" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Initial server setup</linktext></link>
+      <link href="testing.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="link:3;35:33" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Testing Couchbase Server</linktext></link>
+      <link href="uninstalling.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="link:4;36:38" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Uninstalling</linktext></link>
+      <link href="upgrading.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/install-intro.dita" xtrc="link:5;37:35" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Upgrading</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

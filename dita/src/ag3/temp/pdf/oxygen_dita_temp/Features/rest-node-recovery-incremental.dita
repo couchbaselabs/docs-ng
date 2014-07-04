@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_ycn_14b_k4" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="title:1;4:10">Setting delta node recovery (REST API)</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="shortdesc:1;5:14">The REST request to add a node to a cluster uses the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeph:1;5:75">/controller/addNode</codeph> endpoint URI. 
+    </shortdesc>
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="refbody:1;7:12">
+
+    
+<example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="example:1;10:10"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="title:2;10:17">Adding a server node to a cluster</title>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="p:1;11:6">In the following example, server node at <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeph:2;11:55">10.2.2.64</codeph> is added to the cluster at <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeph:3;11:109">10.2.2.60</codeph>.</p>
+  
+  <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="note:1;13:21">QUESTION: What's the recovery type paramenter??</note>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeblock:1;15:18">
+CURL -u admin:PASSWORD \
+  10.2.2.60:8091/controller/addNode \
+  -d "hostname=10.2.2.64&amp;user=admin&amp;password=PASSWORD"      
+      </codeblock>
+      
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="note:2;21:25">Replace the admin, password, and IP address values with your actual values.</note>
+      
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="title:3;23:14">Returns</title>    
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeblock:2;24:18">
+HTTP/1.1 200 OK
+{"otpNode":"ns_1@10.4.2.6"}        
+      </codeblock>
+      
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="title:4;29:14">Re-adding a server to a server group:</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="p:2;30:10"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeph:4;30:18">POST /pools/default/serverGroups/UUID/addNode</codeph> adds a server to a cluster and assigns it to the specified server group.</p>
+</example>
+      
+  <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="example:2;33:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="title:5;33:19">Syntax</title>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeblock:3;35:18">curl -X POST -dhostname=HOST:PORT 
+   -u Administrator:PASSWORD
+   http://HOST:PORT/pools/default/serverGroups/UUID/addNode
+          </codeblock>
+  </example>
+      
+      
+    <example class="- topic/example " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="example:3;42:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="title:6;42:21">Example</title>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita" xtrc="codeblock:4;44:18">
+              
+curl -X POST -dhostname=192.168.0.2:8091 
+    -u Admin:myPassword 
+    http://192.168.0.1:8091/pools/default/serverGroups/246b5de857e100dbfd8b6dee0406420a/addNode
+              </codeblock>
+      </example>
+      
+    
+    
+    
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:22;30:67" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:19;27:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/incremental-recovery.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Delta node recovery</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Delta node recovery provides the option to specify whether the replacement server     node's disk is initialized or not. For a new server node, the disk is initialized (data is     removed) and re-populated. For the same server node, the disk is not initialized or     re-populated; the data buckets remain.</desc></link></linkpool></related-links>
+</reference>

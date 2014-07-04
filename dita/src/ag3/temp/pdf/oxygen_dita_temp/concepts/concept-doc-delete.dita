@@ -1,0 +1,25 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Concepts/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_yvq_lh3_wn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="title:1;4:9">Document deletion</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="shortdesc:1;5:13">Couchbase Server never deletes entire items from disk 
+  unless a client explicitly deletes the item from the database or the expiration
+  value for the item is reached.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="conbody:1;8:11">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="p:1;9:6">The ejection mechanism removes an item from RAM, while
+   keeping a copy of the key and metadata for that document in RAM and also keeping copy of
+   that document on disk.
+  </p>
+  <note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="note:1;13:26">
+   If only memcached buckets are used with Couchbase Server, 
+   the server provides only a caching layer as storage and no data persistence
+   on disk. If your server runs out of space in RAM, items are evicted from RAM
+   on a least recently used basis (LRU). Eviction means the server removes the
+   key, metadata and all other data for the item from RAM. After eviction, the item
+   is irretrievable.
+  </note>
+ </conbody>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="related-links:1;22:17"><linkpool class="- topic/linkpool " xtrc="topicref:15;20:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:13;18:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-diskStorage.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Disk storage</linktext><?ditaot genshortdesc?><desc class="- topic/desc " >Couchbase Server mainly stores and retrieves information for clients using     RAM. At the same time, Couchbase Server eventually stores all data to disk to provide a     higher level of reliability.</desc></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="linklist:1;23:13">
+   <link href="concept-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-doc-delete.dita" xtrc="link:1;24:48"></link>
+  </linklist>
+ </related-links>
+</concept>

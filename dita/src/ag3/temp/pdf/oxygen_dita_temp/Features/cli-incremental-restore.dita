@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_lxt_4qb_k4" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="title:1;4:10">Setting incremental restore (CLI)</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="shortdesc:1;5:14">Restore operations are performed by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="codeph:1;5:62">cbbackup</codeph> tool. 
+    Incremental restore provides partial restore functionality. </shortdesc>
+
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="refbody:1;8:12">
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="section:1;9:14">
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="title:2;10:14">cbrestore</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="p:1;11:10">Data from a specific period of time is restored. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="codeph:2;11:71">cbrestore</codeph> tool
+        browses through meta.json files under the latest backup chains and finds all related
+        Couchbase backup files to restore.</p>
+      
+      
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="codeblock:1;17:18">
+cbrestore /backups/backup-1 http://HOST:8091       
+     </codeblock>
+      
+      
+      
+      
+      <table frame="all" id="table_wts_fw5_c4" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="table:1;24:48">
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="title:3;25:16">cbrestore options</title>
+        <tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="tgroup:1;26:26">
+          <colspec colname="col1" colnum="1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="colspec:1;27:59"/>
+          <colspec colname="col2" colnum="2" colwidth="2.51*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="colspec:2;28:62"/>
+          <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="thead:1;29:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="row:1;30:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="entry:1;31:22">Option</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="entry:2;32:22">Description</entry>
+            </row>
+          </thead>
+          <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="tbody:1;35:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="row:2;36:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="entry:3;37:22">--from-data</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="entry:4;38:22">Data collected from this specified date. Data collected sooner than this date
+                is not restored.</entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="row:3;41:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="entry:5;42:22">--to-date</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-incremental-restore.dita" xtrc="entry:6;43:22">Data collected up to this specified date. Data collected later than this date
+                is not restored.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:25;34:60" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="concept" xtrc="topicref:23;32:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/increment-backup.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Incremental backup and restore</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">An incremental backup or restore is a backup (or restore) of the latest changes since     the last backup (any level). Enterprise Edition only. </desc></link></linkpool></related-links>
+</reference>

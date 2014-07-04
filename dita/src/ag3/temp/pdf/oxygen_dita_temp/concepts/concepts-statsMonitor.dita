@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2096" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="topic:1;4:40">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="title:1;5:9">Statistics and monitoring</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="shortdesc:1;6:13">A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.</shortdesc>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="body:1;7:8">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:1;8:6">In order to understand what your cluster is doing and how it is performing, Couchbase Server
+   incorporates a complete set of statistical and monitoring information. The statistics are
+   provided through all of the administration interfaces. Within the Web Administration Console, a
+   complete suite of statistics are provided, including built-in real-time graphing and performance
+   data.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:2;13:6">The statistics are divided into a number of groups, allowing you to identify different states
+   and performance information within your cluster:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="ul:1;15:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="li:1;16:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="b:1;16:11">By Node</b></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:3;18:6">Node statistics show CPU, RAM and I/O numbers on each of the servers and across your cluster as
+   a whole. This information can be used to help identify performance and loading issues on a single
+   server.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="ul:2;21:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="li:2;22:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="b:2;22:11">By vBucket</b></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:4;24:6">The vBucket statistics show the usage and performance numbers for the vBuckets used to store
+   information in the cluster. These numbers are useful to determine whether you need to reconfigure
+   your buckets or add servers to improve performance.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="ul:3;27:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="li:3;28:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="b:3;28:11">By View</b></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:5;30:6">View statistics display information about individual views in your system, including the CPU
+   usage and disk space used so that you can monitor the effects and loading of a view on your
+   Couchbase nodes. This information may indicate that your views need modification or optimization,
+   or that you need to consider defining views across multiple design documents.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="ul:4;34:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="li:4;35:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="b:4;35:11">By Disk Queues</b></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:6;37:6">These statistics monitor the queues used to read and write information to disk and between
+   replicas. This information can be helpful in determining whether you should expand your cluster
+   to reduce disk load.</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="ul:5;40:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="li:5;41:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="b:5;41:11">By TAP Queues</b></li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:7;43:6">The TAP interface is used to monitor changes and updates to the database. TAP is used
+   internally by Couchbase to provide replication between Couchbase nodes, but can also be used by
+   clients for change notifications.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/concepts-statsMonitor.dita" xtrc="p:8;46:6">In nearly all cases the statistics can be viewed both on a whole of cluster basis, so that you
+   can monitor the overall RAM or disk usage for a given bucket, or an individual server basis so
+   that you can identify issues within a single machine.</p>
+ </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:25;31:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc "> Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool></related-links>
+</topic>

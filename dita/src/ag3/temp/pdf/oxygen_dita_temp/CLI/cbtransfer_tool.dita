@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/cli/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic9039" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="title:1;5:9">cbtransfer tool</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:1;7:6">You use this tool to transfer data and design documents between two clusters or from a
+			file to a cluster. With this tool you can also create a copy of data from a node that no
+			longer running. This tool is the underlying, generic data transfer tool that
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:1;10:13">cbbackup</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:2;10:43">cbrestore</codeph> are built upon. It is a
+			lightweight extract-transform-load (ETL) tool that can move data from a source to a
+			destination. The source and destination parameters are similar to URLs or file
+			paths.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:2;14:6">Note</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:3;15:6"> `cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP addresses
+			for server nodes outside of a cluster. They can only communicate with nodes from a node
+			list obtained within a cluster. You should perform backup, restore, or transfer to data
+			from a node within a Couchbase cluster. This also means that if you install Couchbase
+			Server with the default IP address, you cannot use an external hostname to access it.
+			For general information about hostnames for the server, see [Using Hostnames with
+			Couchbase Server](../cb-install/#couchbase-getting-started-hostnames). </p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:4;22:6">The tool is at the following locations:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="table:1;23:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="tgroup:1;24:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="colspec:1;25:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="colspec:2;26:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="thead:1;27:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:1;28:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:1;29:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="b:1;29:17">Linux</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:2;30:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:3;30:22">/opt/couchbase/bin/</codeph></entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="tbody:1;33:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:2;34:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:3;35:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="b:2;35:17">Windows</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:4;36:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:4;36:22">C:\Program Files\Couchbase\Server\bin\</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:3;38:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:5;39:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="b:3;39:17">Mac OS X</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:6;40:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:5;40:22">/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:5;45:6">The following is the syntax and examples for this command:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:1;46:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:6;46:22">&gt; ./cbtransfer [options] source destination
+
+
+Examples:
+  cbtransfer http://SOURCE:8091 /backups/backup-42
+  cbtransfer /backups/backup-42 http://DEST:8091
+  cbtransfer /backups/backup-42 couchbase://DEST:8091
+  cbtransfer http://SOURCE:8091 http://DEST:8091
+  cbtransfer 1.8_COUCHBASE_BUCKET_MASTER_DB_SQLITE_FILE http://DEST:8091
+  cbtransfer file.csv http://DEST:8091
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:6;57:6">The following are the standard command options which you can also view with
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:7;58:13">cbtransfer -h</codeph> :</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="table:2;59:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="tgroup:2;60:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="colspec:3;61:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="colspec:4;62:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="thead:2;63:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:4;64:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:7;65:14">-h, –help</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:8;66:14">Command help</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="tbody:2;69:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:5;70:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:9;71:14">–add</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:10;72:14">Use –add instead of –set in order to not overwrite existing items in
+							the destination</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:6;75:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:11;76:14">-b BUCKET_SOURCE</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:12;77:14">Single named bucket from source cluster to transfer</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:7;79:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:13;80:14">-B BUCKET_DESTINATION, –bucket-destination=BUCKET_DESTINATION</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:14;81:14">Single named bucket on destination cluster which receives transfer.
+							This allows you to transfer to a bucket with a different name as your
+							source bucket. If you do not provide defaults to the same name as the
+							bucket-source</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:8;86:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:15;87:14">-i ID, –id=ID</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:16;88:14">Transfer only items that match a vbucketID</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:9;90:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:17;91:14">-k KEY, –key=KEY</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:18;92:14">Transfer only items with keys that match a regexp</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:10;94:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:19;95:14">-n, –dry-run</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:20;96:14">No actual transfer; just validate parameters, files, connectivity and
+							configurations</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:11;99:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:21;100:14">-u USERNAME, –username=USERNAME</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:22;101:14">REST username for source cluster or server node</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:12;103:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:23;104:14">-p PASSWORD, –password=PASSWORD</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:24;105:14">REST password for cluster or server node</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:13;107:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:25;108:14">-t THREADS, –threads=THREADS</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:26;109:14">Number of concurrent workers threads performing the transfer.
+							Defaults to 4.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:14;112:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:27;113:14">-v, –verbose</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:28;114:14">Verbose logging; provide more verbosity</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:15;116:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:29;117:14">-x EXTRA, –extra=EXTRA</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:30;118:14">Provide extra, uncommon config parameters</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:16;120:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:31;121:14">–single-node</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:32;122:14">Transfer from a single server node in a source cluster. This single
+							server node is a source node URL</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:17;125:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:33;126:14">–source-vbucket-state=SOURCE_VBUCKET_STATE</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:34;127:14">Only transfer from source vbuckets in this state, such as ‘active’
+							(default) or ‘replica’. Must be used with Couchbase cluster as
+							source.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:18;131:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:35;132:14">–destination-vbucket-state=DESTINATION_VBUCKET_STATE</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:36;133:14">Only transfer to destination vbuckets in this state, such as ‘active’
+							(default) or ‘replica’. Must be used with Couchbase cluster as
+							destination.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:19;137:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:37;138:14">–destination-operation=DESTINATION_OPERATION</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:38;139:14">Perform this operation on transfer. “set” will override an existing
+							document, ‘add’ will not override, ‘get’ will load all keys transferred
+							from a source cluster into the caching layer at the destination.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:20;143:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:39;144:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:8;144:22">/path/to/filename</codeph></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:40;145:14">Export a.csv file from the server or import a.csv file to the server.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:7;151:6">The following are extra, specialized command options you use in this form
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:9;152:13">cbtransfer -x [EXTRA OPTIONS]</codeph> :</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="table:3;153:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="tgroup:3;154:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="colspec:5;155:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="colspec:6;156:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="thead:3;157:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:21;158:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:41;159:14">batch_max_bytes=400000</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:42;160:14">Transfer this # of bytes per batch.</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="tbody:3;163:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:22;164:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:43;165:14">batch_max_size=1000</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:44;166:14">Transfer this # of documents per batch</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:23;168:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:45;169:14">cbb_max_mb=100000</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:46;170:14">Split backup file on destination cluster if it exceeds MB</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:24;172:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:47;173:14">max_retry=10</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:48;174:14">Max number of sequential retries if transfer fails</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:25;176:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:49;177:14">nmv_retry=1</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:50;178:14">0 or 1, where 1 retries transfer after a NOT_MY_VBUCKET message.
+							Default of 1.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:26;181:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:51;182:14">recv_min_bytes=4096</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:52;183:14">Amount of bytes for every TCP/IP batch transferred</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:27;185:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:53;186:14">report=5</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:54;187:14">Number batches transferred before updating progress bar in
+							console</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:28;190:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:55;191:14">report_full=2000</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:56;192:14">Number batches transferred before emitting progress information in
+							console</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:29;195:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:57;196:14">try_xwm=1</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:58;197:14">As of 2.1, transfer documents with metadata. 1 is default. 0 should
+							only be used if you transfer from 1.8.x to 1.8.x.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:30;200:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:59;201:14">data_only=0</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:60;202:14">For value 1, only transfer data from a backup file or
+							cluster.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="row:31;205:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:61;206:14">design_doc_only=0</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="entry:62;207:14">For value 1, transfer design documents only from a backup file or
+							cluster. Defaults to 0. </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:8;213:6">The most important way you can use this tool is to transfer data from a Couchbase node
+			that is no longer running to a cluster that is running:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:2;215:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:10;215:22">./cbtransfer \
+       couchstore-files://COUCHSTORE_BUCKET_DIR \
+       couchbase://HOST:PORT \
+       --bucket-destination=DESTINATION_BUCKET
+
+./cbtransfer \
+       couchstore-files:///opt/couchbase/var/lib/couchbase/data/default \
+       couchbase://10.5.3.121:8091 \
+       --bucket-destination=foo
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:9;225:6">Upon success, the tool will output as follows:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:3;226:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:11;226:22">[####################] 100.0% (10000/10000 msgs)
+bucket: bucket_name, msgs transferred...
+      : total | last | per sec
+batch : 1088 | 1088 | 554.8
+byte : 5783385 | 5783385 | 3502156.4
+msg : 10000 | 10000 | 5230.9
+done
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:10;234:6">This shows we successfully transferred 10000 total documents in batch size of 1088
+			documents each. This next examples shows how you can send all the data from a node to
+			standard output:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:4;237:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:12;237:22">&gt; ./cbtransfer http://10.5.2.37:8091/ stdout:
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:11;239:6">Will produce a output as follows:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:5;240:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:13;240:22">set pymc40 0 0 10
+0000000000
+set pymc16 0 0 10
+0000000000
+set pymc9 0 0 10
+0000000000
+set pymc53 0 0 10
+0000000000
+set pymc34 0 0 10
+0000000000
+</codeph></codeblock>
+		<note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="note:1;251:21">Couchbase Server stores all data from a bucket, node or cluster, but not the
+			associated design documents. To do so, you should explicitly use
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:14;253:13">cbbackup</codeph> to store the information and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:15;253:68">cbrestore</codeph> to
+			read it back into memory.</note>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="section:1;257:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="title:2;257:19">Exporting and Importing CSV Files</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:12;258:6">You can import and export well-formed.csv files with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:16;258:67">cbtransfer</codeph>. This
+			will import data into Couchbase Server as documents and will export documents from the
+			server into comma-separated values. This does not include any design documents
+			associated with a bucket in the cluster.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:13;262:6">For example imagine you have records as follows in the default bucket in a cluster:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:6;263:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:17;263:22">re-fdeea652a89ec3e9,
+0,
+0,
+4271152681275955,
+"{""key"":""re-fdeea652a89ec3e9"",
+ ""key_num"":4112,
+ ""name"":""fdee c3e"",
+ ""email"":""fdee@ea.com"",
+ ""city"":""a65"",
+ ""country"":""2a"",
+ ""realm"":""89"",
+ ""coins"":650.06,
+ ""category"":1,
+ ""achievements"":[77, 149, 239, 37, 76],""body"":""xc4ca4238a0b923820d
+ .......
+""}"
+......
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:14;281:6">Where <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:18;281:20">re-fdeea652a89ec3e9</codeph> is the document ID, 0 are flags, 0 is the
+			expiration and the CAS value is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:19;282:44">4271152681275955</codeph>. The actual value in
+			this example is the hash starting with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:20;283:51">"{""key""......</codeph>. To export these
+			items to a.csv file perform this command:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:7;285:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:21;285:22">./cbtransfer http://[hostname]:[port] csv:./data.csv -b default -u Administrator -p password
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:15;287:6">Will transfer all items from the default bucket, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:22;287:63">-b default</codeph> available at
+			the node <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:23;288:21">http://localhost:8091</codeph> and put the items into the
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:24;289:13">/data.csv</codeph> file. If you provide another named bucket for the
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:25;290:13">-b</codeph> option, it will export items from that named bucket. You will
+			need to provide credentials for the cluster when you export items from a bucket in the
+			cluster. You will see output similar to that in other <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:26;292:66">cbtransfer</codeph>
+			scenarios:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:8;294:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:27;294:22">[####################] 100.0% (10000/10000 msgs)
+bucket: default, msgs transferred...
+       : total | last | per sec
+ batch : 1053 | 1053 | 550.8
+ byte : 4783385 | 4783385 | 2502156.4
+ msg : 10000 | 10000 | 5230.9
+2013-05-08 23:26:45,107: mt warning: cannot save bucket design on a CSV destination
+done
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:16;303:6">This shows we transferred 1053 batches of data at 550.8 batches per second. The tool
+			outputs “cannot save bucket design….” to indicate that no design documents were
+			exported. To import information from a.csv file to a named bucket in a cluster:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:9;306:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:28;306:22">./cbtransfer /data.csv http://[hostname]:[port] -B bucket_name -u Administrator -p password
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:17;308:6">If your.csv is not correctly formatted you will see the following error during
+			import:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:10;310:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:29;310:22">w0 error: fails to read from csv file, .....
+</codeph></codeblock>
+			
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="section:2;315:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="title:3;315:19">Transferring Design Documents Only</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:18;316:6">You can transfer design documents from one cluster to another one with the option,
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:30;317:13">design_doc_only=1</codeph> :</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeblock:11;318:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:31;318:22">&gt; ./cbtransfer http://10.5.2.30:8091 http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_one -B bucket_two
+transfer design doc only. bucket msgs will be skipped.
+done
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="p:19;322:6">This will transfer all design documents associated with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:32;322:70">bucket_one</codeph> to
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:33;323:13">bucket_two</codeph> on the cluster with node
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:34;324:13">http://10.3.1.10:8091</codeph>. In Couchbase Web Console you can see this
+			updated design documents when you click on the View tab and select
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/cli/cbtransfer_tool.dita" xtrc="codeph:35;326:13">bucket_two</codeph> in the drop-down.</p>
+			
+		</section>
+	</body>
+</topic>

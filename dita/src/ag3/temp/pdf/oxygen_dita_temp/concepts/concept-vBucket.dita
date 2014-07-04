@@ -1,0 +1,67 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2955" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="title:1;5:10">vBuckets</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="shortdesc:1;6:14">A vBucket is defined as the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="i:1;6:45">owner</i> of a subset of the key space of a Couchbase
+    cluster. These vBuckets are used to distributed information effectively across a cluster. </shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:1;9:8">The vBucket system is used both for distributing data and for supporting replicas (copies of
+      bucket data) on more than one node. vBuckets are not a user-accessible component, but they are
+      a critical component of Couchbase Server and are vital to the availability support and elastic
+      nature.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:2;13:8">Clients access the information stored in a bucket by communicating directly with the node
+      responsible for the corresponding vBucket. This direct access enables clients to communicate
+      with the node storing the data, rather than using a proxy or redistribution architecture. The
+      result abstracts the physical topology from the logical partitioning of data. This
+      architecture gives Couchbase Server elasticity and flexibility </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:3;18:8">Every document ID belongs to a vBucket. A mapping function is used to calculate the vBucket
+      in which a given document belongs. In Couchbase Server, that mapping function is a hashing
+      function that takes a document ID as input and outputs a vBucket identifier. Once the vBucket
+      identifier has been computed, a table is consulted to lookup the server that “hosts” that
+      vBucket. The table contains one row per vBucket, pairing the vBucket to its hosting server. A
+      server appearing in this table can be (and usually is) responsible for multiple vBuckets.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:4;25:8">The following diagrams shows how the Key to Server mapping (vBucket map) works.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:5;27:8">In this scenario, there are three servers in the cluster and client wants to look up the value of
+      KEY using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="codeph:1;28:29">GET</codeph> operation.</p>
+    
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="ol:1;30:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="li:1;31:11">The client first hashes the key to calculate the vBucket which owns KEY. In this example,
+        the hash resolves to vBucket 8 (vB8). </li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="li:2;33:11">By examining the vBucket map, the
+        client determines Server C hosts vB8.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="li:3;35:11">The client sends the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="codeph:2;35:40">GET</codeph> operation directly to Server C.</li>
+    </ol>
+    
+      <image href="../images/vbuckets.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="image:1;38:56"></image>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:6;40:8">In the next scenario, a server added to the original cluster of three. A new node, Server D,
+      is added to the cluster and the vBucket Map is updated (during the rebalance operation). The
+      updated map is then sent to all the cluster participants including the other nodes, any
+      connected “smart” clients, and the Moxi proxy service.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="p:7;45:8">Within the new four-node cluster model, when a client again wants to determine the 
+      value of KEY using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="codeph:3;46:38">GET</codeph> operation:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="ul:1;47:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="li:4;48:11">The hashing algorithm still resolves to vBucket 8 (vB8).</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="li:5;49:11">The new vBucket Map now maps vBucket 8 to Server D.</li> 
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="li:6;50:11">The client sends the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="codeph:4;50:40">GET</codeph> operation directly to Server D.</li>
+    </ul>
+    
+    <image href="../images/vbuckets-after.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="image:2;53:60"></image>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="note:1;55:23"> This architecture allows Couchbase Server to cope with changes without using
+      the typical RDBMS sharding method. In addition, the architecture differs from the method used
+      by <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="codeph:5;57:18">memcached</codeph>, which uses client-side key hashes to determine the server from
+      a defined list. The memcached method requires active management of the list of servers and
+      specific hashing algorithms such as Ketama to cope with changes to the topology. </note>
+    
+  
+    
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="related-links:1;65:18"><linkpool class="- topic/linkpool " xtrc="topicref:11;16:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc " > Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="linklist:1;66:15">
+      <link href="concept-rebalancing.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-vBucket.dita" xtrc="link:1;67:45"></link>
+    </linklist>
+  </related-links>
+</topic>

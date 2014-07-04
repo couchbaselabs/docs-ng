@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_ctg_g1g_q4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="title:1;4:10">Performing a rebalance</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="shortdesc:1;5:14">Once you have configured the
+    nodes that you want to add or remove from your cluster, you must perform a rebalance operation.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="body:1;7:9">
+
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:1;9:10">A rebalance moves the data around the cluster so that the data is distributed across the entire
+        cluster, removing and adding data to different nodes in the process. </p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:2;12:10">If Couchbase Server
+        identifies that a rebalance is required, either through explicit addition or removal, or
+        through a failover, then the cluster is in a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:1;14:62">pending rebalance</codeph> state. This
+        does not affect the cluster operation, it merely indicates that a rebalance operation is
+        required to move the cluster into its configured state. To start a rebalance:</p>
+       
+       
+       <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="section:1;19:17"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="title:2;19:24">Rebalancing via UI</title>
+         
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:3;21:10">Within the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="uicontrol:1;21:32">Manage Server Nodes</uicontrol> area of the Couchbase Administration Web
+        Console, a cluster pending a rebalance operation will have enabled the
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:2;23:17">Rebalance</codeph> button. Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="uicontrol:2;23:61">Rebalance</uicontrol> to immediately initiates a rebalance operation. You can
+        monitor the progress of the rebalance operation through the web console.</p>
+
+      <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="fig:1;26:12"><image href="../images/admin-tasks-rebalance-starting-console.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="image:1;26:91"/></fig>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:4;28:10">Stop the rebalance operation at any time during the process by clicking the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="uicontrol:3;28:97">Stop
+            Rebalance</uicontrol> button. This only stops the rebalance operation, it does not cancel the
+          operation. You should complete the rebalance operation.</p>
+       </section>
+          
+          
+          <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="section:2;34:20"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="title:3;34:27">Rebalancing via CLI</title>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:5;36:8">To initiate a rebalance using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:3;36:50">couchbase-cli</codeph> and the
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:4;37:21">rebalance</codeph> command:</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeblock:1;39:18">
+&gt; couchbase-cli rebalance -c 127.0.0.1:8091 -u Administrator -p Password
+  INFO: rebalancing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  . . . . . . . . . . .
+  SUCCESS: rebalanced cluster
+</codeblock>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:6;51:10">You
+        can also use this method to add and remove nodes and initiate the rebalance operation using a
+        single command. You can specify nodes to be added using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:5;53:77">--server-add</codeph>
+        option, and nodes to be removed using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:6;54:59">--server-remove</codeph>. You can use
+        multiple options of each type. For example, to add two nodes, and remove two nodes, and
+        immediately initiate a rebalance
+        operation:</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeblock:2;59:18">
+&gt; couchbase-cli rebalance -c 127.0.0.1:8091 \
+          -u Administrator -p Password \
+          --server-add=192.168.0.72 \
+          --server-add=192.168.0.73 \
+          --server-remove=192.168.0.70 \
+          --server-remove=192.168.0.69
+</codeblock>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:7;68:10">The
+        command-line provides an active view of the progress and will only return once the rebalance
+        operation has either completed successfully, or in the event of a failure. 
+        The time taken for a rebalance operation depends on the number of servers, 
+        quantity of data, cluster performance and any existing cluster activity, 
+        and is therefore difficult to accurately predict or estimate. 
+        Throughout any rebalance operation, monitor the process to ensure that it completes successfully.</p>
+            
+            <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="p:8;76:16">Stop the rebalance operation by using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:7;76:66">stop-rebalance</codeph> command to
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/rebalance-performing.dita" xtrc="codeph:8;77:23">couchbase-cli</codeph>.</p>
+          </section>
+      
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:53;62:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:47;56:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-rebalance.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Rebalancing</linktext></link></linkpool></related-links>
+</topic>

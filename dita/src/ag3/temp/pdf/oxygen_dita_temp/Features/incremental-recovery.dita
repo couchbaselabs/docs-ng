@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_s15_tlh_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="title:1;4:10">Delta node recovery</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="shortdesc:1;5:14">Delta node recovery provides the option to specify whether the replacement server
+    node's disk is initialized or not. For a new server node, the disk is initialized (data is
+    removed) and re-populated. For the same server node, the disk is not initialized or
+    re-populated; the data buckets remain.</shortdesc>
+  
+  
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="body:1;11:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="p:1;12:8">When re-adding a server node to the cluster, a new server node is initialized and re-populated,  
+      that is, the disk is wiped out (a warning is generated) and then re-populated with the original data buckets. 
+      This operation ensures a clean disk, but also has overhead in terms of resource use and downtime due to disk re-population.
+      The same server node is not initialized nor re-populated. 
+      The data and data buckets are retained so that the cluster can start functioning without downtime. 
+      This operation improves recovery time and network resource usage. 
+      For example, an environment with a large data footprint might re-add the server node as the same.
+      </p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="p:2;21:8">Server nodes are removed from clusters under many circumstances. 
+      Depending on the circumstance, the server node is added back to the cluster as either a new or the same server. 
+      The following are circumstances (among many others) where the server node might be re-added as the same server.</p>
+      
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="ul:1;25:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="li:1;26:11">Node goes down for a short period of time</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="li:2;27:11">Routine maintenance is scheduled</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="li:3;28:11">Network connectivity is briefly disrupted</li>
+
+    </ul>
+    
+ 
+
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="section:1;34:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="title:2;34:21">Impacted documentation</title>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="ul:2;35:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="li:4;36:11">Failover</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="li:5;37:11">Re-add a server</li>
+    </ul>
+    </section>
+    
+    
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="related-links:1;44:18"><linkpool class="- topic/linkpool " xtrc="topicref:19;27:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link><linkpool class="- topic/linkpool " xtrc="topicref:19;27:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="task" xtrc="topicref:20;28:70" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/ui-task-node-recovery-incremental.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Setting delta node recovery (UI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc "/></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:21;29:66" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/cli-node-recovery-incremental.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Setting delta node recovery (CLI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">To re-add a server node to a cluster, use the <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;5:68" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita">couchbase-cli</codeph> tool and     the <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:2;6:17" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita">recovery</codeph> command with the <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:3;6:60" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-node-recovery-incremental.dita">--recovery-type</codeph> parameter. </desc></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:22;30:67" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/rest-node-recovery-incremental.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Setting delta node recovery (REST API)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The REST request to add a node to a cluster uses the <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;5:75" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/rest-node-recovery-incremental.dita">/controller/addNode</codeph> endpoint URI.      </desc></link></linkpool></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="linklist:1;45:15">
+      <link href="graceful-failover.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="link:1;46:43" type="concept"><?ditaot gentext?><linktext class="- topic/linktext ">Graceful failover</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Graceful failover waits until data persists to disk and replica are up-to-date before failing over the server node.</desc></link>
+      <link href="../CLI/CBcli/cbcli-servers.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="link:2;47:53" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Server nodes CLI</linktext></link>
+      <link href="../REST/rest-server-nodes.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/incremental-recovery.dita" xtrc="link:3;48:52" type="reference"><?ditaot gentext?><linktext class="- topic/linktext ">Server nodes REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server.      Each node is as a member of a cluster.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

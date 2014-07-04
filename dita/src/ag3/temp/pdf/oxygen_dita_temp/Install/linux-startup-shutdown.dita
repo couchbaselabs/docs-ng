@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic762" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="title:1;5:10">Startup and shutdown on Linux</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="p:1;7:8">On Linux, Couchbase Server is installed as a standalone application with support for running
+      as a background (daemon) process during startup through the use of a standard control script,
+        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="codeph:1;9:17">/etc/init.d/couchbase-server</codeph>. The startup script is automatically installed
+      during installation from one of the Linux packaged releases (Debian/Ubuntu or Red Hat/CentOS).
+      By default Couchbase Server is configured to be started automatically at run levels 2, 3, 4,
+      and 5, and explicitly shutdown at run levels 0, 1 and 6.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="p:2;14:8">To manually start Couchbase Server using the startup/shutdown script:</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="codeblock:1;16:16">&gt;&gt; sudo /etc/init.d/couchbase-server start</codeblock>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="p:3;18:8">To manually stop Couchbase Server using the startup/shutdown script:</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/linux-startup-shutdown.dita" xtrc="codeblock:2;20:16">&gt; sudo /etc/init.d/couchbase-server stop</codeblock>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:19;27:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:16;22:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/post-install.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Post-installation</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Post-installation activities includes setting up the initial server and testing the server connection.</desc></link></linkpool></related-links>
+</topic>

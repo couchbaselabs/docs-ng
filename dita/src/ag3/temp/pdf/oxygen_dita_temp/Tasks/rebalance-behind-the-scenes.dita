@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Tasks/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_bbv_ywf_q4" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="title:1;4:9">Rebalance behind-the-scenes</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="shortdesc:1;5:13">The rebalance process is managed through a
+  specific process called the orchestrator.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="conbody:1;7:11">
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:1;9:6">The orchestrator examines the current vBucket map
+   and then combines that information with the node additions and removals in order to create a new
+   vBucket map.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:2;12:6">The orchestrator starts the process of moving the individual vBuckets from
+    the current vBucket map to the new vBucket structure. The process is only started by the
+    orchestrator - the nodes themselves are responsible for actually performing the movement of data
+    between the nodes. The aim is to make the newly calculated vBucket map match the current
+    situation.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:3;17:6">Each vBucket is moved independently, and a number of vBuckets can be migrated
+     simultaneously in parallel between the different nodes in the cluster. On each destination node,
+     a process called <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="codeph:1;19:31">ebucketmigrator</codeph> is started, which uses the TAP system to
+     request that all the data is transferred for a single vBucket, and that the new vBucket data
+     will become the active vBucket once the migration has been completed.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:4;22:6">While the vBucket
+      migration process is taking place, clients are still sending data to the existing vBucket. This
+      information is migrated along with the original data that existed before the migration was
+      requested. Once the migration of the all the data has completed, the original vBucket is marked
+      as disabled, and the new vBucket is enabled. This updates the vBucket map, which is communicated
+      back to the connected clients which will now use the new location.</p>
+  
+  
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="section:1;31:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="title:2;31:19">Changing vBucket moves with REST</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:5;32:7">The number of vBucket moves that occur during the rebalance
+    operation can be modified. The default is one (1), that is, only one vBucket is moved at a time
+    during the rebalance operation.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:6;35:6">To change the number of vBucket moves, execute a curl POST
+         command using the following syntax with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="codeph:2;36:62">/internalSettings</codeph> endpoint and
+         <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="codeph:3;37:18">rebalanceMovesPerNode</codeph>
+         option.</p>
+
+  <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="codeblock:1;40:14">
+curl -X POST -u admin:password
+ -d rebalanceMovesPerNode=1
+ http://HOST:PORT/internalSettings
+</codeblock>
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="p:7;46:6">For example:</p>
+   <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-behind-the-scenes.dita" xtrc="codeblock:2;47:15">
+curl -X POST -u Administrator:password
+ -d rebalanceMovesPerNode=14
+ http://soursop-s11201.sc.couchbase.com:8091/internalSettings
+</codeblock>
+  </section>
+  
+  
+ </conbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:48;57:61" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:47;56:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-rebalance.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Rebalancing</linktext></link></linkpool></related-links>
+</concept>

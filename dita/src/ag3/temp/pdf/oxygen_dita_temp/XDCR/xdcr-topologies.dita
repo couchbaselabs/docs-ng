@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/XDCR?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/XDCR/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2801" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="title:1;5:10">XDCR basic topologies</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:1;7:8">XDCR can be configured to support a variety of different topologies; the most common are
+      unidirectional and bidirectional.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:2;9:8">Unidirectional Replication is one-way replication, where active data gets replicated from the
+      source cluster to the destination cluster. You may use unidirectional replication when you
+      want to create an active offsite backup, replicating data from one cluster to a backup
+      cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:3;13:8">Bidirectional Replication allows two clusters to replicate data with each other. Setting up
+      bidirectional replication in Couchbase Server involves setting up two unidirectional
+      replication links from one cluster to the other. This is useful when you want to load balance
+      your workload across two clusters where each cluster bidirectionally replicates data to the
+      other cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:4;18:8">In both topologies, data changes on the source cluster are replicated to the destination
+      cluster only after they are persisted to disk. You can also have more than two datacenters and
+      replicate data between all of them.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:5;21:8">XDCR can be setup on a per bucket basis. A bucket is a logical container for documents in
+      Couchbase Server. Depending on your application requirements, you might want to replicate only
+      a subset of the data in Couchbase Server between two clusters. With XDCR you can selectively
+      pick which buckets to replicate between two clusters in a unidirectional or bidirectional
+      fashion. As shown in Figure 3, there is no XDCR between Bucket A (Cluster 1) and Bucket A
+      (Cluster 2). Unidirectional XDCR is setup between Bucket B (Cluster 1) and Bucket B (Cluster
+      2). There is bidirectional XDCR between Bucket C (Cluster 1) and Bucket C (Cluster 2):</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:6;28:8">Cross datacenter replication in Couchbase Server involves replicating active data to
+      multiple, geographically diverse datacenters either for disaster recovery or to bring data
+      closer to its users for faster data access, as shown in below:</p>
+    
+        <image href="../images/xdcr_selective.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="image:1;32:64"/>
+      
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="p:7;34:8">As shown above, after the document is stored in Couchbase Server and before XDCR replicates a
+      document to other datacenters, a couple of things happen within each Couchbase Server
+      node.</p>
+    <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="ol:1;37:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="li:1;38:11">Each server in a Couchbase cluster has a managed cache. When an application stores a
+        document in Couchbase Server it is written into the managed cache.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="li:2;40:11">The document is added into the intra-cluster replication queue to be replicated to other
+        servers within the cluster.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="li:3;42:11">The document is added into the disk write queue to be asynchronously persisted to disk.
+        The document is persisted to disk after the disk-write queue is flushed.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="li:4;44:11">After the documents are persisted to disk, XDCR pushes the replica documents to other
+        clusters. On the destination cluster, replica documents received will be stored in cache.
+        This means that replica data on the destination cluster can undergo low latency read/write
+        operations: <image href="../images/xdcr-persistence.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies.dita" xtrc="image:2;47:79"/>
+      </li>
+    </ol>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:118;136:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:115;133:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../XDCR/xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cross Datacenter Replication (XDCR)</linktext></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2772" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="topic:1;4:40">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="title:1;5:12">Incorrect or missing data (user issue)</title>
+    <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="shortdesc:1;6:16">Data missing in query response or it’s wrong (user issue)</shortdesc>
+    <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="body:1;7:11">
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:1;8:12">For example, you defined a view with a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:1;8:59">_stats</codeph> reduce function. You query
+            your view, and keep getting empty results all the time, for example:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeblock:1;10:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:2;10:28">&gt; curl -s 'http://localhost:9500/default/_design/dev_test3/_view/view1?full_set=true'
+{"rows":[
+]
+}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:2;15:12">You repeat this query over and over for several minutes or even hours, and you always get
+            an empty result set.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:3;17:12">Try to query the view with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:3;17:47">stale=false</codeph>, and you get:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeblock:2;18:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:4;18:28">&gt; curl -s 'http://localhost:9500/default/_design/dev_test3/_view/view1?full_set=true&amp;stale=false'
+{"rows":[
+],
+"errors":[
+{"from":"local","reason":"Builtin _stats function
+ requires map values to be numbers"},
+{"from":"http://192.168.1.80:9502/_view_merge/?stale=false","reason":"Builtin _stats function requires map values to be
+ numbers"},
+{"from":"http://192.168.1.80:9501/_view_merge/?stale=false","reason":"Builtin _stats function requires map values to be
+ numbers"},
+{"from":"http://192.168.1.80:9503/_view_merge/?stale=false","reason":"Builtin _stats function requires map values to be
+ numbers"}
+]
+}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:4;33:12">Then looking at the design document, you see it could never work, as values are not
+            numbers:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeblock:3;35:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:5;35:28">{
+   "views":
+   {
+       "view1": {
+           "map": "function(doc, meta) { emit(meta.id, meta.id); }",
+           "reduce": "_stats"
+       }
+   }
+}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:5;45:12">One important question to answer is, why do you see the errors when querying with
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:6;46:25">stale=false</codeph> but do not see them when querying with
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:7;47:25">stale=update_after</codeph> (default) or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:8;47:74">stale=ok</codeph> ? The
+            answer is simple:</p>
+        <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="ol:1;49:13">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="li:1;50:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:6;50:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:9;50:28">stale=false</codeph> means: trigger an index update/build, and wait until
+                    it that update/build finishes, then start streaming the view results. For this
+                    example, index build/update failed, so the client gets an error, describing why
+                    it failed, from all nodes where it failed.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="li:2;54:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:7;54:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:10;54:28">stale=update_after</codeph> means start streaming the index contents
+                    immediately and after trigger an index update (if index is not up to date
+                    already), so query responses won’t see indexing errors as they do for the
+                        <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:11;57:33">stale=false</codeph> scenario. For this particular example, the
+                    error happened during the initial index build, so the index was empty when the
+                    view queries arrived in the system, whence the empty result set.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="li:3;60:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:8;60:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:12;60:28">stale=ok</codeph> is very similar to (2), except it doesn’t trigger index
+                    updates.</p></li>
+        </ol>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="p:9;63:12">Finally, index build/update errors, related to user Map/Reduce functions, can be found in
+            a dedicated log file that exists per node and has a file name matching
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:13;65:25">mapreduce_errors.#</codeph>. For example, from node 1, the file
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:14;66:25">*mapreduce_errors.1</codeph> contained:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeblock:4;67:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-datamissing-user.dita" xtrc="codeph:15;67:28">[mapreduce_errors:error,2012-08-20T16:18:36.250,n_0@192.168.1.80:&lt;0.2096.1&gt;] Bucket `default`, main group `_design/dev_test3`,
+ error executing reduce
+function for view `view1'
+   reason:                Builtin _stats function requires map values to be
+numbers
+</codeph></codeblock>
+    </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:138;157:53" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:129;148:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/Trbl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Troubleshooting</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Troubleshooting covers general tips, common errors, log information, and other issues.</desc></link></linkpool></related-links>
+</topic>

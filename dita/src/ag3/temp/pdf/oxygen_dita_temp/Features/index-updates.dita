@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Features/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_ggp_tqp_yn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="title:1;4:9">View consistency</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="shortdesc:1;5:13">Indexing is performed as soon as data changes in memory without waiting for persistence to disk. 
+  As a result, views have up-to-date data and faster queries.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="conbody:1;7:11">
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="p:1;9:6">Indexing occurs as soon as data changes in memory, whereas, in previous releases, data in
+   memory goes to the task queue and persists to disk before indexes are created.</p>
+    
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="ul:1;12:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:1;13:9">Views are updated with key-value sooner</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:2;14:9">Lag time for view consistency is reduced</li> 
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:3;15:9">Views are more closely synch with the data</li>
+   </ul>
+   
+   <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="note:1;18:22">When a Couchbase Server cluster has both 2.x and 3.x servers, the Couchbase 3.x server has faster indexing.</note>
+  
+  
+   
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="p:2;22:7">When the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="codeph:1;22:24">stale=false</codeph> query is run, the indexer picks up changes that occurred (latest data) after the query was issued. 
+    The changes are picked up from memory and not disk. The index occurs in the following manner:</p>
+  
+  
+  <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="ol:1;26:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:4;27:8">A set request comes in from the application.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:5;28:8">Couchbase Server responds back that they key is written.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:6;29:8">Couchbase Server quickly replicates the data out to memory on the other nodes.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:7;30:8">At the same time, data is put into a write queue to be persisted to disk.</li>
+  </ol>
+  
+  <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="fig:1;33:8"><image href="../images/data-memory-replication.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="image:1;33:72"/></fig>
+
+
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="section:1;36:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="title:2;36:19">Impacted documentation</title>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="ul:2;37:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:8;38:8">Developer guide: SDK semantics</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="li:9;39:8">stale=false query might not be needed. This query is used to get the most up-to-date
+     data.</li>
+  </ul>
+  </section> 
+
+
+
+ </conbody>
+ 
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="related-links:1;48:17"><linkpool class="- topic/linkpool " xtrc="topicref:27;37:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="linklist:1;49:13">
+   <link href="../Views/views-operation.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/index-updates.dita" xtrc="link:1;50:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views operation</linktext></link>
+  </linklist>
+ </related-links>
+</concept>

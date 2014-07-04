@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBcli?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/CLI/CBcli/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2887" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="topic:1;4:40">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="title:1;5:11">Rack-Zone Awareness CLI</title>
+   <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="shortdesc:1;6:15">Rack-Zone Awareness allows logical groupings of servers on a cluster where each server
+      group physically belongs to a rack or availability zone. </shortdesc>
+
+
+   <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="body:1;10:10">
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:1;11:10">The Rack-Zone Awareness feature provides the ability to specify that active and
+         corresponding replica partitions be created on servers that are part of a separate rack or
+         zone. To enable Rack-Zone Awareness, all servers in a cluster must be upgraded. </p>
+
+      
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="note:1;16:25">The Rack Awareness feature with its server group capability is an Enterprise Edition
+         feature.</note>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:2;18:10">To configure servers into groups, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:1;18:60">couchbase-cli</codeph> tool with the
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:2;19:21">group-manage</codeph> command.</p>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:3;20:10">General syntax with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:3;20:38">group-manage</codeph>:</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeblock:1;22:18">
+couchbase-cli group-manage -c HOST:PORT 
+    -u USERNAME -p PASSWORD
+    [OPTIONS]
+</codeblock>
+      <dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dl:1;27:11">
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:1;28:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:1;29:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:4;29:25">-c HOST:PORT or --cluster=HOST:PORT</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:1;30:17">Cluster location</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:2;34:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:2;35:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:5;35:25">-u USERNAME or --username=USERNAME</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:2;36:17">Administrator username for the cluster</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:3;40:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:3;41:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:6;41:25">-p PASSWORD or --password=PASSWORD</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:3;42:17">Administrator password for the cluster</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:4;46:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:4;47:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:7;47:25">--list</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:4;48:17">Shows the server groups and the servers assigned to each server group.</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:5;52:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:5;53:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:8;53:25">--create --group-name=groupName</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:5;54:17">Creates a server group .</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:6;58:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:6;59:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:9;59:25">--delete --group-name=groupName</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:6;60:17">Removes an empty server group.</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:7;64:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:7;65:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:10;65:25">--rename=newGroupName --group-name=oldGroupName</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:7;66:17">Renames an existing server group.</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:8;70:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:8;71:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:11;71:25">--group-name=groupName --add-servers="HOST:PORT;HOST:PORT"</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:8;72:17">Adds servers to a group.</dd>
+         </dlentry>
+
+
+         <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dlentry:9;76:19">
+            <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dt:9;77:17"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:12;77:25">--from-group=groupName --to-group=groupName
+                  --move-servers="HOST:PORT;HOST:PORT"</codeph></dt>
+            <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="dd:9;79:17">Moves one or more servers from one group to another.</dd>
+         </dlentry>
+
+      </dl>
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="section:1;83:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="title:2;83:23">Creating server groups</title>
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:4;84:13">In the following example, a server group is
+            created.</p>
+         
+         
+         <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="note:2;88:28">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:13;88:40">-create --group-name</codeph> command may fail when an
+            exclamation (!) is present inside the group name.
+         </note>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeblock:2;92:21">
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --create --group-name=myGroupName
+</codeblock></section>
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="section:2;99:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="title:3;99:23">Adding servers to server groups</title>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:5;101:13">In the following example, two
+            servers are added to a server group using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:14;102:67">group-manage</codeph>
+            command.</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeblock:3;105:21">
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --group-name=myNewGroup
+   --add-servers="10.1.1.1:8091;10.1.1.2:8091"
+</codeblock>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:6;113:13">In
+            the following example, a server is added to the server group using the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:15;115:24">server-add</codeph> command.</p>
+         
+         
+         <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="note:3;118:28">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:16;118:40">couchbase-cli
+            group-manage</codeph> command is the preferred method of adding servers to server
+            group.</note>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:7;122:13">If the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:17;122:28">--group-name</codeph> option is not specified with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:18;122:91">server-add</codeph>
+            command, the server is added to the default
+         group.</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeblock:4;126:21">
+couchbase-cli server-add -c 192.168.0.1:8091
+   --server-add=192.168.0.2:8091
+   --server-add-username=Administrator
+   --server-add-password=password
+   --group-name=groupName
+</codeblock></section>
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="section:3;135:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="title:4;135:23">Moving servers from server groups</title>
+         
+         <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="p:8;137:13">In the following example, two
+            servers are moved from one server group to another using the
+               <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeph:19;139:24">group-manage</codeph>
+         command.</p>
+         
+         <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-rza.dita" xtrc="codeblock:5;142:21">
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --from-group=myFirstGroup
+   --to-group=mySecondGroup
+   --move-servers="10.1.1.1:8091;10.1.1.2:8091"
+</codeblock>
+      </section>
+   </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:7;11:46" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:4;8:41" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbcli-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>couchbase-cli tool</linktext></link></linkpool></related-links>
+</topic>

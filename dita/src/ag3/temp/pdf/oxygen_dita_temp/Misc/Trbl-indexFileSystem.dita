@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/oxygen_dita_temp/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3173" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="topic:1;4:40">
+     <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="title:1;5:13">Index filesystem structure</title>
+     <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="shortdesc:1;6:17">A description of the index filesystem struction.</shortdesc>
+     <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="body:1;7:12">
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:1;8:14">All index files live within a subdirectory of the data directory named
+                    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:1;9:29">@indexes</codeph>. Within this subdirectory, there’s a subdirectory for
+               each bucket (which matches exactly the bucket name).</p>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:2;11:14">Any index file has the form
+                    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:2;12:29">&lt;type&gt;_&lt;hexadecimal_signature&gt;.view.N</codeph> Each
+               component’s meaning is:</p>
+          <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="ul:1;14:15">
+               <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="li:1;15:20"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:3;15:23"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:3;15:31">type</codeph> - the index type, can be main (active vbuckets data) or
+                         replica (replica vbuckets data)</p></li>
+               <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="li:2;17:20"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:4;17:23"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:4;17:31">hexadecimal_signature</codeph> - this is the hexadecimal form of an
+                         MD5 hash computed over the map/reduce functions of a design document, when
+                         these functions change, a new index is created. It’s possible to have
+                         multiple versions of the same design document alive (different signatures).
+                         This happens for a short period, for example a client does a
+                              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:5;22:39">stale=false</codeph> request to an index (1 index == 1 design
+                         document), which triggers an index build/update and before this
+                         update/build finishes, the design document is updated (with different
+                         map/reduce functions). The initial version of the index will remain alive
+                         until all currently blocked clients on it are served. In the meanwhile new
+                         query requests are redirected to the latest (second) version of the index,
+                         always. This is what makes it possible to have multiple versions of the
+                         same design document index files at any point in time (however for short
+                         periods).</p></li>
+               <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="li:3;31:20"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:5;31:23"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:6;31:31">N</codeph> - when an index file is created N is 1, always. Every time
+                         the index file is compacted, N is incremented by 1. This is similar to what
+                         happens for vbucket database files Data missing in query response or it’s wrong 
+                         (potentially due to server issues)).</p></li>
+          </ul>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:6;36:14">For each design document, there’s also a subdirectory named like
+                    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:7;37:29">tmp_&lt;hexadecimal_signature&gt;_&lt;type&gt;</codeph>. This is a
+               directory containing temporary files used for the initial index build (and soon for
+               incremental optimizations). Files within this directory have a name formed by the
+               design document signature and a generated UUID. These files are periodically deleted
+               when they’re not useful anymore.</p>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:7;42:14">All views defined within a design document are backed by a btree data structure, and
+               they all live inside the same index file. Therefore for each design document,
+               independently of the number of views it defines, there’s 2 files, one for main data
+               and the other for replica data.</p>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="p:8;46:14">Example:</p>
+          <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeblock:1;47:22"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="codeph:8;47:30">&gt; tree couch/0/\@indexes/
+couch/0/@indexes/
+ ??? default
+     ???
+main_018b83ca22e53e14d723ea858ba97168.view.1
+     ???
+main_15e1f576bc85e3e321e28dc883c90077.view.1
+     ???
+main_440b0b3ded9d68abb559d58b9fda3e0a.view.1
+     ???
+main_4995c136d926bdaf94fbe183dbf5d5aa.view.1
+     ???
+main_fd2bdf6191e61af6e801e3137e2f1102.view.1
+     ???
+replica_018b83ca22e53e14d723ea858ba97168.view.1
+     ???
+replica_15e1f576bc85e3e321e28dc883c90077.view.1
+     ???
+replica_440b0b3ded9d68abb559d58b9fda3e0a.view.1
+     ???
+replica_4995c136d926bdaf94fbe183dbf5d5aa.view.1
+     ???
+replica_fd2bdf6191e61af6e801e3137e2f1102.view.1
+     ???
+tmp_018b83ca22e53e14d723ea858ba97168_main
+     ???
+tmp_15e1f576bc85e3e321e28dc883c90077_main
+     ???
+tmp_440b0b3ded9d68abb559d58b9fda3e0a_main
+     ???
+tmp_4995c136d926bdaf94fbe183dbf5d5aa_main
+     ???
+tmp_fd2bdf6191e61af6e801e3137e2f1102_main
+
+ 6 directories, 10 files
+</codeph></codeblock>
+     </body>
+     <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="related-links:1;84:21"><linkpool class="- topic/linkpool " xtrc="topicref:141;160:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:129;148:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/Trbl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Troubleshooting</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Troubleshooting covers general tips, common errors, log information, and other issues.</desc></link></linkpool>
+          <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="linklist:1;85:21">
+               <link href="../Views/views-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-indexFileSystem.dita" xtrc="link:1;86:55" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views and indexes</linktext></link>
+          </linklist>
+     </related-links>
+</topic>
