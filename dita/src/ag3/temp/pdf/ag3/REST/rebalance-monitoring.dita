@@ -74,7 +74,7 @@
   
   <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rebalance-monitoring.dita" xtrc="related-links:1;76:18">
     <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rebalance-monitoring.dita" xtrc="linklist:1;77:15">
-      <link href="../rest/rest-cluster-rebalance.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rebalance-monitoring.dita" xtrc="link:1;78:56"></link>
+      <link href="../REST/rest-cluster-rebalance.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/rest/rebalance-monitoring.dita" xtrc="link:1;78:56"></link>
     </linklist>
   </related-links>
 </topic>

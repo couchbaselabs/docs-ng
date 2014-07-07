@@ -30,13 +30,13 @@
   <topicref href="Concepts/concepts-TAP.dita"/>
   <topicref href="Concepts/concepts-statsMonitor.dita"/>
  </topicref>
- <topicref href="concepts/bp-deployment-considerations.dita">
-  <topicref href="concepts/bp-clusterDesign.dita"/>
-  <topicref href="concepts/bp-sizingGuidelines.dita"/>
-  <topicref href="concepts/bp-deployment-strategies.dita"/>
-  <topicref href="concepts/bp-maintenance.dita"/>
-  <topicref href="concepts/bp-firewall.dita"/>
-  <topicref href="concepts/bp-cloudDeployment.dita"/>
+ <topicref href="Concepts/bp-deployment-considerations.dita">
+  <topicref href="Concepts/bp-clusterDesign.dita"/>
+  <topicref href="Concepts/bp-sizingGuidelines.dita"/>
+  <topicref href="Concepts/bp-deployment-strategies.dita"/>
+  <topicref href="Concepts/bp-maintenance.dita"/>
+  <topicref href="Concepts/bp-firewall.dita"/>
+  <topicref href="Concepts/bp-cloudDeployment.dita"/>
   <topicref href="Tasks/xdcr-cloud.dita"/>
  </topicref>
  <topicref href="Tasks/tasks-common.dita">

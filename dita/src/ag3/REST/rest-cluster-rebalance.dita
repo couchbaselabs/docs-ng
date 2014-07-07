@@ -157,10 +157,10 @@ Accept: */*
   </body>
   <related-links>
     <linklist>
-      <link href="../rest/rebalance-monitoring.dita"/>
-      <link href="../rest/rest-server-nodes.dita"/>
-      <link href="../rest/rest-node-provisioning.dita"/>
-      <link href="../tasks/tasks-rebalance.dita"/>
+      <link href="../REST/rebalance-monitoring.dita"/>
+      <link href="../REST/rest-server-nodes.dita"/>
+      <link href="../REST/rest-node-provisioning.dita"/>
+      <link href="../Tasks/tasks-rebalance.dita"/>
     </linklist>
   </related-links>
 </topic>

@@ -219,9 +219,9 @@ done
          
          
          <link href="../Install/hostnames.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:1;224:50" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Using hostnames</linktext></link>
-         <link href="../cli/cbcli-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:2;225:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">couchbase-cli tool</linktext></link>
-         <link href="../cli/cbrestore_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:3;226:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbrestore tool</linktext></link>
-         <link href="../cli/cbtransfer_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:4;227:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbtransfer tool</linktext></link>
+         <link href="../CLI/cbcli-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:2;225:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">couchbase-cli tool</linktext></link>
+         <link href="../CLI/cbrestore_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:3;226:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbrestore tool</linktext></link>
+         <link href="../CLI/cbtransfer_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:4;227:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbtransfer tool</linktext></link>
          <link href="https://github.com/couchbase/couchbase-cli" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="link:5;228:97"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="linktext:1;229:23">Couchbase command-line tools GitHub repository</linktext></link>
       </linklist>
    </related-links>

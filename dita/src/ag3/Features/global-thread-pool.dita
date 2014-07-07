@@ -51,9 +51,9 @@
  <related-links>
   <linklist>
    <link href="bucket-priority.dita"/>
-   <link href="../monitoring/monitor-statistics.dita"></link>
-   <link href="../concepts/concept-cacheLayer.dita"></link>
-   <link href="../concepts/concept-readerWriter.dita"></link>
+   <link href="../Monitoring/monitor-statistics.dita"></link>
+   <link href="../Concepts/concept-cacheLayer.dita"></link>
+   <link href="../Concepts/concept-readerWriter.dita"></link>
   </linklist>
  </related-links>
 

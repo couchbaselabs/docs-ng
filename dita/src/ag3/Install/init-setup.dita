@@ -100,14 +100,14 @@
   </body>
   <related-links>
     <linklist>
-      <link href="../concepts/bp-sizingGuidelines.dita"></link>
-      <link href="../install/hostnames.dita"></link>
-      <link href="../misc/sample-bucket-beer.dita"></link>
-      <link href="../misc/sample-bucket-game.dita"></link>
-      <link href="../ui/ui-data-buckets.dita"></link>
-      <link href="../cli/cli-overview.dita"></link>
-      <link href="../cli/cbcli-intro.dita"></link>
-      <link href="../rest/overview-rest-api.dita"></link>
+      <link href="../Concepts/bp-sizingGuidelines.dita"></link>
+      <link href="../Install/hostnames.dita"></link>
+      <link href="../Misc/sample-bucket-beer.dita"></link>
+      <link href="../Misc/sample-bucket-game.dita"></link>
+      <link href="../UI/ui-data-buckets.dita"></link>
+      <link href="../CLI/cli-overview.dita"></link>
+      <link href="../CLI/cbcli-intro.dita"></link>
+      <link href="../REST/overview-rest-api.dita"></link>
     </linklist>
   </related-links>
 </topic>

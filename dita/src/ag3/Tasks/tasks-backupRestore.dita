@@ -469,9 +469,9 @@ done
   <related-links>
     <linklist>
       <link href="../Install/init-setup.dita"></link>
-      <link href="../cli/cli-overview.dita"></link>
-      <link href="../cli/cbbackup_tool.dita"></link>
-      <link href="../cli/cbrestore_tool.dita"></link>
+      <link href="../CLI/cli-overview.dita"></link>
+      <link href="../CLI/cbbackup_tool.dita"></link>
+      <link href="../CLI/cbrestore_tool.dita"></link>
     </linklist>
   </related-links>
 </topic>

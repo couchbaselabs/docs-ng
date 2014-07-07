@@ -255,7 +255,7 @@
 	<related-links>
 		<linklist>
 			<link href="../Concepts/concept-tombstone.dita"/>
-			<link href="../tasks/tasks-compaction.dita"/>
+			<link href="../Tasks/tasks-compaction.dita"/>
 		</linklist>
 	</related-links>
 </topic>

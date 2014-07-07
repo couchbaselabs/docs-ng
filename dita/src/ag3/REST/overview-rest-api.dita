@@ -258,9 +258,9 @@
 	</body>
 	<related-links>
 		<linklist>
-			<link href="../xdcr/xdcr-intro.dita"/>
-			<link href="../views/views-intro.dita"/>
-			<link href="../cli/cbcli-intro.dita"/>
+			<link href="../XDCR/xdcr-intro.dita"/>
+			<link href="../Views/views-intro.dita"/>
+			<link href="../CLI/cbcli-intro.dita"/>
 			<link href="http://docs.couchbase.com/" scope="external" format="html">
 				<linktext>Couchbase SDKs</linktext>
 			</link>

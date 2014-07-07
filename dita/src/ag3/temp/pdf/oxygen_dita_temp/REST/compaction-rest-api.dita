@@ -252,7 +252,7 @@
 	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="related-links:1;255:17">
 		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="linklist:1;256:13">
 			<link href="../Concepts/concept-tombstone.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="link:1;257:53" type="concept"><?ditaot gentext?><linktext class="- topic/linktext ">Tombstone purging</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Tombstones are records of expired or deleted items that include item keys and metadata.</desc></link>
-			<link href="../tasks/tasks-compaction.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="link:2;258:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Database and view compaction</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Database and view compaction helps to reclaim disk space and reduce fragmentation.</desc></link>
+			<link href="../Tasks/tasks-compaction.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="link:2;258:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Database and view compaction</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Database and view compaction helps to reclaim disk space and reduce fragmentation.</desc></link>
 		</linklist>
 	</related-links>
 </topic>

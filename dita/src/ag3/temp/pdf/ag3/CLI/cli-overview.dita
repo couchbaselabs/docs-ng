@@ -225,7 +225,7 @@
 	</body>
 	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="related-links:1;229:17">
 		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="linklist:1;230:13">
-			<link href="../rest/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="link:1;231:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
+			<link href="../REST/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cli-overview.dita" xtrc="link:1;231:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
 		</linklist>
 	</related-links>
 </topic>

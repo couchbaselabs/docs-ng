@@ -75,9 +75,9 @@ ureadahead will be reprofiled on next reboot
  </body>
  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="related-links:1;79:17">
   <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="linklist:1;80:13">
-   <link href="../install/install-platforms.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="link:1;81:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Supported platforms</linktext></link>
-   <link href="../install/install-networkPorts.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="link:2;82:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Network ports</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server specific network ports for communication between server components and  		for communicating with the clients that access the data stored in the Couchbase cluster.</desc></link>
-   <link href="../install/linux-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="link:3;83:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Linux</linktext></link>
+   <link href="../Install/install-platforms.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="link:1;81:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Supported platforms</linktext></link>
+   <link href="../Install/install-networkPorts.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="link:2;82:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Network ports</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server specific network ports for communication between server components and  		for communicating with the clients that access the data stored in the Couchbase cluster.</desc></link>
+   <link href="../Install/linux-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Ubuntu-install.dita" xtrc="link:3;83:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Linux</linktext></link>
   </linklist>
  </related-links>
 </topic>

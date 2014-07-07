@@ -229,8 +229,8 @@ Please find collected stats at '/opt/couchbase/bin/reports/2013-07-26_13-30-36.j
 		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="linklist:1;232:13">
 
 			
-			<link href="../concepts/concepts-statsMonitor.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="link:1;235:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Statistics and monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.</desc></link>
-			<link href="../concepts/concepts-TAP.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="link:2;236:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">TAP</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The TAP protocol is an internal part of the Couchbase Server system and is used to     exchange data throughout the system. </desc></link>
+			<link href="../Concepts/concepts-statsMonitor.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="link:1;235:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Statistics and monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.</desc></link>
+			<link href="../Concepts/concepts-TAP.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="link:2;236:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">TAP</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The TAP protocol is an internal part of the Couchbase Server system and is used to     exchange data throughout the system. </desc></link>
 		</linklist>
 	</related-links>
 </topic>

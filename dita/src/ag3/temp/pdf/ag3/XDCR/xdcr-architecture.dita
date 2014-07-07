@@ -43,7 +43,7 @@
   </body>
   <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="related-links:1;47:18"><linkpool class="- topic/linkpool " xtrc="topicref:117;135:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:115;133:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../XDCR/xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cross Datacenter Replication (XDCR)</linktext></link></linkpool>
     <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="linklist:1;48:15">
-      <link href="../rest/rest-xdcr-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="link:1;49:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link>
+      <link href="../REST/rest-xdcr-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="link:1;49:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link>
     </linklist>
   </related-links>
 </topic>

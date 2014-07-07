@@ -33,7 +33,7 @@ Content-Type: application/json
   </body>
   <related-links>
     <linklist>
-      <link href="../views/views-operation.dita"/>
+      <link href="../Views/views-operation.dita"/>
     </linklist>
   </related-links>
 </topic>

@@ -59,10 +59,10 @@
     <linktext>Ejecting bucket metadata (CLI)</linktext>
    </link>
    <link href="../CLI/CBcli/cbcli-buckets.dita"></link>
-   <link href="../rest/rest-bucket-metadata-ejection.dita">
+   <link href="../REST/rest-bucket-metadata-ejection.dita">
     <linktext>Ejecting bucket metadata (REST)</linktext>
    </link>
-   <link href="../rest/rest-bucket-intro.dita"></link>
+   <link href="../REST/rest-bucket-intro.dita"></link>
   </linklist>
  </related-links>
 </concept>

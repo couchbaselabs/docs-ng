@@ -19,7 +19,7 @@ http://10.4.2.4:8091/controller/cancelXDCR/9eee38236f3bf28406920213d93981a3%2Fbe
   </body>
   <related-links>
     <linklist>
-      <link href="../tasks/xdcr-configure-replications.dita"/>
+      <link href="../Tasks/xdcr-configure-replications.dita"/>
     </linklist>
   </related-links>
 </topic>

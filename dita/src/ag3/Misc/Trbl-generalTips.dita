@@ -38,8 +38,8 @@
  </body>
  <related-links>
   <linklist>
-   <link href="../cli/cbcollect_info_tool.dita"></link>
-   <link href="../install/install-networkPorts.dita"></link>
+   <link href="../CLI/cbcollect_info_tool.dita"></link>
+   <link href="../Install/install-networkPorts.dita"></link>
   </linklist>
  </related-links>
 </topic>

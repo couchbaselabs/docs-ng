@@ -26,11 +26,11 @@
   </body>
   <related-links>
     <linklist>
-      <link href="../tasks/rebalance-swap-rebalance.dita"/>
-      <link href="../tasks/rebalance-adding-nodes.dita"/>
-      <link href="../tasks/rebalance-performing.dita"/>
-      <link href="../tasks/rebalance-cluster.dita"/>
-      <link href="../rest/rest-node-index-path.dita"/>
+      <link href="../Tasks/rebalance-swap-rebalance.dita"/>
+      <link href="../Tasks/rebalance-adding-nodes.dita"/>
+      <link href="../Tasks/rebalance-performing.dita"/>
+      <link href="../Tasks/rebalance-cluster.dita"/>
+      <link href="../REST/rest-node-index-path.dita"/>
     </linklist>
   </related-links>
 </topic>

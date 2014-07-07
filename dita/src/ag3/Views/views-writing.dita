@@ -887,11 +887,11 @@ function(doc, meta)
    </body>
    <related-links>
       <linklist>
-            <link href="../views/views-operation.dita"/>
-            <link href="../views/views-querySample.dita"/>
-            <link href="../views/views-storedData.dita"/>
-            <link href="../views/views-writing.dita"/>
-            <link href="../rest/design-docs-rest-api.dita"/>
+            <link href="../Views/views-operation.dita"/>
+            <link href="../Views/views-querySample.dita"/>
+            <link href="../Views/views-storedData.dita"/>
+            <link href="../Views/views-writing.dita"/>
+            <link href="../REST/design-docs-rest-api.dita"/>
             <link href="docs.couchbase.com" scope="external"
                format="html">
                <linktext>Couchbase SDKs</linktext>

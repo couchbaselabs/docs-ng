@@ -375,8 +375,8 @@
         for high values of skip can be affected.</p></section>
   </body>
   <related-links>
-    <link href="../views/views-querySample.dita"/>
-    <link href="../views/views-querying.dita"/>
-    <link href="../views/views-writing.dita"/>
+    <link href="../Views/views-querySample.dita"/>
+    <link href="../Views/views-querying.dita"/>
+    <link href="../Views/views-writing.dita"/>
   </related-links>
 </topic>

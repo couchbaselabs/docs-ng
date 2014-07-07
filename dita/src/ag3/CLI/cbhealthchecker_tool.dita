@@ -232,8 +232,8 @@ Please find collected stats at '/opt/couchbase/bin/reports/2013-07-26_13-30-36.j
 		<linklist>
 
 			
-			<link href="../concepts/concepts-statsMonitor.dita"/>
-			<link href="../concepts/concepts-TAP.dita"/>
+			<link href="../Concepts/concepts-statsMonitor.dita"/>
+			<link href="../Concepts/concepts-TAP.dita"/>
 		</linklist>
 	</related-links>
 </topic>

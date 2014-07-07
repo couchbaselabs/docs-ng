@@ -222,9 +222,9 @@ done
          
          
          <link href="../Install/hostnames.dita"/>
-         <link href="../cli/cbcli-intro.dita"/>
-         <link href="../cli/cbrestore_tool.dita"/>
-         <link href="../cli/cbtransfer_tool.dita"/>
+         <link href="../CLI/cbcli-intro.dita"/>
+         <link href="../CLI/cbrestore_tool.dita"/>
+         <link href="../CLI/cbtransfer_tool.dita"/>
          <link href="https://github.com/couchbase/couchbase-cli" scope="external" format="html">
             <linktext>Couchbase command-line tools GitHub repository</linktext>
          </link>

@@ -100,8 +100,8 @@
   
   <related-links>
     <linklist>
-      <link href="../rest/rest-cluster-intro.dita"/>
-      <link href="../install/hostnames.dita"/>
+      <link href="../REST/rest-cluster-intro.dita"/>
+      <link href="../Install/hostnames.dita"/>
       
     </linklist>
   </related-links>

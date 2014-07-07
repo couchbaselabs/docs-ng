@@ -110,11 +110,11 @@
   <related-links>
     <linklist>
       <link href="../Tasks/tasks-backupRestore.dita"></link>
-      <link href="../concepts/concept-serverWarmup.dita"></link>
-      <link href="../monitoring/monitor-warmup.dita"></link>
-      <link href="../monitoring/monitor-diskqueue.dita"></link>
-      <link href="../cli/cbbackup_tool.dita"></link>
-      <link href="../ui/ui-settings-autofailover.dita"></link>
+      <link href="../Concepts/concept-serverWarmup.dita"></link>
+      <link href="../Monitoring/monitor-warmup.dita"></link>
+      <link href="../Monitoring/monitor-diskqueue.dita"></link>
+      <link href="../CLI/cbbackup_tool.dita"></link>
+      <link href="../UI/ui-settings-autofailover.dita"></link>
     </linklist>
   </related-links>
 </topic>

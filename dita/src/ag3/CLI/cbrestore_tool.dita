@@ -123,10 +123,10 @@ done
     <linklist>
       <link href="https://github.com/couchbase/couchbase-cli" scope="external" format="html">
         <linktext>Couchbase command-line tools GitHub repository</linktext></link>
-      <link href="../install/hostnames.dita"/>
-      <link href="../ui/ui-views-editor.dita"/>
-      <link href="../cli/cbbackup_tool.dita"/>
-      <link href="../cli/cbtransfer_tool.dita"/>
+      <link href="../Install/hostnames.dita"/>
+      <link href="../UI/ui-views-editor.dita"/>
+      <link href="../CLI/cbbackup_tool.dita"/>
+      <link href="../CLI/cbtransfer_tool.dita"/>
     </linklist>
   </related-links>
 </topic>

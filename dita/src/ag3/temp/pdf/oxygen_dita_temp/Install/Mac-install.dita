@@ -69,8 +69,8 @@
  </body>
  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Mac-install.dita" xtrc="related-links:1;73:17">
   <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Mac-install.dita" xtrc="linklist:1;74:13">
-   <link href="../install/install-platforms.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Mac-install.dita" xtrc="link:1;75:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Supported platforms</linktext></link>
-   <link href="../install/mac-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Mac-install.dita" xtrc="link:2;76:55" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Mac OS X</linktext></link>
+   <link href="../Install/install-platforms.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Mac-install.dita" xtrc="link:1;75:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Supported platforms</linktext></link>
+   <link href="../Install/mac-startup-shutdown.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/Mac-install.dita" xtrc="link:2;76:55" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Startup and shutdown on Mac OS X</linktext></link>
    
   </linklist>
  </related-links>

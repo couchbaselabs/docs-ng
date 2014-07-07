@@ -72,7 +72,7 @@ vkey keyname vbid
 	</body>
 	<related-links>
 		<linklist>
-			<link href="../monitoring/monitor-statistics.dita"/>
+			<link href="../Monitoring/monitor-statistics.dita"/>
 		</linklist>
 	</related-links>
 </topic>

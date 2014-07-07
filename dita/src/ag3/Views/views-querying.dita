@@ -496,9 +496,9 @@ keys=[["tomato",20],["avocado",20]]
    </body>
    <related-links>
       <linklist>
-         <link href="../views/views-writing.dita"/>
-         <link href="../views/views-querySample.dita"/>
-         <link href="../rest/rest-views-intro.dita"></link>
+         <link href="../Views/views-writing.dita"/>
+         <link href="../Views/views-querySample.dita"/>
+         <link href="../REST/rest-views-intro.dita"></link>
          <link href="http://www.unicode.org/reports/tr10/" scope="external" format="html">
             <linktext>Unicode Technical Standard #10</linktext>
          </link>

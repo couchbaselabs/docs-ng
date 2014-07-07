@@ -163,8 +163,8 @@ replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destina
     </body>
     <related-links>
         <linklist>
-            <link href="../ui/ui-data-buckets.dita"/>
-            <link href="../ui/ui-xdcr-panel.dita"/>
+            <link href="../UI/ui-data-buckets.dita"/>
+            <link href="../UI/ui-xdcr-panel.dita"/>
         </linklist>
     </related-links>
 </topic>

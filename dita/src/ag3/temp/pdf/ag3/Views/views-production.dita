@@ -45,7 +45,7 @@ the same bucket while you development different indexes on your data.</p>
 </body>
  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-production.dita" xtrc="related-links:1;49:17"><linkpool class="- topic/linkpool " xtrc="topicref:108;125:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:103;120:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Views/views-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Views and indexes</linktext></link></linkpool>
   <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-production.dita" xtrc="linklist:1;50:13">
-   <link href="../ui/ui-views-editor.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-production.dita" xtrc="link:1;51:45" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Views section allows you to manage your development and production views.</desc></link>
+   <link href="../UI/ui-views-editor.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-production.dita" xtrc="link:1;51:45" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Views</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Views section allows you to manage your development and production views.</desc></link>
   </linklist>
  </related-links>
 

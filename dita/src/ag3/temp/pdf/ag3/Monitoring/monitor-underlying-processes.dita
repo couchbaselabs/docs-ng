@@ -31,7 +31,7 @@
   </body>
   <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-underlying-processes.dita" xtrc="related-links:1;35:18"><linkpool class="- topic/linkpool " xtrc="topicref:97;113:66" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:96;112:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Monitoring/monitor-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">There are a number of different ways to monitor Couchbase servers      including underlying processes, ports, and queueing.</desc></link></linkpool>
     <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-underlying-processes.dita" xtrc="linklist:1;36:15">
-      <link href="../cli/cbcollect_info_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-underlying-processes.dita" xtrc="link:1;37:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbcollect_info tool</linktext></link>
+      <link href="../CLI/cbcollect_info_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-underlying-processes.dita" xtrc="link:1;37:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbcollect_info tool</linktext></link>
     </linklist>
   </related-links>
 </topic>
