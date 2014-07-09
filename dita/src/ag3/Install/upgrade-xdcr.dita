@@ -81,7 +81,7 @@
         conflict resolution may occur. <ol>
           <li>Delete all XDCR replications on your source cluster. </li>
           <li>Upgrade the source cluster to 2.5 or higher. </li>
-          <li>Upgrade the destination cluster 2.5 or higher.</li>
+          <li>Upgrade the destination cluster to 2.5 or higher.</li>
           <li>Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is
               <codeph>xmem</codeph> replication.</li>
         </ol>
