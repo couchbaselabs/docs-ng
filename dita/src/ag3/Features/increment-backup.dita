@@ -55,17 +55,7 @@
        </ul>
      </section>
      
-     <section><title>Future Notes</title>
-       <note type="note">This information is not applicable, but retained in case it gets into this release.</note>
-       
-       <ul>
-         <li>Clients can compress and put data into the server</li>
-         <li>cbbackup backs up the existing (compressed or uncompressed) data to a backup server.</li>
-         <li>cbrestore restores the backed up data and also has the option to uncompress the data.</li>
-         <li>Issue: Restoring from server 3.0 backup (2/3 compressed data) to a 2.5 server doesn't work. 
-           Use a 2.5 client to read the 2/3 (compressed data)</li>
-       </ul>
-     </section>
+
    
  </conbody>
 </concept>

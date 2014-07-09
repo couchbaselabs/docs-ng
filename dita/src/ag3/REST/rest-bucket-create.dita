@@ -110,11 +110,8 @@
 					</row>
 					<row>
 						<entry><codeph>threadsNumber</codeph></entry>
-						<entry>Optional Parameter. Integer from 2 to 8. Change the number of
-							concurrent readers and writers for the data bucket. For detailed
-							information about this feature, see <xref
-								href="../cb-admin/#couchbase-admin-tasks-mrw" format="html">Using
-								Multi- Readers and Writers</xref>.</entry>
+						<entry>Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and
+							writers for the data bucket. </entry>
 					</row>
 					<row>
 						<entry><b>Return Codes</b></entry>
@@ -185,5 +182,10 @@ name=newbucket&amp;ramQuotaMB=20&amp;authType=none&amp;replicaNumber=2&amp;proxy
 	
 	
 	</body>
+	<related-links>
+		<linklist>
+			<link href="../Concepts/concept-readerWriter.dita"/>
+		</linklist>
+	</related-links>
 
 </topic>

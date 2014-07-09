@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="collect-info-web">
-	<title>Web console</title>
+	<title>Managing diagnostics (UI)</title>
 	<shortdesc>The web console provides a graphical interface for collecting and sending system diagnostics to the Couchbase support team.</shortdesc>
 
 	<task id="task_s1v_z3w_h4">

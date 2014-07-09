@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_e52_ynl_34">
-	<title>Collecting diagnostics by using the cbcollect_info tool</title>
+	<title>Collecting diagnostics via the cbcollect_info tool</title>
 	<shortdesc>You can start, stop, and get collection status by using the cbcollect_info
 		tool.</shortdesc>
 	<conbody>

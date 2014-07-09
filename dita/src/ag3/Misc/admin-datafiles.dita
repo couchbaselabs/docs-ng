@@ -2,15 +2,15 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic1711">
-	<title>Couchbase data files</title>
+	<title>Data file location</title>
 	<shortdesc>The Couchbase data files are in a <uicontrol>var > lib > couchbase > data</uicontrol> location 
 	whereas the initial file structure is dependent on the operating system.</shortdesc>
 	<body>
 		<p>By default, Couchbase Server stores data files under the following paths:</p>
 		<table>
 			<tgroup cols="2">
-				<colspec colname="col1"/>
-				<colspec colname="col2"/>
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="2.77*"/>
 				<thead>
 					<row>
 						<entry>Platform</entry>
@@ -33,10 +33,37 @@
 				</tbody>
 			</tgroup>
 		</table>
+		
+		
+		
+		<section><title>Changing the data file path</title>
 		<p>This path can be changed for each node at setup either via the Web UI setup wizard, using
-			the REST API or using the Couchbase CLI.</p>
-		<note type="note">Changing the data path for a node that is already part of a cluster permanently
+			the REST API or using the Couchbase CLI. 
+			Once a node or cluster has already been setup and is storing data, 
+			the path cannot be changed while the node is part of a running cluster. </p>
+			
+			<p>To change the path:</p>
+			<ol>
+				<li>Remove the node from the cluster.</li>
+				<li>Change the path on a running node either via the REST API or using the Couchbase
+					CLI (commands above). This change does not actually take effect until the node
+					is restarted. </li>
+				<li>Shut the node down.</li>
+				<li>Copy all the data files from their original location into the new
+					location.</li>
+			</ol>
+			
+		<note type="important">Changing the data path for a node that is already part of a cluster permanently
 			deletes the data stored.</note>
+			
+			<note type="tip">When using the command line tool, 
+				the data file and index file path settings cannot be changed individually. 
+				To change the setting individually, use the REST API.</note>
+			
+				
+		</section>
+		
+			
 		<example><title>Linux example:</title>
 		<codeblock>
 couchbase-cli node-init -c node_IP:8091 \
@@ -53,19 +80,8 @@ couchbase-cli node-init -c node_IP:8091 \
     -u user -p password
 </codeblock>
 	</example>
-		<p>When using the command line tool, the data file and index file path settings cannot be changed
-			individually. To change the setting individually, use the REST API. </p>
-		<p>Once a node or cluster has already been setup and is storing data, the path cannot be changed
-			while the node is part of a running cluster. To change the path:</p>
-		<ol>
-			<li>Remove the node from the cluster.</li>
-			<li>Change the path on a running node either via the REST API or using the Couchbase
-					CLI (commands above). This change does not actually take effect until the node
-					is restarted. </li>
-			<li>Shut the node down.</li>
-			<li>Copy all the data files from their original location into the new
-				location.</li>
-		</ol>
+
+		
 	</body>
 	<related-links>
 		<linklist>

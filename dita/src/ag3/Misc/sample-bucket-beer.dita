@@ -53,9 +53,7 @@
       <p>To demonstrate the view functionality in Couchbase Server, three views are defined.</p>
       <section><title>brewery_beers view</title><p>The <codeph>brewery_beers</codeph> view outputs a
             composite list of breweries and beers they brew by using the view output format to
-            create a ‘fake’ join, as detailed in <xref
-               href="#topic5237/couchbase-views-sample-patterns-joins">Solutions for Simulating
-               Joins</xref>. This outputs the brewery ID for brewery document types, and the brewery
+            create a ‘fake’ join. This outputs the brewery ID for brewery document types, and the brewery
             ID and beer ID for beer document
             types:</p><codeblock><codeph>function(doc, meta) {
   switch(doc.type) {

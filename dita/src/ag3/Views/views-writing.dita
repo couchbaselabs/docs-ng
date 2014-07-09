@@ -892,8 +892,7 @@ function(doc, meta)
             <link href="../Views/views-storedData.dita"/>
             <link href="../Views/views-writing.dita"/>
             <link href="../REST/design-docs-rest-api.dita"/>
-            <link href="docs.couchbase.com" scope="external"
-               format="html">
+            <link href="http://docs.couchbase.com" scope="external" format="html">
                <linktext>Couchbase SDKs</linktext>
             </link>
       </linklist>

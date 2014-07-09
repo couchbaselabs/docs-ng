@@ -1,64 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic3157"><title>cbcollect_info tool</title><body><p>This is one of the most important diagnostic tools used by Couchbase technical support teams;
-			this command-line tool provides detailed statistics for a specific node. The tool is at
-			the following locations, depending upon your platform:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Operating System</entry>
-	<entry>Location</entry>
-</row></thead><tbody><row>
-	<entry><b>Linux</b></entry>
-	<entry><codeph>/opt/couchbase/bin/cbcollect_info</codeph></entry>
-</row><row>
-	<entry><b>Windows</b></entry>
-	<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbcollect_info</codeph></entry>
-</row><row>
-	<entry><b>Mac OS X</b></entry>
-	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info</codeph></entry>
-</row></tbody></tgroup></table><p><b>Be aware that this tool is a per-node operation.</b> If you want to perform this
-operation for an entire cluster, you will need to perform the command for every
-node that exists for that cluster.</p><p>You will need a root account to run this command and
-collect all the server information needed. There are internal server files and
-directories that this tool accesses which require root privileges.</p><p>To use this command, you remotely connect to the machine which contains your
-Couchbase Server then issue the command with options. You typically run this
-command under the direction of technical support at Couchbase and it will
-generate a large.zip file. This archive will contain several different files
-which contain performance statistics and extracts from server logs. The
-following describes usage, where <codeph>output_file</codeph> is the name of the.zip file you
-will create and send to Couchbase technical support:</p><codeblock><codeph>cbcollect_info hostname:port output_file
+<topic xml:lang="en-us" id="topic3157">
+	<title>cbcollect_info tool</title>
+	<body>
+		<p>This is one of the most important diagnostic tools used by Couchbase technical support
+			teams; this command-line tool provides detailed statistics for a specific node. The tool
+			is at the following locations, depending upon your platform:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Operating System</entry>
+						<entry>Location</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><b>Linux</b></entry>
+						<entry><codeph>/opt/couchbase/bin/cbcollect_info</codeph></entry>
+					</row>
+					<row>
+						<entry><b>Windows</b></entry>
+						<entry><codeph>C:\Program Files\Couchbase\Server\bin\cbcollect_info</codeph></entry>
+					</row>
+					<row>
+						<entry><b>Mac OS X</b></entry>
+						<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p><b>Be aware that this tool is a per-node operation.</b> If you want to perform this
+			operation for an entire cluster, you will need to perform the command for every node
+			that exists for that cluster.</p>
+		<p>You will need a root account to run this command and collect all the server information
+			needed. There are internal server files and directories that this tool accesses which
+			require root privileges.</p>
+		<p>To use this command, you remotely connect to the machine which contains your Couchbase
+			Server then issue the command with options. You typically run this command under the
+			direction of technical support at Couchbase and it will generate a large.zip file. This
+			archive will contain several different files which contain performance statistics and
+			extracts from server logs. The following describes usage, where
+				<codeph>output_file</codeph> is the name of the.zip file you will create and send to
+			Couchbase technical support:</p>
+		<codeblock><codeph>cbcollect_info hostname:port output_file
 
 Options:
   -h, --help  show this help message and exit
   -v          increase verbosity level
-</codeph></codeblock><p>If you choose the verbosity option, <codeph>-v</codeph> debugging information for
-<codeph>cbcollect_info</codeph> will be also output to your console. When you run
-<codeph>cbcollect_info</codeph>, it will gather statistics from an individual node in the
-cluster.</p><p>This command will collect information from an individual Couchbase Server node.
-If you are experiencing problems with multiple nodes in a cluster, you may need
-to run it on all nodes in a cluster.</p><p>The tool will create the following.log files in your named archive:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry><b>couchbase.log</b></entry>
-	<entry>OS-level information about a node.</entry>
-</row></thead><tbody><row>
-	<entry><b>ns_server.couchdb.log</b></entry>
-	<entry>Information about the persistence layer for a node.</entry>
-</row><row>
-	<entry><b>ns_server.debug.log</b></entry>
-	<entry>Debug-level information for the cluster management component of this node.</entry>
-</row><row>
-	<entry><b>ns_server.error.log</b></entry>
-	<entry>Error-level information for the cluster management component of this node.</entry>
-</row><row>
-	<entry><b>ns_server.info.log</b></entry>
-	<entry>Info-level entries for the cluster management component of this node.</entry>
-</row><row>
-	<entry><b>ns_server.views.log</b></entry>
-	<entry>Includes information about indexing, time taken for indexing, queries which have been run, and other statistics about views.</entry>
-</row><row>
-	<entry><b>stats.log</b></entry>
-	<entry>The results from multiple <codeph>cbstats</codeph> options run for the node. For more information, see <xref href="#topic3157/couchbase-admin-cmdline-cbstats">cbstats Tool</xref></entry>
-</row></tbody></tgroup></table><p>After you finish running the tool, you should upload the archive and send it to
-Couchbase technical support:</p><codeblock><codeph>&gt; curl --upload-file file_name https://s3.amazonaws.com/customers.couchbase.com/company_name/
-</codeph></codeblock><p>Where <codeph>file_name</codeph> is the name of your archive, and <codeph>company_name</codeph>
-			is the name of your organization. After you have uploaded the archive, please contact
-			Couchbase technical support. </p></body><related-links><linklist><title>Collected links</title><link href="http://www.couchbase.com/wiki/display/couchbase/Working+with+the+Couchbase+Technical+Support+Team" scope="external" format="html"><linktext>Working with Couchbase Customer
-Support</linktext></link></linklist></related-links></topic>
+</codeph></codeblock>
+		<p>If you choose the verbosity option, <codeph>-v</codeph> debugging information for
+				<codeph>cbcollect_info</codeph> will be also output to your console. When you run
+				<codeph>cbcollect_info</codeph>, it will gather statistics from an individual node
+			in the cluster.</p>
+		<p>This command will collect information from an individual Couchbase Server node. If you
+			are experiencing problems with multiple nodes in a cluster, you may need to run it on
+			all nodes in a cluster.</p>
+		<p>The tool will create the following.log files in your named archive:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry><b>couchbase.log</b></entry>
+						<entry>OS-level information about a node.</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><b>ns_server.couchdb.log</b></entry>
+						<entry>Information about the persistence layer for a node.</entry>
+					</row>
+					<row>
+						<entry><b>ns_server.debug.log</b></entry>
+						<entry>Debug-level information for the cluster management component of this
+							node.</entry>
+					</row>
+					<row>
+						<entry><b>ns_server.error.log</b></entry>
+						<entry>Error-level information for the cluster management component of this
+							node.</entry>
+					</row>
+					<row>
+						<entry><b>ns_server.info.log</b></entry>
+						<entry>Info-level entries for the cluster management component of this
+							node.</entry>
+					</row>
+					<row>
+						<entry><b>ns_server.views.log</b></entry>
+						<entry>Includes information about indexing, time taken for indexing, queries
+							which have been run, and other statistics about views.</entry>
+					</row>
+					<row>
+						<entry><b>stats.log</b></entry>
+						<entry>The results from multiple <codeph>cbstats</codeph> options run for
+							the node.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>After you finish running the tool, you should upload the archive and send it to Couchbase
+			technical support:</p>
+		<codeblock><codeph>&gt; curl --upload-file file_name https://s3.amazonaws.com/customers.couchbase.com/company_name/
+</codeph></codeblock>
+		<p>Where <codeph>file_name</codeph> is the name of your archive, and
+				<codeph>company_name</codeph> is the name of your organization. After you have
+			uploaded the archive, please contact Couchbase technical support. </p>
+	</body>
+	<related-links>
+		<linklist>
+			<link href="../CLI/cbstats-intro.dita"/>
+			<link
+				href="http://www.couchbase.com/wiki/display/couchbase/Working+with+the+Couchbase+Technical+Support+Team"
+				scope="external" format="html">
+				<linktext>Working with Couchbase Customer Support</linktext>
+			</link>
+		</linklist>
+	</related-links>
+</topic>

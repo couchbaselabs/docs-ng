@@ -2,9 +2,10 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
     <title>Couchbase Server 3.0 Documentation</title>
+    <topicref href="rel-notes/rel-notes3.0beta.dita"></topicref>
+    <topicref href="30Features.ditamap" format="ditamap"/>
     <topichead navtitle="Installation">
         <topicref href="Install.ditamap" format="ditamap" collection-type="family" /></topichead>
-    <topicref href="30Features.ditamap" format="ditamap"/>
     <topichead navtitle="Administration"> 
         <topicref href="Admin.ditamap" format="ditamap" collection-type="family"/></topichead>
     <topichead navtitle="Command-line interface">

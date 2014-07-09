@@ -32,22 +32,19 @@
   
   <section><title>Impacted documentation</title>
    <ul>
-    <li>Added to Document Metadata material (Under Views and data storage). Also, move the the Document
-      Metadata and data storage material to a more appropriate section.</li>
+    <li>Views and stored data > Document metadata</li>
     <li>Warm up operations</li>
     <li>Global thread pool</li>
+    <li>Ejection and working set managment</li>
     <li>Other ejection from hitting thresholds</li>
    </ul>
   </section>
   
   
   <section><title>Backward compatibility</title>
-   <p>Behavioral changes are also described.</p>
-   <ul>
-    <li>EJECTION LOGIC GRAPHIC</li>
-    <li>OLD 2.x release: val for all active datasets are ejected. Metadata + key is not ejected for all active datasets</li>
-    <li>3.0: both value and metadata+key are ejected.</li>
-   </ul>
+   <p>In previous releases, the values for all active datasets are ejected and the metadata + key are not ejection. 
+    In version 3.0, both value and metadata+key are ejected.</p>
+
   </section> 
   
   

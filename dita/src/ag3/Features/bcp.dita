@@ -9,8 +9,9 @@
     
     <section><title>Impacted documentation</title>
       <ul>
-        <li>TAP section in concepts</li>
-        <li>cbstats - tap statistics, per tap client stats, and tap aggregate stats</li>
+        <li>DCP section in concepts</li>
+        <li>cbstats - statistics, per client stats, and aggregate stats for DCP</li>
+        <li>cbepctl - set parameter for DCP</li>
       </ul>
     </section>
 

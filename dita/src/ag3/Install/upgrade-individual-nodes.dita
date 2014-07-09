@@ -10,9 +10,7 @@
     <ol>
         <li>Download Couchbase Server</li>
         <li>Backup data for that node. To backup an existing Couchbase Server installation, use
-          <codeph>cbbackup</codeph>. See <xref
-            href="../cb-admin/#couchbase-backup-restore-backup-cbbackup" format="html">Backing up
-            using cbbackup</xref>.</li>
+          <codeph>cbbackup</codeph>. </li>
         <li>Backup the node-specific configuration files. While the upgrade script perform a
           backup of the configuration and data files, as a best practice, make your own
           backup of these files.</li>

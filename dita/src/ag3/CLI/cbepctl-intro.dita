@@ -169,10 +169,6 @@ cbepctl host:11210 -b bucket_name -p bucket_password set type param value
 								disk.</entry>
 						</row>
 						<row>
-							<entry>flushall_enabled</entry>
-							<entry>Enable flush operation. <b>To be deprecated. Use <codeph>couchbase-cli --enable-flush</codeph>.</b></entry>
-						</row>
-						<row>
 							<entry>pager_active_vb_pcnt</entry>
 							<entry>Percentage of active vBuckets items among all ejected items by item pager.</entry>
 						</row>
@@ -240,28 +236,14 @@ cbepctl host:11210 -b bucket_name -p bucket_password set type param value
 				</tgroup>
 			</table>
 			
-			<note type="warning">Flushing a bucket is data destructive. <p>By default, this setting for
-					enablng bucket flush appears in Couchbase Web Console and is disabled; when it
-					is enabled, Couchbase Server is able to flush all the data in a bucket. <b>Be
-						also aware that this operation will be deprecated as a way to enable data
-						bucket flushes.</b> This is because <b>cbepctl</b> is designed for
-					individual node configuration not operating on data buckets shared by multiple
-					nodes.</p><p>If you use <codeph>cbepctl</codeph>, it makes no attempt to confirm
-					or double check the request. Client applications using this are advised to
-					double check with the end user before sending such a request. You can control
-					and limit the ability to flush individual buckets by setting the
-						<codeph>flushEnabled</codeph> parameter on a bucket in Couchbase Web Console
-					or via <codeph>cbepctl flush_param</codeph>. </p><p><b>Be aware that this tool
-						is a per-node, per-bucket operation.</b> That means that if you want to
+			<note type="note">The <codeph>cbepctl</codeph> tool
+						is a per-node, per-bucket operation. That means that if you want to
 					perform this operation, you must specify the IP address of a node in the cluster
 					and a named bucket. If you do not provided a named bucket, the server will apply
 					the setting to any default bucket that exists at the specified node. If you want
 					to perform this operation for an entire cluster, you will need to perform the
 					command for every node/bucket combination that exists for that
-						cluster.</p><p><b>The preferred way to enable data bucket flush is either 1)
-						Couchbase Web Console or via 2) couchbase-cli</b>.</p>
-			</note>
-			
+						cluster.</note>
 		
 		</section>
 		

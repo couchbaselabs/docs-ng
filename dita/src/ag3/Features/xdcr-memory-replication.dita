@@ -26,9 +26,9 @@
   
   <section><title>Backward compatibility</title>
    <ul>
-    <li>Internal changes which are made automatically through the upgrade.</li>
-    <li>Only require thesource cluster to be upgraded. The destination cluster accepts the data
-     changes into memory without issue.</li>
+    <li>Internal changes are made automatically through the upgrade.</li>
+    <li>Only the source cluster has to be upgraded. The destination cluster accepts the data changes
+     into memory without issue.</li>
    </ul>
   </section>
   

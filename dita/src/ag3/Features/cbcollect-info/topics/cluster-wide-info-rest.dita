@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_whr_1x1_34">
- <title>REST API</title>
+ <title>Managing diagnostics (REST API)</title>
  <shortdesc>The REST API enables you to collect and send diagnostics by using HTTP requests.</shortdesc>
  <conbody>
   <p>You can use the following REST APIs to manage log collection.</p>

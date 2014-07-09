@@ -40,9 +40,7 @@
       <section><title>Changing the document threshold</title>
         
         <p>You can change this setting with
-          the REST API as one of the internal settings for XDCR. For more information, see <xref
-            href="../cb-rest-api/#couchbase-admin-restapi-xdcr-change-settings" format="html">Changing
-            Internal XDCR Settings</xref>.</p>
+          the REST API as one of the internal settings for XDCR.</p>
       </section>
       
       
@@ -80,4 +78,9 @@ total # of docs to be replicated is: 9, total latency: 142 ms
           check and replicate all 11 documents was 142 milliseconds.</p>
       </section>
   </body>
+  <related-links>
+    <linklist>
+      <link href="../REST/rest-xdcr-get-internal.dita"/>
+    </linklist>
+  </related-links>
 </topic>

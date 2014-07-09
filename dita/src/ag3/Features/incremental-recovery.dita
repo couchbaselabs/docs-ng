@@ -3,20 +3,20 @@
 <topic id="topic_s15_tlh_14">
   <title>Delta node recovery</title>
   <shortdesc>Delta node recovery provides the option to specify whether the replacement server
-    node's disk is initialized or not. For a new server node, the disk is initialized (data is
-    removed) and re-populated. For the same server node, the disk is not initialized or
-    re-populated; the data buckets remain.</shortdesc>
+    node's disk is initialized or whether the data and data buckets are retained.  </shortdesc>
   
   
   <body>
-    <p>When re-adding a server node to the cluster, a new server node is initialized and re-populated,  
-      that is, the disk is wiped out (a warning is generated) and then re-populated with the original data buckets. 
-      This operation ensures a clean disk, but also has overhead in terms of resource use and downtime due to disk re-population.
-      The same server node is not initialized nor re-populated. 
-      The data and data buckets are retained so that the cluster can start functioning without downtime. 
-      This operation improves recovery time and network resource usage. 
-      For example, an environment with a large data footprint might re-add the server node as the same.
-      </p>
+    <p>When re-adding a server node to the cluster, a new server node is initialized and
+      re-populated, that is, the disk is wiped out (a warning is generated) and then re-populated
+      with the original data buckets. This operation ensures a clean disk, but also has overhead in
+      terms of resource use and downtime due to disk re-population. With delta node recovery the
+      same server node is not initialized nor re-populated. The data and data buckets are retained
+      so that the cluster can start functioning without downtime. This operation improves recovery
+      time and network resource usage. For example, an environment with a large data footprint might
+      re-add the server node as the same. </p>
+    <p>For a new server node, the disk is initialized (data is removed) and re-populated. For the
+      same server node, the disk is not initialized or re-populated; the data buckets remain.</p>
     
     <p>Server nodes are removed from clusters under many circumstances. 
       Depending on the circumstance, the server node is added back to the cluster as either a new or the same server. 

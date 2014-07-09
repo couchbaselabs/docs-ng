@@ -13,8 +13,9 @@
 			Couchbase-compatible SDK, you will also use the REST API within your library to handle 
 			views. Views enable you to index and query data based on functions that you
 			define. </p>
-				<note type="tip">The REST API should *not* be used to read or write data to the server. Data operations
-			such as `set` and `get` for example, are handled by Couchbase SDKs. </note>
+				<note type="tip">The REST API should <b>not</b> be used to read or write data to the server.
+			Data operations, such as <codeph>set</codeph> and <codeph>get</codeph> for example, are
+			handled by Couchbase SDKs. </note>
 		<p>In addition, the Couchbase Web Console uses many of the same REST API endpoints that are
 			used for a REST API request. This is especially for administrative tasks such as
 			creating a new bucket, adding a node to a cluster, or changing cluster settings. </p>

@@ -129,8 +129,7 @@
      runs, the server increments one of the NRU bits.</li>
    </ul>
    <p>Because the two processes changes NRUs, they also affect which items are candidates for
-    ejection. For more information about the access scanner, see <xref
-     href="#topic6308/couchbase-admin-tasks-warmup-access">Handling Server Warmup</xref>.</p>
+    ejection.</p>
    <p>Couchbase Server settings can be adjusted to change behavior during ejection. For example,
     specify the percentage of RAM to be consume before items are ejected or specify whether ejection
     should occur more frequently on replicated data than on original data. Couchbase recommends that

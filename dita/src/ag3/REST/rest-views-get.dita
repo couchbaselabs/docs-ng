@@ -17,11 +17,9 @@
 				<li><p><codeph>bucketname</codeph> is the name of the bucket.</p></li>
 				<li><p><codeph>designdocname</codeph> is the name of the design document that
 						contains the view.</p></li>
-			</ul><p>For views defined within the development context (see <xref
-					href="#topic6415/couchbase-views-types">Development and Production Views</xref>
-				), the <codeph>designdocname</codeph> is prefixed with <codeph>dev_</codeph>. For
-				example, the design document <codeph>beer</codeph> is accessible as a development
-				view using <codeph>dev_beer</codeph>.</p><p>Production views are accessible using
+			</ul><p>For views defined within the development context, the <codeph>designdocname</codeph> is prefixed
+			with <codeph>dev_</codeph>. For example, the design document <codeph>beer</codeph> is
+			accessible as a development view using <codeph>dev_beer</codeph>.</p><p>Production views are accessible using
 				their name only.</p><ul>
 				<li><codeph>viewname</codeph> is the name of the corresponding view within the
 					design document.</li>
@@ -275,4 +273,9 @@
 				individual language implementations, but in all cases, an invalid query should
 				trigger an appropriate error or exception.</p>
 	</body>
+	<related-links>
+		<linklist>
+			<link href="../Views/views-intro.dita"></link>
+		</linklist>
+	</related-links>
 </topic>
