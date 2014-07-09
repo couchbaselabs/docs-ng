@@ -49,9 +49,10 @@
         2.2. This is a safe upgrade path since the source cluster communicates via
           <codeph>capi</codeph> to the destination.</li>
         <li>The source cluster is upgrading to 2.2 or higher and the destination is pre-2.2. This is
-        not a safe upgrade path because the destination cannot receive replication via
-          <codeph>xmem</codeph>. This results in incorrect data replication and failures in conflict
-        resolution. For this scenario, upgrade both source and destinatin clusters to 2.2 or higher. </li>
+          not a safe upgrade path because the destination cannot receive replication via
+            <codeph>xmem</codeph>. This results in incorrect data replication and failures in
+          conflict resolution. For this scenario, upgrade both source and destination clusters to
+          2.2 or higher. </li>
         <li>Both source and destination clusters are upgrading from pre-2.2 to 2.2. This is not a
         safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade
         completes prior to destination upgrade, incorrect data replication and failures in conflict
@@ -63,8 +64,8 @@
                 <codeph>xmem</codeph> replication. </li>
         </ol><p>Alternatively:</p><ol>
           <li>Allow the rebalance upgrade to complete.</li>
-          <li>Delete the version 1 (<codeph>capi</codeph>) XDCR protocol replications.</li>
-          <li>Create version 2 (<codeph>xmem</codeph>) XDCR protocol replications.</li>
+          <li>Delete the Version 1 (<codeph>capi</codeph>) XDCR protocol replications.</li>
+          <li>Create Version 2 (<codeph>xmem</codeph>) XDCR protocol replications.</li>
         </ol>
       </li>
         <li>The source cluster is upgrading from pre–2.2 to 2.2 or higher and the destination cluster is Elastic Search. 
