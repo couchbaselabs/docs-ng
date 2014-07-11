@@ -4,6 +4,105 @@ The following sections provide release notes for individual release versions of
 the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-rn_2-4-0_beta"></a>
+## Release Notes for Couchbase Client Library C 2.4.0 Beta (11 July 2014)
+
+**New Features and Behavior Changes in 2.4.0-Beta**
+
+* Provide HTTP keepalive and connection pooling for HTTP requests.
+  This allows the client to reuse an HTTP connection for multiple requests
+  rather than creating a new connection and closing it for each operation.
+
+  The functionality may be controlled via the `LCB_CNTL_HTTP_POOLSIZE` setting
+  which limits how many open connections (per server) to maintain inside the
+  client. Setting this value to `0` will disable pooling and restore old
+  behavior.
+
+  **Issues**: [CCBC-226](http://couchbase.com/issues/browse/CCBC-226)
+
+* Extend new (volatile) _V3_ to cover all operations. This API provides a more
+  uniform interface to scheduling operations and handling them within callbacks.
+  It is currently considered volatile in interface. The implementations of these
+  functions are stable, and the existing stable API now wraps these functions.
+
+  Developers are encouraged to experiment with this API and provide feedback.
+
+  **Issues**: [CCBC-233](http://couchbase.com/issues/browse/CCBC-233)
+
+* The `dsn` field in the `lcb_create_st` structure has been renamed to
+  `connstr`. This affects the API for the connection string feature
+  introduced in 2.4.0-dp1.
+
+  **Issues**: [CCBC-452](http://couchbase.com/issues/browse/CCBC-452)
+
+* The `memcached://` scheme has been introduced (via the connection string)
+  to allow connecting to legacy memcached servers. The functionality as whole
+  is still considered volatile.
+
+  To connect to a set of memcached servers, provide them in the connection
+  string like so:
+
+        cropts.v.v3.connstr = "memcached://memd1:11211,memd2:11211,memd3:11211";
+
+* Add `lcb_get_node()` function to retrieve addresses for
+  various nodes in the cluster. This deprecates the `lcb_get_host()`,
+  `lcb_get_port()` and `lcb_get_server_list()` functions as they are
+  constrained to only return information about the administrative API.
+  The new function is configurable to return information about various
+  ports.
+
+  **Issues**: [CCBC-454](http://couchbase.com/issues/browse/CCBC-454)
+
+
+* Provide additional error classifiers. Two error classifiers have
+  been added, they are:
+
+  * `LCB_ERRTYPE_SRVLOAD` which indicates that the server is likely under high load.
+  * `LCB_ERRTYPE_SRVGEN` which indicates that the error is a direct reply from the
+    server. This code can help distinguish between client and server generated
+    return codes.
+
+  **Issues**: [CCBC-459](http://couchbase.com/issues/browse/CCBC-459)
+
+
+* Provide setting to disable refreshing the configuration when an HTTP
+  API error is encountered (from one of the HTTP callback functions). This
+  adds the `LCB_CNTL_HTTP_REFRESH_CONFIG_ON_ERROR` setting.
+
+  **Issues**: [CCBC-458](http://couchbase.com/issues/browse/CCBC-458)
+
+
+* Environment variables are now documented in their own section within the API
+  documentation.
+
+  **Issues**: [CCBC-393](http://couchbase.com/issues/browse/CCBC-393)
+
+
+* Return error if empty key is passed to an operation. Empty keys will
+  cause the server to drop the connection.
+  The error code returned is the newly added `LCB_EMPTY_KEY`
+
+  **Isssues**: [CCBC-405](http://couchbase.com/issues/browse/CCBC-405)
+
+**Bug Fixes in 2.4.0-Beta**
+
+* Fix a bug introduced in 2.4.0-dp1 where a redirected HTTP request would
+  never return control to the application.
+
+  **Issues**: [CCBC-471](http://couchbase.com/issues/browse/CCBC-471)
+
+* The IOCP plugin will now return `LCB_CLIENT_ENOMEM` rather than abort if it
+  could not allocate memory. This also fixes some other locations in the code
+  to return an appropriate error code, rather than invoke `abort()`, if possible.
+
+  **Issues**: [CCBC-456](http://couchbase.com/issues/browse/CCBC-456)
+
+* Properly schedule next invocations for retry queue. A bug was introduced
+  in 2.4.0-dp1 which would cause the next tick callback to be invoked in what is
+  effectively a busy loop. This would be reflected in higher CPU load and less
+  throughput during topology changes.
+
+
 <a id="couchbase-sdk-rn_2-4-0_dp1"></a>
 ## Release Notes for Couchbase Client Library C 2.4.0 DP1 (6 June 2014)
 
@@ -47,7 +146,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 * The IOPS API has been changed. This is considered volatile interface
   and may subsequently change in the future as well.
 
-**New APIs added in 2.4.0 extending existing functionality**
+**New APIs added in 2.4.0-DP1 extending existing functionality**
 
 These changes extend existing features with enhanced APIs
 
@@ -105,7 +204,7 @@ These changes extend existing features with enhanced APIs
   **Issues**: [CCBC-450](http://couchbase.com/issues/CCBC-450)
 
 
-**New Features in 2.4.0**
+**New Features in 2.4.0-DP1**
 
 * Connection Strings (aka "dsn") feature for instance creation. This adds a new
   version of the `lcb_create_st` structure which is passed a URI-like string
@@ -175,7 +274,7 @@ These changes extend existing features with enhanced APIs
   **Issues**: [CCBC-301](http://couchbase.com/issues/browse/CCBC-301)
 
 
-**Bug Fixes in 2.4.0**
+**Bug Fixes in 2.4.0-DP1**
 
 * _select_ plugin may endlessly loop in some cases when I/O events are not
   pending and only timers are active.
@@ -214,7 +313,7 @@ These changes extend existing features with enhanced APIs
   **Issues**: [CCBC-273](http://couchbase.com/issues/browse/CCBC-273)
 
 
-**Metadata and Packaging Changes in 2.4.0**
+**Metadata and Packaging Changes in 2.4.0-DP1**
 
 * Use Doxygen for API documentation.
   This replaces the _manpages_ for API documentation with Doxygen. Doxygen
