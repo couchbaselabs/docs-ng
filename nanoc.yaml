@@ -93,7 +93,6 @@ versions:
       - 2.2
       - 2.1
       - 2.0
-      - 1.8
 
   couchbase-manual:
     name: "Server"
