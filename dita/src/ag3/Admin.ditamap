@@ -126,14 +126,15 @@
    <topicref href="UI/ui-document-editor.dita"/>
   </topicref>
   <topicref href="UI/ui-views-editor.dita"/>
-  <topicref href="Tasks/xdcr-cancel-replication.dita"/>
   <topicref href="UI/ui-xdcr-panel.dita">
-   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
-   <topicref href="Tasks/xdcr-adv-settings.dita"/>
-   <topicref href="Tasks/xdcr-specify-adv-settings.dita"/>
-   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
-   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
    <topicref href="Tasks/xdcr-create-replications.dita"/>
+   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
+   <topicref href="Tasks/xdcr-specify-adv-settings.dita">
+    <topicref href="Tasks/xdcr-adv-settings.dita"/>
+   </topicref>
+   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
+   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
+   <topicref href="Tasks/xdcr-cancel-replication.dita"/>
   </topicref>
   <topicref href="UI/ui-logs.dita"/>
   <topicref href="UI/ui-settings.dita">
