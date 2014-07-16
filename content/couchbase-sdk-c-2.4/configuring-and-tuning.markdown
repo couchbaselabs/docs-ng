@@ -2,17 +2,18 @@
 
 ## Connection String
 
-The client library may be configured via a URI-like connection string as well as
-through more advanced interfaces. The connection string follows the format of
-`couchbase://${hosts}/${bucket}?${options}`.
+The client library can be configured via a URI-like connection string or
+through more advanced interfaces. The connection string uses the following format:
+
+	couchbase://${hosts}/${bucket}?${options}
 
 The _host_ component of the connection string should identify one or more hosts
-which are members of the cluster you wish to connect to. Note that the library
-only needs a single host to be able to properly perform operations but adding
+that are members of the cluster you wish to connect to. The library
+ needs only a single host to be able to properly perform operations, but adding
 multiple hosts to the list is recommended for redundancy.
 
 To specify multiple hosts, separate them by a comma (`,`) in the connection
-string, e.g.
+string, as shown in the following example:
 
 ```
 couchbase://host1,host2,host3

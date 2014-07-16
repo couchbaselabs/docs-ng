@@ -178,8 +178,8 @@ Windows builds are known to work on Visual Studio versions 2008, 2010 and
 
 ## Hello C Couchbase
 
-The C client library is a callback oriented client which allows you to write
-high performance non-blocking programs.
+The C client library is a callback-oriented client that allows you to write
+high-performance, non-blocking programs.
 
 To make use of the library, you
 
@@ -222,12 +222,12 @@ if ((err = lcb_get_bootstrap_status(instance)) != LCB_SUCCESS) {
 }
 ```
 
-Callbacks are used by the library and are simple functions which handle the
+Callbacks are used by the library and are simple functions that handle the
 result of operations.
 
 Callbacks can be set up for all of your operations called in libcouchbase. In
 the API, you'll note the use of a cookie. This is metadata from your application
-which is associated with the request. The library will not inspect
+that is associated with the request. The library will not inspect
 any cookie or send the cookie to the server.
 
 When you put the connect logic and the get callback together and plug them into
