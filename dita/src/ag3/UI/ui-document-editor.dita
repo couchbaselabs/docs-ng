@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic1514">
-  <title>Document viewer and editor</title>
+  <title>Managing documents</title>
   <shortdesc>The Document Viewer and Editor enables you to browse, view, and edit individual documents
     stored in Couchbase Server buckets.</shortdesc>
   <body>

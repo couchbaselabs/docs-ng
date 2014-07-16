@@ -44,11 +44,6 @@
  </topicref>
  <topicref href="Tasks/tasks-common.dita">
   <topicref href="Tasks/tasks-create-readUser.dita"/>
-  <topicref href="Tasks/tasks-manage-ReadWrite.dita">
-   <topicref href="Tasks/tasks-create-readwrite-new.dita"/>
-   <topicref href="Tasks/tasks-create-readwrite-existing.dita"/>
-   <topicref href="Tasks/tasks-view-readwrite.dita"/>
-  </topicref>
   <topicref href="Tasks/tasks-manage-serverWarmup.dita"/>
   <topicref href="Tasks/tasks-manage-replication.dita"/>
   <topicref href="Tasks/tasks-compaction.dita"/>
@@ -66,27 +61,12 @@
    <topicref href="Tasks/rebalance-remove-node.dita"/>
    <topicref href="Tasks/rebalance-questions.dita"/>
   </topicref>
-  <topicref href="Tasks/rza-manage-group.dita">
-   <topicref href="Tasks/rza-create-group.dita"/>
-   <topicref href="Tasks/rza-delete-group.dita"/>
-   <topicref href="Tasks/rza-move-server.dita"/>
-   <topicref href="Tasks/rza-add-server.dita"/>
-   <topicref href="Tasks/rza-remove-server.dita"/>
-   <topicref href="Tasks/rza-rename-group.dita"/>
-  </topicref>
   <topicref href="Tasks/tasks-manage-xdcr.dita">
    <topicref href="Tasks/xdcr-configure-replications.dita"/>
    <topicref href="Tasks/xdcr-conflictResolution.dita"/>
    <topicref href="Tasks/xdcr-secure-communication.dita"/>
    <topicref href="Tasks/xdcr-tuning-optimistic-replication.dita"/>
    <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
-   <topicref href="Tasks/xdcr-create-replications.dita"/>
-   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
-   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
-   <topicref href="Tasks/xdcr-specify-adv-settings.dita"/>
-   <topicref href="Tasks/xdcr-adv-settings.dita"/>
-   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
-   <topicref href="Tasks/xdcr-cancel-replication.dita"/>
    <topicref href="Tasks/xdcr-modify-settings.dita"/>
   </topicref>
   <topicref href="Tasks/tasks-change-diskpath.dita"/>
@@ -126,13 +106,35 @@
  </topicref>
  <topicref href="UI/ui-intro.dita">
   <topicref href="UI/ui-cluster-summary.dita"/>
-  <topicref href="UI/ui-server-nodes.dita"/>
+  <topicref href="UI/ui-server-nodes.dita">
+   <topicref href="Tasks/rza-manage-group.dita">
+    <topicref href="Tasks/rza-create-group.dita"/>
+    <topicref href="Tasks/rza-delete-group.dita"/>
+    <topicref href="Tasks/rza-move-server.dita"/>
+    <topicref href="Tasks/rza-add-server.dita"/>
+    <topicref href="Tasks/rza-remove-server.dita"/>
+    <topicref href="Tasks/rza-rename-group.dita"/>
+   </topicref>
+  </topicref>
   <topicref href="UI/ui-data-buckets.dita">
+   <topicref href="Tasks/tasks-manage-ReadWrite.dita">
+    <topicref href="Tasks/tasks-create-readwrite-new.dita"/>
+    <topicref href="Tasks/tasks-create-readwrite-existing.dita"/>
+    <topicref href="Tasks/tasks-view-readwrite.dita"/>
+   </topicref>
    <topicref href="UI/ui-monitoring-statistics.dita"/>
    <topicref href="UI/ui-document-editor.dita"/>
   </topicref>
   <topicref href="UI/ui-views-editor.dita"/>
-  <topicref href="UI/ui-xdcr-panel.dita"/>
+  <topicref href="Tasks/xdcr-cancel-replication.dita"/>
+  <topicref href="UI/ui-xdcr-panel.dita">
+   <topicref href="Tasks/xdcr-monitor-replication.dita"/>
+   <topicref href="Tasks/xdcr-adv-settings.dita"/>
+   <topicref href="Tasks/xdcr-specify-adv-settings.dita"/>
+   <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
+   <topicref href="Tasks/xdcr-specify-dest-cluster.dita"/>
+   <topicref href="Tasks/xdcr-create-replications.dita"/>
+  </topicref>
   <topicref href="UI/ui-logs.dita"/>
   <topicref href="UI/ui-settings.dita">
    <topicref href="UI/ui-settings-cluster.dita"/>
