@@ -19,7 +19,8 @@
             </step>
             <step>
                 <cmd>Expand the <uicontrol>DISK QUEUE</uicontrol> section to view active, replica, pending, and total summary.</cmd>
-                <info>Additionaly, the number of items, fill rate, drain rate, and average age is summarized and displayed on a per server basis.</info>
+                <info>Additionally, the number of items, fill rate, drain rate, and average age is
+                    summarized and displayed on a per server basis.</info>
             </step>
         </steps>
         

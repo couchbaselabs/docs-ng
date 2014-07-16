@@ -21,7 +21,9 @@
    <topicref href="Concepts/concept-doc-delete.dita"/>
    <topicref href="Concepts/concept-tombstone.dita"/>
   </topicref>
-  <topicref href="Concepts/concept-workingset-mgmt.dita"/>
+  <topicref href="Concepts/concept-workingset-mgmt.dita">
+   <topicref href="Tasks/tasks-manage-workingset.dita"/>
+  </topicref>
   <topicref href="Concepts/concept-docExpiration.dita"/>
   <topicref href="Concepts/concept-serverWarmup.dita"/>
   <topicref href="Concepts/concept-rebalancing.dita"/>
@@ -49,7 +51,6 @@
   </topicref>
   <topicref href="Tasks/tasks-manage-serverWarmup.dita"/>
   <topicref href="Tasks/tasks-manage-replication.dita"/>
-  <topicref href="Tasks/tasks-manage-workingset.dita"/>
   <topicref href="Tasks/tasks-compaction.dita"/>
   <topicref href="Tasks/tasks-nodeFailover.dita"/>
   <topicref href="Tasks/tasks-dataRecovery.dita"/>

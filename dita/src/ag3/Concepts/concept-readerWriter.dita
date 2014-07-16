@@ -15,10 +15,35 @@
       up with the speed of disk hardware. The other problem caused by single read/writes threads is
       that if you have a good portion of data on disk and not RAM, you can experience a high level
       of cache misses when you request this data. </p>
+    
+    <p>The multi-reader and writer setting depends on the following hardware in your Couchbase cluster:</p>
+    <note type="note">The recommended hardware requirements are quad-core processes on 64-bit CPU and 3GHz, 16GB RAM physical storage. 
+      Solid state drives are also recommended. </note>
+    
+    <ul>
+      <li>If you deploy your cluster on the minimum hardware requirement which is dual-core CPUs running on 2GHz and 4GB of physical RAM, 
+        stay with the default setting of Low (which is three threads).</li>
+      <li>If you deploy your servers on recommended hardware requirements or above, 
+        this setting can be increased to High (which is eight threads).</li>
+      <li>If you have a hardware configuration which conforms to pre–2.1 hardware requirements, 
+        change this setting to the default.</li>
+    </ul>
+     
+     
+     
+    <note type="note">In a Couchbase Server cluster, since earlier version of Couchbase Server coexists with higher versions of Couchbase Server. 
+    Pre-2.1 nodes remain with single readers and writer for the data bucket. 
+    Post-2.1 nodes have multiple readers and writers. 
+    When server nodes are upgraded, the multiple readers and writers setting is implemented with bucket restart and warmup. 
+    In this case, install the new node, add it to the cluster, edit the existing bucket setting for readers and writers. 
+    After rebalancing the cluster, the new node performs reads and writes with multiple readers and writers and the data bucket does not restart or go through a warmup. 
+    All existing pre–2.1 nodes remain with a single readers and writers for the data bucket. 
+    As pre-2.1 nodes are upgraded and added to the cluster, 
+    these new nodes automatically pick up the setting and use multiple readers and writers for the bucket.</note>
 
 
     
-    <p>This multi-threaded engine includes additional synchronization among threads that are
+    <p>The multi-threaded engine includes additional synchronization among threads that are
       accessing the same data cache to avoid conflicts. To maintain performance while avoiding
       conflicts over data, Couchbase uses a form of locking between threads as well as thread allocation
       among vBuckets with static partitioning. When Couchbase Server creates multiple reader and
