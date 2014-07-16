@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_dl3_clp_yn">
- <title>Bucket metadata ejection</title>
+ <title>Metadata ejection</title>
  <shortdesc>Metadata ejection allows both value and full bucket ejection from memory.</shortdesc>
  <conbody>
   
@@ -26,10 +26,7 @@
     then its key and meta data in the second phase if the memory usage is still high.</p>
   </section>
   
-  
 
-
-  
   <section><title>Impacted documentation</title>
    <ul>
     <li>Views and stored data > Document metadata</li>
@@ -47,17 +44,19 @@
 
   </section> 
   
+  <section><title>Topics:</title></section>
+  
   
  </conbody>
  
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
    <link href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita">
-    <linktext>Ejecting bucket metadata (CLI)</linktext>
+    <linktext>Ejecting metadata (CLI)</linktext>
    </link>
    <link href="../CLI/CBcli/cbcli-buckets.dita"></link>
    <link href="../REST/rest-bucket-metadata-ejection.dita">
-    <linktext>Ejecting bucket metadata (REST)</linktext>
+    <linktext>Ejecting metadata (REST)</linktext>
    </link>
    <link href="../REST/rest-bucket-intro.dita"></link>
   </linklist>

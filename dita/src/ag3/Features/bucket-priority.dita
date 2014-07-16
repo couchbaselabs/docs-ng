@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_eg2_454_yn">
- <title>Bucket disk I/O priority</title>
+ <title>Disk I/O priority</title>
 
- <shortdesc>Bucket disk I/O priority refers to an advanced setting for optimizing I/O allocation.</shortdesc>
+ <shortdesc>Disk I/O priority refers to an advanced setting for optimizing I/O
+    allocation.</shortdesc>
  
  <conbody>
 
@@ -32,10 +33,12 @@
     <li>Buckets allocated three to five (3-5) threads are low priority. </li>
    </ul>
   </section>
+   
+   <section><title>Topics:</title></section>
  
  </conbody>
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
    <link href="global-thread-pool.dita" />
    <link href="bucket-eviction.dita"/>
   </linklist>

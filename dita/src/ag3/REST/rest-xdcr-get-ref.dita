@@ -46,7 +46,7 @@ Accept: */*
     
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Tasks/xdcr-configure-replications.dita"/>
     </linklist>
   </related-links>

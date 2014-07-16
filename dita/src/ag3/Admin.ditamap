@@ -90,26 +90,6 @@
   </topicref>
   <topicref href="Tasks/tasks-change-diskpath.dita"/>
  </topicref>
- <topicref href="UI/ui-intro.dita">
-  <topicref href="UI/ui-cluster-summary.dita"/>
-  <topicref href="UI/ui-server-nodes.dita"/>
-  <topicref href="UI/ui-data-buckets.dita">
-   <topicref href="UI/ui-monitoring-statistics.dita"/>
-   <topicref href="UI/ui-document-editor.dita"/>
-  </topicref>
-  <topicref href="UI/ui-views-editor.dita"/>
-  <topicref href="UI/ui-xdcr-panel.dita"/>
-  <topicref href="UI/ui-logs.dita"/>
-  <topicref href="UI/ui-settings.dita">
-   <topicref href="UI/ui-settings-cluster.dita"/>
-   <topicref href="UI/ui-settings-update-notifications.dita"/>
-   <topicref href="UI/ui-settings-autofailover.dita"/>
-   <topicref href="UI/ui-settings-alerts.dita"/>
-   <topicref href="UI/ui-settings-autocompaction.dita"/>
-   <topicref href="UI/ui-settings-sample-buckets.dita"/>
-   <topicref href="UI/ui-settings-account-mgmt.dita"/>
-  </topicref>
- </topicref>
  <topicref href="Monitoring/monitor-intro.dita">
   <topicref href="Monitoring/monitor-underlying-processes.dita"/>
   <topicref href="Monitoring/monitor-port-access.dita"/>
@@ -143,9 +123,31 @@
   <topicref href="XDCR/xdcr-streamMgmt.dita"/>
   <topicref href="XDCR/xdcr-dataEncryption.dita"/>
  </topicref>
+ <topicref href="UI/ui-intro.dita">
+  <topicref href="UI/ui-cluster-summary.dita"/>
+  <topicref href="UI/ui-server-nodes.dita"/>
+  <topicref href="UI/ui-data-buckets.dita">
+   <topicref href="UI/ui-monitoring-statistics.dita"/>
+   <topicref href="UI/ui-document-editor.dita"/>
+  </topicref>
+  <topicref href="UI/ui-views-editor.dita"/>
+  <topicref href="UI/ui-xdcr-panel.dita"/>
+  <topicref href="UI/ui-logs.dita"/>
+  <topicref href="UI/ui-settings.dita">
+   <topicref href="UI/ui-settings-cluster.dita"/>
+   <topicref href="UI/ui-settings-update-notifications.dita"/>
+   <topicref href="UI/ui-settings-autofailover.dita"/>
+   <topicref href="UI/ui-settings-alerts.dita"/>
+   <topicref href="UI/ui-settings-autocompaction.dita"/>
+   <topicref href="UI/ui-settings-sample-buckets.dita"/>
+   <topicref href="UI/ui-settings-account-mgmt.dita"/>
+  </topicref>
+ </topicref>
  <topicref href="Misc/faq.dita"/>
- <topicref href="Misc/sample-bucket-beer.dita"/>
- <topicref href="Misc/sample-bucket-game.dita"/>
+ <topicref href="Misc/sample-bucket-intro.dita">
+  <topicref href="Misc/sample-bucket-beer.dita"/>
+  <topicref href="Misc/sample-bucket-game.dita"/>
+ </topicref>
  <topicref href="Misc/Trbl-intro.dita">
   <topicref href="Misc/Trbl-commonErrors.dita"/>
   <topicref href="Misc/Trbl-generalTips.dita"/>

@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_kgh_xdh_14">
-  <title>Secure client-server communication</title>
-  <shortdesc>Encrypted communication connection between the client and Couchbase Server cluster using Secure Sockets Layer (SSL). Enterprise Edition only.</shortdesc>
+  <title>Encrypted data access</title>
+  <shortdesc>Encrypted data access is a communication connection between the client and Couchbase
+    Server cluster using Secure Sockets Layer (SSL). Enterprise Edition only.</shortdesc>
   
   <body>
-    <p>The encrypted communication connection allows client connections to be configured for security using Secure Sockets Layer (SSL) encryption. 
-      Client-to-Server encryption protects data-in-flight from client machines to a Couchbase cluster using SSL. 
-      A secure channel is established between the client and the server.</p>
+    <p>The encrypted data access allows client connections to be configured for security using
+      Secure Sockets Layer (SSL) encryption. Client-to-Server encryption protects data-in-flight
+      from client machines to a Couchbase cluster using SSL. A secure channel is established between
+      the client and the server.</p>
     
-    <p>The self-signed certification for the initial node is progated throughout the server nodes in the cluster. 
-      If the self-signed certificate is regenerated or updated as part of setting up XDCR data encryption (or for any other reason), 
-    the certificate retrieved by the client must be obtained again before secure client-server communication is re-established. 
-    The secure connection is on the cluster-level (rather than bucket-level) and is 
-    through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
+    <p>The self-signed certification for the initial node is propagated throughout the server nodes
+      in the cluster. If the self-signed certificate is regenerated or updated as part of setting up
+      XDCR data encryption (or for any other reason), the certificate retrieved by the client must
+      be obtained again before secure client-server communication is re-established. The secure
+      connection is on the cluster-level (rather than bucket-level) and is through the dedicated
+      HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
     
     <p>The client sets up SSL communication with a Couchbase server cluster in the following manner:</p>
     
     <ol>
-      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and 
-        using the administratrator username and password.</li>
+      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and
+        using the administrator username and password.</li>
       <li>Retrieve the SSL self-signed certificate and store in the client local file,
           <codeph>xyz</codeph>.</li>
       <li>Create the cluster destination reference using the an encrypted port, 18091 REST HTTP or

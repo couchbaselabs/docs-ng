@@ -2,49 +2,70 @@
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_fz1_vxf_q4">
  <title>Common rebalancing questions</title>
- <shortdesc>Some common questions and answers are addresses for the rebalancing operation.</shortdesc>
+ <shortdesc>Common questions and answers about the rebalancing operation are addressed.</shortdesc>
  <conbody>
+
+
+ 
+   <section><title>How long will rebalancing take?</title>
+
+  <p>Because the rebalancing operation moves data stored in RAM and on disk, and continues while the
+   cluster is still servicing client requests, the time required to perform the rebalancing
+   operation is unique to each cluster. Other factors, such as the size and number of objects, speed
+   of the underlying disks used for storage, and the network bandwidth and capacity will also impact
+   the rebalance speed.</p>
+  <p>Busy clusters may take a significant amount of time to complete the rebalance operation.
+   Similarly, clusters with a large quantity of data to be moved between nodes on the cluster will
+   also take some time for the operation to complete. A busy cluster with lots of data may take a
+   significant amount of time to fully rebalance.</p>
+   </section>
   
   
-  <ul>
-    <li><b>How long will rebalancing take?</b></li>
-   </ul><p>Because the rebalancing operation moves data stored in RAM and on disk, and continues
-    while the cluster is still servicing client requests, the time required to perform the
-    rebalancing operation is unique to each cluster. Other factors, such as the size and number of
-    objects, speed of the underlying disks used for storage, and the network bandwidth and capacity
-    will also impact the rebalance speed.</p><p>Busy clusters may take a significant amount of time
-     to complete the rebalance operation. Similarly, clusters with a large quantity of data to be
-     moved between nodes on the cluster will also take some time for the operation to complete. A
-     busy cluster with lots of data may take a significant amount of time to fully rebalance.</p><ul>
-      <li><b>How many nodes can be added or removed?</b></li>
-     </ul><p>Functionally there is no limit to the number of nodes that can be added or removed in one
-      operation. However, from a practical level you should be conservative about the numbers of nodes
-      being added or removed at one time.</p><p>When expanding your cluster, adding more nodes and
-       performing fewer rebalances is the recommend practice.</p><p>When removing nodes, you should
-        take care to ensure that you do not remove too many nodes and significantly reduce the
-        capability and functionality of your cluster.</p><p>Remember as well that you can remove nodes,
-         and add nodes, simultaneously. If you are planning on performing a number of addition and
-         removals simultaneously, it is better to add and remove multiple nodes and perform one
-         rebalance, than to perform a rebalance operation with each individual move.</p><p>If you are
-          swapping out nodes for servicing, then you can use this method to keep the size and performance
-          of your cluster constant.</p><ul>
-           <li><b>Will cluster performance be affected during a rebalance?</b></li>
-          </ul><p>By design, there should not be any significant impact on the performance of your
-           application. However, it should be obvious that a rebalance operation implies a significant
-           additional load on the nodes in your cluster, particularly the network and disk I/O performance
-           as data is transferred between the nodes.</p><p>Ideally, you should perform a rebalance
-            operation during the quiet periods to reduce the impact on your running applications.</p><ul>
-             <li><b>Can I stop a rebalance operation?</b></li>
-            </ul><p>The vBuckets within the cluster are moved individually. This means that you can stop a
-             rebalance operation at any time. Only the vBuckets that have been fully migrated will have been
-             made active. You can re-start the rebalance operation at any time to continue the process.
-             Partially migrated vBuckets are not activated.</p><p>The one exception to this rule is when
-              removing nodes from the cluster. Stopping the rebalance cancels their removal. You will need to
-              mark these nodes again for removal before continuing the rebalance operation.</p><p>To ensure
-               that the necessary clean up occurs, stopping a rebalance incurs a five minute grace period
-               before the rebalance can be restarted. This ensures that the cluster is in a fixed state before
-               rebalance is requested
-               again.</p>
-        
+  
+   <section><title>How many nodes can be added or removed?</title>
+  
+  <p>Functionally there is no limit to the number of nodes that can be added or removed in one
+   operation. However, from a practical level you should be conservative about the numbers of nodes
+   being added or removed at one time.</p>
+  <p>When expanding your cluster, adding more nodes and performing fewer rebalances is the recommend
+   practice.</p>
+  <p>When removing nodes, you should take care to ensure that you do not remove too many nodes and
+   significantly reduce the capability and functionality of your cluster.</p>
+  <p>Remember as well that you can remove nodes, and add nodes, simultaneously. If you are planning
+   on performing a number of addition and removals simultaneously, it is better to add and remove
+   multiple nodes and perform one rebalance, than to perform a rebalance operation with each
+   individual move.</p>
+  <p>If you are swapping out nodes for servicing, then you can use this method to keep the size and
+   performance of your cluster constant.</p>
+   </section>
+  
+  
+
+   <section><title>Will cluster performance be affected during a rebalance?</title>
+  
+  <p>By design, there should not be any significant impact on the performance of your application.
+   However, it should be obvious that a rebalance operation implies a significant additional load on
+   the nodes in your cluster, particularly the network and disk I/O performance as data is
+   transferred between the nodes.</p>
+  <p>Ideally, you should perform a rebalance operation during the quiet periods to reduce the impact
+   on your running applications.</p>
+   </section>
+  
+  
+
+   <section><title>Can I stop a rebalance operation?</title>
+  
+  <p>The vBuckets within the cluster are moved individually. This means that you can stop a
+   rebalance operation at any time. Only the vBuckets that have been fully migrated will have been
+   made active. You can re-start the rebalance operation at any time to continue the process.
+   Partially migrated vBuckets are not activated.</p>
+  <p>The one exception to this rule is when removing nodes from the cluster. Stopping the rebalance
+   cancels their removal. You will need to mark these nodes again for removal before continuing the
+   rebalance operation.</p>
+  <p>To ensure that the necessary clean up occurs, stopping a rebalance incurs a five minute grace
+   period before the rebalance can be restarted. This ensures that the cluster is in a fixed state
+   before rebalance is requested again.</p>
+   </section>
+
  </conbody>
 </concept>

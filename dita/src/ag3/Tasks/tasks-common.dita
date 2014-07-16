@@ -67,7 +67,7 @@
   </body>
   
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../CLI/cli-overview.dita"></link>
       <link href="../REST/overview-rest-api.dita"></link>
     </linklist>

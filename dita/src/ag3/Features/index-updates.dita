@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_ggp_tqp_yn">
- <title>View consistency</title>
+ <title>Stream-based views</title>
  <shortdesc>Indexing is performed as soon as data changes in memory without waiting for persistence to disk. 
   As a result, views have up-to-date data and faster queries.</shortdesc>
  <conbody>
@@ -40,13 +40,15 @@
      data.</li>
   </ul>
   </section> 
+  
+  <section><title>Topics:</title></section>
 
 
 
  </conbody>
  
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
    <link href="../Views/views-operation.dita"></link>
   </linklist>
  </related-links>

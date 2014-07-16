@@ -258,7 +258,7 @@
 			</table></section>
 	</body>
 	<related-links>
-		<linklist>
+		<linklist><title>Related topics</title>
 			<link href="../XDCR/xdcr-intro.dita"/>
 			<link href="../Views/views-intro.dita"/>
 			<link href="../CLI/cbcli-intro.dita"/>

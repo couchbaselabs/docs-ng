@@ -205,7 +205,7 @@ Content-Type: application/json
 				calculated version.</note></section>
 	</body>
 	<related-links>
-		<linklist>
+		<linklist><title>Related topics</title>
 			<link href="http://geojson.org/geojson-spec.html" scope="external" format="html">
 				<linktext>GeoJSON</linktext>
 			</link>

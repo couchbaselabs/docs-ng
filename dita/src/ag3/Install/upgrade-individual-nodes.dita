@@ -24,7 +24,7 @@
       </ol> 
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Install/linux-startup-shutdown.dita"></link>
       <link href="../Install/windows-startup-shutdown.dita"></link>
       <link href="../Install/hostnames.dita"></link>

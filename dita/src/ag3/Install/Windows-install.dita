@@ -89,7 +89,7 @@
     </section>
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Install/install-platforms.dita"></link>
       <link href="../Install/windows-startup-shutdown.dita"></link>
       <link href="http://support.microsoft.com/kb/196271" scope="external" format="html">

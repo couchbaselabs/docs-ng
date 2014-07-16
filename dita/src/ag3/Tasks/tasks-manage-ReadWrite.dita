@@ -43,7 +43,7 @@
       
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../REST/overview-rest-api.dita"/>
       <link href="../REST/rest-bucket-intro.dita"/>
       <link href="../REST/rest-bucket-readwrite.dita"/>

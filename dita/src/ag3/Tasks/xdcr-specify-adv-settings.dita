@@ -44,7 +44,7 @@
         
     </taskbody>
     <related-links>
-        <linklist>
+        <linklist><title>Related topics</title>
             <link href="xdcr-adv-settings.dita"></link>
             <link href="../REST/rest-xdcr-intro.dita"></link>
         </linklist>

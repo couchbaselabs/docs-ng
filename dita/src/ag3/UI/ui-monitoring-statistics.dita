@@ -450,7 +450,7 @@
    </ul><p>Number of read operations per second for this view.</p></section>
  </body>
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
    <link href="../REST/rest-bucket-stats.dita"></link>
    <link href="../REST/rest-xdcr-statistics.dita"></link>
   </linklist>

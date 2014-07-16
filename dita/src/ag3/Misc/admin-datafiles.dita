@@ -84,7 +84,7 @@ couchbase-cli node-init -c node_IP:8091 \
 		
 	</body>
 	<related-links>
-		<linklist>
+		<linklist><title>Related topics</title>
 			<link href="../REST/rest-cluster-removenode.dita"></link>
 			<link href="../REST/overview-rest-api.dita"></link>
 			<link href="../REST/rest-server-nodes.dita"></link>

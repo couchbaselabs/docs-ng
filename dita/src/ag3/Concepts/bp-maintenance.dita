@@ -66,7 +66,7 @@ get_hits:
   </section>
  </body>
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
    <link href="concept-diskStorage.dita"></link>
   </linklist>
  </related-links>

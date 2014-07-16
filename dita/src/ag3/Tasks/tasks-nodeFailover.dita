@@ -249,7 +249,7 @@
         then rebalance, data files will be deleted, recreated and repopulated.</p></section>
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Tasks/tasks-rebalance.dita"/>
       <link href="../UI/ui-settings.dita"/>
       <link href="../REST/rest-cluster-autofailover-intro.dita"/>

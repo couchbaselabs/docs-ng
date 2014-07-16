@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_usx_5y1_k4">
-    <title>Setting bucket priority (UI)</title>
-    <shortdesc>The bucket disk I/O priority is set via the <uicontrol>Data Bucket</uicontrol> panel either 
+    <title>Setting disk I/O priority (UI)</title>
+    <shortdesc>The disk I/O priority for a bucket is set via the <uicontrol>Data Bucket</uicontrol> panel either 
         when creating a data bucket or when editing a data bucket.</shortdesc>
     <taskbody>
 
         <context>
-            <p>To set Bucket disk I/O priority:</p>
+            <p>To set disk I/O priority for a bucket:</p>
         </context>
         <steps>
             <step>

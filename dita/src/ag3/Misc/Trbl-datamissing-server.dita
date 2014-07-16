@@ -668,7 +668,7 @@ Total docs: 2
          this case Tommie was able to identify that the problem was in ep-engine.</p>
    </body>
    <related-links>
-      <linklist>
+      <linklist><title>Related topics</title>
          <link href="http://www.couchbase.com/issues/browse/MB-5534" scope="external" format="html">
             <linktext>http://www.couchbase.com/issues/browse/MB–5534</linktext>
          </link>

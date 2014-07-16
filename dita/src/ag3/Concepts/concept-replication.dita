@@ -24,7 +24,7 @@
   </body>
   
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Tasks/tasks-manage-xdcr.dita"></link>
       <link href="../Tasks/tasks-manage-replication.dita"></link>
     </linklist>

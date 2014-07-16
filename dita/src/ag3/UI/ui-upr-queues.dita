@@ -6,10 +6,10 @@
         to stream data changes to buckets.</shortdesc>
     <taskbody>
         <context>
-            <p>The UPR queues information is available for each node via the Server Nodes tab.</p>
+            <p>The UPR queues information is available for each node via the <uicontrol>Server Nodes</uicontrol> tab.</p>
         </context>
         <steps>
-            <step><cmd>Navigate to <codeph>Server Nodes > node link</codeph>.</cmd></step>
+            <step><cmd>Navigate to <uicontrol>Server Nodes > node link</uicontrol>.</cmd></step>
             <step><cmd>Clink on the node link (rather than expanding the triangle).</cmd></step>
             <step><cmd>Expand the UPR QUEUES module triangle.</cmd></step>
             <step><cmd>Hover over the UPR information for a description of the bucket analytics.</cmd></step>

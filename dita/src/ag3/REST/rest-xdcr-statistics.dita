@@ -162,7 +162,7 @@ replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destina
         <p>Many of these statistics are exposed in the Couchbase Web Console.</p>
     </body>
     <related-links>
-        <linklist>
+        <linklist><title>Related topics</title>
             <link href="../UI/ui-data-buckets.dita"/>
             <link href="../UI/ui-xdcr-panel.dita"/>
         </linklist>

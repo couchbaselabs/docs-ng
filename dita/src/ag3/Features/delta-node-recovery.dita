@@ -38,11 +38,13 @@
     </ul>
     </section>
     
+    <section><title>Topics:</title></section>
+    
     
   </body>
   
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="graceful-failover.dita"></link>
       <link href="../CLI/CBcli/cbcli-servers.dita"/>
       <link href="../REST/rest-server-nodes.dita"/>

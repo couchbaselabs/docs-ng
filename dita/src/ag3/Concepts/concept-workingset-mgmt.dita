@@ -211,7 +211,7 @@
   </section>
  </conbody>
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
 
    <link href="../CLI/cbepctl-intro.dita"></link>
    <link href="../CLI/CBepctl/cbepctl-diskcleanup.dita"></link>

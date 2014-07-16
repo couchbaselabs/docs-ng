@@ -886,7 +886,7 @@ function(doc, meta)
          index.</p></section>
    </body>
    <related-links>
-      <linklist>
+      <linklist><title>Related topics</title>
             <link href="../Views/views-operation.dita"/>
             <link href="../Views/views-querySample.dita"/>
             <link href="../Views/views-storedData.dita"/>

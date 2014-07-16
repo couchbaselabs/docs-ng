@@ -22,7 +22,7 @@
       available for client communication. </p>
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" scope="external"
         format="html">
         <linktext>MSDN: Avoiding TCP/IP Port Exhaustion</linktext>

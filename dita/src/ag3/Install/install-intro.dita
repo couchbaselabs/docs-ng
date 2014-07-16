@@ -28,7 +28,7 @@
     
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="http://www.couchbase.com/downloads" scope="external" format="html">
         <linktext>Couchbase downloads</linktext></link>
       <link href="init-setup.dita"></link>

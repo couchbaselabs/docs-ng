@@ -45,7 +45,7 @@
       Datacenter 2 is chosen as the winner because it has seen more updates.</p>
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../REST/rest-xdcr-intro.dita"></link>
     </linklist>
   </related-links>

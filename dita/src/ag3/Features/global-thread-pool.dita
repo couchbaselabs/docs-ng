@@ -2,8 +2,8 @@
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_mzx_cmx_b4">
 
- <title>Global thread pool</title>
- <shortdesc>Global thread pool optimizes dispatch tasks by decoupling buckets from thread allocation.</shortdesc>
+ <title>Shared thread pool</title>
+ <shortdesc>Shared thread pool optimizes dispatch tasks by decoupling buckets from thread allocation.</shortdesc>
  
  <conbody>
    <p>Threads and buckets are decoupled in the thread management which allows threads to run tasks
@@ -24,7 +24,7 @@
     These capabilities include, among other
     parameters, the number of CPU cores and the storage type (for example, SSD vs spindle disk).</p>
   
-  <p>Global thread pool management promotes:</p>
+  <p>Shared thread pool management promotes:</p>
   <ul>
    <li>Dynamic thread allocation which provides balanced provisioning by using idle threads (CPU)
     and disk capacity</li>
@@ -48,7 +48,8 @@
  </conbody>
  
  <related-links>
-  <linklist>
+  
+  <linklist><title>Related topics</title>
    <link href="bucket-priority.dita"/>
    <link href="../Monitoring/monitor-statistics.dita"></link>
    <link href="../Concepts/concept-cacheLayer.dita"></link>

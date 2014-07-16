@@ -42,12 +42,14 @@
    </ul>
   </section>
   
+  <section><title>Topics:</title></section>
+  
   
  </conbody>
  
  <related-links>
-  <linklist>
-   <link href="incremental-recovery.dita"/>
+  <linklist><title>Related topics</title>
+   <link href="delta-node-recovery.dita"/>
 
   </linklist>
  </related-links>

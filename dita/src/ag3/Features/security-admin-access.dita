@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_pgw_k2h_14">
-  <title>Secure administrative access</title>
-  <shortdesc>Secure administrator access provides encrypted REST API access using Secure Socket Layer (SSL) authentication.
-    Enterprise Edition only.</shortdesc>
+  <title>Encrypted admin access</title>
+  <shortdesc>Encripted administrator access provides encrypted REST API access using Secure Socket
+    Layer (SSL) authentication. Enterprise Edition only.</shortdesc>
   <body>
     
     <p>The encrypted communication allows a connection to be configured for security using Secure Sockets Layer (SSL) encryption. 

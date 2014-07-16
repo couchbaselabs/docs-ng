@@ -166,7 +166,7 @@
         appear instead as an invisible, but selectable, character. </p></section>
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Views/views-intro.dita"></link>
       <link href="../Views/views-writing.dita"></link>
       <link href="../REST/design-docs-rest-api.dita"></link>

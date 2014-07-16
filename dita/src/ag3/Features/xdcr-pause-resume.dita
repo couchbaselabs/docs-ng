@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_ix4_hkh_14">
-  <title>Pause and resume XDCR</title>
+  <title>Pause and resume replication</title>
   <shortdesc>During XDCR replication, the process can be paused and resumed. Performed via the
     Couchbase command-line interface (CLI).</shortdesc>
   

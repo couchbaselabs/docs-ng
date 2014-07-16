@@ -17,7 +17,7 @@
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11658" scope="external"
               format="html">MB-11658</xref></dt>
-          <dd>ns_server does not issue drop_deletes flag for metadata purge of deleted item.</dd>
+          <dd>Tombstone purge does not work due to misinterpretation of the <codeph>drop_deletes</codeph> flag.</dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11643" scope="external"
@@ -27,7 +27,9 @@
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11642" scope="external"
               format="html">MB-11642</xref></dt>
-          <dd>Intra-replication falling far behind under moderate-heavy workload</dd>
+          <dd>Intra-replication falling behind under moderate-heavy workload
+            <p>Under a moderate replication workload (20-30K sets per second), 
+              the backlog becomes too large resulting in high memory usage.</p></dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11630" scope="external"
@@ -38,11 +40,6 @@
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11629" scope="external"
               format="html">MB-11629</xref></dt>
           <dd>Memcached crashed during rebalance</dd>
-        </dlentry>
-        <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11624" scope="external"
-              format="html">MB-11624</xref></dt>
-          <dd>Missing curr_items(1K) after rebalance out on cluster</dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11608" scope="external"
@@ -76,7 +73,11 @@
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11554" scope="external"
               format="html">MB-11554</xref></dt>
-          <dd>cbrecovery mismatch in meta information after rebalance</dd>
+          <dd>Metadata inconsistent between source and destination clusters.
+          <p>After failing over and rebalancing nodes on a destination cluster and 
+            then replicating from the source cluster to destination cluster, 
+          the document metadata is inconsistent between source and destination clusters. 
+          This behavior occurs when the cbrecovery (1st) and rebalance (2nd) sequence is performed.</p></dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11553" scope="external"
@@ -93,13 +94,20 @@
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11434" scope="external"
               format="html">MB-11434</xref></dt>
-          <dd>600-800% CPU utilization by memcached on source nodes in XDCR scenarios (was less than
-            100% in 2.5.x)</dd>
+          <dd>600-800% CPU consumption by memcached on the source cluster. <p>In XDCR scenarios, the
+              CPU usage for memcached process is more than two times the usage in the previous
+              release. This is due to increased scheduling overhead from the shared thread
+              pool.</p><p>Workaround: Reduce the number of threads on systems that have more than 30
+              cores.</p></dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11405" scope="external"
               format="html">MB-11405</xref></dt>
-          <dd>~2400% CPU consumption by memcached during ongoing workload with 5 buckets</dd>
+          <dd>~2400% CPU consumption by memcached during ongoing workload with five (5) buckets.
+              <p>In XDCR scenarios, the CPU usage for memcached process is more than two times the
+              usage in the previous release. This is due to increased scheduling overhead from the
+              shared thread pool. </p><p>Workaround: Reduce the number of threads on systems that
+              have more than 30 cores.</p></dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11383" scope="external"
@@ -120,7 +128,7 @@
           <dlentry>
             <dt><xref href="http://www.couchbase.com/issues/browse/MB-11636" scope="external"
               format="html">MB-11636</xref></dt>
-            <dd>Initial index build is 4x slower</dd>
+            <dd>Initial index build is four times (4x) slower than normal.</dd>
           </dlentry>
           
           <dlentry>
@@ -130,16 +138,15 @@
           </dlentry>
           
           <dlentry>
-            <dt><xref href="http://www.couchbase.com/issues/browse/MB-11610" scope="external"
-              format="html">MB-11610</xref></dt>
-            <dd>(Mac) README has wrong version in it
-            <p>This should NOT be in a release note!</p></dd>
-          </dlentry>
-          
-          <dlentry>
             <dt><xref href="http://www.couchbase.com/issues/browse/MB-11605" scope="external"
               format="html">MB-11605</xref></dt>
-            <dd>XDCR is stuck with two buckets in source and destination cluster</dd>
+            <dd>XDCR replication (source to destination cluster) hangs when a hard OOM is hit. 
+              
+              <p>Uni-directional XDCR replication gets stuck if the source cluster hits hard
+              out-of-memory (OOM) prior to the start of XDCR replication. 
+              A hard OOM means that the bucket RAM quota has been exceeded. </p>
+              <p>Workaround: It is recoverable by increasing the bucket RAM quota on the source cluster.</p></dd>
+              
           </dlentry>
             
             <dlentry>
@@ -151,8 +158,8 @@
           <dlentry>
             <dt><xref href="http://www.couchbase.com/issues/browse/MB-10252" scope="external"
               format="html">MB-10252</xref></dt>
-            <dd>total_fragmentation_bytes metric is misleading
-              <p>This should NOT be in a release note because it's internal!</p></dd>
+            <dd>total_fragmentation_bytes metric is misleading. This should NOT be in a release
+              note because it's internal!</dd>
           </dlentry>
           
         </dl>

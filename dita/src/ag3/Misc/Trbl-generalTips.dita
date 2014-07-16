@@ -37,7 +37,7 @@
   </ul>
  </body>
  <related-links>
-  <linklist>
+  <linklist><title>Related topics</title>
    <link href="../CLI/cbcollect_info_tool.dita"></link>
    <link href="../Install/install-networkPorts.dita"></link>
   </linklist>

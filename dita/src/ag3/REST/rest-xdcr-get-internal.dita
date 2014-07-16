@@ -47,7 +47,7 @@ curl -u admin:password1  \
 
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Tasks/xdcr-adv-settings.dita"></link>
     </linklist>
   </related-links>

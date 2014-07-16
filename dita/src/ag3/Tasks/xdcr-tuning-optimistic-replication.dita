@@ -79,7 +79,7 @@ total # of docs to be replicated is: 9, total latency: 142 ms
       </section>
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../REST/rest-xdcr-get-internal.dita"/>
     </linklist>
   </related-links>

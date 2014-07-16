@@ -495,7 +495,7 @@ keys=[["tomato",20],["avocado",20]]
       
    </body>
    <related-links>
-      <linklist>
+      <linklist><title>Related topics</title>
          <link href="../Views/views-writing.dita"/>
          <link href="../Views/views-querySample.dita"/>
          <link href="../REST/rest-views-intro.dita"></link>

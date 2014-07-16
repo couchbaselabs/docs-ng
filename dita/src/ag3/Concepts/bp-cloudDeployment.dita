@@ -276,7 +276,7 @@
     
   </body>
   <related-links>
-    <linklist>
+    <linklist><title>Related topics</title>
       <link href="../Install/install-intro.dita"></link>
       <link href="../Install/init-setup.dita"></link>
       <link href="../Install/upgrading.dita"></link>

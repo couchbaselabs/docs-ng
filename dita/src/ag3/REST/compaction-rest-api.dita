@@ -253,7 +253,7 @@
 		
 	</body>
 	<related-links>
-		<linklist>
+		<linklist><title>Related topics</title>
 			<link href="../Concepts/concept-tombstone.dita"/>
 			<link href="../Tasks/tasks-compaction.dita"/>
 		</linklist>
