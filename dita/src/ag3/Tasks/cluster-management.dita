@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_rvf_xrb_54">
+  <title>Cluster management</title>
+  <body>
+    <p>The core administrative aspects of Couchbase Server center around managing the Couchbase
+      Server cluster.</p>
+  </body>
+</topic>
