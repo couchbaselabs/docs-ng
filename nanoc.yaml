@@ -214,14 +214,17 @@ navbar:
 
   - label: SDKs
     subnav:
+      - label: C Developer Guide v2.4 beta
+        href: /couchbase-sdk-c-2.4/
+
+      - label: C API Reference v2.4 beta
+        href: http://docs.couchbase.com/sdk-api/couchbase-c-client-2.4.0-beta/
+
       - label: C Developer Guide v2.3
         href: /couchbase-sdk-c-2.3/
 
       - label: C API Reference v2.3
         href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
-
-      - label: C Developer Guide v2.4 beta
-        href: /couchbase-sdk-c-2.4/
 
       - label: Java Developer Guide
         href: /couchbase-sdk-java-1.4/
