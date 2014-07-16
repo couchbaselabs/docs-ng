@@ -8,11 +8,11 @@
       server. To change the disk path, the node must be removed from the cluster, configured with
       the new path, and added back to the cluster.</p>
     <p>The quickest and easiest method is to provision a new node with the correct disk path
-      configured, and then use swap rebalance to add the new node in while taking the old node out.
-      .</p>
+      configured, and then use swap rebalance to add the new node in while taking the old node
+      out.</p>
     <p>To change the disk path of the existing node, the recommended sequence is:</p>
     <ol>
-      <li>Remove the node where you want to change the disk path from the cluster.To ensure the
+      <li>Remove the node where you want to change the disk path from the cluster. To ensure the
         performance of your cluster is not reduced, perform a swap rebalance with a new node.</li>
       <li>Perform a rebalance operation.</li>
       <li>Configure the new disk path, either by using the REST API using the command-line (see

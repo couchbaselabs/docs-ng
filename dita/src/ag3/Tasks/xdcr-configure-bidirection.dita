@@ -5,9 +5,9 @@
     <shortdesc/>
     <taskbody>
         <context>
-            <p>Replication is unidirectional from one cluster to another. To configure
-                bidirectional replication between two clusters, you need to provide settings for two separate
-                replication streams. One stream replicates changes from Cluster A to Cluster B, another stream
+            <p>Replication is unidirectional from one cluster to another. To configure bidirectional
+                replication between two clusters, provide settings for two separate replication
+                streams. One stream replicates changes from Cluster A to Cluster B, another stream
                 replicates changes from Cluster B to Cluster A. </p>
                 
                 <note type="note">You do not need identical topologies for both clusters. You can have a different number

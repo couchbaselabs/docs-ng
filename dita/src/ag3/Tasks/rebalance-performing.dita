@@ -16,19 +16,7 @@
         required to move the cluster into its configured state. To start a rebalance:</p>
        
        
-       <section><title>Rebalancing via UI</title>
-         
-      <p>Within the <uicontrol>Manage Server Nodes</uicontrol> area of the Couchbase Administration Web
-        Console, a cluster pending a rebalance operation will have enabled the
-        <codeph>Rebalance</codeph> button. Click <uicontrol>Rebalance</uicontrol> to immediately initiates a rebalance operation. You can
-        monitor the progress of the rebalance operation through the web console.</p>
 
-      <fig><image href="../images/admin-tasks-rebalance-starting-console.png" width="720"></image></fig>
-      
-      <p>Stop the rebalance operation at any time during the process by clicking the <uicontrol>Stop
-            Rebalance</uicontrol> button. This only stops the rebalance operation, it does not cancel the
-          operation. You should complete the rebalance operation.</p>
-       </section>
           
           
           <section><title>Rebalancing via CLI</title>

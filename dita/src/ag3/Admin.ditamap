@@ -5,6 +5,7 @@
  <topicref href="Misc/admin-basics.dita">
   <topicref href="Misc/start-stop-couchbase.dita"/>
   <topicref href="Misc/admin-tools.dita"/>
+  <topicref href="Tasks/tasks-common.dita"/>
   <topicref href="Misc/admin-datafiles.dita"/>
   <topicref href="Misc/install-location.dita"/>
   <topicref href="Misc/limits.dita"/>
@@ -42,8 +43,7 @@
   <topicref href="Concepts/bp-cloudDeployment.dita"/>
   <topicref href="Tasks/xdcr-cloud.dita"/>
  </topicref>
- <topicref href="Tasks/tasks-common.dita">
-  <topicref href="Tasks/tasks-create-readUser.dita"/>
+ <topicref href="Tasks/cluster-management.dita">
   <topicref href="Tasks/tasks-manage-serverWarmup.dita"/>
   <topicref href="Tasks/tasks-manage-replication.dita"/>
   <topicref href="Tasks/tasks-compaction.dita"/>
@@ -143,7 +143,9 @@
    <topicref href="UI/ui-settings-alerts.dita"/>
    <topicref href="UI/ui-settings-autocompaction.dita"/>
    <topicref href="UI/ui-settings-sample-buckets.dita"/>
-   <topicref href="UI/ui-settings-account-mgmt.dita"/>
+   <topicref href="UI/ui-settings-account-mgmt.dita">
+    <topicref href="Tasks/tasks-create-readUser.dita"/>
+   </topicref>
   </topicref>
  </topicref>
  <topicref href="Misc/faq.dita"/>
