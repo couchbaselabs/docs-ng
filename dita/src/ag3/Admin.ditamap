@@ -3,9 +3,9 @@
 <map>
  <title>Couchbase Administration Guide</title>
  <topicref href="Misc/admin-basics.dita">
-  <topicref href="Misc/start-stop-couchbase.dita"/>
   <topicref href="Misc/admin-tools.dita"/>
   <topicref href="Tasks/tasks-common.dita"/>
+  <topicref href="Misc/start-stop-couchbase.dita"/>
   <topicref href="Misc/admin-datafiles.dita"/>
   <topicref href="Misc/install-location.dita"/>
   <topicref href="Misc/limits.dita"/>
