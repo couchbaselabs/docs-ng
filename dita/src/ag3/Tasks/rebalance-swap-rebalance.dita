@@ -9,19 +9,12 @@
   
   <p>The swap rebalance optimizes the rebalance operation by moving data directly from the
    nodes being removed to the nodes being added. This is more efficient than standard rebalancing
-   which would normally move data across the entire cluster.</p><p>Swap rebalance only occurs if
-    the following are true:</p><ul>
-     <li><p>You are removing and adding the same number of nodes during rebalance. For example, if
-      you have marked two nodes to be removed, and added another two nodes to the cluster.</p></li>
-     <li><p>When Couchbase Server identifies that a rebalance is taking place and that there are an
-      even number of nodes being removed and added to the cluster, the swap rebalance method is used
-      to perform the rebalance operation.</p></li>
-    </ul><p>Swap rebalance occurs automatically if the number of nodes being added and removed are
-     identical. There is no configuration or selection mechanism to force a swap rebalance. If a swap
-     rebalance cannot take place, then a normal rebalance operation will be used instead.</p><p>When
-      a swap rebalance takes place, the rebalance operates as follows:</p><ul>
-       <li><p>Data will be moved directly from a node being removed to a node being added on a
-        one-to-one basis. This eliminates the need to restructure the entire vBucket map.</p></li>
+   which would normally move data across the entire cluster.</p><p>Swap rebalance occurs automatically if the number of nodes being added and removed are identical.
+   There is no configuration or selection mechanism to force a swap rebalance. If a swap rebalance
+   cannot take place, then a normal rebalance operation is used instead. When a swap rebalance takes
+   place, the rebalance operates as follows:</p><ul>
+       <li><p>Data is moved directly from a node being removed to a node being added on a one-to-one basis.
+     This eliminates the need to restructure the entire vBucket map.</p></li>
        <li><p>Active vBuckets are moved, one at a time, from a source node to a destination
         node.</p></li>
        <li><p>Replica vBuckets are created on the new node and populated with existing data before
