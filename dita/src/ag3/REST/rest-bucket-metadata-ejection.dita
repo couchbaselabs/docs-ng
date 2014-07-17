@@ -18,8 +18,8 @@
       <table>
         <tgroup cols="3">
           <colspec colname="col1" colwidth="1*"/>
-          <colspec colname="col2" colwidth="2.2*"/>
-          <colspec colname="col3" colwidth="4.14*"/>
+          <colspec colname="col2" colwidth="2.41*"/>
+          <colspec colname="col3" colwidth="2.54*"/>
           <thead>
             <row>
               <entry>HTTP method</entry>

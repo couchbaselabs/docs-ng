@@ -2,68 +2,70 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
  <title>Couchbase REST API</title>
- <topicref href="REST/overview-rest-api.dita"></topicref>
- <topicref href="REST/rest-cluster-intro.dita">
-  <topicref href="REST/rest-cluster-get.dita"/>
-  <topicref href="REST/rest-cluster-details.dita"/>
-  <topicref href="REST/rest-cluster-addnodes.dita"/>
-  <topicref href="REST/rest-cluster-joinnode.dita"/>
-  <topicref href="REST/rest-cluster-rebalance.dita"/>
-  <topicref href="REST/rest-cluster-removenode.dita"/>
-  <topicref href="REST/rest-cluster-internal-settings.dita"/>
-  <topicref href="REST/rest-cluster-autofailover-intro.dita">
-   <topicref href="REST/rest-cluster-autofailover-settings.dita"/>
-   <topicref href="REST/rest-cluster-autofailover-enable.dita"/>
-   <topicref href="REST/rest-cluster-autofailover-reset.dita"/>
+ <topicref href="rest-intro.dita">
+  <topicref href="REST/overview-rest-api.dita"/>
+  <topicref href="REST/rest-cluster-intro.dita">
+   <topicref href="REST/rest-cluster-get.dita"/>
+   <topicref href="REST/rest-cluster-details.dita"/>
+   <topicref href="REST/rest-cluster-addnodes.dita"/>
+   <topicref href="REST/rest-cluster-joinnode.dita"/>
+   <topicref href="REST/rest-cluster-rebalance.dita"/>
+   <topicref href="REST/rest-cluster-removenode.dita"/>
+   <topicref href="REST/rest-cluster-internal-settings.dita"/>
+   <topicref href="REST/rest-cluster-autofailover-intro.dita">
+    <topicref href="REST/rest-cluster-autofailover-settings.dita"/>
+    <topicref href="REST/rest-cluster-autofailover-enable.dita"/>
+    <topicref href="REST/rest-cluster-autofailover-reset.dita"/>
+   </topicref>
+   <topicref href="REST/rest-cluster-disable-query.dita"/>
+   <topicref href="REST/rest-cluster-email-notifications.dita"/>
+   <topicref href="REST/rest-cluster-max-buckets.dita"/>
+   <topicref href="REST/rest-cluster-max-index.dita"/>
   </topicref>
-  <topicref href="REST/rest-cluster-disable-query.dita"/>
-  <topicref href="REST/rest-cluster-email-notifications.dita"/>
-  <topicref href="REST/rest-cluster-max-buckets.dita"/>
-  <topicref href="REST/rest-cluster-max-index.dita"/>
+  <topicref href="REST/rest-server-nodes.dita">
+   <topicref href="REST/rest-node-provisioning.dita"/>
+   <topicref href="REST/rest-node-failover.dita"/>
+   <topicref href="REST/rest-node-hostname.dita"/>
+   <topicref href="REST/rest-node-set-username.dita"/>
+   <topicref href="REST/rest-node-memory-quota.dita"/>
+   <topicref href="REST/rest-node-index-path.dita"/>
+   <topicref href="REST/rest-node-retrieve-stats.dita"/>
+  </topicref>
+  <topicref href="REST/rest-rza.dita"/>
+  <topicref href="REST/rest-bucket-intro.dita">
+   <topicref href="REST/rest-bucket-info.dita"/>
+   <topicref href="REST/rest-bucket-get-config.dita"/>
+   <topicref href="REST/rest-bucket-stats.dita"/>
+   <topicref href="REST/rest-buckets-streamingURI.dita"/>
+   <topicref href="REST/rest-buckets-summary.dita"/>
+   <topicref href="REST/rest-bucket-create.dita"/>
+   <topicref href="REST/rest-bucket-delete.dita"/>
+   <topicref href="REST/rest-bucket-flush.dita"/>
+   <topicref href="REST/rest-bucket-auth.dita"/>
+   <topicref href="REST/rest-bucket-readwrite.dita"/>
+   <topicref href="REST/rest-bucket-memory-quota.dita"/>
+   <topicref href="REST/rest-bucket-parameters.dita"/>
+  </topicref>
+  <topicref href="REST/rest-views-intro.dita">
+   <topicref href="REST/design-docs-rest-api.dita"/>
+   <topicref href="REST/rest-views-get.dita"/>
+   <topicref href="REST/rest-views-requests.dita"/>
+  </topicref>
+  <topicref href="REST/rest-xdcr-intro.dita">
+   <topicref href="REST/rest-xdcr-create-ref.dita"/>
+   <topicref href="REST/rest-xdcr-create-replication.dita"/>
+   <topicref href="REST/rest-xdcr-data-encrypt.dita"/>
+   <topicref href="REST/rest-xdcr-delete-ref.dita"/>
+   <topicref href="REST/rest-xdcr-delete-replication.dita"/>
+   <topicref href="REST/rest-xdcr-edit-internal.dita"/>
+   <topicref href="REST/rest-xdcr-get-internal.dita"/>
+   <topicref href="REST/rest-xdcr-get-ref.dita"/>
+   <topicref href="REST/rest-xdcr-statistics.dita"/>
+  </topicref>
+  <topicref href="REST/compaction-rest-api.dita"/>
+  <topicref href="REST/logs-rest-api.dita"/>
+  <topicref href="REST/rest-users.dita"/>
  </topicref>
- <topicref href="REST/rest-server-nodes.dita">
-  <topicref href="REST/rest-node-provisioning.dita"/>
-  <topicref href="REST/rest-node-failover.dita"/>
-  <topicref href="REST/rest-node-hostname.dita"/>
-  <topicref href="REST/rest-node-set-username.dita"/>
-  <topicref href="REST/rest-node-memory-quota.dita"/>
-  <topicref href="REST/rest-node-index-path.dita"/>
-  <topicref href="REST/rest-node-retrieve-stats.dita"/>
- </topicref>
- <topicref href="REST/rest-rza.dita"/>
- <topicref href="REST/rest-bucket-intro.dita">
-  <topicref href="REST/rest-bucket-info.dita"/>
-  <topicref href="REST/rest-bucket-get-config.dita"/>
-  <topicref href="REST/rest-bucket-stats.dita"/>
-  <topicref href="REST/rest-buckets-streamingURI.dita"/>
-  <topicref href="REST/rest-buckets-summary.dita"/>
-  <topicref href="REST/rest-bucket-create.dita"/>
-  <topicref href="REST/rest-bucket-delete.dita"/>
-  <topicref href="REST/rest-bucket-flush.dita"/>
-  <topicref href="REST/rest-bucket-auth.dita"/>
-  <topicref href="REST/rest-bucket-readwrite.dita"/>
-  <topicref href="REST/rest-bucket-memory-quota.dita"/>
-  <topicref href="REST/rest-bucket-parameters.dita"/>
- </topicref>
- <topicref href="REST/rest-views-intro.dita">
-  <topicref href="REST/design-docs-rest-api.dita"/>
-  <topicref href="REST/rest-views-get.dita"/>
-  <topicref href="REST/rest-views-requests.dita"/>
- </topicref>
- <topicref href="REST/rest-xdcr-intro.dita">
-  <topicref href="REST/rest-xdcr-create-ref.dita"/>
-  <topicref href="REST/rest-xdcr-create-replication.dita"/>
-  <topicref href="REST/rest-xdcr-data-encrypt.dita"/>
-  <topicref href="REST/rest-xdcr-delete-ref.dita"/>
-  <topicref href="REST/rest-xdcr-delete-replication.dita"/>
-  <topicref href="REST/rest-xdcr-edit-internal.dita"/>
-  <topicref href="REST/rest-xdcr-get-internal.dita"/>
-  <topicref href="REST/rest-xdcr-get-ref.dita"/>
-  <topicref href="REST/rest-xdcr-statistics.dita"/>
- </topicref>
- <topicref href="REST/compaction-rest-api.dita"></topicref>
- <topicref href="REST/logs-rest-api.dita"></topicref>
- <topicref href="REST/rest-users.dita"/>
 
 
  

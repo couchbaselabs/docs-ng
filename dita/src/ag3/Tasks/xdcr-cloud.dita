@@ -39,7 +39,7 @@
   </body>
   <related-links>
     <linklist><title>Related topics</title>
-      <link href="../Install/install-intro.dita"></link>
+      <link href="../Install/setup-overview.dita"></link>
       <link href="../Install/install-networkPorts.dita"></link>
       <link href="../Concepts/bp-cloudDeployment.dita"></link>
     </linklist>
