@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1601">
+  <title>Couchbase setup overview</title>
+  <body>
+    <p>To start using Couchbase Server, follow these steps:</p>
+    <ol>
+      <li>Make sure your machine meets the system requirements.</li>
+      <li>Install Couchbase Server. <p>To install Couchbase Server on your machine, download the
+          appropriate package for your chosen platform. For each platform, follow the corresponding
+          platform-specific instructions. </p><ul>
+          <li>To perfom a fresh installation (not an upgrade) over a previous Couchbase Server
+            installation, remove Couchbase Server and any associated data from your machine before
+            installing.</li>
+          <li>To retain existing datasets from a previous Couchbase Server installation, perform an
+            upgrade installation.</li>
+        </ul></li>
+      <li>Test the installation by connecting and storing some data using the native Memcached
+          protocol.</li>
+      <li>Setup the new Couchbase Server system by completing the web-based setup instructions.
+          </li>
+    </ol>
+    <note type="warning">Implement the same operating system on all machines within a cluster. If
+      XDCR is used, implement the same operating system on the other clusters. Mixed deployments,
+      such as a cluster with both Linux and Windows server nodes, are not supported. This
+      incompatibility is due to differences in the number of shards between platforms.    </note>
+    
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="http://www.couchbase.com/downloads" scope="external" format="html">
+        <linktext>Couchbase downloads</linktext></link>
+      <link href="init-setup.dita"></link>
+      <link href="testing.dita"></link>
+      <link href="uninstalling.dita"></link>
+      <link href="upgrading.dita"></link>
+    </linklist>
+  </related-links>
+</topic>
