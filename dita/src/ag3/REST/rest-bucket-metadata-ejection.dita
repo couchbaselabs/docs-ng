@@ -36,7 +36,7 @@
             <row>
               <entry>GET</entry>
               <entry>/pools/default/buckets/default</entry>
-              <entry>Retrieves information for a single bucket associated with a cluser.</entry>
+              <entry>Retrieves information for a single bucket associated with a cluster.</entry>
             </row>
             <row>
               <entry>GET</entry>
