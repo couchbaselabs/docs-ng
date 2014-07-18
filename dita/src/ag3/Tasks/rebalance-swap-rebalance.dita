@@ -2,8 +2,8 @@
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_cqg_2zf_q4">
  <title>Swap rebalance</title>
- <shortdesc>Swap Rebalance is an automatic feature that optimizes the movement of data when you are
-  adding and removing the same number of nodes within the same operation. </shortdesc>
+ <shortdesc>Swap rebalance is an automatic feature that optimizes the movement of data when you are
+    adding and removing the same number of nodes within the same operation. </shortdesc>
  <conbody>
 
   <p>The swap rebalance optimizes the rebalance operation by moving data directly from the nodes

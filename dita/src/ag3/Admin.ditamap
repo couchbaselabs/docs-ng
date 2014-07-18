@@ -70,7 +70,6 @@
     <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
     <topicref href="Tasks/xdcr-modify-settings.dita"/>
    </topicref>
-   <topicref href="Tasks/tasks-change-diskpath.dita"/>
   </topicref>
   <topicref href="Monitoring/monitor-intro.dita">
    <topicref href="Monitoring/monitor-underlying-processes.dita"/>
@@ -175,5 +174,6 @@
    <topicref href="Misc/Trbl-total_row-debug.dita"/>
    <topicref href="Misc/Trbl-wrongdocs.dita"/>
   </topicref>
+  <topicref href="Misc/deprecated.dita"/>
  </topicref>
 </map>

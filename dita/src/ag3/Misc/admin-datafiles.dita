@@ -3,10 +3,12 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic1711">
 	<title>Data file location</title>
-	<shortdesc>The Couchbase data files are in a <uicontrol>var > lib > couchbase > data</uicontrol> location 
-	whereas the initial file structure is dependent on the operating system.</shortdesc>
+	<shortdesc>Couchbase Server stores data files (database and indices) under the <uicontrol>var > lib
+			> couchbase > data</uicontrol> path.</shortdesc>
 	<body>
-		<p>By default, Couchbase Server stores data files under the following paths:</p>
+		<p>The disk path for the database and indices files is set during the initial setup of the server
+			node. The default disk path is typically used for development purposes only. If the
+			server node is used for production, configure a different disk path. </p>
 		<table>
 			<tgroup cols="2">
 				<colspec colname="col1" colwidth="1*"/>
@@ -14,7 +16,7 @@
 				<thead>
 					<row>
 						<entry>Platform</entry>
-						<entry>Directory</entry>
+						<entry>Default directory</entry>
 					</row>
 				</thead>
 				<tbody>
@@ -36,55 +38,53 @@
 		
 		
 		
-		<section><title>Changing the data file path</title>
-		<p>This path can be changed for each node at setup either via the Web UI setup wizard, using
-			the REST API or using the Couchbase CLI. 
-			Once a node or cluster has already been setup and is storing data, 
-			the path cannot be changed while the node is part of a running cluster. </p>
-			
-			<p>To change the path:</p>
-			<ol>
-				<li>Remove the node from the cluster.</li>
-				<li>Change the path on a running node either via the REST API or using the Couchbase
-					CLI (commands above). This change does not actually take effect until the node
-					is restarted. </li>
-				<li>Shut the node down.</li>
-				<li>Copy all the data files from their original location into the new
-					location.</li>
+		<section><title>Changing the data file path</title><p>The disk path where the data and index files
+				are stored cannot be changed on a running server. To change the disk path, the node
+				must be removed from the cluster, configured with the new path, and added back to
+				the cluster. The data file path can be changed for each node via the Web UI at
+				setup, REST API, or CLI. Once a node or cluster has already been setup and is
+				storing data, the path cannot be changed while the node is part of a running
+				cluster. </p><p>The quickest and easiest method is to provision a new node with the
+				correct disk path configured and then use swap rebalance to add the new node in
+				while taking the old node out. This ensures that cluster performance is not
+				impacted. </p><p>To change the disk path by replacing a node (with swap
+				rebalance):</p><ol>
+				<li>Setup a new node with a different disk path.</li>
+				<li>Swap rebalance the new node for the existing node.</li>
+				<li>Repeat the process for every node in the cluster.</li>
 			</ol>
-			
-		<note type="important">Changing the data path for a node that is already part of a cluster permanently
-			deletes the data stored.</note>
-			
-			<note type="tip">When using the command line tool, 
-				the data file and index file path settings cannot be changed individually. 
-				To change the setting individually, use the REST API.</note>
-			
-				
+			<p>To change the disk path of an existing node (without swap rebalance): </p><ol>
+				<li>Remove the node from the cluster and rebalance.</li>
+				<li>Change the path on the running node either via the REST API or using the
+					Couchbase CLI (commands above). </li>
+				<li>Re-add the node back to the cluster and rebalance.</li>
+			</ol> To change the disk path on multiple nodes, swap out each node and change the disk
+			path individually. <note type="important">Changing the data path for a node that is
+				already part of a cluster permanently deletes the stored data.</note>
+			<note type="tip">When using the command line tool, the data file and index file path
+				settings cannot be changed individually. To change the setting individually, use the
+				REST API.</note>
 		</section>
 		
 			
-		<example><title>Linux example:</title>
+		<example><title>CLI example</title>
 		<codeblock>
-couchbase-cli node-init -c node_IP:8091 \
+couchbase-cli node-init -c 10.5.2.54:8091 \
 	--node-init-data-path=new_path \
 	-u user -p password
 		</codeblock>
 		</example>
 		
-		
-		<example><title>Windows example:</title>
-		<codeblock>
-&gt; couchbase-cli node-init -c \
-    node_IP:8091 --node-init-data-path=new_path \
-    -u user -p password
-</codeblock>
-	</example>
-
+	
 		
 	</body>
 	<related-links>
 		<linklist><title>Related topics</title>
+			<link href="../Tasks/rebalance-swap-rebalance.dita"/>
+			<link href="../Tasks/rebalance-adding-nodes.dita"/>
+			<link href="../Tasks/rebalance-performing.dita"/>
+			<link href="../Tasks/rebalance-cluster.dita"/>
+			<link href="../REST/rest-node-index-path.dita"/>
 			<link href="../REST/rest-cluster-removenode.dita"></link>
 			<link href="../REST/overview-rest-api.dita"></link>
 			<link href="../REST/rest-server-nodes.dita"></link>
