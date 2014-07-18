@@ -2896,21 +2896,10 @@ from the nodes being removed to the nodes being added. This is more efficient
 than standard rebalancing which would normally move data across the entire
 cluster.
 
-Swap rebalance only occurs if the following are true:
-
- * You are removing and adding the same number of nodes during rebalance. For
-   example, if you have marked two nodes to be removed, and added another two nodes
-   to the cluster.
-
-* When Couchbase Server identifies that a rebalance is taking place and that there
-are an even number of nodes being removed and added to the cluster, the swap
-rebalance method is used to perform the rebalance operation.
-
-Swap rebalance occurs automatically if the number of nodes being added and
-removed are identical. There is no configuration or selection mechanism to force
-a swap rebalance. If a swap rebalance cannot take place, then a normal rebalance
-operation will be used instead.
-
+Swap rebalance occurs automatically if the number of nodes being added and removed are identical. 
+For example, two nodes are marked to be removed and another two nodes are added  to the cluster. 
+There is no configuration or selection mechanism to force a swap rebalance. 
+If a swap rebalance cannot take place, then a normal rebalance operation is used instead.
 
 
 When a swap rebalance takes place, the rebalance operates as follows:

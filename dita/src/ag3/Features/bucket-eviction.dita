@@ -8,6 +8,7 @@
   
   <p>Value bucket ejection removes the data but keeps all keys and metadata in memory (default). 
    Value-bucket ejection is the standard method of ejection. 
+   An item's value is reset when the ejection occurs. 
    Full-bucket ejection removes all data including keys, metadata, and key-values. 
    Full-bucket ejection reduces the RAM requirement for large buckets.</p>
   
@@ -19,12 +20,6 @@
    The workload characteristics can be categorized.</p>
   
   <p><b>GRAPHICs: Ejection Logic Table</b></p>
-
-  
-  <section><title>Questions</title>
-   <p>Is it incremental, meaning that item's value is evicted in the first eviction phase and 
-    then its key and meta data in the second phase if the memory usage is still high.</p>
-  </section>
   
 
   <section><title>Impacted documentation</title>
