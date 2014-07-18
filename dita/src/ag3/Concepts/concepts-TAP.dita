@@ -60,9 +60,8 @@
         
         
         <title>Delete</title>
-      <p>To delete information from Couchbase Server you need to use the memcached protocol
-        which includes an explicit delete command to remove a key/value pair from the
-        server.</p><p>However, Couchbase Server also allows information to be stored in the database
+      <p>To delete information from Couchbase Server, you need to use the memcached protocol which
+        includes an explicit delete command to remove a key/value pair from the server.</p><p>However, Couchbase Server also allows information to be stored in the database
         with an expiry value. The expiry value states when a key/value pair should be automatically
         deleted from the entire database, and can either be specified as a relative time (for
         example, in 60 seconds), or absolute time (31st December 2012, 12:00pm).</p>

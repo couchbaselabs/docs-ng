@@ -44,39 +44,32 @@
       </section>
       
       
-      <section><title>Monitoring ’Optimistic Replication"</title>
-        <p>The
-          easiest way you can monitor the impact of this setting is in Couchbase Web Console. On the Data
-          Buckets tab under Incoming XDCR Operations, you can compare <codeph>metadata reads per
-            sec</codeph> to <codeph>sets per sec</codeph>. </p>
-        
-        <image href="../images/monitor_optmized_xdcr.png"></image>
-        
-        <p>If you set a low threshold relative to document size,
-          <codeph>metadata reads per sec</codeph> will be roughly twice the value of <codeph>sets per
-            sec</codeph>. If you set a high threshold relative to document size, this will virtually
-          eliminate the first fetch of metadata and therefore <codeph>metadata reads per sec</codeph> will
-          roughly equal <codeph>sets per sec</codeph></p>
-        
-        <p>The other option is to check the log files for
-          XDCR, which you can find in <codeph>/opt/couchbase/var/lib/couchbase/logs</codeph> on the nodes
-          for a source bucket. The log files following the naming convention <codeph>xdcr.1</codeph>,
+      <section><title>Monitoring Optimistic Replication</title>
+      <p>The easiest way you can monitor the impact of this setting is in Couchbase Web Console. On
+        the Data Buckets tab under Incoming XDCR Operations, you can compare <codeph>metadata reads
+          per sec</codeph> to <codeph>sets per sec</codeph>. </p>
+      <image href="../images/monitor_optmized_xdcr.png"/>
+      <p>If you set a low threshold relative to document size, <codeph>metadata reads per
+          sec</codeph> will be roughly twice the value of <codeph>sets per sec</codeph>. If you set
+        a high threshold relative to document size, this will virtually eliminate the first fetch of
+        metadata and therefore <codeph>metadata reads per sec</codeph> will roughly equal
+          <codeph>sets per sec</codeph></p>
+      <p>The other option is to check the log files for XDCR, which you can find in
+          <codeph>/opt/couchbase/var/lib/couchbase/logs</codeph> on the nodes for a source bucket.
+        The log files following the naming convention <codeph>xdcr.1</codeph>,
           <codeph>xdcr.2</codeph> and so on. In the logs you will see a series of entries as
-          follows:</p>
-        
-        <codeblock>
+        follows:</p>
+      <codeblock>
 out of all 11 docs, number of small docs (including dels: 2) is 4,
 number of big docs is 7, threshold is 256 bytes,
 after conflict resolution at target ("http://Administrator:asdasd@127.0.0.1:9501/default%2f3%3ba19c9d4e733a97fa7cb38daa4113d034/"),
 out of all big 7 docs the number of docs we need to replicate is: 5;
 total # of docs to be replicated is: 9, total latency: 142 ms
 </codeblock>
-        
-        <p>The
-          first line means that 4 documents are under the threshold and XDCR checked metadata twice for
-          all 7 documents and replicated 5 larger documents and 4 smaller documents. The amount of time to
-          check and replicate all 11 documents was 142 milliseconds.</p>
-      </section>
+      <p>The first line means that 4 documents are under the threshold and XDCR checked metadata
+        twice for all 7 documents and replicated 5 larger documents and 4 smaller documents. The
+        amount of time to check and replicate all 11 documents was 142 milliseconds.</p>
+    </section>
   </body>
   <related-links>
     <linklist><title>Related topics</title>

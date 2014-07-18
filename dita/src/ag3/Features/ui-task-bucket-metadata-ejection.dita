@@ -10,7 +10,7 @@
         </context>
 
             <steps>
-                <step><cmd>Navigate to ... <uicontrol>Data Buckets > Create New Data Bucket</uicontrol> (new bucket) or 
+                <step><cmd>Navigate to <uicontrol>Data Buckets > Create New Data Bucket</uicontrol> (new bucket) or 
                     <uicontrol>Data Buckets > bucket_name link > Edit</uicontrol> (existing bucket).</cmd></step>
                 <step><cmd>In the Memory Size panel, specify either to retain metadata in memory or not.</cmd>
                     <info>Retaining metadata in memory needs more RAM, however, provides better

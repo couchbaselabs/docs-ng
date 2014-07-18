@@ -19,7 +19,8 @@
                     bucket.</info>
             </step>
             <step>
-                <cmd>Under Disk Read-Write Concurrency, specify a number of reader/writers.</cmd>
+                <cmd>Under <uicontrol>Disk I/O Optimization</uicontrol>, specify the bucket disk I/O priority. Low
+                    (default) sets three (3) reader/writers and High allocates eight (8).</cmd>
                 <stepresult>
                     <fig><image href="../images/mrw_setting_panel.png" width="500"></image></fig>
                     </stepresult>

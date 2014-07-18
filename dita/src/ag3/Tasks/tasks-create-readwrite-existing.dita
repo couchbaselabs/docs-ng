@@ -30,8 +30,8 @@
                 <cmd>Click <uicontrol>Edit</uicontrol>.</cmd>
                 <stepresult>A Configure Bucket panel appears where the reader-writer setting is changed.</stepresult>
             </step>
-            <step><cmd>Under the <uicontrol>Disk Read-Write Concurrency</uicontrol> section, enter a number of readers
-                    and writers.</cmd></step>
+            <step><cmd>Under <uicontrol>Disk I/O Optimization</uicontrol>, specify the bucket disk I/O priority. Low (default) sets three (3)
+                    reader/writers and High allocates eight (8).</cmd></step>
             <step><cmd>Click <uicontrol>Save</uicontrol>.</cmd>
                 <stepresult>A warning appears indicating that this change recreates the data bucket.
                 <fig>

@@ -2,7 +2,10 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
  <title>Couchbase Installation Guide</title>
- <topicref href="Install/install-intro.dita"/>
+ 
+ <topicref href="install-intro.dita">
+
+ <topicref href="Install/setup-overview.dita"/>
  <topicref href="Install/pre-install.dita">
   <topicref href="Install/install-resourceReqs.dita"/>
   <topicref href="Install/install-platforms.dita"/>
@@ -63,8 +66,7 @@
   <topicref href="Install/migrate-membase.dita"/>
   <?oxy_insert_end?>
  </topicref>
-
-
- 
+ </topicref>
 </map>
+
 <?oxy_options track_changes="on"?>

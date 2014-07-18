@@ -12,9 +12,9 @@
     The priority levels refer to the thread count parameter which, in turn, determines allocated resources across buckets. 
     Bucket latency and I/O operations are impacted by the setting value. </p>
    
-   <p>The bucket disk I/O priority can be set as either high or low. 
-    Couchbase server has eight (8) threads for reading and writing. 
-    High is set to eight (8) threads and low to (3) threads. High is the default. </p>
+   <p>The bucket disk I/O priority can be set as either high or low. Couchbase server has eight (8)
+      threads for reading and writing. High is set to eight (8) threads and low to (3) threads. Low
+      is the default. </p>
   
   <p>The default buckets settings can be set during initial setup.</p>
   <image href="../images/init-default-bucket-settings.png" width="600"></image>
