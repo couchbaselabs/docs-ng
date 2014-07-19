@@ -4,6 +4,19 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.7 GA (2 July 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-7"></a>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-500">NCBC-500: IsArrayOrCollection does not support IEnumerable</a>
+
+    This patch fixes a bug where the `IsArrayOrCollection` method would return false for types supporting `IEnumerable`.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-513">NCBC-513: Use Timespan.TotalSeconds instead of Timespan.Seconds</a>
+
+    This patch fixes a bug that was introduced in 1.3.6 by the NCBC-485 patch. The `Timespan.TotalSeconds` property should be used in 
+    place of `Timespan.Seconds`.
+
 ## Release Notes for Couchbase Client Library .NET 1.3.6 GA (5 June 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-6"></a>

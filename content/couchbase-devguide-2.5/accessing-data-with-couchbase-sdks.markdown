@@ -6,7 +6,7 @@ RESTful interface which you can use to manage an entire cluster.
 
 Couchbase SDKs enable you to perform read/write operations to Couchbase Server
 and will be responsible for getting updates on cluster topology from Couchbase
-Server. The SDK provide an abstraction level so that you do not need to be
+Server. The SDKs provide an abstraction level so that you do not need to be
 concerned about handling the logic of cluster rebalance and failover in your
 application. All SDKs are able to automatically get updated server and cluster
 information so that your web application continues to function during a
@@ -153,7 +153,7 @@ maintenance process, called *expiry pager* that will periodically look through
 all information and erase expired items. This maintenance process will run every
 60 minutes, but it can be configured to run at a different interval. Couchbase
 Server will immediately remove an item flagged for deletion the next time the
-item requested; the server will respond that the item does not exist to the
+item is requested; the server will respond that the item does not exist to the
 requesting process.
 
 Couchbase Server offers new functionality you can use to index and find
@@ -247,8 +247,8 @@ stores and updates.
 
 There are a few standard approaches in Couchbase SDKs for asynchronous
 operations: 1) performing the asynchronous method, then later explicitly
-retrieving any results returned by Couchbase server and are stored in runtime
-memory, 2) performing an asynchronous method and retrieve the results from
+retrieving any results returned by Couchbase server that are stored in run-time
+memory, 2) performing an asynchronous method and retrieving the results from
 memory in a callback, and/or 3) perform an event loop which waits for and
 dispatches events in the program.
 
@@ -274,7 +274,7 @@ var_dump($cb->fetchAll());
 
 In the first two lines we create a new Couchbase client instance which is
 connected to the default bucket. Then we set some sample variables named `int`
-and `array`. We perform an asynchronous request to retrieve to retrieve the two
+and `array`. We perform an asynchronous request to retrieve the two
 keys. Using the `fetchAll` call we can retrieve any results returned by
 Couchbase server which are now in runtime memory.
 

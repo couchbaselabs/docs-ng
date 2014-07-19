@@ -601,8 +601,8 @@ set name1 0 0 5
 
 In this example we provide they key as 'name1', the flags as 0, TTL as 0, and
 the length of value to be set as 5 characters, respectively. After we return the
-set command via telnet, we can enter the actual value which is 'karen' in this
-cadd ase. After Couchbase Server successfully stores the key/value, it will
+set command via telnet, we can enter the actual value, which is 'karen' in this
+case. After Couchbase Server successfully stores the key/value, it will
 return STORED via telnet. The next examples demonstrate use of get and delete
 via telnet:
 
@@ -694,8 +694,8 @@ set record1 0 0 4
 
 In this example we set record1 to have 0 flags, 0 expiration, and a length of 4
 characters. We set the value to the name 'sara'. When Couchbase Server
-successfully stores the record it automatically creates a cas value. which we
-get with gets. The last number returned by gets in the telnet session is the cas
+successfully stores the record it automatically creates a cas value, which we
+retrieve with gets. The last number returned by gets in the telnet session is the cas
 value. In this next step, we perform a check and set with the record1 key with
 no flags, no expiration, seven characters and the value 'maybell.'
 

@@ -240,7 +240,7 @@ are guidelines on handling expiration with views:
    indexing items from Couchbase Server, items that have not yet been removed as
    part of the expiry pager maintenance process will be part of a result set
    returned by querying the view. To exclude these items from a result set you
-   should use query parameter `include_doc` set to `true`. This parameter typically
+   should use query parameter `include_docs` set to `true`. This parameter typically
    includes all JSON documents associated with the keys in a result set. For
    example, if you use the parameter `include_docs=true` Couchbase Server will
    return a result set with an additional `"doc"` object which contains the JSON or
@@ -254,7 +254,7 @@ are guidelines on handling expiration with views:
     }
     ```
 
-   For expired documents if you set `include_doc=true`, Couchbase Server will
+   For expired documents if you set `include_docs=true`, Couchbase Server will
    return a result set indicating the document does not exist anymore.
    Specifically, the key that had expired but had not yet been removed by the
    cleanup process will appear in the result set as a row where `"doc":null` :
@@ -617,7 +617,7 @@ updateInterval=10000&updateMinChanges=7000
 
 If successful, the return value is the JSON of the updated configuration.
 
-To configure the update values explicitly on individual design documents, you
+To configure the updateMinChanges or replicaUpdateMinChanges values explicitly on individual design documents, you
 must specify the parameters within the `options` section of the design document.
 For example:
 

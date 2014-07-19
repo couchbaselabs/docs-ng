@@ -69,14 +69,15 @@ config.Bucket = "default";
 var client = new CouchbaseClient(config);
 ```
 
- * The `socketPool` element is used to configure the behavior of the client as it
-   connects to the Couchbase cluster. Defaults are in parentheses. `minPoolSize`
-   (10) The minimum number of connections in the connection pool
+The `socketPool` element is used to configure the behavior of the client as it
+connects to the Couchbase cluster. It uses the following attributes (defaults are in parentheses): 
+
+ * `minPoolSize`  (10) The minimum number of connections in the connection pool
 
  * `maxPoolSize` (20) The maximum number of connections in the connection pool
 
  * `connectionTimeout` (00:00:10) The amount of time the client is waiting to a)
-   eastablish a connection to the memcached server, b) get a free connection from
+   establish a connection to the memcached server, b) get a free connection from
    the pool. If it times out the operation will fail. (And return false or null,
    depending on the operation.)
 
@@ -88,7 +89,7 @@ var client = new CouchbaseClient(config);
  * `queueTimeout` (00:00:02.500) This is the time that a worker thread will wait for
     a connection to become available when the connection pool is empty. This would
     happen in a high-throughput scenario or if the operations take longer than expected.
-    The default is 2500 msec.
+    The default is 2500 milliseconds.
 
  * `receiveTimeout` (00:00:10) This amount of time that the client will wait on a
     connection during a read. The default is 10 seconds.

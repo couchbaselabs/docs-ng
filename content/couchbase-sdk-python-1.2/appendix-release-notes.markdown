@@ -5,6 +5,32 @@ Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
 Client Library Python Issues
 Tracker](http://www.couchbase.com/issues/browse/PYCBC).
 
+<a id="couchbase-sdk-python-rn_1-2-2g"></a>
+## Release Nodes for Couchbase Python SDK 1.2.2 GA (1 July 2014)
+
+This release provides some minor bug fixes for 1.2.1
+
+**New Features and Behavior Changes in 1.2.2**
+
+* The `_cntl()` method now accepts a `value_type` argument. This can be used to
+  further modify settings not exposed in the SDK itself. The `value_type` describes
+  the underlying C type to be used for the setting.
+
+  **Issues**: [PYCBC-247](http://couchbase.com/issues/browse/PYCBC-247)
+
+* The _libcouchbase_ library embedded with the Windows installer has been
+  upgraded to 2.3.2
+
+**Fixes in 1.2.2**
+
+* When publishing a design document, poll the newly published view after the
+  older view has been deleted. This allows more reliability of the view being
+  operational immediately after the `design_publish()` method returns.
+
+* Fixed potential freed memory access within the `stats()` method when
+  using asynchronous frameworks like Twisted or gevent.
+
+  **Issues**: [PYCBC-248](http://couchbase.com/issues/browse/PYCBC-248)
 
 <a id="couchbase-sdk-python-rn_1-2-1g"></a>
 ## Release Notes for Couchbase Python SDK 1.2.1 GA (5 June 2014)

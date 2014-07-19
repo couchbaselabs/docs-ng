@@ -64,9 +64,9 @@ all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allo
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.4.2.jar, or latest version available
+ * couchbase-client-1.4.3.jar, or latest version available
 
- * spymemcached-2.11.3.jar
+ * spymemcached-2.11.4.jar
 
  * commons-codec-1.5.jar
 
@@ -87,7 +87,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
 </dependency>
 ```
 
@@ -97,7 +97,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.4.2"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.4.3"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -108,7 +108,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.4.2"
+  compile "com.couchbase.client:couchbase-client:1.4.3"
 }
 ```
 
@@ -149,7 +149,7 @@ NetBeans IDE and open it:
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.4.2
+     * **Version**: 1.4.3
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
@@ -164,7 +164,7 @@ application with Couchbase.
 ## Hello Couchbase
 
 To follow the tradition of first programming tutorials, we start with a "Hello
-Couchbase" example. In this example, we connect to the a Couchbase node, set a
+Couchbase" example. In this example, we connect to a Couchbase node, set a
 simple document, retrieve the document, and then print the value out. This first
 example contains the full source code, but in later examples we omit the import
 statements and also assume an existing connection to the cluster.
@@ -224,7 +224,7 @@ little more discussion:
     from a Couchbase SDK. You use `set` to create or overwrite a document and you
     use `get` to read it from the server. There are lots of arguments and variations
     for these two methods, but if you use them as shown in the previous example it
-    will get you pretty fair in your application development.
+    will get you pretty far in your application development.
 
     Note that the `get` operation will read all types of information, including
     binary, from the server, so you need to cast it into the data format you want.
@@ -392,5 +392,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.5/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.4.2/index.html).
+Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.4.3/index.html).
 
