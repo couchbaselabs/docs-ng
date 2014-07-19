@@ -14,7 +14,7 @@
   
   <p>Full-bucket ejection allows large data footprints are supported with efficient cache managment and 
    reduced warmup times are possible when the working sets in memory are smaller. 
-   This method addresses an environment where there are very large datasets (large number of items/keys), 
+   This method addresses an environment where there are very large data sets (large number of items/keys), 
    and a small working set in memory. 
    Metadata ejection operates at the bucket-level for manageability purposes. 
    The workload characteristics can be categorized.</p>
@@ -27,19 +27,19 @@
     <li>Views and stored data > Document metadata</li>
     <li>Warm up operations</li>
     <li>Global thread pool</li>
-    <li>Ejection and working set managment</li>
+    <li>Ejection and working set management</li>
     <li>Other ejection from hitting thresholds</li>
    </ul>
   </section>
   
   
   <section><title>Backward compatibility</title>
-   <p>In previous releases, the values for all active datasets are ejected and the metadata + key are not ejection. 
+   <p>In previous releases, the values for all active data sets are ejected and the metadata + key are not ejection. 
     In version 3.0, both value and metadata+key are ejected.</p>
 
   </section> 
   
-  <section><title>Topics</title></section>
+
   
   
  </conbody>
