@@ -9,7 +9,7 @@
     <section>
       <title>cbrestore</title>
       <p>Data from a specific period of time is restored. The <codeph>cbrestore</codeph> tool
-        browses through meta.json files under the latest backup chains and finds all related
+        browses through the subdirectories and files in the backup directory and finds all related
         Couchbase backup files to restore.</p>
       
       
@@ -34,7 +34,7 @@ cbrestore /backups/backup-1 http://HOST:8091
           </thead>
           <tbody>
             <row>
-              <entry>--from-data</entry>
+              <entry>--from-date</entry>
               <entry>Data collected from this specified date. Data collected sooner than this date
                 is not restored.</entry>
             </row>

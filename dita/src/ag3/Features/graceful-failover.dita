@@ -5,8 +5,11 @@
  <shortdesc>Graceful failover waits until data persists to disk and replicas are up-to-date before
   failing over the server node.</shortdesc>
  <conbody>
-  <p>When adding a node to a cluster, the option is to specify either <codeph>delta</codeph> or <codeph>full</codeph>.</p>
-  <p>By default, when Failover is selected from the Web Console, a graceful failover is performed.</p>
+  
+  <p>With graceful failover, failed over nodes can be safely removed from the cluster and quickly added back after they are repaired, 
+   catching up incrementally from where they left off. 
+  When adding a node to a cluster, the option is to specify either <codeph>delta</codeph> or <codeph>full</codeph>.
+  By default, when Failover is selected from the Web Console, a graceful failover is performed.</p>
   
 
   <p>In a graceful failover, a new replica is created on another node in the cluster, all of the

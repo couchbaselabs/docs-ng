@@ -21,6 +21,8 @@
    
     
     <note type="note">Buckets normally do not have less than three (3) threads.</note>
+  
+  <draft-comment author="Ruth">Graphic for the conversion logic when upgrading?</draft-comment>
     
   
   <section><title>Backward compatibility</title>
@@ -33,6 +35,8 @@
     <li>Buckets allocated three to five (3-5) threads are low priority. </li>
    </ul>
   </section>
+  
+
    
  
  </conbody>

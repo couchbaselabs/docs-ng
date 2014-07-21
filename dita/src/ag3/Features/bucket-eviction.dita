@@ -19,7 +19,13 @@
    Metadata ejection operates at the bucket-level for manageability purposes. 
    The workload characteristics can be categorized.</p>
   
-  <p><b>GRAPHICs: Ejection Logic Table</b></p>
+  <p>For example, if your environment needs to store huge data in tera or peta bytes, 
+  then you might want to enable metadata ejection on that bucket so that your are not 
+  limited by memory.</p>
+  
+  
+  <draft-comment author="ruth">GRAPHICs: Ejection Logic Table</draft-comment>
+
   
 
   <section><title>Impacted documentation</title>

@@ -30,7 +30,9 @@
    <li>At the same time, data is put into a write queue to be persisted to disk.</li>
   </ol>
   
-  <fig><image href="../images/data-memory-replication.png" width="720"></image></fig>
+  <draft-comment author="ruth">Need GRAPHIC - see ppt slide</draft-comment>
+  
+
 
 
   <section><title>Impacted documentation</title>

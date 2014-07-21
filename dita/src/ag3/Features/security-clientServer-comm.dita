@@ -3,7 +3,7 @@
 <topic id="topic_kgh_xdh_14">
   <title>Encrypted data access</title>
   <shortdesc>Encrypted data access is a communication connection between the client and Couchbase
-    Server cluster using Secure Sockets Layer (SSL). Enterprise Edition only.</shortdesc>
+    Server cluster using Secure Sockets Layer (SSL). </shortdesc>
   
   <body>
     <p>The encrypted data access allows client connections to be configured for security using

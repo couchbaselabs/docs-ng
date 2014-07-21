@@ -3,7 +3,8 @@
 <reference id="reference_ed5_pm5_j4">
   <title>Ejecting metadata (CLI)</title>
 
-  <shortdesc>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool.</shortdesc>
+  <shortdesc>Bucket ejection from memory is set with the <codeph>couchbase-cli</codeph>
+    tool.</shortdesc>
   
   <refbody>
     <section><title>Bucket ejection policy</title>
