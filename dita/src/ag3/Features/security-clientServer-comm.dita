@@ -11,12 +11,12 @@
       from client machines to a Couchbase cluster using SSL. A secure channel is established between
       the client and the server.</p>
     
-    <p>The self-signed certification for the initial node is propagated throughout the server nodes
-      in the cluster. If the self-signed certificate is regenerated or updated as part of setting up
-      XDCR data encryption (or for any other reason), the certificate retrieved by the client must
-      be obtained again before secure client-server communication is re-established. The secure
-      connection is on the cluster-level (rather than bucket-level) and is through the dedicated
-      HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
+    <p>The server generates a self-signed certification for the initial node which is propagated
+      throughout the server nodes in the cluster. If the self-signed certificate is regenerated or
+      updated as part of setting up XDCR data encryption (or for any other reason), the certificate
+      retrieved by the client must be obtained again before secure client-server communication is
+      re-established. The secure connection is on the cluster-level (rather than bucket-level) and
+      is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
     
     <p>The client sets up SSL communication with a Couchbase server cluster in the following manner:</p>
     

@@ -2,19 +2,20 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_pgw_k2h_14">
   <title>Encrypted admin access</title>
-  <shortdesc>Encripted administrator access provides encrypted REST API access using Secure Socket
-    Layer (SSL) authentication. Enterprise Edition only.</shortdesc>
+  <shortdesc>Encrypted administrator access provides encrypted REST API access using Secure Socket
+    Layer (SSL) authentication. </shortdesc>
   <body>
     
     <p>The encrypted communication allows a connection to be configured for security using Secure Sockets Layer (SSL) encryption. 
       Encryption protects data-in-flight from a remote machines to a Couchbase cluster using SSL. 
       A secure channel is established between the remote machine and the server.</p>
     
-    <p>The self-signed certification for the initial node is progated throughout the server nodes in the cluster. 
-      If the self-signed certificate is regenerated or updated as part of setting up XDCR data encryption (or for any other reason), 
-      the certificate retrieved by the client must be obtained again before secure client-server communication is re-established. 
-      The secure connection is on the cluster-level (rather than bucket-level) and is 
-      through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
+    <p>The server generates a self-signed certification for the initial node which is propagated
+      throughout the server nodes in the cluster. If the self-signed certificate is regenerated or
+      updated as part of setting up XDCR data encryption (or for any other reason), the certificate
+      retrieved by the client must be obtained again before secure client-server communication is
+      re-established. The secure connection is on the cluster-level (rather than bucket-level) and
+      is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
     
     <p>Encrypted administrator access is used under a variety of situations: 
       

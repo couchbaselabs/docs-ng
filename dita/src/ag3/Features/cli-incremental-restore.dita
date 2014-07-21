@@ -34,14 +34,14 @@ cbrestore /backups/backup-1 http://HOST:8091
           </thead>
           <tbody>
             <row>
-              <entry>--from-date</entry>
-              <entry>Data collected from this specified date. Data collected sooner than this date
-                is not restored.</entry>
+              <entry>--from-date=[FROM_DATE]</entry>
+              <entry>Restores the data from this date. The date is specified as yyyy-mm-dd. Data
+                collected before this date is not restored.</entry>
             </row>
             <row>
-              <entry>--to-date</entry>
-              <entry>Data collected up to this specified date. Data collected later than this date
-                is not restored.</entry>
+              <entry>--to-date=]TO_DATE]</entry>
+              <entry>Restores data until this date. The date is specified as yyyy-mm-dd. Data
+                collected after this date is not restored.</entry>
             </row>
           </tbody>
         </tgroup>

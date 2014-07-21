@@ -9,26 +9,30 @@
   <p>With graceful failover, failed over nodes can be safely removed from the cluster and quickly added back after they are repaired, 
    catching up incrementally from where they left off. 
   When adding a node to a cluster, the option is to specify either <codeph>delta</codeph> or <codeph>full</codeph>.
-  By default, when Failover is selected from the Web Console, a graceful failover is performed.</p>
+   By default, when <uicontrol>Failover</uicontrol> is selected from the Web Console, a graceful failover is performed.</p>
   
 
   <p>In a graceful failover, a new replica is created on another node in the cluster, all of the
-   data on a node that needs to be failed over is transferred to the replica, and then is the node
-   removed from the cluster. This means that there is no data loss window. Once a new node is added
+   data on a node that needs to be failed over is transferred to the replica, and then the node
+   is removed from the cluster. This means that there is no data loss window. Once a new node is added
    to the cluster, the rebalance operation moves only the removed node's data to the newly added
    node.</p>
    
    <p>However, a hard failover option is available in case the node is in a bad state. Hard failover
-   immediately removes a node from the cluster which can lead to data loss. Auto-failover behavior
+   immediately removes a node from the cluster which might lead to data loss. Auto-failover behavior
    is a hard failover.</p>
+  
+  
    
-   <section><title>Failover behavior</title>
+   <section><title>Failing over nodes and rebalancing</title>
     
     <ul>
      <li>When a node is added back to the cluster after a graceful failover has been performed, 
-      the new node receives the vBuckets that existed on the old node. Rebalancing is optimized.</li>
-     <li>Topology changes after a graceful failover causes a full rebalance in when a node is added back. Rebalancing is not optimized.</li>
-     <li>A hard failover after a graceful failover causes a full rebalance in when a node is added back. Rebalancing is not optimized.</li>
+      the new node receives the vBuckets that existed on the old node. In this case, rebalancing is optimized.</li>
+     <li>Topology changes after a graceful failover causes a full rebalance in when a node is added back. 
+      In this case, rebalancing is not optimized.</li>
+     <li>A hard failover after a graceful failover causes a full rebalance in when a node is added back. 
+      In this case, rebalancing is not optimized.</li>
     </ul>
    
    

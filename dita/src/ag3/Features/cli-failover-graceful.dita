@@ -16,18 +16,11 @@
     </section>
     
     <section><title>Syntax</title>
-      <codeblock>
-couchbase-cli failover
+      <codeblock>couchbase-cli failover
     --cluster=HOST:PORT
     --server-failover=HOST:PORT
     --user=ADMIN 
-    --password=PASSWORD  
-    
-couchbase-cli failover
-    -c HOST:PORT
-    --server-failover=HOST:PORT
-    -u ADMIN -p PASSWORD     
-      </codeblock>
+    --password=PASSWORD </codeblock>
     
     </section>
 
@@ -61,8 +54,8 @@ couchbase-cli rebalance -c 192.168.0.1:8091 \\
       </example>
     
     <example><title>Failing over a node immediately</title>
-      <p>The following example shows a node failing over immediates, that is, 
-        graceful failover is not implemented.</p>
+      <p>The following example shows a node failing over immediately, that is, graceful failover is
+        not implemented.</p>
       <codeblock>
 couchbase-cli failover -c 192.168.0.1:8091 \\	
     --server-failover=192.168.0.2 \\	

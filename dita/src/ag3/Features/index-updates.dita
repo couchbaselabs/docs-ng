@@ -6,8 +6,10 @@
   As a result, views have up-to-date data and faster queries.</shortdesc>
  <conbody>
   
-  <p>Indexing occurs as soon as data changes in memory, whereas, in previous releases, data in
-   memory goes to the task queue and persists to disk before indexes are created.</p>
+  <p>Indexing occurs as soon as data changes in memory due to the Database Change Protocol (DCP), 
+   a stream-based protocol. 
+   With DCP, changes made to documents in-memory are immediately streamed to be indexed without being written to disk. 
+   This provides faster view consistency which provides fresher data.</p>
     
    <ul>
     <li>Views are updated with key-value sooner</li>
@@ -15,7 +17,8 @@
     <li>Views are more closely synch with the data</li>
    </ul>
    
-   <note type="note">When a Couchbase Server cluster has both 2.x and 3.x servers, the Couchbase 3.x server has faster indexing.</note>
+   <note type="note">When a Couchbase Server cluster has both 2.x and 3.0 servers, the Couchbase 3.0
+   server has faster indexing.</note>
   
   
    
@@ -37,9 +40,7 @@
 
   <section><title>Impacted documentation</title>
   <ul>
-   <li>Developer guide: SDK semantics</li>
-   <li>stale=false query might not be needed. This query is used to get the most up-to-date
-     data.</li>
+   <li>Views and view operations</li>
   </ul>
   </section> 
   
