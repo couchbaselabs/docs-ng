@@ -23,18 +23,18 @@
        plus all the incremental backups until the restoration point-in-time is reached.</dd>
      </dlentry>
      <dlentry>
+       <dt>Differential backup</dt>
+       <dd>An incremental backup that contains all data changes after the most recent incremental
+         backup. Differential backups are deltas between the following: <ul>
+           <li>Last full backup and the first snapshot</li>
+           <li>Last incremental snapshot the the current snapshot</li>
+         </ul>.</dd>
+     </dlentry>
+     <dlentry>
        <dt>Cummulative backup</dt>
        <dd>An incremental backup that contains all data changes after the last full backup. 
          A snapshot of the data changes between the last full backup and the current snapshot. 
          </dd>
-     </dlentry>
-     <dlentry>
-       <dt>Differential backup</dt>
-       <dd>An incremental backup that contains all data changes after the most recent incremental
-          backup. Differential backups are deltas between the following: <ul>
-            <li>Last full backup and the first snapshot</li>
-            <li>Last incremental snapshot the the current snapshot</li>
-          </ul>.</dd>
      </dlentry>
    </dl>
 

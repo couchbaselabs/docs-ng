@@ -26,13 +26,13 @@
 couchbase-cli bucket-create -c HOST:PORT
   --bucket=BUCKET_NAME \\	
   --bucket-password=PASSWORD \\
-  --bucket-eviction-policy=VALUE
+  --bucket-eviction-policy=[VALUE]
   -u ADMIN -p PASSWORD
 
 
 couchbase-cli bucket-edit -c HOST:PORT
   --bucket=BUCKET_NAME \\	
-  --bucket-eviction-policy=VALUE
+  --bucket-eviction-policy=[VALUE]
     -u ADMIN -p PASSWORD
       </codeblock>
       

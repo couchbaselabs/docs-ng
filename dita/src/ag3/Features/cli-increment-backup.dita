@@ -8,7 +8,7 @@
     <section>
       
       <title>cbbackup</title>
-      <p>The <codeph>backup</codeph> tool provides provides differential, accumulative, or full
+      <p>The <codeph>cbbackup</codeph> tool provides provides differential, accumulative, or full
         backup.</p>
       
 

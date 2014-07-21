@@ -2,7 +2,8 @@
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_gvw_zsp_yn">
  <title>Graceful failover</title>
- <shortdesc>Graceful failover waits until data persists to disk and replica are up-to-date before failing over the server node.</shortdesc>
+ <shortdesc>Graceful failover waits until data persists to disk and replicas are up-to-date before
+  failing over the server node.</shortdesc>
  <conbody>
   <p>When adding a node to a cluster, the option is to specify either <codeph>delta</codeph> or <codeph>full</codeph>.</p>
   <p>By default, when Failover is selected from the Web Console, a graceful failover is performed.</p>
