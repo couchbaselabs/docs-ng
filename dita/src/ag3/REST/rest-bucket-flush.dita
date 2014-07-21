@@ -15,8 +15,8 @@
     <note type="warning">This operation is data destructive. The service makes no attempt to confirm or double check
       the request. Client applications using this are advised to double check with the end user
       before sending such a request. You can control and limit the ability to flush individual
-      buckets by setting the `flushEnabled` parameter on a bucket in Couchbase Web Console or via
-      `cbepctl flush_param`. </note>
+      buckets by setting the <codeph>flushEnabled</codeph> parameter on a bucket in Couchbase Web Console or via
+      <codeph>cbepctl flush_param</codeph>. </note>
 
 
     <codeblock>http://localhost:8091/pools/default/buckets/default/controller/doFlush

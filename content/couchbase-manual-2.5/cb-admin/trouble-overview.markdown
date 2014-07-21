@@ -16,7 +16,7 @@ more detailed investigations:
 
  * Try connecting to the Couchbase Server Web Console on the node.
 
- * [Try to use telnet to connect to the various ports](#couchbase-network-ports)
+ * Try to use `telnet` to connect to the [various ports](../cb-install#network-ports)
    that Couchbase Server uses.
 
  * Try reloading the web page.

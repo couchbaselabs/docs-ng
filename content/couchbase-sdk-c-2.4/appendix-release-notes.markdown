@@ -4,45 +4,380 @@ The following sections provide release notes for individual release versions of
 the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
-<a id="couchbase-sd-rn_2-3-2"></a>
-## Release Notes for Couchbase Client Library C 2.3.2 GA (01 July 2014)
+<a id="couchbase-sdk-rn_2-4-0_beta"></a>
+## Release Notes for Couchbase Client Library C 2.4.0 Beta (11 July 2014)
 
-**Fixes in 2.3.1**
+**New Features and Behavior Changes in 2.4.0-Beta**
 
-* Fixed a bug where randomizing host lists during the initial
-  connect would skip the first node in the list.
+* Provide HTTP keep-alive and connection pooling for HTTP requests.
+  This allows the client to reuse an HTTP connection for multiple requests
+  rather than creating a new connection and closing it for each operation.
 
-  **Issues**: [CCBC-433](http://couchbase.com/issues/browse/CCBC-433)
+  The functionality can be controlled via the `LCB_CNTL_HTTP_POOLSIZE` setting,
+  which limits how many open connections (per server) to maintain inside the
+  client. Setting this value to `0` disables pooling and restores old
+  behavior.
 
-* Assign the `cccp_cookie` to the provider. This fixes
-  an issue where a configuration request over CCCP to an already-connected
-  node would not be received, potentially causing delays in the client
-  receiving the newest cluster topology.
+  **Issues**: [CCBC-226](http://couchbase.com/issues/browse/CCBC-226)
 
-  **Issues**: [CCBC-414](http://couchbase.com/issues/browse/CCBC-414)
+* Extend new (volatile) _V3_ to cover all operations. This API provides a more
+  uniform interface to scheduling operations and handling them within callbacks.
+  It is currently considered volatile in interface. The implementations of these
+  functions are stable, and the existing stable API now wraps these functions.
 
-* Fixed a bug where stale commands (and their cookies) would
-  be confused with newer responses. This issue caused segmentation faults when requesting
-  a new configuration on a connected node via CCCP because the CCCP cookie
-  format was being overlaid on a different area of memory. This bug also
-  manifested itself during multi-get responses where some items were not found.
+  Developers are encouraged to experiment with this API and provide feedback.
 
-  **Issues**: [CCBC-435](http://couchbase.com/issues/browse/CCBC-435)
+  **Issues**: [CCBC-233](http://couchbase.com/issues/browse/CCBC-233)
 
-* Don't attempt to remap keys to nodes without any vBuckets.
-  When a `NOT_MY_VBUCKET` error is received, the behavior of the library is to attempt
-  to map the key to another node in the cluster. It determines the node by the
-  forward map, and if that doesn't exist it selects a random node in the
-  cluster. Sometimes a node will exist within the cluster map only because it
-  is in an 'eject wait' state where the node has already been ejected from the
-  cluster and is just returning `NOT_MY_VBUCKET` for all new requests. The
-  issue arises when the library attempts to connect to this node. In this
-  case, the node may either not respond to the new connection or it may respond
-  with an authentication failure (because the node is really no longer part of
-  the cluster). This new version fixes this issue by only remapping items to
-  nodes that actually contain at least one vBucket.
+* The `dsn` field in the `lcb_create_st` structure has been renamed to
+  `connstr`. This affects the API for the connection string feature
+  introduced in 2.4.0-dp1.
 
-  **Issues**: [CCBC-420](http://couchbase.com/issues/browse/CCBC-420)
+  **Issues**: [CCBC-452](http://couchbase.com/issues/browse/CCBC-452)
+
+* The `memcached://` scheme has been introduced (via the connection string)
+  to allow connecting to legacy memcached servers. The functionality as a whole
+  is still considered volatile.
+
+  To connect to a set of memcached servers, provide them in the connection
+  string like so:
+
+        cropts.v.v3.connstr = "memcached://memd1:11211,memd2:11211,memd3:11211";
+
+* Add `lcb_get_node()` function to retrieve addresses for
+  various nodes in the cluster. This deprecates the `lcb_get_host()`,
+  `lcb_get_port()` and `lcb_get_server_list()` functions because they are
+  constrained to only return information about the administrative API.
+  The new function is configurable to return information about various
+  ports.
+
+  **Issues**: [CCBC-454](http://couchbase.com/issues/browse/CCBC-454)
+
+
+* Provide additional error classifiers. The following error classifiers have
+  been added:
+
+  * `LCB_ERRTYPE_SRVLOAD`, which indicates that the server is likely under high load.
+  * `LCB_ERRTYPE_SRVGEN`, which indicates that the error is a direct reply from the
+    server. This code can help distinguish between client and server generated
+    return codes.
+
+  **Issues**: [CCBC-459](http://couchbase.com/issues/browse/CCBC-459)
+
+
+* Provide a setting to disable refreshing the configuration when an HTTP
+  API error is encountered (from one of the HTTP callback functions). This
+  adds the `LCB_CNTL_HTTP_REFRESH_CONFIG_ON_ERROR` setting.
+
+  **Issues**: [CCBC-458](http://couchbase.com/issues/browse/CCBC-458)
+
+
+* Environment variables are now documented in their own section within the API
+  documentation.
+
+  **Issues**: [CCBC-393](http://couchbase.com/issues/browse/CCBC-393)
+
+
+* Return an error if an empty key is passed to an operation. Empty keys will
+  cause the server to drop the connection.
+  The error code returned is the newly added `LCB_EMPTY_KEY`.
+
+  **Isssues**: [CCBC-405](http://couchbase.com/issues/browse/CCBC-405)
+
+**Bug Fixes in 2.4.0-Beta**
+
+* Fixed a bug introduced in 2.4.0-dp1 where a redirected HTTP request would
+  never return control to the application.
+
+  **Issues**: [CCBC-471](http://couchbase.com/issues/browse/CCBC-471)
+
+* The IOCP plugin will now return `LCB_CLIENT_ENOMEM` rather than abort if it
+  could not allocate memory. This also fixes some other locations in the code
+  to return an appropriate error code, rather than invoke `abort()`, if possible.
+
+  **Issues**: [CCBC-456](http://couchbase.com/issues/browse/CCBC-456)
+
+* Properly schedule next invocations for retry queue. A bug was introduced
+  in 2.4.0-dp1 that would cause the next tick callback to be invoked in what is
+  effectively a busy loop. This would be reflected in higher CPU load and less
+  throughput during topology changes.
+
+
+<a id="couchbase-sdk-rn_2-4-0_dp1"></a>
+## Release Notes for Couchbase Client Library C 2.4.0 DP1 (6 June 2014)
+
+**Changes affecting older APIs**
+
+* Make `run_event_loop` and `stop_event_loop` private.
+  These functions can no longer be used from within an application to
+  start or stop the event loop. `lcb_wait()` and `lcb_wait3()` should be
+  used instead.
+
+  **Issues**: [CCBC-111](http://couchbase.com/issues/browse/CCBC-111)
+
+* Deprecate the `lcb_set_XXX` functions. `lcb_set_timeout()`
+  and some other calls have been deprecated in favor of the `lcb_cntl()`
+  interface. These functions still work but cause the compiler
+  to print a deprecation warning.
+
+  **Issues**: [CCBC-381](http://couchbase.com/issues/browse/CCBC-381)
+
+* `lcb_socket_t` is typedefed to a `DWORD` on windows. In
+  previous versions this was an `int`.
+
+  **Issues**: [CCBC-378](http://couchbase.com/issues/browse/CCBC-378)
+
+* `lcb_set_error_callback()` has been deprecated. Applications should
+  use the new `lcb_set_bootstrap_callback()` or operation callbacks
+  to determine success or failure status.
+
+* `lcb_get_last_error()` has been deprecated. Error information is always
+  returned in the operation callback
+
+* Disable the sending of `GETQ` packets. The format of this command
+  is cumbersome to deal with and in most uses cases is actually slightly
+  _less_ efficient on the network. This does not change the API
+  of the actual `lcb_get()` call, but just changes the format of the
+  packets sent over the wire.
+
+  **Issues**: [CCBC-296](http://couchbase.com/issues/browse/CCBC-296),
+  [CCBC-289](http://couchbase.com/issues/browse/CCBC-289)
+
+* The IOPS API has been changed. This is a volatile interface
+  that might change again in the future.
+
+**New APIs added in 2.4.0-DP1 extending existing functionality**
+
+The following changes extend existing features with enhanced APIs.
+
+* Additional APIs for `lcb_cntl()`. These consist of helper functions
+  to make it easier to use simple types or strings rather than pointers, if
+  possible. These functions are `lcb_cntl_string()`, `lcb_cntl_setu32()` and
+  `lcb_cntl_getu32()`
+
+  **Issues**: [CCBC-442](http://couchbase.com/issues/browse/CCBC-442)
+
+* Provide extended version of `lcb_wait()`.
+  A new function called `lcb_wait3()` has been added that offers additional
+  options with respect to running the event loop. Specifically, it enables you to
+  bypass the check for pending operations that `lcb_wait()` executes. This
+  is both more performant and allows us to wait for operations that are
+  not explicitly scheduled.
+
+* Provide an API to request a configuration refresh.
+  Sometimes it is necessary to force the client to request a new configuration,
+  for example in certain failover conditions. A new API called `lcb_config_refresh()`
+  has been added, and should be used in conjunction with `lcb_wait3()`:
+
+      lcb_config_refresh(instance);
+      lcb_wait3(instance, LCB_WAIT_NOCHECK);
+
+  **Issues**: [CCBC-335](http://couchbase.com/issues/browse/CCBC-335)
+
+* Provide bootstrapping notification callback
+  This provides an explicit `lcb_set_bootstrap_callback()` to definitively
+  determine whether the client has received its initial configuration (and
+  thus may now start performing operations) or whether it failed (and thus
+  must be reinitialized). This deprecates the common use case of
+  `lcb_set_error_callback()`.
+
+  **Issues**: [CCBC-383](http://couchbase.com/issues/browse/CCBC-383)
+
+* New vBucket interface/API. This API is used internally and exposed
+  as _volatile_ inside the public header files. It provides extended features,
+  a more concise API, and is compatible with the upcoming Couchbase 3.0 configuration
+  format. File-based configuration caches written by this version of
+  the library are incompatible with previous versions. However, this version may
+  read caches generated by previous versions. This is because this version generates
+  a stripped-down version of the terse configuration style.
+
+  **Issues**: [CCBC-312](http://couchbase.com/issues/browse/CCBC-312)
+
+* Extended detailed error codes.
+  These error codes expose more detail about the `NETWORK_ERROR` and
+  `CONNECT_ERROR` codes returned by previous versions of the library. The extended
+  codes are not returned by default and must be explicitly enabled to
+  retain backward compatibility with applications that rely on the older
+  error codes. The error codes may be enabled using the
+  `LCB_CNTL_DETAILED_ERRCODES` setting.
+
+  **Issues**: [CCBC-450](http://couchbase.com/issues/CCBC-450)
+
+
+**New Features in 2.4.0-DP1**
+
+* Connection Strings feature (also known as "dsn") for instance creation. This adds a new
+  version of the `lcb_create_st` structure that is passed a URI-like string
+  rather than a semicolon-delimited list of hosts. This string is used to
+  provide options and the list of hosts that the library should connect to.
+  For example, `couchbase://localhost/default?&compression=off`.
+
+ 	You may use it like so:
+
+      struct lcb_create_st cropts = { 0 }
+      cropts.version = 3;
+      cropts.v.v3.dsn = "couchbase://localhost/default?operation_timeout=4.5";
+
+  **Issues**: [CCBC-443](http://couchbase.com/issues/browse/CCBC-443)
+
+* SSL transport support for Couchbase 3.0 Enterprise Edition.
+  Couchbase 3.0 Enterprise Edition features the ability to encrypt communications
+  between the client and the server using the SSL protocol
+  support in _libcouchbase_. You can enable SSL by using the `couchbases://`
+  scheme in the _connection string_ and optionally providing the path to
+  the certificate authority via the `capath` option (in the connection
+  string).
+
+  **Issues**: [CCBC-425](http://couchbase.com/issues/browse/CCBC-425),
+  [CCBC-426](http://couchbase.com/issues/browse/CCBC-426),
+  [CCBC-344](http://couchbase.com/issues/browse/CCBC-344),
+  [CCBC-374](http://couchbase.com/issues/browse/CCBC-374)
+
+* Retry queue for failed operations. The retry queue is used
+  as a place to hold operations that have failed internally and
+  should be retried within a certain amount of time. This also provides
+  options on which commands should be retried.
+
+  **Issues**: [CCBC-382](http://couchbase.com/issues/browse/CCBC-382)
+
+* Compression/JSON flag support (also known as Datatype).
+  This adds support for a future feature of Couchbase server that will
+  feature transparent compression. This feature also allows the server
+  to signal to the library if a document is JSON or not. The compression
+  feature can be disabled at compile time, and can also be modified at
+  run time by setting `compression=off` in either the connection string
+  or via `lcb_cntl_setstring(instance, "compression", "off")`.
+
+  _Note_: this feature is here to support a future implementation in the
+  server. It is not currently functional against released builds.
+
+  **Issues**: [CCBC-390](http://couchbase.com/issues/browse/CCBC-390),
+  [CCBC-438](http://couchbase.com/issues/browse/CCBC-438)
+
+* Experimental _scheduling_ API. This API replaces most of the older
+  operation APIs with a scheduling API. These APIs are called with one
+  command at a time and insert the resultant packet into a pipeline. The
+  user can "schedule" the commands or "fail" the pipeline if a certain
+  request has failed to be scheduled.
+
+  This API also provides a common application binary interface (ABI) header for commands so that they can
+  easily be used via type punning, or wrapped as a class hierarchy in C++.
+
+  This API is currently considered volatile but will be the basis of the
+  upcoming libcouchbase 3.0 API. The header file is `<libcouchbase/api3.h>`
+
+* Raw memcached packets can be sent to the library and have a callback
+  invoked when their responses have been received.
+  This adds an `lcb_pktfwd3()` command, and a header,
+  `<libcouchbase/pktfwd.h>`.
+
+  **Issues**: [CCBC-301](http://couchbase.com/issues/browse/CCBC-301)
+
+
+**Bug Fixes in 2.4.0-DP1**
+
+* _select_ plugin might endlessly loop in some cases when I/O events are not
+  pending and only timers are active.
+
+  **Issues**: [CCBC-429](http://couchbase.com/issues/browse/CCBC-429)
+
+* Do not break TCP connections on topology changes unless ejected from
+  cluster. This ensures that nodes which are still part of the cluster have their
+  TCP connections remain intact despite being shifted in their server index values.
+  Packets that have been sent to the wrong vBucket are silently ignored and
+  rescheduled to their appropriate destination. This decreases the load significantly
+  on the client, network, and cluster during topology changes.
+
+  **Issues**: [CCBC-391](http://couchbase.com/issues/browse/CCBC-391)
+
+* Use new-style terse URI format when requesting a configuration over HTTP.
+  This uses the HTTP configuration format over the new `/pools/default/bs/default`
+  rather than the older `/pools/default/bucketsStreaming/default` form. The former
+  form is much more efficient on the cluster side. If the new URI form is not
+  supported (that is, the server responds with an HTTP 404 error) the older form is
+  used instead. You can modify this behavior by setting the `LCB_CNTL_HTCONFIG_URLTYPE`
+  setting via `lcb_cntl()`.
+
+  **Issues**: [CCBC-428](http://couchbase.com/issues/browse/CCBC-428)
+
+* The `cmake/configure` script now accepts the `LDFLAGS`, `CPPFLAGS`, `CFLAGS`,
+  `CXXFLAGS`, `CC`, and `CXX` settings both within the environment _and_ the
+  commandline, so the forms of `CC=clang ./cmake/configure` and
+  `./cmake/configure CC=clang` are equivalent.
+
+  **Issues**: [CCBC-380](http://couchbase.com/issues/browse/CCBC-380)
+
+* The `pillowfight` tool will now print latencies between 1 and 10 microseconds in resolutions
+  of 100 milliseconds.
+
+  **Issues**: [CCBC-273](http://couchbase.com/issues/browse/CCBC-273)
+
+
+**Metadata and Packaging Changes in 2.4.0-DP1**
+
+* Use Doxygen for API documentation.
+  This replaces the man pages for API documentation with Doxygen. Doxygen
+  is a free and portable documentation system that can be obtained from your
+  distribution or at http://doxygen.org. To generate the documentation
+  from the source tree, run `doxygen` from the source root directory.
+  To generate internal documentation, run `./docs/gen_internal_apidoc.sh`.
+
+  **Issues**: [CCBC-375](http://couchbase.com/issues/browse/CCBC-375)
+
+* Add interface attributes to all API calls.
+  This properly documents all API calls with a certain API stability level
+  such as _committed_ (for stable APIs), _uncomitted_ for APIs that might, but
+  are not likely to change, and _volatile_ for APIs that are likely to be
+  changed or removed. The generated Doxygen documentation contains a
+  _Stability_ section for each API call.
+
+  **Issues**: [CCBC-398](http://couchbase.com/issues/browse/CCBC-398)
+
+* Public header files have been reorganized.
+  This changes the layout of the header files from previous versions. This should
+  not affect applications as applications should include only the main
+  `<libcouchbase/couchbase.h>` file.
+
+  The following files have been _removed_ from the
+  `<libcouchbase/*>` header directory:
+
+    * `types.h` - Merged into other header files
+    * `arguments.h` - now a part of `couchbase.h`
+    * `callbacks.h` - now a part of `couchbase.h`
+    * `debug.h` - unused and obsolete
+    * `durability.h` - now a part of `couchbase.h`
+    * `behavior.h` - Merged into `deprecated.h`
+    * `sanitycheck.h` - Merged into `deprecated.h`
+    * `timings.h` - Part of `couchbase.h`
+    * `compat.h` - Part of `deprecated.h`
+
+  The following files have been _added_ into the `<libcouchbase/*>` directory.
+  Unless otherwise noted, these files are included by `<libcouchbase/couchbase.h>`:
+
+    * `api3.h` - Volatile proposed 3.0 API. **Not included by default**
+    * `cxxwrap.h` - Contains the implementation for the deprecated C++ wrappers
+    * `deprecated.h` - Contains deprecated APIs
+    * `iops.h` - Contains the IO integration APIs
+    * `pktfwd.h` - Contains the packet forwarding API. **Not included by default**
+    * `vbucket.h` - Contains the vBucket mapping API. **Not included by default**
+
+* OpenSSL is now a base dependency for the library. This can be disabled at configure
+  time via `--enable-ssl=no`. See `./configure --help`.
+
+* Snappy compression library is bundled and optionally compiled. This is left out by
+  default as the configure script will search for a system installed `libsnappy`.
+  Snappy provides the compression feature needed for compressing and inflating data
+  between client and server. It can be disabled at compile-time via `--enable-snappy=no`.
+
+* _libvbucket_ has been fully integrated into libcouchbase from the forked
+  _libvbucket_ package and lives fully as part of the
+  library. The public vBucket API can be found in `<libcouchbase/vbucket.h>`.
+
+* As an alternative to the cross-platform `lcb_uintNN_t` typedefs, a shorter
+  (and more standards compliant) alternative `lcb_UNN` typedefs are provided, thus
+  instead of `lcb_uint32_t` you can use `lcb_U32`. The full listing of cross-platform
+  typdefs can be found inside `<libcouchbase/sysdefs.h>`
+
 
 <a id="couchbase-sdk-rn_2-3-1"</a>
 
@@ -57,7 +392,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   creation path is deprecated.
 
   *Issues*: [CCBC-395](http://couchbase.com/issues/browse/CCBC-395)
-  
+
 * Compare configuration revision information
   for memcached cluster bootstrap. Previously we would refresh the
   configuration upon receipt
@@ -81,7 +416,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 * Get-with-replica occasionally crashes on Windows and UV
   during topology changes. This was due to not allocating a buffer if one did
   not exist.
-  
+
   *Issues* [CCBC-394](http://couchbase.com/issues/browse/CCBC-394)
 
 
@@ -126,7 +461,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   retrieval if an explicit HTTP 404 code is received. Note that when using
   bootstrap over memcached, a missing bucket might still be manifest as
   `LCB_AUTH_ERROR`.
- 
+
   *Issues*: [CCBC-368](http://couchbase.com/issues/browse/CCBC-368)
 
 * Ensure `lcb_get_host` does not return `NULL` when the
@@ -153,7 +488,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 **New Features and Behavior Changes in 2.3.0**
 
 
-* [Cluster Configuration Carrier Publication]([cccp-wiki](http://www.couchbase.com/wiki/display/couchbase/Cluster+Configuration+Carrier+Publication)) (CCCP) 
+* [Cluster Configuration Carrier Publication]([cccp-wiki](http://www.couchbase.com/wiki/display/couchbase/Cluster+Configuration+Carrier+Publication)) (CCCP)
 
 	CCCP is the new and
   more efficient way to bootstrap from a cluster using the native memcached
@@ -171,7 +506,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 		LCB_CONFIG_TRANSPORT_CCCP,
 		LCB_CONFIG_TRANSPORT_LIST_END
 		};
-		
+
 		memset(&options, 0, sizeof(options));
 		options.version = 2;
 		options.v.v2.mchosts = "example.com:11210";
@@ -216,7 +551,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 	*Issues*: [CCBC-316](http://couchbase.com/issues/browse/CCBC-316)
 
 
-* Master-only observe option 
+* Master-only observe option
 
 	This adds a new
   struct version to the `lcb_observe_cmd_t` which allows you to select only the

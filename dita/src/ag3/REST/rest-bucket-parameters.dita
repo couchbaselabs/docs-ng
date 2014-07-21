@@ -23,7 +23,8 @@
 
     <p>If the request is successful, HTTP response 200 will be returned with an empty data
       content.</p>
-    <p>Warning</p>
-    <p> The bucket name cannot be changed via the REST API. </p>
+  	
+  	<note type="warning">
+    The bucket name cannot be changed via the REST API. </note>
   </body>
 </topic>

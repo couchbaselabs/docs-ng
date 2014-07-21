@@ -96,7 +96,7 @@ you create a relationship between the two entities:
 
 ![](images/relating_docs.png)
 
-In this example we have two different beers from the Amtel brewery. We represent
+In this example we have two different beers from the Amstel brewery. We represent
 each beer as a separate document and reference the brewery in the `brewer`
 field. The document-oriented approach provides several upsides compared to the
 traditional RDBMS model. First, because information is stored in documents,
@@ -151,7 +151,7 @@ during your data/document design phase, you want to evaluate:
 
  * How do the *things* in your application fit into natural groups.
 
-For instance, if you are creating a beer application, you might want particular
+For instance, if you are creating a beer application, you might want a particular
 document structure to represent a beer:
 
 
@@ -206,7 +206,7 @@ nested pairs to represent the information:
 }
 ```
 
-In this case we added a nested attribute for the geo-location of the brewery and
+In this case we added a nested attribute for the geolocation of the brewery and
 for beers. Within the location, we provide an exact longitude and latitude, as
 well as level of accuracy for plotting it on a map. The level of nesting you
 provide is your decision; as long as a document is under the maximum storage
@@ -221,22 +221,22 @@ key-value pairs.
 
 <a id="working-with-out-schemas"></a>
 
-## Schema-less Data Modeling
+## Schemaless Data Modeling
 
-When you work with Couchbase Server using documents to represent data means that
-database schema is optional; the majority of your effort will be creating one or
+When you use documents to represent data, a
+database schema is optional. The majority of your effort will be creating one or
 more documents that will represent application data. This document structure can
 evolve over time as your application grows and adds new features.
 
 In Couchbase Server you do not need to perform data modeling and establish
 relationships between tables the way you would in a traditional relational
-database. Technically every document you store with structure in Couchbase
+database. Technically, every document you store with structure in Couchbase
 Server has its own implicit schema; the schema is represented in how you
 organize and nest information in your documents.
 
 While you can choose any structure for your documents, the JSON model in
 particular will help you organize your information in a standard way, and enable
-you to take advantage of Couchbase Server ability to index and query. As a
+you to take advantage of Couchbase Server's ability to index and query. As a
 developer you benefit in several ways from this approach:
 
  * Extend the schema at runtime, or anytime. You can add new fields for a type of
@@ -277,11 +277,7 @@ document:
    through this document. In the NoSQL database jargon, this is often known as
    *using composite keys.*
 
-If go to our example of having a beer application which stores information about
-beers and breweries, this is a sample JSON document to represent a beer. Notice
-in this case we have a `type` field with the value 'beer.' This may be useful
-for grouping together a set of records if we later want to add a `type` of value
-'ale' or 'cider':
+You can use a `type` field to group together sets of records. For example, the following JSON document contains a `type` field with the value `beer` to indicate that the document represents a beer. A document that represents  another kind of beverage would use a different value in the type field, such as  `ale` or `cider`. 
 
 
 ```
@@ -679,9 +675,8 @@ documents:
    more desirable.
 
    In the case of our asteroid example, if we have all craters referenced in the
-   asteroid document, we can expect a good amount of conflict and contention over
-   asteroid document. As users create more craters, or as the environment creates
-   more craters, we can expect conflict between the processes which are all trying
+   asteroid document, we can expect a good amount of conflict and contention over the asteroid document. As users create more craters, or as the environment creates
+   more craters, we can expect conflicts between the processes that are all trying
    to update crater information on a single asteroid document. We could use locks
    and check-and-sets to prevent conflict, but this would diminish read/write
    response time. So in this type of scenario, putting the link from craters to
@@ -704,10 +699,10 @@ references to multiple documents. This is because performing a multiple-retrieve
 on a list of documents is always faster than getting the same set of documents
 through indexing and querying. Therefore, as long as there is less concern about
 contention, we should use the `has-many` model as the preferred approach. The
-advantages of this approach apply to all cases where our object is relative
-static; for instance if you have a player document you do not expect to change
-the player profile that often. You could store references to player abilities in
-the player document and then describe the abilities in separate documents.
+advantages of this approach apply to all cases where our object is relatively
+static. For example, if you have a player document and you do not expect to change
+the player profile object that often you could store references to player abilities in
+the player document and describe the abilities in separate documents.
 
 For more information about retrieving information using a multiple retrieve, or
 by using indexing and querying, see [Retrieving Multiple Keys](#cb-get-multiple)
@@ -875,18 +870,13 @@ when you do an email-based lookup:
 
 ![](images/user_lookup4.png)
 
-The other use case for this pattern is to create categories for object. For
-instance, if you have a beer, keyed with the id `beer::#{sku}`, you can create a
-product category and reference products belonging to that category with they key
-`category::ales::count`. For this category key, you would provide a unique count
-and the category name, such as ales. Then you would add products to the content
-the reference the SKU for your beers. For instance, the key value pair, could
-look like this:
+The other use case for this pattern is to create categories for objects. For
+instance, if you have a beer, keyed with the id `beer::#{sku}`, you can create a product category and reference products belonging to that category with they key `category::ales::count`. For this category key, you would provide a unique count and the category name, such as ales. Then you would add products to the content that references the SKU for your beers. For instance, the key-value pair, could look like this:
 
 
 ```
 {
-  :product : "#{sku}"
+  "product" : "#{sku}"
 }
 ```
 

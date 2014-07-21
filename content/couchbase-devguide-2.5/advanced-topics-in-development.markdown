@@ -1558,13 +1558,13 @@ basic information about SDK-level timeout settings. It also describes
 considerations and trade-offs you should have in mind when you design your
 application to address timeouts.
 
-In general, there are few possible ways to handle timeouts from Couchbase client
-SDKs:
+You can handle timeouts from Couchbase client
+SDKs in the following ways:
 
  * Trigger another action, such as displaying default content or providing user
-   with alternative action,
+   with alternative action.
 
- * Slow down the number of requests you are making from your application,
+ * Slow down the number of requests you are making from your application.
 
  * Indicate system overload.
 
@@ -1572,13 +1572,13 @@ In many cases, a developer's first instinct is to set very low timeouts, such as
 100ms or less, in the hope that this will guarantee requests/responses happen in
 a certain time. However one possible consequence of setting very low timeouts is
 even a minor network delay of a few milliseconds can trigger a timeout. Timeouts
-usually means that a Couchbase SDK will retry an operation which puts more
+usually mean that a Couchbase SDK will retry an operation which puts more
 unneeded traffic on the networks and other systems used in your application. In
 other scenarios developers may have inherited an application they want to use
 with Couchbase Server, but the application has not been originally designed to
 handle timeout information returned by Couchbase Server.
 
-In either of these scenario, the risk is to assume that setting aggressive
+In either of these scenarios, the risk is to assume that setting aggressive
 timeouts at the SDK-level will make a transaction occur in a certain time. Doing
 so may erroneously lead to even more performance bottlenecks for your
 application.
@@ -1795,7 +1795,7 @@ factors such as size of data set as a constant. However, rebalances will
 increase the overload load and resource utilization for a cluster and will lead
 to some amount of performance loss. Therefore, it is a best practice to perform
 a rebalance after node failure during the lowest application use, if possible.
-After rebalance, you could choose to perform one of these options:
+After node failure, you could choose to perform one of these options:
 
  * Leave the cluster functioning with one less node. Be aware that the cluster
    still needs to adequately maintain the volume of requests and data with one less

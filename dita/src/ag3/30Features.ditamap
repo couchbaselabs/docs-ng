@@ -39,6 +39,7 @@
   </topicref>
   <topicref href="Features/security-admin-access.dita"/>
   <topicref href="Features/security-clientServer-comm.dita"/>
+		<topicref href="Features/security-client-ssl.dita" />
   <topicref href="cluster-wide-info.ditamap" format="ditamap"/>
 
  </topicref>
