@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1711">
+	<title>Data file location</title>
+	<shortdesc>Couchbase Server stores data files (database and indices) under the <uicontrol>var > lib
+			> couchbase > data</uicontrol> path.</shortdesc>
+	<body>
+		<p>The disk path for the database and indices files is set during the initial setup of the server
+			node. The default disk path is typically used for development purposes only. If the
+			server node is used for production, configure a different disk path. </p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="2.77*"/>
+				<thead>
+					<row>
+						<entry>Platform</entry>
+						<entry>Default directory</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Linux</entry>
+						<entry><codeph>/opt/couchbase/var/lib/couchbase/data</codeph></entry>
+					</row>
+					<row>
+						<entry>Windows</entry>
+						<entry><codeph>C:\Program Files\couchbase\server\var\lib\couchbase\data</codeph></entry>
+					</row>
+					<row>
+						<entry>Mac OS X</entry>
+						<entry><codeph>~/Library/Application Support/Couchbase/var/lib/couchbase/data</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		
+		
+		<section><title>Changing the data file path</title><p>The disk path where the data and index files
+				are stored cannot be changed on a running server. To change the disk path, the node
+				must be removed from the cluster, configured with the new path, and added back to
+				the cluster. The data file path can be changed for each node via the Web UI at
+				setup, REST API, or CLI. Once a node or cluster has already been setup and is
+				storing data, the path cannot be changed while the node is part of a running
+				cluster. </p><p>The quickest and easiest method is to provision a new node with the
+				correct disk path configured and then use swap rebalance to add the new node in
+				while taking the old node out. This ensures that cluster performance is not
+				impacted. </p><p>To change the disk path by replacing a node (with swap
+				rebalance):</p><ol>
+				<li>Setup a new node with a different disk path.</li>
+				<li>Swap rebalance the new node for the existing node.</li>
+				<li>Repeat the process for every node in the cluster.</li>
+			</ol>
+			<p>To change the disk path of an existing node (without swap rebalance): </p><ol>
+				<li>Remove the node from the cluster and rebalance.</li>
+				<li>Change the path on the running node either via the REST API or using the
+					Couchbase CLI (commands above). </li>
+				<li>Re-add the node back to the cluster and rebalance.</li>
+			</ol> To change the disk path on multiple nodes, swap out each node and change the disk
+			path individually. <note type="important">Changing the data path for a node that is
+				already part of a cluster permanently deletes the stored data.</note>
+			<note type="tip">When using the command line tool, the data file and index file path
+				settings cannot be changed individually. To change the setting individually, use the
+				REST API.</note>
+		</section>
+		
+			
+		<example><title>CLI example</title>
+		<codeblock>
+couchbase-cli node-init -c 10.5.2.54:8091 \
+	--node-init-data-path=new_path \
+	-u user -p password
+		</codeblock>
+		</example>
+		
+	
+		
+	</body>
+	<related-links>
+		<linklist><title>Related topics</title>
+			<link href="../Tasks/rebalance-swap-rebalance.dita"/>
+			<link href="../Tasks/rebalance-adding-nodes.dita"/>
+			<link href="../Tasks/rebalance-performing.dita"/>
+			<link href="../Tasks/rebalance-cluster.dita"/>
+			<link href="../REST/rest-node-index-path.dita"/>
+			<link href="../REST/rest-cluster-removenode.dita"></link>
+			<link href="../REST/overview-rest-api.dita"></link>
+			<link href="../REST/rest-server-nodes.dita"></link>
+		</linklist>
+	</related-links>
+</topic>

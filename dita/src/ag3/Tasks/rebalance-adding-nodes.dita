@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ncd_gdg_q4">
+  <title>Adding nodes</title>
+  <body>
+    <p>There are a number of
+      methods available for adding a node to a cluster. The result is the same in each case, the node
+      is marked to be added to the cluster, but the node is not an active member until you have
+      performed a rebalance operation. Nodes can be added to a cluster via the UI, CLI, or REST API.</p>
+      
+      <p>When you are performing the Setup of a new Couchbase Server installation, 
+        you have the option of joining the new node to an existing cluster.</p>
+      <p>During the first step, you can select the <codeph>Join a cluster now</codeph>
+        radio button, as shown in the figure below:</p>
+      
+      <fig><image  href="../images/admin-tasks-rebalance-add-setup.png" width="480"></image></fig>
+      
+      <p>You are prompted for three pieces of
+        information:</p>
+      
+      <codeblock>* `IP Address`
+
+  The IP address of any existing node within the cluster you want to join.
+
+* `Username`
+
+  The username of the administrator of the target cluster.
+
+* `Password`
+
+  The password of the administrator of the target cluster.
+</codeblock>
+      
+      
+      <p>The node will be created as a new cluster, but the pending status of the node within the new
+        cluster will be indicated on the Cluster Overview page, as seen in the example
+        below:</p>
+      
+      <fig><image href="../images/admin-tasks-rebalance-node-added.png" width="720"></image></fig>
+    
+      
+      
+      
+        <section><title>Adding nodes via UI</title>
+      <p>You can add a new node to an existing cluster after installation by clicking the
+        <codeph>Add Server</codeph> button within the <codeph>Manage Server Nodes</codeph> area of the
+        Admin Console. You can see the button in the figure below.</p><p><image
+          href="../images/admin-tasks-rebalance-add-button.png" width="720">
+          <alt/>
+        </image></p><p>You will be presented with a dialog box, as shown below. Couchbase Server should
+          be installed, and should have been configured as per the normal setup procedures. You can also
+          add a server that has previously been part of this or another cluster using this method. The
+          Couchbase Server must be running.</p>
+      
+      
+      <fig><image href="../images/admin-tasks-rebalance-add-console.png" width="480"></image></fig>
+      
+      <p>You need to fill in the requested
+        information:</p>
+      
+      <codeblock>* `Server IP Address`
+
+  The IP address of the server that you want to add.
+
+* `Username`
+
+  The username of the administrator of the target node.
+
+* `Password`
+
+  The password of the administrator of the target node.
+</codeblock>
+      
+      <p>You
+        will be provided with a warning notifying you that the operation is destructive on the
+        destination server. Any data currently stored on the server will be deleted, and if the server
+        is currently part of another cluster, it will be removed and marked as failed over in that
+        cluster.</p>
+      
+      <p>Once the information has been entered successfully, the node will be marked as
+        ready to be added to the cluster, and the servers pending rebalance count will be updated.</p>
+        </section>
+      
+      
+      
+        <section><title>Adding nodes via REST</title>
+     
+      
+      <p>With the REST API, you can add nodes to the cluster by providing the IP address,
+        administrator username and password as part of the data payload. For example, using
+        <codeph>curl</codeph> you could add a new
+        node:</p>
+      
+      
+      <codeblock>
+&gt; curl -u cluster-username:cluster-password\
+    localhost:8091/controller/addNode \
+    -d "hostname=192.168.0.68&amp;user=node-username&amp;password=node-password"
+</codeblock>
+        </section>
+      
+      
+      
+        <section><title>Adding nodes via CLI</title>
+      <p>You can use the <codeph>couchbase-cli</codeph> command-line tool to add one or more
+        nodes to an existing cluster. The new nodes must have Couchbase Server installed, and Couchbase
+        Server must be running on each node.</p><p>To add, run the
+          command:</p><codeblock><codeph>```
+&gt; couchbase-cli server-add \
+      --cluster=localhost:8091 \
+      -u cluster-username -p cluster-password \
+      --server-add=192.168.0.72:8091 \
+      --server-add-username=node-username \
+      --server-add-password=node-password
+```
+</codeph></codeblock><p>Where:</p>
+      <table>
+        <tgroup cols="2">
+          <colspec colname="col1"/>
+          <colspec colname="col2"/>
+          <thead>
+            <row>
+              <entry>Parameter</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><codeph>--cluster</codeph></entry>
+              <entry>The IP address of a node in the existing cluster.</entry>
+            </row>
+            <row>
+              <entry><codeph>-u</codeph></entry>
+              <entry>The username for the existing cluster.</entry>
+            </row>
+            <row>
+              <entry><codeph>-p</codeph></entry>
+              <entry>The password for the existing cluster.</entry>
+            </row>
+            <row>
+              <entry><codeph>--server-add</codeph></entry>
+              <entry>The IP address of the node to be added to the cluster.</entry>
+            </row>
+            <row>
+              <entry><codeph>--server-add-username</codeph></entry>
+              <entry>The username of the node to be added.</entry>
+            </row>
+            <row>
+              <entry><codeph>--server-add-password</codeph></entry>
+              <entry>The password of the node to be added.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+          
+          <p>If the add process is successful, you will see the following
+        response:</p>
+          <codeblock>
+SUCCESS: server-add 192.168.0.72:8091
+</codeblock>
+          
+          <p>If you receive a failure message, you will be notified of the type of failure.</p>
+          <p>You can add  multiple nodes in one command by supplying multiple 
+            <codeph>--server-add</codeph> command-line options to the command.</p>
+      
+      
+      <note type="note">Once a server has been successfully added, the
+        Couchbase Server cluster indicates that a rebalance is required to complete the operation.
+      </note>
+      <p>You can cancel the addition of a node to a cluster without having to perform a rebalance operation. 
+        Canceling the operation removes the server from the cluster without having transferred or exchanged any data, 
+        since no rebalance operation took place. 
+        You can cancel the operation through the web interface.</p>
+        </section>
+      
+  </body>
+</topic>

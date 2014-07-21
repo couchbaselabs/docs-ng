@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2417" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="title:1;5:10">XDCR in cloud deployments</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="p:1;7:8">If you want to use XDCR within a cloud deployment to replicate between two or more clusters
+      that are deployed in the cloud, there are some additional configuration requirements:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="ul:1;9:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="li:1;10:11">Use a public DNS names and public IP addresses for nodes in your clusters.</li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="p:2;12:8">Cloud services support the use of a public IP address to allow communication to the nodes
+      within the cluster. Within the cloud deployment environment, the public IP address will
+      resolve internally within the cluster, but allow external communication. In Amazon EC2, for
+      example, ensure that you have enabled the public interface in your instance configuration,
+      that the security parameters allow communication to the required ports, and that public DNS
+      record exposed by Amazon is used as the reference name.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="p:3;18:8">Configure the cluster with a fixed IP address and the public DNS name according to
+      the recommendations for using Couchbase in the cloud.</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="ul:2;20:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="li:2;21:11">Use a DNS service to identify or register a CNAME that points to the public DNS address of
+        each node within the cluster. This will allow you to configure XDCR to use the CNAME to a
+        node in the cluster. The CNAME will be constant, even though the underlying public DNS
+        address may change within the cloud service.</li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="p:4;26:8">The CNAME record entry can then be used as the destination IP address when configuring
+      replication between the clusters using XDCR. If a transient failure causes the public DNS
+      address for a given cluster node to change, update the CNAME to point to the updated public
+      DNS address provided by the cloud service.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="p:5;30:8">By updating the CNAME records, replication should be able to persist over a public, internet-
+      based connection, even though the individual IP of different nodes within each cluster
+      configured in XDCR.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="p:6;33:8">For additional security, you should configure your security groups to allow traffic only on
+      the required ports between the IP addresses for each cluster. To configure security groups,
+      you will need to specify the inbound port and IP address range. You will also need to ensure
+      that the security also includes the right port and IP addresses for the remainder of your
+      cluster to allow communication between the nodes within the cluster.</p>
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="related-links:1;40:18"><linkpool class="- topic/linkpool " xtrc="topicref:33;40:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:26;33:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/bp-deployment-considerations.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="linklist:1;41:15">
+      <link href="../Install/install-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="link:1;42:50" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Introduction</linktext></link>
+      <link href="../Install/install-networkPorts.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="link:2;43:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Network ports</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server specific network ports for communication between server components and  		for communicating with the clients that access the data stored in the Couchbase cluster.</desc></link>
+      <link href="../Concepts/bp-cloudDeployment.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-cloud.dita" xtrc="link:3;44:56" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Couchbase in the cloud</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server is extremely easy to deploy in the cloud.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

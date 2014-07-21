@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_s2s_xdt_24">
+    <title>Specifying read-write for existing buckets</title>
+    <shortdesc>The number of readers and writers can be changed for existing data buckets:
+            <uicontrol>Data Buckets > Data bucket drop-down > Disk Read-Write
+            Concurrency</uicontrol>.</shortdesc>
+    <taskbody>
+        
+        
+        <context>
+            <p>After a bucket has been created, the reader/writer setting can be changed. 
+                After changing the setting for a bucket, the bucket is re-started and goes through server
+                warmup before the bucket becomes available.</p>
+        </context>
+        
+        <steps>
+            <step>
+                <cmd>Click the <uicontrol>Data Buckets</uicontrol> tab.</cmd>
+                <stepresult>A table with all data buckets in your cluster appears.</stepresult>
+            </step>
+            <step>
+                <cmd>Click the drop-down next to your data bucket.</cmd>
+                <stepresult>General information about the bucket appears as well as controls for the bucket.
+                <fig><image href="../images/mrw_edit_bucket.png" width="600"></image>
+                </fig>
+                </stepresult>
+            </step>
+            <step>
+                <cmd>Click <uicontrol>Edit</uicontrol>.</cmd>
+                <stepresult>A Configure Bucket panel appears where the reader-writer setting is changed.</stepresult>
+            </step>
+            <step><cmd>Under <uicontrol>Disk I/O Optimization</uicontrol>, specify the bucket disk I/O priority. Low (default) sets three (3)
+                    reader/writers and High allocates eight (8).</cmd></step>
+            <step><cmd>Click <uicontrol>Save</uicontrol>.</cmd>
+                <stepresult>A warning appears indicating that this change recreates the data bucket.
+                <fig>
+                    <image href="../images/mrw_bucket_edit_warning.png" width="600"></image>
+                </fig>
+                </stepresult>
+            </step>
+            <step>
+                <cmd>Click <uicontrol>Continue</uicontrol>.</cmd>
+                <info>The Data Buckets tab appears and the named bucket displays with a yellow or green indicator. 
+                    A yellow indicator means that the bucket is recreated and is warming up. 
+                    A green indicates means that the bucket has completed warmup. 
+                    At this point, the bucket is ready to receive and serve requests.</info>
+            </step>
+        </steps>
+    </taskbody>
+</task>

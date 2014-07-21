@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic12527">
+  <title>Initial server setup</title>
+  <body>
+
+    <note type="tip">Clear your browser cache before doing the setup process. You can find notes and
+      tips on how to do this on different browsers and platforms on www.wikihow.com.</note>
+
+    <p>On all platforms you can access the web console by connecting to the embedded web server on
+      port 8091. For example, if your server can be identified on your network as
+        <codeph>servera</codeph>, you can access the web console by opening
+        <codeph>http://servera:8091/</codeph>. You can also use an IP address or, if you are on the
+      same machine, <codeph>http://localhost:8091</codeph>. If you set up Couchbase Server on
+      another port other than <codeph>8091</codeph>, go to that port.</p>
+    
+    <ol>
+      <li>Open Couchbase Web Console.</li>
+      <li>Set the disk storage and cluster configuration.<p>The <codeph>Configure Disk
+            Storage</codeph> option specifies the location of the persistent storage used by
+          Couchbase Server. The setting affects only this node and sets the directory where all the
+          data will be stored on disk. This will also set where the indices created by views will be
+          stored. If you are not indexing data with views you can accept the default setting. For
+          the best performance, you may want to configure different disks for the server, for
+          storing your document and for index data. </p><p>The <codeph>Configure Server
+            Memory</codeph> section sets the amount of physical RAM that will be allocated by
+          Couchbase Server for storage. </p><p>If you are creating a new cluster, this is the amount
+          of memory that will be allocated on each node within your Couchbase cluster. The memory
+          for each node in a cluster must be the same amount. You must specify a value that can be
+          supported by all the nodes in your cluster as this setting will apply to the entire
+          cluster.</p><p>The default value is 60% of your total free RAM. This figure is designed to
+          allow RAM capacity for use by the operating system caching layer when accessing and using
+          views.</p></li>
+      <li>Provide a node IP or hostname under Configure Server Hostname. 
+            <fig><image href="../images/configure_server1.png" width="600"></image></fig>
+          </li>
+      <li>Provide the IP Address or hostname of an existing node, and administrative credentials for
+        that existing cluster.</li>
+      <li>To join an existing cluster, Check Join a cluster now.</li>
+      <li>Click Next.<p>The Sample Buckets panel appears where you can select the sample data
+          buckets you want to load.</p></li>
+      <li>Click the names of sample buckets to load Couchbase Server. These data sets demonstrate
+        Couchbase Server and help you understand and develop views. If you decide to install sample
+        data, the installer creates one Couchbase bucket for each set of sample data you
+          choose.
+            <fig><image href="../images/web-console-startup-3.png" width="600"></image></fig>
+            
+            <p>After you create sample data buckets a Create Bucket panel appears where
+          you create new data buckets</p></li>
+      <li>Set up a test bucket for Couchbase Server. You can change all bucket settings later except
+        for the bucket name.<p>Enter ‘default’ as the bucket name and accept all other defaults in
+          this panel. </p><p>Couchbase Server will create a new data bucket named ‘default.’ You can
+          use this test bucket to learn more about Couchbase and can use it in a test
+          environment.</p></li>
+      <li>Select <codeph>Update Notifications</codeph>.<p>Couchbase Web Console communicates with
+          Couchbase nodes and confirms the version numbers of each node. As long as you have
+          internet access, this information will be sent anonymously to Couchbase corporate..
+          Couchbase corporate only uses this information to provide you with updates and information
+          that will help us improve Couchbase Server and related products.</p><p>When you provide an
+          email address we will add it to the Couchbase community mailing list for news and update
+          information about Couchbase and related products. You can unsubscribe from the mailing
+          list at any time using the unsubscribe link provided in each newsletter. Web Console
+          communicates the following information:</p><ul>
+          <li>
+            <p>The current version. When a new version of Couchbase Server exists, you get
+              information on where you can download the new version.</p>
+          </li>
+          <li>
+            <p>Information about the size and configuration of your Couchbase cluster to Couchbase
+              corporate. This information helps us prioritize our development efforts.</p>
+          </li>
+        </ul></li>
+      <li>Enter a username and password. Your username must have no more than 24 characters, and
+        your password must have 6 to 24 characters. You use these credentials each time you add a
+        new server into the cluster. These are the same credentials you use for Couchbase REST API.
+        See the Couchbase REST API.</li>
+    </ol>
+    <p>Once you finish this setup, you see Couchbase Web Console with the Cluster Overview page:</p>
+
+    <fig><image href="../images/web-console-startup-7.png" width="600"></image></fig>
+
+    <p>Your server is now running and ready to use. After you install your server and finish initial
+      setup you can also optionally configure other settings, such as the port, RAM, using any of
+      the following methods:</p>
+    
+    <ul>
+    <li>Using command-line tools<p>The command line tools provided with your
+        Couchbase Server installation includes <codeph>couchbase-cli</codeph>. This tool provides
+        access to the core functionality of the Couchbase Server by providing a wrapper to the REST
+        API. For information about CLI, see couchbase-cli tool.</p></li>
+
+    <li>Using the REST API<p>Couchbase Server can be configured and controlled
+        using a REST API. In fact, the REST API is the basis for both the command-line tools and Web
+        interface to Couchbase Server.</p><p>For more information on using the REST API see, the
+        Couchbase REST API.</p></li>
+    </ul>
+
+    
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Concepts/bp-sizingGuidelines.dita"></link>
+      <link href="../Install/hostnames.dita"></link>
+      <link href="../Misc/sample-bucket-beer.dita"></link>
+      <link href="../Misc/sample-bucket-game.dita"></link>
+      <link href="../UI/ui-data-buckets.dita"></link>
+      <link href="../CLI/cli-overview.dita"></link>
+      <link href="../CLI/cbcli-intro.dita"></link>
+      <link href="../REST/overview-rest-api.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

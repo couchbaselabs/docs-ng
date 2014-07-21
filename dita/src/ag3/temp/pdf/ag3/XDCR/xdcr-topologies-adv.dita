@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/XDCR?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/XDCR/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic965" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="title:1;5:10">XDCR advanced topologies</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="p:1;7:8">By combining unidirectional and bidirectional topologies, you have the flexibility to create
+      several complex topologies such as the chain and propagation topology.</p>
+    
+      <image href="../images/xdcr_repl_chain.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="image:1;10:63"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="p:2;11:8">In the image below there is one bidirectional replication link between Datacenter 1 and
+      Datacenter 2 and two unidirectional replication links between Datacenter 2 and Datacenters 3
+      and 4. Propagation replication can be useful in a scenario when you want to setup a
+      replication scheme between two regional offices and several other local offices. Data between
+      the regional offices is replicated bidirectionally between Datacenter 1 and Datacenter 2. Data
+      changes in the local offices (Datacenters 3 and 4) are pushed to the regional office using
+      unidirectional replication:</p>
+    
+        <image href="../images/xdcr_advanced.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-topologies-adv.dita" xtrc="image:2;19:63"/>
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:119;137:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:115;133:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../XDCR/xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cross Datacenter Replication (XDCR)</linktext></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1284" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="title:1;5:10">Rebalancing</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="shortdesc:1;6:14">Rebalancing is the process of redistributing information across nodes</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="p:1;8:8">Data is stored within Couchbase Server through the distribution method that is provided by the vBucket structure. 
+      When a Couchbase Server cluster is expanded or shrunk, 
+      the information stored in the vBuckets is redistributed between the available nodes and 
+      the corresponding vBucket map is updated to reflect the new structure. 
+      This process is called <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="i:1;12:33">rebalancing</i>.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="p:2;14:8">Rebalancing is an deliberate process that you need to initiate manually when the structure of
+      your cluster changes. The rebalance process changes the allocation of the vBuckets used to
+      store the information and then physically moves the data between the nodes to match the new
+      structure.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="p:3;18:8">The rebalancing process can take place while the cluster is running and servicing requests.
+      Clients using the cluster read and write to the existing structure with the data being moved
+      in the background between nodes. Once the moving process has been completed, the vBucket map
+      is updated and communicated to the smart clients and the proxy service (Moxi).</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-rebalancing.dita" xtrc="p:4;22:8">The result is that the distribution of data across the cluster has been rebalanced, or
+      smoothed out, so that the data is evenly distributed across the database. 
+      Rebalancing takes into account the data and replicas of the data required to support the system.</p>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:20;26:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc "> Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic822"><title>Exporting</title><body><p>Exporting data to your cluster requires the use of the Sqoop import command
+followed by the parameters <codeph>--connect</codeph>, <codeph>--export-dir</codeph>, and <codeph>--table</codeph>. Below are
+some example imports.</p><p><codeph>
+shell&gt; bin/sqoop export –connect http://10.2.1.55:8091/pools –table garbage_value –export-dir dump_4–12–11
+</codeph></p><p>This will export all key-value pairs from the HDFS directory specified by
+export-dir into Couchbase.</p><p><codeph>
+shell&gt; bin/sqoop export -connect http://10.2.1.55:8091/pools –table garbage_value –export-dir backfill_4–29–11
+</codeph></p><p>This will export all key-value pairs from the HDFS directory specified by
+<codeph>--export-dir</codeph> into Couchbase.</p><p>Sqoop provides many more options to the export command than we will cover in
+this document. Run <codeph>bin/sqoop export help</codeph> for a list of all options and see the
+Sqoop documentation for more details about these options.</p></body></topic>

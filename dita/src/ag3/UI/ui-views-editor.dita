@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic9764">
+  <title>Views</title>
+  <shortdesc>The Views section allows you to manage your development and production views.</shortdesc>
+  <body>
+    <p>The Views Editor is available within the Couchbase web console. You can access the View
+      Editor either by clicking the <codeph>Views</codeph> for a given data bucket within the
+        <codeph>Data Buckets</codeph> display, or by selecting the <codeph>Views</codeph> page from
+      the main navigation panel.</p>
+    <image href="../images/views-overview.png" width="600"/>
+    <p>The individual elements of this interface are:</p>
+    <ul>
+      <li><p>The pop-up, at the top-left, provides the selection of the data bucket where you are
+          viewing or editing a view.</p></li>
+      <li><p>The <codeph>Create Development View</codeph> enables you to create a new view either
+          within the current design document, or within a new document.</p></li>
+      <li><p>You can switch between Production Views and Development
+            Views. </p></li>
+      <li><p>The final section provides a list of the design documents, and within each document,
+          each defined view.</p></li>
+    </ul>
+    <p>When viewing <codeph>Development Views</codeph>, you can perform the following actions:</p>
+    <codeblock><codeph>* `Compact` the view index with an associated design document. This will compact
+  the view index and recover space used to store the view index on disk.
+
+* `Delete` a design document. This deletes all of the views defined within the
+  design document.
+
+* `Add Spatial View` creates a new spatial view within the corresponding design
+  document. See [Creating and Editing Views](#couchbase-views-editor-createedit).
+
+* `Add View` creates a new view within the corresponding design document. See
+  [Creating and Editing Views](#couchbase-views-editor-createedit).
+
+* `Publish` your design document (and all of the defined views) as a production
+  design document. See [Publishing Views](#couchbase-views-editor-publishing).
+
+* For each individual view listed:
+
+   * `Edit`, or clicking the view name
+
+     Opens the view editor for the current view name, see [Creating and Editing
+     Views](#couchbase-views-editor-createedit).
+
+   * `Delete`
+
+     Deletes an individual view.
+</codeph></codeblock>
+    <p>When viewing <codeph>Production Views</codeph> you can perform the following operations on
+      each design document:</p>
+    <codeblock><codeph>* `Compact` the view index with an associated design document. This will compact
+  the view index and recover space used to store the view index on disk.
+
+* `Delete` a design document. This will delete all of the views defined within the
+  design document.
+
+* `Copy to Dev` copies the view definition to the development area of the view
+  editor. This enables you edit the view definition. Once you have finished making
+  changes, using the `Publish` button will then overwrite the existing view
+  definition.
+
+* For each individual view:
+
+   * By clicking the view name, or the `Show` button, execute and examine the results
+     of a production view. See [Getting View Results](#couchbase-views-editor-view)
+     for more information.
+</codeph></codeblock>
+    
+    <section><title>Creating and editing views</title><p>You can create a new design document and/or
+        view by clicking the <codeph>Create Development View</codeph> button within the
+          <codeph>Views</codeph> section of the Web Console. If you are creating a new design
+        document and view you will be prompted to supply both the design document and view name. </p>
+      <p>To create a new view as part of an existing design document, click the
+          <codeph>Add View</codeph> button against the corresponding design document.</p><p>View
+        names must be specified using one or more UTF–8 characters. You cannot have a blank view
+        name. View names cannot have leading or trailing whitespace characters (space, tab, newline,
+        or carriage-return).</p><p>If you create a new view, or have selected a Development view,
+        you can create and edit the <codeph>map()</codeph> and <codeph>reduce()</codeph> functions.
+        Within a development view, the results shown for the view are executed either over a small
+        subset of the full document set (which is quicker and places less load on the system), or
+        the full data set.</p>>
+          <image href="../images/views-editing.png" width="600"></image>
+        <p>The top portion of the interface provides navigation between the
+        available design documents and views.</p><p>The <codeph>Sample Document</codeph> section
+        allows you to view a random document from the database to help you write your view functions
+        and so that you can compare the document content with the generated view output. Clicking
+        the <codeph>Preview a Random Document</codeph> will randomly select a document from the
+        database. Clicking <uicontrol>Edit Document</uicontrol> takes you to the Views editor.</p>
+      <p>Documents stored in the database that are identified as Non-JSON may
+        be displayed as binary, or text-encoded binary, within the UI.</p><p>Document metadata is
+        displayed in a separate box on the right hand side of the associated document. This shows
+        the metadata for the displayed document, as supplied to the <codeph>map()</codeph> as the
+        second argument to the function. For more information on writing views and creating the
+          <codeph>map()</codeph> and <codeph>reduce()</codeph> functions.</p><p>With the View Code
+        section, you should enter the function that you want to use for the <codeph>map()</codeph>
+        and <codeph>reduce()</codeph> portions of the view. The map function is required, the reduce
+        function is optional. When creating a new view a basic <codeph>map()</codeph> function will
+        be provided. You can modify this function to output the information in your view that you
+        require.</p><p>Once you have edited your <codeph>map()</codeph> and
+          <codeph>reduce()</codeph> functions, you must use the <codeph>Save</codeph> button to save
+        the view definition.</p><p>The design document will be validated before it is created or
+        updated in the system. The validation checks for valid JavaScript and for the use of valid
+        built-in reduce functions. Any validation failure is reported as an error.</p><p>You can
+        also save the modified version of your view as a new view using the <codeph>Save
+          As...</codeph> button.</p><p>The lower section of the window will show you the list of
+        documents that would be generated by the view. You can use the <codeph>Show Results</codeph>
+        to execute the view.</p><p>To execute a view and get a sample of the output generated by the
+        view operation, click the <codeph>Show Results</codeph> button. This will create the index
+        and show the view output within the table below. You can configure the different parameters
+        by clicking the arrow next to <codeph>Filter Results</codeph>. This shows the view selection
+        criteria, as seen in the figure below. </p>
+            <image href="../images/views-filters.png" width="300"> </image>
+        <p>Clicking on the <codeph>Filter Results</codeph> query string
+        opens a new window containing the raw, JSON formatted, version of the View results. </p>
+      <p>By default, Views during the development stage are executed only over
+        a subset of the full document set. This is indicated by the <codeph>Development Time
+          Subset</codeph> button. You can execute the view over the full document set by selecting
+          <codeph>Full Cluster Data Set</codeph>. Because this executes the view in real-time on the
+        data set, the time required to build the view may be considerable. Progress for building the
+        view is shown at the top of the window.</p><p>If you have edited either the
+          <codeph>map()</codeph> or <codeph>reduce()</codeph> portions of your view definition, you
+          <i>must</i> save the definition. The <codeph>Show Results</codeph> button will remain
+        greyed out until the view definition has been saved.</p><p>You can also filter the results
+        and the output using the built-in filter system. This filter provides similar options that
+        are available to clients for filtering results.</p>
+    </section>
+    
+    <section><title>Publishing views</title>
+      <p>Publishing a view moves the view definition from the
+        Development view to a Production View. Production views cannot be edited. The act of
+        publishing a view and moving the view from the development to the production view will
+        overwrite a view the same name on the production side. To edit a Production view, you copy
+        the view from production to development, edit the view definition, and then publish the
+        updated version of the view back to the production
+        side.</p></section>
+    
+    <section><title>Getting view results</title><p>Once a view has been published to be a production
+        view, you can examine and manipulate the results of the view from within the web console
+        view interface. This makes it easy to study the output of a view without using a suitable
+        client library to obtain the information.</p><p>To examine the output of a view, click icon
+        next to the view name within the view list. This will present you with a view similar to
+        that shown in the figure below.</p>
+          <image href="../images/views-detail.png" width="600"> </image>
+        <p>The top portion of the interface provides navigation between the
+        available design documents and views.</p><p>The <codeph>Sample Document</codeph> section
+        allows you to view a random document from the database so that you can compare the document
+        content with the generated view output. Clicking the <codeph>Preview a Random
+          Document</codeph> will randomly select a document from the database. If you know the ID of
+        a document that you want to examine, enter the document ID in the box, and click the
+          <codeph>Lookup Id</codeph> button to load the specified document.</p><p>To examine the
+        function that generate the view information, use the <codeph>View Code</codeph> section of
+        the display. This will show the configured map and reduce functions.</p><p>The lower portion
+        of the window will show you the list of documents generated by the view. You can use the
+          <codeph>Show Results</codeph> to execute the view.</p><p>The <codeph>Filter
+          Results</codeph> interface allows you to query and filter the view results by selecting
+        the sort order, key range, or document range, and view result limits and offsets.</p><p>To
+        specify the filter results, click on the pop-up triangle next to <codeph>Filter
+          Results</codeph>. You can delete existing filters, and add new filters using the embedded
+        selection windows. Click <codeph>Show Results</codeph> when you have finished selecting
+        filter values. The filter values you specify are identical to those available when querying
+        from a standard client library. </p><p>Due to the
+        nature of range queries, a special character may be added to query specifications when
+        viewing document ranges. The character may not show up in all web browsers, and may instead
+        appear instead as an invisible, but selectable, character. </p></section>
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Views/views-intro.dita"></link>
+      <link href="../Views/views-writing.dita"></link>
+      <link href="../REST/design-docs-rest-api.dita"></link>
+      <link href="../REST/rest-views-intro.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

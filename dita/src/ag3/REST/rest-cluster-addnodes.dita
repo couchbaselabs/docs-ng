@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic758"><title>Adding nodes to clusters</title><body><p>This is a REST request made to a Couchbase cluster to add a given node to the
+cluster. You add a new node with the at the RESTful endpoint
+<codeph>server_ip:port/controller/addNode</codeph>. Provide an administrative
+username and password as parameters:</p><codeblock><codeph>curl -u admin:password \
+10.2.2.60:8091/controller/addNode \
+-d "hostname=10.2.2.64&amp;user=admin&amp;password=password"
+</codeph></codeblock><p>Here we create a request to the cluster at 10.2.2.60:8091 to add a given node by
+using method, <codeph>controller/addNode</codeph> and by providing the IP address for the node
+as well as credentials. Replace the <i>admin</i>, <i>password</i>, <i>10.2.2.60</i>, and
+<i>10.2.2.64</i> values in the above example with your actual values.</p><p>If successful, Couchbase Server will respond:</p><codeblock><codeph>HTTP/1.1 200 OK
+{"otpNode":"ns_1@10.4.2.6"}
+</codeph></codeblock></body></topic>

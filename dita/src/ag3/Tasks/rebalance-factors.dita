@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ynd_gm2_q4">
+  <title>Rebalancing factors</title>
+  <shortdesc>Choosing when, why, and how to rebalance your cluster depends on the scenario.</shortdesc>
+  <body>
+    <p>Choosing when each of situations applies is not always straightforward. In general, the
+      followith typical triggers and indicators define when to change the node configuration and
+      when to perform a rebalance.</p>
+    
+    <section><title>When to expand your cluster</title>
+    <p>You can increase the size of your cluster by adding more nodes. Adding more
+          nodes increases the available RAM, disk I/O and network bandwidth available to your client
+          applications and helps to spread the load around more machines. There are a few different
+          metrics and statistics that you can use on which to base your decision:</p>
+    
+    <ul>
+      <li><b>Increasing RAM capacity</b>
+          <p>One of the most important components in a Couchbase Server cluster is the amount of RAM
+            available. RAM not only stores application data and supports the Couchbase Server
+            caching layer, it is also actively used for other operations by the server, and a
+            reduction in the overall available RAM may cause performance problems
+            elsewhere.</p><p>The following are common indicators for increasing your RAM capacity
+            within your cluster: </p><ul>
+            <li>If you see more disk fetches occurring, that means that your application is
+              requesting more and more data from disk that is not available in RAM. Increasing the
+              RAM in a cluster will allow it to store more data and therefore provide better
+              performance to your application.</li>
+            <li>If you want to add more buckets to your Couchbase Server cluster you may need more
+              RAM to do so. Adding nodes will increase the overall capacity of the system and then
+              you can shrink any existing buckets in order to make room for new ones.</li>
+          </ul>
+        </li>
+      <li><b>Increasing disk I/O throughput</b>
+        <p>By adding nodes to a Couchbase Server cluster, you will increase the aggregate amount of 
+          disk I/O that can be performed across the cluster. This is especially important in high-write 
+          environments, but can also be a factor when you need to read large amounts of data from the disk.</p></li>
+      <li><b>Increasing disk capacity</b>
+        <p>You can either add more disk space to your current nodes or add more nodes to add aggregate disk space to the cluster.</p>
+      </li>
+      <li><b>Increasing network bandwidth</b>
+        <p>If you see that you are or are close to saturating the network bandwidth of your cluster, 
+          this is a very strong indicator of the need for more nodes. More nodes will cause the overall 
+          network bandwidth required to be spread out across additional nodes, which will reduce the 
+          individual bandwidth of each node.</p>
+      </li>
+    </ul>
+    </section>
+      
+      
+      
+      <section><title>When to shrink your cluster</title>
+    <p>Choosing to shrink a Couchbase cluster is a more subjective decision. It is
+          usually based upon cost considerations, or a change in application requirements not requiring as
+          large a cluster to support the required load.</p>
+        
+        <p>When choosing whether to shrink a cluster:</p>
+        <ul>
+              <li>You should ensure you have enough capacity in the remaining nodes to support your dataset
+                and application load. Removing nodes may have a significant detrimental effect on your cluster
+                if there are not enough nodes.</li>
+              <li>You should avoid removing multiple nodes at once if you are trying to determine the ideal
+                cluster size. Instead, remove each node one at a time to understand the impact on the cluster
+                as a whole.</li>
+              <li>You should remove and rebalance a node, rather than using failover. When a node fails and
+                is not coming back to the cluster, the failover functionality will promote its replica
+                vBuckets to become active immediately. If a healthy node is failed over, there might be some
+                data loss for the replication data that was in flight during that operation. Using the remove
+                functionality will ensure that all data is properly replicated and continuously
+                available.</li>
+            </ul>
+      </section>
+    
+    <section><title>When to rebalance your cluster</title>
+
+    <p>Once you decide to add or remove nodes, consider the folloiwng:</p>
+      <ul>
+                <li>If you’re planning on adding and/or removing multiple nodes in a short period of time, it
+                  is best to add them all at once and then kick-off the rebalancing operation rather than
+                  rebalance after each addition. This will reduce the overall load placed on the system as well
+                  as the amount of data that needs to be moved.</li>
+                <li>Choose a quiet time for adding nodes. While the rebalancing operation is meant to be
+                  performed online, it is not a “free” operation and will undoubtedly put increased load on the
+                  system as a whole in the form of disk IO, network bandwidth, CPU resources and RAM
+                  usage.</li>
+                <li>Voluntary rebalancing (i.e. not part of a failover situation) should be performed during
+                  a period of low usage of the system. Rebalancing is a comparatively resource intensive
+                  operation as the data is redistributed around the cluster and you should avoid performing a
+                  rebalance during heavy usage periods to avoid having a detrimental affect on overall cluster
+                  performance.</li>
+                <li>Rebalancing requires moving large amounts of data around the cluster. The more RAM that
+                  is available will allow the operating system to cache more disk access which will allow it to
+                  perform the rebalancing operation much faster. If there is not enough memory in your cluster
+                  the rebalancing may be very slow. It is recommended that you don’t wait for your cluster to
+                  reach full capacity before adding new nodes and rebalancing.</li>
+              </ul>
+    </section>
+    
+  </body>
+</topic>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+ <title>Cluster-wide diagnostics</title>
+	<topicref href="Features/cluster-wide-info-intro.dita" >
+		<topicref href="Features/cluster-wide-info-web.dita" />
+		<topicref href="Features/cluster-wide-info-cli.dita">
+			<topicref href="Features/cluster-wide-info-cli-tool.dita" />
+			<topicref href="Features/cluster-wide-info-cbcollect-info-tool.dita" />
+		</topicref>
+		<topicref href="Features/cluster-wide-info-rest.dita" />
+	</topicref>
+</map>

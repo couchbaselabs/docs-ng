@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/XDCR?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/XDCR/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3175" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="title:1;5:10">XDCR architecture</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:1;7:8">There are a number of key elements in Couchbase Server’s XDCR architecture including:</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:2;8:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="b:1;8:11">Continuous Replication.</b> XDCR in Couchbase Server provides continuous replication
+      across geographically distributed datacenters. Data mutations are replicated to the
+      destination cluster after they are written to disk. There are multiple data streams (32 by
+      default) that are shuffled across all shards (called vBuckets in Couchbase Server) on the
+      source cluster to move data in parallel to the destination cluster. The vBucket list is
+      shuffled so that replication is evenly load balanced across all the servers in the cluster.
+      The clusters scale horizontally, more the servers, more the replication streams, faster the
+      replication rate. </p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:3;16:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="b:2;16:11">Cluster Aware.</b> XDCR is cluster topology aware. The source and destination clusters
+      could have different number of servers. If a server in the source or destination cluster goes
+      down, XDCR is able to get the updated cluster topology information and continue replicating
+      data to available servers in the destination cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:4;20:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="b:3;20:11">Push based connection resilient replication.</b> XDCR in Couchbase Server is push-based
+      replication. The source cluster regularly checkpoints the replication queue per vBucket and
+      keeps track of what data the destination cluster last received. If the replication process is
+      interrupted for example due to a server crash or intermittent network connection failures, it
+      is not required to restart replication from the beginning. Instead, once the replication link
+      is restored, replication can continue from the last checkpoint seen by the destination
+      cluster.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:5;27:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="b:4;27:11">Efficient.</b> For the sake of efficiency, Couchbase Server is able to de-duplicate
+      information that is waiting to be stored on disk. For instance, if there are three changes to
+      the same document in Couchbase Server, and these three changes are waiting in queue to be
+      persisted, only the last version of the document is stored on disk and later gets pushed into
+      the XDCR queue to be replicated.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:6;32:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="b:5;32:11">Active-Active Conflict Resolution.</b> Within a cluster, Couchbase Server provides strong
+      consistency at the document level. On the other hand, XDCR also provides eventual consistency
+      across clusters. Built-in conflict resolution will pick the same “winner” on both the clusters
+      if the same document was mutated on both the clusters. If a conflict occurs, the document with
+      the most updates will be considered the “winner.” If the same document is updated the same
+      number of times on the source and destination, additional metadata such as numerical sequence,
+      CAS value, document flags and expiration TTL value are used to pick the “winner.” XDCR applies
+      the same rule across clusters to make sure document consistency is maintained:</p>
+    
+        <image href="../images/xdcr_conflict_res.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="image:1;41:67"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="p:7;42:8">As shown in above, bidirectional replication is set up between Datacenter 1 and Datacenter 2
+      and both the clusters start off with the same JSON document (Doc 1). In addition, two
+      additional updates to Doc 1 happen on Datacenter 2. In the case of a conflict, Doc 1 on
+      Datacenter 2 is chosen as the winner because it has seen more updates.</p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="related-links:1;47:18"><linkpool class="- topic/linkpool " xtrc="topicref:117;135:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:115;133:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../XDCR/xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cross Datacenter Replication (XDCR)</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="linklist:1;48:15">
+      <link href="../REST/rest-xdcr-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-architecture.dita" xtrc="link:1;49:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link>
+    </linklist>
+  </related-links>
+</topic>

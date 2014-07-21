@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_dl3_clp_yn">
+ <title>Metadata ejection</title>
+ <shortdesc>Metadata ejection allows both value and full bucket ejection from memory.</shortdesc>
+ <conbody>
+  
+  
+  <p>Value bucket ejection removes the data but keeps all keys and metadata in memory (default). 
+   Value-bucket ejection is the standard method of ejection. 
+   An item's value is reset when the ejection occurs. 
+   Full-bucket ejection removes all data including keys, metadata, and key-values. 
+   Full-bucket ejection reduces the RAM requirement for large buckets.</p>
+  
+  <p>Full-bucket ejection allows large data footprints are supported with efficient cache managment and 
+   reduced warmup times are possible when the working sets in memory are smaller. 
+   This method addresses an environment where there are very large data sets (large number of items/keys), 
+   and a small working set in memory. 
+   Metadata ejection operates at the bucket-level for manageability purposes. 
+   The workload characteristics can be categorized.</p>
+  
+  <p><b>GRAPHICs: Ejection Logic Table</b></p>
+  
+
+  <section><title>Impacted documentation</title>
+   <ul>
+    <li>Views and stored data > Document metadata</li>
+    <li>Warm up operations</li>
+    <li>Global thread pool</li>
+    <li>Ejection and working set management</li>
+    <li>Other ejection from hitting thresholds</li>
+   </ul>
+  </section>
+  
+  
+  <section><title>Backward compatibility</title>
+   <p>In previous releases, the values for all active data sets are ejected and the metadata + key are not ejection. 
+    In version 3.0, both value and metadata+key are ejected.</p>
+
+  </section> 
+  
+
+  
+  
+ </conbody>
+ 
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="../CLI/CBcli/cbcli-buckets.dita"></link>
+   <link href="../REST/rest-bucket-intro.dita"></link>
+  </linklist>
+ </related-links>
+</concept>

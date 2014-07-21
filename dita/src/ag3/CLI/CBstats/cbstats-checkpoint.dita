@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1177"><title>Checkpoint stats</title><body><p>Checkpoint stats provide detailed information on per-vbucket checkpoint
+data structure.</p><p>Like Hash stats, requesting these stats has some impact on performance.
+Therefore, please do not poll them from the server frequently.
+Each stat is prefixed with =vb_= followed by a number, a colon, and then
+each stat name.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>cursor_name:cursor_checkpoint_id</entry>
+	<entry>Checkpoint ID at which the cursor is</entry>
+</row><row>
+	<entry/>
+	<entry>name ‘cursor_name’ is pointing now</entry>
+</row><row>
+	<entry>open_checkpoint_id</entry>
+	<entry>ID of the current open checkpoint</entry>
+</row><row>
+	<entry>num_tap_cursors</entry>
+	<entry>Number of referencing TAP cursors</entry>
+</row><row>
+	<entry>num_checkpoint_items</entry>
+	<entry>Number of total items in a checkpoint</entry>
+</row><row>
+	<entry/>
+	<entry>data structure</entry>
+</row><row>
+	<entry>num_open_checkpoint_items</entry>
+	<entry>Number of items in the open checkpoint</entry>
+</row><row>
+	<entry>num_checkpoints</entry>
+	<entry>Number of checkpoints in a checkpoint</entry>
+</row><row>
+	<entry/>
+	<entry>data structure</entry>
+</row><row>
+	<entry>num_items_for_persistence</entry>
+	<entry>Number of items remaining for persistence</entry>
+</row><row>
+	<entry>checkpoint_extension</entry>
+	<entry>True if the open checkpoint is in the</entry>
+</row><row>
+	<entry/>
+	<entry>extension mode</entry>
+</row><row>
+	<entry>state</entry>
+	<entry>The state of the vbucket this checkpoint</entry>
+</row><row>
+	<entry/>
+	<entry>contains data for</entry>
+</row><row>
+	<entry>last_closed_checkpoint_id</entry>
+	<entry>The last closed checkpoint number</entry>
+</row><row>
+	<entry>persisted_checkpoint_id</entry>
+	<entry>The last persisted checkpoint number</entry>
+</row></tbody></tgroup></table></body></topic>

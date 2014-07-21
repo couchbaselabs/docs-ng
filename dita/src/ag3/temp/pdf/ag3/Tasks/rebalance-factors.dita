@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_ynd_gm2_q4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="title:1;4:10">Rebalancing factors</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="shortdesc:1;5:14">Choosing when, why, and how to rebalance your cluster depends on the scenario.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:1;7:8">Choosing when each of situations applies is not always straightforward. In general, the
+      followith typical triggers and indicators define when to change the node configuration and
+      when to perform a rebalance.</p>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="section:1;11:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="title:2;11:21">When to expand your cluster</title>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:2;12:8">You can increase the size of your cluster by adding more nodes. Adding more
+          nodes increases the available RAM, disk I/O and network bandwidth available to your client
+          applications and helps to spread the load around more machines. There are a few different
+          metrics and statistics that you can use on which to base your decision:</p>
+    
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="ul:1;17:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:1;18:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="b:1;18:14">Increasing RAM capacity</b>
+          <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:3;19:14">One of the most important components in a Couchbase Server cluster is the amount of RAM
+            available. RAM not only stores application data and supports the Couchbase Server
+            caching layer, it is also actively used for other operations by the server, and a
+            reduction in the overall available RAM may cause performance problems
+            elsewhere.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:4;23:30">The following are common indicators for increasing your RAM capacity
+            within your cluster: </p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="ul:2;24:42">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:2;25:17">If you see more disk fetches occurring, that means that your application is
+              requesting more and more data from disk that is not available in RAM. Increasing the
+              RAM in a cluster will allow it to store more data and therefore provide better
+              performance to your application.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:3;29:17">If you want to add more buckets to your Couchbase Server cluster you may need more
+              RAM to do so. Adding nodes will increase the overall capacity of the system and then
+              you can shrink any existing buckets in order to make room for new ones.</li>
+          </ul>
+        </li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:4;34:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="b:2;34:14">Increasing disk I/O throughput</b>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:5;35:12">By adding nodes to a Couchbase Server cluster, you will increase the aggregate amount of 
+          disk I/O that can be performed across the cluster. This is especially important in high-write 
+          environments, but can also be a factor when you need to read large amounts of data from the disk.</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:5;38:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="b:3;38:14">Increasing disk capacity</b>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:6;39:12">You can either add more disk space to your current nodes or add more nodes to add aggregate disk space to the cluster.</p>
+      </li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:6;41:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="b:4;41:14">Increasing network bandwidth</b>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:7;42:12">If you see that you are or are close to saturating the network bandwidth of your cluster, 
+          this is a very strong indicator of the need for more nodes. More nodes will cause the overall 
+          network bandwidth required to be spread out across additional nodes, which will reduce the 
+          individual bandwidth of each node.</p>
+      </li>
+    </ul>
+    </section>
+      
+      
+      
+      <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="section:2;52:16"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="title:3;52:23">When to shrink your cluster</title>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:8;53:8">Choosing to shrink a Couchbase cluster is a more subjective decision. It is
+          usually based upon cost considerations, or a change in application requirements not requiring as
+          large a cluster to support the required load.</p>
+        
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:9;57:12">When choosing whether to shrink a cluster:</p>
+        <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="ul:3;58:13">
+              <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:7;59:19">You should ensure you have enough capacity in the remaining nodes to support your dataset
+                and application load. Removing nodes may have a significant detrimental effect on your cluster
+                if there are not enough nodes.</li>
+              <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:8;62:19">You should avoid removing multiple nodes at once if you are trying to determine the ideal
+                cluster size. Instead, remove each node one at a time to understand the impact on the cluster
+                as a whole.</li>
+              <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:9;65:19">You should remove and rebalance a node, rather than using failover. When a node fails and
+                is not coming back to the cluster, the failover functionality will promote its replica
+                vBuckets to become active immediately. If a healthy node is failed over, there might be some
+                data loss for the replication data that was in flight during that operation. Using the remove
+                functionality will ensure that all data is properly replicated and continuously
+                available.</li>
+            </ul>
+      </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="section:3;74:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="title:4;74:21">When to rebalance your cluster</title>
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="p:10;76:8">Once you decide to add or remove nodes, consider the folloiwng:</p>
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="ul:4;77:11">
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:10;78:21">If you’re planning on adding and/or removing multiple nodes in a short period of time, it
+                  is best to add them all at once and then kick-off the rebalancing operation rather than
+                  rebalance after each addition. This will reduce the overall load placed on the system as well
+                  as the amount of data that needs to be moved.</li>
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:11;82:21">Choose a quiet time for adding nodes. While the rebalancing operation is meant to be
+                  performed online, it is not a “free” operation and will undoubtedly put increased load on the
+                  system as a whole in the form of disk IO, network bandwidth, CPU resources and RAM
+                  usage.</li>
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:12;86:21">Voluntary rebalancing (i.e. not part of a failover situation) should be performed during
+                  a period of low usage of the system. Rebalancing is a comparatively resource intensive
+                  operation as the data is redistributed around the cluster and you should avoid performing a
+                  rebalance during heavy usage periods to avoid having a detrimental affect on overall cluster
+                  performance.</li>
+                <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/rebalance-factors.dita" xtrc="li:13;91:21">Rebalancing requires moving large amounts of data around the cluster. The more RAM that
+                  is available will allow the operating system to cache more disk access which will allow it to
+                  perform the rebalancing operation much faster. If there is not enough memory in your cluster
+                  the rebalancing may be very slow. It is recommended that you don’t wait for your cluster to
+                  reach full capacity before adding new nodes and rebalancing.</li>
+              </ul>
+    </section>
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:52;61:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:47;56:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-rebalance.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Rebalancing</linktext></link></linkpool></related-links>
+</topic>

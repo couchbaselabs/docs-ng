@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3129">
+  <title>Getting the bucket streaming URI</title>
+  <shortdesc>To retrieve the streaming URI, use the <codeph>GET</codeph> operation with the 
+    <codeph>/pools/default/buckets/default</codeph> URI.</shortdesc>
+  
+  <body>
+    <p>The individual bucket request is exactly the same as what would be obtained from the item in
+      the array for the entire buckets list. The streamingUri is exactly the
+      same except it streams HTTP chunks using chunked encoding. A response of “\n\n\n\n” delimits
+      chunks. This will likely be converted to a “zero chunk” in a future release of this API, and
+      thus the behavior of the streamingUri should be considered evolving.</p>
+    
+    <codeblock>
+GET /pools/default/buckets/default
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeblock>
+    <codeblock>
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+{
+  "name": "default",
+  "bucketType": "couchbase",
+  "authType": "sasl",
+  "saslPassword": "",
+  "proxyPort": 0,
+  "uri": "/pools/default/buckets/default",
+  "streamingUri": "/pools/default/bucketsStreaming/default",
+  "flushCacheUri": "/pools/default/buckets/default/controller/doFlush",
+  "nodes": [
+    {
+      "uptime": "308",
+      "memoryTotal": 3940818944.0,
+      "memoryFree": 1608724480,
+      "mcdMemoryReserved": 3006,
+      "mcdMemoryAllocated": 3006,
+      "replication": 1.0,
+      "clusterMembership": "active",
+      "status": "healthy",
+      "hostname": "172.25.0.2:8091",
+      "clusterCompatibility": 1,
+      "version": "1.6.4r_107_g49a149d",
+      "os": "i486-pc-linux-gnu",
+      "ports": {
+        "proxy": 11211,
+        "direct": 11210
+      }
+    },
+    {
+      "uptime": "308",
+      "memoryTotal": 3940818944.0,
+      "memoryFree": 1608724480,
+      "mcdMemoryReserved": 3006,
+      "mcdMemoryAllocated": 3006,
+      "replication": 1.0,
+      "clusterMembership": "active",
+      "status": "healthy",
+      "hostname": "172.25.0.3:8091",
+      "clusterCompatibility": 1,
+      "version": "1.6.4r_107_g49a149d",
+      "os": "i486-pc-linux-gnu",
+      "ports": {
+        "proxy": 11211,
+        "direct": 11210
+      }
+    },
+    {
+      "uptime": "308",
+      "memoryTotal": 3940818944.0,
+      "memoryFree": 1608597504,
+      "mcdMemoryReserved": 3006,
+      "mcdMemoryAllocated": 3006,
+      "replication": 1.0,
+      "clusterMembership": "active",
+      "status": "healthy",
+      "hostname": "172.25.0.4:8091",
+      "clusterCompatibility": 1,
+      "version": "1.6.4r_107_g49a149d",
+      "os": "i486-pc-linux-gnu",
+      "ports": {
+        "proxy": 11211,
+        "direct": 11210
+      }
+    }
+  ],
+  "stats": {
+    "uri": "/pools/default/buckets/default/stats"
+  },
+  "nodeLocator": "vbucket",
+  "vBucketServerMap": {
+    "hashAlgorithm": "CRC",
+    "numReplicas": 1,
+    "serverList": [
+      "172.25.0.2:11210",
+      "172.25.0.3:11210",
+      "172.25.0.4:11210"
+    ],
+    "vBucketMap": [
+      [1,0],
+      [2,0],
+      [1,2],
+      [2,1],
+      [1,2],
+      [0,2],
+      [0,1],
+      [0,1]
+    ]
+  },
+  "replicaNumber": 1,
+  "quota": {
+    "ram": 1887436800,
+    "rawRAM":145600
+  },
+  "basicStats": {
+    "quotaPercentUsed": 14.706055058373344,
+    "opsPerSec": 0,
+    "diskFetches": 0,
+    "itemCount": 65125,
+    "diskUsed": 139132928,
+    "memUsed": 277567495
+  }
+}
+</codeblock>
+  </body>
+</topic>

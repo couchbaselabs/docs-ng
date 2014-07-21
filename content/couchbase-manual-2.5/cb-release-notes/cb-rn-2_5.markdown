@@ -39,12 +39,40 @@ Couchbase Server 2.5.1 (April 2014) is a maintenance release for Couchbase Serve
 * [MB-10220](http://www.couchbase.com/issues/browse/MB-10220): vBuckets shuffle in online upgrade from 2.2.0-837 to 2.5.0-1059 in 1 replica bucket
 * [MB-10515](http://www.couchbase.com/issues/browse/MB-10515) Online upgrade failed from 2.5.0-1059 -> 2.5.1-1073 as 2.5.1-1073 node doesn't appear in orchestrator after adding to the cluster. 
 
+## Known issues in 2.5.1
+
+**XDCR may not replicate some mutations:**
+
+* [MB-11411](http://www.couchbase.com/issues/browse/MB-11411): Warmup with an access log always sets the loaded document's rev-id to 1.
+
+
+Symptoms:
+: Users of XDCR may notice that the replica bucket has old revisions of documents and can also contain documents which have been deleted in the source bucket. This symptom  typically occurs following a  restart of a Couchbase Server node.
+
+: Under uni-directional XDCR replication, resetting of revision IDs may cause mutations to be missed at the destination cluster for a period of time.
+
+:Under bi-directional XDCR, resetting of revisions IDs may cause updates to be overwritten by out-of-date data for a period of time while XDCR re-synchronizes data in both directions.
+
+Recommendations:
+: Contact Couchbase Support (support@couchbase.com) to obtain the hotfix and repair XDCR. If you are running Couchbase Server versions 2.0, 2.0.1, 2.1 or 2.2, upgrade to Couchbase Server 2.5.1 and apply the hotfix.
+
+: To repair uni-directional XDCR: stop XDCR, delete and recreate the destination bucket, and start XDCR.
+
+: To repair bi-directional XDCR: contact Couchbase support for assistance. 
 
 
 # Couchbase Server Release Notes for 2.5 GA
 
 Couchbase Server 2.5 (February 2014) is a minor release following 
 Couchbase Server 2.2. This includes some important new features and bug fixes.
+
+## Deprecated settings in 2.5
+
+The following REST API XDCR internal settings are deprecated and unavailable:
+
+* `xmemWorker` 
+* `enablePipelineOps`
+* `localConflictResolution`
 
 ## Enhancements in 2.5
 
@@ -106,11 +134,13 @@ and [Managing XDCR data encryption CLI](../cb-cli/#cb-cli-xdcr-data-encrypt).
 
 In releases prior to Couchbase Server 2.5, a developer, via a client library of their choice, randomly selects a host from which to request an initial topology configuration. Any future changes to the cluster map following the initial bootstrap are based on the NOT_MY_VBUCKET response from the server. This connection is made to port 8091 and is based on an HTTP connection. 
 
-Starting with Couchbase Server 2.5, client libraries may instead query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities. 
+Starting with Couchbase Server 2.5, client libraries may instead query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities.  
+
+Optimized connection management is backward compatible. Old client libraries can connect to Couchbase Server 2.5, and updated client libraries can connect to Couchbase Server 2.5 and earlier. 
 
 <div class="notebox"><p>Note</p>
-<p>This change is only applicable to Couchbase type buckets (not memcached buckets). An error is returned if a configuration request is received on port 8091.</p>
-<p>An updated client library is required take advantage of optimized connection management. Old client libraries will continue to use the port 8091 HTTP connection. See the client library release notes for details.</p>
+<p>This change is only applicable to Couchbase type buckets (not memcached buckets).</p>
+<p>An updated client library is required take advantage of optimized connection management. Older client libraries will continue to use the port 8091 HTTP connection. See the client library release notes for details.</p>
 </div>
 
 For more information, see [Using a smart (vBucket aware) client](../cb-admin/#couchbase-deployment-vbucket-client) in Deployment strategies.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1360"><title>Changing setting for out of memory errors</title><body><p>By default, Couchbase Server will send clients a temporary out of memory error
+if RAM is 95% consumed and only 5% RAM remains for overhead. We do not suggest
+you change this default to a higher value; however you may choose to reduce this
+value if you think you need more RAM available for system overhead such as disk
+queue or for server data structures. To change this value:</p><codeblock><codeph>&gt;./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set flush_param mutation_mem_threshold 65
+</codeph></codeblock><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><p>In this example we reduce the threshold to 65% of RAM. This setting must be
+updated on a per-node, per-bucket basis, meaning you need to provide the
+specific node and named bucket to update this setting. To update it for an
+entire cluster, you will need to issue the command for every combination of node
+and named bucket that exists in the cluster.</p></body></topic>

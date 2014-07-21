@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_mdz_4gw_h4">
+	<title>Cluster-wide diagnostics</title>
+	<shortdesc> The Couchbase support team uses logs and other system diagnostics to analyze customer
+		issues. </shortdesc>
+	<conbody>
+		<p>If you contact Couchbase customer support, you might be asked to collect diagnostics from
+			your cluster. Couchbase Server offers several methods that enable you to efficiently collect diagnostics for an entire
+			cluster. To collect diagnostic information, you can use either the web console, the command-line interface, or the
+			REST API.</p>
+		<draft-comment author="amy">Do customers need to turn off auto-failover before using any of these methods?</draft-comment>
+		<section>
+			<title>Impacted documentation</title>
+			<ul>
+				<li>couchbase-cli tool</li>
+				<li>cbcollect_info tool</li>
+			</ul>
+		</section>
+		
+		
+	</conbody>
+</concept>

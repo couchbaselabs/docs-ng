@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_w2n_fqt_24">
+  <title>Changing bucket read-write threads</title>
+  <shortdesc>To change the disk readers and writers setting, use the <codeph>POST</codeph> operation with the 
+    <codeph>/pools/default/bucket/bucket_name</codeph> URI.</shortdesc>
+  <refbody>
+   
+   
+    <properties>
+      <property>
+        <proptype>POST /pools/default/buckets/bucket_name</proptype>
+        <propvalue>threadsNumber</propvalue>
+      </property>
+    </properties>
+    
+    
+    
+    <section><title>View bucket read-write threads</title>
+      <p>The number of read-write threads are included with the data bucket properties via a REST call:</p>
+      
+      <codeblock>
+curl -x GET -u Admin:password http://localhost:8091/pools/default/buckets/bucket_name
+</codeblock>
+      
+      <p>This provides information about the named bucket as a JSON response, including the total
+        number of threads:</p>
+      <codeblock>
+{"name":"bucket_name","bucketType":"couchbase"
+....
+"replicaNumber":1,
+"threadsNumber":5,
+....
+}
+      </codeblock>
+    </section>
+    
+   
+      <section><title>Change bucket read-write threads</title>
+      <p>To change the bucket read-write thread setting, use the <codeph>threadsNumber</codeph> parameter with
+        a value from two to eight. The following is an example REST call:</p>
+      <codeblock>
+curl -X POST -u Admin:password http://10.3.3.72:8091/pools/default/buckets/bucket_name \
+  -d ramQuotaMB=4000 -d threadsNumber=3 -v
+</codeblock>
+      </section>
+        
+        <section><title>Request</title>
+      
+      <p>You see the following request via HTTP:</p>
+      <codeblock>
+About to connect() to 10.3.3.72 port 8091 (#0)
+ Trying 10.3.3.72... connected
+ Connected to 10.3.3.72 (10.3.3.72) port 8091 (#0)
+ Server auth using Basic with user 'Administrator'
+ POST /pools/default/buckets/bucket_name HTTP/1.1
+ ....
+</codeblock>
+        </section>
+        
+
+      
+    <example><title>Successful response:</title>
+    <codeblock>
+HTTP/1.1 200 OK
+....
+    </codeblock>
+    </example>
+
+        
+      
+    <example><title>Unsuccessful response</title>
+      <p>If an invalid number of threads is provides, a response similar to the
+        following occurs:</p>
+      <codeblock>
+HTTP/1.1 400 Bad Request
+....
+{"errors":{"threadsNumber":"The number of threads can't be greater than 8"},"
+</codeblock>
+    </example>
+        
+
+      
+  </refbody>
+</reference>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/UI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1514" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="title:1;5:10">Document viewer and editor</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="shortdesc:1;6:14">The Document Viewer and Editor enables you to browse, view, and edit individual documents
+    stored in Couchbase Server buckets.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="p:1;9:8">To get to the Documents editor, click on
+      the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:1;10:22">Documents</uicontrol> button within the Data Buckets view. 
+      The opens a list of available documents. Only a selection of the available documents are displayed
+      rather than all documents. The maximum size of editable documents is 2.5 KB.</p>
+    
+      <image href="../images/web-console-document-list.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="image:1;14:73"> </image>
+      
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="p:2;16:8">Select a different Bucket by using the bucket selection popup on the left. 
+      Page through the list of documents shown by using the navigation arrows on the right. To
+      jump to a specific document ID, enter the ID in the box provided and click <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="codeph:1;18:90">Lookup
+        Id</codeph>. To edit an existing document, click the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:2;19:73">Edit Document</uicontrol> button.
+      To delete the document from the bucket, click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:3;20:64">Delete</uicontrol>.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="p:3;21:8">To create a new document, click the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:4;21:55">Create Document</uicontrol> button. This opens a
+      prompt to specify the document Id of the created document.</p>
+    
+      <image href="../images/web-console-document-create.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="image:2;24:75"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="p:4;25:8">Once the document Id has been set, the document editor displays. The
+      document editor is also  opened when the document ID within the document
+      list is selected. To edit the contents of the document, use the textbox to modify the JSON of the stored
+      document.</p>
+    
+      <image href="../images/web-console-document-edit.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="image:3;30:73"/>
+      
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="p:5;32:8">Within the document editor, click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:5;32:53">Delete</uicontrol> to delete the current
+      document, <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:6;33:28">Save As...</uicontrol> copies the currently displayed information and create
+      a new document with the document Id you specify. The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-document-editor.dita" xtrc="uicontrol:7;34:71">Save</uicontrol> saves the
+      current document and return you to the list of documents.</p>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:84;97:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:82;95:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-data-buckets.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Data Buckets</linktext></link></linkpool></related-links>
+</topic>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1154">
+  <title>XDCR stream management</title>
+  <shortdesc>New XDCR stream creation must occur a period of time after creating a bucket or after deleting a XDCR stream.</shortdesc>
+  <body>
+    <p>XDCR stream management Under the following circumstances, a period of time should pass
+      (depending on the CPU load) before creating new XDCR streams:</p>
+    
+    <ul>
+      <li>After creating a bucket</li>
+      <li>After deleting an old XDCR stream</li>
+    </ul>
+    
+    <p>If a new XDCR stream is created immediately after a bucket has been created, a <codeph>db_not_found</codeph>
+      error may occur. When a bucket is created, a period of time passes before the buckets are
+      available. If XDCR tries to replicate to or from the vBucket too soon, a <codeph>db_not_found</codeph> error
+      occurs. The same situation applies when other clients are “talking” to a bucket.</p>
+    <p>If a new XDCR stream is created immediately after an old XDCR stream is deleted, an Erlang
+      <codeph>eaddrinuse</codeph> error occurs. This is related to the Erlang implementation of the TCP/IP protocol.
+      After an Erlang process releases a socket, the socket stays in TIME_WAIT for a while before a
+      new Erlang process can reuse it. If the new XDCR stream is created too quickly, vBucket
+      replicators may encounter the eaddrinuse error and XDCR may not be able to fully start.</p>
+    
+      <note type="note">The TIME_WAIT interval may be tunable from the operating system. 
+        If so, try lowering the interval time. </note>
+  </body>
+</topic>

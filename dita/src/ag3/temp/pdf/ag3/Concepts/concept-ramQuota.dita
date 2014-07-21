@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1998" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="title:1;5:10">RAM quotas</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="shortdesc:1;6:14">RAM is allocated to Couchbase Server in the following configurable quantities:
+      <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="i:1;7:10">Server Quota</i> and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="i:2;7:34">Bucket Quota</i>. </shortdesc>
+  
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="body:1;9:9">
+
+    <dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dl:1;11:9">
+      <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dlentry:1;12:16"><dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dt:1;12:20">Server quota</dt>
+        <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dd:1;13:13">The Server Quota is the RAM that is allocated to the server when Couchbase Server is first
+      installed. This sets the limit of RAM allocated by Couchbase for caching data <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="i:3;14:88">for all
+        buckets</i> and is configured on a per-node basis. The Server Quota is initially configured
+      in the first server in your cluster is configured, and the quota is identical on all nodes.
+      For example, if you have 10 nodes and a 16GB Server Quota, there is 160GB RAM available across
+      the cluster. If you were to add two more nodes to the cluster, the new nodes would need 16GB
+      of free RAM, and the aggregate RAM available in the cluster would be 192GB.</dd>
+      </dlentry>
+    <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dlentry:2;21:14">
+      <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dt:2;22:11">Bucket quota</dt>
+      <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="dd:2;23:11">The Bucket Quota is the amount of RAM allocated to an individual bucket for caching data.
+          Bucket Quotas are configured on a per-node basis, and is allocated out of the RAM defined
+          by the Server Quota. For example, if you create a new bucket with a Bucket Quota of 1GB,
+          in a 10 node cluster there would be an aggregate bucket quota of 10GB across the cluster.
+          Adding two nodes to the cluster would extend your aggregate bucket quota to 12GB.</dd>
+    </dlentry>
+    </dl>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="p:1;31:8">The following diagram shows that adding new nodes to the cluster expands
+      the overall RAM quota and the bucket quota, increasing the amount of information that can be
+      kept in RAM.</p>
+    
+    <image href="../images/ram-quotas.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="image:1;35:56"/>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="p:2;37:8">Bucket Quota is used by the system to determine when data should be ejected from memory.
+      Bucket Quotas are dynamically configurable, within the Server Quota limits, and enable
+      individual control of information cached in memory on a per bucket basis. 
+      Therefore, buckets can be configured differently depending your caching RAM allocation requirements.</p>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="note:1;42:23">The Server Quota is also dynamically configurable, however, ensure that the cluster nodes
+      have the available RAM to support the chosen RAM quota configuration.</note>
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="related-links:1;46:18"><linkpool class="- topic/linkpool " xtrc="topicref:10;15:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:6;11:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/concept-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Architecture and concepts</linktext><?ditaot genshortdesc?><desc class="- topic/desc "> Couchbase Server concepts include the differenct components and systems that make up     an individual Couchbase Server instance and a Couchbase cluster including information and     concepts needed to understand the fast and elastic nature, high availability, and high     performance of the Couchbase Server database.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="linklist:1;47:15">
+      <link href="concept-workingset-mgmt.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Concepts/concept-ramQuota.dita" xtrc="link:1;48:49" type="concept"><?ditaot gentext?><linktext class="- topic/linktext ">Working set management and ejection</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Working set management is the process of freeing up space and ensuring that the most   used items are available in RAM. Ejection is the process of removing data from RAM to provide room   for frequently used items. </desc></link>
+    </linklist>
+  </related-links>
+</topic>

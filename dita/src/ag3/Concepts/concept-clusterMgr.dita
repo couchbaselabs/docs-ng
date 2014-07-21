@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic633">
+  <title>Cluster Manager</title>
+  <shortdesc>The Cluster Manager is responsible for  node and cluster management. 
+    Every node within a Couchbase cluster includes the Cluster Manager component.</shortdesc>
+  <body>
+    <p>The Cluster Manager is responsible for the following within a cluster:</p>
+    <ul>
+      <li><p>Cluster management</p></li>
+      <li><p>Node administration</p></li>
+      <li><p>Node monitoring</p></li>
+      <li><p>Statistics gathering and aggregation</p></li>
+      <li><p>Run-time logging</p></li>
+      <li><p>Multi-tenancy</p></li>
+      <li><p>Security for administrative and client access</p></li>
+      <li><p>Client proxy service to redirect requests</p></li>
+    </ul>
+    <p>Access to the Cluster Manager is provided through the administration interface on a dedicated
+      network port and through dedicated network ports for client access. Additional ports are
+      configured for inter-node communication.</p>
+  </body>
+</topic>

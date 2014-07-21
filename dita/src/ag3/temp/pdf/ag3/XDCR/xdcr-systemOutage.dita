@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/XDCR?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/XDCR/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic976" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-systemOutage.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-systemOutage.dita" xtrc="title:1;5:10">XDCR and network or system outages</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-systemOutage.dita" xtrc="shortdesc:1;6:14">XDCR is resilient to intermittent network failures. </shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-systemOutage.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/XDCR/xdcr-systemOutage.dita" xtrc="p:1;8:8">In the event that the destination cluster
+      is unavailable due to a network interruption, XDCR pauses replication and then retries the
+      connection to the cluster every 30 seconds. Once XDCR can successfully reconnect with a
+      destination cluster, it resumes replication. In the event of a more prolonged network failure
+      where the destination cluster is unavailable for more than 30 seconds, a source cluster
+      continues polling the destination cluster which may result in numerous errors over time. </p>
+    
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:121;139:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:115;133:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../XDCR/xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cross Datacenter Replication (XDCR)</linktext></link></linkpool></related-links>
+</topic>

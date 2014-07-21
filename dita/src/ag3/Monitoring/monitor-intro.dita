@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic227">
+  <title>Monitoring</title>
+  <shortdesc>There are a number of different ways to monitor Couchbase servers 
+    including underlying processes, ports, and queueing.</shortdesc>
+  
+  <body>
+
+  </body>
+</topic>

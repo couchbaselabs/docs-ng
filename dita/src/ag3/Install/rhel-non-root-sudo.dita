@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_atz_r3s_g4">
+  <title>Installing as non-root, non-sudo</title>
+  <shortdesc>Installing as non-root, non-sudo is for development purposes only.</shortdesc>
+  <body>
+    <note type="attention">This installation is
+      for development purposes only.</note> 
+    <p>There may be cases when you want to install the server as a
+      non-root, non-sudo user. 
+      A non-sudo, non-root installation still runs Couchbase Server and all Couchbase command-line tools. 
+      To do so on CentOS/Red Hat:</p>
+    
+    <ol>
+        <li>After downloading the Couchbase RPM, go to the directory where it is located and extract
+        it: <codeblock>
+rpm2cpio couchbase-server-community_x86_64_2.0.0-1767-rel.rpm | cpio --extract --make-directories \
+--no-absolute-filenames
+</codeblock>
+        <p>In the directory where the files were extracted, the <codeph>opt</codeph> and
+            <codeph>etc</codeph> subdirectories are available.</p>
+      </li>
+          <li>If you need to separately provide openssl098e, put the
+            contents of this library into <codeph>opt/couchbase/lib</codeph>:
+          <ol>
+            <li>Download `openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm’.</li>
+            <li>Go to the directory where you extracted Couchbase Server: <codeph>cd
+              opt/couchbase</codeph>.</li>
+            <li>Extract the openssl098e RPM:
+            <codeblock>rpm2cpio
+openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+--make-directories --no-absolute-filenames</codeblock></li>
+            <li>Move the extracted files to the <codeph>/lib</codeph> directory for Couchbase Server:
+              <codeph>mv usr/lib64/* lib/</codeph></li>
+          </ol></li>
+        <li>After you extract the Couchbase Server install files, go to the subdirectory:
+          <codeph> cd opt/couchbase </codeph></li>
+        <li>Run the following password-related script: <codeph> ./bin/install/reloc.sh \`pwd` </codeph>
+          <p>This enables you to continue the install as a non-root, non-sudo user.</p></li>
+        <li>To run the server:
+          <codeph> ./bin/couchbase-server \-- -noinput -detached </codeph></li>
+        <li>To stop the server: <codeph> ./bin/couchbase-server -k </codeph></li>
+      </ol>
+    
+   </body>
+</topic>

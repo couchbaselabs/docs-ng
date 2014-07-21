@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_a4m_zmj_wn">
+ <title>Server warmup</title>
+ <shortdesc>Whenever the Couchbase server is restarted or data is restored to a server instance, the
+  server undergoes a warmup process before data requests can be handled.</shortdesc>
+ <conbody>
+  
+  
+  <p>During server warmup, the server loads data persisted on disk into RAM. Couchbase Server
+   provides an optimized warmup process which loads data sequentially from disk into RAM, it divides
+   the data to be loaded and handles it in multiple phases. After the warmup process completes, the
+   data is available for clients to read and write. The time needed for server warmup depends on
+   system size, system configuration and the amount of data persisted in the system.</p>
+   
+   <note type="note">Couchbase Server is able to begin serving data before it has actually loaded all
+    the keys and data from vBuckets.</note>
+
+   
+   <p>Couchbase server identifies items that are frequently used, prioritizes them, and loads them 
+    before sequentially loading the remainer of the data.
+   The frequently-used items are prioritized in an access log. The
+   server pre-fetches a list of the most frequently accessed keys and then fetches these documents
+   before any other items from disk.</p>
+   <p>The server runs a configurable scanner process that determines which keys are most
+   frequently-used. The scanner process is pre-set and is configurable. The command-line tool,
+    <codeph>cbepctl flush_param</codeph> is used to change the initial time and interval for the
+   scanner process. For example, you might want to configure the scanner process to be run during a
+   specific time period when certain keys need to be identified and made available sooner.</p>
+   <p>The server can also switch into a ready mode before it has actually retrieved all documents
+   for keys into RAM, therfore, data can be served before all stored items are loaded. Switching
+   into ready mode is a configurable setting so that server warmup time can be adjusted.</p>
+  
+   <p>The following describes the initial warmup phases for the Couchbase Server. In these first
+   phase, the server begins to fetch all keys and metadata from disk. Then the server accesses
+   the log information that it needs to retrieve the most used keys:</p>
+  
+   <ol>
+    <li><b>Initialize</b> - At this phase, the server does not have any data that it can serve yet.
+     The server starts populating a list of all vBuckets stored on disk by loading the recorded,
+     initial state of each vBucket.</li>
+    <li><b>Key Dump</b> - The server begins pre-fetching all keys and metadata
+     from disk based on items in the vBucket list.</li>
+    <li><b>Check Access Logs</b> - The server then reads a single cached access log which indicates
+     which keys are frequently accessed. The server generates and maintains this log on a periodic
+     basis and it is configurable. If this log exists, the server first loads items based on
+     this log before it loads other items from disk.</li>
+   </ol>
+   <p>Once Couchbase Server has the information about keys and has read in any access log information, 
+    it loads documents based on the following criteria:</p>
+   <ul>
+    <li><p><b>Loading based on Access Logs</b> - Couchbase Server loads documents into memory based on
+     the frequently-used items identified in the access log.</p></li>
+    <li><p><b>Loading Data</b> - If the access log is empty or is disabled, the server
+     sequentially loads documents for each key based on the vBucket list.</p></li>
+   </ul>
+   <p>Couchbase Server is able to serve information from RAM when one of the following conditions is
+    met during warmup:</p>
+   <ul>
+    <li>The server has finished loading documents for all keys listed in the access log</li>
+    <li>The server has finished loading documents for every key stored on disk for all vBuckets</li>
+    <li>The percentage of documents loaded into memory is greater than, or equal to, the setting for the 
+      <codeph>cbepctl ep_warmup_min_items_threshold</codeph> parameter</li>
+    <li>If total % of RAM filled by documents is greater than, or equal to, the setting for the 
+      <codeph>cbepctl ep_warmup_min_memory_threshold</codeph> parameter</li>
+    <li>If total RAM usage by a node is greater than or equal to the setting for
+     <codeph>mem_low_wat</codeph>.</li>
+   </ul>
+   <p>When the server reaches one of these states, known as the <i>run level</i>, 
+    the server stops loading documents for the remaining keys. and 
+    loads the remaining documents from disk into RAM as a background data fetch.</p>
+   
+   
+   
+   
+  
+ </conbody>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="../CLI/cbepctl-intro.dita"></link>
+   <link href="../CLI/CBepctl/cbepctl-accesslog.dita"></link>
+   <link href="../CLI/CBstats/cbstats-gettingwarmupinfo.dita"></link>
+   <link href="../Tasks/tasks-manage-serverWarmup.dita"></link>
+  </linklist>
+ </related-links>
+</concept>

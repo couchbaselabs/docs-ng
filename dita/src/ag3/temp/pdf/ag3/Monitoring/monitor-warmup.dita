@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Monitoring?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/monitoring/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2157" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="title:1;5:9">Monitoring startup (warmup)</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="p:1;7:6">If a Couchbase Server node is starting up for the first time, it creates whatever DB
+			files necessary and begin serving data immediately. However, if there is already data on
+			disk (likely because the node rebooted or the service restarted) the node needs to read
+			all of this data off of disk before it can begin serving data. This is called “warmup”.
+			Depending on the size of data, this can take some time. </p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="p:2;12:6">When starting up a node, there are a few statistics to monitor. Use the
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="codeph:1;13:13">cbstats</codeph> command to watch the warmup and item stats:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="codeblock:1;14:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="codeph:2;14:22">&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
+    egrep "warm|curr_items"
+</codeph></codeblock>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="table:1;17:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="tgroup:1;18:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="colspec:1;19:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="colspec:2;20:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="thead:1;21:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:1;22:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:1;23:14">curr_items:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:2;24:14">0</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="tbody:1;27:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:2;28:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:3;29:14">curr_items_tot:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:4;30:14">15687</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:3;32:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:5;33:14">ep_warmed_up:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:6;34:14">15687</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:4;36:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:7;37:14">ep_warmup:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:8;38:14">false</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:5;40:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:9;41:14">ep_warmup_dups:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:10;42:14">0</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:6;44:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:11;45:14">ep_warmup_oom:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:12;46:14">0</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:7;48:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:13;49:14">ep_warmup_thread:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:14;50:14">running</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:8;52:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:15;53:14">ep_warmup_time:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:16;54:14">787 </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="p:3;59:6">And when it is complete:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="codeblock:2;60:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="codeph:3;60:22">&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
+    egrep "warm|curr_items"
+</codeph></codeblock>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="table:2;63:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="tgroup:2;64:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="colspec:3;65:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="colspec:4;66:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="thead:2;67:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:9;68:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:17;69:14">curr_items:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:18;70:14">10000</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="tbody:2;73:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:10;74:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:19;75:14">curr_items_tot:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:20;76:14">20000</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:11;78:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:21;79:14">ep_warmed_up:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:22;80:14">20000</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:12;82:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:23;83:14">ep_warmup:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:24;84:14">true</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:13;86:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:25;87:14">ep_warmup_dups:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:26;88:14">0</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:14;90:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:27;91:14">ep_warmup_oom:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:28;92:14">0</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:15;94:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:29;95:14">ep_warmup_thread:</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:30;96:14">complete</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:16;98:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:31;99:14">ep_warmup_time</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:32;100:14">1400 </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="table:3;105:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="tgroup:3;106:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="colspec:5;107:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="colspec:6;108:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="thead:3;109:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:17;110:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:33;111:14">Stat</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:34;112:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="tbody:3;115:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:18;116:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:35;117:14">curr_items</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:36;118:14">The number of items currently active on this node. During warmup,
+							this will be 0 until complete</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:19;121:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:37;122:14">curr_items_tot</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:38;123:14">The total number of items this node knows about (active and replica).
+							During warmup, this will be increasing and should match
+							ep_warmed_up</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:20;127:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:39;128:14">ep_warmed_up</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:40;129:14">The number of items retrieved from disk. During warmup, this should
+							be increasing.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:21;132:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:41;133:14">ep_warmup_dups</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:42;134:14">The number of duplicate items found on disk. Ideally should be 0, but
+							a few is not a problem</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:22;137:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:43;138:14">ep_warmup_oom</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:44;139:14">How many times the warmup process received an Out of Memory response
+							from the server while loading data into RAM</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:23;142:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:45;143:14">ep_warmup_thread</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:46;144:14">The status of the warmup thread. Can be either running or
+							complete</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="row:24;147:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:47;148:14">ep_warmup_time</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="entry:48;149:14">How long the warmup thread was running for. During warmup this number
+							should be increasing, when complete it will tell you how long the
+							process took</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="related-links:1;157:17"><linkpool class="- topic/linkpool " xtrc="topicref:99;115:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:96;112:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Monitoring/monitor-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">There are a number of different ways to monitor Couchbase servers      including underlying processes, ports, and queueing.</desc></link></linkpool>
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="linklist:1;158:13">
+			<link href="../Concepts/concept-serverWarmup.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/monitoring/monitor-warmup.dita" xtrc="link:1;159:55" type="concept"><?ditaot gentext?><linktext class="- topic/linktext ">Server warmup</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Whenever the Couchbase server is restarted or data is restored to a server instance, the   server undergoes a warmup process before data requests can be handled.</desc></link>
+		</linklist>
+	</related-links>
+</topic>

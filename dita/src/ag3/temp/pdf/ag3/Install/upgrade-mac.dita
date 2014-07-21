@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_zrt_zvy_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="title:1;4:10">Upgrading on Mac</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="body:1;5:9">
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="p:1;6:10">There is currently
+      no officially supported upgrade installer for Mac OS X. 
+      If you want to migrate Couchbase Server on OS X, backup your data files with
+      <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="codeph:1;9:15">cbbackup</codeph>, install the latest version, then restore your data with
+      <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="codeph:2;10:15">cbrestore</codeph>.</p>
+  </body>
+  
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="related-links:1;13:18"><linkpool class="- topic/linkpool " xtrc="topicref:36;54:46" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrading.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="linklist:1;14:15">
+      <link href="../CLI/cbbackup_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="link:1;15:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbbackup tool</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="codeph:1;6:27">cbbackup</codeph> tool creates a copy of data from an entire running cluster,       an entire bucket, a single node, or a single bucket on a single functioning node. Your node       or cluster needs to be functioning in order to create the backup. Couchbase Server will       write a copy of data onto disk.</desc></link>
+      <link href="../CLI/cbrestore_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-mac.dita" xtrc="link:2;16:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbrestore tool</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

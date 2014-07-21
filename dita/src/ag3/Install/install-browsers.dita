@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic765">
+ <title>Supported web browsers</title>
+ <shortdesc>Mozzila Firefox, Safari, Google Chrome, and IE are supported</shortdesc>
+ <body>
+  <p>The Couchbase Web Console runs on the following browsers, with JavaScript support enabled:</p>
+  <ul>
+   <li>Mozilla Firefox 3.6 or higher
+    <p>To enable JavaScript, select the <codeph>Enable JavaScript</codeph> option within the
+    <codeph>Content</codeph> panel of the application preferences.</p></li>
+   <li>Safari 5 or higher
+    <p>To enable JavaScript, use the checkbox on the security tab of the application preferences.</p></li>
+   <li>Google Chrome 11 or higher
+    <p>To enable JavaScript, use the <codeph>Allow all sites to run JavaScript (recommended)</codeph>
+   option within the <codeph>Content</codeph> button of the <codeph>Under the Hood</codeph> section
+   of the application preferences.</p></li>
+   <li>Internet Explorer 8 or higher
+    <p>To enable JavaScript, by enabling <codeph>Active Scripting</codeph> within the <codeph>Custom
+    Level</codeph>, section of the <codeph>Security</codeph> section of the <codeph>Internet
+    Options</codeph> item of the <codeph>Tools</codeph> menu.</p></li>
+  </ul>
+ </body>
+</topic>

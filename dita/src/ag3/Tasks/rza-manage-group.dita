@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_ts4_4xg_rn">
+    <title>Managing Rack Awareness</title>
+    <shortdesc>The Rack Awareness feature (Enterprise Edition) allows logical groupings of servers on 
+        a cluster where each server group physically belongs to a rack or availability zone. 
+        This feature provides the ability to specify that active and corresponding replica 
+        partitions be created on servers that are part of a separate rack or zone.</shortdesc>
+    <taskbody>
+        <context>
+            <p>This section describes how to manage server groups through the Web Console. Server
+                and server groups can also be managed throught the Couchbase command-line interface
+                (CLI) and REST API.</p>
+            <note type="note">By default, when a Couchbase cluster is initialized, Group 1 is created.</note>               
+        <ul>
+            <li>Upgrade all servers in the cluster to version 2.5 or higher and to Couchbase Enterprise Edition</li>
+            <li>Configure at least two server groups.</li>
+            <li>Configure all of the servers to use server groups.</li>
+            <li>Configure each server group to have the same number of serves (recommended).</li>
+        </ul>
+            
+            <p>The servers and server groups are displayed from the Server Nodes tab. 
+                Server groups are edited and created by clicking on Server Groups</p>
+            <fig><title>Server Nodes tab</title>
+            <image href="../images/rack-aware-groups.png" width="700"></image></fig>
+
+            <fig><title>Server Groups</title>
+                <image href="../images/rack-aware-groups2.png" width="700"></image></fig>
+            
+        </context>
+    </taskbody>
+    
+    <related-links>
+        <link href="../CLI/cbcli-intro.dita"></link>
+        <link href="../REST/rest-rza.dita"></link>
+    </related-links>
+</task>

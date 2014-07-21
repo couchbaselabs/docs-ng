@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_g1w_qpr_g4">
+  <title>Pre-installation</title>
+  <shortdesc>Pre-installation describes requirements, supported configurations, 
+    reserved or restricted items that are taken under consideration prior to installing Couchbase Server.</shortdesc>
+  <body>
+    
+  </body>
+</topic>

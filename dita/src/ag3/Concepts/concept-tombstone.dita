@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_t2w_sr3_wn">
+ <title>Tombstone purging</title>
+ <shortdesc>Tombstones are records of expired or deleted items that include item keys and metadata.</shortdesc>
+ <conbody>
+  <p>Couchbase Server and other distributed databases
+    maintain tombstones in order to provide eventual consistency between nodes and between
+    clusters. Tombstones are records of expired or deleted items and they include the key for
+    the item as well as metadata. Couchbase Server stores the key plus several bytes of metadata
+    per deleted item in two structures per node. With millions of mutations, the space taken up
+    by tombstones can grow quickly. This is especially the case if there are a large number of
+    deletions or expired documents.</p>
+    
+    <p>The Metadata Purge Interval sets how frequently a node permanently purges metadata on deleted and expired
+     items. The Metadata Purge Interval setting runs as part of auto-compaction. This helps reduce the storage
+     requirement by roughly 3x times lower than before and also frees up space much faster.</p>
+
+ </conbody>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="../CLI/cli-overview.dita"></link>
+   <link href="../REST/overview-rest-api.dita"></link>
+  </linklist>
+ </related-links>
+</concept>

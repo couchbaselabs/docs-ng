@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1364"><title>Retrieving auto-failover settings</title><body><p>Use this request to retrieve any auto-failover settings for a cluster.
+Auto-failover is a global setting for all clusters. You need to be authenticated
+to read this value. Example:</p><codeblock><codeph>curl -u admin:password http://localhost:8091/settings/autoFailover
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
+with your actual values.</p><p>If successful Couchbase Server returns any auto-failover settings for the
+cluster:</p><codeblock><codeph>{"enabled":false,"timeout":30,"count":0}
+</codeph></codeblock><p>The following parameters and settings appear:</p><ul>
+<li><p><codeph>enabled</codeph> : either true if auto-failover is enabled or false if it is not.</p></li>
+<li><p><codeph>timeout</codeph> : seconds that must elapse before auto-failover executes on a cluster.</p></li>
+<li><p><codeph>count</codeph> : can be 0 or 1. Number of times any node in a cluster can be
+ automatically failed-over. After one auto-failover occurs, count is set to 1 and
+ Couchbase server will not perform auto-failure for the cluster again unless you
+ reset the count to 0. If you want to failover more than one node at a time in a
+ cluster, you will need to do so manually.</p></li>
+</ul><p>Possible errors include:</p><codeblock><codeph>HTTP/1.1 401 Unauthorized
+This endpoint isn't available yet.
+</codeph></codeblock><codeblock><codeph>GET /settings/autoFailover HTTP/1.1
+Host: localhost:8091
+Authorization: Basic YWRtaW46YWRtaW4=
+Accept: */*
+</codeph></codeblock><codeblock><codeph>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+{ "enabled": false, "timeout": 30, "count": 0 }
+</codeph></codeblock></body></topic>

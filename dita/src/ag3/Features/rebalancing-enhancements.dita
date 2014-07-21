@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_x4b_rhh_14">
+  <title>Rebalancing enhancements</title>
+  <shortdesc>Global disk I/O priority and bucket change protocol (UPR) promote faster rebalancing,; 
+    it's also refered to as incremental node rebalancing</shortdesc>
+  
+  <body>
+    <p>TBD</p>
+    
+  </body>
+</topic>

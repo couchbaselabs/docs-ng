@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic19310">
+  <title>Upgrading</title>
+  <body>
+    
+    <p>The following are the officially supported upgrade paths for Couchbase Server for both online
+      upgrades or offline upgrades:</p>
+    <ul>
+      <li>Couchbase 1.8.1 to Couchbase 2.0 or higher</li>
+      <li>Couchbase 2.0.x to Couchbase 2.1 or higher</li>
+      <li>Couchbase 2.1.x to Couchbase 2.2 or higher</li>
+      <li>Couchbase 2.2 to Couchbase 2.5 or higher</li>
+    </ul>
+        
+    <p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to a higher release of
+      Couchbase Server. You must first upgrade from Couchbase Server 1.8 or earlier to Couchbase
+      Server 1.8.1 to provide data compatibility with a higher release of Couchbase Server. After
+      performing this initial upgrade, upgrade to a higher release of Couchbase Server.</p>
+    <p>You can perform a cluster upgrade in two ways:</p>
+    <ul>
+      <li>Online upgrades</li>
+      <li>Offline upgrades</li>
+    </ul>
+    <p>Prior to upgrade, perform a backup of the files.</p>
+      <table>
+        <tgroup cols="2">
+          <colspec colname="col1"/>
+          <colspec colname="col2"/>
+          <thead>
+            <row>
+              <entry>Platform</entry>
+              <entry>Location</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Linux</entry>
+              <entry><codeph>/opt/couchbase/var/lib/couchbase/config/config.dat</codeph></entry>
+            </row>
+            <row>
+              <entry>Windows</entry>
+              <entry><codeph>C:\Program Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat</codeph></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    
+    <section><title>Upgrading from Community Edition to Enterprise Edition</title>
+      <p><b>Use the same
+          Couchbase Server version number when upgrading to the Enterprise Edition.</b> Version
+        differences may result in a failed upgrade. </p></section>
+    
+    
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../CLI/cbbackup_tool.dita"></link>
+      <link href="../CLI/cbrestore_tool.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

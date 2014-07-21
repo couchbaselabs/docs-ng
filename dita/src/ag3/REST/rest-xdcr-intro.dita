@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1168">
+  <title>XDCR REST API</title>
+  <shortdesc>Cross Datacenter Replication (XDCR) enables you to automatically replicate data between
+    clusters and between data buckets.</shortdesc>
+  <body>
+    <p>When you use XDCR, you specify source and destination clusters. A source cluster is the
+      cluster from which you want to copy data. A destination cluster is the cluster where you want
+      the replica data to be stored. When you configure replication, you specify your selections for
+      an individual cluster using Couchbase Admin Console. XDCR replicates data between specific
+      buckets and specific clusters and you can configure replication be either uni-directional or
+      bi-directional. Uni-directional replication means that XDCR replicates from a source to a
+      destination; in contrast, bi-directional replication means that XDCR replicates from a source
+      to a destination and also replicates from the destination to the source.</p>
+  </body>
+
+</topic>

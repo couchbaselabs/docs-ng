@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1408"><title>Connect String</title><body><p>A connect string option is required in order to connect to Couchbase. This can
+be specified with <codeph>--connect</codeph> on the command line. Below are two examples of
+connect strings.</p><p><codeph>
+http://10.2.1.55:8091/pools
+http://10.2.1.55:8091/pools,http://10.2.1.56:8091/pools
+</codeph></p><p>When creating your connect strings simply replace the IP address above with the
+IP address of your Couchbase sever. If you have multiple servers you can list
+them in a comma-separated list.</p><p>Why list multiple servers? Let’s say you create a backfill stream for 10,080
+minutes or one week. In that time period you might have a server crash, have to
+add another server, or remove a server from your cluster. Providing an address
+to each server allows an import and export command to proceed through topology
+changes to your cluster. In the first example above if you had a two-node
+cluster and 10.2.1.55 goes down then the import will fail even though the entire
+cluster didn’t go down. If you list both machines then the import will continue
+unaffected by the downed server and your import will complete successfully.</p><section><title>Connecting to different buckets</title><p>By default the Couchbase plugin connects to the default bucket. If you want to
+connect to a bucket other than the default bucket you can specify the bucket
+name with the <codeph>--username</codeph> option. If you have to connect to a SASL bucket use
+the <codeph>--password</codeph> option followed by the buckets password.</p></section></body></topic>

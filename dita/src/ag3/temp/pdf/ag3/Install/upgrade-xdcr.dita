@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_zxk_p14_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="title:1;4:10">Upgrading with XDCR</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="shortdesc:1;5:14">The upgrade process depends on the scenario.</shortdesc>
+  
+  
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="body:1;8:9">
+    
+    
+    
+
+    
+
+
+    
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="p:1;18:10">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:1;18:22">xmem</codeph> replication mode performs
+        replication on a destination cluster with the memcached protocol. This is the default mode for
+        Couchbase Server replications. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:2;20:52">capi</codeph> mode performs replications over a REST
+        protocol. </p>
+    
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ul:1;23:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:1;24:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:3;24:19">xmem</codeph> - only 2.2 servers and above support it.</li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:2;25:11"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:4;25:19">capi</codeph> - both 2.2 and pre–2.2 servers support it.</li>
+    </ul>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="p:2;28:10">The following prerequisites need to be considered:</p>
+      
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ul:2;30:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:3;31:13">Network port 11210 needs to be open between nodes for ‘xmem’ mode of replication to
+          work.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:4;33:13">In general, delete the replication, complete the upgrade, then recreate the
+          replication.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:5;35:13">When upgrading Couchbase Server, make sure that both the source and destination clusters
+          support the desired replication mode.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:6;37:13">To use XDCR data encryption with Secure Socket Layer (SSL), all nodes must be upgraded to at
+          least Couchbase Server 2.5 Enterprise Edition.</li>
+      </ul>
+      
+
+      
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="section:1;43:14"> <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="title:2;43:22">Upgrade scenarios</title>
+      
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ul:3;45:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:7;46:13">Both source and destination clusters are pre-2.2 and both are upgrading to pre-2.2
+        versions. This scenario is supported since both clusters use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:5;47:78">capi</codeph>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:8;48:13">Both source and destination clusters are pre-2.2 and the destination is upgrading to
+        2.2. This is a safe upgrade path since the source cluster communicates via
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:6;50:19">capi</codeph> to the destination.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:9;51:13">The source cluster is upgrading to 2.2 or higher and the destination is pre-2.2. This is
+        not a safe upgrade path because the destination cannot receive replication via
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:7;53:19">xmem</codeph>. This results in incorrect data replication and failures in conflict
+        resolution. For this scenario, upgrade both source and destinatin clusters to 2.2 or higher. </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:10;55:13">Both source and destination clusters are upgrading from pre-2.2 to 2.2. This is not a
+        safe upgrade path because the cluster upgrades are not synchronized. If the source upgrade
+        completes prior to destination upgrade, incorrect data replication and failures in conflict
+        resolution may occur.  For this scenario:<ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ol:1;58:54">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:11;59:15">Delete all XDCR replications on your source cluster. </li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:12;60:15">Upgrade the source cluster to 2.2 or higher. </li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:13;61:15">Upgrade the destination cluster to 2.2 or higher.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:14;62:15">Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:8;63:25">xmem</codeph> replication. </li>
+        </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="p:3;64:17">Alternatively:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ol:2;64:39">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:15;65:15">Allow the rebalance upgrade to complete.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:16;66:15">Delete the version 1 (<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:9;66:45">capi</codeph>) XDCR protocol replications.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:17;67:15">Create version 2 (<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:10;67:41">xmem</codeph>) XDCR protocol replications.</li>
+        </ol>
+      </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:18;70:13">The source cluster is upgrading from pre–2.2 to 2.2 or higher and the destination cluster is Elastic Search. 
+          Since the source cluster must use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:11;71:53">capi</codeph> for replication:  
+          <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ol:3;72:15">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:19;73:17">Delete all XDCR replications on your source cluster. </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:20;74:17">Upgrade the source cluster to 2.2 or higher. </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:21;75:17">Re-create the XDCR replications using Version 1 for the XDCR protocol. Version 1 is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:12;75:109">capi</codeph> replication.</li>
+          </ol>
+        </li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:22;78:13">Both source and destination clusters are upgraded from pre-2.2 to 2.5 or higher. This is
+        not a safe upgrade path because the cluster upgrades are not synchronized. If the source
+        upgrade completes prior to destination upgrade, incorrect data replication and failures in
+        conflict resolution may occur. <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="ol:4;81:44">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:23;82:15">Delete all XDCR replications on your source cluster. </li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:24;83:15">Upgrade the source cluster to 2.5 or higher. </li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:25;84:15">Upgrade the destination cluster 2.5 or higher.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="li:26;85:15">Re-create the XDCR replications using Version 2 for the XDCR protocol. Version 2 is
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-xdcr.dita" xtrc="codeph:13;86:23">xmem</codeph> replication.</li>
+        </ol>
+      </li>
+      </ul>
+    </section>
+
+      
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:33;50:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrading.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading</linktext></link></linkpool></related-links>
+</topic>

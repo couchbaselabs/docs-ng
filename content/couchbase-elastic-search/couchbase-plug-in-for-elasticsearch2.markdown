@@ -10,7 +10,7 @@ based on text descriptions of the products.
 You use Couchbase Server with Elasticsearch to provide quality, rapid full-text
 search results. The data model for Elasticsearch is already very compatible with
 the schema-free, [document-oriented
-model](http://www.couchbase.com/docs/couchbase-devguide-2.0/modeling-documents.html)
+model](http://docs.couchbase.com)
 used by Couchbase Server. Since search is often a more CPU-intensive process,
 you can scale your Elasticsearch cluster separately from your Couchbase cluster
 to best meet the demands of your users. In doing so, search functions will not
@@ -21,8 +21,8 @@ Server topics, however you may find the following related sources useful if you
 want to know more about these two solutions:
 
  * [Couchbase Server
-   Manual](http://www.couchbase.com/docs/couchbase-manual-2.0/index.html) : covers
-   installation, operations, monitoring, tools, and trouble-shooting for the
+   Manual](http://docs.couchbase.com) : covers
+   installation, operations, monitoring, views, xdcr, tools, and trouble-shooting for the
    server.
 
  * [Elasticsearch](http://www.elasticsearch.org/) : the definitive site for
@@ -31,9 +31,6 @@ want to know more about these two solutions:
  * [Couchbase SDKs](http://www.couchbase.com/develop) : describes installation and
    use of Couchbase SDKs from your web application.
 
- * [Views and
-   Indexing](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html)
-   : describes how you can index and query data with Couchbase Server.
 
 <a id="couchbase-elastic-intro"></a>
 
@@ -61,8 +58,7 @@ following:
    network issue has been resolved, replication can resume for remaining data.
 
 If you are already building applications with Couchbase Server, you are probably
-aware of using
-[views](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html)
+aware of using views 
 to index and query data from the server. You use this functionality to find,
 retrieve, and sort data based on document metadata and specified document
 attributes. For instance you could use views to retrieve all beer documents

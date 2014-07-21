@@ -494,8 +494,7 @@ for more information. Two important statistics related to water marks include:
 
  * Low Water Mark ( `ep_mem_low_wat` )
 
-   When a threshold known as low water mark is reached, this process starts
-   ejecting inactive replica data from RAM on the node.
+   When the low water mark threshold is reached, it indicates that memory usage is moving toward a critical point and system administration action is should be taken before the high water mark is reached
 
 You can find values for these important stats with the following command:
 
@@ -894,8 +893,10 @@ In releases prior to Couchbase Server 2.5, a developer, via a client library of 
 
 Starting with Couchbase Server 2.5, client libraries query a cluster for initial topology configuration for a bucket from one of the nodes in the cluster. This is similar to prior releases. However, this information is transmitted via the memcached protocol on port 11210 (rather than via persistent HTTP connections to port 8091). This significantly improves connection scaling capabilities.
 
+Optimized connection management is backward compatible. Old client libraries can connect to Couchbase Server 2.5, and updated client libraries can connect to Couchbase Server 2.5 and earlier. 
+
 <div class="notebox"><p>Note</p>
-<p>This change is only applicable to Couchbase type buckets (not memcached buckets). An error is returned if a configuration request is received on port 8091.
+<p>This change is only applicable to Couchbase type buckets (not memcached buckets). 
 </p></div> 
 
 See also [vBuckets](http://dustin.github.com/2010/06/29/memcached-vbuckets.html)

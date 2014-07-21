@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1395">
+  <title>Replicas and replication</title>
+  <shortdesc>Replicas are copies of data that are proved on another node in a cluster.</shortdesc>
+  
+  <body>
+    <p>In addition to distributing information across the cluster for even data distribution and
+      cluster performance, you can also establish <i>replica vBuckets</i> within a single Couchbase
+      cluster.</p>
+    <p>A copy of data from one bucket, known as a source is copied to a
+        destination, which we also refer to as the replica, or replica vBucket. The node that
+      contains the replica vBucket is also referred to as the <i>replica node</i> while the node
+      containing original data to be replicated is called a <i>source node</i>. Distribution of
+      replica data is handled in the same way as data at a source node; portions of replica data
+      will be distributed around the cluster to prevent a single point of failure.</p>
+    <p>After Couchbase has stored replica data at a destination node, the data will also be placed
+      in a queue to be persisted on disk at that destination node. </p>
+    <p>When replication is performed between two Couchbase clusters, it is called 
+      cross datacenter replication (XDCR). 
+      Use cases for XDCR is for a copy of your data on a cluster that is
+      closer to your users or for backup data in case of disaster recovery.</p>
+  </body>
+  
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Tasks/tasks-manage-xdcr.dita"></link>
+      <link href="../Tasks/tasks-manage-replication.dita"></link>
+    </linklist>
+  </related-links>
+  
+</topic>

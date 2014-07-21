@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_iqr_zyn_14">
+    <title>Configuring bi-directional replication</title>
+    <shortdesc/>
+    <taskbody>
+        <context>
+            <p>Replication is unidirectional from one cluster to another. To configure bidirectional
+                replication between two clusters, provide settings for two separate replication
+                streams. One stream replicates changes from Cluster A to Cluster B, another stream
+                replicates changes from Cluster B to Cluster A. </p>
+                
+                <note type="note">You do not need identical topologies for both clusters. You can have a different number
+                    of nodes in each cluster, RAM configuration, and persistence configuration.</note>
+                
+                <p>To configure a bi-directional replication:</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Create a replication from Cluster A to Cluster B on Cluster A.</cmd>
+            </step>
+            <step>
+                <cmd>Create a replication from Cluster B to Cluster A on Cluster B.</cmd>
+            </step>
+            <step>
+                <cmd>Configure the number of parallel replicators that run per node. The default number of
+                    parallel, active streams per node is 32 and is adjustable.</cmd>
+            </step>
+        </steps>
+        
+
+            
+    </taskbody>
+</task>

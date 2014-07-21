@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_e52_ynl_34">
+	<title>Collecting diagnostics via the cbcollect_info tool</title>
+	<shortdesc>You can start, stop, and get collection status by using the cbcollect_info
+		tool.</shortdesc>
+	<conbody>
+		<draft-comment author="amy">Is the syntax different for 3.0?</draft-comment>
+		<draft-comment author="amy">Can you still output to a specific file if you are not doing the upload option?</draft-comment>
+
+		<p>The cbcollect_info tool uses the following syntax:</p>
+
+		<syntaxdiagram>
+			<groupseq>
+				<kwd>cbcollect_info</kwd>
+				<groupcomp importance="optional">
+					<kwd>OPTIONS</kwd>
+				</groupcomp>
+				<groupchoice importance="optional">
+					<var>output-file</var>
+				</groupchoice>
+			</groupseq>
+		</syntaxdiagram>
+
+		<simpletable>
+			<sthead>
+				<stentry>Option</stentry>
+				<stentry>Description</stentry>
+			</sthead>
+			<strow>
+				<stentry>
+					<p><option>--upload</option></p>
+					<p><option>-u</option></p>
+				</stentry>
+				<stentry>Enable upload mode. When you use this option, you must also specify the
+						<option>--upload-host</option> and <option>--customer</option> options, and you
+					can optionally specify the <option>--ticket</option> option.</stentry>
+			</strow>
+			<strow>
+				<stentry>
+					--upload-host=hostname
+					<p>-n hostname</p>
+				</stentry>
+				<stentry>Fully-qualified domain name of the host you want the logs uploaded to. The protocol prefix of the domain name, <codeph>https://</codeph>, is optional. It is the default only supported protocol. This option is required when you specify the <codeph>--upload</codeph> option.</stentry>
+			</strow>
+			<strow>
+				<stentry>
+					<p><option>--customer=customer-name</option></p>
+					<p><option>-c customer-name</option></p>
+				</stentry>
+				<stentry>
+					Customer name. This value is a string with a maximum length of 50 characters that contains only the following characters: [A-Za-z0-9_.-]. If any other characters are included in the string, the request will be rejected. This option is required when you specify the <codeph>--upload</codeph> option.
+				</stentry>
+			</strow>
+			<strow>
+				<stentry>
+					<p><option>--ticket=ticket-number</option></p>
+					<p><option>-t ticket-number</option></p>
+				</stentry>
+				<stentry>
+					Couchbase support ticket number. This value is a string with a maximum length of 7 character that contains only digits 0-9. The ticket number is optional and is used only in conjunction with the --upload option.
+				</stentry>
+			</strow>
+			<strow>
+				<stentry><codeph>--script</codeph></stentry>
+				<stentry>Send output to <codeph>stdout</codeph> in script mode format. Use this option when you invoke cbcollect_info programatically. </stentry>
+			</strow>
+		</simpletable>
+		<p>
+			If the <codeph>--upload</codeph> option is used, the collected logs are compressed into a zip file and uploaded to a URL that has the following form: <filepath>protocol://hostname/customer-name/ticket-number/filename.zip</filepath>.
+		</p>
+	</conbody>
+</concept>

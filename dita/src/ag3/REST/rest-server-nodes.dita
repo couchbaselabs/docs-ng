@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_g3v_drf_q4">
+  <title>Server nodes REST API</title>
+  <shortdesc>A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server. 
+    Each node is as a member of a cluster.</shortdesc>
+  <refbody>
+    
+    <section><title>HTTP method and URI</title>
+      <codeblock>GET /pools/nodes</codeblock>
+    </section>
+      
+      
+      
+      <section><title>Curl syntax and example</title>
+      <codeblock>curl -u admin:password http://localhost:port/pools/nodes</codeblock>
+        <p>To view information about nodes that exist in a Couchbase Cluster, you use this request:</p>
+
+        <codeblock>curl -u admin:password http://10.5.2.118:8091/pools/nodes</codeblock>
+
+    </section>
+      
+    
+    <section><title>Response</title>
+    <p>Couchbase server returns this response in JSON:</p>
+    
+    <codeblock>
+      {"storageTotals":
+                    {
+                    "ram":
+                    {
+                    "quotaUsed":10246684672.0,
+                    "usedByData":68584936,
+                    "total":12396216320.0,
+                    "quotaTotal":10246684672.0,
+                    "used":4347842560.0},
+                    "hdd":
+                          {"usedByData":2560504,
+                          "total":112654917632.0,
+                          "quotaTotal":112654917632.0,
+                          "used":10138942586.0,
+                          "free":102515975046.0}
+                     },
+                     "name":"nodes",
+                     "alerts":[],
+                     "alertsSilenceURL":"/controller/resetAlerts?token=0",
+                     "nodes":
+                            [{"systemStats":
+                                      {
+                                      "cpu_utilization_rate":2.5,
+                                      "swap_total":6140452864.0,
+                                      "swap_used":0
+                                      },
+                             "interestingStats":
+                                      {
+                                      "curr_items":0,
+                                      "curr_items_tot":0,
+                                      "vb_replica_curr_items":0
+                                      },
+                              "uptime":"5782",
+                              "memoryTotal":6198108160.0,
+                              "memoryFree":3777110016.0,
+                              "mcdMemoryReserved":4728,
+                              "mcdMemoryAllocated":4728,
+                              "clusterMembership":"active",
+                              "status":"healthy",
+                              "hostname":"10.4.2.5:8091",
+                              "clusterCompatibility":1,
+                              "version":"1.8.1-937-rel-community",
+                              "os":"x86_64-unknown-linux-gnu",
+                              "ports":
+                                      {
+                                      "proxy":11211,
+                                      "direct":11210
+                                      }
+                            .......
+
+                                  }],
+                       "buckets":
+                                {"uri":"/pools/nodes/buckets?v=80502896" },
+                                "controllers":{"addNode":{"uri":"/controller/addNode"},
+                                "rebalance":{"uri":"/controller/rebalance"},
+                                "failOver":{"uri":"/controller/failOver"},
+                                "reAddNode":{"uri":"/controller/reAddNode"},
+                                "ejectNode":{"uri":"/controller/ejectNode"},
+                                "testWorkload":{"uri":"/pools/nodes/controller/testWorkload"}},
+                                "balanced":true,
+                                "failoverWarnings":["failoverNeeded","softNodesNeeded"],
+                                "rebalanceStatus":"none",
+                                "rebalanceProgressUri":"/pools/nodes/rebalanceProgress",
+                                "stopRebalanceUri":"/controller/stopRebalance",
+                                "nodeStatusesUri":"/nodeStatuses",
+                                "stats":{"uri":"/pools/nodes/stats"},
+                                "counters":{"rebalance_success":1,"rebalance_start":1},
+                                "stopRebalanceIsSafe":true}
+</codeblock>
+    </section>
+
+  </refbody>
+  
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../REST/rest-cluster-intro.dita"/>
+      <link href="../Install/hostnames.dita"/>
+      
+    </linklist>
+  </related-links>
+</reference>

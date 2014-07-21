@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Views?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Views/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2490" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="topic:1;4:40"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="title:1;4:47">Development views</title><body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="body:1;4:78"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="p:1;4:81">Due to the nature of the Couchbase cluster and because of the size of the
+datasets that can be stored across a cluster, the impact of view development
+needs to be controlled. Creating a view implies the creation of the index which
+could slow down the performance of your server while the index is being
+generated. However, views also need to be built and developed using the actively
+stored information.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="p:2;9:27">To support both the creation and testing of views, and the deployment of views
+in production, Couchbase Server supports two different view
+types,Developmentviews andProductionviews. The two view types work identically,
+but have different purposes and restrictions placed upon their operation.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="p:3;12:81">Development views are designed to be used while you are still selecting and
+ designing your view definitions. While a view is in development mode, views
+ operate with the following attributes:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="ul:1;14:48">
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="li:1;15:5">By default the development view works on only a subset of the stored
+ information. You can, however, force the generation of a development view
+ information on the full dataset.</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="li:2;18:5">Development views use live data from the selected Couchbase bucket, enabling you
+ to develop and refine your view in real-time on your production data.</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="li:3;20:5">Development views are not automatically rebuilt, and during a rebalance
+ operation, development views are not updated, even when when consistent views
+ are enabled, as this relies on the automated update mechanism. Updating
+ development views in this way would waste system resources.</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="li:4;24:5">Development views are fully editable and modifiable during their lifetime. You
+ can change and update the view definition for a development view at any time.
+During development of the view, you can view and edit stored document to help
+ develop the view definition.</li>
+<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="li:5;28:5">Development views are accessed from client libraries through a different URL
+ than production views, making it easy to determine the view type and information
+ during development of your application.</li>
+</ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="p:4;31:9">Within the Web Console, the execution of a view by default occurs only over a
+ subset of the full set of documents stored in the bucket. You can elect to run
+ the View over the full set using the Web Console.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="p:5;33:58">Because of the selection process, the reduced set of documents may not be fully
+ representative of all the documents in the bucket. You should always check the
+ view execution over the full set.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="p:6;35:42">For information on publishing a view from development to production state, see
+<xref href="#topic2490/couchbase-views-editor-publishing" class="- topic/xref " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Views/views-development.dita" xtrc="xref:1;36:59"><?ditaot usertext?>Publishing Views</xref>.</p></body><related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:107;124:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:103;120:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Views/views-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Views and indexes</linktext></link></linkpool></related-links>
+</topic>

@@ -93,7 +93,6 @@ versions:
       - 2.2
       - 2.1
       - 2.0
-      - 1.8
 
   couchbase-manual:
     name: "Server"
@@ -108,11 +107,10 @@ versions:
   couchbase-sdk-c:
     name: "C SDK"
     versions:
+      - 2.4
       - 2.3
       - 2.2
       - 2.1
-      - 2.0
-      - 1.0
 
   couchbase-sdk-java:
     name: "Java SDK"
@@ -206,32 +204,6 @@ navbar:
       - label: Elasticsearch Plug-in
         href: /couchbase-elastic-search/        
           
-  - label: Mobile
-    subnav:
-      - label: Couchbase Lite Concepts Guide
-        href: /couchbase-lite/cbl-concepts/
-
-      - label: Couchbase Lite iOS Developer Guide
-        href: /couchbase-lite/cbl-ios/
-
-      - label: Couchbase Lite iOS API Reference
-        href: http://www.couchbase.com/autodocs/couchbase-lite-ios-latest/annotated.html
-
-      - label: Couchbase Lite Android Developer Guide
-        href: /couchbase-lite/cbl-android/cbl-android-1.0b2/
-        
-      - label: Couchbase Lite Android API Reference
-        href: http://www.couchbase.com/autodocs/couchbase-lite-android-latest/index.html
-
-      - label: Couchbase Lite PhoneGap Developer Guide
-        href: /couchbase-lite/cbl-phonegap/
-
-      - label: Couchbase Lite REST API Reference
-        href: /couchbase-lite/cbl-api/
-
-      - label: Couchbase Sync Gateway Guide
-        href: /sync-gateway/
-
   - label: Developer
     subnav:
       - label: Couchbase Developer Guide
@@ -242,10 +214,16 @@ navbar:
 
   - label: SDKs
     subnav:
-      - label: C Developer Guide
+      - label: C Developer Guide v2.4 beta
+        href: /couchbase-sdk-c-2.4/
+
+      - label: C API Reference v2.4 beta
+        href: http://docs.couchbase.com/sdk-api/couchbase-c-client-2.4.0-beta/
+
+      - label: C Developer Guide v2.3
         href: /couchbase-sdk-c-2.3/
 
-      - label: C API Reference
+      - label: C API Reference v2.3
         href: http://www.couchbase.com/autodocs/couchbase-c-client-latest/index.html
 
       - label: Java Developer Guide
@@ -282,4 +260,4 @@ navbar:
         href: http://www.couchbase.com/autodocs/couchbase-ruby-client-latest/index.html
 
   - label: Archive
-    href: http://www.couchbase.com/documentation-archives
+    href: /archive-index/

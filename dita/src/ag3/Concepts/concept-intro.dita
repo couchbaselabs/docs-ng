@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic574"><title>Architecture and concepts</title>
+  <shortdesc> Couchbase Server concepts include the differenct components and systems that make up
+    an individual Couchbase Server instance and a Couchbase cluster including information and
+    concepts needed to understand the fast and elastic nature, high availability, and high
+    performance of the Couchbase Server database.</shortdesc>
+  <body><p/></body></topic>

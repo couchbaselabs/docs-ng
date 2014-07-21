@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1311">
+	<title>Deleting buckets</title>
+	<shortdesc>To delete buckets, use the <codeph>DELETE</codeph> operation with the
+			<codeph>/pools/default/buckets/default</codeph> URI. </shortdesc>
+	
+	<body>
+
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry><b>Method</b></entry>
+						<entry><codeph>DELETE /pools/default/buckets/bucket_name</codeph></entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><b>Request Data</b></entry>
+						<entry>None</entry>
+					</row>
+					<row>
+						<entry><b>Response Data</b></entry>
+						<entry>None</entry>
+					</row>
+					<row>
+						<entry><b>Authentication Required</b></entry>
+						<entry>yes</entry>
+					</row>
+					<row>
+						<entry/>
+						<entry><b>Return Codes</b></entry>
+					</row>
+					<row>
+						<entry>200</entry>
+						<entry>OK Bucket Deleted on all nodes</entry>
+					</row>
+					<row>
+						<entry>401</entry>
+						<entry>Unauthorized</entry>
+					</row>
+					<row>
+						<entry>404</entry>
+						<entry>Object Not Found</entry>
+					</row>
+					<row>
+						<entry>500</entry>
+						<entry>Bucket could not be deleted on all nodes</entry>
+					</row>
+					<row>
+						<entry>503</entry>
+						<entry>Buckets cannot be deleted during a rebalance</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		<note type="warning"> This operation is data destructive.The service makes no attempt to double check with the
+			user. It simply moves forward. Clients applications using this are advised to double
+			check with the end user before sending such a request. </note>
+		
+		<codeblock>
+DELETE /pools/default/buckets/default
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+</codeblock>
+		<p>Bucket deletion is a synchronous operation but because the cluster may include a number
+			of nodes, they may not all be able to delete the bucket. If all the nodes delete the
+			bucket within the standard timeout of 30 seconds, <codeph>200</codeph> will be returned.
+			If the bucket cannot be deleted on all nodes within the 30 second timeout, a
+				<codeph>500</codeph> is returned.</p>
+		<p>Further requests to delete the bucket will return a <codeph>404</codeph> error. Creating
+			a new bucket with the same name may return an error that the bucket is still being
+			deleted.</p>
+	</body>
+</topic>

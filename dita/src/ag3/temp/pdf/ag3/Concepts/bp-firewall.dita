@@ -1,0 +1,13 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic245" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="title:1;5:10">Couchbase behind a secondary firewall</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="shortdesc:1;6:14"></shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="p:1;8:8">If Couchbase is being deployed behind a secondary firewall, ensure that the reserved
+      Couchbase network ports are open.</p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="related-links:1;11:18"><linkpool class="- topic/linkpool " xtrc="topicref:31;38:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:26;33:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/bp-deployment-considerations.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc " >Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="linklist:1;12:15">
+      <link href="../Install/install-networkPorts.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-firewall.dita" xtrc="link:1;13:58"></link>
+    </linklist>
+  </related-links>
+</topic>

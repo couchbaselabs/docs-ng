@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_yb1_sjy_p4">
+  <title>Uninstalling on Windows</title>
+  <body>
+    <p>To uninstall Couchbase software on a Windows system, you must have Administrator or Power
+      User privileges.</p>
+    <p>To remove:
+      <ol>
+        <li>Navigate <uicontrol>Start &gt;  Settings &gt;  Control  Panel</uicontrol></li>
+        <li>Select <uicontrol>Add or Remove Programs</uicontrol>.</li>
+        <li>Remove the Couchbase Server software.</li>
+      </ol>
+    </p>
+  </body>
+</topic>

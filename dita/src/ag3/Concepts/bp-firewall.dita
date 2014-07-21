@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic245">
+  <title>Couchbase behind a secondary firewall</title>
+  <shortdesc></shortdesc>
+  <body>
+    <p>If Couchbase is being deployed behind a secondary firewall, ensure that the reserved
+      Couchbase network ports are open.</p>
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Install/install-networkPorts.dita"/>
+    </linklist>
+  </related-links>
+</topic>

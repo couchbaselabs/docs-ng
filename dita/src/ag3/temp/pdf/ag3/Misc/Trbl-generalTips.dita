@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1536" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="topic:1;4:40">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="title:1;5:9">General tips</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="shortdesc:1;6:13">General tips include various initial diagnostics activities.</shortdesc>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="body:1;7:8">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:1;8:6">The following are some general tips that may be useful before performing any more detailed
+   investigations:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="ul:1;10:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:1;11:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:2;11:11">Try pinging the node.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:2;12:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:3;12:11">Try connecting to the Couchbase Server Web Console on the node.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:3;13:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:4;13:11">Try to use telnet to connect to the
+      various ports that Couchbase Server uses.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:4;15:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:5;15:11">Try reloading the web page.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:5;16:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:6;16:11">Check firewall settings (if any) on the node. Make sure there isn’t a firewall between you
+     and the node. On a Windows system, for example, the Windows firewall might be blocking the
+     ports (Control Panel &gt; Windows Firewall).</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:6;19:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:7;19:11">Make sure that the documented ports are open between nodes and make sure the data
+     operation ports are available to clients.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:7;21:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:8;21:11">Check your browser’s security settings.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:8;22:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:9;22:11">Check any other security software installed on your system, such as antivirus
+     programs.</p></li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:9;24:8"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:10;24:11">Generate a Diagnostic Report for use by Couchbase Technical Support to help determine what
+     the problem is. There are two ways of collecting this information:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="ul:2;26:9">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:10;27:10"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:11;27:13">Click <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="codeph:1;27:27">Generate Diagnostic Report</codeph> on the Log page to obtain a snapshot
+       of your system’s configuration and log information for deeper analysis. You must send this
+       file to Couchbase.</p></li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="li:11;30:10"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:12;30:13">Run the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="codeph:2;30:29">cbcollect_info</codeph> on each node within your cluster. To run, you
+       must specify the name of the file to be generated:</p></li>
+    </ul>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:13;33:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="codeph:3;33:16"> &gt; cbcollect_info nodename.zip </codeph></p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="p:14;34:8">This will create a Zip file with the specified name. You must run each command individually
+     on each node within the cluster. You can then send each file to Couchbase for analysis.</p>
+    </li>
+  </ul>
+ </body>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="related-links:1;39:17"><linkpool class="- topic/linkpool " xtrc="topicref:131;150:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:129;148:40" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/Trbl-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Troubleshooting</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Troubleshooting covers general tips, common errors, log information, and other issues.</desc></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="linklist:1;40:13">
+   <link href="../CLI/cbcollect_info_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="link:1;41:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbcollect_info tool</linktext></link>
+   <link href="../Install/install-networkPorts.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/Trbl-generalTips.dita" xtrc="link:2;42:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Network ports</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Couchbase Server specific network ports for communication between server components and  		for communicating with the clients that access the data stored in the Couchbase cluster.</desc></link>
+  </linklist>
+ </related-links>
+</topic>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_plr_jwp_yn">
+ <title>Incremental backup and restore</title>
+ <shortdesc>An incremental backup or restore is a backup (or restore) of the latest changes since
+    the last backup (any level). Enterprise Edition only. </shortdesc>
+ 
+ <conbody>
+  <p>The purpose of an incremental backup is to preserve and protect data by creating copies that
+      are based on the differences in those data and thus minimize the amount of time needed to
+      perform the backup. With incremental backups, successive copies of the data contain only that
+      portion which has changed since the preceding backup copy was made. Incremental backups are
+      faster than full backups and reduce network utilization.</p>
+   
+   <p>The following are the types of backups:</p>
+   
+   <dl>
+     <dlentry>
+     <dt>Full backup</dt>
+       <dd>A snapshot of the state of the database at a particular point-in-time on disk. 
+       A snapshot is a read-only copy of the dataset. 
+       The restoration process takes the last full backup 
+       plus all the incremental backups until the restoration point-in-time is reached.</dd>
+     </dlentry>
+     <dlentry>
+       <dt>Cummulative backup</dt>
+       <dd>An incremental backup that contains all data changes after the last full backup. 
+         A snapshot of the data changes between the last full backup and the current snapshot. 
+         </dd>
+     </dlentry>
+     <dlentry>
+       <dt>Differential backup</dt>
+       <dd>An incremental backup that contains all data changes after the most recent incremental
+          backup. Differential backups are deltas between the following: <ul>
+            <li>Last full backup and the first snapshot</li>
+            <li>Last incremental snapshot the the current snapshot</li>
+          </ul>.</dd>
+     </dlentry>
+   </dl>
+
+   <p><b>DIFFERENTIAL backup graphic</b></p>
+   <p><b>CUMMULATIVE backup graphic</b></p>
+   
+   <section><title>Impacted documentation</title>
+   <ul>
+     <li>cbbackup</li>
+     <li>cbrestore</li>
+   </ul>
+   </section>
+     
+     <section><title>Backward compatibility</title>
+       
+       <ul>
+         <li>2.0+</li>
+       </ul>
+     </section>
+   
+     
+
+   
+ </conbody>
+</concept>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic9763">
+ <title>Data Buckets</title>
+ <body>
+  <p>Couchbase Server provides a range of statistics and settings through the <codeph>Data
+    Buckets</codeph> and <codeph>Server Nodes</codeph>. These show overview and detailed information
+   so that administrators can better understand the current state of individual nodes and the
+   cluster as a whole.</p>
+  <p>The <codeph>Data Buckets</codeph> page displays a list of all the configured buckets on your
+   system (of both Couchbase and memcached types). The page provides a quick overview of your
+   cluster health from the perspective of the configured buckets, rather than whole cluster or
+   individual servers.</p>
+  <p>The information is shown in the form of a table, as seen in the figure below.</p>
+  
+    <image href="../images/web-console-data-buckets-overview.png" width="720"></image>
+   
+  <p>The list of buckets are separated by the bucket type. For each bucket, the following
+   information is provided in each column:</p>
+  <ul>
+   <li><uicontrol>Bucket name</uicontrol> is the given name for the bucket. Clicking on the bucket name
+     takes you to the individual bucket statistics page. </li>
+   <li><uicontrol>RAM Usage/Quota</uicontrol> shows the amount of RAM used (for active objects) against
+     the configure bucket size.</li>
+   <li><uicontrol>Disk Usage</uicontrol> shows the amount of disk space in use for active object data
+     storage.</li>
+   <li><uicontrol>Item Count</uicontrol> indicates the number of objects stored in the bucket.</li>
+   <li><codeph>Ops/sec</codeph> shows the number of operations per second for this data
+     bucket.</li>
+   <li><uicontrol>Disk Fetches/sec</uicontrol> shows the number of operations required to fetch items
+     from disk.</li>
+   <li>Clicking the <uicontrol>Bucket Name</uicontrol> opens the basic bucket information summary. </li>
+   <li>Clicking the <uicontrol>Documents</uicontrol> button will take you to a list of objects
+     identified as parseable documents.</li>
+   <li>The <uicontrol>Views</uicontrol> button allows you to create and manage views on your stored
+     objects.</li>
+  </ul>
+  <p>To create a new data bucket, click the <uicontrol>Create New Data Bucket</uicontrol>.</p>
+
+  
+  <section><title>Creating and editing data buckets</title>
+   <p>When creating a new data bucket, or
+    editing an existing one, you will be presented with the bucket configuration screen. From here
+    you can set the memory size, access control and other settings, depending on whether you are
+    editing or creating a new bucket, and the bucket
+    type.</p>
+  
+  <p>You can create a new bucket in Couchbase Web
+    Console under the Data Buckets tab.</p>
+   <ol>
+    <li>Click Data Buckets | Create New Data Bucket. You see the <codeph>Create Bucket</codeph>
+     panel, as follows: <image href="../images/mrw_create_bucket.png" width="720"/></li>
+     
+    <li>Select a name for the new bucket. 
+     <p>The bucket name can only contain characters in range
+      A-Z, a-z, 0–9 as well as underscore, period, dash and percent symbols.</p>
+     <note type="tip">Create a named bucket specifically for your application. Any default
+      bucket you initially set up with Couchbase Server should not be used for storing live
+      application data. The default bucket you create when you first install Couchbase Server should
+      be used only for testing.</note></li>
+    <li>Select a Bucket Type, either Memcached or Couchbase.
+      <p>The options that appear in this panel differ based on the bucket
+      type.</p>
+     <p>For <codeph>Couchbase</codeph> bucket type:</p>
+     <ul>
+      <li><b>Memory Size</b></li>
+     </ul>
+     <p>The amount of available RAM on this server which should be allocated to the bucket. Note
+      that the allocation is the amount of memory that will be allocated for this bucket on each
+      node, not the total size of the bucket across all nodes.</p>
+     <ul>
+      <li><b>Replicas</b></li>
+     </ul>
+     <p>For Couchbase buckets you can enable data replication so that the data is copied to other
+      nodes in a cluster. You can configure up to three replicas per bucket. If you set this to one,
+      you need to have a minimum of two nodes in your cluster and so forth. If a node in a cluster
+      fails, after you perform failover, the replicated data will be made available on a functioning
+      node. This provides continuous cluster operations in spite of machine failure. </p>
+     <p>You can disable replication by deselecting the <codeph>Enable</codeph> checkbox.</p>
+     <p>You can disable replication by setting the number of replica copies to zero (0).</p>
+     <p>To configure replicas, Select a number in <codeph>Number of replica (backup) copies</codeph>
+      drop-down list.</p>
+     <p>To enable replica indexes, Select the <codeph>Index replicas</codeph> checkbox. Couchbase
+      Server can also create replicas of indexes. This ensures that indexes do not need to be
+      rebuilt in the event of a node failure. This will increase network load as the index
+      information is replicated along with the data.</p>
+     <ul>
+      <li><b>Disk Read-Write Concurrency</b></li>
+     </ul>
+     <p>Multiple readers and writers are supported to persist data onto disk. For earlier versions
+      of Couchbase Server, each server instance had only single disk reader and writer threads. By
+      default this is set to three total threads per data bucket, with two reader threads and one
+      writer thread for the bucket.</p>
+     <p>For now, leave this setting at the default. In the future, when you create new data buckets
+      you can update this setting. </p>
+     <ul>
+      <li><b>Flush</b></li>
+     </ul>
+     <p>To enable the operation for a bucket, click the <codeph>Enable</codeph> checkbox. Enable or
+      disable support for the Flush command, which deletes all the data in an a bucket. The default
+      is for the flush operation to be disabled.</p>
+     <p>For <codeph>Memcached</codeph> bucket type:</p>
+     <ul>
+      <li><b>Memory Size</b></li>
+     </ul>
+     <p>The bucket is configured with a per-node amount of memory. Total bucket memory will change
+      as nodes are added/removed.</p>
+     <p><b>Warning</b>: Changing the size of a memcached bucket will erase all the data in the
+      bucket and recreate it, resulting in loss of all stored data for existing buckets.</p>
+     <ul>
+      <li><b>Auto-Compaction</b></li>
+     </ul>
+     <p>Both data and index information stored on disk can become fragmented. Compaction rebuilds
+      the stored data on index to reduce the fragmentation of the data. </p>
+     <p>You can opt to override the default auto compaction settings for this individual bucket.
+      Default settings are configured through the <codeph>Settings</codeph> menu.  
+      If you override the default autocompaction settings, you can
+      configure the same parameters, but the limits will affect only this bucket.</p>
+     <p>For either bucket type provide these two settings in the Create Bucket panel:</p>
+     
+     <ul>
+      <li><uicontrol>Access Control</uicontrol>
+     <p>The access control configures the port clients use to communicate with the data bucket, and
+      whether the bucket requires a password.</p>
+     <p>To use the TCP standard port (11211), the first bucket you create can use this port without
+      requiring SASL authentication. For each subsequent bucket, you must specify the password to be
+      used for SASL authentication, and client communication must be made using the binary
+      protocol.</p>
+     <p>To use a dedicated port, select the dedicate port radio button and enter the port number you
+      want to use. Using a dedicated port supports both the text and binary client protocols, and
+      does not require authentication.</p>
+     <p>Note: When defining a port on a bucket, the server automatically starts up a copy of Moxi on
+      the servers, and exposes it on that port. This supports the ASCII memcached protocol. However,
+      Couchbase strongly recommend against using Moxi in this way. If needed, a client-side Moxi
+      should be installed on the application servers and have it connect to this bucket (whether it
+      is “port” or “password” doesn’t matter).</p>
+     <p>When defining a password on a bucket, it requires a client that supports the binary
+      memcached protocol with SASL (all Couchbase client libraries and client-side Moxi provide this
+      support). Defining a password on a bucket is the recommended approach.</p>
+      </li>
+     <li><b>Flush</b>
+     <p>Enable or disable support for the Flush command, which deletes all the data in an a bucket.
+      The default is for the flush operation to be disabled. To enable the operation for a bucket,
+      select the Enable checkbox.</p></li>
+    <li>Click <uicontrol>Create</uicontrol>.</li>
+     </ul>
+    </li>
+   </ol>
+  </section>
+
+  
+  <section><title>Editing Couchbase buckets</title><p>You can edit a number of settings for an
+    existing Couchbase bucket in Couchbase Web Console:</p>
+   <ul>
+    <li><uicontrol>Access Control</uicontrol>, including the standard port/password or custom port
+      settings.</li>
+    <li><uicontrol>Memory Size</uicontrol> can be modified providing you have unallocated space within
+      your Cluster configuration. You can reduce the amount of memory allocated to a bucket if that
+      space is not already in use.</li>
+    <li><uicontrol>Auto-Compaction</uicontrol> settings, including enabling the override of the default
+      auto-compaction settings, and bucket-specific auto-compaction.</li>
+    <li><uicontrol>Flush</uicontrol> support. You can enable or disable support for the Flush
+      command.</li>
+   </ul>
+   <p>The bucket name cannot be modified. To delete the configured bucket entirely, click the
+     <uicontrol>Delete</uicontrol>
+    button.</p></section>
+  
+  <section><title>Editing Memcached buckets</title><p>For Memcached buckets, you can modify the
+    following settings when editing an existing bucket:</p><ul>
+    <li><p><codeph>Access Control</codeph>, including the standard port/password or custom port
+      settings.</p></li>
+    <li><p><codeph>Memory Size</codeph> can be modified providing you have unallocated RAM quota
+      within your Cluster configuration. You can reduce the amount of memory allocated to a bucket
+      if that space is not already in use.</p></li>
+   </ul><p>You can delete the bucket entirely by clicking the <uicontrol>Delete</uicontrol>
+    button.</p><p>You can empty a Memcached bucket of all the cached information that it stores by
+    using the <codeph>Flush</codeph> button.</p><p><b>Warning</b>: Using the <codeph>Flush</codeph>
+    button removes all the objects stored in the Memcached bucket. Using this button on active
+    Memcached buckets may delete important
+    information.</p></section>
+  <section><title>Bucket information</title><p>You can obtain basic information about the status of
+    your data buckets by clicking on the drop-down next to the bucket name under the <codeph>Data
+     Buckets</codeph> page. The bucket information shows memory size, access, and replica
+    information for the bucket, as shown in the figure below.</p>
+   
+     <image href="../images/web-console-bucket-info.png" width="720"></image>
+    <p>You can edit the bucket information by clicking the
+     <codeph>Edit</codeph> button within the bucket information display.</p></section>
+ </body>
+</topic>

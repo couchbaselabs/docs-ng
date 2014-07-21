@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic5853">
+	<title>Data storage</title>
+	<shortdesc>Couchbase Server provides data management services using <i>buckets</i>. Buckets are isolated
+		virtual containers for data. A bucket is a logical grouping of physical resources within
+		a cluster of Couchbase Servers.</shortdesc>
+	
+	<body>
+		<p> Buckets provide a secure mechanism for organizing, managing, and analyzing
+			data storage resources. 
+			Two types of data buckets, memcached and couchbase, 
+			enable you to store data either in-memory only or both in-memory and on disk (for added reliability). 
+			During Couchbase Server set up, the type of bucket that you need for your
+			implementation is selected.</p>
+		
+		<note type="note">Buckets can be used by multiple client applications across
+			a cluster. </note>
+		
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="5.06*"/>
+				<thead>
+					<row>
+						<entry>Bucket Type</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Couchbase</entry>
+						<entry>Provides highly-available and dynamically reconfigurable distributed
+							data storage, providing persistence and replication services. Couchbase
+							buckets are 100% protocol compatible with, and built in the spirit of,
+							the memcached open source distributed key-value cache.</entry>
+					</row>
+					<row>
+						<entry>Memcached</entry>
+						<entry>Provides a directly-addressed, distributed (scale-out), in-memory,
+							key-value cache. Memcached buckets are designed to be used alongside
+							relational database technology – caching frequently-used data, thereby
+							reducing the number of queries a database server must perform for web
+							servers delivering a web application.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>The different bucket types support different capabilities.  </p> 
+		
+		
+		<table>
+			<tgroup cols="3">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="2.08*"/>
+				<colspec colname="col3" colwidth="2.8*"/>
+				<thead>
+					<row>
+						<entry>Capability</entry>
+						<entry>memcached Buckets</entry>
+						<entry>Couchbase Buckets</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Item Size Limit</entry>
+						<entry>1 MByte</entry>
+						<entry>20 MByte</entry>
+					</row>
+					<row>
+						<entry>Persistence</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>Replication</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>Rebalance</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>Statistics</entry>
+						<entry>Limited set for in-memory stats</entry>
+						<entry>Full suite</entry>
+					</row>
+					<row>
+						<entry>Client Support</entry>
+						<entry>Memcached, should use Ketama consistent hashing</entry>
+						<entry>Full Smart Client Support</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		<p>Couchbase-type buckets provide a highly-available and dynamically reconfigurable distributed
+			data store, survive node failures, and allow cluster reconfiguration while continuing to
+			service requests. Couchbase-type buckets provide the following core capabilities:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="5.06*"/>
+				<thead>
+					<row>
+						<entry>Couchbase bucket capability</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Caching</entry>
+						<entry>Couchbase buckets operate through RAM. Data is kept in RAM and
+							persisted down to disk. Data will be cached in RAM until the configured
+							RAM is exhausted, when data is ejected from RAM. If requested data is
+							not currently in the RAM cache, it will be loaded automatically from
+							disk.</entry>
+					</row>
+					<row>
+						<entry>Persistence</entry>
+						<entry>Data objects can be persisted asynchronously to hard-disk resources
+							from memory to provide protection from server restarts or minor
+							failures. Persistence properties are set at the bucket level.</entry>
+					</row>
+					<row>
+						<entry>Replication</entry>
+						<entry>A configurable number of replica servers can receive copies of all
+							data objects in the Couchbase-type bucket. If the host machine fails, a
+							replica server can be promoted to be the host server, providing high
+							availability cluster operations via failover. Replication is configured
+							at the bucket level.</entry>
+					</row>
+					<row>
+						<entry>Rebalancing</entry>
+						<entry>Rebalancing enables load distribution across resources and dynamic
+							addition or removal of buckets and servers in the cluster. </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		<p>The following bucket interface types that can be configured. Both memcached or Couchbase
+			buckets can be authenticated via SASL or not authenticated (non-SASL).</p>
+		<dl>
+			<dlentry>
+			<dt>Default bucket</dt>
+				<dd>The default bucket is a Couchbase bucket that always resides on port 11211 and is a
+					non-SASL authenticating bucket. When Couchbase Server is first installed this bucket is
+					automatically set up during installation. This bucket may be removed after installation
+					and may also be re-added later, but when re-adding a bucket named “default”, the bucket
+					must be place on port 11211 and must be a non-SASL authenticating bucket. A bucket not
+					named default may not reside on port 11211 if it is a non-SASL bucket. The default
+					bucket may be reached with a vBucket aware smart client, an ASCII client or a binary
+					client that doesn’t use SASL authentication.</dd>
+			</dlentry>
+			<dlentry>
+				<dt>Non-SASL buckets</dt>
+				<dd>Non-SASL buckets may be placed on any available port with the exception of port 11211 if
+					the bucket is not named “default”. Only one Non-SASL bucket may placed on any individual
+					port. These buckets may be reached with a vBucket aware smart client, an ASCII client or
+					a binary client that doesn’t use SASL authentication.</dd>
+			</dlentry>
+			<dlentry>
+				<dt>SASL buckets</dt>
+				<dd>SASL authenticating Couchbase buckets may only be placed on port 11211 and each bucket is
+					differentiated by its name and password. SASL bucket may not be placed on any
+					other port beside 11211. These buckets can be reached with either a vBucket
+					aware smart client or a binary client that has SASL support. These buckets
+					cannot be reached with ASCII clients. <p>Smart clients discover changes in the
+						cluster using the Couchbase Management REST API. Buckets can be used to
+						isolate individual applications to provide multi-tenancy or to isolate data
+						types in the cache to enhance performance and visibility. Couchbase Server
+						allows you to configure different ports to access different buckets, and
+						provides the option to access isolated buckets using either the binary
+						protocol with SASL authentication or the ASCII protocol with no
+						authentication</p>
+					<p>Couchbase Server allows you to use and mix different types of buckets,
+						Couchbase and Memcached, in your environment. Buckets of
+						different types still share the same resource pool and cluster resources.
+						Quotas for RAM and disk usage are configurable per bucket so that resource
+						usage can be managed across the cluster. Quotas can be modified on a running
+						cluster so that administrators can reallocate resources as usage patterns or
+						priorities change over time.</p>
+				</dd>
+			</dlentry>
+		</dl>
+
+	</body>
+	<related-links>
+		<linklist><title>Related topics</title>
+			<link href="../CLI/cli-overview.dita">
+			</link>
+			<link href="../REST/rest-bucket-intro.dita">
+			</link>
+		</linklist>
+	</related-links>
+</topic>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_zrt_zvy_p4">
+  <title>Upgrading on Mac</title>
+  <body>
+      <p>There is currently
+      no officially supported upgrade installer for Mac OS X. 
+      If you want to migrate Couchbase Server on OS X, backup your data files with
+      <codeph>cbbackup</codeph>, install the latest version, then restore your data with
+      <codeph>cbrestore</codeph>.</p>
+  </body>
+  
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../CLI/cbbackup_tool.dita"></link>
+      <link href="../CLI/cbrestore_tool.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

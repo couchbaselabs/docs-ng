@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1805">
+  <title>XDCR replication via memcached protocol</title>
+  <shortdesc>XDCR can replicate data through the memcached protocol at a destination cluster.</shortdesc>
+  <body>
+    <p>This mode utilizes highly efficient memcached protocol on the destination cluster for replicating
+      changes. The new mode of XDCR increases XDCR throughput, reducing the CPU usage at destination
+      cluster and also improves XDCR scalability. </p>
+    <p>In earlier versions of Couchbase Server only the REST protocol could be used for replication.
+      On a source cluster a work process batched multiple mutations and sent the batch to a
+      destination cluster using a REST interface. The REST interface at the destination node
+      unpacked the batch of mutations and sent each mutation via a single memcached command. The
+      destination cluster then stored mutations in RAM. This process is known as <i>CAPI mode
+        XDCR</i> as it relies on the REST API known as CAPI.</p>
+    <p>This second mode available for XDCR is known as <i>XMEM mode XDCR</i> which bypasses the REST
+      interface and replicates mutations via the memcached protocol at the destination cluster:</p>
+    
+      <image href="../images/XDCR_xmem.png" width="720"></image>
+    <p>In this mode, every replication process at a source cluster delivers mutations directly via
+      the memcached protocol on the remote cluster. This additional mode does not impact current
+      XDCR architecture, rather it is implemented completely within the data communication layer
+      used in XDCR. Any external XDCR interface remains the same. The benefit of using this mode is
+      performance by increasing XDCR throughput, improving XDCR scalability, and reducing CPU usage
+      at destination clusters during replication.</p>
+    <p>XDCR can be configured to operate via the new XMEM mode, which is the default or with CAPI
+      mode. To change the replication mode, change the setting for
+        <codeph>xdcr_replication_mode</codeph> via the Web Console or REST API. </p>
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../REST/rest-xdcr-intro.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

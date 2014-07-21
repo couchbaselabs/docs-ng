@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic11042" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="topic:1;4:41">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="title:1;5:9">Database and view compaction</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="shortdesc:1;6:13">Database and view compaction helps to reclaim disk space and reduce fragmentation.</shortdesc>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="body:1;7:8">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:1;8:6">The data files in which information is stored in a persistent state for a Couchbase Bucket are
+   written to and updated as information is appended, updated and deleted. This process can
+   eventually lead to gaps within the data file (particularly when data is deleted) which can be
+   reclaimed using a process called compaction.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:2;12:6">The index files that are created each time a view is built are also written in a sequential
+   format. Updated index information is appended to the file as updates to the stored information is
+   indexed.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:3;15:6">In both these cases, frequent compaction of the files on disk can help to reclaim disk space
+   and reduce fragmentation.</p>
+
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="section:1;18:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="title:2;18:19">Compaction process</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:4;18:48"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:1;18:51">How it works</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:5;18:74">Couchbase compacts views
+    and data files. For database compaction, a new file is created into which the active (non-stale)
+    information is written. Meanwhile, the existing database files stay in place and continue to be
+    used for storing information and updating the index data. This process ensures that the database
+    continues to be available while compaction takes place. Once compaction is completed, the old
+    database is disabled and saved. Then any incoming updates continue in the newly created database
+    files. The old database is then deleted from the system.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:6;24:68">View compaction occurs in the
+    same way. Couchbase creates a new index file for each active design document. Then Couchbase
+    takes this new index file and writes active index information into it. Old index files are
+    handled in the same way old data files are handled during compaction. Once compaction is
+    complete, the old index files are deleted from the system.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:7;28:70"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:2;28:73">How to use
+    it</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:8;29:18">Compaction takes place as a background process while Couchbase Server is running.
+    You do not need to shutdown or pause your database operation, and clients can continue to access
+    and submit requests while the database is running. While compaction takes place in the
+    background, you need to pay attention to certain factors.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:9;32:69">Make sure you perform
+    compaction…</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:1;33:24">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:1;34:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:10;34:12"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:3;34:15">… on every server:</b> Compaction operates on only a single server within your
+      Couchbase Server cluster. You will need to perform compaction on each node in your cluster, on
+      each database in your cluster.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:2;37:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:11;37:12"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:4;37:15">… during off-peak hours:</b> The compaction process is both disk and CPU intensive. In
+      heavy-write based databases where compaction is required, the compaction should be scheduled
+      during off-peak hours (use auto-compact to schedule specific times).</p></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:12;40:12">If compaction isn’t scheduled during off-peak hours, it can cause problems. Because the
+    compaction process can take a long to complete on large and busy databases, it is possible for
+    the compaction process to fail to complete properly while the database is still active. In
+    extreme cases, this can lead to the compaction process never catching up with the database
+    modifications, and eventually using up all the disk space. Schedule compaction during off-peak
+    hours to prevent this!</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:2;45:35">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:3;46:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:5;46:12">… with adequate disk space:</b> Because compaction occurs by creating new files and
+     updating the information, you may need as much as twice the disk space of your current database
+     and index files for compaction to take place.</li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:13;49:12">However, it is important to keep in mind that the exact amount of the disk space required
+    depends on the level of fragmentation, the amount of dead data and the activity of the database,
+    as changes during compaction will also need to be written to the updated data
+    files.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:14;52:18">Before compaction takes place, the disk space is checked. If the amount of
+    available disk space is less than twice the current database size, the compaction process does
+    not take place and a warning is issued in the log.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:15;54:62"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:6;54:65">Compaction
+    Behavior</b></p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:3;55:25">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:4;56:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:16;56:12"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:7;56:15">Stop/Restart:</b> The compaction process can be stopped and restarted. However, you
+      should be aware that the if the compaction process is stopped, further updates to database are
+      completed, and then the compaction process is restarted, the updated database may not be a
+      clean compacted version. This is because any changes to the portion of the database file that
+      were processed before the compaction was canceled and restarted have already been
+      processed.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:5;62:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:17;62:12"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:8;62:15">Auto-compaction:</b> Auto-compaction automatically triggers the compaction process on
+      your database. You can schedule specific hours when compaction can take place.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:6;64:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:18;64:12"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:9;64:15">Compaction activity log:</b> Compaction activity is reported in the Couchbase Server
+      log. You will see entries similar to following showing the compaction operation and
+      duration:</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:7;67:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:19;67:12"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:10;67:15">Compaction activity log:</b> Compaction activity is reported in the Couchbase Server
+      log. You can see the following items for compaction:</p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:4;69:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:8;70:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:20;70:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:11;70:17">Autocompaction</b> Indicates compaction cannot be performed because of inadequate
+        disk space</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:9;72:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:21;72:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:12;72:17">Manually triggered compaction</b></p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:10;73:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:22;73:14">Compaction completed successfully</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:11;74:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:23;74:14">Compaction failed</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:12;75:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:24;75:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:13;75:17">Purge deletes compaction</b></p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:13;76:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:25;76:14">Compaction started/completed</p></li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:14;77:11"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:26;77:14">Compaction failed</p></li>
+     </ul>
+     </li>
+   </ul>
+  </section>
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="section:2;82:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="title:3;82:19">Auto-compaction configuration</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:27;82:59">Couchbase Server incorporates an automated
+    compaction mechanism that can compact both data files and the view index files, based on
+    triggers that measure the current fragmentation level within the database and view index data
+    files.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:28;85:18">Note</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:29;85:29">Spatial indexes are not automatically compacted. Spatial indexes must be
+    compacted manually.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:30;86:31">Auto-compaction can be configured in two ways:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:5;86:85">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:15;87:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:31;87:12"><i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="i:1;87:15">Default Auto-Compaction</i> affects all the Couchbase Buckets within your Couchbase
+      Server. If you set the default Auto-Compaction settings for your Couchbase server then
+      auto-compaction is enabled for all Couchbase Buckets automatically. </p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:16;90:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:32;90:12"><i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="i:2;90:15">Bucket Auto-Compaction</i> can be set on individual Couchbase Buckets. The
+      bucket-level compaction always overrides any default auto-compaction settings, including if
+      you have not configured any default auto-compaction settings. You can choose to explicitly
+      override the Couchbase Bucket specific settings when editing or creating a new Couchbase
+      Bucket. </p></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:33;95:12">The available settings for both default Auto-Compaction and Couchbase Bucket specific
+    settings are identical:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:6;96:36">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:17;97:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:14;97:12">Database Fragmentation</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:34;98:12">The primary setting is the percentage level within the database at which compaction
+    occurs. The figure is expressed as a percentage of fragmentation for each item, and you can set
+    the fragmentation level at which the compaction process will be triggered.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:35;100:86">For example, if
+    you set the fragmentation percentage at 10%, the moment the fragmentation level has been
+    identified, the compaction process will be started, unless you have time limited
+    auto-compaction. SeeTime Period.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:7;103:45">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:18;104:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:15;104:12">View Fragmentation</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:36;105:12">The View Fragmentation specifies the percentage of fragmentation within all the view
+    index files at which compaction will be triggered, expressed as a percentage.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:8;106:90">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:19;107:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:16;107:12">Time Period</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:37;108:12">To prevent auto compaction taking place when your database is in heavy use, you can
+    configure a time during which compaction is allowed. This is expressed as the hour and minute
+    combination between which compaction occurs. For example, you could configure compaction to take
+    place between 01:00 and 06:00.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:38;111:42">If compaction is identified as required outside of these
+    hours, compaction will be delayed until the specified time period is reached. The time period is
+    applied every day while the Couchbase Server is active. The time period cannot be configured on
+    a day-by-day basis.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:9;114:32">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:20;115:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:17;115:12">Compaction abortion</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:39;116:12">The compaction process can be configured so that if the time period during which
+    compaction is allowed ends while the compaction process is still completing, the entire
+    compaction process will be terminated. This option affects the compaction process:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:40;118:94">If this
+    option is enabled, and compaction is running, the process will be stopped. The files generated
+    during the compaction process will be kept, and compaction will be restarted when the next time
+    period is reached.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:41;121:30">This can be a useful setting if want to ensure the performance of your
+    Couchbase Server during a specified time period, as this will ensure that compaction is never
+    running outside of the specified time period.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:42;123:57">If this option is disabled and the
+    compaction is running when the time period ends, compaction will continue suntil the process has
+    been completed.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:43;125:27">Using this option can be useful if you want to ensure that the compaction
+    process completes.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:10;126:31">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:21;127:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:18;127:12">Parallel Compaction</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:44;128:12">By default, compaction operates sequentially, executing first on the database and then
+    the Views if both are configured for auto-compaction. If you enable parallel compaction, both
+    the databases and the views can be compacted at the same time. This requires more CPU and
+    database activity for both to be processed simultaneously, but if you have CPU cores and disk
+    I/O (for example, if the database and view index information is stored on different physical
+    disk devices), the two can complete in a shorter time.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:11;133:67">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:22;134:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="b:19;134:12">Metadata Purge Interval</b></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:45;135:12">You can remove tombstones for expired and deleted items as part of the auto-compaction
+    process. Tombstones are records containing the key and metadata for deleted and expired items
+    and are used for eventually consistency between clusters and for views.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:46;137:83">Configuration of
+    auto-compaction is through Couchbase Web Console. Information on
+    per-bucket settings is through the Couchbase Bucket create/edit screen. . You can also view and change these settings using the REST API,</p>
+   
+  </section>
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="section:3;142:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="title:4;142:19">Auto-compaction strategies</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:47;142:56">The exact fragmentation and scheduling
+    settings for auto-compaction should be chosen carefully to ensure that your database performance
+    and compaction performance meet your requirements.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:48;144:62">You want to consider the following:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="ul:12;144:105">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:23;145:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:49;145:12">You should monitor the compaction process to determine how long it takes to compact your
+      database. This will help you identify and schedule a suitable time-period for auto-compaction
+      to occur.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:24;148:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:50;148:12">Compaction affects the disk space usage of your database, but should not affect
+      performance. Frequent compaction runs on a small database file are unlikely to cause problems,
+      but frequent compaction on a large database file may impact the performance and disk
+      usage.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:25;152:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:51;152:12">Compaction can be terminated at any time. This means that if you schedule compaction for
+      a specific time period, but then require the additional resources being used for compaction
+      you can terminate the compaction and restart during another off-peak period.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:26;155:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:52;155:12">Because compaction can be stopped and restarted it is possible to indirectly trigger an
+      incremental compaction. For example, if you configure a one-hour compaction period, enable
+      Compaction abortion, and compaction takes 4 hours to complete, compaction will incrementally
+      take place over four days.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="li:27;159:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="p:53;159:12">When you have a large number of Couchbase buckets on which you want to use
+      auto-compaction, you may want to schedule your auto-compaction time period for each bucket in
+      a staggered fashion so that compaction on each bucket can take place within a it’s own unique
+      time period.</p></li>
+   </ul></section>
+ </body>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="related-links:1;165:17"><linkpool class="- topic/linkpool " xtrc="topicref:43;52:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:34;42:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-common.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Common administrative tasks</linktext></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="linklist:1;166:13">
+   <link href="../UI/ui-settings.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="link:1;167:40" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Settings</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-settings.dita" xtrc="uicontrol:1;6:29">Settings</uicontrol> section provides configuration and information      for the cluster, update notifications, auto failover, alerts, auto compaction, sample buckets, and account management.</desc></link>
+   <link href="../UI/ui-logs.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="link:2;168:36" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Log</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Log section provides a built-in event log for Couchbase Server.</desc></link>
+   <link href="../UI/ui-data-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="link:3;169:44" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Data Buckets</linktext></link>
+   <link href="../REST/compaction-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-compaction.dita" xtrc="link:4;170:50" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Compaction REST API</linktext></link>
+  </linklist>
+ </related-links>
+</topic>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_mcl_p5p_k4">
+  <title>XDCR</title>
+  <shortdesc>The XDCR panel is used to create a remote cluster reference and specify replication.</shortdesc>
+  <body>
+    
+ 
+    <image href="../images/ui-xdcr-panel.png"></image>
+    
+    <section><title>Create cluster reference</title>
+      <p>To create a cluster reference, provide the cluster name, IP or hostname, administrator username and password 
+        and whether or not to enable encryption (Enterprise Edition only).</p>
+      <image href="../images/xdcr-cluster-reference.png"></image>
+    
+    </section>
+    
+    <section><title>Create replication</title>
+    <p>To create a replication, provide the bucket to replicaed on the remote cluster, the remote cluster and bucket, 
+    and modify any advanced XDCR settings.</p>
+      <image href="../images/create_rep_xdcr_advance2.2.png"></image>
+      
+    </section>
+  </body>
+</topic>

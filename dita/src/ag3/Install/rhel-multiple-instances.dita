@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_fdf_nls_g4">
+  <title>Installing multiple instances</title>
+  <shortdesc>Multiple instances of Couchbase Server can be installed on one physical machine for the LInux operating system. 
+  The number of instances depend on the capacity of the physical machine.</shortdesc>
+  <body>
+    <note type="attention">Multiple instance on one machine is recommended for development purposes only.</note>
+    
+    <section><title>Requirements</title>
+    <p>Ensure that a minumum of 4GN RAN and 8 Core CPU are available for each Couchbase instance. 
+      When installing multiple instances of Couchbase on a physical machine, install as one of the
+      following:</p>
+      <ul>
+        <li>sudo user</li>
+        <li>non-root, non-sudo user</li>
+      </ul>
+      
+    <note type="note">See the reserved Couchbase Server Network ports and User-defined ports 
+      before creating user-defined ports. </note>
+    </section>
+    
+      <section><title>Recommendations</title>
+        <p>Install each instance of a cluster on a
+            different physical machine to ensure data recovery if a failure occurs.</p>
+        <note type="note">The
+              number of Couchbase servers that can be installed on a physical machine depends on the RAM and
+              CPU available. </note>
+        
+        <p>The following graphic shows a cluster configuration with multiple
+                Couchbase instances on a physical machine. In addition, by having three (3) Couchbase server in
+                a cluster and each server installed on different physical machines, the configuration reduces
+                the risk of data loss from a hardware failure.</p>
+        <image href="../images/multi-instance.png" width="600" />
+      </section>
+    
+    <section><title>Setting up multiple instances</title>
+      <p>To set up multiple instances running on a physical machine:</p>
+      
+      <ol>
+        <li>Install Couchbase Server as a sudo user or as a non-root, non-sudo user. For more
+          information about installing as non-root, non-sudo.</li>
+        <li>Create user-defined ports in the <b>/opt/couchbase/etc/couchbase/static_config</b>
+          file.</li>
+        <li>In the <b>/etc/security/limits.conf</b> file, ensure that the hard and soft limits for the
+          <codeph>nofile</codeph> parameter are set to a value greater than 10240.</li>
+        <li>Change the short_name parameter that identifies the instance (default: ns_1), to a different
+          short_name in the <b>/opt/couchbase/etc/couchbase/static_config</b> file. <ul>
+            <li>The short_name value must different for each instance that resides on the same physical
+              server.</li>
+          </ul></li>
+        <li>Change the two occurrences short_name in the <b>/opt/couchbase/bin/couchbase-server</b>
+          file. For example, use the <codeph>sed</codeph> utility. <ul>
+            <li>
+              <codeph>sed -i ‘s/ns_1/ns_inst1/g’ bin/couchbase-server</codeph></li>
+          </ul></li>
+        <li>Start the Couchbase instance.</li>
+        <li>Repeat the steps to install other instances.</li>
+      </ol>
+      
+      <note type="important">While creating the cluster make sure the perServer RAM quota is
+        calculated keeping in mind the number of instances planned to be installed on the machine.
+      <p>When configuring the instance for the cluster, Couchbase provides a default value for the
+        perServer RAM quota. This default value is based on the total RAM quota available on the
+        physical machine. Modify this value. </p>
+      </note>
+    </section>
+      
+    <section><title>Troubleshooting</title><p>If any bucket created on the
+          nodes appear to be in pending state or if rebalance fails with not_all_nodes_are_ready_yet,
+          there could be a mismatch of the short_name value in the following files:</p>
+      <codeblock>
+/opt/couchbase/bin/couchbase-server
+/opt/couchbase/etc/couchbase/static_config</codeblock>
+    </section>
+      <section><title>Limitations</title>
+        <ul>
+              <li>Cbrecovery is unavailable on customized ports</li>
+              <li>Cbworkloadgen is unavailable</li>
+              <li>Offline upgrade is unavailable</li>
+              <li>If a bucket is created on a dedicated port, some of the operations results in the error,
+                "could not listen on port xxx”, even though the operation still succeeds. This error is logged
+                regardless of the port that is used.</li>
+            </ul>
+    </section>
+  </body>
+</topic>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Monitoring?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Monitoring/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1360" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="title:1;5:10">Port numbers and accessing different buckets</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="p:1;7:8">In a Couchbase Server cluster, any communication (stats or data) to a port <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="i:1;7:86">other</i> than
+      11210 will result in the request going through a Moxi process. This means that any stats
+      request will be aggregated across the cluster (and may produce some inconsistencies or
+      confusion when looking at stats that are not “aggregatable”).</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="p:2;11:8">In general, it is best to run all your stat commands against port 11210 which will always
+      give you the information for the specific node that you are sending the request to. It is a
+      best practice to then aggregate the relevant data across nodes at a higher level (in your own
+      script or monitoring system).</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="p:3;15:8">When you run the below commands (and all stats commands) without supplying a bucket name
+      and/or password, they will return results for the default bucket and produce an error if one
+      does not exist.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="p:4;18:8">To access a bucket other than the default, you will need to supply the bucket name and/or
+      password on the end of the command. Any bucket created on a dedicated port does not require a
+      password.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="p:5;21:8">The TCP/IP port allocation on Windows by default includes a restricted number of ports
+      available for client communication. </p>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="related-links:1;24:18"><linkpool class="- topic/linkpool " xtrc="topicref:98;114:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:96;112:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Monitoring/monitor-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">There are a number of different ways to monitor Couchbase servers      including underlying processes, ports, and queueing.</desc></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="linklist:1;25:15">
+      <link href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" scope="external" format="html" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="link:1;27:23"><?ditaot usertext?><linktext class="- topic/linktext " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Monitoring/monitor-port-access.dita" xtrc="linktext:1;28:19">MSDN: Avoiding TCP/IP Port Exhaustion</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

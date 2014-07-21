@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_j3h_qyn_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="title:1;4:10">Monitoring replication status</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="shortdesc:1;5:14">Replication status is monitored via the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="uicontrol:1;5:65">XDCR</uicontrol> and <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="uicontrol:2;5:97">Data Buckets</uicontrol> tabs.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="p:1;7:8">The following Couchbase Web Console areas contains information about replication via XDCR: </p>
+      
+      <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="ul:1;9:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="li:1;10:13">The XDCR tab.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="li:2;11:13">The outgoing XDCR section under the Data Buckets tab.</li>
+      </ul>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="p:2;14:10">The Couchbase Web Console displays replication from the cluster it belongs to. Therefore,
+        when you view the console from a particular cluster, it will display any replications
+        configured, or replications in progress for that particular source cluster. If you want to view
+        information about replications at a destination cluster, you need to open the console at that
+        cluster. Therefore, when configuring bidirectional, use the web consoles that belong
+        to the source and destination clusters to monitor both clusters.</p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="p:3;21:10">Any errors that occur during replication appear in the XDCR errors panel. The following example
+        shows the errors that occur if replication streams from XDCR fail due to the
+        missing vBuckets:</p>
+      
+      <image href="../images/xdcr-errors-missing-vbuckets.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-monitor-replication.dita" xtrc="image:1;25:64"/>
+      
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:75;86:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:64;75:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-xdcr.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link></linkpool></related-links>
+</topic>

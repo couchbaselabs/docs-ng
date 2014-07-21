@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic377">
+	<title>cbanalyze-core tool</title>
+	<body>
+		<p>Helper script to parse and analyze core dump from a Couchbase node. Depending upon your
+			platform, this tool is at the following locations:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Operating System</entry>
+						<entry>Location</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><b>Linux</b></entry>
+						<entry><codeph>/opt/couchbase/bin/tools/</codeph></entry>
+					</row>
+					<row>
+						<entry><b>Windows</b></entry>
+						<entry>Not Available on this platform.</entry>
+					</row>
+					<row>
+						<entry><b>Mac OS X</b></entry>
+						<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+</topic>

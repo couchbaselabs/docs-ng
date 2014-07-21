@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_qjf_b4c_34">
+  <title>Auto-Failover tab</title>
+  <body>
+    <p>The Auto-Failover settings enable auto-failover. 
+      The timeout before the auto-failover process is started when a cluster node failure is detected.</p>
+    <p>To enable Auto-Failover, check the <codeph>Enable auto-failover</codeph> checkbox. To set the
+      delay in seconds before auto-failover is started, enter the number of seconds in the
+        <codeph>Timeout</codeph> box. The default timeout is 120 seconds.</p>
+      <image href="../images/web-console-server-settings-autofailover.png"></image>
+      
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Tasks/tasks-nodeFailover.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

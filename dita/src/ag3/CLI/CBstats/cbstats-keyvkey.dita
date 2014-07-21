@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic995"><title>Stats key and Vkey</title><body><table><tgroup cols="3"><colspec colname="col1"/><colspec colname="col2"/><colspec colname="col3"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+	<entry>K/V</entry>
+</row></thead><tbody><row>
+	<entry>key_cas</entry>
+	<entry>The keys current cas value</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry>key_data_age</entry>
+	<entry>How long the key has waited for its</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry/>
+	<entry>value to be persisted (0 if clean)</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry>key_exptime</entry>
+	<entry>Expiration time from the epoch</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry>key_flags</entry>
+	<entry>Flags for this key</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry>key_is_dirty</entry>
+	<entry>If the value is not yet persisted</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry>key_last_modified_time</entry>
+	<entry>Last updated time</entry>
+	<entry>KV</entry>
+</row><row>
+	<entry>key_valid</entry>
+	<entry>See description below</entry>
+	<entry>V</entry>
+</row><row>
+	<entry>key_vb_state</entry>
+	<entry>The vbucket state of this key</entry>
+	<entry>KV</entry>
+</row></tbody></tgroup></table><p><codeph>key_valid</codeph>= can have the following responses:</p><ul>
+<li><p>this_is_a_bug - Some case we didn’t take care of.</p></li>
+<li><p>dirty - The value in memory has not been persisted yet.</p></li>
+<li><p>length_mismatch - The key length in memory doesn’t match the length on disk.</p></li>
+<li><p>data_mismatch - The data in memory doesn’t match the data on disk.</p></li>
+<li><p>flags_mismatch - The flags in memory don’t match the flags on disk.</p></li>
+<li><p>valid - The key is both on disk and in memory</p></li>
+<li><p>ram_but_not_disk - The value doesn’t exist yet on disk.</p></li>
+<li><p>item_deleted - The item has been deleted.</p></li>
+</ul></body></topic>

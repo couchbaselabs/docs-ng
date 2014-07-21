@@ -1,0 +1,70 @@
+<?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Concepts?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/concepts/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2722" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="topic:1;4:40">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="title:1;5:9">Ongoing monitoring and maintenance</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="shortdesc:1;6:13">There are a number of different statistics</shortdesc>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="body:1;7:8">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="p:1;8:6">To understand how your cluster is working and whether it is working effectively, there
+   are a number of different statistics that you should monitor to diagnose and identify problems.</p>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="p:2;10:7">Key statistics include the following:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="ul:1;11:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:1;12:8">Memory Used ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:1;12:30">mem_used</codeph> ) - This is the current size of memory used. If <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:2;12:104">mem_used</codeph> hits the RAM quota then
+   you will get <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:3;13:25">OOM_ERROR</codeph>. The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:4;13:57">mem_used</codeph> must be less than
+    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:5;14:13">ep_mem_high_wat</codeph>, which is the mark at which data is ejected from the disk.</li>
+  <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:2;15:7">Disk Write Queue Size ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:6;15:39">ep_queue_size</codeph> ) - This is the amount of data waiting to be written to disk.</li>
+  <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:3;16:7">Cache Hits ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:7;16:28">get_hits</codeph> ) - As a rule of thumb, this should be at least 90% of the total requests.</li>
+  <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:4;17:7">Cache Misses ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:8;17:30">get_misses</codeph> ) - Ideally this should be low, and certainly lower than <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:9;17:115">get_hits</codeph>. 
+   Increasing or high values mean that data that your application expects to be stored is not in memory.</li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="p:3;20:6">The water mark is another key statistic to monitor cluster performance. The ‘water mark’
+   determines when it is necessary to start freeing up available memory. Two important statistics related to water marks include:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="ul:2;22:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:5;23:8">High Water Mark ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:10;23:34">ep_mem_high_wat</codeph> ) - The system starts ejecting data out of
+    memory when this water mark is met. Ejected values need to be fetched from disk when accessed
+    before being returned to the client.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:6;26:8">Low Water Mark ( <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeph:11;26:33">ep_mem_low_wat</codeph> ) - When the low water mark threshold is
+    reached, it indicates that memory usage is moving toward a critical point and system
+    administration action is should be taken before the high water mark is reached.</li>
+  </ul>
+  
+  <note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="note:1;31:20">Use the following command to get statistic information :
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeblock:1;32:16">shell&gt; cbstats IP:11210 all | \
+    egrep &quot;todo|ep_queue_size|_eject|mem|max_data|hits|misses&quot;
+</codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="p:4;34:16">The following statistic information is provided:</p>
+   <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="codeblock:2;35:15">ep_flusher_todo:
+ep_max_data_size:
+ep_mem_high_wat:
+ep_mem_low_wat:
+ep_num_eject_failures:
+ep_num_value_ejects:
+ep_queue_size:
+mem_used:
+get_misses:
+get_hits:
+</codeblock>
+  </note>
+  
+  <note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="note:2;48:20">Monitor the disk space, CPU usage, and swapping on all nodes, using the standard monitoring tools.</note>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="section:1;50:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="title:2;50:19">Important UI stats to watch</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="p:5;51:7">You can add the following graphs to watch on
+    the Couchbase console. These graphs can be de/selected by clicking on the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="uicontrol:1;52:90">Configure
+     View</uicontrol> link at the top of the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="uicontrol:2;53:57">Bucket Details</uicontrol> on the Couchbase web console.</p>
+   
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="ul:3;55:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:7;56:9">Disk write queues - The value should not keep growing. The actual numbers depend on your
+     application and deployment.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:8;58:9">Ram ejections - There should be no sudden spikes.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:9;59:9">Vbucket errors - An increasing value for vBucket errors is bad.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:10;60:9">OOM errors per sec - This should be 0.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:11;61:9">Temp OOM errors per sec - This should be 0.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:12;62:9">Connections count - This should remain flat in a long running deployment.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:13;63:9">Get hits per second</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="li:14;64:9">Get misses per second - This should be much lower than Get hits per second.</li>
+   </ul>
+  </section>
+ </body>
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="related-links:1;68:17"><linkpool class="- topic/linkpool " xtrc="topicref:30;37:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" ><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:26;33:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Concepts/bp-deployment-considerations.dita" role="parent" ><linktext class="- topic/linktext " ><?ditaot gentext?>Deployment considerations</linktext><?ditaot genshortdesc?><desc class="- topic/desc " >Deployment configuration take into account topics such as restricted access, node   communication, swap configuration, and connection timeouts.</desc></link></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="linklist:1;69:13">
+   <link href="concept-diskStorage.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/concepts/bp-maintenance.dita" xtrc="link:1;70:42"></link>
+  </linklist>
+ </related-links>
+</topic>

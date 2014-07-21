@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic9118">
+  <title>Migrating</title>
+  <body>
+    
+    <p>Couchbase Server is based on components from both Membase Server and CouchDB. If you are a
+      user of these database systems, or are migrating from these to Couchbase Server, the following
+      information may help in translating your understanding of the main concepts and terms.</p>
+    
+
+    
+  </body>
+</topic>

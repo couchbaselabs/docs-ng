@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_n41_ppb_k4" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="title:1;4:10">Setting incremental backup (CLI)</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="shortdesc:1;5:14">Back up operations are performed by the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeph:1;5:62">cbbackup</codeph> tool.</shortdesc>
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="refbody:1;6:12">
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="section:1;8:14">
+      
+      <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="title:2;10:14">cbbackup</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="p:1;11:10">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeph:2;11:22">backup</codeph> tool provides provides differential, accumulative, or full
+        backup.</p>
+      
+
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeblock:1;15:18">cbbackup [options] source backup_dir             </codeblock>
+
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeblock:2;17:18">cbbackup http://HOST:8091 /backups/backup-1
+cbbackup couchbase://HOST:8091 /backups/backup-1</codeblock>
+      
+
+    
+      <table frame="all" id="table_qsw_rw5_c4" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="table:1;22:48">
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="title:3;23:16">cbbackup options</title>
+        <tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="tgroup:1;24:26">
+          <colspec colname="col1" colnum="1" colwidth="1.52*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="colspec:1;25:62"/>
+          <colspec colname="col2" colnum="2" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="colspec:2;26:64"/>
+          <colspec colname="col3" colnum="3" colwidth="2.46*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="colspec:3;27:62"/>
+          <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="thead:1;28:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="row:1;29:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:1;30:22">Option</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:2;31:22">Mode</entry>
+              <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:3;32:22">Description</entry>
+            </row>
+          </thead>
+          <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="tbody:1;35:18">
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="row:2;36:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:4;37:22">--mode [full | incr-diff | incr-accu | auto ]</entry>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:5;38:23"/>
+              <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:6;39:22">Backup running mode: full, incr-diff, incr-accu, auto</entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="row:3;41:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:7;42:23"/>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:8;43:22">full</entry>
+              <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:9;44:22">Forces a full backup</entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="row:4;46:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:10;47:23"/>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:11;48:22">incr-diff</entry>
+              <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:12;49:22">Differential incremental backup. Backs up the delta change from the last full
+                or incremental backup</entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="row:5;52:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:13;53:23"/>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:14;54:22">incr-accu</entry>
+              <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:15;55:22">Accumulative incremental backup. Backs up the delta change from the full
+                backup.</entry>
+            </row>
+            <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="row:6;58:18">
+              <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:16;59:23"/>
+              <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:17;60:22">auto</entry>
+              <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="entry:18;61:22">The cbbackup tool determines the best mode to use. If there is no backup data,
+                then a full backup is performed. Otherwise, a differential backup is
+                performed.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="note:1;69:25">Existing <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeph:3;69:42">cbbackup</codeph> options are supported. 
+        For example, to backup a single bucket, 
+        use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeph:4;71:25">-b</codeph> option or to increase verbose level, 
+        use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-increment-backup.dita" xtrc="codeph:5;72:21">-v</codeph></note>
+    </section>
+      
+ 
+      
+      
+      
+    
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:24;33:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="concept" xtrc="topicref:23;32:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/increment-backup.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Incremental backup and restore</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">An incremental backup or restore is a backup (or restore) of the latest changes since     the last backup (any level). Enterprise Edition only. </desc></link></linkpool></related-links>
+</reference>

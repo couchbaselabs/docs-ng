@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_uyc_ldv_yn">
+ <title>Stream-based XDCR</title>
+ <shortdesc>XDCR on the source cluster collects data changes from memory and streams the data changes directly 
+  to memory on the destination cluster.</shortdesc>
+ <conbody>
+  
+  <p>With stream-based XDCR replication, the data changes on the source cluster are detected in
+   memory and streamed directly to the destination cluster's memory. On the source cluster, the data
+   changes (in memory) are queued and then persist to disk. Correspondingly, on the destination
+   cluster, the data changes (stream to memory) are queued and then persisted to disk.</p>
+  
+
+  
+  <p>Stream-based XDCR replication provides:</p>
+  <ul>
+   <li>Lower latency, that is, the time gap between data replication</li>
+   <li>High availability and disaster recovery</li>
+   <li>Improves recovery point objective (RPO)</li>
+   <li>Smaller data loss window</li>
+  </ul>
+  
+  <fig><image href="../images/xdcr-memory-replication.png" width="720" alt="Memory-based XDCR replication diagram"/></fig>
+
+  
+  <section><title>Backward compatibility</title>
+   <ul>
+    <li>Internal changes are made automatically through the upgrade.</li>
+    <li>Only the source cluster has to be upgraded. The destination cluster accepts the data changes
+     into memory without issue.</li>
+   </ul>
+  </section>
+  
+
+ </conbody>
+ 
+</concept>

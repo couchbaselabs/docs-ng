@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_bbv_ywf_q4">
+ <title>Rebalance behind-the-scenes</title>
+ <shortdesc>The rebalance process is managed through a
+  specific process called the orchestrator.</shortdesc>
+ <conbody>
+  
+  <p>The orchestrator examines the current vBucket map
+   and then combines that information with the node additions and removals in order to create a new
+   vBucket map.</p>
+  <p>The orchestrator starts the process of moving the individual vBuckets from
+    the current vBucket map to the new vBucket structure. The process is only started by the
+    orchestrator - the nodes themselves are responsible for actually performing the movement of data
+    between the nodes. The aim is to make the newly calculated vBucket map match the current
+    situation.</p>
+  <p>Each vBucket is moved independently, and a number of vBuckets can be migrated
+     simultaneously in parallel between the different nodes in the cluster. On each destination node,
+     a process called <codeph>ebucketmigrator</codeph> is started, which uses the TAP system to
+     request that all the data is transferred for a single vBucket, and that the new vBucket data
+     will become the active vBucket once the migration has been completed.</p>
+  <p>While the vBucket
+      migration process is taking place, clients are still sending data to the existing vBucket. This
+      information is migrated along with the original data that existed before the migration was
+      requested. Once the migration of the all the data has completed, the original vBucket is marked
+      as disabled, and the new vBucket is enabled. This updates the vBucket map, which is communicated
+      back to the connected clients which will now use the new location.</p>
+  
+  
+  
+  <section><title>Changing vBucket moves with REST</title>
+   <p>The number of vBucket moves that occur during the rebalance
+    operation can be modified. The default is one (1), that is, only one vBucket is moved at a time
+    during the rebalance operation.</p>
+  <p>To change the number of vBucket moves, execute a curl POST
+         command using the following syntax with the <codeph>/internalSettings</codeph> endpoint and
+         <codeph>rebalanceMovesPerNode</codeph>
+         option.</p>
+
+  <codeblock>
+curl -X POST -u admin:password
+ -d rebalanceMovesPerNode=1
+ http://HOST:PORT/internalSettings
+</codeblock>
+  
+  <p>For example:</p>
+   <codeblock>
+curl -X POST -u Administrator:password
+ -d rebalanceMovesPerNode=14
+ http://soursop-s11201.sc.couchbase.com:8091/internalSettings
+</codeblock>
+  </section>
+  
+  
+ </conbody>
+</concept>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_dgv_nky_p4">
+  <title>Online upgrades</title>
+  <body>
+    <p>You can upgrade your cluster without taking your
+      cluster down and so your application keeps running during the upgrade process. There are two
+      ways you can perform this process: as a standard online upgrade, or as a swap rebalance. We
+      highly recommend using a swap rebalance for online upgrade so that cluster capacity is
+      always maintained. The standard online upgrade should only be used if swap rebalance is not
+      possible.</p>
+    <p>Using the standard online upgrade, you take down one or two nodes from a
+        cluster, and rebalance so that remaining nodes handle incoming requests. This is an approach
+        you use if you have enough remaining cluster capacity to handle the nodes you remove and
+        upgrade. You will need to perform rebalance twice for every node you upgrade: the first time
+        to move data onto remaining nodes, and a second time to move data onto the new nodes.
+      </p>
+    <p>Standard online upgrades may take a while because each node must be taken out of the
+        cluster, upgraded to a current version, brought back into the cluster, and then rebalanced.
+        However since you can upgrade the cluster without taking the cluster down, you may prefer
+        this upgrade method. </p>
+    <p>For swap rebalance, you add a node to the cluster then perform a
+          swap rebalance to shift data from an old node to a new node. You might prefer this approach
+          if you do not have enough cluster capacity to handle data when you remove an old node. This
+          upgrade process is also much quicker than performing a standard online upgrade because you
+          only need to rebalance each upgraded node once. </p>
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Tasks/tasks-rebalance.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

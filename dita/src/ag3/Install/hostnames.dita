@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ggq_hfy_p4">
+  <title>Using hostnames</title>
+  <body>
+    <p>When you first install Couchbase Server you can access
+      using a default IP address. There may be cases where you want to provide a hostname for each
+      instance of a server. Each hostname you provide should be a valid one and will ultimately
+      resolve to a valid IP Address. If you restart a node, it will use
+      the hostname once again. If you failover or remove a node from a cluster, the node needs to
+      be configured with the hostname once again.</p>
+      
+      <p>There are several ways you can provide hostnames. You can provide a
+        hostname when installing a Couchbase Server on a machine, when adding a node to an
+        existing cluster for online upgrade, or via a REST API call. Couchbase Server stores this in
+        a config file on disk.</p>
+      
+      <ul>
+        <li>On initial setup 
+          <p>In the first screen, provide either a hostname or IP address under <uicontrol>Configure
+            Server Hostname</uicontrol>. The provided hostname survives node restart.</p>
+          <fig><image href="../images/configure_server1.png" width="720"></image></fig>
+        </li>
+        <li>While adding a node
+          <p>If a new node is being added to an existing 2.0.1 or older
+            Couchbase cluster, first setup the hostname for the new node in the setup
+            wizard. Add a new node to a cluster by providing either a hostname or
+            IP address under <uicontrol>Add Server > Server IP Address field</uicontrol>.</p>
+          <fig><image href="../images/hostname_add_node.png" width="720"></image></fig>
+        </li>
+        <li>Via REST API 
+          <p>Provide a hostname for a node a hostname with the REST request at the <codeph>/node/controller/rename</codeph> endpoint. </p>
+          <p>If this method is used, provide the hostname before adding a node to a cluster. 
+            If a hostname is provided for a node that is already part of a Couchbase cluster, 
+            the server rejects the request and returns <codeph>error 400 reason: unknown ["Renaming is disallowed for
+              nodes that are already part of a cluster"]</codeph>.</p>
+          <codeblock>curl -v -X POST -u Administrator:asdasd \
+http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
+</codeblock>
+        </li>
+      </ul>
+    
+      
+      <section><title>Hostname errors</title>
+      <p>Where you provide the IP address and port for the node and administrative credentials for the
+        cluster. The value you provide for <codeph>hostname</codeph> should be a valid hostname for
+        the node. Possible errors that may occur when you do this request:</p>
+      <ul>
+        <li>Could not resolve the hostname. The hostname you provide as a parameter does not
+          resolve to a IP address.</li>
+        <li>Could not listen. The hostname resolves to an IP address, but no network connection
+          exists for the address.</li>
+        <li>Could not rename the node because name was fixed at server start-up.</li>
+        <li>Could not save address after rename.</li>
+        <li>Requested name hostname is not allowed. Invalid hostname provided.</li>
+        <li>Renaming is disallowed for nodes that are already part of a cluster.</li>
+      </ul>
+      </section>
+      
+      <section><title>Hostnames when upgrading from 1.8.1</title>
+        <p>If you perform an offline upgrade from Couchbase 1.8.1+ and you have a configured hostname using the instructions from 
+          cloud deployment informaiton, the uses this configuration. 
+          If an online upgrade from 1.8.1 is performed, add the hostname when creating the new node.
+            node. </p>
+      </section>
+    
+      
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Concepts/bp-cloudDeployment.dita"></link>
+    </linklist>
+  </related-links>
+  
+</topic>

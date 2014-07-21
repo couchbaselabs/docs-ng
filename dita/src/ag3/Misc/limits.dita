@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_wqm_j2g_rn">
+  <title>Limits</title>
+  <shortdesc>Couchbase Server limits and limitations may affect server usage and implementation.</shortdesc>
+  <refbody>
+
+<simpletable>
+  <sthead>
+    <stentry>Limit</stentry>
+    <stentry>Value</stentry>  
+  </sthead>
+  <strow>
+    <stentry>Max key length</stentry>
+    <stentry>250 bytes</stentry>
+  </strow>
+  <strow>
+    <stentry>Max value size</stentry>
+    <stentry>20 Mbytes</stentry>
+  </strow>
+  <strow>
+    <stentry>Max data size</stentry>
+    <stentry>none</stentry>
+  </strow>
+  <strow>
+    <stentry>Max metadata</stentry>
+    <stentry>Approximately 150 bytes per document</stentry>
+  </strow>
+  <strow>
+    <stentry>Max Buckets per Cluster</stentry>
+    <stentry>10</stentry>
+  </strow>
+  <strow>
+    <stentry>Max View Key Size</stentry>
+    <stentry>4096 bytes</stentry>
+  </strow>
+</simpletable>
+  </refbody>
+</reference>
+

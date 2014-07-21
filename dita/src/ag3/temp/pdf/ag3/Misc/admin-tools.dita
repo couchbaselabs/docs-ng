@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic1485" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="title:1;5:10">Administration tools</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="shortdesc:1;6:14">The administration tools are the Web Console, Command-line interface (CLI) and REST API.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="body:1;7:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="p:1;8:8">Couchbase Server was designed to be as easy to use as possible, and does not require constant
+      attention. Administration is however offered in a number of different tools and systems.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="p:2;10:8">Couchbase Server provides the following solutions for managing and monitoring your Couchbase Server
+      and cluster:</p>
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="ul:1;12:9">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="li:1;13:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="b:1;13:14">Web Console</b>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="p:3;14:8">Couchbase Server includes a built-in web-administration console that provides a complete
+      interface for configuring, managing, and monitoring your Couchbase Server installation.</p>
+      </li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="li:2;17:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="b:2;17:14">Command-line Interface (CLI)</b>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="p:4;18:12">Couchbase Server includes a suite of command-line tools that provide information and control
+          over your Couchbase Server and cluster installation. These can be used in combination with
+          your own scripts and management procedures to provide additional functionality, such as
+          automated failover, backups and other procedures. The command-line tools make use of the REST
+          API.</p>
+      </li>
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="li:3;24:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="b:3;24:14">REST API</b>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="p:5;25:8">In addition to the Web Administration console, Couchbase Server incorporates a management
+      interface exposed through the standard HTTP REST protocol. This REST interface can be called
+      from your own custom management and administration scripts to support different
+      operations.</p>
+      </li>
+      </ul>
+
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="related-links:1;33:18"><linkpool class="- topic/linkpool " xtrc="topicref:3;7:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/admin-basics.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Administration basics</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="linklist:1;34:15">
+      <link href="../Tasks/tasks-common.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="link:1;35:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Common administrative tasks</linktext></link>
+      <link href="../CLI/cli-overview.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="link:2;36:45" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Command-line interface overview</linktext></link>
+      <link href="../REST/overview-rest-api.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/admin-tools.dita" xtrc="link:3;37:51" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">REST API overview</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

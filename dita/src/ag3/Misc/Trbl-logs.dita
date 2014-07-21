@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic4685">
+	<title>Logs and logging</title>
+	<shortdesc>Couchbase Server creates a number of different log files depending on the component of
+		the system that produce the error, and the level and severity of the problem being
+		reported.</shortdesc>
+	<body>
+
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Platform</entry>
+						<entry>Location</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Linux</entry>
+						<entry><codeph>/opt/couchbase/var/lib/couchbase/logs</codeph></entry>
+					</row>
+					<row>
+						<entry>Windows</entry>
+						<entry><codeph>C:\Program
+								Files\Couchbase\Server\var\lib\couchbase\logs</codeph> Assumes
+							default installation location</entry>
+					</row>
+					<row>
+						<entry>Mac OS X</entry>
+						<entry><codeph>/Users/couchbase/Library/Application
+								Support/Couchbase/var/lib/couchbase/logs </codeph>
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>Individual log files are automatically numbered, with the number suffix incremented for
+			each new log, with a maximum of 20 files per log. Individual log file sizes are limited
+			to 10MB by default.</p>
+		
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>File</entry>
+						<entry>Log Contents</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><codeph>couchdb</codeph></entry>
+						<entry>Errors relating to the couchdb subsystem that supports views, indexes
+							and related REST API issues</entry>
+					</row>
+					<row>
+						<entry><codeph>debug</codeph></entry>
+						<entry>Debug level error messages related to the core server management
+							subsystem, excluding information included in the
+								<codeph>couchdb</codeph>, <codeph>xdcr</codeph> and
+								<codeph>stats</codeph> logs.</entry>
+					</row>
+					<row>
+						<entry><codeph>info</codeph></entry>
+						<entry>Information level error messages related to the core server
+							management subsystem, excluding information included in the
+								<codeph>couchdb</codeph>, <codeph>xdcr</codeph> and
+								<codeph>stats</codeph> logs.</entry>
+					</row>
+					<row>
+						<entry><codeph>error</codeph></entry>
+						<entry>Error level messages for all subsystems excluding
+								<codeph>xdcr</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>xcdr_error</codeph></entry>
+						<entry>XDCR error messages.</entry>
+					</row>
+					<row>
+						<entry><codeph>xdcr</codeph></entry>
+						<entry>XDCR information messages.</entry>
+					</row>
+					<row>
+						<entry><codeph>mapreduce_errors</codeph></entry>
+						<entry>JavaScript and other view-processing errors are reported in this
+							file.</entry>
+					</row>
+					<row>
+						<entry><codeph>views</codeph></entry>
+						<entry>Errors relating to the integration between the view system and the
+							core server subsystem.</entry>
+					</row>
+					<row>
+						<entry><codeph>stats</codeph></entry>
+						<entry>Contains periodic reports of the core statistics.</entry>
+					</row>
+					<row>
+						<entry><codeph>memcached.log</codeph></entry>
+						<entry>Contains information relating to the core memcache component,
+							including vBucket and replica and rebalance data streams requests.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p>Each log file group will also include a <codeph>.idx</codeph> and <codeph>.siz</codeph>
+			file which holds meta information about the log file group. These files are
+			automatically updated by the logging system.</p>
+		
+		
+		<section><title>Changing log file location</title>
+			<p>The default file log location is
+				/opt/couchbase/var/lib/couchbase/logs, however, if you want to change the default
+				log location to a different directory, change the log file configuration option.
+				</p><p>Note</p><p>To implement a log file location change (from the default), you
+				must be log in as either root or sudo and the Couchbase service must be
+				restarted.</p><p>To change the log file configuration:</p><ol>
+				<li>Log in as root or sudo and navigate to the directory where you installed
+					Couchbase. For example:
+						<codeph>/opt/couchbase/etc/couchbase/static_config</codeph></li>
+				<li>Edit the static_config file and change the <codeph>error_logger_mf_dir</codeph>
+					variable to a different directory. For example: <codeph>{error_logger_mf_dir,
+						"/home/user/cb/opt/couchbase/var/lib/couchbase/logs"}</codeph></li>
+				<li>Restart the Couchbase service. After restarting the Couchbase service, all
+					subsequent logs will be in the new directory.</li>
+			</ol></section>
+		
+		
+		<section><title>Changing logging levels</title>
+			
+			<p>The default logging level for all log
+				files are set to debug except for couchdb, which is set to info. If you want to
+				change the default logging level, modify the logging level configuration options.
+				</p><p>The configuration change can be performed in one of the following ways:</p><ul>
+				<li>persistent</li>
+				<li>dynamic (on the fly, without restarting).</li>
+			</ul></section>
+		
+		
+		<section><title>Changing logging levels to be persistent</title>
+			<p>Logging
+					levels can be changed so that the changes are persistent, that is, the changes
+					continue to be implemented should a Couchbase Server reboot
+					occur.</p>
+			
+			<note type="note">To implement logging level changes, the Couchbase
+					service must be restarted.</note>
+			
+			<p>To change logging levels to be persistent:</p>
+			
+			<ol>
+					<li>Log in as root or sudo and navigate to the directory where you installed
+						Couchbase. For example:
+							<codeph>/opt/couchbase/etc/couchbase/static_config</codeph></li>
+					<li>Edit the <b>static_config</b> file and change the desired log component. For
+						example, parameters with the <codeph>loglevel_</codeph> prefix set the
+						logging level.</li>
+					<li>Restart the Couchbase service.</li>
+				</ol>
+			
+			<p>After restarting the Couchbase service, logging levels for that component
+					will be changed.</p></section>
+		
+		
+		<section><title>Changing logging levels dynamically</title>
+			
+			<p>If logging
+					levels are changed dynamically and if a Couchbase server reboot occurs, then the
+					changed logging levels revert to the default. </p><p>To change logging levels
+					dynamically, execute a curl POST command using the following syntax:</p>
+			
+			<codeblock>
+curl -X POST -u adminName:adminPassword
+  HOST:PORT/diag/eval 
+  –d ‘ale:set_loglevel(&lt;log_component&gt;,&lt;logging_level&gt;).’
+</codeblock>
+					
+						<p>Where:</p>
+					<dl>
+					<dlentry>
+						<dt>Log_component</dt>
+						<dd>The default log level (except couchdb) is debug. For example, ns_server.
+							The available loggers are ns_server, couchdb, user, Menelaus, ns_doctor,
+							stats, rebalance, cluster, views, mapreduce_errors , xdcr and
+							error_logger</dd>
+					</dlentry>
+
+
+					<dlentry>
+						<dt>Logging_level</dt>
+						<dd>The available log levels are debug, info, warning, and error.</dd>
+					</dlentry>
+					</dl>
+		</section>
+
+				<example>
+			<codeblock>
+curl -X POST -u Administrator:password 
+	http://127.0.0.1:8091/diag/eval 
+	-d 'ale:set_loglevel(ns_server,error).
+</codeblock></example>
+		
+	</body>
+</topic>

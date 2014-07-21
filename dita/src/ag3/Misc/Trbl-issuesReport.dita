@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2891">
+   <title>Reporting issues</title>
+   <shortdesc>A description on what to include when reporting an issue (JIRA).</shortdesc>
+   <body>
+      <p>When reporting issues to Couchbase, you should always add the
+         following information to JIRA issues:</p>
+      <ul>
+         <li><p>Environment description (package installation? cluster_run? build number?
+            OS)</p></li>
+         <li><p>All the steps necessary to reproduce (if applicable)</p></li>
+         <li><p>Show the full content of all the design documents</p></li>
+         <li><p>Describe how your documents are structured (all same structure, different
+               structures?)</p></li>
+         <li><p>If you generated the data with any tool, mention its name and all the parameters
+               given to it (full command line)</p></li>
+         <li><p>Show what queries you were doing (include all query parameters, full URL), use curl
+               with option -v and show the full output, example:</p></li>
+      </ul>
+      <codeblock><codeph>&gt; curl -v 'http://localhost:9500/default/_design/test/_view/view1?limit=10&amp;stale=false'
+* About to connect() to localhost port 9500 (#0)
+*   Trying ::1... Connection refused
+*   Trying 127.0.0.1... connected
+* Connected to localhost (127.0.0.1) port 9500 (#0)
+&gt; GET /default/_design/test/_view/view1 HTTP/1.1
+&gt; User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+&gt; Host: localhost:9500
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; Transfer-Encoding: chunked
+&lt; Server: MochiWeb/1.0 (Any of you quaids got a smint?)
+&lt; Date: Tue, 21 Aug 2012 14:43:06 GMT
+&lt; Content-Type: text/plain;charset=utf-8
+&lt; Cache-Control: must-revalidate
+&lt;
+{"total_rows":2,"rows":[
+{"id":"doc1","key":"doc1","value":111111},
+{"id":"doc2","key":"doc2","value":222222}
+]
+}
+* Connection #0 to host localhost left intact
+* Closing connection #0
+</codeph></codeblock>
+      <ul>
+         <li><p>Repeat the query with different values for the stale parameter and show the
+               output</p></li>
+         <li><p>Attach logs from all nodes in the cluster</p></li>
+         <li><p>Try all view related operations, including design document creation/update/deletion,
+               from the command line. The goal here to isolate UI problems from the view
+            engine.</p></li>
+         <li><p>If you suspect the indexer is stuck, blocked, etc, please use curl against the
+                  <codeph>_active_tasks</codeph> API to confirm that, the goal again is to isolate
+               UI issues from view-engine issues. Example:</p>
+            <codeblock><codeph>&gt; curl -s 'http://localhost:9500/_active_tasks' | json_xs
+[
+   {
+      "indexer_type" : "main",
+      "started_on" : 1345645088,
+      "progress" : 43,
+      "initial_build" : true,
+      "updated_on" : 1345645157,
+      "total_changes" : 250000,
+      "design_documents" : [
+         "_design/test"
+      ],
+      "pid" : "&lt;0.5948.0&gt;",
+      "changes_done" : 109383,
+      "signature" : "4995c136d926bdaf94fbe183dbf5d5aa",
+      "type" : "indexer",
+      "set" : "default"
+   }
+]
+</codeph></codeblock></li>
+      </ul>
+      <p>Note that the <codeph>started_on</codeph> and <codeph>update_on</codeph> fields are UNIX
+         timestamps. There are tools (even online) and programming language APIs (Perl, Python, etc)
+         to convert them into human readable form, including date and time. Note that the
+            <codeph>_active_tasks</codeph> API contains information per node, so you’ll have to
+         query <codeph>_active_tasks</codeph> or every node in the cluster to verify if progress is
+         stuck, etc.</p>
+   </body>
+   <related-links>
+      <linklist><title>Related topics</title>
+         <link href="http://www.couchbase.com/issues" scope="external" format="html">
+            <linktext>couchbase.com/issues</linktext>
+         </link>
+      </linklist>
+   </related-links>
+</topic>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/CBcli?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/CBcli/?><?path2project ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic7920" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="title:1;5:10">XDCR CLI</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="body:1;6:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:1;7:8">To create a XDCR remote cluster:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:1;8:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:1;8:24">    couchbase-cli xdcr-setup -c 192.168.0.1:8091 \
+        --create \
+        --xdcr-cluster-name=test \
+        --xdcr-hostname=10.1.2.3:8091 \
+        --xdcr-username=Administrator \
+        --xdcr-password=password
+</codeph></codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:2;15:8">To delete a XDCR remote cluster:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:2;16:16"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:2;16:24">    couchbase-cli xdcr-delete -c 192.168.0.1:8091 \
+        --xdcr-cluster-name=test
+</codeph></codeblock>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="section:1;19:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="title:2;19:21">Managing XDCR replication streams</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:3;19:65">To start a replication
+        stream:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:3;20:31"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:3;20:39">    couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
+        --create \
+        --xdcr-cluster-name=test \
+        --xdcr-from-bucket=default \
+        --xdcr-to-bucket=default1
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:4;25:25">To
+        delete a replication
+      stream:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:4;27:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:4;27:37">    couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
+        --delete \
+        --xdcr-replicator=f4eb540d74c43fd3ac6d4b7910c8c92f/default/default
+</codeph></codeblock></section>
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="section:2;31:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="title:3;31:21">Managing remote clusters</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:5;31:56">To create a remote cluster
+        reference:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:6;32:26">In the following example the remote cluster is
+        “RemoteCluster”.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:5;33:40"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:5;33:48">couchbase-cli xdcr-setup -c 10.3.121.121:8091 -u Administrator  -p password \
+    --create 
+    --xdcr-cluster-name=RemoteCluster  
+    --xdcr-hostname=10.3.121.123:8091  
+    --xdcr-username=Administrator  
+    --xdcr-password=password
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:7;39:25">To
+        set a XDCR protocol:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:8;40:36">An XDCR protocol for the mode of replication can be specified for
+        XDCR. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:9;41:22">To change a XDCR replication protocol for an existing XDCR
+        replication:</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:10;42:28">If you change want the replication protocol for an existing XDCR
+        replication:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="ol:1;43:29">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:1;44:13">Delete the replication.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:2;45:13">Re-create the replication with your preference.</li>
+      </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:11;46:15">First we create a destination cluster reference named
+        “RemoteCluster”:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:6;47:40"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:6;47:48">couchbase-cli xdcr-setup -c hostname_:8091 -u Administrator  -p password \
+  --create --xdcr-cluster-name=RemoteCluster  --xdcr-hostname=10.3.121.123:8091 \ 
+  --xdcr-username=Administrator  --xdcr-password=password
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:12;50:25">Upon
+        success, we get this
+        response:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:7;52:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:7;52:41">    SUCCESS: init RemoteCluster
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:13;53:25">Now
+        you can start replication to the remote cluster using memcached protocol as the existing
+        default:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:8;55:32"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:8;55:40">couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password 
+        --xdcr-cluster-name RemoteCluster 
+        --xdcr-from-bucket default 
+        --xdcr-to-bucket backup
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:14;59:25">To
+        explicitly set the protocol to
+        memcached:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:9;61:34"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:9;61:42">couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup 
+    --xdcr-replication-mode xmem
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:15;66:25">To
+        set the protocol to
+        CAPI:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:10;68:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:10;68:37">couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \ 
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup
+    --xdcr-replication-mode capi
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:16;73:25">If
+        there is already an existing replication for a bucket, you get an error when you try to
+        start the replication again with any new
+        settings:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:11;76:33"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:11;76:41"> couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password 
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup
+    --xdcr-replication-mode capi
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:17;81:25">Results
+        in the following
+      error:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:12;83:28"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:12;83:36">ERROR: unable to create replication (400) Bad Request
+        {u'errors': {u'_': u'Replication to the same remote cluster and bucket already exists'}}
+ERROR: Replication to the same remote cluster and bucket already exists
+</codeph></codeblock></section>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="section:3;89:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="title:4;89:21">Managing XDCR data encryption</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:18;89:61">The Couchbase Server command line
+        interface (CLI) enables XDCR data encryption (Enterprise Edition only) when an XDCR cluster
+        reference is created or modified. The CLI provides the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:13;91:72">couchbase-cli</codeph> tool
+        and the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:14;92:25">xdcr-setup</codeph> command. The option
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:15;93:19">--xdcr-demand-encryption=1</codeph> enables XDCR data encryption
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:16;94:19">-xdcr-certificate=CERTIFICATE</codeph> provides the SSL certificate for data
+        security.</p></section>
+    
+    
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:19;98:10">To setup XDCR with SSL data encryption:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="ol:2;98:57">
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:3;99:15">Retrieve the certificate from the destination cluster.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:4;100:15">Create or modify the XDCR configuration to allow data encryption and provide the SSL
+            certificate.</li>
+          <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:5;102:15">Define the replication.</li>
+        </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:20;103:17">To configure XDCR with SSL data encryption, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:17;103:73">xdcr-setup</codeph> command
+          is
+            used.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:21;105:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:1;105:28">Syntax</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:13;105:53"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:18;105:61">couchbase-cli xdcr-setup -c localHost:port -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=remoteClustername 
+  --xdcr-hostname=remoteHost:port 
+  --xdcr-username=remoteAdmin --xdcr-password=remotePassword 
+  --xdcr-demand-encryption=[0|1]   // 1 to enable, 0 to disable (default)
+  --xdcr-certificate=&lt;localPath&gt;/&lt;certFile&gt;.pem  
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:22;111:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:2;111:28">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:14;111:54"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:19;111:62">couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=1 
+  --xdcr-certificate=./new.pem  
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:23;117:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:3;117:28">Results</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:24;117:46">The
+          following is an example of results for a successful XDCR
+        configuration.</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:15;119:38"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:20;119:46">SUCCESS: init/edit test 
+&lt;&lt;replication reference created&gt;&gt; 
+</codeph></codeblock>
+    
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:25;124:8">To disable XDCR data encryption, execute <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:21;124:57">couchbase-cli xdcr-setup</codeph> with
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:22;125:21">--xdcr-demand-encryption=0</codeph>.
+          </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:26;126:18"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:4;126:21">Example</b></p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:16;128:18"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:23;128:26">couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=0 
+</codeph></codeblock>
+    
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="section:4;136:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="title:5;136:21">Managing SSL certificates</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:27;136:57">Retrieving an SSL certificate for XDCR data
+        encryption, should be done in a secure manner, such as with <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:24;137:77">ssh</codeph> and
+          <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:25;138:19">scp</codeph>. For example:</p><ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="ol:3;138:53">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:6;139:13">Use a secure method to log in to a node on the destination cluster. For example:
+            <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:26;140:21">ssh</codeph>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:7;141:13">Retrieve the certificate with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:27;141:55">couchbase-cli ssl-manage</codeph>
+          command.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:8;143:13">Use a secure method to transfer the certificate from the destination cluster to the
+          source cluster. For example: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:28;144:48">scp</codeph>.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="li:9;145:13">Proceed with setting up XDCR with SSL data encryption.</li>
+      </ol><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:28;146:15">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:29;146:27">couchbase-cli ssl-manage</codeph> command provides the following options
+        for regenerating and retrieving certificates.</p><dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dl:1;147:62">
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dlentry:1;148:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dt:1;149:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:30;149:23">--regenerate-cert=CERTIFICATE</codeph></dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dd:1;150:15">Regenerates a self-signed certificate on the destination cluster. Specify the full
+            path for the location of the pem-encoded certificate file. For example,
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:31;152:23">--regenerate-cert=./new.pem</codeph>.</dd>
+        </dlentry>
+
+
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dlentry:2;156:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dt:2;157:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:32;157:23">--retrieve-cert=CERTIFICATE</codeph></dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="dd:2;158:15">Retrieves the self-signed certificate from the destination cluster to the source
+            cluster. Specify a local location (full path) and file name for the pem-encoded
+            certificate. For example, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:33;160:47">--retrieve-cert=./newCert.pem</codeph>.</dd>
+        </dlentry>
+
+      </dl></section>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:29;165:8">To retrieve an existing self-signed certificate, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:34;165:73">ssl-manage</codeph>
+      command.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:30;166:22"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:5;166:25">Syntax</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:17;166:50"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:35;166:58">couchbase-cli ssl-manage -c localHost:port 
+  -u Administrator -p password 
+  --retrieve-cert=./&lt;newCert&gt;.pem 
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:31;169:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:6;169:28">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:18;169:54"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:36;169:62">couchbase-cli ssl-manage -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --retrieve-cert=./newCert.pem 
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:32;172:25"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:7;172:28">Results</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:33;172:46">The
+          following is an example of results for a successful retrieval of the
+        certificate:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:19;174:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:37;174:44">SUCCESS: retrieve certificate to './newCert.pem' 
+Certificate matches what seen on GUI 
+</codeph></codeblock>
+    
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:34;179:8">To regenerate a self-signed certificate, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:38;179:65">couchbase-cli ssl-manage</codeph>
+      command. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:35;180:23"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:8;180:26">Syntax</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:20;180:51"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:39;180:59">couchbase-cli ssl-manage 
+  -c remoteHost:port 
+  -u adminName -p adminPassword 
+  --regenerate-cert=CERTIFICATE 
+</codeph></codeblock>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:36;186:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:9;186:11">Example</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:37;186:29">The
+          following is an example of the CLI commands and options for regenerating a self-signed
+          certificate with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:40;188:40">ssl-manage</codeph>
+            command:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:21;189:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:41;189:44">couchbase-cli ssl-manage 
+  -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --regenerate-cert=./new.pem 
+</codeph></codeblock>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:38;195:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:10;195:11">Results</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:39;195:29">The
+          following is an example of results for a successful regeneration of the
+          certification:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:22;197:40"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:42;197:48">SUCCESS: regenerate certificate to './new.pem' 
+</codeph></codeblock>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:40;200:8">To
+          retrieve an existing self-signed certificate, the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:43;201:69">ssl-manage</codeph> command is
+          used.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:41;202:23"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:11;202:26">Syntax</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:23;202:51"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:44;202:59">couchbase-cli ssl-manage -c localHost:port 
+  -u Administrator -p password 
+  --retrieve-cert=./&lt;newCert&gt;.pem 
+</codeph></codeblock>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:42;207:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:12;207:11">Example</b></p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:24;207:37"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:45;207:45">couchbase-cli ssl-manage -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --retrieve-cert=./newCert.pem 
+</codeph></codeblock>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:43;212:8"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="b:13;212:11">Results</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="p:44;212:29">The
+          following is an example of results for a successful retrieval of the
+        certificate:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeblock:25;214:36"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="codeph:46;214:44">SUCCESS: retrieve certificate to './newCert.pem' 
+Certificate matches what seen on GUI 
+</codeph></codeblock>
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="related-links:1;219:18"><linkpool class="- topic/linkpool " xtrc="topicref:9;13:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:4;8:41" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../../CLI/cbcli-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>couchbase-cli tool</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="linklist:1;220:15">
+      <link href="../XDCR/xdcr-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="link:1;221:44"/>
+      <link href="../../Tasks/tasks-manage-xdcr-dataEncryption.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="link:2;222:71" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Managing XDCR data encryption</linktext></link>
+      <link href="../../Tasks/tasks-manage-xdcr.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/CBcli/cbcli-xdcr.dita" xtrc="link:3;223:56" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link>
+    </linklist>
+  </related-links>
+</topic>

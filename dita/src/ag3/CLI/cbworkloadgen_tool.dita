@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1489"><title>cbworkloadgen tool</title><body><p>Tool that generates random data and perform read/writes for Couchbase Server.
+This is useful for testing your Couchbase node.</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Operating System</entry>
+	<entry>Location</entry>
+</row></thead><tbody><row>
+	<entry><b>Linux</b></entry>
+	<entry><codeph>/opt/couchbase/bin/tools/</codeph></entry>
+</row><row>
+	<entry><b>Windows</b></entry>
+	<entry><codeph>C:\Program Files\Couchbase\Server\bin\tools\</codeph></entry>
+</row><row>
+	<entry><b>Mac OS X</b></entry>
+	<entry><codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/tools/</codeph></entry>
+</row></tbody></tgroup></table><p>The following is the standard command format:</p><codeblock><codeph>cbworkloadgen Usage:
+cbworkloadgen -n host:port -u [username] -p [password]
+
+Options are as follows:
+
+-r [number] // % of workload will be writes, remainder will be reads
+--ratio-sets=[number] // 95% of workload will be writes, 5% will be reads
+-i [number]    // number of inserted items
+-l // loop forever until interrupted by user
+-t // set number of concurrent threads
+-v // verbose mode
+</codeph></codeblock><p>For example, to generate workload on a given Couchbase node and open port on
+that node:</p><codeblock><codeph>&gt; ./cbworkloadgen -n 10.17.30.161:8091 -u Administrator -p password
+</codeph></codeblock><p>Will produce a result similar to the following if successful:</p><codeblock><codeph>[####################] 100.0% (10527/10526 msgs)
+bucket: default, msgs transferred...
+       :                total |       last |    per sec
+ batch :                   11 |         11 |        2.2
+ byte  :               105270 |     105270 |    21497.9
+ msg   :                10527 |      10527 |     2149.8
+done
+</codeph></codeblock><p>When you check the data bucket you will see 10000 new items of with random keys
+and values such as the following item:</p><codeblock><codeph>pymc0    "MDAwMDAwMDAwMA=="
+</codeph></codeblock></body></topic>

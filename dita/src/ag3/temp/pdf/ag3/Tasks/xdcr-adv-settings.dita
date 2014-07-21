@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_l3v_lh4_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="title:1;4:10">XDCR advanced settings</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="shortdesc:1;5:14">XDCR advanced settings are internal settings that are available for
+    configuration.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="body:1;7:9">
+
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="p:1;9:10">Advanced settings that can be updated include:</p>
+      <dl class="- topic/dl " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dl:1;10:11">
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dlentry:1;11:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dt:1;12:15">XDCR Max Replications per Bucket</dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dd:1;13:15">Maximum concurrent replications per bucket, 8 to 256. This controls the number of parallel
+            replication streams per node. If you are running your cluster on hardware with
+            high-performance CPUs, you can increase this value to improve replication speed.</dd>
+        </dlentry>
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dlentry:2;17:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dt:2;18:15">XDCR Checkpoint Interval</dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dd:2;19:15">Interval between checkpoints, 60 to 14400 (seconds). Default 1800. At this time
+          interval, batches of data via XDCR replication will be placed in the front of the disk
+          persistence queue. This time interval determines the volume of data that will be
+          replicated via XDCR should replication need to restart. The greater this value, the longer
+          amount of time transpires for XDCR queues to grow. For example, if you set this to 10
+          minutes and a network error occurs, when XDCR restarts replication, 10 minutes of items
+          will have accrued for replication. <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="p:2;25:49">Changing this to a smaller value could impact
+            cluster operations when you have significant amount of write operations on a destination
+            cluster and you are performing bidirectional replication with XDCR. For instance, if you
+            set this to 5 minutes, the incoming batches of data via XDCR replication will take
+            priority in the disk write queue over incoming write workload for a destination cluster.
+            This may result in the problem of having an ever growing disk-write queue on a
+            destination cluster; also items in the disk-write queue that are higher priority than
+            the XDCR items will grow staler/older before they are persisted. </p></dd>
+        </dlentry>
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dlentry:3;34:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dt:3;35:15">XDCR Batch Count</dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dd:3;36:15">Document batching count, 500 to 10000. Default 500. In general, increasing this value by 2
+            or 3 times will improve XDCR transmissions rates, since larger batches of data will be sent in
+            the same timed interval. For unidirectional replication from a source to a destination
+            cluster, adjusting this setting by 2 or 3 times will improve overall replication performance
+            as long as persistence to disk is fast enough on the destination cluster. Note however that
+            this can have a negative impact on the destination cluster if you are performing bidirectional
+            replication between two clusters and the destination already handles a significant volume of
+            reads/writes.</dd>
+        </dlentry>
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dlentry:4;45:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dt:4;46:15">XDCR Batch Size (KB)</dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dd:4;47:15">Document batching size, 10 to 100000 (KB). Default 2048. In general, increasing this value
+            by 2 or 3 times will improve XDCR transmissions rates, since larger batches of data will be
+            sent in the same timed interval. For unidirectional replication from a source to a destination
+            cluster, adjusting this setting by 2 or 3 times will improve overall replication performance
+            as long as persistence to disk is fast enough on the destination cluster. Note however that
+            this can have a negative impact on the destination cluster if you are performing bidirectional
+            replication between two clusters and the destination already handles a significant volume of
+            reads/writes.</dd>
+        </dlentry>
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dlentry:5;56:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dt:5;57:15">XDCR Failure Retry Interval</dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dd:5;58:15">Interval for restarting failed XDCR, 1 to 300 (seconds). Default 30. If you expect more
+            frequent network or server failures, you may want to set this to a lower value. This is the
+            time that XDCR waits before it attempts to restart replication after a server or network
+            failure.</dd>
+        </dlentry>
+        <dlentry class="- topic/dlentry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dlentry:6;63:18">
+          <dt class="- topic/dt " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dt:6;64:15">XDCR Optimistic Replication Threshold</dt>
+          <dd class="- topic/dd " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/tasks/xdcr-adv-settings.dita" xtrc="dd:6;65:15">This is compressed document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256
+          Bytes. XDCR will get metadata for documents larger than this size on a single time before
+          replicating the uncompressed document to a destination cluster. This option improves XDCR
+          latency.</dd>
+        </dlentry>
+        
+      </dl>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:74;85:51" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:64;75:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-xdcr.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link></linkpool></related-links>
+</topic>

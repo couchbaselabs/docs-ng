@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_us1_cmr_p4">
+  <title>Testing installation with telnet</title>
+  <shortdesc>The simplest method to determine whether Couchbase Server is running
+    is by using Telnet to connect to the server and using the Memcached text protocol.</shortdesc>
+  <body>
+    
+    
+    <p>Telnet must be installed on your server to connect to Couchbase Server using this
+            method. Telnet is supplied as standard on most platforms, or may be available as a separate
+            package that should be easily installable via your operating systems standard package
+            manager.</p>
+    
+    <note type="note">You do not need to use the Telnet method for communicating with your server within your
+      application. Instead, use one of the Couchbase SDKs. </note>
+    
+    <p>Connect to the
+              server:</p>
+    <codeblock>&gt; telnet localhost1
+Trying 127.0.0.1...
+Connected to localhost.localdomain (127.0.0.1).
+Escape character is '^]'.
+</codeblock><p>Make
+  sure it’s responding (stats is a great way to check basic
+  health):</p>
+    <codeblock>stats
+STAT delete_misses 0
+STAT ep_io_num_write 0
+STAT rejected_conns 0
+...
+STAT time 1286678223
+...
+STAT curr_items_tot 0
+...
+STAT threads 4
+STAT pid 23871
+...
+END
+</codeblock>
+    <p>Put a key in:</p>
+    <codeblock>set test_key 0 0 1
+a
+STORED
+</codeblock><p>Retrieve
+  the
+  key:</p>
+    <codeblock>get test_key
+VALUE test_key 0 1
+a
+END
+</codeblock>
+    <p>Disconnect:</p>
+    <codeblock>quit
+Connection closed by foreign host.
+&gt;
+</codeblock><p>All
+  of the Memcached protocols commands will work through Telnet.</p>
+  </body>
+</topic>

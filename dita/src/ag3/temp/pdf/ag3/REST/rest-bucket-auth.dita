@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic543" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="topic:1;4:39">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="title:1;5:10">Changing bucket authentication</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="shortdesc:1;6:14">To change bucket authentication use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="codeph:1;6:62">POST</codeph> operation with the 
+    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="codeph:2;7:13">/pools/default/buckets/acache authType</codeph> URI.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="p:1;9:8">Changing a bucket from port-based authentication to SASL authentication is achieved by
+      changing the active bucket configuration. </p>
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="note:1;11:23">When changing the active bucket configuration, specify the existing configuration
+      parameters and the changed authentication parameters in the request.</note>
+    
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="p:2;15:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="codeph:3;15:16">POST authType</codeph> is used with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="codeph:4;15:64">/pools/default/buckets/acache</codeph> URI.</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="codeblock:1;17:16">
+curl -X POST -u admin:password -d ramQuotaMB=130 -d authType=sasl \
+  -d saslPassword=letmein \
+  http://localhost:8091/pools/default/buckets/acache
+</codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="p:3;22:8">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="i:1;22:23">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="i:2;22:37">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="i:3;22:54">localhost</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="i:4;22:72">130</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="i:5;22:84">letmein</i>, and
+        <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-auth.dita" xtrc="i:6;23:12">acache</i> values in the above example with your actual values.</p>
+
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:36;43:48" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

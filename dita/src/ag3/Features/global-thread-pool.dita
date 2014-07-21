@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_mzx_cmx_b4">
+
+ <title>Shared thread pool</title>
+ <shortdesc>Shared thread pool optimizes dispatch tasks by decoupling buckets from thread allocation.</shortdesc>
+ 
+ <conbody>
+   <p>Threads and buckets are decoupled in the thread management which allows threads to run tasks
+   for any bucket based on the bucket prioritization. Since the global thread pool allows for bucket
+   priority levels, a separate auxillary I/O queue is available with the reader and writer queues at
+   every priority level. This provides improved task queueing. For example, when a thread is
+   assigned to running a task from the auxIO queue and a second task comes in, another thread is
+   assigned to pick up the next task.</p>
+  
+  <p>In terms of thread scheduling, if all buckets have the same priority (default setting), each
+   thread evenly round-robins over all the task queues of the buckets and then goes to sleep when
+   all buckets are either empty or being serviced by other threads. If buckets have different
+   priorities, the threads spend an appropriate fraction of time (scheduling frequency)
+   dispatching tasks from queues of these bucket. </p>
+  
+  
+   <p>Threads are spawned based on system capabilities at initial startup of a server node instance. 
+    These capabilities include, among other
+    parameters, the number of CPU cores and the storage type (for example, SSD vs spindle disk).</p>
+  
+  <p>Shared thread pool management promotes:</p>
+  <ul>
+   <li>Dynamic thread allocation which provides balanced provisioning by using idle threads (CPU)
+    and disk capacity</li>
+   <li>Higher parallelism for thread workers and I/O resource management</li>
+   <li>Scalability by supporting a very large number of buckets</li>
+   <li>Multi-tenancy, policy-based scheduling, higher throughput, and lower latency</li>
+  </ul>
+  
+  <fig><image href="../images/global-thread-pool.png" width="720" alt="Global Thread Pool diagram"/></fig>
+
+  
+  <section><title>Impacted documentation</title>
+   <ul>
+    <li>Disk storage</li>
+    <li>Multiple readers and writers</li>
+    <li>Auxiliary I/O dispatcher</li>
+    <li>Reader/writer threads</li>
+   </ul>
+  </section>
+  
+ </conbody>
+ 
+ <related-links>
+  
+  <linklist><title>Related topics</title>
+   <link href="bucket-priority.dita"/>
+   <link href="../Monitoring/monitor-statistics.dita"></link>
+   <link href="../Concepts/concept-cacheLayer.dita"></link>
+   <link href="../Concepts/concept-readerWriter.dita"></link>
+  </linklist>
+ </related-links>
+
+
+</concept>

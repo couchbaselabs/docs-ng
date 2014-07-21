@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic7920">
+  <title>XDCR CLI</title>
+  <body>
+    <p>To create a XDCR remote cluster:</p>
+    <codeblock><codeph>    couchbase-cli xdcr-setup -c 192.168.0.1:8091 \
+        --create \
+        --xdcr-cluster-name=test \
+        --xdcr-hostname=10.1.2.3:8091 \
+        --xdcr-username=Administrator \
+        --xdcr-password=password
+</codeph></codeblock>
+    <p>To delete a XDCR remote cluster:</p>
+    <codeblock><codeph>    couchbase-cli xdcr-delete -c 192.168.0.1:8091 \
+        --xdcr-cluster-name=test
+</codeph></codeblock>
+    <section><title>Managing XDCR replication streams</title><p>To start a replication
+        stream:</p><codeblock><codeph>    couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
+        --create \
+        --xdcr-cluster-name=test \
+        --xdcr-from-bucket=default \
+        --xdcr-to-bucket=default1
+</codeph></codeblock><p>To
+        delete a replication
+      stream:</p><codeblock><codeph>    couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
+        --delete \
+        --xdcr-replicator=f4eb540d74c43fd3ac6d4b7910c8c92f/default/default
+</codeph></codeblock></section>
+    <section><title>Managing remote clusters</title><p>To create a remote cluster
+        reference:</p><p>In the following example the remote cluster is
+        “RemoteCluster”.</p><codeblock><codeph>couchbase-cli xdcr-setup -c 10.3.121.121:8091 -u Administrator  -p password \
+    --create 
+    --xdcr-cluster-name=RemoteCluster  
+    --xdcr-hostname=10.3.121.123:8091  
+    --xdcr-username=Administrator  
+    --xdcr-password=password
+</codeph></codeblock><p>To
+        set a XDCR protocol:</p><p>An XDCR protocol for the mode of replication can be specified for
+        XDCR. </p><p>To change a XDCR replication protocol for an existing XDCR
+        replication:</p><p>If you change want the replication protocol for an existing XDCR
+        replication:</p><ol>
+        <li>Delete the replication.</li>
+        <li>Re-create the replication with your preference.</li>
+      </ol><p>First we create a destination cluster reference named
+        “RemoteCluster”:</p><codeblock><codeph>couchbase-cli xdcr-setup -c hostname_:8091 -u Administrator  -p password \
+  --create --xdcr-cluster-name=RemoteCluster  --xdcr-hostname=10.3.121.123:8091 \ 
+  --xdcr-username=Administrator  --xdcr-password=password
+</codeph></codeblock><p>Upon
+        success, we get this
+        response:</p><codeblock><codeph>    SUCCESS: init RemoteCluster
+</codeph></codeblock><p>Now
+        you can start replication to the remote cluster using memcached protocol as the existing
+        default:</p><codeblock><codeph>couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password 
+        --xdcr-cluster-name RemoteCluster 
+        --xdcr-from-bucket default 
+        --xdcr-to-bucket backup
+</codeph></codeblock><p>To
+        explicitly set the protocol to
+        memcached:</p><codeblock><codeph>couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup 
+    --xdcr-replication-mode xmem
+</codeph></codeblock><p>To
+        set the protocol to
+        CAPI:</p><codeblock><codeph>couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \ 
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup
+    --xdcr-replication-mode capi
+</codeph></codeblock><p>If
+        there is already an existing replication for a bucket, you get an error when you try to
+        start the replication again with any new
+        settings:</p><codeblock><codeph> couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password 
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup
+    --xdcr-replication-mode capi
+</codeph></codeblock><p>Results
+        in the following
+      error:</p><codeblock><codeph>ERROR: unable to create replication (400) Bad Request
+        {u'errors': {u'_': u'Replication to the same remote cluster and bucket already exists'}}
+ERROR: Replication to the same remote cluster and bucket already exists
+</codeph></codeblock></section>
+    
+    
+    <section><title>Managing XDCR data encryption</title><p>The Couchbase Server command line
+        interface (CLI) enables XDCR data encryption (Enterprise Edition only) when an XDCR cluster
+        reference is created or modified. The CLI provides the <codeph>couchbase-cli</codeph> tool
+        and the <codeph>xdcr-setup</codeph> command. The option
+          <codeph>--xdcr-demand-encryption=1</codeph> enables XDCR data encryption
+          <codeph>-xdcr-certificate=CERTIFICATE</codeph> provides the SSL certificate for data
+        security.</p></section>
+    
+    
+      <p>To setup XDCR with SSL data encryption:</p><ol>
+          <li>Retrieve the certificate from the destination cluster.</li>
+          <li>Create or modify the XDCR configuration to allow data encryption and provide the SSL
+            certificate.</li>
+          <li>Define the replication.</li>
+        </ol><p>To configure XDCR with SSL data encryption, the <codeph>xdcr-setup</codeph> command
+          is
+            used.</p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli xdcr-setup -c localHost:port -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=remoteClustername 
+  --xdcr-hostname=remoteHost:port 
+  --xdcr-username=remoteAdmin --xdcr-password=remotePassword 
+  --xdcr-demand-encryption=[0|1]   // 1 to enable, 0 to disable (default)
+  --xdcr-certificate=&lt;localPath&gt;/&lt;certFile&gt;.pem  
+</codeph></codeblock><p><b>Example</b></p><codeblock><codeph>couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=1 
+  --xdcr-certificate=./new.pem  
+</codeph></codeblock><p><b>Results</b></p><p>The
+          following is an example of results for a successful XDCR
+        configuration.</p><codeblock><codeph>SUCCESS: init/edit test 
+&lt;&lt;replication reference created&gt;&gt; 
+</codeph></codeblock>
+    
+    
+    <p>To disable XDCR data encryption, execute <codeph>couchbase-cli xdcr-setup</codeph> with
+            <codeph>--xdcr-demand-encryption=0</codeph>.
+          </p><p><b>Example</b></p>
+      
+      <codeblock><codeph>couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=0 
+</codeph></codeblock>
+    
+    
+    <section><title>Managing SSL certificates</title><p>Retrieving an SSL certificate for XDCR data
+        encryption, should be done in a secure manner, such as with <codeph>ssh</codeph> and
+          <codeph>scp</codeph>. For example:</p><ol>
+        <li>Use a secure method to log in to a node on the destination cluster. For example:
+            <codeph>ssh</codeph>.</li>
+        <li>Retrieve the certificate with the <codeph>couchbase-cli ssl-manage</codeph>
+          command.</li>
+        <li>Use a secure method to transfer the certificate from the destination cluster to the
+          source cluster. For example: <codeph>scp</codeph>.</li>
+        <li>Proceed with setting up XDCR with SSL data encryption.</li>
+      </ol><p>The <codeph>couchbase-cli ssl-manage</codeph> command provides the following options
+        for regenerating and retrieving certificates.</p><dl>
+        <dlentry>
+          <dt><codeph>--regenerate-cert=CERTIFICATE</codeph></dt>
+          <dd>Regenerates a self-signed certificate on the destination cluster. Specify the full
+            path for the location of the pem-encoded certificate file. For example,
+              <codeph>--regenerate-cert=./new.pem</codeph>.</dd>
+        </dlentry>
+
+
+        <dlentry>
+          <dt><codeph>--retrieve-cert=CERTIFICATE</codeph></dt>
+          <dd>Retrieves the self-signed certificate from the destination cluster to the source
+            cluster. Specify a local location (full path) and file name for the pem-encoded
+            certificate. For example, <codeph>--retrieve-cert=./newCert.pem</codeph>.</dd>
+        </dlentry>
+
+      </dl></section>
+    
+    <p>To retrieve an existing self-signed certificate, use the <codeph>ssl-manage</codeph>
+      command.</p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage -c localHost:port 
+  -u Administrator -p password 
+  --retrieve-cert=./&lt;newCert&gt;.pem 
+</codeph></codeblock><p><b>Example</b></p><codeblock><codeph>couchbase-cli ssl-manage -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --retrieve-cert=./newCert.pem 
+</codeph></codeblock><p><b>Results</b></p><p>The
+          following is an example of results for a successful retrieval of the
+        certificate:</p><codeblock><codeph>SUCCESS: retrieve certificate to './newCert.pem' 
+Certificate matches what seen on GUI 
+</codeph></codeblock>
+    
+    
+    <p>To regenerate a self-signed certificate, use the <codeph>couchbase-cli ssl-manage</codeph>
+      command. </p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage 
+  -c remoteHost:port 
+  -u adminName -p adminPassword 
+  --regenerate-cert=CERTIFICATE 
+</codeph></codeblock>
+    
+    <p><b>Example</b></p><p>The
+          following is an example of the CLI commands and options for regenerating a self-signed
+          certificate with the <codeph>ssl-manage</codeph>
+            command:</p><codeblock><codeph>couchbase-cli ssl-manage 
+  -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --regenerate-cert=./new.pem 
+</codeph></codeblock>
+    
+    <p><b>Results</b></p><p>The
+          following is an example of results for a successful regeneration of the
+          certification:</p><codeblock><codeph>SUCCESS: regenerate certificate to './new.pem' 
+</codeph></codeblock>
+    
+    <p>To
+          retrieve an existing self-signed certificate, the <codeph>ssl-manage</codeph> command is
+          used.</p><p><b>Syntax</b></p><codeblock><codeph>couchbase-cli ssl-manage -c localHost:port 
+  -u Administrator -p password 
+  --retrieve-cert=./&lt;newCert&gt;.pem 
+</codeph></codeblock>
+    
+    <p><b>Example</b></p><codeblock><codeph>couchbase-cli ssl-manage -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --retrieve-cert=./newCert.pem 
+</codeph></codeblock>
+    
+    <p><b>Results</b></p><p>The
+          following is an example of results for a successful retrieval of the
+        certificate:</p><codeblock><codeph>SUCCESS: retrieve certificate to './newCert.pem' 
+Certificate matches what seen on GUI 
+</codeph></codeblock>
+    
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../../XDCR/xdcr-intro.dita"></link>
+      <link href="../../Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
+      <link href="../../Tasks/tasks-manage-xdcr.dita"/>
+    </linklist>
+  </related-links>
+</topic>

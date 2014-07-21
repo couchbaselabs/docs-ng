@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic6357" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="title:1;5:9">cbhealthchecker tool</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="body:1;6:8">
+		
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:1;8:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:1;8:18">cbhealthchecker</codeph> tool generates a health report named <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="i:1;8:83">Cluster
+				Health Check Report</i> for a Couchbase cluster. The report provides data that helps
+			administrators, developers, and testers determine whether a cluster is healthy, has
+			issues that must be addressed soon to prevent future problems, or has issues that must
+			be addressed immediately.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:2;13:6">The tool retrieves data from the Couchbase Server monitoring system, aggregates it over a
+			time scale, analyzes the statistics against thresholds, and generates a report. Unlike
+			other command line tools such as <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:2;15:45">cbstats</codeph> and
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:3;16:13">cbtransfer</codeph> that use the TAP protocol to obtain data from the monitoring system,
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:4;17:13">cbhealthchecker</codeph> obtains data by using the REST API and the
+			memcached protocol. For more information about the statistics provided by Couchbase
+			Server.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:3;20:6">You can generate reports on the following time scales: minute, hour, day, week, month,
+			and year. The tool outputs an HTML file, a text file, and a JSON file. Each file
+			contains the same information — the only difference between them is the format of the
+			information. All <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:5;23:29">cbhealthchecker</codeph> output is stored in a
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:6;24:13">reports</codeph> folder. The tool does not delete any files from the folder.
+			You can delete files manually if the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:7;25:49">reports</codeph> folder becomes too large.
+			The path to the output files is displayed when the run finishes.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:4;27:6"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:8;27:14">cbhealthchecker</codeph> is automatically installed with Couchbase Server. You
+			can find the tool in the following locations, depending upon your platform:</p>
+		
+		
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="table:1;31:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="tgroup:1;32:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="colspec:1;33:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="colspec:2;34:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="thead:1;35:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:1;36:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:1;37:14">Operating System</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:2;38:14">Location</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="tbody:1;41:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:2;42:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:3;43:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="b:1;43:17">Linux</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:4;44:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:9;44:22">/opt/couchbase/bin/</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:3;46:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:5;47:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="b:2;47:17">Windows</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:6;48:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:10;48:22">C:\Program Files\Couchbase\Server\bin\</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:4;50:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:7;51:14"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="b:3;51:17">Mac OS X</b></entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:8;52:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:11;52:22">/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:5;57:6">The format of the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:12;57:32">cbhealthchecker</codeph> command is:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeblock:1;58:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:13;58:22">cbhealthchecker CLUSTER USERNAME PASSWORD OPTIONS
+</codeph></codeblock>
+		
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="table:2;61:10">
+			<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="tgroup:2;62:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="colspec:3;63:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="colspec:4;64:30"/>
+				<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="colspec:5;65:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="thead:2;66:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:5;67:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:9;68:14">Option</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:10;69:14">Syntax</entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:11;70:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="tbody:2;73:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:6;74:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:12;75:14">CLUSTER</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:13;76:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:14;76:22">-c HOST[:PORT]</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:15;77:16">--cluster=HOST[:PORT]</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:14;78:14">Hostname and port of a node in the cluster. The default port is
+							8091.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:7;81:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:15;82:14">USERNAME</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:16;83:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:16;83:22">-u USERNAME</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:17;84:16">--user=USERNAME</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:17;85:14">Admin username of the cluster.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:8;87:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:18;88:14">PASSWORD</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:19;89:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:18;89:22">-p PASSWORD</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:19;90:16">--password=PASSWORD</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:20;91:14">Admin password of the cluster.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:9;93:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:21;94:14">OPTIONS</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:22;95:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:20;95:22">-b BUCKETNAME</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:21;96:16">--bucket=BUCKETNAME</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:23;97:14">Specific bucket on which to report. The default is all
+							buckets.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:10;100:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:24;101:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:25;102:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:22;102:22">-i FILENAME</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:23;103:16">--input=FILENAME</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:26;104:14">Generate an analysis report from an input JSON file.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:11;106:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:27;107:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:28;108:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:24;108:22">-o FILENAME</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:25;109:16">--output=FILENAME</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:29;110:14">File name for the HTML report. The default output file name is the
+							report time stamp, for example:
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:26;112:17">2013-07-26_13-26-23.html</codeph>.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:12;114:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:30;115:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:31;116:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:27;116:22">-h</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:28;117:16">--help</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:32;118:14">Show the help message and exit.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:13;120:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:33;121:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:34;122:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:29;122:22">-s SCALE</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:30;123:16">--scale=SCALE</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:35;124:14">Time span (scale) for the statistics: minute, hour, day, week, month
+							or year. The default time span is day.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="row:14;127:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:36;128:15"/>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:37;129:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:31;129:22">-j</codeph>
+							<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:32;130:16">--jsononly</codeph></entry>
+						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="entry:38;131:14">Collect data and output only a JSON file. When you use this option,
+							the analysis report is not generated.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="section:1;139:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="title:2;139:19">Sample Commands</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:6;140:6">The following command runs a report on all buckets in the cluster for the past day:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeblock:2;141:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:33;141:22">./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password
+
+bucket: default
+  node: 10.3.1.10 11210
+  node: 10.3.1.11 11210
+................................
+
+The run finished successfully.
+Please find html output at '/opt/couchbase/bin/reports/2013-07-23_16-29-02.html'
+and text output at '/opt/couchbase/bin/reports/2013-07-23_16-29-02.txt'.
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:7;152:6">The following command runs a report on all buckets in the cluster for the past month:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeblock:3;153:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:34;153:22">./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password -s month
+
+The run finished successfully.
+Please find html output at '/opt/couchbase/bin/reports/2013-07-26_13-26-23.html'
+and text output at '/opt/couchbase/bin/reports/2013-07-26_13-26-23.txt'.
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:8;159:6">The following command runs a report on only the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:35;159:62">beer-sample</codeph> bucket for
+			the past year and outputs the HTML report to a file named
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:36;161:13">beer-health-report.html</codeph>.</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeblock:4;162:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:37;162:22">./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password -o beer-health-report.html \
+      -b beer-sample -s year
+
+The run finished successfully.
+Please find html output at '/opt/couchbase/bin/reports/beer-health-report.html'
+and text output at '/opt/couchbase/bin/reports/2013-07-26_15-57-11.txt'.
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:9;169:6">The following command generates only the statistics and outputs them in a JSON file:</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeblock:5;170:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="codeph:38;170:22">./cbhealthchecker -c 10.3.1.10:8091 -u Administrator -p password -j
+
+The run finished successfully.
+Please find collected stats at '/opt/couchbase/bin/reports/2013-07-26_13-30-36.json'.
+</codeph></codeblock>
+		</section>
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="section:2;179:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="title:3;179:19">HTML Report</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:10;180:6">You can view the HTML report in any web browser. If you copy the report to another
+			location, be sure to copy all the files in the reports folder to ensure that the report
+			is displayed correctly by the browser. When you have multiple HTML reports in the
+			folder, you can use the tabs at the top of the page to display a particular report. (If
+			the tabs do not function in your browser, try using Firefox.)</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:11;185:6">Throughout the report, normal health statuses are highlighted in green, warnings are
+			highlighted in yellow, and conditions that require immediate action are highlighted in
+			red. When viewing the report, you can hover your mouse over each statistic to display a
+			message that describes how the statistic is calculated.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:12;189:6">The report begins with a header that lists the statistics scale, the date and time the
+			report was run, and an assessment of the overall health of the cluster. The following
+			figure shows the report header:</p>
+		<fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="fig:1;192:8">
+				<image href="../images/health-report-header.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="image:1;193:66"/>
+			</fig>
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="ul:1;195:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="li:1;196:8">The body of the report is divided into several sections:Couchbase — Alerts</li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:13;198:6">The alerts section contains a list of urgent issues that require immediate attention. For
+			each issue, the report lists the symptoms detected, the impact of the issue, and the
+			recommended corrective action to take. This section appears in the report only when
+			urgent issues are detected. The following figure shows a portion of the alerts section
+			of a report:</p>
+		
+		<fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="fig:2;204:8"><image href="../images/health-report-alerts.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="image:2;204:69">
+			</image></fig>
+		
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="ul:2;207:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="li:2;208:8">Couchbase Cluster Overview</li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:14;210:6">The cluster overview section contains cluster-wide metrics and metrics for each bucket
+			and node in the cluster. This section appears in all reports. The following figure shows
+			a portion of the cluster overview section of a report:</p>
+		
+		<fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="fig:3;214:8"><image href="../images/health-report-cluster-overview.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="image:3;214:79">
+			</image></fig>
+		
+		<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="ul:3;217:7">
+			<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="li:3;218:8">Couchbase — Warning Indicators</li>
+		</ul>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="p:15;220:6">The warning indicators section contains a list of issues that require attention. For each
+			issue, the report lists the symptoms detected, the impact of the issue, and the
+			recommended corrective action to take. This section appears in the report only when
+			warning indicators are detected. The following figure shows a portion of the warning
+			indicators section of a report:</p>
+		
+		<fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="fig:4;226:8"><image href="../images/health-report-warnings.png" width="480" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="image:4;226:71">
+			</image></fig>
+		</section>
+		
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="related-links:1;231:17">
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="linklist:1;232:13">
+
+			
+			<link href="../Concepts/concepts-statsMonitor.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="link:1;235:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Statistics and monitoring</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.</desc></link>
+			<link href="../Concepts/concepts-TAP.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbhealthchecker_tool.dita" xtrc="link:2;236:48" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">TAP</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The TAP protocol is an internal part of the Couchbase Server system and is used to     exchange data throughout the system. </desc></link>
+		</linklist>
+	</related-links>
+</topic>

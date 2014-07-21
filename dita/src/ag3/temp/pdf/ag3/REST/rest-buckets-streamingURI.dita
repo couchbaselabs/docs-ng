@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic3129" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="title:1;5:10">Getting the bucket streaming URI</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="shortdesc:1;6:14">To retrieve the streaming URI, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="codeph:1;6:61">GET</codeph> operation with the 
+    <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="codeph:2;7:13">/pools/default/buckets/default</codeph> URI.</shortdesc>
+  
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="body:1;9:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="p:1;10:8">The individual bucket request is exactly the same as what would be obtained from the item in
+      the array for the entire buckets list. The streamingUri is exactly the
+      same except it streams HTTP chunks using chunked encoding. A response of “\n\n\n\n” delimits
+      chunks. This will likely be converted to a “zero chunk” in a future release of this API, and
+      thus the behavior of the streamingUri should be considered evolving.</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="codeblock:1;16:16">
+GET /pools/default/buckets/default
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeblock>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-buckets-streamingURI.dita" xtrc="codeblock:2;23:16">
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+{
+  "name": "default",
+  "bucketType": "couchbase",
+  "authType": "sasl",
+  "saslPassword": "",
+  "proxyPort": 0,
+  "uri": "/pools/default/buckets/default",
+  "streamingUri": "/pools/default/bucketsStreaming/default",
+  "flushCacheUri": "/pools/default/buckets/default/controller/doFlush",
+  "nodes": [
+    {
+      "uptime": "308",
+      "memoryTotal": 3940818944.0,
+      "memoryFree": 1608724480,
+      "mcdMemoryReserved": 3006,
+      "mcdMemoryAllocated": 3006,
+      "replication": 1.0,
+      "clusterMembership": "active",
+      "status": "healthy",
+      "hostname": "172.25.0.2:8091",
+      "clusterCompatibility": 1,
+      "version": "1.6.4r_107_g49a149d",
+      "os": "i486-pc-linux-gnu",
+      "ports": {
+        "proxy": 11211,
+        "direct": 11210
+      }
+    },
+    {
+      "uptime": "308",
+      "memoryTotal": 3940818944.0,
+      "memoryFree": 1608724480,
+      "mcdMemoryReserved": 3006,
+      "mcdMemoryAllocated": 3006,
+      "replication": 1.0,
+      "clusterMembership": "active",
+      "status": "healthy",
+      "hostname": "172.25.0.3:8091",
+      "clusterCompatibility": 1,
+      "version": "1.6.4r_107_g49a149d",
+      "os": "i486-pc-linux-gnu",
+      "ports": {
+        "proxy": 11211,
+        "direct": 11210
+      }
+    },
+    {
+      "uptime": "308",
+      "memoryTotal": 3940818944.0,
+      "memoryFree": 1608597504,
+      "mcdMemoryReserved": 3006,
+      "mcdMemoryAllocated": 3006,
+      "replication": 1.0,
+      "clusterMembership": "active",
+      "status": "healthy",
+      "hostname": "172.25.0.4:8091",
+      "clusterCompatibility": 1,
+      "version": "1.6.4r_107_g49a149d",
+      "os": "i486-pc-linux-gnu",
+      "ports": {
+        "proxy": 11211,
+        "direct": 11210
+      }
+    }
+  ],
+  "stats": {
+    "uri": "/pools/default/buckets/default/stats"
+  },
+  "nodeLocator": "vbucket",
+  "vBucketServerMap": {
+    "hashAlgorithm": "CRC",
+    "numReplicas": 1,
+    "serverList": [
+      "172.25.0.2:11210",
+      "172.25.0.3:11210",
+      "172.25.0.4:11210"
+    ],
+    "vBucketMap": [
+      [1,0],
+      [2,0],
+      [1,2],
+      [2,1],
+      [1,2],
+      [0,2],
+      [0,1],
+      [0,1]
+    ]
+  },
+  "replicaNumber": 1,
+  "quota": {
+    "ram": 1887436800,
+    "rawRAM":145600
+  },
+  "basicStats": {
+    "quotaPercentUsed": 14.706055058373344,
+    "opsPerSec": 0,
+    "diskFetches": 0,
+    "itemCount": 65125,
+    "diskUsed": 139132928,
+    "memUsed": 277567495
+  }
+}
+</codeblock>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:31;38:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

@@ -2,5 +2,7 @@
 crash.log
 output
 out/
+temp
 tmp
 *.pdf
+*.swp

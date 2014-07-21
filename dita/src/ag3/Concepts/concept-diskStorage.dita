@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1135">
+  <title>Disk storage</title>
+  <shortdesc>Couchbase Server mainly stores and retrieves information for clients using
+    RAM. At the same time, Couchbase Server eventually stores all data to disk to provide a
+    higher level of reliability.</shortdesc>
+  <body>
+    <p>It writes data to the caching layer and puts the data into a disk write queue to be persisted to
+      disk. Disk persistence enables you to perform backup and restore operations and 
+      to grow your datasets larger than the built-in caching layer. 
+      This disk storage process is called <i>eventual persistence</i> 
+      since the server does not block a client while it writes to disk. 
+    </p>
+    <p>If a node fails and all data in the caching layer is lost, 
+      the items are recovered from disk. 
+       When the server identifies an item that needs to be loaded from disk, because it is not in
+      active memory, the process is handled by a background process that processes the load queue
+      and reads the information back from disk and into memory. The client waits until the
+      data has been loaded back into memory before the information is returned.</p>
+  </body>
+  
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Concepts/concept-workingset-mgmt.dita">
+      </link>
+
+    </linklist>
+  </related-links>
+</topic>

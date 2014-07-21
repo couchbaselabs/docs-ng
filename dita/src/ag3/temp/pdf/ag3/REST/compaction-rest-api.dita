@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic6985" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="title:1;5:9">Compaction REST API</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:1;7:6">Couchbase Server writes all data
+				that you append, update and delete as files on disk. This process can eventually
+				lead to gaps in the data file, particularly when you delete data. Be aware the
+				server also writes index files in a sequential format based on appending new results
+				in the index. You can reclaim the empty gaps in all data files by performing a
+				process called compaction. In both the case of data files and index files, you will
+				want to perform frequent compaction of the files on disk to help reclaim disk space
+				and reduce disk fragmentation. </p>
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="section:1;17:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="title:2;17:19">Compacting bucket data and indexes</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:2;17:64">To compact
+					data files for a given bucket as well as any indexes associated with that
+					bucket, you make this
+					request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:1;20:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:1;20:37">curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/compactBucket
+</codeph></codeblock>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:3;23:7">Replace
+					the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:1;24:13">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:2;24:27">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:3;24:44">localhost</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:4;24:66">bucket_name</i>
+					values in the above example with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:4;25:65">Where you provide the
+					ip and port for a node that accesses the bucket as well as the bucket name. You
+					need to provide administrative credentials for that node in the cluster. To stop
+					bucket compaction, issue this
+					request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:2;29:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:2;29:37">curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/cancelBucketCompaction
+</codeph></codeblock>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:5;32:7">Replace
+					the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:5;33:13">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:6;33:27">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:7;33:44">localhost</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:8;33:66">bucket_name</i>
+					values in the above example with your actual values.</p>
+			
+		</section>
+			
+			
+			<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="section:2;39:13"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="title:3;39:20">Compacting spatial views</title>
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:6;40:7">If you have spatial views in your dataset, these are not
+					automatically compacted with data and indexes. Instead, you must manually
+					compact each spatial view through the REST API.</p>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:7;44:7">To do this, you must call
+					the spatial compaction
+					endpoint:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:3;46:30"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:3;46:38">http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:8;47:25">This
+					URL contains the following special information:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="ul:1;48:61">
+					<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="li:1;49:10"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:4;49:18">127.0.0.1:9500</codeph></li>
+				</ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:9;50:13">The port number, 9500, is unique to the spatial indexing system.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="ul:2;50:85">
+					<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="li:2;51:10"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:5;51:18">BUCKETNAME</codeph></li>
+				</ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:10;52:13">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:6;52:25">BUCKETNAME</codeph> is the name of the bucket in which the
+					design document is configured.</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="ul:3;53:44">
+					<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="li:3;54:10"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:7;54:18">DDOCNAME</codeph></li>
+				</ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:11;55:13">The name of the design document that contains the spatial index or indexes
+					that you want to compact.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:12;56:38">For example, you can send a request using
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:8;57:15">curl</codeph>
+					:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:4;58:22"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:9;58:30">curl -u admin:password -X POST \
+'http://localhost:8091/default/_design/dev_test_spatial_compaction/_spatial/_compact'
+-H 'Content-type: application/json'
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:13;61:25">Replace
+					the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:9;62:13">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:10;62:27">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:11;62:48">localhost</i> values in the above
+					example with your actual
+					values.</p></section>
+		
+		
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="section:3;68:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="title:4;68:19">Setting auto-compaction</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:14;68:53">In Couchbase Server you
+					can also provide auto-compaction settings which will trigger data and view
+					compaction based on certain settings. These settings can be made for an entire
+					cluster or for a bucket in a cluster. </p>
+			
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:15;74:7"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="b:1;74:10">Auto-compaction API</b></p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="table:1;74:44">
+					<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="tgroup:1;75:23">
+						<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="colspec:1;76:32"/>
+						<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="colspec:2;77:32"/>
+						<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="thead:1;78:14">
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:1;79:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:1;80:16">REST API</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:2;81:16">Description</entry>
+							</row>
+						</thead>
+						<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="tbody:1;84:14">
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:2;85:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:3;86:16">POST /controller/setAutoCompaction</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:4;87:16">Set cluster-wide auto-compaction intervals and
+									thresholds</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:3;90:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:5;91:16">GET /settings/autoCompaction</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:6;92:16">Read cluster-wide settings for auto-compaction</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:4;94:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:7;95:16">GET /pools/default/buckets/<i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:12;95:46">bucket_name</i></entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:8;96:16">Read auto-compaction settings for named bucket</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:5;98:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:9;99:16">POST/pools/default/buckets/<i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:13;99:46">bucket_name</i></entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:10;100:16">Set auto-compaction interval or thresholds for named
+									bucket</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:16;108:7"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="b:2;108:10">Auto-compaction parameters</b></p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:17;108:47">You can use the following
+					parameters for global auto-compaction settings which apply to all buckets in a
+					cluster at <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:10;110:25">/controller/setAutoCompaction</codeph>. You also use these at
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:11;111:15">/pools/default/buckets/&lt;bucket_name&gt;</codeph> 
+					for bucket-level auto-compaction. You will need to provide administrative
+					credentials to change these settings.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:18;113:50">You can
+					provide a purge interval to remove the key and metadata for items that have been
+					deleted or are expired. This is known as tombstone purging.</p>
+			
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="table:2;117:11">
+					<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="tgroup:2;118:23">
+						<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="colspec:3;119:32"/>
+						<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="colspec:4;120:32"/>
+						<colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="colspec:5;121:32"/>
+						<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="thead:2;122:14">
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:6;123:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:11;124:16">Parameter</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:12;125:16">Value</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:13;126:16">Notes</entry>
+							</row>
+						</thead>
+						<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="tbody:2;129:14">
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:7;130:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:14;131:16">databaseFragmentationThreshold[percentage]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:15;132:16">Integer between 2 and 100</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:16;133:16">Percentage disk fragmentation for data</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:8;135:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:17;136:16">databaseFragmentationThreshold[size]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:18;137:16">Integer greater than 1</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:19;138:16">Bytes of disk fragmentation for data</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:9;140:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:20;141:16">viewFragmentationThreshold[percentage]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:21;142:16">Integer between 2 and 100</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:22;143:16">Percentage disk fragmentation for index</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:10;145:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:23;146:16">viewFragmentationThreshold[size]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:24;147:16">Integer greater than 1</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:25;148:16">Bytes of disk fragmentation for index</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:11;150:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:26;151:16">parallelDBAndViewCompaction</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:27;152:16">True or false</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:28;153:16">Run index and data compaction in parallel</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:12;155:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:29;156:16">allowedTimePeriod[fromHour]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:30;157:16">Integer between 0 and 23</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:31;158:16">Compaction can occur from this hour onward</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:13;160:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:32;161:16">allowedTimePeriod[toHour]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:33;162:16">Integer between 0 and 23</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:34;163:16">Compaction can occur up to this hour</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:14;165:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:35;166:16">allowedTimePeriod[fromMinute]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:36;167:16">Integer between 0 and 59</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:37;168:16">Compaction can occur from this minute onward</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:15;170:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:38;171:16">allowedTimePeriod[toMinute]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:39;172:16">Integer between 0 and 59</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:40;173:16">Compaction can occur up to this minute</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:16;175:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:41;176:16">allowedTimePeriod[abortOutside]</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:42;177:16">True or false</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:43;178:16">Terminate compaction if process takes longer than allowed
+									time</entry>
+							</row>
+							<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="row:17;181:13">
+								<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:44;182:16">purgeInterval</entry>
+								<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:45;183:16">Integer between 1 and 60</entry>
+								<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="entry:46;184:16">Number of days a item is deleted or expired. The key and
+									metadata for that item will be purged by auto-compaction</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:19;192:7">To read current auto-compaction settings for a
+					cluster:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:5;193:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:12;193:37">    curl -u admin:password http://localhost:8091/settings/autoCompaction
+</codeph></codeblock><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:20;194:25">Replace
+					the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:14;195:13">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:15;195:27">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:16;195:48">localhost</i> values in the above
+					example with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:21;196:45">This will result in JSON response as
+					follows:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:6;197:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:13;197:37">    {
+       "purgeInterval": 3,
+       "autoCompactionSettings": {
+           "viewFragmentationThreshold": {
+               "size": "undefined",
+               "percentage": "undefined"
+            },
+            "databaseFragmentationThreshold": {
+                "size": "undefined",
+                "percentage": "undefined"
+            },
+         "parallelDBAndViewCompaction": false
+       }
+    }
+</codeph></codeblock>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:22;213:7">This
+					tells us we have a <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:14;214:33">purgeInterval</codeph> of three days and no current
+					thresholds set for data or index compaction. The field
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:15;216:15">parallelDBAndViewCompaction</codeph> set to ‘false’ indicates the
+					cluster will not perform data and index compaction in parallel. To see
+					auto-compaction settings for a single bucket, use this
+					request:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:7;219:29"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:16;219:37">    curl -u admin:password http://localhost:8091/pools/default/buckets/bucket_name
+</codeph></codeblock>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:23;222:7">Replace
+					the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:17;223:13">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:18;223:27">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:19;223:44">localhost</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="i:20;223:66">bucket_name</i>
+					values in the above example with your actual values.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:24;224:65">Couchbase Server
+					sends a JSON response with auto-compaction settings for the
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:17;226:15">bucket_name</codeph>:</p><codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeblock:8;226:51"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:18;226:59">{
+    "purgeInterval": 2,
+    "autoCompactionSettings": {
+        "viewFragmentationThreshold": {
+            "size": "undefined",
+            "percentage": 30
+        },
+        "databaseFragmentationThreshold": {
+            "size": "undefined",
+            "percentage": 30
+        },
+        "parallelDBAndViewCompaction": true
+    }
+}
+</codeph></codeblock>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="p:25;242:7">This
+					indicates a tombstone <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="codeph:19;243:36">purgeInterval</codeph> of two days with a
+					threshold of 30% disk fragmentation for data and views. This means items can be
+					expired for two days or deleted two ago and their tombstones will be purged
+					during the next auto-compaction
+			run.cluster-wide</p>
+		
+		</section>
+		
+		
+		
+		
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="related-links:1;255:17">
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="linklist:1;256:13">
+			<link href="../Concepts/concept-tombstone.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="link:1;257:53" type="concept"><?ditaot gentext?><linktext class="- topic/linktext ">Tombstone purging</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Tombstones are records of expired or deleted items that include item keys and metadata.</desc></link>
+			<link href="../Tasks/tasks-compaction.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/compaction-rest-api.dita" xtrc="link:2;258:49" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Database and view compaction</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Database and view compaction helps to reclaim disk space and reduce fragmentation.</desc></link>
+		</linklist>
+	</related-links>
+</topic>

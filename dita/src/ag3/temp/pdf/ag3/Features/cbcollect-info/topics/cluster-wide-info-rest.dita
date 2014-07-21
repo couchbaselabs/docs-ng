@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features/cbcollect-info/topics?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features/cbcollect-info/topics/?><?path2project ../../../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_whr_1x1_34" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="title:1;4:9">REST API</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="shortdesc:1;5:13">The REST API enables you to collect and send diagnostics by using HTTP requests.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="conbody:1;6:11">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:1;7:6">You can use the following REST APIs to manage log collection.</p>
+ 	<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="table:1;8:10">
+ 		<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="tgroup:1;9:21">
+ 			<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="thead:1;10:12">
+ 				<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:1;11:11">
+ 					<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:1;12:14">HTTP method</entry>
+ 					<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:2;13:14">URI path</entry>
+ 					<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:3;14:14">Description</entry>
+ 				</row>
+ 			</thead>
+ 			<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="tbody:1;17:12">
+ 				<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:2;18:11">
+ 					<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:4;19:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:1;19:22">GET</codeph></entry>
+ 					<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:5;20:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:2;20:22">/pools</codeph></entry>
+ 					<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:6;21:14">Retrieve a list of nodes in the cluster</entry>
+ 				</row>
+ 				<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:3;23:11">
+ 					<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:7;24:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:3;24:22">POST</codeph></entry>
+ 					<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:8;25:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:4;25:22">/collectLogs/start</codeph></entry>
+ 					<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:9;26:14">Start log collection</entry>
+ 				</row>
+ 				<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:4;28:11">
+ 					<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:10;29:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:5;29:22">POST</codeph></entry>
+ 					<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:11;30:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:6;30:22">/collectLogs/cancel</codeph></entry>
+ 					<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:12;31:14">Cancel log collection</entry>					
+ 				</row>
+ 				<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:5;33:11">
+ 					<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:13;34:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:7;34:22">GET</codeph></entry>
+ 					<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:14;35:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:8;35:22">/pools/default/tasks</codeph></entry>
+ 					<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:15;36:14">Retrieve log collection status</entry>
+ 				</row>
+ 			</tbody>
+ 		</tgroup>
+ 	</table>
+ 	
+ 	
+ 	<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="section:1;43:12">
+ 		<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="title:2;44:11">Retrieving a list of cluster nodes</title>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:2;45:7">You can retrieve a list of the nodes in a cluster with the following HTTP request:</p>
+ 		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeblock:1;46:15">
+GET /pools
+ 		</codeblock>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:3;49:7">The response contains a list of the nodes in the cluster and the status of each node. The node status can be up, pending, or down.</p>
+ 	</section>
+ 	
+ 	<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="section:2;52:12">
+ 		<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="title:3;53:11">Starting log collection</title>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:4;54:7">
+ 			You can start log collection with the following REST request:
+ 		</p>
+ 		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeblock:2;57:15">
+POST /collectLogs/start
+ 		</codeblock>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:5;60:7">The message body for this request contains a JSON document that uses the following
+				parameters:</p>
+ 		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="table:2;62:11">
+ 			<tgroup cols="4" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="tgroup:2;63:22">
+ 				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="thead:2;64:13">
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:6;65:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:16;66:15">Name</entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:17;67:15">Type</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:18;68:15">Description</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:19;69:15">Required</entry>
+ 					</row>
+ 				</thead>
+ 				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="tbody:2;72:13">
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:7;73:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:20;74:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:9;74:23">customer</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:21;75:15">string</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:22;76:15">Customer name. The valid characters are uppercase and lowercase letters, digits, underscore, period, and space. Maximum length is 50 characters. If spaces are used in the customer name, they are replaced with underscores. Invalid values are rejected.</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:23;77:15">yes, when the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:10;77:37">upload</codeph> parameter is set to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:11;77:81">true</codeph>.</entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:8;79:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:24;80:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:12;80:23">from</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:25;81:15">string</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:26;82:15">Nodes to collect logs from. The value can be:
+ 							<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="ul:1;83:13">
+ 								<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="li:1;84:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:13;84:22">allnodes</codeph>—collect from all nodes in the cluster.</li>
+ 								<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="li:2;85:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:14;85:22">nodes</codeph>—collect only from nodes specified in the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:15;85:86">nodes</codeph> parameter.</li>
+ 							</ul>
+ 						</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:27;88:15">yes</entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:9;90:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:28;91:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:16;91:23">nodes</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:29;92:15">array</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:30;93:15">List of nodes to collect logs from.</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:31;94:15">yes, when the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:17;94:37">from</codeph> parameter is set to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:18;94:79">nodes</codeph>.</entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:10;96:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:32;97:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:19;97:23">ticket</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:33;98:15">string</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:34;99:15">Couchbase support ticket number. The valid characters are digits 0 through 9. Maximum length is 7 characters. Invalid values are rejected.</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:35;100:15">no, but applicable only when the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:20;100:56">upload</codeph> parameter is set to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:21;100:100">true</codeph>.</entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:11;102:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:36;103:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:22;103:23">upload</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:37;104:15">Boolean</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:38;105:15">Indicates whether to upload the collected logs to Couchbase support.</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:39;106:15">no</entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:12;108:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:40;109:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:23;109:23">upload_host</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:41;110:15">string</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:42;111:15">Fully-qualified domain name, optionally prefixed with the <filepath class="+ topic/ph sw-d/filepath " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="filepath:1;111:83">https://</filepath> protocol specifier. If no protocol is specified, it defaults to <filepath class="+ topic/ph sw-d/filepath " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="filepath:2;111:177">https://</filepath>, which is the only valid protocol. If an invalid protocol is specified, the request returns an error.</entry>
+ 						<entry colname="col4" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:43;112:15">yes, when the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:24;112:37">upload</codeph> parameter is set to <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:25;112:81">true</codeph>.</entry>
+ 					</row>
+ 					
+ 				</tbody>
+ 			</tgroup>
+ 		</table>
+ 	</section>
+ 	
+ 	<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="section:3;120:12">
+ 		<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="title:4;121:11">Stopping log collection</title>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:6;122:7">
+ 			You can stop log collection with the following HTTP request:
+ 		</p>
+ 		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeblock:3;125:15">
+POST /collectLogs/cancel
+ 		</codeblock>
+ 		
+ 	</section>
+ 	
+ 	<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="section:4;131:12">
+ 		<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="title:5;132:11">Retrieving log collection status</title>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:7;133:7">
+ 			You can retrieve the status of the log collection operation with the following HTTP request:
+ 		</p>
+ 		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeblock:4;136:15">
+GET /pools/default/tasks
+ 		</codeblock>
+ 		
+ 	<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:8;140:6">The response to this request includes a JSON document that contains the following objects:</p>
+ 		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="table:3;141:11">
+ 			<tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="tgroup:3;142:22">
+ 				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="thead:3;143:13">
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:13;144:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:44;145:15">Name</entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:45;146:15">Type</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:46;147:15">Description</entry>
+ 					</row>
+ 				</thead>
+ 				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="tbody:3;150:13">
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:14;151:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:47;152:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:26;152:23">per_node</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:48;153:15">array</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:49;154:15">Status information for each node. Each entry in the array contains the following items:
+ 						<ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="ul:2;155:12">
+ 							<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="li:3;156:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:27;156:21">artifact</codeph>—name of the artifact</li>
+ 							<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="li:4;157:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:28;157:21">details</codeph>—additional information about the status</li>
+ 							<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="li:5;158:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:29;158:21">node_name</codeph>—name of the node</li>
+ 							<li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="li:6;159:13"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:30;159:21">result</codeph>—status of the collection operation on this node. Possible values are: <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:31;159:115">pending</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:32;159:141">in_progress</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:33;159:171">collected</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:34;159:199">uploaded</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:35;159:226">upload_failed</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:36;159:258">failed</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:37;159:283">cancelled</codeph>.</li>							
+ 						</ul></entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:15;162:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:50;163:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:38;163:23">status</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:51;164:15">string</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:52;165:15">Overall status of the log collection operation. The value can be <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:39;165:88">idle</codeph> or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:40;165:113">running</codeph>.</entry>
+ 					</row>
+ 					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="row:16;167:12">
+ 						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:53;168:15"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:41;168:23">type</codeph></entry>
+ 						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:54;169:15">string</entry>
+ 						<entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="entry:55;170:15">The kind of information the document contains. The value is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeph:42;170:83">collect_logs</codeph></entry>
+ 					</row>
+ 				</tbody>
+ 			</tgroup>
+ 		</table>
+ 		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="p:9;175:7">The structure of the result document looks similar to this:</p>
+ 		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/topics/cluster-wide-info-rest.dita" xtrc="codeblock:5;176:15">
+{
+    "type": "collect_logs"
+    "status": "status", 
+    "perNode": [
+       {
+            "artifact": "artifact_name", 
+            "node_name": "node_name", 
+            "result": "status",
+            "details”: "optional additional details on failure reason etc."
+        },
+    ],
+} 
+ 		</codeblock>
+ 		
+ 	</section>
+ 	
+ </conbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:6;11:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/cluster-wide-info.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="concept" xtrc="topicref:1;5:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cbcollect-info/cluster-wide-info.ditamap" href="../../../Features/cbcollect-info/topics/cluster-wide-info-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Cluster-wide diagnostics</linktext><?ditaot genshortdesc?><desc class="- topic/desc "> The Couchbase support team uses logs and other system diagnostics to analyze customer 		issues. </desc></link></linkpool></related-links>
+</concept>

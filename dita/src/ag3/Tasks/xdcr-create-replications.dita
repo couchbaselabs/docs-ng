@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_ywf_5j4_14">
+    <title>Creating replications</title>
+    <shortdesc>After references to the source and destination clusters are created, replication can be created 
+        between the clusters.</shortdesc>
+    <taskbody>
+        <context>
+            <p>After replication has been configured and started, view current status
+                and list of replications in the <uicontrol>Ongoing Replications</uicontrol> section.</p>
+            <fig><image href="../images/xdcr-cluster-monitor.png" width="720"/> </fig>
+            <fig><image href="../images/create_xdcr_rep2.2.png" width="720"/></fig>
+        </context>
+        <steps>
+            <step><cmd>Click <uicontrol>Create Replication</uicontrol> to configure a new XDCR replication. A panel
+                appears where you can configure a new replication from source to destination cluster.</cmd></step>
+            <step><cmd>In the <uicontrol>Replicate changes from</uicontrol> section select a from the current
+                cluster that is to be replicated. This is your source bucket.</cmd></step>
+            <step><cmd>In the <uicontrol>To</uicontrol> section, select a destination cluster and enter a bucket
+                name from the destination cluster:</cmd> </step>
+            <step><cmd>Click the <codeph>Replicate</codeph> button to start the replication process.</cmd></step>
+        </steps>
+        
+    </taskbody>
+</task>

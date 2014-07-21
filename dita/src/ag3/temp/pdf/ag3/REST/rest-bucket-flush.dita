@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2365" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="title:1;5:10">Flushing buckets</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="shortdesc:1;6:14">To flush all buckets, use the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeph:1;6:52">POST</codeph> operation with the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeph:2;6:93">/pools/default/buckets/default/controller/doFlush</codeph> URI.</shortdesc>
+  
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="body:1;8:9">
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:1;10:8">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeph:3;10:20">doFlush</codeph> operation empties the contents of the specified bucket, deleting
+      all stored data. The operation only succeeds if flush is enabled on configured bucket. The
+      format of the request is the URL of the REST endpoint using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeph:4;12:79">POST</codeph> HTTP
+      operation:</p>
+    
+    <note type="warning" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="note:1;15:26">This operation is data destructive. The service makes no attempt to confirm or double check
+      the request. Client applications using this are advised to double check with the end user
+      before sending such a request. You can control and limit the ability to flush individual
+      buckets by setting the `flushEnabled` parameter on a bucket in Couchbase Web Console or via
+      `cbepctl flush_param`. </note>
+
+
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeblock:1;22:16">http://localhost:8091/pools/default/buckets/default/controller/doFlush
+</codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:2;24:8">For example, using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeph:5;24:35">curl</codeph> :</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeblock:2;25:16">
+curl -X POST 'http://admin:password@localhost:8091/pools/default/buckets/default/controller/doFlush'
+  </codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:3;28:8">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="i:1;28:23">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="i:2;28:37">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="i:3;28:58">localhost</i> values in the above example
+      with your actual values.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:4;30:8">Equivalent HTTP protocol request:</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeblock:3;32:16">POST /pools/default/buckets/default/controller/doFlush
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+    </codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:5;36:8">Parameters and payload data are ignored, but the request must including the authorization
+      header if the system has been secured.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:6;38:8">If flushing is disable for the specified bucket, a 400 response will be returned with the
+      bucket status:</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeblock:4;41:16">{"_":"Flush is disabled for the bucket"}</codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:7;42:8">If the flush is successful, the HTTP response code is <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeph:6;42:70">200</codeph> :</p>
+    
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeblock:5;44:16">HTTP/1.1 200 OK</codeblock>
+
+    <note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="note:2;46:28"> The flush request may lead to significant disk activity as the data in the bucket is deleted
+      from the database. The high disk utilization may affect the performance of your server until
+      the data has been successfully deleted. </note>
+    
+    <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="note:3;50:23">The flush request is not transmitted over XDCR replication configurations; the remote bucket
+      will not be flushed. </note>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="p:8;52:8">Couchbase Server returns a HTTP 404 response if the URI is invalid or if it does not
+      correspond to an active bucket in the system.</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-bucket-flush.dita" xtrc="codeblock:6;54:16">404 Not Found
+</codeblock>
+
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:35;42:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:27;34:47" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-bucket-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Buckets REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The bucket management and configuration REST API endpoints provide a fine level of     control over the individual buckets in the cluster, their configuration, and specific     operations.</desc></link></linkpool></related-links>
+</topic>

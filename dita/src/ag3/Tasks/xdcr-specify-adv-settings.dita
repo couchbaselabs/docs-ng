@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_l3n_1g4_14">
+    <title>Specifying XDCR settings</title>
+    <shortdesc>When creating a new replication, advanced settings are modified (from the default) via <uicontrol>XDCR > Ongoing Replications > Create Replication</uicontrol>.</shortdesc>
+    <taskbody>
+        <context>
+            <p>To change the replication protocol for an existing XDCR replication, 
+                delete the replication and then re-create the replication with your preference.</p>
+        
+            <note type="note">How you adjust these variables differs based on what whether you want to
+                perform unidirectional or bidirectional replication between clusters. Other factors for
+                consideration include intensity of read/write operations on your clusters, the rate of disk
+                persistence on your destination cluster, and your system environment. Changing these parameters
+                impacts cluster performance and XDCR replication performance.</note>
+        </context>
+        <steps>
+            <step><cmd>Navigate to <uicontrol>XDCR > Ongoing Replications > Create Replication</uicontrol>.</cmd></step>
+            <step>
+                <cmd>In the <uicontrol>Create Replication</uicontrol> panel, click <uicontrol>Advanced Settings</uicontrol>.
+                    <image href="../images/create_rep_xdcr_advance2.2.png"/>
+                </cmd> </step>
+            <step>
+                <cmd>Under <uicontrol>Advanced settings</uicontrol>, choose an XDCR Protocol version. The XDCR
+                    protocol defaults to version 2.</cmd>
+            <choices> 
+                <choice>Version 1 uses the REST protocol for replication. This increases XDCR throughput at
+                    destination clusters. If the Elasticsearch plug-in used, choose
+                    version 1 because it depends on XDCR.</choice>
+                <choice>Version 2 uses memcached REST protocol for replication. It is a high-performance mode that
+                    directly uses the memcached protocol on destination nodes. Choose version 2 when setting up a
+                    new replication with Couchbase Server 2.2 or later.</choice>
+            </choices>
+            </step>
+            <step><cmd>Change the XDCR settings. These settings plus additional internal settings can be modified via
+                    the REST API.</cmd></step>
+            <step><cmd>Click <uicontrol>Replicate</uicontrol>.</cmd></step>
+            <step><cmd>After creating the replication or updating the setting, view or edit them by clicking
+                <uicontrol>Settings</uicontrol> in Outgoing Replications.</cmd></step>
+        </steps>
+        
+
+        
+        
+    </taskbody>
+    <related-links>
+        <linklist><title>Related topics</title>
+            <link href="xdcr-adv-settings.dita"></link>
+            <link href="../REST/rest-xdcr-intro.dita"></link>
+        </linklist>
+    </related-links>
+</task>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3413">
+	<title>Managing bucket flushes</title>
+	<body>
+		<p>By default, this setting appears in Couchbase Web Console and is disabled; when it is
+			enabled Couchbase Server is able to flush all the data in a bucket. <b>Be also aware
+				that this operation will be deprecated as a way to enable data bucket flushes.</b>
+			This is because <b>cbepctl</b> is designed for individual node configuration not
+			operating on data buckets shared by multiple nodes.</p>
+		<p><b>The preferred way to enable data bucket flush is either 1) Couchbase Web Console or
+				via 2) couchbase-cli</b>.</p>
+				<note type="warning">Flushing a bucket is data destructive. If you use **cbepctl**, it makes no attempt to
+			confirm or double check the request. Client applications using this are advised to
+			double check with the end user before sending such a request. You can control and limit
+			the ability to flush individual buckets by setting the `flushEnabled` parameter on a
+			bucket in Couchbase Web Console or via `cbepctl flush_param`. </note>
+		<p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that if
+			you want to perform this operation, you must specify the IP address of a node in the
+			cluster and a named bucket. If you do not provided a named bucket, the server will apply
+			the setting to any default bucket that exists at the specified node. If you want to
+			perform this operation for an entire cluster, you will need to perform the command for
+			every node/bucket combination that exists for that cluster.</p>
+		<p>To enable flushing a data bucket:</p>
+		<codeblock><codeph>&gt; ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled true
+</codeph></codeblock>
+		<p>To disable flushing a data bucket:</p>
+		<codeblock><codeph>&gt; ./cbepctl hostname:port -b bucket_name -p bucket_password set flush_param flushall_enabled false
+</codeph></codeblock>
+		<p>You can initiate the flush via the REST API.</p>
+		
+		
+		<p>The complete list of options for <codeph>flush_param</codeph> are:</p>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Parameter</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>alog_sleep_time</entry>
+						<entry>Access scanner interval (minute)</entry>
+					</row>
+					<row>
+						<entry>alog_task_time</entry>
+						<entry>Access scanner next task time (UTC)</entry>
+					</row>
+					<row>
+						<entry>bg_fetch_delay</entry>
+						<entry>Delay before executing a bg fetch (test feature).</entry>
+					</row>
+					<row>
+						<entry>couch_response_timeout</entry>
+						<entry>timeout in receiving a response from CouchDB.</entry>
+					</row>
+					<row>
+						<entry>exp_pager_stime</entry>
+						<entry>Expiry Pager interval. Time interval that Couchbase Server waits
+							before it performs cleanup and removal of expired items from
+							disk.</entry>
+					</row>
+					<row>
+						<entry>flushall_enabled</entry>
+						<entry>Enable flush operation. <b>To be deprecated. Use <codeph>couchbase-cli --enable-flush</codeph>.</b></entry>
+					</row>
+					<row>
+						<entry>pager_active_vb_pcnt</entry>
+						<entry>Percentage of active vBuckets items among all ejected items by item pager.</entry>
+					</row>
+					<row>
+						<entry><b>max_size</b></entry>
+						<entry>Maximum memory used by the server.</entry>
+					</row>
+					<row>
+						<entry><b>mem_high_wat</b></entry>
+						<entry>Low water mark.</entry>
+					</row>
+					<row>
+						<entry><b>mem_low_wat</b></entry>
+						<entry>High water mark.</entry>
+					</row>
+					<row>
+						<entry><b>mutation_mem_threshold</b></entry>
+						<entry>Amount of RAM that can be consumed in that caching layer before
+							clients start receiving temporary out of memory messages.</entry>
+					</row>
+					<row>
+						<entry><b>timing_log</b></entry>
+						<entry>Path to log detailed timing stats. </entry>
+					</row>
+					<row>
+						<entry><b>warmup_min_memory_threshold</b></entry>
+						<entry>Memory threshold (%) during warmup to enable traffic.</entry>
+					</row>
+					<row>
+						<entry><b>warmup_min_item_threshold</b></entry>
+						<entry>Item number threshold (%) during warmup to enable traffic.</entry>
+					</row>
+					<row>
+						<entry><b>klog_compactor_queue_cap</b></entry>
+						<entry>queue cap to throttle the log compactor.</entry>
+					</row>
+					<row>
+						<entry><b>klog_max_log_size</b></entry>
+						<entry>maximum size of a mutation log file allowed.</entry>
+					</row>
+					<row>
+						<entry><b>klog_max_entry_ratio</b></entry>
+						<entry>max ratio of # of items logged to # of unique items.</entry>
+					</row>
+					
+					<row>
+						<entry><b>pager_unbiased_period</b></entry>
+						<entry>Period after last access scanner run during which item pager preserve
+							working set.</entry>
+					</row>
+					<row>
+						<entry><b>queue_age_cap</b></entry>
+						<entry>Maximum queue age before flushing data.</entry>
+					</row>
+					
+					<row>
+						<entry><b>max_txn_size</b></entry>
+						<entry>Maximum number of items in a flusher transaction.</entry>
+					</row>
+					<row>
+						<entry><b>min_data_age</b></entry>
+						<entry>Minimum data age before flushing data.</entry>
+					</row>
+					
+					
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+	<related-links>
+		<linklist><title>Related topics</title>
+			<link href="../CBcli/cbcli-buckets.dita"/>
+			<link href="../../REST/rest-bucket-flush.dita"/>
+			<link href="../../UI/ui-data-buckets.dita"/>
+			
+		</linklist>
+	</related-links>
+</topic>

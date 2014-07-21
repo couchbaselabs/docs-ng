@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Misc/?><?path2project ../?><reference xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="reference_tsb_3bl_q4" ditaarch:DITAArchVersion="1.2" domains="(topic reference)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic       reference/reference " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="reference:1;3:38">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="title:1;4:10">Starting and stopping Couchbase</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="shortdesc:1;5:14">Summary of starting and stopping Couchbase on Linux (RHEL and Ubuntu), Windows, and
+    Mac.</shortdesc>
+  <refbody class="- topic/body        reference/refbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="refbody:1;7:12">
+
+      <table frame="all" id="table_lcw_mfl_q4" class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="table:1;9:48">
+        <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="title:2;10:16">Starting and stopping Couchbase</title>
+        <tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="tgroup:1;11:26">
+        <colspec colname="col1" colnum="1" colwidth=".75*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="colspec:1;12:59"/>
+        <colspec colname="col2" colnum="2" colwidth="3.0*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="colspec:2;13:59"/>
+        <colspec colname="col3" colnum="3" colwidth="3.0*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="colspec:3;14:64"/>
+        <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="thead:1;15:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:1;16:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:1;17:20">Operating system</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:2;18:20">Start</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:3;19:20">Stop</entry>
+          </row>
+        </thead>
+        <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="tbody:1;22:16">
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:2;23:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:4;24:20">Linux</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:5;25:20">
+              <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="codeblock:1;26:26">sudo /etc/init.d/couchbase-server start</codeblock>
+            </entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:6;28:20">
+              <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="codeblock:2;29:26">sudo /etc/init.d/couchbase-server stop</codeblock>
+            </entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:3;32:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:7;33:20">Windows</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:8;34:20">
+              <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="codeblock:3;35:26">net start CouchbaseServer</codeblock>
+            </entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:9;37:20">
+              <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="codeblock:4;38:26">net stop CouchbaseServer</codeblock>
+            </entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:4;41:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:10;42:21"/>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:11;43:20">
+              <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="codeblock:5;44:26">C:\Program Files\Couchbase\Server\bin\service_start.bat</codeblock>
+            </entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:12;46:20">
+              <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="codeblock:6;47:26">C:\Program Files\Couchbase\Server\bin\service_stop.bat</codeblock>
+            </entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:5;50:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:13;51:21"/>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:14;52:20"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="uicontrol:1;52:31">Windows Task Manager &gt; Services &gt; CouchbaseServer service
+                (right-click) &gt; Start </uicontrol></entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:15;54:20"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="uicontrol:2;54:31">Windows Task Manager &gt; Services &gt; CouchbaseServer service
+                (right-click) &gt; Stop</uicontrol></entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:6;57:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:16;58:21"/>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:17;59:20"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="uicontrol:3;59:31">Start &gt; Run &gt; type Services.msc &gt; CouchbaseServer service
+                (right-click) &gt; Start</uicontrol></entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:18;61:20"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="uicontrol:4;61:31">Start &gt; Run &gt; type Services.msc &gt; CouchbaseServer service
+                (right-click) &gt; Stop</uicontrol></entry>
+          </row>
+          <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="row:7;64:16">
+            <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:19;65:20">Mac</entry>
+            <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:20;66:20">Double-click on the Couchbase application</entry>
+            <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="entry:21;67:20">From the Couchbase application, select <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Misc/start-stop-couchbase.dita" xtrc="uicontrol:5;67:70">Quit Couchbase
+                Server</uicontrol>.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+      </table>
+
+  </refbody>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:2;6:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Misc/admin-basics.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Administration basics</linktext></link></linkpool></related-links>
+</reference>

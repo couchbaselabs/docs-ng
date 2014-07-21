@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2096">
+ <title>Statistics and monitoring</title>
+ <shortdesc>A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.</shortdesc>
+ <body>
+  <p>In order to understand what your cluster is doing and how it is performing, Couchbase Server
+   incorporates a complete set of statistical and monitoring information. The statistics are
+   provided through all of the administration interfaces. Within the Web Administration Console, a
+   complete suite of statistics are provided, including built-in real-time graphing and performance
+   data.</p>
+  <p>The statistics are divided into a number of groups, allowing you to identify different states
+   and performance information within your cluster:</p>
+  <ul>
+   <li><b>By Node</b></li>
+  </ul>
+  <p>Node statistics show CPU, RAM and I/O numbers on each of the servers and across your cluster as
+   a whole. This information can be used to help identify performance and loading issues on a single
+   server.</p>
+  <ul>
+   <li><b>By vBucket</b></li>
+  </ul>
+  <p>The vBucket statistics show the usage and performance numbers for the vBuckets used to store
+   information in the cluster. These numbers are useful to determine whether you need to reconfigure
+   your buckets or add servers to improve performance.</p>
+  <ul>
+   <li><b>By View</b></li>
+  </ul>
+  <p>View statistics display information about individual views in your system, including the CPU
+   usage and disk space used so that you can monitor the effects and loading of a view on your
+   Couchbase nodes. This information may indicate that your views need modification or optimization,
+   or that you need to consider defining views across multiple design documents.</p>
+  <ul>
+   <li><b>By Disk Queues</b></li>
+  </ul>
+  <p>These statistics monitor the queues used to read and write information to disk and between
+   replicas. This information can be helpful in determining whether you should expand your cluster
+   to reduce disk load.</p>
+  <ul>
+   <li><b>By TAP Queues</b></li>
+  </ul>
+  <p>The TAP interface is used to monitor changes and updates to the database. TAP is used
+   internally by Couchbase to provide replication between Couchbase nodes, but can also be used by
+   clients for change notifications.</p>
+  <p>In nearly all cases the statistics can be viewed both on a whole of cluster basis, so that you
+   can monitor the overall RAM or disk usage for a given bucket, or an individual server basis so
+   that you can identify issues within a single machine.</p>
+ </body>
+</topic>

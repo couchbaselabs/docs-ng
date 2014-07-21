@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/UI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/ui/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic9763" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="topic:1;4:40">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="title:1;5:9">Data Buckets</title>
+ <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="body:1;6:8">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:1;7:6">Couchbase Server provides a range of statistics and settings through the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:1;7:87">Data
+    Buckets</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:2;8:34">Server Nodes</codeph>. These show overview and detailed information
+   so that administrators can better understand the current state of individual nodes and the
+   cluster as a whole.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:2;11:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:3;11:18">Data Buckets</codeph> page displays a list of all the configured buckets on your
+   system (of both Couchbase and memcached types). The page provides a quick overview of your
+   cluster health from the perspective of the configured buckets, rather than whole cluster or
+   individual servers.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:3;15:6">The information is shown in the form of a table, as seen in the figure below.</p>
+  
+    <image href="../images/web-console-data-buckets-overview.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="image:1;17:79"/>
+   
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:4;19:6">The list of buckets are separated by the bucket type. For each bucket, the following
+   information is provided in each column:</p>
+  <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:1;21:7">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:1;22:8"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:1;22:19">Bucket name</uicontrol> is the given name for the bucket. Clicking on the bucket name
+     takes you to the individual bucket statistics page. </li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:2;24:8"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:2;24:19">RAM Usage/Quota</uicontrol> shows the amount of RAM used (for active objects) against
+     the configure bucket size.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:3;26:8"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:3;26:19">Disk Usage</uicontrol> shows the amount of disk space in use for active object data
+     storage.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:4;28:8"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:4;28:19">Item Count</uicontrol> indicates the number of objects stored in the bucket.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:5;29:8"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:4;29:16">Ops/sec</codeph> shows the number of operations per second for this data
+     bucket.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:6;31:8"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:5;31:19">Disk Fetches/sec</uicontrol> shows the number of operations required to fetch items
+     from disk.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:7;33:8">Clicking the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:6;33:32">Bucket Name</uicontrol> opens the basic bucket information summary. </li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:8;34:8">Clicking the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:7;34:32">Documents</uicontrol> button will take you to a list of objects
+     identified as parseable documents.</li>
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:9;36:8">The <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:8;36:23">Views</uicontrol> button allows you to create and manage views on your stored
+     objects.</li>
+  </ul>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:5;39:6">To create a new data bucket, click the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:9;39:56">Create New Data Bucket</uicontrol>.</p>
+
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="section:1;42:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="title:2;42:19">Creating and editing data buckets</title>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:6;43:7">When creating a new data bucket, or
+    editing an existing one, you will be presented with the bucket configuration screen. From here
+    you can set the memory size, access control and other settings, depending on whether you are
+    editing or creating a new bucket, and the bucket
+    type.</p>
+  
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:7;49:6">You can create a new bucket in Couchbase Web
+    Console under the Data Buckets tab.</p>
+   <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ol:1;51:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:10;52:9">Click Data Buckets | Create New Data Bucket. You see the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:5;52:74">Create Bucket</codeph>
+     panel, as follows: <image href="../images/mrw_create_bucket.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="image:2;53:84"/></li>
+     
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:11;55:9">Select a name for the new bucket. 
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:8;56:9">The bucket name can only contain characters in range
+      A-Z, a-z, 0–9 as well as underscore, period, dash and percent symbols.</p>
+     <note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="note:1;58:23">Create a named bucket specifically for your application. Any default
+      bucket you initially set up with Couchbase Server should not be used for storing live
+      application data. The default bucket you create when you first install Couchbase Server should
+      be used only for testing.</note></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:12;62:9">Select a Bucket Type, either Memcached or Couchbase.
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:9;63:10">The options that appear in this panel differ based on the bucket
+      type.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:10;65:9">For <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:6;65:21">Couchbase</codeph> bucket type:</p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:2;66:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:13;67:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:1;67:14">Memory Size</b></li>
+     </ul>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:11;69:9">The amount of available RAM on this server which should be allocated to the bucket. Note
+      that the allocation is the amount of memory that will be allocated for this bucket on each
+      node, not the total size of the bucket across all nodes.</p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:3;72:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:14;73:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:2;73:14">Replicas</b></li>
+     </ul>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:12;75:9">For Couchbase buckets you can enable data replication so that the data is copied to other
+      nodes in a cluster. You can configure up to three replicas per bucket. If you set this to one,
+      you need to have a minimum of two nodes in your cluster and so forth. If a node in a cluster
+      fails, after you perform failover, the replicated data will be made available on a functioning
+      node. This provides continuous cluster operations in spite of machine failure. </p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:13;80:9">You can disable replication by deselecting the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:7;80:64">Enable</codeph> checkbox.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:14;81:9">You can disable replication by setting the number of replica copies to zero (0).</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:15;82:9">To configure replicas, Select a number in <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:8;82:59">Number of replica (backup) copies</codeph>
+      drop-down list.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:16;84:9">To enable replica indexes, Select the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:9;84:55">Index replicas</codeph> checkbox. Couchbase
+      Server can also create replicas of indexes. This ensures that indexes do not need to be
+      rebuilt in the event of a node failure. This will increase network load as the index
+      information is replicated along with the data.</p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:4;88:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:15;89:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:3;89:14">Disk Read-Write Concurrency</b></li>
+     </ul>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:17;91:9">Multiple readers and writers are supported to persist data onto disk. For earlier versions
+      of Couchbase Server, each server instance had only single disk reader and writer threads. By
+      default this is set to three total threads per data bucket, with two reader threads and one
+      writer thread for the bucket.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:18;95:9">For now, leave this setting at the default. In the future, when you create new data buckets
+      you can update this setting. </p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:5;97:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:16;98:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:4;98:14">Flush</b></li>
+     </ul>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:19;100:9">To enable the operation for a bucket, click the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:10;100:65">Enable</codeph> checkbox. Enable or
+      disable support for the Flush command, which deletes all the data in an a bucket. The default
+      is for the flush operation to be disabled.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:20;103:9">For <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:11;103:21">Memcached</codeph> bucket type:</p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:6;104:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:17;105:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:5;105:14">Memory Size</b></li>
+     </ul>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:21;107:9">The bucket is configured with a per-node amount of memory. Total bucket memory will change
+      as nodes are added/removed.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:22;109:9"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:6;109:12">Warning</b>: Changing the size of a memcached bucket will erase all the data in the
+      bucket and recreate it, resulting in loss of all stored data for existing buckets.</p>
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:7;111:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:18;112:11"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:7;112:14">Auto-Compaction</b></li>
+     </ul>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:23;114:9">Both data and index information stored on disk can become fragmented. Compaction rebuilds
+      the stored data on index to reduce the fragmentation of the data. </p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:24;116:9">You can opt to override the default auto compaction settings for this individual bucket.
+      Default settings are configured through the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:12;117:59">Settings</codeph> menu.  
+      If you override the default autocompaction settings, you can
+      configure the same parameters, but the limits will affect only this bucket.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:25;120:9">For either bucket type provide these two settings in the Create Bucket panel:</p>
+     
+     <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:8;122:10">
+      <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:19;123:11"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:10;123:22">Access Control</uicontrol>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:26;124:9">The access control configures the port clients use to communicate with the data bucket, and
+      whether the bucket requires a password.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:27;126:9">To use the TCP standard port (11211), the first bucket you create can use this port without
+      requiring SASL authentication. For each subsequent bucket, you must specify the password to be
+      used for SASL authentication, and client communication must be made using the binary
+      protocol.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:28;130:9">To use a dedicated port, select the dedicate port radio button and enter the port number you
+      want to use. Using a dedicated port supports both the text and binary client protocols, and
+      does not require authentication.</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:29;133:9">Note: When defining a port on a bucket, the server automatically starts up a copy of Moxi on
+      the servers, and exposes it on that port. This supports the ASCII memcached protocol. However,
+      Couchbase strongly recommend against using Moxi in this way. If needed, a client-side Moxi
+      should be installed on the application servers and have it connect to this bucket (whether it
+      is “port” or “password” doesn’t matter).</p>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:30;138:9">When defining a password on a bucket, it requires a client that supports the binary
+      memcached protocol with SASL (all Couchbase client libraries and client-side Moxi provide this
+      support). Defining a password on a bucket is the recommended approach.</p>
+      </li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:20;142:10"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:8;142:13">Flush</b>
+     <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:31;143:9">Enable or disable support for the Flush command, which deletes all the data in an a bucket.
+      The default is for the flush operation to be disabled. To enable the operation for a bucket,
+      select the Enable checkbox.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:21;146:9">Click <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:11;146:26">Create</uicontrol>.</li>
+     </ul>
+    </li>
+   </ol>
+  </section>
+
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="section:2;153:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="title:3;153:19">Editing Couchbase buckets</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:32;153:55">You can edit a number of settings for an
+    existing Couchbase bucket in Couchbase Web Console:</p>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:9;155:8">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:22;156:9"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:12;156:20">Access Control</uicontrol>, including the standard port/password or custom port
+      settings.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:23;158:9"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:13;158:20">Memory Size</uicontrol> can be modified providing you have unallocated space within
+      your Cluster configuration. You can reduce the amount of memory allocated to a bucket if that
+      space is not already in use.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:24;161:9"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:14;161:20">Auto-Compaction</uicontrol> settings, including enabling the override of the default
+      auto-compaction settings, and bucket-specific auto-compaction.</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:25;163:9"><uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:15;163:20">Flush</uicontrol> support. You can enable or disable support for the Flush
+      command.</li>
+   </ul>
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:33;166:7">The bucket name cannot be modified. To delete the configured bucket entirely, click the
+     <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:16;167:17">Delete</uicontrol>
+    button.</p></section>
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="section:3;170:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="title:4;170:19">Editing Memcached buckets</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:34;170:55">For Memcached buckets, you can modify the
+    following settings when editing an existing bucket:</p><ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="ul:10;171:64">
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:26;172:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:35;172:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:13;172:20">Access Control</codeph>, including the standard port/password or custom port
+      settings.</p></li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="li:27;174:9"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:36;174:12"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:14;174:20">Memory Size</codeph> can be modified providing you have unallocated RAM quota
+      within your Cluster configuration. You can reduce the amount of memory allocated to a bucket
+      if that space is not already in use.</p></li>
+   </ul><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:37;177:12">You can delete the bucket entirely by clicking the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="uicontrol:17;177:74">Delete</uicontrol>
+    button.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:38;178:19">You can empty a Memcached bucket of all the cached information that it stores by
+    using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:15;179:23">Flush</codeph> button.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:39;179:52"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="b:9;179:55">Warning</b>: Using the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:16;179:86">Flush</codeph>
+    button removes all the objects stored in the Memcached bucket. Using this button on active
+    Memcached buckets may delete important
+    information.</p></section>
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="section:4;183:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="title:5;183:19">Bucket information</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:40;183:48">You can obtain basic information about the status of
+    your data buckets by clicking on the drop-down next to the bucket name under the <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:17;184:94">Data
+     Buckets</codeph> page. The bucket information shows memory size, access, and replica
+    information for the bucket, as shown in the figure below.</p>
+   
+     <image href="../images/web-console-bucket-info.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="image:3;188:70"/>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="p:41;189:8">You can edit the bucket information by clicking the
+     <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/ui/ui-data-buckets.dita" xtrc="codeph:18;190:14">Edit</codeph> button within the bucket information display.</p></section>
+ </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:82;95:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:79;92:36" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase web console</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Couchbase web console is the main tool for managing the Couchbase environment.</desc></link><linkpool class="- topic/linkpool " xtrc="topicref:82;95:44" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:83;96:55" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-monitoring-statistics.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Monitoring statistics</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Within the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrc="uicontrol:1;6:35" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita">Data Bucket</uicontrol> tab, information and statistics about   bucketsand nodes is displayed for the entire Couchbase Server cluster. The information is   aggregated from all the server nodes within the configured cluster for the selected   bucket.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:84;97:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../UI/ui-document-editor.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Document viewer and editor</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The Document Viewer and Editor enables you to browse, view, and edit individual documents     stored in Couchbase Server buckets.</desc></link></linkpool></linkpool></related-links>
+</topic>

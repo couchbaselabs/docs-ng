@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_hdg_nkd_54">
+  <title>Couchbase 3.0 beta introduction</title>
+  <body>
+    <p>This documentation set is for the Couchbase Server 3.0 Beta.</p>
+    
+    <p>The documentation groups the new features in one section. 
+      Each feature section contains concepts or tasks, references to additional topics, 
+      and identifies topics that are impacted one way or another by the features. 
+      In some cases, existing topics may be modified or replaced.</p>
+    
+    <p>Until General Availability (GA), the documentation may and, most likely, will undergo 
+    significant updates and restructuring.</p>
+    
+    <p>PLEASE feel free to submit comments, requests, and suggestions to the 
+      Documentation Team at docs@couchbase.com.
+    </p>
+  </body>
+</topic>

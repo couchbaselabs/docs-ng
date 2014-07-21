@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1948"><title>Retrieving cluster information</title><body><p>One of the first ways to discover the URI endpoints for the REST API is to find
+the clusters available. For this you provide the Couchbase Server IP address,
+port number, and append ‘/pools’.</p><p><b>Example Request</b></p><codeblock><codeph>curl -u admin:password http://localhost:8091/pools
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
+with your actual values.</p><p>As a raw HTTP request:</p><codeblock><codeph>GET /pools
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeph></codeblock><p>The corresponding HTTP response contains a JSON document describing the cluster
+configuration:</p><codeblock><codeph>
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+
+
+{"pools": [
+            {
+            "name":"default",
+            "uri":"/pools/default",
+            "streamingUri":"/poolsStreaming/default"
+            }
+          ],
+          "isAdminCreds":false,
+          "uuid":"c25913df-59a2-4886-858c-7119d42e36ab",
+          "implementationVersion":"1.8.1-927-rel-enterprise",
+          "componentsVersion":
+             {
+             "ale":"8cffe61",
+             "os_mon":"2.2.6",
+             "mnesia":"4.4.19",
+             "inets":"5.6",
+             "kernel":"2.14.4",
+             "sasl":"2.1.9.4",
+             "ns_server":"1.8.1-927-rel-enterprise",
+             "stdlib":"1.17.4"}
+ }
+</codeph></codeblock><p>Couchbase Server returns only one cluster per group of systems and the cluster
+will typically have a default name.</p><p>Couchbase Server returns the build number for the server in
+<codeph>implementation_version</codeph>, the specifications supported are in the
+<codeph>componentsVersion</codeph>. While this node can only be a member of one cluster, there
+is flexibility which allows for any given node to be aware of other pools.</p><p>The Client-Specification-Version is optional in the request, but advised. It
+allows for implementations to adjust representation and state transitions to the
+client, if backward compatibility is desirable.</p></body></topic>

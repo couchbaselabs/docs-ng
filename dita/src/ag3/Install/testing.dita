@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3291">
+  <title>Testing Couchbase Server</title>
+  <body>
+    <p>Testing the connection to the Couchbase Server can be performed in a number of different
+      ways. Connecting to the node using the web client to connect to the admin console should
+      provide basic confirmation that your node is available. Using the
+        <codeph>couchbase-cli</codeph> command to query your Couchbase Server node will confirm that
+      the node is available.</p>
+    
+        <note type="note">The Couchbase Server web console uses the same port number as clients use when communicated
+      with the server. If you can connect to the Couchbase Server web console, administration and
+      database clients should be able to connect to the core cluster port and perform operations.
+      The Web Console will also warn if the console loses connectivity to the node. </note>
+    <p>To verify your installation works for clients, you can use either the
+        <codeph>cbworkloadgen</codeph> command, or <codeph>telnet</codeph>. The
+        <codeph>cbworkloadgen</codeph> command uses the Python Client SDK to communicate with the
+      cluster, checking both the cluster administration port and data update ports..</p>
+    <p>Using <codeph>telnet</codeph> only checks the Memcached compatibility ports and the memcached
+      text-only protocol. </p>
+    
+  
+    
+    
+  </body>
+</topic>

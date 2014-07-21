@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic998">
+  <title>Expiration</title>
+  <shortdesc>Each document stored in the database has an optional expiration value (TTL, time to live) 
+  that is used to automatically deleted items.</shortdesc>
+  <body>
+    <p>The expiration option can be used for data that has a limited life and could be automatically deleted. 
+    The expiration value is user-specified on a document basis at the point when the data is
+      stored. The expiration can also be updated when the data is updated or explicitly changed
+      through the Couchbase protocol. The expiration time can either be specified as a relative time
+      (for example, in 60 seconds) or absolute time (31st December 2012, 12:00pm).</p>
+    
+    <p>The default is no expiration, that is, the information is stored indefinitely.
+    Typical uses for an expiration value include web session data where the actively stored
+      information needs to be removed from the system once the user activity has stopped. With an
+      expiration value, the data times out and is removed from the system without being explicitly
+      deleted. This frees up RAM and disk for more active data.</p>
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../CLI/cbepctl-intro.dita"></link>
+    </linklist>
+  </related-links>
+</topic>

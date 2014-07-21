@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_abc_h5t_24">
+  <title>Read-write thread stats</title>
+  <shortdesc>The <codeph>cbstats</codeph> tools provides the status of read-write threads for buckets.</shortdesc>
+  <refbody>
+    <example><title>Example</title>
+
+      <p>View the status of this setting with
+        <codeph>cbstats</codeph> tools and the <codeph>workload</codeph> parameter.</p>
+      <codeblock>
+/opt/couchbase/bin/cbstats hostname:11210 -b bucket_name raw workload
+
+ ep_workload:num_readers: 3
+ ep_workload:num_shards:  3
+ ep_workload:num_writers: 2
+ ep_workload:policy:      Optimized for read data access
+</codeblock>
+      
+      <p>This result example indicates three reader threads and two writer threads on
+          <codeph>bucket_name</codeph> in the cluster at <codeph>hostname:11210</codeph>. The
+        vBucket map for the data bucket is grouped into multiple shards, where one read worker
+        accesses one of the shards. In this example, there is one reader for each of the three
+        shards. This report also shows that read data access is optimized because there are more
+        reader threads than writer threads for the bucket. </p>
+        
+      </example>
+        
+        
+        
+  </refbody>
+</reference>

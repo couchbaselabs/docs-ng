@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2365">
+  <title>Flushing buckets</title>
+  <shortdesc>To flush all buckets, use the <codeph>POST</codeph> operation with the <codeph>/pools/default/buckets/default/controller/doFlush</codeph> URI.</shortdesc>
+  
+  <body>
+    
+    <p>The <codeph>doFlush</codeph> operation empties the contents of the specified bucket, deleting
+      all stored data. The operation only succeeds if flush is enabled on configured bucket. The
+      format of the request is the URL of the REST endpoint using the <codeph>POST</codeph> HTTP
+      operation:</p>
+    
+    <note type="warning">This operation is data destructive. The service makes no attempt to confirm or double check
+      the request. Client applications using this are advised to double check with the end user
+      before sending such a request. You can control and limit the ability to flush individual
+      buckets by setting the <codeph>flushEnabled</codeph> parameter on a bucket in Couchbase Web Console or via
+      <codeph>cbepctl flush_param</codeph>. </note>
+
+
+    <codeblock>http://localhost:8091/pools/default/buckets/default/controller/doFlush
+</codeblock>
+    <p>For example, using <codeph>curl</codeph> :</p>
+    <codeblock>
+curl -X POST 'http://admin:password@localhost:8091/pools/default/buckets/default/controller/doFlush'
+  </codeblock>
+    <p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
+      with your actual values.</p>
+    <p>Equivalent HTTP protocol request:</p>
+    
+    <codeblock>POST /pools/default/buckets/default/controller/doFlush
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+    </codeblock>
+    <p>Parameters and payload data are ignored, but the request must including the authorization
+      header if the system has been secured.</p>
+    <p>If flushing is disable for the specified bucket, a 400 response will be returned with the
+      bucket status:</p>
+    
+    <codeblock>{"_":"Flush is disabled for the bucket"}</codeblock>
+    <p>If the flush is successful, the HTTP response code is <codeph>200</codeph> :</p>
+    
+    <codeblock>HTTP/1.1 200 OK</codeblock>
+
+    <note type="important"> The flush request may lead to significant disk activity as the data in the bucket is deleted
+      from the database. The high disk utilization may affect the performance of your server until
+      the data has been successfully deleted. </note>
+    
+    <note type="note">The flush request is not transmitted over XDCR replication configurations; the remote bucket
+      will not be flushed. </note>
+    <p>Couchbase Server returns a HTTP 404 response if the URI is invalid or if it does not
+      correspond to an active bucket in the system.</p>
+    <codeblock>404 Not Found
+</codeblock>
+
+  </body>
+</topic>

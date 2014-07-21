@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1116">
+    <title>Getting bucket configuration</title>
+    <shortdesc>To retrieve information about an existing bucket, 
+        use the <codeph>GET</codeph> operation with the <codeph>/pools/default/buckets/bucketName</codeph> URI.</shortdesc>
+    
+    <body>
+        <p>The main REST API bucket endpoint is ends with the bucket name.</p>
+        <p>Clients MUST use the nodes list from the bucket, not the pool to indicate which are the
+            appropriate nodes to connect to.</p>
+
+        <codeblock><codeph>GET /pools/default/buckets/bucketName
+</codeph></codeblock>
+        <codeblock><codeph>HTTP/1.1 200 OK
+Content-Type: application/com.couchbase.store+json
+Content-Length: nnn
+{
+    "name" : "Another bucket",
+    "bucketRules" :
+    {
+        "cacheRange" :
+        {
+            "min" : 1,
+            "max" : 599
+        },
+        "replicationFactor" : 2
+    }
+    "nodes" : [
+        {
+            "hostname" : "10.0.1.20",
+            "uri" : "/addresses/10.0.1.20",
+            "status" : "healthy",
+            "ports" :
+            {
+                "routing" : 11211,
+                "kvcache" :1
+            }
+        },
+        {
+            "hostname" : "10.0.1.21",
+            "uri" : "/addresses/10.0.1.21",
+            "status" : "healthy",
+            "ports" :
+            {
+                "routing" : 11211,
+                "kvcache" :1
+            }
+        }
+    ]
+}
+</codeph></codeblock>
+
+    </body>
+</topic>

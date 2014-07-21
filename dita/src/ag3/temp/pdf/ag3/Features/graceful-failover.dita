@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Features/?><?path2project ../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="concept_gvw_zsp_yn" ditaarch:DITAArchVersion="1.2" domains="(topic concept)                            (topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic concept/concept " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="concept:1;3:34">
+ <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="title:1;4:9">Graceful failover</title>
+ <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="shortdesc:1;5:13">Graceful failover waits until data persists to disk and replica are up-to-date before failing over the server node.</shortdesc>
+ <conbody class="- topic/body  concept/conbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="conbody:1;6:11">
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="p:1;7:6">When adding a node to a cluster, the option is to specify either <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="codeph:1;7:79">delta</codeph> or <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="codeph:2;7:105">full</codeph>.</p>
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="p:2;8:6">By default, when Failover is selected from the Web Console, a graceful failover is performed.</p>
+  
+
+  <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="p:3;11:6">In a graceful failover, a new replica is created on another node in the cluster, all of the
+   data on a node that needs to be failed over is transferred to the replica, and then is the node
+   removed from the cluster. This means that there is no data loss window. Once a new node is added
+   to the cluster, the rebalance operation moves only the removed node's data to the newly added
+   node.</p>
+   
+   <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="p:4;17:7">However, a hard failover option is available in case the node is in a bad state. Hard failover
+   immediately removes a node from the cluster which can lead to data loss. Auto-failover behavior
+   is a hard failover.</p>
+   
+   <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="section:1;21:13"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="title:2;21:20">Failover behavior</title>
+    
+    <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="ul:1;23:9">
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="li:1;24:10">When a node is added back to the cluster after a graceful failover has been performed, 
+      the new node receives the vBuckets that existed on the old node. Rebalancing is optimized.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="li:2;26:10">Topology changes after a graceful failover causes a full rebalance in when a node is added back. Rebalancing is not optimized.</li>
+     <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="li:3;27:10">A hard failover after a graceful failover causes a full rebalance in when a node is added back. Rebalancing is not optimized.</li>
+    </ul>
+   
+   
+   
+   </section>
+  
+  
+  
+  <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="section:2;36:12">
+   <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="title:3;37:11">Impacted documentation</title>
+   <ul class="- topic/ul " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="ul:2;38:8">
+   <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="li:4;39:8">Failover</li>
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="li:5;40:9">Rebalance</li> 
+    <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="li:6;41:9">Swap rebalance</li>
+   </ul>
+  </section>
+  
+  
+ </conbody>
+ 
+ <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="related-links:1;48:17"><linkpool class="- topic/linkpool " xtrc="topicref:15;22:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:1;5:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/features.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Couchbase 3.0 Features</linktext></link><linkpool class="- topic/linkpool " xtrc="topicref:15;22:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="task" xtrc="topicref:16;23:62" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/ui-task-failover-graceful.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Failing over gracefully (UI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc "/></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:17;24:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/cli-failover-graceful.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Failing over gracefully (CLI)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">By default, graceful failover is implemented with failing over a node from a cluster using      <codeph class="+ topic/ph pr-d/codeph " xtrc="codeph:1;6:13" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/cli-failover-graceful.dita">couchbase-cli failover</codeph>.</desc></link><link class="- topic/link " mapclass="- map/topicref " type="reference" xtrc="topicref:18;25:59" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/30Features.ditamap" href="../Features/rest-failover-graceful.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Failing over gracefully (REST API)</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Short reference description.</desc></link></linkpool></linkpool>
+  <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="linklist:1;49:13">
+   <link href="incremental-recovery.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Features/graceful-failover.dita" xtrc="link:1;50:44" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Delta node recovery</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Delta node recovery provides the option to specify whether the replacement server     node's disk is initialized or not. For a new server node, the disk is initialized (data is     removed) and re-populated. For the same server node, the disk is not initialized or     re-populated; the data buckets remain.</desc></link>
+
+  </linklist>
+ </related-links>
+</concept>

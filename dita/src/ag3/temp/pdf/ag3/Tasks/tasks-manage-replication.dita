@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic6877" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="topic:1;4:40">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="title:1;5:10">Handling replication</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="shortdesc:1;6:14">Data replication is distributed throughout the Couchbase cluster to prevent a single
+    point of failure. Data replication is configurable on a bucket-level and node-basis.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="body:1;8:9">
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:1;9:8">Within a Couchbase cluster, you have <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:1;9:48">replica data</i> which is a copy of an item at
+      another node. After writing an item to Couchbase Server, it makes a copy of this data from the
+      RAM of one node to another node. Distribution of replica data is handled in the same way as
+      active data; portions of replica data will be distributed around the Couchbase cluster onto
+      different nodes to prevent a single point of failure. Each node in a cluster will have
+        <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:2;14:12">replica data</i> and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:3;14:36">active data</i>.
+      
+      Replica data is the copy of data from another
+      node while active data is data that had been written by a client on that node.</p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:2;19:8">Replication of data between nodes is entirely peer-to-peer based; information will be
+      replicated directly between nodes in the cluster. There is no topology, hierarchy or
+      master-slave relationship between nodes in a cluster. When a client writes to a node in the
+      cluster, Couchbase Server stores the data on that node and then distributes the data to one or
+      more nodes within a cluster. The following shows two different nodes in a Couchbase cluster,
+      and illustrates how two nodes can store replica data for one another:</p>
+
+    <image href="../images/replica_backoff.png" width="500" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="image:1;26:62"/>
+
+
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:3;29:8">When a client application writes data to a node, that data will be placed in a replication
+      queue and then a copy will be sent to another node. The replicated data will be available in
+      RAM on the second node and will be placed in a disk write queue to be stored on disk at the
+      second node.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:4;33:8">Notice that a second node will also simultaneously handle both replica data and incoming
+      writes from a client. The second node will put both replica data and incoming writes into a
+      disk write queue. If there are too many items in the disk write queue, this second node can
+      send a <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:4;36:17">backoff message</i> to the first node. The first node will then reduce the rate at
+      which it sends items to the second node for replication. This can sometimes be necessary if
+      the second node is already handling a large volume of writes from a client application.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:5;39:8">If multiple changes occur to the same document waiting to be replicated, Couchbase Server is
+      able to <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:5;40:18">de-duplicate, or ‘de-dup’</i> the item; this means for the sake of efficiency, it
+      will only send the latest version of a document to the second node.</p>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:6;42:8">If the first node fails in the system the replicated data is still available at the second
+      node. Couchbase can serve replica data from the second node nearly instantaneously because the
+      second node already has a copy of the data in RAM; there is no need for the data to be copied
+      over from the failed node or to be fetched from disk. Once replica data is enabled at the
+      second node, Couchbase Server updates a map indicating where the data should be retrieved, and
+      the server shares this information with client applications. Client applications can then get
+      the replica data from the functioning node.</p>
+
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="section:1;50:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="title:2;50:21">Providing data replication</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:7;50:58">You can configure data replication for each
+        bucket in cluster. You can also configure different buckets to have different levels of data
+        replication, depending how many copies of your data you need. For the highest level of data
+        redundancy and availability, you can specify that a data bucket will be replicated three
+        times within the cluster.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:8;54:41">Replication is enabled once the number of nodes in your
+        cluster meets the number of replicas you specify. For example, if you configure three
+        replicas for a data bucket, replication will only be enabled once you have four nodes in the
+        cluster.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:9;57:24">Note</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:10;57:35">After you specify the number of replicas you want for a bucket and
+        then create the bucket, you cannot change this value. Therefore be certain you specify the
+        number of replicas you truly want.</p>
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="section:2;62:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="title:3;62:21">Specifying backoff for replication</title>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:11;64:10">Your cluster is set up to perform
+        some level of data replication between nodes within the cluster for any given node. Every
+        node will have both <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:6;66:32">active data</i> and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="i:7;66:55">replica data</i>. Active data is all the data
+        that had been written to the node from a client, while replica data is a copy of data from
+        another node in the cluster. Data replication enables high availability of data in a
+        cluster. Should any node in cluster fail, the data will still be available at a
+        replica.</p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:12;72:10">On any give node, both active and replica data must wait in a disk write
+        queue before being written to disk. If you node experiences a heavy load of writes, the
+        replication queue can become overloaded with replica and active data waiting to be
+        persisted.</p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:13;77:10">By default a node will send backoff messages when the disk write queue on
+        the node contains one million items or 10%. When other nodes receive this message, they will
+        reduce the rate at which they send replica data. You can configure this default to be a
+        given number so long as this value is less than 10% of the total items currently in a
+        replica partition. For instance if a node contains 20 million items, when the disk write
+        queue reaches 2 million items a backoff message will be sent to nodes sending replica data.
+        You use the Couchbase command-line tool, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="codeph:1;83:58">cbepctl</codeph> to change this
+        configuration:</p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:14;86:10">In the following example, a node sends replication backoff requests when it has two
+        million items or 10% of all items, whichever is greater.</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="codeblock:1;89:18">&gt; ./cbepctl 10.5.2.31:11210 -b bucket_name -p bucket_password set tap_param tap_throttle_queue_cap 2000000
+</codeblock>
+      
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:15;93:10">In the following example, the default percentage, used to manage the replication stream, is changed.
+        If the items in a disk write queue reach the greater of this percentage or a specified
+        number of items, replication requests slow down:</p>
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="codeblock:2;96:18">setting param: tap_throttle_queue_cap 2000000
+</codeblock>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:16;99:10">In the following example, the threshold is set to 15% of all items at a replica node. 
+        When a disk write queue on a node reaches this point, it sends replication backoff requests to other
+        nodes.</p>
+      
+      <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="codeblock:3;103:18">&gt; ./cbepctl  10.5.2.31:11210 set -b bucket_name tap_param tap_throttle_cap_pcnt 15
+</codeblock>
+      
+      <note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="note:1;106:30">Be aware that this tool is a per-node, per-bucket operation. That means
+        that if you want to perform this operation, you must specify the IP address of a node in the
+        cluster and a named bucket. If you do not provided a named bucket, the server applies the
+        setting to any default bucket that exists at the specified node. If you want to perform this
+        operation for an entire cluster, perform the command for every node/bucket combination that
+        exists for that cluster.</note>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="p:17;112:10"> You can also monitor the progress of this backoff operation in Couchbase Web Console under
+        Tap Queue Statistics | back-off rate. </p>
+    </section>
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="related-links:1;116:18"><linkpool class="- topic/linkpool " xtrc="topicref:41;50:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:34;42:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-common.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Common administrative tasks</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="linklist:1;117:15">
+      <link href="tasks-nodeFailover.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="link:1;118:44" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Failing over nodes</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Failing over a node means that Couchbase Server removes the node from a cluster and     makes replicated data at other nodes available for client requests.</desc></link>
+      <link href="tasks-rebalance.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="link:2;119:42" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Rebalancing</linktext></link>
+      <link href="../UI/ui-data-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="link:3;120:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Data Buckets</linktext></link>
+      <link href="../CLI/cbepctl-intro.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="link:4;121:47" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbepctl tool</linktext></link>
+      <link href="../CLI/CBepctl/cbepctl-diskwritequeue.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="link:5;122:64" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Changing disk write queue quotas</linktext></link>
+      <link href="../UI/ui-monitoring-statistics.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-manage-replication.dita" xtrc="link:6;123:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Monitoring statistics</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Within the <uicontrol class="+ topic/ph ui-d/uicontrol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/UI/ui-monitoring-statistics.dita" xtrc="uicontrol:1;6:35">Data Bucket</uicontrol> tab, information and statistics about   bucketsand nodes is displayed for the entire Couchbase Server cluster. The information is   aggregated from all the server nodes within the configured cluster for the selected   bucket.</desc></link>
+    </linklist>
+
+  </related-links>
+
+
+
+</topic>

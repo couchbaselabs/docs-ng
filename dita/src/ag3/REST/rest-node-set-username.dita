@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_bwf_w3f_q4">
+  <title>Setting usernames and passwords</title>
+  <shortdesc>Usernames and passwords can be set at any time, however, it is typically the last step
+    twhen adding a node into a new cluster. </shortdesc>
+  <refbody>
+
+    <section><title>HTTP method and URI</title>
+      <p>The response indicates the new base URI if the parameters are valid. 
+        Clients generally send a new request for cluster information based on this response.</p>
+    <codeblock>      POST /settings/web</codeblock>
+      
+      
+    </section>
+    
+    
+    <section><title>HTTP request example</title>
+    <p>The raw HTTP request:</p>
+    
+    <codeblock>POST /settings/web HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Length: xx
+username=Administrator&amp;password=letmein&amp;port=8091
+</codeblock>
+    </section>
+    
+    <section><title>HTTP response</title>
+    <p>The corresponding HTTP response data:</p>
+    
+    <codeblock>HTTP/1.1 200 OK
+Content-Type: application/json
+Server: Couchbase Server 2.0
+Pragma: no-cache
+Date: Mon, 09 Aug 2010 18:50:00 GMT
+Content-Type: application/json
+Content-Length: 39
+Cache-Control: no-cache no-store max-age=0
+{"newBaseUri":"http://localhost:8091/"}
+</codeblock>
+      
+      <note type="note">The port number must be specified when username/password is updated.
+      </note>
+    </section>
+      
+      <section><title>Curl example</title>
+        <p>For example, using <codeph>curl</codeph>:</p>
+        
+        <codeblock>curl -u admin:password -d username=Administrator \
+-d password=letmein \
+-d port=8091 \
+http://localhost:8091/settings/web
+</codeblock>
+      </section>
+    
+    
+  </refbody>
+</reference>

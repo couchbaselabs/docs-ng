@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+ <title>Couchbase Plug-in for Sqoop</title>
+ <topicref href="couchsqoop.dita"/>
+ <topicref href="installation.dita"/>
+ <topicref href="using-sqoop.dita">
+  <topicref href="tables.dita"/>
+  <topicref href="connect_string.dita"/>
+  <topicref href="importing.dita"/>
+  <topicref href="exporting.dita"/>
+  <topicref href="list_table.dita"/>
+  <topicref href="import_all_tables.dita"/>
+  <topicref href="limitations.dita"/>
+ </topicref>
+ <topicref href="internals.dita"/>
+</map>

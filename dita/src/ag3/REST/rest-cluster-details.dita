@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3822">
+    <title>Viewing cluster details</title>
+    <body>
+        <p>At the highest level, the response for this request describes a cluster, as mentioned
+            previously. The response contains a number of properties which define attributes of the
+            cluster and <i>controllers</i> which enable you to make certain requests of the
+            cluster.</p>
+        
+        <note type="warning"> Since buckets could be renamed and there is no way to determine the name for the default
+            bucket for a cluster, the system attempts to connect non-SASL, non-proxied to a bucket
+            named "default". If it does not exist, Couchbase Server drops the connection. </note>
+        <p>Do not rely on the node list returned by this request to connect to a Couchbase Server.
+            Instead, issue an HTTP Get call to the bucket to get the node list for that specific
+            bucket.</p>
+        <codeblock><codeph>GET /pools/default
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+</codeph></codeblock>
+        <codeblock><codeph>
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+{
+    "name":"default",
+    "nodes":[{
+
+        "hostname":"10.0.1.20",
+
+        "status":"healthy",
+        "uptime":"14",
+        "version":"1.6.0",
+        "os":"i386-apple-darwin9.8.0",
+        "memoryTotal":3584844000.0,
+        "memoryFree":74972000,
+        "mcdMemoryReserved":64,
+        "mcdMemoryAllocated":48,
+        "ports":{
+
+            "proxy":11213,
+            "direct":11212
+        },
+        "otpNode":"ns_1@localhost",
+        "otpCookie":"fsekryjfoeygvgcd",
+        "clusterMembership":"active"
+    }],
+    "storageTotals":{
+
+        "ram":{
+            "total":2032558080,
+            "used":1641816064
+
+        },
+        "hdd":{
+            "total":239315349504.0,
+            "used": 229742735523.0
+        }
+    },
+    "buckets":{
+
+        "uri":"/pools/default/buckets"
+    },
+    "controllers":{
+        "ejectNode":{
+            "uri":"/pools/default/controller/ejectNode"
+        },
+        "addNode":{
+
+
+            "uri":"/controller/addNode"
+        },
+        "rebalance":{
+
+
+            "uri":"/controller/rebalance"
+        },
+        "failover":{
+
+
+            "uri":"/controller/failOver"
+        },
+        "reAddNode":{
+
+
+            "uri":"/controller/reAddNode"
+        },
+        "stopRebalance":{
+
+
+            "uri":"/controller/stopRebalance"
+        }
+    },
+    "rebalanceProgress":{
+
+
+        "uri":"/pools/default/rebalanceProgress"
+    },
+    "balanced": true,
+    "etag":"asdas123",
+    "initStatus":
+
+    "stats":{
+        "uri":"/pools/default/stats"
+    }
+}
+</codeph></codeblock>
+        <p>The controllers in this list all accept parameters as
+                <codeph>x-www-form-urlencoded</codeph>, and perform the following functions:</p>
+        <table>
+            <tgroup cols="2">
+                <colspec colname="col1"/>
+                <colspec colname="col2"/>
+                <thead>
+                    <row>
+                        <entry>Function</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>ejectNode</entry>
+                        <entry>Eject a node from the cluster. Required parameter: “otpNode”, the
+                            node to be ejected.</entry>
+                    </row>
+                    <row>
+                        <entry>addNode</entry>
+                        <entry>Add a node to this cluster. Required parameters: “hostname”, “user”
+                            and “password”. Username and password are for the Administrator for this
+                            node.</entry>
+                    </row>
+                    <row>
+                        <entry>rebalance</entry>
+                        <entry>Rebalance the existing cluster. This controller requires both
+                            “knownNodes” and “ejectedNodes”. This allows a client to state the
+                            existing known nodes and which nodes should be removed from the cluster
+                            in a single operation. To ensure no cluster state changes have occurred
+                            since a client last got a list of nodes, both the known nodes and the
+                            node to be ejected must be supplied. If the list does not match the set
+                            of nodes, the request will fail with an HTTP 400 indicating a mismatch.
+                            Note rebalance progress is available via the rebalanceProgress
+                            uri.</entry>
+                    </row>
+                    <row>
+                        <entry>failover</entry>
+                        <entry>Failover the vBuckets from a given node to the nodes which have
+                            replicas of data for those vBuckets. The “otpNode” parameter is required
+                            and specifies the node to be failed over.</entry>
+                    </row>
+                    <row>
+                        <entry>reAddNode</entry>
+                        <entry>The “otpNode” parameter is required and specifies the node to be
+                            re-added.</entry>
+                    </row>
+                    <row>
+                        <entry>stopRebalance</entry>
+                        <entry>Stop any rebalance operation currently running. This takes no
+                            parameters. </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </body>
+</topic>

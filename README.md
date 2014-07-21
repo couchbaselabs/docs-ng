@@ -1,5 +1,9 @@
 **docs-ng** is the official Couchbase documentation repository.
 
+# DO NOT CREATE BRANCHES IN THIS REPO
+
+Please DO NOT create branches in this repository. If you want to contribute, create your own fork, as described below under _How to Contribute Code_.
+
 About
 =====
 

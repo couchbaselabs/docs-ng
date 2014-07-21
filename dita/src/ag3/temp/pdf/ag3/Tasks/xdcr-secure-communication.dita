@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Tasks/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_oj3_rc4_14" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="title:1;4:10">Securing data communication</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="shortdesc:1;5:14">To ensure security for the replicated information, configure a suitable VPN
+    gateway between the two datacenters that encrypts the data between each route between
+    datacenters.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="body:1;8:9">
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="p:1;10:10">When configuring XDCR across multiple
+        clusters over public networks, the data is sent unencrypted across the public interface channel.
+        </p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="p:2;14:10">Within dedicated datacenters being used for Couchbase Server deployments, you
+        can configure a point to point VPN connection using a static route between the two clusters:</p>
+      <image href="../images/xdcr-vpn-static.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="image:1;16:51"/>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="p:3;18:10">When using Amazon EC2 or other cloud deployment solutions, particularly when using different
+        EC2 zones, there is no built-in VPN support between the different EC2 regional zones. However,
+        there is VPN client support for your cluster within EC2 and Amazon VPC to allow communication to
+        a dedicated VPN solution. </p>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="p:4;23:10">To support cluster to cluster VPN connectivity within EC2:</p> 
+      <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="ol:1;24:11">
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="li:1;25:13">Configure a multi-point BGP VPN solution that can route multiple VPN connections.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="li:2;26:13">Route the VPN connection from one EC2 cluster and region to the third-party BGP VPN router.</li>
+        <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="li:3;27:13">Route the VPN connection from the other region, 
+          using the BGP gateway to route between the two VPN connections.</li>
+      </ol> 
+      
+      <image href="../images/xdcr-vpn-bgp.png" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="image:2;31:48"/>
+      
+      
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="note:1;34:25">Configuration of these VPN routes and systems is dependent on your
+        VPN solution.</note>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="p:5;37:10">For additional security, configure your security groups to allow
+        traffic only on the required ports between the IP addresses for each cluster. To configure
+        security groups, specify the inbound port and IP address range. You will also
+        need to ensure that the security also includes the right port and IP addresses for the remainder
+        of your cluster to allow communication between the nodes within the cluster.</p>
+      
+      <note type="important" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/xdcr-secure-communication.dita" xtrc="note:2;43:30">When configuring your VPN connection, be sure that you route and secure all the ports in use by
+        the XDCR communication protocol, ports 8091 and 8092, on every node within the cluster at each
+        destination.</note>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:67;78:59" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:64;75:49" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Admin.ditamap" href="../Tasks/tasks-manage-xdcr.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Managing XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross datacenter replication (XDCR) provides an easy method of replicating data from one   cluster to another for disaster recovery as well as better data locality (getting data closer to   its users).</desc></link></linkpool></related-links>
+</topic>

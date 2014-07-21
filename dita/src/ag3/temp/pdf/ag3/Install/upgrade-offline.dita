@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_q11_1my_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="title:1;4:10">Offline upgrade</title>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="body:1;5:9">
+    
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:1;8:8">An offline upgrade must be well-planned and scheduled. 
+      For offline upgrades, you shut down your application first so that no more
+      incoming data arrives. Then you verify the disk write queue is 0 then shut down each node.
+      This way you know that Couchbase Server has stored all items onto disk from during shutdown.
+      You then perform an install of the latest version of Couchbase onto the machine. The
+      installer will automatically detect the files from the older install and convert them to the
+      correct format, if needed.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:2;14:40">Offline upgrades can take less time than online upgrades
+        because you can upgrade every node in the cluster at once. The cluster must be shut down for
+        the upgrade to take place. Both the cluster and all the applications built on it will not be
+        available during this time. </p><table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="table:1;17:48">
+          <tgroup cols="3" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="tgroup:1;18:28">
+            <colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="colspec:1;19:38"/>
+            <colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="colspec:2;20:38"/>
+            <colspec colname="col3" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="colspec:3;21:38"/>
+            <thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="thead:1;22:20">
+              <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="row:1;23:20">
+                <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:1;24:24">Feature</entry>
+                <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:2;25:24">Online Upgrades</entry>
+                <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:3;26:24">Offline Upgrades</entry>
+              </row>
+            </thead>
+            <tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="tbody:1;29:20">
+              <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="row:2;30:20">
+                <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:4;31:24">Applications Remain Available</entry>
+                <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:5;32:24">Yes</entry>
+                <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:6;33:24">No</entry>
+              </row>
+              <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="row:3;35:20">
+                <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:7;36:24">Cluster Stays in Operation</entry>
+                <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:8;37:24">Yes</entry>
+                <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:9;38:24">No</entry>
+              </row>
+              <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="row:4;40:20">
+                <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:10;41:24">Cluster must be Shutdown</entry>
+                <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:11;42:24">No</entry>
+                <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:12;43:24">Yes</entry>
+              </row>
+              <row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="row:5;45:20">
+                <entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:13;46:24">Time Required</entry>
+                <entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:14;47:24">Requires Rebalance, Upgrade, Rebalance per Node</entry>
+                <entry colname="col3" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="entry:15;48:24">All nodes in Cluster Upgraded at Once</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+    
+    <note type="remember" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="note:1;54:27">Before performing an upgrade, whether it is online or offline, backup your data.</note>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="section:1;56:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="title:2;56:21">Offline upgrade process</title>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:3;57:10">The offline upgrade process requires that all
+      the applications and the entire Couchbase Server cluster be shutdown. After shutting down
+      applications and nodes, perform the upgrade the software on each machine, and bring your
+      cluster and application back up again.</p>
+      
+      <note type="note" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="note:2;62:25">If you are upgrading from Couchbase
+        Server 1.8 to Couchbase Server 2.0 or higher, there are more steps for the upgrade because
+        you must first upgrade to Couchbase 1.8.1 for data compatibility.</note>
+      
+      <note type="tip" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="note:3;66:24">Check that the disk write queue is completely drained to ensure
+        all data has been persisted to disk and will be available after the upgrade. Couchbase
+        recommends that you turn off your application and allow the queue to drain before upgrading.
+        Couchbase also recommends all data be backed up before upgrading. </note>
+      
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:4;71:10">To perform an offline upgrade:</p>
+      
+      
+      <ol class="- topic/ol " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="ol:1;74:11">
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:1;75:17"><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:5;75:20">Under Settings | Auto-Failover, disable auto-failover for all nodes in the cluster.
+              If you leave this enabled, the first node that you shut down will be auto-failed-over.
+              </p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:2;78:17">Shut down your application, so that no more requests go to Couchbase Cluster.
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:6;79:18">You can monitor the activity of your cluster by using Couchbase Web Console. The
+                cluster needs to finish writing all information to disk. This will ensure that when you
+                restart your cluster, all of your data can be brought back into the caching layer from
+                disk. You can do this by monitoring the Disk Write Queue for every bucket in your
+                cluster. The disk write queue should reach zero; this means no data remains to be
+                written to disk.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:3;85:17">Open Web Console at a node in your cluster.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:4;86:17">Click Data Buckets | <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="i:1;86:41">your_bucket</i>. In the Summary section, check that
+              <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="codeph:1;87:23">disk write queue</codeph> reads 0. If you have more than one data bucket for
+              your cluster, repeat this step to check each bucket has a disk write queue of 0.
+                <fig class="- topic/fig " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="fig:1;89:22"><image href="../images/upgrade_disk_write_zero.png" width="720" placement="inline" class="- topic/image " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="image:1;89:86"/></fig></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:5;90:17">Create a backup of your cluster data using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="codeph:2;90:68">cbbackup</codeph>. </li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:6;91:17">Shutdown Couchbase Server on each machine in your cluster.</li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:7;92:17">After you shutdown your nodes, perform a standard node upgrade to the new version of
+              Couchbase Server. 
+              <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:7;94:18">Couchbase Server starts automatically on each node after you perform the node
+                upgrade.</p></li>
+            <li class="- topic/li " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="li:8;96:17">As the cluster warms up, you can monitor the status of the warmup process to
+              determine when you can switch on your application.</li>
+          </ol>
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:8;99:10">Once the cluster finishes warmup, you can re-enable your application on the upgraded
+            cluster.</p>
+    
+    </section>
+    
+    <section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="section:2;104:14"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="title:3;104:21">Offline upgrade to Enterprise Edition</title><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="p:9;104:69">Shutdown the
+      entire cluster, and uninstall Couchbase Server Community Edition from each machine. Then
+      install Couchbase Server Enterprise Edition. The data files will be retained, and the
+      cluster can be restarted.</p></section>
+    
+  </body>
+  <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="related-links:1;110:18"><linkpool class="- topic/linkpool " xtrc="topicref:31;47:50" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:29;44:42" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/upgrading.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Upgrading</linktext></link></linkpool>
+    <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="linklist:1;111:15">
+      <link href="../Tasks/tasks-backupRestore.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="link:1;112:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Backup and restore</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The predominant method for backing up and restoring data is using the CLI <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-backupRestore.dita" xtrc="codeph:1;6:96">cbbackup</codeph>    and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Tasks/tasks-backupRestore.dita" xtrc="codeph:2;7:15">cbrestore</codeph> tools.</desc></link>
+      <link href="../Concepts/concept-serverWarmup.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="link:2;113:58" type="concept"><?ditaot gentext?><linktext class="- topic/linktext ">Server warmup</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Whenever the Couchbase server is restarted or data is restored to a server instance, the   server undergoes a warmup process before data requests can be handled.</desc></link>
+      <link href="../Monitoring/monitor-warmup.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="link:3;114:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Monitoring startup (warmup)</linktext></link>
+      <link href="../Monitoring/monitor-diskqueue.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="link:4;115:57" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Disk write queue</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Disk writing is implemented as a 2-queue system: commit to DRAM and then queued to be written to disk</desc></link>
+      <link href="../CLI/cbbackup_tool.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="link:5;116:46" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">cbbackup tool</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbbackup_tool.dita" xtrc="codeph:1;6:27">cbbackup</codeph> tool creates a copy of data from an entire running cluster,       an entire bucket, a single node, or a single bucket on a single functioning node. Your node       or cluster needs to be functioning in order to create the backup. Couchbase Server will       write a copy of data onto disk.</desc></link>
+      <link href="../UI/ui-settings-autofailover.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/upgrade-offline.dita" xtrc="link:6;117:56" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Auto-Failover tab</linktext></link>
+    </linklist>
+  </related-links>
+</topic>

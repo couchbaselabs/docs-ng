@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_kxg_mns_24">
+    <title>Specifying read-write for new buckets</title>
+    <shortdesc>The number of readers and writer are typically set when creating a data bucket: 
+        <uicontrol>Data Buckets > Create New Data Bucket > Disk Read-Write Concurrency</uicontrol>.</shortdesc>
+    <taskbody>
+        <context>
+            <p>The number of readers and writers are typically specified (default: 3) when a new bucket is created. 
+            Although, the read-write setting can also be modified on existing buckets.</p>
+            <p>This default bucket is now ready to receive and serve requests. If  named
+                bucket is created, a similar status indicator displays next to the named bucket.</p>
+        </context>
+        
+        <steps>
+            <step>
+                <cmd>Under Data Buckets, click <uicontrol>Create New Data Bucket</uicontrol>.</cmd>
+                <info>A Configure Bucket panel appears where you can provide settings for the new
+                    bucket.</info>
+            </step>
+            <step>
+                <cmd>Under <uicontrol>Disk I/O Optimization</uicontrol>, specify the bucket disk I/O priority. Low
+                    (default) sets three (3) reader/writers and High allocates eight (8).</cmd>
+                <stepresult>
+                    <fig><image href="../images/mrw_setting_panel.png" width="500"></image></fig>
+                    </stepresult>
+            </step>
+            <step>
+                <cmd>Provide other bucket-level settings of your choice.</cmd></step>
+            <step>
+                <cmd>Click <uicontrol>Create</uicontrol>.</cmd>
+                    <stepresult>The new bucket displays with a yellow indicator while in warmup phase and 
+                        a green indicator after warmup is complete:
+                        <fig><image href="../images/mrw_bucket_warmup.png" width="500"></image></fig>
+                        <fig><image href="../images/mrw_bucket_ready2.png" width="500"></image></fig>
+                    </stepresult>
+            </step>
+        </steps>
+        
+    </taskbody>
+</task>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic543">
+  <title>Changing bucket authentication</title>
+  <shortdesc>To change bucket authentication use the <codeph>POST</codeph> operation with the 
+    <codeph>/pools/default/buckets/acache authType</codeph> URI.</shortdesc>
+  <body>
+    <p>Changing a bucket from port-based authentication to SASL authentication is achieved by
+      changing the active bucket configuration. </p>
+    <note type="note">When changing the active bucket configuration, specify the existing configuration
+      parameters and the changed authentication parameters in the request.</note>
+    
+    
+    <p><codeph>POST authType</codeph> is used with the <codeph>/pools/default/buckets/acache</codeph> URI.</p>
+    
+    <codeblock>
+curl -X POST -u admin:password -d ramQuotaMB=130 -d authType=sasl \
+  -d saslPassword=letmein \
+  http://localhost:8091/pools/default/buckets/acache
+</codeblock>
+    <p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, <i>130</i>, <i>letmein</i>, and
+        <i>acache</i> values in the above example with your actual values.</p>
+
+  </body>
+</topic>

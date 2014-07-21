@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1647">
+ <title>Administration basics</title>
+ <body>
+  <p>Couchbase administration is primarily supported through the following methods:</p>
+  
+  <ul>
+   <li>Web Console</li>
+   <li>Command-line interface</li>
+   <li>REST API</li>
+  </ul>
+  
+  <section><title>Accessing Couchbase Server directly</title>
+  <p>To access Couchbase Server and use the CLI or REST API directly, 
+   log into the server directly (depending on the operating system). 
+   To access Couchbase Server and use the Web Console, 
+   log into the server through a browser such as Firefox, Chrome, Safari, or Internet Explorer.</p>
+  </section>
+
+  
+  <section><title>Accessing Couchbase Server through a client</title>
+  <p>If you already have an application that uses the Memcached protocol then you can start using
+   your Couchbase Server immediately. If so, you can simply point your application to this server
+   like you would any other memcached server. No code changes or special libraries are needed, and
+   the application will behave exactly as it would against a standard memcached server. Without the
+   client knowing anything about it, the data is being replicated, persisted, and the cluster can be
+   expanded or contracted completely transparently.</p>
+  <p>If you do not already have an application, then you should investigate one of the available
+   Couchbase client libraries to connect to your server and start storing and retrieving
+   information.</p>
+  </section>
+  
+ </body>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="../Install/install-browsers.dita"/>
+   <link href="../CLI/cli-overview.dita"></link>
+   <link href="../REST/overview-rest-api.dita"></link>
+   <link href="../Concepts/bp-deployment-considerations.dita"></link>
+    <link href="http://www.couchbase.com/develop" scope="external" format="html">
+    <linktext>Couchbase SDKs</linktext>
+   </link>
+  </linklist>
+ </related-links>
+</topic>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/REST/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic8465" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="topic:1;4:40">
+    <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="title:1;5:12">Getting XDCR stats via REST</title>
+    <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="body:1;6:11">
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:1;7:12">You can get XDCR statistics from either Couchbase Web Console, or the REST API. You
+            perform all of these requests on a source cluster to get information about a destination
+            cluster. All of these requests use the UUID, a unique identifier for destination
+            cluster. You can get this ID by using the REST API if you do not already have it. The endpoints are as
+            follows:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:1;12:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:1;12:28">
+http://hostname:port/pools/default/buckets/[bucket_name]/stats/[destination_endpoint]
+
+# where a possible [destination endpoint] includes:
+
+# number of documents written to destination cluster via XDCR
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_written
+
+# size of data replicated in bytes
+replications/[UUID]/[source_bucket]/[destination_bucket]/data_replicated
+
+# number of updates still pending replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/changes_left
+
+# number of documents checked for changes
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_checked
+
+# number of checkpoints issued in replication queue
+replications/[UUID]/[source_bucket]/[destination_bucket]/num_checkpoints
+
+# number of checkpoints failed during replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/num_failedckpts
+
+# size of replication queue in bytes
+replications/[UUID]/[source_bucket]/[destination_bucket]/size_rep_queue
+
+# active vBucket replicators
+replications/[UUID]/[source_bucket]/[destination_bucket]/active_vbreps
+
+# waiting vBucket replicators
+replications/[UUID]/[source_bucket]/[destination_bucket]/waiting_vbreps
+
+# seconds elapsed during replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/time_committing
+
+# time working in seconds including wait time
+replications/[UUID]/[source_bucket]/[destination_bucket]/time_working
+
+# bandwidth used during replication
+replications/[UUID]/[source_bucket]/[destination_bucket]/bandwidth_usage
+
+# aggregate time waiting to send changes to destination cluster in milliseconds
+# weighted average latency for sending replicated changes to destination cluster
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_latency_aggr
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_latency_wt
+
+# Number of documents in replication queue
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_rep_queue
+
+# aggregate time to request and receive metadata about documents
+# weighted average time for requesting document metadata
+# XDCR uses this for conflict resolution prior to sending document into replication queue
+replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_aggr
+replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_wt
+
+# bytes replicated per second
+replications/[UUID]/[source_bucket]/[destination_bucket]/rate_replication
+# number of docs sent optimistically 
+replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:2;72:12">You need to provide properly URL-encoded
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:2;73:25">/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]</codeph>. To get
+            the number of documents written:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:2;75:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:3;75:28">curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Fdocs_written
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:3;77:12">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:1;77:27">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:2;77:41">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:3;77:58">localhost</i>,
+                <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:4;78:20">8ba6870d88cd72b3f1db113fc8aee675</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:5;78:61">source_bucket</i>, and
+                <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:6;79:20">destination_bucket</i> values in the above example with your actual values.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:4;80:12">The above command produces the following output:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:3;81:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:4;81:28">{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685106753,"interval":1000,
+"timestamp":[1371685048753,1371685049754,1371685050753,1371685051753,1371685052753,1371685053753,1371685054753,
+1371685055753,1371685056753,1371685057753,1371685058752,1371685059753,1371685060753,1371685061753,1371685062753,
+1371685063753,1371685064753,1371685065753,1371685066753,1371685067753,1371685068753,1371685069753,1371685070753,
+1371685071753,1371685072753,1371685073753,1371685074753,1371685075753,1371685076753,1371685077753,1371685078753,
+1371685079753,1371685080753,1371685081753,1371685082753,1371685083753,1371685084753,1371685085753,1371685086753,
+1371685087753,1371685088753,1371685089753,1371685090753,1371685091754,1371685092753,1371685093753,1371685094753,
+1371685095753,1371685096753,1371685097753,1371685098753,1371685099753,1371685100753,1371685101753,1371685102753,
+1371685103753,1371685104753,1371685105753,1371685106753],
+"nodeStats":{"127.0.0.1:8091":[1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000]}}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:5;96:12">This shows that XDCR transferred 1 million documents at each of the timestamps provided.
+            To get the rate of replication, make this REST request:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:4;98:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:5;98:28">curl -u admin:password http://localhost:8091/pools/default/buckets/default/stats/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fsource_bucket%2Fdestination_bucket%2Frate_replication
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:6;100:12">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:7;100:27">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:8;100:41">password</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:9;100:58">localhost</i>,
+                <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:10;101:20">8ba6870d88cd72b3f1db113fc8aee675</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:11;101:61">source_bucket</i>, and
+                <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:12;102:20">destination_bucket</i> values in the above example with your actual values.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:7;103:12">This will produce the following output:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:5;104:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:6;104:28">{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685006753,"interval":1000,
+"timestamp":[1371684948753,1371684949753,1371684950753,1371684951753,1371684952753,1371684953753,1371684954753,
+1371684955754,1371684956753,1371684957753,1371684958753,1371684959753,1371684960753,1371684961753,1371684962753,
+1371684963753,1371684964753,1371684965753,1371684966753,1371684967753,1371684968752,1371684969753,1371684970753,
+1371684971753,1371684972753,1371684973753,1371684974753,1371684975753,1371684976753,1371684977753,1371684978753,
+1371684979753,1371684980753,1371684981753,1371684982753,1371684983753,1371684984753,1371684985754,1371684986753,
+1371684987754,1371684988753,1371684989753,1371684990753,1371684991753,1371684992753,1371684993753,1371684994753,
+1371684995753,1371684996753,1371684997753,1371684998776,1371684999753,1371685000753,1371685001753,1371685002753,
+1371685003753,1371685004753,1371685005753,1371685006753],
+"nodeStats":{"127.0.0.1:8091":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:8;115:12">To get <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:7;115:27">docs_opt_repd</codeph> you first get the replication id for a source and
+            destination bucket. First get a list active tasks for a cluster:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:6;117:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:8;117:28">    curl -s -u admin:password \
+    http://localhost:8091/pools/default/tasks
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:9;120:12">Replace the <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:13;120:27">admin</i>, <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:14;120:41">password</i>, and <i class="+ topic/ph hi-d/i " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="i:15;120:62">localhost</i> values in the above
+            example with your actual values.</p>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:10;122:12">This will result in output as follows:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:7;123:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:9;123:28">    ....
+    "id": "def03dbf5e968a47309194ebe052ed21\/bucket_source\/bucket_destination", 
+    "source": "bucket_source",
+    "target":"\/remoteClusters\/def03dbf5e968a47309194ebe052ed21\/buckets\/bucket_name", 
+    "continuous": true, 
+    "type": "xdcr", 
+    ....
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:11;131:12">With this replication id you can get a sampling of stats for
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:10;132:25">docs_opt_repd</codeph>:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:8;133:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:11;133:28">http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
+replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destination%2fdocs_opt_repd 
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:12;136:12">This results in output similar to the following:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:9;137:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:12;137:28">    { 
+       "samplesCount":60, 
+       "isPersistent":true, 
+       "lastTStamp":1378398438975, 
+       "interval":1000, 
+       "timestamp":[ 
+          1378398380976, 
+          1378398381976,
+          ....
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:13;147:12">You can also see the incoming write operations that occur on a destination cluster due to
+            replication via XDCR. For this REST request, you need to make the request on your
+            destination cluster at the following endpoint:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:10;150:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:13;150:28">http://[Destination_IP]:8091/pools/default/buckets/[bucket_name]/stats
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:14;152:12">This returns results for all stats as follows. Within the JSON you find an array
+                <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:14;153:25">xdc_ops</codeph> and the value for this attribute will be the last sampling
+            of write operations on the destination due to XDCR:</p>
+        <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeblock:11;155:20"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="codeph:15;155:28">{
+.................
+"xdc_ops":[0.0,0.0,0.0,0.0,633.3666333666333,1687.6876876876877, \
+2610.3896103896104,3254.254254254254,3861.138861138861,4420.420420420421, \
+................
+}
+</codeph></codeblock>
+        <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="p:15;162:12">Many of these statistics are exposed in the Couchbase Web Console.</p>
+    </body>
+    <related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="related-links:1;164:20"><linkpool class="- topic/linkpool " xtrc="topicref:53;62:52" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:44;53:45" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST.ditamap" href="../REST/rest-xdcr-intro.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>XDCR REST API</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">Cross Datacenter Replication (XDCR) enables you to automatically replicate data between     clusters and between data buckets.</desc></link></linkpool>
+        <linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="linklist:1;165:19">
+            <link href="../UI/ui-data-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="link:1;166:54" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">Data Buckets</linktext></link>
+            <link href="../UI/ui-xdcr-panel.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/REST/rest-xdcr-statistics.dita" xtrc="link:2;167:52" type="topic"><?ditaot gentext?><linktext class="- topic/linktext ">XDCR</linktext><?ditaot genshortdesc?><desc class="- topic/desc ">The XDCR panel is used to create a remote cluster reference and specify replication.</desc></link>
+        </linklist>
+    </related-links>
+</topic>

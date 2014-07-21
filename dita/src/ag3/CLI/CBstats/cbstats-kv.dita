@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1196"><title>KV store stats</title><body><p>These provide various low-level stats and timings from the underlying KV
+storage system and useful to understand various states of the storage
+system.</p><p>The following stats are available for all database engine:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>open</entry>
+	<entry>Number of database open operations</entry>
+</row><row>
+	<entry>close</entry>
+	<entry>Number of database close operations</entry>
+</row><row>
+	<entry>readTime</entry>
+	<entry>Time spent in read operations</entry>
+</row><row>
+	<entry>readSize</entry>
+	<entry>Size of data in read operations</entry>
+</row><row>
+	<entry>writeTime</entry>
+	<entry>Time spent in write operations</entry>
+</row><row>
+	<entry>writeSize</entry>
+	<entry>Size of data in write operations</entry>
+</row><row>
+	<entry>delete</entry>
+	<entry>Time spent in delete() calls</entry>
+</row></tbody></tgroup></table><p>The following stats are available for the CouchStore database engine:</p><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
+	<entry>Stat</entry>
+	<entry>Description</entry>
+</row></thead><tbody><row>
+	<entry>backend_type</entry>
+	<entry>Type of backend database engine</entry>
+</row><row>
+	<entry>commit</entry>
+	<entry>Time spent in CouchStore commit operation</entry>
+</row><row>
+	<entry>commitRetry</entry>
+	<entry>Time spent in retry of commit operation</entry>
+</row><row>
+	<entry>numLoadedVb</entry>
+	<entry>Number of Vbuckets loaded into memory</entry>
+</row><row>
+	<entry>numCommitRetry</entry>
+	<entry>Number of commit retry</entry>
+</row><row>
+	<entry>lastCommDocs</entry>
+	<entry>Number of docs in the last commit</entry>
+</row><row>
+	<entry>failure_set</entry>
+	<entry>Number of failed set operation</entry>
+</row><row>
+	<entry>failure_get</entry>
+	<entry>Number of failed get operation</entry>
+</row><row>
+	<entry>failure_vbset</entry>
+	<entry>Number of failed vbucket set operation</entry>
+</row><row>
+	<entry>save_documents</entry>
+	<entry>Time spent in CouchStore save documents operation</entry>
+</row></tbody></tgroup></table></body></topic>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1398">
+ <title>Deployment considerations</title>
+ <shortdesc>Deployment configuration take into account topics such as restricted access, node
+  communication, swap configuration, and connection timeouts.</shortdesc>
+ <body>
+  <ul>
+   <li><b>Restricted access to Moxi ports</b> - Make sure that only trusted machines (including the other nodes in the cluster) can access the
+    ports that Moxi uses.</li>
+   <li><b>Restricted access to web console (port 8091)</b> - The web console is password protected. However, we recommend that you restrict access to port
+   8091; an abuser could do potentially harmful operations (like remove a node) from the web
+   console.</li>
+   <li><b>Node to Node communication on ports</b> - All nodes in the cluster should be able to communicate with each other on 11210 and 8091.</li>
+  <li><b>Swap configuration</b> - Swap should be configured on the Couchbase Server. This prevents the operating system from
+   killing Couchbase Server should the system RAM be exhausted. Having swap provides more options on
+   how to manage such a situation.</li>
+  <li><b>Idle connection timeouts</b> - Some firewall or proxy software will drop TCP connections if they are idle for a certain amount
+   of time (e.g. 20 minutes). If the software does not allow you to change that timeout, send a
+   command from the client periodically to keep the connection alive.</li>
+  <li><b>Port Exhaustion on Windows</b> - The TCP/IP port allocation on Windows by default includes a restricted number of ports
+   available for client communication.</li>
+  </ul>
+ </body>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" scope="external"
+    format="html">
+    <linktext>MSDN: Avoiding TCP/IP Port Exhaustion</linktext>
+   </link>
+  </linklist>
+ </related-links>
+</topic>

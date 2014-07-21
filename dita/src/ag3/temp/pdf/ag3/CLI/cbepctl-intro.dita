@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/CLI/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en-us" id="topic2697" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="topic:1;4:40">
+	<title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="title:1;5:9">cbepctl tool</title>
+	<body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="body:1;6:8">
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:1;7:6">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:1;7:18">cbepctl</codeph> command enables you to control many of the configuration,
+			RAM and disk parameters of a running cluster. This tool is for controlling the vBucket
+			states on a Couchbase Server node. It is also responsible for controlling the
+			configuration, memory and disk persistence behavior. This tool was formerly provided as
+			the separate tools, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:2;11:32">cbvbucketctl</codeph> and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:3;11:66">cbflushctl</codeph> in
+			Couchbase 1.8.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:2;13:6">Changes to the cluster configuration using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:4;13:57">cbepctl</codeph> are not persisted
+			over a cluster restart.</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="table:1;15:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tgroup:1;16:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:1;17:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:2;18:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="thead:1;19:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:1;20:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:1;21:14">Operating system</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:2;22:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:5;22:22">Location</codeph></entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tbody:1;25:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:2;26:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:3;27:14">Linux</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:4;28:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:6;28:22">/opt/couchbase/bin/cbepctl</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:3;30:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:5;31:14">Windows</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:6;32:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:7;32:22">C:\Program Files\Couchbase\Server\bin\cbepctl.exe</codeph></entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:4;34:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:7;35:14">Mac OS X</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:8;36:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:8;36:22">/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbepctl</codeph></entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:3;41:6"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="b:1;41:9">Be aware that this tool is a per-node, per-bucket operation.</b> That means that if
+			you want to perform this operation, you must specify the IP address of a node in the
+			cluster and a named bucket. If you do not provided a named bucket, the server will apply
+			the setting to any default bucket that exists at the specified node. If you want to
+			perform this operation for an entire cluster, you will need to perform the command for
+			every node/bucket combination that exists for that cluster.</p>
+		<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeblock:1;47:14"><codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:9;47:22">cbepctl host:11210 -b bucket_name -p bucket_password start
+cbepctl host:11210 -b bucket_name -p bucket_password stop
+cbepctl host:11210 -b bucket_name -p bucket_password set type param value
+</codeph></codeblock>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:4;51:6">For this command, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:10;51:32">host</codeph> is the IP address for your Couchbase cluster, or
+			node in the cluster. The port will always be the standard port used for cluster-wide
+			stats and is at <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:11;53:28">11210</codeph>. You also provide the named bucket and the
+			password for the named bucket. After this you provide command options and
+			authentication.</p>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:5;56:6">You can use the following command options to manage persistence:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="table:2;57:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tgroup:2;58:21">
+				<colspec colname="col1" colwidth="1*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:3;59:44"/>
+				<colspec colname="col2" colwidth="4.41*" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:4;60:47"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="thead:2;61:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:5;62:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:9;63:14">Option</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:10;64:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tbody:2;67:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:6;68:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:11;69:14">stop</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:12;70:14">Stop persistence</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:7;72:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:13;73:14">start</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:14;74:14">Start persistence</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:8;76:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:15;77:14">drain</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:16;78:14">Wait until queues are drained</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:9;80:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:17;81:14">set</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:18;82:14">To set <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:12;82:29">checkpoint_param</codeph>,
+								<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:13;83:17">flush_param</codeph>, and <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:14;83:51">tap_param</codeph>. This
+							changes how or when persistence occurs.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:6;89:6">You can use the following command options, combined with the parameters to set
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:15;90:13">checkpoint_param</codeph>, <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:16;90:48">flush_param</codeph>, and
+				<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:17;91:13">tap_param</codeph>. These changes the behavior of persistence in Couchbase
+			Server.</p>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="section:1;94:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="title:2;94:19">cbepctl set checkpoint_param</title>
+		<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:7;95:6">The command options for <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:18;95:38">checkpoint_param</codeph> are:</p>
+		<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="table:3;96:10">
+			<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tgroup:3;97:21">
+				<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:5;98:30"/>
+				<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:6;99:30"/>
+				<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="thead:3;100:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:10;101:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:19;102:14">Parameter</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:20;103:14">Description</entry>
+					</row>
+				</thead>
+				<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tbody:3;106:12">
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:11;107:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:21;108:14">chk_max_items</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:22;109:14">Max number of items allowed in a checkpoint.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:12;111:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:23;112:14">chk_period</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:24;113:14">Time bound (in sec.) on a checkpoint.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:13;115:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:25;116:14">item_num_based_new_chk</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:26;117:14">True if a new checkpoint can be created based on. the number of items
+							in the open checkpoint.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:14;120:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:27;121:14">keep_closed_chks</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:28;122:14">True if we want to keep closed checkpoints in memory, as long as the
+							current memory usage is below high water mark.</entry>
+					</row>
+					<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:15;125:11">
+						<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:29;126:14">max_checkpoints</entry>
+						<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:30;127:14">Max number of checkpoints allowed per vbucket. </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		</section>
+	
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="section:2;135:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="title:3;135:19">cbepctl set flush_param</title>
+			
+			<p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:8;137:7">The complete list of options for <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:19;137:48">flush_param</codeph> are:</p>
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="table:4;138:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tgroup:4;139:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:7;140:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:8;141:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="thead:4;142:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:16;143:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:31;144:15">Parameter</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:32;145:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tbody:4;148:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:17;149:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:33;150:15">alog_sleep_time</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:34;151:15">Access scanner interval (minute)</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:18;153:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:35;154:15">alog_task_time</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:36;155:15">Access scanner next task time (UTC)</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:19;157:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:37;158:15">bg_fetch_delay</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:38;159:15">Delay before executing a bg fetch (test feature).</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:20;161:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:39;162:15">couch_response_timeout</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:40;163:15">timeout in receiving a response from CouchDB.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:21;165:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:41;166:15">exp_pager_stime</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:42;167:15">Expiry Pager interval. Time interval that Couchbase Server waits
+								before it performs cleanup and removal of expired items from
+								disk.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:22;171:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:43;172:15">flushall_enabled</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:44;173:15">Enable flush operation. <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="b:2;173:42">To be deprecated. Use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:20;173:72">couchbase-cli --enable-flush</codeph>.</b></entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:23;175:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:45;176:15">pager_active_vb_pcnt</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:46;177:15">Percentage of active vBuckets items among all ejected items by item pager.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:24;179:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:47;180:15">max_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:48;181:15">Maximum memory used by the server.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:25;183:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:49;184:15">mem_high_wat</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:50;185:15">Low water mark.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:26;187:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:51;188:15">mem_low_wat</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:52;189:15">High water mark.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:27;191:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:53;192:15">mutation_mem_threshold</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:54;193:15">Amount of RAM that can be consumed in that caching layer before
+								clients start receiving temporary out of memory messages.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:28;196:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:55;197:15">timing_log</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:56;198:15">Path to log detailed timing stats. </entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:29;200:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:57;201:15">warmup_min_memory_threshold</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:58;202:15">Memory threshold (%) during warmup to enable traffic.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:30;204:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:59;205:15">warmup_min_item_threshold</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:60;206:15">Item number threshold (%) during warmup to enable traffic.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:31;208:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:61;209:15">klog_compactor_queue_cap</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:62;210:15">queue cap to throttle the log compactor.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:32;212:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:63;213:15">klog_max_log_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:64;214:15">maximum size of a mutation log file allowed.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:33;216:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:65;217:15">klog_max_entry_ratio</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:66;218:15">max ratio of # of items logged to # of unique items.</entry>
+						</row>
+						
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:34;221:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:67;222:15">pager_unbiased_period</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:68;223:15">Period after last access scanner run during which item pager preserve
+								working set.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:35;226:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:69;227:15">queue_age_cap</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:70;228:15">Maximum queue age before flushing data.</entry>
+						</row>
+						
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:36;231:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:71;232:15">max_txn_size</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:72;233:15">Maximum number of items in a flusher transaction.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:37;235:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:73;236:15">min_data_age</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:74;237:15">Minimum data age before flushing data.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+			<note type="warning" class="- topic/note " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="note:1;243:25">Flushing a bucket is data destructive. <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:9;243:67">By default, this setting for
+					enablng bucket flush appears in Couchbase Web Console and is disabled; when it
+					is enabled, Couchbase Server is able to flush all the data in a bucket. <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="b:3;245:81">Be
+						also aware that this operation will be deprecated as a way to enable data
+						bucket flushes.</b> This is because <b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="b:4;247:46">cbepctl</b> is designed for
+					individual node configuration not operating on data buckets shared by multiple
+					nodes.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:10;249:19">If you use <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:21;249:38">cbepctl</codeph>, it makes no attempt to confirm
+					or double check the request. Client applications using this are advised to
+					double check with the end user before sending such a request. You can control
+					and limit the ability to flush individual buckets by setting the
+						<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:22;253:15">flushEnabled</codeph> parameter on a bucket in Couchbase Web Console
+					or via <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="codeph:23;254:21">cbepctl flush_param</codeph>. </p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:11;254:58"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="b:5;254:61">Be aware that this tool
+						is a per-node, per-bucket operation.</b> That means that if you want to
+					perform this operation, you must specify the IP address of a node in the cluster
+					and a named bucket. If you do not provided a named bucket, the server will apply
+					the setting to any default bucket that exists at the specified node. If you want
+					to perform this operation for an entire cluster, you will need to perform the
+					command for every node/bucket combination that exists for that
+						cluster.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="p:12;261:22"><b class="+ topic/ph hi-d/b " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="b:6;261:25">The preferred way to enable data bucket flush is either 1)
+						Couchbase Web Console or via 2) couchbase-cli</b>.</p>
+			</note>
+			
+		
+		</section>
+		
+		<section class="- topic/section " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="section:3;268:12"><title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="title:4;268:19">cbepctl set tap_param</title>
+		
+			<table class="- topic/table " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="table:5;270:11">
+				<tgroup cols="2" class="- topic/tgroup " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tgroup:5;271:22">
+					<colspec colname="col1" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:9;272:31"/>
+					<colspec colname="col2" class="- topic/colspec " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="colspec:10;273:31"/>
+					<thead class="- topic/thead " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="thead:5;274:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:38;275:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:75;276:15">Parameter</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:76;277:15">Description</entry>
+						</row>
+					</thead>
+					<tbody class="- topic/tbody " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="tbody:5;280:13">
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:39;281:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:77;282:15">tap_keepalive</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:78;283:15">Seconds to hold a named tap connection.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:40;285:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:79;286:15">tap_throttle_queue_cap</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:80;287:15">Maximum disk write queue size to throttle tap streams (infinite means no cap).</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:41;289:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:81;290:15">tap_throttle_cap_pcnt</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:82;291:15">Percentage of total items in write queue at which we throttle tap input.</entry>
+						</row>
+						<row class="- topic/row " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="row:42;293:12">
+							<entry colname="col1" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:83;294:15">tap_throttle_threshold</entry>
+							<entry colname="col2" class="- topic/entry " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="entry:84;295:15">Percentage of memory in use to throttle tap streams</entry>
+						</row>
+						
+					</tbody>
+				</tgroup>
+			</table>
+		
+		</section>
+		
+	</body>
+	<related-links class="- topic/related-links " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="related-links:1;305:17"><linkpool class="- topic/linkpool " xtrc="topicref:12;17:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><linkpool class="- topic/linkpool " xtrc="topicref:12;17:43" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:13;18:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../CLI/CBepctl/cbepctl-thresholds.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Changing thresholds for ejection</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:14;19:56" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../CLI/CBepctl/cbepctl-accesslog.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Changing access log settings</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:15;20:58" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../CLI/CBepctl/cbepctl-diskcleanup.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Changing disk cleanup interval</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:16;21:61" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../CLI/CBepctl/cbepctl-diskwritequeue.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Changing disk write queue quotas</linktext></link><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:17;22:54" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI.ditamap" href="../CLI/CBepctl/cbepctl-timeout.dita" role="child"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Changing setting for out of memory errors</linktext></link></linkpool></linkpool>
+		<linklist class="- topic/linklist " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="linklist:1;306:13">
+			<link href="../CBcli/cbcli-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="link:1;307:46"/>
+			<link href="../../REST/rest-bucket-flush.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="link:2;308:52"/>
+			<link href="../../UI/ui-data-buckets.dita" class="- topic/link " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/CLI/cbepctl-intro.dita" xtrc="link:3;309:48"/>
+		</linklist>
+	</related-links>
+</topic>

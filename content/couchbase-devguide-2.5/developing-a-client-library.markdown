@@ -474,16 +474,16 @@ Couchbase Server stores all addresses for existing keys in a cluster is by
 providing a vBucket map. Your SDK will need to request a vBucket map from
 Couchbase Server and maintain an open connection for streaming updates from the
 server. Couchbase Server will provide vBucket maps and updates as JSON. To
-create an maintain such a connection, you can do a REST request from your SDK,
+create and maintain such a connection, you can do a REST request from your SDK,
 and Couchbase Server will send an initial vBucket Map and stream updates as
 needed.
 
-You should provide the appropriate REST endpoints your SDK as some initial
+You should provide the appropriate REST endpoints to your SDK as some initial
 configuration parameter specified in a developer's application. The client
 application should bootstrap the REST/JSON information by building URLs
 discovered from a standard base URL. After following the bootstrapping sequence
 and retrieving the URL for vBucket maps, your client library will have a
-REST/JSON URL appears as follows:
+REST/JSON URL that appears as follows:
 
 
 ```
@@ -693,8 +693,7 @@ Concurrently, your client library will be trying to do item data operations
 (Get/Set/Delete's) using its pre-Rebalance vBucket-to-server map. However, some
 vBuckets might have been migrated to a new server already. In this case, the
 server your client library was trying to use will return a NOT\_MY\_VBUCKET
-error response (as the server knows the vBucketId which your client library
-encoded into the request).
+error response.
 
 Your client library should handle that NOT\_MY\_VBUCKET error response by
 retrying the request against another server in the cluster. The retry, of
@@ -961,7 +960,7 @@ persisted or not. The following are possible values for `keystate` :
  * `0x81` : Logically deleted. Indicates an item is in RAM, but is not yet deleted
    from disk.
 
-It is important that you to understand the difference between 'not found' and
+It is important that you understand the difference between 'not found' and
 'logically deleted.' The context in which your SDK receives this message is
 important. If an SDK performs a write for a key and the key is not found, then
 the responses 'not found' and 'logically deleted' indicate the same state of a
@@ -1002,7 +1001,7 @@ elevate replicated data to an active state on another node. If you do not have
 automatic failover enabled, it may take even longer for human intervention and
 manual failover. Although clients can wait and retry a read, you may have a
 scenario where you cannot wait 30 seconds to detect node failure, perform
-failover and activate replicated data. For instance if you a SLA that requires
+failover and activate replicated data. For instance, if you have an SLA that requires
 you to get data within 30 seconds of a request or less, you may need replica
 read functionality. In this case you can use replica read at the binary protocol
 level or as it is available in Couchbase SDKs. For more information about node

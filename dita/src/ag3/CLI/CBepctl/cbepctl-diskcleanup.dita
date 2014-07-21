@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1303"><title>Changing disk cleanup interval</title><body><p>One of the most important use cases for the <codeph>cbepctl flush_param</codeph> is the set the
+time interval for disk cleanup. Couchbase Server does
+lazy expiration, that is, expired items are flagged as deleted rather than being
+immediately erased. Couchbase Server has a maintenance process that will
+periodically look through all information and erase expired items. This
+maintenance process will run every 60 minutes, but it can be configured to run
+at a different interval. For example, the following options will set the cleanup
+process to run every 10 minutes:</p><codeblock><codeph>./cbepctl localhost:11210 -b bucket_name -p bucket_password set flush_param exp_pager_stime 600
+</codeph></codeblock><p><b>Be aware that this tool is a per-node, per-bucket operation.</b> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p><p>Here we specify 600 seconds, or 10 minutes as the interval Couchbase Server
+waits before it tries to remove expired items from disk.</p></body></topic>

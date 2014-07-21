@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_e1d_lxf_q4">
+ <title>Rebalance effect on bucket types</title>
+ <shortdesc>The rebalance operation works across the cluster on both Couchbase and memcached buckets</shortdesc>
+ <conbody>
+  <p>There are differences in the rebalance operation for Couchbase and memcached buckets due to the inherent differences of the two bucket types.</p>
+  
+  <p>For Couchbase buckets:</p><ul>
+     <li>Data is rebalance across all the nodes in the cluster to match the new
+      configuration.</li>
+     <li>Updated vBucket map is communicated to clients as each vBucket is successfully
+      moved.</li>
+     <li>No data is lost, and there are no changes to the caching or availability of individual
+      keys.</li>
+    </ul>
+  
+  <p>For memcached buckets:</p>
+  <ul>
+     <li>If new nodes are being added to the cluster, the new node is added to the cluster, and
+      the node is added to the list of nodes supporting the memcached bucket data.</li>
+     <li>If nodes are being removed from the cluster, the data stored on that node within the
+      memcached bucket will be lost, and the node removed from the available list of nodes.</li>
+     <li>In either case, the list of nodes handling the bucket data is automatically updated and
+      communicated to the client nodes. Memcached buckets use the Ketama hashing algorithm which is
+      designed to cope with server changes, but the change of server nodes may shift the hashing and
+      invalidate some keys once the rebalance operation has completed.</li>
+    </ul>
+
+ </conbody>
+</concept>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic577"><title>Limitations</title><body><p>While Couchbase provides many great features to import and export data from
+Couchbase to Hadoop there is some functionality that the plugin doesn’t
+implement in Sqoop. Here’s a list of what isn’t implemented.</p><ul>
+<li><p>Querying: You cannot run queries on Couchbase. All tools that attempt to do this
+ will fail with a NotSupportedException.</p></li>
+<li><p>list-databases tool: Even though Couchbase is a multi-tenant system that allows
+ for multiple databases. There is no way of listing these databases from Sqoop.</p></li>
+<li><p>eval-sql tool: Couchbase doesn’t use SQL so this tool will not work.</p></li>
+</ul></body></topic>

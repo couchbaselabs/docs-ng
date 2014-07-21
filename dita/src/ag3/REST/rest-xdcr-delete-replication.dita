@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic801">
+  <title>Deleting XDCR replications</title>
+  <body>
+    <p>When you delete a replication, it stops replication from the source to the destination. If
+      you re-create the replication between the same source and destination clusters and buckets, it
+      XDCR will resume replication. To delete replication via REST API:</p>
+    <codeblock><codeph>curl -u admin:password1  \
+http://10.4.2.4:8091/controller/cancelXDCR/9eee38236f3bf28406920213d93981a3%2Fbeer-sample%2Fremote_beer  \
+-X DELETE
+</codeph></codeblock>
+    <p>Replace the <i>admin</i>, <i>password1</i>, <i>10.4.2.4</i>,
+        <i>9eee38236f3bf28406920213d93981a3</i>, <i>beer-sample</i>, and <i>remote_beer</i> values
+      in the above example with your actual values.</p>
+    <p>You use a URL-encoded endpoint which contains the unique document ID that references the
+      replication. You can also delete a replication using the Couchbase Web Console.</p>
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Tasks/xdcr-configure-replications.dita"/>
+    </linklist>
+  </related-links>
+</topic>

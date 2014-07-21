@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_cjv_ktf_q4">
+ <title>Rebalancing a cluster</title>
+ <shortdesc>Rebalancing a cluster involves marking nodes to be
+  added or removed from the cluster, and then starting the rebalance operation so that the data is
+  moved around the cluster to reflect the new structure.</shortdesc>
+ <conbody>
+
+   <note type="important">Until you complete
+    a rebalance, avoid using the failover functionality since it may result in loss of data that
+    has not yet been replicated. </note>
+   
+   <p>In the event of a failover situation, a rebalance is required to bring the cluster back
+     to a healthy state and re-enable the configured replicas.</p>
+  
+  <p>The Couchbase web console indicates when the cluster requires a rebalance
+    because the structure of the cluster has been changed, either through adding a node, removing a
+    node, or due to a failover. The notification is through the count of the number of servers that
+    require a rebalance. The following figure shows the <codeph>Manage Server Nodes</codeph> page.</p>
+  
+     <fig><image href="../images/admin-tasks-pending-rebalance.png" width="720"></image></fig>
+     
+   <p>To rebalance the cluster,click <uicontrol>Rebalance</uicontrol>.</p>
+ </conbody> 
+ 
+ 
+</concept>

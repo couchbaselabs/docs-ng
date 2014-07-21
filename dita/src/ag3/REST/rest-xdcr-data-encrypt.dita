@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic2754">
+  <title>Managing XDCR data encryption</title>
+  <body>
+    <p>The process for configuring XDCR with data encryption (Enterprise Edition only) involves
+      configuring the XDCR cluster reference with data encryption enabled, providing the SSL
+      certificate, and configuring replication.</p>
+    <p>The following summarizes the HTTP methods used for defining XDCR data encryption:</p>
+    <table>
+      <tgroup cols="3">
+        <colspec colname="col1"/>
+        <colspec colname="col2"/>
+        <colspec colname="col3"/>
+        <thead>
+          <row>
+            <entry>HTTP method</entry>
+            <entry>URI path</entry>
+            <entry>Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>GET</entry>
+            <entry><codeph>/pools/default/remoteClusters</codeph></entry>
+            <entry>Gets the destination cluster reference</entry>
+          </row>
+          <row>
+            <entry>POST</entry>
+            <entry><codeph>/pools/default/remoteClusters</codeph></entry>
+            <entry>Creates a reference to the destination cluster</entry>
+          </row>
+          <row>
+            <entry>PUT</entry>
+            <entry><codeph>/pools/default/remoteClusters/UUID</codeph></entry>
+            <entry>Modifies the destination cluster reference</entry>
+          </row>
+          <row>
+            <entry>DELETE</entry>
+            <entry><codeph>/pools/default/remoteClusters/UUID</codeph></entry>
+            <entry>Deletes the reference to the destination cluster.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <section><title>Retrieving certificates</title><p>To retrieve the SSL certificate from the
+        destination cluster to the source cluster:</p><p><b>Destination
+          endpoint</b></p><p><codeph>/pools/default/certificate</codeph></p><p><b>Example</b></p><codeblock><codeph>curl http://remoteHost:port/pools/default/certificate &gt; ./remoteCert.pem
+</codeph></codeblock></section>
+    <section><title>Regenerating certificates</title><p>To regenerate a certificate on a destination
+        cluster:</p><p><b>Destination
+          endpoint</b></p><p><codeph>/controller/regenerateCertificate</codeph></p><p><b>Example</b></p><codeblock><codeph>curl -X POST http://Administrator:asdasd@remoteHost:8091/controller/regenerateCertificate
+</codeph></codeblock></section>
+    
+    
+    <section><title>Configuring XDCR with data encryption</title><p>A POST to
+          <codeph>/pools/default/remoteClusters</codeph> creates the XDCR cluster reference from the
+        source cluster to the destination cluster. Setting the <codeph>demandEncryption</codeph> to
+        one (1) and providing the certificate name and location enables data
+          encryption.</p><p><b>Destination endpoint</b></p><p><codeph>POST
+          /pools/default/remoteClusters</codeph> creates the destination cluster
+          reference.</p><p><codeph>PUT /pools/default/remoteClusters</codeph> modifies the
+        destination cluster
+          reference.</p>
+      
+      <p><b>Syntax</b></p><codeblock><codeph>curl –X POST  -u Admin:myPassword
+  http://localHost:port/pools/default/remoteClusters 
+  -d name=&lt;clusterName&gt;             // Remote cluster name
+  -d hostname=&lt;host&gt;:&lt;port&gt;         // FQDN of the remote host.
+  -d username=&lt;adminName&gt;           // Remote cluster Admin name
+  -d password=&lt;adminPassword&gt;       // Remote cluster Admin password
+  -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat remoteCert.pem)"
+</codeph></codeblock><p><b>Example</b></p><codeblock><codeph>curl –X POST 
+-d name=remoteName  
+-d hostname=10.3.4.187:8091
+-d username=remoteAdmin –d password=remotePassword
+-d demandEncryption=1 --data-urlencode "certificate=$(cat remoteCert.pem)"
+http://Administrator:asdasd@192.168.0.1:8091/pools/default/remoteClusters/
+</codeph></codeblock></section>
+    <section><title>Disabling data encryption</title><p>To modify the XDCR configuration so that SSL
+        data encryption is disabled, execute a PUT from the source cluster to the destination
+        cluster with <codeph>demandEncryption=0</codeph>.</p><p><b>Destination
+          endpoint</b></p><p><codeph>/pools/default/remoteClusters</codeph></p><p><b>Example</b></p><codeblock><codeph>curl –X PUT  -u Admin:myPassword
+  http://192.168.0.1:8091/pools/default/remoteClusters/
+-d name=remoteName 
+-d hostname=10.3.4.187:8091
+-d username=remoteAdmin –d password=remotePassword
+-d demandEncryption=0
+</codeph></codeblock></section>
+  </body>
+</topic>

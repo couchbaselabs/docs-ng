@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install?><?workdir-uri file:/Users/Ruth/forks/docs-ng/dita/src/ag3/temp/pdf/ag3/Install/?><?path2project ../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic_am2_cnr_p4" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="topic:1;3:30">
+  <title class="- topic/title " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="title:1;4:10">Testing with cbworkloadgen</title>
+  <shortdesc class="- topic/shortdesc " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="shortdesc:1;5:14">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="codeph:1;5:26">cbworkloadgen</codeph> is a
+  basic tool that can be used to check the availability and connectivity of a Couchbase Server
+  cluster.</shortdesc>
+  <body class="- topic/body " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="body:1;8:9">
+    
+      <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="p:1;10:10">The <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="codeph:2;10:22">cbworkloadgen</codeph> executes a number of different operations to provide basic testing
+      functionality for your server.<codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="codeph:3;11:45">cbworkloadgen</codeph> provides basic testing
+        functionality. It does not provide performance or workload testing. </p>
+    
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="p:2;14:8">To test a
+          Couchbase Server installation using <codeph class="+ topic/ph pr-d/codeph " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="codeph:4;15:55">cbworkloadgen</codeph>, execute the command
+          supplying the IP address of the running
+          node:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="codeblock:1;18:16">&gt;&gt; cbworkloadgen -n localhost:8091
+Thread 0 - average set time : 0.0257480939229 seconds , min : 0.00325512886047 seconds , max : 0.0705931186676 seconds , operation timeouts 0
+</codeblock>
+    <p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="p:3;21:8">The
+  progress and activity of the tool can also be monitored within the web console.</p><p class="- topic/p " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="p:4;22:89">For a
+    longer test you can increase the number of
+    iterations:</p>
+    <codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install/testing-cbworkloadgen.dita" xtrc="codeblock:2;25:16">&gt; cbworkloadgen -n localhost:8091 --items=100000
+</codeblock>
+  </body>
+<related-links class="- topic/related-links "><linkpool class="- topic/linkpool " xtrc="topicref:23;32:57" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap"><link class="- topic/link " mapclass="- map/topicref " type="topic" xtrc="topicref:22;30:41" xtrf="/Users/Ruth/forks/docs-ng/dita/src/ag3/Install.ditamap" href="../Install/testing.dita" role="parent"><?ditaot usertext?><linktext class="- topic/linktext "><?ditaot gentext?>Testing Couchbase Server</linktext></link></linkpool></related-links>
+</topic>

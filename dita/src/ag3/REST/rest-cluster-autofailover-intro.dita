@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic128">
+  <title>Managing auto-failover</title>
+  <body>
+    <p>This section provides information about retrieving, enabling, disabling and resetting
+      auto-failover.</p>
+  </body>
+</topic>

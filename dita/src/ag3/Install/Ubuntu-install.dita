@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3429">
+ <title>Ubuntu Linux installation</title>
+ <body>
+  
+  <section><title>Installing on Ubuntu</title><p>To install:</p><ol>
+    <li>For Ubuntu version 12.04, you need to install a specific OpenSSL dependency by
+       running:<p><codeph> root-&gt; apt-get install libssl0.9.8 </codeph></p></li>
+    <li>The Ubuntu Couchbase installation uses the DEB package. To install, use the
+      <codeph>dpkg</codeph> command-line tool using the DEB file that you downloaded. The following
+     example uses <codeph>sudo</codeph> which will require root-access to allow
+       installation:<p><codeph> &gt; dpkg -i couchbase-server version.deb </codeph></p><p>Where
+       <codeph>version</codeph> is the version number of the downloaded package.</p><p>Once the
+       <codeph>dpkg</codeph> command has been executed, the Couchbase server starts automatically,
+      and is configured to automatically start during boot under the 2, 3, 4, and 5 run levels.
+      Refer to the Ubuntu documentation for more information about installing packages using the
+      Debian package manager.</p><p>After installation has completed, the installation process
+      displays a message similar to the following: </p>
+    </li>
+  </ol>
+     
+     <codeblock>
+Selecting previously deselected package couchbase-server. 
+(Reading database … 73755 files and directories currently installed.)
+Unpacking couchbase-server (from couchbase-server_x86_64_2.1.0-xxx-rel.deb) … 
+libssl0.9.8 is installed. Continue installing 
+Minimum RAM required : 4 GB 
+System RAM configured : 4058708 KB
+      
+      
+Minimum number of processors required : 4 cores 
+Number of processors on the system : 4 cores
+Setting up couchbase-server (2.1) … 
+
+* Started couchbase-server
+
+You have successfully installed Couchbase Server. 
+Please browse to http://slv–0501:8091/ to configure your server. 
+Please refer to http://couchbase.com for additional resources.
+      
+Please note that you have to update your firewall configuration to  
+allow connections to the following ports: 11211, 11210, 11209, 4369, 
+8091, 8092, 18091, 18092, and from 21100 to 21299.
+      
+By using this software you agree to the End User License Agreement. 
+See /opt/couchbase/LICENSE.txt
+        
+Processing triggers for ureadahead … 
+ureadahead will be reprofiled on next reboot
+     </codeblock>
+
+   <p>After successful installation, use the <codeph>service</codeph> command to manage the
+    Couchbase Server service, including checking the current status. Refer to the Ubuntu
+    documentation for instructions. To provide initial setup for Couchbase, open a web browser and
+    access the web administration interface. </p>
+  </section>
+
+  <section><title>Installing on Ubuntu as non-root, non-sudo</title><p><b>This installation is for
+     development purposes only.</b> There may be cases when you want to install the server as a
+    non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
+    able to run Couchbase Server and all Couchbase command-line tools. To do so on Ubuntu:</p><ol>
+    <li>After you download the Couchbase DEB package, go to the directory where it is located and
+     extract it:<p><codeph> &gt; dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb
+       $HOME </codeph></p><p>In the directory where you extracted the files, you will see
+       <codeph>opt</codeph> and <codeph>etc</codeph> subdirectories.</p></li>
+    <li>After you extract the Couchbase Server install files, go to the subdirectory:<p><codeph> cd
+       opt/couchbase </codeph></p></li>
+    <li>Run this password-related script:<p><codeph> ./bin/install/reloc.sh `pwd`
+      </codeph></p><p>This enables you to continue the install as a non-root, non-sudo
+     user.</p></li>
+    <li>To run the server:<p><codeph> ./bin/couchbase-server -- -noinput -detached
+     </codeph></p></li>
+    <li>To stop the server:<p><codeph> ./bin/couchbase-server -k </codeph></p></li>
+   </ol>
+  </section>
+ </body>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="../Install/install-platforms.dita"></link>
+   <link href="../Install/install-networkPorts.dita"></link>
+   <link href="../Install/linux-startup-shutdown.dita"/>
+  </linklist>
+ </related-links>
+</topic>

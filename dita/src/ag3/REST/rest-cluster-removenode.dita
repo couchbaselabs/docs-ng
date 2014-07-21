@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic730"><title>Removing nodes from clusters</title><body><p>When a node is temporarily or permanently down, you may want to remove it from a
+cluster:</p><codeblock><codeph>curl -u admin:password -d otpNode=ns_1@192.168.0.107 \
+http://192.168.0.106:8091/controller/ejectNode
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>192.168.0.107</i>, and <i>192.168.0.106</i>
+values in the above example with your actual values.</p><codeblock><codeph>POST /controller/ejectNode
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxx
+Accept: */*
+Content-Length: xxxxxxxxxx
+Content-Type: application/x-www-form-urlencoded
+otpNode=ns_1@192.168.0.1
+</codeph></codeblock><codeblock><codeph>200 OK - node ejected
+400 Error, the node to be ejected does not exist
+401 Unauthorized - Credentials were not supplied and are required
+403 Forbidden - Credentials were supplied and are incorrect
+</codeph></codeblock></body></topic>

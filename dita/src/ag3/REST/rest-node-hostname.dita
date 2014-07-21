@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_bcx_rt2_q4">
+  <title>Setting hostnames</title>
+  <shortdesc>Hostnames must be specified prior to being added to a cluster.</shortdesc>
+  <refbody>
+    
+    <section>
+    
+    
+      <p>A hostnames are provided when you install a Couchbase Server node, 
+        when you add it to an existing cluster for online upgrade, or via a REST API call. 
+        If a node restarts, any hostname that you established is used. 
+        A hostname cannot be provided for a node that is already part of a Couchbase cluster.</p> 
+      
+    </section>
+
+
+    <section><title>Response</title>
+      
+      <p>If you attempt to specify a hostname once the node is in the cluster, 
+        the server rejects the request and returns the following:</p>
+        
+        <codeblock>error 400 reason: unknown ["Renaming is disallowed
+        for nodes that are already part of a cluster"]</codeblock>
+      
+    </section>
+      
+      
+        
+      
+    
+  </refbody>
+</reference>

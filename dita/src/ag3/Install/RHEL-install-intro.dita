@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic8026">
+ <title>Red Hat Linux installation</title>
+ <body>
+  <p> Installation is supported on Red Hat and Red Hat-based
+   operating systems such as CentOS.</p>
+  
+ </body>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link
+    href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-services-chkconfig.html"
+    scope="external" format="html">
+    <linktext>Red Hat documentation</linktext>
+   </link>
+   <link href="init-setup.dita"></link>
+  </linklist>
+ </related-links>
+</topic>

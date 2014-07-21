@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic513">
+  <title>XDCR document handling</title>
+  <shortdesc>XDCR does not replicate views and view indexes.</shortdesc>
+  <body>
+    <p>To replicate views and view indexes, manually
+      exchange view definitions between clusters and re-generate the index on the destination
+      cluster.</p>
+    <p>Non UTF–8 encodable document IDs on the source cluster are automatically filtered out and
+      logged. The IDs are not transferred to the remote cluster. If there are any non UTF–8 keys,
+      the warning output, <codeph>xdcr_error.*</codeph> displays in the log files along with a list
+      of all non-UTF–8 keys found by XDCR.</p>
+  </body>
+</topic>

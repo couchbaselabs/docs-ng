@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1160"><title>Enabling and disabling auto-failover</title><body><p>This is a global setting you apply to all clusters. You need to be authenticated
+to change this value. An example of this request:</p><codeblock><codeph>curl "http://localhost:8091/settings/autoFailover" \
+    -i -u admin:password -d 'enabled=true&amp;timeout=600'
+</codeph></codeblock><p>Replace the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>600</i> values in the above
+example with your actual values.</p><p>Possible parameters are:</p><ul>
+<li><p><codeph>enabled</codeph> (true|false) (required): Indicates whether Couchbase Server will
+ perform auto-failover for the cluster or not.</p></li>
+<li><p><codeph>timeout</codeph> (integer that is greater than or equal to 30) (required; optional when
+ enabled=false): The number of seconds a node must be down before Couchbase
+ Server performs auto-failover on the node.</p></li>
+</ul><codeblock><codeph>POST /settings/autoFailover HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Length: 14
+enabled=true&amp;timeout=60
+</codeph></codeblock><codeblock><codeph>HTTP/1.1 200 OK
+</codeph></codeblock><p>The possible errors include:</p><codeblock><codeph>400 Bad Request, The value of "enabled" must be true or false.
+400 Bad Request, The value of "timeout" must be a positive integer bigger or equal to 30.
+401 Unauthorized
+This endpoint isn't available yet.
+</codeph></codeblock></body></topic>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic1498">
+  <title>Creating XDCR replications</title>
+  <body>
+    <p>To replicate data to an established destination cluster from a source cluster, you can use
+      the REST API or Couchbase Web Console. Once you create a replication it will automatically
+      begin between the clusters. As a REST call:</p>
+    <codeblock><codeph>curl -v -X POST -u admin:password1 http://10.4.2.4:8091/controller/createReplication
+-d uuid=9eee38236f3bf28406920213d93981a3
+-d fromBucket=beer-sample
+-d toCluster=remote1
+-d toBucket=remote_beer
+-d replicationType=continuous
+</codeph></codeblock>
+    <p>Replace the <i>admin</i>, <i>password1</i>, <i>10.4.2.4</i>,
+        <i>9eee38236f3bf28406920213d93981a3</i>, <i>beer-sample</i>, <i>remote1</i>,
+        <i>remote_beer</i>, and <i>continuous</i> values in the above example with your actual
+      values.</p>
+    <p>This will send a request similar to the following example:</p>
+    <codeblock><codeph>POST / HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZDE=
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: 10.4.2.4:8091
+Accept: */*
+Content-Length: 126
+Content-Type: application/x-www-form-urlencoded
+</codeph></codeblock>
+    <p>If Couchbase Server successfully creates the replication, it will immediately begin
+      replicating data from the source to destination cluster. You will get a response similar to
+      the following JSON:</p>
+    <codeblock><codeph>{
+  "id": "9eee38236f3bf28406920213d93981a3/beer-sample/remote_beer",
+  "database": "http://10.4.2.4:8092/_replicator"
+}
+</codeph></codeblock>
+    <p>The unique document ID returned in the JSON is a reference you can use if you want to delete
+      the replication.</p>
+    
+  </body>
+  <related-links>
+    <linklist><title>Related topics</title>
+      <link href="../Tasks/xdcr-configure-replications.dita"/>
+    </linklist>
+  </related-links>
+</topic>

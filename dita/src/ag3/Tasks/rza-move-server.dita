@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_m13_ks3_rn">
+    <title>Moving servers between server groups</title>
+    <shortdesc>Servers are moved between server groups from the Server Groups section.</shortdesc>
+    <taskbody>
+        <context>
+            <fig><title>Apply changes to server group</title>
+                <image href="../images/rack-aware-apply.png"></image></fig>
+        </context>
+        <steps>
+            <step><cmd>From the Server Nodes tab, click Server Groups</cmd></step>
+            <step><cmd>Drag and drop the server from one group to another.</cmd></step>
+            <step><cmd>Click Apply Changes.</cmd></step>
+            <step><cmd>From the Server Nodes tab, click Rebalance</cmd></step>
+        </steps>
+    </taskbody>
+</task>

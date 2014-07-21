@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic6985">
+	<title>Compaction REST API</title>
+	<body>
+		<p>Couchbase Server writes all data
+				that you append, update and delete as files on disk. This process can eventually
+				lead to gaps in the data file, particularly when you delete data. Be aware the
+				server also writes index files in a sequential format based on appending new results
+				in the index. You can reclaim the empty gaps in all data files by performing a
+				process called compaction. In both the case of data files and index files, you will
+				want to perform frequent compaction of the files on disk to help reclaim disk space
+				and reduce disk fragmentation. </p>
+		
+		
+		<section><title>Compacting bucket data and indexes</title><p>To compact
+					data files for a given bucket as well as any indexes associated with that
+					bucket, you make this
+					request:</p><codeblock><codeph>curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/compactBucket
+</codeph></codeblock>
+			
+			<p>Replace
+					the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>bucket_name</i>
+					values in the above example with your actual values.</p><p>Where you provide the
+					ip and port for a node that accesses the bucket as well as the bucket name. You
+					need to provide administrative credentials for that node in the cluster. To stop
+					bucket compaction, issue this
+					request:</p><codeblock><codeph>curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/cancelBucketCompaction
+</codeph></codeblock>
+			
+			<p>Replace
+					the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>bucket_name</i>
+					values in the above example with your actual values.</p>
+			
+		</section>
+			
+			
+			<section><title>Compacting spatial views</title>
+			<p>If you have spatial views in your dataset, these are not
+					automatically compacted with data and indexes. Instead, you must manually
+					compact each spatial view through the REST API.</p>
+			
+			<p>To do this, you must call
+					the spatial compaction
+					endpoint:</p><codeblock><codeph>http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
+</codeph></codeblock><p>This
+					URL contains the following special information:</p><ul>
+					<li><codeph>127.0.0.1:9500</codeph></li>
+				</ul><p>The port number, 9500, is unique to the spatial indexing system.</p><ul>
+					<li><codeph>BUCKETNAME</codeph></li>
+				</ul><p>The <codeph>BUCKETNAME</codeph> is the name of the bucket in which the
+					design document is configured.</p><ul>
+					<li><codeph>DDOCNAME</codeph></li>
+				</ul><p>The name of the design document that contains the spatial index or indexes
+					that you want to compact.</p><p>For example, you can send a request using
+						<codeph>curl</codeph>
+					:</p><codeblock><codeph>curl -u admin:password -X POST \
+'http://localhost:8091/default/_design/dev_test_spatial_compaction/_spatial/_compact'
+-H 'Content-type: application/json'
+</codeph></codeblock><p>Replace
+					the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above
+					example with your actual
+					values.</p></section>
+		
+		
+		
+		<section><title>Setting auto-compaction</title><p>In Couchbase Server you
+					can also provide auto-compaction settings which will trigger data and view
+					compaction based on certain settings. These settings can be made for an entire
+					cluster or for a bucket in a cluster. </p>
+			
+			
+			<p><b>Auto-compaction API</b></p><table>
+					<tgroup cols="2">
+						<colspec colname="col1"/>
+						<colspec colname="col2"/>
+						<thead>
+							<row>
+								<entry>REST API</entry>
+								<entry>Description</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>POST /controller/setAutoCompaction</entry>
+								<entry>Set cluster-wide auto-compaction intervals and
+									thresholds</entry>
+							</row>
+							<row>
+								<entry>GET /settings/autoCompaction</entry>
+								<entry>Read cluster-wide settings for auto-compaction</entry>
+							</row>
+							<row>
+								<entry>GET /pools/default/buckets/<i>bucket_name</i></entry>
+								<entry>Read auto-compaction settings for named bucket</entry>
+							</row>
+							<row>
+								<entry>POST/pools/default/buckets/<i>bucket_name</i></entry>
+								<entry>Set auto-compaction interval or thresholds for named
+									bucket</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			
+			
+			<p><b>Auto-compaction parameters</b></p><p>You can use the following
+					parameters for global auto-compaction settings which apply to all buckets in a
+					cluster at <codeph>/controller/setAutoCompaction</codeph>. You also use these at
+						<codeph>/pools/default/buckets/&lt;bucket_name&gt;</codeph> 
+					for bucket-level auto-compaction. You will need to provide administrative
+					credentials to change these settings.</p><p>You can
+					provide a purge interval to remove the key and metadata for items that have been
+					deleted or are expired. This is known as tombstone purging.</p>
+			
+			<table>
+					<tgroup cols="3">
+						<colspec colname="col1"/>
+						<colspec colname="col2"/>
+						<colspec colname="col3"/>
+						<thead>
+							<row>
+								<entry>Parameter</entry>
+								<entry>Value</entry>
+								<entry>Notes</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>databaseFragmentationThreshold[percentage]</entry>
+								<entry>Integer between 2 and 100</entry>
+								<entry>Percentage disk fragmentation for data</entry>
+							</row>
+							<row>
+								<entry>databaseFragmentationThreshold[size]</entry>
+								<entry>Integer greater than 1</entry>
+								<entry>Bytes of disk fragmentation for data</entry>
+							</row>
+							<row>
+								<entry>viewFragmentationThreshold[percentage]</entry>
+								<entry>Integer between 2 and 100</entry>
+								<entry>Percentage disk fragmentation for index</entry>
+							</row>
+							<row>
+								<entry>viewFragmentationThreshold[size]</entry>
+								<entry>Integer greater than 1</entry>
+								<entry>Bytes of disk fragmentation for index</entry>
+							</row>
+							<row>
+								<entry>parallelDBAndViewCompaction</entry>
+								<entry>True or false</entry>
+								<entry>Run index and data compaction in parallel</entry>
+							</row>
+							<row>
+								<entry>allowedTimePeriod[fromHour]</entry>
+								<entry>Integer between 0 and 23</entry>
+								<entry>Compaction can occur from this hour onward</entry>
+							</row>
+							<row>
+								<entry>allowedTimePeriod[toHour]</entry>
+								<entry>Integer between 0 and 23</entry>
+								<entry>Compaction can occur up to this hour</entry>
+							</row>
+							<row>
+								<entry>allowedTimePeriod[fromMinute]</entry>
+								<entry>Integer between 0 and 59</entry>
+								<entry>Compaction can occur from this minute onward</entry>
+							</row>
+							<row>
+								<entry>allowedTimePeriod[toMinute]</entry>
+								<entry>Integer between 0 and 59</entry>
+								<entry>Compaction can occur up to this minute</entry>
+							</row>
+							<row>
+								<entry>allowedTimePeriod[abortOutside]</entry>
+								<entry>True or false</entry>
+								<entry>Terminate compaction if process takes longer than allowed
+									time</entry>
+							</row>
+							<row>
+								<entry>purgeInterval</entry>
+								<entry>Integer between 1 and 60</entry>
+								<entry>Number of days a item is deleted or expired. The key and
+									metadata for that item will be purged by auto-compaction</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			
+			
+			<p>To read current auto-compaction settings for a
+					cluster:</p><codeblock><codeph>    curl -u admin:password http://localhost:8091/settings/autoCompaction
+</codeph></codeblock><p>Replace
+					the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above
+					example with your actual values.</p><p>This will result in JSON response as
+					follows:</p><codeblock><codeph>    {
+       "purgeInterval": 3,
+       "autoCompactionSettings": {
+           "viewFragmentationThreshold": {
+               "size": "undefined",
+               "percentage": "undefined"
+            },
+            "databaseFragmentationThreshold": {
+                "size": "undefined",
+                "percentage": "undefined"
+            },
+         "parallelDBAndViewCompaction": false
+       }
+    }
+</codeph></codeblock>
+			
+			<p>This
+					tells us we have a <codeph>purgeInterval</codeph> of three days and no current
+					thresholds set for data or index compaction. The field
+						<codeph>parallelDBAndViewCompaction</codeph> set to ‘false’ indicates the
+					cluster will not perform data and index compaction in parallel. To see
+					auto-compaction settings for a single bucket, use this
+					request:</p><codeblock><codeph>    curl -u admin:password http://localhost:8091/pools/default/buckets/bucket_name
+</codeph></codeblock>
+			
+			<p>Replace
+					the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>bucket_name</i>
+					values in the above example with your actual values.</p><p>Couchbase Server
+					sends a JSON response with auto-compaction settings for the
+						<codeph>bucket_name</codeph>:</p><codeblock><codeph>{
+    "purgeInterval": 2,
+    "autoCompactionSettings": {
+        "viewFragmentationThreshold": {
+            "size": "undefined",
+            "percentage": 30
+        },
+        "databaseFragmentationThreshold": {
+            "size": "undefined",
+            "percentage": 30
+        },
+        "parallelDBAndViewCompaction": true
+    }
+}
+</codeph></codeblock>
+			
+			<p>This
+					indicates a tombstone <codeph>purgeInterval</codeph> of two days with a
+					threshold of 30% disk fragmentation for data and views. This means items can be
+					expired for two days or deleted two ago and their tombstones will be purged
+					during the next auto-compaction
+			run.cluster-wide</p>
+		
+		</section>
+		
+		
+		
+		
+	</body>
+	<related-links>
+		<linklist><title>Related topics</title>
+			<link href="../Concepts/concept-tombstone.dita"/>
+			<link href="../Tasks/tasks-compaction.dita"/>
+		</linklist>
+	</related-links>
+</topic>
