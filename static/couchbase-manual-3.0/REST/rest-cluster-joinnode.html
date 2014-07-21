@@ -1,0 +1,102 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-cluster-get.html">Retrieving cluster information</a></li><li><a href="../REST/rest-cluster-details.html">Viewing cluster details</a></li><li><a href="../REST/rest-cluster-addnodes.html">Adding nodes to clusters</a></li><li class="active"><a href="../REST/rest-cluster-joinnode.html">Joining nodes into clusters</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-cluster-rebalance.html">Rebalancing nodes</a></li><li><a href="../REST/rest-cluster-removenode.html">Removing nodes from clusters</a></li><li><a href="../REST/rest-cluster-internal-settings.html">Managing internal cluster settings</a></li><li><a href="../REST/rest-cluster-autofailover-intro.html">Managing auto-failover</a></li><li><a href="../REST/rest-cluster-disable-query.html">Disabling consistent query results on rebalance</a></li><li><a href="../REST/rest-cluster-email-notifications.html">View settings for email notifications</a></li><li><a href="../REST/rest-cluster-max-buckets.html">Setting maximum buckets for clusters</a></li><li><a href="../REST/rest-cluster-max-index.html">Setting maximum parallel indexers</a></li></ul></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Joining nodes into clusters</h1>
+
+	<div class="body">
+		<p class="p">This is a REST request made to an individual Couchbase node to add that node to a given
+			cluster. You cannot merge two clusters together into a single cluster using the REST
+			API, however, you can add a single node to an existing cluster. You will need to provide
+			several parameters to add a node to a cluster.</p>
+
+		
+		<p class="p">The following arguments are required:</p>
+
+		
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d90681e30">Argument</th>
+
+						<th class="entry" valign="top" id="d90681e33">Description</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d90681e30 ">clusterMemberHostIp</td>
+
+						<td class="entry" valign="top" headers="d90681e33 ">Hostname or IP address to
+							a member of the cluster the node receiving this POST will be joining.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d90681e30 ">clusterMemberPort</td>
+
+						<td class="entry" valign="top" headers="d90681e33 ">Port number for the RESTful interface to the
+							system. If your cluster requires
+							credentials, provide the administrator username and password.</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Curl example</h2>
+		
+		<pre class="pre codeblock">curl -u admin:password -d clusterMemberHostIp=192.168.0.1 \
+-d clusterMemberPort=8091 \
+-d user=admin -d password=password
+http://localhost:8091/node/controller/doJoinCluster
+</pre>
+
+		<p class="p">Replace the <em class="ph i">admin</em>, <em class="ph i">password</em>, and <em class="ph i">192.168.0.1</em> values in the above
+			example with your actual values.</p>
+
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">HTTP request</h2>
+		<pre class="pre codeblock">POST /node/controller/doJoinCluster
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxx
+Accept: */*
+Content-Length: xxxxxxxxxx
+Content-Type: application/x-www-form-urlencoded
+clusterMemberHostIp=192.168.0.1&amp;clusterMemberPort=8091&amp;user=admin&amp;password=admin123
+</pre>
+
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Response</h2>
+
+		<pre class="pre codeblock">200 OK with Location header pointing to pool details of pool just joined - successful join
+400 Bad Request - missing parameters, etc.
+401 Unauthorized - credentials required, but not supplied
+403 Forbidden bad credentials - invalid credentials
+</pre>
+
+		</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-cluster-intro.html">Cluster REST API</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

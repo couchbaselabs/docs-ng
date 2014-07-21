@@ -1,0 +1,380 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li class="active"><a href="../CLI/cli-overview.html">Command-line interface overview</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Command-line interface overview</h1>
+
+	<div class="body">
+		
+		<p class="p">Couchbase Server includes a number of command-line tools that can be used to manage and
+			monitor a Couchbase Server cluster or server. All operations are mapped to their
+			appropriate REST API call (where available).</p>
+
+		<p class="p">There are a number of command-line tools that perform different functions and operations,
+			these are described individually within the following sections. Tools can be located in
+			a number of directories, dependent on the tool in question in each case.</p>
+
+		
+		
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Command line tools and availability</h2><p class="p">As of Couchbase Server 2.0,
+				the following publicly available tools have been renamed, consolidated or removed.
+				This is to provide better usability, and reduce the number of commands required to
+				manage Couchbase Server:</p>
+<p class="p">By default, the command-line tools are installed into
+				the following locations on each
+				platform:</p>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d40085e38">Operating System</th>
+
+							<th class="entry" valign="top" id="d40085e41">Directory Locations</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e38 "><strong class="ph b">Linux</strong></td>
+
+							<td class="entry" valign="top" headers="d40085e41 "><samp class="ph codeph">/opt/couchbase/bin</samp>,
+									<samp class="ph codeph">/opt/couchbase/bin/install</samp>,
+									<samp class="ph codeph">/opt/couchbase/bin/tools</samp>,
+									<samp class="ph codeph">/opt/couchbase/bin/tools/unsupported</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e38 "><strong class="ph b">Windows</strong></td>
+
+							<td class="entry" valign="top" headers="d40085e41 "><samp class="ph codeph">C:\Program&nbsp;Files\couchbase\server\bin</samp>,
+									<samp class="ph codeph">C:\Program&nbsp;Files\couchbase\server\bin\install</samp>,
+								and
+								<samp class="ph codeph">C:\Program&nbsp;Files\couchbase\server\bin\tools</samp>.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e38 "><strong class="ph b">Mac OS X</strong></td>
+
+							<td class="entry" valign="top" headers="d40085e41 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin</samp>
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+</div>
+
+		
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Unsupported tools</h2><p class="p">The following are tools that are visible in
+				Couchbase Server 2.0 installation; however the tools are unsupported. This means
+				they are meant for Couchbase internal use and will not be supported by Couchbase
+				Technical Support:</p>
+<ul class="ul">
+				<li class="li"><p class="p"><samp class="ph codeph">cbbrowse_logs</samp></p>
+</li>
+
+				<li class="li"><p class="p"><samp class="ph codeph">cbdump-config</samp></p>
+</li>
+
+				<li class="li"><p class="p"><samp class="ph codeph">cbenable_core_dumps.sh</samp></p>
+</li>
+
+				<li class="li"><p class="p"><samp class="ph codeph">couch_compact</samp></p>
+</li>
+
+				<li class="li"><p class="p"><samp class="ph codeph">couch_dbdump</samp></p>
+</li>
+
+				<li class="li"><p class="p"><samp class="ph codeph">couch_dbinfo</samp></p>
+</li>
+
+				<li class="li"><p class="p"><samp class="ph codeph">memslap</samp></p>
+</li>
+
+			</ul>
+</div>
+
+		
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Deprecated and removed tools</h2><p class="p">The following are tools that existed
+				in previous versions but have been deprecated and removed as of Couchbase Server
+				1.8:</p>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d40085e165">Tool</th>
+
+							<th class="entry" valign="top" id="d40085e168">Server Versions</th>
+
+							<th class="entry" valign="top" id="d40085e171">Description/Status</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">tap.py</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.8</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">cbclusterstats</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.8</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8. Replaced by <samp class="ph codeph">cbstats</samp> in
+								1.8.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">membase</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8. Replaced by <samp class="ph codeph">couchbase-cli</samp> in
+								1.8.1</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbadm-online-restore</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8. Replaced by
+									<samp class="ph codeph">cbadm-online-restore</samp> in 1.8.1</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">membase</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+								<samp class="ph codeph">couchbase-cli</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbadm-online-restore</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbadm-online-restore</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbadm-online-update</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbadm-online-update</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbadm-tap-registration</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbadm-tap-registration</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbbackup-incremental</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbbackup-incremental</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbbackup-merge-incremental</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbbackup-merge-incremental</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbbackup</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by <samp class="ph codeph">cbbackup</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbbrowse_logs</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+								<samp class="ph codeph">cbbrowse_logs</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbcollect_info</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+								<samp class="ph codeph">cbcollect_info</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbdbconvert</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+								<samp class="ph codeph">cbdbconvert</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbdbmaint</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by <samp class="ph codeph">cbdbmaint</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbdbupgrade</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+								<samp class="ph codeph">cbdbupgrade</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbdumpconfig.escript</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbdumpconfig.escript</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbenable_core_dumps.sh</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+									<samp class="ph codeph">cbenable_core_dumps.sh</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbflushctl</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by
+								<samp class="ph codeph">cbflushctl</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbrestore</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by <samp class="ph codeph">cbrestore</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbstats</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by <samp class="ph codeph">cbstats</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbupgrade</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by <samp class="ph codeph">cbupgrade</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d40085e165 "><samp class="ph codeph">mbvbucketctl</samp></td>
+
+							<td class="entry" valign="top" headers="d40085e168 ">1.7</td>
+
+							<td class="entry" valign="top" headers="d40085e171 ">Deprecated in 1.8, replaced by <samp class="ph codeph">cbvbucketctl</samp>
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+</div>
+
+	</div>
+
+	<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../REST/overview-rest-api.html">REST API overview</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

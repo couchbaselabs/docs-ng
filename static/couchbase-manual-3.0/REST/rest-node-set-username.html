@@ -1,0 +1,83 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-node-provisioning.html">Provisioning nodes</a></li><li><a href="../REST/rest-node-failover.html">Failing over nodes</a></li><li><a href="../REST/rest-node-hostname.html">Setting hostnames</a></li><li class="active"><a href="../REST/rest-node-set-username.html">Setting usernames and passwords</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-node-memory-quota.html">Setting memory quota</a></li><li><a href="../REST/rest-node-index-path.html">Setting index paths</a></li><li><a href="../REST/rest-node-retrieve-stats.html">Retrieving statistics</a></li></ul></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Setting usernames and passwords</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">Usernames and passwords can be set at any time, however, it is typically the last step
+    twhen adding a node into a new cluster. </p>
+
+
+    <div class="section"><h2 class="title sectiontitle">HTTP method and URI</h2>
+      <p class="p">The response indicates the new base URI if the parameters are valid. 
+        Clients generally send a new request for cluster information based on this response.</p>
+
+    <pre class="pre codeblock">      POST /settings/web</pre>
+
+      
+      
+    </div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">HTTP request example</h2>
+    <p class="p">The raw HTTP request:</p>
+
+    
+    <pre class="pre codeblock">POST /settings/web HTTP/1.1
+Host: localhost:8091
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Length: xx
+username=Administrator&amp;password=letmein&amp;port=8091
+</pre>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">HTTP response</h2>
+    <p class="p">The corresponding HTTP response data:</p>
+
+    
+    <pre class="pre codeblock">HTTP/1.1 200 OK
+Content-Type: application/json
+Server: Couchbase Server 2.0
+Pragma: no-cache
+Date: Mon, 09 Aug 2010 18:50:00 GMT
+Content-Type: application/json
+Content-Length: 39
+Cache-Control: no-cache no-store max-age=0
+{"newBaseUri":"http://localhost:8091/"}
+</pre>
+
+      
+      <div class="note note"><span class="notetitle">Note:</span> The port number must be specified when username/password is updated.
+      </div>
+
+    </div>
+
+      
+      <div class="section"><h2 class="title sectiontitle">Curl example</h2>
+        <p class="p">For example, using <samp class="ph codeph">curl</samp>:</p>
+
+        
+        <pre class="pre codeblock">curl -u admin:password -d username=Administrator \
+-d password=letmein \
+-d port=8091 \
+http://localhost:8091/settings/web
+</pre>
+
+      </div>
+
+    
+    
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-server-nodes.html" title="A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server. Each node is as a member of a cluster.">Server nodes REST API</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

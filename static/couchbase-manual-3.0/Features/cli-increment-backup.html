@@ -1,0 +1,122 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a><ul class="nav nav-list"><li><a href="../Features/bcp.html">Database Change Protocol</a></li><li><a href="../Features/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Features/bucket-eviction.html">Metadata ejection</a></li><li><a href="../Features/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Features/graceful-failover.html">Graceful failover</a></li><li><a href="../Features/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Features/increment-backup.html">Incremental backup and restore</a><ul class="nav nav-list"><li class="active"><a href="../Features/cli-increment-backup.html">Setting incremental backup (CLI)</a><ul class="nav nav-list"></ul></li><li><a href="../Features/cli-incremental-restore.html">Setting incremental restore (CLI)</a></li></ul></li><li><a href="../Features/index-updates.html">Stream-based views</a></li><li><a href="../Features/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Features/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Features/security-clientServer-comm.html">Encrypted data access</a></li><li><a href="../Features/security-client-ssl.html">Configuring clients for SSL</a></li><li><a href="../Features/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Setting incremental backup (CLI)</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">Back up operations are performed by the <samp class="ph codeph">cbbackup</samp> tool.</p>
+
+    
+    <div class="section"><h2 class="title sectiontitle">cbbackup</h2>
+      
+      
+      <p class="p">The <samp class="ph codeph">backup</samp> tool provides provides differential, accumulative, or full
+        backup.</p>
+
+      
+
+      <pre class="pre codeblock">cbbackup [options] source backup_dir             </pre>
+
+
+      <pre class="pre codeblock">cbbackup http://HOST:8091 /backups/backup-1
+cbbackup couchbase://HOST:8091 /backups/backup-1</pre>
+
+      
+
+    
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_n41_ppb_k4__table_qsw_rw5_c4" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. cbbackup options</span></caption>
+          
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="30.52208835341365%" id="d50842e52">Option</th>
+
+              <th class="entry" valign="top" width="20.08032128514056%" id="d50842e55">Mode</th>
+
+              <th class="entry" valign="top" width="49.39759036144578%" id="d50842e58">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="30.52208835341365%" headers="d50842e52 ">--mode [full | incr-diff | incr-accu | auto ]</td>
+
+              <td class="entry" valign="top" width="20.08032128514056%" headers="d50842e55 ">&nbsp;</td>
+
+              <td class="entry" valign="top" width="49.39759036144578%" headers="d50842e58 ">Backup running mode: full, incr-diff, incr-accu, auto</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="30.52208835341365%" headers="d50842e52 ">&nbsp;</td>
+
+              <td class="entry" valign="top" width="20.08032128514056%" headers="d50842e55 ">full</td>
+
+              <td class="entry" valign="top" width="49.39759036144578%" headers="d50842e58 ">Forces a full backup</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="30.52208835341365%" headers="d50842e52 ">&nbsp;</td>
+
+              <td class="entry" valign="top" width="20.08032128514056%" headers="d50842e55 ">incr-diff</td>
+
+              <td class="entry" valign="top" width="49.39759036144578%" headers="d50842e58 ">Differential incremental backup. Backs up the delta change from the last full
+                or incremental backup</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="30.52208835341365%" headers="d50842e52 ">&nbsp;</td>
+
+              <td class="entry" valign="top" width="20.08032128514056%" headers="d50842e55 ">incr-accu</td>
+
+              <td class="entry" valign="top" width="49.39759036144578%" headers="d50842e58 ">Accumulative incremental backup. Backs up the delta change from the full
+                backup.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="30.52208835341365%" headers="d50842e52 ">&nbsp;</td>
+
+              <td class="entry" valign="top" width="20.08032128514056%" headers="d50842e55 ">auto</td>
+
+              <td class="entry" valign="top" width="49.39759036144578%" headers="d50842e58 ">The cbbackup tool determines the best mode to use. If there is no backup data,
+                then a full backup is performed. Otherwise, a differential backup is
+                performed.</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      
+      <div class="note note"><span class="notetitle">Note:</span> Existing <samp class="ph codeph">cbbackup</samp> options are supported. 
+        For example, to backup a single bucket, 
+        use the <samp class="ph codeph">-b</samp> option or to increase verbose level, 
+        use <samp class="ph codeph">-v</samp></div>
+
+    </div>
+
+      
+ 
+      
+      
+      
+    
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Features/increment-backup.html" title="An incremental backup or restore is a backup (or restore) of the latest changes since the last backup (any level). Enterprise Edition only.">Incremental backup and restore</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

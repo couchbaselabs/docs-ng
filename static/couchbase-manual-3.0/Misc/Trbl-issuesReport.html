@@ -1,0 +1,125 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a><ul class="nav nav-list"><li><a href="../Misc/Trbl-commonErrors.html">Common errors</a></li><li><a href="../Misc/Trbl-generalTips.html">General tips</a></li><li><a href="../Misc/Trbl-logs.html">Logs and logging</a></li><li class="active"><a href="../Misc/Trbl-issuesReport.html">Reporting issues</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/Trbl-beam-smp-issue.html">Beam.smp</a></li><li><a href="../Misc/Trbl-blockedIndexer.html">Blocked indexer</a></li><li><a href="../Misc/Trbl-common.html">Server issues</a></li><li><a href="../Misc/Trbl-datamissing-server.html">Incorrect or missing data (server issue)</a></li><li><a href="../Misc/Trbl-datamissing-user.html">Incorrect or missing data (user issue)</a></li><li><a href="../Misc/Trbl-designdocs.html">Design document aliases</a></li><li><a href="../Misc/Trbl-expireddocs.html">Expired documents issue</a></li><li><a href="../Misc/Trbl-indexFileSystem.html">Index filesystem structure</a></li><li><a href="../Misc/Trbl-queryResults.html">Index results for a single node</a></li><li><a href="../Misc/Trbl-replicaIndex.html">Debugging replica index</a></li><li><a href="../Misc/Trbl-staleFalse-debug.html">Debugging stale=false queries</a></li><li><a href="../Misc/Trbl-timeoutErrors.html">Timeout errors</a></li><li><a href="../Misc/Trbl-total_row-debug.html">total_rows values are too high</a></li><li><a href="../Misc/Trbl-wrongdocs.html">Wrong documents or rows issue</a></li></ul></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+   <h1 class="title topictitle1">Reporting issues</h1>
+
+   
+   <div class="body"><p class="shortdesc">A description on what to include when reporting an issue (JIRA).</p>
+
+      <p class="p">When reporting issues to Couchbase, you should always add the
+         following information to JIRA issues:</p>
+
+      <ul class="ul">
+         <li class="li"><p class="p">Environment description (package installation? cluster_run? build number?
+            OS)</p>
+</li>
+
+         <li class="li"><p class="p">All the steps necessary to reproduce (if applicable)</p>
+</li>
+
+         <li class="li"><p class="p">Show the full content of all the design documents</p>
+</li>
+
+         <li class="li"><p class="p">Describe how your documents are structured (all same structure, different
+               structures?)</p>
+</li>
+
+         <li class="li"><p class="p">If you generated the data with any tool, mention its name and all the parameters
+               given to it (full command line)</p>
+</li>
+
+         <li class="li"><p class="p">Show what queries you were doing (include all query parameters, full URL), use curl
+               with option -v and show the full output, example:</p>
+</li>
+
+      </ul>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -v 'http://localhost:9500/default/_design/test/_view/view1?limit=10&amp;stale=false'
+* About to connect() to localhost port 9500 (#0)
+*   Trying ::1... Connection refused
+*   Trying 127.0.0.1... connected
+* Connected to localhost (127.0.0.1) port 9500 (#0)
+&gt; GET /default/_design/test/_view/view1 HTTP/1.1
+&gt; User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+&gt; Host: localhost:9500
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; Transfer-Encoding: chunked
+&lt; Server: MochiWeb/1.0 (Any of you quaids got a smint?)
+&lt; Date: Tue, 21 Aug 2012 14:43:06 GMT
+&lt; Content-Type: text/plain;charset=utf-8
+&lt; Cache-Control: must-revalidate
+&lt;
+{"total_rows":2,"rows":[
+{"id":"doc1","key":"doc1","value":111111},
+{"id":"doc2","key":"doc2","value":222222}
+]
+}
+* Connection #0 to host localhost left intact
+* Closing connection #0
+</samp></pre>
+
+      <ul class="ul">
+         <li class="li"><p class="p">Repeat the query with different values for the stale parameter and show the
+               output</p>
+</li>
+
+         <li class="li"><p class="p">Attach logs from all nodes in the cluster</p>
+</li>
+
+         <li class="li"><p class="p">Try all view related operations, including design document creation/update/deletion,
+               from the command line. The goal here to isolate UI problems from the view
+            engine.</p>
+</li>
+
+         <li class="li"><p class="p">If you suspect the indexer is stuck, blocked, etc, please use curl against the
+                  <samp class="ph codeph">_active_tasks</samp> API to confirm that, the goal again is to isolate
+               UI issues from view-engine issues. Example:</p>
+
+            <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/_active_tasks' | json_xs
+[
+   {
+      "indexer_type" : "main",
+      "started_on" : 1345645088,
+      "progress" : 43,
+      "initial_build" : true,
+      "updated_on" : 1345645157,
+      "total_changes" : 250000,
+      "design_documents" : [
+         "_design/test"
+      ],
+      "pid" : "&lt;0.5948.0&gt;",
+      "changes_done" : 109383,
+      "signature" : "4995c136d926bdaf94fbe183dbf5d5aa",
+      "type" : "indexer",
+      "set" : "default"
+   }
+]
+</samp></pre>
+</li>
+
+      </ul>
+
+      <p class="p">Note that the <samp class="ph codeph">started_on</samp> and <samp class="ph codeph">update_on</samp> fields are UNIX
+         timestamps. There are tools (even online) and programming language APIs (Perl, Python, etc)
+         to convert them into human readable form, including date and time. Note that the
+            <samp class="ph codeph">_active_tasks</samp> API contains information per node, so you’ll have to
+         query <samp class="ph codeph">_active_tasks</samp> or every node in the cluster to verify if progress is
+         stuck, etc.</p>
+
+   </div>
+
+   <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/Trbl-intro.html" title="Troubleshooting covers general tips, common errors, log information, and other issues.">Troubleshooting</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="http://www.couchbase.com/issues" target="_blank">couchbase.com/issues</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

@@ -1,0 +1,87 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a><ul class="nav nav-list"><li><a href="../Features/bcp.html">Database Change Protocol</a></li><li><a href="../Features/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Features/bucket-eviction.html">Metadata ejection</a></li><li><a href="../Features/bucket-priority.html">Disk I/O priority</a></li><li class="active"><a href="../Features/graceful-failover.html">Graceful failover</a><ul class="nav nav-list"><li><a href="../Features/ui-task-failover-graceful.html">Failing over gracefully (UI)</a></li><li><a href="../Features/cli-failover-graceful.html">Failing over gracefully (CLI)</a></li><li><a href="../Features/rest-failover-graceful.html">Failing over gracefully (REST API)</a></li></ul></li><li><a href="../Features/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Features/increment-backup.html">Incremental backup and restore</a></li><li><a href="../Features/index-updates.html">Stream-based views</a></li><li><a href="../Features/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Features/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Features/security-clientServer-comm.html">Encrypted data access</a></li><li><a href="../Features/security-client-ssl.html">Configuring clients for SSL</a></li><li><a href="../Features/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Graceful failover</h1>
+
+ 
+ <div class="body conbody"><p class="shortdesc">Graceful failover waits until data persists to disk and replica are up-to-date before failing over the server node.</p>
+
+  <p class="p">When adding a node to a cluster, the option is to specify either <samp class="ph codeph">delta</samp> or <samp class="ph codeph">full</samp>.</p>
+
+  <p class="p">By default, when Failover is selected from the Web Console, a graceful failover is performed.</p>
+
+  
+
+  <p class="p">In a graceful failover, a new replica is created on another node in the cluster, all of the
+   data on a node that needs to be failed over is transferred to the replica, and then is the node
+   removed from the cluster. This means that there is no data loss window. Once a new node is added
+   to the cluster, the rebalance operation moves only the removed node's data to the newly added
+   node.</p>
+
+   
+   <p class="p">However, a hard failover option is available in case the node is in a bad state. Hard failover
+   immediately removes a node from the cluster which can lead to data loss. Auto-failover behavior
+   is a hard failover.</p>
+
+   
+   <div class="section"><h2 class="title sectiontitle">Failover behavior</h2>
+    
+    <ul class="ul">
+     <li class="li">When a node is added back to the cluster after a graceful failover has been performed, 
+      the new node receives the vBuckets that existed on the old node. Rebalancing is optimized.</li>
+
+     <li class="li">Topology changes after a graceful failover causes a full rebalance in when a node is added back. Rebalancing is not optimized.</li>
+
+     <li class="li">A hard failover after a graceful failover causes a full rebalance in when a node is added back. Rebalancing is not optimized.</li>
+
+    </ul>
+
+   
+   
+   
+   </div>
+
+  
+  
+  
+  <div class="section"><h2 class="title sectiontitle">Impacted documentation</h2>
+   
+   <ul class="ul">
+   <li class="li">Failover</li>
+
+    <li class="li">Rebalance</li>
+ 
+    <li class="li">Swap rebalance</li>
+
+   </ul>
+
+  </div>
+
+  
+  
+  
+ </div>
+
+ 
+ <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../Features/ui-task-failover-graceful.html">Failing over gracefully (UI)</a></strong><br>
+</li>
+<li class="link ulchildlink"><strong><a href="../Features/cli-failover-graceful.html">Failing over gracefully (CLI)</a></strong><br>
+By default, graceful failover is implemented with failing over a node from a cluster using      <samp class="ph codeph">couchbase-cli failover</samp>.</li>
+<li class="link ulchildlink"><strong><a href="../Features/rest-failover-graceful.html">Failing over gracefully (REST API)</a></strong><br>
+Short reference description.</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Features/features.html">Couchbase 3.0 Features</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="delta-node-recovery.html" title="Delta node recovery provides the option to specify whether the replacement server node's disk is initialized or whether the data and data buckets are retained.">Delta node recovery</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

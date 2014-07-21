@@ -1,0 +1,54 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li class="active"><a href="../Concepts/concept-intro.html">Architecture and concepts</a><ul class="nav nav-list"><li><a href="../Concepts/concept-nodesCluster.html">Nodes and clusters</a></li><li><a href="../Concepts/concept-clusterMgr.html">Cluster Manager</a></li><li><a href="../Concepts/concept-dataStorage.html">Data storage</a></li><li><a href="../Concepts/concept-ramQuota.html">RAM quotas</a></li><li><a href="../Concepts/concept-vBucket.html">vBuckets</a></li><li><a href="../Concepts/concept-cacheLayer.html">Caching layer</a></li><li><a href="../Concepts/concept-diskStorage.html">Disk storage</a></li><li><a href="../Concepts/concept-workingset-mgmt.html">Working set management and ejection</a></li><li><a href="../Concepts/concept-docExpiration.html">Expiration</a></li><li><a href="../Concepts/concept-serverWarmup.html">Server warmup</a></li><li><a href="../Concepts/concept-rebalancing.html">Rebalancing</a></li><li><a href="../Concepts/concept-replication.html">Replicas and replication</a></li><li><a href="../Concepts/concept-rack-awareness.html">Rack Awareness</a></li><li><a href="../Concepts/concept-nodeFailover.html">Failover</a></li><li><a href="../Concepts/concepts-TAP.html">TAP</a></li><li><a href="../Concepts/concepts-statsMonitor.html">Statistics and monitoring</a></li></ul></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9"><h1 class="title topictitle1">Architecture and concepts</h1>
+
+  
+  <div class="body"><p class="shortdesc"> Couchbase Server concepts include the differenct components and systems that make up
+    an individual Couchbase Server instance and a Couchbase cluster including information and
+    concepts needed to understand the fast and elastic nature, high availability, and high
+    performance of the Couchbase Server database.</p>
+<p class="p"></p>
+</div>
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-nodesCluster.html">Nodes and clusters</a></strong><br>
+Couchbase Server can be used either in a standalone configuration or cluster     configuration. A cluster configuration is multiple Couchbase Servers connected together to provide a single,     distributed data store.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-clusterMgr.html">Cluster Manager</a></strong><br>
+The Cluster Manager is responsible for  node and cluster management.      Every node within a Couchbase cluster includes the Cluster Manager component.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-dataStorage.html">Data storage</a></strong><br>
+Couchbase Server provides data management services using <em class="ph i">buckets</em>. Buckets are isolated 		virtual containers for data. A bucket is a logical grouping of physical resources within 		a cluster of Couchbase Servers.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-ramQuota.html">RAM quotas</a></strong><br>
+RAM is allocated to Couchbase Server in the following configurable quantities:       <em class="ph i">Server Quota</em> and <em class="ph i">Bucket Quota</em>. </li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-vBucket.html">vBuckets</a></strong><br>
+A vBucket is defined as the <em class="ph i">owner</em> of a subset of the key space of a Couchbase     cluster. These vBuckets are used to distributed information effectively across a cluster. </li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-cacheLayer.html">Caching layer</a></strong><br>
+Couchbase Server includes a built-in caching layer which      acts as a central part of the server and provides very rapid reads and writes of data.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-diskStorage.html">Disk storage</a></strong><br>
+Couchbase Server mainly stores and retrieves information for clients using     RAM. At the same time, Couchbase Server eventually stores all data to disk to provide a     higher level of reliability.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-workingset-mgmt.html">Working set management and ejection</a></strong><br>
+Working set management is the process of freeing up space and ensuring that the most   used items are available in RAM. Ejection is the process of removing data from RAM to provide room   for frequently used items. </li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-docExpiration.html">Expiration</a></strong><br>
+Each document stored in the database has an optional expiration value (TTL, time to live)    that is used to automatically deleted items.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-serverWarmup.html">Server warmup</a></strong><br>
+Whenever the Couchbase server is restarted or data is restored to a server instance, the   server undergoes a warmup process before data requests can be handled.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-rebalancing.html">Rebalancing</a></strong><br>
+Rebalancing is the process of redistributing information across nodes</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-replication.html">Replicas and replication</a></strong><br>
+Replicas are copies of data that are proved on another node in a cluster.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-rack-awareness.html">Rack Awareness</a></strong><br>
+The Rack Awareness feature allows logical groupings of servers on a cluster where each server    group physically belongs to a rack or availability zone. </li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concept-nodeFailover.html">Failover</a></strong><br>
+Failover is the process of indicating that a node in a cluster is unavailable and that    enabling replica vBuckets.</li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concepts-TAP.html">TAP</a></strong><br>
+The TAP protocol is an internal part of the Couchbase Server system and is used to     exchange data throughout the system. </li>
+<li class="link ulchildlink"><strong><a href="../Concepts/concepts-statsMonitor.html">Statistics and monitoring</a></strong><br>
+A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../admin-intro.html">Couchbase Administration</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

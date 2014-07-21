@@ -1,0 +1,231 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a><ul class="nav nav-list"><li><a href="../UI/ui-cluster-summary.html">Cluster Overview</a></li><li><a href="../UI/ui-server-nodes.html">Server Nodes</a></li><li><a href="../UI/ui-data-buckets.html">Data Buckets</a></li><li class="active"><a href="../UI/ui-views-editor.html">Views</a><ul class="nav nav-list"></ul></li><li><a href="../UI/ui-xdcr-panel.html">XDCR</a></li><li><a href="../UI/ui-logs.html">Log</a></li><li><a href="../UI/ui-settings.html">Settings</a></li></ul></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Views</h1>
+
+  
+  <div class="body"><p class="shortdesc">The Views section allows you to manage your development and production views.</p>
+
+    <p class="p">The Views Editor is available within the Couchbase web console. You can access the View
+      Editor either by clicking the <samp class="ph codeph">Views</samp> for a given data bucket within the
+        <samp class="ph codeph">Data Buckets</samp> display, or by selecting the <samp class="ph codeph">Views</samp> page from
+      the main navigation panel.</p>
+
+    <img class="image" src="../images/views-overview.png" width="600">
+    <p class="p">The individual elements of this interface are:</p>
+
+    <ul class="ul">
+      <li class="li"><p class="p">The pop-up, at the top-left, provides the selection of the data bucket where you are
+          viewing or editing a view.</p>
+</li>
+
+      <li class="li"><p class="p">The <samp class="ph codeph">Create Development View</samp> enables you to create a new view either
+          within the current design document, or within a new document.</p>
+</li>
+
+      <li class="li"><p class="p">You can switch between Production Views and Development
+            Views. </p>
+</li>
+
+      <li class="li"><p class="p">The final section provides a list of the design documents, and within each document,
+          each defined view.</p>
+</li>
+
+    </ul>
+
+    <p class="p">When viewing <samp class="ph codeph">Development Views</samp>, you can perform the following actions:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">* `Compact` the view index with an associated design document. This will compact
+  the view index and recover space used to store the view index on disk.
+
+* `Delete` a design document. This deletes all of the views defined within the
+  design document.
+
+* `Add Spatial View` creates a new spatial view within the corresponding design
+  document. See [Creating and Editing Views](#couchbase-views-editor-createedit).
+
+* `Add View` creates a new view within the corresponding design document. See
+  [Creating and Editing Views](#couchbase-views-editor-createedit).
+
+* `Publish` your design document (and all of the defined views) as a production
+  design document. See [Publishing Views](#couchbase-views-editor-publishing).
+
+* For each individual view listed:
+
+   * `Edit`, or clicking the view name
+
+     Opens the view editor for the current view name, see [Creating and Editing
+     Views](#couchbase-views-editor-createedit).
+
+   * `Delete`
+
+     Deletes an individual view.
+</samp></pre>
+
+    <p class="p">When viewing <samp class="ph codeph">Production Views</samp> you can perform the following operations on
+      each design document:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">* `Compact` the view index with an associated design document. This will compact
+  the view index and recover space used to store the view index on disk.
+
+* `Delete` a design document. This will delete all of the views defined within the
+  design document.
+
+* `Copy to Dev` copies the view definition to the development area of the view
+  editor. This enables you edit the view definition. Once you have finished making
+  changes, using the `Publish` button will then overwrite the existing view
+  definition.
+
+* For each individual view:
+
+   * By clicking the view name, or the `Show` button, execute and examine the results
+     of a production view. See [Getting View Results](#couchbase-views-editor-view)
+     for more information.
+</samp></pre>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Creating and editing views</h2><p class="p">You can create a new design document and/or
+        view by clicking the <samp class="ph codeph">Create Development View</samp> button within the
+          <samp class="ph codeph">Views</samp> section of the Web Console. If you are creating a new design
+        document and view you will be prompted to supply both the design document and view name. </p>
+
+      <p class="p">To create a new view as part of an existing design document, click the
+          <samp class="ph codeph">Add View</samp> button against the corresponding design document.</p>
+<p class="p">View
+        names must be specified using one or more UTF–8 characters. You cannot have a blank view
+        name. View names cannot have leading or trailing whitespace characters (space, tab, newline,
+        or carriage-return).</p>
+<p class="p">If you create a new view, or have selected a Development view,
+        you can create and edit the <samp class="ph codeph">map()</samp> and <samp class="ph codeph">reduce()</samp> functions.
+        Within a development view, the results shown for the view are executed either over a small
+        subset of the full document set (which is quicker and places less load on the system), or
+        the full data set.</p>
+&gt;
+          <img class="image" src="../images/views-editing.png" width="600">
+        <p class="p">The top portion of the interface provides navigation between the
+        available design documents and views.</p>
+<p class="p">The <samp class="ph codeph">Sample Document</samp> section
+        allows you to view a random document from the database to help you write your view functions
+        and so that you can compare the document content with the generated view output. Clicking
+        the <samp class="ph codeph">Preview a Random Document</samp> will randomly select a document from the
+        database. Clicking <span class="ph uicontrol">Edit Document</span> takes you to the Views editor.</p>
+
+      <p class="p">Documents stored in the database that are identified as Non-JSON may
+        be displayed as binary, or text-encoded binary, within the UI.</p>
+<p class="p">Document metadata is
+        displayed in a separate box on the right hand side of the associated document. This shows
+        the metadata for the displayed document, as supplied to the <samp class="ph codeph">map()</samp> as the
+        second argument to the function. For more information on writing views and creating the
+          <samp class="ph codeph">map()</samp> and <samp class="ph codeph">reduce()</samp> functions.</p>
+<p class="p">With the View Code
+        section, you should enter the function that you want to use for the <samp class="ph codeph">map()</samp>
+        and <samp class="ph codeph">reduce()</samp> portions of the view. The map function is required, the reduce
+        function is optional. When creating a new view a basic <samp class="ph codeph">map()</samp> function will
+        be provided. You can modify this function to output the information in your view that you
+        require.</p>
+<p class="p">Once you have edited your <samp class="ph codeph">map()</samp> and
+          <samp class="ph codeph">reduce()</samp> functions, you must use the <samp class="ph codeph">Save</samp> button to save
+        the view definition.</p>
+<p class="p">The design document will be validated before it is created or
+        updated in the system. The validation checks for valid JavaScript and for the use of valid
+        built-in reduce functions. Any validation failure is reported as an error.</p>
+<p class="p">You can
+        also save the modified version of your view as a new view using the <samp class="ph codeph">Save
+          As...</samp> button.</p>
+<p class="p">The lower section of the window will show you the list of
+        documents that would be generated by the view. You can use the <samp class="ph codeph">Show Results</samp>
+        to execute the view.</p>
+<p class="p">To execute a view and get a sample of the output generated by the
+        view operation, click the <samp class="ph codeph">Show Results</samp> button. This will create the index
+        and show the view output within the table below. You can configure the different parameters
+        by clicking the arrow next to <samp class="ph codeph">Filter Results</samp>. This shows the view selection
+        criteria, as seen in the figure below. </p>
+
+            <img class="image" src="../images/views-filters.png" width="300">
+        <p class="p">Clicking on the <samp class="ph codeph">Filter Results</samp> query string
+        opens a new window containing the raw, JSON formatted, version of the View results. </p>
+
+      <p class="p">By default, Views during the development stage are executed only over
+        a subset of the full document set. This is indicated by the <samp class="ph codeph">Development Time
+          Subset</samp> button. You can execute the view over the full document set by selecting
+          <samp class="ph codeph">Full Cluster Data Set</samp>. Because this executes the view in real-time on the
+        data set, the time required to build the view may be considerable. Progress for building the
+        view is shown at the top of the window.</p>
+<p class="p">If you have edited either the
+          <samp class="ph codeph">map()</samp> or <samp class="ph codeph">reduce()</samp> portions of your view definition, you
+          <em class="ph i">must</em> save the definition. The <samp class="ph codeph">Show Results</samp> button will remain
+        greyed out until the view definition has been saved.</p>
+<p class="p">You can also filter the results
+        and the output using the built-in filter system. This filter provides similar options that
+        are available to clients for filtering results.</p>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Publishing views</h2>
+      <p class="p">Publishing a view moves the view definition from the
+        Development view to a Production View. Production views cannot be edited. The act of
+        publishing a view and moving the view from the development to the production view will
+        overwrite a view the same name on the production side. To edit a Production view, you copy
+        the view from production to development, edit the view definition, and then publish the
+        updated version of the view back to the production
+        side.</p>
+</div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Getting view results</h2><p class="p">Once a view has been published to be a production
+        view, you can examine and manipulate the results of the view from within the web console
+        view interface. This makes it easy to study the output of a view without using a suitable
+        client library to obtain the information.</p>
+<p class="p">To examine the output of a view, click icon
+        next to the view name within the view list. This will present you with a view similar to
+        that shown in the figure below.</p>
+
+          <img class="image" src="../images/views-detail.png" width="600">
+        <p class="p">The top portion of the interface provides navigation between the
+        available design documents and views.</p>
+<p class="p">The <samp class="ph codeph">Sample Document</samp> section
+        allows you to view a random document from the database so that you can compare the document
+        content with the generated view output. Clicking the <samp class="ph codeph">Preview a Random
+          Document</samp> will randomly select a document from the database. If you know the ID of
+        a document that you want to examine, enter the document ID in the box, and click the
+          <samp class="ph codeph">Lookup Id</samp> button to load the specified document.</p>
+<p class="p">To examine the
+        function that generate the view information, use the <samp class="ph codeph">View Code</samp> section of
+        the display. This will show the configured map and reduce functions.</p>
+<p class="p">The lower portion
+        of the window will show you the list of documents generated by the view. You can use the
+          <samp class="ph codeph">Show Results</samp> to execute the view.</p>
+<p class="p">The <samp class="ph codeph">Filter
+          Results</samp> interface allows you to query and filter the view results by selecting
+        the sort order, key range, or document range, and view result limits and offsets.</p>
+<p class="p">To
+        specify the filter results, click on the pop-up triangle next to <samp class="ph codeph">Filter
+          Results</samp>. You can delete existing filters, and add new filters using the embedded
+        selection windows. Click <samp class="ph codeph">Show Results</samp> when you have finished selecting
+        filter values. The filter values you specify are identical to those available when querying
+        from a standard client library. </p>
+<p class="p">Due to the
+        nature of range queries, a special character may be added to query specifications when
+        viewing document ranges. The character may not show up in all web browsers, and may instead
+        appear instead as an invisible, but selectable, character. </p>
+</div>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../UI/ui-intro.html" title="The Couchbase web console is the main tool for managing the Couchbase environment.">Couchbase web console</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Views/views-intro.html">Views and indexes</a></div>
+<div><a class="link" href="../Views/views-writing.html">Writing views</a></div>
+<div><a class="link" href="../REST/design-docs-rest-api.html" title="Design documents are used to store one or more view definitions. Views can be defined within a design document and uploaded to the server through the REST API.">Managing design documents</a></div>
+<div><a class="link" href="../REST/rest-views-intro.html">Views REST API</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

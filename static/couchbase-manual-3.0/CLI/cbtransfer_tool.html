@@ -1,0 +1,473 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li class="active"><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">cbtransfer tool</h1>
+
+	<div class="body">
+		<p class="p">You use this tool to transfer data and design documents between two clusters or from a
+			file to a cluster. With this tool you can also create a copy of data from a node that no
+			longer running. This tool is the underlying, generic data transfer tool that
+				<samp class="ph codeph">cbbackup</samp> and <samp class="ph codeph">cbrestore</samp> are built upon. It is a
+			lightweight extract-transform-load (ETL) tool that can move data from a source to a
+			destination. The source and destination parameters are similar to URLs or file
+			paths.</p>
+
+		<p class="p">Note</p>
+
+		<p class="p"> `cbbackup`, `cbrestore` and `cbtransfer` do not communicate with external IP addresses
+			for server nodes outside of a cluster. They can only communicate with nodes from a node
+			list obtained within a cluster. You should perform backup, restore, or transfer to data
+			from a node within a Couchbase cluster. This also means that if you install Couchbase
+			Server with the default IP address, you cannot use an external hostname to access it.
+			For general information about hostnames for the server, see [Using Hostnames with
+			Couchbase Server](../cb-install/#couchbase-getting-started-hostnames). </p>
+
+		<p class="p">The tool is at the following locations:</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d38278e42"><strong class="ph b">Linux</strong></th>
+
+						<th class="entry" valign="top" id="d38278e46"><samp class="ph codeph">/opt/couchbase/bin/</samp></th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e42 "><strong class="ph b">Windows</strong></td>
+
+						<td class="entry" valign="top" headers="d38278e46 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\</samp></td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e42 "><strong class="ph b">Mac OS X</strong></td>
+
+						<td class="entry" valign="top" headers="d38278e46 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/</samp></td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		<p class="p">The following is the syntax and examples for this command:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">&gt; ./cbtransfer [options] source destination
+
+
+Examples:
+  cbtransfer http://SOURCE:8091 /backups/backup-42
+  cbtransfer /backups/backup-42 http://DEST:8091
+  cbtransfer /backups/backup-42 couchbase://DEST:8091
+  cbtransfer http://SOURCE:8091 http://DEST:8091
+  cbtransfer 1.8_COUCHBASE_BUCKET_MASTER_DB_SQLITE_FILE http://DEST:8091
+  cbtransfer file.csv http://DEST:8091
+</samp></pre>
+
+		<p class="p">The following are the standard command options which you can also view with
+				<samp class="ph codeph">cbtransfer -h</samp> :</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d38278e105">-h, –help</th>
+
+						<th class="entry" valign="top" id="d38278e108">Command help</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">–add</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Use –add instead of –set in order to not overwrite existing items in
+							the destination</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-b BUCKET_SOURCE</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Single named bucket from source cluster to transfer</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-B BUCKET_DESTINATION, –bucket-destination=BUCKET_DESTINATION</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Single named bucket on destination cluster which receives transfer.
+							This allows you to transfer to a bucket with a different name as your
+							source bucket. If you do not provide defaults to the same name as the
+							bucket-source</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-i ID, –id=ID</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Transfer only items that match a vbucketID</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-k KEY, –key=KEY</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Transfer only items with keys that match a regexp</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-n, –dry-run</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">No actual transfer; just validate parameters, files, connectivity and
+							configurations</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-u USERNAME, –username=USERNAME</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">REST username for source cluster or server node</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-p PASSWORD, –password=PASSWORD</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">REST password for cluster or server node</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-t THREADS, –threads=THREADS</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Number of concurrent workers threads performing the transfer.
+							Defaults to 4.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-v, –verbose</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Verbose logging; provide more verbosity</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">-x EXTRA, –extra=EXTRA</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Provide extra, uncommon config parameters</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">–single-node</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Transfer from a single server node in a source cluster. This single
+							server node is a source node URL</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">–source-vbucket-state=SOURCE_VBUCKET_STATE</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Only transfer from source vbuckets in this state, such as ‘active’
+							(default) or ‘replica’. Must be used with Couchbase cluster as
+							source.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">–destination-vbucket-state=DESTINATION_VBUCKET_STATE</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Only transfer to destination vbuckets in this state, such as ‘active’
+							(default) or ‘replica’. Must be used with Couchbase cluster as
+							destination.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 ">–destination-operation=DESTINATION_OPERATION</td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Perform this operation on transfer. “set” will override an existing
+							document, ‘add’ will not override, ‘get’ will load all keys transferred
+							from a source cluster into the caching layer at the destination.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e105 "><samp class="ph codeph">/path/to/filename</samp></td>
+
+						<td class="entry" valign="top" headers="d38278e108 ">Export a.csv file from the server or import a.csv file to the server.
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		<p class="p">The following are extra, specialized command options you use in this form
+				<samp class="ph codeph">cbtransfer -x [EXTRA OPTIONS]</samp> :</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d38278e283">batch_max_bytes=400000</th>
+
+						<th class="entry" valign="top" id="d38278e286">Transfer this # of bytes per batch.</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">batch_max_size=1000</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">Transfer this # of documents per batch</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">cbb_max_mb=100000</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">Split backup file on destination cluster if it exceeds MB</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">max_retry=10</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">Max number of sequential retries if transfer fails</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">nmv_retry=1</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">0 or 1, where 1 retries transfer after a NOT_MY_VBUCKET message.
+							Default of 1.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">recv_min_bytes=4096</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">Amount of bytes for every TCP/IP batch transferred</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">report=5</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">Number batches transferred before updating progress bar in
+							console</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">report_full=2000</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">Number batches transferred before emitting progress information in
+							console</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">try_xwm=1</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">As of 2.1, transfer documents with metadata. 1 is default. 0 should
+							only be used if you transfer from 1.8.x to 1.8.x.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">data_only=0</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">For value 1, only transfer data from a backup file or
+							cluster.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d38278e283 ">design_doc_only=0</td>
+
+						<td class="entry" valign="top" headers="d38278e286 ">For value 1, transfer design documents only from a backup file or
+							cluster. Defaults to 0. </td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		<p class="p">The most important way you can use this tool is to transfer data from a Couchbase node
+			that is no longer running to a cluster that is running:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">./cbtransfer \
+       couchstore-files://COUCHSTORE_BUCKET_DIR \
+       couchbase://HOST:PORT \
+       --bucket-destination=DESTINATION_BUCKET
+
+./cbtransfer \
+       couchstore-files:///opt/couchbase/var/lib/couchbase/data/default \
+       couchbase://10.5.3.121:8091 \
+       --bucket-destination=foo
+</samp></pre>
+
+		<p class="p">Upon success, the tool will output as follows:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">[####################] 100.0% (10000/10000 msgs)
+bucket: bucket_name, msgs transferred...
+      : total | last | per sec
+batch : 1088 | 1088 | 554.8
+byte : 5783385 | 5783385 | 3502156.4
+msg : 10000 | 10000 | 5230.9
+done
+</samp></pre>
+
+		<p class="p">This shows we successfully transferred 10000 total documents in batch size of 1088
+			documents each. This next examples shows how you can send all the data from a node to
+			standard output:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">&gt; ./cbtransfer http://10.5.2.37:8091/ stdout:
+</samp></pre>
+
+		<p class="p">Will produce a output as follows:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">set pymc40 0 0 10
+0000000000
+set pymc16 0 0 10
+0000000000
+set pymc9 0 0 10
+0000000000
+set pymc53 0 0 10
+0000000000
+set pymc34 0 0 10
+0000000000
+</samp></pre>
+
+		<div class="note note"><span class="notetitle">Note:</span> Couchbase Server stores all data from a bucket, node or cluster, but not the
+			associated design documents. To do so, you should explicitly use
+				<samp class="ph codeph">cbbackup</samp> to store the information and <samp class="ph codeph">cbrestore</samp> to
+			read it back into memory.</div>
+
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Exporting and Importing CSV Files</h2>
+		<p class="p">You can import and export well-formed.csv files with <samp class="ph codeph">cbtransfer</samp>. This
+			will import data into Couchbase Server as documents and will export documents from the
+			server into comma-separated values. This does not include any design documents
+			associated with a bucket in the cluster.</p>
+
+		<p class="p">For example imagine you have records as follows in the default bucket in a cluster:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">re-fdeea652a89ec3e9,
+0,
+0,
+4271152681275955,
+"{""key"":""re-fdeea652a89ec3e9"",
+ ""key_num"":4112,
+ ""name"":""fdee c3e"",
+ ""email"":""fdee@ea.com"",
+ ""city"":""a65"",
+ ""country"":""2a"",
+ ""realm"":""89"",
+ ""coins"":650.06,
+ ""category"":1,
+ ""achievements"":[77, 149, 239, 37, 76],""body"":""xc4ca4238a0b923820d
+ .......
+""}"
+......
+</samp></pre>
+
+		<p class="p">Where <samp class="ph codeph">re-fdeea652a89ec3e9</samp> is the document ID, 0 are flags, 0 is the
+			expiration and the CAS value is <samp class="ph codeph">4271152681275955</samp>. The actual value in
+			this example is the hash starting with <samp class="ph codeph">"{""key""......</samp>. To export these
+			items to a.csv file perform this command:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">./cbtransfer http://[hostname]:[port] csv:./data.csv -b default -u Administrator -p password
+</samp></pre>
+
+		<p class="p">Will transfer all items from the default bucket, <samp class="ph codeph">-b default</samp> available at
+			the node <samp class="ph codeph">http://localhost:8091</samp> and put the items into the
+				<samp class="ph codeph">/data.csv</samp> file. If you provide another named bucket for the
+				<samp class="ph codeph">-b</samp> option, it will export items from that named bucket. You will
+			need to provide credentials for the cluster when you export items from a bucket in the
+			cluster. You will see output similar to that in other <samp class="ph codeph">cbtransfer</samp>
+			scenarios:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">[####################] 100.0% (10000/10000 msgs)
+bucket: default, msgs transferred...
+       : total | last | per sec
+ batch : 1053 | 1053 | 550.8
+ byte : 4783385 | 4783385 | 2502156.4
+ msg : 10000 | 10000 | 5230.9
+2013-05-08 23:26:45,107: mt warning: cannot save bucket design on a CSV destination
+done
+</samp></pre>
+
+		<p class="p">This shows we transferred 1053 batches of data at 550.8 batches per second. The tool
+			outputs “cannot save bucket design….” to indicate that no design documents were
+			exported. To import information from a.csv file to a named bucket in a cluster:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">./cbtransfer /data.csv http://[hostname]:[port] -B bucket_name -u Administrator -p password
+</samp></pre>
+
+		<p class="p">If your.csv is not correctly formatted you will see the following error during
+			import:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">w0 error: fails to read from csv file, .....
+</samp></pre>
+
+			
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Transferring Design Documents Only</h2>
+		<p class="p">You can transfer design documents from one cluster to another one with the option,
+				<samp class="ph codeph">design_doc_only=1</samp> :</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">&gt; ./cbtransfer http://10.5.2.30:8091 http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_one -B bucket_two
+transfer design doc only. bucket msgs will be skipped.
+done
+</samp></pre>
+
+		<p class="p">This will transfer all design documents associated with <samp class="ph codeph">bucket_one</samp> to
+				<samp class="ph codeph">bucket_two</samp> on the cluster with node
+				<samp class="ph codeph">http://10.3.1.10:8091</samp>. In Couchbase Web Console you can see this
+			updated design documents when you click on the View tab and select
+				<samp class="ph codeph">bucket_two</samp> in the drop-down.</p>
+
+			
+		</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

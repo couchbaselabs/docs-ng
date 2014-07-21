@@ -1,0 +1,925 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../../install-intro.html">Couchbase Installation</a></li><li><a href="../../admin-intro.html">Couchbase Administration</a></li><li><a href="../../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a><ul class="nav nav-list"><li class="active"><a href="../../CLI/CBcli/cbcli-commands.html">couchbase-cli commands</a><ul class="nav nav-list"></ul></li><li><a href="../../CLI/CBcli/cbcli-buckets.html">Buckets CLI</a></li><li><a href="../../CLI/CBcli/cbcli-rza.html">Rack-Zone Awareness CLI</a></li><li><a href="../../CLI/CBcli/cbcli-servers.html">Server nodes CLI</a></li><li><a href="../../CLI/CBcli/cbcli-xdcr.html">XDCR CLI</a></li></ul></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">Couchbase REST API</a></li><li><a href="../../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9"><h1 class="title topictitle1">couchbase-cli commands</h1>
+<div class="body">
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e16">Command</th>
+
+	<th class="entry" valign="top" id="d528e19">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">server-list</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">List all servers in a cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">server-info</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Show details on one server</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">server-add</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Add one or more servers to the cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">server-readd</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Readds a server that was failed over</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">group-manage</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Manages server groups (Enterprise Edition only)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">rebalance</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Start a cluster rebalancing</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">rebalance-stop</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Stop current cluster rebalancing</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">rebalance-status</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Show status of current cluster rebalancing</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">failover</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Failover one or more servers</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">cluster-init</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set the username,password and port of the cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">cluster-edit</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Modify cluster settings</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">node-init</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set node specific parameters</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">bucket-list</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">List all buckets in a cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">bucket-create</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Add a new bucket to the cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">bucket-edit</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Modify an existing bucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">bucket-delete</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Delete an existing bucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">bucket-flush</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Flush all data from disk for a given bucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">bucket-compact</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Compact database and index data</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">setting-compaction</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set auto compaction settings</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">setting-notification</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set notifications.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">setting-alert</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Email alert settings</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">setting-autofailover</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set auto failover settings</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">setting-xdcr</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set XDCR-related configuration which affect behavior.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">xdcr-setup</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Set up XDCR replication.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">xdcr-replicate</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">Create and run replication via XDCR</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e16 "><samp class="ph codeph">help show longer</samp></td>
+
+	<td class="entry" valign="top" headers="d528e19 ">usage/help and examples </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section"><h2 class="title sectiontitle">couchbase-cli command options</h2><p class="p">The following are options which can be used with their respective commands.
+Administration — <samp class="ph codeph">couchbase-cli</samp> Tool commands options:</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">server-list option</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e277">server-list options</th>
+
+	<th class="entry" valign="top" id="d528e280">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e277 ">–group-name=GROUPNAME</td>
+
+	<td class="entry" valign="top" headers="d528e280 ">Displays all server in a server group (Enterprise Edition only)</td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">server-add options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e302">server-add options</th>
+
+	<th class="entry" valign="top" id="d528e305">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e302 "><samp class="ph codeph">--server-add=HOST[:PORT]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e305 ">Server to add to cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e302 "><samp class="ph codeph">--server-add-username=USERNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e305 ">Admin username for the server to be added</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e302 "><samp class="ph codeph">--server-add-password=PASSWORD</samp></td>
+
+	<td class="entry" valign="top" headers="d528e305 ">Admin password for the server to be added</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e302 "><samp class="ph codeph">--group-name=GROUPNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e305 ">Server group where the server is to be added (Enterprise Edition only) </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">server-readd options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e355">server-readd options</th>
+
+	<th class="entry" valign="top" id="d528e358">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e355 "><samp class="ph codeph">--server-add=HOST[:PORT]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e358 ">Server to re-add to cluster</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e355 "><samp class="ph codeph">--server-add-username=USERNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e358 ">Admin username for the server to be added</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e355 "><samp class="ph codeph">--server-add-password=PASSWORD</samp></td>
+
+	<td class="entry" valign="top" headers="d528e358 ">Admin password for the server to be added</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e355 "><samp class="ph codeph">--group-name=GROUPNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e358 ">Server group where the server is to be added (Enterprise Edition only)</td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">group-manage options (Enterprise Edition only)</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e408">group-manage options</th>
+
+	<th class="entry" valign="top" id="d528e411">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--group-name=GROUPNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Server group name</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--list</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Shows the server groups and the server assigned to each server group</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--create</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Creates a server group.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--delete</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Removes an empty server group.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--rename=NEWGROUPNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Renames an existing server group.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--add-servers="HOST:PORT;HOST:PORT"</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Adds servers to a group</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--move-servers="HOST:PORT;HOST:PORT"</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Moves a list of server from a group</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--from-group=GROUPNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Moves one or more servers from a group.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e408 "><samp class="ph codeph">--to-group=GROUPNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e411 ">Moves one or more server to a group</td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">rebalance options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e506">rebalance options</th>
+
+	<th class="entry" valign="top" id="d528e509">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e506 "><samp class="ph codeph">--server-add*</samp></td>
+
+	<td class="entry" valign="top" headers="d528e509 ">See server-add OPTIONS</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e506 "><samp class="ph codeph">--server-remove=HOST[:PORT]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e509 ">The server to remove from cluster </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">failover option</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e541">failover option</th>
+
+	<th class="entry" valign="top" id="d528e544">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e541 "><samp class="ph codeph">--server-failover=HOST[:PORT]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e544 ">Server to failover </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">cluster-* options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e567">cluster-* options</th>
+
+	<th class="entry" valign="top" id="d528e570">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e567 "><samp class="ph codeph">--cluster-username=USER</samp></td>
+
+	<td class="entry" valign="top" headers="d528e570 ">New admin username</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e567 "><samp class="ph codeph">--cluster-password=PASSWORD</samp></td>
+
+	<td class="entry" valign="top" headers="d528e570 ">New admin password</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e567 "><samp class="ph codeph">--cluster-port=PORT</samp></td>
+
+	<td class="entry" valign="top" headers="d528e570 ">New cluster REST/http port</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e567 "><samp class="ph codeph">--cluster-ramsize=RAMSIZEMB</samp></td>
+
+	<td class="entry" valign="top" headers="d528e570 ">Per node RAM quota in MB </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">node-init options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e620">node-init options</th>
+
+	<th class="entry" valign="top" id="d528e623">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e620 "><samp class="ph codeph">--node-init-data-path=PATH</samp></td>
+
+	<td class="entry" valign="top" headers="d528e623 ">Per node path to store data</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e620 "><samp class="ph codeph">--node-init-index-path=PATH</samp></td>
+
+	<td class="entry" valign="top" headers="d528e623 ">Per node path to store index </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">bucket-* options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e655">bucket-* options</th>
+
+	<th class="entry" valign="top" id="d528e658">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--bucket=BUCKETNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Named bucket to act on</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--bucket-type=TYPE</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Bucket type, either memcached or couchbase</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--bucket-port=PORT</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Supports ASCII protocol and does not require authentication</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--bucket-password=PASSWORD</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Standard port, exclusive with bucket-port</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--bucket-ramsize=RAMSIZEMB</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Bucket RAM quota in MB</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--bucket-replica=COUNT</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Replication count</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--enable-flush=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Enable/disable flush</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--enable-index-replica=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Enable/disable index replicas</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--wait</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Wait for bucket create to be complete before returning</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--force</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Force command execution without asking for confirmation</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--data-only</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Compact database data only</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e655 "><samp class="ph codeph">--view-only</samp></td>
+
+	<td class="entry" valign="top" headers="d528e658 ">Compact view data only </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">setting-compaction options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e782">setting-compaction options</th>
+
+	<th class="entry" valign="top" id="d528e785">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--compaction-db-percentage=PERCENTAGE</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Percentage of disk fragmentation when database compaction is triggered</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--compaction-db-size=SIZE[MB]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Size of disk fragmentation when database compaction is triggered</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--compaction-view-percentage=PERCENTAGE</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Percentage of disk fragmentation when views compaction is triggered</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--compaction-view-size=SIZE[MB]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Size of disk fragmentation when views compaction is triggered</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--compaction-period-from=HH:MM</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Enable compaction from this time onwards</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--compaction-period-to=HH:MM</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Stop enabling compaction at this time</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--enable-compaction-abort=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Allow compaction to abort when time expires</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e782 "><samp class="ph codeph">--enable-compaction-parallel=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e785 ">Allow parallel compaction processes for database and view </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">setting-alert and notification options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e871">setting-alert options</th>
+
+	<th class="entry" valign="top" id="d528e874">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--enable-email-alert=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Allow email alert</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--email-recipients=RECIPIENT</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Email recipents, separate addresses with, or ;</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--email-sender=SENDER</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Sender email address</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--email-user=USER</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Email server username</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--email-password=PWD</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Email server password</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--email-host=HOST</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Email server hostname</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--email-port=PORT</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Email server port</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--enable-email-encrypt=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Email encryption with 0 the default for no encryption</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-auto-failover-node</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Node was failed over via autofailover</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-auto-failover-max-reached</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Maximum number of auto failover nodes reached</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-auto-failover-node-down</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Node not auto failed-over as other nodes are down at the same time</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-auto-failover-cluster-small</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Node not auto failed-over as cluster was too small</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-ip-changed</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Node ip address changed unexpectedly</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-disk-space</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Disk space used for persistent storage has reached at least 90% capacity</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-meta-overhead</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Metadata overhead is more than 50% of RAM for node</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-meta-oom</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Bucket memory on a node is entirely used for metadata</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e871 "><samp class="ph codeph">--alert-write-failed</samp></td>
+
+	<td class="entry" valign="top" headers="d528e874 ">Writing data to disk for a specific bucket has failed </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e1039">setting-notification option</th>
+
+	<th class="entry" valign="top" id="d528e1042">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e1039 "><samp class="ph codeph">--enable-notification=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1042 ">Allow notifications </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">setting-autofailover options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e1065">setting-autofailover options</th>
+
+	<th class="entry" valign="top" id="d528e1068">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e1065 "><samp class="ph codeph">--enable-auto-failover=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1068 ">Allow auto failover</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1065 "><samp class="ph codeph">--auto-failover-timeout=TIMEOUT (&gt;=30)</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1068 ">Specify amount of node timeout that triggers auto failover </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">setting-xdcr options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e1100">setting-xdcr options</th>
+
+	<th class="entry" valign="top" id="d528e1103">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e1100 "><samp class="ph codeph">--max-concurrent-reps=[32]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1103 ">Maximum concurrent replicators per bucket, 8 to 256.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1100 "><samp class="ph codeph">--checkpoint-interval=[1800]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1103 ">Intervals between checkpoints, 60 to 14400 seconds.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1100 "><samp class="ph codeph">--worker-batch-size=[500]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1103 ">Doc batch size, 500 to 10000.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1100 "><samp class="ph codeph">--doc-batch-size=[2048]KB</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1103 ">Document batching size, 10 to 100000 KB</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1100 "><samp class="ph codeph">--failure-restart-interval=[30]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1103 ">Interval for restarting failed xdcr, 1 to 300 seconds</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1100 "><samp class="ph codeph">--optimistic-replication-threshold=[256]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1103 ">Document body size threshold (bytes) to trigger optimistic replication </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">xdcr-setup options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e1171">xdcr-setup options</th>
+
+	<th class="entry" valign="top" id="d528e1174">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--create</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Create a new xdcr configuration</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--edit</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Modify existed xdcr configuration</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--delete</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Delete existing xdcr configuration</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--xdcr-cluster-name=CLUSTERNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Remote cluster name</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--xdcr-hostname=HOSTNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Remote host name to connect to</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--xdcr-username=USERNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Remote cluster admin username</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--xdcr-password=PASSWORD</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Remote cluster admin password</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--xdcr-demand-encryption=[0\|1]</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Enables data encryption using Secure Socket Layer (SSL). <strong class="ph b">1</strong> (one) enables data encryption. Default: 0 (Enterprise Edition only)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1171 "><samp class="ph codeph">--xdcr-certificate=CERTIFICATE</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1174 ">Specifies the pem-encoded certificate. The certificate is required for XDCR data encryption. Specify the full path for the location of the pem-encoded certificate file on the source cluster. (Enterprise Edition only) </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">xdcr-replicate options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e1272">xdcr-replicate options</th>
+
+	<th class="entry" valign="top" id="d528e1275">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e1272 "><samp class="ph codeph">--create</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1275 ">Create and start a new replication</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1272 "><samp class="ph codeph">--delete</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1275 ">Stop and cancel a replication</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1272 "><samp class="ph codeph">--xdcr-from-bucket=BUCKET</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1275 ">Source bucket name to replicate from</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1272 "><samp class="ph codeph">--xdcr-clucter-name=CLUSTERNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1275 ">Remote cluster to replicate to</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1272 "><samp class="ph codeph">--xdcr-to-bucket=BUCKETNAME</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1275 ">Remote bucket to replicate to</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1272 "><samp class="ph codeph">--xdcr-replication-mode= PROTOCOL</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1275 ">Select REST protocol or memcached for replication. <samp class="ph codeph">xmem</samp> indicates memcached while <samp class="ph codeph">capi</samp> indicates REST protocol. </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">ssl-manage options</h2>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d528e1349">ssl-manage options</th>
+
+	<th class="entry" valign="top" id="d528e1352">Description</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d528e1349 "><samp class="ph codeph">--regenerate-cert=CERTIFICATE</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1352 ">Regenerates a self-signed certificate on the destination cluster. Specify the full path for the location of the pem-encoded certificate file. For example, <samp class="ph codeph">--regenerate-cert=./new.pem</samp>. (Enterprise Edition only)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d528e1349 "><samp class="ph codeph">--retrieve-cert=CERTIFICATE</samp></td>
+
+	<td class="entry" valign="top" headers="d528e1352 ">Retrieves the self-signed certificate from the destination cluster to the source cluster. Specify a local location (full path) and file name for the pem-encoded certificate. For example, <samp class="ph codeph">--retrieve-cert=./newCert.pem</samp>. (Enterprise Edition only)</td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

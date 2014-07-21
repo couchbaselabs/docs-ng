@@ -1,0 +1,146 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a><ul class="nav nav-list"><li><a href="../Misc/Trbl-commonErrors.html">Common errors</a></li><li><a href="../Misc/Trbl-generalTips.html">General tips</a></li><li><a href="../Misc/Trbl-logs.html">Logs and logging</a></li><li><a href="../Misc/Trbl-issuesReport.html">Reporting issues</a></li><li><a href="../Misc/Trbl-beam-smp-issue.html">Beam.smp</a></li><li><a href="../Misc/Trbl-blockedIndexer.html">Blocked indexer</a></li><li><a href="../Misc/Trbl-common.html">Server issues</a></li><li><a href="../Misc/Trbl-datamissing-server.html">Incorrect or missing data (server issue)</a></li><li><a href="../Misc/Trbl-datamissing-user.html">Incorrect or missing data (user issue)</a></li><li class="active"><a href="../Misc/Trbl-designdocs.html">Design document aliases</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/Trbl-expireddocs.html">Expired documents issue</a></li><li><a href="../Misc/Trbl-indexFileSystem.html">Index filesystem structure</a></li><li><a href="../Misc/Trbl-queryResults.html">Index results for a single node</a></li><li><a href="../Misc/Trbl-replicaIndex.html">Debugging replica index</a></li><li><a href="../Misc/Trbl-staleFalse-debug.html">Debugging stale=false queries</a></li><li><a href="../Misc/Trbl-timeoutErrors.html">Timeout errors</a></li><li><a href="../Misc/Trbl-total_row-debug.html">total_rows values are too high</a></li><li><a href="../Misc/Trbl-wrongdocs.html">Wrong documents or rows issue</a></li></ul></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+   <h1 class="title topictitle1">Design document aliases</h1>
+
+   <div class="body">
+      <p class="p">When 2 or more design documents have exactly the same map and reduce functions (but
+         different IDs of course), they get the same signature. This means that both point to the same index files, and it’s exactly
+         this feature that allows publishing development design documents into production, which
+         consists of creating a copy of the development design document (ID matches
+         _design/dev_foobar) with an ID not containing the <samp class="ph codeph">dev_</samp> prefix and then
+         deleting the original development document, which ensure the index files are preserved
+         after deleting the development design document. It’s also possible to have multiple
+         “production” aliases for the same production design document. The view engine itself has no
+         notion of development and production design documents, this is a notion only at the UI and
+         cluster layers, which exploits the design document signatures/aliases feature.</p>
+
+      <p class="p">The following example shows this property.</p>
+
+      <p class="p">We create 2 identical design documents, only their IDs differ:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -H 'Content-Type: application/json' \
+    -X PUT 'http://localhost:9500/default/_design/ddoc1' \
+    -d '{ "views": {"view1": {"map": "function(doc, meta) { emit(doc.level, meta.id); }"}}}'
+{"ok":true,"id":"_design/ddoc1"}
+
+&gt; curl -H 'Content-Type: application/json' \
+    -X PUT 'http://localhost:9500/default/_design/ddoc2'
+    -d '{ "views": {"view1": {"map": "function(doc, meta) { emit(doc.level, meta.id); }"}}}'
+{"ok":true,"id":"_design/ddoc2"}
+</samp></pre>
+
+      <p class="p">Next we query view1 from _design/ddoc1 with <samp class="ph codeph">stale=false</samp>, and get:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/default/_design/ddoc1/_view/view1?limit=10&amp;stale=false'
+{"total_rows":1000000,"rows":[
+{"id":"0000025","key":1,"value":"0000025"},
+{"id":"0000136","key":1,"value":"0000136"},
+{"id":"0000158","key":1,"value":"0000158"},
+{"id":"0000205","key":1,"value":"0000205"},
+{"id":"0000208","key":1,"value":"0000208"},
+{"id":"0000404","key":1,"value":"0000404"},
+{"id":"0000464","key":1,"value":"0000464"},
+{"id":"0000496","key":1,"value":"0000496"},
+{"id":"0000604","key":1,"value":"0000604"},
+{"id":"0000626","key":1,"value":"0000626"}
+]
+}
+</samp></pre>
+
+      <p class="p">If immediately after you query view1 from _design/ddoc2 with <samp class="ph codeph">stale=ok</samp>,
+         you’ll get exactly the same results, because both design documents are aliases, they share
+         the same signature:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/default/_design/ddoc2/_view/view1?limit=10&amp;stale=ok'
+{"total_rows":1000000,"rows":[
+{"id":"0000025","key":1,"value":"0000025"},
+{"id":"0000136","key":1,"value":"0000136"},
+{"id":"0000158","key":1,"value":"0000158"},
+{"id":"0000205","key":1,"value":"0000205"},
+{"id":"0000208","key":1,"value":"0000208"},
+{"id":"0000404","key":1,"value":"0000404"},
+{"id":"0000464","key":1,"value":"0000464"},
+{"id":"0000496","key":1,"value":"0000496"},
+{"id":"0000604","key":1,"value":"0000604"},
+{"id":"0000626","key":1,"value":"0000626"}
+]
+}
+</samp></pre>
+
+      <p class="p">If you look into the data directory, there’s only one main index file and one replica index
+         file:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; tree couch/0/\@indexes
+couch/0/@indexes
+ ??? default
+     ???
+main_1909e1541626269ef88c7107f5123feb.view.1
+     ???
+replica_1909e1541626269ef88c7107f5123feb.view.1
+     ???
+tmp_1909e1541626269ef88c7107f5123feb_main
+
+ 2 directories, 2 files
+</samp></pre>
+
+      <p class="p">Also, while the indexer is running, if you query <samp class="ph codeph">_active_tasks</samp> for a node,
+         you’ll see one single indexer task, which lists both design documents in the
+            <samp class="ph codeph">design_documents</samp> array field:</p>
+
+      <pre class="pre codeblock">
+&gt; curl -s http://localhost:9500/_active_tasks | json_xs
+[
+   {
+      "waiting" : 0,
+      "started_on" : 1345662986,
+      "pid" :   "&lt;0.234.0&gt;",
+      "type" :   "couch_main_index_barrier",
+      "running" : 1,
+      "limit" : 4,
+      "updated_on" : 1345663590
+   },
+   {
+      "waiting" : 0,
+      "started_on" : 1345662986,
+      "pid" : "&lt;0.235.0&gt;",
+      "type" :   "couch_replica_index_barrier",
+      "running" : 0,
+      "limit" : 2,
+      "updated_on" : 1345662986
+   },
+   {
+      "indexer_type" : "main",
+      "started_on" : 1345663590,
+      "progress" : 75,
+      "initial_build" : true,
+      "updated_on" : 1345663634,
+      "total_changes" : 250000,
+      "design_documents" : [
+         "_design/ddoc1",
+         "_design/ddoc2"
+      ],
+      "pid" :   "&lt;0.6567.0&gt;",
+      "changes_done" : 189635,
+      "signature" : "1909e1541626269ef88c7107f5123feb",
+      "type" :   "indexer",
+      "set" :   "default"
+   }
+]
+</pre>
+
+   </div>
+
+   <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/Trbl-intro.html" title="Troubleshooting covers general tips, common errors, log information, and other issues.">Troubleshooting</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Views/views-intro.html">Views and indexes</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

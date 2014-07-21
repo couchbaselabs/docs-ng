@@ -1,0 +1,90 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a><ul class="nav nav-list"><li><a href="../Monitoring/monitor-underlying-processes.html">Underlying server processes</a></li><li><a href="../Monitoring/monitor-port-access.html">Port numbers and accessing different buckets</a></li><li><a href="../Monitoring/monitor-warmup.html">Monitoring startup (warmup)</a></li><li><a href="../Monitoring/monitor-diskqueue.html">Disk write queue</a></li><li><a href="../Monitoring/monitor-statistics.html">Couchbase Server statistics</a></li><li class="active"><a href="../Monitoring/monitor-moxi-statistics.html">Couchbase Server Moxi statistics</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Couchbase Server Moxi statistics</h1>
+
+  
+  <div class="body"><p class="shortdesc">Regular memcached clients can request statistics through the memcached stats command.</p>
+
+    <p class="p">Moxi, as part of it’s support of memcached protocol, has support for the memcached
+        <samp class="ph codeph">stats</samp> command. The stats command accepts optional arguments, and in the case of
+      Moxi, there is a stats proxy sub-command. A detailed description of statistics available
+      through Moxi can be found in the Moxi 1.8 Manual.</p>
+
+    <p class="p">For example, one simple client one may use is the commonly available netcat (output elided
+      with ellipses):</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">$ echo "stats proxy" | nc localhost 11211
+STAT basic:version 1.6.0
+STAT basic:nthreads 5
+…
+STAT proxy_main:conf_type dynamic
+STAT proxy_main:behavior:cycle 0
+STAT proxy_main:behavior:downstream_max 4
+STAT proxy_main:behavior:downstream_conn_max 0
+STAT proxy_main:behavior:downstream_weight 0
+…
+STAT proxy_main:stats:stat_configs 1
+STAT proxy_main:stats:stat_config_fails 0
+STAT proxy_main:stats:stat_proxy_starts 2
+STAT proxy_main:stats:stat_proxy_start_fails 0
+STAT proxy_main:stats:stat_proxy_existings 0
+STAT proxy_main:stats:stat_proxy_shutdowns 0
+STAT 11211:default:info:port 11211
+STAT 11211:default:info:name default
+…
+STAT 11211:default:behavior:downstream_protocol 8
+STAT 11211:default:behavior:downstream_timeout 0
+STAT 11211:default:behavior:wait_queue_timeout 0
+STAT 11211:default:behavior:time_stats 0
+STAT 11211:default:behavior:connect_max_errors 0
+STAT 11211:default:behavior:connect_retry_interval 0
+STAT 11211:default:behavior:front_cache_max 200
+STAT 11211:default:behavior:front_cache_lifespan 0
+STAT 11211:default:behavior:front_cache_spec
+STAT 11211:default:behavior:front_cache_unspec
+STAT 11211:default:behavior:key_stats_max
+STAT 11211:default:behavior:key_stats_lifespan 0
+STAT 11211:default:behavior:key_stats_spec
+STAT 11211:default:behavior:key_stats_unspec
+STAT 11211:default:behavior:optimize_set
+STAT 11211:default:behavior:usr default
+…
+STAT 11211:default:pstd_stats:num_upstream 1
+STAT 11211:default:pstd_stats:tot_upstream 2
+STAT 11211:default:pstd_stats:num_downstream_conn 1
+STAT 11211:default:pstd_stats:tot_downstream_conn 1
+STAT 11211:default:pstd_stats:tot_downstream_conn_acquired 1
+STAT 11211:default:pstd_stats:tot_downstream_conn_released 1
+STAT 11211:default:pstd_stats:tot_downstream_released 2
+STAT 11211:default:pstd_stats:tot_downstream_reserved 1
+STAT 11211:default:pstd_stats:tot_downstream_reserved_time 0
+STAT 11211:default:pstd_stats:max_downstream_reserved_time 0
+STAT 11211:default:pstd_stats:tot_downstream_freed 0
+STAT 11211:default:pstd_stats:tot_downstream_quit_server 0
+STAT 11211:default:pstd_stats:tot_downstream_max_reached 0
+STAT 11211:default:pstd_stats:tot_downstream_create_failed 0
+STAT 11211:default:pstd_stats:tot_downstream_connect 1
+STAT 11211:default:pstd_stats:tot_downstream_connect_failed 0
+STAT 11211:default:pstd_stats:tot_downstream_connect_timeout 0
+STAT 11211:default:pstd_stats:tot_downstream_connect_interval 0
+STAT 11211:default:pstd_stats:tot_downstream_connect_max_reached 0
+…
+END
+</samp></pre>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Monitoring/monitor-intro.html" title="There are a number of different ways to monitor Couchbase servers including underlying processes, ports, and queueing.">Monitoring</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="http://docs.couchbase.com/moxi-manual-1.8" target="_blank">Moxi 1.8 Manual</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

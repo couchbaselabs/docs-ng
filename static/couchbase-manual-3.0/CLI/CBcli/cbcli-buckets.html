@@ -1,0 +1,202 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../../install-intro.html">Couchbase Installation</a></li><li><a href="../../admin-intro.html">Couchbase Administration</a></li><li><a href="../../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBcli/cbcli-commands.html">couchbase-cli commands</a></li><li class="active"><a href="../../CLI/CBcli/cbcli-buckets.html">Buckets CLI</a><ul class="nav nav-list"></ul></li><li><a href="../../CLI/CBcli/cbcli-rza.html">Rack-Zone Awareness CLI</a></li><li><a href="../../CLI/CBcli/cbcli-servers.html">Server nodes CLI</a></li><li><a href="../../CLI/CBcli/cbcli-xdcr.html">XDCR CLI</a></li></ul></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">Couchbase REST API</a></li><li><a href="../../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+        <h1 class="title topictitle1">Buckets CLI</h1>
+
+        
+        
+        <div class="body"><p class="shortdesc">Buckets are managed with the <samp class="ph codeph">couchbase-cli</samp> tool and the <samp class="ph codeph">bucket-*</samp> commands.</p>
+
+                <p class="p">This section provides examples for listing, creating, modifying, flushing, and
+                        compacting buckets.</p>
+
+                
+                <div class="section"><h2 class="title sectiontitle">Listing bucketss</h2><p class="p">To list buckets in a
+                        cluster:</p>
+
+                        
+                        <pre class="pre codeblock">
+couchbase-cli bucket-list -c 192.168.0.1:8091
+</pre>
+</div>
+
+                
+                <div class="section"><h2 class="title sectiontitle">Creating buckets</h2>
+                        <p class="p">To create a new dedicated port couchbase bucket:</p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-create -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-type=couchbase \
+       --bucket-port=11222 \
+       --bucket-ramsize=200 \
+       --bucket-replica=1
+</pre>
+
+        
+        <p class="p">To create a couchbase bucket and wait for bucket
+                                ready:</p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-create -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-type=couchbase \
+       --bucket-port=11222 \
+       --bucket-ramsize=200 \
+       --bucket-replica=1 \
+       --wait
+</pre>
+
+                        
+         
+        <p class="p">To create a new sasl memcached bucket:</p>
+
+        <pre class="pre codeblock">
+couchbase-cli bucket-create -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-type=memcached \
+       --bucket-password=password \
+       --bucket-ramsize=200 \
+       --enable-flush=1 \
+       --enable-index-replica=1
+</pre>
+</div>
+
+                
+                
+                <div class="section"><h2 class="title sectiontitle">Modifying buckets</h2>
+                        
+                        <p class="p">To modify a dedicated port bucket:</p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-edit -c 192.168.0.1:8091 \
+       --bucket=test_bucket \
+       --bucket-port=11222 \
+       --bucket-ramsize=400 \
+       --enable-flush=1
+</pre>
+</div>
+
+                
+                <div class="section"><h2 class="title sectiontitle">Deleting buckets</h2>
+                        <p class="p">To delete a bucket:</p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-delete -c 192.168.0.1:8091 \
+       --bucket=test_bucket
+</pre>
+</div>
+
+                
+                <div class="section"><h2 class="title sectiontitle">Flushing buckets</h2>
+                        <p class="p">Flushing buckets involves:</p>
+
+                        <ol class="ol">
+                                <li class="li">Enable the flush buckets option.</li>
+
+                                <li class="li">Flush the bucket.</li>
+
+                        </ol>
+
+                        
+                        <p class="p">To enable the flush bucket option:</p>
+
+                        <p class="p">When you want to flush a data bucket you must first enable this option 
+                                then actually issue the command to flush the data bucket. 
+</p>
+
+                        <div class="note note"><span class="notetitle">Note:</span> We do not advise that you enable this option if
+                                your data bucket is in a production environment. Be aware that this
+                                is one of the preferred methods for enabling data bucket flush.
+                                </div>
+
+                        
+                        <p class="p">You can enable this option when you actually create the data
+                                bucket, or when you edit the bucket
+                                properties:</p>
+
+                        
+                        <pre class="pre codeblock">
+// To enable, set bucket flush to 1. Default:0
+// To enable bucket flush when creating a bucket:
+
+couchbase-cli bucket-create [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]
+
+// To enable bucket flush when editing the bucket properties:
+
+couchbase-cli bucket-edit [bucket_name] [cluster_admin:pass] --enable-flush=[0|1]
+</pre>
+
+                        <p class="p">After
+                                you enable this option, you can then flush the data bucket.</p>
+<p class="p">To
+                                flush a bucket:</p>
+<p class="p">After you explicitly enable data bucket flush,
+                                flush the data from the bucket. Flushing a bucket is data
+                                destructive. Client applications using this are advised to double
+                                check with the end user before sending such a request. You can
+                                control and limit the ability to flush individual buckets by setting
+                                the <samp class="ph codeph">flushEnabled</samp> parameter on a bucket in Couchbase
+                                Web Console or via <samp class="ph codeph">couchbase-cli</samp> as described in
+                                the previous section. </p>
+
+                        
+                        <p class="p"><strong class="ph b">Syntax</strong></p>
+
+                        <pre class="pre codeblock">
+
+&gt; couchbase-cli bucket-flush [cluster_admin:pass] [bucket_name OPTIONS]
+
+                        </pre>
+
+                        <p class="p">By default, this command confirms whether or not you truly want to
+                                flush the data bucket. You can optionally call this command with the
+                                        <samp class="ph codeph">--force</samp> option to flush data without
+                                confirmation.</p>
+
+                        
+                        <p class="p"><strong class="ph b">Example</strong></p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-flush -c 192.168.0.1:8091 \
+       --force
+</pre>
+</div>
+
+                
+                <div class="section"><h2 class="title sectiontitle">Compacting buckets</h2>
+                        
+                        <p class="p">To compact a bucket for both data and view:</p>
+
+                        
+                        <pre class="pre codeblock">
+couchbase-cli bucket-compact -c 192.168.0.1:8091 \
+        --bucket=test_bucket
+</pre>
+<p class="p">To compact a bucket for data only:</p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-compact -c 192.168.0.1:8091 \
+        --bucket=test_bucket \
+        --data-only
+</pre>
+<p class="p">To compact a bucket for view only:</p>
+
+                        <pre class="pre codeblock">
+couchbase-cli bucket-compact -c 192.168.0.1:8091 \
+        --bucket=test_bucket \
+        --view-only
+</pre>
+</div>
+
+        </div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

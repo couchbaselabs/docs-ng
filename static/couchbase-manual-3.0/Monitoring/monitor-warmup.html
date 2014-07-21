@@ -1,0 +1,256 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a><ul class="nav nav-list"><li><a href="../Monitoring/monitor-underlying-processes.html">Underlying server processes</a></li><li><a href="../Monitoring/monitor-port-access.html">Port numbers and accessing different buckets</a></li><li class="active"><a href="../Monitoring/monitor-warmup.html">Monitoring startup (warmup)</a><ul class="nav nav-list"></ul></li><li><a href="../Monitoring/monitor-diskqueue.html">Disk write queue</a></li><li><a href="../Monitoring/monitor-statistics.html">Couchbase Server statistics</a></li><li><a href="../Monitoring/monitor-moxi-statistics.html">Couchbase Server Moxi statistics</a></li></ul></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Monitoring startup (warmup)</h1>
+
+	<div class="body">
+		<p class="p">If a Couchbase Server node is starting up for the first time, it creates whatever DB
+			files necessary and begin serving data immediately. However, if there is already data on
+			disk (likely because the node rebooted or the service restarted) the node needs to read
+			all of this data off of disk before it can begin serving data. This is called “warmup”.
+			Depending on the size of data, this can take some time. </p>
+
+		<p class="p">When starting up a node, there are a few statistics to monitor. Use the
+				<samp class="ph codeph">cbstats</samp> command to watch the warmup and item stats:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
+    egrep "warm|curr_items"
+</samp></pre>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d78548e37">curr_items:</th>
+
+						<th class="entry" valign="top" id="d78548e40">0</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">curr_items_tot:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">15687</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">ep_warmed_up:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">15687</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">ep_warmup:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">false</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">ep_warmup_dups:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">0</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">ep_warmup_oom:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">0</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">ep_warmup_thread:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">running</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e37 ">ep_warmup_time:</td>
+
+						<td class="entry" valign="top" headers="d78548e40 ">787 </td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		<p class="p">And when it is complete:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">&gt; cbstats localhost:11210 -b bucket_name -p bucket_password warmup | »
+    egrep "warm|curr_items"
+</samp></pre>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d78548e134">curr_items:</th>
+
+						<th class="entry" valign="top" id="d78548e137">10000</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">curr_items_tot:</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">20000</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">ep_warmed_up:</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">20000</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">ep_warmup:</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">true</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">ep_warmup_dups:</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">0</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">ep_warmup_oom:</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">0</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">ep_warmup_thread:</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">complete</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e134 ">ep_warmup_time</td>
+
+						<td class="entry" valign="top" headers="d78548e137 ">1400 </td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d78548e223">Stat</th>
+
+						<th class="entry" valign="top" id="d78548e226">Description</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">curr_items</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">The number of items currently active on this node. During warmup,
+							this will be 0 until complete</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">curr_items_tot</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">The total number of items this node knows about (active and replica).
+							During warmup, this will be increasing and should match
+							ep_warmed_up</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">ep_warmed_up</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">The number of items retrieved from disk. During warmup, this should
+							be increasing.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">ep_warmup_dups</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">The number of duplicate items found on disk. Ideally should be 0, but
+							a few is not a problem</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">ep_warmup_oom</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">How many times the warmup process received an Out of Memory response
+							from the server while loading data into RAM</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">ep_warmup_thread</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">The status of the warmup thread. Can be either running or
+							complete</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d78548e223 ">ep_warmup_time</td>
+
+						<td class="entry" valign="top" headers="d78548e226 ">How long the warmup thread was running for. During warmup this number
+							should be increasing, when complete it will tell you how long the
+							process took</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+	</div>
+
+	<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Monitoring/monitor-intro.html" title="There are a number of different ways to monitor Couchbase servers including underlying processes, ports, and queueing.">Monitoring</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Concepts/concept-serverWarmup.html" title="Whenever the Couchbase server is restarted or data is restored to a server instance, the server undergoes a warmup process before data requests can be handled.">Server warmup</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

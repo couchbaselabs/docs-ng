@@ -1,0 +1,293 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a><ul class="nav nav-list"><li><a href="../UI/ui-cluster-summary.html">Cluster Overview</a></li><li><a href="../UI/ui-server-nodes.html">Server Nodes</a></li><li class="active"><a href="../UI/ui-data-buckets.html">Data Buckets</a><ul class="nav nav-list"><li><a href="../Tasks/tasks-manage-ReadWrite.html">Using multi-readers and writers</a></li><li><a href="../UI/ui-monitoring-statistics.html">Monitoring statistics</a></li><li><a href="../UI/ui-document-editor.html">Managing documents</a></li></ul></li><li><a href="../UI/ui-views-editor.html">Views</a></li><li><a href="../UI/ui-xdcr-panel.html">XDCR</a></li><li><a href="../UI/ui-logs.html">Log</a></li><li><a href="../UI/ui-settings.html">Settings</a></li></ul></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Data Buckets</h1>
+
+ <div class="body">
+  <p class="p">Couchbase Server provides a range of statistics and settings through the <samp class="ph codeph">Data
+    Buckets</samp> and <samp class="ph codeph">Server Nodes</samp>. These show overview and detailed information
+   so that administrators can better understand the current state of individual nodes and the
+   cluster as a whole.</p>
+
+  <p class="p">The <samp class="ph codeph">Data Buckets</samp> page displays a list of all the configured buckets on your
+   system (of both Couchbase and memcached types). The page provides a quick overview of your
+   cluster health from the perspective of the configured buckets, rather than whole cluster or
+   individual servers.</p>
+
+  <p class="p">The information is shown in the form of a table, as seen in the figure below.</p>
+
+  
+    <img class="image" src="../images/web-console-data-buckets-overview.png" width="720">
+   
+  <p class="p">The list of buckets are separated by the bucket type. For each bucket, the following
+   information is provided in each column:</p>
+
+  <ul class="ul">
+   <li class="li"><span class="ph uicontrol">Bucket name</span> is the given name for the bucket. Clicking on the bucket name
+     takes you to the individual bucket statistics page. </li>
+
+   <li class="li"><span class="ph uicontrol">RAM Usage/Quota</span> shows the amount of RAM used (for active objects) against
+     the configure bucket size.</li>
+
+   <li class="li"><span class="ph uicontrol">Disk Usage</span> shows the amount of disk space in use for active object data
+     storage.</li>
+
+   <li class="li"><span class="ph uicontrol">Item Count</span> indicates the number of objects stored in the bucket.</li>
+
+   <li class="li"><samp class="ph codeph">Ops/sec</samp> shows the number of operations per second for this data
+     bucket.</li>
+
+   <li class="li"><span class="ph uicontrol">Disk Fetches/sec</span> shows the number of operations required to fetch items
+     from disk.</li>
+
+   <li class="li">Clicking the <span class="ph uicontrol">Bucket Name</span> opens the basic bucket information summary. </li>
+
+   <li class="li">Clicking the <span class="ph uicontrol">Documents</span> button will take you to a list of objects
+     identified as parseable documents.</li>
+
+   <li class="li">The <span class="ph uicontrol">Views</span> button allows you to create and manage views on your stored
+     objects.</li>
+
+  </ul>
+
+  <p class="p">To create a new data bucket, click the <span class="ph uicontrol">Create New Data Bucket</span>.</p>
+
+
+  
+  <div class="section"><h2 class="title sectiontitle">Creating and editing data buckets</h2>
+   <p class="p">When creating a new data bucket, or
+    editing an existing one, you will be presented with the bucket configuration screen. From here
+    you can set the memory size, access control and other settings, depending on whether you are
+    editing or creating a new bucket, and the bucket
+    type.</p>
+
+  
+  <p class="p">You can create a new bucket in Couchbase Web
+    Console under the Data Buckets tab.</p>
+
+   <ol class="ol">
+    <li class="li">Click Data Buckets | Create New Data Bucket. You see the <samp class="ph codeph">Create Bucket</samp>
+     panel, as follows: <img class="image" src="../images/mrw_create_bucket.png" width="720"></li>
+
+     
+    <li class="li">Select a name for the new bucket. 
+     <p class="p">The bucket name can only contain characters in range
+      A-Z, a-z, 0–9 as well as underscore, period, dash and percent symbols.</p>
+
+     <div class="note tip"><span class="tiptitle">Tip:</span> Create a named bucket specifically for your application. Any default
+      bucket you initially set up with Couchbase Server should not be used for storing live
+      application data. The default bucket you create when you first install Couchbase Server should
+      be used only for testing.</div>
+</li>
+
+    <li class="li">Select a Bucket Type, either Memcached or Couchbase.
+      <p class="p">The options that appear in this panel differ based on the bucket
+      type.</p>
+
+     <p class="p">For <samp class="ph codeph">Couchbase</samp> bucket type:</p>
+
+     <ul class="ul">
+      <li class="li"><strong class="ph b">Memory Size</strong></li>
+
+     </ul>
+
+     <p class="p">The amount of available RAM on this server which should be allocated to the bucket. Note
+      that the allocation is the amount of memory that will be allocated for this bucket on each
+      node, not the total size of the bucket across all nodes.</p>
+
+     <ul class="ul">
+      <li class="li"><strong class="ph b">Replicas</strong></li>
+
+     </ul>
+
+     <p class="p">For Couchbase buckets you can enable data replication so that the data is copied to other
+      nodes in a cluster. You can configure up to three replicas per bucket. If you set this to one,
+      you need to have a minimum of two nodes in your cluster and so forth. If a node in a cluster
+      fails, after you perform failover, the replicated data will be made available on a functioning
+      node. This provides continuous cluster operations in spite of machine failure. </p>
+
+     <p class="p">You can disable replication by deselecting the <samp class="ph codeph">Enable</samp> checkbox.</p>
+
+     <p class="p">You can disable replication by setting the number of replica copies to zero (0).</p>
+
+     <p class="p">To configure replicas, Select a number in <samp class="ph codeph">Number of replica (backup) copies</samp>
+      drop-down list.</p>
+
+     <p class="p">To enable replica indexes, Select the <samp class="ph codeph">Index replicas</samp> checkbox. Couchbase
+      Server can also create replicas of indexes. This ensures that indexes do not need to be
+      rebuilt in the event of a node failure. This will increase network load as the index
+      information is replicated along with the data.</p>
+
+     <ul class="ul">
+      <li class="li"><strong class="ph b">Disk Read-Write Concurrency</strong></li>
+
+     </ul>
+
+     <p class="p">Multiple readers and writers are supported to persist data onto disk. For earlier versions
+      of Couchbase Server, each server instance had only single disk reader and writer threads. By
+      default this is set to three total threads per data bucket, with two reader threads and one
+      writer thread for the bucket.</p>
+
+     <p class="p">For now, leave this setting at the default. In the future, when you create new data buckets
+      you can update this setting. </p>
+
+     <ul class="ul">
+      <li class="li"><strong class="ph b">Flush</strong></li>
+
+     </ul>
+
+     <p class="p">To enable the operation for a bucket, click the <samp class="ph codeph">Enable</samp> checkbox. Enable or
+      disable support for the Flush command, which deletes all the data in an a bucket. The default
+      is for the flush operation to be disabled.</p>
+
+     <p class="p">For <samp class="ph codeph">Memcached</samp> bucket type:</p>
+
+     <ul class="ul">
+      <li class="li"><strong class="ph b">Memory Size</strong></li>
+
+     </ul>
+
+     <p class="p">The bucket is configured with a per-node amount of memory. Total bucket memory will change
+      as nodes are added/removed.</p>
+
+     <p class="p"><strong class="ph b">Warning</strong>: Changing the size of a memcached bucket will erase all the data in the
+      bucket and recreate it, resulting in loss of all stored data for existing buckets.</p>
+
+     <ul class="ul">
+      <li class="li"><strong class="ph b">Auto-Compaction</strong></li>
+
+     </ul>
+
+     <p class="p">Both data and index information stored on disk can become fragmented. Compaction rebuilds
+      the stored data on index to reduce the fragmentation of the data. </p>
+
+     <p class="p">You can opt to override the default auto compaction settings for this individual bucket.
+      Default settings are configured through the <samp class="ph codeph">Settings</samp> menu.  
+      If you override the default autocompaction settings, you can
+      configure the same parameters, but the limits will affect only this bucket.</p>
+
+     <p class="p">For either bucket type provide these two settings in the Create Bucket panel:</p>
+
+     
+     <ul class="ul">
+      <li class="li"><span class="ph uicontrol">Access Control</span>
+     <p class="p">The access control configures the port clients use to communicate with the data bucket, and
+      whether the bucket requires a password.</p>
+
+     <p class="p">To use the TCP standard port (11211), the first bucket you create can use this port without
+      requiring SASL authentication. For each subsequent bucket, you must specify the password to be
+      used for SASL authentication, and client communication must be made using the binary
+      protocol.</p>
+
+     <p class="p">To use a dedicated port, select the dedicate port radio button and enter the port number you
+      want to use. Using a dedicated port supports both the text and binary client protocols, and
+      does not require authentication.</p>
+
+     <p class="p">Note: When defining a port on a bucket, the server automatically starts up a copy of Moxi on
+      the servers, and exposes it on that port. This supports the ASCII memcached protocol. However,
+      Couchbase strongly recommend against using Moxi in this way. If needed, a client-side Moxi
+      should be installed on the application servers and have it connect to this bucket (whether it
+      is “port” or “password” doesn’t matter).</p>
+
+     <p class="p">When defining a password on a bucket, it requires a client that supports the binary
+      memcached protocol with SASL (all Couchbase client libraries and client-side Moxi provide this
+      support). Defining a password on a bucket is the recommended approach.</p>
+
+      </li>
+
+     <li class="li"><strong class="ph b">Flush</strong>
+     <p class="p">Enable or disable support for the Flush command, which deletes all the data in an a bucket.
+      The default is for the flush operation to be disabled. To enable the operation for a bucket,
+      select the Enable checkbox.</p>
+</li>
+
+    <li class="li">Click <span class="ph uicontrol">Create</span>.</li>
+
+     </ul>
+
+    </li>
+
+   </ol>
+
+  </div>
+
+
+  
+  <div class="section"><h2 class="title sectiontitle">Editing Couchbase buckets</h2><p class="p">You can edit a number of settings for an
+    existing Couchbase bucket in Couchbase Web Console:</p>
+
+   <ul class="ul">
+    <li class="li"><span class="ph uicontrol">Access Control</span>, including the standard port/password or custom port
+      settings.</li>
+
+    <li class="li"><span class="ph uicontrol">Memory Size</span> can be modified providing you have unallocated space within
+      your Cluster configuration. You can reduce the amount of memory allocated to a bucket if that
+      space is not already in use.</li>
+
+    <li class="li"><span class="ph uicontrol">Auto-Compaction</span> settings, including enabling the override of the default
+      auto-compaction settings, and bucket-specific auto-compaction.</li>
+
+    <li class="li"><span class="ph uicontrol">Flush</span> support. You can enable or disable support for the Flush
+      command.</li>
+
+   </ul>
+
+   <p class="p">The bucket name cannot be modified. To delete the configured bucket entirely, click the
+     <span class="ph uicontrol">Delete</span>
+    button.</p>
+</div>
+
+  
+  <div class="section"><h2 class="title sectiontitle">Editing Memcached buckets</h2><p class="p">For Memcached buckets, you can modify the
+    following settings when editing an existing bucket:</p>
+<ul class="ul">
+    <li class="li"><p class="p"><samp class="ph codeph">Access Control</samp>, including the standard port/password or custom port
+      settings.</p>
+</li>
+
+    <li class="li"><p class="p"><samp class="ph codeph">Memory Size</samp> can be modified providing you have unallocated RAM quota
+      within your Cluster configuration. You can reduce the amount of memory allocated to a bucket
+      if that space is not already in use.</p>
+</li>
+
+   </ul>
+<p class="p">You can delete the bucket entirely by clicking the <span class="ph uicontrol">Delete</span>
+    button.</p>
+<p class="p">You can empty a Memcached bucket of all the cached information that it stores by
+    using the <samp class="ph codeph">Flush</samp> button.</p>
+<p class="p"><strong class="ph b">Warning</strong>: Using the <samp class="ph codeph">Flush</samp>
+    button removes all the objects stored in the Memcached bucket. Using this button on active
+    Memcached buckets may delete important
+    information.</p>
+</div>
+
+  <div class="section"><h2 class="title sectiontitle">Bucket information</h2><p class="p">You can obtain basic information about the status of
+    your data buckets by clicking on the drop-down next to the bucket name under the <samp class="ph codeph">Data
+     Buckets</samp> page. The bucket information shows memory size, access, and replica
+    information for the bucket, as shown in the figure below.</p>
+
+   
+     <img class="image" src="../images/web-console-bucket-info.png" width="720">
+    <p class="p">You can edit the bucket information by clicking the
+     <samp class="ph codeph">Edit</samp> button within the bucket information display.</p>
+</div>
+
+ </div>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../Tasks/tasks-manage-ReadWrite.html">Using multi-readers and writers</a></strong><br>
+Multiple readers and writers are supported to increase disk I/O throughput.</li>
+<li class="link ulchildlink"><strong><a href="../UI/ui-monitoring-statistics.html">Monitoring statistics</a></strong><br>
+Within the <span class="ph uicontrol">Data Bucket</span> tab, information and statistics about   bucketsand nodes is displayed for the entire Couchbase Server cluster. The information is   aggregated from all the server nodes within the configured cluster for the selected   bucket.</li>
+<li class="link ulchildlink"><strong><a href="../UI/ui-document-editor.html">Managing documents</a></strong><br>
+The Document Viewer and Editor enables you to browse, view, and edit individual documents     stored in Couchbase Server buckets.</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../UI/ui-intro.html" title="The Couchbase web console is the main tool for managing the Couchbase environment.">Couchbase web console</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

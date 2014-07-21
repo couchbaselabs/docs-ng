@@ -1,0 +1,70 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a><ul class="nav nav-list"><li class="active"><a href="../Install/rhel-prerequisites.html">Prerequisites</a><ul class="nav nav-list"></ul></li><li><a href="../Install/rhel-installing.html">Installing on RHEL</a></li><li><a href="../Install/user-defined-ports.html">Using user-defined ports</a></li><li><a href="../Install/rhel-non-root-sudo.html">Installing as non-root, non-sudo</a></li><li><a href="../Install/rhel-multiple-instances.html">Installing multiple instances</a></li></ul></li><li><a href="../Install/Ubuntu-install.html">Ubuntu Linux installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/uninstalling.html">Uninstalling</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Prerequisites</h1>
+
+  <div class="body">
+    <p class="p">Before you install, check the supported platforms. The Red Hat installation uses the RPM
+      package.</p>
+
+    
+    <div class="section"><h2 class="title sectiontitle">OpenSSL dependency checking</h2>
+        <p class="p">For Red Hat Enterprise Linux version 6.0, Couchbase Server RPM performs dependency checks
+          for OpenSSL using <samp class="ph codeph">pkg-config</samp>. Check that this pkg-config is installed and if
+          not, install it: </p>
+
+          <pre class="pre codeblock">
+root-&gt; sudo yum install -y pkgconfig </pre>
+
+          <p class="p">Upon successful install the following output displays:</p>
+
+          <pre class="pre codeblock">Loaded plugins .... Installed: pkgconfig.x86_64 1:0.21-2.el5 Complete!
+      </pre>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">OpenSSL 0983 installation</h2></div>
+
+        <p class="p">For Red Hat Enterprise Linux version 6.0 and above, install a specific
+          OpenSSL dependency by running:</p>
+
+          <pre class="pre codeblock">
+root-&gt; yum install openssl098e</pre>
+
+          <p class="p">Some users can not install <samp class="ph codeph">openssl098e</samp> with this
+            command without having administrative privileges. 
+            If this issue is experienced, put the
+            contents of the <samp class="ph codeph">lib64</samp>directory into <samp class="ph codeph">opt/couchbase/lib</samp>:</p>
+
+          
+          <ul class="ul">
+            <li class="li">Download `openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm’.</li>
+
+            <li class="li">Go to the directory where you extracted Couchbase Server: <samp class="ph codeph">cd
+              opt/couchbase</samp>.</li>
+
+            <li class="li">Extract the openssl098e RPM:
+        <pre class="pre codeblock">rpm2cpio
+openssl098e-0.9.8e-17.el6.centos.2.x86_64.rpm | cpio --extract
+--make-directories --no-absolute-filenames</pre>
+
+      </li>
+
+            <li class="li">Move the extracted files to the <samp class="ph codeph">/lib</samp> directory for Couchbase Server:
+              <samp class="ph codeph">mv usr/lib64/* lib/</samp></li>
+
+          </ul>
+
+ 
+       
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

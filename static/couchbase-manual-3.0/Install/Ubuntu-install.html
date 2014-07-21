@@ -1,0 +1,121 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a></li><li class="active"><a href="../Install/Ubuntu-install.html">Ubuntu Linux installation</a><ul class="nav nav-list"></ul></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/uninstalling.html">Uninstalling</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Ubuntu Linux installation</h1>
+
+ <div class="body">
+  
+  <div class="section"><h2 class="title sectiontitle">Installing on Ubuntu</h2><p class="p">To install:</p>
+<ol class="ol">
+    <li class="li">For Ubuntu version 12.04, you need to install a specific OpenSSL dependency by
+       running:<p class="p"><samp class="ph codeph"> root-&gt; apt-get install libssl0.9.8 </samp></p>
+</li>
+
+    <li class="li">The Ubuntu Couchbase installation uses the DEB package. To install, use the
+      <samp class="ph codeph">dpkg</samp> command-line tool using the DEB file that you downloaded. The following
+     example uses <samp class="ph codeph">sudo</samp> which will require root-access to allow
+       installation:<p class="p"><samp class="ph codeph"> &gt; dpkg -i couchbase-server version.deb </samp></p>
+<p class="p">Where
+       <samp class="ph codeph">version</samp> is the version number of the downloaded package.</p>
+<p class="p">Once the
+       <samp class="ph codeph">dpkg</samp> command has been executed, the Couchbase server starts automatically,
+      and is configured to automatically start during boot under the 2, 3, 4, and 5 run levels.
+      Refer to the Ubuntu documentation for more information about installing packages using the
+      Debian package manager.</p>
+<p class="p">After installation has completed, the installation process
+      displays a message similar to the following: </p>
+
+    </li>
+
+  </ol>
+
+     
+     <pre class="pre codeblock">
+Selecting previously deselected package couchbase-server. 
+(Reading database … 73755 files and directories currently installed.)
+Unpacking couchbase-server (from couchbase-server_x86_64_2.1.0-xxx-rel.deb) … 
+libssl0.9.8 is installed. Continue installing 
+Minimum RAM required : 4 GB 
+System RAM configured : 4058708 KB
+      
+      
+Minimum number of processors required : 4 cores 
+Number of processors on the system : 4 cores
+Setting up couchbase-server (2.1) … 
+
+* Started couchbase-server
+
+You have successfully installed Couchbase Server. 
+Please browse to http://slv–0501:8091/ to configure your server. 
+Please refer to http://couchbase.com for additional resources.
+      
+Please note that you have to update your firewall configuration to  
+allow connections to the following ports: 11211, 11210, 11209, 4369, 
+8091, 8092, 18091, 18092, and from 21100 to 21299.
+      
+By using this software you agree to the End User License Agreement. 
+See /opt/couchbase/LICENSE.txt
+        
+Processing triggers for ureadahead … 
+ureadahead will be reprofiled on next reboot
+     </pre>
+
+
+   <p class="p">After successful installation, use the <samp class="ph codeph">service</samp> command to manage the
+    Couchbase Server service, including checking the current status. Refer to the Ubuntu
+    documentation for instructions. To provide initial setup for Couchbase, open a web browser and
+    access the web administration interface. </p>
+
+  </div>
+
+
+  <div class="section"><h2 class="title sectiontitle">Installing on Ubuntu as non-root, non-sudo</h2><p class="p"><strong class="ph b">This installation is for
+     development purposes only.</strong> There may be cases when you want to install the server as a
+    non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
+    able to run Couchbase Server and all Couchbase command-line tools. To do so on Ubuntu:</p>
+<ol class="ol">
+    <li class="li">After you download the Couchbase DEB package, go to the directory where it is located and
+     extract it:<p class="p"><samp class="ph codeph"> &gt; dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb
+       $HOME </samp></p>
+<p class="p">In the directory where you extracted the files, you will see
+       <samp class="ph codeph">opt</samp> and <samp class="ph codeph">etc</samp> subdirectories.</p>
+</li>
+
+    <li class="li">After you extract the Couchbase Server install files, go to the subdirectory:<p class="p"><samp class="ph codeph"> cd
+       opt/couchbase </samp></p>
+</li>
+
+    <li class="li">Run this password-related script:<p class="p"><samp class="ph codeph"> ./bin/install/reloc.sh `pwd`
+      </samp></p>
+<p class="p">This enables you to continue the install as a non-root, non-sudo
+     user.</p>
+</li>
+
+    <li class="li">To run the server:<p class="p"><samp class="ph codeph"> ./bin/couchbase-server -- -noinput -detached
+     </samp></p>
+</li>
+
+    <li class="li">To stop the server:<p class="p"><samp class="ph codeph"> ./bin/couchbase-server -k </samp></p>
+</li>
+
+   </ol>
+
+  </div>
+
+ </div>
+
+ <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Couchbase Installation</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Install/install-platforms.html">Supported platforms</a></div>
+<div><a class="link" href="../Install/install-networkPorts.html" title="Couchbase Server specific network ports for communication between server components and for communicating with the clients that access the data stored in the Couchbase cluster.">Network ports</a></div>
+<div><a class="link" href="../Install/linux-startup-shutdown.html">Startup and shutdown on Linux</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

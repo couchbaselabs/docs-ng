@@ -1,0 +1,53 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-cluster-get.html">Retrieving cluster information</a></li><li><a href="../REST/rest-cluster-details.html">Viewing cluster details</a></li><li><a href="../REST/rest-cluster-addnodes.html">Adding nodes to clusters</a></li><li><a href="../REST/rest-cluster-joinnode.html">Joining nodes into clusters</a></li><li><a href="../REST/rest-cluster-rebalance.html">Rebalancing nodes</a></li><li><a href="../REST/rest-cluster-removenode.html">Removing nodes from clusters</a></li><li><a href="../REST/rest-cluster-internal-settings.html">Managing internal cluster settings</a></li><li><a href="../REST/rest-cluster-autofailover-intro.html">Managing auto-failover</a><ul class="nav nav-list"><li class="active"><a href="../REST/rest-cluster-autofailover-settings.html">Retrieving auto-failover settings</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-cluster-autofailover-enable.html">Enabling and disabling auto-failover</a></li><li><a href="../REST/rest-cluster-autofailover-reset.html">Resetting auto-failover</a></li></ul></li><li><a href="../REST/rest-cluster-disable-query.html">Disabling consistent query results on rebalance</a></li><li><a href="../REST/rest-cluster-email-notifications.html">View settings for email notifications</a></li><li><a href="../REST/rest-cluster-max-buckets.html">Setting maximum buckets for clusters</a></li><li><a href="../REST/rest-cluster-max-index.html">Setting maximum parallel indexers</a></li></ul></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9"><h1 class="title topictitle1">Retrieving auto-failover settings</h1>
+<div class="body"><p class="p">Use this request to retrieve any auto-failover settings for a cluster.
+Auto-failover is a global setting for all clusters. You need to be authenticated
+to read this value. Example:</p>
+<pre class="pre codeblock"><samp class="ph codeph">curl -u admin:password http://localhost:8091/settings/autoFailover
+</samp></pre>
+<p class="p">Replace the <em class="ph i">admin</em>, <em class="ph i">password</em>, and <em class="ph i">localhost</em> values in the above example
+with your actual values.</p>
+<p class="p">If successful Couchbase Server returns any auto-failover settings for the
+cluster:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{"enabled":false,"timeout":30,"count":0}
+</samp></pre>
+<p class="p">The following parameters and settings appear:</p>
+<ul class="ul">
+<li class="li"><p class="p"><samp class="ph codeph">enabled</samp> : either true if auto-failover is enabled or false if it is not.</p>
+</li>
+
+<li class="li"><p class="p"><samp class="ph codeph">timeout</samp> : seconds that must elapse before auto-failover executes on a cluster.</p>
+</li>
+
+<li class="li"><p class="p"><samp class="ph codeph">count</samp> : can be 0 or 1. Number of times any node in a cluster can be
+ automatically failed-over. After one auto-failover occurs, count is set to 1 and
+ Couchbase server will not perform auto-failure for the cluster again unless you
+ reset the count to 0. If you want to failover more than one node at a time in a
+ cluster, you will need to do so manually.</p>
+</li>
+
+</ul>
+<p class="p">Possible errors include:</p>
+<pre class="pre codeblock"><samp class="ph codeph">HTTP/1.1 401 Unauthorized
+This endpoint isn't available yet.
+</samp></pre>
+<pre class="pre codeblock"><samp class="ph codeph">GET /settings/autoFailover HTTP/1.1
+Host: localhost:8091
+Authorization: Basic YWRtaW46YWRtaW4=
+Accept: */*
+</samp></pre>
+<pre class="pre codeblock"><samp class="ph codeph">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: nnn
+{ "enabled": false, "timeout": 30, "count": 0 }
+</samp></pre>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-cluster-autofailover-intro.html">Managing auto-failover</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>

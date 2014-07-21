@@ -1,0 +1,39 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a><ul class="nav nav-list"><li><a href="../Concepts/concept-nodesCluster.html">Nodes and clusters</a></li><li><a href="../Concepts/concept-clusterMgr.html">Cluster Manager</a></li><li><a href="../Concepts/concept-dataStorage.html">Data storage</a></li><li><a href="../Concepts/concept-ramQuota.html">RAM quotas</a></li><li><a href="../Concepts/concept-vBucket.html">vBuckets</a></li><li><a href="../Concepts/concept-cacheLayer.html">Caching layer</a></li><li><a href="../Concepts/concept-diskStorage.html">Disk storage</a></li><li><a href="../Concepts/concept-workingset-mgmt.html">Working set management and ejection</a></li><li><a href="../Concepts/concept-docExpiration.html">Expiration</a></li><li><a href="../Concepts/concept-serverWarmup.html">Server warmup</a></li><li class="active"><a href="../Concepts/concept-rebalancing.html">Rebalancing</a><ul class="nav nav-list"></ul></li><li><a href="../Concepts/concept-replication.html">Replicas and replication</a></li><li><a href="../Concepts/concept-rack-awareness.html">Rack Awareness</a></li><li><a href="../Concepts/concept-nodeFailover.html">Failover</a></li><li><a href="../Concepts/concepts-TAP.html">TAP</a></li><li><a href="../Concepts/concepts-statsMonitor.html">Statistics and monitoring</a></li></ul></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Misc/deprecated.dita</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Rebalancing</h1>
+
+  
+  <div class="body"><p class="shortdesc">Rebalancing is the process of redistributing information across nodes</p>
+
+    <p class="p">Data is stored within Couchbase Server through the distribution method that is provided by the vBucket structure. 
+      When a Couchbase Server cluster is expanded or shrunk, 
+      the information stored in the vBuckets is redistributed between the available nodes and 
+      the corresponding vBucket map is updated to reflect the new structure. 
+      This process is called <em class="ph i">rebalancing</em>.</p>
+
+    
+    <p class="p">Rebalancing is an deliberate process that you need to initiate manually when the structure of
+      your cluster changes. The rebalance process changes the allocation of the vBuckets used to
+      store the information and then physically moves the data between the nodes to match the new
+      structure.</p>
+
+    <p class="p">The rebalancing process can take place while the cluster is running and servicing requests.
+      Clients using the cluster read and write to the existing structure with the data being moved
+      in the background between nodes. Once the moving process has been completed, the vBucket map
+      is updated and communicated to the smart clients and the proxy service (Moxi).</p>
+
+    <p class="p">The result is that the distribution of data across the cluster has been rebalanced, or
+      smoothed out, so that the data is evenly distributed across the database. 
+      Rebalancing takes into account the data and replicas of the data required to support the system.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/concept-intro.html" title="Couchbase Server concepts include the differenct components and systems that make up an individual Couchbase Server instance and a Couchbase cluster including information and concepts needed to understand the fast and elastic nature, high availability, and high performance of the Couchbase Server database.">Architecture and concepts</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer></body></html>
