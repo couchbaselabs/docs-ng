@@ -1,7 +1,7 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
 					body{
 						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="../css/base.css" rel="stylesheet"><script src="../js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="../images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index.html">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li class="active"><a href="../REST/rest-rza.html">Rack Awareness REST API</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li class="active"><a href="../REST/rest-rza.html">Rack Awareness REST API</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
   <h1 class="title topictitle1">Rack Awareness REST API</h1>
 
 
@@ -42,11 +42,11 @@
           
           <thead class="thead" align="left">
             <tr class="row">
-              <th class="entry" valign="top" id="d93829e58">HTTP method</th>
+              <th class="entry" valign="top" id="d93831e58">HTTP method</th>
 
-              <th class="entry" valign="top" id="d93829e61">URI path</th>
+              <th class="entry" valign="top" id="d93831e61">URI path</th>
 
-              <th class="entry" valign="top" id="d93829e64">Description</th>
+              <th class="entry" valign="top" id="d93831e64">Description</th>
 
             </tr>
 
@@ -54,47 +54,47 @@
 
           <tbody class="tbody">
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e58 ">GET</td>
+              <td class="entry" valign="top" headers="d93831e58 ">GET</td>
 
-              <td class="entry" valign="top" headers="d93829e61 ">/pools/default/serverGroups</td>
+              <td class="entry" valign="top" headers="d93831e61 ">/pools/default/serverGroups</td>
 
-              <td class="entry" valign="top" headers="d93829e64 ">Retrieves information about a server group.</td>
-
-            </tr>
-
-            <tr class="row">
-              <td class="entry" valign="top" headers="d93829e58 ">POST</td>
-
-              <td class="entry" valign="top" headers="d93829e61 ">/pools/default/serverGroups</td>
-
-              <td class="entry" valign="top" headers="d93829e64 ">Creates a server group with a specific name.</td>
+              <td class="entry" valign="top" headers="d93831e64 ">Retrieves information about a server group.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e58 ">PUT</td>
+              <td class="entry" valign="top" headers="d93831e58 ">POST</td>
 
-              <td class="entry" valign="top" headers="d93829e61 ">/pools/default/serverGroups/&lt;:uuid&gt;</td>
+              <td class="entry" valign="top" headers="d93831e61 ">/pools/default/serverGroups</td>
 
-              <td class="entry" valign="top" headers="d93829e64 ">Updates the server group information.</td>
-
-            </tr>
-
-            <tr class="row">
-              <td class="entry" valign="top" headers="d93829e58 ">PUT</td>
-
-              <td class="entry" valign="top" headers="d93829e61 ">/pools/default/serverGroups?rev=&lt;:number&gt;</td>
-
-              <td class="entry" valign="top" headers="d93829e64 ">Updates a server’s group memberships.</td>
+              <td class="entry" valign="top" headers="d93831e64 ">Creates a server group with a specific name.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e58 ">DELETE</td>
+              <td class="entry" valign="top" headers="d93831e58 ">PUT</td>
 
-              <td class="entry" valign="top" headers="d93829e61 ">/pools/default/serverGroups/&lt;:uuid&gt;</td>
+              <td class="entry" valign="top" headers="d93831e61 ">/pools/default/serverGroups/&lt;:uuid&gt;</td>
 
-              <td class="entry" valign="top" headers="d93829e64 ">Deletes a specific server group.</td>
+              <td class="entry" valign="top" headers="d93831e64 ">Updates the server group information.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" headers="d93831e58 ">PUT</td>
+
+              <td class="entry" valign="top" headers="d93831e61 ">/pools/default/serverGroups?rev=&lt;:number&gt;</td>
+
+              <td class="entry" valign="top" headers="d93831e64 ">Updates a server’s group memberships.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" headers="d93831e58 ">DELETE</td>
+
+              <td class="entry" valign="top" headers="d93831e61 ">/pools/default/serverGroups/&lt;:uuid&gt;</td>
+
+              <td class="entry" valign="top" headers="d93831e64 ">Deletes a specific server group.</td>
 
             </tr>
 
@@ -135,9 +135,9 @@
           
           <thead class="thead" align="left">
             <tr class="row">
-              <th class="entry" valign="top" id="d93829e175">Group info</th>
+              <th class="entry" valign="top" id="d93831e175">Group info</th>
 
-              <th class="entry" valign="top" id="d93829e178">Description</th>
+              <th class="entry" valign="top" id="d93831e178">Description</th>
 
             </tr>
 
@@ -145,47 +145,47 @@
 
           <tbody class="tbody">
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e175 "><samp class="ph codeph">"groups": [(&lt;groupInfo&gt;)+]</samp></td>
+              <td class="entry" valign="top" headers="d93831e175 "><samp class="ph codeph">"groups": [(&lt;groupInfo&gt;)+]</samp></td>
 
-              <td class="entry" valign="top" headers="d93829e178 ">Information about server groups.</td>
+              <td class="entry" valign="top" headers="d93831e178 ">Information about server groups.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e175 "><samp class="ph codeph">"name":"&lt;groupName&gt;"</samp></td>
+              <td class="entry" valign="top" headers="d93831e175 "><samp class="ph codeph">"name":"&lt;groupName&gt;"</samp></td>
 
-              <td class="entry" valign="top" headers="d93829e178 ">Specifies the name of the group. If the group name has a space, for example,
+              <td class="entry" valign="top" headers="d93831e178 ">Specifies the name of the group. If the group name has a space, for example,
                 Group A, use double quotes (for example, <samp class="ph codeph">"Group A"</samp>). If the name
                 does not have spaces (for example, GroupA) double quotes are not required.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e175 "><samp class="ph codeph">"uri":"/pools/default/serverGroups?rev=&lt;integer&gt;"</samp></td>
+              <td class="entry" valign="top" headers="d93831e175 "><samp class="ph codeph">"uri":"/pools/default/serverGroups?rev=&lt;integer&gt;"</samp></td>
 
-              <td class="entry" valign="top" headers="d93829e178 ">Specifies the URI path and revision integer.</td>
-
-            </tr>
-
-            <tr class="row">
-              <td class="entry" valign="top" headers="d93829e175 "><samp class="ph codeph">"uri":"/pools/default/serverGroups/&lt;:uuid&gt;"</samp></td>
-
-              <td class="entry" valign="top" headers="d93829e178 ">Specifies the URI path and UUID string.</td>
+              <td class="entry" valign="top" headers="d93831e178 ">Specifies the URI path and revision integer.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e175 "><samp class="ph codeph">"addNodeURI":"/pools/default/serverGroups/&lt;:uuid&gt;/addNode</samp></td>
+              <td class="entry" valign="top" headers="d93831e175 "><samp class="ph codeph">"uri":"/pools/default/serverGroups/&lt;:uuid&gt;"</samp></td>
 
-              <td class="entry" valign="top" headers="d93829e178 ">Specifies the URI path and UUID string for adding servers to a server
+              <td class="entry" valign="top" headers="d93831e178 ">Specifies the URI path and UUID string.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" headers="d93831e175 "><samp class="ph codeph">"addNodeURI":"/pools/default/serverGroups/&lt;:uuid&gt;/addNode</samp></td>
+
+              <td class="entry" valign="top" headers="d93831e178 ">Specifies the URI path and UUID string for adding servers to a server
                 group.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" headers="d93829e175 "><samp class="ph codeph">"nodes": [(&lt;nodeInfo&gt;+)]</samp></td>
+              <td class="entry" valign="top" headers="d93831e175 "><samp class="ph codeph">"nodes": [(&lt;nodeInfo&gt;+)]</samp></td>
 
-              <td class="entry" valign="top" headers="d93829e178 ">Information about the servers.</td>
+              <td class="entry" valign="top" headers="d93831e178 ">Information about the servers.</td>
 
             </tr>
 
