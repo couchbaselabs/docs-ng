@@ -4,10 +4,10 @@
 	<title>Configuring clients for SSL</title>
 	<abstract>
 		<shortdesc>The Couchbase Server client libraries support client-side encryption using the
-			Secure Sockets Layer (SSL) protocol.</shortdesc> To enable SSL on the client-side, you need
-		to get an SSL certificate from Couchbase Server, as described in <xref format="dita"
-			scope="local" href="security-clientServer-comm.dita" />, and then follow the steps specific
-		to the client you are using. </abstract>
+			Secure Sockets Layer (SSL) protocol.</shortdesc>To enable SSL on the client-side, you
+		need to get an SSL certificate from Couchbase Server, as described in <xref format="dita"
+			scope="local" href="security-clientServer-comm.dita"/>, and then follow the steps
+		specific to the client you are using. </abstract>
 	<conbody>
 		<p>The following clients support SSL:</p>
 		<ul>
@@ -22,11 +22,11 @@
 			<p>To configure SSL for the Java client:</p>
 			<ol>
 				<li>Get the SSL certificate from Couchbase Server.</li>
-				<li><p>Store the certificate in your Java virtual machine (JVM) keystore.</p>
+				<li>Store the certificate in your Java virtual machine (JVM) keystore.
 					<codeblock outputclass="language-bourne">$ keytool -import -file certificate-file-name</codeblock></li>
 
-				<li><p>Enable SSL by modifying the <filepath>reference.conf</filepath> configuration
-						file.</p>
+				<li>Enable SSL by modifying the <filepath>reference.conf</filepath> configuration
+						file.
 					<p>Set <codeph>sslEnabled</codeph> to <codeph>true</codeph>, specify the path to the
 						keystore, and provide the keystore password, as shown in the following
 						example:</p>
@@ -45,7 +45,7 @@
 				<li>Get the SSL certificate from Couchbase Server.</li>
 				<li>Store the certificate in the Microsoft Windows Trusted Root Certification
 					Authorities certificate store.</li>
-				<li><p>Enable SSL support on the client.</p>
+				<li>Enable SSL support on the client.
 					<p>You can enable SSL at either the cluster level or on a per-Bucket basis. Setting
 						SSL support at the cluster level means that all buckets within the cluster will
 						use SSL. If you want to use SSL only on specific buckets, just configure your
