@@ -10,7 +10,7 @@
 <example><title>Adding a server node to a cluster</title>
   <p>In the following example, server node at <codeph>10.2.2.64</codeph> is added to the cluster at <codeph>10.2.2.60</codeph>.</p>
   
-  <note type="note">QUESTION: What's the recovery type paramenter??</note>
+  <draft-comment author="Ruth">What's the recovery type paramenter??</draft-comment>
       
       <codeblock>
 CURL -u admin:PASSWORD \

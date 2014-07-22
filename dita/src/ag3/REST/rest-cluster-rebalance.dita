@@ -135,22 +135,26 @@ Accept: */*
 ]
 </codeph></codeblock></section>
     
-    <section><title>Adjusting rebalance during compaction</title><p>If you perform a rebalance while
-        a node is undergoing index compaction, you may experience delays in rebalance. There is REST
-        API parameter as of Couchbase Server 2.0.1 you can use to improve rebalance performance. If
-        you do make this selection, you will reduce the performance of index compaction which can
-        result in larger index file size.</p><p><b>Example</b></p><p>To make this
-        request:</p><codeblock><codeph>curl -X POST -u admin:password 'http://localhost:8091/internalSettings' 
+    <section><title>Adjusting rebalance during compaction</title><p>If you perform a rebalance while a node is undergoing index compaction, you may experience delays
+      in rebalance. The  REST API parameter, <codeph>rebalanceMovesBeforeCompaction</codeph>, is used to improve
+        rebalance performance. If you do make this selection, you will reduce the performance of
+        index compaction which can result in larger index file size.</p><p><b>Example</b></p><p>To make this
+        request:</p>
+      
+      <codeblock>curl -X POST -u admin:password 'http://localhost:8091/internalSettings' 
     -d 'rebalanceMovesBeforeCompaction=256'
-</codeph></codeblock><p>Replace
+</codeblock>
+      
+      <p>Replace
         the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>256</i> values in the above
-        example with your actual values.</p><p>This needs to be made as POST request to the
-          <codeph>/internalSettings</codeph> endpoint. By default this setting is 16, which
-        specifies the number of vBuckets which will moved per node until all vBucket movements
-        pauses. After this pause the system triggers index compaction. Index compaction will not be
-        performed while vBuckets are being moved, so if you specify a larger value, it means that
-        the server will spend less time compacting the index, which will result in larger index
-        files that take up more disk space.</p>
+        example with your actual values.</p>
+      
+      <p>This needs to be made as POST request to the <codeph>/internalSettings</codeph> endpoint. By
+        default this setting is 64 which specifies the number of vBuckets which will moved per node
+        until all vBucket movements pauses. After this pause the system triggers index compaction.
+        Index compaction will not be performed while vBuckets are being moved, so if you specify a
+        larger value, it means that the server will spend less time compacting the index, which will
+        result in larger index files that take up more disk space.</p>
     </section>
     
     
