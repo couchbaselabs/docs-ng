@@ -3,7 +3,8 @@
 <reference id="reference_ed5_pm5_j4">
   <title>Ejecting metadata (CLI)</title>
 
-  <shortdesc>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool.</shortdesc>
+  <shortdesc>Bucket ejection from memory is set with the <codeph>couchbase-cli</codeph>
+    tool.</shortdesc>
   
   <refbody>
     <section><title>Bucket ejection policy</title>
@@ -26,17 +27,17 @@
 couchbase-cli bucket-create -c HOST:PORT
   --bucket=BUCKET_NAME \\	
   --bucket-password=PASSWORD \\
-  --bucket-eviction-policy=VALUE
+  --bucket-eviction-policy=[VALUE]
   -u ADMIN -p PASSWORD
 
 
 couchbase-cli bucket-edit -c HOST:PORT
   --bucket=BUCKET_NAME \\	
-  --bucket-eviction-policy=VALUE
+  --bucket-eviction-policy=[VALUE]
     -u ADMIN -p PASSWORD
       </codeblock>
       
-      <p>To create a new sasl bucket:</p>
+      <p>To create a new bucket and set metadata ejection to Value:</p>
       
       <codeblock>
 couchbase-cli bucket-create -c 192.168.0.1:8091 \\
@@ -49,7 +50,7 @@ couchbase-cli bucket-create -c 192.168.0.1:8091 \\
 
 </codeblock>
       
-      <p>To modify a dedicated port bucket:</p>
+      <p>To edit a bucket and set metadata ejection to Full:</p>
       
       
       <codeblock>

@@ -3,24 +3,25 @@
 <concept id="concept_eg2_454_yn">
  <title>Disk I/O priority</title>
 
- <shortdesc>Disk I/O priority refers to an advanced setting for optimizing I/O
-    allocation.</shortdesc>
+ <shortdesc>Disk I/O priority allows workload priorities to be set at the bucket level.</shortdesc>
  
  <conbody>
 
-   <p>Bucket priority settings can be specified at the bucket-level so that dispatcher task queueing is optimized. 
-    The priority levels refer to the thread count parameter which, in turn, determines allocated resources across buckets. 
-    Bucket latency and I/O operations are impacted by the setting value. </p>
+   <p>Bucket priority settings can be specified at the bucket-level. 
+    The bucket disk I/O priority can be set as either high or low, whereas, low is the default. 
+    Bucket priority settings determine the number of threads assigned to a bucket allocated resources across buckets. 
+    Bucket latency and I/O operations are impacted by the setting value. 
+    When a bucket has a high priority, additional I/O resources are assigned for processing tasks.</p>
    
-   <p>The bucket disk I/O priority can be set as either high or low. Couchbase server has eight (8)
-      threads for reading and writing. High is set to eight (8) threads and low to (3) threads. Low
-      is the default. </p>
+   <p></p>
   
   <p>The default buckets settings can be set during initial setup.</p>
-  <image href="../images/init-default-bucket-settings.png" width="600"></image>
+  <fig><image href="../images/init-default-bucket-settings.png" width="600"></image></fig>
    
     
     <note type="note">Buckets normally do not have less than three (3) threads.</note>
+  
+  <draft-comment author="Ruth">Graphic for the conversion logic when upgrading?</draft-comment>
     
   
   <section><title>Backward compatibility</title>
@@ -33,6 +34,8 @@
     <li>Buckets allocated three to five (3-5) threads are low priority. </li>
    </ul>
   </section>
+  
+
    
  
  </conbody>
