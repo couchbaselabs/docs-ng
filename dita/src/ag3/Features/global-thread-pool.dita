@@ -3,15 +3,25 @@
 <concept id="concept_mzx_cmx_b4">
 
  <title>Shared thread pool</title>
- <shortdesc>Shared thread pool optimizes dispatch tasks by decoupling buckets from thread allocation.</shortdesc>
+ <shortdesc>A shared thread pool is a collection of threads which are shared across multiple buckets.</shortdesc>
  
  <conbody>
-   <p>Threads and buckets are decoupled in the thread management which allows threads to run tasks
-   for any bucket based on the bucket prioritization. Since the global thread pool allows for bucket
-   priority levels, a separate auxillary I/O queue is available with the reader and writer queues at
-   every priority level. This provides improved task queueing. For example, when a thread is
-   assigned to running a task from the auxIO queue and a second task comes in, another thread is
-   assigned to pick up the next task.</p>
+  <p>A thread pool is a collection of threads used to perform similiar jobs. 
+  Each server node has a thread pool that is shared across multiple buckets. 
+  Shared thread pool optimizes dispatch tasks by decoupling buckets from thread allocation.
+  </p>
+  
+  <p>Threads are spawned based on system capabilities at initial startup of a server node instance.
+   These capabilities include the number of CPU cores.</p>
+  
+   <p>With the shared thread pool in each node, threads and buckets are decoupled which 
+    allows the thread to run tasks for any bucket. 
+    Buckets priority
+   Since the global thread pool allows for bucket priority levels, 
+   a separate I/O queue is available with the reader and writer workers at every priority level. 
+   This provides improved task queueing. 
+   For example, when a thread is assigned to running a task from I/O queue and a second task comes in, 
+   another thread is assigned to pick up the next task.</p>
   
   <p>In terms of thread scheduling, if all buckets have the same priority (default setting), each
    thread evenly round-robins over all the task queues of the buckets and then goes to sleep when
@@ -20,21 +30,15 @@
    dispatching tasks from queues of these bucket. </p>
   
   
-   <p>Threads are spawned based on system capabilities at initial startup of a server node instance. 
-    These capabilities include, among other
-    parameters, the number of CPU cores and the storage type (for example, SSD vs spindle disk).</p>
+   
   
   <p>Shared thread pool management promotes:</p>
   <ul>
-   <li>Dynamic thread allocation which provides balanced provisioning by using idle threads (CPU)
-    and disk capacity</li>
-   <li>Higher parallelism for thread workers and I/O resource management</li>
-   <li>Scalability by supporting a very large number of buckets</li>
-   <li>Multi-tenancy, policy-based scheduling, higher throughput, and lower latency</li>
+   <li>Better parallelism for thread workers with more efficient I/O resource management.</li>
+   <li>Better system scalability with more buckets being serviced with fewer worker threads.</li>
   </ul>
   
-  <fig><image href="../images/global-thread-pool.png" width="720" alt="Global Thread Pool diagram"/></fig>
-
+  <draft-comment author="ruth">Need GRAPHIC - see ppt slide</draft-comment>
   
   <section><title>Impacted documentation</title>
    <ul>

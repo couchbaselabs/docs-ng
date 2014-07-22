@@ -3,9 +3,12 @@
 <concept id="concept_plr_jwp_yn">
  <title>Incremental backup and restore</title>
  <shortdesc>An incremental backup or restore is a backup (or restore) of the latest changes since
-    the last backup (any level). Enterprise Edition only. </shortdesc>
+    the last backup (any level).</shortdesc>
  
  <conbody>
+   <p>Incremental backup and restore allow administrators to backup and restore only modified part of the database 
+   instead of taking a full data backup every time. 
+   This makes backup more efficient for larger datasets and reduces the risk of data loss. </p>
   <p>The purpose of an incremental backup is to preserve and protect data by creating copies that
       are based on the differences in those data and thus minimize the amount of time needed to
       perform the backup. With incremental backups, successive copies of the data contain only that
@@ -23,23 +26,25 @@
        plus all the incremental backups until the restoration point-in-time is reached.</dd>
      </dlentry>
      <dlentry>
-       <dt>Cummulative backup</dt>
-       <dd>An incremental backup that contains all data changes after the last full backup. 
-         A snapshot of the data changes between the last full backup and the current snapshot. 
-         </dd>
-     </dlentry>
-     <dlentry>
        <dt>Differential backup</dt>
        <dd>An incremental backup that contains all data changes after the most recent incremental
           backup. Differential backups are deltas between the following: <ul>
             <li>Last full backup and the first snapshot</li>
-            <li>Last incremental snapshot the the current snapshot</li>
-          </ul>.</dd>
+            <li>Last incremental snapshot the current snapshot</li>
+          </ul></dd>
+     </dlentry>
+     <dlentry>
+       <dt>Accummulative backup</dt>
+       <dd>An incremental backup that contains all data changes after the last full backup. 
+         A snapshot of the data changes between the last full backup and the current snapshot. 
+         </dd>
      </dlentry>
    </dl>
+   
+   <draft-comment author="Ruth">DIFFERENTIAL backup graphic</draft-comment>
+   <draft-comment author="Ruth">ACCUMMULATIVE backup graphic</draft-comment>
 
-   <p><b>DIFFERENTIAL backup graphic</b></p>
-   <p><b>CUMMULATIVE backup graphic</b></p>
+   
    
    <section><title>Impacted documentation</title>
    <ul>

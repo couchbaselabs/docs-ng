@@ -2,13 +2,14 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_n41_ppb_k4">
   <title>Setting incremental backup (CLI)</title>
-  <shortdesc>Back up operations are performed by the <codeph>cbbackup</codeph> tool.</shortdesc>
+  <shortdesc>Backup operations are performed by using the <codeph>cbbackup</codeph>
+    tool.</shortdesc>
   <refbody>
     
     <section>
       
       <title>cbbackup</title>
-      <p>The <codeph>backup</codeph> tool provides provides differential, accumulative, or full
+      <p>The <codeph>cbbackup</codeph> tool provides provides differential, accumulative, or full
         backup.</p>
       
 
@@ -54,13 +55,6 @@ cbbackup couchbase://HOST:8091 /backups/backup-1</codeblock>
               <entry>incr-accu</entry>
               <entry>Accumulative incremental backup. Backs up the delta change from the full
                 backup.</entry>
-            </row>
-            <row>
-              <entry/>
-              <entry>auto</entry>
-              <entry>The cbbackup tool determines the best mode to use. If there is no backup data,
-                then a full backup is performed. Otherwise, a differential backup is
-                performed.</entry>
             </row>
           </tbody>
         </tgroup>

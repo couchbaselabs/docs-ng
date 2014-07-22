@@ -2,14 +2,18 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_wzx_szg_14">
   <title>Database Change Protocol</title>  
-  <shortdesc>Database Change Protocol (DCR) is the protocol used to stream data changes to buckets.</shortdesc>
+  <shortdesc>Database Change Protocol (DCP) is the protocol used to stream data changes to buckets.</shortdesc>
   
   <body>
-    <p>TBD</p>
+    <p>The Database Change Protocol (DCP) is a streaming protocol that significantly reduces latency for view updates. 
+      With DCP, changes made to documents in-memory are immediately streamed to be indexed without being written to disk. 
+    This provides faster view consistency which provides fresher data.
+    DCP reduces latency for cross-dataceter replication. 
+    Data is replicated memory-to-memory from the source cluster to the destination cluster 
+    before being written to disk on the source cluster.</p>
     
     <section><title>Impacted documentation</title>
       <ul>
-        <li>DCP section in concepts</li>
         <li>cbstats - statistics, per client stats, and aggregate stats for DCP</li>
         <li>cbepctl - set parameter for DCP</li>
       </ul>
