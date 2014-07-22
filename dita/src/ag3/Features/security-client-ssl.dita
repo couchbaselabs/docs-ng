@@ -49,14 +49,36 @@
 					<p>You can enable SSL at either the cluster level or on a per-Bucket basis. Setting
 						SSL support at the cluster level means that all buckets within the cluster will
 						use SSL. If you want to use SSL only on specific buckets, just configure your
-						individual bucket to use SSL. Here's an example:</p>
+						individual bucket to use SSL. Here's some examples:</p>
 					
-					<codeblock>var configuration = new ClientConfiguration
+<codeblock>var config = new ClientConfiguration()
 {
    UseSsl = true
 };
-CouchbaseCluster.Initialize(configuration);
-var cluster = CouchbaseCluster.Get();</codeblock></li>
+var cluster = new CouchbaseCluster(config);
+using (var bucket = cluster.OpenBucket())
+{
+	//all buckets opened with this configuration will use SSL
+}  
+ 
+var config = new ClientConfiguration
+{
+	BucketConfigs = new Dictionary&lt;string, BucketConfiguration>
+	{
+		{"customers", new BucketConfiguration
+			{
+			UseSsl = true
+			}}
+		}
+	};
+var cluster = new CouchbaseCluster(config);
+using (var bucket = cluster.OpenBucket("customers"))
+{
+	//only the customers bucket will use SSL
+}
+</codeblock>
+
+				</li>
 			</ol>
 		</section>
 
@@ -80,7 +102,7 @@ var myBucket = myCluster.openBucket();</codeblock></li>
 			<ol>
 				<li>Get the SSL certificate from Couchbase Server.</li>
 				<li>Store the certificate in the appropriate certificate storage area for your environment.</li>
-				<li></li>
+				<li>TBD</li>
 			</ol>
 		</section>
 
