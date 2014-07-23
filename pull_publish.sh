@@ -22,6 +22,9 @@ git pull
 echo "Building site..."
 bundle exec nanoc
 
+#BIG UGLY HACK courtesy AMY 20140722
+cp -r output/prebuilt/couchbase-manual-3.0/assets-dita output/assets-dita
+
 # if on master branch, publish output files to S3
 if [ "${branch}" == "master" ]
 then
