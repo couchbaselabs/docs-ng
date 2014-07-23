@@ -2,25 +2,21 @@
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_ggp_tqp_yn">
  <title>Stream-based views</title>
- <shortdesc>Indexing is performed as soon as data changes in memory without waiting for persistence to disk. 
-  As a result, views have up-to-date data and faster queries.</shortdesc>
+ <shortdesc>Indexing is performed as soon as data changes in memory without waiting for persistence
+  to disk. As a result, views are more closely synchronized with key-value data.</shortdesc>
  <conbody>
   
-  <p>Indexing occurs as soon as data changes in memory due to the Database Change Protocol (DCP), 
-   a stream-based protocol. 
-   With DCP, changes made to documents in-memory are immediately streamed to be indexed without being written to disk. 
-   This provides faster view consistency which provides fresher data.</p>
+  <p>Indexing occurs as soon as data changes in memory using the Database Change Protocol (DCP), a
+   stream-based protocol. With DCP, changes made to documents in-memory are immediately streamed to
+   be indexed without waiting to be written to disk. This provides faster view consistency which
+   provides fresher data.</p>
     
    <ul>
-    <li>Views are updated with key-value sooner</li>
-    <li>Lag time for view consistency is reduced</li> 
-    <li>Views are more closely synch with the data</li>
+    <li>Views are updated with key-value data sooner</li>
+    <li>Latency for view updates is reduced</li> 
+    <li>Views are more closely synchronized with the data</li>
    </ul>
    
-   <note type="note">When a Couchbase Server cluster has both 2.x and 3.0 servers, the Couchbase 3.0
-   server has faster indexing.</note>
-  
-  
    
    <p>When the <codeph>stale=false</codeph> query is run, the indexer picks up changes that occurred (latest data) after the query was issued. 
     The changes are picked up from memory and not disk. The index occurs in the following manner:</p>
