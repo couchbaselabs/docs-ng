@@ -5,25 +5,12 @@
   <h1 class="title topictitle1">Release notes (beta)</h1>
 
   <div class="body">
-    <p class="p">This release note is for the 3.0.0 BETA release. It contains a list of known and fixed
-      issues.</p>
+    <p class="p">This release note is for the 3.0.0 BETA release. It contains a list of known issues.</p>
 
     
     <div class="section"><h2 class="title sectiontitle">Known issues</h2>
       
       <dl class="dl">
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11661" target="_blank">MB-11661</a></dt>
-
-          <dd class="dd">mem_used in increasing and dropping in basic setup with 5 buckets</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11658" target="_blank">MB-11658</a></dt>
-
-          <dd class="dd">Tombstone purge does not work due to misinterpretation of the <samp class="ph codeph">drop_deletes</samp> flag.</dd>
-
-        
         
           <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11643" target="_blank">MB-11643</a></dt>
 
@@ -40,74 +27,22 @@
 
         
         
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11630" target="_blank">MB-11630</a></dt>
-
-          <dd class="dd">Rebalance in operation exited with reason {bulk_set_vbucket_state_failed}</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11629" target="_blank">MB-11629</a></dt>
-
-          <dd class="dd">Memcached crashed during rebalance</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11608" target="_blank">MB-11608</a></dt>
-
-          <dd class="dd">It is possible to prevent ns_server shutdown with some use of http (was: KV+XDCR
-            System test: Cluster in unstable state after warmup- 2 nodes in pending state, memcached
-            did not start on 1 node)</dd>
-
-        
-        
           <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11606" target="_blank">MB-11606</a></dt>
 
           <dd class="dd">Error displayed when node did not mark to collect</dd>
 
         
         
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11601" target="_blank">MB-11601</a></dt>
-
-          <dd class="dd">KV-only system test. Rebalance hangs in swap rebalance due to memory bloating in one
-            node</dd>
-
-        
-        
           <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11597" target="_blank">MB-11597</a></dt>
 
-          <dd class="dd">KV+XDCR System test: Mutation replication rate for uni-xdcr is almost zero(900K items
-            remaining) while another bi-xdcr to same cluster is ~10k ops/sec </dd>
+          <dd class="dd">KV+XDCR System test: Mutation replication rate for unidirectional XDCR is almost zero (900K items
+            remaining) while another bidirectional XDCR to the same cluster is ~10k ops/sec </dd>
 
         
         
           <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11568" target="_blank">MB-11568</a></dt>
 
-          <dd class="dd">IP does not show the same in each step of cluster wide collect info</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11554" target="_blank">MB-11554</a></dt>
-
-          <dd class="dd">Metadata inconsistent between source and destination clusters.
-          <p class="p">After failing over and rebalancing nodes on a destination cluster and 
-            then replicating from the source cluster to destination cluster, 
-          the document metadata is inconsistent between source and destination clusters. 
-          This behavior occurs when the cbrecovery (1st) and rebalance (2nd) sequence is performed.</p>
-</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11553" target="_blank">MB-11553</a></dt>
-
-          <dd class="dd">Resident memory ratio drops to zero on mere updates of existing items of single node
-            with no upr consumers at all</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11435" target="_blank">MB-11435</a></dt>
-
-          <dd class="dd">1500-2000% CPU utilization by beam.smp on source nodes in XDCR scenarios (was ~500% in
-            2.5.x)</dd>
+          <dd class="dd">IP address does not show the same in each step of cluster-wide collect info.</dd>
 
         
         
@@ -152,57 +87,9 @@
 
     
     <div class="section"><h2 class="title sectiontitle">Fixed issues</h2>
+      <p class="p">Not applicable</p>
 
-        <dl class="dl">
-          
-            <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11636" target="_blank">MB-11636</a></dt>
 
-            <dd class="dd">Initial index build is four times (4x) slower than normal.</dd>
-
-          
-          
-          
-            <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11621" target="_blank">MB-11621</a></dt>
-
-            <dd class="dd">Rebalance fails when adding node back after failover (delta recovery)</dd>
-
-          
-          
-          
-            <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11605" target="_blank">MB-11605</a></dt>
-
-            <dd class="dd">XDCR replication (source to destination cluster) hangs when a hard OOM is hit. 
-              
-              <p class="p">Uni-directional XDCR replication gets stuck if the source cluster hits hard
-              out-of-memory (OOM) prior to the start of XDCR replication. 
-              A hard OOM means that the bucket RAM quota has been exceeded. </p>
-
-              <p class="p">Workaround: It is recoverable by increasing the bucket RAM quota on the source cluster.</p>
-</dd>
-
-              
-          
-            
-            
-              <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11578" target="_blank">MB-11578</a></dt>
-
-              <dd class="dd">Crash with Segmentation fault in couch_view_group_cleanup </dd>
-
-            
- 
-          
-            <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-10252" target="_blank">MB-10252</a></dt>
-
-            <dd class="dd">total_fragmentation_bytes metric is misleading. This should NOT be in a release
-              note because it's internal!</dd>
-
-          
-          
-        </dl>
-
-    
-    
-    
     </div>
 
   </div>
