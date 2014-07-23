@@ -28,13 +28,13 @@
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11597" scope="external"
               format="html">MB-11597</xref></dt>
-          <dd>KV+XDCR System test: Mutation replication rate for uni-xdcr is almost zero(900K items
-            remaining) while another bi-xdcr to same cluster is ~10k ops/sec </dd>
+          <dd>KV+XDCR System test: Mutation replication rate for unidirectional XDCR is almost zero (900K items
+            remaining) while another bidirectional XDCR to the same cluster is ~10k ops/sec </dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
               format="html">MB-11568</xref></dt>
-          <dd>IP does not show the same in each step of cluster wide collect info</dd>
+          <dd>IP address does not show the same in each step of cluster-wide collect info.</dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11434" scope="external"
