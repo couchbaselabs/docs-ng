@@ -6,12 +6,11 @@
  <conbody>
   
   
-  <p>Metadata ejection allows both value and full bucket ejection from memory. 
-   The following summarizes the behavior of value versus full bucket ejection:
-   Value bucket ejection (the default) removes the data but keeps all keys and metadata in memory. 
-   When the value bucket ejection occurs, the item's value is reset. 
-   Full-bucket ejection removes all data including keys, metadata, and key-values, thus,  
-   reducing the RAM requirement for large buckets.</p>
+  <p>Metadata ejection allows both value and full bucket ejection from memory. The following
+   summarizes the behavior of value-only versus full bucket ejection: Value bucket ejection (the
+   default) removes the data but keeps all keys and metadata in memory. When the value bucket
+   ejection occurs, the item's value is reset. Full-bucket ejection removes all data including keys,
+   metadata, and key-values, thus, reducing the RAM requirement for large buckets.</p>
   
   <p>Full-bucket ejection supports very large data footprints (a large number of datasets or items/keys) 
    since the working sets in memory are smaller. 
@@ -24,7 +23,7 @@
   limited by memory.</p>
   
   
-  <draft-comment author="ruth">GRAPHICs: Ejection Logic Table</draft-comment>
+  <draft-comment author="Ruth" disposition="open" status="unchanged">Need GRAPHICs: Ejection Logic Table</draft-comment>
 
   
 
@@ -40,8 +39,8 @@
   
   
   <section><title>Backward compatibility</title>
-   <p>In previous releases, the values for all active data sets are ejected and the metadata + key are not ejection. 
-    In version 3.0, both value and metadata+key are ejected.</p>
+   <p>In previous releases, the values for all active data sets are ejected and the metadata and key
+    value are not ejection. In version 3.0, both value and metadata and key value are ejected.</p>
 
   </section> 
   

@@ -42,8 +42,11 @@
     sleep.</li>
   </ul>
   
-  <draft-comment author="ruth">Need GRAPHIC - see ppt slide</draft-comment>
-  
+  <draft-comment author="Ruth" disposition="open" status="unchanged">Need a GRAPHIC - see PPT slide</draft-comment>
+  <draft-comment author="Ruth" disposition="open" status="new">Need general information about the raw workload information.</draft-comment>
+  <draft-comment author="Ruth" disposition="open" status="new">Need information about sharding: is
+   the shard count configurable or is it set automatically based on the CPU core or % of threads? Is
+   the default always 4 or does it depend on the # of cores?</draft-comment>
   
   <section><title>Viewing thread status</title>
    <p>The <codeph>cbstats raw workload</codeph> is used to view the status of the threads. 

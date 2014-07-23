@@ -41,10 +41,10 @@
      </dlentry>
    </dl>
    
-   <draft-comment author="Ruth">DIFFERENTIAL backup graphic</draft-comment>
-   <draft-comment author="Ruth">ACCUMMULATIVE backup graphic</draft-comment>
+   <draft-comment author="Ruth" disposition="open" status="unchanged">DIFFERENTIAL backup graphic</draft-comment>
+   <draft-comment author="Ruth" disposition="open" status="unchanged">ACCUMMULATIVE backup graphic</draft-comment>
 
-   
+   <draft-comment author="Ruth" disposition="open" status="unchanged">Is there REST API equivalent information?</draft-comment>
    
    <section><title>Impacted documentation</title>
    <ul>

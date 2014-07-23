@@ -24,7 +24,7 @@
 					<tbody>
 						<row>
 							<entry>/settings/replications/</entry>
-							<entry>Global setting spplied to all replications for a cluster.</entry>
+							<entry>Global setting supplied to all replications for a cluster.</entry>
 						</row>
 						<row>
 							<entry>/settings/replications/replication_id</entry>
@@ -32,8 +32,7 @@
 						</row>
 						<row>
 							<entry>/internalSettings</entry>
-							<entry>Settings applied to all replications for a cluster. Applicable
-								for Couchbase 2.0 and higher.</entry>
+							<entry>Settings applied to all replications for a cluster.</entry>
 						</row>
 					</tbody>
 				</tgroup>

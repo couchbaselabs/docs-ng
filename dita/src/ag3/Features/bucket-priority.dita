@@ -15,13 +15,14 @@
    
    <p></p>
   
-  <p>The default buckets settings can be set during initial setup.</p>
+  <p>The default buckets settings can be set during initial setup as well as be edited after
+   setup.</p>
   <fig><image href="../images/init-default-bucket-settings.png" width="600"></image></fig>
    
     
-    <note type="note">Buckets normally do not have less than three (3) threads.</note>
-  
-  <draft-comment author="Ruth">Graphic for the conversion logic when upgrading?</draft-comment>
+  <draft-comment author="Ruth" disposition="open" status="new">Graphic for the conversion logic when upgrading</draft-comment>
+  <draft-comment author="Ruth" disposition="open" status="new">Can a system have more than 8 threads allocated, 
+   since the initial number of threads allocated depends on the number of CPU cores?</draft-comment>
     
   
   <section><title>Backward compatibility</title>

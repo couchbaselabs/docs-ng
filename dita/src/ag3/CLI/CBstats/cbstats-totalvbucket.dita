@@ -1,43 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic678"><title>vBucket total stats</title><body><table><tgroup cols="2"><colspec colname="col1"/><colspec colname="col2"/><thead><row>
-	<entry>Stat</entry>
-	<entry>Description</entry>
-</row></thead><tbody><row>
-	<entry>ep_vb_total</entry>
-	<entry>Total vBuckets (count)</entry>
-</row><row>
-	<entry>curr_items_tot</entry>
-	<entry>Total number of items</entry>
-</row><row>
-	<entry>curr_items</entry>
-	<entry>Number of active items in memory</entry>
-</row><row>
-	<entry>curr_temp_items</entry>
-	<entry>Number of temporary items in memory</entry>
-</row><row>
-	<entry>vb_dead_num</entry>
-	<entry>Number of dead vBuckets</entry>
-</row><row>
-	<entry>ep_diskqueue_items</entry>
-	<entry>Total items in disk queue</entry>
-</row><row>
-	<entry>ep_diskqueue_memory</entry>
-	<entry>Total memory used in disk queue</entry>
-</row><row>
-	<entry>ep_diskqueue_fill</entry>
-	<entry>Total enqueued items on disk queue</entry>
-</row><row>
-	<entry>ep_diskqueue_drain</entry>
-	<entry>Total drained items on disk queue</entry>
-</row><row>
-	<entry>ep_diskqueue_pending</entry>
-	<entry>Total bytes of pending writes</entry>
-</row><row>
-	<entry>ep_vb_snapshot_total</entry>
-	<entry>Total VB state snapshots persisted in disk</entry>
-</row><row>
-	<entry>ep_meta_data_memory</entry>
-	<entry>Total memory used by meta data</entry>
-</row></tbody></tgroup></table></body></topic>
+<topic xml:lang="en-us" id="topic678">
+	<title>vBucket total stats</title>
+	<body>
+		<table>
+			<tgroup cols="2">
+				<colspec colname="col1"/>
+				<colspec colname="col2"/>
+				<thead>
+					<row>
+						<entry>Stat</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>ep_vb_total</entry>
+						<entry>Total vBuckets (count)</entry>
+					</row>
+					<row>
+						<entry>curr_items_tot</entry>
+						<entry>Total number of items</entry>
+					</row>
+					<row>
+						<entry>curr_items</entry>
+						<entry>Number of active items in memory</entry>
+					</row>
+					<row>
+						<entry>curr_temp_items</entry>
+						<entry>Number of temporary items in memory</entry>
+					</row>
+					<row>
+						<entry>vb_dead_num</entry>
+						<entry>Number of dead vBuckets</entry>
+					</row>
+					<row>
+						<entry>ep_diskqueue_items</entry>
+						<entry>Total items in disk queue</entry>
+					</row>
+					<row>
+						<entry>ep_diskqueue_memory</entry>
+						<entry>Total memory used in disk queue</entry>
+					</row>
+					<row>
+						<entry>ep_diskqueue_fill</entry>
+						<entry>Total enqueued items on disk queue</entry>
+					</row>
+					<row>
+						<entry>ep_diskqueue_drain</entry>
+						<entry>Total drained items on disk queue</entry>
+					</row>
+					<row>
+						<entry>ep_diskqueue_pending</entry>
+						<entry>Total bytes of pending writes</entry>
+					</row>
+					<row>
+						<entry>ep_vb_snapshot_total</entry>
+						<entry>Total VB state snapshots persisted in disk</entry>
+					</row>
+					<row>
+						<entry>ep_meta_data_memory</entry>
+						<entry>Total memory used by meta data</entry>
+					</row>
+
+				</tbody>
+			</tgroup>
+		</table>
+		
+		
+	</body>
+</topic>

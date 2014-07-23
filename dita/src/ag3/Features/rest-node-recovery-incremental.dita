@@ -5,50 +5,55 @@
   <shortdesc>The REST request to add a node to a cluster uses the <codeph>/controller/addNode</codeph> endpoint URI. 
     </shortdesc>
   <refbody>
-
     
-<example><title>Adding a server node to a cluster</title>
-  <p>In the following example, server node at <codeph>10.2.2.64</codeph> is added to the cluster at <codeph>10.2.2.60</codeph>.</p>
-  
-  <draft-comment author="Ruth">What's the recovery type paramenter??</draft-comment>
+    <section><title>Delta node recovery REST API</title>
+      <p>Performing a POST on the <codeph>/controller/setRecoveryType</codeph> sets the type of recovery. 
+        It's progress can be tracked just rebalance. 
+        After the data is persisted to disk and replicas are up-to-date, the node is put into the failed over state.</p>
+      
+      <table>
+        <tgroup cols="3">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="2.2*"/>
+          <colspec colname="col3" colwidth="4.14*"/>
+          <thead>
+            <row>
+              <entry>HTTP method</entry>
+              <entry>URI path</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>POST</entry>
+              <entry>/controller/setRecoveryType</entry>
+              <entry>Sets the recovery type to be performed for a node. Options are full or delta.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
       
       <codeblock>
-CURL -u admin:PASSWORD \
-  10.2.2.60:8091/controller/addNode \
-  -d "hostname=10.2.2.64&amp;user=admin&amp;password=PASSWORD"      
+POST /controller/setRecoveryType
+    otpNode=[node_name]
+    recoveryType=[full|delta]
       </codeblock>
+    </section>
+
       
-      <note type="note">Replace the admin, password, and IP address values with your actual values.</note>
+      <section><title>Error codes</title>
+        
+        <codeblock>
+200       // Request succeeded
+400       // recoveryType and/or otpNode could not be understood by the server
+404       // The cluster is running in a pre-3.0 compatibility mode and thus cannot satisfy the request
+       </codeblock>
+      </section>
+          
+
+
       
-      <title>Returns</title>    
-      <codeblock>
-HTTP/1.1 200 OK
-{"otpNode":"ns_1@10.4.2.6"}        
-      </codeblock>
-      
-      <title>Re-adding a server to a server group:</title>
-      <p><codeph>POST /pools/default/serverGroups/UUID/addNode</codeph> adds a server to a cluster and assigns it to the specified server group.</p>
-</example>
-      
-  <example><title>Syntax</title>
-      
-      <codeblock>curl -X POST -dhostname=HOST:PORT 
-   -u Administrator:PASSWORD
-   http://HOST:PORT/pools/default/serverGroups/UUID/addNode
-          </codeblock>
-  </example>
-      
-      
-    <example><title>Example</title>
-      
-      <codeblock>
-              
-curl -X POST -dhostname=192.168.0.2:8091 
-    -u Admin:myPassword 
-    http://192.168.0.1:8091/pools/default/serverGroups/246b5de857e100dbfd8b6dee0406420a/addNode
-              </codeblock>
-      </example>
-      
+
     
     
     

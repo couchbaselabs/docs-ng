@@ -5,7 +5,7 @@
   <shortdesc>Statistics for the Database Change Protocol (DCP) are obtained via the CLI with the <codeph>cbstats</codeph> tool.</shortdesc>
   <refbody>
     
-
+    
     <table frame="all" id="table_psm_zxz_n4">
       <title>DCP statistics</title>
       <tgroup cols="2">
@@ -20,7 +20,7 @@
         <tbody>
           <row>
             <entry>dcp</entry>
-            <entry>Retrieves streaming statistics.</entry>
+            <entry>Retrieves connections specific to statistics.</entry>
           </row>
           <row>
             <entry>dcpagg</entry>
@@ -28,23 +28,26 @@
           </row>
           <row>
             <entry>failovers</entry>
-            <entry/>
+            <entry>Retrieves vBucket failover logs.</entry>
           </row>
-          <row>
-            <entry>vbucket-seqno</entry>
-            <entry/>
-          </row>
+         
         </tbody>
       </tgroup>
     </table>
     
+    
+    
     <section><title>Syntax</title>
+      
     <codeblock>
 cbstats HOST:11210 dcp
 cbstats HOST:11210 dcpagg
+cbstats HOST:11210 failovers
     </codeblock>
-      
       <note type="note">Specify the memcached port, 11210, when retrieving statistics.</note>
+      
+      
+
     </section>
     
     
@@ -83,29 +86,7 @@ cbstats HOST:11210 dcpagg
  ...
     </codeblock></example>
     
-    <example><title>cbstats dcp</title>
-    
-    <codeblock>
- # cbstats 10.5.2.54:11210 dcp | grep -v stream  
- 
- ep_dcp_count:                                                                               6
- ep_dcp_items_remaining:                                                                     0
- ep_dcp_items_sent:                                                                          0
- ep_dcp_producer_count:                                                                      3
- ep_dcp_queue_backfillremaining:                                                             0
- ep_dcp_queue_fill:                                                                          0
- ep_dcp_total_bytes:                                                                         11264
- ep_dcp_total_queue:                                                                         0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:connected:                      true
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:created:                        1812
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:pending_disconnect:             false
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:reserved:                       true
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:supports_ack:                   false
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:total_acked_bytes:              17894
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:type:                           consumer
- ...
-      </codeblock>
-</example>
+   
     
     <example><title>cbstats dcpagg</title>
       
@@ -144,15 +125,7 @@ cbstats HOST:11210 dcpagg
     
     </example>
     
-    <example><title>cbstats vbucket-seqno</title>
-    <codeblock>
-# cbstats 10.5.2.54:11210 vbucket-seqno
 
- vb_1000:high_seqno:  0
- vb_1000:purge_seqno: 0
- vb_1000:uuid:        101754288503529      
-    </codeblock>
-    </example>
     
     
    

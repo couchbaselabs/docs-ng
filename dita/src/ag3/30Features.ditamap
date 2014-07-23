@@ -34,9 +34,8 @@
    <topicref href="Features/cli-incremental-restore.dita"/>
   </topicref>
   <topicref href="Features/index-updates.dita"/>
-  <topicref href="Features/xdcr-memory-replication.dita">
-   <topicref href="Features/xdcr-pause-resume.dita"/>
-  </topicref>
+  <topicref href="Features/xdcr-pause-resume.dita"/>
+  <topicref href="Features/xdcr-memory-replication.dita"/>
   <topicref href="Features/security-admin-access.dita"/>
   <topicref href="Features/security-clientServer-comm.dita"/>
 		<topicref href="Features/security-client-ssl.dita" />

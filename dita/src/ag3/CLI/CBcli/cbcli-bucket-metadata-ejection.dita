@@ -15,7 +15,7 @@
 
 
       
-      <p>Policy for how to retain metadata in memory:</p>
+      <p>Policy for how to retain or eject metadata from memory:</p>
       
       <codeblock>
  --bucket-eviction-policy=[valueOnly|fullEviction] 
