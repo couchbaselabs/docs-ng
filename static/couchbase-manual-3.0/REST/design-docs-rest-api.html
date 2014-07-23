@@ -1,0 +1,445 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a><ul class="nav nav-list"><li class="active"><a href="../REST/design-docs-rest-api.html">Managing design documents</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-views-get.html">Querying views</a></li><li><a href="../REST/rest-views-requests.html">Views requests</a></li></ul></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Managing design documents</h1>
+
+	
+	
+	<div class="body"><p class="shortdesc">Design documents are used to store one or more view definitions. Views can be defined
+		within a design document and uploaded to the server through the REST API.</p>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Storing design documents</h2><p class="p">To create a new design document with one
+				or more views, you can upload the corresponding design document using the REST API
+				with the definition in place. The format of this command is as shown in the table
+				below:</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d83874e32">Put Design Document</th>
+
+							<th class="entry" valign="top" id="d83874e35">Description</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 "><strong class="ph b">Method</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e35 "><samp class="ph codeph">PUT /bucket/_design/design-doc</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 "><strong class="ph b">Request Data</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e35 ">Design document definition (JSON)</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 "><strong class="ph b">Response Data</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e35 ">Success and stored design document ID</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 "><strong class="ph b">Authentication Required</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e35 ">optional</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 "><strong class="ph b">Return Codes</strong></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 ">201</td>
+
+							<td class="entry" valign="top" headers="d83874e35 ">Document created successfully.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e32 ">401</td>
+
+							<td class="entry" valign="top" headers="d83874e35 ">The item requested was not available using the supplied
+								authorization, or authorization was not supplied.</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+<p class="p">When creating a design document through the REST API, we recommend that you
+				create a development ( <samp class="ph codeph">dev</samp> ) view. We recommend that you create a
+				dev design document and views first, and then check the output of the configured
+				views in your design document. To create a dev view you <em class="ph i">must</em> explicitly use
+				the <samp class="ph codeph">dev_</samp> prefix for the design document name.</p>
+<p class="p">For example,
+				using <samp class="ph codeph">curl</samp>, you can create a design document,
+					<samp class="ph codeph">byfield</samp>, by creating a text file (with the name
+					<samp class="ph codeph">byfield.ddoc</samp> ) with the design document content using the
+				following
+				command:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; curl -X PUT -H 'Content-Type: application/json' \
+   http://user:password@localhost:8092/sales/_design/dev_byfield' \
+   -d @byfield.ddoc
+</samp></pre>
+<p class="p">In
+				the above example:</p>
+<ul class="ul">
+				<li class="li"><samp class="ph codeph">-X PUT</samp></li>
+
+			</ul>
+<p class="p">Indicates that an HTTP PUT operation is requested.</p>
+<ul class="ul">
+				<li class="li"><samp class="ph codeph">-H 'Content-Type: application/json'</samp></li>
+
+			</ul>
+<p class="p">Specifies the HTTP header information. Couchbase Server requires the information
+				to be sent and identified as the <samp class="ph codeph">application/json</samp> datatype.
+				Information not supplied with the content-type set in this manner will be
+				rejected.</p>
+<ul class="ul">
+				<li class="li"><samp class="ph codeph">http://user:password@localhost:8092/sales/_design/dev_byfield'</samp></li>
+
+			</ul>
+<p class="p">The URL, including authentication information, of the bucket where you want the
+				design document uploaded. The <samp class="ph codeph">user</samp> and <samp class="ph codeph">password</samp>
+				should either be the Administration privileges, or for SASL protected buckets, the
+				bucket name and bucket password. If the bucket does not have a password, then the
+				authentication information is not required.</p>
+<p class="p">The view being accessed in this
+				case is a development view. To create a development view, you <em class="ph i">must</em> use the
+					<samp class="ph codeph">dev_</samp> prefix to the view name.</p>
+<p class="p">As a <samp class="ph codeph">PUT</samp>
+				command, the URL is also significant, in that the location designates the name of
+				the design document. In the example, the URL includes the name of the bucket (
+					<samp class="ph codeph">sales</samp> ) and the name of the design document that will be
+				created <samp class="ph codeph">dev_byfield</samp>.</p>
+<ul class="ul">
+				<li class="li"><samp class="ph codeph">-d @byfield.ddoc</samp></li>
+
+			</ul>
+<p class="p">Specifies that the data payload should be loaded from the file
+					<samp class="ph codeph">byfield.ddoc</samp>.</p>
+<p class="p">If successful, the HTTP response code will
+				be 201 (created). The returned JSON will contain the field <samp class="ph codeph">ok</samp> and
+				the ID of the design document
+				created:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{
+    "ok":true,
+    "id":"_design/dev_byfield"
+}
+</samp></pre>
+<p class="p">The
+				design document will be validated before it is created or updated in the system. The
+				validation checks for valid JavaScript and for the use of valid built-in reduce
+				functions. Any validation failure is reported as an error.</p>
+<p class="p">In the event of an
+				error, the returned JSON will include the field <samp class="ph codeph">error</samp> with a short
+				description, and the field <samp class="ph codeph">reason</samp> with a longer description of the
+				problem.</p>
+<p class="p">The format of the design document should include all the views
+				defined in the design document, incorporating both the map and reduce functions for
+				each named view. For
+				example:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{"views":{"byloc":{"map":"function (doc, meta) {\n  if (meta.type == \"json\") {\n    emit(doc.city, doc.sales);\n  } else {\n    emit([\"blob\"]);\n  }\n}"}}}
+</samp></pre>
+<p class="p">Formatted,
+				the design document looks like
+				this:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{
+   "views" : {
+      "byloc" : {
+         "map" : "function (doc, meta) {\n  if (meta.type == \"json\") {\n    emit(doc.city, doc.sales);\n  } else {\n    emit([\"blob\"]);\n  }\n}"
+      }
+   }
+}
+</samp></pre>
+<p class="p">The
+				top-level <samp class="ph codeph">views</samp> field lists one or more view definitions (the
+					<samp class="ph codeph">byloc</samp> view in this example), and for each view, a corresponding
+					<samp class="ph codeph">map()</samp> function.</p>
+</div>
+
+		<div class="section"><h2 class="title sectiontitle">Retrieving design documents</h2><p class="p">To obtain an existing design document
+				from a given bucket, you need to access the design document from the corresponding
+				bucket using a <samp class="ph codeph">GET</samp> request, as detailed in the table below.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d83874e263">Get Design Document</th>
+
+							<th class="entry" valign="top" id="d83874e266">Description</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 "><strong class="ph b">Method</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e266 "><samp class="ph codeph">GET /bucket/_design/design-doc</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 "><strong class="ph b">Request Data</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e266 ">Design document definition (JSON)</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 "><strong class="ph b">Response Data</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e266 ">Success and stored design document ID</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 "><strong class="ph b">Authentication Required</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e266 ">optional</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 "><strong class="ph b">Return Codes</strong></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 ">200</td>
+
+							<td class="entry" valign="top" headers="d83874e266 ">Request completed successfully.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 ">401</td>
+
+							<td class="entry" valign="top" headers="d83874e266 ">The item requested was not available using the supplied
+								authorization, or authorization was not supplied.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e263 ">404</td>
+
+							<td class="entry" valign="top" headers="d83874e266 ">The requested content could not be found. The returned content
+								will include further information, as a JSON object, if
+								available.</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+<p class="p">To get back all the design documents with views defined on a bucket, the use
+				following URI path with the GET request. In addition to get specific design
+				documents back, the name of the design document can be specified to retrieve
+				it.</p>
+<pre class="pre codeblock"><samp class="ph codeph">"ddocs": {
+        "uri": "/pools/default/buckets/default/ddocs" // To obtain design docs for this bucket
+    }
+</samp></pre>
+<p class="p">For
+				example, to get the existing design document from the bucket <samp class="ph codeph">sales</samp>
+				for the design document <samp class="ph codeph">byfield</samp>
+				:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; curl -X GET \
+    -H 'Content-Type: application/json' \
+    'http://user:password@192.168.0.77:8092/sales/_design/dev_byfield
+</samp></pre>
+<p class="p">Through
+					<samp class="ph codeph">curl</samp> this will download the design document to the file
+					<samp class="ph codeph">dev_byfield</samp> filename.</p>
+<p class="p">If the bucket does not have a
+				password, you can omit the authentication information. If the view does not exist
+				you will get an
+				error:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{
+   "error":"not_found",
+   "reason":"missing"
+}
+</samp></pre>
+<p class="p">The
+				HTTP response header will include a JSON document containing the metadata about the
+				design document being accessed. The information is returned within the
+					<samp class="ph codeph">X-Couchbase-Meta</samp> header of the returned data. You can obtain
+				this information by using the <samp class="ph codeph">-v</samp> option to the
+					<samp class="ph codeph">curl</samp>.</p>
+<p class="p">For
+				example:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&amp;gt; curl -v -X GET \
+   -H 'Content-Type: application/json' \
+   'http://user:password@192.168.0.77:8092/sales/_design/
+* About to connect() to 192.168.0.77 port 8092 (#0)
+*   Trying 192.168.0.77...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* connected
+* Connected to 192.168.0.77 (192.168.0.77) port 8092 (#0)
+* Server auth using Basic with user 'Administrator'
+&gt; GET /sales/_design/something HTTP/1.1
+&gt; Authorization: Basic QWRtaW5pc3RyYXRvcjpUYW1zaW4=
+&gt; User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+&gt; Host: 192.168.0.77:8092
+&gt; Accept: */*
+&gt; Content-Type: application/json
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; X-Couchbase-Meta: {"id":"_design/dev_sample","rev":"5-2785ea87","type":"json"}
+&lt; Server: MochiWeb/1.0 (Any of you quaids got a smint?)
+&lt; Date: Mon, 13 Aug 2012 10:45:46 GMT
+&lt; Content-Type: application/json
+&lt; Content-Length: 159
+&lt; Cache-Control: must-revalidate
+&lt;
+{ [data not shown]
+100   159  100   159    0     0  41930      0 --:--:-- --:--:-- --:--:-- 53000
+* Connection #0 to host 192.168.0.77 left intact
+* Closing connection #0
+</samp></pre>
+<p class="p">The
+				metadata matches the corresponding metadata for a data document.</p>
+</div>
+
+		<div class="section"><h2 class="title sectiontitle">Deleting design documents</h2><p class="p">To delete a design document, you use the
+					<samp class="ph codeph">DELETE</samp> HTTP request with the URL of the corresponding design
+				document. The summary information for this request is shown in the table
+				below:</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d83874e420">Delete Design Document</th>
+
+							<th class="entry" valign="top" id="d83874e423">Description</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 "><strong class="ph b">Method</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e423 "><samp class="ph codeph">DELETE /bucket/_design/design-doc</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 "><strong class="ph b">Request Data</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e423 ">Design document definition (JSON)</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 "><strong class="ph b">Response Data</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e423 ">Success and confirmed design document ID</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 "><strong class="ph b">Authentication Required</strong></td>
+
+							<td class="entry" valign="top" headers="d83874e423 ">optional</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 "><strong class="ph b">Return Codes</strong></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 ">200</td>
+
+							<td class="entry" valign="top" headers="d83874e423 ">Request completed successfully.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 ">401</td>
+
+							<td class="entry" valign="top" headers="d83874e423 ">The item requested was not available using the supplied
+								authorization, or authorization was not supplied.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d83874e420 ">404</td>
+
+							<td class="entry" valign="top" headers="d83874e423 ">The requested content could not be found. The returned content
+								will include further information, as a JSON object, if
+								available.</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+<p class="p">Deleting a design document immediately invalidates the design document and
+				all views and indexes associated with it. The indexes and stored data on disk are
+				removed in the background.</p>
+<p class="p">For example, to delete the previously created
+				design document using <samp class="ph codeph">curl</samp>
+				:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; curl -v -X DELETE -H 'Content-Type: application/json' \
+    'http://Administrator:Password@192.168.0.77:8092/default/_design/dev_byfield'
+</samp></pre>
+<p class="p">When
+				the design document has been successfully removed, the JSON returned indicates
+				successful completion, and confirmation of the design document
+				removed:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{"ok":true,"id":"_design/dev_byfield"}
+</samp></pre>
+<p class="p">Error
+				conditions will be returned if the authorization is incorrect, or the specified
+				design document cannot be found.</p>
+</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-views-intro.html">Views REST API</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

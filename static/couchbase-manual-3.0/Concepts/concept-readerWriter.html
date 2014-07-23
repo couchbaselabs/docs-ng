@@ -1,0 +1,91 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a><ul class="nav nav-list"><li><a href="../Concepts/concept-nodesCluster.html">Nodes and clusters</a></li><li><a href="../Concepts/concept-clusterMgr.html">Cluster Manager</a></li><li><a href="../Concepts/concept-dataStorage.html">Data storage</a></li><li><a href="../Concepts/concept-ramQuota.html">RAM quotas</a></li><li><a href="../Concepts/concept-vBucket.html">vBuckets</a></li><li><a href="../Concepts/concept-cacheLayer.html">Caching layer</a></li><li><a href="../Concepts/concept-diskStorage.html">Disk storage</a><ul class="nav nav-list"><li class="active"><a href="../Concepts/concept-readerWriter.html">Multiple readers and writers</a><ul class="nav nav-list"></ul></li><li><a href="../Concepts/concept-doc-delete.html">Document deletion</a></li><li><a href="../Concepts/concept-tombstone.html">Tombstone purging</a></li></ul></li><li><a href="../Concepts/concept-workingset-mgmt.html">Working set management and ejection</a></li><li><a href="../Concepts/concept-docExpiration.html">Expiration</a></li><li><a href="../Concepts/concept-serverWarmup.html">Server warmup</a></li><li><a href="../Concepts/concept-rebalancing.html">Rebalancing</a></li><li><a href="../Concepts/concept-replication.html">Replicas and replication</a></li><li><a href="../Concepts/concept-rack-awareness.html">Rack Awareness</a></li><li><a href="../Concepts/concept-nodeFailover.html">Failover</a></li><li><a href="../Concepts/concepts-TAP.html">TAP</a></li><li><a href="../Concepts/concepts-statsMonitor.html">Statistics and monitoring</a></li></ul></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Multiple readers and writers</h1>
+
+  
+  
+  <div class="body"><p class="shortdesc">Multi-threaded readers and writers provide 
+    multiple processes to simultaneously read and write data on disk. 
+    Simultaneous reads and writes increases disk speed and improves the read rate from disk. </p>
+
+    
+    <p class="p">Multiple readers and writers are supported to persist data onto disk. For earlier versions of
+      Couchbase Server, each server instance had only single disk reader and writer threads. Disk
+      speeds have now increased to the point where single read/write threads do not efficiently keep
+      up with the speed of disk hardware. The other problem caused by single read/writes threads is
+      that if you have a good portion of data on disk and not RAM, you can experience a high level
+      of cache misses when you request this data. </p>
+
+    
+    <p class="p">The multi-reader and writer setting depends on the following hardware in your Couchbase cluster:</p>
+
+    <div class="note note"><span class="notetitle">Note:</span> The recommended hardware requirements are quad-core processes on 64-bit CPU and 3GHz, 16GB RAM physical storage. 
+      Solid state drives are also recommended. </div>
+
+    
+    <ul class="ul">
+      <li class="li">If you deploy your cluster on the minimum hardware requirement which is dual-core CPUs running on 2GHz and 4GB of physical RAM, 
+        stay with the default setting of Low (which is three threads).</li>
+
+      <li class="li">If you deploy your servers on recommended hardware requirements or above, 
+        this setting can be increased to High (which is eight threads).</li>
+
+      <li class="li">If you have a hardware configuration which conforms to pre–2.1 hardware requirements, 
+        change this setting to the default.</li>
+
+    </ul>
+
+     
+     
+     
+    <div class="note note"><span class="notetitle">Note:</span> In a Couchbase Server cluster, since earlier version of Couchbase Server coexists with higher versions of Couchbase Server. 
+    Pre-2.1 nodes remain with single readers and writer for the data bucket. 
+    Post-2.1 nodes have multiple readers and writers. 
+    When server nodes are upgraded, the multiple readers and writers setting is implemented with bucket restart and warmup. 
+    In this case, install the new node, add it to the cluster, edit the existing bucket setting for readers and writers. 
+    After rebalancing the cluster, the new node performs reads and writes with multiple readers and writers and the data bucket does not restart or go through a warmup. 
+    All existing pre–2.1 nodes remain with a single readers and writers for the data bucket. 
+    As pre-2.1 nodes are upgraded and added to the cluster, 
+    these new nodes automatically pick up the setting and use multiple readers and writers for the bucket.</div>
+
+
+
+    
+    <p class="p">The multi-threaded engine includes additional synchronization among threads that are
+      accessing the same data cache to avoid conflicts. To maintain performance while avoiding
+      conflicts over data, Couchbase uses a form of locking between threads as well as thread allocation
+      among vBuckets with static partitioning. When Couchbase Server creates multiple reader and
+      writer threads, the server assesses a range of vBuckets for each thread and assigns each
+      thread exclusively to certain vBuckets. With this static thread coordination, the server
+      schedules threads so that only a single reader and single writer thread can access the same
+      vBucket at any given time. The previous image shows six pre-allocated threads and
+      two data Buckets. Each thread has the range of vBuckets that is statically partitioned for
+      read and write access.</p>
+
+    
+    <img class="image" src="../images/threads_read_write.png" width="500">
+    
+
+  </div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/concept-diskStorage.html" title="Couchbase Server mainly stores and retrieves information for clients using RAM. At the same time, Couchbase Server eventually stores all data to disk to provide a higher level of reliability.">Disk storage</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,0 +1,335 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../../install-intro.html">Couchbase Installation</a></li><li><a href="../../admin-intro.html">Couchbase Administration</a></li><li><a href="../../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBcli/cbcli-commands.html">couchbase-cli commands</a></li><li><a href="../../CLI/CBcli/cbcli-buckets.html">Buckets CLI</a></li><li><a href="../../CLI/CBcli/cbcli-rza.html">Rack-Zone Awareness CLI</a></li><li><a href="../../CLI/CBcli/cbcli-servers.html">Server nodes CLI</a></li><li class="active"><a href="../../CLI/CBcli/cbcli-xdcr.html">XDCR CLI</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">Couchbase REST API</a></li><li><a href="../../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">XDCR CLI</h1>
+
+  <div class="body">
+    <p class="p">To create a XDCR remote cluster:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">    couchbase-cli xdcr-setup -c 192.168.0.1:8091 \
+        --create \
+        --xdcr-cluster-name=test \
+        --xdcr-hostname=10.1.2.3:8091 \
+        --xdcr-username=Administrator \
+        --xdcr-password=password
+</samp></pre>
+
+    <p class="p">To delete a XDCR remote cluster:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">    couchbase-cli xdcr-delete -c 192.168.0.1:8091 \
+        --xdcr-cluster-name=test
+</samp></pre>
+
+    <div class="section"><h2 class="title sectiontitle">Managing XDCR replication streams</h2><p class="p">To start a replication
+        stream:</p>
+<pre class="pre codeblock"><samp class="ph codeph">    couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
+        --create \
+        --xdcr-cluster-name=test \
+        --xdcr-from-bucket=default \
+        --xdcr-to-bucket=default1
+</samp></pre>
+<p class="p">To
+        delete a replication
+      stream:</p>
+<pre class="pre codeblock"><samp class="ph codeph">    couchbase-cli xdcr-replicate -c 192.168.0.1:8091 \
+        --delete \
+        --xdcr-replicator=f4eb540d74c43fd3ac6d4b7910c8c92f/default/default
+</samp></pre>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Managing remote clusters</h2><p class="p">To create a remote cluster
+        reference:</p>
+<p class="p">In the following example the remote cluster is
+        “RemoteCluster”.</p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-setup -c 10.3.121.121:8091 -u Administrator  -p password \
+    --create 
+    --xdcr-cluster-name=RemoteCluster  
+    --xdcr-hostname=10.3.121.123:8091  
+    --xdcr-username=Administrator  
+    --xdcr-password=password
+</samp></pre>
+<p class="p">To
+        set a XDCR protocol:</p>
+<p class="p">An XDCR protocol for the mode of replication can be specified for
+        XDCR. </p>
+<p class="p">To change a XDCR replication protocol for an existing XDCR
+        replication:</p>
+<p class="p">If you change want the replication protocol for an existing XDCR
+        replication:</p>
+<ol class="ol">
+        <li class="li">Delete the replication.</li>
+
+        <li class="li">Re-create the replication with your preference.</li>
+
+      </ol>
+<p class="p">First we create a destination cluster reference named
+        “RemoteCluster”:</p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-setup -c hostname_:8091 -u Administrator  -p password \
+  --create --xdcr-cluster-name=RemoteCluster  --xdcr-hostname=10.3.121.123:8091 \ 
+  --xdcr-username=Administrator  --xdcr-password=password
+</samp></pre>
+<p class="p">Upon
+        success, we get this
+        response:</p>
+<pre class="pre codeblock"><samp class="ph codeph">    SUCCESS: init RemoteCluster
+</samp></pre>
+<p class="p">Now
+        you can start replication to the remote cluster using memcached protocol as the existing
+        default:</p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password 
+        --xdcr-cluster-name RemoteCluster 
+        --xdcr-from-bucket default 
+        --xdcr-to-bucket backup
+</samp></pre>
+<p class="p">To
+        explicitly set the protocol to
+        memcached:</p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup 
+    --xdcr-replication-mode xmem
+</samp></pre>
+<p class="p">To
+        set the protocol to
+        CAPI:</p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-replicate -c host_name:8091 -u Administrator -p password \ 
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup
+    --xdcr-replication-mode capi
+</samp></pre>
+<p class="p">If
+        there is already an existing replication for a bucket, you get an error when you try to
+        start the replication again with any new
+        settings:</p>
+<pre class="pre codeblock"><samp class="ph codeph"> couchbase-cli xdcr-replicate -c 10.3.121.121:8091 -u Administrator -p password 
+    --xdcr-cluster-name RemoteCluster 
+    --xdcr-from-bucket default 
+    --xdcr-to-bucket backup
+    --xdcr-replication-mode capi
+</samp></pre>
+<p class="p">Results
+        in the following
+      error:</p>
+<pre class="pre codeblock"><samp class="ph codeph">ERROR: unable to create replication (400) Bad Request
+        {u'errors': {u'_': u'Replication to the same remote cluster and bucket already exists'}}
+ERROR: Replication to the same remote cluster and bucket already exists
+</samp></pre>
+</div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Managing XDCR data encryption</h2><p class="p">The Couchbase Server command line
+        interface (CLI) enables XDCR data encryption (Enterprise Edition only) when an XDCR cluster
+        reference is created or modified. The CLI provides the <samp class="ph codeph">couchbase-cli</samp> tool
+        and the <samp class="ph codeph">xdcr-setup</samp> command. The option
+          <samp class="ph codeph">--xdcr-demand-encryption=1</samp> enables XDCR data encryption
+          <samp class="ph codeph">-xdcr-certificate=CERTIFICATE</samp> provides the SSL certificate for data
+        security.</p>
+</div>
+
+    
+    
+      <p class="p">To setup XDCR with SSL data encryption:</p>
+<ol class="ol">
+          <li class="li">Retrieve the certificate from the destination cluster.</li>
+
+          <li class="li">Create or modify the XDCR configuration to allow data encryption and provide the SSL
+            certificate.</li>
+
+          <li class="li">Define the replication.</li>
+
+        </ol>
+<p class="p">To configure XDCR with SSL data encryption, the <samp class="ph codeph">xdcr-setup</samp> command
+          is
+            used.</p>
+<p class="p"><strong class="ph b">Syntax</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-setup -c localHost:port -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=remoteClustername 
+  --xdcr-hostname=remoteHost:port 
+  --xdcr-username=remoteAdmin --xdcr-password=remotePassword 
+  --xdcr-demand-encryption=[0|1]   // 1 to enable, 0 to disable (default)
+  --xdcr-certificate=&lt;localPath&gt;/&lt;certFile&gt;.pem  
+</samp></pre>
+<p class="p"><strong class="ph b">Example</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=1 
+  --xdcr-certificate=./new.pem  
+</samp></pre>
+<p class="p"><strong class="ph b">Results</strong></p>
+<p class="p">The
+          following is an example of results for a successful XDCR
+        configuration.</p>
+<pre class="pre codeblock"><samp class="ph codeph">SUCCESS: init/edit test 
+&lt;&lt;replication reference created&gt;&gt; 
+</samp></pre>
+
+    
+    
+    <p class="p">To disable XDCR data encryption, execute <samp class="ph codeph">couchbase-cli xdcr-setup</samp> with
+            <samp class="ph codeph">--xdcr-demand-encryption=0</samp>.
+          </p>
+<p class="p"><strong class="ph b">Example</strong></p>
+
+      
+      <pre class="pre codeblock"><samp class="ph codeph">couchbase-cli xdcr-setup -c 10.3.4.186:8091 -u localAdmin -p localPassword
+  --create --xdcr-cluster-name=Omaha 
+  --xdcr-hostname=10.3.4.187:8091 
+  --xdcr-username=Peyton --xdcr-password=Manning 
+  --xdcr-demand-encryption=0 
+</samp></pre>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Managing SSL certificates</h2><p class="p">Retrieving an SSL certificate for XDCR data
+        encryption, should be done in a secure manner, such as with <samp class="ph codeph">ssh</samp> and
+          <samp class="ph codeph">scp</samp>. For example:</p>
+<ol class="ol">
+        <li class="li">Use a secure method to log in to a node on the destination cluster. For example:
+            <samp class="ph codeph">ssh</samp>.</li>
+
+        <li class="li">Retrieve the certificate with the <samp class="ph codeph">couchbase-cli ssl-manage</samp>
+          command.</li>
+
+        <li class="li">Use a secure method to transfer the certificate from the destination cluster to the
+          source cluster. For example: <samp class="ph codeph">scp</samp>.</li>
+
+        <li class="li">Proceed with setting up XDCR with SSL data encryption.</li>
+
+      </ol>
+<p class="p">The <samp class="ph codeph">couchbase-cli ssl-manage</samp> command provides the following options
+        for regenerating and retrieving certificates.</p>
+<dl class="dl">
+        
+          <dt class="dt dlterm"><samp class="ph codeph">--regenerate-cert=CERTIFICATE</samp></dt>
+
+          <dd class="dd">Regenerates a self-signed certificate on the destination cluster. Specify the full
+            path for the location of the pem-encoded certificate file. For example,
+              <samp class="ph codeph">--regenerate-cert=./new.pem</samp>.</dd>
+
+        
+
+
+        
+          <dt class="dt dlterm"><samp class="ph codeph">--retrieve-cert=CERTIFICATE</samp></dt>
+
+          <dd class="dd">Retrieves the self-signed certificate from the destination cluster to the source
+            cluster. Specify a local location (full path) and file name for the pem-encoded
+            certificate. For example, <samp class="ph codeph">--retrieve-cert=./newCert.pem</samp>.</dd>
+
+        
+
+      </dl>
+</div>
+
+    
+    <p class="p">To retrieve an existing self-signed certificate, use the <samp class="ph codeph">ssl-manage</samp>
+      command.</p>
+<p class="p"><strong class="ph b">Syntax</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli ssl-manage -c localHost:port 
+  -u Administrator -p password 
+  --retrieve-cert=./&lt;newCert&gt;.pem 
+</samp></pre>
+<p class="p"><strong class="ph b">Example</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli ssl-manage -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --retrieve-cert=./newCert.pem 
+</samp></pre>
+<p class="p"><strong class="ph b">Results</strong></p>
+<p class="p">The
+          following is an example of results for a successful retrieval of the
+        certificate:</p>
+<pre class="pre codeblock"><samp class="ph codeph">SUCCESS: retrieve certificate to './newCert.pem' 
+Certificate matches what seen on GUI 
+</samp></pre>
+
+    
+    
+    <p class="p">To regenerate a self-signed certificate, use the <samp class="ph codeph">couchbase-cli ssl-manage</samp>
+      command. </p>
+<p class="p"><strong class="ph b">Syntax</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli ssl-manage 
+  -c remoteHost:port 
+  -u adminName -p adminPassword 
+  --regenerate-cert=CERTIFICATE 
+</samp></pre>
+
+    
+    <p class="p"><strong class="ph b">Example</strong></p>
+<p class="p">The
+          following is an example of the CLI commands and options for regenerating a self-signed
+          certificate with the <samp class="ph codeph">ssl-manage</samp>
+            command:</p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli ssl-manage 
+  -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --regenerate-cert=./new.pem 
+</samp></pre>
+
+    
+    <p class="p"><strong class="ph b">Results</strong></p>
+<p class="p">The
+          following is an example of results for a successful regeneration of the
+          certification:</p>
+<pre class="pre codeblock"><samp class="ph codeph">SUCCESS: regenerate certificate to './new.pem' 
+</samp></pre>
+
+    
+    <p class="p">To
+          retrieve an existing self-signed certificate, the <samp class="ph codeph">ssl-manage</samp> command is
+          used.</p>
+<p class="p"><strong class="ph b">Syntax</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli ssl-manage -c localHost:port 
+  -u Administrator -p password 
+  --retrieve-cert=./&lt;newCert&gt;.pem 
+</samp></pre>
+
+    
+    <p class="p"><strong class="ph b">Example</strong></p>
+<pre class="pre codeblock"><samp class="ph codeph">couchbase-cli ssl-manage -c 10.3.4.187:8091 
+  -u Administrator -p password 
+  --retrieve-cert=./newCert.pem 
+</samp></pre>
+
+    
+    <p class="p"><strong class="ph b">Results</strong></p>
+<p class="p">The
+          following is an example of results for a successful retrieval of the
+        certificate:</p>
+<pre class="pre codeblock"><samp class="ph codeph">SUCCESS: retrieve certificate to './newCert.pem' 
+Certificate matches what seen on GUI 
+</samp></pre>
+
+    
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></div>
+<div><a class="link" href="../../Tasks/tasks-manage-xdcr-dataEncryption.html">Managing XDCR data encryption</a></div>
+<div><a class="link" href="../../Tasks/tasks-manage-xdcr.html" title="Cross datacenter replication (XDCR) provides an easy method of replicating data from one cluster to another for disaster recovery as well as better data locality (getting data closer to its users).">Managing XDCR</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

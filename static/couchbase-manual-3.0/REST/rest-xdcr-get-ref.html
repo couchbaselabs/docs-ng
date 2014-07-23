@@ -1,0 +1,95 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-xdcr-create-ref.html">Creating a destination cluster reference</a></li><li><a href="../REST/rest-xdcr-create-replication.html">Creating XDCR replications</a></li><li><a href="../REST/rest-xdcr-data-encrypt.html">Managing XDCR data encryption</a></li><li><a href="../REST/rest-xdcr-delete-ref.html">Deleting a destination cluster reference</a></li><li><a href="../REST/rest-xdcr-delete-replication.html">Deleting XDCR replications</a></li><li><a href="../REST/rest-xdcr-edit-internal.html">Changing internal XDCR settings</a></li><li><a href="../REST/rest-xdcr-get-internal.html">Viewing internal XDCR settings</a></li><li class="active"><a href="../REST/rest-xdcr-get-ref.html">Getting a destination cluster reference</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-xdcr-statistics.html">Getting XDCR stats via REST</a></li></ul></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Getting a destination cluster reference</h1>
+
+  <div class="body">
+    <p class="p">When you use XDCR, you establish <em class="ph i">source</em> and <em class="ph i">destination</em> cluster. A source
+      cluster is the cluster from which you want to copy data; a destination cluster is the cluster
+      where you want the replica data to be stored. To get information about a destination
+      cluster:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">curl -u admin:password 
+    http://localhost:8091/pools/default/remoteClusters
+</samp></pre>
+
+    <p class="p">Replace the <em class="ph i">admin</em>, <em class="ph i">password</em>, and <em class="ph i">localhost</em> values in the above example
+      with your actual values.</p>
+
+    <p class="p">You provide credentials for the cluster and also the hostname and port for the remote
+      cluster. This will generate a request similar to the following sample:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">GET /pools/default/remoteClusters HTTP/1.1
+Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: 10.4.2.4:8091
+Accept: */*
+</samp></pre>
+
+    <p class="p">If successful, Couchbase Server responds with a JSON response similar to the following:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">[{
+"name":"remote1",
+"uri":"/pools/default/remoteClusters/remote1",
+"validateURI":"/pools/default/remoteClusters/remote1?just_validate=1",
+"hostname":"10.4.2.6:8091",
+"username":"Administrator",
+"uuid":"9eee38236f3bf28406920213d93981a3",
+"deleted":false
+}]
+</samp></pre>
+
+    <p class="p">The following describes the response elements:</p>
+
+    <ul class="ul">
+      <li class="li"><p class="p">(String) name: Name of the destination cluster referenced for XDCR.</p>
+</li>
+
+      <li class="li"><p class="p">(String) uri: URI for destination cluster information.</p>
+</li>
+
+      <li class="li"><p class="p">(String) validateURI: URI to validate details of cluster reference.</p>
+</li>
+
+      <li class="li"><p class="p">(String) hostname: Hostname/IP (and :port) of the remote cluster.</p>
+</li>
+
+      <li class="li"><p class="p">(String) uuid: UUID of the remote cluster reference.</p>
+</li>
+
+      <li class="li"><p class="p">(String) username: Username for the destination cluster administrator.</p>
+</li>
+
+      <li class="li"><p class="p">(Boolean) deleted: Indicates whether the reference to the destination cluster has been
+          deleted or not.</p>
+</li>
+
+    </ul>
+
+    
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-xdcr-intro.html" title="Cross Datacenter Replication (XDCR) enables you to automatically replicate data between clusters and between data buckets.">XDCR REST API</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Tasks/xdcr-configure-replications.html" title="Configuration of XDCR replications is done on a per-bucket basis.">Configuring XDCR replications</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

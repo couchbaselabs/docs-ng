@@ -1,0 +1,78 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a><ul class="nav nav-list"><li><a href="../XDCR/xdcr-usecases.html">XDCR use cases</a></li><li class="active"><a href="../XDCR/xdcr-architecture.html">XDCR architecture</a><ul class="nav nav-list"></ul></li><li><a href="../XDCR/xdcr-topologies.html">XDCR basic topologies</a></li><li><a href="../XDCR/xdcr-topologies-adv.html">XDCR advanced topologies</a></li><li><a href="../XDCR/xxdcr-memcachedReplication.html">XDCR replication via memcached protocol</a></li><li><a href="../XDCR/xdcr-systemOutage.html">XDCR and network or system outages</a></li><li><a href="../XDCR/xdcr-docs.html">XDCR document handling</a></li><li><a href="../XDCR/xdcr-flushRequests.html">XDCR flush requests</a></li><li><a href="../XDCR/xdcr-streamMgmt.html">XDCR stream management</a></li><li><a href="../XDCR/xdcr-dataEncryption.html">XDCR data encryption</a></li></ul></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">XDCR architecture</h1>
+
+  <div class="body">
+    <p class="p">There are a number of key elements in Couchbase Server’s XDCR architecture including:</p>
+
+    <p class="p"><strong class="ph b">Continuous Replication.</strong> XDCR in Couchbase Server provides continuous replication
+      across geographically distributed datacenters. Data mutations are replicated to the
+      destination cluster after they are written to disk. There are multiple data streams (32 by
+      default) that are shuffled across all shards (called vBuckets in Couchbase Server) on the
+      source cluster to move data in parallel to the destination cluster. The vBucket list is
+      shuffled so that replication is evenly load balanced across all the servers in the cluster.
+      The clusters scale horizontally, more the servers, more the replication streams, faster the
+      replication rate. </p>
+
+    <p class="p"><strong class="ph b">Cluster Aware.</strong> XDCR is cluster topology aware. The source and destination clusters
+      could have different number of servers. If a server in the source or destination cluster goes
+      down, XDCR is able to get the updated cluster topology information and continue replicating
+      data to available servers in the destination cluster.</p>
+
+    <p class="p"><strong class="ph b">Push based connection resilient replication.</strong> XDCR in Couchbase Server is push-based
+      replication. The source cluster regularly checkpoints the replication queue per vBucket and
+      keeps track of what data the destination cluster last received. If the replication process is
+      interrupted for example due to a server crash or intermittent network connection failures, it
+      is not required to restart replication from the beginning. Instead, once the replication link
+      is restored, replication can continue from the last checkpoint seen by the destination
+      cluster.</p>
+
+    <p class="p"><strong class="ph b">Efficient.</strong> For the sake of efficiency, Couchbase Server is able to de-duplicate
+      information that is waiting to be stored on disk. For instance, if there are three changes to
+      the same document in Couchbase Server, and these three changes are waiting in queue to be
+      persisted, only the last version of the document is stored on disk and later gets pushed into
+      the XDCR queue to be replicated.</p>
+
+    <p class="p"><strong class="ph b">Active-Active Conflict Resolution.</strong> Within a cluster, Couchbase Server provides strong
+      consistency at the document level. On the other hand, XDCR also provides eventual consistency
+      across clusters. Built-in conflict resolution will pick the same “winner” on both the clusters
+      if the same document was mutated on both the clusters. If a conflict occurs, the document with
+      the most updates will be considered the “winner.” If the same document is updated the same
+      number of times on the source and destination, additional metadata such as numerical sequence,
+      CAS value, document flags and expiration TTL value are used to pick the “winner.” XDCR applies
+      the same rule across clusters to make sure document consistency is maintained:</p>
+
+    
+        <img class="image" src="../images/xdcr_conflict_res.png" width="720">
+    <p class="p">As shown in above, bidirectional replication is set up between Datacenter 1 and Datacenter 2
+      and both the clusters start off with the same JSON document (Doc 1). In addition, two
+      additional updates to Doc 1 happen on Datacenter 2. In the case of a conflict, Doc 1 on
+      Datacenter 2 is chosen as the winner because it has seen more updates.</p>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../REST/rest-xdcr-intro.html" title="Cross Datacenter Replication (XDCR) enables you to automatically replicate data between clusters and between data buckets.">XDCR REST API</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

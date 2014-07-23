@@ -1,0 +1,110 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a><ul class="nav nav-list"><li><a href="../Misc/Trbl-commonErrors.html">Common errors</a></li><li><a href="../Misc/Trbl-generalTips.html">General tips</a></li><li><a href="../Misc/Trbl-logs.html">Logs and logging</a></li><li><a href="../Misc/Trbl-issuesReport.html">Reporting issues</a></li><li><a href="../Misc/Trbl-beam-smp-issue.html">Beam.smp</a></li><li><a href="../Misc/Trbl-blockedIndexer.html">Blocked indexer</a></li><li><a href="../Misc/Trbl-common.html">Server issues</a></li><li><a href="../Misc/Trbl-datamissing-server.html">Incorrect or missing data (server issue)</a></li><li><a href="../Misc/Trbl-datamissing-user.html">Incorrect or missing data (user issue)</a></li><li><a href="../Misc/Trbl-designdocs.html">Design document aliases</a></li><li><a href="../Misc/Trbl-expireddocs.html">Expired documents issue</a></li><li><a href="../Misc/Trbl-indexFileSystem.html">Index filesystem structure</a></li><li><a href="../Misc/Trbl-queryResults.html">Index results for a single node</a></li><li class="active"><a href="../Misc/Trbl-replicaIndex.html">Debugging replica index</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/Trbl-staleFalse-debug.html">Debugging stale=false queries</a></li><li><a href="../Misc/Trbl-timeoutErrors.html">Timeout errors</a></li><li><a href="../Misc/Trbl-total_row-debug.html">total_rows values are too high</a></li><li><a href="../Misc/Trbl-wrongdocs.html">Wrong documents or rows issue</a></li></ul></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Debugging replica index</h1>
+
+  
+  <div class="body"><p class="shortdesc">Description of how to test and verify that the replica index is working.</p>
+
+    <p class="p">It’s not easy to test/verify from the outside that the replica index is working. Remember,
+      replica index is optional, and it’s just an optimization for faster
+        <samp class="ph codeph">stale=false</samp> queries after rebalance - it doesn’t cope with correctness of
+      the results.</p>
+
+    <p class="p">There’s a non-public query parameter named <samp class="ph codeph">_type</samp> used only for debugging and
+      testing. Its default value is <samp class="ph codeph">main</samp>, and the other possible value is
+        <samp class="ph codeph">replica</samp>. Here follows an example of querying the main (default) and replica
+      indexes on a 2 nodes cluster (for sake of simplicity), querying the main (normal) index
+      gives:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?limit=20&amp;stale=false&amp;debug=true'
+{"total_rows":20000,"rows":[
+{"id":"0017131","key":2,"partition":43,"node":"http://192.168.1.80:9501/_view_merge/","value":"0017131"},
+{"id":"0000225","key":10,"partition":33,"node":"http://192.168.1.80:9501/_view_merge/","value":"0000225"},
+{"id":"0005986","key":15,"partition":34,"node":"http://192.168.1.80:9501/_view_merge/","value":"0005986"},
+{"id":"0015579","key":17,"partition":27,"node":"local","value":"0015579"},
+{"id":"0018530","key":17,"partition":34,"node":"http://192.168.1.80:9501/_view_merge/","value":"0018530"},
+{"id":"0006210","key":23,"partition":2,"node":"local","value":"0006210"},
+{"id":"0006866","key":25,"partition":18,"node":"local","value":"0006866"},
+{"id":"0019349","key":29,"partition":21,"node":"local","value":"0019349"},
+{"id":"0004415","key":39,"partition":63,"node":"http://192.168.1.80:9501/_view_merge/","value":"0004415"},
+{"id":"0018181","key":48,"partition":5,"node":"local","value":"0018181"},
+{"id":"0004737","key":49,"partition":1,"node":"local","value":"0004737"},
+{"id":"0014722","key":51,"partition":2,"node":"local","value":"0014722"},
+{"id":"0003686","key":54,"partition":38,"node":"http://192.168.1.80:9501/_view_merge/","value":"0003686"},
+{"id":"0004656","key":65,"partition":48,"node":"http://192.168.1.80:9501/_view_merge/","value":"0004656"},
+{"id":"0012234","key":65,"partition":10,"node":"local","value":"0012234"},
+{"id":"0001610","key":71,"partition":10,"node":"local","value":"0001610"},
+{"id":"0015940","key":83,"partition":4,"node":"local","value":"0015940"},
+{"id":"0010662","key":87,"partition":38,"node":"http://192.168.1.80:9501/_view_merge/","value":"0010662"},
+{"id":"0015913","key":88,"partition":41,"node":"http://192.168.1.80:9501/_view_merge/","value":"0015913"},
+{"id":"0019606","key":90,"partition":22,"node":"local","value":"0019606"}
+],
+</samp></pre>
+
+    <p class="p">Note that the <samp class="ph codeph">debug=true</samp> parameter, for map views, add 2 row fields,
+        <samp class="ph codeph">partition</samp> which is the vbucket ID where the document that produced this row
+      (emitted by the map function) lives, and <samp class="ph codeph">node</samp> which tells from which node in
+      the cluster the row came (value “local” for the node which received the query, an URL
+      otherwise).</p>
+
+    <p class="p">Now, doing the same query but against the replica index ( <samp class="ph codeph">_type=replica</samp> )
+      gives:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/default/_design/test/_view/view1?limit=20&amp;stale=false&amp;_type=replica&amp;debug=true'
+{"total_rows":20000,"rows":[
+{"id":"0017131","key":2,"partition":43,"node":"local","value":"0017131"},
+{"id":"0000225","key":10,"partition":33,"node":"local","value":"0000225"},
+{"id":"0005986","key":15,"partition":34,"node":"local","value":"0005986"},
+{"id":"0015579","key":17,"partition":27,"node":"http://192.168.1.80:9501/_view_merge/","value":"0015579"},
+{"id":"0018530","key":17,"partition":34,"node":"local","value":"0018530"},
+{"id":"0006210","key":23,"partition":2,"node":"http://192.168.1.80:9501/_view_merge/","value":"0006210"},
+{"id":"0006866","key":25,"partition":18,"node":"http://192.168.1.80:9501/_view_merge/","value":"0006866"},
+{"id":"0019349","key":29,"partition":21,"node":"http://192.168.1.80:9501/_view_merge/","value":"0019349"},
+{"id":"0004415","key":39,"partition":63,"node":"local","value":"0004415"},
+{"id":"0018181","key":48,"partition":5,"node":"http://192.168.1.80:9501/_view_merge/","value":"0018181"},
+{"id":"0004737","key":49,"partition":1,"node":"http://192.168.1.80:9501/_view_merge/","value":"0004737"},
+{"id":"0014722","key":51,"partition":2,"node":"http://192.168.1.80:9501/_view_merge/","value":"0014722"},
+{"id":"0003686","key":54,"partition":38,"node":"local","value":"0003686"},
+{"id":"0004656","key":65,"partition":48,"node":"local","value":"0004656"},
+{"id":"0012234","key":65,"partition":10,"node":"http://192.168.1.80:9501/_view_merge/","value":"0012234"},
+{"id":"0001610","key":71,"partition":10,"node":"http://192.168.1.80:9501/_view_merge/","value":"0001610"},
+{"id":"0015940","key":83,"partition":4,"node":"http://192.168.1.80:9501/_view_merge/","value":"0015940"},
+{"id":"0010662","key":87,"partition":38,"node":"local","value":"0010662"},
+{"id":"0015913","key":88,"partition":41,"node":"local","value":"0015913"},
+{"id":"0019606","key":90,"partition":22,"node":"http://192.168.1.80:9501/_view_merge/","value":"0019606"}
+],
+</samp></pre>
+
+    <p class="p">Note that you get exactly the same results (id, key and value for each row). Looking at the
+      row field <samp class="ph codeph">node</samp>, you can see there’s a duality when compared to the results we
+      got from the main index, which is very easy to understand for the simple case of a 2 nodes
+      cluster.</p>
+
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/Trbl-intro.html" title="Troubleshooting covers general tips, common errors, log information, and other issues.">Troubleshooting</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Misc/Trbl-datamissing-server.html" title="Data missing in query response or it’s wrong (potentially due to server issues)">Incorrect or missing data (server issue)</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

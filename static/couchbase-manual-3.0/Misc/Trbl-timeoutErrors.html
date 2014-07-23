@@ -1,0 +1,146 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a><ul class="nav nav-list"><li><a href="../Misc/Trbl-commonErrors.html">Common errors</a></li><li><a href="../Misc/Trbl-generalTips.html">General tips</a></li><li><a href="../Misc/Trbl-logs.html">Logs and logging</a></li><li><a href="../Misc/Trbl-issuesReport.html">Reporting issues</a></li><li><a href="../Misc/Trbl-beam-smp-issue.html">Beam.smp</a></li><li><a href="../Misc/Trbl-blockedIndexer.html">Blocked indexer</a></li><li><a href="../Misc/Trbl-common.html">Server issues</a></li><li><a href="../Misc/Trbl-datamissing-server.html">Incorrect or missing data (server issue)</a></li><li><a href="../Misc/Trbl-datamissing-user.html">Incorrect or missing data (user issue)</a></li><li><a href="../Misc/Trbl-designdocs.html">Design document aliases</a></li><li><a href="../Misc/Trbl-expireddocs.html">Expired documents issue</a></li><li><a href="../Misc/Trbl-indexFileSystem.html">Index filesystem structure</a></li><li><a href="../Misc/Trbl-queryResults.html">Index results for a single node</a></li><li><a href="../Misc/Trbl-replicaIndex.html">Debugging replica index</a></li><li><a href="../Misc/Trbl-staleFalse-debug.html">Debugging stale=false queries</a></li><li class="active"><a href="../Misc/Trbl-timeoutErrors.html">Timeout errors</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/Trbl-total_row-debug.html">total_rows values are too high</a></li><li><a href="../Misc/Trbl-wrongdocs.html">Wrong documents or rows issue</a></li></ul></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Timeout errors</h1>
+
+  
+  <div class="body"><p class="shortdesc">Timeout errors when querying a view with <samp class="ph codeph">stale=false.</samp></p>
+
+    <p class="p">When querying a view with <samp class="ph codeph">stale=false</samp>, you get often timeout errors for one
+      or more nodes. These nodes are nodes that did not receive the original query request, for
+      example you query node 1, and you get timeout errors for nodes 2, 3 and 4 as in the example
+      below (view with reduce function _count):</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/default/_design/dev_test2/_view/view2?full_set=true&amp;stale=false'
+{"rows":[
+  {"key":null,"value":125184}
+],
+"errors":[
+  {"from":"http://192.168.1.80:9503/_view_merge/?stale=false","reason":"timeout"},
+  {"from":"http://192.168.1.80:9501/_view_merge/?stale=false","reason":"timeout"},
+  {"from":"http://192.168.1.80:9502/_view_merge/?stale=false","reason":"timeout"}
+]
+}
+</samp></pre>
+
+    <p class="p">The problem here is that by default, for queries with <samp class="ph codeph">stale=false</samp> (full
+      consistency), the view merging node (node which receive the query request, node 1 in this
+      example) waits up to 60000 milliseconds (1 minute) to receive partial view results from each
+      other node in the cluster. If it waits for more than 1 minute for results from a remote node,
+      it stops waiting for results from that node and a timeout error entry is added to the final
+      response. A <samp class="ph codeph">stale=false</samp> request blocks a client, or the view merger node as
+      in this example, until the index is up to date, so these timeouts can happen frequently.</p>
+
+    <p class="p">If you look at the logs from those nodes you got a timeout error, you’ll see the index
+      build/update took more than 60 seconds, example from node 2:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">[couchdb:info,2012-08-20T15:21:13.150,n_1@192.168.1.80:&lt;0.6234.0&gt;:couch_log:info:39] Set view
+  `default`, main group `_design/dev_test2`, updater finished
+ Indexing time: 93.734 seconds
+ Blocked time:  10.040 seconds
+ Inserted IDs:  124960
+ Deleted IDs:   0
+ Inserted KVs:  374880
+ Deleted KVs:   0
+ Cleaned KVs:   0
+</samp></pre>
+
+    <p class="p">In this case, node 2 took 103.774 seconds to update the index.</p>
+
+    <p class="p">In order to avoid those timeouts, you can pass a large connection_timeout in the view query
+      URL, example:</p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">&gt; time curl -s
+ 'http://localhost:9500/default/_design/dev_test2/_view/view2?full_set=true&amp;stale=false&amp;connection_timeout=999999999'
+{"rows":[
+{"key":null,"value":2000000}
+]
+}
+real  2m44.867s
+user   0m0.007s
+sys    0m0.007s
+</samp></pre>
+
+    <p class="p">And in the logs of nodes 1, 2, 3 and 4, respectively you’ll see something like this:</p>
+
+    <p class="p"><samp class="ph codeph">node 1, view merger node</samp></p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">[couchdb:info,2012-08-20T16:10:02.887,n_0@192.168.1.80:&lt;0.27674.0&gt;:couch_log:info:39] Set view
+  `default`, main group `_design/dev_test2`, updater
+finished
+ Indexing time: 155.549
+seconds
+ Blocked time:  0.000 seconds
+ Inserted IDs:96
+ Deleted IDs:   0
+ Inserted KVs:  1500288
+ Deleted KVs:   0
+ Cleaned KVs:   0
+</samp></pre>
+
+    <p class="p"><samp class="ph codeph">node 2</samp></p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">[couchdb:info,2012-08-20T16:10:28.457,n_1@192.168.1.80:&lt;0.6071.0&gt;:couch_log:info:39] Set view
+  `default`, main group `_design/dev_test2`, updater
+finished
+ Indexing time: 163.555
+seconds
+ Blocked time:  0.000 seconds
+ Inserted IDs:  499968
+ Deleted IDs:   0
+ Inserted KVs:  1499904
+ Deleted KVs:   0
+ Cleaned KVs:   0
+</samp></pre>
+
+    <p class="p"><samp class="ph codeph">node 3</samp></p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">[couchdb:info,2012-08-20T16:10:29.710,n_2@192.168.1.80:&lt;0.6063.0&gt;:couch_log:info:39] Set view
+  `default`, main group `_design/dev_test2`, updater
+finished
+ Indexing time: 164.808
+seconds
+ Blocked time:  0.000 seconds
+ Inserted IDs:  499968
+ Deleted IDs:   0
+ Inserted KVs:  1499904
+ Deleted KVs:   0
+ Cleaned KVs:   0
+</samp></pre>
+
+    <p class="p"><samp class="ph codeph">node 4</samp></p>
+
+    <pre class="pre codeblock"><samp class="ph codeph">[couchdb:info,2012-08-20T16:10:26.686,n_3@192.168.1.80:&lt;0.6063.0&gt;:couch_log:info:39] Set view
+  `default`, main group `_design/dev_test2`, updater
+finished
+ Indexing time: 161.786
+seconds
+ Blocked time:  0.000 seconds
+ Inserted IDs:  499968
+ Deleted IDs:   0
+ Inserted KVs:  1499904
+ Deleted KVs:   0
+ Cleaned KVs:   0
+</samp></pre>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/Trbl-intro.html" title="Troubleshooting covers general tips, common errors, log information, and other issues.">Troubleshooting</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

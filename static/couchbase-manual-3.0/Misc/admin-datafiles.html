@@ -1,0 +1,146 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a><ul class="nav nav-list"><li><a href="../Misc/admin-tools.html">Administration tools</a></li><li><a href="../Tasks/tasks-common.html">Common administrative tasks</a></li><li><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></li><li class="active"><a href="../Misc/admin-datafiles.html">Data file location</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/install-location.html">Installation location</a></li><li><a href="../Misc/limits.html">Limits</a></li></ul></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Data file location</h1>
+
+	
+	<div class="body"><p class="shortdesc">Couchbase Server stores data files (database and indices) under the <span class="ph uicontrol">var &gt; lib
+			&gt; couchbase &gt; data</span> path.</p>
+
+		<p class="p">The disk path for the database and indices files is set during the initial setup of the server
+			node. The default disk path is typically used for development purposes only. If the
+			server node is used for production, configure a different disk path. </p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" width="26.525198938992045%" id="d75473e33">Platform</th>
+
+						<th class="entry" valign="top" width="73.47480106100795%" id="d75473e36">Default directory</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" width="26.525198938992045%" headers="d75473e33 ">Linux</td>
+
+						<td class="entry" valign="top" width="73.47480106100795%" headers="d75473e36 "><samp class="ph codeph">/opt/couchbase/var/lib/couchbase/data</samp></td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="26.525198938992045%" headers="d75473e33 ">Windows</td>
+
+						<td class="entry" valign="top" width="73.47480106100795%" headers="d75473e36 "><samp class="ph codeph">C:\Program&nbsp;Files\couchbase\server\var\lib\couchbase\data</samp></td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="26.525198938992045%" headers="d75473e33 ">Mac OS X</td>
+
+						<td class="entry" valign="top" width="73.47480106100795%" headers="d75473e36 "><samp class="ph codeph">~/Library/Application&nbsp;Support/Couchbase/var/lib/couchbase/data</samp></td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Changing the data file path</h2><p class="p">The disk path where the data and index files
+				are stored cannot be changed on a running server. To change the disk path, the node
+				must be removed from the cluster, configured with the new path, and added back to
+				the cluster. The data file path can be changed for each node via the Web UI at
+				setup, REST API, or CLI. Once a node or cluster has already been setup and is
+				storing data, the path cannot be changed while the node is part of a running
+				cluster. </p>
+<p class="p">The quickest and easiest method is to provision a new node with the
+				correct disk path configured and then use swap rebalance to add the new node in
+				while taking the old node out. This ensures that cluster performance is not
+				impacted. </p>
+<p class="p">To change the disk path by replacing a node (with swap
+				rebalance):</p>
+<ol class="ol">
+				<li class="li">Setup a new node with a different disk path.</li>
+
+				<li class="li">Swap rebalance the new node for the existing node.</li>
+
+				<li class="li">Repeat the process for every node in the cluster.</li>
+
+			</ol>
+
+			<p class="p">To change the disk path of an existing node (without swap rebalance): </p>
+<ol class="ol">
+				<li class="li">Remove the node from the cluster and rebalance.</li>
+
+				<li class="li">Change the path on the running node either via the REST API or using the
+					Couchbase CLI (commands above). </li>
+
+				<li class="li">Re-add the node back to the cluster and rebalance.</li>
+
+			</ol>
+ To change the disk path on multiple nodes, swap out each node and change the disk
+			path individually. <div class="note important"><span class="importanttitle">Important:</span> Changing the data path for a node that is
+				already part of a cluster permanently deletes the stored data.</div>
+
+			<div class="note tip"><span class="tiptitle">Tip:</span> When using the command line tool, the data file and index file path
+				settings cannot be changed individually. To change the setting individually, use the
+				REST API.</div>
+
+		</div>
+
+		
+			
+		<div class="example"><h2 class="title sectiontitle">CLI example</h2>
+		<pre class="pre codeblock">
+couchbase-cli node-init -c 10.5.2.54:8091 \
+	--node-init-data-path=new_path \
+	-u user -p password
+		</pre>
+
+		</div>
+
+		
+	
+		
+	</div>
+
+	<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/admin-basics.html">Administration basics</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Tasks/rebalance-swap-rebalance.html" title="Swap rebalance is an automatic feature that optimizes the movement of data when you are adding and removing the same number of nodes within the same operation.">Swap rebalance</a></div>
+<div><a class="link" href="../Tasks/rebalance-adding-nodes.html">Adding nodes</a></div>
+<div><a class="link" href="../Tasks/rebalance-performing.html" title="Once you have configured the nodes that you want to add or remove from your cluster, you must perform a rebalance operation.">Performing a rebalance</a></div>
+<div><a class="link" href="../Tasks/rebalance-cluster.html" title="Rebalancing a cluster involves marking nodes to be added or removed from the cluster, and then starting the rebalance operation so that the data is moved around the cluster to reflect the new structure.">Rebalancing a cluster</a></div>
+<div><a class="link" href="../REST/rest-node-index-path.html" title="The path for the index files can be configured with POST /nodes/self/controller/settings.">Setting index paths</a></div>
+<div><a class="link" href="../REST/rest-cluster-removenode.html">Removing nodes from clusters</a></div>
+<div><a class="link" href="../REST/overview-rest-api.html">REST API overview</a></div>
+<div><a class="link" href="../REST/rest-server-nodes.html" title="A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server. Each node is as a member of a cluster.">Server nodes REST API</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

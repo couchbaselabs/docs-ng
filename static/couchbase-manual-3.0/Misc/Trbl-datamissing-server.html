@@ -1,0 +1,770 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a><ul class="nav nav-list"><li><a href="../Misc/Trbl-commonErrors.html">Common errors</a></li><li><a href="../Misc/Trbl-generalTips.html">General tips</a></li><li><a href="../Misc/Trbl-logs.html">Logs and logging</a></li><li><a href="../Misc/Trbl-issuesReport.html">Reporting issues</a></li><li><a href="../Misc/Trbl-beam-smp-issue.html">Beam.smp</a></li><li><a href="../Misc/Trbl-blockedIndexer.html">Blocked indexer</a></li><li><a href="../Misc/Trbl-common.html">Server issues</a></li><li class="active"><a href="../Misc/Trbl-datamissing-server.html">Incorrect or missing data (server issue)</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/Trbl-datamissing-user.html">Incorrect or missing data (user issue)</a></li><li><a href="../Misc/Trbl-designdocs.html">Design document aliases</a></li><li><a href="../Misc/Trbl-expireddocs.html">Expired documents issue</a></li><li><a href="../Misc/Trbl-indexFileSystem.html">Index filesystem structure</a></li><li><a href="../Misc/Trbl-queryResults.html">Index results for a single node</a></li><li><a href="../Misc/Trbl-replicaIndex.html">Debugging replica index</a></li><li><a href="../Misc/Trbl-staleFalse-debug.html">Debugging stale=false queries</a></li><li><a href="../Misc/Trbl-timeoutErrors.html">Timeout errors</a></li><li><a href="../Misc/Trbl-total_row-debug.html">total_rows values are too high</a></li><li><a href="../Misc/Trbl-wrongdocs.html">Wrong documents or rows issue</a></li></ul></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+   <h1 class="title topictitle1">Incorrect or missing data (server issue)</h1>
+
+   
+   <div class="body"><p class="shortdesc">Data missing in query response or it’s wrong (potentially due to server issues)</p>
+
+      <p class="p">Sometimes, especially between releases for development builds, it’s possible results are
+         missing due to issues in some component of Couchbase Server. This section describes how to
+         do some debugging to identify which components, or at least to identify which components
+         are not at fault.</p>
+
+      <p class="p">Before proceeding, it needs to be mentioned that each vbucket is physically represented by
+         a CouchDB database (generated by couchstore component) which corresponds to exactly 1 file
+         in the filesystem, example from a development environment using 16 vbuckets only (for
+         example simplicity), 4 nodes and without replicas enabled:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; tree ns_server/couch/0/
+ns_server/couch/0/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 0.couch.1
+     ??? 1.couch.1
+     ??? 2.couch.1
+     ??? 3.couch.1
+     ??? master.couch.1
+     ??? stats.json
+
+ 1 directory, 8 files
+
+&gt; tree ns_server/couch/1/
+ns_server/couch/1/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 4.couch.1
+     ??? 5.couch.1
+     ??? 6.couch.1
+     ??? 7.couch.1
+     ??? master.couch.1
+     ??? stats.json
+     ??? stats.json.old
+
+ 1 directory, 9 files
+
+&gt; tree ns_server/couch/2/
+ns_server/couch/2/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 10.couch.1
+     ??? 11.couch.1
+     ??? 8.couch.1
+     ??? 9.couch.1
+     ??? master.couch.1
+     ??? stats.json
+     ??? stats.json.old
+
+ 1 directory, 9 files
+
+&gt; tree ns_server/couch/3/
+ns_server/couch/3/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 12.couch.1
+     ??? 13.couch.1
+     ??? 14.couch.1
+     ??? 15.couch.1
+     ??? master.couch.1
+     ??? stats.json
+     ??? stats.json.old
+
+ 1 directory, 9 files
+</samp></pre>
+
+      <p class="p">For this particular example, because there are <samp class="ph codeph">no replicas enabled</samp> (ran
+            <samp class="ph codeph">./cluster_connect -n 4 -r 0</samp> ), each node only has database files for
+         the vbuckets it’s responsible for (active vbuckets). The numeric suffix in each database
+         filename, starts at 1 when the database file is created and it gets incremented, by 1,
+         every time the vbucket is compacted. If replication is enabled, for example you ran
+            <samp class="ph codeph">./cluster_connect -n 4 -r 1</samp>, then each node will have vbucket database
+         files for the vbuckets it’s responsible for (active vbuckets) and for some replica
+         vbuckets, example:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; tree ns_server/couch/0/
+
+ns_server/couch/0/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 0.couch.1
+     ??? 1.couch.1
+     ??? 12.couch.1
+     ??? 2.couch.1
+     ??? 3.couch.1
+     ??? 4.couch.1
+     ??? 5.couch.1
+     ??? 8.couch.1
+     ??? master.couch.1
+     ??? stats.json
+
+ 1 directory, 12 files
+
+&gt; tree ns_server/couch/1/
+
+ns_server/couch/1/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 0.couch.1
+     ??? 1.couch.1
+     ??? 13.couch.1
+     ??? 4.couch.1
+     ??? 5.couch.1
+     ??? 6.couch.1
+     ??? 7.couch.1
+     ??? 9.couch.1
+     ??? master.couch.1
+     ??? stats.json
+
+ 1 directory, 12 files
+
+&gt; tree ns_server/couch/2/
+
+ns_server/couch/2/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 10.couch.1
+     ??? 11.couch.1
+     ??? 14.couch.1
+     ??? 15.couch.1
+     ??? 2.couch.1
+     ??? 6.couch.1
+     ??? 8.couch.1
+     ??? 9.couch.1
+     ??? master.couch.1
+     ??? stats.json
+
+ 1 directory, 12 files
+
+&gt; tree ns_server/couch/3/
+ns_server/couch/3/
+ ???
+_replicator.couch.1
+ ???
+_users.couch.1
+ ??? default
+     ??? 10.couch.1
+     ??? 11.couch.1
+     ??? 12.couch.1
+     ??? 13.couch.1
+     ??? 14.couch.1
+     ??? 15.couch.1
+     ??? 3.couch.1
+     ??? 7.couch.1
+     ??? master.couch.1
+     ??? stats.json
+
+ 1 directory, 12 files
+</samp></pre>
+
+      <p class="p">You can figure out which vbucket are active in each node, by querying the following
+         URL:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s http://localhost:8091/pools/default/buckets |
+  json_xs
+ [
+    {
+       "quota" :
+{
+          "rawRAM" : 268435456,
+          "ram"
+: 1073741824
+       },
+       "localRandomKeyUri" : "/pools/default/buckets/default/localRandomKey",
+       "bucketCapabilitiesVer" : "",
+       "authType"
+: "sasl",
+       "uuid" :
+  "89dd5c64504f4a9414a2d3bcf9630d15",
+       "replicaNumber" : 1,
+       "vBucketServerMap" : {
+          "vBucketMap" : [
+             [
+                0,
+                1
+             ],
+             [
+                0,
+                1
+             ],
+             [
+                0,
+                2
+             ],
+             [
+                0,
+                3
+             ],
+             [
+                1,
+                0
+             ],
+             [
+                1,
+                0
+             ],
+             [
+                1,
+                2
+             ],
+             [
+                1,
+                3
+             ],
+             [
+                2,
+                0
+             ],
+             [
+                2,
+                1
+             ],
+             [
+                2,
+                3
+             ],
+             [
+                2,
+                3
+             ],
+             [
+                3,
+                0
+             ],
+             [
+                3,
+                1
+             ],
+             [
+                3,
+                2
+             ],
+             [
+                3,
+                2
+             ]
+          ],
+          "numReplicas" : 1,
+          "hashAlgorithm" : "CRC",
+          "serverList" : [
+             "192.168.1.81:12000",
+             "192.168.1.82:12002",
+             "192.168.1.83:12004",
+             "192.168.1.84:12006"
+          ]
+       },
+
+(....)
+ ]
+</samp></pre>
+
+      <p class="p">The field to look at is named <samp class="ph codeph">vBucketServerMap</samp>, and it contains two
+         important sub-fields, named <samp class="ph codeph">vBucketMap</samp> and <samp class="ph codeph">serverList</samp>,
+         which we use to find out which nodes are responsible for which vbuckets (active
+         vbuckets).</p>
+
+      <p class="p">Looking at these 2 fields, we can do the following active and replica vbucket to node
+         mapping:</p>
+
+      <ul class="ul">
+         <li class="li"><p class="p">vbuckets 0, 1, 2 and 3 are active at node 192.168.1.81:12000, and vbuckets 4, 5, 8
+               and 12 are replicas at that same node</p>
+</li>
+
+         <li class="li"><p class="p">vbuckets 4, 5, 6 and 7 are active at node 192.168.1.82:12002, and vbuckets 0, 1, 9
+               and 13 are replicas at that same node</p>
+</li>
+
+         <li class="li"><p class="p">vbuckets 8, 9, 10 and 11 are active at node 192.168.1.83:12004, and vbuckets 2, 6,
+               14 and 15 are replicas at that same node</p>
+</li>
+
+         <li class="li"><p class="p">vbuckets 12, 13, 14 and 15 are active at node 192.168.1.84:12006, and vbucket 3, 7,
+               11 and 10</p>
+</li>
+
+      </ul>
+
+      <p class="p">the value of <samp class="ph codeph">vBucketMap</samp> is an array of arrays of 2 elements. Each
+         sub-array corresponds to a vbucket, so the first one is related to vbucket 0, second one to
+         vbucket 1, etc, and the last one to vbucket 15. Each sub-array element is an index
+         (starting at 0) into the <samp class="ph codeph">serverList</samp> array. First element of each sub-array
+         tells us which node (server) has the corresponding vbucket marked as active, while the
+         second element tells us which server has this vbucket marked as replica.</p>
+
+      <p class="p">If the replication factor is greater than 1 (N &gt; 1), then each sub-array will have N + 1
+         elements, where first one is always index of server/node that has that vbucket active and
+         the remaining elements are the indexes of the servers having the first, second, third, etc
+         replicas of that vbucket.</p>
+
+      <p class="p">After knowing which vbuckets are active in each node, we can use some tools such as
+            <samp class="ph codeph">couch_dbinfo</samp> and <samp class="ph codeph">couch_dbdump</samp> to analyze active
+         vbucket database files. Before looking at those tools, lets first know what database
+         sequence numbers are.</p>
+
+      <p class="p">When a CouchDB database (remember, each corresponds to a vbucket) is created, its
+         update_seq (update sequence number) is 0. When a document is created, updated or deleted,
+         its current sequence number is incremented by 1. So all the following sequence of actions
+         result in the final sequence number of 5:</p>
+
+      <ol class="ol">
+         <li class="li"><p class="p">Create document doc1, create document doc2, create document doc3, create document
+               doc4, create document doc5</p>
+</li>
+
+         <li class="li"><p class="p">Create document doc1, update document doc1, update document doc1, update document
+               doc1, delete document doc1</p>
+</li>
+
+         <li class="li"><p class="p">Create document doc1, delete document doc1, create document doc2, update document
+               doc2, update document doc2</p>
+</li>
+
+         <li class="li"><p class="p">Create document doc1, create document doc2, create document doc3, create document
+               doc4, update document doc2</p>
+</li>
+
+         <li class="li"><p class="p">etc…</p>
+</li>
+
+      </ol>
+
+      <p class="p">You can see the current update_seq of a vbucket database file, amongst other information,
+         with the <samp class="ph codeph">couch_dbinfo</samp> command line tool, example with vbucket 0, active in
+         the first node:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbinfo ns_server/couch/0/default/0.couch.1
+ DB Info
+  (ns_server/couch/0/default/0.couch.1)
+    file format version: 10
+    update_seq: 31250
+    doc count: 31250
+    deleted doc count: 0
+    data size: 3.76 MB
+    B-tree size: 1.66 MB
+    total disk size: 5.48 MB
+</samp></pre>
+
+      <p class="p">After updating all the documents in that vbucket database, the update_seq doubled:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbinfo ns_server/couch/0/default/0.couch.1
+DB Info
+ (ns_server/couch/0/default/0.couch.1)
+   file format version: 10
+   update_seq:00
+   doc count: 31250
+   deleted doc count: 0
+   data size: 3.76 MB
+   B-tree size: 1.75 MB
+   total disk size: 10.50 MB
+</samp></pre>
+
+      <p class="p">An important detail, if not obvious, is that with each vbucket database sequence number one
+         and only one document ID is associated to it. At any time, there’s only one update sequence
+         number associated with a document ID, and it’s always the most recent. We can verify this
+         with the <samp class="ph codeph">couch_dbdump</samp> command line tool. Take the following example, where
+         we only have 2 documents, document with ID doc1 and document with ID doc2:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbdump ns_server/couch/0/default/0.couch.1
+Doc seq: 1
+     id: doc1
+     rev: 1
+     content_meta: 0
+     cas: 130763975746, expiry: 0, flags: 0
+     data: {"value": 1}
+Total docs: 1
+</samp></pre>
+
+      <p class="p">On an empty vbucket 0 database, we created document with ID <samp class="ph codeph">doc1</samp>, which
+         has a JSON value of <samp class="ph codeph">{"value": 1}</samp>. This document is now associated with
+         update sequence number 1. Next we create another document, with ID *doc2* and JSON value
+            <samp class="ph codeph">{"value": 2}</samp>, and the output of <samp class="ph codeph">couch_dbdump</samp> is:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbdump ns_server/couch/0/default/0.couch.1
+Doc seq: 1
+     id: doc1
+     rev: 1
+     content_meta: 0
+     cas: 130763975746, expiry: 0, flags: 0
+     data: {"value": 1}
+Doc seq: 2
+     id: doc2
+     rev: 1
+     content_meta: 0
+     cas: 176314689876, expiry: 0, flags: 0
+     data: {"value": 2}
+Total docs: 2
+</samp></pre>
+
+      <p class="p">Document <samp class="ph codeph">doc2</samp> got associated to vbucket 0 database update sequence number
+         2. Next, we update document <samp class="ph codeph">doc1</samp> with a new JSON value of
+            <samp class="ph codeph">{"value": 1111}</samp>, and <samp class="ph codeph">couch_dbdump</samp> tells us:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbdump ns_server/couch/0/default/0.couch.1
+Doc seq: 2
+     id: doc2
+     rev: 1
+     content_meta: 0
+     cas: 176314689876, expiry: 0, flags: 0
+     data: {"value": 2}
+Doc seq: 3
+     id: doc1
+     rev: 2
+     content_meta: 0
+     cas: 201537725466, expiry: 0, flags: 0
+     data: {"value": 1111}
+
+Total docs: 2
+</samp></pre>
+
+      <p class="p">So, document <samp class="ph codeph">doc1</samp> is now associated with update sequence number 3. Note
+         that it’s no longer associated with sequence number 1, because the update was the most
+         recent operation against that document (remember, only 3 operations are possible: create,
+         update or delete). The database no longer has a record for sequence number 1 as well. After
+         this, we update document <samp class="ph codeph">doc2</samp> with JSON value <samp class="ph codeph">{"value":
+            2222}</samp>, and we get the following output from <samp class="ph codeph">couch_dbdump</samp> :</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbdump ns_server/couch/0/default/0.couch.1
+Doc seq: 3
+     id: doc1
+     rev: 2
+     content_meta: 0
+     cas: 201537725466, expiry: 0, flags: 0
+     data: {"value": 1111}
+Doc seq: 4
+     id: doc2
+     rev: 2
+     content_meta: 0
+     cas: 213993873979, expiry: 0, flags:   0
+     data: {"value": 2222}
+
+Total docs: 2
+</samp></pre>
+
+      <p class="p">Document <samp class="ph codeph">doc2</samp> is now associated with sequence number 4, and sequence
+         number 2 no longer has a record in the database file. Finally we deleted document
+            <samp class="ph codeph">doc1</samp>, and then we get:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./install/bin/couch_dbdump ns_server/couch/0/default/0.couch.1
+Doc seq: 4
+     id: doc2
+     rev: 2
+     content_meta: 0
+     cas: 213993873979, expiry: 0, flags: 0
+     data: {"value": 2222}
+Doc seq: 5
+     id: doc1
+     rev: 3
+     content_meta: 3
+     cas: 201537725467, expiry: 0, flags: 0
+     doc deleted
+     could not read document body: document not found
+
+Total docs: 2
+</samp></pre>
+
+      <p class="p">Note that document deletes don’t really delete documents from the database files, instead
+         they flag the document has deleted and remove its JSON (or binary) value. Document
+            <samp class="ph codeph">doc1</samp> is now associated with sequence number 5 and the record for its
+         previously associated sequence number 3, is removed from the vbucket 0 database file. This
+         allows for example, indexes to know they have to delete all Key-Value pairs previously
+         emitted by a map function for a document that was deleted - if there weren’t any update
+         sequence number associated with the delete operation, indexes would have no way to know if
+         documents were deleted or not.</p>
+
+      <p class="p">These details of sequence numbers and document operations are what allow indexes to be
+         updated incrementally in Couchbase Server (and Apache CouchDB as well).</p>
+
+      <p class="p">In Couchbase Server, indexes store in their header (state) the last update_seq seen for
+         each vbucket database. Put it simply, whenever an index build/update finishes, it stores in
+         its header the last update_seq processed for each vbucket database. Vbucket databases have
+         states too in indexes, and these states do not necessarily match the vbucket states in the
+         server. For the goals of this wiki page, it only matters to mention that view requests with
+            <samp class="ph codeph">stale=false</samp> will be blocked only if the currently stored update_seq of
+         any active vbucket in the index header is smaller than the current update_seq of the
+         corresponding vbucket database - if this is true for at least one active vbucket, an index
+         update is scheduled immediately (if not already running) and when it finishes it will
+         unblock the request. Requests with <samp class="ph codeph">stale=false</samp> will not be blocked if the
+         update_seq of vbuckets in the index with other states (passive, cleanup, replica) are
+         smaller than the current update_seq of the corresponding vbucket databases - the reason for
+         this is that queries only see rows produced for documents that live in the active
+         vbuckets.</p>
+
+      <p class="p">We can see that states of vbuckets in the index, and the update_seqs in the index, by
+         querying the following URL (example for 16 vbuckets only, for the sake of simplicity):</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; curl -s 'http://localhost:9500/_set_view/default/_design/dev_test2/_info' | json_xs
+{
+   "unindexable_partitions" : {},
+   "passive_partitions" : [],
+   "compact_running" : false,
+   "cleanup_partitions" : [],
+   "replica_group_info" : {
+      "unindexable_partitions" : {},
+      "passive_partitions" : [
+         4,
+         5,
+         8,
+         12
+      ],
+      "compact_running" : false,
+      "cleanup_partitions" : [],
+      "active_partitions" : [],
+      "pending_transition" : null,
+      "db_set_message_queue_len" : 0,
+      "out_of_sync_db_set_partitions" : false,
+      "expected_partition_seqs" : {
+         "8" :00,
+         "4" :00,
+         "12" :00,
+         "5" :00
+      },
+      "updater_running" : false,
+      "partition_seqs" : {
+         "8" :00,
+         "4" :00,
+         "12" :00,
+         "5" :00
+      },
+      "stats" : {
+         "update_history" : [
+            {
+               "deleted_ids" : 0,
+               "inserted_kvs" : 38382,
+               "inserted_ids" : 12794,
+               "deleted_kvs" : 38382,
+               "cleanup_kv_count" : 0,
+               "blocked_time" : 1.5e-05,
+               "indexing_time" : 3.861918
+            }
+         ],
+         "updater_cleanups" : 0,
+         "compaction_history" : [
+            {
+               "cleanup_kv_count" : 0,
+               "duration" : 1.955801
+            },
+            {
+               "cleanup_kv_count" : 0,
+               "duration" : 2.443478
+            },
+            {
+               "cleanup_kv_count" : 0,
+               "duration" : 4.956397
+            },
+            {
+               "cleanup_kv_count" : 0,
+               "duration" : 9.522231
+            }
+         ],
+         "full_updates" : 1,
+         "waiting_clients" : 0,
+         "compactions" : 4,
+         "cleanups" : 0,
+         "partial_updates" : 0,
+         "stopped_updates" : 0,
+         "cleanup_history" : [],
+         "cleanup_interruptions" : 0
+      },
+      "initial_build" : false,
+      "update_seqs" : {
+         "8" :00,
+         "4" :00,
+         "12" :00,
+         "5" :00
+      },
+      "partition_seqs_up_to_date" : true,
+      "updater_state" : "not_running",
+      "data_size" : 5740951,
+      "cleanup_running" : false,
+      "signature" : "440b0b3ded9d68abb559d58b9fda3e0a",
+      "max_number_partitions" : 16,
+      "disk_size" : 5742779
+   },
+   "active_partitions" : [
+      0,
+      1,
+      2,
+      3
+   ],
+   "pending_transition" : null,
+   "db_set_message_queue_len" : 0,
+   "out_of_sync_db_set_partitions" : false,
+   "replicas_on_transfer" : [],
+   "expected_partition_seqs" : {
+      "1" :00,
+      "3" :00,
+      "0" :00,
+      "2" :00
+   },
+   "updater_running" : false,
+   "partition_seqs" : {
+      "1" :00,
+      "3" :00,
+      "0" :00,
+      "2" :00
+   },
+   "stats" : {
+      "update_history" : [],
+      "updater_cleanups" : 0,
+      "compaction_history" : [],
+      "full_updates" : 0,
+      "waiting_clients" : 0,
+      "compactions" : 0,
+      "cleanups" : 0,
+      "partial_updates" : 0,
+      "stopped_updates" : 0,
+      "cleanup_history" : [],
+      "cleanup_interruptions" : 0
+   },
+   "initial_build" :   false,
+   "replica_partitions" : [
+      4,
+      5,
+      8,
+      12
+   ],
+   "update_seqs" : {
+      "1" : 31250,
+      "3" : 31250,
+      "0" : 31250,
+      "2" : 31250
+   },
+   "partition_seqs_up_to_date" : true,
+   "updater_state" :   "not_running",
+   "data_size" : 5717080,
+   "cleanup_running" : false,
+   "signature" :   "440b0b3ded9d68abb559d58b9fda3e0a",
+   "max_number_partitions" : 16,
+   "disk_size" : 5726395
+}
+</samp></pre>
+
+      <p class="p">The output gives us several fields useful to diagnose issues in the server. The field
+            <samp class="ph codeph">replica_group_info</samp> can be ignored for the goals of this wiki (would
+         only be useful during a failover), the information it contains is similar to the top level
+         information, which is the one for the main/principal index, which is the one we care about
+         during steady state and during rebalance.</p>
+
+      <p class="p">Some of the top level fields and their meaning:</p>
+
+      <ul class="ul">
+         <li class="li"><p class="p"><samp class="ph codeph">active_partitions</samp> - this is a list with the ID of all the vbuckets
+               marked as active in the index.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">passive_partitions</samp> - this is a list with the ID of all vbuckets
+               marked as passive in the index.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">cleanup_partitions</samp> - this is a list with the ID of all vBuckets
+               marked as cleanup in the index.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">compact_running</samp> - true if index compaction is ongoing, false
+               otherwise.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">updater_running</samp> - true if index build/update is ongoing, false
+               otherwise.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">update_seqs</samp> - this tells us what up to which vbucket database
+               update_seqs the index reflects data, keys are vbucket IDs and values are update_seqs.
+               The update_seqs here are always smaller or equal then the values in
+                  <samp class="ph codeph">partition_seqs</samp> and <samp class="ph codeph">expected_partition_seqs</samp>. If
+               the value of any update_seq here is smaller than the corresponding value in
+                  <samp class="ph codeph">partition_seqs</samp> or <samp class="ph codeph">expected_partition_seqs</samp>, than
+               it means the index is not up to date (it’s stale), and a subsequent query with
+                  <samp class="ph codeph">stale=false</samp> will be blocked and spawn an index update (if not
+               already running).</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">partition_seqs</samp> - this tells us what are the current update_seqs for
+               each vbucket database. If any update_seq value here is greater than the corresponding
+               value in <samp class="ph codeph">update_seqs</samp>, we can say the index is not up to date (it’s
+               stale). See the description above for <samp class="ph codeph">update_seqs</samp>.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">expected_partition_seqs</samp> - this should normally tells us exactly the
+               same as <samp class="ph codeph">partition_seqs</samp> (see above). Index processes have an
+               optimization where they monitor vbucket database updates and track their current
+               update_seqs, so that when the index needs to know them, it doesn’t need to consult
+               them from the databases (expensive, from a performance perspective). The update_seqs
+               in this field are obtained by consulting each database file. If they don’t match the
+               corresponding values in <samp class="ph codeph">partition_seqs</samp>, then we can say there’s an
+               issue in the view-engine.</p>
+</li>
+
+         <li class="li"><p class="p"><samp class="ph codeph">unindexable_partitions</samp> - this field should be non-empty only during
+               rebalance. Vbuckets that are in this meta state “unindexable” means that index
+               updates will ignore these vbuckets. Transitions to and from this state are used by
+               ns_server for consistent views during rebalance. When not in rebalance, this field
+               should always be empty, if not, then there’s a issue somewhere. The value for this
+               field, when non-empty, is an object whose keys are vbucket IDs and values are
+               update_seqs.</p>
+</li>
+
+      </ul>
+
+      <p class="p">Using the information given by this URL (remember, it’s on a per node basis), to check the
+         vbucket states and indexed update_seqs, together with the tools
+            <samp class="ph codeph">couch_dbinfo</samp> and <samp class="ph codeph">couch_dbdump</samp> (against all active
+         vbucket database files), one can debug where (which component) a problem is. For example,
+         it’s useful to find if it’s the indexes that are not indexing latest
+         data/updates/processing deletes, or if the memcached/ep-engine layer is not persisting
+         data/updates to disk or if there’s some issue in couchstore (component which writes to
+         database files) that causes it to not write data or write incorrect data to the database
+         file.</p>
+
+      <p class="p">An example where using these tools and the information from the URL
+         /_set_view/bucketname/_design/ddocid/_info was very important to find which component was
+         misbehaving. In
+         this case Tommie was able to identify that the problem was in ep-engine.</p>
+
+   </div>
+
+   <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/Trbl-intro.html" title="Troubleshooting covers general tips, common errors, log information, and other issues.">Troubleshooting</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="http://www.couchbase.com/issues/browse/MB-5534" target="_blank">http://www.couchbase.com/issues/browse/MB–5534</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

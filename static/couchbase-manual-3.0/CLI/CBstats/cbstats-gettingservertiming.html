@@ -1,0 +1,151 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../../install-intro.html">Couchbase Installation</a></li><li><a href="../../admin-intro.html">Couchbase Administration</a></li><li><a href="../../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBstats/cbstats-available.html">Available stats</a></li><li><a href="../../CLI/CBstats/cbstats-checkpoint.html">Checkpoint stats</a></li><li><a href="../../CLI/CBstats/cbstats-dispatcher-job.html">Dispatcher stats and job logs</a></li><li><a href="../../CLI/CBstats/cbstats-generalform.html">General form</a></li><li class="active"><a href="../../CLI/CBstats/cbstats-gettingservertiming.html">Getting server timings</a><ul class="nav nav-list"></ul></li><li><a href="../../CLI/CBstats/cbstats-gettingTAPinfo.html">Getting TAP information</a></li><li><a href="../../CLI/CBstats/cbstats-gettingwarmupinfo.html">Getting warmup information</a></li><li><a href="../../CLI/CBstats/cbstats-hash.html">Hash stats</a></li><li><a href="../../CLI/CBstats/cbstats-keyvkey.html">Stats key and Vkey</a></li><li><a href="../../CLI/CBstats/cbstats-kv.html">KV store stats</a></li><li><a href="../../CLI/CBstats/cbstats-memory.html">Memory stats</a></li><li><a href="../../CLI/CBstats/cbstats-pendingvbucket.html">Pending vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-replicavbucket.html">Replica vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-reset.html">Stats reset</a></li><li><a href="../../CLI/CBstats/cbstats-tap.html">Tap stats</a></li><li><a href="../../CLI/CBstats/cbstats-timing.html">Timing stats</a></li><li><a href="../../CLI/CBstats/cbstats-toplevelstats.html">Toplevel stats</a></li><li><a href="../../CLI/CBstats/cbstats-totalvbucket.html">vBucket total stats</a></li><li><a href="../../CLI/CBstats/cbstats-readwrite.html">Read-write thread stats</a></li><li><a href="../../CLI/CBstats/cbstats-warmup.html">Warmup</a></li></ul></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">Couchbase REST API</a></li><li><a href="../../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9"><h1 class="title topictitle1">Getting server timings</h1>
+<div class="body"><p class="p"><strong class="ph b">Be aware that this tool is a per-node, per-bucket operation.</strong> That means that
+if you want to perform this operation, you must specify the IP address of a node
+in the cluster and a named bucket. If you do not provided a named bucket, the
+server will apply the setting to any default bucket that exists at the specified
+node. If you want to perform this operation for an entire cluster, you will need
+to perform the command for every node/bucket combination that exists for that
+cluster.</p>
+<p class="p">The following is sample output from <samp class="ph codeph">cbstats timings</samp> :</p>
+<pre class="pre codeblock"><samp class="ph codeph">disk_insert (10008 total)
+   8us - 16us    : ( 94.80%)8 ###########################################
+   16us - 32us   : ( 97.70%)  290 #
+   32us - 64us   : ( 98.43%)   73
+   64us - 128us  : ( 99.29%)   86
+   128us - 256us : ( 99.77%)   48
+   256us - 512us : ( 99.79%)    2
+   512us - 1ms   : ( 99.91%)   12
+   1ms - 2ms     : ( 99.92%)    1
+disk_commit (1 total)
+    0 - 1s        : (100.00%) 1 #############################################################
+disk_vbstate_snapshot (2 total)
+    4s - 8s       : (100.00%) 2 #############################################################
+get_stats_cmd (1535 total)
+    ....
+set_vb_cmd (1024 total)
+    4us - 8us     : ( 97.95%) 1003 ########################################################
+    8us - 16us    : ( 98.83%)    9
+    ....
+</samp></pre>
+<p class="p">The first statistic tells you that <samp class="ph codeph">disk_insert</samp> took 8–16µs8 times, 16–32µs 290
+times, and so forth.</p>
+<p class="p">The following are the possible return values provided by <samp class="ph codeph">cbstats timings</samp>. The
+return values provided by this command depend on what has actually occurred on a
+data bucket:</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
+	<th class="entry" valign="top" id="d10733e38">bg_load</th>
+
+	<th class="entry" valign="top" id="d10733e41">Background fetches waiting for disk</th>
+
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">bg_wait</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Background fetches waiting in the dispatcher queue</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">data_age</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Age of data written to disk</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">disk_commit</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Time waiting for a commit after a batch of updates</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">disk_del</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Wait for disk to delete an item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">disk_insert</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Wait for disk to store a new item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">disk_vbstate_snapshot</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Time spent persisting vbucket state changes</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">disk_update</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Wait time for disk to modify an existing item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">get_cmd</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Servicing get requests</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">get_stats_cmd</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Servicing get_stats requests</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">set_vb_cmd</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Servicing vbucket set state commands</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">item_alloc_sizes</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Item allocation size counters (in bytes)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">notify_io</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Time for waking blocked connections</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">storage_age</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Time since most recently persisted item was initially queued for storage.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d10733e38 ">tap_mutation</td>
+
+	<td class="entry" valign="top" headers="d10733e41 ">Time spent servicing tap mutations </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/cbstats-intro.html">cbstats tool</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

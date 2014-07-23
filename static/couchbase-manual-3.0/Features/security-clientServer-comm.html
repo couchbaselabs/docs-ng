@@ -1,0 +1,193 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a><ul class="nav nav-list"><li><a href="../Features/bcp.html">Database Change Protocol</a></li><li><a href="../Features/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Features/bucket-eviction.html">Metadata ejection</a></li><li><a href="../Features/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Features/graceful-failover.html">Graceful failover</a></li><li><a href="../Features/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Features/increment-backup.html">Incremental backup and restore</a></li><li><a href="../Features/index-updates.html">Stream-based views</a></li><li><a href="../Features/xdcr-pause-resume.html">Pause and resume replication</a></li><li><a href="../Features/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Features/security-admin-access.html">Encrypted admin access</a></li><li class="active"><a href="../Features/security-clientServer-comm.html">Encrypted data access</a><ul class="nav nav-list"></ul></li><li><a href="../Features/security-client-ssl.html">Configuring clients for SSL</a></li><li><a href="../Features/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Encrypted data access</h1>
+
+  
+  
+  <div class="body"><p class="shortdesc">Encrypted data access is a communication connection between the client and Couchbase
+    Server cluster using Secure Sockets Layer (SSL). </p>
+
+    <p class="p">The encrypted data access allows client connections to be configured for security using
+      Secure Sockets Layer (SSL) encryption. Client-to-Server encryption protects data-in-flight
+      from client machines to a Couchbase cluster using SSL. A secure channel is established between
+      the client and the server.</p>
+
+    
+    <p class="p">The server generates a self-signed certification for the initial node which is propagated
+      throughout the server nodes in the cluster. If the self-signed certificate is regenerated or
+      updated as part of setting up XDCR data encryption (or for any other reason), the certificate
+      retrieved by the client must be obtained again before secure client-server communication is
+      re-established. The secure connection is on the cluster-level (rather than bucket-level) and
+      is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
+
+    
+    <p class="p">The client sets up SSL communication with a Couchbase server cluster in the following manner:</p>
+
+    
+    <ol class="ol">
+      <li class="li">Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and
+        using the administrator username and password.</li>
+
+      <li class="li">Retrieve the SSL self-signed certificate and store in the client local file.</li>
+
+      <li class="li">Create the cluster destination reference using the an encrypted port, 18091 REST HTTP or
+        18092 CAPI HTTP, and enabling data encryption.</li>
+
+    </ol>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Secure client-server REST API</h2>
+      <p class="p">The following summarizes the HTTP methods used for defining data encryption:</p>
+
+    
+    
+    </div>
+
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="topic_kgh_xdh_14__table_dnc_hzf_44" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. URI paths for setting secure communication</span></caption>
+        
+        
+        
+        <thead class="thead" align="left">
+          <tr class="row">
+            <th class="entry" valign="top" width="24.509803921568626%" id="d57250e62">HTTP method</th>
+
+            <th class="entry" valign="top" width="33.57843137254902%" id="d57250e65">URI path</th>
+
+            <th class="entry" valign="top" width="41.911764705882355%" id="d57250e68">Destription</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+          <tr class="row">
+            <td class="entry" valign="top" width="24.509803921568626%" headers="d57250e62 ">GET</td>
+
+            <td class="entry" valign="top" width="33.57843137254902%" headers="d57250e65 ">/pools/default/certificate</td>
+
+            <td class="entry" valign="top" width="41.911764705882355%" headers="d57250e68 ">Retrieves the SSL self-signed certificate from the remote cluster.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry" valign="top" width="24.509803921568626%" headers="d57250e62 ">GET</td>
+
+            <td class="entry" valign="top" width="33.57843137254902%" headers="d57250e65 ">/pools/default/remoteClusters</td>
+
+            <td class="entry" valign="top" width="41.911764705882355%" headers="d57250e68 ">Retrieves the remote cluster reference.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry" valign="top" width="24.509803921568626%" headers="d57250e62 ">POST</td>
+
+            <td class="entry" valign="top" width="33.57843137254902%" headers="d57250e65 ">/pools/default/remoteClusters</td>
+
+            <td class="entry" valign="top" width="41.911764705882355%" headers="d57250e68 ">Creates the remote cluster referece.</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry" valign="top" width="24.509803921568626%" headers="d57250e62 ">PUT</td>
+
+            <td class="entry" valign="top" width="33.57843137254902%" headers="d57250e65 ">/pools/default/remoteClusters</td>
+
+            <td class="entry" valign="top" width="41.911764705882355%" headers="d57250e68 ">Modifies the remote cluster reference.</td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+</div>
+
+
+    
+    <div class="section"><h2 class="title sectiontitle">Syntax for retrieving the remote certificate</h2>
+    <pre class="pre codeblock">
+curl –X GET  -u adminName:adminPassword
+    http://localHost:Port/pools/default/certificate       
+    </pre>
+
+    </div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">Retrieving and storing the certificate</h2>
+      <pre class="pre codeblock">curl http://10.5.2.54:8091/pools/default/certificate &gt; ./remoteCert.pem</pre>
+
+
+    </div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">SSL certificate</h2>
+      <pre class="pre codeblock">-----BEGIN CERTIFICATE-----
+MIIC/jCCAeigAwIBAgIIE3jc9BofgigwCwYJKoZIhvcNAQEFMCQxIjAgBgNVBAMT
+GUNvdWNoYmFzZSBTZXJ2ZXIgOTRmYTE3YTUwHhcNMTMwMTAxMDAwMDAwWhcNNDkx
+MjMxMjM1OTU5WjAkMSIwIAYDVQQDExlDb3VjaGJhc2UgU2VydmVyIDk0ZmExN2E1
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxaaXsKm06xxzzYqejDAO
+3qW1x6vLz9jcLdZkNQgxGk4+/ulrfK4PSLHARf4vml8Ev3bcOzCwfyDCp2/TCSX0
+qDTn4iBRp9CJtxVyY/xqWkYkld+GGtj28P0CtZ1UKOHCRB7KInzxesxITg/a0vsL
+M8GrcwFpmZEJjeY7HGdUuBRcoMfm2Yn28drmr92SNSsz+npdfEFkQloYStqemOOG
+h1Jn7ldU5rBj/B2zcvh6guDXKKz/bMMeCTX84BmkG3rmiKQwxyizuxtYi5u1BthC
+X3aO58lC9uRMja1lA5TrJnZOCRT24G6VTh2bYhN98W6YmvF9l4ESDR4I7nE8E6Gt
+eQIDAQABozgwNjAOBgNVHQ8BAf8EBAMCAKQwEwYDVR0lBAwwCgYIKwYBBQUHAwEw
+DwYDVR0TAQH/BAUwAwEB/zALBgkqhkiG9w0BAQUDggEBAF0Bz2MpQoBEdOdDRix3
+j0/XGKjH7kI5zDFiOlUvANMeErVZf9kM8xqS7Yd3bCa2rjT1Y8BM3Sciurtrd/Cy
+iTVzpXjQOR/K1AFtiBtuNb2Hx5SXvgeW4p4uNmK74u1UUNmAyb3mwSQ+duuqK/Ef
+D4wTolPTZP5gcricyWI3qUCi3pTeCz/2jcAWn3DI4KVtlAsOy9sFFo4RxBDgmOuS
+klUAb8eu4e2XxcLJ++geYoum0VIKa3ygjpZ800PupwZZetjD8/6tfbYFuoBTXL+r
+27M9ArsOxkVbh3fDQ8b8qnr5sam1P7IfSzqq/Lq4vjh1mvred62zuJlMvY9KmNJU
+rqw=
+-----END CERTIFICATE-----</pre>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Syntax for creating an encrypted client-server connection</h2>
+      <p class="p">A POST to <samp class="ph codeph">/pools/default/remoteClusters</samp> creates the remote cluster reference. 
+        Setting the <samp class="ph codeph">demandEncryption</samp> to one (1) and providing the certificate name and location enables data encryption.</p>
+
+      
+      <pre class="pre codeblock">
+curl –X POST  -u Admin:myPassword
+    https://localHost:sslPort/pools/default/remoteClusters
+    -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat remoteCert.pem)"
+      </pre>
+
+    
+    </div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">Creating an encrypted client-server connection</h2>
+      <pre class="pre codeblock">curl –X POST
+    https://Administrator:asdasd@192.168.0.1:18091/pools/default/remoteClusters/
+    -d demandEncryption=1 --data-urlencode "certificate=$(cat remoteCert.pem)"     </pre>
+
+    </div>
+
+
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Features/features.html">Couchbase 3.0 Features</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

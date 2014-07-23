@@ -1,0 +1,73 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a><ul class="nav nav-list"><li><a href="../Tasks/tasks-manage-serverWarmup.html">Handling server warmup</a></li><li><a href="../Tasks/tasks-manage-replication.html">Handling replication</a></li><li><a href="../Tasks/tasks-compaction.html">Compaction</a></li><li><a href="../Tasks/tasks-nodeFailover.html">Failing over nodes</a></li><li><a href="../Tasks/tasks-dataRecovery.html">Data recovery from remote clusters</a></li><li><a href="../Tasks/tasks-backupRestore.html">Backup and restore</a></li><li><a href="../Tasks/tasks-rebalance.html">Rebalancing</a></li><li><a href="../Tasks/tasks-manage-xdcr.html">Managing XDCR</a><ul class="nav nav-list"><li class="active"><a href="../Tasks/xdcr-configure-replications.html">Configuring XDCR replications</a><ul class="nav nav-list"></ul></li><li><a href="../Tasks/xdcr-conflictResolution.html">Conflict resolution in XDCR</a></li><li><a href="../Tasks/xdcr-secure-communication.html">Securing data communication</a></li><li><a href="../Tasks/xdcr-tuning-optimistic-replication.html">Tuning XDCR performance</a></li><li><a href="../Tasks/xdcr-configure-bidirection.html">Configuring bi-directional replication</a></li><li><a href="../Tasks/xdcr-modify-settings.html">Modifying XDCR settings</a></li></ul></li></ul></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Configuring XDCR replications</h1>
+
+  
+  <div class="body"><p class="shortdesc">Configuration of XDCR replications is done on a per-bucket basis.</p>
+
+
+      <p class="p">Replications are configured from the <span class="ph uicontrol">XDCR</span> tab of the Web
+        Console. You configure replication on a bucket basis. To replicate data from all
+        buckets in a cluster, individually configure replication for each bucket.</p>
+
+    
+      <p class="p">Before configuring XDCR:</p>
+
+      <ul class="ul">
+        <li class="li">Configure all nodes within each cluster to communicate with all the nodes on the
+          destination cluster. XDCR uses any node in a cluster to replicate between the two
+          clusters.</li>
+
+        <li class="li">Ensure that all Couchbase Server versions and platforms match. For instance, if you want to replicate
+          from a Linux-based cluster, you need to do so with another Linux-based cluster.</li>
+
+        <li class="li">When XDCR performs replication, it exchanges data between clusters over TCP/IP port 8092;
+          Couchbase Server uses TCP/IP port 8091 to exchange cluster configuration information. If you
+          are communicating with a destination cluster over a dedicated connection or the Internet you
+          should ensure that all the nodes in the destination and source clusters can communicate with
+          each other over ports 8091 and 8092.</li>
+
+      </ul>
+
+      <p class="p"><samp class="ph codeph">Ongoing Replications</samp> are those replications that are currently configured and
+        operating. You can monitor the current configuration, current status, and the last time a
+        replication process was triggered for each configured replication.</p>
+<p class="p">Under the XDCR tab you
+          can also configure <samp class="ph codeph">Remote Clusters</samp> for XDCR; these are named destination
+          clusters you can select when you configure replication. When you configure XDCR, the destination
+          cluster reference should point to the IP address of one of the nodes in the destination
+          cluster.</p>
+<p class="p">Before you set up replication via XDCR, you should be certain that a destination
+            bucket already exists. If this bucket does not exist, replication via XDCR may not find some
+            shards on the destination cluster; this will result in replication of only some data from the
+            source bucket and will significantly delay replication. This would also require you to retry
+            replication multiple times to get a source bucket to be fully replicated to a destination.</p>
+
+      <p class="p">Therefore, make sure that you check that a destination bucket exists. The recommended approach
+        is try to read on any key from the bucket. If you receive a ‘key not found’ error, or the
+        document for the key, the bucket exists and is available to all nodes in a cluster. You can do
+        this via a Couchbase SDK with any node in the cluster. </p>
+
+    
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/tasks-manage-xdcr.html" title="Cross datacenter replication (XDCR) provides an easy method of replicating data from one cluster to another for disaster recovery as well as better data locality (getting data closer to its users).">Managing XDCR</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>
