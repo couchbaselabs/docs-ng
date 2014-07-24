@@ -21,13 +21,13 @@ Metadata ejection specify whether value-only or full metadata is ejected from me
 <li class="link ulchildlink"><strong><a href="../Features/bucket-priority.html">Disk I/O priority</a></strong><br>
 Disk I/O priority allows workload priorities to be set at the bucket level.</li>
 <li class="link ulchildlink"><strong><a href="../Features/graceful-failover.html">Graceful failover</a></strong><br>
-Graceful failover waits until data persists to disk and replicas are up-to-date before   failing over the server node.</li>
+Graceful failover allows administrators to safely fail over a node from the cluster after all in-flight operations are completed and without data loss.</li>
 <li class="link ulchildlink"><strong><a href="../Features/delta-node-recovery.html">Delta node recovery</a></strong><br>
-Delta node recovery provides the option to specify whether the replacement server     node's disk is initialized or whether the data and data buckets are retained.  </li>
+Delta-node recovery allows nodes to be quickly added back after they are repaired so they can catch up incrementally from where they left off.</li>
 <li class="link ulchildlink"><strong><a href="../Features/increment-backup.html">Incremental backup and restore</a></strong><br>
-An incremental backup or restore is a backup (or restore) of the latest changes since     the last backup (any level).</li>
+Incremental backup restore allows administrators to quickly backup only modified data in the database, making backup and restore more efficient for larger data sets.</li>
 <li class="link ulchildlink"><strong><a href="../Features/index-updates.html">Stream-based views</a></strong><br>
-Indexing is performed as soon as data changes in memory without waiting for persistence to disk.    As a result, views have up-to-date data and faster queries.</li>
+Stream-based views reduce latency for view updates, which provides faster view consistency 		and fresher data.</li>
 <li class="link ulchildlink"><strong><a href="../Features/xdcr-pause-resume.html">Pause and resume replication</a></strong><br>
 During XDCR replication, the process can be paused and resumed. Performed via the     Couchbase command-line interface (CLI).</li>
 <li class="link ulchildlink"><strong><a href="../Features/xdcr-memory-replication.html">Stream-based XDCR</a></strong><br>

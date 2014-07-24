@@ -126,3 +126,14 @@ div.related-links {
 	margin-bottom: 10px;
 }
 
+.message-box {
+   background-color: #f2f2f7;
+	margin: 50px 100px 50px 75px;
+	padding: 0.5em;
+	border: solid thick #000666;
+	font-size: 20px;
+	color: #006660;
+	text-align: center;
+	border-radius: 25px;
+}
+

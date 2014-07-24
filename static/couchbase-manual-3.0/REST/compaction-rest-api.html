@@ -105,9 +105,9 @@
 						
 						<thead class="thead" align="left">
 							<tr class="row">
-								<th class="entry" valign="top" id="d82720e143">REST API</th>
+								<th class="entry" valign="top" id="d80494e143">REST API</th>
 
-								<th class="entry" valign="top" id="d82720e146">Description</th>
+								<th class="entry" valign="top" id="d80494e146">Description</th>
 
 							</tr>
 
@@ -115,31 +115,31 @@
 
 						<tbody class="tbody">
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e143 ">POST /controller/setAutoCompaction</td>
+								<td class="entry" valign="top" headers="d80494e143 ">POST /controller/setAutoCompaction</td>
 
-								<td class="entry" valign="top" headers="d82720e146 ">Set cluster-wide auto-compaction intervals and
+								<td class="entry" valign="top" headers="d80494e146 ">Set cluster-wide auto-compaction intervals and
 									thresholds</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e143 ">GET /settings/autoCompaction</td>
+								<td class="entry" valign="top" headers="d80494e143 ">GET /settings/autoCompaction</td>
 
-								<td class="entry" valign="top" headers="d82720e146 ">Read cluster-wide settings for auto-compaction</td>
-
-							</tr>
-
-							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e143 ">GET /pools/default/buckets/<em class="ph i">bucket_name</em></td>
-
-								<td class="entry" valign="top" headers="d82720e146 ">Read auto-compaction settings for named bucket</td>
+								<td class="entry" valign="top" headers="d80494e146 ">Read cluster-wide settings for auto-compaction</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e143 ">POST/pools/default/buckets/<em class="ph i">bucket_name</em></td>
+								<td class="entry" valign="top" headers="d80494e143 ">GET /pools/default/buckets/<em class="ph i">bucket_name</em></td>
 
-								<td class="entry" valign="top" headers="d82720e146 ">Set auto-compaction interval or thresholds for named
+								<td class="entry" valign="top" headers="d80494e146 ">Read auto-compaction settings for named bucket</td>
+
+							</tr>
+
+							<tr class="row">
+								<td class="entry" valign="top" headers="d80494e143 ">POST/pools/default/buckets/<em class="ph i">bucket_name</em></td>
+
+								<td class="entry" valign="top" headers="d80494e146 ">Set auto-compaction interval or thresholds for named
 									bucket</td>
 
 							</tr>
@@ -170,11 +170,11 @@
 						
 						<thead class="thead" align="left">
 							<tr class="row">
-								<th class="entry" valign="top" id="d82720e224">Parameter</th>
+								<th class="entry" valign="top" id="d80494e224">Parameter</th>
 
-								<th class="entry" valign="top" id="d82720e227">Value</th>
+								<th class="entry" valign="top" id="d80494e227">Value</th>
 
-								<th class="entry" valign="top" id="d82720e230">Notes</th>
+								<th class="entry" valign="top" id="d80494e230">Notes</th>
 
 							</tr>
 
@@ -182,102 +182,102 @@
 
 						<tbody class="tbody">
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">databaseFragmentationThreshold[percentage]</td>
+								<td class="entry" valign="top" headers="d80494e224 ">databaseFragmentationThreshold[percentage]</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 2 and 100</td>
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 2 and 100</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Percentage disk fragmentation for data</td>
-
-							</tr>
-
-							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">databaseFragmentationThreshold[size]</td>
-
-								<td class="entry" valign="top" headers="d82720e227 ">Integer greater than 1</td>
-
-								<td class="entry" valign="top" headers="d82720e230 ">Bytes of disk fragmentation for data</td>
+								<td class="entry" valign="top" headers="d80494e230 ">Percentage disk fragmentation for data</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">viewFragmentationThreshold[percentage]</td>
+								<td class="entry" valign="top" headers="d80494e224 ">databaseFragmentationThreshold[size]</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 2 and 100</td>
+								<td class="entry" valign="top" headers="d80494e227 ">Integer greater than 1</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Percentage disk fragmentation for index</td>
-
-							</tr>
-
-							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">viewFragmentationThreshold[size]</td>
-
-								<td class="entry" valign="top" headers="d82720e227 ">Integer greater than 1</td>
-
-								<td class="entry" valign="top" headers="d82720e230 ">Bytes of disk fragmentation for index</td>
+								<td class="entry" valign="top" headers="d80494e230 ">Bytes of disk fragmentation for data</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">parallelDBAndViewCompaction</td>
+								<td class="entry" valign="top" headers="d80494e224 ">viewFragmentationThreshold[percentage]</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">True or false</td>
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 2 and 100</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Run index and data compaction in parallel</td>
-
-							</tr>
-
-							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">allowedTimePeriod[fromHour]</td>
-
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 0 and 23</td>
-
-								<td class="entry" valign="top" headers="d82720e230 ">Compaction can occur from this hour onward</td>
+								<td class="entry" valign="top" headers="d80494e230 ">Percentage disk fragmentation for index</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">allowedTimePeriod[toHour]</td>
+								<td class="entry" valign="top" headers="d80494e224 ">viewFragmentationThreshold[size]</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 0 and 23</td>
+								<td class="entry" valign="top" headers="d80494e227 ">Integer greater than 1</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Compaction can occur up to this hour</td>
-
-							</tr>
-
-							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">allowedTimePeriod[fromMinute]</td>
-
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 0 and 59</td>
-
-								<td class="entry" valign="top" headers="d82720e230 ">Compaction can occur from this minute onward</td>
+								<td class="entry" valign="top" headers="d80494e230 ">Bytes of disk fragmentation for index</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">allowedTimePeriod[toMinute]</td>
+								<td class="entry" valign="top" headers="d80494e224 ">parallelDBAndViewCompaction</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 0 and 59</td>
+								<td class="entry" valign="top" headers="d80494e227 ">True or false</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Compaction can occur up to this minute</td>
+								<td class="entry" valign="top" headers="d80494e230 ">Run index and data compaction in parallel</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">allowedTimePeriod[abortOutside]</td>
+								<td class="entry" valign="top" headers="d80494e224 ">allowedTimePeriod[fromHour]</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">True or false</td>
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 0 and 23</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Terminate compaction if process takes longer than allowed
+								<td class="entry" valign="top" headers="d80494e230 ">Compaction can occur from this hour onward</td>
+
+							</tr>
+
+							<tr class="row">
+								<td class="entry" valign="top" headers="d80494e224 ">allowedTimePeriod[toHour]</td>
+
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 0 and 23</td>
+
+								<td class="entry" valign="top" headers="d80494e230 ">Compaction can occur up to this hour</td>
+
+							</tr>
+
+							<tr class="row">
+								<td class="entry" valign="top" headers="d80494e224 ">allowedTimePeriod[fromMinute]</td>
+
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 0 and 59</td>
+
+								<td class="entry" valign="top" headers="d80494e230 ">Compaction can occur from this minute onward</td>
+
+							</tr>
+
+							<tr class="row">
+								<td class="entry" valign="top" headers="d80494e224 ">allowedTimePeriod[toMinute]</td>
+
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 0 and 59</td>
+
+								<td class="entry" valign="top" headers="d80494e230 ">Compaction can occur up to this minute</td>
+
+							</tr>
+
+							<tr class="row">
+								<td class="entry" valign="top" headers="d80494e224 ">allowedTimePeriod[abortOutside]</td>
+
+								<td class="entry" valign="top" headers="d80494e227 ">True or false</td>
+
+								<td class="entry" valign="top" headers="d80494e230 ">Terminate compaction if process takes longer than allowed
 									time</td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="entry" valign="top" headers="d82720e224 ">purgeInterval</td>
+								<td class="entry" valign="top" headers="d80494e224 ">purgeInterval</td>
 
-								<td class="entry" valign="top" headers="d82720e227 ">Integer between 1 and 60</td>
+								<td class="entry" valign="top" headers="d80494e227 ">Integer between 1 and 60</td>
 
-								<td class="entry" valign="top" headers="d82720e230 ">Number of days a item is deleted or expired. The key and
+								<td class="entry" valign="top" headers="d80494e230 ">Number of days a item is deleted or expired. The key and
 									metadata for that item will be purged by auto-compaction</td>
 
 							</tr>
