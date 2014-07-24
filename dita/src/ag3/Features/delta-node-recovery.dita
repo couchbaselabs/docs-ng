@@ -2,11 +2,16 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_s15_tlh_14">
   <title>Delta node recovery</title>
-  <shortdesc>Delta node recovery provides the option to specify whether the replacement server
-    node's disk is initialized or whether the data and data buckets are retained.  </shortdesc>
-  
+	<shortdesc>Delta-node recovery allows nodes to be quickly added back after they are repaired so they can catch up incrementally from where they left off.</shortdesc>
   
   <body>
+  	
+  	
+  	
+<!-- original short description
+  	<p>Delta node recovery provides the option to specify whether the replacement server
+  		node's disk is initialized or whether the data and data buckets are retained.  </p>
+ --> 	
     <p>When re-adding a server node to the cluster, a new server node is initialized and
       re-populated, that is, the disk is wiped out (a warning is generated) and then re-populated
       with the original data buckets. This operation ensures a clean disk, but also has overhead in

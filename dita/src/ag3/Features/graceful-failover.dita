@@ -2,10 +2,16 @@
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_gvw_zsp_yn">
  <title>Graceful failover</title>
- <shortdesc>Graceful failover waits until data persists to disk and replicas are up-to-date before
-  failing over the server node.</shortdesc>
+	
+	<shortdesc>Graceful failover allows administrators to safely fail over a node from the cluster after all in-flight operations are completed and without data loss.</shortdesc>
+ 
  <conbody>
-  
+ 	
+ <!--  Original short description text
+ 	<p>Graceful failover waits until data persists to disk and replicas are up-to-date before
+ 		failing over the server node.</p>
+--> 
+ 
   <p>With graceful failover, failed over nodes can be safely removed from the cluster and quickly added back after they are repaired, 
    catching up incrementally from where they left off. 
   When adding a node to a cluster, the option is to specify either <codeph>delta</codeph> or <codeph>full</codeph>.
