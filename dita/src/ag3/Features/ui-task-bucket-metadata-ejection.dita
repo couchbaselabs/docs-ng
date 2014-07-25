@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_flr_nr5_j4">
-    <title>Ejecting metadata (UI)</title>
-    <shortdesc>The type of bucket eviction from memory is set when creating or editing the bucket properties.</shortdesc>
+    <title>Managing metadata in memory (UI)</title>
+    <shortdesc>Tuning memory to retain or eject metatdata is set when creating or editing the bucket
+        properties.</shortdesc>
     <taskbody>
         <context>
             <p>
