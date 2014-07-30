@@ -4,6 +4,33 @@ The following sections provide release notes for individual release versions of
 the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-rn_2-4-0"></a>
+## Release Notes for Couchbase Client Library C GA (29 July 2014)
+
+* Attempt to retry items that are mapped to a non-existent node in
+  a degraded cluster. Rather than returning `LCB_NO_MATCHING_SERVER` the
+  behavior should be to wait for the item to succeed and attempt to fetch
+  a new cluster configuration.
+
+  **Issues**: [CCBC-480](http://couchbase.com/issues/browse/CCBC-480)
+
+* Don't throttle config requests based on initial file-based config.
+  This allows the client to quickly recover from a stale config cache without
+  waiting for the `LCB_CNTL_CONFDELAY_THRESH` interval to elapse. Prior to this
+  fix, a client would appear to "not recover" if bootstrapping from a stale cache.
+  In reality the client would eventually recover but was waiting for the delay
+  threshold to elapse.
+
+  **Issues**: [CCBC-482](http://couchbase.com/issues/browse/CCBC-482)
+
+* Ignore `NOT_MY_VBUCKET` config payloads if CCCP provider is disabled.
+  This allows the client to circumvent any possible bugs in the CCCP response
+  payload and rely entirely on the HTTP config. It also allows 'rewriting'
+  proxies like confsed to function.
+
+  **Issues**: [CCBC-483](http://couchbase.com/issues/browse/CCBC-483)
+
+
 <a id="couchbase-sdk-rn_2-4-0_beta"></a>
 ## Release Notes for Couchbase Client Library C 2.4.0 Beta (11 July 2014)
 
