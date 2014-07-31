@@ -14,19 +14,19 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
   **Issues**: [CCBC-480](http://couchbase.com/issues/browse/CCBC-480)
 
-* Don't throttle config requests based on initial file-based config.
-  This allows the client to quickly recover from a stale config cache without
+* Don't throttle configuration requests based on initial file-based configuration.
+  This allows the client to quickly recover from a stale configuration cache without
   waiting for the `LCB_CNTL_CONFDELAY_THRESH` interval to elapse. Prior to this
-  fix, a client would appear to "not recover" if bootstrapping from a stale cache.
-  In reality the client would eventually recover but was waiting for the delay
+  fix, a client would appear to not recover if bootstrapping from a stale cache.
+  In reality, the client would eventually recover but was waiting for the delay
   threshold to elapse.
 
   **Issues**: [CCBC-482](http://couchbase.com/issues/browse/CCBC-482)
 
-* Ignore `NOT_MY_VBUCKET` config payloads if CCCP provider is disabled.
+* Ignore `NOT_MY_VBUCKET` configuration payloads if the cluster configuration carrier publication (CCCP) provider is disabled.
   This allows the client to circumvent any possible bugs in the CCCP response
-  payload and rely entirely on the HTTP config. It also allows 'rewriting'
-  proxies like confsed to function.
+  payload and rely entirely on the HTTP configuration. It also allows rewriting
+  proxies like [confsed](https://github.com/dustin/confsed) to function.
 
   **Issues**: [CCBC-483](http://couchbase.com/issues/browse/CCBC-483)
 
