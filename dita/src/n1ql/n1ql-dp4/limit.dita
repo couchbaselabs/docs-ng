@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_h3q_1p4_mn">
+  <title>LIMIT clause</title>
+  <shortdesc>The LIMIT clause imposes a specific number of objects returned in a result set by SELECT. 
+    This clause must have a non-negative integer as upper bound. 
+    The OFFSET clause optionally follows the LIMIT clause. 
+    If an offset is specified, that many number of objects are omitted 
+    from the result set before enforcing a specified LIMIT. 
+    This clause must be a non-negative integer.</shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+LIMIT expr
+LIMIT expr OFFSET expr
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    <section><title>Description</title>
+      <p>An OFFSET clause specifies a number of objects to be skipped. 
+        If a LIMIT clause is also present, the OFFSET is applied prior to the LIMIT. 
+        The OFFSET value must be a non-negative integer.</p>
+      <p>A LIMIT clause imposes an upper bound on the number of objects returned by the SELECT statement. 
+        The LIMIT value must be a non-negative integer.</p>
+    </section>
+    
+    <section>
+      <title>Examples</title>
+      <p>The following examples shows the LIMIT and OFFSET clauses with the N1QL tutorial.</p>
+    </section>
+    
+    <example><title>Name and age list: limit by 2</title>
+      
+      <codeblock>
+SELECT fname, age
+    FROM tutorial 
+        ORDER BY age 
+            LIMIT 2 
+      </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock>
+{
+  "resultset": [
+    {
+      "age": 18,
+      "fname": "Fred"
+    },
+    {
+      "age": 20,
+      "fname": "Harry"
+    }
+  ]
+}       
+      </codeblock>
+    </example>
+    
+    <example><title>Name and age list: limit and offset by 2</title>
+      <codeblock>
+SELECT fname, age
+    FROM tutorial 
+        ORDER BY age 
+            LIMIT 2 OFFSET 2        
+      </codeblock>
+      <p>Returns:</p>
+      
+      <codeblock>
+{
+  "resultset": [
+    {
+      "age": 40,
+      "fname": "Jane"
+    },
+    {
+      "age": 46,
+      "fname": "Dave"
+    }
+  ]
+}        
+      </codeblock>
+      
+    </example>  
+    
+    <example><title>Golf products list: limit and offset by 10</title>
+
+      <codeblock>
+SELECT * FROM product 
+    UNNEST product.categories as cat
+        WHERE lower(cat) in ["golf"] LIMIT 10 OFFSET 10       
+      </codeblock>
+    </example>
+
+  </refbody>
+</reference>

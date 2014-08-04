@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_gbn_1qx_gn">
+  <title>SELECT statement</title>
+  <shortdesc>The SELECT statement is used to extract data from Couchbase Server. The query is
+    against data buckets and results in one or more objects.</shortdesc>
+  <refbody>
+ 
+ <section>
+   <title>Syntax</title>
+   <codeblock>
+SELECT [ ALL | DISTINCT ] result-expr [ , ... ]
+  [ FROM data-source ]
+  [ WHERE expr ]
+  [ GROUP BY expr [ , ... ] [ HAVING expr ] ]
+  [ ORDER BY ordering-term [ , ... ] ]
+  [ LIMIT non-neg-int ]
+  [ OFFSET non-neg-int ]
+
+
+SELECT result-expr is one of the following:
+  *
+  path . *
+  expr [ AS ] alias   // where alias is an identifier
+
+data-source is one of the following:
+  from-path
+  from-path join-clause
+  from-path nest-clause
+  from-path unnest-clause
+
+
+from-path:
+  [ ‘:’ pool-name ‘.' ] bucket-name [ ‘.’ path ] [ [ AS ]  alias ] [ keys-clause ]
+    where pool-name is identifier
+    where keys-clause is KEYS expr
+            
+from-path join-clause
+  [ join-type ] JOIN from-path [ [ AS ] alias ] keys-clause
+    where join-type is [ INNER | [ LEFT ] OUTER ]
+            
+from-path nest-clause
+  [ join-type ] NEST from-path [ [ AS ] alias ] keys-clause
+    where join-type is [ INNER | [ LEFT ] OUTER ]
+              
+from-path unnest-clause
+  [ join-type ] UNNEST path [ [ AS ] alias ] 
+    where join-type is [ INNER | [ LEFT ] OUTER ]
+    where path is identifier [ ‘[' non-neg-int ']' ] [ ‘.’ path ]
+  
+ORDER BY ordering-term is:
+  expr [ ASC | DESC ]    
+    </codeblock>      
+ </section>
+    
+ <section>
+   <title>Compatibiity</title>
+   <p>Compatible with Couchbase Server 2.2 and higher</p>
+ </section>   
+    
+<section>
+  <title>Description</title>
+  <p>The SELECT statement queries a data source. A JSON array is returned that contains zero or more
+        result objects. SELECT behaves as a sequence of steps in a process. Each step in the process
+        produces result objects which are then used as inputs in the next step until all steps in
+        the process are complete. The possible elements and operations in a query include: </p>
+  <ul>
+    <li>Data Source - The Couchbase data bucket that is queried. 
+      This is the data-source parameter in a FROM clause. 
+      Alternately, provide a path as data source.</li>
+    <li>Filtering - Results objects from the SELECT can be filtered by adding a WHERE clause.</li>
+    <li>Result Set - You generate a set of result objects with GROUP BY or HAVING clauses 
+      along with a result expression list, <codeph>result-expr-list</codeph>.</li>
+    <li>Duplicate Removal - Remove duplicate result objects from the result set. To do so, use the DISTINCT clause.</li>
+    <li>Ordering - Items are placed in the order specified by the ORDER BY expression list.</li>
+    <li>Skipping - The first N items are skipped as specified by the OFFSET clause</li>
+    <li>Limiting - No more than M items are returned as specified by the LIMIT clause.</li>
+  </ul>
+</section>    
+    
+<section>
+  <title>Examples</title>
+  <p>The following examples are based on the N1QL tutorial.</p>  
+  
+</section>
+    
+    <example>
+      <title>Select from tutorial</title>  
+
+    <codeblock outputclass='language-sql'>
+    SELECT * FROM tutorial
+    </codeblock>
+
+    <codeblock outputclass='language-sql'>
+    SELECT * FROM tutorial
+      WHERE fname = 'Ian'
+    </codeblock>
+
+      <codeblock outputclass='language-sql'>
+    SELECT children age FROM tutorial
+      WHERE pname = 'Dave'
+      ORDER BY age
+    </codeblock>
+
+    </example>
+
+
+    <example>
+      <title>Select orders</title>
+      <p>This query returns all values from the following Orders data bucket.</p>
+      <codeblock>
+SELECT * FROM orders.billToAddress.state
+      </codeblock>
+      <p>Returns a list of all billing states from the order data bucket.</p>
+      <codeblock>
+   "results":  
+   [
+     {
+       "state": "CA"
+     }
+   ]
+      </codeblock>
+    </example>    
+    
+    
+    <example>
+      <title>Orders data bucket</title>
+      <codeblock>
+ {
+  "type": "customer-order",
+  "grand_total": 1000,
+  "billToAddress": 
+    {
+      "street": "123 foo",
+      "state": "CA",
+      "geo": 
+        {
+          "lat": 1234, "lon": 2344
+        }
+     },
+   "shipToAddress": 
+     {
+      "street": "123 foo",
+      "state": "CA"
+     },
+    items: 
+    [
+     { "productId": "coffee", "qty": 1 },
+     { "productId": "tea", "qty": 1 }
+    ]
+ }       
+      </codeblock>
+    </example>
+    
+    <example>
+      <title>Complex SELECT statement</title>
+      <codeblock>
+SELECT t.relation, count(*) as count, avg(c.age) as avg_age
+    FROM tutorial t
+    UNNEST t.children c
+    WHERE c.age > 10
+    GROUP BY t.relation
+    HAVING count(*) > 1
+    ORDER BY avg_age DESC
+    LIMIT 1 OFFSET 1
+    </codeblock>  
+      
+      <p>Returns:</p>
+      
+      <codeblock>
+{
+  "resultset": [
+    {
+      "avg_age": 17,
+      "count": 2,
+      "relation": "friend"
+    }
+  ]
+}         
+      </codeblock>
+      
+    </example>   
+    
+
+   
+    
+  </refbody>
+  
+  <related-links>
+    <link href="expressions.dita"><linktext>Expressions</linktext></link>
+    <link href="operators.dita"><linktext>Operators</linktext></link>
+    <link href="aggregate-function.dita"><linktext>Aggregate functions</linktext></link>
+    <link href="scalar-function.dita"><linktext>Scalar functions</linktext></link>
+  </related-links> 
+  
+  
+</reference>

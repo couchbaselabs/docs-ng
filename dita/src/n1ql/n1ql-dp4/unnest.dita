@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_a1b_2y4_mn">
+  <title>UNNEST clause</title>
+  <shortdesc>The UNNEST clause optionally follows the FROM clause. 
+    This clause iterates over attributes within a specified document array. 
+    The array elements by this clause becomes input for further query operations. </shortdesc>
+  <refbody>
+ 
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+FROM data-source join-type UNNEST path [AS] [alias]
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    
+    
+    <section>
+      <title>Example</title>
+      <p>In the following example, The UNNEST clause iterates over the reviews array and 
+        collects the reviewerName and publication from each element in the array. 
+        This collection of objects can be used as input for other query operations.</p>
+      <codeblock>
+SELECT review.reviewerName, review.publication
+  FROM beers AS b 
+    UNNEST review IN b.reviews
+      </codeblock>
+      
+      <codeblock>
+        { "id": "7983345",
+        "name": "Takayama Pale Ale",
+        "brewer": "Hida Takayama Brewing Corp.",
+        "reviews" : [
+            { "reviewerName" : "Takeshi Kitano", "publication" : "Outdoor Japan Magazine", "date": "3/2013" },
+            { "reviewerName" : "Moto Ohtake", "publication" : "Japan Beer Times", "date" : "7/2013" }
+            ]
+        }        
+      </codeblock>
+
+    </section>   
+    
+
+ 
+  </refbody>
+</reference>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_u3m_jg4_mn">
+  <title>GROUP BY clause</title>
+  <shortdesc>
+    The GROUP BY clause collects items from multiple result objects and 
+    groups the elements by one or more expressions. This is an aggregate query.  
+    The optional HAVING clause follows the GROUP BY clause.
+  </shortdesc>
+  <refbody>
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT result-expr FROM data-source GROUP BY expr letting-clause having-clause
+      </codeblock>
+      <p>The HAVING clause optionally follows the GROUP BY clause. 
+        It filters result objects from the GROUP BY clause with a given expression.</p>
+      <codeblock>
+SELECT result-expr FROM data-source GROUP BY expr HAVING expr
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    <section>
+      <title>Example</title>
+      <p>In the following example, there are json documents for books and films.</p>
+      <ul>
+        <li>Films have a field <codeph>"type": "movie"</codeph>.</li> 
+        <li>Books have a field <codeph>"type": "book"</codeph>.</li>
+      </ul>
+      <p>Books in the result set are grouped together and 
+        returned in an object and films are grouped and returned in another object.</p>
+     <codeblock>
+SELECT title, type, COUNT(*) AS count FROM catalog GROUP BY type       
+     </codeblock>
+    </section>
+    
+    <example>
+      <p>The following example shows the GROUP BY clause used in the N1QL tutorial.</p>
+      <codeblock>    
+// Group by relation
+SELECT relation, COUNT(*) AS count
+    FROM tutorial
+        GROUP BY relation
+
+// Group by relations and filter groups by size
+SELECT relation, COUNT(*) AS count
+    FROM tutorial
+        GROUP BY relation
+            HAVING COUNT(*) > 1
+      </codeblock>
+    </example>   
+    
+  </refbody>
+</reference>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_f1q_3hk_nn">
+  <title>DP3 release notes</title>
+  <body>
+    <p>This is the third developer preview edition of Couchbase Query Language released March 2014.</p>
+    
+    <section><title>New features</title></section>
+    <ul>
+      <li>KEYS clause</li>
+      <li>BETWEEN and NOT BETWEEN clause</li>
+      <li>JOIN clause (based on primary keys)</li>
+      <li>NEST clause (based on primary keys</li>
+      <li>A second form of Case expression</li>
+      <li>Array functions: ARRAY_CONCAT(), ARRAY_LENGTH(), ARRAY_APPEND(), ARRAY_PREPEND(), and ARRAY_REMOVE()</li>
+      <li>Array slicing</li>
+      <li>Date functions: DATE_PART_ STR and MILLIS, NOW_ STR and MILLIS, STR_TO_MILLIS, and
+        MILLIS_TO_STR.</li>
+      <li>Type functions: IS_, TO_, and TYPE_NAME()</li>
+    </ul>
+    
+    
+    <section><title>Changed features</title></section>
+    <ul>
+      <li>FROM ... OVER ... query pattern is changed to FROM ... UNNEST ...</li>
+      <li>ANY ... OVER ... query pattern is changed to ANY ... SATISFIES ...</li>
+      <li>ALL ... OVER ... query pattern is changed to EVERY ... SATISFIES ...</li>
+    </ul>    
+    
+    <section><title>Fixes</title></section>
+    <ul>
+      <li>Issue: <xref format="html" scope="external"
+          href="http://www.couchbase.com/issues/browse/MB-10461">MB-10461 - If a needles lies at the
+          haystack's end boundary, a SUBSTR query returns NULL.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-10394">MB-10394 - Unable to run queries for cbq where the URL doesn't have a slash at the end.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-10295">MB-10295 - Performance issue with the DISTINCT operator.</xref></li>
+      <li>Issue: <xref format="html" scope="external"
+          href="http://www.couchbase.com/issues/browse/MB-98972">MB-9872 - If tuq is started for a
+          non-initialized node, the error " Pool default does not exist " displays for all
+          queries.</xref></li>
+      <li>Issue: <xref format="html" scope="external" href="http://www.couchbase.com/issues/browse/MB-9810">MB-9810 - RHS of the UNNEST clause must begin with an already seen alias.</xref></li>
+      
+    </ul>    
+    
+    <section><title>Known issues</title></section>
+    
+    <p>This release is a Developer Preview and is not meant to be used in Production.</p>
+ 
+    <ul>
+      <li>Data manipulation language (DML) syntax elements are not available with this release, 
+        however, this capability is planned for the future.</li>
+    </ul> 
+    
+  </body>
+</topic>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_gn2_rf4_mn">
+  <title>KEYS clause</title>
+  <shortdesc>The KEYS clause is an optional clause that follows the FROM clause. The KEYS clause is
+    based on primary keys within a bucket. Only values having those primary keys are included as
+    inputs to the query. </shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT result-expr FROM data-source join-type JOIN from-path [AS] alias KEYS expr
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    <section>
+      <title>Example</title>
+      <p>The following example shows queries on single and multiple keys.</p>
+      <codeblock>       
+SELECT * FROM customer KEYS "acme-uuid-1234-5678"
+
+SELECT * FROM customer KEYS [ "acme-uuid-1234-5678", "roadster-uuid-4321-8765" ]
+      </codeblock>
+    </section>
+
+  </refbody>
+</reference>

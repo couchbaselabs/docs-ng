@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_jqq_n5d_ln">
+  <title>Number functions</title>
+  <shortdesc>Number functions are functions that are performed on a numberic field. The following
+    table lists the number functions.</shortdesc>
+  <refbody>
+
+    <simpletable relcolwidth="1.06* 2.14* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>
+      </sthead>
+      <strow>
+        <stentry>CEIL(value)</stentry>
+        <stentry>If numeric values, return the smallest integer no
+          less than this value. Otherwise NULL</stentry>
+        <stentry>NULL or integer</stentry>
+      </strow>
+      <strow>
+        <stentry>FLOOR(value)</stentry>
+        <stentry>If numeric values, return the smallest integer no
+          less than this value. Otherwise NULL</stentry>
+        <stentry>NULL or integer</stentry>
+      </strow>
+      <strow>
+        <stentry>ROUND( value )</stentry>
+        <stentry>If value is numeric, round to nearest integer,
+          otherwise NULL. Functional equivalent of <codeph>ROUND(value, 0)</codeph></stentry>
+        <stentry>Integer or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>ROUND( value, digits )</stentry>
+        <stentry>If digits an integer and value numeric, rounds the
+          value up to the number of digits. Otherwise returns NULL</stentry>
+        <stentry>Integer or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>TRUNC( value )</stentry>
+        <stentry>If numeric value, truncates towards zero.
+          Functional equivalent of TRUNC(value, 0). Otherwise returns NULL</stentry>
+        <stentry>Integer or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>TRUNC( value, digits )</stentry>
+        <stentry>If digits an integer and value numeric, truncates
+          value to the specific number of digits. Otherwise returns NULL</stentry>
+        <stentry>Integer or NULL</stentry>
+      </strow>         
+    </simpletable>
+
+    <section>
+      <title>Example</title>
+      <p>The following query shows normalized, rounded, and truncated ratings.</p>
+      <note type="tip">Use the +, -, * and / operators with the rounding (ROUND) and truncating
+        (TRUNC) functions.</note>
+      
+      <codeblock>
+SELECT 
+  AVG(reviews.rating) / 5 as normalizedRating,
+  ROUND((avg(reviews.rating) / 5), 2) as roundedRating, 
+  TRUNC((avg(reviews.rating) / 5), 3) as truncRating
+  FROM reviews AS reviews
+  WHERE reviews.customerId = "customer62"    
+  </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock>
+{
+  "resultset": [
+    {
+      "normalizedRating": 0.42000000000000004,
+      "roundedRating": 0.42,
+      "truncRating": 0.42
+    }
+  ]
+}    
+  </codeblock>
+      
+      
+    </section>
+    
+
+  </refbody>
+</reference>

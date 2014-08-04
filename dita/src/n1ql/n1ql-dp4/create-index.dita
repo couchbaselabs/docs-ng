@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_twj_pfq_kn">
+  <title>CREATE INDEX statement</title>
+  <shortdesc>The CREATE INDEX statement creates an index on fields and nested paths. The index
+    provides an optimized access path for N1QL queries.</shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+CREATE INDEX index-name ON [ :pool-name. ] bucket-name( path [ , ... ] )
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    
+    
+    <section>
+      <title>Example</title>
+      
+      <codeblock>
+CREATE INDEX contact_name ON contacts(name)
+      </codeblock>
+      
+
+    </section>   
+
+  </refbody>
+</reference>

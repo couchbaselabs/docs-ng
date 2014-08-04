@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_g1j_354_mn">
+  <title>NEST clause</title>
+  <shortdesc>Nesting performs a join across two buckets. 
+    But instead of producing a cross-product of the left and right hand inputs, 
+    a single result is produced for each left hand input, 
+    while the corresponding right hand inputs are collected into an array and 
+    nested as a single array-valued field in the result object.</shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+FROM data-source join-type NEST from-path [AS] [alias] KEYS keys-clause
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    <section>
+      <title>Description</title>
+      <p>Nests can be chained with other nests, joins, and unnests. 
+        By default, an INNER nest is performed. 
+        This means that for each result object produced, 
+        both the left and right hand source objects must be non-missing and non-null. 
+        The right hand result of NEST is always an array or MISSING. 
+        If there is no matching right hand source object, then the right hand source object is as follows:</p>
+      <ul>
+        <li>If the KEYS expression evaluates to MISSING, the right hand value is also MISSING.</li>
+        <li>If the KEYS expression evaluates to NULL, the right hand value is MISSING.</li>
+        <li>If the KEYS expression evaluates to an array, the right hand value is an empty array.</li>
+        <li>If the KEYS expression evaluates to a non-array value, the right hand value is an empty array.</li>
+        <li>If LEFT or LEFT OUTER is specified, then a left outer nest is performed. 
+          One result object is produced for each left hand source object.</li>
+      </ul>
+    </section>    
+    
+    
+    <section>
+      <title>Example</title>
+      <p>This example show the NEST clause using invoice and invoice_item_ objects.</p>
+      
+      <codeblock>
+FROM invoice inv NEST invoice_item items KEYS inv.invoice_item_keys
+      </codeblock>
+
+      <codeblock>
+ // Invoice objects:
+    {
+        "customer_key": ...,
+        "invoice_date": ...,
+        "invoice_item_keys": [ ... ],
+        "total": ...
+    }
+
+// invoice_item_ objects:
+    {
+        "invoice_key": ...,
+        "product_key": ...,
+        "unit_price": ...,
+        "quantity": ...,
+        "item_subtotal": ...
+    }       
+      </codeblock>
+      
+
+      
+      <p>Returns:</p>
+      <codeblock>
+    {
+        "invoice" : {
+            "customer_key": ...,
+            "invoice_date": ...,
+            "invoice_item_keys": [ ... ],
+            "total": ...
+        },
+        "items" : [
+            {
+                "invoice_key": ...,
+                "product_key": ...,
+                "unit_price": ...,
+                "quantity": ...,
+                "item_subtotal": ...
+            },
+            {
+                "invoice_key": ...,
+                "product_key": ...,
+                "unit_price": ...,
+                "quantity": ...,
+                "item_subtotal": ...
+            }
+        ]
+    },
+    {
+        "invoice" : {
+            "customer_key": ...,
+            "invoice_date": ...,
+            "invoice_item_keys": [ ... ],
+            "total": ...
+        },
+        "items" : [
+            {
+                "invoice_key": ...,
+                "product_key": ...,
+                "unit_price": ...,
+                "quantity": ...,
+                "item_subtotal": ...
+            },
+            {
+                "invoice_key": ...,
+                "product_key": ...,
+                "unit_price": ...,
+                "quantity": ...,
+                "item_subtotal": ...
+            }
+        ]
+    },
+    ...        
+      </codeblock>
+    </section>   
+
+
+  </refbody>
+</reference>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_i4b_bpw_3n">
+  <title>Reserved words</title>
+  <shortdesc>Reserved words in N1QL cannot be used as identifiers. All keywords are
+    case-insensitive. To ensure that an identifier does not conflict with a reserved word, escape
+    identifiers with a back tick.</shortdesc>
+  <refbody>
+    <section>
+      <title>Reserved words in alphabetical order</title>
+ <sl>
+   <sli>ALTER</sli>
+        <sli>AND</sli>
+        <sli>ANY</sli>
+        <sli>ARRAY</sli>
+        <sli>AS</sli>
+        <sli>ASC</sli>
+        <sli>BETWEEN</sli>
+        <sli>BUCKET</sli>
+        <sli>BY</sli>
+        <sli>CASE</sli>
+        <sli>CAST</sli>
+        <sli>COLLATE</sli>
+        <sli>CREATE</sli>
+        <sli>DATABASE</sli>
+        <sli>DELETE</sli>
+        <sli>DESC</sli>
+        <sli>DISTINCT</sli>
+        <sli>DROP</sli>
+        <sli>EACH</sli>
+        <sli>ELSE</sli>
+        <sli>END</sli>
+        <sli>EXCEPT</sli>
+        <sli>EXISTS</sli>
+        <sli>EXPLAIN</sli>
+        <sli>FALSE</sli>
+        <sli>FIRST</sli>
+        <sli>FROM</sli>
+        <sli>GROUP</sli>
+        <sli>HAVING</sli>
+        <sli>IF</sli>
+        <sli>IN</sli>
+        <sli>INDEX</sli>
+        <sli>INLINE</sli>
+        <sli>INSERT</sli>
+        <sli>INTERSECT</sli>
+        <sli>INTO</sli>
+        <sli>IS</sli>
+        <sli>JOIN</sli>
+        <sli>KEYS</sli>
+        <sli>LIKE</sli>
+        <sli>LIMIT</sli>
+        <sli>MISSING</sli>
+        <sli>NOT</sli>
+        <sli>NOT BETWEEN</sli>
+        <sli>NULL</sli>
+        <sli>OFFSET</sli>
+        <sli>ON</sli>
+        <sli>OR</sli>
+        <sli>ORDER</sli>
+        <sli>OVER</sli>
+        <sli>PATH</sli>
+        <sli>POOL</sli>
+        <sli>PRIMARY</sli>
+        <sli>SATISFIES</sli>
+        <sli>SELECT</sli>
+        <sli>THEN</sli>
+        <sli>TRUE</sli>
+        <sli>UNION</sli>
+        <sli>UNIQUE</sli>
+        <sli>UNNEST</sli>
+        <sli>UPDATE</sli>
+        <sli>USING</sli>
+        <sli>VALUED</sli>
+        <sli>VIEW</sli>
+        <sli>WHEN</sli>
+        <sli>WHERE</sli>
+ </sl>       
+    </section>
+
+
+
+  </refbody>
+</reference>

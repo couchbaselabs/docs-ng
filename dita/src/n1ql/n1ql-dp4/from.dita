@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ewv_qkq_kn">
+  <title>FROM clause</title>
+    <shortdesc>This is an optional clause for your query. 
+      If this clause is omitted, the input for the query is a single empty object. 
+      The most common way to use the FROM clause is to provide a data source
+      that is a named data bucket or path. 
+      Alternately, provide the data bucket or path as an alias using the 
+      AS clause with FROM.</shortdesc>
+  <refbody>
+
+    <section>
+      <title>Syntax</title>
+      <codeblock>
+SELECT result-expr FROM data-source 
+      </codeblock>
+    </section>
+    
+    
+    <section>
+      <title>Compatibility</title>
+      <p>Compatible with Couchbase Server 2.2</p>
+    </section>
+    
+    
+    <section>
+      <title>Example</title>
+      <p>The following example is based on the N1QL tutorial.</p>
+      
+      <codeblock>
+SELECT fname, hobbies
+    FROM tutorial
+      </codeblock>
+      
+      <p>Returns:</p>
+      <codeblock>
+{
+  "resultset": [
+    {
+      "fname": "Dave",
+      "hobbies": [
+        "golf",
+        "surfing"
+      ]
+    },
+    {
+      "fname": "Earl",
+      "hobbies": [
+        "surfing"
+      ]
+    },
+    {
+      "fname": "Fred",
+      "hobbies": [
+        "golf",
+        "surfing"
+      ]
+    },
+    {
+      "fname": "Harry"
+    },
+    {
+      "fname": "Ian",
+      "hobbies": [
+        "golf",
+        "surfing"
+      ]
+    },
+    {
+      "fname": "Jane"
+    }
+  ]
+}        
+      </codeblock>
+    </section>   
+
+
+  </refbody>
+</reference>

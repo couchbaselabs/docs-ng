@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_q2k_bzw_kn">
+  <title>Aggregate functions</title>
+  <shortdesc>Aggregate functions take multiple values from
+    documents, perform calculations and return a single value as the result.
+    The function names are case insensitive.</shortdesc>
+  <refbody>
+    
+
+<section>
+    <p>Aggregate functions include SUM, AVG, COUNT, MIN, MAX and ARRAY_AGG. Aggregate functions
+      can only be used in SELECT, HAVING, and ORDER BY clauses. When aggregate functions are
+      used in expressions in these clauses, the query will operate as an aggregate query.
+      Aggregate functions take one argument, the value over which to compute the aggregate
+      function. The COUNT function can also take a wildcard (*) or a path with a wildcard (path.*) as its argument.</p>
+  
+  <simpletable relcolwidth="1.0* 2.63* 1.48*">
+        <sthead>
+          <stentry>Function</stentry>
+          <stentry>Description</stentry>
+          <stentry>Returns</stentry>
+        </sthead>
+        <strow>
+          <stentry>ARRAY_AGG(expr)</stentry>
+          <stentry>Evaluate the expression for each member of the group and return an array
+            containing these values</stentry>
+          <stentry>Array</stentry>
+        </strow>
+        <strow>
+          <stentry>AVG(expr)</stentry>
+          <stentry>Returns average value of all values in a result set. Non-numeric values in a
+            result set are ignored.</stentry>
+          <stentry>Integer</stentry>
+        </strow>
+        <strow>
+          <stentry>COUNT(expr)</stentry>
+          <stentry>Returns the number of items in a result set that are non-NULL and non-MISSING.</stentry>
+          <stentry>0 or positive integer</stentry>
+        </strow>
+    <strow>
+      <stentry>COUNT(DISTINCT expr)</stentry>
+      <stentry>Returns the number of items in a result set that are distinct, non-NULL, and non-MISSING.</stentry>
+      <stentry>0 or positive integer</stentry>
+    </strow>   
+        <strow>
+          <stentry>MIN(expr)</stentry>
+          <stentry>Returns minimum value of all values in a result set. This is the first non-NULL,
+            non-MISSING value that would result from an ORDER BY</stentry>
+          <stentry>0 or positive integer, NULL if no non-NULL, non-MISSING items in result
+            set</stentry>
+        </strow>
+        <strow>
+          <stentry>MAX(expr)</stentry>
+          <stentry>Returns maximum value of all values in a result set. This is the last non-NULL,
+            non-MISSING value that would result from an ORDER BY</stentry>
+          <stentry>0 or positive integer</stentry>
+        </strow>
+        <strow>
+          <stentry>SUM(expr)</stentry>
+          <stentry>Returns sum of all numeric values in a result set. Non-numeric values in a result
+            set are ignored</stentry>
+          <stentry>Integer</stentry>
+        </strow>
+      </simpletable>
+  
+  
+  
+</section>
+
+  </refbody>
+</reference>

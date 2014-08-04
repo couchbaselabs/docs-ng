@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ssl_2vd_ln">
+  <title>Comparison functions</title>
+  <shortdesc>Comparison functions determines the greatest or least value from a set of values. The
+    following table lists the comparison functions.</shortdesc>
+  <refbody>
+
+    <simpletable relcolwidth="1.06* 2.14* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>          
+      </sthead>
+      <strow>
+        <stentry>GREATEST(expr, expr, ...)</stentry>
+        <stentry>Evaluates the expressions and finds the greatest non-NULL, non-MISSING value if the
+          values are of the same type. Otherwise, NULL.</stentry>
+        <stentry>Value or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>LEAST(expr, expr, ... )</stentry>
+        <stentry>Evaluates the expressions and finds the least non-NULL, non-MISSING VALUE value if
+          the values are of the same type. Otherwise, NULL.</stentry>
+        <stentry>Value or NULL</stentry>
+      </strow>            
+    </simpletable>
+
+
+  </refbody>
+</reference>

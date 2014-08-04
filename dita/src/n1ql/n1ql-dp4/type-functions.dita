@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_w5t_mwd_ln">
+  <title>Type functions</title>
+  <shortdesc>Type functions perform operations that check or convert expressions. The following
+    table list the type functions.</shortdesc>
+  <refbody>
+    
+    <simpletable relcolwidth="1.04* 1.66* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>
+      </sthead>
+      <strow>
+        <stentry>IS_ARRAY(expr)</stentry>
+        <stentry>Checks to see if the expression is an array.</stentry>
+        <stentry>True or False</stentry>
+      </strow>
+      <strow>
+        <stentry>IS_ATOM(expr)</stentry>
+        <stentry>Checks to see if the expression is a boolean, number, or string.</stentry>
+        <stentry>True or False</stentry>
+      </strow>
+      <strow>
+        <stentry>IS_BOOL(expr)</stentry>
+        <stentry>Checks to see if the expression is a boolean.</stentry>
+        <stentry>True or False</stentry>
+      </strow>
+      <strow>
+        <stentry>IS_NUM(expr)</stentry>
+        <stentry>Checks to see if the expression is a number.</stentry>
+        <stentry>True or False</stentry>
+      </strow>
+      <strow>
+        <stentry>IS_OBJ(expr)</stentry>
+        <stentry>Checks to see if the expression is an object.</stentry>
+        <stentry>True or False</stentry>
+      </strow>
+      <strow>
+        <stentry>IS_STR(expr)</stentry>
+        <stentry>Checks to see if the expression is a string.</stentry>
+        <stentry>True or False</stentry>
+      </strow>
+      <strow>
+        <stentry>TO_ARRAY(expr)</stentry>
+        <stentry>Converts the expression to an array. <ul>
+            <li>MISSING if the array missing</li>
+            <li>NULL if the array is null</li>
+            <li>Arrays are themselves</li>
+            <li>All other values are wrapped in an array</li>
+          </ul>
+        </stentry>
+        <stentry>Array </stentry>
+      </strow>
+      <strow>
+        <stentry>TO_ATOM(expr)</stentry>
+        <stentry>Converts the expression to an atomic value. <ul>
+            <li>MISSING if the array missing</li>
+            <li>NULL if the array is null</li>
+            <li>Arrays of length 1 are the result of TO_ATOM() on their single element</li>
+            <li>Objects of length 1 are the result of TO_ATOM() on their single value</li>
+            <li>Booleans, numbers, and strings are themselves</li>
+            <li>All other values are NULL</li>
+          </ul>
+        </stentry>
+        <stentry>Atomic value</stentry>
+      </strow>
+      <strow>
+        <stentry>TO_BOOL(expr)</stentry>
+        <stentry>Converts the expression to a booleon value. <ul>
+            <li>MISSING if the array missing</li>
+            <li>NULL if the array is null</li>
+            <li>False is false</li>
+            <li>Numbers +0, -0 and NaN are false</li>
+            <li>Empty strings, arrays, and objects are false</li>
+            <li>All other values are true</li>
+          </ul>
+        </stentry>
+        <stentry>Boolean value</stentry>
+      </strow>
+      <strow>
+        <stentry>TO_NUM(expr)</stentry>
+        <stentry>Converts the expression to a numerical value. <ul>
+            <li>MISSING if the expression is missing</li>
+            <li>NULL if the expression is null</li>
+            <li>False is 0</li>
+            <li>True is 1</li>
+            <li>Numbers are themselves</li>
+            <li>Strings that are pased as numbers are those numbers</li>
+            <li>All other values are NULL</li>
+          </ul>
+        </stentry>
+        <stentry>Numeric value</stentry>
+      </strow>
+      <strow>
+        <stentry>TO_STR(expr)</stentry>
+        <stentry>Converts the expression to a string. <ul>
+            <li>MISSING if the expression is missing</li>
+            <li>NULL if the expression is null</li>
+            <li>False is false</li>
+            <li>True is true</li>
+            <li>Numbers are their string representation</li>
+            <li>Strings are themselves</li>
+            <li>All other values are NULL</li>
+          </ul>
+        </stentry>
+        <stentry>String</stentry>
+      </strow>
+      <strow>
+        <stentry>TYPE_NAME(expr)</stentry>
+        <stentry>Based on the value of the expression, returns the type of string.</stentry>
+        <stentry>String types: missing, null, not_json, boolean, number, string, array, or
+          object.</stentry>
+      </strow>
+    </simpletable>    
+    
+    
+    
+  </refbody>
+</reference>

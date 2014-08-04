@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_dsj_jrv_kn">
+  <title>Scalar functions</title>
+  <shortdesc>Scalar functions perform calculations on data. 
+    Scalar functions take a single item in a result set and returns a single value. 
+    All function names are case insensitive.</shortdesc>
+  
+  <refbody>
+    
+    <section>
+      <ul>
+        <li>Date functions</li>
+        <li>String functions</li>
+        <li>Number functions</li>
+        <li>Array functions</li>
+        <li>Comparison functions</li>
+        <li>Conditional functions</li>
+        <li>Meta and value functions</li>
+        <li>Type checking and conversion functions</li>
+      </ul>
+    </section>
+
+
+  </refbody>
+</reference>

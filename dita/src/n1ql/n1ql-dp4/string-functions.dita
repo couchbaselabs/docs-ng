@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_mf3_c5d_ln">
+  <title>String functions</title>
+  <shortdesc>String functions perform operations on a string input value and returns a string or
+    other value. The following table lists the string functions.</shortdesc>
+  <refbody>
+ 
+    <simpletable relcolwidth="1.26* 1.94* 1.0*">
+      <sthead>
+        <stentry>Function</stentry>
+        <stentry>Description</stentry>
+        <stentry>Returns</stentry>
+      </sthead>
+      <strow>
+        <stentry>LENGTH(expr)</stentry>
+        <stentry>Returns the length of the value after evaluating the expression. For example,
+          length(orders.items). If string, length of string. For arrays, length of array. For
+          objects, returns the number of pairs in object. For all others, returns NULL</stentry>
+        <stentry>Value or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>LOWER(expr)</stentry>
+        <stentry>If the expression is a string, transforms the string into all lowercase. Otherwise,
+          returns NULL.</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>LTRIM(expr, charset)</stentry>
+        <stentry>Removes the longest string containing the characters in <codeph>charset</codeph>
+          from start of string.</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>RTRIM( expr, charset )</stentry>
+        <stentry>Removes the longest string containing only the characters in the specified
+          character set starting at the end</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>SUBSTR(value, position)</stentry>
+        <stentry>For the value of a string and the numeric position, retrieves the substring from
+          the position to the end of string. The string position starts at 1. If the position is 0,
+          the string position is still 1. If string is at a negative position, characters are
+          counted from the end of string. Otherwise, returns NULL.</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>SUBSTR(value, position, length)</stentry>
+        <stentry>If length is positive integer, returns substring starting at position up to length
+          characters. Otherwise, returns NULL</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>TRIM(expr, charset)</stentry>
+        <stentry>Functional equivalent of LTRIM(RTRIM(expr, charset))</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+      <strow>
+        <stentry>UPPER(expr)</stentry>
+        <stentry>If the expression is a string, transforms the string into all uppercase letters.
+          Otherwise, returns NULL</stentry>
+        <stentry>String or NULL</stentry>
+      </strow>
+    </simpletable>
+ 
+ <section><title>Example</title>
+   <p>The following example shows a LOWER string function via the N1QL tutorial.</p>
+   <codeblock>
+ SELECT
+    product 
+    FROM product
+    UNNEST product.categories as categories
+    WHERE LOWER(categories) = "appliances"     
+   </codeblock>  
+ </section>
+ 
+  </refbody>
+</reference>
