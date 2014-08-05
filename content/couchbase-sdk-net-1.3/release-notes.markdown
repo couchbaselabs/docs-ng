@@ -12,7 +12,7 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
     This patch allows you to override the default JsonSerializer settings during deserialization. 
 
-* <a href="http://www.couchbase.com/issues/browse/NCBC-555">NCBC-555: Multi get can fail and return a null StatusCode.</a>
+* <a href="http://www.couchbase.com/issues/browse/NCBC-555">NCBC-555: Multi-get can fail and return a null StatusCode.</a>
 
     This patch ensures that the correct StatusCode is returned when a multi-get operation fails.
 
