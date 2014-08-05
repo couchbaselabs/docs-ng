@@ -139,7 +139,7 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full **pom.xml*
         <dependency>
             <groupId>com.couchbase.client</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.4.3</version>
+            <version>1.4.4</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
