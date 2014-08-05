@@ -4,6 +4,18 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.8 GA (5 July 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-8"></a>
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-564">NCBC-564: Respect JsonSerializer settings for deserialization.</a>
+
+    This patch allows you to override the default JsonSerializer settings during deserialization. 
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-555">NCBC-555: Multi get can fail and return a null StatusCode.</a>
+
+    This patch ensures that the correct StatusCode is returned when a multi-get operation fails.
+
 ## Release Notes for Couchbase Client Library .NET 1.3.7 GA (2 July 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-7"></a>
