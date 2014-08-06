@@ -2,7 +2,7 @@
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_wkh_ccb_k4">
     <title>Failing over gracefully (UI)</title>
-    <shortdesc/>
+    <shortdesc></shortdesc>
     <taskbody>
         
         <context>
@@ -24,7 +24,10 @@
             </step>
             <step>
                 <cmd>Click <uicontrol>Fail Over</uicontrol>.</cmd>
+                <info>While the node is being failed over, the failover process can be stopped by clicking on 
+                <uicontrol>Stop Failover</uicontrol>.</info>
             </step>
+            
         </steps>
     </taskbody>
 </task>

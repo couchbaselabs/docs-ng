@@ -6,12 +6,14 @@
     <taskbody>
 
         <context>
-            <p>The process for re-adding a server isomg tje delta node recovery method involves:
-            <ol>
-                <li>Fail over the node using either the graceful or hard failover method. Graceful failover is recommended.</li>
-                <li>After the node is failed over, specify whether delta or full recovery is to be used.</li>
-                <li>During the next rebalance, the node is added back to the cluster using the specified recovery method.</li>
-            </ol></p>
+            <p>The process for re-adding a server using the delta node recovery method involves: <ol>
+                    <li>Fail over the node using either the graceful or hard failover method.
+                        Graceful failover is recommended.</li>
+                    <li>After the node is failed over, specify whether delta or full recovery is to
+                        be used.</li>
+                    <li>During the next rebalance, the node is added back to the cluster using the
+                        specified recovery method.</li>
+                </ol></p>
             
             <p>To use delta recovery during failover, recovery, and rebalance operations:</p>
         </context>

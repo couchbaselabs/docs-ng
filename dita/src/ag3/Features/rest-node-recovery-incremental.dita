@@ -7,9 +7,9 @@
   <refbody>
     
     <section><title>Delta node recovery REST API</title>
-      <p>Performing a POST on the <codeph>/controller/setRecoveryType</codeph> sets the type of recovery. 
-        It's progress can be tracked just rebalance. 
-        After the data is persisted to disk and replicas are up-to-date, the node is put into the failed over state.</p>
+      <p>Performing a POST on the <codeph>/controller/setRecoveryType</codeph> sets the type of
+        recovery. It's progress can be tracked just like rebalance. After the data is persisted to
+        disk and replicas are up-to-date, the node is put into the failed over state.</p>
       
       <table>
         <tgroup cols="3">
@@ -46,7 +46,8 @@ POST /controller/setRecoveryType
         <codeblock>
 200       // Request succeeded
 400       // recoveryType and/or otpNode could not be understood by the server
-404       // The cluster is running in a pre-3.0 compatibility mode and thus cannot satisfy the request
+404       // The cluster is running in a pre-3.0 compatibility mode and thus 
+             cannot satisfy the request
        </codeblock>
       </section>
           

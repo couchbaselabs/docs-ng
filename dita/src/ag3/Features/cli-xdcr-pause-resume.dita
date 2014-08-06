@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ekp_bhq_w4">
   <title>Pause and resume replication (CLI)</title>
-  <shortdesc>XDCR pause and resume is implemented with <codeph>couchbase-cli xdcr-replicate</codeph>.</shortdesc>
+  <shortdesc>XDCR replication is paused and resumed with <codeph>couchbase-cli
+      xdcr-replicate</codeph>.</shortdesc>
   <refbody>
     
     

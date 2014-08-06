@@ -25,8 +25,9 @@
   <ol>
    <li>A set request comes in from the application.</li>
    <li>Couchbase Server responds back that they key is written.</li>
-   <li>Couchbase Server quickly replicates the data out to memory on the other nodes.</li>
-   <li>At the same time, data is put into a write queue to be persisted to disk.</li>
+   <li>The update is streamed using DCP to the indexer.</li>
+   <li>The indexer updates the index with the latest data.</li>
+   <li>In parallel, data is put into a write queue to be persisted to disk.</li>
   </ol>
   
   <draft-comment author="Ruth">Need GRAPHIC - see PPT slide</draft-comment>
