@@ -2,30 +2,28 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_s15_tlh_14">
   <title>Delta node recovery</title>
-	<shortdesc>Delta-node recovery allows nodes to be quickly added back after they are repaired so they can catch up incrementally from where they left off.</shortdesc>
+	<shortdesc>Delta-node recovery allows nodes to be re-added to the cluster and
+    incrementally caught up from where they left off.</shortdesc>
   
   <body>
   	
   	
   	
-<!-- original short description
-  	<p>Delta node recovery provides the option to specify whether the replacement server
-  		node's disk is initialized or whether the data and data buckets are retained.  </p>
- --> 	
-    <p>When re-adding a server node to the cluster, a new server node is initialized and
-      re-populated, that is, the disk is wiped out (a warning is generated) and then re-populated
-      with the original data buckets. This operation ensures a clean disk, but also has overhead in
-      terms of resource use and downtime due to disk re-population. With delta node recovery the
-      same server node is not initialized nor re-populated. The data and data buckets are retained
-      so that the cluster can start functioning without downtime. This operation improves recovery
-      time and network resource usage. For example, an environment with a large data footprint might
-      re-add the server node as the same. </p>
-    <p>For a new server node, the disk is initialized (data is removed) and re-populated. For the
-      same server node, the disk is not initialized or re-populated; the data buckets remain.</p>
+ 	
+    <p>With delta node recovery, the failed over node is checked to identify the point when data mutations stopped and 
+      resynchronized beginning at that point.
+      The server node catches up on data mutations for its vBuckets and starts serving data. 
+      In this case, the disk is not initialized or re-populated. 
+      The original data and data buckets are retained so that the cluster can start functioning without downtime. 
+      This operation improves recovery time and network resource usage. </p>
+      
+      
+      <note type="tip">An environment with a large data footprint might re-add a server node and
+      use delta node recovery. </note>
     
     <p>Server nodes are removed from clusters under many circumstances. 
-      Depending on the circumstance, the server node is added back to the cluster as either a new or the same server. 
-      The following are circumstances (among many others) where the server node might be re-added as the same server.</p>
+      The following are circumstances (among many others) where a server node might be re-added to the cluster 
+      after being failed over.</p>
       
     <ul>
       <li>Node goes down for a short period of time</li>
@@ -34,14 +32,23 @@
 
     </ul>
     
-    <draft-comment author="Ruth">Graphic</draft-comment>
- 
-
-    <section><title>Impacted documentation</title>
-    <ul>
-      <li>Failover</li>
-      <li>Re-add a server</li>
-    </ul>
+    <p>When a server node is re-added to the cluster using <uicontrol>Full Recovery</uicontrol>, the
+      disk is initialized, re-populated with the original data buckets, and resynchronized. This
+      operation ensures a clean disk, but has overhead in terms of resource use and downtime due to
+      disk re-population.</p>
+    
+    <section><title>Delta node recovery scenarios</title>
+    <p>If more than one node is being recovered using delta node recovery and one of the nodes
+        crashes or fails, the remaining nodes are removed from delta node recovery and put into full
+        recovery mode. </p>
+      
+      <p>If one or more nodes are being recovered using delta node recovery, another node in the
+        cluster fails, and rebalance is performed, the node(s) in delta node recovery are put into
+        full recovery mode. </p>
+      
+      <p>In both scenarios, the following error message displays: 
+        <codeblock>Rebalance Warning: Rebalance failed, recovery mode for rebalance will be full recovery.</codeblock></p>
+      
     </section>
     
     
