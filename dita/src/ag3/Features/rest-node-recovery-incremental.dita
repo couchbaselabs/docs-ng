@@ -27,7 +27,8 @@
             <row>
               <entry>POST</entry>
               <entry>/controller/setRecoveryType</entry>
-              <entry>Sets the recovery type to be performed for a node. Options are full or delta.</entry>
+              <entry>Sets the recovery type to be performed for a node. Options are delta or
+                full.</entry>
             </row>
           </tbody>
         </tgroup>

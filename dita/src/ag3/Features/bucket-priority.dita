@@ -15,7 +15,6 @@
     When a bucket has a high priority, its I/O tasks are picked up at a high frequency and, thus, are able to processed faster compared to 
     tasks belonging to a low priority bucket.</p>
    
-   <p></p>
   
   <p>The default buckets settings can be set during initial setup as well as be edited after setup. 
    However, changing bucket priority after setup results in a restart of the bucket and reset of the client connections.</p>

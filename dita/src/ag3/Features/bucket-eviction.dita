@@ -8,7 +8,7 @@
   
   <p>The following summarizes the behavior of value-only versus full metadata ejection: </p>
   <ul>
-   <li> Value-only ejection (the default) removes the data but keeps all keys and metadata in memory. 
+   <li>Value-only ejection (the default) removes the data but keeps all keys and metadata in memory.
     When the value bucket ejection occurs, the item's value is reset. </li>
    <li>Full metadata ejection removes all data including keys, metadata, and key-values, thus, 
     reducing the RAM requirement for large buckets.</li>
@@ -26,17 +26,7 @@
   
   <draft-comment author="Ruth" disposition="open" status="unchanged">Need GRAPHICs: Ejection Logic Table</draft-comment>
 
-  
 
-  <section><title>Impacted documentation</title>
-   <ul>
-    <li>Views and stored data > Document metadata</li>
-    <li>Warm up operations</li>
-    <li>Global thread pool</li>
-    <li>Ejection and working set management</li>
-    <li>Other ejection from hitting thresholds</li>
-   </ul>
-  </section>
   
   
   <section><title>Backward compatibility</title>

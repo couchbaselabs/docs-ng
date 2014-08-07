@@ -82,18 +82,6 @@
   
   </section>
   
-
-  
-
-  
-  <section><title>Impacted documentation</title>
-   <ul>
-    <li>Disk storage</li>
-    <li>Multiple readers and writers</li>
-    <li>Auxiliary I/O dispatcher</li>
-    <li>Reader/writer threads</li>
-   </ul>
-  </section>
   
  </conbody>
  
