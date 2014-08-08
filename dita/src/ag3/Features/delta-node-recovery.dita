@@ -37,18 +37,55 @@
       operation ensures a clean disk, but has overhead in terms of resource use and downtime due to
       disk re-population.</p>
     
-    <section><title>Delta node recovery scenarios</title>
-    <p>If more than one node is being recovered using delta node recovery and one of the nodes
-        crashes or fails, the remaining nodes are removed from delta node recovery and put into full
-        recovery mode. </p>
+    <section><title>Delta node recovery failure scenarios</title>
+      <p>In general, if topology changes occur while a node is pending delta recovery, delta node
+        recovery is impacted: another node is added, a node is removed, or a node is swapped, If
+        certain bucket operations are performed while a node is pending delta recovery, delta node
+        recovery is impacted: a new bucket is added, a bucket's replica configuration is changed, or
+        a bucket is flushed. The following scenarios identify when delta node recovery either
+        defaults to full recovery or is not available. </p>
       
-      <p>If one or more nodes are being recovered using delta node recovery, another node in the
-        cluster fails, and rebalance is performed, the node(s) in delta node recovery are put into
-        full recovery mode. </p>
       
-      <p>In both scenarios, the following error message displays: 
-        <codeblock>Rebalance Warning: Rebalance failed, recovery mode for rebalance will be full recovery.</codeblock></p>
-      
+      <ul>
+        <li>Node 1 is in delta recovery; Node 2, an active server node, crashes. <ol>
+            <li>Node 1 is failed over and delta recovery is specified. Now, Node 1 is pending delta
+              recovery.</li>
+            <li>Node 2, an active server, goes down. <note>The rebalance operation is not
+                available.</note></li>
+            <li>Failover Node 2. </li>
+            <li>Cancel the pending delta recovery, specify full recovery, and rebalance.</li>
+            <li>Repair Node 2, add the server to the cluster, and rebalance.</li>
+          </ol>
+        </li>
+        <li>Node 1 is in delta recovery; Node 1 crashes during rebalance. <ol>
+            <li>Node 1 is failed over, delta recovery is specified, and the rebalance operation is
+              started.</li>
+            <li>Node 1 crashes and the rebalance operation fails.</li>
+            <li>Repair Node 1, re-start the server node, and rebalance. Node1 is added back to the
+              cluster using full recovery.</li>
+          </ol>
+        </li>
+        <li>Node 1 is in delta recovery; a bucket operation is performed (add bucket, change replica
+          information, or flush bucket). <ol>
+            <li>Node 1 is failed over, delta recovery is specified, and then a bucket operation is
+              performed.</li>
+            <li>Rebalance is performed and fails. <p><image
+                  href="../images/ui-delta-rebalance-not-available.png" width="360"/></p></li>
+            <li>Cancel the pending delta recovery, specify full recovery, and rebalance.</li>
+          </ol>
+          <note type="note">Bucket deletion does not lead to delta recovery failure.</note>
+        </li>
+        
+        <li>Node 1 and Node 2 are in delta node recovery; Node 2 crashes
+          <ol>
+            <li>Both Node 1 and Node 2 are failed over, delta recovery is specified.</li>
+            <li>Node 2 crashes.</li>
+            <li>Rebalance is performed and fails.
+              <p><image href="../images/ui-rebalance-failed.png" width="480"></image></p></li>
+          </ol>
+        </li>
+      </ul>
+     
     </section>
     
     

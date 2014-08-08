@@ -2,11 +2,11 @@
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_wkh_ccb_k4">
     <title>Failing over gracefully (UI)</title>
-    <shortdesc></shortdesc>
+    <shortdesc>Graceful failover is performed on a specific node via <uicontrol>Server Nodes > Failover</uicontrol>.</shortdesc>
     <taskbody>
         
         <context>
-            <p>To manage failover:</p>
+            <p>To perform a failover:</p>
         </context>
         <steps>
             <step>
@@ -17,8 +17,9 @@
                     
             </step>
             <step>
-                <cmd>Select <uicontrol>Graceful Failover</uicontrol> to gracefully failover. Alternatively, select <uicontrol>Hard
-                    Fail Over</uicontrol> to force the failover.</cmd>
+                <cmd>Select <uicontrol>Graceful Failover</uicontrol> to gracefully failover.
+                    Alternatively, select <uicontrol>Hard Fail Over</uicontrol> to force the
+                    failover or cancel.</cmd>
                 <stepresult><image href="../images/ui-node-failover-options.png" width="500"></image></stepresult>
                 
             </step>
@@ -26,6 +27,17 @@
                 <cmd>Click <uicontrol>Fail Over</uicontrol>.</cmd>
                 <info>While the node is being failed over, the failover process can be stopped by clicking on 
                 <uicontrol>Stop Failover</uicontrol>.</info>
+                <info>When failover occurs on a specific node, that node is marked as
+                        <uicontrol>Failed Over: Pending Removal</uicontrol></info>
+                
+                <stepresult><image href="../images/ui-delta-recovery.png" width="720"></image></stepresult>
+            </step>
+            <step>
+                <cmd>To view the status of the failover operation, click <uicontrol>Pending Rebalance</uicontrol>.</cmd>
+                <info><note type="note">If you perform the rebalance operation at this point (before selecting a recovery
+                        option), the server node is removed from the cluster. Once the node is removed from the cluster, that same node can be added to the cluster, however, 
+                        it is treated the same as a new server node. That means that all data on the server node is removed.</note></info>
+                <stepresult><image href="../images/ui-failover-pending-removal.png" width="720"></image></stepresult>
             </step>
             
         </steps>
