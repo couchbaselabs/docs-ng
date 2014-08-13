@@ -3,11 +3,42 @@
 <topic id="topic_xgq_zhx_r4">
   <title>Release notes (beta)</title>
   <body>
-    <p>This release note is for the 3.0.0 BETA release. It contains a list of known issues.</p>
+    <p>This release note is for the 3.0.0 BETA REFRESH release. It contains a list of known and
+      fixed issues.</p>
     
     <section>
       <title>Known issues</title>
       <dl>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11941" scope="external"
+            format="html">MB-11941</xref></dt>
+          <dd>Online upgrade from 2.0 to 3.0 on Ubuntu 12.04 does not work</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11928" scope="external"
+            format="html">MB-11928</xref></dt>
+          <dd>Rebalance with delta recovery exited with message "{badmatch, {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</dd>
+          </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11922" scope="external"
+            format="html">MB-11922</xref></dt>
+          <dd>Upgrade to R16 causes 20% regression in view query latency and throughput</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11919" scope="external"
+            format="html">MB-11919</xref></dt>
+          <dd>There is a 3-5x increase in index size during rebalance with views</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11899" scope="external"
+            format="html">MB-11899</xref></dt>
+          <dd>Indexing progress statistic goes backwards</dd>
+        </dlentry>
+          <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11820" scope="external"
+            format="html">MB-11820</xref></dt>
+          <dd>Beer-sample loading is stuck in a crashed state</dd>
+        </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11643" scope="external"
               format="html">MB-11643</xref></dt>
@@ -21,43 +52,10 @@
               the backlog becomes too large resulting in high memory usage.</p></dd>
         </dlentry>
         <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11606" scope="external"
-              format="html">MB-11606</xref></dt>
-          <dd>Error displayed when node did not mark to collect</dd>
-        </dlentry>
-        <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11597" scope="external"
-              format="html">MB-11597</xref></dt>
-          <dd>KV+XDCR System test: Mutation replication rate for unidirectional XDCR is almost zero (900K items
-            remaining) while another bidirectional XDCR to the same cluster is ~10k ops/sec </dd>
-        </dlentry>
-        <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
-              format="html">MB-11568</xref></dt>
-          <dd>IP address does not show the same in each step of cluster-wide collect info.</dd>
-        </dlentry>
-        <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11434" scope="external"
-              format="html">MB-11434</xref></dt>
-          <dd>600-800% CPU consumption by memcached on the source cluster. <p>In XDCR scenarios, the
-              CPU usage for memcached process is more than two times the usage in the previous
-              release. This is due to increased scheduling overhead from the shared thread
-              pool.</p><p>Workaround: Reduce the number of threads on systems that have more than 30
-              cores.</p></dd>
-        </dlentry>
-        <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11405" scope="external"
-              format="html">MB-11405</xref></dt>
-          <dd>~2400% CPU consumption by memcached during ongoing workload with five (5) buckets.
-              <p>In XDCR scenarios, the CPU usage for memcached process is more than two times the
-              usage in the previous release. This is due to increased scheduling overhead from the
-              shared thread pool. </p><p>Workaround: Reduce the number of threads on systems that
-              have more than 30 cores.</p></dd>
-        </dlentry>
-        <dlentry>
-          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11383" scope="external"
-              format="html">MB-11383</xref></dt>
-          <dd>warmup_min_items_threshold setting is not honored correctly in 3.0 warmup</dd>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11589" scope="external"
+            format="html">MB-11589</xref></dt>
+          <dd>Sliding <codeph>endseqno</codeph> during initial index build or DCP reading from disk snapshot 
+            results in longer <codeph>stale=false</codeph> query latency and index startup time</dd>
         </dlentry>
         <dlentry>
           <dt><xref href="http://www.couchbase.com/issues/browse/MB-11299" scope="external"
@@ -67,8 +65,43 @@
       </dl>
     </section>
     
+    
+    
     <section><title>Fixed issues</title>
-      <p>Not applicable</p>
+      <dl>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11866" scope="external"
+            format="html">MB-11866</xref></dt>
+          <dd>wbeam.smp RSS suddenly increases to 45GB after an unexpected_binary error</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11720" scope="external"
+            format="html">MB-11720</xref></dt>
+          <dd>Backfilling the entire vBucket can starve other streams that also need to backfill</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11606" scope="external"
+            format="html">MB-11606</xref></dt>
+          <dd>Error displayed when node did not mark to collect</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
+            format="html">MB-11568</xref></dt>
+          <dd>IP address does not show the same in each step of cluster-wide collect info.</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11405" scope="external"
+            format="html">MB-11405</xref></dt>
+          <dd>Shared thread pool: high CPU overhead due to OS level context switches / scheduling</dd>
+        </dlentry>
+        <dlentry>
+          <dt><xref href="http://www.couchbase.com/issues/browse/MB-11383" scope="external"
+            format="html">MB-11383</xref></dt>
+          <dd>warmup_min_items_threshold setting is not honored correctly in 3.0 warmup</dd>
+        </dlentry>
+        
+        
+      </dl>
 
     </section>
   </body>
