@@ -1,67 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_plr_jwp_yn">
- <title>Incremental backup and restore</title>
- <shortdesc>An incremental backup or restore is a backup (or restore) of the latest changes since
-    the last backup (any level).</shortdesc>
- 
- <conbody>
-   <p>Incremental backup and restore allow administrators to backup and restore only modified part of the database 
-   instead of taking a full data backup every time. 
-   This makes backup more efficient for larger datasets and reduces the risk of data loss. </p>
-  <p>The purpose of an incremental backup is to preserve and protect data by creating copies that
-      are based on the differences in those data and thus minimize the amount of time needed to
-      perform the backup. With incremental backups, successive copies of the data contain only that
-      portion which has changed since the preceding backup copy was made. Incremental backups are
-      faster than full backups and reduce network utilization.</p>
-   
-   <p>The following are the types of backups:</p>
-   
-   <dl>
-     <dlentry>
-     <dt>Full backup</dt>
-       <dd>A snapshot of the state of the database at a particular point-in-time on disk. 
-       A snapshot is a read-only copy of the dataset. 
-       The restoration process takes the last full backup 
-       plus all the incremental backups until the restoration point-in-time is reached.</dd>
-     </dlentry>
-     <dlentry>
-       <dt>Differential backup</dt>
-       <dd>An incremental backup that contains all data changes after the most recent incremental
-          backup. Differential backups are deltas between the following: <ul>
-            <li>Last full backup and the first snapshot</li>
-            <li>Last incremental snapshot the current snapshot</li>
-          </ul></dd>
-     </dlentry>
-     <dlentry>
-       <dt>Accummulative backup</dt>
-       <dd>An incremental backup that contains all data changes after the last full backup. 
-         A snapshot of the data changes between the last full backup and the current snapshot. 
-         </dd>
-     </dlentry>
-   </dl>
-   
-   <draft-comment author="Ruth" disposition="open" status="unchanged">DIFFERENTIAL backup graphic</draft-comment>
-   <draft-comment author="Ruth" disposition="open" status="unchanged">ACCUMMULATIVE backup graphic</draft-comment>
+	<title>Incremental backup and restore</title>
+	<shortdesc>Incremental backup and restore enables administrators to quickly back up
+			only modified data in the database, making backup and restore more efficient for larger
+			data sets.</shortdesc>
 
-   <draft-comment author="Ruth" disposition="open" status="unchanged">Is there REST API equivalent information?</draft-comment>
-   
-   <section><title>Impacted documentation</title>
-   <ul>
-     <li>cbbackup</li>
-     <li>cbrestore</li>
-   </ul>
-   </section>
-     
-     <section><title>Backward compatibility</title>
-       
-       <ul>
-         <li>2.0+</li>
-       </ul>
-     </section>
-   
-     
 
-   
- </conbody>
+	<conbody>
+		
+		<p>The purpose of an incremental backup is to back up only data that has changed since the
+			previous backup. Incremental backups provide the following benefits:</p>
+		
+		<ul>
+			<li>More options for backup strategies</li>
+			<li>Greater flexibility in the restoration process</li>
+			<li>Reduces the amount of time needed for daily backups</li>
+			<li>Reduces the amount of disk storage needed for backups</li>
+			<li>Reduces bandwidth usage when backing up over a network</li>
+		</ul>
+		
+		<p>When you need to recover data, the restoration process uses the last full backup and one or
+			more incremental backups. In addition to full backups, Couchbase Server offers the
+			following types of incremental backups:</p>
+		<ul>
+			<li>Differential incremental backup</li>
+			<li>Cumulative incremental backup</li>
+		</ul>
+
+		<section>
+			<title>Differential incremental backup</title>
+			<p>Differential incremental backups contain only the database changes that occurred since
+				the last backup. Differential backups are created quickly because less data is backed
+				up, but restorations from differential backups take longer than restorations from
+				cumulative incremental backups.</p>
+			<p>The following figure shows an example of a differential incremental backup strategy.
+				Every Sunday, a full backup is made. On the other days of the week, a differential
+				incremental backup is made.</p>
+			<image href="images/backup-differential-incremental.png" />
+			<p>In this example, the Monday backup contains the changes made since the full backup on
+				Sunday, the Tuesday backup contains the changes made since the Monday backup, the
+				Wednesday backup contains the changes made since the Tuesday backup, and so on. If, for
+				example, a restore operation is performed on Wednesday, the restoration process uses the
+				full backup from Sunday and the differential incremental backups from Monday and
+				Tuesday.</p></section>
+
+		<section>
+			<title>Cumulative incremental backup</title>
+			<p>Cumulative incremental backups contain all changes that occurred since the last full
+				backup. Restorations from cumulative backups are faster than restorations from
+				differential backups, but cumulative backups require a longer backup window and use more
+				disk space than differential backups.</p>
+			<p>The following figure shows an example of a cumulative incremental backup strategy. Every
+				Sunday, a full backup is made. On the other days of the week, a cumulative incremental
+				backup is made. </p>
+			<image href="images/backup-cumulative-incremental.png" />
+			<p>In this example, the Monday backup contains all the changes made since the full backup
+				on Sunday, the Tuesday backup contains all the changes made since the full backup on
+				Sunday, the Wednesday backup contains all the changes made since the full backup on
+				Sunday, and so on. If, for example, a restore operation is performed on Wednesday, the
+				restoration process uses the full backup from Sunday and the cumulative incremental
+				backup from Tuesday.</p>
+		</section>
+
+		<section>
+			<title>Combining incremental backup types</title>
+			<p>For greater flexibility in the restoration process, your backup strategy can include a
+				combination of differential and cumulative incremental backups.</p>
+			<p>The following figure shows an example of a backup strategy that incorporates both
+				differential and cumulative backups. Every Sunday, a full backup is made. For the
+				remainder of the week, depending on the day, either a differential or cumulative
+				incremental backup is made.</p>
+			<image href="images/backup-combined-incremental.png" />
+			<p>In this example, the backup schedule includes differential and cumulative incremental
+				backups on different days. On Monday, Tuesday, Wednesday, Friday, and Saturday a
+				differential incremental backup is made. On Thursday, a cumulative incremental backup is
+				made. With this backup schedule, if a restore operation is performed on Saturday, the
+				restoration process uses the full backup from Sunday, the cumulative incremental backup
+				from Thursday, and the differential incremental backup from Friday.</p>
+		</section>
+
+	</conbody>
 </concept>
