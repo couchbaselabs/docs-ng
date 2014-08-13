@@ -21,15 +21,12 @@
    the cluster via <codeph>delta</codeph> or <codeph>full</codeph> recovery. </p>
   
   <ul>
-   <li>When a node is added back to the cluster after a graceful failover has been performed,
-    the replica vBuckets on the failed over node are resynchronized and promoted back to active. 
-    In this case, rebalancing is optimized.</li>
-   <li>Topology changes (such as adding, removing, or failing over a server)  
-    after a graceful failover, initiates a different type of rebalance operation.  
-    In this case, rebalancing is not optimized.</li>
-   <li>After a node is gracefully failed over, the remaining nodes can not be gracefully failed over 
-    (only the hard failover option is available). 
-    In this case, rebalancing is not optimized.</li>
+   <li>When a node is added back to the cluster after a graceful failover has been performed, the
+    replica vBuckets on the failed over node are resynchronized and promoted back to active.</li>
+   <li>Topology changes (such as adding, removing, or failing over a server) after a graceful
+    failover, initiates a different type of rebalance operation.</li>
+   <li>Each active vBucket on the failed over server node must have at least one replica vBucket for
+    graceful failover, otherwise, hard failover is implemented.</li>
   </ul>
    
    <note type="note">Hard failover immediately fails over a node from the cluster which might lead
@@ -39,10 +36,17 @@
   <p>The following conditions must be met for graceful failover, otherwise, hard failover is implemented.</p>
   
    <ul>
-    <li>The node must be healthy.</li>
+    <li>The server node must be healthy.</li>
     <li>Each active vBucket must have an equivalent replica bucket.</li>
     <li>At least one (1) replica vBucket must be available.</li>
    </ul>
+  
+  <p>For example:</p>
+  <ul>
+   <li>In a 7 node cluster, if a bucket is configured for one replica, only one node can be gracefully failed over.</li>
+   <li>In a 7 node cluster, if a bucket is configured for two replica, two nodes can be gracefully failed over.</li>
+   <li>In a 7 node cluster, if a bucket is configured for three replica, three nodes can be gracefully failed over.</li>
+  </ul>
   
    <p>Graceful failover does not alter the number of active vBuckets (unlike hard failover), 
    however, the number of replica vBuckets may reduce and not be equally distributed.</p>

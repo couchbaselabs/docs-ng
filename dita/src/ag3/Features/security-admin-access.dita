@@ -13,7 +13,7 @@
     <p>The server generates a self-signed certification for the initial node which is propagated
       throughout the server nodes in the cluster. If the self-signed certificate is regenerated or
       updated as part of setting up XDCR data encryption (or for any other reason), the certificate
-      retrieved by the client must be obtained again before secure client-server communication is
+      retrieved by the client must be obtained again before secure server communication is
       re-established. The secure connection is on the cluster-level (rather than bucket-level) and
       is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
     
@@ -28,10 +28,10 @@
     <p>Secure administrative access is configured using the same method used for encrypted client-server communication:</p>
     
     <ol>
-      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and 
-        using the administratrator username and password.</li>
-      <li>Retrieve the SSL self-signed certificate and store in the local file,
-          <codeph>remoteCert.pem</codeph>.</li>
+      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and
+        using the administrator username and password.</li>
+      <li>Retrieve the SSL self-signed certificate and store in a local file, for example,
+          <codeph>clusterCert.pem</codeph>.</li>
       <li>Create the cluster remote reference using the an encrypted port, 18091 REST HTTP or
         18092 CAPI HTTP, and enabling data encryption.</li>
     </ol>
@@ -42,7 +42,7 @@
       
     </section>
     <table frame="all" id="table_dnc_hzf_44">
-      <title>URI paths for setting secure communication</title>
+      <title>URI paths for  secure communication</title>
       <tgroup cols="2">
         <colspec colname="c1" colnum="1" colwidth="1*"/>
         <colspec colname="c2" colnum="2" colwidth="1.37*"/>
@@ -58,7 +58,7 @@
           <row>
             <entry>GET</entry>
             <entry>/pools/default/certificate</entry>
-            <entry>Retrieves the SSL self-signed certificate from the remote cluster.</entry>
+            <entry>Retrieves the SSL self-signed certificate from the  cluster.</entry>
           </row>
           <row>
             <entry>GET</entry>
@@ -68,7 +68,7 @@
           <row>
             <entry>POST</entry>
             <entry>/pools/default/remoteClusters</entry>
-            <entry>Creates the remote cluster referece.</entry>
+            <entry>Creates the remote cluster reference.</entry>
           </row>
           <row>
             <entry>PUT</entry>
@@ -80,15 +80,15 @@
     </table>
     
     
-    <section><title>Syntax for retrieving the remote certificate</title>
+    <section><title>Syntax for retrieving the certificate</title>
       <codeblock>
 curl –X GET  -u adminName:adminPassword
-    http://localHost:Port/pools/default/certificate       
+    http://localHost:Port/pools/default/certificate > ./&lt;certificate_name>     
     </codeblock>
     </section>
     
-    <example><title>Retrieving and storing the certificate</title>
-      <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > ./remoteCert.pem</codeblock>
+    <example><title>Retrieving the certificate</title>
+      <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > ./clusterCert.pem</codeblock>
       
     </example>
     
@@ -121,7 +121,7 @@ rqw=
       <codeblock>
 curl –X POST  -u Admin:myPassword
     https://localHost:sslPort/pools/default/remoteClusters
-    -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat remoteCert.pem)"
+    -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat clusterCert.pem)"
       </codeblock>
       
     </section>
@@ -129,7 +129,7 @@ curl –X POST  -u Admin:myPassword
     <example><title>Creating an encrypted client-server connection</title>
       <codeblock>curl –X POST
     https://Administrator:asdasd@192.168.0.1:18091/pools/default/remoteClusters/
-    -d demandEncryption=1 --data-urlencode "certificate=$(cat remoteCert.pem)"     </codeblock>
+    -d demandEncryption=1 --data-urlencode "certificate=$(cat clusterCert.pem)"     </codeblock>
     </example>
     
     
