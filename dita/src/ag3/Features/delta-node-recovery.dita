@@ -2,30 +2,25 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_s15_tlh_14">
   <title>Delta node recovery</title>
-	<shortdesc>Delta-node recovery allows nodes to be quickly added back after they are repaired so they can catch up incrementally from where they left off.</shortdesc>
+	<shortdesc>Delta-node recovery allows nodes to be re-added to the cluster and incrementally caught
+    up with the data changes.</shortdesc>
   
   <body>
   	
-  	
-  	
-<!-- original short description
-  	<p>Delta node recovery provides the option to specify whether the replacement server
-  		node's disk is initialized or whether the data and data buckets are retained.  </p>
- --> 	
-    <p>When re-adding a server node to the cluster, a new server node is initialized and
-      re-populated, that is, the disk is wiped out (a warning is generated) and then re-populated
-      with the original data buckets. This operation ensures a clean disk, but also has overhead in
-      terms of resource use and downtime due to disk re-population. With delta node recovery the
-      same server node is not initialized nor re-populated. The data and data buckets are retained
-      so that the cluster can start functioning without downtime. This operation improves recovery
-      time and network resource usage. For example, an environment with a large data footprint might
-      re-add the server node as the same. </p>
-    <p>For a new server node, the disk is initialized (data is removed) and re-populated. For the
-      same server node, the disk is not initialized or re-populated; the data buckets remain.</p>
+    <p>Delta node recovery allows a failed over node to be recovered by re-using the data on its
+      disk and then resynchronizing the data based on the delta change. 
+      The failed over node is checked to identify the point when data
+      mutations stopped and resynchronized beginning at that point. The server node catches up on
+      data mutations for its vBuckets and starts serving data. 
+      Because the original data and data buckets are retained, the cluster starts functioning with minimal downtime. 
+      This operation improves recovery time and network resource usage. </p>
+      
+      <note type="tip">An environment with a large data footprint might re-add a server node and
+      use delta node recovery. </note>
     
     <p>Server nodes are removed from clusters under many circumstances. 
-      Depending on the circumstance, the server node is added back to the cluster as either a new or the same server. 
-      The following are circumstances (among many others) where the server node might be re-added as the same server.</p>
+      The following are circumstances (among many others) where a server node might be re-added to the cluster 
+      after being failed over.</p>
       
     <ul>
       <li>Node goes down for a short period of time</li>
@@ -33,15 +28,63 @@
       <li>Network connectivity is briefly disrupted</li>
 
     </ul>
+     
     
-    <draft-comment author="Ruth">Graphic</draft-comment>
+    <note type="note">With  full recovery, the disk is initialized and populated with active and replica buckets. 
+      This operation ensures a clean disk, but has overhead in terms of resource use and downtime due to disk re-population.</note>
  
-
-    <section><title>Impacted documentation</title>
-    <ul>
-      <li>Failover</li>
-      <li>Re-add a server</li>
-    </ul>
+ 
+    <section><title>Delta node recovery failure scenarios</title>
+      <p>In general, if topology changes occur while a node is pending delta recovery, delta node
+        recovery is impacted: another node is added, a node is removed, or a node is swapped, If
+        certain bucket operations are performed while a node is pending delta recovery, delta node
+        recovery is impacted: a new bucket is added, a bucket's replica configuration is changed, or
+        a bucket is flushed. The following scenarios identify when delta node recovery either
+        defaults to full recovery or is not available. </p>
+      
+      <title>Node 1 is in delta recovery and Node 2, an active server node, crashes.</title>
+      <ol>
+            <li>Node 1 is failed over and delta recovery is specified. Now, Node 1 is pending delta
+              recovery.</li>
+            <li>Node 2, an active server, goes down. <note>The rebalance operation is not
+                available.</note></li>
+            <li>Fail over Node 2. </li>
+            <li>Cancel the pending delta recovery, specify full recovery, and rebalance.</li>
+            <li>Repair Node 2, add the server to the cluster, and rebalance.</li>
+          </ol>
+       
+        <title>Node 1 is in delta recovery and Node 1 crashes during rebalance.</title> 
+      
+      <ol>
+            <li>Node 1 is failed over, delta recovery is specified, and the rebalance operation is
+              started.</li>
+            <li>Node 1 crashes and the rebalance operation fails.</li>
+            <li>Repair Node 1, re-start the server node, and rebalance. Node1 is added back to the
+              cluster using full recovery.</li>
+          </ol>
+        
+        <title>Node 1 is in delta recovery and a bucket operation is performed. </title>
+      <p>The bucket operations that cause rebalance to fail are adding bucket, changing replica
+        configuration, or flushing bucket</p>
+      <ol>
+            <li>Node 1 is failed over, delta recovery is specified, and then a bucket operation is
+              performed.</li>
+            <li>Rebalance is performed and fails. <p><image
+                  href="../images/ui-delta-rebalance-not-available.png" width="360"/></p></li>
+            <li>Cancel the pending delta recovery, specify full recovery, and rebalance.</li>
+          </ol>
+          <note type="note">Bucket deletion does not lead to delta recovery failure.</note>
+        
+        
+        <title>Node 1 and Node 2 are in delta node recovery and Node 2 crashes. </title>
+          <ol>
+            <li>Both Node 1 and Node 2 are failed over, delta recovery is specified.</li>
+            <li>Node 2 crashes.</li>
+            <li>Rebalance is performed and fails. <p><image href="../images/ui-rebalance-failed.png"
+                  width="480"/></p></li>
+          </ol>
+      
+     
     </section>
     
     

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ed5_pm5_j4">
-  <title>Ejecting metadata (CLI)</title>
+  <title>Managing metadata in memory (CLI)</title>
 
-  <shortdesc>Bucket ejection from memory is set with the <codeph>couchbase-cli</codeph>
+  <shortdesc>Metadata ejection from memory is set with the <codeph>couchbase-cli</codeph>
     tool.</shortdesc>
   
   <refbody>
-    <section><title>Bucket ejection policy</title>
+    <section><title>Metadata ejection policy</title>
     
-      <p>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool, either
-        <codeph>bucket-create</codeph> or <codeph>bucket-edit</codeph>, and the 
-        <codeph>--bucket-eviction-policy</codeph> parameter.</p>
+      <p>Metadata ejection from memory is set with <codeph>couchbase-cli</codeph> tool, either
+          <codeph>bucket-create</codeph> or <codeph>bucket-edit</codeph>, and the
+          <codeph>--bucket-eviction-policy</codeph> parameter.</p>
 
 
       

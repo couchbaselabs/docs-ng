@@ -9,14 +9,15 @@
 
    <p>Bucket priority settings can be specified at the bucket-level. 
     The bucket disk I/O priority can be set as either high or low, whereas, low is the default. 
-    Bucket priority settings determine the number of threads assigned to a bucket allocated resources across buckets. 
+    Bucket priority settings determine whether I/O tasks for a bucket are enqueued in either low or high priority task queues. 
+    Threads in the global pool poll the high priority task queues more often compared to the low priority task queues. 
     Bucket latency and I/O operations are impacted by the setting value. 
-    When a bucket has a high priority, additional I/O resources are assigned for processing tasks.</p>
+    When a bucket has a high priority, its I/O tasks are picked up at a high frequency and, thus, are able to processed faster compared to 
+    tasks belonging to a low priority bucket.</p>
    
-   <p></p>
   
-  <p>The default buckets settings can be set during initial setup as well as be edited after
-   setup.</p>
+  <p>The default buckets settings can be set during initial setup as well as be edited after setup. 
+   However, changing bucket priority after setup results in a restart of the bucket and reset of the client connections.</p>
   <fig><image href="../images/init-default-bucket-settings.png" width="600"></image></fig>
    
     

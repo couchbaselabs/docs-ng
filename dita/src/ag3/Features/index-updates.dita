@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_ggp_tqp_yn">
+
 	<title>Stream-based views</title>
 	<abstract>
 		<shortdesc>Stream-based views reduce latency for view updates, providing faster view
@@ -49,5 +50,5 @@
 			all of it.</note>
 
 	</conbody>
-
+ 
 </concept>

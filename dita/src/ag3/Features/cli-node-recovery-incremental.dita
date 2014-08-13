@@ -6,7 +6,7 @@
     the <codeph>recovery</codeph> command with the <codeph>--recovery-type</codeph> parameter. </shortdesc>
   <refbody>
     <section>
-      <p>Recovery options are either <codeph>full</codeph> or <codeph>delta</codeph>.</p>
+      <p>Recovery options are either <codeph>delta</codeph> or <codeph>full</codeph>.</p>
       
       <table frame="all" id="table_recovery-type">
         <title>Recovery type</title>

@@ -54,5 +54,13 @@
       expected.</p>
     </section>
     
+    <section><title>Limitations</title>
+      <p>The RPM package manager does not support the  
+        <codeph>--relocate</codeph> option because it cannot correctly detect which release should be kept and which should be replaced. 
+        As result, all binary files and their wrapper scripts cannot be correctly installed into the relocated bin directory 
+        during upgrade.
+        </p>
+    </section>
+    
   </body>
 </topic>

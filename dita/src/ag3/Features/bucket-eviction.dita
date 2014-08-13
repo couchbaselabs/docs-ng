@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_dl3_clp_yn">
- <title>Metadata ejection</title>
- <shortdesc>Metadata ejection specify whether value-only or full metadata is ejected from memory.</shortdesc>
+ <title>Tunable memory</title>
+ <shortdesc>Tunable memory allows both value-only ejection and full metadata ejection from memory. </shortdesc>
  <conbody>
   
   
-  <p>Metadata ejection allows both value and full bucket ejection from memory. The following
-   summarizes the behavior of value-only versus full bucket ejection: Value bucket ejection (the
-   default) removes the data but keeps all keys and metadata in memory. When the value bucket
-   ejection occurs, the item's value is reset. Full-bucket ejection removes all data including keys,
-   metadata, and key-values, thus, reducing the RAM requirement for large buckets.</p>
+  <p>The following summarizes the behavior of value-only versus full metadata ejection: </p>
+  <ul>
+   <li>Value-only ejection (the default) removes the data but keeps all keys and metadata in memory.
+    When the value bucket ejection occurs, the item's value is reset. </li>
+   <li>Full metadata ejection removes all data including keys, metadata, and key-values, thus, 
+    reducing the RAM requirement for large buckets.</li>
+  </ul>
   
   <p>Full-bucket ejection supports very large data footprints (a large number of datasets or items/keys) 
    since the working sets in memory are smaller. 
@@ -18,24 +20,13 @@
    Metadata ejection is configured at the bucket-level.
    </p>
   
-  <p>For example, if your environment needs to store huge amounts of data (for example, tera or peta bytes), 
-  then you might want to enable metadata ejection on that bucket so that you are not 
-  limited by memory.</p>
+  <p>For example, you might want to enable the full metadata ejection on that bucket if you need to
+   store huge amounts of data (for example, tera or peta bytes).</p>
   
   
   <draft-comment author="Ruth" disposition="open" status="unchanged">Need GRAPHICs: Ejection Logic Table</draft-comment>
 
-  
 
-  <section><title>Impacted documentation</title>
-   <ul>
-    <li>Views and stored data > Document metadata</li>
-    <li>Warm up operations</li>
-    <li>Global thread pool</li>
-    <li>Ejection and working set management</li>
-    <li>Other ejection from hitting thresholds</li>
-   </ul>
-  </section>
   
   
   <section><title>Backward compatibility</title>
