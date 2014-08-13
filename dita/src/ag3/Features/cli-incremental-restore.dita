@@ -1,51 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="reference_lxt_4qb_k4">
-  <title>Setting incremental restore (CLI)</title>
-  <shortdesc>Restore operations are performed by the <codeph>cbbackup</codeph> tool. 
-    Incremental restore provides partial restore functionality. </shortdesc>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="reference_lxt_4qb_k4">
+	<title>Performing an incremental restore (CLI)</title>
 
-  <refbody>
-    <section>
-      <title>cbrestore</title>
-      <p>Data from a specific period of time is restored. The <codeph>cbrestore</codeph> tool
-        browses through the subdirectories and files in the backup directory and finds all related
-        Couchbase backup files to restore.</p>
-      
-      
-      
-      <codeblock>
-cbrestore /backups/backup-1 http://HOST:8091       
-     </codeblock>
-      
-      
-      
-      
-      <table frame="all" id="table_wts_fw5_c4">
-        <title>cbrestore options</title>
-        <tgroup cols="2">
-          <colspec colname="c1" colnum="1" colwidth="1*"/>
-          <colspec colname="c2" colnum="2" colwidth="2.51*"/>
-          <thead>
-            <row>
-              <entry>Option</entry>
-              <entry>Description</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>--from-date=[yyyy-mm-dd]</entry>
-              <entry>Restores the data from this date. The date is specified as year-month-day. Data
-                collected before this date is not restored.</entry>
-            </row>
-            <row>
-              <entry>--to-date=[yyyy-mm-dd]</entry>
-              <entry>Restores data until this date. The date is specified as year-month-day. Data
-                collected after this date is not restored.</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
-    </section>
-  </refbody>
-</reference>
+	<abstract>
+		<shortdesc>Incremental restore operations are run by using the <codeph>cbbackup</codeph>
+			command-line tool. </shortdesc>
+		The updated tool adds new options to support partial restore operations. The tool still supports the existing options for full restores. 
+	</abstract>
+
+	<conbody>
+
+<p>The general format of the <codeph>cbrestore</codeph> command is:</p>
+		<codeblock>cbrestore [options] backup_dir destination</codeblock>
+
+
+<p>The following table describes the new incremental restore options:</p>
+
+		<table frame="all" id="table_wts_fw5_c4">
+			
+			<tgroup cols="2">
+				<thead>
+					<row>
+						<entry>Option</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry><codeph>--from-date=DATE</codeph></entry>
+						<entry>Restores the data beginning with the specified date. Data collected before this date is
+							not restored. </entry>
+					</row>
+					<row>
+						<entry><codeph>--to-date=DATE</codeph></entry>
+						<entry>Restores data ending with the specified date. Data collected after this date is not
+							restored.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+		<p>
+			The format of the <codeph>DATE</codeph> specification is <codeph>YYYY-MM-DD</codeph>, where: <dl>
+				<dlentry>
+					<dt><codeph>YYYY</codeph></dt>
+					<dd>4-digit year</dd>
+				</dlentry>
+				<dlentry>
+					<dt><codeph>MM</codeph></dt>
+					<dd>2-digit month</dd>
+				</dlentry>
+				<dlentry>
+					<dt><codeph>DD</codeph></dt>
+					<dd>2-digit day</dd>
+				</dlentry>
+			</dl>
+		</p>
+		
+		<p>The following example requests a restoration of data backed up between August 1, 2014 and
+			August 3, 2014. The &#x2011;b option specifies the name of the bucket to restore from the backup file and the &#x2011;B option specifies the name of the destination bucket in the cluster.</p>
+		
+		<codeblock>cbrestore  -b source-bucket -B destination-bucket --from-date=2014-08-01 --to-date=2014-08-03 /backups/backup-1 http://example.com:8091</codeblock>
+
+
+	</conbody>
+</concept>
