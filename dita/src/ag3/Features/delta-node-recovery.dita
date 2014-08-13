@@ -86,14 +86,23 @@
  
  
     <section><title>Delta node recovery failure scenarios</title>
-      <p>In general, if topology changes occur while a node is pending delta recovery, delta node
-        recovery is impacted. For example,  another node is added, a node is removed, or a node is
-        swapped. If certain bucket operations are performed while a node is pending delta recovery,
-        delta node recovery is impacted. For example, a new bucket is added, a bucket's replica
-        configuration is changed, or a bucket is flushed. The following scenarios identify when
-        delta node recovery either defaults to full recovery or is not available. </p>
+      
+      <p>The following are conditions where delta node recovery either defaults to full recovery or
+        is not available:</p>
+      <ul>
+        <li>If topology changes occur while a node is pending delta recovery, delta node
+          recovery is impacted. For example,  another node is added, a node is removed, or a node is
+          swapped. </li>
+        <li>If a down node is hard failed over and is marked for removal.</li>
+        <li>If rebalance-in-out operations are performed 
+          where the number of in and out nodes do not match (swap rebalance works in this case).</li>
+        <li>If certain bucket operations are performed while a node is pending delta recovery,
+          delta node recovery is impacted. For example, a new bucket is added, a bucket's replica
+          configuration is changed, or a bucket is flushed.</li>
+      </ul>
       
 
+        <p>The provides detailed scenarios where delta node recovery either defaults to full recovery or is not available. </p>
       
       <title>Node 1 is in delta recovery and Node 2, an active server node, crashes.</title>
       <ol>
