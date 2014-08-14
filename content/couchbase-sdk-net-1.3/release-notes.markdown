@@ -4,7 +4,7 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
-## Release Notes for Couchbase Client Library .NET 1.3.8 GA (5 July 2014)
+## Release Notes for Couchbase Client Library .NET 1.3.8 GA (13 August 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-8"></a>
 
