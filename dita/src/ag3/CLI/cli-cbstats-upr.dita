@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ik4_sxz_n4">
   <title>DCP statistics (CLI)</title>
-  <shortdesc>Statistics for the Database Change Protocol (DCP) are obtained via the CLI with the <codeph>cbstats</codeph> tool.</shortdesc>
+  <abstract><shortdesc>Statistics for Database Change Protocol (DCP) are obtained via the CLI with the <codeph>cbstats</codeph> tool.</shortdesc> The following table shows the options you can use with <codeph>cbstats</codeph> to retrieve DCP statistics:</abstract>
   <refbody>
     
     
@@ -52,66 +52,65 @@ cbstats HOST:11210 failovers
     
     
     <example><title>cbstats dcp</title>
+    	<p>The following example shows a <codeph>cbstats</codeph> request for all DCP-related statistics. The lengthy output is truncated.</p>
       
       <codeblock>
- # cbstats 10.5.2.54:11210 dcp
- 
+ # ./cbstats 10.5.2.54:11210 dcp
  ep_dcp_count:                                                                               6
  ep_dcp_items_remaining:                                                                     0
  ep_dcp_items_sent:                                                                          0
  ep_dcp_producer_count:                                                                      3
  ep_dcp_queue_backfillremaining:                                                             0
  ep_dcp_queue_fill:                                                                          0
- ep_dcp_total_bytes:                                                                         11264
+ ep_dcp_total_bytes:                                                                         6630
  ep_dcp_total_queue:                                                                         0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:connected:                      true
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:created:                        1812
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:pending_disconnect:             false
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:reserved:                       true
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_buffer_bytes:        0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_buffer_items:        0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_cur_snapshot_end:    18446744073709551615
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_cur_snapshot_start:  0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_cur_snapshot_type:   memory
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_end_seqno:           18446744073709551615
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_flags:               0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_items_ready:         false
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_last_received_seqno: 0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_opaque:              74
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_snap_end_seqno:      0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_snap_start_seqno:    0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_start_seqno:         0
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_state:               reading
- eq_uprq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_vb_uuid:             164761896165868
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:connected:                      true
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:created:                        1168
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:pending_disconnect:             false
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:reserved:                       true
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_buffer_bytes:        0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_buffer_items:        0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_cur_snapshot_type:   none
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_end_seqno:           18446744073709551615
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_flags:               0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_items_ready:         false
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_last_received_seqno: 0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_opaque:              73
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_snap_end_seqno:      0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_snap_start_seqno:    0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_start_seqno:         0
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_state:               reading
+ eq_dcpq:replication:ns_1@10.5.2.117->ns_1@10.5.2.54:default:stream_100_vb_uuid:             122364695596024
  ...
-    </codeblock></example>
+</codeblock></example>
     
    
     
     <example><title>cbstats dcpagg</title>
+    	<p>The following example shows a <codeph>cbstats</codeph> request for a set of aggregated DCP
+				statistics:</p>
       
-      <p>Aggregate statistics are provided by the <codeph>dcpagg</codeph> parameter.</p>
-      
-      <codeblock>
-# cbstats 10.5.2.54:11210 dcpagg
-
- :total:count:                   3
+<codeblock>
+# ./cbstats 10.5.2.54:11210 dcpagg
+ :total:backoff:                 0
+ :total:count:                   6
  :total:items_remaining:         0
  :total:items_sent:              0
  :total:producer_count:          3
  :total:total_backlog_size:      0
- :total:total_bytes:             11264
- replication:count:              3
+ :total:total_bytes:             6630
+ replication:backoff:            0
+ replication:count:              6
  replication:items_remaining:    0
  replication:items_sent:         0
  replication:producer_count:     3
  replication:total_backlog_size: 0
- replication:total_bytes:        11264
-   
+ replication:total_bytes:        6630
     </codeblock>
     </example>  
     
     <example><title>cbstats failovers</title>
+    	<p>The following example shows a <codeph>cbstats</codeph> request for failover logs. The lengthy output is truncated.</p>
       <codeblock>
 # cbstats 10.5.2.54:11210 failovers
 
@@ -119,17 +118,8 @@ cbstats HOST:11210 failovers
  vb_1000:0:seq:       0
  vb_1000:num_entries: 1
  ...
-        
-        
-      </codeblock>
+</codeblock>
     
-    </example>
-    
-
-    
-    
-   
-    
-    
+    </example>    
   </refbody>
 </reference>
