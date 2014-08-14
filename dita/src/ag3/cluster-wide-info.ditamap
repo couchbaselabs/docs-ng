@@ -8,6 +8,7 @@
 			<topicref href="Features/cluster-wide-info-cli-tool.dita" />
 			<topicref href="Features/cluster-wide-info-cbcollect-info-tool.dita" />
 		</topicref>
-		<topicref href="Features/cluster-wide-info-rest.dita" />
+		<!--
+		<topicref href="Features/cluster-wide-info-rest.dita" /> -->
 	</topicref>
 </map>
