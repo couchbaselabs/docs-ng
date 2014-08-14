@@ -55,9 +55,9 @@
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" width="38.02281368821293%" id="d84879e72">Payload Arguments</th>
+						<th class="entry" valign="top" width="38.02281368821293%" id="d86463e72">Payload Arguments</th>
 
-						<th class="entry" valign="top" width="61.97718631178707%" id="d84879e75">Description</th>
+						<th class="entry" valign="top" width="61.97718631178707%" id="d86463e75">Description</th>
 
 					</tr>
 
@@ -65,52 +65,52 @@
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">authType</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">authType</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Required parameter. Type of authorization to be enabled for the new
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Type of authorization to be enabled for the new
 							bucket as a string. Defaults to blank password if not specified. “sasl”
 							enables authentication. “none” disables authentication.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">bucketType</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">bucketType</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Required parameter. Type of bucket to be created. String value.
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Type of bucket to be created. String value.
 							“memcached” configures as Memcached bucket. “couchbase” configures as
 							Couchbase bucket</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">flushEnabled</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">flushEnabled</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Optional parameter. Enables the ‘flush all’ functionality on the
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. Enables the ‘flush all’ functionality on the
 							specified bucket. Boolean. 1 enables flush all support, 0 disables flush
 							all support. Defaults to 0.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">name</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">name</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Required parameter. Name for new bucket.</td>
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Name for new bucket.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">parallelDBAndViewCompaction</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">parallelDBAndViewCompaction</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Optional parameter. String value. Indicates whether database and view
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. String value. Indicates whether database and view
 							files on disk can be compacted simultaneously. Defaults to
 							“false.”</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">proxyPort</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">proxyPort</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Required parameter. Numeric. Proxy port on which the bucket
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Numeric. Proxy port on which the bucket
 							communicates. Must be a valid network port which is not already in use.
 							You must provide a valid port number if the authorization type is not
 							SASL.</td>
@@ -118,9 +118,9 @@
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">ramQuotaMB</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">ramQuotaMB</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Required parameter. RAM Quota for new bucket in MB. Numeric. The
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. RAM Quota for new bucket in MB. Numeric. The
 							minimum you can specify is 100, and the maximum can only be as great as
 							the memory quota established for the node. If other buckets are
 							associated with a node, RAM Quota can only be as large as the amount
@@ -130,54 +130,54 @@
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">replicaIndex</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">replicaIndex</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Optional parameter. Boolean. 1 enable replica indexes for replica
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. Boolean. 1 enable replica indexes for replica
 							bucket data while 0 disables. Default of 1.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">replicaNumber</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">replicaNumber</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Optional parameter. Numeric. Number of replicas to be configured for
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. Numeric. Number of replicas to be configured for
 							this bucket. Required parameter when creating a Couchbase bucket.
 							Default 1, minimum 0, maximum 3.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">saslPassword</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">saslPassword</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Optional Parameter. String. Password for SASL authentication.
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional Parameter. String. Password for SASL authentication.
 							Required if SASL authentication has been enabled.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><samp class="ph codeph">threadsNumber</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">threadsNumber</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and
 							writers for the data bucket. </td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 "><strong class="ph b">Return Codes</strong></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><strong class="ph b">Return Codes</strong></td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 ">202</td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 ">202</td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Accepted</td>
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Accepted</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 ">204</td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 ">204</td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Bad Request JSON with errors in the form of {“errors”: {…. }} name:
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Bad Request JSON with errors in the form of {“errors”: {…. }} name:
 							Bucket with given name already exists ramQuotaMB: RAM Quota is too large
 							or too small replicaNumber: Must be specified and must be a non-negative
 							integer proxyPort: port is invalid, port is already in use</td>
@@ -185,9 +185,9 @@
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d84879e72 ">404</td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 ">404</td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d84879e75 ">Object Not Found</td>
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Object Not Found</td>
 
 					</tr>
 

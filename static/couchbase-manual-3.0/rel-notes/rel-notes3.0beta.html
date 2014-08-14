@@ -5,12 +5,107 @@
   <h1 class="title topictitle1">Release notes (beta)</h1>
 
   <div class="body">
-    <p class="p">This release note is for the 3.0.0 BETA release. It contains a list of known issues.</p>
+    <p class="p">This release note is for the 3.0.0 BETA REFRESH release. It contains a list of known and
+      fixed issues.</p>
 
+    
+    <div class="section"><h2 class="title sectiontitle">Couchbase .NET incompatibility</h2>
+      <p class="p">An incompatibility between Microsoft
+        Framework 4.0 or earlier, the Couchbase .NET SDK 1.3.7 or earlier, and Couchbase Server 3.0
+        has been identified where the URL generated for a View operation on a Bucket is improperly
+        encoded has been discovered. This causes view requests to fail with the following message in
+        the body:</p>
+
+      <pre class="pre codeblock">"Design document not found, body: {"error":"not_found","reason":"missing"}"</pre>
+
+      <dl class="dl">
+        
+          <dt class="dt dlterm">Impact</dt>
+
+          <dd class="dd">The affected Microsoft .NET versions are 4.0 or earlier, Couchbase .NET SDK 1.3.7 or earlier,
+        and Couchbase Server 3.0 (including Beta) &gt;= 3.0. Microsoft .NET version 4.5 changes the way
+          <samp class="ph codeph">Uri.ToString</samp> handles it’s Unicode encoding, which resolves the issue,
+        thus clients running on that version or higher of the CLR are not impacted. Additionally,
+        Couchbase Server 2.5 and lower are not impacted.  
+            <div class="note note"><span class="notetitle">Note:</span> Couchbase .NET 1.3.8 has a patch which resolves the issue for all versions of Couchbase Server and Microsoft .NET Frameworks. </div>
+
+          </dd>
+
+        
+        
+          <dt class="dt dlterm">Workaround</dt>
+
+          <dd class="dd">In addition to the patch released with Couchbase .NET SDK version 1.3.8, add the
+            following element to your App.Config or Web.Config to enable support for all SDK and
+            Server versions. 
+            
+            <pre class="pre codeblock">&lt;uri&gt;
+    &lt;iriParsing enabled="true"/&gt;
+&lt;uri&gt;
+            </pre>
+
+            
+            <p class="p">Customers who are not ready or cannot upgrade their Couchbase .NET SDK’s to 1.3.8 or
+              greater are strongly advised to add this element to their deployments if they intend
+              to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
+
+          </dd>
+
+        
+      
+        
+          <dt class="dt dlterm">References</dt>
+
+          <dd class="dd"><a class="xref" href="https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change">https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change</a></dd>
+
+        
+      </dl>
+
+      
+        
+    </div>
+
+    
     
     <div class="section"><h2 class="title sectiontitle">Known issues</h2>
       
       <dl class="dl">
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11941" target="_blank">MB-11941</a></dt>
+
+          <dd class="dd">Online upgrade from 2.0 to 3.0 on Ubuntu 12.04 does not work</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11928" target="_blank">MB-11928</a></dt>
+
+          <dd class="dd">Rebalance with delta recovery exited with message "{badmatch, {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</dd>
+
+          
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11922" target="_blank">MB-11922</a></dt>
+
+          <dd class="dd">Upgrade to R16 causes 20% regression in view query latency and throughput</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11919" target="_blank">MB-11919</a></dt>
+
+          <dd class="dd">There is a 3-5x increase in index size during rebalance with views</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11899" target="_blank">MB-11899</a></dt>
+
+          <dd class="dd">Indexing progress statistic goes backwards</dd>
+
+        
+          
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11820" target="_blank">MB-11820</a></dt>
+
+          <dd class="dd">Beer-sample loading is stuck in a crashed state</dd>
+
+        
         
           <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11643" target="_blank">MB-11643</a></dt>
 
@@ -27,52 +122,10 @@
 
         
         
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11606" target="_blank">MB-11606</a></dt>
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11589" target="_blank">MB-11589</a></dt>
 
-          <dd class="dd">Error displayed when node did not mark to collect</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11597" target="_blank">MB-11597</a></dt>
-
-          <dd class="dd">KV+XDCR System test: Mutation replication rate for unidirectional XDCR is almost zero (900K items
-            remaining) while another bidirectional XDCR to the same cluster is ~10k ops/sec </dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11568" target="_blank">MB-11568</a></dt>
-
-          <dd class="dd">IP address does not show the same in each step of cluster-wide collect info.</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11434" target="_blank">MB-11434</a></dt>
-
-          <dd class="dd">600-800% CPU consumption by memcached on the source cluster. <p class="p">In XDCR scenarios, the
-              CPU usage for memcached process is more than two times the usage in the previous
-              release. This is due to increased scheduling overhead from the shared thread
-              pool.</p>
-<p class="p">Workaround: Reduce the number of threads on systems that have more than 30
-              cores.</p>
-</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11405" target="_blank">MB-11405</a></dt>
-
-          <dd class="dd">~2400% CPU consumption by memcached during ongoing workload with five (5) buckets.
-              <p class="p">In XDCR scenarios, the CPU usage for memcached process is more than two times the
-              usage in the previous release. This is due to increased scheduling overhead from the
-              shared thread pool. </p>
-<p class="p">Workaround: Reduce the number of threads on systems that
-              have more than 30 cores.</p>
-</dd>
-
-        
-        
-          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11383" target="_blank">MB-11383</a></dt>
-
-          <dd class="dd">warmup_min_items_threshold setting is not honored correctly in 3.0 warmup</dd>
+          <dd class="dd">Sliding <samp class="ph codeph">endseqno</samp> during initial index build or DCP reading from disk snapshot 
+            results in longer <samp class="ph codeph">stale=false</samp> query latency and index startup time</dd>
 
         
         
@@ -86,8 +139,49 @@
     </div>
 
     
+    
+    
     <div class="section"><h2 class="title sectiontitle">Fixed issues</h2>
-      <p class="p">Not applicable</p>
+      <dl class="dl">
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11866" target="_blank">MB-11866</a></dt>
+
+          <dd class="dd">wbeam.smp RSS suddenly increases to 45GB after an unexpected_binary error</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11720" target="_blank">MB-11720</a></dt>
+
+          <dd class="dd">Backfilling the entire vBucket can starve other streams that also need to backfill</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11606" target="_blank">MB-11606</a></dt>
+
+          <dd class="dd">Error displayed when node did not mark to collect</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11568" target="_blank">MB-11568</a></dt>
+
+          <dd class="dd">IP address does not show the same in each step of cluster-wide collect info.</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11405" target="_blank">MB-11405</a></dt>
+
+          <dd class="dd">Shared thread pool: high CPU overhead due to OS level context switches / scheduling</dd>
+
+        
+        
+          <dt class="dt dlterm"><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11383" target="_blank">MB-11383</a></dt>
+
+          <dd class="dd">warmup_min_items_threshold setting is not honored correctly in 3.0 warmup</dd>
+
+        
+        
+        
+      </dl>
 
 
     </div>

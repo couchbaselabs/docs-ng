@@ -7,34 +7,34 @@
 				<samp class="ph codeph">GET</samp> request.</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d92217e21">Get Maximum Parallel Indexers</th>
+	<th class="entry" valign="top" id="d93801e21">Get Maximum Parallel Indexers</th>
 
-	<th class="entry" valign="top" id="d92217e24">Description</th>
+	<th class="entry" valign="top" id="d93801e24">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d92217e21 "><strong class="ph b">Method</strong></td>
+	<td class="entry" valign="top" headers="d93801e21 "><strong class="ph b">Method</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e24 "><samp class="ph codeph">GET /settings/maxParallelIndexers</samp></td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d92217e21 "><strong class="ph b">Request Data</strong></td>
-
-	<td class="entry" valign="top" headers="d92217e24 ">None</td>
+	<td class="entry" valign="top" headers="d93801e24 "><samp class="ph codeph">GET /settings/maxParallelIndexers</samp></td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d92217e21 "><strong class="ph b">Response Data</strong></td>
+	<td class="entry" valign="top" headers="d93801e21 "><strong class="ph b">Request Data</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e24 ">JSON of the global and node-specific parallel indexer configuration</td>
+	<td class="entry" valign="top" headers="d93801e24 ">None</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d92217e21 "><strong class="ph b">Authentication Required</strong></td>
+	<td class="entry" valign="top" headers="d93801e21 "><strong class="ph b">Response Data</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e24 ">no </td>
+	<td class="entry" valign="top" headers="d93801e24 ">JSON of the global and node-specific parallel indexer configuration</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d93801e21 "><strong class="ph b">Authentication Required</strong></td>
+
+	<td class="entry" valign="top" headers="d93801e24 ">no </td>
 
 </tr>
 </tbody>
@@ -56,54 +56,54 @@ globally configured value, and individual node configuration:</p>
 				<samp class="ph codeph">globalValue</samp> argument.</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d92217e90">Set Maximum Parallel Indexers</th>
+	<th class="entry" valign="top" id="d93801e90">Set Maximum Parallel Indexers</th>
 
-	<th class="entry" valign="top" id="d92217e93">Description</th>
+	<th class="entry" valign="top" id="d93801e93">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><strong class="ph b">Method</strong></td>
+	<td class="entry" valign="top" headers="d93801e90 "><strong class="ph b">Method</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e93 "><samp class="ph codeph">POST /settings/maxParallelIndexers</samp></td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><strong class="ph b">Request Data</strong></td>
-
-	<td class="entry" valign="top" headers="d92217e93 ">None</td>
+	<td class="entry" valign="top" headers="d93801e93 "><samp class="ph codeph">POST /settings/maxParallelIndexers</samp></td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><strong class="ph b">Response Data</strong></td>
+	<td class="entry" valign="top" headers="d93801e90 "><strong class="ph b">Request Data</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e93 ">JSON of the global and node-specific parallel indexer configuration</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><strong class="ph b">Authentication Required</strong></td>
-
-	<td class="entry" valign="top" headers="d92217e93 ">yes</td>
+	<td class="entry" valign="top" headers="d93801e93 ">None</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><strong class="ph b">Payload Arguments</strong></td>
+	<td class="entry" valign="top" headers="d93801e90 "><strong class="ph b">Response Data</strong></td>
+
+	<td class="entry" valign="top" headers="d93801e93 ">JSON of the global and node-specific parallel indexer configuration</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><samp class="ph codeph">globalValue</samp></td>
+	<td class="entry" valign="top" headers="d93801e90 "><strong class="ph b">Authentication Required</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e93 ">Required parameter. Numeric. Sets the global number of parallel indexers. Minimum of 1, maximum 1024.</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 "><strong class="ph b">Return Codes</strong></td>
+	<td class="entry" valign="top" headers="d93801e93 ">yes</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d92217e90 ">400</td>
+	<td class="entry" valign="top" headers="d93801e90 "><strong class="ph b">Payload Arguments</strong></td>
 
-	<td class="entry" valign="top" headers="d92217e93 ">globalValue not specified or invalid </td>
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d93801e90 "><samp class="ph codeph">globalValue</samp></td>
+
+	<td class="entry" valign="top" headers="d93801e93 ">Required parameter. Numeric. Sets the global number of parallel indexers. Minimum of 1, maximum 1024.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d93801e90 "><strong class="ph b">Return Codes</strong></td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d93801e90 ">400</td>
+
+	<td class="entry" valign="top" headers="d93801e93 ">globalValue not specified or invalid </td>
 
 </tr>
 </tbody>

@@ -15,9 +15,9 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
     are unaffected. Users who want to run Couchbase Server 3.0 with CLR version 4.0 or earlier must either use version 1.3.8 of
     the Couchbase .NET SDK or provide the following elements in their App.Config or Web.Config to enable IriParsing:
 
-    <uri>
-        <iriParsing enabled="true"/>
-    </uri>
+	    <uri>
+	        <iriParsing enabled="true"/>
+	    </uri>
 
 * <a href="https://www.couchbase.com/issues/browse/NCBC-582">NCBC-564: Provide PDB Files with Binaries</a>
 

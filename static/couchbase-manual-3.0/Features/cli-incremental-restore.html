@@ -1,0 +1,114 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a><ul class="nav nav-list"><li><a href="../Features/dcp.html">Database Change Protocol</a></li><li><a href="../Features/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Features/bucket-eviction.html">Tunable memory</a></li><li><a href="../Features/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Features/graceful-failover.html">Graceful failover</a></li><li><a href="../Features/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Features/increment-backup.html">Incremental backup and restore</a><ul class="nav nav-list"><li><a href="../Features/cli-increment-backup.html">Performing an incremental backup (CLI)</a></li><li class="active"><a href="../Features/cli-incremental-restore.html">Performing an incremental restore (CLI)</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../Features/index-updates.html">Stream-based views</a></li><li><a href="../Features/xdcr-pause-resume.html">Pause and resume replication</a></li><li><a href="../Features/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Features/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Features/security-clientServer-comm.html">Encrypted data access</a></li><li><a href="../Features/security-client-ssl.html">Configuring clients for SSL</a></li><li><a href="../Features/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Performing an incremental restore (CLI)</h1>
+
+
+	
+
+	<div class="body conbody"><div class="abstract">
+		 <span class="shortdesc">Incremental restore operations are run by using the <samp class="ph codeph">cbbackup</samp>
+			command-line tool. </span>
+
+		The updated tool adds new options to support partial restore operations. The tool still supports the existing options for full restores. 
+	</div>
+
+
+<p class="p">The general format of the <samp class="ph codeph">cbrestore</samp> command is:</p>
+
+		<pre class="pre codeblock">cbrestore [options] backup_dir destination</pre>
+
+
+
+<p class="p">The following table describes the new incremental restore options:</p>
+
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_lxt_4qb_k4__table_wts_fw5_c4" class="table" frame="border" border="1" rules="all">
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d50959e41">Option</th>
+
+						<th class="entry" valign="top" id="d50959e44">Description</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d50959e41 d50959e44 "><samp class="ph codeph">--from-date=DATE</samp></td>
+
+						<td class="entry" valign="top" headers="d50959e41 d50959e44 ">Restores the data beginning with the specified date. Data collected before this date is
+							not restored. </td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d50959e41 d50959e44 "><samp class="ph codeph">--to-date=DATE</samp></td>
+
+						<td class="entry" valign="top" headers="d50959e41 d50959e44 ">Restores data ending with the specified date. Data collected after this date is not
+							restored.</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		
+		<div class="p">
+			The format of the <samp class="ph codeph">DATE</samp> specification is <samp class="ph codeph">YYYY-MM-DD</samp>, where: <dl class="dl">
+				
+					<dt class="dt dlterm"><samp class="ph codeph">YYYY</samp></dt>
+
+					<dd class="dd">4-digit year</dd>
+
+				
+				
+					<dt class="dt dlterm"><samp class="ph codeph">MM</samp></dt>
+
+					<dd class="dd">2-digit month</dd>
+
+				
+				
+					<dt class="dt dlterm"><samp class="ph codeph">DD</samp></dt>
+
+					<dd class="dd">2-digit day</dd>
+
+				
+			</dl>
+
+		</div>
+
+		
+		<p class="p">The following example requests a restoration of data backed up between August 1, 2014 and
+			August 3, 2014. The ‑b option specifies the name of the bucket to restore from the backup file and the ‑B option specifies the name of the destination bucket in the cluster.</p>
+
+		
+		<pre class="pre codeblock">cbrestore  -b source-bucket -B destination-bucket --from-date=2014-08-01 --to-date=2014-08-03 /backups/backup-1 http://example.com:8091</pre>
+
+
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Features/increment-backup.html" title="Incremental backup and restore enables administrators to quickly back up only modified data in the database, making backup and restore more efficient for larger data sets.">Incremental backup and restore</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>
