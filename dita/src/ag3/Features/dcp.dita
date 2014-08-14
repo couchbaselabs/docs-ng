@@ -6,15 +6,12 @@
   
   <body>
     <p>The Database Change Protocol (DCP) is a streaming protocol that significantly reduces latency
-      for view updates. With DCP, changes made to documents in-memory are immediately streamed to be
+      for view updates. With DCP, changes made to documents in memory are immediately streamed to be
       indexed without being written to disk. This provides faster view consistency which provides
       fresher data. DCP reduces latency for cross-datacenter replication. Data is replicated
       memory-to-memory from the source cluster to the destination cluster before being written to
       disk on the source cluster.</p>
-    
-    
-    
-
+ 
   </body>
  
 </topic>
