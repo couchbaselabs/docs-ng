@@ -8,6 +8,21 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 <a id="couchbase-sdk-net-rn_1-3-8"></a>
 
+* <a href="https://www.couchbase.com/issues/browse/NCBC-577">NCBC-577: Enable IriParsing for supporting Views w/Couchbase Server 3.0</a>
+
+    This fixes a breaking change in how Couchbase Server 3.0 handles View queries by associating a UUID with a Bucket and how
+    System.Uri handles unicode encoding across different versions of the CLR. Users running under .NET Framework 4.5 and greater
+    are unaffected. Users wishing to run Couchbase Server 3.0 with versions of the CLR <= 4.0, must either use this version (1.3.8) of
+    the Couchbase .NET SDK, or must provide the following elements in their App.Config or Web.Config to enable IriParsing:
+
+    <uri>
+        <iriParsing enabled="true"/>
+    </uri>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-582">NCBC-564: Provide PDB Files with Binaries</a>
+
+    PDB files are now included with binaries on S3.
+
 * <a href="http://www.couchbase.com/issues/browse/NCBC-564">NCBC-564: Respect JsonSerializer settings for deserialization.</a>
 
     This patch allows you to override the default JsonSerializer settings during deserialization. 
