@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_onr_w4j_dp">
+	<title>Client interface</title>
+	<shortdesc />
+	<conbody>
+
+		<p>Within Couchbase Server, the techniques and systems used to get information into and out of
+			the database differ according to the level and volume of data that you want to access. The
+			different methods can be identified according to the base operations of create, retrieve,
+			update and delete.</p>
+
+		<section><title>Create</title>
+			<p>Information is stored into the database using the memcached protocol interface to store
+				a <i>value</i> against a specified <i>key</i>. Bulk operations for setting the key/value
+				pairs of a large number of documents at the same time are available, and these are more
+				efficient than multiple smaller requests.</p>
+			<p>The value stored can be any binary
+				value, including structured and unstructured strings, serialized objects (from the
+				native client language), and native binary data (for example, images or audio). For use with
+				the Couchbase Server View engine, information must be stored using the JavaScript Object
+				Notation (JSON) format, which structures information as an object with nested fields,
+				arrays, and scalar data types.</p></section>
+
+		<section>
+			<title>Retrieve</title>
+			<p>To retrieve information from the database, there are two methods available: By Key and
+				By View</p>
+			<ul>
+				<li>By Key <p>If you know the key used to store a particular value, then you can use the
+						memcached protocol (or an appropriate memcached compatible client-library) to
+						retrieve the value stored against a specific key. You can also perform bulk
+						operations.</p></li>
+				<li>By View <p>If you do not know the key, you can use the View system to write a view
+						that outputs the information you need. The view generates one or more rows of
+						information for each JSON object stored in the database. The view definition
+						includes the keys (used to select specific or ranges of information) and values.
+						For example, you could create a view on contact information that outputs the JSON
+						record by the contact's name, and with a value containing the contacts address.
+						Each view also outputs the key used to store the original object. If the view
+						doesn't contain the information you need, you can use the returned key with the
+						memcached protocol to obtain the complete record.</p>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<title>Update</title>
+			<p>To update information in the database, you must use the memcached protocol interface.
+				The memcached protocol includes functions to directly update the entire contents, and
+				also to perform simple operations, such as appending information to the existing record,
+				or incrementing and decrementing integer values.</p>
+		</section>
+
+		<section><title>Delete</title>
+			<p>To delete information from Couchbase Server, you need to use the memcached protocol
+				which includes an explicit delete command to remove a key/value pair from the
+				server.</p><p>However, Couchbase Server also allows information to be stored in the
+				database with an expiry value. The expiry value states when a key/value pair should be
+				automatically deleted from the entire database, and can either be specified as a
+				relative time (for example, in 60 seconds), or absolute time (31st December 2012,
+				12:00pm).</p>
+		</section>
+
+
+	</conbody>
+</concept>

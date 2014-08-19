@@ -33,6 +33,7 @@
    <topicref href="Concepts/concept-rack-awareness.dita"/>
    <topicref href="Concepts/concept-nodeFailover.dita"/>
    <topicref href="Concepts/concepts-TAP.dita"/>
+  	<topicref href="Concepts/concept-client-interface.dita" />
    <topicref href="Concepts/concepts-statsMonitor.dita"/>
   </topicref>
   <topicref href="Concepts/bp-deployment-considerations.dita">
