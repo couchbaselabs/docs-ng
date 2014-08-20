@@ -6,8 +6,8 @@
  <body>
   
   <section><title>Installing on Ubuntu</title><p>To install:</p><ol>
-    <li>For Ubuntu version 12.04, you need to install a specific OpenSSL dependency by
-       running:<p><codeph> root-&gt; apt-get install libssl0.9.8 </codeph></p></li>
+    <li>For Ubuntu version 12.04, you need OpenSSL 1.x. Install a specific OpenSSL dependency by
+              running:<p><codeph> root-&gt; apt-get install libssl&lt;version> </codeph></p></li>
     <li>The Ubuntu Couchbase installation uses the DEB package. To install, use the
       <codeph>dpkg</codeph> command-line tool using the DEB file that you downloaded. The following
      example uses <codeph>sudo</codeph> which will require root-access to allow
