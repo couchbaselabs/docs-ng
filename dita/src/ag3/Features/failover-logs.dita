@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_jr2_zgq_dp">
+ <title>Failover logs</title>
+ <shortdesc>Failover logs contain vBucket mutation histories and are used to manage recovery from
+		failure scenarios.</shortdesc>
+ <conbody>
+  <p>Couchbase Server maintains failover logs for all vBuckets, no matter what state the vBucket is
+			in. Each entry in a failover log is a data pair that consists of a universally unique
+			identifier (UUID) and a  sequence number. The UUID is a random 64-bit value that identifies
+			a mutation history. The sequence number identifies the highest sequence number in the
+			history. Every time the writer of the history changes, a failover log entry is made. You
+			can use the cbstats CLI tool to view failure logs.</p>
+ </conbody>
+</concept>
