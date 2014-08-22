@@ -34,48 +34,6 @@
         communicate with server node on a secure channel. </li>
     </ol>
     
-    <section><title>Secure cluster REST API</title>
-      <p>The following summarizes the HTTP methods used for defining data encryption:</p>
-      
-      
-    </section>
-    <table frame="all" id="table_dnc_hzf_44">
-      <title>URI paths for  secure communication</title>
-      <tgroup cols="2">
-        <colspec colname="c1" colnum="1" colwidth="1*"/>
-        <colspec colname="c2" colnum="2" colwidth="1.37*"/>
-        <colspec colnum="3" colname="c3" colwidth="1.71*"/>
-        <thead>
-          <row>
-            <entry>HTTP method</entry>
-            <entry>URI path</entry>
-            <entry>Destription</entry>
-          </row>
-        </thead>
-        <tbody>
-          <row>
-            <entry>GET</entry>
-            <entry>/pools/default/certificate</entry>
-            <entry>Retrieves the SSL self-signed certificate from the  cluster.</entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
-    
-    
-    <section><title>Syntax for retrieving the certificate</title>
-      <codeblock>
-curl –X GET  -u adminName:adminPassword
-    http://localHost:Port/pools/default/certificate > ./&lt;certificate_name>     
-    </codeblock>
-    </section>
-    
-    <example><title>Retrieving the certificate</title>
-      <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > clusterCertificate</codeblock>
-      <codeblock>wget http://10.5.2.54:8091/pools/default/certificate -O clusterCertificate</codeblock>
-      
-    </example>
-    
     <example><title>SSL certificate</title>
       <codeblock>-----BEGIN CERTIFICATE-----
 MIIC/jCCAeigAwIBAgIIE3jc9BofgigwCwYJKoZIhvcNAQEFMCQxIjAgBgNVBAMT
@@ -98,12 +56,42 @@ rqw=
 -----END CERTIFICATE-----</codeblock>
     </example>
     
-    <codeblock>
-      curl --cacert clusterCertificate https://10.5.2.54:18091/pools/default
+    <section><title>Using the Web Console for encrypted access</title>
+      <p>The certificate is obtained in a variety of methods depending on your preference and the operating system. 
+        Either use REST or the Web Console to retrieve the certificate and store in a file. 
+        With the Web Console, copy certificate from <uicontrol>Settings > Certificate > Show certificate</uicontrol> and paste into a file.</p>
+        
+      
+    </section>
+    
+    <section><title>Using REST for encrypted access</title>
+      <p>The <codeph>GET /pools/default/certificate</codeph> REST API HTTP method and URI retrieves the SSL self-signed certificate from the cluster.</p>
+      
+      
+    
+
+    
+    
+    <title>Syntax for retrieving the certificate</title>
+      <codeblock>curl –X GET  -u adminName:adminPassword
+    http://localHost:Port/pools/default/certificate > ./&lt;certificate_name>     
     </codeblock>
-    <codeblock>
-      wget --ca-certificate clusterCertificate  https://10.5.2.54:18091/pools/default -O output
-    </codeblock>
+
+    <title>Retrieving the certificate</title>
+      <p>The following examples use curl and wget to retrieve the certificat</p>
+      <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > clusterCertificate</codeblock>
+      <codeblock>wget http://10.5.2.54:8091/pools/default/certificate -O clusterCertificate</codeblock>
+
+    <title>Retrieving data with encryption</title>
+      <p>The following examples use <codeph>curl</codeph> and <codeph>wget</codeph> with the SSL certificate to retrieve cluster information over an encrypted connection. 
+      The port used is the encrypted REST port, <codeph>18091</codeph></p>
+    
+    <codeblock>curl --cacert clusterCertificate https://10.5.2.54:18091/pools/default</codeblock>
+    <codeblock>wget --ca-certificate clusterCertificate  https://10.5.2.54:18091/pools/default -O output</codeblock>
+      
+    
+      
+    </section>
    
     
     
