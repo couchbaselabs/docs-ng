@@ -49,26 +49,7 @@
      <codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/</codeph>.</p>
   </section>
   
-  <section><title>Installing on Mac OS X as non-root, non-sudo</title>
-   <p><b>This installation is for
-     development purposes only.</b> There may be cases when you want to install the server as a
-    non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
-    able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OS X:</p>
-   <ol>
-    <li>After you download Couchbase Server, open Terminal and go to the Downloads
-       directory:<p><codeph> cd ~/Downloads/ </codeph></p></li>
-    <li>Unzip the package containing Couchbase Server:<p><codeph> open
-       couchbase-server-enterprise_x86_64_2.1.0.zip </codeph></p></li>
-    <li>Move Couchbase App to your <codeph>/Applications</codeph> folder:<p><codeph> mv
-       couchbase-server-enterprise_x86_64_2.1.0/Couchbase\ Server.app /Applications/
-     </codeph></p></li>
-    <li>Start the server from Terminal:<p><codeph> open /Applications/Couchbase\ Server.app
-      </codeph></p><p>This will enable you to use Couchbase Server as a non-sudo, non-root
-     user.</p></li>
-    <li>To stop the server, Click on the Couchbase icon in the menu bar and select Quit Couchbase
-     Server.</li>
-   </ol>
-  </section>
+  
  </body>
  <related-links>
   <linklist><title>Related topics</title>

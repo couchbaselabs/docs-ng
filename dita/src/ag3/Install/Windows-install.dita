@@ -11,6 +11,7 @@
       the machine before you start the installation process. You also need administrator privileges
       on the machine where you install it.</p>
     
+    
     <p>The TCP/IP port allocation on Windows by default includes a restricted number of ports
       available for client communication. For more information on this issue, including information
       on how to adjust the configuration and increase the available ports, see the MSDN: Avoiding
@@ -34,26 +35,23 @@
     
     <section><title>Installation wizard</title>
       <ol>
-        <li>Double click on the downloaded executable file.
-          <p>The installer for windows will detect
-            if any redistributable packages included with Couchbase need to be installed or not. If
-            these packaged are not already on your system, the install will automatically install
-            them along with Couchbase Server.</p>
-        </li>
-        <li>Follow the install wizard to complete the installation.
-          <p>You will be prompted with the
+        <li>Double click on the downloaded executable file. <p>The installer for Windows detects if
+            any redistributable packages included with Couchbase need to be installed or not. If
+            these packages are not already on your system, the install automatically installs them
+            along with Couchbase Server.</p></li>
+        <li>Follow the install wizard to complete the installation. <p>You will be prompted with the
               <codeph>Installation Location</codeph> screen. You can change the location where the
             Couchbase Server application is located. Note that this does not configure the location
-            of where the persistent data will be stored, only the location of the server
+            of where the persistent data is stored, only the location of the server
             itself.</p><p>The installer copies necessary files to the system. During the
-            installation process, the installer will also check to ensure that the default
+            installation process, the installer also checks to ensure that the default
             administration port is not already in use by another application. If the default port is
-            unavailable, the installer will prompt for a different port to be used for
-            administration of the Couchbase server. The installer asks you to set up sufficient
-            ports available for the node. By default Microsoft Server will not have an adequate
-            number of ephemeral ports, see <i>Microsoft Knowledge Base Article 196271</i></p>
-              <image href="../images/windows_port_check.png" width="300"></image>
-            </li>
+            unavailable, the installer prompts for a different port to be used for administration of
+            the Couchbase server. The installer asks you to set up sufficient ports available for
+            the node. By default Microsoft Server will not have an adequate number of ephemeral
+            ports, see <i>Microsoft Knowledge Base Article 196271</i></p>
+          <image href="../images/windows_port_check.png" width="300"/>
+        </li>
         <li>Click <uicontrol>Yes</uicontrol>.
           <p>Without a sufficient number of ephemeral ports, a Couchbase cluster
             fails during rebalance and backup; other operations such as client requests will
@@ -63,30 +61,10 @@
             </li>
         <li>Restart the server for the port changes to be applied.</li>
       </ol>
-      <p>After installation you should follow the server setup instructions. </p></section>
+      <p>After installation, follow the server setup instructions. </p></section>
     
     
-    <section><title>Unattended installation</title><p>To use the unattended installation process,
-        you first record your installation settings in wizard installation. These settings are saved
-        to a file. You can use this file to silently install other nodes of the same
-        version.</p>
-      <p>To record your install options, open a Command Terminal or Power and start
-        the installation executable with the <codeph>/r</codeph> command-line
-        option:</p><codeblock><codeph>&gt; couchbase_server_version.exe /r /f1your_file_name.iss
-</codeph></codeblock><p>You
-        will be prompted with installation options, and the wizard will complete the server install.
-        We recommend you accept an increase in <codeph>MaxUserPort</codeph>. A file with your
-        options will be recorded at <codeph>C:\Windows\your_file_name.iss</codeph>.</p>
-      <p>To perform
-        an installation using this recorded setup file, copy the <codeph>your_file_name.iss</codeph>
-        file into the same directory as the installer executable. Run the installer from the
-        command-line using the <codeph>/s</codeph>
-        option:</p><codeblock><codeph>&gt; couchbase_server_version.exe /s -f1your_file_name.iss
-</codeph></codeblock><p>You
-        can repeat this process on multiple machines by copying the install package and the
-          <codeph>your_file_name.iss</codeph> file to the same directory on each
-      machine.</p>
-    </section>
+    
   </body>
   <related-links>
     <linklist><title>Related topics</title>

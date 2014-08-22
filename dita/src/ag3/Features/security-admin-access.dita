@@ -2,8 +2,8 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_pgw_k2h_14">
   <title>Encrypted admin access</title>
-  <shortdesc>Encrypted administrator access provides encrypted REST API access using Secure Socket
-    Layer (SSL) authentication. </shortdesc>
+  <shortdesc>Encrypted administrator access provides access using Secure Socket Layer (SSL)
+    authentication. </shortdesc>
   <body>
     
     <p>The encrypted communication allows a connection to be configured for security using Secure Sockets Layer (SSL) encryption. 
@@ -12,8 +12,7 @@
     
     <p>The server generates a self-signed certification for the initial node which is propagated
       throughout the server nodes in the cluster. If the self-signed certificate is regenerated or
-      updated as part of setting up XDCR data encryption (or for any other reason), the certificate
-      retrieved by the client must be obtained again before secure server communication is
+      updated, the certificate must be obtained again before secure server communication is
       re-established. The secure connection is on the cluster-level (rather than bucket-level) and
       is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
     
@@ -28,12 +27,11 @@
     <p>Secure administrative access is configured using the same method used for encrypted client-server communication:</p>
     
     <ol>
-      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP, and
-        using the administrator username and password.</li>
+      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP.</li>
       <li>Retrieve the SSL self-signed certificate and store in a local file, for example,
-          <codeph>clusterCert.pem</codeph>.</li>
-      <li>Create the cluster remote reference using the an encrypted port, 18091 REST HTTP or
-        18092 CAPI HTTP, and enabling data encryption.</li>
+          <codeph>clusterCertificate</codeph>.</li>
+      <li>Connect to the server through an encrypted port, 18091 REST HTTP or 18092 CAPI HTTP to
+        communicate with server node on a secure channel. </li>
     </ol>
     
     <section><title>Secure cluster REST API</title>
@@ -60,21 +58,6 @@
             <entry>/pools/default/certificate</entry>
             <entry>Retrieves the SSL self-signed certificate from the  cluster.</entry>
           </row>
-          <row>
-            <entry>GET</entry>
-            <entry>/pools/default/remoteClusters</entry>
-            <entry>Retrieves the remote cluster reference.</entry>
-          </row>
-          <row>
-            <entry>POST</entry>
-            <entry>/pools/default/remoteClusters</entry>
-            <entry>Creates the remote cluster reference.</entry>
-          </row>
-          <row>
-            <entry>PUT</entry>
-            <entry>/pools/default/remoteClusters</entry>
-            <entry>Modifies the remote cluster reference.</entry>
-          </row>
         </tbody>
       </tgroup>
     </table>
@@ -88,7 +71,8 @@ curl –X GET  -u adminName:adminPassword
     </section>
     
     <example><title>Retrieving the certificate</title>
-      <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > ./clusterCert.pem</codeblock>
+      <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > clusterCertificate</codeblock>
+      <codeblock>wget http://10.5.2.54:8091/pools/default/certificate -O clusterCertificate</codeblock>
       
     </example>
     
@@ -114,24 +98,13 @@ rqw=
 -----END CERTIFICATE-----</codeblock>
     </example>
     
-    <section><title>Syntax for creating an encrypted server connection</title>
-      <p>A POST to <codeph>/pools/default/remoteClusters</codeph> creates the remote cluster reference. 
-        Setting the <codeph>demandEncryption</codeph> to one (1) and providing the certificate name and location enables data encryption.</p>
-      
-      <codeblock>
-curl –X POST  -u Admin:myPassword
-    https://localHost:sslPort/pools/default/remoteClusters
-    -d demandEncryption=[0|1] --data-urlencode "certificate=$(cat clusterCert.pem)"
-      </codeblock>
-      
-    </section>
-    
-    <example><title>Creating an encrypted server connection</title>
-      <codeblock>curl –X POST
-    https://Administrator:asdasd@192.168.0.1:18091/pools/default/remoteClusters/
-    -d demandEncryption=1 --data-urlencode "certificate=$(cat clusterCert.pem)"     </codeblock>
-    </example>
-    
+    <codeblock>
+      curl --cacert clusterCertificate https://10.5.2.54:18091/pools/default
+    </codeblock>
+    <codeblock>
+      wget --ca-certificate clusterCertificate  https://10.5.2.54:18091/pools/default -O output
+    </codeblock>
+   
     
     
   </body>

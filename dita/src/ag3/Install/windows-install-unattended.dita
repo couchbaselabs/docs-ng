@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_tzd_jjf_2p">
+  <title>Unattended installation</title>
+  <shortdesc>An unattended installation refers to using a script to install Couchbase Server.</shortdesc>
+  <body>
+    
+    <p>To use the unattended installation process:</p>
+    <ol>
+      <li>First record your installation settings in the wizard installation. These settings are saved to a file. 
+        This file is used to silently install other nodes of the same version.
+        <ol>
+          <li>Open a Command Terminal or Power and start the installation
+            executable with the <codeph>/r</codeph> command-line
+            option:
+            <codeblock>&gt; couchbase_server_version.exe /r /f1your_file_name.iss</codeblock></li>
+          <li>Provide your installation options when prompted. 
+            The wizard complete the server installation and provides a file with your
+            recorded options at <codeph>C:\Windows\your_file_name.iss</codeph>.
+            <note type="note">Accept an increase in <codeph>MaxUserPort</codeph> (recommended).</note></li>
+        </ol>
+      </li>
+      <li>Copy the <codeph>your_file_name.iss</codeph> file into the same directory as the installer executable. 
+        Run the installer from the command-line using the <codeph>/s</codeph>
+        option:
+        <codeblock>&gt; couchbase_server_version.exe /s -f1your_file_name.iss</codeblock>
+      </li>
+      <li>To repeat this process on multiple machines, copy the install package and the
+        <codeph>your_file_name.iss</codeph> file to the same directory on each machine.</li>
+    </ol>
+      
+     
+  </body>
+</topic>

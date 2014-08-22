@@ -102,7 +102,7 @@ var myBucket = myCluster.openBucket();</codeblock></li>
 			<ol>
 				<li>Get the SSL certificate from Couchbase Server.</li>
 				<li>Store the certificate in the appropriate certificate storage area for your environment.</li>
-				<li>TBD</li>
+				<li>Enable SSL support on the client.</li>
 			</ol>
 		</section>
 
