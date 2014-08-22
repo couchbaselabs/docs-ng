@@ -60,7 +60,7 @@ Platform | Directory
 ---------|-----------------------------------------------------------------
 Linux    | `/opt/couchbase/var/lib/couchbase/data`                         
 Windows  | `C:\Program Files\couchbase\server\var\lib\couchbase\data`      
-Mac OS X | `~/Library/Application Support/Couchbase/var/lig/couchbase/data`
+Mac OS X | `~/Library/Application Support/Couchbase/var/lib/couchbase/data`
 
 This path can be changed for each node at setup either via the Web UI setup
 wizard, using the [REST API](../cb-rest-api/#couchbase-admin-restapi) or using the Couchbase CLI:
