@@ -102,7 +102,7 @@
    <topicref href="XDCR/xdcr-architecture.dita"/>
    <topicref href="XDCR/xdcr-topologies.dita"/>
    <topicref href="XDCR/xdcr-topologies-adv.dita"/>
-   <topicref href="XDCR/xxdcr-memcachedReplication.dita"/>
+   <topicref href="XDCR/xdcr-memcachedReplication.dita"/>
    <topicref href="XDCR/xdcr-systemOutage.dita"/>
    <topicref href="XDCR/xdcr-docs.dita"/>
    <topicref href="XDCR/xdcr-flushRequests.dita"/>
