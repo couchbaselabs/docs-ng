@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_dp4_b4l_34">
+	<title>Collecting diagnostics via couchbase-cli</title>
+	<shortdesc>You can start, stop, and view status of a diagnostics collection by using the couchbase-cli tool.</shortdesc>
+	<conbody>
+		<section>
+			<title>Start log collection command</title>
+			<p>The start log collection command initiates a log collection process. You must specify
+				whether to collect logs from all nodes or only specified nodes. You can optionally
+				request the logs to be uploaded to Couchbase. If you request an upload to Couchbase, you
+				must include the name of your organization and optionally a support ticket number. The
+				command uses the following syntax:</p>
+			<synph>
+				<kwd>couchbase-cli</kwd>
+				<kwd>collect-logs-start</kwd>
+				<option>-c</option>
+				<var>host</var>:8091 <option>-u</option>
+				<var>username</var>
+				<option>-p</option>
+				<var>password</var>
+				<delim>{</delim>
+				<option>--nodes</option><oper>=</oper><var>node1,node2,...</var>
+				<delim>|</delim>
+				<option>--all-nodes</option>
+				<delim>}</delim> [--upload <option>--upload-host</option><delim>=</delim><var>host</var>
+				<option>--customer</option><oper>=</oper><var>name</var>
+					[<option>--ticket</option><oper>=</oper><var>ticketNumber</var> ] ] </synph>
+		</section>
+
+		<section>
+			<title>Stop log collection command</title>
+			<p>The stop log collection command cancels collection on each node. It uses the following
+				syntax:</p>
+			<synph>
+				<kwd>couchbase-cli</kwd>
+				<kwd>collect-logs-stop</kwd>
+				<option>-c</option>
+				<var>host</var>:8091 <option>-u</option>
+				<var>username</var>
+				<option>-p</option>
+				<var>password</var>
+			</synph>
+		</section>
+
+		<section>
+			<title>Report log collection status command</title>
+			<p>The report log collection status command returns information about each node. It uses
+				the following syntax:</p>
+			<synph>
+				<kwd>couchbase-cli</kwd>
+				<kwd>collect-logs-status</kwd>
+				<option>-c</option>
+				<var>host</var>:8091 
+				<option>-u</option>
+				<var>username</var>
+				<option>-p</option>
+				<var>password</var>
+			</synph>
+		</section>
+	</conbody>
+</concept>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_bd3_rjq_54">
+	<title>Encrypted data access</title>
+	<abstract>
+		<shortdesc>The Couchbase Server client libraries support client-side encryption using the
+			Secure Sockets Layer (SSL) protocol. Enterprise Edition only.</shortdesc>To enable SSL
+		on the client-side, you need to get an SSL certificate from Couchbase Server, as described
+		in <xref format="dita" scope="local" href="security-clientServer-comm.dita"/>, and then
+		follow the steps specific to the client you are using. </abstract>
+	<conbody>
+		<p>The following clients support SSL:</p>
+		<ul>
+			<li>Java</li>
+			<li>.NET</li>
+			<li>Node.js</li>
+			<li>PHP</li>
+			<li>C</li>
+		</ul>
+		<section id="java-ssl">
+			<title>Configuring the Java client for SSL</title>
+			<p>To configure SSL for the Java client:</p>
+			<ol>
+				<li>Get the SSL certificate from Couchbase Server.</li>
+				<li>Store the certificate in your Java virtual machine (JVM) keystore.
+					<codeblock outputclass="language-bourne">$ keytool -import -file certificate-file-name</codeblock></li>
+
+				<li>Enable SSL by modifying the <filepath>reference.conf</filepath> configuration
+						file.
+					<p>Set <codeph>sslEnabled</codeph> to <codeph>true</codeph>, specify the path to the
+						keystore, and provide the keystore password, as shown in the following
+						example:</p>
+					<codeblock>com.couchbase.client.bootstrap {
+    sslEnabled = true
+    sslKeystoreFile = /path/to/keystorefile
+    sslKeystorePassword = ""
+}</codeblock></li>
+			</ol>
+		</section>
+
+		<section id="net-ssl">
+			<title>Configuring the .NET client for SSL</title>
+			<p>To configure SSL for the .NET client:</p>
+			<ol>
+				<li>Get the SSL certificate from Couchbase Server.</li>
+				<li>Store the certificate in the Microsoft Windows Trusted Root Certification
+					Authorities certificate store.</li>
+				<li>Enable SSL support on the client.
+					<p>You can enable SSL at either the cluster level or on a per-Bucket basis. Setting
+						SSL support at the cluster level means that all buckets within the cluster will
+						use SSL. If you want to use SSL only on specific buckets, just configure your
+						individual bucket to use SSL. Here's some examples:</p>
+					
+<codeblock>var config = new ClientConfiguration()
+{
+   UseSsl = true
+};
+var cluster = new CouchbaseCluster(config);
+using (var bucket = cluster.OpenBucket())
+{
+	//all buckets opened with this configuration will use SSL
+}  
+ 
+var config = new ClientConfiguration
+{
+	BucketConfigs = new Dictionary&lt;string, BucketConfiguration>
+	{
+		{"customers", new BucketConfiguration
+			{
+			UseSsl = true
+			}}
+		}
+	};
+var cluster = new CouchbaseCluster(config);
+using (var bucket = cluster.OpenBucket("customers"))
+{
+	//only the customers bucket will use SSL
+}
+</codeblock>
+
+				</li>
+			</ol>
+		</section>
+
+		<section id="node-ssl">
+			<title>Configuring the Node.js client for SSL</title>
+			<p>To configure SSL for Node.js:</p>
+			<ol>
+				<li>Get the SSL certificate from Couchbase Server.</li>
+				<li>Store the certificate in the appropriate certificate storage area for your environment.</li>
+				<li>Pass an SSL scheme with your connection string when creating your cluster object, as
+					shown in the following example:
+					<codeblock>var couchbase = require('couchbase');
+var myCluster = new couchbase.Cluster('couchbases://10.1.1.1');
+var myBucket = myCluster.openBucket();</codeblock></li>
+			</ol>
+		</section>
+
+		<section id="php-ssl">
+			<title>Configuring the PHP client for SSL</title>
+			<p>To configure SSL for PHP:</p>
+			<ol>
+				<li>Get the SSL certificate from Couchbase Server.</li>
+				<li>Store the certificate in the appropriate certificate storage area for your environment.</li>
+				<li>Enable SSL support on the client.</li>
+			</ol>
+		</section>
+
+		<section id="c-ssl">
+			<title>Configuring the C client for SSL</title>
+			<p>To configure SSL for C:</p>
+			<ol>
+				<li>Get the SSL certificate from Couchbase Server.</li>
+				<li>Store the certificate in the appropriate certificate storage area for your environment.</li>
+				<li>Pass an SSL scheme with your connection string when creating your cluster object, as
+					shown in the following example:
+					<codeblock>cropts.v.v3.connstr = "couchbases://securehost.net/mybucket?ca_path=server_ca.pem";</codeblock></li>
+			</ol>
+			
+		</section>
+
+
+
+	</conbody>
+</concept>
