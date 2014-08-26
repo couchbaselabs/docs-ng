@@ -10,39 +10,44 @@
   </topicref>
   <topicref href="Features/global-thread-pool.dita"/>
   <topicref href="Features/bucket-eviction.dita">
-   <topicref href="Features/ui-task-bucket-metadata-ejection.dita"/>
+   <topicref href="UI/ui-task-bucket-metadata-ejection.dita" navtitle='Managing metadata in memory via UI'/>
    <topicref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>
    <topicref href="REST/rest-bucket-metadata-ejection.dita"/>
   </topicref>
   <topicref href="Features/bucket-priority.dita">
-   <topicref href="Features/ui-task-set-bucket-priority.dita"/>
-   <topicref href="Features/cli-set-disk-priority.dita"/>
-   <topicref href="Features/rest-set-bucket-priority.dita"/>
+   <topicref href="UI/ui-task-set-bucket-priority.dita"/>
+   <topicref href="CLI/cli-set-disk-priority.dita"/>
+   <topicref href="REST/rest-set-bucket-priority.dita"/>
   </topicref>
   <topicref href="Features/graceful-failover.dita">
-   <topicref href="Features/ui-task-failover-graceful.dita"/>
-   <topicref href="Features/cli-failover-graceful.dita"/>
-   <topicref href="Features/rest-failover-graceful.dita"/>
+   <topicref href="UI/ui-task-failover-graceful.dita"/>
+   <topicref href="CLI/cli-failover-graceful.dita"/>
+   <topicref href="REST/rest-failover-graceful.dita"/>
   </topicref>
   <topicref href="Features/delta-node-recovery.dita">
-   <topicref href="Features/ui-task-node-recovery-incremental.dita"/>
-   <topicref href="Features/cli-node-recovery-incremental.dita"/>
-   <topicref href="Features/rest-node-recovery-incremental.dita"/>
+   <topicref href="UI/ui-task-node-recovery-incremental.dita"/>
+   <topicref href="CLI/cli-node-recovery-incremental.dita"/>
+   <topicref href="REST/rest-node-recovery-incremental.dita"/>
   </topicref>
-  <topicref href="Features/increment-backup.dita">
-   <topicref href="Features/cli-increment-backup.dita"/>
-   <topicref href="Features/cli-incremental-restore.dita"/>
+  <topicref href="Tasks/tasks-backup-restore-incremental.dita">
+   <topicref href="CLI/cli-increment-backup.dita"/>
+   <topicref href="CLI/cli-incremental-restore.dita"/>
   </topicref>
-  <topicref href="Features/index-updates.dita"/>
-  <topicref href="Features/xdcr-pause-resume.dita">
-   <topicref href="Features/ui-xdcr-pause-resume.dita"/>
-   <topicref href="Features/cli-xdcr-pause-resume.dita"/>
-   <topicref href="Features/rest-xdcr-pause-resume.dita"/>
+  <topicref href="Views/views-index-updates.dita"/>
+  <topicref href="XDCR/xdcr-pause-resume.dita">
+   <topicref href="UI/ui-xdcr-pause-resume.dita"/>
+   <topicref href="CLI/cli-xdcr-pause-resume.dita"/>
+   <topicref href="REST/rest-xdcr-pause-resume.dita"/>
   </topicref>
-  <topicref href="Features/xdcr-memory-replication.dita"/>
-  <topicref href="Features/security-admin-access.dita"/>
-		<topicref href="Features/security-client-ssl.dita" />
-  <topicref href="cluster-wide-info.ditamap" format="ditamap"/>
+  <topicref href="XDCR/xdcr-memory-replication.dita"/>
+  <topicref href="Misc/security-admin-access.dita"/>
+		<topicref href="Misc/security-client-ssl.dita" />
+  <topicref href="Features/cluster-wide-info-intro.dita" >
+      <topicref href="UI/ui-cluster-wide-info.dita" />
+      <topicref href="CLI/cbcli/cbcli-cluster-wide-info.dita" />
+      <topicref href="CLI/cbcollect-cluster-wide-info.dita" />
+      <!-- <topicref href="REST/rest-cluster-wide-info.dita" /> -->
+   </topicref>
 
  </topicref>
 </map>

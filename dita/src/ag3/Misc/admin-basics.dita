@@ -3,14 +3,32 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic1647">
  <title>Administration basics</title>
+ <shortdesc>The administration tools are the Web Console, Command-line interface (CLI) and REST API.</shortdesc>
+ 
  <body>
-  <p>Couchbase administration is primarily supported through the following methods:</p>
-  
-  <ul>
-   <li>Web Console</li>
-   <li>Command-line interface</li>
-   <li>REST API</li>
-  </ul>
+  <p>Couchbase Server was designed to be as easy to use as possible, and does not require constant
+    attention. Administration is however offered in a number of different tools and systems.</p>
+   <p>Couchbase Server provides the following solutions for managing and monitoring your Couchbase Server
+    and cluster:</p>
+   <ul>
+    <li><b>Web Console</b>
+     <p>Couchbase Server includes a built-in web-administration console that provides a complete
+      interface for configuring, managing, and monitoring your Couchbase Server installation.</p>
+    </li>
+    <li><b>Command-line Interface (CLI)</b>
+     <p>Couchbase Server includes a suite of command-line tools that provide information and control
+      over your Couchbase Server and cluster installation. These can be used in combination with
+      your own scripts and management procedures to provide additional functionality, such as
+      automated failover, backups and other procedures. The command-line tools make use of the REST
+      API.</p>
+    </li>
+    <li><b>REST API</b>
+     <p>In addition to the Web Administration console, Couchbase Server incorporates a management
+      interface exposed through the standard HTTP REST protocol. This REST interface can be called
+      from your own custom management and administration scripts to support different
+      operations.</p>
+    </li>
+   </ul>
   
   <section><title>Accessing Couchbase Server directly</title>
   <p>To access Couchbase Server and use the CLI or REST API directly, 
@@ -34,7 +52,7 @@
   
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../Install/install-browsers.dita"/>
    <link href="../CLI/cli-overview.dita"></link>
    <link href="../REST/overview-rest-api.dita"></link>

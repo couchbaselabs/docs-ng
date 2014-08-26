@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ik4_sxz_n4">
-  <title>DCP statistics (CLI)</title>
+  <title>DCP statistics</title>
   <abstract><shortdesc>Statistics for Database Change Protocol (DCP) are obtained via the CLI with the <codeph>cbstats</codeph> tool.</shortdesc> The following table shows the options you can use with <codeph>cbstats</codeph> to retrieve DCP statistics:</abstract>
   <refbody>
     

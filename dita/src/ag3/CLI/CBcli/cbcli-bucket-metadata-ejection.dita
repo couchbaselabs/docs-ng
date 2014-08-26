@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ed5_pm5_j4">
-  <title>Managing metadata in memory (CLI)</title>
+  <title>Managing metadata in memory</title>
 
   <shortdesc>Metadata ejection from memory is set with the <codeph>couchbase-cli</codeph>
     tool.</shortdesc>

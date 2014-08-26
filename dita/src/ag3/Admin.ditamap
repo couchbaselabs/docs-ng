@@ -4,7 +4,8 @@
  <title>Couchbase Administration Guide</title>
  <topicref href="admin-intro.dita">
   <topicref href="Misc/admin-basics.dita">
-   <topicref href="Misc/admin-tools.dita"/>
+   <topicref href="Misc/security-admin-access.dita"/>
+   <topicref href="Misc/security-client-ssl.dita"/>
    <topicref href="Tasks/tasks-common.dita"/>
    <topicref href="Misc/start-stop-couchbase.dita"/>
    <topicref href="Misc/admin-datafiles.dita"/>
@@ -51,7 +52,9 @@
    <topicref href="Tasks/tasks-compaction.dita"/>
    <topicref href="Tasks/tasks-nodeFailover.dita"/>
    <topicref href="Tasks/tasks-dataRecovery.dita"/>
-   <topicref href="Tasks/tasks-backupRestore.dita"/>
+   <topicref href="Tasks/tasks-backup-restore.dita">
+    <topicref href="Tasks/tasks-backup-restore-incremental.dita"/>
+   </topicref>
    <topicref href="Tasks/tasks-rebalance.dita">
     <topicref href="Tasks/rebalance-behind-the-scenes.dita"/>
     <topicref href="Tasks/rebalance-bucket-types.dita"/>
@@ -70,6 +73,7 @@
     <topicref href="Tasks/xdcr-tuning-optimistic-replication.dita"/>
     <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
     <topicref href="Tasks/xdcr-modify-settings.dita"/>
+    <topicref href="XDCR/xdcr-memory-replication.dita"/>
    </topicref>
   </topicref>
   <topicref href="Monitoring/monitor-intro.dita">
@@ -104,6 +108,7 @@
    <topicref href="XDCR/xdcr-flushRequests.dita"/>
    <topicref href="XDCR/xdcr-streamMgmt.dita"/>
    <topicref href="XDCR/xdcr-dataEncryption.dita"/>
+   <topicref href="XDCR/xdcr-pause-resume.dita"/>
   </topicref>
   <topicref href="UI/ui-intro.dita">
    <topicref href="UI/ui-cluster-summary.dita"/>

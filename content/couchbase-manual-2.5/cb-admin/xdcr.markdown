@@ -270,7 +270,6 @@ filtered out and logged. The IDs are not transferred to the remote cluster. If t
 
 ### XDCR stream management
 
-XDCR stream management
 Under the following circumstances, a period of time should pass (depending on the CPU load) before creating new XDCR streams:
 
 After creating a bucket

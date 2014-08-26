@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_swj_j45_j4">
-  <title>Managing metadata in memory (REST API)</title>
+  <title>Managing metadata in memory</title>
   <shortdesc>Metadata ejection from memory is set with <codeph>POST
       pools/default/buckets/default</codeph>.</shortdesc>
   <refbody>
