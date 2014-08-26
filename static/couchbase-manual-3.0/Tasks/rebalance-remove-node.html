@@ -1,0 +1,84 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a><ul class="nav nav-list"><li><a href="../Tasks/tasks-manage-serverWarmup.html">Handling server warmup</a></li><li><a href="../Tasks/tasks-manage-replication.html">Handling replication</a></li><li><a href="../Tasks/tasks-compaction.html">Compaction</a></li><li><a href="../Tasks/tasks-nodeFailover.html">Failing over nodes</a></li><li><a href="../Tasks/tasks-dataRecovery.html">Data recovery from remote clusters</a></li><li><a href="../Tasks/tasks-backupRestore.html">Backup and restore</a></li><li><a href="../Tasks/tasks-rebalance.html">Rebalancing</a><ul class="nav nav-list"><li><a href="../Tasks/rebalance-behind-the-scenes.html">Rebalance behind-the-scenes</a></li><li><a href="../Tasks/rebalance-bucket-types.html">Rebalance effect on bucket types</a></li><li><a href="../Tasks/rebalance-swap-rebalance.html">Swap rebalance</a></li><li><a href="../Tasks/rebalance-cluster.html">Rebalancing a cluster</a></li><li><a href="../Tasks/rebalance-factors.html">Rebalancing factors</a></li><li><a href="../Tasks/rebalance-performing.html">Performing a rebalance</a></li><li><a href="../Tasks/rebalance-adding-nodes.html">Adding nodes</a></li><li class="active"><a href="../Tasks/rebalance-remove-node.html">Removing nodes from clusters</a><ul class="nav nav-list"></ul></li><li><a href="../Tasks/rebalance-questions.html">Common rebalancing questions</a></li></ul></li><li><a href="../Tasks/tasks-manage-xdcr.html">Managing XDCR</a></li></ul></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Removing nodes from clusters</h1>
+
+  
+  <div class="body"><p class="shortdesc">Removing a node marks
+    the node for removal from the cluster and completely disables the node from serving any
+    requests across the cluster.</p>
+
+    <p class="p">Once a node is removed, a node is no longer part of the cluster in any way
+      and can be switched off, or can be updated or upgraded.</p>
+<p class="p">Important</p>
+<p class="p"> Before you
+        remove a node from the cluster, ensure that you have the capacity within the remaining nodes of
+        your cluster to handle your workload. For more information on the considerations, see Choosing
+        when to shrink your cluster. For the best results, use swap rebalance to swap the node you want
+        to remove out, and swap in a replacement node. </p>
+
+    
+    <div class="note note"><span class="notetitle">Note:</span> Removing a node does not stop the node from servicing requests.
+      Instead, it only marks the node ready for removal from the cluster. You must perform a
+      rebalance operation to complete the removal
+      process.</div>
+
+    
+    <p class="p">Like adding nodes, node can be removed either via the Web Console or CLI.</p>
+
+      
+            <div class="section"><h2 class="title sectiontitle">Web Console</h2>
+          <p class="p">You can remove a node from the cluster from within the <samp class="ph codeph">Manage Server
+            Nodes</samp> section of the Web Console, as shown in the figure below.</p>
+<p class="p">To remove a
+              node, click the <samp class="ph codeph">Remove Server</samp> button next to the node you want to remove. You
+              will be provided with a warning to confirm that you want to remove the node. Click
+              <samp class="ph codeph">Remove</samp> to mark the node for removal.</p>
+
+            </div>
+
+                
+                
+                
+                <div class="section"><h2 class="title sectiontitle">Using the Command-line</h2>
+              <p class="p">You cannot mark a node for removal from the command-line without also initiating a
+                rebalance operation. The <samp class="ph codeph">rebalance</samp> command accepts one or more
+                <samp class="ph codeph">--server-add</samp> and/or <samp class="ph codeph">--server-remove</samp> options. This adds or
+                removes the server from the cluster, and immediately initiates a rebalance operation.</p>
+
+                  
+                  <p class="p">For example, to remove a node during a rebalance
+                  operation:</p>
+
+                  
+                  <pre class="pre codeblock">
+&gt; couchbase-cli rebalance --cluster=127.0.0.1:8091 \
+          -u Administrator -p Password \
+          --server-remove=192.168.0.73
+</pre>
+
+                  
+                </div>
+
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/tasks-rebalance.html">Rebalancing</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

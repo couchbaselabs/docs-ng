@@ -72,8 +72,8 @@ Tool                         | Server Versions | Description/Status
 `mbadm-online-restore`       | 1.7             | Deprecated in 1.8, replaced by `cbadm-online-restore`         
 `mbadm-online-update`        | 1.7             | Deprecated in 1.8, replaced by `cbadm-online-update`          
 `mbadm-tap-registration`     | 1.7             | Deprecated in 1.8, replaced by `cbadm-tap-registration`       
-`mbbackup-incremental`       | 1.7             | Deprecated in 1.8, replaced by `cbbackup-incremental`         
-`mbbackup-merge-incremental` | 1.7             | Deprecated in 1.8, replaced by `cbbackup-merge-incremental`   
+`mbbackup-incremental`       | 1.7             | Deprecated in 1.8       
+`mbbackup-merge-incremental` | 1.7             | Deprecated in 1.8
 `mbbackup`                   | 1.7             | Deprecated in 1.8, replaced by `cbbackup`                     
 `mbbrowse_logs`              | 1.7             | Deprecated in 1.8, replaced by `cbbrowse_logs`                
 `mbcollect_info`             | 1.7             | Deprecated in 1.8, replaced by `cbcollect_info`               

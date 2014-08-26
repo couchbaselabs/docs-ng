@@ -1,14 +1,14 @@
 # Tutorial
 
 Building on the foundations of the [Getting
-Started](http://www.couchbase.com/docs/couchbase-sdk-php-1.1/getting-started.html)
+Started](http://www.couchbase.com/docs/couchbase-sdk-php-1.2/getting-started.html)
 guide, this tutorial will show you how to build a full-blown web application on
 top of Couchbase Server 2.0. We'll make use of a very powerful toolchain,
 consisting of Composer, Silex and Twig to build a solid web application fast
 while not losing the focus on showing how to work with the PHP SDK.
 
 We'll make use of the `beer-sample` dataset to display and manage beers and
-breweries. Along the way we'll pickup concepts on querying Couchbase Server 2.0
+breweries. Along the way we'll pick up concepts on querying Couchbase Server 2.0
 by keys or through views.
 
 The full code sample is available on
@@ -16,12 +16,14 @@ The full code sample is available on
 repository and work from there if you would simply like to see the finished
 application.
 
- * While we'll cover the installation process in detail, make sure to have the
-   following dependencies in place:PHP 5.3 or later: The PHP SDK itself requires
+ While we'll cover the installation process in detail, make sure to have the
+   following dependencies in place:
+
+* PHP 5.3 or later: The PHP SDK itself requires
    5.3 or later, nearly all of the dependencies used here require 5.3.
 
  * [Couchbase PHP SDK 1.1](http://www.couchbase.com/develop/php/current) : Install
-   the appropriate.so or.dll file, depending on your platform. Earlier versions are
+   the appropriate .so or .dll file, depending on your platform. Earlier versions are
    not capable enough, because we make use of the brand new view-related
    functionality.
 
@@ -47,7 +49,7 @@ If you haven't already, download and install Couchbase Server 2.0. While you're
 at it, make sure to install the `beer-sample` sample bucket on the fly. If you
 already have the server installed and the `beer-sample` bucket is not in place,
 head over to `Settings->Sample Buckets` and install it. Give it a few seconds
-until the notificaton box disappears. You may need to shrink the size of some of
+until the notification box disappears. You may need to shrink the size of some of
 your existing buckets to make room for the beer-sample database.
 
 The `beer-sample` bucket comes with a small set of views already predefined, but
@@ -56,7 +58,7 @@ very good chance to explore the view management possibilities inside the Web UI.
 
 Since we want to list beers and breweries by name, we need to define one view
 for each. Head over to the Web UI and click on the `Views` menu. Select
-`beer-sample` from the dropdown list to switch to the correct bucket. Now click
+`beer-sample` from the drop-down list to switch to the correct bucket. Now click
 on `Development Views` and then `Create Development View` to define your first
 view. You need to give it the name of both the design document and the actual
 view. Insert the following names:
@@ -135,7 +137,7 @@ to create a `composer.json` file with the following content:
 }
 ```
 
-Place that file inside the `/beersample-php` directory of your webroot
+Place that file inside the `/beersample-php` directory of your web root
 (depending on your setup, it is often located under `/var/www/` ). We also need
 to create a few more directories to keep the application organized.
 
@@ -270,13 +272,13 @@ actions and used from there.
 Because we're using the [Twig template engine](http://twig.sensiolabs.org/), we
 can register a
 [TwigServiceProvider](http://silex.sensiolabs.org/doc/providers/twig.html) which
-helps us to automatially locate and load them. You'll see later how these are
-renderd and how we can pass data to them.
+helps us to automatically locate and load them. You'll see later how these are
+rendered and how we can pass data to them.
 
 Finally, we run the application through `$app->run();`. The actual actions are
 implemented between the Twig registration call ( `$app->register(new
 TwigServiceProvider()...` ) and the final run method ( `$app->run()` ), so
-remeber to put them in there.
+remember to put them in there.
 
 If you now run the application in your browser, you should see the following
 Exception showing up: `"Sorry, the page you are looking for could not be
@@ -392,7 +394,7 @@ with a nice layout for [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 ).
 
 If you load the page, you should see the welcome page loading! If not, you may
-need to look at your webserver logs to see what kind of error messages have been
+need to look at your web server logs to see what kind of error messages have been
 generated when running the scripts. Assuming all is working well, we're now
 ready to implement the actual functionality.
 
@@ -773,6 +775,6 @@ If you wish to view further samples using the PHP client, please take a look at
 some of our
 [DeveloperDay samples](https://github.com/couchbaselabs/DeveloperDay/tree/master/PHP)!
 
-Couchbase Server and the PHP SDK provids a boatload of useful methods that you
-can use in your day-to-day work. You should now be ready to explore thos on your
+Couchbase Server and the PHP SDK provides a boatload of useful methods that you
+can use in your day-to-day work. You should now be ready to explore those on your
 own, so have fun coding with Couchbase!

@@ -1,0 +1,308 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li class="active"><a href="../CLI/cbbackup_tool.html">cbbackup tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+   <h1 class="title topictitle1">cbbackup tool</h1>
+
+   
+   
+   <div class="body"><p class="shortdesc">The <samp class="ph codeph">cbbackup</samp> tool creates a copy of data from an entire running cluster,
+      an entire bucket, a single node, or a single bucket on a single functioning node. Your node
+      or cluster needs to be functioning in order to create the backup. Couchbase Server will
+      write a copy of data onto disk.</p>
+
+
+      <p class="p"><samp class="ph codeph">cbbackup</samp>, <samp class="ph codeph">cbrestore</samp> and <samp class="ph codeph">cbtransfer</samp> do
+         not communicate with external IP addresses for server nodes outside of a cluster. They can
+         only communicate with nodes from a node list obtained within a cluster. You should perform
+         backup, restore, or transfer to data from a node within a Couchbase cluster. This also
+         means that if you install Couchbase Server with the default IP address, you cannot use an
+         external hostname to access it.</p>
+
+      <p class="p">Depending upon your platform, this tool is the following directories:</p>
+
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+            
+            
+            <thead class="thead" align="left">
+               <tr class="row">
+                  <th class="entry" valign="top" id="d32518e44"><strong class="ph b">Linux</strong></th>
+
+                  <th class="entry" valign="top" id="d32518e48"><samp class="ph codeph">/opt/couchbase/bin/cbbackup</samp></th>
+
+               </tr>
+
+            </thead>
+
+            <tbody class="tbody">
+               <tr class="row">
+                  <td class="entry" valign="top" headers="d32518e44 "><strong class="ph b">Windows</strong></td>
+
+                  <td class="entry" valign="top" headers="d32518e48 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\cbbackup</samp></td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry" valign="top" headers="d32518e44 "><strong class="ph b">Mac OS X</strong></td>
+
+                  <td class="entry" valign="top" headers="d32518e48 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/cbbackup</samp></td>
+
+               </tr>
+
+            </tbody>
+
+         </table>
+</div>
+
+      <p class="p">The format of the <samp class="ph codeph">cbbackup</samp> command is:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">cbbackup [options] [source] [destination]
+</samp></pre>
+
+      <p class="p">Where:</p>
+
+      <ul class="ul">
+         <li class="li"><samp class="ph codeph">[options]</samp></li>
+
+      </ul>
+
+      <p class="p">Same options available for <samp class="ph codeph">cbtransfer</samp> tool.</p>
+
+      <ul class="ul">
+         <li class="li"><samp class="ph codeph">[source]</samp></li>
+
+      </ul>
+
+      <p class="p">Source for the backup. This can be either a URL of a node when backing up a single node or
+         the cluster, or a URL specifying a directory where the data for a single bucket is
+         located.</p>
+
+      <ul class="ul">
+         <li class="li"><samp class="ph codeph">[destination]</samp></li>
+
+      </ul>
+
+      <p class="p">The destination directory for the backup files to be stored. Either the directory must
+         exist, and be empty, or the directory will be created. The parent directory must exist.</p>
+
+      <p class="p">This tool has several different options which you can use to:</p>
+
+      <ul class="ul">
+         <li class="li"><p class="p">Backup all buckets in an entire cluster,</p>
+</li>
+
+         <li class="li"><p class="p">Backup one named bucket in a cluster,</p>
+</li>
+
+         <li class="li"><p class="p">Backup all buckets on a node in a cluster,</p>
+</li>
+
+         <li class="li"><p class="p">Backup one named buckets on a specified node,</p>
+</li>
+
+      </ul>
+
+      <p class="p">All command options for <samp class="ph codeph">cbbackup</samp> are the same options available for
+         <samp class="ph codeph">cbtransfer</samp>. For a list of standard and special-use options, see <samp class="ph codeph">cbtransfer</samp> yool.</p>
+
+      <p class="p">You can backup an entire cluster, which includes all of the data buckets and data at all
+         nodes. This will also include all design documents; do note however that you will need to
+         rebuild any indexes after you restore the data. To backup an entire cluster and all buckets
+         for that cluster:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; cbbackup http://HOST:8091 ~/backups \
+          -u Administrator -p password
+</samp></pre>
+
+      <p class="p">Where <samp class="ph codeph">~/backups</samp> is the directory where you want to store the data. When
+         you perform this operation, be aware that cbbackup will create the following directory
+         structure and files in the <samp class="ph codeph">~/backups</samp> directory assuming you have two
+         buckets in your cluster named <samp class="ph codeph">my_name</samp> and <samp class="ph codeph">sasl</samp> and two
+         nodes <samp class="ph codeph">N1</samp> and <samp class="ph codeph">N2</samp> :</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">~/backups
+        bucket-my_name
+            N1
+            N2
+        bucket-sasl
+            N1
+            N2
+</samp></pre>
+
+      <p class="p">Where <samp class="ph codeph">bucket-my_name</samp> and <samp class="ph codeph">bucket-sasl</samp> are directories
+         containing data files and where <samp class="ph codeph">N1</samp> and <samp class="ph codeph">N2</samp> are two sets of
+         data files for each node in the cluster. To backup a single bucket in a cluster:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password \
+  -b default
+</samp></pre>
+
+      <p class="p">In this case <samp class="ph codeph">-b default</samp> specifies you want to backup data from the default
+         bucket in a cluster. You could also provide any other given bucket in the cluster that you
+         want to backup. To backup all the data stored in multiple buckets from a single node which
+         access the buckets:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; cbbackup http://HOST:8091 /backups/ \
+  -u Administrator -p password \
+  --single-node
+</samp></pre>
+
+      <p class="p">This is an example of how to backup data from a single bucket on a single node follows:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; cbbackup http://HOST:8091 /backups \
+  -u Administrator -p password \
+  --single-node \
+  -b bucket_name
+</samp></pre>
+
+      <p class="p">This example shows you how you can specify keys that are backed up using the <samp class="ph codeph">-
+            k</samp> option. For example, to backup all keys from a bucket with the prefix
+         ‘object’:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password \
+  -b bucket_name \
+  -k '^object.*'
+</samp></pre>
+
+      <p class="p">For more information on using <samp class="ph codeph">cbbackup</samp> scenarios when you may want to use
+         it and best practices for backup and restore of data with Couchbase Server.</p>
+
+      <p class="p"><strong class="ph b">Backing Up Design Documents Only</strong></p>
+
+      <p class="p">You can backup only design documents from a cluster or bucket with the option,
+            <samp class="ph codeph">design_doc_only=1</samp>. You can later restore the design documents only with
+            <samp class="ph codeph">cbrestore</samp>:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">&gt; ./cbbackup http://10.5.2.30:8091 ~/backup -x design_doc_only=1 -b bucket_name
+
+transfer design doc only. bucket msgs will be skipped.
+done
+</samp></pre>
+
+      <p class="p">Where you provide the hostname and port for a node in the cluster. This will make a backup
+         copy of all design documents from <samp class="ph codeph">bucket_name</samp> and store this as
+            <samp class="ph codeph">design.json</samp> in the directory <samp class="ph codeph">~/backup/bucket_name</samp>. If
+         you do not provide a named bucket it will backup design documents for all buckets in the
+         cluster. In this example we did a backup of two design documents on a node and our file
+         will appear as follows:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">[
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "view1":{
+                  "map":"function(doc){emit(doc.key,doc.key_num);}"
+               },
+               "view2":{
+                  "map":"function(doc,meta){emit(meta.id,doc.key);}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-6f9bfe0a",
+            "id":"_design/ddoc1"
+         }
+      }
+   },
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "dothis":{
+                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-4b533871",
+            "id":"_design/ddoc2"
+         }
+      }
+   },
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "dothat":{
+                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-a8b6f59b",
+            "id":"_design/dev_ddoc2"
+         }
+      }
+   }
+]
+</samp></pre>
+
+      <p class="p"><strong class="ph b">Using cbbackup from Couchbase Server 2.0 with 1.8.x</strong></p>
+
+      <p class="p">You can use <samp class="ph codeph">cbbackup</samp> 2.x to backup data from a Couchbase 1.8.x cluster,
+         including 1.8. To do so you use the same command options you use when you backup a 2.0
+         cluster except you provide it the hostname and port for the 1.8.x cluster. You do not need
+         to even install Couchbase Server 2.0 in order to use <samp class="ph codeph">cbbackup 2.x</samp> to
+         backup Couchbase Server 1.8.x. After you get the tool, go to
+         the directory where you cloned the tool and perform the command. For instance:</p>
+
+      <pre class="pre codeblock"><samp class="ph codeph">./cbbackup http://1.8_host_name:port ~/backup -u Administrator -p password
+</samp></pre>
+
+      <p class="p">This creates a backup of all buckets in the 1.8 cluster at <samp class="ph codeph">~/backups</samp> on
+         the physical machine where you run <samp class="ph codeph">cbbackup</samp>. So if you want to make the
+         backup on the machine containing the 1.8.x data bucket, you should copy the tool on that
+         machine. As in the case where you perform backup with Couchbase 2.0, you can use
+            <samp class="ph codeph">cbbackup 2.0</samp> options to backup all buckets in a cluster, backup a named
+         bucket, backup the default bucket, or backup the data buckets associated with a single
+         node.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> The <samp class="ph codeph">cbrestore</samp> tool can also be used to restore backup
+         data onto a 1.8.x cluster.</div>
+
+   </div>
+
+   <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Install/hostnames.html">Using hostnames</a></div>
+<div><a class="link" href="../CLI/cbcli-intro.html">couchbase-cli tool</a></div>
+<div><a class="link" href="../CLI/cbrestore_tool.html">cbrestore tool</a></div>
+<div><a class="link" href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></div>
+<div><a class="link" href="https://github.com/couchbase/couchbase-cli" target="_blank">Couchbase command-line tools GitHub repository</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

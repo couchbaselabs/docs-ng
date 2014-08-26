@@ -1,0 +1,109 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a><ul class="nav nav-list"><li><a href="../UI/ui-cluster-summary.html">Cluster Overview</a></li><li><a href="../UI/ui-server-nodes.html">Server Nodes</a></li><li><a href="../UI/ui-data-buckets.html">Data Buckets</a></li><li><a href="../UI/ui-views-editor.html">Views</a></li><li><a href="../UI/ui-xdcr-panel.html">XDCR</a><ul class="nav nav-list"><li><a href="../Tasks/xdcr-create-replications.html">Creating replications</a></li><li><a href="../Tasks/xdcr-specify-dest-cluster.html">Specifying a destination cluster</a></li><li><a href="../Tasks/xdcr-specify-adv-settings.html">Specifying XDCR settings</a><ul class="nav nav-list"><li class="active"><a href="../Tasks/xdcr-adv-settings.html">XDCR advanced settings</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../Tasks/tasks-manage-xdcr-dataEncryption.html">Managing XDCR data encryption</a></li><li><a href="../Tasks/xdcr-monitor-replication.html">Monitoring replication status</a></li><li><a href="../Tasks/xdcr-cancel-replication.html">Canceling replication</a></li></ul></li><li><a href="../UI/ui-logs.html">Log</a></li><li><a href="../UI/ui-settings.html">Settings</a></li></ul></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">XDCR advanced settings</h1>
+
+  
+  <div class="body"><p class="shortdesc">XDCR advanced settings are internal settings that are available for
+    configuration.</p>
+
+
+      <p class="p">Advanced settings that can be updated include:</p>
+
+      <dl class="dl">
+        
+          <dt class="dt dlterm">XDCR Max Replications per Bucket</dt>
+
+          <dd class="dd">Maximum concurrent replications per bucket, 8 to 256. This controls the number of parallel
+            replication streams per node. If you are running your cluster on hardware with
+            high-performance CPUs, you can increase this value to improve replication speed.</dd>
+
+        
+        
+          <dt class="dt dlterm">XDCR Checkpoint Interval</dt>
+
+          <dd class="dd">Interval between checkpoints, 60 to 14400 (seconds). Default 1800. At this time
+          interval, batches of data via XDCR replication will be placed in the front of the disk
+          persistence queue. This time interval determines the volume of data that will be
+          replicated via XDCR should replication need to restart. The greater this value, the longer
+          amount of time transpires for XDCR queues to grow. For example, if you set this to 10
+          minutes and a network error occurs, when XDCR restarts replication, 10 minutes of items
+          will have accrued for replication. <p class="p">Changing this to a smaller value could impact
+            cluster operations when you have significant amount of write operations on a destination
+            cluster and you are performing bidirectional replication with XDCR. For instance, if you
+            set this to 5 minutes, the incoming batches of data via XDCR replication will take
+            priority in the disk write queue over incoming write workload for a destination cluster.
+            This may result in the problem of having an ever growing disk-write queue on a
+            destination cluster; also items in the disk-write queue that are higher priority than
+            the XDCR items will grow staler/older before they are persisted. </p>
+</dd>
+
+        
+        
+          <dt class="dt dlterm">XDCR Batch Count</dt>
+
+          <dd class="dd">Document batching count, 500 to 10000. Default 500. In general, increasing this value by 2
+            or 3 times will improve XDCR transmissions rates, since larger batches of data will be sent in
+            the same timed interval. For unidirectional replication from a source to a destination
+            cluster, adjusting this setting by 2 or 3 times will improve overall replication performance
+            as long as persistence to disk is fast enough on the destination cluster. Note however that
+            this can have a negative impact on the destination cluster if you are performing bidirectional
+            replication between two clusters and the destination already handles a significant volume of
+            reads/writes.</dd>
+
+        
+        
+          <dt class="dt dlterm">XDCR Batch Size (KB)</dt>
+
+          <dd class="dd">Document batching size, 10 to 100000 (KB). Default 2048. In general, increasing this value
+            by 2 or 3 times will improve XDCR transmissions rates, since larger batches of data will be
+            sent in the same timed interval. For unidirectional replication from a source to a destination
+            cluster, adjusting this setting by 2 or 3 times will improve overall replication performance
+            as long as persistence to disk is fast enough on the destination cluster. Note however that
+            this can have a negative impact on the destination cluster if you are performing bidirectional
+            replication between two clusters and the destination already handles a significant volume of
+            reads/writes.</dd>
+
+        
+        
+          <dt class="dt dlterm">XDCR Failure Retry Interval</dt>
+
+          <dd class="dd">Interval for restarting failed XDCR, 1 to 300 (seconds). Default 30. If you expect more
+            frequent network or server failures, you may want to set this to a lower value. This is the
+            time that XDCR waits before it attempts to restart replication after a server or network
+            failure.</dd>
+
+        
+        
+          <dt class="dt dlterm">XDCR Optimistic Replication Threshold</dt>
+
+          <dd class="dd">This is compressed document size in bytes. 0 to 2097152 Bytes (20MB). Default is 256
+          Bytes. XDCR will get metadata for documents larger than this size on a single time before
+          replicating the uncompressed document to a destination cluster. This option improves XDCR
+          latency.</dd>
+
+        
+        
+      </dl>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/xdcr-specify-adv-settings.html" title="When creating a new replication, advanced settings are modified (from the default) via XDCR &gt; Ongoing Replications &gt; Create Replication.">Specifying XDCR settings</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

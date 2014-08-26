@@ -1,0 +1,113 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a><ul class="nav nav-list"><li><a href="../Misc/admin-tools.html">Administration tools</a></li><li class="active"><a href="../Tasks/tasks-common.html">Common administrative tasks</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></li><li><a href="../Misc/admin-datafiles.html">Data file location</a></li><li><a href="../Misc/install-location.html">Installation location</a></li><li><a href="../Misc/limits.html">Limits</a></li></ul></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Common administrative tasks</h1>
+
+  <div class="body">
+    <p class="p">For general running and configuration, Couchbase Server is self-managing. The management
+      infrastructure and components of the Couchbase Server system are able to adapt to the
+      different events within the cluster. There are only a few different configuration variables.
+      The majority of these configuration variables do not need to be modified or altered in most
+      installations.</p>
+
+    <p class="p">However, there are a number of different tasks that are performed over the lifetime of the
+      cluster environment including:</p>
+
+    <ul class="ul">
+      <li class="li">Expand your cluster when you need to expand the RAM or disk I/O capabilities.</li>
+
+      <li class="li">Failover and altering the size of your cluster as your application demands change.</li>
+
+      <li class="li">Monitoring and reacting to the various statistics reported by the server to ensure that
+        your cluster is operating at the highest performance level.</li>
+
+      <li class="li">Backing up the cluster.</li>
+
+    </ul>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Increasing or reducing your cluster size</h2>
+    <p class="p">When your cluster requires additional RAM, disk I/O or network capacity, you will need to
+      expand the size of your cluster. If the increased load is only a temporary event, then you may
+      later want to reduce the size of your cluster.</p>
+
+    <p class="p">You can add or remove multiple nodes from your cluster at the same time. Once the new node
+      arrangement has been configured, the process redistributing the data and bringing the nodes
+      into the cluster is called <em class="ph i">rebalancing</em>. The rebalancing process moves the
+      data around the cluster to match the new structure, and can be performed live while the
+      cluster is still servicing application data requests.</p>
+
+    </div>
+
+    
+
+    <div class="section"><h2 class="title sectiontitle">Warming up a server</h2>
+    
+    <p class="p">There may be cases where you want to explicitly shutdown a server
+      and then restart it. Typically the server had been running for a while and has data stored on
+      disk when you restart it. In this case, the server needs to undergo a warmup process before it
+      can again serve data requests. </p>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Handling a failover situation</h2>
+    <p class="p">A failover situation occurs when one of the nodes within your cluster fails, usually due to a
+      significant hardware or network problem. Couchbase Server is designed to cope with this
+      situation through the use of replicas which provide copies of the data around the cluster
+      which can be activated when a node fails.</p>
+
+    <p class="p">Couchbase Server provides two mechanisms for handling failover. Automated Failover allows the
+      cluster to operate autonomously and react to failovers without human intervention. Monitored
+      failover enables you to perform a controlled failure by manually failing over a node. There
+      are additional considerations for each failover type, and you should read the notes to ensure
+      that you know the best solution for your specific situation.</p>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Managing database and view fragmentation</h2>
+    <p class="p">The database and view index files created by Couchbase Server can become fragmented. This can
+      cause performance problems, as well as increasing the space used on disk by the files,
+      compared to the size of the information they hold. Compaction reduces this fragmentation to
+      reclaim the disk space.</p>
+
+    </div>
+
+
+    <div class="section"><h2 class="title sectiontitle">Backing up and restoring your cluster data</h2>
+    <p class="p">Couchbase Server automatically distributes your data across the nodes within the cluster, and
+      supports replicas of that data. It is good practice, however, to have a backup of your bucket
+      data in the event of a more significant failure.</p>
+
+    </div>
+
+
+  </div>
+
+  
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/admin-basics.html">Administration basics</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../CLI/cli-overview.html">Command-line interface overview</a></div>
+<div><a class="link" href="../REST/overview-rest-api.html">REST API overview</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -4,6 +4,33 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.8 GA (13 August 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-8"></a>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-577">NCBC-577: Enable IriParsing for supporting Views w/Couchbase Server 3.0</a>
+
+    This fixes a breaking change in how Couchbase Server 3.0 handles view queries by associating a UUID with a bucket and how
+    System.Uri handles unicode encoding across different versions of the .NET Common Language Runtime (CLR). Users running under .NET Framework 4.5 and later
+    are unaffected. Users who want to run Couchbase Server 3.0 with CLR version 4.0 or earlier must either use version 1.3.8 of
+    the Couchbase .NET SDK or provide the following elements in their App.Config or Web.Config to enable IriParsing:
+
+	    <uri>
+	        <iriParsing enabled="true"/>
+	    </uri>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-582">NCBC-564: Provide PDB Files with Binaries</a>
+
+    PDB files are now included with binaries on S3.
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-564">NCBC-564: Respect JsonSerializer settings for deserialization.</a>
+
+    This patch allows you to override the default JsonSerializer settings during deserialization. 
+
+* <a href="http://www.couchbase.com/issues/browse/NCBC-555">NCBC-555: Multi-get can fail and return a null StatusCode.</a>
+
+    This patch ensures that the correct StatusCode is returned when a multi-get operation fails.
+
 ## Release Notes for Couchbase Client Library .NET 1.3.7 GA (2 July 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-7"></a>

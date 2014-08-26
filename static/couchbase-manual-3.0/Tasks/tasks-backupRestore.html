@@ -1,0 +1,677 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a><ul class="nav nav-list"><li><a href="../Tasks/tasks-manage-serverWarmup.html">Handling server warmup</a></li><li><a href="../Tasks/tasks-manage-replication.html">Handling replication</a></li><li><a href="../Tasks/tasks-compaction.html">Compaction</a></li><li><a href="../Tasks/tasks-nodeFailover.html">Failing over nodes</a></li><li><a href="../Tasks/tasks-dataRecovery.html">Data recovery from remote clusters</a></li><li class="active"><a href="../Tasks/tasks-backupRestore.html">Backup and restore</a><ul class="nav nav-list"></ul></li><li><a href="../Tasks/tasks-rebalance.html">Rebalancing</a></li><li><a href="../Tasks/tasks-manage-xdcr.html">Managing XDCR</a></li></ul></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Backup and restore</h1>
+
+  
+  <div class="body"><p class="shortdesc">The predominant method for backing up and restoring data is using the CLI <samp class="ph codeph">cbbackup</samp> 
+  and <samp class="ph codeph">cbrestore</samp> tools.</p>
+
+    <p class="p">Backing up your data should be a regular process on your cluster to ensure that you do not
+      lose information in the event of a serious hardware or installation failure.</p>
+
+    <p class="p">There are a number of methods for performing a backup:</p>
+
+    <ul class="ul">
+      <li class="li">Using <samp class="ph codeph">cbbackup</samp></li>
+
+    </ul>
+
+    <p class="p">The <samp class="ph codeph">cbbackup</samp> command enables you to back up a single node, single buckets,
+      or the entire cluster into a flexible backup structure that allows for restoring the data into
+      the same, or different, clusters and buckets. All backups can be performed on a live cluster
+      or node. Using <samp class="ph codeph">cbbackup</samp> is the most flexible and recommended backup tool.</p>
+
+    <p class="p">To restore, you need to use the <samp class="ph codeph">cbrestore</samp>command.</p>
+
+    <ul class="ul">
+      <li class="li">Using File Copies</li>
+
+    </ul>
+
+    <p class="p">A running or offline cluster can be backed up by copying the files on each of the nodes.
+      Using this method you can only restore to a cluster with an identical configuration.</p>
+
+    
+    <p class="p">To restore, you need to use the file copy method.</p>
+
+    <p class="p">Due to the active nature of Couchbase Server it is impossible to create a complete in-time
+      backup and snapshot of the entire cluster. Because data is always being updated and modified,
+      it would be impossible to take an accurate snapshot.</p>
+
+    
+    <p class="p">Best Practice</p>
+
+    <p class="p">It is a best practice to backup and restore your entire cluster to minimize any
+      inconsistencies in data. Couchbase is always per-item consistent, but does not guarantee total
+      cluster consistency or in-order persistence. </p>
+
+    <div class="section"><h2 class="title sectiontitle">Backing up using cbbackup</h2><p class="p">The <samp class="ph codeph">cbbackup</samp> tool is a
+        flexible backup command that enables you to backup both local data and remote nodes and
+        clusters involving different combinations of your data:</p>
+<ul class="ul">
+        <li class="li"><p class="p">Single bucket on a single node</p>
+</li>
+
+        <li class="li"><p class="p">All the buckets on a single node</p>
+</li>
+
+        <li class="li"><p class="p">Single bucket from an entire cluster</p>
+</li>
+
+        <li class="li"><p class="p">All the buckets from an entire cluster</p>
+</li>
+
+      </ul>
+<p class="p">Backups can be performed either locally, by copying the files directly on a single
+        node, or remotely by connecting to the cluster and then streaming the data from the cluster
+        to your backup location. Backups can be performed either on a live running node or cluster,
+        or on an offline node.</p>
+<p class="p">The <samp class="ph codeph">cbbackup</samp> command stores data in a format
+        that allows for easy restoration. When restoring, using <samp class="ph codeph">cbrestore</samp>, you can
+        restore back to a cluster of any configuration. The source and destination clusters do not
+        need to match if you used <samp class="ph codeph">cbbackup</samp> to store the information.</p>
+<p class="p">The
+          <samp class="ph codeph">cbbackup</samp> command will copy the data in each course from the source
+        definition to a destination backup directory. The backup file format is unique to Couchbase
+        and enables you to restore, all or part of the backed up data when restoring the information
+        to a cluster. Selection can be made on a key (by regular expression) or all the data stored
+        in a particular vBucket ID. You can also select to copy the source data from a bucketname
+        into a bucket of a different name on the cluster on which you are restoring the
+        data.</p>
+<p class="p">The <samp class="ph codeph">cbbackup</samp> command takes the following
+        arguments:</p>
+<pre class="pre codeblock"><samp class="ph codeph">cbbackup [options] [source] [backup_dir]
+</samp></pre>
+<p class="p">The
+          <samp class="ph codeph">cbbackup</samp> tool is located within the standard Couchbase command-line
+        directory. </p>
+<p class="p">Be aware that <samp class="ph codeph">cbbackup</samp> does not
+        support external IP addresses. This means that if you install Couchbase Server with the
+        default IP address, you cannot use an external hostname to access it. </p>
+
+      <p class="p">Where the arguments are as described below:</p>
+<ul class="ul">
+        <li class="li"><samp class="ph codeph">[options]</samp></li>
+
+      </ul>
+<p class="p">One or more options for the backup process. These are used to configure username and
+        password information for connecting to the cluster, backup type selection, and bucket
+        selection. </p>
+<p class="p">The primary options select what will be backed up by
+          <samp class="ph codeph">cbbackup</samp>, including:</p>
+<pre class="pre codeblock"><samp class="ph codeph">* `--single-node`
+
+  Only back up the single node identified by the source specification.
+
+* `--bucket-source` or `-b`
+
+  Backup only the specified bucket name.
+</samp></pre>
+<ul class="ul">
+        <li class="li"><samp class="ph codeph">[source]</samp></li>
+
+      </ul>
+<p class="p">The source for the data, either a local data directory reference, or a remote
+        node/cluster specification:</p>
+
+      
+      <pre class="pre codeblock">* `Local Directory Reference`
+
+  A local directory specification is defined as a URL using the `couchstore-files`
+  protocol. For example:
+
+   ```
+   couchstore-files:///opt/couchbase/var/lib/couchbase/data/default
+   ```
+
+  Using this method you are specifically backing up the specified bucket data on a
+  single node only. To backup an entire bucket data across a cluster, or all the
+  data on a single node, you must use the cluster node specification. This method
+  does not backup the design documents defined within the bucket.
+
+* `cluster node`
+
+  A node or node within a cluster, specified as a URL to the node or cluster
+  service. For example:
+
+   ```
+   http://HOST:8091
+   ```
+
+  Or for distinction you can use the `couchbase` protocol prefix:
+
+   ```
+   couchbase://HOST:8091
+   ```
+
+  The administrator and password can also be combined with both forms of the URL
+  for authentication. If you have named data buckets other than the default bucket
+  which you want to backup, you will need to specify an administrative name and
+  password for the bucket:
+
+   ```
+   couchbase://Administrator:password@HOST:8091
+   ```
+
+  The combination of additional options specifies whether the supplied URL refers
+  to the entire cluster, a single node, or a single bucket (node or cluster). The
+  node and cluster can be remote (or local).
+
+  This method also backs up the design documents used to define views and indexes.
+</pre>
+<ul class="ul">
+        <li class="li"><samp class="ph codeph">[backup_dir]</samp></li>
+
+      </ul>
+<p class="p">The directory where the backup data files will be stored on the node on which the
+          <samp class="ph codeph">cbbackup</samp> is executed. This must be an absolute, explicit, directory, as
+        the files will be stored directly within the specified directory; no additional directory
+        structure is created to differentiate between the different components of the data
+        backup.</p>
+<p class="p">The directory that you specify for the backup should either not exist, or
+        exist and be empty with no other files. If the directory does not exist, it will be created,
+        but only if the parent directory already exists.</p>
+<p class="p">The backup directory is always
+        created on the local node, even if you are backing up a remote node or cluster. The backup
+        files are stored locally in the backup directory specified.</p>
+<p class="p">Backups can take place on
+        a live, running, cluster or node for the IP</p>
+<p class="p">Using this basic structure, you can backup
+        a number of different combinations of data from your source cluster. Examples of the
+        different combinations are provided below:</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backup all nodes and all buckets</strong></li>
+
+      </ul>
+<p class="p">To backup an entire cluster, consisting of all the buckets and all the node
+        data:</p>
+
+      
+      <pre class="pre codeblock">
+&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password
+  [####################] 100.0% (231726/231718 msgs)
+bucket: default, msgs transferred...
+       :                total |       last |    per sec
+ batch :                 5298 |       5298 |      617.1
+ byte  :             10247683 |   10247683 |  1193705.5
+ msg   :               231726 |     231726 |    26992.7
+done
+  [####################] 100.0% (11458/11458 msgs)
+bucket: loggin, msgs transferred...
+       :                total |       last |    per sec
+ batch :                 5943 |       5943 |    15731.0
+ byte  :             11474121 |   11474121 | 30371673.5
+ msg   :84 |84 |   643701.2
+done
+
+</pre>
+
+      <p class="p">When
+        backing up multiple buckets, a progress report, and summary report for the information
+        transferred will be listed for each bucket backed up. The <samp class="ph codeph">msgs</samp> count shows
+        the number of documents backed up. The <samp class="ph codeph">byte</samp> shows the overall size of the
+        data document data.</p>
+<p class="p">The source specification in this case is the URL of one of the
+        nodes in the cluster. The backup process will stream data directly from each node in order
+        to create the backup content. The initial node is only used to obtain the cluster topology
+        so that the data can be backed up.</p>
+<p class="p">A backup created in this way enables you to choose
+        during restoration how you want to restore the information. You can choose to restore the
+        entire dataset, or a single bucket, or a filtered selection of that information onto a
+        cluster of any size or configuration.</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backup all nodes, single bucket</strong></li>
+
+      </ul>
+<p class="p">To backup all the data for a single bucket, containing all of the information from the
+        entire
+        cluster:</p>
+<pre class="pre codeblock">
+&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password \
+  -b default
+  [####################] 100.0% (231726/231718 msgs)
+bucket: default, msgs transferred...
+       :                total |       last |    per sec
+ batch :                 5294 |       5294 |      617.0
+ byte  :             10247683 |   10247683 |  1194346.7
+ msg   :               231726 |     231726 |    27007.2
+done
+</pre>
+<p class="p">The
+          <samp class="ph codeph">-b</samp> option specifies the name of the bucket that you want to backup. If
+        the bucket is a named bucket you will need to provide administrative name and password for
+        that bucket.</p>
+<p class="p">To backup an entire cluster, you will need to run the same operation on
+        each bucket within the cluster.</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backup single node, all buckets</strong></li>
+
+      </ul>
+<p class="p">To backup all of the data stored on a single node across all of the different
+        buckets:</p>
+<pre class="pre codeblock">
+&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password \
+  --single-node
+</pre>
+
+      <p class="p">Using
+        this method, the source specification must specify the node that you want backup. To backup
+        an entire cluster using this method, you should backup each node individually.</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backup single node, single bucket</strong></li>
+
+      </ul>
+<p class="p">To backup the data from a single bucket on a single
+        node:</p>
+
+      <pre class="pre codeblock">
+&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password \
+  --single-node \
+  -b default
+</pre>
+
+      
+      <p class="p">Using
+        this method, the source specification must be the node that you want to back up.</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backup single node, single bucket; backup files stored on same node</strong></li>
+
+      </ul>
+<p class="p">To backup a single node and bucket, with the files stored on the same node as the
+        source data, there are two methods available. One uses a node specification, the other uses
+        a file store specification. Using the node
+        specification:</p>
+<pre class="pre codeblock">
+&gt; ssh USER@HOST
+remote-&gt; sudo su - couchbase
+remote-&gt; cbbackup http://127.0.0.1:8091 /mnt/backup-20120501 \
+  -u Administrator -p password \
+  --single-node \
+  -b default
+
+</pre>
+<p class="p">This
+        method backups up the cluster data of a single bucket on the local node, storing the backup
+        data in the local filesystem.</p>
+<p class="p">Using a file store reference (in place of a node
+        reference) is faster because the data files can be copied directly from the source directory
+        to the backup
+        directory:</p>
+<pre class="pre codeblock">
+&gt; ssh USER@HOST
+remote-&gt; sudo su - couchbase
+remote-&gt; cbbackup couchstore-files:///opt/couchbase/var/lib/couchbase/data/default /mnt/backup-20120501
+
+</pre>
+<p class="p">To
+        backup the entire cluster using this method, you will need to backup each node, and each
+        bucket, individually.</p>
+<p class="p">Choosing the right backup solution will depend on your
+        requirements and your expected method for restoring the data to the
+          cluster.</p>
+<p class="p"><strong class="ph b">Filtering keys during backup</strong></p>
+<p class="p">The <samp class="ph codeph">cbbackup</samp>
+        command includes support for filtering the keys that are backed up into the database files
+        you create. This can be useful if you want to specifically backup a portion of your dataset,
+        or you want to move part of your dataset to a different bucket.</p>
+<p class="p">The specification is
+        in the form of a regular expression, and is performed on the client-side within the
+          <samp class="ph codeph">cbbackup</samp> tool. For example, to backup information from a bucket where the
+        keys have a prefix of
+        ‘object’:</p>
+<pre class="pre codeblock">&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+  -u Administrator -p password \
+  -b default \
+  -k '^object.*'
+</pre>
+<p class="p">The
+        above will copy only the keys matching the specified prefix into the backup file. When the
+        data is restored, only those keys that were recorded in the backup file will be
+        restored.</p>
+<p class="p">Warning</p>
+<p class="p">The regular expression match is performed client side. This
+        means that the entire bucket contents must be accessed by the `cbbackup` command and then
+        discarded if the regular expression does not match.</p>
+<p class="p">Key-based regular expressions can
+        also be used when restoring data. You can backup an entire bucket and restore selected keys
+        during the restore process using <samp class="ph codeph">cbrestore</samp>. </p>
+
+      
+      <p class="p"><strong class="ph b">Backing up using file copies</strong></p>
+<p class="p">You can also backup by using
+        either <samp class="ph codeph">cbbackup</samp> and specifying the local directory where the data is
+        stored, or by copying the data files directly using <samp class="ph codeph">cp</samp>,
+          <samp class="ph codeph">tar</samp> or similar.</p>
+<p class="p">For example, using <samp class="ph codeph">cbbackup</samp>
+        :</p>
+
+      <pre class="pre codeblock">&gt; cbbackup \
+    couchstore-files:///opt/couchbase/var/lib/couchbase/data/default \
+    /mnt/backup-20120501
+</pre>
+<p class="p">The
+        same backup operation using <samp class="ph codeph">cp</samp>
+        :</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; cp -R /opt/couchbase/var/lib/couchbase/data/default \
+      /mnt/copy-20120501
+</samp></pre>
+<p class="p">The
+        limitation of backing up information in this way is that the data can only be restored to
+        offline nodes in an identical cluster configuration, and where an identical vbucket map is
+        in operation (you should also copy the <samp class="ph codeph">config.dat</samp> configuration file from
+        each node.</p>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Restoring using cbrestore</h2><p class="p">When restoring a backup, you have to select
+        the appropriate restore sequence based on the type of restore you are performing. The
+        methods available to you when restoring a cluster are dependent on the method you used when
+        backing up the cluster. If <samp class="ph codeph">cbbackup</samp> was used to backup the bucket data, you
+        can restore back to a cluster with the same or different configuration. This is because
+          <samp class="ph codeph">cbbackup</samp> stores information about the stored bucket data in a format that
+        enables it to be restored back into a bucket on a new cluster. For all these scenarios you
+        can use <samp class="ph codeph">cbrestore</samp>. </p>
+
+      <p class="p">If the information was backed up using a direct file copy, then you
+        must restore the information back to an identical cluster. </p>
+
+      <p class="p">The <samp class="ph codeph">cbrestore</samp> command takes the information that has
+        been backed up via the <samp class="ph codeph">cbbackup</samp> command and streams the stored data into a
+        cluster. The configuration of the cluster does not have to match the cluster configuration
+        when the data was backed up, allowing it to be used when transferring information to a new
+        cluster or updated or expanded version of the existing cluster in the event of disaster
+        recovery.</p>
+<p class="p">Because the data can be restored flexibly, it allows for a number of
+        different scenarios to be executed on the data that has been backed up:</p>
+<ul class="ul">
+        <li class="li"><p class="p">You want to restore data into a cluster of a different size and
+          configuration.</p>
+</li>
+
+        <li class="li"><p class="p">You want to transfer/restore data into a different bucket on the same or different
+            cluster.</p>
+</li>
+
+        <li class="li"><p class="p">You want to restore a selected portion of the data into a new or different cluster,
+            or the same cluster but a different bucket.</p>
+</li>
+
+      </ul>
+<p class="p">The basic format of the <samp class="ph codeph">cbrestore</samp> command is as
+        follows:</p>
+<pre class="pre codeblock"><samp class="ph codeph">cbrestore [options] [source] [destination]
+</samp></pre>
+<p class="p">Where:</p>
+<ul class="ul">
+        <li class="li"><samp class="ph codeph">[options]</samp></li>
+
+      </ul>
+<p class="p">Options specifying how the information should be restored into the cluster. Common
+        options
+        include:</p>
+<pre class="pre codeblock"><samp class="ph codeph">* `--bucket-source`
+
+  Specify the name of the bucket data to be read from the backup data that will be
+  restored.
+
+* `--bucket-destination`
+
+  Specify the name of the bucket the data will be written to. If this option is
+  not specified, the data will be written to a bucket with the same name as the
+  source bucket.
+
+* `--add`
+
+  Use `--add` instead of `--set` in order to not overwrite existing items in the destination.
+</samp></pre>
+<p class="p">For
+        information on all the options available when using the cbrestore
+        tool.</p>
+<ul class="ul">
+        <li class="li"><samp class="ph codeph">[source]</samp></li>
+
+      </ul>
+<p class="p">The backup directory specified to <samp class="ph codeph">cbbackup</samp> where the backup data was
+        stored.</p>
+<ul class="ul">
+        <li class="li"><samp class="ph codeph">[destination]</samp></li>
+
+      </ul>
+<p class="p">The REST API URL of a node within the cluster where the information will be
+        restored.</p>
+<p class="p">The <samp class="ph codeph">cbrestore</samp> command restores only a single bucket of data
+        at a time. If you have created a backup of an entire cluster (i.e. all buckets), then you
+        must restore each bucket individually back to the cluster. All destination buckets must
+        already exist; <samp class="ph codeph">cbrestore</samp> does not create or configure destination buckets
+        for you.</p>
+<p class="p">For example, to restore a single bucket of data to a
+        cluster:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; cbrestore \
+    /backups/backup-2012-05-10 \
+    http://Administrator:password@HOST:8091 \
+    --bucket-source=XXX
+  [####################] 100.0% (231726/231726 msgs)
+bucket: default, msgs transferred...
+       :                total |       last |    per sec
+ batch :                  232 |        232 |       33.1
+ byte  :             10247683 |   10247683 |  1462020.7
+ msg   :               231726 |     231726 |    33060.0
+done
+</samp></pre>
+<p class="p">To
+        restore the bucket data to a different bucket on the
+        cluster:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; cbrestore \
+    /backups/backup-2012-05-10 \
+    http://Administrator:password@HOST:8091 \
+    --bucket-source=XXX \
+    --bucket-destination=YYY
+  [####################] 100.0% (231726/231726 msgs)
+bucket: default, msgs transferred...
+       :                total |       last |    per sec
+ batch :                  232 |        232 |       33.1
+ byte  :             10247683 |   10247683 |  1462020.7
+ msg   :               231726 |     231726 |    33060.0
+done
+</samp></pre>
+<p class="p">The
+          <samp class="ph codeph">msg</samp> count in this case is the number of documents restored back to the
+        bucket in the cluster.</p>
+<p class="p"><strong class="ph b">Filtering keys during restore</strong></p>
+<p class="p">The
+          <samp class="ph codeph">cbrestore</samp> command includes support for filtering the keys that are
+        restored to the database from the files that were created during backup. This is in addition
+        to the filtering support available during backup.</p>
+<p class="p">The specification is in the form of a regular expression supplied
+        as an option to the <samp class="ph codeph">cbrestore</samp> command. For example, to restore information
+        to a bucket only where the keys have a prefix of
+        ‘object’:</p>
+<pre class="pre codeblock"><samp class="ph codeph">&gt; cbrestore /backups/backup-20120501 http://HOST:8091 \
+  -u Administrator -p password \
+  -b default \
+  -k '^object.*'
+2013-02-18 10:39:09,476: w0 skipping msg with key: sales_7597_3783_6
+...
+2013-02-18 10:39:09,476: w0 skipping msg with key: sales_5575_3699_6
+2013-02-18 10:39:09,476: w0 skipping msg with key: sales_7597_3840_6
+  [                    ] 0.0% (0/231726 msgs)
+bucket: default, msgs transferred...
+       :                total |       last |    per sec
+ batch :                    1 |          1 |        0.1
+ byte  :                    0 |          0 |        0.0
+ msg   :                    0 |          0 |        0.0
+done
+</samp></pre>
+<p class="p">The
+        above will copy only the keys matching the specified prefix into the
+          <samp class="ph codeph">default</samp> bucket. For each key skipped, an information message will be
+        supplied. The remaining output shows the records transferred and summary as
+          normal.</p>
+<p class="p"><strong class="ph b">Restoring using file copies</strong></p>
+<p class="p">To restore the information to the
+        same cluster, with the same configuration, you must shutdown your entire cluster while you
+        restore the data, and then restart the cluster again. You are replacing the entire cluster
+        data and configuration with the backed up version of the data files, and then re-starting
+        the cluster with the saved version of the cluster files.</p>
+<p class="p">Important</p>
+<p class="p">Make sure
+        that any restoration of files also sets the proper ownership of those files to the couchbase
+        user </p>
+<p class="p">When restoring data back in to the same cluster, then the following must be true
+        before proceeding:</p>
+<ul class="ul">
+        <li class="li"><p class="p">The backup and restore must take between cluster using the same version of Couchbase
+            Server.</p>
+</li>
+
+        <li class="li"><p class="p">The cluster must contain the same number of nodes.</p>
+</li>
+
+        <li class="li"><p class="p">Each node must have the IP address or hostname it was configured with when the
+            cluster was backed up.</p>
+</li>
+
+        <li class="li"><p class="p">You must restore all of the <samp class="ph codeph">config.dat</samp> configuration files as well
+            as all of the database files to their original locations.</p>
+</li>
+
+      </ul>
+<p class="p">The steps required to complete the restore process are:</p>
+<ol class="ol">
+        <li class="li">Stop the Couchbase Server service on all nodes.</li>
+
+        <li class="li">On each node, restore the database, <samp class="ph codeph">stats.json</samp>, and configuration file
+          ( <samp class="ph codeph">config.dat</samp> ) from your backup copies for each node.</li>
+
+        <li class="li">Restart the service on each node. </li>
+
+      </ol>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Backup and restore between Mac OS X and other platforms</h2><p class="p">Couchbase
+        Server on Mac OS X uses a different number of configured vBuckets than the Linux and Windows
+        installations. Because of this, backing up from Mac OS X and restoring to Linux or Windows,
+        or vice versa, requires using the built-in Moxi server and the memcached protocol. Moxi will
+        rehash the stored items into the appropriate bucket.</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backing up Mac OS X and restoring on Linux/Windows</strong></li>
+
+      </ul>
+<p class="p">To backup the data from Mac OS X, you can use the standard <samp class="ph codeph">cbbackup</samp>
+        tool and
+        options:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbbackup http://Administrator:password@mac:8091 /macbackup/today
+```
+</samp></pre>
+<p class="p">To
+        restore the data to a Linux/Windows cluster, you must connect to the Moxi port (11211) on
+        one of the nodes within your destination cluster and use the Memcached protocol to restore
+        the data. Moxi will rehash the information and distribute the data to the appropriate node
+        within the cluster. For
+        example:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbrestore /macbackup/today memcached://linux:11211 -b default -B default
+```
+</samp></pre>
+<p class="p">If
+        you have backed up multiple buckets from your Mac, you must restore to each bucket
+        individually.</p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Backing Up Linux/Windows and restoring on Mac OS X</strong></li>
+
+      </ul>
+<p class="p">To backup the data from Linux or Windows, you can use the standard
+          <samp class="ph codeph">cbbackup</samp> tool and
+        options:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbbackup http://Administrator:password@linux:8091 /linuxbackup/today
+```
+</samp></pre>
+<p class="p">To
+        restore to the Mac OS X node or cluster, you must connect to the Moxi port (11211) and use
+        the Memcached protocol to restore the data. Moxi will rehash the information and distribute
+        the data to the appropriate node within the cluster. For example:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbrestore /linuxbackup/today memcached://mac:11211 -b default -B default
+```
+</samp></pre>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Transferring data directly</strong></li>
+
+      </ul>
+<p class="p">You can use <samp class="ph codeph">cbtransfer</samp> to perform the data move directly between Mac
+        OS X and Linux/Windows clusters without creating the backup file, providing you correctly
+        specify the use of the Moxi and Memcached protocol in the
+        destination:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbtransfer http://linux:8091 memcached://mac:11211 -b default -B default
+&gt; cbtransfer http://mac:8091 memcached://linux:11211 -b default -B default
+```
+</samp></pre>
+<p class="p">Important</p>
+<p class="p">These
+        transfers will not transfer design documents, since they are using the Memcached protocol </p>
+<ul class="ul">
+        <li class="li"><strong class="ph b">Transferring design documents</strong></li>
+
+      </ul>
+<p class="p">Because you are restoring data using the Memcached protocol, design documents are not
+        restored. A possible workaround is to modify your backup directory. Using this method, you
+        first delete the document data from the backup directory, and then use the standard restore
+        process. This will restore only the design documents. For
+        example:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbbackup http://Administrator:password@linux:8091 /linuxbackup/today
+```
+</samp></pre>
+<p class="p">Remove
+        or move the data files from the backup out of the
+        way:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; mv /linuxbackup/today/bucket-default/* /tmp
+```
+</samp></pre>
+<p class="p">Only
+        the design document data will remain in the backup directory, you can now restore that
+        information using <samp class="ph codeph">cbrestore</samp> as
+      normal:</p>
+<pre class="pre codeblock"><samp class="ph codeph">```
+&gt; cbrestore /linuxbackup/today http://mac:8091 -b default -B default
+```
+</samp></pre>
+</div>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/cluster-management.html">Cluster management</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Install/init-setup.html">Initial server setup</a></div>
+<div><a class="link" href="../CLI/cli-overview.html">Command-line interface overview</a></div>
+<div><a class="link" href="../CLI/cbbackup_tool.html" title="The cbbackup tool creates a copy of data from an entire running cluster, an entire bucket, a single node, or a single bucket on a single functioning node. Your node or cluster needs to be functioning in order to create the backup. Couchbase Server will write a copy of data onto disk.">cbbackup tool</a></div>
+<div><a class="link" href="../CLI/cbrestore_tool.html">cbrestore tool</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

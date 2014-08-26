@@ -1,0 +1,95 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-bucket-info.html">Getting single bucket information</a></li><li><a href="../REST/rest-bucket-get-config.html">Getting bucket configuration</a></li><li><a href="../REST/rest-bucket-stats.html">Getting bucket statistics</a></li><li><a href="../REST/rest-buckets-streamingURI.html">Getting the bucket streaming URI</a></li><li><a href="../REST/rest-buckets-summary.html">Viewing buckets and bucket operations</a></li><li><a href="../REST/rest-bucket-create.html">Creating and editing buckets</a></li><li><a href="../REST/rest-bucket-delete.html">Deleting buckets</a></li><li class="active"><a href="../REST/rest-bucket-flush.html">Flushing buckets</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-bucket-auth.html">Changing bucket authentication</a></li><li><a href="../REST/rest-bucket-readwrite.html">Changing bucket read-write threads</a></li><li><a href="../REST/rest-bucket-memory-quota.html">Increasing bucket memory quota</a></li><li><a href="../REST/rest-bucket-parameters.html">Modifying bucket parameters</a></li></ul></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Flushing buckets</h1>
+
+  
+  
+  <div class="body"><p class="shortdesc">To flush all buckets, use the <samp class="ph codeph">POST</samp> operation with the <samp class="ph codeph">/pools/default/buckets/default/controller/doFlush</samp> URI.</p>
+
+    
+    <p class="p">The <samp class="ph codeph">doFlush</samp> operation empties the contents of the specified bucket, deleting
+      all stored data. The operation only succeeds if flush is enabled on configured bucket. The
+      format of the request is the URL of the REST endpoint using the <samp class="ph codeph">POST</samp> HTTP
+      operation:</p>
+
+    
+    <div class="note warning"><span class="warningtitle">Warning:</span> This operation is data destructive. The service makes no attempt to confirm or double check
+      the request. Client applications using this are advised to double check with the end user
+      before sending such a request. You can control and limit the ability to flush individual
+      buckets by setting the <samp class="ph codeph">flushEnabled</samp> parameter on a bucket in Couchbase Web Console or via
+      <samp class="ph codeph">cbepctl flush_param</samp>. </div>
+
+
+
+    <pre class="pre codeblock">http://localhost:8091/pools/default/buckets/default/controller/doFlush
+</pre>
+
+    <p class="p">For example, using <samp class="ph codeph">curl</samp> :</p>
+
+    <pre class="pre codeblock">
+curl -X POST 'http://admin:password@localhost:8091/pools/default/buckets/default/controller/doFlush'
+  </pre>
+
+    <p class="p">Replace the <em class="ph i">admin</em>, <em class="ph i">password</em>, and <em class="ph i">localhost</em> values in the above example
+      with your actual values.</p>
+
+    <p class="p">Equivalent HTTP protocol request:</p>
+
+    
+    <pre class="pre codeblock">POST /pools/default/buckets/default/controller/doFlush
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+    </pre>
+
+    <p class="p">Parameters and payload data are ignored, but the request must including the authorization
+      header if the system has been secured.</p>
+
+    <p class="p">If flushing is disable for the specified bucket, a 400 response will be returned with the
+      bucket status:</p>
+
+    
+    <pre class="pre codeblock">{"_":"Flush is disabled for the bucket"}</pre>
+
+    <p class="p">If the flush is successful, the HTTP response code is <samp class="ph codeph">200</samp> :</p>
+
+    
+    <pre class="pre codeblock">HTTP/1.1 200 OK</pre>
+
+
+    <div class="note important"><span class="importanttitle">Important:</span>  The flush request may lead to significant disk activity as the data in the bucket is deleted
+      from the database. The high disk utilization may affect the performance of your server until
+      the data has been successfully deleted. </div>
+
+    
+    <div class="note note"><span class="notetitle">Note:</span> The flush request is not transmitted over XDCR replication configurations; the remote bucket
+      will not be flushed. </div>
+
+    <p class="p">Couchbase Server returns a HTTP 404 response if the URI is invalid or if it does not
+      correspond to an active bucket in the system.</p>
+
+    <pre class="pre codeblock">404 Not Found
+</pre>
+
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-bucket-intro.html" title="The bucket management and configuration REST API endpoints provide a fine level of control over the individual buckets in the cluster, their configuration, and specific operations.">Buckets REST API</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

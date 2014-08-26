@@ -1,0 +1,100 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a><ul class="nav nav-list"><li class="active"><a href="../Tasks/tasks-manage-serverWarmup.html">Handling server warmup</a><ul class="nav nav-list"></ul></li><li><a href="../Tasks/tasks-manage-replication.html">Handling replication</a></li><li><a href="../Tasks/tasks-compaction.html">Compaction</a></li><li><a href="../Tasks/tasks-nodeFailover.html">Failing over nodes</a></li><li><a href="../Tasks/tasks-dataRecovery.html">Data recovery from remote clusters</a></li><li><a href="../Tasks/tasks-backupRestore.html">Backup and restore</a></li><li><a href="../Tasks/tasks-rebalance.html">Rebalancing</a></li><li><a href="../Tasks/tasks-manage-xdcr.html">Managing XDCR</a></li></ul></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Handling server warmup</h1>
+
+ 
+ 
+ 
+ <div class="body"><p class="shortdesc">Couchbase server warmup behavior can be modified changing the access scanner and warmup
+  threshold settings via the <samp class="ph codeph">cbepctl</samp> tool.</p>
+
+
+  <p class="p">In order to adjust warmup behavior, it is also important for you to understand the access log
+   and scanning process in Couchbase Server. The server uses the access log to determine which
+   documents are most frequently used, and therefore which documents should be loaded first.</p>
+
+  <p class="p">The server has a process that periodically scans every key in RAM and compile them into a log,
+   named <samp class="ph codeph">access.log</samp> as well as maintain a backup of this access log, named
+    <samp class="ph codeph">access.old</samp>. The server can use this backup file during warmup if the most
+   recent access log has been corrupted during warmup or node failure. By default this process runs
+   initially at 2:00 GMT and runs again in 24 hour time periods after that point. You can configure
+   this process to run at a different initial time and at a different fixed interval.</p>
+
+  
+  <p class="p">If a client tries to contact Couchbase Server during warmup, the server produces a
+    <samp class="ph codeph">ENGINE_TMPFAIL (0x0d)</samp> error code. This error indicates that data access is
+   still not available because warmup has not yet finished. </p>
+
+   
+   <div class="note note"><span class="notetitle">Note:</span> For those of you who are creating your
+   own Couchbase SDK, you will need to handle this error in your library. This may mean that the
+   client waits and retries, performs a backoff of requests, or produces an error
+   and does not retry the request. </div>
+
+   
+   <div class="note note"><span class="notetitle">Note:</span> For those of you who are building an application with a Couchbase
+   SDK, be aware that how this error is delivered and handled is dependent upon the individual SDKs.
+   </div>
+
+   
+
+
+  <div class="section"><h2 class="title sectiontitle">Getting warmup information</h2>
+   <p class="p">The <samp class="ph codeph">cbstats</samp> tool is used to
+    get information about server warmup, including the warmup status and whether warmup is enabled.
+   </p>
+</div>
+
+
+
+  <div class="section"><h2 class="title sectiontitle">Changing the warmup threshold</h2><p class="p">Modify warmup behavior by changing the
+     <samp class="ph codeph">cbepctl ep_warmup_min_items_threshold</samp> parameter. This indicates the percentage
+    of items loaded in RAM that must be reached for Couchbase Server to begin serving data. The
+    lower this number, the sooner your server can begin serving data. Be aware, however that if you
+    set this value to be too low, once requests come in for items, the item may not be in memory and
+    Couchbase Server will experience cache-miss errors.</p>
+</div>
+
+
+
+  <div class="section"><h2 class="title sectiontitle">Changing access scanner settings</h2>
+   <p class="p">The server runs a periodic scanner
+    process which determines which keys are most frequently-used, and therefore, which documents
+    should be loaded first during server warmup. The settings, <samp class="ph codeph">cbepctl flush_param</samp>
+    <samp class="ph codeph">alog_sleep_ time</samp> and <samp class="ph codeph">alog_task_ time</samp>parameters are used to
+    change the initial time and the interval for the process.</p>
+
+  </div>
+
+
+
+ </div>
+
+ 
+ <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/cluster-management.html">Cluster management</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../CLI/cbepctl-intro.html">cbepctl tool</a></div>
+<div><a class="link" href="../CLI/CBepctl/cbepctl-accesslog.html">Changing access log settings</a></div>
+<div><a class="link" href="../CLI/CBstats/cbstats-gettingwarmupinfo.html">Getting warmup information</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

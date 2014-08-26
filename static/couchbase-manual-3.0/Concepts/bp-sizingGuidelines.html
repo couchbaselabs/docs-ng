@@ -1,0 +1,712 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a><ul class="nav nav-list"><li><a href="../Concepts/bp-clusterDesign.html">Cluster design considerations</a></li><li class="active"><a href="../Concepts/bp-sizingGuidelines.html">Sizing guidelines</a><ul class="nav nav-list"></ul></li><li><a href="../Concepts/bp-deployment-strategies.html">Deployment strategies</a></li><li><a href="../Concepts/bp-maintenance.html">Ongoing monitoring and maintenance</a></li><li><a href="../Concepts/bp-firewall.html">Couchbase behind a secondary firewall</a></li><li><a href="../Concepts/bp-cloudDeployment.html">Couchbase in the cloud</a></li><li><a href="../Tasks/xdcr-cloud.html">XDCR in cloud deployments</a></li></ul></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Sizing guidelines</h1>
+
+	
+	<div class="body"><p class="shortdesc">The primary considerations for sizing a Couchbase Server cluster are the number of
+		nodes and node size.</p>
+
+		<p class="p">When sizing your Couchbase Server cluster, ask the following questions:</p>
+
+		<ul class="ul">
+			<li class="li">How many nodes do I need?</li>
+
+			<li class="li">How large (RAM, CPU, disk space) should those nodes be?</li>
+
+		</ul>
+
+		<p class="p">To determine the number of nodes needed for a cluster, consider the following:.</p>
+
+		<ul class="ul">
+			<li class="li">RAM</li>
+
+			<li class="li">Disk throughput and sizing</li>
+
+			<li class="li">Network bandwidth</li>
+
+			<li class="li">Data distribution and safety</li>
+
+		</ul>
+
+		<p class="p">Due to the in-memory nature of Couchbase Server, RAM is usually the determining factor
+			for sizing. But ultimately, the primary factor depends on the data set and information
+			being stored.</p>
+
+		<p class="p">For example:</p>
+
+		<ul class="ul">
+			<li class="li">If you have a very small data set that gets a very high load, you’ll need to base
+				your size more off of network bandwidth than RAM.</li>
+
+			<li class="li">If you have a very high write rate, you’ll need more nodes to support the disk
+				throughput needed to persist all that data (and likely more RAM to buffer the
+				incoming writes).</li>
+
+			<li class="li">Even with a very small dataset under low load, you may want three nodes for proper
+				distribution and safety.</li>
+
+		</ul>
+
+		<p class="p">With Couchbase Server, you can increase the capacity of your cluster (RAM, Disk, CPU, or
+			network) by increasing the number of nodes within your cluster, since each limit will be
+			increased linearly as the cluster size is increased.</p>
+
+
+		<div class="section"><h2 class="title sectiontitle">RAM sizing</h2>
+			<p class="p">RAM is usually the most critical sizing parameter. It’s
+				also the one that can have the biggest impact on performance and
+			stability.</p>
+</div>
+
+		<div class="section"><h2 class="title sectiontitle">Working set</h2>
+			<p class="p">The working set is the data that the client
+				application actively uses at any point in time. Ideally, all of the working set
+				lives in memory. This impacts how much memory is needed.</p>
+
+		</div>
+
+		
+		
+		
+		<div class="section"><h2 class="title sectiontitle">Memory quota</h2>
+			<p class="p">It is very important that your Couchbase cluster’s
+				size corresponds to the working set size and total data you expect.</p>
+
+			<p class="p">The goal
+				is to size the available RAM to Couchbase so that all your document IDs, the
+				document ID meta data, and the working set values fit. The memory should rest just
+				below the point at which Couchbase will start evicting values to disk (the High
+				Water Mark).</p>
+
+			
+			<div class="note important"><span class="importanttitle">Important:</span> You will not be able to allocate all your machine RAM to the Couchbase server node 
+				(<samp class="ph codeph">per_node_ram_quota</samp> parameter) because other programs might be running on your
+				machine.</div>
+
+			
+			<p class="p">How much memory and disk space per node you will need depends on
+				several different variables, which are defined below:</p>
+
+			
+			
+			<p class="p">The following calculations are per-bucket calculations. The
+				calculations need to be summed up across all buckets. If all the buckets have the
+				same configuration, treat the total data as a single bucket. There is no
+				per-bucket overhead that needs to be considered.</p>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d43853e117">Variable</th>
+
+							<th class="entry" valign="top" id="d43853e120">Description</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e117 ">documents_num</td>
+
+							<td class="entry" valign="top" headers="d43853e120 ">The total number of documents you expect in your working
+								set</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e117 ">ID_size</td>
+
+							<td class="entry" valign="top" headers="d43853e120 ">The average size of document IDs</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e117 ">value_size</td>
+
+							<td class="entry" valign="top" headers="d43853e120 ">The average size of values</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e117 ">number_of_replicas</td>
+
+							<td class="entry" valign="top" headers="d43853e120 ">The number of copies of the original data you want to
+								keep</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e117 ">working_set_percentage</td>
+
+							<td class="entry" valign="top" headers="d43853e120 ">The percentage of your data you want in memory</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e117 ">per_node_ram_quota</td>
+
+							<td class="entry" valign="top" headers="d43853e120 ">How much RAM can be assigned to Couchbase </td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+			
+			<p class="p">Use the following items to calculate how much memory you need:</p>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d43853e200">Constant</th>
+
+							<th class="entry" valign="top" id="d43853e203">Description</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e200 ">Metadata per document (metadata_per_document)</td>
+
+							<td class="entry" valign="top" headers="d43853e203 ">This is the amount of memory that Couchbase needs to store
+								metadata per document. Metadata uses 56 bytes. All the metadata
+								needs to live in memory while a node is running and serving
+								data.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e200 ">SSD or Spinning</td>
+
+							<td class="entry" valign="top" headers="d43853e203 ">SSDs give better I/O performance.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e200 ">headroom</td>
+
+							<td class="entry" valign="top" headers="d43853e203 ">The cluster needs additional overhead to store metadata. That
+								space is called the headroom. This requires approximately 25–30%
+								more space than the raw RAM requirements for your dataset. Since
+								SSDs are faster than spinning (traditional) hard disks, you should
+								set aside 25% of memory for SSDs and 30% of memory for spinning hard
+								disks.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e200 ">High Water Mark (high_water_mark)</td>
+
+							<td class="entry" valign="top" headers="d43853e203 ">By default, the high water mark for a node’s RAM is set at 85%.
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+<p class="p">This is a rough guideline to size your
+				cluster:</p>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d43853e263">Variable</th>
+
+							<th class="entry" valign="top" id="d43853e266">Calculation</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e263 ">no_of_copies</td>
+
+							<td class="entry" valign="top" headers="d43853e266 "><samp class="ph codeph">1 + number_of_replicas</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e263 ">total_metadata All the documents need to live in the
+								memory.</td>
+
+							<td class="entry" valign="top" headers="d43853e266 "><samp class="ph codeph">(documents_num) * (metadata_per_document + ID_size) *
+									(no_of_copies)</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e263 ">total_dataset</td>
+
+							<td class="entry" valign="top" headers="d43853e266 "><samp class="ph codeph">(documents_num) * (value_size) *
+								(no_of_copies)</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e263 ">working_set</td>
+
+							<td class="entry" valign="top" headers="d43853e266 "><samp class="ph codeph">total_dataset * (working_set_percentage)</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e263 ">Cluster RAM quota required</td>
+
+							<td class="entry" valign="top" headers="d43853e266 "><samp class="ph codeph">(total_metadata + working_set) * (1 + headroom) /
+									(high_water_mark)</samp></td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e263 ">number of nodes</td>
+
+							<td class="entry" valign="top" headers="d43853e266 "><samp class="ph codeph">Cluster RAM quota required / per_node_ram_quota</samp>
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+			
+			<div class="note important"><span class="importanttitle">Important:</span> You will need at least the number of replicas + 1 nodes regardless of your
+				data size.</div>
+
+			<p class="p">The following is a sample sizing calculation:</p>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d43853e357">Input Variable</th>
+
+							<th class="entry" valign="top" id="d43853e360">value</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e357 ">documents_num</td>
+
+							<td class="entry" valign="top" headers="d43853e360 ">1,000,000</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e357 ">ID_size</td>
+
+							<td class="entry" valign="top" headers="d43853e360 ">100</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e357 ">value_size</td>
+
+							<td class="entry" valign="top" headers="d43853e360 ">10,000</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e357 ">number_of_replicas</td>
+
+							<td class="entry" valign="top" headers="d43853e360 ">1</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e357 ">working_set_percentage</td>
+
+							<td class="entry" valign="top" headers="d43853e360 ">20% </td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+				
+				
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d43853e427">Constants</th>
+
+							<th class="entry" valign="top" id="d43853e430">value</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e427 ">Type of Storage</td>
+
+							<td class="entry" valign="top" headers="d43853e430 ">SSD</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e427 ">overhead_percentage</td>
+
+							<td class="entry" valign="top" headers="d43853e430 ">25%</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e427 ">metadata_per_document</td>
+
+							<td class="entry" valign="top" headers="d43853e430 ">56 for 2.1 and higher, 64 for 2.0.x</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e427 ">high_water_mark</td>
+
+							<td class="entry" valign="top" headers="d43853e430 ">85% </td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+			
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d43853e488">Variable</th>
+
+							<th class="entry" valign="top" id="d43853e491">Calculation</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e488 ">no_of_copies</td>
+
+							<td class="entry" valign="top" headers="d43853e491 ">= 1 for original and 1 for replica</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e488 ">total_metadata</td>
+
+							<td class="entry" valign="top" headers="d43853e491 ">= 1,000,000 * (100 + 56) * (2) = 312,000,000</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e488 ">total_dataset</td>
+
+							<td class="entry" valign="top" headers="d43853e491 ">= 1,000,000 * (10,000) * (2) = 20,000,000,000</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e488 ">working_set</td>
+
+							<td class="entry" valign="top" headers="d43853e491 ">= 20,000,000,000 * (0.2) = 4,000,000,000</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d43853e488 ">Cluster RAM quota required</td>
+
+							<td class="entry" valign="top" headers="d43853e491 ">= (440,000,000 + 4,000,000,000) * (1+0.25)/(0.7) =
+								7,928,000,000</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+			
+			<p class="p">For example, if you have 8GB machines and you want to use 6 GB for
+				Couchbase…</p>
+
+			
+			<pre class="pre codeblock">number of nodes =
+    Cluster RAM quota required/per_node_ram_quota =
+    7.9 GB/6GB = 1.3 or 2 nodes
+</pre>
+
+			
+			
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Disk throughput and sizing</h2>
+			<p class="p">Couchbase Server decouples RAM from the
+				I/O layer. Decoupling allows high scaling at very low and consistent latencies and
+				enables very high write loads without affecting client application performance.
+				</p>
+
+			<p class="p">Couchbase Server implements an append-only format and a built-in automatic
+				compaction process. Previously, in Couchbase Server 1.8.x, an “in-place-update” disk
+				format was implemented, however, this implementation occasionally produced a
+				performance penalty due to fragmentation of the on-disk files under workloads with
+				frequent updates/deletes. </p>
+
+			<p class="p">The requirements of your disk subsystem are broken
+				down into two components: size and IO. </p>
+
+			
+			
+			<p class="p">Disk size requirements are impacted by the Couchbase file write format,
+				append-only, and the built-in automatic compaction process. Append-only format means
+				that every write (insert/update/delete) creates a new entry in the
+				file(s).</p>
+
+			<p class="p">The required disk size increases from the update and delete workload
+				and then shrinks as the automatic compaction process runs. The size increases
+				because of the data expansion rather than the actual data using more disk space.
+				Heavier update and delete workloads increases the size more dramatically than heavy
+				insert and read workloads.</p>
+
+			<p class="p">Size recommendations are available for key-value data only. 
+				If views and indexes or XDCR are implemented, contact Couchbase support for analysis and recommendations.</p>
+
+			<p class="p">Depending on the workload, the required disk size is <strong class="ph b">2–3x</strong> your total dataset size (active
+				and replica data combined). </p>
+
+			<div class="note important"><span class="importanttitle">Important:</span> The disk size requirement of 2-3x
+				your total dataset size applies to key-value data only and does not take into
+				account other data formats and the use of views and indexes or XDCR.</div>
+
+			
+			
+			<p class="p">IO is a combination of the sustained write rate, the need for compacting the
+				database files, and anything else that requires disk access. Couchbase Server
+				automatically buffers writes to the database in RAM and eventually persists them to
+				disk. Because of this, the software can accommodate much higher write rates than a
+				disk is able to handle. However, sustaining these writes eventually requires enough
+				IO to get it all down to disk. </p>
+
+			<p class="p">To manage IO, configure the thresholds and
+				schedule when the compaction process kicks in or doesn’t kick in keeping in mind
+				that the successful completion of compaction is critical to keeping the disk size in
+				check. Disk size and disk IO become critical to size correctly when using views and
+				indexes and cross-data center replication (XDCR) as well as taking backup and
+				anything else outside of Couchbase that need space or is accessing the disk.
+				</p>
+
+			
+			
+			<p class="p">Use the available configuration options to separate data files, indexes and the
+				installation/config directories on separate drives/devices to ensure that IO and
+				space are allocated effectively. </p>
+
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Network bandwidth</h2>
+			<p class="p">Network bandwidth is not normally a significant
+				factor to consider for cluster sizing. However, clients require network bandwidth to
+				access information in the cluster. Nodes also need network bandwidth to exchange
+				information (node to node).</p>
+
+			
+			<p class="p">In general, calculate your network bandwidth requirements using the followingformula:</p>
+
+			
+			<pre class="pre codeblock">Bandwidth = (operations per second * item size) + overhead for rebalancing </pre>
+
+			
+			<p class="p">Calculate the <samp class="ph codeph">operations per second</samp> with the following formula:</p>
+
+			
+			<pre class="pre codeblock">Operations per second = Application reads + (Application writes * Replica copies) </pre>
+
+			</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Data safety</h2>
+			<p class="p">Make sure you have enough nodes (and the right
+				configuration) in your cluster to keep your data safe. There are two areas to keep
+				in mind: how you distribute data across nodes and how many replicas you store across
+				your
+				cluster.</p>
+
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Data distribution</h2>
+			<p class="p">Basically, more nodes are better than less. If
+				you only have two nodes, your data is split across the two nodes, half and half. 
+				This means that half of your dataset is impacted if one goes away. 
+				On the other hand, with ten nodes, only 10% of the dataset is impacted if one nodes goes away. 
+				Even with automatic failover, there still is some period of time when data is unavailable if nodes fail. 
+				This is mitigated by having more nodes.</p>
+
+			
+			<p class="p">After a failover, the cluster takes on an extra load. 
+				The question is - how heavy is that extra load and are you prepared for it? 
+				Again, with only two nodes, each one needs to be ready to handle the entire load. 
+				With ten, each node only needs to be able to take on an extra tenth of the workload should one fail.</p>
+
+			
+			<p class="p">While two nodes does provide a minimal level of redundancy, we recommend
+				that you always use at least three nodes.</p>
+
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Replication</h2>
+			<p class="p">Couchbase Server allows you to configure up to three replicas (creating four copies of the dataset). 
+				In the event of a failure, you can only “failover” (either manually or automatically) as many nodes as you have
+				replicas. 
+				For example:</p>
+
+			<ul class="ul">
+				<li class="li">In a five node cluster with one replica, if one node goes down, you can fail
+						it over. If a second node goes down, you no longer have enough replica
+						copies to fail over to and will have to go through a slower process to
+						recover.</li>
+
+				<li class="li">In a five node cluster with two replicas, if one node goes down, you can fail
+						it over. If a second node goes down, you can fail it over as well. Should a
+						third one go down, you now no longer have replicas to fail over.</li>
+
+			</ul>
+
+			<p class="p">After a node goes down and is failed over, try to replace that node as soon as
+				possible and rebalance. The rebalance recreates the replica copies (if you still
+				have enough nodes to do so).</p>
+
+			
+			<div class="note tip"><span class="tiptitle">Tip:</span> As a rule of thumb, configure the following:
+			<ul class="ul">
+				<li class="li">One replica for up to five nodes.</li>
+
+				<li class="li">One or two replicas for five to ten nodes.</li>
+
+				<li class="li">One, two, or three replicas for over ten nodes.</li>
+
+			</ul>
+
+				While there may be variations to this, there are diminishing returns from having more replicas in smaller clusters.
+			</div>
+
+			
+			</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Hardware requirements</h2>
+			<p class="p">In general, Couchbase Server has very low
+				hardware requirements and is designed to be run on commodity or virtualized systems.
+				However, as a rough guide to the primary concerns for your servers, the following is recommended:
+				</p>
+
+			<ul class="ul">
+				<li class="li">RAM: This is your primary consideration. We use RAM to store active items,
+						and that is the key reason Couchbase Server has such low latency.</li>
+
+				<li class="li">CPU: Couchbase Server has very low CPU requirements. The server is
+						multi-threaded and therefore benefits from a multi-core system. We recommend
+						machines with at least four or eight physical cores.</li>
+
+				<li class="li">Disk: By decoupling the RAM from the I/O layer, Couchbase Server can support
+						low-performance disks better than other databases. 
+						As a best practice, have separate devices for server install, data
+						directories, and index directories.</li>
+
+				<li class="li">Network: Most configurations work with Gigabit Ethernet interfaces. Faster
+					solutions such as 10GBit and Infiniband will provide spare capacity.</li>
+
+			</ul>
+
+			<p class="p">Known working configurations include SAN, SAS, SATA, SSD, and EBS with the
+				following recommendations:</p>
+
+			
+			<ul class="ul">
+				<li class="li">SSDs have been shown to provide a great performance boost both in terms of
+  draining the write queue and also in restoring data from disk (either on
+  cold-boot or for purposes of rebalancing).</li>
+
+				<li class="li">RAID generally provides better throughput and reliability.</li>
+
+				<li class="li">Striping across EBS volumes (in Amazon EC2) has been shown to increase throughput.</li>
+
+			</ul>
+
+
+		</div>
+
+		
+		<div class="section"><h2 class="title sectiontitle">Considerations for Cloud environments (i.e. Amazon EC2)</h2>
+			<p class="p">Due to the
+				unreliability and general lack of consistent I/O performance in cloud environments,
+				we highly recommend lowering the per-node RAM footprint and increasing the number of
+				nodes. This will give better disk throughput as well as improve rebalancing since
+				each node will have to store (and therefore transmit) less data. By distributing the
+				data further, it lessens the impact of losing a single node (which could be fairly
+				common).</p>
+
+		</div>
+
+	</div>
+
+	<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/bp-deployment-considerations.html" title="Deployment configuration take into account topics such as restricted access, node communication, swap configuration, and connection timeouts.">Deployment considerations</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Concepts/bp-cloudDeployment.html" title="Couchbase Server is extremely easy to deploy in the cloud.">Couchbase in the cloud</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,0 +1,210 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../../install-intro.html">Couchbase Installation</a></li><li><a href="../../admin-intro.html">Couchbase Administration</a></li><li><a href="../../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBcli/cbcli-commands.html">couchbase-cli commands</a></li><li><a href="../../CLI/CBcli/cbcli-buckets.html">Buckets CLI</a></li><li class="active"><a href="../../CLI/CBcli/cbcli-rza.html">Rack-Zone Awareness CLI</a><ul class="nav nav-list"></ul></li><li><a href="../../CLI/CBcli/cbcli-servers.html">Server nodes CLI</a></li><li><a href="../../CLI/CBcli/cbcli-xdcr.html">XDCR CLI</a></li></ul></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">Couchbase REST API</a></li><li><a href="../../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+   <h1 class="title topictitle1">Rack-Zone Awareness CLI</h1>
+
+   
+
+
+   <div class="body"><p class="shortdesc">Rack-Zone Awareness allows logical groupings of servers on a cluster where each server
+      group physically belongs to a rack or availability zone. </p>
+
+      <p class="p">The Rack-Zone Awareness feature provides the ability to specify that active and
+         corresponding replica partitions be created on servers that are part of a separate rack or
+         zone. To enable Rack-Zone Awareness, all servers in a cluster must be upgraded. </p>
+
+
+      
+      <div class="note note"><span class="notetitle">Note:</span> The Rack Awareness feature with its server group capability is an Enterprise Edition
+         feature.</div>
+
+      <p class="p">To configure servers into groups, use the <samp class="ph codeph">couchbase-cli</samp> tool with the
+            <samp class="ph codeph">group-manage</samp> command.</p>
+
+      <p class="p">General syntax with <samp class="ph codeph">group-manage</samp>:</p>
+
+      
+      <pre class="pre codeblock">
+couchbase-cli group-manage -c HOST:PORT 
+    -u USERNAME -p PASSWORD
+    [OPTIONS]
+</pre>
+
+      <dl class="dl">
+         
+            <dt class="dt dlterm"><samp class="ph codeph">-c HOST:PORT or --cluster=HOST:PORT</samp></dt>
+
+            <dd class="dd">Cluster location</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">-u USERNAME or --username=USERNAME</samp></dt>
+
+            <dd class="dd">Administrator username for the cluster</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">-p PASSWORD or --password=PASSWORD</samp></dt>
+
+            <dd class="dd">Administrator password for the cluster</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">--list</samp></dt>
+
+            <dd class="dd">Shows the server groups and the servers assigned to each server group.</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">--create --group-name=groupName</samp></dt>
+
+            <dd class="dd">Creates a server group .</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">--delete --group-name=groupName</samp></dt>
+
+            <dd class="dd">Removes an empty server group.</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">--rename=newGroupName --group-name=oldGroupName</samp></dt>
+
+            <dd class="dd">Renames an existing server group.</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">--group-name=groupName --add-servers="HOST:PORT;HOST:PORT"</samp></dt>
+
+            <dd class="dd">Adds servers to a group.</dd>
+
+         
+
+
+         
+            <dt class="dt dlterm"><samp class="ph codeph">--from-group=groupName --to-group=groupName
+                  --move-servers="HOST:PORT;HOST:PORT"</samp></dt>
+
+            <dd class="dd">Moves one or more servers from one group to another.</dd>
+
+         
+
+      </dl>
+
+      <div class="section"><h2 class="title sectiontitle">Creating server groups</h2>
+         <p class="p">In the following example, a server group is
+            created.</p>
+
+         
+         
+         <div class="note note"><span class="notetitle">Note:</span> The <samp class="ph codeph">-create --group-name</samp> command may fail when an
+            exclamation (!) is present inside the group name.
+         </div>
+
+         
+         <pre class="pre codeblock">
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --create --group-name=myGroupName
+</pre>
+</div>
+
+      
+      <div class="section"><h2 class="title sectiontitle">Adding servers to server groups</h2>
+         
+         <p class="p">In the following example, two
+            servers are added to a server group using the <samp class="ph codeph">group-manage</samp>
+            command.</p>
+
+         
+         <pre class="pre codeblock">
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --group-name=myNewGroup
+   --add-servers="10.1.1.1:8091;10.1.1.2:8091"
+</pre>
+
+         
+         <p class="p">In
+            the following example, a server is added to the server group using the
+               <samp class="ph codeph">server-add</samp> command.</p>
+
+         
+         
+         <div class="note note"><span class="notetitle">Note:</span> The <samp class="ph codeph">couchbase-cli
+            group-manage</samp> command is the preferred method of adding servers to server
+            group.</div>
+
+         
+         <p class="p">If the <samp class="ph codeph">--group-name</samp> option is not specified with the <samp class="ph codeph">server-add</samp>
+            command, the server is added to the default
+         group.</p>
+
+         
+         <pre class="pre codeblock">
+couchbase-cli server-add -c 192.168.0.1:8091
+   --server-add=192.168.0.2:8091
+   --server-add-username=Administrator
+   --server-add-password=password
+   --group-name=groupName
+</pre>
+</div>
+
+      
+      
+      <div class="section"><h2 class="title sectiontitle">Moving servers from server groups</h2>
+         
+         <p class="p">In the following example, two
+            servers are moved from one server group to another using the
+               <samp class="ph codeph">group-manage</samp>
+         command.</p>
+
+         
+         <pre class="pre codeblock">
+couchbase-cli group-manage -c 192.168.0.1:8091 
+   -u myAdminName
+   -p myAdminPassword
+   --from-group=myFirstGroup
+   --to-group=mySecondGroup
+   --move-servers="10.1.1.1:8091;10.1.1.2:8091"
+</pre>
+
+      </div>
+
+   </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

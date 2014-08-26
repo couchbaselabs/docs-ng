@@ -1,0 +1,189 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li class="active"><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">cbcollect_info tool</h1>
+
+	<div class="body">
+		<p class="p">This is one of the most important diagnostic tools used by Couchbase technical support
+			teams; this command-line tool provides detailed statistics for a specific node. The tool
+			is at the following locations, depending upon your platform:</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d33680e27">Operating System</th>
+
+						<th class="entry" valign="top" id="d33680e30">Location</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e27 "><strong class="ph b">Linux</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e30 "><samp class="ph codeph">/opt/couchbase/bin/cbcollect_info</samp></td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e27 "><strong class="ph b">Windows</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e30 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\cbcollect_info</samp></td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e27 "><strong class="ph b">Mac OS X</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e30 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/cbcollect_info</samp></td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		<p class="p"><strong class="ph b">Be aware that this tool is a per-node operation.</strong> If you want to perform this
+			operation for an entire cluster, you will need to perform the command for every node
+			that exists for that cluster.</p>
+
+		<p class="p">You will need a root account to run this command and collect all the server information
+			needed. There are internal server files and directories that this tool accesses which
+			require root privileges.</p>
+
+		<p class="p">To use this command, you remotely connect to the machine which contains your Couchbase
+			Server then issue the command with options. You typically run this command under the
+			direction of technical support at Couchbase and it will generate a large.zip file. This
+			archive will contain several different files which contain performance statistics and
+			extracts from server logs. The following describes usage, where
+				<samp class="ph codeph">output_file</samp> is the name of the.zip file you will create and send to
+			Couchbase technical support:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">cbcollect_info hostname:port output_file
+
+Options:
+  -h, --help  show this help message and exit
+  -v          increase verbosity level
+</samp></pre>
+
+		<p class="p">If you choose the verbosity option, <samp class="ph codeph">-v</samp> debugging information for
+				<samp class="ph codeph">cbcollect_info</samp> will be also output to your console. When you run
+				<samp class="ph codeph">cbcollect_info</samp>, it will gather statistics from an individual node
+			in the cluster.</p>
+
+		<p class="p">This command will collect information from an individual Couchbase Server node. If you
+			are experiencing problems with multiple nodes in a cluster, you may need to run it on
+			all nodes in a cluster.</p>
+
+		<p class="p">The tool will create the following.log files in your named archive:</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d33680e122"><strong class="ph b">couchbase.log</strong></th>
+
+						<th class="entry" valign="top" id="d33680e126">OS-level information about a node.</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e122 "><strong class="ph b">ns_server.couchdb.log</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e126 ">Information about the persistence layer for a node.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e122 "><strong class="ph b">ns_server.debug.log</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e126 ">Debug-level information for the cluster management component of this
+							node.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e122 "><strong class="ph b">ns_server.error.log</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e126 ">Error-level information for the cluster management component of this
+							node.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e122 "><strong class="ph b">ns_server.info.log</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e126 ">Info-level entries for the cluster management component of this
+							node.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e122 "><strong class="ph b">ns_server.views.log</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e126 ">Includes information about indexing, time taken for indexing, queries
+							which have been run, and other statistics about views.</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33680e122 "><strong class="ph b">stats.log</strong></td>
+
+						<td class="entry" valign="top" headers="d33680e126 ">The results from multiple <samp class="ph codeph">cbstats</samp> options run for
+							the node.</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+		<p class="p">After you finish running the tool, you should upload the archive and send it to Couchbase
+			technical support:</p>
+
+		<pre class="pre codeblock"><samp class="ph codeph">&gt; curl --upload-file file_name https://s3.amazonaws.com/customers.couchbase.com/company_name/
+</samp></pre>
+
+		<p class="p">Where <samp class="ph codeph">file_name</samp> is the name of your archive, and
+				<samp class="ph codeph">company_name</samp> is the name of your organization. After you have
+			uploaded the archive, please contact Couchbase technical support. </p>
+
+	</div>
+
+	<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../CLI/cbstats-intro.html">cbstats tool</a></div>
+<div><a class="link" href="http://www.couchbase.com/wiki/display/couchbase/Working+with+the+Couchbase+Technical+Support+Team" target="_blank">Working with Couchbase Customer Support</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

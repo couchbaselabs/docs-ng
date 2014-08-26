@@ -5,4 +5,5 @@ out/
 temp
 tmp
 *.pdf
+!couchbase-server-3.0.pdf
 *.swp

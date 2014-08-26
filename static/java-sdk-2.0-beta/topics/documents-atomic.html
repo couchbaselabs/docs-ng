@@ -1,0 +1,111 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">Couchbase Java SDK overview</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/managing-connections.html">Managing connections</a></li><li><a href="../topics/documents.html">Working with documents</a><ul class="nav nav-list"><li><a href="../topics/documents-basics.html">Document basics</a></li><li><a href="../topics/documents-creating.html">Creating documents</a></li><li><a href="../topics/documents-updating.html">Updating documents</a></li><li><a href="../topics/documents-retrieving.html">Retrieving documents</a></li><li><a href="../topics/documents-deleting.html">Deleting documents</a></li><li class="active"><a href="../topics/documents-atomic.html">Atomic operations</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/observables.html">Mastering observables</a></li><li><a href="../topics/logging.html">Setting up logging</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Atomic operations</h1>
+
+
+	
+	<div class="body conbody"><p class="shortdesc">Describes other atomic operations like <samp class="ph codeph">counter()</samp> or <samp class="ph codeph">append()</samp>/<samp class="ph codeph">prepend()</samp></p>
+
+
+		<div class="section"><h2 class="title sectiontitle">Counter</h2>
+			
+
+			<p class="p">The <samp class="ph codeph">counter()</samp> method allows you to atomically increment or decrement a document with numerical content. This is reflected by that it only accepts and returns a <samp class="ph codeph">LongDocument</samp>. If the value is incremented or decremented depends on the <samp class="ph codeph">delta</samp> given, and it is also possible to pass in an initial value or an expiration time.</p>
+
+
+<pre class="pre codeblock language-java">// Increase the counter by 5 and set the initial value to 0 if it does not exist
+Observable&lt;LongDocument&gt; doc = bucket.counter("id", 5);</pre>
+
+
+			<p class="p">The resulting document contains the new counter value. A very common use case is to implement a increasing <samp class="ph codeph">AUTO_INCREMENT</samp> like counter, where every new user just gets a new id:</p>
+
+
+<pre class="pre codeblock language-java">bucket
+    .counter("user::id", 1, 1)
+    .map(new Func1&lt;LongDocument, String&gt;() {
+        @Override
+        public String call(LongDocument counter) {
+            return "user::" + counter.content();
+        }
+    })
+    .flatMap(new Func1&lt;String, Observable&lt;JsonDocument&gt;&gt;() {
+        @Override
+        public Observable&lt;JsonDocument&gt; call(String id) {
+            return bucket.insert(JsonDocument.create(id, JsonObject.empty()));
+        }
+    }).subscribe();</pre>
+
+
+    		<p class="p">This code increases the counter by one, then maps the returned number onto a custom document ID (here the code prefixes <samp class="ph codeph">user::</samp>). Afterwards, the <samp class="ph codeph">insert</samp> method is executed with the generated id, and here a empty document content. Since a <samp class="ph codeph">counter</samp> operation is atomic, the code is guaranteed to deliver different user IDs, even when called at the same time from multiple threads.</p>
+
+
+			<p class="p">If the initial value is omittted, <samp class="ph codeph">0</samp> is used. Note that the counter needs to be always greater or equal than zero, negative values are nto allowed. If you want to decrement a counter, make sure to set it to a higher positive value initially.</p>
+
+
+			<p class="p">This means that if the document does not exist, the value will be always set to 0. If you want to set the counter to the delta initially, set both values:</p>
+
+
+<pre class="pre codeblock language-java">// Increase the counter by 5 and set the initial value to 5 if it does not exist
+Observable&lt;LongDocument&gt; doc = bucket.counter("id", 5, 5);</pre>
+
+
+			<p class="p">If you want to set an expiration time, you need to provide both the initial value and the expiration time. This is a constraint by the API, because just exposing the expiration time would be ambigous with the initial value (long and int).</p>
+
+
+<pre class="pre codeblock language-java">// Increment by 5, initial 5 and 3 second expiration
+Observable&lt;LongDocument&gt; doc = bucket.counter("id", 5, 5, 3);</pre>
+
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">Append &amp; Prepend</h2>
+			
+
+			<p class="p">Appending and prepending values to existing documents is also possible. Both the <samp class="ph codeph">append</samp> and <samp class="ph codeph">prepend</samp> operation are atomic, so they can be used without further synchronization.</p>
+
+
+			<div class="p"><div class="note note"><span class="notetitle">Note:</span> Both operations only work on binary documents, ideally strings or byte arrays. It does not work on JSON documents, because it doesn't do any further inspection. Applying one of those operations on a JSON document will render it invalid.</div>
+</div>
+
+
+			<p class="p">Also note that a <samp class="ph codeph">Document</samp> needs to be created before values can be appended or prepended. Here is an example that creates a document and then appends a string to it:</p>
+
+
+<pre class="pre codeblock language-java">bucket
+    .insert(LegacyDocument.create("doc", "Hello, "))
+    .flatMap(doc -&gt;
+        bucket.append(LegacyDocument.create("doc", "World!"))
+    )
+    .flatMap(bucket::get)
+    .toBlocking()
+    .forEach(doc -&gt; System.err.println(doc.content()));</pre>
+
+
+    		<p class="p">When executed, this prints <samp class="ph codeph">Hello, World!</samp>.</p>
+
+		</div>
+
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/documents.html">Working with documents</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

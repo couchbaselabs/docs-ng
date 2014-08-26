@@ -1,0 +1,70 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a><ul class="nav nav-list"><li class="active"><a href="../Concepts/bp-clusterDesign.html">Cluster design considerations</a><ul class="nav nav-list"></ul></li><li><a href="../Concepts/bp-sizingGuidelines.html">Sizing guidelines</a></li><li><a href="../Concepts/bp-deployment-strategies.html">Deployment strategies</a></li><li><a href="../Concepts/bp-maintenance.html">Ongoing monitoring and maintenance</a></li><li><a href="../Concepts/bp-firewall.html">Couchbase behind a secondary firewall</a></li><li><a href="../Concepts/bp-cloudDeployment.html">Couchbase in the cloud</a></li><li><a href="../Tasks/xdcr-cloud.html">XDCR in cloud deployments</a></li></ul></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Cluster design considerations</h1>
+
+ 
+ <div class="body"><p class="shortdesc">Cluster design takes into account topics such as RAM, number of nodes and cores, clied
+  or server-side moxi.</p>
+
+  <ul class="ul">
+   <li class="li">RAM: Memory is a key factor for smooth cluster performance. Couchbase best fits applications
+    that want most of their active dataset in memory. It is very important that all the data you
+    actively use (the working set) lives in memory. When there is not enough memory left, some data
+    is ejected from memory and will only exist on disk. Accessing data from disk is much slower than
+    accessing data in memory. As a result, if ejected data is accessed frequently, cluster
+    performance suffers. Use the formula provided in the next section to verify your configuration,
+    optimize performance, and avoid this situation.</li>
+
+   <li class="li">Number of nodes: Once you know how much memory you need, you must decide whether to have a
+    few large nodes or many small nodes. <ul class="ul">
+     <li class="li">Many small nodes: You are distributing I/O across several machines. However, you also have
+      a higher chance of node failure (across the whole cluster).</li>
+
+     <li class="li">Few large nodes: Should a node fail, it greatly impacts the application.</li>
+
+     <li class="li">It is a trade off between reliability and efficiency.</li>
+
+    </ul>
+</li>
+
+   <li class="li">Couchbase prefers a client-side moxi (or a smart client) over a server-side moxi. However,
+    for development environments or for faster, easier deployments, you can use server-side moxis. A
+    server-side moxi is not recommended because of the following drawback: if a server receives a
+    client request and doesn’t have the requested data, there’s an additional hop.</li>
+
+   <li class="li">Number of cores: Couchbase is relatively more memory or I/O bound than is CPU bound. However,
+    Couchbase is more efficient on machines that have at least two cores.</li>
+
+   <li class="li">Storage type: You may choose either SSDs (solid state drives) or spinning disks to store
+    data. SSDs are faster than rotating media but, currently, are more expensive. Couchbase needs
+    less memory if a cluster uses SSDs as their I/O queue buffer is smaller.</li>
+
+   <li class="li">WAN Deployments: Couchbase is not intended to be used in WAN configurations. Couchbase
+    requires that the latency should be very low between server nodes and between servers nodes and
+    Couchbase clients.</li>
+
+  </ul>
+
+ </div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/bp-deployment-considerations.html" title="Deployment configuration take into account topics such as restricted access, node communication, swap configuration, and connection timeouts.">Deployment considerations</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

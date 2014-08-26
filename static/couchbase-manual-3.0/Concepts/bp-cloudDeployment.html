@@ -1,0 +1,456 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a><ul class="nav nav-list"><li><a href="../Concepts/bp-clusterDesign.html">Cluster design considerations</a></li><li><a href="../Concepts/bp-sizingGuidelines.html">Sizing guidelines</a></li><li><a href="../Concepts/bp-deployment-strategies.html">Deployment strategies</a></li><li><a href="../Concepts/bp-maintenance.html">Ongoing monitoring and maintenance</a></li><li><a href="../Concepts/bp-firewall.html">Couchbase behind a secondary firewall</a></li><li class="active"><a href="../Concepts/bp-cloudDeployment.html">Couchbase in the cloud</a><ul class="nav nav-list"></ul></li><li><a href="../Tasks/xdcr-cloud.html">XDCR in cloud deployments</a></li></ul></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+  <h1 class="title topictitle1">Couchbase in the cloud</h1>
+
+  
+  
+  <div class="body"><p class="shortdesc">Couchbase Server is extremely easy to deploy in the cloud.</p>
+
+    <p class="p">From the software’s perspective, there is really no difference between being installed on
+      bare-metal or virtualized operating systems. On the other hand, the management and deployment
+      characteristics of the cloud warrant a separate discussion on the best ways to use
+      Couchbase.</p>
+
+    <p class="p">For the purposes of this discussion, “the cloud” is referred to as Amazon’s EC2 environment
+      since that is by far the most common cloud-based environment. However, the same considerations
+      apply to any environment that acts like EC2 (an organization’s private cloud for example). In
+      terms of the software itself, extensive testing has been done within EC2 (and some of Couchbase's 
+      largest customers have already deployed Couchbase there for production use). Because of this,
+      we have encountered and resolved a variety of bugs only exposed by the sometimes unpredictable
+      characteristics of this environment.</p>
+
+
+    <p class="p">We have written a number of RightScale templates to help you deploy within Amazon. Sign up for a
+      free RightScale account to try it out. The templates handle almost all of the special
+      configuration needed to make your experience within EC2 successful. Direct integration with
+      RightScale also allows us to do some pretty cool things with auto-scaling and pre-packaged
+      deployment.</p>
+
+    <p class="p">We’ve also authored an AMI for use within EC2 independent of RightScale. When using these,
+      you will have to handle the specific complexities yourself. You can find this AMI by searching
+      for ‘couchbase’ in Amazon’s EC2 portal.</p>
+
+    <p class="p">When deploying within the cloud, consider the following areas:</p>
+
+    <ul class="ul">
+      <li class="li"><p class="p">Local storage being ephemeral</p>
+</li>
+
+      <li class="li"><p class="p">IP addresses of a server changing from runtime to runtime</p>
+</li>
+
+      <li class="li"><p class="p">Security groups/firewall settings</p>
+</li>
+
+      <li class="li"><p class="p">Swap Space</p>
+</li>
+
+    </ul>
+
+    <div class="section"><h2 class="title sectiontitle">Handling instance reboot in cloud</h2>
+    <p class="p">Many cloud providers warn users that they need to reboot certain instances for maintenance.
+      Couchbase Server ensures these reboots won’t disrupt your application. Take the following
+      steps to make that happen:</p>
+
+    <ol class="ol">
+      <li class="li">Install Couchbase on the new node.</li>
+
+      <li class="li">From the user interface, add the new node to the cluster.</li>
+
+      <li class="li">From the user interface, remove the node that you wish to reboot.</li>
+
+      <li class="li">Rebalance the cluster.</li>
+
+      <li class="li">Shut down the instance.</li>
+
+    </ol>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Local storage</h2><p class="p">Dealing with local storage is not very much different
+        than a data center deployment. However, EC2 provides an interesting solution. Through the
+        use of EBS storage, you can prevent data loss when an instance fails. Writing Couchbase data
+        and configuration to EBS creates a reliable medium of storage. There is direct support for
+        using EBS within RightScale and, of course, you can set it up manually.</p>
+<p class="p">Using EBS is
+        definitely not required, but you should make sure to follow the best practices around
+        performing backups.</p>
+<p class="p">Keep in mind that you will have to update the per-node disk path
+        when configuring Couchbase to point to wherever you have mounted an external
+        volume.</p>
+</div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Handling changes in IP addresses</h2><p class="p">When you use Couchbase Server in the
+        cloud, server nodes can use internal or public IP addresses. Because IP addresses in the
+        cloud may change quite frequently, you can configure Couchbase to use a hostname instead of
+        an IP address.</p>
+<p class="p">For Amazon EC2 we recommend you use Amazon-generated hostnames which
+        then will automatically resolve to either the internal or external address.</p>
+<p class="p">By default
+        Couchbase Servers use specific IP addresses as a unique identifier. If the IP changes, an
+        individual node will not be able to identify its own address, and other servers in the same
+        cluster will not be able to access it. To configure Couchbase Server instances in the cloud
+        to use hostnames, follow the steps later in this section. Note that RightScale server
+        templates provided by Couchbase can automatically configure a node with a provided
+        hostname.</p>
+<p class="p">Make sure that your hostname always resolves to the IP address of the node.
+        This can be accomplished by using a dynamic DNS service such as DNSMadeEasy which will allow
+        you to automatically update the hostname when an underlying IP address changes.</p>
+<p class="p">The
+        following steps completely destroys any data and configuration from the node, so you should
+        start with a fresh Couchbase install. If you already have a running cluster, you can
+        rebalance a node out of the cluster, make the change, and then rebalance it back into the
+        cluster. </p>
+<p class="p">Nodes with both IPs and hostnames can exist in the same
+        cluster. When you set the IP address using this method, you should not specify the address
+        as <samp class="ph codeph">localhost</samp> or <samp class="ph codeph">127.0.0.1</samp> as this will be invalid when
+        used as the identifier for multiple nodes within the cluster. Instead, use the correct IP
+        address for your host.</p>
+<p class="p"><strong class="ph b">Linux and Windows 2.1 and above</strong></p>
+<p class="p">As a rule, you
+        should set the hostname before you add a node to a cluster. You can also provide a hostname
+        in these ways: when you install a Couchbase Server node or when you do a REST API call
+        before the node is part of a cluster. You can also add a hostname to an existing cluster for
+        an online upgrade. If you restart, any hostname you establish with one of these methods will
+        be used. </p>
+
+      <p class="p"><strong class="ph b">Linux and Windows 2.0.1 and earlier</strong></p>
+<p class="p">For
+        Couchbase Server 2.0.1 and earlier you must follow a manual process where you edit config
+        files for each node which we describe below for Couchbase in the cloud. </p>
+</div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Security groups/firewall settings</h2><p class="p">It’s important to make sure you have
+        both allowed AND restricted access to the appropriate ports in a Couchbase deployment. Nodes
+        must be able to talk to one another on various ports, and it is important to restrict
+        external and/or internal access to only authorized individuals. Unlike a typical data center
+        deployment, cloud systems are open to the world by default, and steps must be taken to
+        restrict
+      access.</p>
+</div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Swap space</h2><p class="p">On Linux, swap space is used when the physical memory (RAM)
+        is full. If the system needs more memory resources and the RAM is full, inactive pages in
+        memory are moved to the swap space. Swappiness indicates how frequently a system should use
+        swap space based on RAM usage. The swappiness range is from 0 to 100 where, by default, most
+        Linux platforms have swappiness set to 60.</p>
+<p class="p">Recommendation</p>
+<p class="p">For optimal Couchbase
+        Server operations, set the swappiness to <strong class="ph b">0</strong> (zero). </p>
+<p class="p">To change the swap
+        configuration:</p>
+<ol class="ol">
+        <li class="li">Execute <samp class="ph codeph">cat /proc/sys/vm/swappiness</samp> on each node to determine the
+          current swap usage configuration.</li>
+
+        <li class="li">Execute <samp class="ph codeph">sudo sysctl vm.swappiness=0</samp> to immediately change the swap
+          configuration and ensure that it persists through server restarts.</li>
+
+        <li class="li">Using sudo or root user privileges, edit the kernel parameters configuration file,
+            <samp class="ph codeph">/etc/sysctl.conf</samp>, so that the change is always in effect.</li>
+
+        <li class="li">Append <samp class="ph codeph">vm.swappiness = 0</samp> to the file.</li>
+
+        <li class="li">Reboot your system.</li>
+
+      </ol>
+<p class="p"><strong class="ph b">Note</strong>: Executing <samp class="ph codeph">sudo sysctl vm.swappiness=0</samp> ensures that the
+        operating system no longer uses swap unless memory is completely exhausted. Updating the
+        kernel parameters configuration file, <samp class="ph codeph">sysctl.conf</samp>, ensures that the
+        operating system always uses swap in accordance with Couchbase recommendations even when the
+        node is rebooted.</p>
+</div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Using Couchbase Server on RightScale</h2><p class="p">Couchbase partners with RightScale to
+        provide preconfigured RightScale ServerTemplates that you can use to create an individual or
+        array of servers and start them as a cluster. Couchbase Server RightScale ServerTemplates
+        enable you to quickly set up Couchbase Server on Amazon Elastic Compute Cloud (Amazon EC2) servers in
+        the Amazon Web
+          Services (AWS) cloud through RightScale. </p>
+<p class="p">The templates also provide support
+        for Amazon Elastic
+          Block Store (Amazon EBS) standard volumes and Provisioned IOPS volumes. (IOPS is an
+        acronym for input/output operations per second.) For more information about Amazon EBS
+        volumes and their capabilities and limitations, see Amazon EBS Volume Types. </p>
+<p class="p">Couchbase provides
+        RightScale ServerTemplates based on Chef and, for compatibility with existing systems,
+        non-Chef-based ServerTemplates. </p>
+
+      
+     <div class="note note"><span class="notetitle">Note:</span> As of Couchbase Server 2.2, non-Chef
+        templates are deprecated. Do not choose non-Chef templates for new installations.
+        </div>
+
+      
+      <p class="p">Before you can set up Couchbase Server on RightScale, you need a RightScale account
+        and an AWS account that is connected to your RightScale account. </p>
+<p class="p">At a
+        minimum, you need RightScale user role privileges to work with the
+        Couchbase RightScale ServerTemplates: actor, designer, library, observer, and server_login.
+        To add privileges: from the RightScale menu bar, click <strong class="ph b">Settings &gt; Account Settings
+          &gt; Users</strong> and modify the permission list.</p>
+<p class="p">To set up Couchbase Server on
+        RightScale, you need to import and customize a ServerTemplate. After the template is
+        customized, you can launch server and cluster instances. The following figure illustrates
+        the workflow:</p>
+
+      <p class="p"><img class="image" src="../images/rightscale-workflow.png" width="480"></p>
+
+      
+      <p class="p">The following
+        procedures do not describe every parameter that you can modify when working with the
+        RightScale ServerTemplates. If you need more information about a parameter, click the info
+        button located near the parameter name.</p>
+<p class="p"><strong class="ph b">To import the Couchbase Server RightScale
+          ServerTemplate:</strong></p>
+<ol class="ol">
+        <li class="li">From the RightScale menu bar, select <strong class="ph b">Design &gt; MultiCloud Marketplace &gt;
+            ServerTemplates</strong>.</li>
+
+        <li class="li">In the <strong class="ph b">Keywords</strong> box on the left under Search, type <strong class="ph b">couchbase</strong>, and then
+          click <strong class="ph b">Go</strong>.</li>
+
+        <li class="li">In the search results list, click on the latest version of the Couchbase Server
+            ServerTemplate.
+          <p class="p">The name of each Couchbase template in the list contains the Couchbase Server version
+            number.</p>
+</li>
+
+        <li class="li">Click <strong class="ph b">Import</strong>.</li>
+
+        <li class="li">Review each page of the end user license agreement, and then click <strong class="ph b">Finish</strong> to
+          accept the agreement.</li>
+
+      </ol>
+
+      
+      <p class="p"><strong class="ph b">To create a new deployment:</strong></p>
+<ol class="ol">
+        <li class="li">From the RightScale menu bar, select <strong class="ph b">Manage &gt; Deployments &gt; New</strong>.</li>
+
+        <li class="li">Enter a Nickname and Description for the new deployment.</li>
+
+        <li class="li">Click <strong class="ph b">Save</strong>.</li>
+
+      </ol>
+<p class="p"><strong class="ph b">To add a server or cluster to a deployment:</strong></p>
+<ol class="ol">
+        <li class="li">From the RightScale menu bar, select <strong class="ph b">Manage &gt; Deployments</strong>.</li>
+
+        <li class="li">Click the nickname of the deployment that you want to place the server or cluster
+          in.</li>
+
+        <li class="li">From the deployment page menu bar, add the server or cluster: <ul class="ul">
+            <li class="li">To add a server, click <strong class="ph b">Add Server</strong>.</li>
+
+            <li class="li">To add a cluster, click <strong class="ph b">Add Array</strong>.</li>
+
+          </ul>
+</li>
+
+        <li class="li">In the Add to Deployment window, select a cloud and click <strong class="ph b">Continue</strong>.</li>
+
+        <li class="li">On the Server Template page, select a template from the list.<p class="p">If you have many server
+            templates in your account, you can reduce the number of entries in the list by typing a
+            keyword from the template name into the Server Template Name box under Filter
+            Options.</p>
+</li>
+
+        <li class="li">Click <strong class="ph b">Server Details</strong>.</li>
+
+        <li class="li">On the <strong class="ph b">Server Details</strong> page, choose settings for Hardware:<p class="p"><strong class="ph b">Server Name</strong> or
+              <strong class="ph b">Array Name</strong>—Enter a name for the new server or array.</p>
+<p class="p"><strong class="ph b">Instance
+            Type</strong>—The default is extra large. The template supports only large or extra large
+            instances and requires a minimum of 4 cores.</p>
+<p class="p"><strong class="ph b">EBS Optimized</strong>—Select the check
+            box to enable EBS-optimized volumes for Provisioned IOPS.</p>
+</li>
+
+        <li class="li">Choose settings for Networking:<ul class="ul">
+            <li class="li">
+              <p class="p"><strong class="ph b">SSH Key</strong>—Choose an SSH key.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Security Groups</strong>—Choose one or more security groups.</p>
+
+            </li>
+
+          </ul>
+</li>
+
+        <li class="li">If you are adding a cluster, click <strong class="ph b">Array Details</strong>, and then choose settings for
+          Autoscaling Policy and Array Type Details.<p class="p">Under Autoscaling Policy, you can set the
+            minimum and maximum number of active servers in the cluster by modifying the <strong class="ph b">Min
+              Count</strong> and <strong class="ph b">Max Count</strong> parameters. If you want a specific number of servers,
+            set both parameters to the same value.</p>
+</li>
+
+        <li class="li">Click <strong class="ph b">Finish</strong>.</li>
+
+      </ol>
+<p class="p"><strong class="ph b">To customize the template for a server or a cluster:</strong></p>
+<ol class="ol">
+        <li class="li">From the RightScale menu bar, select <strong class="ph b">Manage &gt; Deployments</strong>.</li>
+
+        <li class="li">Click the nickname of the deployment that the server or cluster is in.</li>
+
+        <li class="li">Click the nickname of the server or cluster.</li>
+
+        <li class="li">On the Server or Server Array page, click the <strong class="ph b">Inputs</strong> tab, and then click
+            <strong class="ph b">edit</strong>.</li>
+
+        <li class="li">Expand the <strong class="ph b">BLOCK_DEVICE</strong> category and modify inputs as needed.<p class="p">The BLOCK_DEVICE
+            category contains input parameters that are specific to storage. Here’s a list of some
+            advanced inputs that you might want to modify:</p>
+<ul class="ul">
+            <li class="li"><strong class="ph b">I/O Operations per Second</strong>—Number of input/output operations per second (IOPS)
+              that the volume can support</li>
+
+            <li class="li"><strong class="ph b">Volume Type</strong>—Type of storage device</li>
+
+          </ul>
+</li>
+
+        <li class="li">Expand the <strong class="ph b">DB_COUCHBASE</strong> category and modify inputs as needed.<p class="p">The DB_COUCHBASE
+            category contains input parameters that are specific to Couchbase Server. In general,
+            the default values are suitable for one server. If you want to create a cluster, you
+            need to modify the input parameter values. Here’s a list of the advanced inputs that you
+            can modify:</p>
+<ul class="ul">
+            <li class="li">
+              <p class="p"><strong class="ph b">Bucket Name</strong>—Name of the bucket. The default bucket name is
+                  <samp class="ph codeph">default</samp>.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Bucket Password</strong>—Password for the bucket.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Bucket RAM Quota</strong>—RAM quota for the bucket in MB.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Bucket Replica Count</strong>—Bucket replica count.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Cluster REST/Web Password</strong>—Password for the administrator account. The
+                default is <samp class="ph codeph">password</samp>.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Cluster REST/Web Username</strong>—Administrator account user name for access to the
+                cluster via the REST or web interface. The default is
+                <samp class="ph codeph">Administrator</samp>.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Cluster Tag</strong>—Tag for nodes in the cluster that are automatically joined.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Couchbase Server Edition</strong>—The edition of Couchbase Server. The default is
+                  <samp class="ph codeph">enterprise</samp>.</p>
+
+            </li>
+
+            <li class="li">
+              <p class="p"><strong class="ph b">Rebalance Count</strong>—The number of servers to launch before doing a rebalance.
+                Set this value to the total number of target servers you plan to have in the
+                cluster. If you set the value to 0, Couchbase Server does a rebalance after each
+                server joins the cluster.</p>
+
+            </li>
+
+          </ul>
+</li>
+
+        <li class="li">Click <strong class="ph b">Save</strong>.</li>
+
+        <li class="li">If you are ready to launch the server or cluster right now, click <strong class="ph b">Launch</strong>.</li>
+
+      </ol>
+
+      
+      <p class="p"><strong class="ph b">To launch servers or clusters:</strong></p>
+<ol class="ol">
+        <li class="li">From the RightScale menu bar, select <strong class="ph b">Manage &gt; Deployments</strong>.</li>
+
+        <li class="li">Click the nickname of the deployment that the server or cluster is in.</li>
+
+        <li class="li">Click the nickname of the server or cluster.</li>
+
+        <li class="li">On the Server or Server Array page, click <strong class="ph b">Launch</strong>.</li>
+
+      </ol>
+
+      
+      <p class="p"><strong class="ph b">To log in to the Couchbase Web Console:</strong></p>
+<p class="p">You can log in to the Couchbase
+        Web Console by using your web browser to connect to the public IP address on port 8091. The
+        general format is <samp class="ph codeph">http://&lt;server:port&gt;</samp>. For example: if the public IP
+        address is 192.236.176.4, enter <samp class="ph codeph">http://192.236.176.4:8091/</samp> in the web
+        browser location bar.</p>
+</div>
+
+    
+    
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/bp-deployment-considerations.html" title="Deployment configuration take into account topics such as restricted access, node communication, swap configuration, and connection timeouts.">Deployment considerations</a></div>
+</div>
+
+<div class="linklist linklist"><strong>Related topics</strong><br>
+
+<div><a class="link" href="../Install/setup-overview.html">Couchbase setup overview</a></div>
+<div><a class="link" href="../Install/init-setup.html">Initial server setup</a></div>
+<div><a class="link" href="../Install/upgrading.html">Upgrading</a></div>
+<div><a class="link" href="http://www.rightscale.com/" target="_blank">RightScale</a></div>
+<div><a class="link" href="http://support.rightscale.com/27-Partners/Membase" target="_blank">Couchbase on RightScale</a></div>
+<div><a class="link" href="http://www.rightscale.com" target="_blank">RightScale</a></div>
+<div><a class="link" href="http://aws.amazon.com" target="_blank">Amazon Web Services</a></div>
+<div><a class="link" href="http://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud</a></div>
+<div><a class="link" href="http://aws.amazon.com/ebs/" target="_blank">Amazon Elastic Block Store</a></div>
+<div><a class="link" href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html#EBSVolumeTypes" target="_blank">Amazon EBS Volume Types</a></div>
+<div><a class="link" href="http://www.opscode.com/chef/" target="_blank">Chef</a></div>
+<div><a class="link" href="http://support.rightscale.com/03-Tutorials/01-RightScale/3._Upgrade_Your_Account/1.7_Add_AWS_Credentials_to_the_Dashboard" target="_blank">Add AWS Credentials to RightScale</a></div>
+<div><a class="link" href="http://support.rightscale.com/15-References/Tables/User_Role_Privileges" target="_blank">RightScale user role privileges</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

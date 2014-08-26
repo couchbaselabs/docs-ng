@@ -1,0 +1,163 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">Couchbase Java SDK overview</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/managing-connections.html">Managing connections</a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/observables.html">Mastering observables</a></li><li class="active"><a href="../topics/logging.html">Setting up logging</a><ul class="nav nav-list"></ul></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Setting up logging</h1>
+
+	<div class="body conbody">
+		<p class="p">The Couchbase Java SDK has no hard dependency on a specific logger implementation. It tries to find one on the classpath and uses it if supported. If no logger implementation is found, the standard JDK logger is used.</p>
+
+
+		<p class="p">The following loggers are supported (and tried in this order):</p>
+
+
+		<ol class="ol">
+			<li class="li">SLF4J</li>
+
+			<li class="li">Log4J</li>
+
+			<li class="li">JDK Logger (java.util.logging)</li>
+
+		</ol>
+
+
+		<div class="section"><h2 class="title sectiontitle">Configuring SLF4J</h2>
+			
+
+
+		<p class="p">To enable SLF4J, put it on the classpath, as well as one of the support logger implementations (like logback). If you want to use logback and include logback-classic, it will be pulled in automatically:</p>
+
+
+<pre class="pre codeblock language-java">&lt;dependency&gt;
+    &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+    &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+    &lt;version&gt;1.1.2&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+
+
+		<p class="p">By default, the log level for logback is set to DEBUG, but with the addition of a logback configuration this can be configured (for example, as a "logback.xml" in the resources folder):</p>
+
+
+<pre class="pre codeblock language-java">&lt;configuration&gt;
+    &lt;appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt;
+        &lt;/encoder&gt;
+    &lt;/appender&gt;
+
+    &lt;root level="info"&gt;
+        &lt;appender-ref ref="STDOUT" /&gt;
+    &lt;/root&gt;
+&lt;/configuration&gt;</pre>
+
+
+		<p class="p">Please consult the SLF4J documentation for advanced configuration.</p>
+
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">Configuring Log4J</h2>
+			
+
+			<p class="p">Log4J is also automatically found when put on the classpath:</p>
+
+
+<pre class="pre codeblock language-java">&lt;dependency&gt;
+    &lt;groupId&gt;log4j&lt;/groupId&gt;
+    &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+    &lt;version&gt;1.2.17&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+
+
+<p class="p">If no configuration is applied, the following message will appear:</p>
+
+
+<pre class="pre codeblock language-java">log4j:WARN No appenders could be found for logger (com.couchbase.client.core.logging.CouchbaseLoggerFactory).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.</pre>
+
+
+<p class="p">This log4j.xml sets it to INFO level:</p>
+
+
+<pre class="pre codeblock language-java">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE log4j:configuration SYSTEM "log4j.dtd"&gt;
+&lt;log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'&gt;
+    &lt;appender name="CA" class="org.apache.log4j.ConsoleAppender"&gt;
+        &lt;layout class="org.apache.log4j.PatternLayout"&gt;
+            &lt;param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" /&gt;
+        &lt;/layout&gt;
+    &lt;/appender&gt;
+    &lt;root&gt;
+        &lt;level value="info" /&gt;
+        &lt;appender-ref ref="CA" /&gt;
+    &lt;/root&gt;
+&lt;/log4j:configuration&gt;</pre>
+
+
+<p class="p">Alternatively, you can provide a log4j.properties file with similar settings:</p>
+
+
+<pre class="pre codeblock language-java">log4j.rootLogger=INFO, CA
+log4j.appender.CA=org.apache.log4j.ConsoleAppender
+log4j.appender.CA.layout=org.apache.log4j.PatternLayout
+log4j.appender.CA.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n</pre>
+
+
+<p class="p">Please consult the Log4J docmentation for more information and advanced configuration options.</p>
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">Configuring the JDK Logger</h2>
+			
+
+			<p class="p">If no logging library is found on the classpath, the JDK logger (also known as JUL from java.util.logging) is used as a fallback.</p>
+
+
+			<p class="p">By default it logs INFO level and above, if you want to set it to DEBUG (or the JUL equivalent: Fine) you can do it like this programmatically (before initializing the CouchbaseCluster):</p>
+
+
+<pre class="pre codeblock language-java">Logger logger = Logger.getLogger("com.couchbase.client");
+logger.setLevel(Level.FINE);
+for(Handler h : logger.getParent().getHandlers()) {
+    if(h instanceof ConsoleHandler){
+        h.setLevel(Level.FINE);
+    }
+}</pre>
+
+
+			<p class="p">It is recommended to not use JUL in production, because SLF4J and/or Log4J provide much better configurability and performance.</p>
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">Manual Overriding</h2>
+			
+
+			<p class="p">If different loggers are on the Classpath and you want to force a different one (for example Log4J instead of SLF4J) you can set the default one directly:</p>
+
+
+<pre class="pre codeblock language-java">CouchbaseLoggerFactory.setDefaultFactory(new Log4JLoggerFactory());</pre>
+
+
+		</div>
+
+
+	</div>
+
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

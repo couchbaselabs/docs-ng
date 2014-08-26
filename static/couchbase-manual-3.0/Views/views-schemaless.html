@@ -1,0 +1,71 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a><ul class="nav nav-list"><li><a href="../Views/views-basics.html">View basics</a></li><li><a href="../Views/views-operation.html">Views operation</a></li><li><a href="../Views/views-storedData.html">Views and stored data</a></li><li><a href="../Views/views-development.html">Development views</a></li><li><a href="../Views/views-production.html">Production views</a></li><li><a href="../Views/views-writing.html">Writing views</a></li><li class="active"><a href="../Views/views-schemaless.html">Views in a schema-less database</a><ul class="nav nav-list"></ul></li><li><a href="../Views/views-querying.html">Querying views</a></li><li><a href="../Views/views-querySample.html">View and query pattern samples</a></li><li><a href="../Views/views-translateSQL.html">Translating SQL to map/reduce</a></li><li><a href="../Views/views-geospatial.html">Writing geospatial views</a></li></ul></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9"><h1 class="title topictitle1">Views in a schema-less database</h1>
+<div class="body"><p class="p">One of the primary advantages of the document-based storage and the use of
+map/reduce views for querying the data is that the structure of the stored
+documents does not need to be predeclared, or even consistent across multiple
+documents.</p>
+<p class="p">Instead, the view can cope with and determine the structure of the incoming
+documents that are stored in the database, and the view can then reformat and
+restructure this data during the map/reduce stage. This simplifies the storage
+of information, both in the initial format, and over time, as the format and
+structure of the documents can change over time.</p>
+<p class="p">For example, you could start storing name information using the following JSON
+structure:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{
+   "email" : "mc@example.org",
+   "name" : "Martin Brown"
+}
+</samp></pre>
+<p class="p">A view can be defined that outputs the email and name:</p>
+<pre class="pre codeblock"><samp class="ph codeph">function(doc, meta)
+{
+    emit([doc.name, doc.email], null);
+}
+</samp></pre>
+<p class="p">This generates an index containing the name and email information. Over time,
+the application is adjusted to store the first and last names separately:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{
+   "email" : "mc@example.org",
+   "firstname" : "Martin",
+   "lastname" : "Brown"
+}
+</samp></pre>
+<p class="p">The view can be modified to cope with both the older and newer document types,
+while still emitting a consistent view:</p>
+<pre class="pre codeblock"><samp class="ph codeph">function(doc, meta)
+{
+  if (doc.name &amp;&amp; (doc.name != null))
+  {
+    emit([doc.name, doc.email], null);
+  }
+  else
+  {
+    emit([doc.firstname + " " + doc.lastname, doc.email], null);
+  }
+}
+</samp></pre>
+<p class="p">The schema-less nature and view definitions allows for a flexible document
+structure, and an evolving one, without requiring either an initial schema
+description, or explicit schema updates when the format of the information
+changes.</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Views/views-intro.html">Views and indexes</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

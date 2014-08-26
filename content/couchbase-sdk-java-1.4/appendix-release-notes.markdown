@@ -4,6 +4,24 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-4a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.4 GA (5 August 2014)
+
+This is the fourth bug fix release for the 1.4 series and provides general stability improvements and bug fixes. Users seeing intermittent view errors or experiencing client hangs on full cluster restarts are encouraged to upgrade.
+
+**Enhancements in 1.4.4**
+
+* [JCBC-490](http://www.couchbase.com/issues/browse/JCBC-490): Unparsable JSON content for View results is now logged with an error so that it is easier
+to debug and analyze.
+
+**Fixes in 1.4.4**
+
+* [JCBC-488](http://www.couchbase.com/issues/browse/JCBC-488): If view operations are (transparently) retried, this change makes sure that authorization and host headers are replaced instead of appended. This fixes the scenario where the same header is added multiple times, leading to view errors because the server is not able to handle that request.
+* [JCBC-464](http://www.couchbase.com/issues/browse/JCBC-464): In case of a full rebootstrap (which is the case for full cluster restarts), the code now makes sure that no old configurations are around that change the bootstrap process a little bit and cause unexpected exceptions. Now every try to rebootstrap looks the same, making the code easier to reason about and fixing NullPointerException in some cases.
+* [JCBC-505](http://www.couchbase.com/issues/browse/JCBC-505): The View Query object experienced a concurrency issue because a regular expression matcher was reset instead of recreated (which is not thread safe). In most cases this is not a problem because the Query object is created and used from only one thread, but if used through the Paginator and/or shared across threads this can lead to exceptions in the matcher logic. This is now fixed.
+* [JCBC-503](http://www.couchbase.com/issues/browse/JCBC-503): During shutdown, internally observers were not released for the configuration logic, possibly leading to memory leaks during operations like application redeployment because the memory could not be freed after shutdown.
+
 <a id="couchbase-sdk-java-rn_1-4-3a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.3 GA (1 July 2014)
