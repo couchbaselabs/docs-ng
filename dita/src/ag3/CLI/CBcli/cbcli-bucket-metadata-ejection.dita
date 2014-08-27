@@ -1,43 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ed5_pm5_j4">
-  <title>Managing metadata in memory</title>
+  <title>Bucket metadata ejection CLI</title>
 
-  <shortdesc>Metadata ejection from memory is set with the <codeph>couchbase-cli</codeph>
-    tool.</shortdesc>
+  <shortdesc>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool.</shortdesc>
   
   <refbody>
-    <section><title>Metadata ejection policy</title>
+    <section><title>Bucket ejection policy</title>
     
-      <p>Metadata ejection from memory is set with <codeph>couchbase-cli</codeph> tool, either
-          <codeph>bucket-create</codeph> or <codeph>bucket-edit</codeph>, and the
-          <codeph>--bucket-eviction-policy</codeph> parameter.</p>
+      <p>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool, either
+        <codeph>bucket-create</codeph> or <codeph>bucket-edit</codeph>, and the 
+        <codeph>--bucket-eviction-policy</codeph> parameter.</p>
 
 
       
-      <p>Policy for how to retain or eject metadata from memory:</p>
+      <p>Policy for how to retain metadata in memory:</p>
       
       <codeblock>
  --bucket-eviction-policy=[valueOnly|fullEviction] 
  </codeblock>
-    </section>
-    
-    <section><title>Syntax</title>
-      <codeblock>
-couchbase-cli bucket-create -c HOST:PORT
-  --bucket=BUCKET_NAME \\	
-  --bucket-password=PASSWORD \\
-  --bucket-eviction-policy=[VALUE]
-  -u ADMIN -p PASSWORD
-
-
-couchbase-cli bucket-edit -c HOST:PORT
-  --bucket=BUCKET_NAME \\	
-  --bucket-eviction-policy=[VALUE]
-    -u ADMIN -p PASSWORD
-      </codeblock>
       
-      <p>To create a new bucket and set metadata ejection to Value:</p>
+      <p>To create a new sasl bucket:</p>
       
       <codeblock>
 couchbase-cli bucket-create -c 192.168.0.1:8091 \\
@@ -50,7 +33,7 @@ couchbase-cli bucket-create -c 192.168.0.1:8091 \\
 
 </codeblock>
       
-      <p>To edit a bucket and set metadata ejection to Full:</p>
+      <p>To modify a dedicated port bucket:</p>
       
       
       <codeblock>

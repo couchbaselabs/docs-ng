@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="reference_swj_j45_j4">
-  <title>Bucket metadata ejection REST API</title>
-  <shortdesc>Bucket ejection from memory is set with <codeph>POST
-    pools/default/buckets/default</codeph>.</shortdesc>
+<reference id="reference_dgw_x1b_k4">
+  <title>Setting disk I/O priority (REST API)</title>
+  <shortdesc>The disk I/O priority for a bucket is set with the
+      <codeph>/pools/default/buckets/bucket_name</codeph> URI and the <codeph>threadNumber</codeph>
+    setting.</shortdesc>
   <refbody>
-    <section><title>Bucket metadata ejection REST API</title>
-      <p> To set the maximum of thread workers, use the <codeph>maxNumberThreads</codeph> option. </p>
-      
-      <note type="important"> When editing bucket properties, be sure to specify all bucket
-        properties. If a bucket property is not specified (whether or not you are changing the
-        existing value), Couchbase Server may reset the property to the default. Even if you do
-        not intend to change a certain property, re-specify the existing value to avoid this
-        behavior.</note>
-      
+    <section>
+      <title>Disk I/O priority REST API</title>
+      <p>To set the maximum of thread workers, use the <codeph>threadsNumber</codeph> option. To
+        specify high priority, assign eight (8) threads. To specify low priority, assign three (3)
+        threads.</p>
       <p>Bucket REST API method and URI paths include:</p>
+      
       <table>
         <tgroup cols="3">
           <colspec colname="col1" colwidth="1*"/>
@@ -61,7 +59,19 @@
           </tbody>
         </tgroup>
       </table>
+      <p/>
+      <note type="important"> When editing bucket properties, be sure to specify all bucket properties.
+        If a bucket property is not specified (whether or not you are changing the existing value),
+        Couchbase Server may reset the property to the default. Even if you do not intend to change a
+        certain property, re-specify the existing value to avoid this behavior.</note>
       
-    </section> 
+      <p>The following example sets the <codeph>threadsNumber</codeph> for the default bucket to
+        eight (8), which is high priority, from the default of three (3), which is low priority.</p>
+      <codeblock>
+curl -v -X POST -u Administrator:password \
+  http://10.5.2.54:8091/pools/default/buckets/default \
+  -d threadsNumber=8        
+  </codeblock>
+    </section>
   </refbody>
 </reference>

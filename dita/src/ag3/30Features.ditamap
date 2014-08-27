@@ -10,7 +10,7 @@
   </topicref>
   <topicref href="Features/global-thread-pool.dita"/>
   <topicref href="Features/bucket-eviction.dita">
-   <topicref href="UI/ui-task-bucket-metadata-ejection.dita" navtitle='Managing metadata in memory via UI'/>
+   <topicref href="UI/ui-task-bucket-metadata-ejection.dita"/>
    <topicref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>
    <topicref href="REST/rest-bucket-metadata-ejection.dita"/>
   </topicref>
