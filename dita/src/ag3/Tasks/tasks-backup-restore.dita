@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_sv3_pyp_fp">
+  <title>Backup and restore</title>
+  <shortdesc>Backup of your entire cluster periodically to minimize data inconsistency when a restore is required.</shortdesc>
+  <body>
+    <p>Backing up your data should be a regular process on your cluster to ensure that
+    you do not lose information in the event of a serious hardware or installation
+    failure.</p>
+    
+    <p>There are a number of methods for performing a backup:</p>
+    
+    <ul>
+      <li>Using <codeph>cbbackup</codeph>
+        <p>The `cbbackup` command enables you to back up a single node, single buckets, or
+          the entire cluster into a flexible backup structure that allows for restoring
+          the data into the same, or different, clusters and buckets. All backups can be
+          performed on a live cluster or node. Using `cbbackup` is the most flexible and
+          recommended backup tool.</p></li>
+      <li>Using File Copies
+        <p>A running or offline cluster can be backed up by copying the files on each of
+          the nodes. With this method, you can only restore to a cluster with an identical
+          configuration.</p>
+        <note type="note">Due to the active nature of Couchbase Server it is impossible to create a
+          complete in-time backup and snapshot of the entire cluster. Because data is
+          always being updated and modified, it would be impossible to take an accurate
+          snapshot.</note>
+      </li>
+    </ul>
+    <note type="note">You should backup and restore your entire cluster to minimize any
+      inconsistencies in data. Couchbase is always per-item consistent, but does not
+      guarantee total cluster consistency or in-order persistence.</note>
+    
+  </body>
+</topic>

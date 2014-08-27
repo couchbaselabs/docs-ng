@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_gvw_zsp_yn">
+ <title>Graceful failover</title>
+	
+	<shortdesc>Graceful failover allows administrators to safely failover a node from the cluster 
+	 after all in-flight operations are completed and without data loss.</shortdesc>
+ 
+ <conbody>
+  
+  <p>With graceful failover, all in-flight operations are completed, for example, data in the
+   process of being written to the node completes and is transferred to the replica vBuckets. 
+   The replica vBuckets are promoted to active vBuckets and the active vBuckets on the failed over node
+   are transitioned to replica vBuckets. 
+   Because failover occurs after the replica vBuckert are synchronized with the active vBuckets, 
+   graceful failover might take more time to failover the node. </p>
+  
+  <p>While the server node is being gracefully failed over (the in-flight operations are
+   completing), the failover can be stopped. Subsequently, graceful failover can be restarted. 
+   When a node is failed over, it can be added back to
+   the cluster via <codeph>delta</codeph> or <codeph>full</codeph> recovery. </p>
+  
+  <ul>
+   <li>When a node is added back to the cluster after a graceful failover has been performed, the
+    replica vBuckets on the failed over node are resynchronized and promoted back to active.</li>
+   <li>Topology changes (such as adding, removing, or failing over a server) after a graceful
+    failover, initiates a different type of rebalance operation.</li>
+   <li>Each active vBucket on the failed over server node must have at least one replica vBucket for
+    graceful failover, otherwise, hard failover is implemented.</li>
+  </ul>
+   
+   <note type="note">Hard failover immediately fails over a node from the cluster which might lead
+   to data loss. Hard failover is typically used when the node is in a bad state. Auto-failover is a
+   hard failover.</note>
+  
+  <p>The following conditions must be met for graceful failover, otherwise, hard failover is implemented.</p>
+  
+   <ul>
+    <li>The server node must be healthy.</li>
+    <li>Each active vBucket must have an equivalent replica bucket.</li>
+    <li>At least one (1) replica vBucket must be available.</li>
+   </ul>
+  
+  <p>For example:</p>
+  <ul>
+   <li>In a 7 node cluster, if a bucket is configured for one replica, only one node can be gracefully failed over.</li>
+   <li>In a 7 node cluster, if a bucket is configured for two replica, two nodes can be gracefully failed over.</li>
+   <li>In a 7 node cluster, if a bucket is configured for three replica, three nodes can be gracefully failed over.</li>
+  </ul>
+  
+   <p>Graceful failover does not alter the number of active vBuckets (unlike hard failover), 
+   however, the number of replica vBuckets may reduce and not be equally distributed.</p>
+   
+   
+   
+   
+  
+  
+  
+  
+   
+ 
+    
+
+   
+   
+   
+  
+
+  
+  
+  
+ </conbody>
+ 
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="delta-node-recovery.dita"/>
+
+  </linklist>
+ </related-links>
+</concept>

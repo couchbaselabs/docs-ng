@@ -4,27 +4,27 @@
  <title>Couchbase 3.0 Features</title>
  
  <topicref href="Features/features.dita">
-  <topicref href="Features/dcp.dita">
+  <topicref href="Concepts/dcp.dita">
    <topicref href="UI/ui-dcp-queues.dita"/>
    <topicref href="CLI/cli-cbstats-dcp.dita"/>
   </topicref>
-  <topicref href="Features/global-thread-pool.dita"/>
-  <topicref href="Features/bucket-eviction.dita">
+  <topicref href="Concepts/global-thread-pool.dita"/>
+  <topicref href="Concepts/bucket-eviction.dita">
    <topicref href="UI/ui-task-bucket-metadata-ejection.dita"/>
    <topicref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>
    <topicref href="REST/rest-bucket-metadata-ejection.dita"/>
   </topicref>
-  <topicref href="Features/bucket-priority.dita">
+  <topicref href="Concepts/bucket-priority.dita">
    <topicref href="UI/ui-task-set-bucket-priority.dita"/>
    <topicref href="CLI/cli-set-disk-priority.dita"/>
    <topicref href="REST/rest-set-bucket-priority.dita"/>
   </topicref>
-  <topicref href="Features/graceful-failover.dita">
+  <topicref href="Concepts/graceful-failover.dita">
    <topicref href="UI/ui-task-failover-graceful.dita"/>
    <topicref href="CLI/cli-failover-graceful.dita"/>
    <topicref href="REST/rest-failover-graceful.dita"/>
   </topicref>
-  <topicref href="Features/delta-node-recovery.dita">
+  <topicref href="Concepts/delta-node-recovery.dita">
    <topicref href="UI/ui-task-node-recovery-incremental.dita"/>
    <topicref href="CLI/cli-node-recovery-incremental.dita"/>
    <topicref href="REST/rest-node-recovery-incremental.dita"/>

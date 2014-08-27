@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_eg2_454_yn">
+ <title>Disk I/O priority</title>
+
+ <shortdesc>Disk I/O priority allows workload priorities to be set at the bucket level.</shortdesc>
+ 
+ <conbody>
+
+   <p>Bucket priority settings can be specified at the bucket-level. 
+    The bucket disk I/O priority can be set as either high or low, whereas, low is the default. 
+    Bucket priority settings determine whether I/O tasks for a bucket are enqueued in either low or high priority task queues. 
+    Threads in the global pool poll the high priority task queues more often compared to the low priority task queues. 
+    Bucket latency and I/O operations are impacted by the setting value. 
+    When a bucket has a high priority, its I/O tasks are picked up at a high frequency and, thus, are able to processed faster compared to 
+    tasks belonging to a low priority bucket.</p>
+   
+  
+  <p>The default buckets settings can be set during initial setup as well as be edited after setup. 
+   However, changing bucket priority after setup results in a restart of the bucket and reset of the client connections.</p>
+  <fig><image href="../images/init-default-bucket-settings.png" width="600"></image></fig>
+   
+    
+  <draft-comment author="Ruth" disposition="open" status="new">Graphic for the conversion logic when upgrading</draft-comment>
+  <draft-comment author="Ruth" disposition="open" status="new">Can a system have more than 8 threads allocated, 
+   since the initial number of threads allocated depends on the number of CPU cores?</draft-comment>
+    
+  
+  <section><title>Backward compatibility</title>
+   <p>When upgrading from a 2.x release to a 3.x release, 
+    Couchbase converts an existing thread value to either a low or a high priority based on the following:
+   </p>
+   
+   <ul>
+    <li>Buckets allocated six to eight (6-8) threads are high priority. </li>
+    <li>Buckets allocated three to five (3-5) threads are low priority. </li>
+   </ul>
+  </section>
+  
+
+   
+ 
+ </conbody>
+ <related-links>
+  <linklist><title>Related topics</title>
+   <link href="global-thread-pool.dita" />
+   <link href="bucket-eviction.dita"/>
+  </linklist>
+ </related-links>
+ 
+
+</concept>
