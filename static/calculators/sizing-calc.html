@@ -1,341 +1,1001 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
-		<meta charset="utf-8">
-
-		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-		Remove this if you use the .htaccess -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<title>Couchbase | Cluster Size Calculator</title>
-		<meta name="description" content="Couchbase cluster size estimator">
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<script type='text/javascript' src='./jquery-1.9.1.js'></script>
 
-		<meta name="robots" content="noindex, nofollow">
+		<script type="text/javascript" src="./jquery-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="./jquery-ui.css">
 
-		<link rel="shortcut icon" href="http://www.couchbase.com/sites/default/files/couchbase_favicon_0.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="sizing.css" />
-		<script src="sizing.js"></script>
-		<!--		<link rel="stylesheet" href="/assets/css/main.css"> -->
+		<style type='text/css'>
+			#sliderRam, #sliderReplica, #sliderPerc, #sliderBuckets, #sliderCores, #sliderXDCR, #sliderThread {
+				background: #7f3f00;
+				height: 10px;
+			}
+			.ui-slider .ui-slider-handle {
+				height: 15px;
+				width: 15px;
+				/* padding-left: 5px; //add this */
+			}
+			h1 {
+				font-family: Gill Sans;
+				font-weight: bold;
+				font-size: 18px;
+			}
+			body, p {
+				font-family: Gill Sans;
+			}
+			.classSliderGroup {
+				border-collapse: collapse;
+				border: 1px solid #D0D0D0;
+				margin-left: 25px;
+				width: 500px;
+			}
+			.classTable {
+				margin-left: 0px;
+				padding: 0px;
+				width: 500px;
+				border: 1px solid #cccccc;
+				-moz-border-radius-bottomleft: 4px;
+				-webkit-border-bottom-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+				-moz-border-radius-bottomright: 4px;
+				-webkit-border-bottom-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+				-moz-border-radius-topright: 4px;
+				-webkit-border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+				-moz-border-radius-topleft: 4px;
+				-webkit-border-top-left-radius: 4px;
+				border-top-left-radius: 4px;
+			}
+			.classTable table {
+				border-collapse: collapse;
+				border-spacing: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+			}
+			.classTable tr:last-child td:last-child {
+				-moz-border-radius-bottomright: 4px;
+				-webkit-border-bottom-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+			}
+			.classTable table tr:first-child td:first-child {
+				-moz-border-radius-topleft: 4px;
+				-webkit-border-top-left-radius: 4px;
+				border-top-left-radius: 4px;
+			}
+			.classTable table tr:first-child td:last-child {
+				-moz-border-radius-topright: 4px;
+				-webkit-border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+			}
+			.classTable tr:last-child td:first-child {
+				-moz-border-radius-bottomleft: 4px;
+				-webkit-border-bottom-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+			}
+			.classTable tr:hover td {
+				background-color: #ffffff;
+			}
+			.classTable td {
+				vertical-align: middle;
+				background-color: #ffffff;
+				border: 1px solid #cccccc;
+				border-width: 0px 1px 1px 0px;
+				text-align: left;
+				padding: 3px;
+				font-size: 14px;
+				font-family: Gill Sans;
+				font-weight: bold;
+				color: #000000;
+			}
+			.classTable tr:last-child td {
+				border-width: 0px 1px 0px 0px;
+			}
+			.classTable tr td:last-child {
+				border-width: 0px 0px 1px 0px;
+			}
+			.classTable tr:last-child td:last-child {
+				border-width: 0px 0px 0px 0px;
+			}
+			.classTable tr:first-child td {
+				background: -o-linear-gradient(bottom, #7f3f00 5%, #7f3f00 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7f3f00), color-stop(1, #7f3f00));
+				background: -moz-linear-gradient(center top, #7f3f00 5%, #7f3f00 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7f3f00", endColorstr="#7f3f00");
+				background: -o-linear-gradient(top, #7f3f00, 7f3f00);
+				background-color: #7f3f00;
+				border: 0px solid #cccccc;
+				text-align: center;
+				border-width: 0px 0px 1px 1px;
+				font-size: 20px;
+				font-family: Gill Sans;
+				font-weight: bold;
+				color: #ffffff;
+			}
+			.classTable tr:first-child:hover td {
+				background: -o-linear-gradient(bottom, #7f3f00 5%, #7f3f00 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7f3f00), color-stop(1, #7f3f00));
+				background: -moz-linear-gradient(center top, #7f3f00 5%, #7f3f00 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7f3f00", endColorstr="#7f3f00");
+				background: -o-linear-gradient(top, #7f3f00, 7f3f00);
+				background-color: #7f3f00;
+			}
+			.classTable tr:first-child td:first-child {
+				border-width: 0px 0px 1px 0px;
+			}
+			.classTable tr:first-child td:last-child {
+				border-width: 0px 0px 1px 1px;
+			}
+			/*    */
+			.classTableOutput {
+				margin-left: 0px;
+				padding: 0px;
+				width: 500px;
+				border: 1px solid #cccccc;
+				-moz-border-radius-bottomleft: 4px;
+				-webkit-border-bottom-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+				-moz-border-radius-bottomright: 4px;
+				-webkit-border-bottom-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+				-moz-border-radius-topright: 4px;
+				-webkit-border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+				-moz-border-radius-topleft: 4px;
+				-webkit-border-top-left-radius: 4px;
+				border-top-left-radius: 4px;
+			}
+			.classTableOutput table {
+				border-collapse: collapse;
+				border-spacing: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+			}
+			.classTableOutput tr:last-child td:last-child {
+				-moz-border-radius-bottomright: 4px;
+				-webkit-border-bottom-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+			}
+			.classTableOutput table tr:first-child td:first-child {
+				-moz-border-radius-topleft: 4px;
+				-webkit-border-top-left-radius: 4px;
+				border-top-left-radius: 4px;
+			}
+			.classTableOutput table tr:first-child td:last-child {
+				-moz-border-radius-topright: 4px;
+				-webkit-border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+			}
+			.classTableOutput tr:last-child td:first-child {
+				-moz-border-radius-bottomleft: 4px;
+				-webkit-border-bottom-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+			}
+			.classTableOutput tr:hover td {
+				background-color: #ffffff;
+			}
+			.classTableOutput td {
+				vertical-align: middle;
+				background-color: #ffffff;
+				border: 1px solid #cccccc;
+				border-width: 0px 1px 1px 0px;
+				text-align: left;
+				padding: 15px;
+				font-size: 16px;
+				font-family: Gill Sans;
+				font-weight: bold;
+				color: #000000;
+			}
+			.classTableOutput tr:last-child td {
+				border-width: 0px 1px 0px 0px;
+			}
+			.classTableOutput tr td:last-child {
+				border-width: 0px 0px 1px 0px;
+			}
+			.classTableOutput tr:last-child td:last-child {
+				border-width: 0px 0px 0px 0px;
+			}
+			.classTableOutput tr:first-child td {
+				background: -o-linear-gradient(bottom, #7f3f00 5%, #7f3f00 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7f3f00), color-stop(1, #7f3f00));
+				background: -moz-linear-gradient(center top, #7f3f00 5%, #7f3f00 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7f3f00", endColorstr="#7f3f00");
+				background: -o-linear-gradient(top, #7f3f00, 7f3f00);
+				background-color: #7f3f00;
+				border: 0px solid #cccccc;
+				text-align: center;
+				border-width: 0px 0px 1px 1px;
+				font-size: 20px;
+				font-family: Gill Sans;
+				font-weight: bold;
+				color: #ffffff;
+			}
+			.classTableOutput tr:first-child:hover td {
+				background: -o-linear-gradient(bottom, #7f3f00 5%, #7f3f00 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7f3f00), color-stop(1, #7f3f00));
+				background: -moz-linear-gradient(center top, #7f3f00 5%, #7f3f00 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7f3f00", endColorstr="#7f3f00");
+				background: -o-linear-gradient(top, #7f3f00, 7f3f00);
+				background-color: #7f3f00;
+			}
+			.classTableOutput tr:first-child td:first-child {
+				border-width: 0px 0px 1px 0px;
+			}
+			.classTableOutput tr:first-child td:last-child {
+				border-width: 0px 0px 1px 1px;
+			}
+			/*    */
+			.classTableConstants {
+				margin-left: 0px;
+				padding: 0px;
+				width: 500px;
+				border: 1px solid #cccccc;
+				-moz-border-radius-bottomleft: 4px;
+				-webkit-border-bottom-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+				-moz-border-radius-bottomright: 4px;
+				-webkit-border-bottom-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+				-moz-border-radius-topright: 4px;
+				-webkit-border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+				-moz-border-radius-topleft: 4px;
+				-webkit-border-top-left-radius: 4px;
+				border-top-left-radius: 4px;
+			}
+			.classTableConstants table {
+				border-collapse: collapse;
+				border-spacing: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+			}
+			.classTableConstants tr:last-child td:last-child {
+				-moz-border-radius-bottomright: 4px;
+				-webkit-border-bottom-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+			}
+			.classTableConstants table tr:first-child td:first-child {
+				-moz-border-radius-topleft: 4px;
+				-webkit-border-top-left-radius: 4px;
+				border-top-left-radius: 4px;
+			}
+			.classTableConstants table tr:first-child td:last-child {
+				-moz-border-radius-topright: 4px;
+				-webkit-border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+			}
+			.classTableConstants tr:last-child td:first-child {
+				-moz-border-radius-bottomleft: 4px;
+				-webkit-border-bottom-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+			}
+			.classTableConstants tr:hover td {
+				background-color: #ffffff;
+			}
+			.classTableConstants td {
+				vertical-align: middle;
+				background-color: #ffffff;
+				border: 1px solid #cccccc;
+				border-width: 0px 1px 1px 0px;
+				text-align: left;
+				padding: 3px;
+				font-size: 14px;
+				font-family: Gill Sans;
+				font-weight: bold;
+				color: #cccccc;
+			}
+			.classTableConstants tr:last-child td {
+				border-width: 0px 1px 0px 0px;
+			}
+			.classTableConstants tr td:last-child {
+				border-width: 0px 0px 1px 0px;
+			}
+			.classTableConstants tr:last-child td:last-child {
+				border-width: 0px 0px 0px 0px;
+			}
+			.classTableConstants tr:first-child td {
+				background-color: #cccccc;
+				border: 0px solid #cccccc;
+				text-align: center;
+				border-width: 0px 0px 1px 1px;
+				font-size: 20px;
+				font-family: Gill Sans;
+				font-weight: bold;
+				color: #ffffff;
+			}
+			.classTableConstants tr:first-child:hover td {
+				background-color: #000000;
+			}
+			.classTableConstants tr:first-child td:first-child {
+				border-width: 0px 0px 1px 0px;
+			}
+			.classTableConstants tr:first-child td:last-child {
+				border-width: 0px 0px 1px 1px;
+			}
+			.classTableConstants input[type=text] {
+				user-select: none;
+				color: #808080;
+			}
+			/*
+			 Hide radio button (the round disc)
+			 we will use just the label to create pushbutton effect
+			 */
+			input[type=radio] {
+				display: none;
+				margin: 10px;
+			}
+			/*
+			 Change the look'n'feel of labels (which are adjacent to radiobuttons).
+			 Add some margin, padding to label
+			 */
+			input[type=radio] + label {
+				display: inline-block;
+				margin: -2px;
+				padding: 0px 12px;
+				border-color: #ddd;
+				background-color: #d0d0d0;
+			}
+			/*
+			 Change background color for label next to checked radio button
+			 to make it look like highlighted button
+			 */
+			input[type=radio]:checked + label {
+				background-image: none;
+				background-color: #e7e7e7;
+				color: #808080;
+			}
+		</style>
+
+		<script type='text/javascript'>
+			//<![CDATA[
+			$(window).load(function() {
+				//------------------------------------------------------
+				// Build Data Collection Object, hdd rates
+				//------------------------------------------------------
+				var sizing = {
+					"cores" : 1,
+					"ram" : 8,
+					"XDCR" : 0,
+					"replica" : 1,
+					"perc" : 1,
+					"buckets" : 1,
+					"drive" : 1,
+					"keySize" : 40,
+					"valueSize" : 5120,
+					"totalDocs" : 1000000,
+					"readRate" : 1000,
+					"writeRate" : 1000,
+					"delRate" : 1000,
+					"compactionThreshold" : .05,
+					"backgroundFetchThreshold" : .05,
+					"backgroundFetchXDCR" : .05,
+					"metaData" : 56,
+					"osHeadroom" : .20,
+					"highMemWatermark" : .85,
+					"appendMultiplier" : 3,
+					"fragmentationMultiplier" : 1,
+					"locked" : true,
+					"views" : false,
+					"viewNum" : 5,
+					"viewMatch" : 10,
+					"viewSize" : 10,
+					"viewRows" : 1,
+					"threads" : 75,
+					"eviction" : false
+				}
+
+				//------------------------------------------------------
+				// Calculations Function Called from any Event
+				//------------------------------------------------------
+
+				function reCalc() {
+
+					sizing.drive = parseInt($("#selDrives").val());
+					sizing.keySize = parseInt($("#keySize").val());
+					sizing.valueSize = parseInt($("#valSize").val());
+					sizing.totalDocs = parseInt($("#valDocs").val());
+					sizing.readRate = parseInt($("#rateRead").val());
+					sizing.writeRate = parseInt($("#rateWrite").val());
+					sizing.delRate = parseInt($("#rateDelete").val());
+					sizing.compactionThreshold = parseFloat($("#compactionThresholdConstant").val());
+					sizing.backgroundFetchThreshold = parseFloat($("#backgroundThresholdConstant").val());
+					sizing.backgroundFetchXDCR = parseFloat($("#backgroundThresholdXDCR").val());
+					sizing.metaData = parseInt($("#metaDataConstant").val());
+					sizing.osHeadroom = parseFloat($("#osHeadroomConstant").val());
+					sizing.highMemWatermark = parseFloat($("#highMemConstant").val());
+					sizing.appendMultiplier = parseInt($("#amendMultiplierConstant").val());
+					sizing.fragmentationMultiplier = parseInt($("#fragmentMultiplierConstant").val());
+					sizing.viewNum = parseInt($("#viewNum").val());
+					sizing.viewSize = parseInt($("#viewSize").val());
+					sizing.viewMatch = parseInt($("#viewMatch").val());
+					sizing.viewRows = parseInt($("#viewRows").val());
+
+					// -----------------
+					// Disk Calcs
+					//------------------
+
+					// Calcs
+					var maxWritePerc = .15 * (1 + (1 - sizing.perc));
+					var rebalanceOverhead = (maxWritePerc * sizing.drive);
+					var compactionOverhead = (sizing.compactionThreshold * sizing.drive);
+					var cacheMisses = (sizing.backgroundFetchThreshold * sizing.drive);
+					var xdcrRate = (sizing.drive * sizing.backgroundFetchXDCR) * sizing.XDCR;
+					var updateRate = sizing.drive - rebalanceOverhead - compactionOverhead - cacheMisses - xdcrRate;
+					var totalWriteRate = ((sizing.writeRate + sizing.delRate) * (1 + sizing.replica)) * (1 + sizing.buckets);
+					var indexOnDiskSize = ((sizing.viewSize / 100) * (sizing.viewMatch / 100)) * sizing.viewNum * sizing.viewRows;
+					var diskBoundNodes = ((totalWriteRate / updateRate) + sizing.replica);
+					if (diskBoundNodes < 3) {
+						$("#lblDiskBound").html("3");
+					} else {
+						$("#lblDiskBound").html(Math.ceil(diskBoundNodes));
+					}
+
+					// -----------------
+					// Mem Calcs
+					//------------------
+
+					// Calcs
+					var usableMemory = sizing.ram * (1 - sizing.osHeadroom) * sizing.highMemWatermark;
+					var totalDatasetSize = (sizing.totalDocs * sizing.valueSize * (1 + sizing.replica)) / 1073741824;
+					var workingSetSize = totalDatasetSize * sizing.perc;
+					var metaDatasetSize = (sizing.totalDocs * (sizing.keySize + sizing.metaData) * (1 + sizing.replica)) / 1073741824;
+					var totalOnDisk = (totalDatasetSize + metaDatasetSize) * sizing.appendMultiplier * sizing.fragmentationMultiplier + indexOnDiskSize;
+					var totalMemPerNode = workingSetSize + metaDatasetSize;
+					var memBoundNodes = (totalMemPerNode / usableMemory) + sizing.replica;
+					if (memBoundNodes < 3) {
+						$("#lblMemBound").html("3");
+					} else {
+						$("#lblMemBound").html(Math.ceil(memBoundNodes));
+					}
+
+					$("#lblTotalDisk").html(Math.ceil(totalOnDisk) + " Gigs");
+					$("#lblMemPerNode").html(Math.ceil(totalMemPerNode) + " Gigs");
+				}
+
+				//------------------------------------------------------
+				// Controls Constant Table Lock/Unlock
+				//------------------------------------------------------
+				function lock() {
+					// Change CSS
+					$("#tableConstants").removeClass("classTable");
+					$("#tableConstants").addClass("classTableConstants");
+
+					// Make Inputs editable
+					$('#compactionThresholdConstant').prop('readonly', true);
+					$('#backgroundThresholdConstant').prop('readonly', true);
+					$('#backgroundThresholdXDCR').prop('readonly', true);
+					$('#metaDataConstant').prop('readonly', true);
+					$('#osHeadroomConstant').prop('readonly', true);
+					$('#highMemConstant').prop('readonly', true);
+					$('#amendMultiplierConstant').prop('readonly', true);
+					$('#fragmentMultiplierConstant').prop('readonly', true);
+
+				}
+
+				function unLock() {
+					// Change CSS
+					$("#tableConstants").removeClass("classTableConstants");
+					$("#tableConstants").addClass("classTable");
+
+					// Make Inputs readonly
+					$('#compactionThresholdConstant').prop('readonly', false);
+					$('#backgroundThresholdConstant').prop('readonly', false);
+					$('#backgroundThresholdXDCR').prop('readonly', false);
+					$('#metaDataConstant').prop('readonly', false);
+					$('#osHeadroomConstant').prop('readonly', false);
+					$('#highMemConstant').prop('readonly', false);
+					$('#amendMultiplierConstant').prop('readonly', false);
+					$('#fragmentMultiplierConstant').prop('readonly', false);
+				}
+
+				//------------------------------------------------------
+				// Slider Constructors/Events
+				//------------------------------------------------------
+				$("#sliderCores").slider({
+					value : 1,
+					min : 1,
+					max : 1024,
+					step : 1,
+					slide : function(event, ui) {
+						$("#sliderCores-value").val(ui.value);
+						sizing.cores = ui.value;
+						reCalc();
+					}
+				});
+				$("#sliderCores-value").val($('#sliderCores').slider('value'));
+
+				$("#sliderRam").slider({
+					value : 8,
+					min : 8,
+					max : 1024,
+					step : 1,
+					slide : function(event, ui) {
+						$("#sliderRam-value").val(ui.value);
+						sizing.ram = ui.value;
+						reCalc();
+					}
+				});
+
+				$("#sliderRam-value").val($('#sliderRam').slider('value'));
+
+				$("#sliderXDCR").slider({
+					value : 0,
+					min : 0,
+					max : 12,
+					step : 1,
+					slide : function(event, ui) {
+						$("#sliderXDCR-value").html(ui.value);
+						sizing.XDCR = ui.value;
+						reCalc();
+					}
+				});
+
+				$("#sliderXDCR-value").html($('#sliderXDCR').slider('value'));
+
+				$("#sliderReplica").slider({
+					value : 1,
+					min : 0,
+					max : 3,
+					step : 1,
+					slide : function(event, ui) {
+						$("#sliderReplica-value").html(ui.value);
+						sizing.replica = ui.value;
+						reCalc();
+					}
+				});
+
+				$("#sliderReplica-value").html($('#sliderReplica').slider('value'));
+
+				$("#sliderPerc").slider({
+					value : 100,
+					min : 10,
+					max : 100,
+					step : 10,
+					slide : function(event, ui) {
+						$("#sliderPerc-value").html(ui.value);
+						sizing.perc = (ui.value / 100);
+						reCalc();
+					}
+				});
+
+				$("#sliderPerc-value").html($('#sliderPerc').slider('value'));
+
+				$("#sliderBuckets").slider({
+					value : 1,
+					min : 1,
+					max : 10,
+					step : 1,
+					slide : function(event, ui) {
+						$("#sliderBuckets-value").html(ui.value);
+						sizing.buckets = ui.value;
+						reCalc();
+					}
+				});
+
+				$("#sliderBuckets-value").html($('#sliderBuckets').slider('value'));
+
+				$("#sliderThread").slider({
+					value : 75,
+					min : 1,
+					max : 100,
+					step : 1,
+					slide : function(event, ui) {
+						$("#sliderThread-value").val(ui.value);
+						sizing.threads = ui.value;
+						reCalc();
+					}
+				});
+				$("#sliderThread-value").val($('#sliderThread').slider('value'));
+
+				$("#sliderRam-value").change(function() {
+					var value = this.value;
+					console.log(value);
+					$("#sliderRam").slider("value", parseInt(value));
+					reCalc();
+				});
+
+				$("#sliderCores-value").change(function() {
+					var value = this.value;
+					console.log(value);
+					$("#sliderCores").slider("value", parseInt(value));
+					reCalc();
+				});
+
+				$("#sliderThread-value").change(function() {
+					var value = this.value;
+					console.log(value);
+					$("#sliderThread").slider("value", parseInt(value));
+					reCalc();
+				});
+
+				//------------------------------------------------------
+				// Load Event Handlers for Inputs and Dropdown
+				//------------------------------------------------------
+
+				$("#keySize").change(function() {
+					reCalc();
+				});
+
+				$("#valSize").change(function() {
+					reCalc();
+				});
+
+				$("#valDocs").change(function() {
+					reCalc();
+				});
+
+				$("#rateRead").change(function() {
+					reCalc();
+				});
+
+				$("#rateWrite").change(function() {
+					reCalc();
+				});
+
+				$("#rateDelete").change(function() {
+					reCalc();
+				});
+
+				$("#selDrives").change(function() {
+					reCalc();
+				});
+				$("#viewNum").change(function() {
+					reCalc();
+				});
+				$("#viewRows").change(function() {
+					reCalc();
+				});
+				$("#viewMatch").change(function() {
+					reCalc();
+				});
+				$("#viewSize").change(function() {
+					reCalc();
+				});
+
+				$("#compactionThresholdConstant").change(function() {
+					reCalc();
+				});
+				$("#backgroundThresholdConstant").change(function() {
+					reCalc();
+				});
+				$("#backgroundThresholdXDCR").change(function() {
+					reCalc();
+				});
+				$("#metaDataConstant").change(function() {
+					reCalc();
+				});
+				$("#osHeadroomConstant").change(function() {
+					reCalc();
+				});
+				$("#highMemConstant").change(function() {
+					reCalc();
+				});
+				$("#amendMultiplierConstant").change(function() {
+					reCalc();
+				});
+				$("#fragmentMultiplierConstant").change(function() {
+					reCalc();
+				});
+
+				$("#lockForm").change(function() {
+					if (sizing.locked) {
+						unLock();
+						sizing.locked = false;
+					} else {
+						lock();
+						sizing.locked = true;
+					}
+
+				});
+
+				$("#selView").change(function() {
+					if (parseInt($("#selView").val()) == 1) {
+						$("#tableView").show();
+					} else {
+						$("#tableView").hide();
+					}
+				});
+				$("#tableView").hide();
+
+				$("#selVersion").change(function() {
+					if (parseInt($("#selVersion").val()) == 3) {
+						$("#tdThreadHeader").show();
+						$("#tdThreadSlider").show();
+						$("#tdTunableHeader").show();
+						$("#tdTunableSelect").show();
+					} else {
+						$("#tdThreadHeader").hide();
+						$("#tdThreadSlider").hide();
+						$("#tdTunableHeader").hide();
+						$("#tdTunableSelect").hide();
+					}
+				});
+				$("#tdThreadHeader").hide();
+				$("#tdThreadSlider").hide();
+				$("#tdTunableHeader").hide();
+				$("#tdTunableSelect").hide();
+
+				reCalc();
+			});
+			//]]>
+
+		</script>
 
 	</head>
-
-	<body style="margin: 2em 3em;">
+	<body style="margin: 1em 5em;">
 
 		<header>
-			<!--
-			<div id="header-main">
-			<div id="header-inner">
-			<div id="logo">
-			<a title="Couchbase" href="http://www.couchbase.com/"><img width="86" height="36" alt="Couchbase" src="/assets/img/logo.png"> </a>
-			</div>
-			<div class="clear-block block block-menu_block" id="block-menu_block-12">
-			<div class="content">
-			<div class="menu-block-12 menu-name-primary-links parent-mlid-0 menu-level-1">
-			<ul class="menu">
-			<li class="leaf first menu-mlid-13118">
-			<a title="" href="http://www.couchbase.com/why-nosql/nosql-database">Why NoSQL?</a>
-			</li>
-			<li class="leaf menu-mlid-13119 has-children">
-			<a title="" href="http://www.couchbase.com/couchbase-server/overview">Products</a>
-			</li>
-			<li class="leaf menu-mlid-13119 has-children">
-			<a title="" href="http://training.couchbase.com">Training</a>
-			</li>
-			<li class="leaf menu-mlid-13120">
-			<a title="" href="http://www.couchbase.com/download">Download</a>
-			</li>
-			<li class="leaf menu-mlid-13122">
-			<a title="" href="http://www.couchbase.com/learn">Resources</a>
-			</li>
-			<li class="leaf menu-mlid-16593">
-			<a title="" href="http://www.couchbase.com/communities/">Communities</a>
-			</li>
-			<li class="leaf menu-mlid-13123">
-			<a title="" href="http://www.couchbase.com/customer-stories">Customers</a>
-			</li>
-			<li class="leaf last menu-mlid-13123">
-			<a title="" href="http://www.couchbase.com/couchbase-support">Subscriptions</a>
-			</li>
-
-			</ul>
-			</div>
-			</div>
-			</div>
-
-			</div>
-			</div>
-			</div>
-			-->
-
 			<div id="logo">
 				<a title="Couchbase" href="http://www.couchbase.com/"><img width="86" height="36" alt="Couchbase" src="/assets/img/logo.png"> </a>
 			</div>
 		</header>
 
-		<main>
-			<h1 style="font-size:24px;">Cluster size calculator</h1>
-			<p>
-				Based on the input values you provide in the following form,
-				the cluster size calculator provides a rough estimate of the number of nodes required.
-				Actual requirements depend on additional factors,
-				including the complexity and precise read and write rates of your application,
-				bucket configuration, and individual node characteristics.
+		<h1 style="font-size:24px;">Cluster size calculator</h1>
+		<p>
+			Based on the input values you provide in the following form,
+			the cluster size calculator provides a rough estimate of the number of nodes required.
+			Actual requirements depend on additional factors,
+			including the complexity and precise read and write rates of your application,
+			bucket configuration, and individual node characteristics.
+		</p>
 
-			</p>
-			<table class="classSliderGroup">
-				<tr>
-					<td valign="top">
-					<table width="100%">
-						<tr>
-							<td><h1> Hardware Options</h1></td>
-						</tr>
-						<tr>
-							<td><div id="sliderCores"></div></td>
-							<td><div id="sliderRam"></div></td>
-						</tr>
-						<tr>
-							<td>Cores:
-							<input id="sliderCores-value" size="4">
-							</td>
-							<td>RAM:
-							<input id="sliderRam-value" size="4">
-							</td>
-						</tr>
-						<tr>
-							<td><div id="sliderBuckets"></div></td>
-							<td><div id="sliderXDCR"></div></td>
-						</tr>
-						<tr>
-							<td>Buckets: <span id="sliderBuckets-value"></span></td>
-							<td>XDCR: <span id="sliderXDCR-value"></span></td>
-						</tr>
-						<tr>
-							<td><div id="sliderReplica"></div></td>
-							<td><div id="sliderPerc"></div></td>
-						</tr>
-						<tr>
-							<td>Replicas: <span id="sliderReplica-value"></span></td>
-							<td>Working Set Percentage: <span id="sliderPerc-value"></span>%</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border: 1px solid #D0D0D0;">
-							<table>
-								<tr>
-									<td><h1>Storage:</h1></td>
-									<td><h1>Ver:</h1></td>
-									<td><h1>Views?</h1></td>
-									<td id="tdThreadSlider"><div id="sliderThread"></div></td>
-							</td>
-							<td id="tdTunableHeader"><h1>Eviction:</h1></td>
-						</tr>
-						<tr>
-							<td>
-							<select id="selDrives">
-								<option value="3500">HDD</option>
-								<option value="10000">SSD</option>
-								<option value="20000">SSD (ENT)</option>
-								<option value="1500">EBS (AMZ)</option>
-								<option value="5000">IOPS (AMZ)</option>
-							</select></td>
-							<td>
-							<select id="selVersion">
-								<option value="2">2.XX</option>
-								<option value="3">3.XX</option>
-							</select></td>
-							<td>
-							<select id="selView">
-								<option value="0">NO</option>
-								<option value="1">YES</option>
-							</select></td>
-							<td id="tdThreadHeader">Thread Pool (%):
-							<input id="sliderThread-value" size="3">
-							</td>
-							<td id="tdTunableSelect">
-							<select id="selVersion">
-								<option value="0">Full</option>
-								<option value="1">Value</option>
-							</select></td>
-						</tr>
-					</table></td>
-				</tr>
-			</table>
-			<p>
-				<div class="classTable">
-					<table>
-						<tr>
-							<td colspan="2">Document Size Info</td>
-						</tr>
-						<tr>
-							<td>Key Size (in Bytes):</td>
-							<td>
-							<input type="text" id="keySize" value="40" />
-							</td>
-						</tr>
-						<tr>
-							<td>Value Size (in Bytes):</td>
-							<td>
-							<input type="text" id="valSize" value="5120">
-							</td>
-						</tr>
-						<tr>
-							<td>Total Number of Documents:</td>
-							<td>
-							<input type="text" id="valDocs" value="1000000">
-							</td>
-						</tr>
-					</table>
-					<table>
-						<tr>
-							<td colspan="2 ">Operations Per Second</td>
-						</tr>
-						<tr>
-							<td>Sustained Read Rate (ops/sec):</td>
-							<td>
-							<input type="text" id="rateRead" value="1000">
-							</td>
-						</tr>
-						<tr>
-							<td>Sustained Write Rate (ops/sec):</td>
-							<td>
-							<input type="text" id="rateWrite" value="1000">
-							</td>
-						</tr>
-						<tr>
-							<td>Sustained Deletions (ops/sec):</td>
-							<td>
-							<input type="text" id="rateDelete" value="1000">
-							</td>
-						</tr>
-					</table>
-					<table id="tableView">
-						</tr>
-						<td colspan="2">Views</td>
-						</tr>
-						<tr>
-							<td>Number of Views</td>
-							<td>
-							<input type="text" id="viewNum" value="0">
-							</td>
-						</tr>
-						<tr>
-							<td>% of Docs Matching</td>
-							<td>
-							<input type="text" id="viewMatch" value="10">
-							</td>
-						</tr>
-						<tr>
-							<td>Size of info that matches (%)</td>
-							<td>
-							<input type="text" id="viewSize" value="10">
-							</td>
-						</tr>
-						<tr>
-							<td>Rows per Match</td>
-							<td>
-							<input type="text" id="viewRows" value="1">
-							</td>
-						</tr>
-					</table>
-				</div>
-				</td>
+		<table class="classSliderGroup">
+			<tr>
 				<td valign="top">
-				<div class="classTableOutput">
-					<table>
-						<tr>
-							<td colspan="2">Outputs</td>
-						</tr>
-						<tr>
-							<td>Memory Bound Nodes:</td>
-							<td style="background-color:#FFFF00"><label id="lblMemBound" /></td>
-						</tr>
-						<tr>
-							<td>Total Memory Used:</td>
-							<td><label id="lblMemPerNode" /></td>
-						</tr>
-						<tr>
-							<td>Disk Bound Nodes:</td>
-							<td style="background-color:#FFFF00"><label id="lblDiskBound" /></td>
-						</tr>
-						<tr>
-							<td>Total Disk Space Used:</td>
-							<td><label id="lblTotalDisk" /></td>
-						</tr>
-					</table>
-				</div>
-				<br>
-				<div id="tableConstants" class="classTableConstants">
-					<table>
-						<tr>
-							<td  valign="bottom">
-							<form id="lockForm" action="">
-								<input type="radio" id="radio1" name="group1" value="locked" checked>
-								<label for="radio1">lock</label>
-								<input type="radio" id="radio2" name="group1" value="unlocked">
-								<label for="radio2">unlock</label>
-							</form></td>
-							<td>Constants</td>
-						</tr>
-						<tr>
-							<td>Compaction Threshold:</td>
-							<td>
-							<input type="text" id="compactionThresholdConstant" value=".05" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>Background Fetch Threshold:</td>
-							<td>
-							<input type="text" id="backgroundThresholdConstant" value=".05" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>Background Fetch XDCR:</td>
-							<td>
-							<input type="text" id="backgroundThresholdXDCR" value=".05" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>Meta Data:</td>
-							<td>
-							<input type="text" id="metaDataConstant" value="56" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>OS Headroom:</td>
-							<td>
-							<input type="text" id="osHeadroomConstant" value=".20" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>Couchbase High Memory Watermark:</td>
-							<td>
-							<input type="text" id="highMemConstant" value=".85" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>Ammend Multiplier:</td>
-							<td>
-							<input type="text" id="amendMultiplierConstant" value="3" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td>Fragment Multiplier:</td>
-							<td>
-							<input type="text" id="fragmentMultiplierConstant" value="1" readonly>
-							</td>
-						</tr>
-					</table>
-				</div></td>
-				</tr>
+				<table width="100%">
+					<tr>
+						<td><h1> Hardware Options</h1></td>
+					</tr>
+					<tr>
+						<td><div id="sliderCores"></div></td>
+						<td><div id="sliderRam"></div></td>
+					</tr>
+					<tr>
+						<td>Cores:
+						<input id="sliderCores-value" size="4">
+						</td>
+						<td>RAM:
+						<input id="sliderRam-value" size="4">
+						</td>
+					</tr>
+					<tr>
+						<td><div id="sliderBuckets"></div></td>
+						<td><div id="sliderXDCR"></div></td>
+					</tr>
+					<tr>
+						<td>Buckets: <span id="sliderBuckets-value"></span></td>
+						<td>XDCR: <span id="sliderXDCR-value"></span></td>
+					</tr>
+					<tr>
+						<td><div id="sliderReplica"></div></td>
+						<td><div id="sliderPerc"></div></td>
+					</tr>
+					<tr>
+						<td>Replicas: <span id="sliderReplica-value"></span></td>
+						<td>Working Set Percentage: <span id="sliderPerc-value"></span>%</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="border: 1px solid #D0D0D0;">
+						<table>
+							<tr>
+								<td><h1>Storage:</h1></td>
+								<td><h1>Ver:</h1></td>
+								<td><h1>Views?</h1></td>
+								<td id="tdThreadSlider"><div id="sliderThread"></div></td>
+						</td>
+						<td id="tdTunableHeader"><h1>Eviction:</h1></td>
+					</tr>
+					<tr>
+						<td>
+						<select id="selDrives">
+							<option value="3500">HDD</option>
+							<option value="10000">SSD</option>
+							<option value="20000">SSD (ENT)</option>
+							<option value="1500">EBS (AMZ)</option>
+							<option value="5000">IOPS (AMZ)</option>
+						</select></td>
+						<td>
+						<select id="selVersion">
+							<option value="2">2.XX</option>
+							<option value="3">3.XX</option>
+						</select></td>
+						<td>
+						<select id="selView">
+							<option value="0">NO</option>
+							<option value="1">YES</option>
+						</select></td>
+						<td id="tdThreadHeader">Thread Pool (%):
+						<input id="sliderThread-value" size="3">
+						</td>
+						<td id="tdTunableSelect">
+						<select id="selVersion">
+							<option value="0">Full</option>
+							<option value="1">Value</option>
+						</select></td>
+					</tr>
+				</table></td>
+			</tr>
+		</table>
+		<p>
+			<div class="classTable">
+				<table>
+					<tr>
+						<td colspan="2">Document Size Info</td>
+					</tr>
+					<tr>
+						<td>Key Size (in Bytes):</td>
+						<td>
+						<input type="text" id="keySize" value="40" />
+						</td>
+					</tr>
+					<tr>
+						<td>Value Size (in Bytes):</td>
+						<td>
+						<input type="text" id="valSize" value="5120">
+						</td>
+					</tr>
+					<tr>
+						<td>Total Number of Documents:</td>
+						<td>
+						<input type="text" id="valDocs" value="1000000">
+						</td>
+					</tr>
 				</table>
-		</main>
-
-		<footer>
-			<p style="text-align:center;">
-				&copy; 2014 Couchbase
-			</p>
-		</footer>
+				<table>
+					<tr>
+						<td colspan="2 ">Operations Per Second</td>
+					</tr>
+					<tr>
+						<td>Sustained Read Rate (ops/sec):</td>
+						<td>
+						<input type="text" id="rateRead" value="1000">
+						</td>
+					</tr>
+					<tr>
+						<td>Sustained Write Wrate (ops/sec):</td>
+						<td>
+						<input type="text" id="rateWrite" value="1000">
+						</td>
+					</tr>
+					<tr>
+						<td>Sustained Deletions (ops/sec):</td>
+						<td>
+						<input type="text" id="rateDelete" value="1000">
+						</td>
+					</tr>
+				</table>
+				<table id="tableView">
+					</tr>
+					<td colspan="2">Views</td>
+					</tr>
+					<tr>
+						<td>Number of Views</td>
+						<td>
+						<input type="text" id="viewNum" value="0">
+						</td>
+					</tr>
+					<tr>
+						<td>% of Docs Matching</td>
+						<td>
+						<input type="text" id="viewMatch" value="10">
+						</td>
+					</tr>
+					<tr>
+						<td>Size of info that matches (%)</td>
+						<td>
+						<input type="text" id="viewSize" value="10">
+						</td>
+					</tr>
+					<tr>
+						<td>Rows per Match</td>
+						<td>
+						<input type="text" id="viewRows" value="1">
+						</td>
+					</tr>
+				</table>
+			</div>
+			</td>
+			<td valign="top">
+			<div class="classTableOutput">
+				<table>
+					<tr>
+						<td colspan="2">Outputs</td>
+					</tr>
+					<tr>
+						<td>Memory Bound Nodes:</td>
+						<td style="background-color:#FFFF00"><label id="lblMemBound" /></td>
+					</tr>
+					<tr>
+						<td>Total Memory Used:</td>
+						<td><label id="lblMemPerNode" /></td>
+					</tr>
+					<tr>
+						<td>Disk Bound Nodes:</td>
+						<td style="background-color:#FFFF00"><label id="lblDiskBound" /></td>
+					</tr>
+					<tr>
+						<td>Total Disk Space Used:</td>
+						<td><label id="lblTotalDisk" /></td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<div id="tableConstants" class="classTableConstants">
+				<table>
+					<tr>
+						<td  valign="bottom">
+						<form id="lockForm" action="">
+							<input type="radio" id="radio1" name="group1" value="locked" checked>
+							<label for="radio1">lock</label>
+							<input type="radio" id="radio2" name="group1" value="unlocked">
+							<label for="radio2">unlock</label>
+						</form></td>
+						<td>Constants</td>
+					</tr>
+					<tr>
+						<td>Compaction Threshold:</td>
+						<td>
+						<input type="text" id="compactionThresholdConstant" value=".05" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>Background Fetch Threshold:</td>
+						<td>
+						<input type="text" id="backgroundThresholdConstant" value=".05" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>Background Fetch XDCR:</td>
+						<td>
+						<input type="text" id="backgroundThresholdXDCR" value=".05" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>Meta Data:</td>
+						<td>
+						<input type="text" id="metaDataConstant" value="56" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>OS Headroom:</td>
+						<td>
+						<input type="text" id="osHeadroomConstant" value=".20" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>Couchbase High Memory Watermark:</td>
+						<td>
+						<input type="text" id="highMemConstant" value=".85" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>Ammend Multiplier:</td>
+						<td>
+						<input type="text" id="amendMultiplierConstant" value="3" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>Fragment Multiplier:</td>
+						<td>
+						<input type="text" id="fragmentMultiplierConstant" value="1" readonly>
+						</td>
+					</tr>
+				</table>
+			</div></td>
+			</tr>
+			</table>
 
 	</body>
+
 </html>
+
