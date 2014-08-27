@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ed5_pm5_j4">
+  <title>Bucket metadata ejection CLI</title>
+
+  <shortdesc>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool.</shortdesc>
+  
+  <refbody>
+    <section><title>Bucket ejection policy</title>
+    
+      <p>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool, either
+        <codeph>bucket-create</codeph> or <codeph>bucket-edit</codeph>, and the 
+        <codeph>--bucket-eviction-policy</codeph> parameter.</p>
+
+
+      
+      <p>Policy for how to retain metadata in memory:</p>
+      
+      <codeblock>
+ --bucket-eviction-policy=[valueOnly|fullEviction] 
+ </codeblock>
+      
+      <p>To create a new sasl bucket:</p>
+      
+      <codeblock>
+couchbase-cli bucket-create -c 192.168.0.1:8091 \\
+  --bucket=test_bucket \\	
+  --bucket-password=password \\
+  --bucket-ramsize=200 \\	
+  --bucket-eviction-policy=valueOnly \\
+  --enable-flush=1 \\	
+  -u Administrator -p password
+
+</codeblock>
+      
+      <p>To modify a dedicated port bucket:</p>
+      
+      
+      <codeblock>
+couchbase-cli bucket-edit -c 192.168.0.1:8091 \\	
+  --bucket=test_bucket \\	
+  --bucket-port=11222 \\	
+  --bucket-ramsize=400 \\	
+  --bucket-eviction-policy=fullEviction \\	
+  --enable-flush=1 \\	
+  -u Administrator -p password
+  </codeblock>
+    </section>
+      
+      
+    
+  </refbody>
+</reference>

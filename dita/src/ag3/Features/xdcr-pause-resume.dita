@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ix4_hkh_14">
+  <title>Pause and resume replication</title>
+  <shortdesc>During XDCR replication, the process can be paused and resumed.</shortdesc>
+  
+  <body>
+    <p>XDCR streams between the source and destination cluster can be paused and later resumed. 
+      After XDCR is resumed, data continues to replicate between the source and destination clusters
+      starting from where it previously left off.
+    </p>
+    
+
+    
+  </body>
+</topic>

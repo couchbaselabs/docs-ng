@@ -7,14 +7,10 @@
 	<conbody>
 		<p>If you contact Couchbase customer support, you might be asked to collect diagnostics from
 			your cluster. Couchbase Server offers several methods that enable you to efficiently collect diagnostics for an entire
-			cluster. To collect diagnostic information, you can use either the web console, the command-line interface (CLI), or the
+			cluster. To collect diagnostic information, you can use either the web console, the command-line interface, or the
 			REST API.</p>
 		
 		<draft-comment author="amy">Do customers need to turn off auto-failover before using any of these methods?</draft-comment>
-		
-		<p>The web console provides a graphical interface for collecting and sending system diagnostics to the Couchbase support team.</p>
-		<p>The CLI provides commands to start, stop, and report status for log collection. 
-			You can collect diagnostics through the CLI by using either the couchbase-cli tool or the cbcollect_info tool.</p>
 
 		
 		
