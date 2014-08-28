@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="reference_lxt_4qb_k4">
-	<title>Performing an incremental restore (CLI)</title>
+	<title>Restoring incrementally</title>
 
 	<abstract>
-		<shortdesc>Incremental restore operations are run by using the <codeph>cbbackup</codeph>
-			command-line tool. </shortdesc>
-		The updated tool adds new options to support partial restore operations. The tool still supports the existing options for full restores. 
-	</abstract>
+		<shortdesc>Incremental restore operations are run by using the <codeph>cbrestore</codeph>
+			command-line tool. </shortdesc> The updated tool adds new options to support partial
+		restore operations. The tool still supports the existing options for full restores. </abstract>
 
 	<conbody>
 

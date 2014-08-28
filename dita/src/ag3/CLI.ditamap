@@ -5,13 +5,9 @@
  <topicref href="cli-intro.dita">
   <topicref href="CLI/cli-overview.dita"/>
   <topicref href="CLI/cbanalyze-core_tool.dita"/>
-  <topicref href="CLI/cbbackup_tool.dita"/>
-  <topicref href="CLI/cbcli-intro.dita">
-   <topicref href="CLI/CBcli/cbcli-commands.dita"/>
-   <topicref href="CLI/CBcli/cbcli-buckets.dita"/>
-   <topicref href="CLI/CBcli/cbcli-rza.dita"/>
-   <topicref href="CLI/CBcli/cbcli-servers.dita"/>
-   <topicref href="CLI/CBcli/cbcli-xdcr.dita"/>
+  <topicref href="CLI/cbbackup_tool.dita">
+   <topicref href="CLI/cbbackup-ddocs.dita"/>
+   <topicref href="CLI/cli-increment-backup.dita"/>
   </topicref>
   <topicref href="CLI/cbcollect_info_tool.dita"/>
   <topicref href="CLI/cbdocloader_tool.dita"/>
@@ -24,7 +20,10 @@
   </topicref>
   <topicref href="CLI/cbhealthchecker_tool.dita"/>
   <topicref href="CLI/cbreset_password_tool.dita"/>
-  <topicref href="CLI/cbrestore_tool.dita"/>
+  <topicref href="CLI/cbrestore_tool.dita">
+   <topicref href="CLI/cbrestore-ddocs.dita"/>
+   <topicref href="CLI/cli-incremental-restore.dita"/>
+  </topicref>
   <topicref href="CLI/cbstats-intro.dita">
    <topicref href="CLI/CBstats/cbstats-available.dita"/>
    <topicref href="CLI/CBstats/cbstats-checkpoint.dita"/>
@@ -49,6 +48,13 @@
   </topicref>
   <topicref href="CLI/cbtransfer_tool.dita"/>
   <topicref href="CLI/cbworkloadgen_tool.dita"/>
+  <topicref href="CLI/cbcli-intro.dita">
+   <topicref href="CLI/CBcli/cbcli-commands.dita"/>
+   <topicref href="CLI/CBcli/cbcli-buckets.dita"/>
+   <topicref href="CLI/CBcli/cbcli-rza.dita"/>
+   <topicref href="CLI/CBcli/cbcli-servers.dita"/>
+   <topicref href="CLI/CBcli/cbcli-xdcr.dita"/>
+  </topicref>
  </topicref>
 
  

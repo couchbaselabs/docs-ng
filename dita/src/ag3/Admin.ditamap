@@ -53,8 +53,9 @@
    <topicref href="Tasks/tasks-nodeFailover.dita"/>
    <topicref href="Tasks/tasks-dataRecovery.dita"/>
    <topicref href="Tasks/tasks-backup-restore.dita">
-    <topicref href="Tasks/tasks-backup-restore-incremental.dita"/>
     <topicref href="Tasks/backup-cbbackup.dita"/>
+    <topicref href="Tasks/tasks-backup-restore-incremental.dita" />
+    
    </topicref>
    <topicref href="Tasks/tasks-rebalance.dita">
     <topicref href="Tasks/rebalance-behind-the-scenes.dita"/>
