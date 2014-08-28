@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic3692">
-        <title>Buckets CLI</title>
+        <title>Buckets</title>
         <shortdesc>Buckets are managed with the <codeph>couchbase-cli</codeph> tool and the <codeph>bucket-*</codeph> commands.</shortdesc>
         
         <body>

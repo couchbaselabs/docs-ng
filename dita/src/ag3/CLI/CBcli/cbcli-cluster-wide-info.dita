@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_dp4_b4l_34">
-	<title>Collecting diagnostics via the couchbase-cli tool</title>
-	<shortdesc>You can start, stop, and view status of a diagnostics collection by using the couchbase-cli tool.</shortdesc>
+	<title>Diagnostics with couchbase-cli</title>
+	<shortdesc>You can start, stop, and view status of a diagnostics collection by using the <codeph>couchbase-cli</codeph> tool.</shortdesc>
 	<conbody>
 		<section>
 			<title>Start log collection command</title>

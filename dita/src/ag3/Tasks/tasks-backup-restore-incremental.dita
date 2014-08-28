@@ -37,7 +37,7 @@
 			<p>The following figure shows an example of a differential incremental backup strategy.
 				Every Sunday, a full backup is made. On the other days of the week, a differential
 				incremental backup is made.</p>
-			<image href="images/backup-differential-incremental.png" />
+			<image href="../images/backup-differential-incremental.png" width="720"/>
 			<p>In this example, the Monday backup contains the changes made since the full backup on
 				Sunday, the Tuesday backup contains the changes made since the Monday backup, the
 				Wednesday backup contains the changes made since the Tuesday backup, and so on. If, for
@@ -54,7 +54,7 @@
 			<p>The following figure shows an example of a cumulative incremental backup strategy. Every
 				Sunday, a full backup is made. On the other days of the week, a cumulative incremental
 				backup is made. </p>
-			<image href="images/backup-cumulative-incremental.png" />
+			<image href="../images/backup-cumulative-incremental.png" width="720"/>
 			<p>In this example, the Monday backup contains all the changes made since the full backup
 				on Sunday, the Tuesday backup contains all the changes made since the full backup on
 				Sunday, the Wednesday backup contains all the changes made since the full backup on
@@ -71,7 +71,7 @@
 				differential and cumulative backups. Every Sunday, a full backup is made. For the
 				remainder of the week, depending on the day, either a differential or cumulative
 				incremental backup is made.</p>
-			<image href="images/backup-combined-incremental.png" />
+			<image href="../images/backup-combined-incremental.png" width="720"/>
 			<p>In this example, the backup schedule includes differential and cumulative incremental
 				backups on different days. On Monday, Tuesday, Wednesday, Friday, and Saturday a
 				differential incremental backup is made. On Thursday, a cumulative incremental backup is

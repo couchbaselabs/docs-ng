@@ -11,29 +11,38 @@
    <topicref href="Misc/admin-datafiles.dita"/>
    <topicref href="Misc/install-location.dita"/>
    <topicref href="Misc/limits.dita"/>
+   <topicref href="Misc/cluster-wide-info-intro.dita" />
   </topicref>
   <topicref href="Concepts/concept-intro.dita">
-   <topicref href="Concepts/concept-nodesCluster.dita"/>
+   <topicref href="Concepts/concept-nodesCluster.dita">
+    <topicref href="Concepts/concept-rack-awareness.dita"/>
+   </topicref>
    <topicref href="Concepts/concept-clusterMgr.dita"/>
    <topicref href="Concepts/concept-dataStorage.dita"/>
    <topicref href="Concepts/concept-ramQuota.dita"/>
+   <topicref href="Concepts/bucket-priority.dita"/>
    <topicref href="Concepts/concept-vBucket.dita"/>
    <topicref href="Concepts/concept-cacheLayer.dita"/>
+   <topicref href="Concepts/global-thread-pool.dita"/>
    <topicref href="Concepts/concept-diskStorage.dita">
     <topicref href="Concepts/concept-readerWriter.dita"/>
     <topicref href="Concepts/concept-doc-delete.dita"/>
     <topicref href="Concepts/concept-tombstone.dita"/>
    </topicref>
    <topicref href="Concepts/concept-workingset-mgmt.dita">
+    <topicref href="Concepts/bucket-eviction.dita"/>
     <topicref href="Tasks/tasks-manage-workingset.dita"/>
    </topicref>
    <topicref href="Concepts/concept-docExpiration.dita"/>
    <topicref href="Concepts/concept-serverWarmup.dita"/>
-   <topicref href="Concepts/concept-rebalancing.dita"/>
    <topicref href="Concepts/concept-replication.dita"/>
-   <topicref href="Concepts/concept-rack-awareness.dita"/>
-   <topicref href="Concepts/concept-nodeFailover.dita"/>
+   <topicref href="Concepts/concept-nodeFailover.dita">
+    <topicref href="Concepts/graceful-failover.dita"/>
+   </topicref>
+   <topicref href="Concepts/delta-node-recovery.dita"/>
+   <topicref href="Concepts/concept-rebalancing.dita"/>
    <topicref href="Concepts/concepts-TAP.dita"/>
+   <topicref href="Concepts/dcp.dita"/>
   	<topicref href="Concepts/concept-client-interface.dita" />
    <topicref href="Concepts/concepts-statsMonitor.dita"/>
   </topicref>
@@ -54,6 +63,8 @@
    <topicref href="Tasks/tasks-dataRecovery.dita"/>
    <topicref href="Tasks/tasks-backup-restore.dita">
     <topicref href="Tasks/backup-cbbackup.dita"/>
+    <topicref href="Tasks/restore-cbrestore.dita"/>
+    <topicref href="Tasks/backup-restore-tween-opsys.dita"/>
     <topicref href="Tasks/tasks-backup-restore-incremental.dita" />
     
    </topicref>

@@ -9,7 +9,9 @@
    <topicref href="CLI/cbbackup-ddocs.dita"/>
    <topicref href="CLI/cli-increment-backup.dita"/>
   </topicref>
-  <topicref href="CLI/cbcollect_info_tool.dita"/>
+  <topicref href="CLI/cbcollect_info_tool.dita">
+   <topicref href="CLI/cbcollect-cluster-wide-info.dita"/>
+  </topicref>
   <topicref href="CLI/cbdocloader_tool.dita"/>
   <topicref href="CLI/cbepctl-intro.dita">
    <topicref href="CLI/CBepctl/cbepctl-thresholds.dita"/>
@@ -54,6 +56,7 @@
    <topicref href="CLI/CBcli/cbcli-rza.dita"/>
    <topicref href="CLI/CBcli/cbcli-servers.dita"/>
    <topicref href="CLI/CBcli/cbcli-xdcr.dita"/>
+   <topicref href="CLI/CBcli/cbcli-cluster-wide-info.dita"/>
   </topicref>
  </topicref>
 
