@@ -519,7 +519,7 @@ Replace the *admin*, *password*, *localhost*, and *256* values in the above
 example with your actual values.
     
 This needs to be made as POST request to the `/internalSettings` endpoint. By
-default this setting is 16, which specifies the number of vBuckets which will
+default this setting is 64, which specifies the number of vBuckets which will
 moved per node until all vBucket movements pauses. After this pause the system
 triggers index compaction. Index compaction will not be performed while vBuckets
 are being moved, so if you specify a larger value, it means that the server will
