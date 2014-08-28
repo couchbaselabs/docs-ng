@@ -196,30 +196,30 @@ The benefit of using the methods that return `IOperationResult` is that they giv
  * **Message** - a string describing the error that occurred
  * **Exception** - the exception caused by the error
 
-The following table lists the enumeration name and corresponding numerical value, origin of the value, and description of each `StatusCode`:
+The following table lists the enumeration name and corresponding numerical value (in hexadecimal), origin of the value, and description of each `StatusCode`:
 
 |  **Enumeration** |**Value**   |**Origin**   | **Description**  |
 |---|---|---|---|
-|  Success | 0  | Server  | Operation was successful |
-|  KeyNotFound | 1  | Server  | Key was not found on server |
-|  KeyExists | 2  | Server  | Key already exists on server |
-|  ValueToLarge | 3  | Server  | Value is to large  |
-|  InvalidArguments  |  4 | Server  | The operations arguments are invalid  |
-|  ItemNotStored | 5  | Server  | The item could not be stored  |
-|  IncrDecrOnNonNumericValue | 6  | Server  | An attempt was made to increment or decrement a non-numeric value  e.g. a string  |
-|  VBucketBelongsToAnotherServer | 7  | Server  | The vBucket the key is mapped to has been changed. Common during rebalance scenarios and operation should be retried  |
-|  AuthenticationError | 20  | Server  | SASL authentication has failed. Check the password or user name of the server or bucket  |
-|  AuthenticationContinue | 21  | Server  | Used during SASL authentication  |
-|  InvalidRange | 22 | Server  | Invalid range was specified  |
-|  UnknownCommand | 81 | Server  | Operation was not recognized by server. Should never occur with a Couchbase supported client  |
-|  OutOfMemory | 82 | Server  | Server is out of memory. This is usually temporary, but should prompt further investigation  |
-|  NotSupported | 83 | Server  | A client attempted an operation that was not supported by the server  |
-|  InternalError | 84 | Server  | Server error state  |
-|  Busy  | 85 | Server  | Server is temporarily too busy. This may warrant a retry attempt  |
-|  TemporaryFailure  | 86 | Server |   |
-|  SocketPoolTimeout | 91 | Client | A timeout has occurred while attempting to retrieve a connection. This can happen during rebalance scenarios or during times of high throughput on the client. A retry attempt is warranted in this case |
-|  UnableToLocateNode | 92 | Client | Usually a temporary state of the client during rebalance/failover scenarios when a configuration change has occurred (server added or removed from cluster for example). A retry attempt is warranted in this case |
-|  NodeShutdown  | 93 | Client | Temporary client state during a configuration change when an operation is using the older state of the cluster. A retry attempt is warranted in this case  |
-|  OperationTimeout | 94 | Client | The 1.X client uses synchronous IO, If a connection is terminated by the server a timeout will occur after n seconds on the client if the current operation does not complete. A retry attempt is warranted in this case |
+|  Success | 0x0  | Server  | Operation was successful |
+|  KeyNotFound | 0x1  | Server  | Key was not found on server |
+|  KeyExists | 0x2  | Server  | Key already exists on server |
+|  ValueToLarge | 0x3  | Server  | Value is to large  |
+|  InvalidArguments  |  0x4 | Server  | The operations arguments are invalid  |
+|  ItemNotStored | 0x5  | Server  | The item could not be stored  |
+|  IncrDecrOnNonNumericValue | 0x6  | Server  | An attempt was made to increment or decrement a non-numeric value  e.g. a string  |
+|  VBucketBelongsToAnotherServer | 0x7  | Server  | The vBucket the key is mapped to has been changed. Common during rebalance scenarios and operation should be retried  |
+|  AuthenticationError | 0x20  | Server  | SASL authentication has failed. Check the password or user name of the server or bucket  |
+|  AuthenticationContinue | 0x21  | Server  | Used during SASL authentication  |
+|  InvalidRange | 0x22 | Server  | Invalid range was specified  |
+|  UnknownCommand | 0x81 | Server  | Operation was not recognized by server. Should never occur with a Couchbase supported client  |
+|  OutOfMemory | 0x82 | Server  | Server is out of memory. This is usually temporary, but should prompt further investigation  |
+|  NotSupported | 0x83 | Server  | A client attempted an operation that was not supported by the server  |
+|  InternalError | 0x84 | Server  | Server error state  |
+|  Busy  | 0x85 | Server  | Server is temporarily too busy. This may warrant a retry attempt  |
+|  TemporaryFailure  | 0x86 | Server |   |
+|  SocketPoolTimeout | 0x91 | Client | A timeout has occurred while attempting to retrieve a connection. This can happen during rebalance scenarios or during times of high throughput on the client. A retry attempt is warranted in this case |
+|  UnableToLocateNode | 0x92 | Client | Usually a temporary state of the client during rebalance/failover scenarios when a configuration change has occurred (server added or removed from cluster for example). A retry attempt is warranted in this case |
+|  NodeShutdown  | 0x93 | Client | Temporary client state during a configuration change when an operation is using the older state of the cluster. A retry attempt is warranted in this case  |
+|  OperationTimeout | 0x94 | Client | The 1.X client uses synchronous IO, If a connection is terminated by the server a timeout will occur after n seconds on the client if the current operation does not complete. A retry attempt is warranted in this case |
 
 You can find the `StatusCode` enumeration within `Enyim.Caching` assembly: `Enyim.Caching.StatusCode`.

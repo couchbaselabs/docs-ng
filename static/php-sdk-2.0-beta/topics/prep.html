@@ -1,0 +1,202 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
+					body{
+						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
+					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">PHP SDK overview</a></li><li><a href="../topics/getting-started.html">Getting Started</a></li><li><a href="../topics/tutorial-intro.html">PHP SDK Tutorial</a><ul class="nav nav-list"><li class="active"><a href="../topics/prep.html">Preparations</a><ul class="nav nav-list"></ul></li><li><a href="../topics/bootstrapping-app.html">Bootstrapping the Application</a></li><li><a href="../topics/manage-beers.html">Managing Beers</a></li><li><a href="../topics/tutorial-wrap.html">Wrapping Up</a></li></ul></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling errors</a></li><li><a href="../topics/logging.html">Setting up logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Preparations</h1>
+
+	<div class="body conbody">
+		<p class="p">Before you can start coding the application logic, you need to prepare both the database
+			and the application. To get started, you need to import the <samp class="ph codeph">beer-sample</samp>
+			bucket, prepare some views and make sure everything works correctly. You’ll also get the
+			application skeleton set up so you are ready to code.</p>
+
+
+		<div class="section"><h2 class="title sectiontitle">Setting up Couchbase Server</h2><p class="p">If you haven’t already, download and
+				install Couchbase Server 2.0. While you’re at it, make sure to install the
+					<samp class="ph codeph">beer-sample</samp> sample bucket on the fly. If you already have the server
+				installed and the <samp class="ph codeph">beer-sample</samp> bucket is not in place, head over to
+					<samp class="ph codeph">Settings-&gt;Sample Buckets</samp> and install it. Give it a few seconds
+				until the notification box disappears. You may need to shrink the size of some of your
+				existing buckets to make room for the beer-sample database.</p>
+<p class="p">The
+					<samp class="ph codeph">beer-sample</samp> bucket comes with a small set of views already
+				predefined, but to make our application function correctly we need some more. This is
+				also a very good chance to explore the view management possibilities inside the Web
+				UI.</p>
+<p class="p">Since we want to list beers and breweries by name, we need to define one view
+				for each. Head over to the Web UI and click on the <samp class="ph codeph">Views</samp> menu. Select
+					<samp class="ph codeph">beer-sample</samp> from the drop-down list to switch to the correct bucket.
+				Now click on <samp class="ph codeph">Development Views</samp> and then <samp class="ph codeph">Create Development
+					View</samp> to define your first view. You need to give it the name of both the
+				design document and the actual view. Insert the following names:</p>
+<ul class="ul">
+				<li class="li"><p class="p">Design Document Name: _design/dev_beer</p>
+</li>
+
+				<li class="li"><p class="p">View Name: by_name</p>
+</li>
+
+			</ul>
+<p class="p">The next step is to define the <samp class="ph codeph">map</samp> and (optional)
+					<samp class="ph codeph">reduce</samp> functions. In our examples, we won’t use have a
+					<samp class="ph codeph">reduce</samp> function, but you can play around if you would like to.
+				Insert the following JavaScript <samp class="ph codeph">map</samp> function and click
+					<samp class="ph codeph">Save</samp>.</p>
+<pre class="pre codeblock"><samp class="ph codeph">function (doc, meta) {
+  if(doc.type &amp;&amp; doc.type == "beer") {
+    emit(doc.name, null);
+  }
+}
+</samp></pre>
+<p class="p">Every
+					<samp class="ph codeph">map</samp> function takes the full document ( <samp class="ph codeph">doc</samp> ) and
+				(optionally) its associated metadata ( <samp class="ph codeph">meta</samp> ) as the arguments. You are
+				then free to inspect this data and <samp class="ph codeph">emit</samp> a result when you want to have
+				it in your view. Views are always sorted by key, so by emitting information, we are in
+				effect creating an index. In our case we emit the name of the beer (
+					<samp class="ph codeph">doc.name</samp> ) when the document both has a type field and the type is
+					<samp class="ph codeph">beer</samp>. We don’t need to emit a value - that’s because we are using
+					<samp class="ph codeph">null</samp> here. It’s always advisable to keep the view entry as small as
+				possible. Resist the urge to include the full document through <samp class="ph codeph">emit(meta.id,
+					doc)</samp>, because it will increase the size of your views. If you need to access
+				the full document (or large parts), then retrieve the document via the returned id in
+				the view result. Note: at this time PHP does not have a way to include docs, though some
+				other Couchbase SDKs do.</p>
+<p class="p">Now we need to do (nearly) the same for our breweries.
+				Since you already know how to do this, here is all the information you need to create
+				it:</p>
+<ul class="ul">
+				<li class="li"><p class="p">Design Document Name: _design/dev_brewery</p>
+</li>
+
+				<li class="li"><p class="p">View Name: by_name</p>
+</li>
+
+				<li class="li"><p class="p">Map Function:</p>
+
+					<pre class="pre codeblock"><samp class="ph codeph">function (doc, meta) {
+  if(doc.type &amp;&amp; doc.type == "brewery") {
+    emit(doc.name, null);
+  }
+}
+</samp></pre>
+</li>
+
+			</ul>
+<p class="p">The final step that you need to do is to push the design documents in production.
+				While the design documents are in <samp class="ph codeph">development</samp>, the index is only
+				applied to a subset of the data. Since we want to have the index on the whole dataset,
+				click the <samp class="ph codeph">Publish</samp> button on both design documents (and accept any info
+				popup that warns you from overriding the old one). See the view section of the Couchbase
+				Server manual for more information on how you may use this development and production
+				workflow to your advantage when developing a large
+				application.</p>
+<p class="p"></p>
+</div>
+
+		<div class="section"><h2 class="title sectiontitle">Installing the Application Dependencies</h2><p class="p">Now that Couchbase Server is
+				ready to use, we need to set up the skeleton of our application. Since we’re using
+				composer, all we need to get the dependencies is to create a
+					<samp class="ph codeph">composer.json</samp> file with the following
+				content:</p>
+<pre class="pre codeblock"><samp class="ph codeph">{
+  "require": {
+    "silex/silex": "1.0.x-dev",
+    "twig/twig": "&gt;=1.8,&lt;2.0-dev"
+  }
+}
+</samp></pre>
+<p class="p">Place
+				that file inside the <samp class="ph codeph">/beersample-php</samp> directory of your web root
+				(depending on your setup, it is often located under <samp class="ph codeph">/var/www/</samp> ). We
+				also need to create a few more directories to keep the application
+				organized.</p>
+<p class="p">Create directories with the following
+				structure:</p>
+<pre class="pre codeblock"><samp class="ph codeph">/beersample-php
+    /templates
+        /beers
+        /breweries
+    /assets
+        /css
+        /js
+</samp></pre>
+<p class="p">We’ll
+				fill the template directories later, but the assets can be added immediately. Please
+				locate and download the following JavaScript and CSS files so they are in place. We make
+				use of the fabulous <a class="xref" href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a> library to make the application look good
+				without much effort.</p>
+<ul class="ul">
+				<li class="li"><p class="p"><a class="xref" href="https://raw.github.com/couchbaselabs/beersample-php/master/assets/css/beersample.css" target="_blank">css/beersample.css</a></p>
+</li>
+
+				<li class="li"><p class="p"><a class="xref" href="https://raw.github.com/couchbaselabs/beersample-php/master/assets/css/bootstrap.min.css" target="_blank">css/bootstrap.min.css (the minified twitter
+							bootstrap library)</a></p>
+</li>
+
+				<li class="li"><p class="p"><a class="xref" href="https://raw.github.com/couchbaselabs/beersample-php/master/assets/css/bootstrap-responsive.min.css" target="_blank">css/bootstrap-responsive.min.css (the minified
+							responsive layout classes from bootstrap)</a></p>
+</li>
+
+				<li class="li"><p class="p"><a class="xref" href="https://raw.github.com/couchbaselabs/beersample-php/master/assets/js/beersample.js" target="_blank">js/beersample.js</a></p>
+</li>
+
+				<li class="li"><p class="p"><a class="xref" href="https://raw.github.com/couchbaselabs/beersample-php/master/assets/js/jquery.min.js" target="_blank">js/jquery.min.js (the jQuery javascript
+							library)</a></p>
+</li>
+
+			</ul>
+<p class="p">Also, we’re using pretty URLs in our application. Here is a
+					<samp class="ph codeph">.htaccess</samp> file you can place inside your root directory to make it
+				work properly when using Apache HTTPD. Please refer to the <a class="xref" href="http://silex.sensiolabs.org/doc/web_servers.html" target="_blank">Silex documentation</a> on how to add one for different web
+				servers.</p>
+<pre class="pre codeblock"><samp class="ph codeph">&lt;IfModule mod_rewrite.c&gt;
+    Options -MultiViews
+
+    RewriteEngine On
+    RewriteBase /beersample-php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+&lt;/IfModule&gt;
+</samp></pre>
+<p class="p">To
+				install the dependencies, we’re now able to run <samp class="ph codeph">php composer.phar
+					install</samp> (or <samp class="ph codeph">update</samp> ). It should install all needed
+				dependencies and we’re ready to go
+			afterwards:</p>
+<pre class="pre codeblock"><samp class="ph codeph">Loading composer repositories with package information
+Installing dependencies
+  - Installing twig/twig (v1.11.1)
+    Downloading: 100%
+...
+
+  - Installing silex/silex (dev-master 0e69dc2)
+    Cloning 0e69dc22400293f9364f8b918d008f3f6b634a47
+
+symfony/routing suggests installing symfony/config (2.1.*)
+...
+Writing lock file
+Generating autoload files
+</samp></pre>
+</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/tutorial-intro.html">PHP SDK Tutorial</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
+								© 2014 COUCHBASE All rights reserved.
+							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>
