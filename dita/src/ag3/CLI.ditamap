@@ -27,26 +27,27 @@
    <topicref href="CLI/cli-incremental-restore.dita"/>
   </topicref>
   <topicref href="CLI/cbstats-intro.dita">
-   <topicref href="CLI/CBstats/cbstats-available.dita"/>
-   <topicref href="CLI/CBstats/cbstats-checkpoint.dita"/>
-   <topicref href="CLI/CBstats/cbstats-dispatcher-job.dita"/>
-   <topicref href="CLI/CBstats/cbstats-generalform.dita"/>
-   <topicref href="CLI/CBstats/cbstats-gettingservertiming.dita"/>
-   <topicref href="CLI/CBstats/cbstats-gettingTAPinfo.dita"/>
-   <topicref href="CLI/CBstats/cbstats-gettingwarmupinfo.dita"/>
-   <topicref href="CLI/CBstats/cbstats-hash.dita"/>
-   <topicref href="CLI/CBstats/cbstats-keyvkey.dita"/>
-   <topicref href="CLI/CBstats/cbstats-kv.dita"/>
-   <topicref href="CLI/CBstats/cbstats-memory.dita"/>
-   <topicref href="CLI/CBstats/cbstats-pendingvbucket.dita"/>
-   <topicref href="CLI/CBstats/cbstats-replicavbucket.dita"/>
-   <topicref href="CLI/CBstats/cbstats-reset.dita"/>
-   <topicref href="CLI/CBstats/cbstats-tap.dita"/>
-   <topicref href="CLI/CBstats/cbstats-timing.dita"/>
    <topicref href="CLI/CBstats/cbstats-toplevelstats.dita"/>
    <topicref href="CLI/CBstats/cbstats-totalvbucket.dita"/>
-   <topicref href="CLI/CBstats/cbstats-readwrite.dita"/>
+   <topicref href="CLI/CBstats/cbstats-replicavbucket.dita"/>
+   <topicref href="CLI/CBstats/cbstats-pendingvbucket.dita"/>
+   <topicref href="CLI/CBstats/cbstats-timing.dita"/>
+   <topicref href="CLI/CBstats/cbstats-generalform.dita"/>
+   <topicref href="CLI/CBstats/cbstats-available.dita"/>
+   <topicref href="CLI/CBstats/cbstats-hash.dita"/>
+   <topicref href="CLI/CBstats/cbstats-checkpoint.dita"/>
+   <topicref href="CLI/CBstats/cbstats-memory.dita"/>
+   <topicref href="CLI/CBstats/cbstats-keyvkey.dita"/>
    <topicref href="CLI/CBstats/cbstats-warmup.dita"/>
+   <topicref href="CLI/CBstats/cbstats-kv.dita"/>
+   <topicref href="CLI/CBstats/cbstats-dispatcher-job.dita"/>
+   <topicref href="CLI/CBstats/cbstats-reset.dita"/>
+   <topicref href="CLI/CBstats/cbstats-gettingservertiming.dita"/>
+   <topicref href="CLI/CBstats/cbstats-gettingwarmupinfo.dita"/>
+   <topicref href="CLI/CBstats/cbstats-tap.dita">
+    <topicref href="CLI/CBstats/cbstats-gettingTAPinfo.dita"/>
+   </topicref>
+   <topicref href="CLI/CBstats/cbstats-readwrite.dita"/>
   </topicref>
   <topicref href="CLI/cbtransfer_tool.dita"/>
   <topicref href="CLI/cbworkloadgen_tool.dita"/>
