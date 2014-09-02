@@ -4,6 +4,17 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.9 GA (2 September 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-8"></a>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-583">NCBC-583: Ensure Dispose is call on every MD5CryptoServiceProvider class usage</a>
+
+    Every Get or Set call invokes KetamaNodeLocator.Locate(string key). The memcached keys are hashed through MD5 algorithm to find node they
+    are supposed to be stored on. The current implementation creates a new MD5CryptoServiceProvider class which has underlying SafeHashHandle
+    that registers into finalizer queue. Because the code does not call Dispose on the MD5CryptoServiceProvider instance, the SafeHashHandle
+    remains in finalizer queue till garbage collector disposes it properly. 
+
 ## Release Notes for Couchbase Client Library .NET 1.3.8 GA (13 August 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-8"></a>
