@@ -5,7 +5,7 @@ the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 <a id="couchbase-sdk-rn_2-4-1"></a>
-## Release Notes for Couchbase Client Library C GA (27 August 2014)
+## Release Notes for Couchbase Client Library C 2.4.1 (27 August 2014)
 
 * Implement `mcflush` subcommand for `cbc`. This was removed in the cbc
   rewrite as the previous `flush` command.
@@ -68,7 +68,7 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
 
 <a id="couchbase-sdk-rn_2-4-0"></a>
-## Release Notes for Couchbase Client Library C GA (29 July 2014)
+## Release Notes for Couchbase Client Library C 2.4.0 (29 July 2014)
 
 * Attempt to retry items that are mapped to a non-existent node in
   a degraded cluster. Rather than returning `LCB_NO_MATCHING_SERVER` the
