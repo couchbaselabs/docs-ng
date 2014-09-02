@@ -5,8 +5,32 @@ Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
 Client Library Python Issues
 Tracker](http://www.couchbase.com/issues/browse/PYCBC).
 
+<a id="couchbase-sdk-python-rn_1-2-3g"></a>
+## Release Notes for Couchbase Python SDK 1.2.3 GA (2 September 2014)
+
+This release provides some minor bug fixes for the 1.2 series
+
+**Fixes in 1.2.3**
+
+* Fix potential hang in Twisted integration module.
+
+  **Issues**: [PYCBC-257](http://www.couchbase.com/issues/browse/PYCBC-257)
+
+* Handle non-CouchbaseError exceptions thrown in callbacks and avoid crashes
+  Sometimes a non-CouchbaseError may be thrown within operation callbacks,
+  usually due to a bad encoding or other environmental issues (such as memory
+  allocation failures). This should be delivered to the user and not crash
+  the application
+
+  **Issues**: [PYCBC-253](http://www.couchbase.com/issues/browse/PYCBC-253)
+
+* Fix various error message and documentation errata
+
+  **Issues**: [PYCBC-254](http://www.couchbase.com/issues/browse/PYCBC-254)
+    [PYCBC-252](http://www.couchbase.com/issues/browse/PYCBC-252)
+
 <a id="couchbase-sdk-python-rn_1-2-2g"></a>
-## Release Nodes for Couchbase Python SDK 1.2.2 GA (1 July 2014)
+## Release Notes for Couchbase Python SDK 1.2.2 GA (1 July 2014)
 
 This release provides some minor bug fixes for 1.2.1
 
