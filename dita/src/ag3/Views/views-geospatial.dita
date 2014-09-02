@@ -67,7 +67,7 @@
 				For example, the following design document includes the above function as the view
 					<codeph>points</codeph></p><codeblock><codeph>{
    "spatial" : {
-      "points" : "function(doc, meta) { if (doc.loc) { emit({ type: \"Point\", coordinates: [doc.loc[0], doc.loc[1]]}, [meta.id, doc.loc]);}}",
+      "points" : "function(doc, meta) { if (doc.loc) { emit({ type: \"Point\", coordinates: doc.loc}, [meta.id, doc.loc]);}}",
    }
 }
 </codeph></codeblock><p>To
@@ -173,30 +173,41 @@
 				query.</p><p>These coordinates are specified using the GeoJSON format, so the first
 				two numbers are the lower left coordinates, and the last two numbers are the upper
 				right coordinates.</p><p>For example, using the above design
-				document:</p><codeblock><codeph>GET http://localhost:8092/places/_design/main/_spatial/points?bbox=0,0,180,90
+				document:</p><codeblock><codeph>GET http://localhost:8092/places/_design/main/_spatial/points?bbox=-180,-90,0,0
 Content-Type: application/json
 </codeph></codeblock><p>Returns
 				the following
 				information:</p><codeblock><codeph>{
-   "update_seq" : 3,
-   "rows" : [
-      {
-         "value" : [
-            "oakland",
-            [
-               10.898333,
-               48.371667
-            ]
-         ],
-         "bbox" : [
-            10.898333,
-            48.371667,
-            10.898333,
-            48.371667
-         ],
-         "id" : "augsburg"
-      }
-   ]
+    "total_rows": 0,
+    "rows": [
+        {
+            "id": "oakland",
+            "key": [
+                [
+                    -122.270833,
+                    -122.270833
+                ],
+                [
+                    37.804444,
+                    37.804444
+                ]
+            ],
+            "value": [
+                "oakland",
+                [
+                    -122.270833,
+                    37.804444
+                ]
+            ],
+            "geometry": {
+                "coordinates": [
+                    -122.270833,
+                    37.804444
+                ],
+                "type": "Point"
+            }
+        }
+    ]
 }
 </codeph></codeblock><note type="note">The return data includes the value specified in the design document view
 				function, and the bounding box of each individual matching document. If the spatial
