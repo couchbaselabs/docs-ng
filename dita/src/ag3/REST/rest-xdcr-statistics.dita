@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic8465">
-    <title>Getting XDCR stats via REST</title>
+    <title>Getting XDCR stats</title>
     <body>
         <p>You can get XDCR statistics from either Couchbase Web Console, or the REST API. You
             perform all of these requests on a source cluster to get information about a destination

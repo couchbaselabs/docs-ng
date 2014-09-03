@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_lgt_jnb_k4">
-  <title>Setting delta node recovery (CLI)</title>
+  <title>Recovering nodes</title>
   <shortdesc>To re-add a server node to a cluster, use the <codeph>couchbase-cli</codeph> tool and
     the <codeph>recovery</codeph> command with the <codeph>--recovery-type</codeph> parameter. </shortdesc>
   <refbody>

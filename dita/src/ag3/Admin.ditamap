@@ -167,6 +167,13 @@
      <topicref href="Tasks/tasks-create-readUser.dita"/>
     </topicref>
    </topicref>
+   <topicref href="UI/ui-task-bucket-metadata-ejection.dita"/>
+   <topicref href="UI/ui-task-failover-graceful.dita"/>
+   <topicref href="UI/ui-task-node-recovery-incremental.dita"/>
+   <topicref href="UI/ui-task-set-bucket-priority.dita"/>
+   <topicref href="UI/ui-xdcr-pause-resume.dita"/>
+   <topicref href="UI/ui-dcp-queues.dita"/>
+   <topicref href="UI/ui-cluster-wide-info.dita"/>
   </topicref>
   <topicref href="Misc/faq.dita"/>
   <topicref href="Misc/sample-bucket-intro.dita">

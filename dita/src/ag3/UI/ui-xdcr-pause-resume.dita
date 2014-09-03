@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_by3_m3q_w4">
-    <title>Pause and resume replication (UI)</title>
+    <title>Pausing XDCR replication</title>
     <shortdesc>XDCR replication can be paused and resumed via the web console under the XDCR section.</shortdesc>
     <taskbody>
         

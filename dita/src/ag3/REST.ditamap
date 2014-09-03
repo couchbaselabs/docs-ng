@@ -9,8 +9,9 @@
    <topicref href="REST/rest-cluster-details.dita"/>
    <topicref href="REST/rest-cluster-addnodes.dita"/>
    <topicref href="REST/rest-cluster-joinnode.dita"/>
-   <topicref href="REST/rest-cluster-rebalance.dita"/>
    <topicref href="REST/rest-cluster-removenode.dita"/>
+   <topicref href="REST/rest-rza.dita"/>
+   <topicref href="REST/rest-cluster-rebalance.dita"/>
    <topicref href="REST/rest-cluster-internal-settings.dita"/>
    <topicref href="REST/rest-cluster-autofailover-intro.dita">
     <topicref href="REST/rest-cluster-autofailover-settings.dita"/>
@@ -23,16 +24,19 @@
    <topicref href="REST/rest-cluster-max-index.dita"/>
   </topicref>
   <topicref href="REST/rest-server-nodes.dita">
+   <topicref href="REST/rest-node-recovery-incremental.dita"/>
    <topicref href="REST/rest-node-provisioning.dita"/>
    <topicref href="REST/rest-node-failover.dita"/>
+   <topicref href="REST/rest-failover-graceful.dita"/>
    <topicref href="REST/rest-node-hostname.dita"/>
    <topicref href="REST/rest-node-set-username.dita"/>
    <topicref href="REST/rest-node-memory-quota.dita"/>
    <topicref href="REST/rest-node-index-path.dita"/>
    <topicref href="REST/rest-node-retrieve-stats.dita"/>
   </topicref>
-  <topicref href="REST/rest-rza.dita"/>
   <topicref href="REST/rest-bucket-intro.dita">
+   <topicref href="REST/rest-bucket-set-priority.dita"/>
+   <topicref href="REST/rest-bucket-metadata-ejection.dita"/>
    <topicref href="REST/rest-bucket-info.dita"/>
    <topicref href="REST/rest-bucket-get-config.dita"/>
    <topicref href="REST/rest-bucket-stats.dita"/>
@@ -60,10 +64,14 @@
    <topicref href="REST/rest-xdcr-edit-internal.dita"/>
    <topicref href="REST/rest-xdcr-get-internal.dita"/>
    <topicref href="REST/rest-xdcr-get-ref.dita"/>
+   <topicref href="REST/rest-xdcr-pause-resume.dita"/>
    <topicref href="REST/rest-xdcr-statistics.dita"/>
   </topicref>
   <topicref href="REST/compaction-rest-api.dita"/>
-  <topicref href="REST/logs-rest-api.dita"/>
+  <topicref href="REST/logs-rest-api.dita">
+   <!-- <topicref href="REST/rest-cluster-wide-info.dita"/> -->
+   <topicref href="REST/rest-client-logs.dita"/>
+  </topicref>
   <topicref href="REST/rest-users.dita"/>
  </topicref>
 

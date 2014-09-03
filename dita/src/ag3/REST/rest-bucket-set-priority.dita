@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_dgw_x1b_k4">
-  <title>Setting disk I/O priority (REST API)</title>
+  <title>Setting disk I/O priority</title>
   <shortdesc>The disk I/O priority for a bucket is set with the
       <codeph>/pools/default/buckets/bucket_name</codeph> URI and the <codeph>threadNumber</codeph>
     setting.</shortdesc>
   <refbody>
     <section>
-      <title>Disk I/O priority REST API</title>
+      <title>Disk I/O priority</title>
       <p>To set the maximum of thread workers, use the <codeph>threadsNumber</codeph> option. To
         specify high priority, assign eight (8) threads. To specify low priority, assign three (3)
         threads.</p>

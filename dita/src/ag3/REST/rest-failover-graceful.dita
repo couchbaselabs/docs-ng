@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_phh_kdb_k4">
-  <title>Failing over gracefully (REST API)</title>
+  <title>Setting graceful failover</title>
   <shortdesc>Graceful failover is set through the <codeph>POST /controller/startGracefulFailover</codeph> HTTP method and URI.</shortdesc>
   <refbody>
     
     
-    <section><title>Graceful failover REST API</title>
-      <p>Performing a POST on the <codeph>/controller/startGracefulFailover</codeph> initiates graceful failover. 
-        It's progress can be tracked just rebalance. 
-        After the data is persisted to disk and replicas are up-to-date, the node is put into the failed over state.</p>
+    <section><title>Graceful failover</title>
+      <p>Performing a POST on the <codeph>/controller/startGracefulFailover</codeph> initiates
+        graceful failover. It's progress can be tracked just like rebalance. After the data is
+        persisted to disk and replicas are up-to-date, the node is put into the failed over
+        state.</p>
 
       
 

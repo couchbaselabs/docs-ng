@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_ed5_pm5_j4">
-  <title>Bucket metadata ejection CLI</title>
+  <title>Setting metadata ejection policy</title>
 
   <shortdesc>Bucket ejection from memory is set with <codeph>couchbase-cli</codeph> tool.</shortdesc>
   

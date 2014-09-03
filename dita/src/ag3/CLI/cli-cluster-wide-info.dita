@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_jkv_xw1_34">
-	<title>Managing diagnostics (CLI)</title>
+	<title>Managing diagnostics</title>
 	<shortdesc>The command-line interface provides commands to start, stop, and report status for log
 		collection.</shortdesc>
 	<conbody>

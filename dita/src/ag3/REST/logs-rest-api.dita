@@ -65,10 +65,8 @@ logs_node (ssl_proxy):
                        {restart_type,permanent},
                        {shutdown,infinity},
                        {child_type,supervisor}]
-</codeph></codeblock></section><section><title>Creating a client logging interface</title><p>Entries can be added to the central log from a custom Couchbase SDK. These entries are typically responses to exceptions such as difficulty handling a server response. For instance, the Web Console uses this functionality to log client error conditions. </p><p>To add entries, provide a REST request similar to the following:</p><codeblock><codeph>POST /logClientError
-Host: localhost:8091
-Authorization: Basic xxxxxxxxxxxxxxxxxxx
-Accept: application/json
-X-memcachekv-Store-Client-Specification-Version: 0.1
-</codeph></codeblock><codeblock><codeph>200 - OK
-</codeph></codeblock></section></body></topic>
+</codeph></codeblock></section>
+  
+
+
+</body></topic>

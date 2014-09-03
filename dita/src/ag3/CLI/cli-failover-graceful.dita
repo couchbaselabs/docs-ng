@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_fjf_ncb_k4">
-  <title>Failing over gracefully (CLI)</title>
+  <title>Failing over nodes</title>
   <shortdesc>By default, graceful failover is implemented with failing over a node from a cluster using 
     <codeph>couchbase-cli failover</codeph>.</shortdesc>
   <refbody>

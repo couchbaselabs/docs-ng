@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_swj_j45_j4">
-  <title>Bucket metadata ejection REST API</title>
+  <title>Setting metadata ejection</title>
   <shortdesc>Bucket ejection from memory is set with <codeph>POST
     pools/default/buckets/default</codeph>.</shortdesc>
   <refbody>
-    <section><title>Bucket metadata ejection REST API</title>
+    <section><title>Bucket metadata ejection</title>
       <p> To set the maximum of thread workers, use the <codeph>maxNumberThreads</codeph> option. </p>
       
       <note type="important"> When editing bucket properties, be sure to specify all bucket

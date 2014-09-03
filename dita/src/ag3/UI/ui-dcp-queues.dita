@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
 <task id="task_j41_v5z_n4">
-    <title>DCP queues</title>
+    <title>Viewing DCP queues</title>
     <shortdesc>DCP queues provide information about the Database Change Protocol (DCP) protocol used
         to stream data changes to buckets.</shortdesc>
     <taskbody>

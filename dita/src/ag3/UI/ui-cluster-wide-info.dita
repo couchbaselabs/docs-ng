@@ -6,9 +6,9 @@
 
 	<task id="task_s1v_z3w_h4">
 		<title>Collecting and uploading log information</title>
-		<shortdesc>Collecting and uploading logs from your nodes by using the web console</shortdesc>
 
 		<taskbody>
+			<context>You can collect and upload logs via <uicontrol>Log > Collect Information</uicontrol> pannel</context>
 			
 			<steps>
 				<step>

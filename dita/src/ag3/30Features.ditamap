@@ -17,7 +17,7 @@
   <topicref href="Concepts/bucket-priority.dita">
    <topicref href="UI/ui-task-set-bucket-priority.dita"/>
    <topicref href="CLI/cli-set-disk-priority.dita"/>
-   <topicref href="REST/rest-set-bucket-priority.dita"/>
+   <topicref href="REST/rest-bucket-set-priority.dita"/>
   </topicref>
   <topicref href="Concepts/graceful-failover.dita">
    <topicref href="UI/ui-task-failover-graceful.dita"/>

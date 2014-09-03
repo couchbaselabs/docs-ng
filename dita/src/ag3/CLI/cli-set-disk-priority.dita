@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_xcc_31b_k4">
-  <title>Setting disk I/O priority (CLI)</title>
+  <title>Setting bucket priority</title>
   <shortdesc>To set the disk I/O priority for a bucket, use the <codeph>couchbase-cli</codeph> tool <codeph>bucket-create</codeph> or 
     <codeph>bucket-edit</codeph> command and the <codeph>--bucket-priority=[low|high]</codeph> option.</shortdesc>
   <refbody>
