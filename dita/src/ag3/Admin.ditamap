@@ -24,14 +24,14 @@
    <topicref href="Concepts/concept-vBucket.dita"/>
    <topicref href="Concepts/concept-cacheLayer.dita"/>
    <topicref href="Concepts/global-thread-pool.dita"/>
+   <topicref href="Concepts/bucket-eviction.dita">
+    <topicref href="Concepts/concept-workingset-mgmt.dita"/>
+    <topicref href="Tasks/tasks-manage-workingset.dita"/>
+   </topicref>
    <topicref href="Concepts/concept-diskStorage.dita">
     <topicref href="Concepts/concept-readerWriter.dita"/>
     <topicref href="Concepts/concept-doc-delete.dita"/>
     <topicref href="Concepts/concept-tombstone.dita"/>
-   </topicref>
-   <topicref href="Concepts/concept-workingset-mgmt.dita">
-    <topicref href="Concepts/bucket-eviction.dita"/>
-    <topicref href="Tasks/tasks-manage-workingset.dita"/>
    </topicref>
    <topicref href="Concepts/concept-docExpiration.dita"/>
    <topicref href="Concepts/concept-serverWarmup.dita"/>

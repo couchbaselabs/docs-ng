@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_xgq_zhx_r4">
-  <title>Release notes (beta)</title>
+  <title>Release notes</title>
   <body>
-    <p>This release note is for the 3.0.0 BETA REFRESH release. It contains a list of known and
+    <p>This release note is for the 3.0.0 release. It contains a list of known and
       fixed issues.</p>
     
     <section><title>Couchbase .NET incompatibility</title>
@@ -48,6 +48,17 @@
       </dl>
       
         
+    </section>
+    
+    <section><title>Behavior changes</title>
+      
+      <p>The <codeph>stale=false</codeph> view query argument has been enhanced. 
+        It considers all document changes which have been received at the time the query was received. 
+        This means that using the durability requirements or observe feature to block for persistence in application code 
+        before issuing the <codeph>false</codeph>stale query is no longer needed. 
+        It is recommended that you remove all such application level checks after completing the upgrade to the 3.0 release. 
+      </p>
+    
     </section>
     
     

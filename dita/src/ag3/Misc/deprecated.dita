@@ -348,6 +348,7 @@
     <section><title>Miscellaneous</title>
       <p>The following items are deprecated or not supported.</p>
       <ul>
+        <li>The <codeph>ep_expiry_window</codeph> statistic is removed since it is no longer applicable.</li>
         <li>The <codeph>_all_docs</codeph> view is not supported</li>
         <li>RightScale Server non-Chef templates are deprecated as of Couchbase Server 2.2.
           Couchbase provides RightScale Server templates based on Chef.</li>
