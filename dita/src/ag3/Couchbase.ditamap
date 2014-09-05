@@ -9,6 +9,6 @@
     <topicref href="Admin.ditamap" format="ditamap" />
     <topicref href="CLI.ditamap" format="ditamap" />
     <topicref href="REST.ditamap" format="ditamap" />
-    <topicref href="rel-notes/rel-notes3.0beta.dita"/>
+    <topicref href="rel-notes/rel-notes3.0.dita"/>
     
 </map>

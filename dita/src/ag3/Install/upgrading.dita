@@ -8,11 +8,8 @@
     <p>The following are the officially supported upgrade paths for Couchbase Server for both online
       upgrades or offline upgrades:</p>
     <ul>
-      <li>Couchbase 1.8.1 to Couchbase 2.x</li>
-      <li>Couchbase 2.0.x to Couchbase 2.1 or higher</li>
-      <li>Couchbase 2.1.x to Couchbase 2.2 or higher</li>
-      <li>Couchbase 2.2 to Couchbase 2.5 or higher</li>
-      <li>Couchbase 2.5 to Couchbase 3.0 or higher</li>
+      <li>Couchbase 2.x to any Couchbase 2.x version</li>
+      <li>Couchbase 2.x to Couchbase 3.0 or higher</li>
     </ul>
         
     <p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to a higher release of

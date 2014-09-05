@@ -4,6 +4,57 @@
 <topic xml:lang="en-us" id="topic4669">
   <title>Microsoft Windows installation</title>
   <body>
+    <p>The following Microsoft Windows operating systems are supported:</p>
+    
+    <table>
+      <tgroup cols="5">
+        <colspec colname="col1"/>
+        <colspec colname="col2"/>
+        <colspec colname="col3"/>
+        <colspec colname="col4"/>
+        <colspec colname="col5"/>
+        <thead>
+          <row>
+            <entry><b>Platform</b></entry>
+            <entry><b>Version</b></entry>
+            <entry><b>32 / 64 bit</b></entry>
+            <entry><b>Supported</b></entry>
+            <entry><b>Recommended Version</b></entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>Windows 2012</entry>
+            <entry>R2 SP1</entry>
+            <entry>64 bit</entry>
+            <entry>Developer and Production</entry>
+          </row>
+          <row>
+            <entry>Windows 2008</entry>
+            <entry>R2 with SP1</entry>
+            <entry>64 bit</entry>
+            <entry>Developer and Production</entry>
+            <entry>Windows 2008</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>Windows 8</entry>
+            <entry/>
+            <entry>32 and 64 bit</entry>
+            <entry>Developer only</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>Windows 7</entry>
+            <entry/>
+            <entry>32 and 64 bit</entry>
+            <entry>Developer only</entry>
+            <entry/>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    
     <p>Before installing, check the supported platforms. To
       install on Windows, download the Windows installer package. This is supplied as a Windows
       executable. You can install the package either using the wizard, or by doing an unattended

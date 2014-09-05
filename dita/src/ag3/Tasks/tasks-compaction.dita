@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic11042">
- <title>Compaction</title>
+ <title>Compacting data files</title>
  <shortdesc>Database and view compaction helps to reclaim disk space and reduce fragmentation.</shortdesc>
  <body>
   <p>The data files in which information is stored in a persistent state for a Couchbase bucket are

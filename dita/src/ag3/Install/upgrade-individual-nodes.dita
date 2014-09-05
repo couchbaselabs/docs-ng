@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_tc1_vry_p4">
-  <title>Upgrading individual nodes</title>
+  <title>Upgrading servers</title>
+  <shortdesc>Upgrading Couchbase Server involves performing a backup and then the installation upgrade.</shortdesc>
   <body>
-    <p>Whether you are performing an online or
-      offline upgrade, the steps for upgrading an individual nodes in a cluster remain the
-      same.</p>
+    <p>Whether you are performing an online or offline upgrade, the steps for upgrading an
+      individual servers in a cluster remain the same.</p>
     
     <ol>
         <li>Download Couchbase Server</li>
-        <li>Backup data for that node. To backup an existing Couchbase Server installation, use
+        <li>Backup data for that server. To backup an existing Couchbase Server installation, use
           <codeph>cbbackup</codeph>. </li>
-        <li>Backup the node-specific configuration files. While the upgrade script perform a
+        <li>Backup the server-specific configuration files. While the upgrade script perform a
           backup of the configuration and data files, as a best practice, make your own
           backup of these files.</li>
         <li>Stop Couchbase Server.</li>
@@ -20,13 +20,11 @@
           hostname has been configured correctly before performing the upgrade. </li>
         <li>Check for required components and if needed, install them. This ensures that
           Couchbase Server upgrades and migrates your existing data files. </li>
-        <li>Perform the installation upgrade for your platform:</li>
+        <li>Perform the installation upgrade for your platform.</li>
       </ol> 
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
-      <link href="../Install/linux-startup-shutdown.dita"></link>
-      <link href="../Install/windows-startup-shutdown.dita"></link>
+    <linklist>
       <link href="../Install/hostnames.dita"></link>
       <link href="../CLI/cbbackup_tool.dita"></link>
     </linklist>

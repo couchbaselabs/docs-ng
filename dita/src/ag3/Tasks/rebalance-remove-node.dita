@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_byh_lbg_q4">
-  <title>Removing nodes from clusters</title>
+  <title>Removing nodes</title>
   <shortdesc>Removing a node marks
     the node for removal from the cluster and completely disables the node from serving any
     requests across the cluster.</shortdesc>
