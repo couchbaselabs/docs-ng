@@ -65,9 +65,6 @@
    <topicref href="Install/upgrade-individual-nodes.dita"/>
    <?oxy_insert_end?>
    <topicref href="Install/upgrade-xdcr.dita"/>
-   <?oxy_insert_start author="Ruth" timestamp="20140701T190609-0700"?>
-   <topicref href="Install/upgrade-to-2.5.dita"/>
-   <?oxy_insert_end?>
   </topicref>
   <topicref href="Install/migrating.dita">
    <?oxy_insert_start author="Ruth" timestamp="20140701T191316-0700"?>
