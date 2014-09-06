@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_c4y_k5d_54">
-  <title>Couchbase CLI</title>
+  <title>CLI reference</title>
   <body>
     <p>The Couchbase Server 3.0 command-line interface (CLI) provides the following topics:</p>
   </body>
