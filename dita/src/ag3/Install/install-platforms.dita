@@ -57,12 +57,14 @@
 						<entry>2011.09</entry>
 						<entry>32 and 64 bit</entry>
 						<entry>Developer and Production</entry>
+						<entry/>
 					</row>
 					<row>
 						<entry>Ubuntu Linux</entry>
 						<entry>10.04</entry>
 						<entry>32 and 64 bit</entry>
 						<entry>Developer and Production</entry>
+						<entry/>
 					</row>
 					<row>
 						<entry>Ubuntu Linux</entry>
@@ -72,6 +74,20 @@
 						<entry>Ubuntu 12.04</entry>
 					</row>
 					<row>
+						<entry>Debian Linux</entry>
+						<entry>7</entry>
+						<entry>64 bit</entry>
+						<entry>Developer and Production</entry>
+						<entry>Debian 7.0</entry>
+					</row>
+					<row>
+						<entry>Windows 2012</entry>
+						<entry>R2 SP1</entry>
+						<entry>64 bit</entry>
+						<entry>Developer and Production</entry>
+						<entry/>
+					</row>
+					<row>
 						<entry>Windows 2008</entry>
 						<entry>R2 with SP1</entry>
 						<entry>64 bit</entry>
@@ -79,28 +95,25 @@
 						<entry>Windows 2008</entry>
 					</row>
 					<row>
-						<entry>Windows 2012</entry>
+						<entry>Windows 8</entry>
 						<entry/>
-						<entry>64 bit</entry>
-						<entry>Developer and Production</entry>
+						<entry>32 and 64 bit</entry>
+						<entry>Developer only</entry>
+						<entry/>
 					</row>
 					<row>
 						<entry>Windows 7</entry>
 						<entry/>
 						<entry>32 and 64 bit</entry>
 						<entry>Developer only</entry>
-					</row>
-					<row>
-						<entry>Windows 8</entry>
 						<entry/>
-						<entry>32 and 64 bit</entry>
-						<entry>Developer only</entry>
 					</row>
 					<row>
 						<entry>Mac OS</entry>
 						<entry>10.7</entry>
 						<entry>64 bit</entry>
 						<entry>Developer only</entry>
+						<entry/>
 					</row>
 					<row>
 						<entry>Mac OS</entry>

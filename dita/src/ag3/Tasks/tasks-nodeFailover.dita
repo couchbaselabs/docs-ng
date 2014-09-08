@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic17798">
-  <title>Failing over nodes</title>
+  <title>Failover considerations</title>
   <shortdesc>Failing over a node means that Couchbase Server removes the node from a cluster and
     makes replicated data at other nodes available for client requests.</shortdesc>
   <body>
@@ -187,14 +187,15 @@
     <section><title>Initiating a node failover</title><p>If you need to remove a node from the
         cluster due to hardware or system failure, you need to indicate the failover status for that
         node. This causes Couchbase Server to use replicated data from other functioning nodes in
-        the cluster.</p><p>Important</p><p>Before you indicate the failover for a node, read
-        [Failing Over Nodes](#couchbase-admin-tasks-failover). Do not use failover to remove a
-        functioning node from the cluster for administration or upgrade. This is because initiating
-        a failover for a node activates replicated data at other nodes which reduces the overall
-        capacity of the cluster. Data from the failover node that has not yet been replicated at
-        other nodes or persisted on disk will be lost. For information about removing and adding a
-        node, see [Performing a Rebalance, Adding a Node to a
-        Cluster](../cb-admin/#couchbase-admin-tasks-addremove-rebalance). </p><p>You can provide the
+        the cluster.</p>
+      
+      <note type="important">Do not use failover to remove a functioning node from the cluster for
+        administration or upgrade operations. This is because initiating a failover for a node
+        activates replicated data at other nodes which reduces the overall capacity of the cluster.
+        Data from the failover node that has not yet been replicated at other nodes or persisted on
+        disk will be lost. </note>
+        
+        <p>You can provide the
         failover status for a node with two different methods:</p><ul>
         <li><b>Using the Web Console</b></li>
       </ul><p>Go to the <codeph>Management -&gt; Server Nodes</codeph> section of the Web Console.

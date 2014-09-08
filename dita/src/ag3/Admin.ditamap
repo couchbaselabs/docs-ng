@@ -14,33 +14,28 @@
    <topicref href="Misc/cluster-wide-info-intro.dita" />
   </topicref>
   <topicref href="Concepts/concept-intro.dita">
-   <topicref href="Concepts/concept-nodesCluster.dita">
+   <topicref href="Concepts/concept-clusterMgr.dita">
+    <topicref href="Concepts/concept-nodesCluster.dita"/>
     <topicref href="Concepts/concept-rack-awareness.dita"/>
    </topicref>
-   <topicref href="Concepts/concept-clusterMgr.dita"/>
    <topicref href="Concepts/concept-dataStorage.dita"/>
    <topicref href="Concepts/concept-ramQuota.dita"/>
    <topicref href="Concepts/bucket-priority.dita"/>
    <topicref href="Concepts/concept-vBucket.dita"/>
    <topicref href="Concepts/concept-cacheLayer.dita"/>
    <topicref href="Concepts/global-thread-pool.dita"/>
+   <topicref href="Concepts/bucket-eviction.dita">
+    <topicref href="Concepts/concept-workingset-mgmt.dita"/>
+    <topicref href="Tasks/tasks-manage-workingset.dita"/>
+   </topicref>
    <topicref href="Concepts/concept-diskStorage.dita">
     <topicref href="Concepts/concept-readerWriter.dita"/>
     <topicref href="Concepts/concept-doc-delete.dita"/>
     <topicref href="Concepts/concept-tombstone.dita"/>
    </topicref>
-   <topicref href="Concepts/concept-workingset-mgmt.dita">
-    <topicref href="Concepts/bucket-eviction.dita"/>
-    <topicref href="Tasks/tasks-manage-workingset.dita"/>
-   </topicref>
    <topicref href="Concepts/concept-docExpiration.dita"/>
    <topicref href="Concepts/concept-serverWarmup.dita"/>
    <topicref href="Concepts/concept-replication.dita"/>
-   <topicref href="Concepts/concept-nodeFailover.dita">
-    <topicref href="Concepts/graceful-failover.dita"/>
-   </topicref>
-   <topicref href="Concepts/delta-node-recovery.dita"/>
-   <topicref href="Concepts/concept-rebalancing.dita"/>
    <topicref href="Concepts/concepts-TAP.dita"/>
    <topicref href="Concepts/dcp.dita"/>
   	<topicref href="Concepts/concept-client-interface.dita" />
@@ -59,25 +54,39 @@
    <topicref href="Tasks/tasks-manage-serverWarmup.dita"/>
    <topicref href="Tasks/tasks-manage-replication.dita"/>
    <topicref href="Tasks/tasks-compaction.dita"/>
-   <topicref href="Tasks/tasks-nodeFailover.dita"/>
-   <topicref href="Tasks/tasks-dataRecovery.dita"/>
+   <topicref href="Tasks/cluster-maintenance.dita">
+    <topicref href="Tasks/rebalance-adding-nodes.dita"/>
+    <topicref href="Tasks/rebalance-remove-node.dita"/>
+    <topicref href="Tasks/tasks-rebalance.dita">
+     <topicref href="Concepts/concept-rebalancing.dita"/>
+     <topicref href="Tasks/rebalance-performing.dita"/>
+     <topicref href="Tasks/rebalance-behind-the-scenes.dita"/>
+     <topicref href="Tasks/rebalance-bucket-types.dita"/>
+     <topicref href="Tasks/rebalance-swap-rebalance.dita"/>
+     <topicref href="Tasks/rebalance-factors.dita"/>
+     <topicref href="Tasks/rebalance-questions.dita"/>
+    </topicref>
+   </topicref>
+   <topicref href="Tasks/maintenance-server-node.dita">
+    <topicref href="Concepts/concept-nodeFailover.dita">
+     <topicref href="Tasks/tasks-nodeFailover.dita"/>
+     <topicref href="Concepts/graceful-failover.dita"/>
+     <topicref href="Tasks/hard-failover.dita"/>
+    </topicref>
+    <topicref href="Tasks/recovery-failover-nodes.dita">
+     <topicref href="Concepts/delta-node-recovery.dita"/>
+     <topicref href="Tasks/recovery-full-recovery.dita"/>
+    </topicref>
+    <topicref href="Tasks/rebalance-and-failover-nodes.dita"/>
+   </topicref>
    <topicref href="Tasks/tasks-backup-restore.dita">
     <topicref href="Tasks/backup-cbbackup.dita"/>
     <topicref href="Tasks/restore-cbrestore.dita"/>
+    <topicref href="Tasks/tasks-backup-restore-incremental.dita"/>
+    <topicref href="CLI/cli-increment-backup.dita"/>
+    <topicref href="CLI/cli-incremental-restore.dita"/>
     <topicref href="Tasks/backup-restore-tween-opsys.dita"/>
-    <topicref href="Tasks/tasks-backup-restore-incremental.dita" />
     
-   </topicref>
-   <topicref href="Tasks/tasks-rebalance.dita">
-    <topicref href="Tasks/rebalance-behind-the-scenes.dita"/>
-    <topicref href="Tasks/rebalance-bucket-types.dita"/>
-    <topicref href="Tasks/rebalance-swap-rebalance.dita"/>
-    <topicref href="Tasks/rebalance-cluster.dita"/>
-    <topicref href="Tasks/rebalance-factors.dita"/>
-    <topicref href="Tasks/rebalance-performing.dita"/>
-    <topicref href="Tasks/rebalance-adding-nodes.dita"/>
-    <topicref href="Tasks/rebalance-remove-node.dita"/>
-    <topicref href="Tasks/rebalance-questions.dita"/>
    </topicref>
    <topicref href="Tasks/tasks-manage-xdcr.dita">
     <topicref href="Tasks/xdcr-configure-replications.dita"/>
@@ -86,6 +95,7 @@
     <topicref href="Tasks/xdcr-tuning-optimistic-replication.dita"/>
     <topicref href="Tasks/xdcr-configure-bidirection.dita"/>
     <topicref href="Tasks/xdcr-modify-settings.dita"/>
+    <topicref href="Tasks/tasks-dataRecovery.dita"/>
     <topicref href="XDCR/xdcr-memory-replication.dita"/>
    </topicref>
   </topicref>

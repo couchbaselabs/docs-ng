@@ -2,10 +2,67 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic8026">
- <title>Red Hat Linux installation</title>
+ <title>Red Hat/Centos installation</title>
+ <shortdesc>Red Hat and Red Hat-based operating systems such as CentOS are supported.</shortdesc>
  <body>
-  <p> Installation is supported on Red Hat and Red Hat-based
-   operating systems such as CentOS.</p>
+  <p>The following Red Hat (RHEL) and RHEL-based operating systems such as CentOS platforms are supported:</p>
+  
+  <table>
+   <tgroup cols="5">
+    <colspec colname="col1"/>
+    <colspec colname="col2"/>
+    <colspec colname="col3"/>
+    <colspec colname="col4"/>
+    <colspec colname="col5"/>
+    <thead>
+     <row>
+      <entry><b>Platform</b></entry>
+      <entry><b>Version</b></entry>
+      <entry><b>32 / 64 bit</b></entry>
+      <entry><b>Supported</b></entry>
+      <entry><b>Recommended Version</b></entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry>Red Hat Enterprise Linux</entry>
+      <entry>5</entry>
+      <entry>32 and 64 bit</entry>
+      <entry>Developer and Production</entry>
+      <entry>RHEL 5.8</entry>
+     </row>
+     <row>
+      <entry>Red Hat Enterprise Linux</entry>
+      <entry>6</entry>
+      <entry>32 and 64 bit</entry>
+      <entry>Developer and Production</entry>
+      <entry>RHEL 6.3</entry>
+     </row>
+     <row>
+      <entry>CentOS</entry>
+      <entry>5</entry>
+      <entry>32 and 64 bit</entry>
+      <entry>Developer and Production</entry>
+      <entry>CentOS 5.8</entry>
+     </row>
+     <row>
+      <entry>CentOS</entry>
+      <entry>6</entry>
+      <entry>32 and 64 bit</entry>
+      <entry>Developer and Production</entry>
+      <entry>CentOS 6.3</entry>
+     </row>
+     <row>
+      <entry>Amazon Linux</entry>
+      <entry>2011.09</entry>
+      <entry>32 and 64 bit</entry>
+      <entry>Developer and Production</entry>
+      <entry/>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  
   
  </body>
  <related-links>

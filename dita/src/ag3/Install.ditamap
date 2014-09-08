@@ -19,24 +19,28 @@
    <topicref href="Install/rhel-multiple-instances.dita"/>
    <?oxy_insert_start author="Ruth" timestamp="20140821T165713-0700"?>
    <topicref href="Install/rhel-uninstall.dita"/>
+   <topicref href="Install/upgrade-rhel.dita"/>
    <?oxy_insert_end?>
   </topicref>
   <topicref href="Install/Ubuntu-install.dita">
    <?oxy_insert_start author="Ruth" timestamp="20140821T165658-0700"?>
    <topicref href="Install/ubuntu-non-root-sudo.dita"/>
    <topicref href="Install/ubuntu-uninstall.dita"/>
+   <topicref href="Install/upgrade-ubuntu.dita"/>
    <?oxy_insert_end?>
   </topicref>
   <topicref href="Install/Windows-install.dita">
    <?oxy_insert_start author="Ruth" timestamp="20140821T165722-0700"?>
    <topicref href="Install/windows-install-unattended.dita"/>
    <topicref href="Install/uninstall-windows.dita"/>
+   <topicref href="Install/upgrade-windows.dita"/>
    <?oxy_insert_end?>
   </topicref>
   <topicref href="Install/Mac-install.dita">
    <?oxy_insert_start author="Ruth" timestamp="20140821T173925-0700"?>
    <topicref href="Install/mac-non-root-sudo.dita"/>
    <topicref href="Install/mac-uninstall.dita"/>
+   <topicref href="Install/upgrade-mac.dita"/>
    <?oxy_insert_end?>
   </topicref>
   <topicref href="Install/post-install.dita">
@@ -61,14 +65,6 @@
    <topicref href="Install/upgrade-individual-nodes.dita"/>
    <?oxy_insert_end?>
    <topicref href="Install/upgrade-xdcr.dita"/>
-   <?oxy_insert_start author="Ruth" timestamp="20140701T190609-0700"?>
-   <topicref href="Install/upgrade-from-1.8.dita"/>
-   <topicref href="Install/upgrade-to-2.5.dita"/>
-   <topicref href="Install/upgrade-mac.dita"/>
-   <topicref href="Install/upgrade-rhel.dita"/>
-   <topicref href="Install/upgrade-ubuntu.dita"/>
-   <topicref href="Install/upgrade-windows.dita"/>
-   <?oxy_insert_end?>
   </topicref>
   <topicref href="Install/migrating.dita">
    <?oxy_insert_start author="Ruth" timestamp="20140701T191316-0700"?>
@@ -78,5 +74,6 @@
   </topicref>
  </topicref>
 </map>
+
 
 <?oxy_options track_changes="on"?>

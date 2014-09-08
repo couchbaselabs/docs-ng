@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ofz_r4c_3p">
+  <title>Rebalancing after failover</title>
+  <shortdesc>The rebalance operation adds the failover server node back into the cluster (based on the recovery option) and 
+    manages the active and replica vBuckets.</shortdesc>
+  <body>
+    <p>During the rebalance operation, the replica vBuckets on the failed over node are resynchronized and promoted back to active.</p>
+  </body>
+  
+  <related-links>
+    <linklist>
+      <link href="../Tasks/tasks-rebalance.dita"/>
+    </linklist>
+  </related-links>
+  
+  
+</topic>

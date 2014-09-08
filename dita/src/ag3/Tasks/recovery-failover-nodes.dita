@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_bd5_mnc_3p">
+ <title>Recovering failed over nodes</title>
+ <shortdesc>The options for recovering failed over nodes are delta node recovery and full recovery.</shortdesc>
+ <conbody>
+  <p>Delta node recovery allows a failed over node to be recovered by re-using the data on its disk and 
+   then resynchronizing the data based on the delta change.</p>
+  
+  <p>With full recovery mode, the data files are removed from the failed over server node and then, 
+   during rebalance, the node is populated with new data files (active and replica vBuckets).</p>
+ </conbody>
+</concept>

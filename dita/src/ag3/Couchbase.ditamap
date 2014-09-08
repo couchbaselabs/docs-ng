@@ -4,11 +4,11 @@
     <title>Couchbase Server 3.0 Documentation</title>
     
     <topicref href="beta-intro.dita"/>
-    <topicref href="30Features.ditamap" format="ditamap"/>
+    <!-- <topicref href="30Features.ditamap" format="ditamap"/> -->
     <topicref href="Install.ditamap" format="ditamap" />
     <topicref href="Admin.ditamap" format="ditamap" />
     <topicref href="CLI.ditamap" format="ditamap" />
     <topicref href="REST.ditamap" format="ditamap" />
-    <topicref href="rel-notes/rel-notes3.0beta.dita"/>
+    <topicref href="rel-notes/rel-notes3.0.dita"/>
     
 </map>
