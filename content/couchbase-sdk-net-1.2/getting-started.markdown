@@ -93,7 +93,6 @@ Add the following using statements to Program.cs:
 ```
 using Couchbase;
 using Enyim.Caching.Memcached;
-using Enyim.Caching.Memcached;
 using Newtonsoft.Json;
 ```
 

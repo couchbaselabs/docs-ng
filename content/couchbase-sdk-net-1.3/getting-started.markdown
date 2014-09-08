@@ -70,7 +70,6 @@ To instantiate the client, add the following using statements to the **Program.c
 ```csharp
 using Couchbase;
 using Enyim.Caching.Memcached;
-using Enyim.Caching.Memcached;
 using Newtonsoft.Json;
 ```
 
