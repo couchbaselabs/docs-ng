@@ -321,7 +321,7 @@ via the REST API. These parameters are as follows:
 
 Parameter        | Value           | Description 
 ------------- |-------------| --------
-`workerProcesses` | Integer from 1 to 32. Default 32. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
+`workerProcesses` | Integer from 1 to 32. Default 4. |   The number of worker processes for each vbucket replicator in XDCR. Setting is available for replications using either memcached or REST for replication.
 `httpConnections` | Integer from 1 to 100. Default 2. | Number of maximum simultaneous HTTP connections used for REST protocol.
 
 The following example updates an XDCR setting for parallel replication streams per node:
