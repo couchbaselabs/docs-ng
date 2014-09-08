@@ -81,7 +81,7 @@
       <li><xref href="Misc/security-client-ssl.dita" ></xref></li>
       <li><xref href="Misc/cluster-wide-info-intro.dita" ></xref></li>
         <li><xref href="UI/ui-cluster-wide-info.dita" ></xref></li>
-        <li><xref href="CLI/cbcli/cbcli-cluster-wide-info.dita" ></xref></li>
+        <li><xref href="CLI/CBcli/cbcli-cluster-wide-info.dita" ></xref></li>
         <li><xref href="CLI/cbcollect-cluster-wide-info.dita" ></xref></li>
         <!-- <li><xref href="REST/rest-cluster-wide-info.dita" ></xref></li> -->
         

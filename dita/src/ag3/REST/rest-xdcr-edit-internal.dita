@@ -27,8 +27,8 @@
 							<entry>Global setting supplied to all replications for a cluster.</entry>
 						</row>
 						<row>
-							<entry>/settings/replications/replication_id</entry>
-							<entry>Settings for specific replication for a bucket.</entry>
+							<entry>/settings/replications/[replication_id]</entry>
+							<entry>Settings for a specific replication for a bucket.</entry>
 						</row>
 						<row>
 							<entry>/internalSettings</entry>
@@ -57,9 +57,17 @@
 				<tbody>
 					<row>
 						<entry><codeph>xdcrMaxConcurrentReps</codeph></entry>
-						<entry>Integer</entry>
+						<entry>Integer from 1 to 32. Default: 16</entry>
 						<entry>Same as Web Console setting <codeph>XDCR Max Replications per
 								Bucket</codeph>.</entry>
+					</row>
+					<row>
+						<entry><codeph>workerProcesses</codeph></entry>
+						<entry>Integer. Default: 4</entry>
+						<entry>The number of worker processes for each vbucket replicator in XDCR. Setting is
+							available for replications using either memcached or REST for
+							replication. Same as Web Console setting <codeph>XDCR Workers per
+								Replication</codeph>.</entry>
 					</row>
 					<row>
 						<entry><codeph>xdcrCheckpointInterval</codeph></entry>
@@ -112,15 +120,8 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry><codeph>workerProcesses</codeph></entry>
-						<entry>Integer from 1 to 32. Default 32.</entry>
-						<entry>The number of worker processes for each vbucket replicator in XDCR.
-							Setting is available for replications using either memcached or REST for
-							replication.</entry>
-					</row>
-					<row>
 						<entry><codeph>httpConnections</codeph></entry>
-						<entry>Integer from 1 to 100. Default 2.</entry>
+						<entry>Integer from 1 to 100. Default 20.</entry>
 						<entry>Number of maximum simultaneous HTTP connections used for REST
 							protocol.</entry>
 					</row>
@@ -128,29 +129,100 @@
 			</tgroup>
 		</table>
 		
-		<example><title>Modifying the number of parallel replication streams</title>
-		<p>The following example updates an XDCR setting for parallel replication streams per
-			node:</p>
-		<codeblock><codeph>curl -X POST -u admin:password1  \
-http://10.4.2.4:8091/settings/replications/  \
--d xdcrMaxConcurrentReps=64
-</codeph></codeblock>
-		<note type="note">Replace the <i>admin</i>, <i>password1</i>, <i>10.4.2.4</i>, and <i>64</i> values in the
-			above example with your actual values.</note>
-		</example>
+		<p/>
 		
-			<example><title>Returns:</title>
-		<p>If Couchbase Server successfully updates this setting, a response (similar to the following) is
-				sent:</p>
-		<codeblock><codeph>HTTP/1.1 200 OK
-Server: Couchbase Server 2.0.0-1941-rel-community
-Pragma: no-cache
-Date: Wed, 28 Nov 2012 18:20:22 GMT
-Content-Type: application/json
-Content-Length: 188
-Cache-Control: no-cache
-</codeph></codeblock>
-		</example>
+		<section><title>GET /internalSettings </title>
+			
+			<p>Internal settings change replication behavior, performance, and timing. To retrieve the XDCR
+				internal settings: </p>
+			
+			<codeblock>
+// Syntax 
+curl --username=ADMIN --password=PASSWORD HOST:PORT/internalSettings
+				
+// Example
+curl -u Administrator:password 10.5.2.54:8091/internalSettings
+
+// Results
+{
+"capiRequestLimit": "", 
+"dropRequestMemoryThresholdMiB": "", 
+"indexAwareRebalanceDisabled": false, 
+"maxBucketCount": 10, 
+"maxParallelIndexers": 4, 
+"maxParallelReplicaIndexers": 2, 
+"rebalanceIgnoreViewCompactions": false, 
+"rebalanceIndexPausingDisabled": false, 
+"rebalanceIndexWaitingDisabled": false, 
+"rebalanceMovesBeforeCompaction": 64, 
+"rebalanceMovesPerNode": 1, 
+"restRequestLimit": "", 
+"xdcrAnticipatoryDelay": 0, 
+"xdcrCheckpointInterval": 1800, 
+"xdcrDocBatchSizeKb": 2048, 
+"xdcrFailureRestartInterval": 30, 
+"xdcrMaxConcurrentReps": 32, 
+"xdcrOptimisticReplicationThreshold": 256, 
+"xdcrWorkerBatchSize": 500
+}
+			</codeblock>
+			
+			<p>To change the <uicontrol>xdcrMaxConcurrentReps</uicontrol> setting, which specifies the XDCR
+				parallel replication streams per node:</p>
+			
+			<codeblock>
+// Example
+curl -X POST -u Administrator:password 10.5.2.54:8091/internalSettings -d xdcrMaxConcurrentReps=64
+
+// Results
+{
+    ....
+    "xdcrMaxConcurrentReps": 64, 
+    "xdcrOptimisticReplicationThreshold": 256, 
+    "xdcrWorkerBatchSize": 500
+}
+			</codeblock>
+			
+		</section>
+			
+			<section><title>GET /settings/replications</title>
+				<p>To retrieve settings from /setting/replications:</p>
+				
+				<codeblock>
+// Example
+curl -u Administrator:password 10.5.2.54:8091/settings/replications
+
+// Results
+{
+    "checkpointInterval": 1800, 
+    "connectionTimeout": 180, 
+    "docBatchSizeKb": 2048, 
+    "failureRestartInterval": 30, 
+    "httpConnections": 20, 
+    "maxConcurrentReps": 16, 
+    "optimisticReplicationThreshold": 256, 
+    "pauseRequested": false, 
+    "retriesPerRequest": 2, 
+    "socketOptions": {
+        "keepalive": true, 
+        "nodelay": false
+    }, 
+    "supervisorMaxR": 25, 
+    "supervisorMaxT": 5, 
+    "workerBatchSize": 500, 
+    "workerProcesses": 4
+}
+				</codeblock>
+
+			</section>
+
+
+		
+		
+		
+		
+
+
 
 
 	</body>

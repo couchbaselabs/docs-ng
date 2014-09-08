@@ -10,9 +10,7 @@
     
     <section><title>HTTP method and URI path</title>
       
-      <codeblock>
-  GET /internalSettings
-      </codeblock>
+      <codeblock>GET /internalSettings      </codeblock>
     </section>
     
     <example><title>Curl syntax</title>
@@ -46,9 +44,5 @@ curl -u admin:password1  \
 
 
   </body>
-  <related-links>
-    <linklist>
-      <link href="../Tasks/xdcr-adv-settings.dita"></link>
-    </linklist>
-  </related-links>
+
 </topic>

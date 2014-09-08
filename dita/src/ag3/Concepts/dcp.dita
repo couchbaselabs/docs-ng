@@ -9,9 +9,9 @@
 		<p>The Database Change Protocol (DCP) is a streaming protocol that significantly reduces
 			latency for view updates. With DCP, changes made to documents in memory are immediately
 			streamed to be indexed without being written to disk. This provides faster view consistency
-			which provides fresher data. DCP reduces latency for cross data center replication (XDCR). Data is
-			replicated memory-to-memory from the source cluster to the destination cluster before being
-			written to disk on the source cluster.</p>
+			which provides fresher data. DCP reduces latency for cross data center replication (XDCR).
+			Data is replicated memory-to-memory from the source cluster to the destination cluster
+			before being written to disk on the source cluster.</p>
 
 		<p>To work with DCP, you need to be familiar with the following concepts, which are listed in
 			alphabetical order for convenience.</p>
@@ -44,27 +44,26 @@
 
 			<dlentry>
 				<dt>History branch</dt>
-				<dd><p>Whenever a node becomes the master node for a vBucket in the event of a failover
-						or uncontrolled shutdown and restart, if it was not the farthest ahead of all
-						processes watching events on that partition and starts taking mutations, it might
-						reuse sequence numbers that other processes have already seen on this partition.
-						This may be a history branch, and the new master must assign the vBucket a new
-						vBucket version, so that DCP clients in the distributed system can recognize when
-						they might have been ahead of the new master and roll back changes at the point
-						this happened in the stream.</p>
-					<p>During a controlled handover from an old master to a new master, the sequence
-						history cannot have branches, so there is no need to assign a new version to the
-						vBucket being handed off. This happens in the case of a rebalance for elasticity
-						(add or remove a node) or a swap rebalance in the case of an upgrade (new version
-						of server added to cluster, old version removed).</p>
-				</dd>
+				<dd>Whenever a node becomes the master node for a vBucket in the event of a failover or
+					uncontrolled shutdown and restart, if it was not the farthest ahead of all processes
+					watching events on that partition and starts taking mutations, it might reuse
+					sequence numbers that other processes have already seen on this partition. This may
+					be a history branch, and the new master must assign the vBucket a new vBucket version
+					so that DCP clients in the distributed system can recognize that they are ahead of
+					the new master and roll back changes at the point this happened in the stream. During
+					a controlled handover from an old master to a new master, the sequence history cannot
+					have branches, so there is no need to assign a new version to the vBucket being
+					handed off. Controlled handovers occur in the case of a rebalance for elasticity
+					(such as adding or removing a node) or a swap rebalance in the case of an upgrade
+					(such as adding a new version of Couchbase Server to a cluster or removing an old
+					version of Couchbase Server).</dd>
 			</dlentry>
 
 			<dlentry>
 				<dt>Mutation</dt>
-				<dd>A mutation is an event that deletes a key or changes the value a key points.
+				<dd>A mutation is an event that deletes a key or changes the value a key points to.
 					Mutations occur when transactions such as create, update, delete or expire are
-					triggered.</dd>
+					executed.</dd>
 			</dlentry>
 
 			<dlentry>
@@ -79,10 +78,9 @@
 				<dd>Each mutation that occurs on a vBucket is assigned a number, which strictly
 					increases as events are assigned numbers (there is no harm in skipping numbers, but
 					they must increase), that can be used to order that event against other mutations
-					within the same vBucket. <p>This does not give a cluster-wide ordering of events, but
-						it does enable processes watching events on a vBucket to resume where they left
-						off after a disconnect.</p>
-				</dd>
+					within the same vBucket. This does not give a cluster-wide ordering of events, but it
+					does enable processes watching events on a vBucket to resume where they left off
+					after a disconnect. </dd>
 			</dlentry>
 
 			<dlentry>

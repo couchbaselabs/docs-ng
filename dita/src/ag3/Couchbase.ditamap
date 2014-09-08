@@ -3,7 +3,7 @@
 <map>
     <title>Couchbase Server 3.0 Documentation</title>
     
-    <topicref href="beta-intro.dita"/>
+    <topicref href="Couchbase3.0-intro.dita"/>
     <!-- <topicref href="30Features.ditamap" format="ditamap"/> -->
     <topicref href="Install.ditamap" format="ditamap" />
     <topicref href="Admin.ditamap" format="ditamap" />

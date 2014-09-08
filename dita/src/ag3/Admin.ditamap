@@ -102,13 +102,15 @@
   <topicref href="Monitoring/monitor-intro.dita">
    <topicref href="Monitoring/monitor-underlying-processes.dita"/>
    <topicref href="Monitoring/monitor-port-access.dita"/>
-   <topicref href="Monitoring/monitor-warmup.dita"/>
    <topicref href="Monitoring/monitor-diskqueue.dita"/>
    <topicref href="Monitoring/monitor-statistics.dita"/>
    <topicref href="Monitoring/monitor-moxi-statistics.dita"/>
+   <topicref href="Monitoring/monitor-warmup.dita"/>
+   <topicref href="Monitoring/monitor-rebalance.dita"/>
   </topicref>
   <topicref href="Views/views-intro.dita">
    <topicref href="Views/views-basics.dita"/>
+   <topicref href="Views/views-index-updates.dita"/>
    <topicref href="Views/views-operation.dita"/>
    <topicref href="Views/views-storedData.dita"/>
    <topicref href="Views/views-development.dita"/>

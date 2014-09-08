@@ -66,8 +66,8 @@
  </body>
  <related-links>
   <linklist>
+    <link href="../Monitoring/monitor-rebalance.dita"></link>
     <link href="../REST/rest-cluster-rebalance.dita"></link>
-    <link href="../REST/rebalance-monitoring.dita"></link>
     <link href="../REST/rest-server-nodes.dita"></link>
   </linklist>
  </related-links>

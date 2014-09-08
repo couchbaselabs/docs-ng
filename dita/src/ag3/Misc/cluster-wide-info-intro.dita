@@ -14,7 +14,7 @@
 			<li>For using the web console to collect and view diagnostic information, see <xref
 					href="../UI/ui-cluster-wide-info.dita"/></li>
 			<li>For using the CLI <codeph>couchbase-cli</codeph> tool to collect information, see <xref
-					href="../CLI/cbcli/cbcli-cluster-wide-info.dita"/></li>
+					href="../CLI/CBcli/cbcli-cluster-wide-info.dita"/></li>
 			<li>For using the CLI <codeph>cbcollect</codeph> tool to collect information, see <xref
 					href="../CLI/cbcollect-cluster-wide-info.dita"/></li>
 		</ul>
