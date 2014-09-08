@@ -13,7 +13,7 @@
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Concepts/concept-ramQuota.dita"></link>
       <link href="../XDCR/xdcr-dataEncryption.dita"></link>
     </linklist>

@@ -67,7 +67,7 @@ http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
       
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Concepts/bp-cloudDeployment.dita"></link>
     </linklist>
   </related-links>

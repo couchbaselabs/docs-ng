@@ -79,13 +79,12 @@ couchbase-cli node-init -c 10.5.2.54:8091 \
 		
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
-			<link href="../Tasks/rebalance-swap-rebalance.dita"/>
+		<linklist>
 			<link href="../Tasks/rebalance-adding-nodes.dita"/>
-			<link href="../Tasks/rebalance-performing.dita"/>
-			<link href="../Tasks/rebalance-cluster.dita"/>
-			<link href="../REST/rest-node-index-path.dita"/>
 			<link href="../REST/rest-cluster-removenode.dita"></link>
+			<link href="../Tasks/tasks-rebalance.dita"/>
+			<link href="../Tasks/rebalance-swap-rebalance.dita"/>
+			<link href="../REST/rest-node-index-path.dita"/>
 			<link href="../REST/overview-rest-api.dita"></link>
 			<link href="../REST/rest-server-nodes.dita"></link>
 		</linklist>

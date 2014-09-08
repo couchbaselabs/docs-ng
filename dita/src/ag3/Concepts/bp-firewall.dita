@@ -9,7 +9,7 @@
       Couchbase network ports are open.</p>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Install/install-networkPorts.dita"/>
     </linklist>
   </related-links>

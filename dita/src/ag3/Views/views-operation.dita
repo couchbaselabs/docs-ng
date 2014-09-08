@@ -441,7 +441,7 @@ updateInterval=10000&amp;updateMinChanges=7000
   
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../Views/views-querying.dita"/>
    <link href="../Tasks/tasks-compaction.dita"/>
    <link href="../REST/design-docs-rest-api.dita"/>

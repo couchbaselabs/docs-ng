@@ -5,10 +5,16 @@
 	<abstract>
 		<shortdesc>The Couchbase Server client libraries support client-side encryption using the
 			Secure Sockets Layer (SSL) protocol. <b>Enterprise Edition only.</b></shortdesc>To enable SSL
-		on the client-side, you need to get an SSL certificate from Couchbase Server, as described
-		in <xref format="dita" scope="local" href="security-clientServer-comm.dita"/>, and then
+		on the client-side, you need to get an SSL certificate from Couchbase Server and then
 		follow the steps specific to the client you are using. </abstract>
 	<conbody>
+		<p>To obtain the Couchbase Server SSL certificate, access the Couchbase Server web console, 
+			navigate to <uicontrol>Settings > Certificate > show certificate ></uicontrol>, 
+			and copy the certificate.</p>
+		
+		<note type="note">If the Couchbase Server SSL certificate is regenerated, you will need to 
+		obtain the new certificate.</note>
+		
 		<p>The following clients support SSL:</p>
 		<ul>
 			<li>Java</li>

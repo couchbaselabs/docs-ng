@@ -99,7 +99,7 @@
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Concepts/bp-sizingGuidelines.dita"></link>
       <link href="../Install/hostnames.dita"></link>
       <link href="../Misc/sample-bucket-beer.dita"></link>

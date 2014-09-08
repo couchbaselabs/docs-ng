@@ -112,7 +112,7 @@ Options:
 			uploaded the archive, please contact Couchbase technical support. </p>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../CLI/cbstats-intro.dita"/>
 			<link
 				href="http://www.couchbase.com/wiki/display/couchbase/Working+with+the+Couchbase+Technical+Support+Team"

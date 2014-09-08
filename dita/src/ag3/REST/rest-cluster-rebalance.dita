@@ -160,7 +160,7 @@ Accept: */*
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../REST/rebalance-monitoring.dita"/>
       <link href="../REST/rest-server-nodes.dita"/>
       <link href="../REST/rest-node-provisioning.dita"/>

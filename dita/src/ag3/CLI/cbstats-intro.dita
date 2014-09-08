@@ -71,7 +71,7 @@ vkey keyname vbid
 </codeph></codeblock>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../Monitoring/monitor-statistics.dita"/>
 		</linklist>
 	</related-links>

@@ -51,7 +51,7 @@ Content-Type: application/x-www-form-urlencoded
       Couchbase Web Console.</p>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Tasks/xdcr-configure-replications.dita"/>
     </linklist>
   </related-links>

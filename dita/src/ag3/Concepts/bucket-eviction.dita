@@ -41,7 +41,7 @@
  </conbody>
  
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../CLI/CBcli/cbcli-buckets.dita"></link>
    <link href="../REST/rest-bucket-intro.dita"></link>
   </linklist>

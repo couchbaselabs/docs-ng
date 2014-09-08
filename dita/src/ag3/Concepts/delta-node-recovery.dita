@@ -142,7 +142,7 @@
   </body>
   
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="graceful-failover.dita"></link>
       <link href="../CLI/CBcli/cbcli-servers.dita"/>
       <link href="../REST/rest-server-nodes.dita"/>

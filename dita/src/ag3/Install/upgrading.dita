@@ -62,33 +62,33 @@
       <p>With XDCR data encryption, the
           following ports are reserved:</p><table>
             <tgroup cols="2">
-              <colspec colname="col1"/>
-              <colspec colname="col2"/>
-              <thead>
-                <row>
-                  <entry>Port</entry>
-                  <entry>Description</entry>
-                </row>
-              </thead>
-              <tbody>
-                <row>
-                  <entry>11214</entry>
-                  <entry>Incoming SSL Proxy</entry>
-                </row>
-                <row>
-                  <entry>11215</entry>
-                  <entry>Internal Outgoing SSL Proxy</entry>
-                </row>
-                <row>
-                  <entry>18091</entry>
-                  <entry>Internal REST HTTPS for SSL</entry>
-                </row>
-                <row>
-                  <entry>18092</entry>
-                  <entry>Internal CAPI HTTPS for SSL </entry>
-                </row>
-              </tbody>
-            </tgroup>
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="3.41*"/>
+          <thead>
+            <row>
+              <entry>Port</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>11214</entry>
+              <entry>Incoming SSL Proxy</entry>
+            </row>
+            <row>
+              <entry>11215</entry>
+              <entry>Internal Outgoing SSL Proxy</entry>
+            </row>
+            <row>
+              <entry>18091</entry>
+              <entry>Internal REST HTTPS for SSL</entry>
+            </row>
+            <row>
+              <entry>18092</entry>
+              <entry>Internal CAPI HTTPS for SSL </entry>
+            </row>
+          </tbody>
+        </tgroup>
           </table>
       
       <note type="note">If Couchbase Server 2.5 has more than two (2) replicas, the first swap rebalance takes additional time. 
@@ -104,7 +104,7 @@
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../CLI/cbbackup_tool.dita"></link>
       <link href="../CLI/cbrestore_tool.dita"></link>
     </linklist>

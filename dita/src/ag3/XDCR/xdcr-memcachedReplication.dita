@@ -29,7 +29,7 @@
         <codeph>xdcr_replication_mode</codeph> via the Web Console or REST API. </p>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../REST/rest-xdcr-intro.dita"></link>
     </linklist>
   </related-links>

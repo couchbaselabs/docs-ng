@@ -163,7 +163,7 @@
    </ul></section>
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../UI/ui-settings.dita"></link>
    <link href="../UI/ui-logs.dita"></link>
    <link href="../UI/ui-data-buckets.dita"></link>

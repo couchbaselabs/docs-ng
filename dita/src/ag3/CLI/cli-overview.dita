@@ -227,7 +227,7 @@
 			</table></section>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../REST/overview-rest-api.dita"/>
 		</linklist>
 	</related-links>

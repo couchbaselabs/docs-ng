@@ -71,7 +71,7 @@ END
 </codeph></codeblock>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="http://docs.couchbase.com/moxi-manual-1.8" scope="external" format="html">
         <linktext>Moxi 1.8 Manual</linktext>
       </link>

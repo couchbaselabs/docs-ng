@@ -86,7 +86,7 @@
  
  <related-links>
   
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="bucket-priority.dita"/>
    <link href="../Monitoring/monitor-statistics.dita"></link>
    <link href="../Concepts/concept-cacheLayer.dita"></link>

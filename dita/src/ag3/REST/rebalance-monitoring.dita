@@ -74,7 +74,7 @@
   </body>
   
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../REST/rest-cluster-rebalance.dita"></link>
     </linklist>
   </related-links>

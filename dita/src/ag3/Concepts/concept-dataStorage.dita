@@ -190,7 +190,7 @@
 
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../CLI/cli-overview.dita">
 			</link>
 			<link href="../REST/rest-bucket-intro.dita">

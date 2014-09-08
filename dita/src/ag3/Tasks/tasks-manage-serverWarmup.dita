@@ -60,7 +60,7 @@
  </body>
  
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../CLI/cbepctl-intro.dita"></link>
    <link href="../CLI/CBepctl/cbepctl-accesslog.dita"></link>
    <link href="../CLI/CBstats/cbstats-gettingwarmupinfo.dita"></link>

@@ -83,7 +83,7 @@
          stuck, etc.</p>
    </body>
    <related-links>
-      <linklist><title>Related topics</title>
+      <linklist>
          <link href="http://www.couchbase.com/issues" scope="external" format="html">
             <linktext>couchbase.com/issues</linktext>
          </link>

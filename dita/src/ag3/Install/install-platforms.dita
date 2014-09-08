@@ -134,8 +134,8 @@
 		
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
-			<link href="../Tasks/tasks-backupRestore.dita"></link>
+		<linklist>
+			<link href="../Tasks/tasks-backup-restore.dita"></link>
 		</linklist>
 	</related-links>
 </topic>

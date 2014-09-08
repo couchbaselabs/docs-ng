@@ -24,7 +24,7 @@
   </ul>
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" scope="external"
     format="html">
     <linktext>MSDN: Avoiding TCP/IP Port Exhaustion</linktext>
