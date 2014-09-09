@@ -3,19 +3,25 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic808">
   <title>Viewing internal settings</title>
-  <shortdesc>Internal settings are Couchbase use only.</shortdesc>
+  <shortdesc>Internal settings are for Couchbase use only.</shortdesc>
   <body>
-    <p>These internal settings change cluster behavior, performance, and timing and are exposed only via the REST API.</p>
+    <p>These internal settings change cluster behavior, performance, and timing and are exposed only
+      via the REST API. The <codeph>/internalSettings</codeph> parameters are implemented on the server level. </p>
     
     <note type="warning">These settings are for internal Couchbase use only and are not supported
       for public consumption.</note>
+    
+    <note type="note">The Maximum Parallel Indexer setting can also be implemented on the global level via 
+      <codeph>/settings/maxParallelIndexers globalValue</codeph>.</note>
+    
+    
     <table>
       <tgroup cols="2">
         <colspec colname="col1" colwidth="1*"/>
         <colspec colname="col2" colwidth="2.3*"/>
         <thead>
           <row>
-            <entry>Get Internal Settings</entry>
+            <entry>Get internal settings</entry>
             <entry>Description</entry>
           </row>
         </thead>
@@ -121,6 +127,81 @@ curl -v -X POST http://Administrator:password@10.5.2.117:8091/internalSettings -
   
 * Connection #0 to host 10.5.2.117 left intact
 * Closing connection #0</codeblock>
+    </section>
+    
+    <section><title>GET and POST /settings/maxParallelIndexers</title><p>To set the Maximum Parallel
+        Indexer parameter on the global level, use the
+          <codeph>/settings/maxParallelIndexers</codeph> URI and <codeph>globalValue</codeph>
+        parameter. The value range is 1 to 1024. Default: 4. The results provide the global and
+        node-specific parallel indexer configuration.</p> 
+      
+      <table>
+        <tgroup cols="2">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="2.9*"/>
+          <colspec colnum="3" colname="c3" colwidth="3.73*"/>
+          <thead>
+            <row>
+              <entry>HTTP</entry>
+              <entry>URI</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>GET</entry>
+              <entry>/settings/maxParallelIndexers</entry>
+              <entry>Retrieves the global and node-specific parallel indexer configuration.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/settings/maxParallelIndexers globalValue</entry>
+              <entry>Sets and retrieves the new global and node-specific parallel indexer
+                configuration. Value range: 1 to 1024. Default: 4</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+      <p>For example, to view the current setting:</p>
+      
+      <codeblock>
+// Example via browser
+http://10.5.2.55:8091/settings/maxParallelIndexers
+
+// Results
+{"globalValue":4,"nodes":{"ns_1@10.5.2.55":4}}
+
+
+// Example via curl
+curl -u Administrator:password http://10.5.2.117:8091/settings/maxParallelIndexers
+
+// Results 
+{
+    "globalValue": 4, 
+    "nodes": {
+        "ns_1@10.5.2.117": 4
+    }
+}
+      </codeblock>
+      
+      
+      <p>For example, to change the setting, use the POST method with the
+          <codeph>/settings/maxParallelIndexers</codeph> URI and <codeph>globalValue</codeph>
+        parameter. Value range: 1 to 1024. Default: 4.</p>
+        
+      <codeblock>
+// Example
+ curl  -X POST -u Administrator:password http://10.5.2.117:8091/settings/maxParallelIndexers -d globalValue=8
+ 
+// Results 
+{
+    "globalValue": 8, 
+    "nodes": {
+        "ns_1@10.5.2.117": 8
+    }
+} 
+      </codeblock>
     </section>
 
   </body>

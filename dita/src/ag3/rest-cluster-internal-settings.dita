@@ -108,9 +108,9 @@
 			</tgroup>
 		</table>
 
-		<p>For example, to update the maximum number of buckets:</p>
+		<p>For example, to change the maximum number of buckets:</p>
 		<codeblock>// Example
-curl -v -X POST http://Administrator:password@10.5.2.117:8091/internalSettings -d maxBucketCount=15
+curl -v -X POST http://Administrator:password@10.5.2.117:8091/internalSettings -d maxBucketCount=5
 
 // Results
 * About to connect() to 10.5.2.117 port 8091 (#0)
