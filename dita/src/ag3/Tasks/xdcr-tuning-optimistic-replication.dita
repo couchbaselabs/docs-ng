@@ -3,7 +3,7 @@
 <topic id="topic_pjr_d24_14">
   <title>Tuning XDCR performance</title>
   <shortdesc>XDCR performance can be tuned via the Web console or the REST XDCR advanced
-    settings..</shortdesc>
+    settings.</shortdesc>
   <body>
       
       <p> By default, XDCR
