@@ -2,7 +2,8 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_pjr_d24_14">
   <title>Tuning XDCR performance</title>
-  <shortdesc>XDCR performance can be tuned via the <codeph>xdcrOptimisticReplicationThreshold</codeph> parameter.</shortdesc>
+  <shortdesc>XDCR performance can be tuned via the Web console or the REST XDCR advanced
+    settings..</shortdesc>
   <body>
       
       <p> By default, XDCR
@@ -39,13 +40,15 @@
       
       <section><title>Changing the document threshold</title>
         
-        <p>You can change this setting with
-          the REST API as one of the internal settings for XDCR.</p>
+        <p>Change the document threshold with the REST <codeph>/settings/replications
+          optimisticReplicationThreshold</codeph> URI and parameter for XDCR advanced settings.
+        Alternatively, change the <uicontrol>XDCR Optimistic Replication Threshold</uicontrol> setting for 
+          the XDCR replication.</p>
       </section>
       
       
-      <section><title>Monitoring Optimistic Replication</title>
-      <p>The easiest way you can monitor the impact of this setting is in Couchbase Web Console. On
+      <section><title>Monitoring optimistic replication</title>
+      <p>The easiest way you can monitor the impact of this setting is in Couchbase Web console. On
         the Data Buckets tab under Incoming XDCR Operations, you can compare <codeph>metadata reads
           per sec</codeph> to <codeph>sets per sec</codeph>. </p>
       <image href="../images/monitor_optmized_xdcr.png"/>

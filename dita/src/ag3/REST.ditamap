@@ -55,13 +55,13 @@
   </topicref>
   <topicref href="REST/rest-xdcr-intro.dita">
    <topicref href="REST/rest-xdcr-create-ref.dita"/>
+   <topicref href="REST/rest-xdcr-get-ref.dita"/>
+   <topicref href="REST/rest-xdcr-delete-ref.dita"/>
    <topicref href="REST/rest-xdcr-create-replication.dita"/>
    <topicref href="REST/rest-xdcr-data-encrypt.dita"/>
-   <topicref href="REST/rest-xdcr-delete-ref.dita"/>
    <topicref href="REST/rest-xdcr-delete-replication.dita"/>
    <topicref href="REST/rest-xdcr-adv-settings.dita"/>
    <topicref href="REST/rest-xdcr-pause-resume.dita"/>
-   <topicref href="REST/rest-xdcr-get-ref.dita"/>
    <topicref href="REST/rest-xdcr-statistics.dita"/>
   </topicref>
   <topicref href="REST/compaction-rest-api.dita"/>
