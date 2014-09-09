@@ -12,7 +12,7 @@
    <topicref href="REST/rest-cluster-removenode.dita"/>
    <topicref href="REST/rest-rza.dita"/>
    <topicref href="REST/rest-cluster-rebalance.dita"/>
-   <topicref href="REST/rest-cluster-internal-settings.dita"/>
+   <topicref href="REST/rest-get-internal-setting.dita"/>
    <topicref href="REST/rest-cluster-autofailover-intro.dita">
     <topicref href="REST/rest-cluster-autofailover-settings.dita"/>
     <topicref href="REST/rest-cluster-autofailover-enable.dita"/>
@@ -20,8 +20,6 @@
    </topicref>
    <topicref href="REST/rest-cluster-disable-query.dita"/>
    <topicref href="REST/rest-cluster-email-notifications.dita"/>
-   <topicref href="REST/rest-cluster-max-buckets.dita"/>
-   <topicref href="REST/rest-cluster-max-index.dita"/>
   </topicref>
   <topicref href="REST/rest-server-nodes.dita">
    <topicref href="REST/rest-node-recovery-incremental.dita"/>
@@ -61,10 +59,9 @@
    <topicref href="REST/rest-xdcr-data-encrypt.dita"/>
    <topicref href="REST/rest-xdcr-delete-ref.dita"/>
    <topicref href="REST/rest-xdcr-delete-replication.dita"/>
-   <topicref href="REST/rest-xdcr-edit-internal.dita"/>
-   <topicref href="REST/rest-xdcr-get-internal.dita"/>
-   <topicref href="REST/rest-xdcr-get-ref.dita"/>
+   <topicref href="REST/rest-xdcr-adv-settings.dita"/>
    <topicref href="REST/rest-xdcr-pause-resume.dita"/>
+   <topicref href="REST/rest-xdcr-get-ref.dita"/>
    <topicref href="REST/rest-xdcr-statistics.dita"/>
   </topicref>
   <topicref href="REST/compaction-rest-api.dita"/>

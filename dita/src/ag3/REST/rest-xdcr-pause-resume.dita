@@ -2,7 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_kz4_khq_w4">
   <title>Pausing XDCR replication streams</title>
-  <shortdesc>XDCR replication is paused and resumed using the <codeph>/settings/replications/</codeph> URI path and <codeph>pauseRequested</codeph> option.</shortdesc>
+  <shortdesc>XDCR replication is paused and resumed using the
+      <codeph>/settings/replications/</codeph> URI path and the <codeph>pauseRequested</codeph>
+    option.</shortdesc>
   <refbody>
     
    
@@ -10,76 +12,52 @@
         id="table_xdcr_settings_uri">
         <title>XDCR URI paths for settings</title>
         <tgroup cols="2">
-          <colspec colname="c1" colnum="1" colwidth="1*"/>
-          <colspec colname="c2" colnum="2" colwidth="1.35*"/>
-          <thead>
-            <row>
-              <entry>URI path</entry>
-              <entry>Description</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>/settings/replications/</entry>
-              <entry>Global setting supplied to all replications for a cluster.</entry>
-            </row>
-            <row>
-              <entry>/settings/replications/[replication_id]</entry>
-              <entry>Settings for specific replication for a bucket.</entry>
-            </row>
-          </tbody>
-        </tgroup>
+        <colspec colname="c1" colnum="1" colwidth="1*"/>
+        <colspec colname="c2" colnum="2" colwidth="1.83*"/>
+        <thead>
+          <row>
+            <entry>URI path</entry>
+            <entry>Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>/settings/replications/</entry>
+            <entry>Global setting supplied to all replications for a cluster.</entry>
+          </row>
+          <row>
+            <entry>/settings/replications/[replication_id]</entry>
+            <entry>Settings for specific replication for a bucket.</entry>
+          </row>
+        </tbody>
+      </tgroup>
       </table>
       
       <table frame="all"
-        id="table_xdcr_internal_settings">
-        <title>XDCR internal settings</title>
+        id="table_xdcr_adv_settings">
+        <title>XDCR advanced settings</title>
         <tgroup cols="3">
-          <colspec colname="col1" colwidth="1*"/>
-          <colspec colname="col2" colwidth="1.08*"/>
-          <colspec colname="col3" colwidth="1.68*"/>
-          <thead>
-            <row>
-              <entry>Parameter</entry>
-              <entry>Value</entry>
-              <entry>Description</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry><codeph>pauseRequested</codeph></entry>
-              <entry>True or False. Default: False</entry>
-              <entry>Specify true to pause the replication. Specify false to continue
-              replication.</entry>
-            </row>
-          </tbody>
-        </tgroup>
+        <colspec colname="col1" colwidth="1.05*"/>
+        <colspec colname="col2" colwidth="1*"/>
+        <colspec colname="col3" colwidth="2.62*"/>
+        <thead>
+          <row>
+            <entry>Parameter</entry>
+            <entry>Value</entry>
+            <entry>Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><codeph>pauseRequested</codeph></entry>
+            <entry>Boolean (true or false)</entry>
+            <entry>Specify true to pause the replication. Specify false to continue replication.
+              Initially set to false.</entry>
+          </row>
+        </tbody>
+      </tgroup>
       </table>
       
-    
-    <example><title>Retrieve replication settings example</title>
-      <p>The following example retrieves the current settings for a replication.</p>
-      <codeblock>
-# curl -X GET -u Administrator:password http://10.5.2.54:8091/settings/replications  
-
-{
-    "maxConcurrentReps":16,
-    "checkpointInterval":1800,
-    "docBatchSizeKb":2048,
-    "failureRestartInterval":30,
-    "workerBatchSize":500,
-    "connectionTimeout":180,
-    "workerProcesses":4,
-    "httpConnections":20,
-    "retriesPerRequest":2,
-    "optimisticReplicationThreshold":256,
-    "socketOptions":{"keepalive":true,"nodelay":false},
-    "pauseRequested":false,
-    "supervisorMaxR":25,
-    "supervisorMaxT":5
-}
-      </codeblock>
-    </example>
     
     <example><title>Pause replication example</title>
       

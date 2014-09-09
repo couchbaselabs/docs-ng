@@ -27,7 +27,7 @@
         network bandwidth since XDCR will send less documents that will ‘lose.’</p>
       
       <p>If you set this
-        very high relative to document size, XDCR will fetch less metadata which will improve latency
+        very high relative to document size, XDCR fetches less metadata which will improve latency
         during replication. This also means that you will increase the rate at which XDCR puts items
         immediately into the replication queue which can potentially overwhelm your network, especially
         if you set a high number of parallel replicators. This may increase the number of documents sent
@@ -71,9 +71,5 @@ total # of docs to be replicated is: 9, total latency: 142 ms
         amount of time to check and replicate all 11 documents was 142 milliseconds.</p>
     </section>
   </body>
-  <related-links>
-    <linklist>
-      <link href="../REST/rest-xdcr-get-internal.dita"/>
-    </linklist>
-  </related-links>
+
 </topic>
