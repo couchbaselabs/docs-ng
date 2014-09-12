@@ -10,7 +10,7 @@
     
     <ul>
       <li>Performance
-      <ul><li>Tunable memory (option to remove keys and memetada from memory).</li>
+      <ul><li>Tunable memory (option to remove keys and metadata from memory).</li>
       <li>Bucket disk I/O ejections (for faster persistence to disk).</li>
       <li>Faster warm up from disk when restarting the server.</li></ul></li>
       
@@ -28,65 +28,32 @@
       </ul></li>
       
     </ul>
+    <section><title></title>
     
+    <p>All of these features of Couchbase Server enable development of web applications where low–latency and high throughput are required by end users. 
+      Web applications can quickly access the right information within a Couchbase cluster and developers can rapidly scale up their web applications by adding servers.</p>
+    
+    </section>
+    
+<section><title>Couchbase Server and NoSQL</title>
+  <p>NoSQL databases are characterized by their ability to store data without first requiring one to define a database schema. 
+    In Couchbase Server, you can store data as key-value pairs or JSON documents. 
+    Data does not need to confirm to a rigid, pre-defined schema from the perspective of the database management system. 
+    Due to this schema-less nature, Couchbase Server supports a scale out approach to growth, 
+    increasing data and I/O capacity by adding more servers to a cluster; and without any change to application software. 
+    In contrast, relational database management systems scale up by adding more capacity including CPU, memory and disk to accommodate growth.</p>
+    
+    <p>Relational databases store information in relations which must be defined, or modified, before data can be stored. 
+    A relation is simply a table of rows, where each row in a given relation has a fixed set of columns. 
+    These columns are consistent across each row in a relation. 
+    Tables can be further connected through cross-table references. 
+    One table, could hold rows of all individual citizens residing in a town. 
+    Another table, could have rows consisting of parent, child and relationship fields. 
+    The first two fields could be references to rows in the citizens table while the third field 
+    describes the parental relationship between the persons in the first two fields such as father or mother.</p>
 
-    
-    
-    
-    
-      <p>The <xref href="Concepts/dcp.dita">Database Change Protocol (DCR)</xref> is an infrastructure enhancement.
-        <ul>
-          <li>For DCP statistics via the Web console, see <xref href="UI/ui-dcp-queues.dita">DCP Queues via UI</xref>.</li>
-          <li>For DCR statistics via the CLI, see <xref href="CLI/cli-cbstats-dcp.dita">DCP stats via CLI</xref>.</li>
-        </ul>
-      </p>
-      
-      <ul>
-      <li><xref href="Concepts/global-thread-pool.dita"></xref></li>
-      <li><xref href="Concepts/bucket-eviction.dita"></xref></li>
-        <li><xref href="UI/ui-task-bucket-metadata-ejection.dita"></xref></li>
-        <li><xref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"></xref></li>
-        <li><xref href="REST/rest-bucket-metadata-ejection.dita"></xref></li>
-      
-      <li><xref href="Concepts/bucket-priority.dita" ></xref></li>
-        <li><xref href="UI/ui-task-set-bucket-priority.dita"></xref></li>
-        <li><xref href="CLI/cli-set-disk-priority.dita"></xref></li>
-        <li><xref href="REST/rest-bucket-set-priority.dita"></xref></li>
-      
-      <li><xref href="Concepts/graceful-failover.dita" ></xref></li>
-        <li><xref href="UI/ui-task-failover-graceful.dita"></xref></li>
-        <li><xref href="CLI/cli-failover-graceful.dita"></xref></li>
-        <li><xref href="REST/rest-failover-graceful.dita"></xref></li>
-      
-      <li><xref href="Concepts/delta-node-recovery.dita"></xref>
-        <p>For information about using delta node recovery via the web console, see <xref href="UI/ui-task-node-recovery-incremental.dita"></xref>.
-          For information about implementing delta node recovery via the CLI, see <xref href="CLI/cli-node-recovery-incremental.dita"></xref>.
-          For information about implementing delta node recovery via the REST API, see <xref href="REST/rest-node-recovery-incremental.dita"></xref>.
-        </p>
-      </li>
-      
-      <li><xref href="Tasks/tasks-backup-restore-incremental.dita"></xref>
-        <p>For information about using incremental backup and restore via the CLI, see <xref href="CLI/cli-increment-backup.dita"></xref>
-        and <xref href="CLI/cli-incremental-restore.dita"></xref>.</p>
-        </li>
-      
-      <li><xref href="Views/views-index-updates.dita"></xref></li>
-      <li><xref href="XDCR/xdcr-pause-resume.dita" ></xref></li>
-        <li><xref href="UI/ui-xdcr-pause-resume.dita"></xref></li>
-        <li><xref href="CLI/cli-xdcr-pause-resume.dita"></xref></li>
-        <li><xref href="REST/rest-xdcr-pause-resume.dita"></xref></li>
-      
-      <li><xref href="XDCR/xdcr-memory-replication.dita"></xref></li>
-      <li><xref href="Misc/security-admin-access.dita"></xref></li>
-      <li><xref href="Misc/security-client-ssl.dita" ></xref></li>
-      <li><xref href="Misc/cluster-wide-info-intro.dita" ></xref></li>
-        <li><xref href="UI/ui-cluster-wide-info.dita" ></xref></li>
-        <li><xref href="CLI/CBcli/cbcli-cluster-wide-info.dita" ></xref></li>
-        <li><xref href="CLI/cbcollect-cluster-wide-info.dita" ></xref></li>
-        <!-- <li><xref href="REST/rest-cluster-wide-info.dita" ></xref></li> -->
-        
-      </ul>
-      
+
+</section>
       
       
   </body>

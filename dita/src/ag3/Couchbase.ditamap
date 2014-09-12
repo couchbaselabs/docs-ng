@@ -5,7 +5,7 @@
     
     <topicref href="Couchbase-intro.dita"/>
     <topicref href="Whats-new-3.0.dita"/>
-    <!-- <topicref href="30Features.ditamap" format="ditamap"/> -->
+    <topicref href="30Features.ditamap" format="ditamap"/>
     
     <topicref href="Install.ditamap" format="ditamap" />
     <topicref href="Admin.ditamap" format="ditamap" />

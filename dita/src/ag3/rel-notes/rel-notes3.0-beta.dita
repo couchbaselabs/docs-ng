@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.entryd">
 <topic id="topic_xgq_zhx_r4">
-  <title>Release notes</title>
+  <title>Release notes 3.0.0 beta</title>
   <body>
-    <p>This release note is for the 3.0.0 release. It contains a list of known and
-      fixed issues.</p>
+    <p>This release note is for the 3.0.0 BETA release. It contains a list of known and fixed
+      issues.</p>
     
     <section><title>Couchbase .NET incompatibility</title>
       <p>An incompatibility between Microsoft
@@ -81,42 +81,36 @@
           </thead>
           <tbody>
             <row>
-              <entry>Installation and upgrade</entry>
+              <entry>Install and upgrade</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11941" scope="external"
                   format="html">MB-11941</xref></entry>
               <entry>Online upgrade from 2.0 to 3.0 on Ubuntu 12.04 does not work</entry>
             </row>
             <row>
-              <entry>Cluster operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11928" scope="external"
-                  format="html">MB-11928</xref></entry>
-              <entry>Rebalance with delta recovery exited with the message, "{badmatch,
-                {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</entry>
-            </row>
-            <row>
-              <entry>Installation and upgrade</entry>
+              <entry>Install and upgrade</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11922" scope="external"
-                  format="html">MB-11922</xref></entry>
+                format="html">MB-11922</xref></entry>
               <entry>Upgrade to R16 causes 20% regression in view query latency and
                 throughput</entry>
-            </row>
-            <row>
-              <entry>Indexing and querying</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11919" scope="external"
-                  format="html">MB-11919</xref></entry>
-              <entry>There is a 3-5x increase in index size during rebalance with views</entry>
-            </row>
-            <row>
-              <entry>Indexing and querying</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11899" scope="external"
-                  format="html">MB-11899</xref></entry>
-              <entry>Indexing progress statistic goes backwards</entry>
             </row>
             <row>
               <entry>Database operations</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11820" scope="external"
                   format="html">MB-11820</xref></entry>
               <entry>Beer-sample loading is stuck in a crashed state</entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11299" scope="external"
+                format="html">MB-11299</xref></entry>
+              <entry>UPR replica streams cannot send items from partial snapshots</entry>
+            </row>
+            <row>
+              <entry>Cluster operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11928" scope="external"
+                format="html">MB-11928</xref></entry>
+              <entry>Rebalance with delta recovery exited with the message, "{badmatch,
+                {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</entry>
             </row>
             <row>
               <entry>XDCR</entry>
@@ -134,18 +128,25 @@
             </row>
             <row>
               <entry>Indexing and querying</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11919" scope="external"
+                format="html">MB-11919</xref></entry>
+              <entry>There is a 3-5x increase in index size during rebalance with views</entry>
+            </row>
+            <row>
+              <entry>Indexing and querying</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11899" scope="external"
+                format="html">MB-11899</xref></entry>
+              <entry>Indexing progress statistic goes backwards</entry>
+            </row>
+            <row>
+              <entry>Indexing and querying</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11589" scope="external"
                   format="html">MB-11589</xref></entry>
               <entry>Sliding <codeph>endseqno</codeph> during initial index build or DCP reading
                 from disk snapshot results in longer <codeph>stale=false</codeph> query latency and
                 index startup time</entry>
             </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11299" scope="external"
-                  format="html">MB-11299</xref></entry>
-              <entry>UPR replica streams cannot send items from partial snapshots</entry>
-            </row>
+            
           </tbody>
         </tgroup>
       </table>
@@ -187,38 +188,38 @@
                 error</entry>
             </row>
             <row>
-              <entry>vBuckets</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11720" scope="external"
-                  format="html">MB-11720</xref></entry>
-              <entry>Backfilling the entire vBucket can starve other streams that also need to
-                backfill</entry>
-            </row>
-            <row>
-              <entry>Cluster operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11606" scope="external"
-                  format="html">MB-11606</xref></entry>
-              <entry>Error displayed when node did not mark to collect</entry>
-            </row>
-            <row>
-              <entry>Cluster operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
-                  format="html">MB-11568</xref></entry>
-              <entry>IP address does not show the same in each step of cluster-wide collect
-                info.</entry>
-            </row>
-            <row>
               <entry>Database operations</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11405" scope="external"
-                  format="html">MB-11405</xref></entry>
+                format="html">MB-11405</xref></entry>
               <entry>Shared thread pool: high CPU overhead due to OS level context switches /
                 scheduling</entry>
             </row>
             <row>
               <entry>Database operations</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11383" scope="external"
-                  format="html">MB-11383</xref></entry>
+                format="html">MB-11383</xref></entry>
               <entry>warmup_min_items_threshold setting is not honored correctly in 3.0
                 warmup</entry>
+            </row>
+            <row>
+            <entry>Cluster operations</entry>
+            <entry><xref href="http://www.couchbase.com/issues/browse/MB-11606" scope="external"
+              format="html">MB-11606</xref></entry>
+            <entry>Error displayed when node did not mark to collect</entry>
+            </row>
+            <row>
+              <entry>Cluster operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
+                format="html">MB-11568</xref></entry>
+              <entry>IP address does not show the same in each step of cluster-wide collect
+                info.</entry>
+            </row>
+            <row>
+              <entry>vBuckets</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11720" scope="external"
+                  format="html">MB-11720</xref></entry>
+              <entry>Backfilling the entire vBucket can starve other streams that also need to
+                backfill</entry>
             </row>
           </tbody>
         </tgroup>
