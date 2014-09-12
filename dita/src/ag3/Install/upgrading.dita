@@ -48,7 +48,8 @@
     
     <section><title>Upgrading to 3.0</title></section>
     
-    <p>With encryption access, the following port is reserved for client to access data nodes using SSL.</p><table>
+    <p>With encryption access, the following port is reserved for client access to data nodes using
+      SSL.</p><table>
         <tgroup cols="2">
           <colspec colname="col1" colwidth="1*"/>
           <colspec colname="col2" colwidth="3.41*"/>
@@ -92,11 +93,11 @@
           <tbody>
             <row>
               <entry>11214</entry>
-              <entry>Incoming SSL Proxy</entry>
+              <entry>Incoming SSL proxy</entry>
             </row>
             <row>
               <entry>11215</entry>
-              <entry>Internal Outgoing SSL Proxy</entry>
+              <entry>Internal outgoing SSL proxy</entry>
             </row>
             <row>
               <entry>18091</entry>
