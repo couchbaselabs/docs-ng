@@ -116,11 +116,11 @@
    <topicref href="Views/views-development.dita"/>
    <topicref href="Views/views-production.dita"/>
    <topicref href="Views/views-writing.dita"/>
-   <topicref href="Views/views-schemaless.dita"/>
-   <topicref href="Views/views-querying.dita"/>
-   <topicref href="Views/views-querySample.dita"/>
-   <topicref href="Views/views-translateSQL.dita"/>
    <topicref href="Views/views-geospatial.dita"/>
+   <topicref href="Views/views-querying.dita"/>
+   <topicref href="Views/views-schemaless.dita"/>
+   <topicref href="Views/views-translateSQL.dita"/>
+   <topicref href="Views/views-querySample.dita"/>
   </topicref>
   <topicref href="XDCR/xdcr-intro.dita">
    <topicref href="XDCR/xdcr-usecases.dita"/>

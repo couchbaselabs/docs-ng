@@ -62,8 +62,8 @@
 			path individually. <note type="important">Changing the data path for a node that is
 				already part of a cluster permanently deletes the stored data.</note>
 			<note type="tip">When using the command line tool, the data file and index file path
-				settings cannot be changed individually. To change the setting individually, use the
-				REST API.</note>
+				settings cannot be changed individually. 
+				To change the setting individually, use the REST API.</note>
 		</section>
 		
 			

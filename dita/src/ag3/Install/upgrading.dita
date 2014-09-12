@@ -8,7 +8,7 @@
     <p>The following are the officially supported upgrade paths for Couchbase Server for both online
       upgrades or offline upgrades:</p>
     <ul>
-      <li>Couchbase 2.x to any Couchbase 2.x version</li>
+      <li>Couchbase 2.x to a later version of Couchbase 2.x</li>
       <li>Couchbase 2.x to Couchbase 3.0</li>
     </ul>
     <p>You can perform a cluster upgrade in two ways:</p>
@@ -46,7 +46,26 @@
           Couchbase Server version number when upgrading to the Enterprise Edition.</b> Version
         differences may result in a failed upgrade. </p></section>
     
+    <section><title>Upgrading to 3.0</title></section>
     
+    <p>With encryption access, the following port is reserved for client to access data nodes using SSL.</p><table>
+        <tgroup cols="2">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="3.41*"/>
+          <thead>
+            <row>
+              <entry>Port</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>11207</entry>
+              <entry>Internal/External Bucket Port for SSL</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
     
     <section><title>Upgrading to 2.5</title>
       
