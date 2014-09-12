@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_fn5_ykc_3p">
- <title>Server node maintenance</title>
- <shortdesc>Server node maintenance involves failing over (removing) a server node from a cluster and then re-adding the same server node 
-  after performing maintenance activities.
-  </shortdesc>
+ <title>Server maintenance</title>
+ <shortdesc>Server maintenance involves failing over (removing) a server node from a cluster and
+  then re-adding the same server node after performing maintenance activities. </shortdesc>
  <conbody>
   <p>Server node maintenance involves:</p>
   <ol>

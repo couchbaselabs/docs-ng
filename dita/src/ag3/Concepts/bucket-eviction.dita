@@ -25,6 +25,9 @@
   
   
   <draft-comment author="Ruth" disposition="open" status="unchanged">Need GRAPHICs: Ejection Logic Table</draft-comment>
+  
+  <p>For information on how to eject metadata from memory, see the Couchbase Websole, CLI, and REST
+   API sections.</p>
 
 
   
@@ -40,10 +43,5 @@
   
  </conbody>
  
- <related-links>
-  <linklist>
-   <link href="../CLI/CBcli/cbcli-buckets.dita"></link>
-   <link href="../REST/rest-bucket-intro.dita"></link>
-  </linklist>
- </related-links>
+
 </concept>

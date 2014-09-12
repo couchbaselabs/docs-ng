@@ -10,6 +10,10 @@
       starting from where it previously left off.
     </p>
     
+    <p>For more information, see the Couchbase <xref href="../CLI/cli-xdcr-pause-resume.dita">Web console</xref>, 
+      <xref href="../CLI/cli-xdcr-pause-resume.dita">CLI</xref>, 
+      and <xref href="../REST/rest-xdcr-pause-resume.dita">REST API</xref>.</p>
+    
 
     
   </body>

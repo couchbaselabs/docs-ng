@@ -18,7 +18,12 @@
             <step>
                 <cmd>In the <uicontrol>Disk I/O Optimization</uicontrol> panel, set bucket disk I/O priority option. Specify either High or Low to set. Low is the default.</cmd>
             </step>
-            <step><cmd>Click <uicontrol>Save</uicontrol>.</cmd></step>
+            <step><cmd>Click <uicontrol>Save</uicontrol>.</cmd>
+                <stepresult><image href="../images/ui-bucket-config.png" width="720"></image></stepresult></step>
+            
+            
         </steps>
+        
+    
     </taskbody>
 </task>

@@ -23,6 +23,9 @@
 			<li>PHP</li>
 			<li>C</li>
 		</ul>
+		
+		<note type="note">The Couchbase network port, 11207, is used for data communication between the client and the data nodes using SSL.</note>
+		
 		<section id="java-ssl">
 			<title>Configuring the Java client for SSL</title>
 			<p>To configure SSL for the Java client:</p>

@@ -5,7 +5,7 @@
 	<title>Stream-based views</title>
 	<abstract>
 		<shortdesc>Stream-based views reduce latency for view updates, providing faster view
-			consistency and fresher data.</shortdesc> This feature uses the new streaming protocol,
+			consistency and fresher data.</shortdesc>This feature uses the new streaming protocol,
 		Database Change Protocol (DCP). </abstract>
 
 

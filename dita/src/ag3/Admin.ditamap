@@ -20,18 +20,18 @@
    </topicref>
    <topicref href="Concepts/concept-dataStorage.dita"/>
    <topicref href="Concepts/concept-ramQuota.dita"/>
-   <topicref href="Concepts/bucket-priority.dita"/>
    <topicref href="Concepts/concept-vBucket.dita"/>
    <topicref href="Concepts/concept-cacheLayer.dita"/>
-   <topicref href="Concepts/global-thread-pool.dita"/>
-   <topicref href="Concepts/bucket-eviction.dita">
-    <topicref href="Concepts/concept-workingset-mgmt.dita"/>
-    <topicref href="Tasks/tasks-manage-workingset.dita"/>
-   </topicref>
    <topicref href="Concepts/concept-diskStorage.dita">
     <topicref href="Concepts/concept-readerWriter.dita"/>
     <topicref href="Concepts/concept-doc-delete.dita"/>
     <topicref href="Concepts/concept-tombstone.dita"/>
+   </topicref>
+   <topicref href="Concepts/global-thread-pool.dita"/>
+   <topicref href="Concepts/bucket-priority.dita"/>
+   <topicref href="Concepts/bucket-eviction.dita">
+    <topicref href="Concepts/concept-workingset-mgmt.dita"/>
+    <topicref href="Tasks/tasks-manage-workingset.dita"/>
    </topicref>
    <topicref href="Concepts/concept-docExpiration.dita"/>
    <topicref href="Concepts/concept-serverWarmup.dita"/>
@@ -83,8 +83,6 @@
     <topicref href="Tasks/backup-cbbackup.dita"/>
     <topicref href="Tasks/restore-cbrestore.dita"/>
     <topicref href="Tasks/tasks-backup-restore-incremental.dita"/>
-    <topicref href="CLI/cli-increment-backup.dita"/>
-    <topicref href="CLI/cli-incremental-restore.dita"/>
     <topicref href="Tasks/backup-restore-tween-opsys.dita"/>
     
    </topicref>
@@ -125,6 +123,7 @@
   <topicref href="XDCR/xdcr-intro.dita">
    <topicref href="XDCR/xdcr-usecases.dita"/>
    <topicref href="XDCR/xdcr-architecture.dita"/>
+   <topicref href="XDCR/xdcr-memory-replication.dita"/>
    <topicref href="XDCR/xdcr-topologies.dita"/>
    <topicref href="XDCR/xdcr-topologies-adv.dita"/>
    <topicref href="XDCR/xdcr-memcachedReplication.dita"/>
@@ -132,12 +131,11 @@
    <topicref href="XDCR/xdcr-docs.dita"/>
    <topicref href="XDCR/xdcr-flushRequests.dita"/>
    <topicref href="XDCR/xdcr-streamMgmt.dita"/>
-   <topicref href="XDCR/xdcr-dataEncryption.dita"/>
    <topicref href="XDCR/xdcr-pause-resume.dita"/>
+   <topicref href="XDCR/xdcr-dataEncryption.dita"/>
   </topicref>
   <topicref href="UI/ui-intro.dita">
-   <topicref href="UI/ui-cluster-summary.dita"/>
-   <topicref href="UI/ui-server-nodes.dita">
+   <topicref href="UI/ui-cluster-summary.dita">
     <topicref href="Tasks/rza-manage-group.dita">
      <topicref href="Tasks/rza-create-group.dita"/>
      <topicref href="Tasks/rza-delete-group.dita"/>
@@ -147,14 +145,21 @@
      <topicref href="Tasks/rza-rename-group.dita"/>
     </topicref>
    </topicref>
+   <topicref href="UI/ui-server-nodes.dita">
+    <topicref href="UI/ui-dcp-queues.dita"/>
+    <topicref href="UI/ui-task-failover-graceful.dita"/>
+    <topicref href="UI/ui-task-node-recovery-incremental.dita"/>
+   </topicref>
    <topicref href="UI/ui-data-buckets.dita">
     <topicref href="Tasks/tasks-manage-ReadWrite.dita">
      <topicref href="Tasks/tasks-create-readwrite-new.dita"/>
      <topicref href="Tasks/tasks-create-readwrite-existing.dita"/>
      <topicref href="Tasks/tasks-view-readwrite.dita"/>
     </topicref>
-    <topicref href="UI/ui-monitoring-statistics.dita"/>
+    <topicref href="UI/ui-task-set-bucket-priority.dita"/>
+    <topicref href="UI/ui-task-bucket-metadata-ejection.dita"/>
     <topicref href="UI/ui-document-editor.dita"/>
+    <topicref href="UI/ui-monitoring-statistics.dita"/>
    </topicref>
    <topicref href="UI/ui-views-editor.dita"/>
    <topicref href="UI/ui-xdcr-panel.dita">
@@ -165,9 +170,12 @@
     </topicref>
     <topicref href="Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
     <topicref href="Tasks/xdcr-monitor-replication.dita"/>
+    <topicref href="UI/ui-xdcr-pause-resume.dita"/>
     <topicref href="Tasks/xdcr-cancel-replication.dita"/>
    </topicref>
-   <topicref href="UI/ui-logs.dita"/>
+   <topicref href="UI/ui-logs.dita">
+    <topicref href="UI/ui-cluster-wide-info.dita"/>
+   </topicref>
    <topicref href="UI/ui-settings.dita">
     <topicref href="UI/ui-settings-cluster.dita"/>
     <topicref href="UI/ui-settings-update-notifications.dita"/>
@@ -179,13 +187,6 @@
      <topicref href="Tasks/tasks-create-readUser.dita"/>
     </topicref>
    </topicref>
-   <topicref href="UI/ui-task-bucket-metadata-ejection.dita"/>
-   <topicref href="UI/ui-task-failover-graceful.dita"/>
-   <topicref href="UI/ui-task-node-recovery-incremental.dita"/>
-   <topicref href="UI/ui-task-set-bucket-priority.dita"/>
-   <topicref href="UI/ui-xdcr-pause-resume.dita"/>
-   <topicref href="UI/ui-dcp-queues.dita"/>
-   <topicref href="UI/ui-cluster-wide-info.dita"/>
   </topicref>
   <topicref href="Misc/faq.dita"/>
   <topicref href="Misc/sample-bucket-intro.dita">

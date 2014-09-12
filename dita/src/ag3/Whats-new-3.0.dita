@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_hdg_nkd_54">
+  <title>Introduction</title>
+  <shortdesc>Couchbase Server is a NoSQL document database for interactive web applications. 
+    It has a flexible data model, is easily scalable, provides consistent high performance and is “always-on,” 
+    meaning it can serve application data 24 hours, 7 days a week.</shortdesc>
+  <body>
+    <p>Couchbase Server 3.0 is a major release that provides significant enhancements to the following:</p>
+    
+    <ul>
+      <li>Performance
+      <ul><li>Tunable memory (option to remove keys and memetada from memory).</li>
+      <li>Bucket disk I/O ejections (for faster persistence to disk).</li>
+      <li>Faster warm up from disk when restarting the server.</li></ul></li>
+      
+      <li>Availability and reliability
+      <ul><li>Faster XDCR without persisting to disk on the source cluster.</li>
+      <li>Index building without persisting to disk on the source cluster.</li></ul></li>
+      
+      <li>Ease of administration
+        <ul><li>Incremental backup</li>
+          <li>Incremental restore</li></ul></li>
+      <li>Security
+      <ul>
+        <li>Data and password encryption between client and server</li>
+        <li>Secure administrator access</li>
+      </ul></li>
+      
+    </ul>
+    
+
+    
+    
+    
+    
+      <p>The <xref href="Concepts/dcp.dita">Database Change Protocol (DCR)</xref> is an infrastructure enhancement.
+        <ul>
+          <li>For DCP statistics via the Web console, see <xref href="UI/ui-dcp-queues.dita">DCP Queues via UI</xref>.</li>
+          <li>For DCR statistics via the CLI, see <xref href="CLI/cli-cbstats-dcp.dita">DCP stats via CLI</xref>.</li>
+        </ul>
+      </p>
+      
+      <ul>
+      <li><xref href="Concepts/global-thread-pool.dita"></xref></li>
+      <li><xref href="Concepts/bucket-eviction.dita"></xref></li>
+        <li><xref href="UI/ui-task-bucket-metadata-ejection.dita"></xref></li>
+        <li><xref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"></xref></li>
+        <li><xref href="REST/rest-bucket-metadata-ejection.dita"></xref></li>
+      
+      <li><xref href="Concepts/bucket-priority.dita" ></xref></li>
+        <li><xref href="UI/ui-task-set-bucket-priority.dita"></xref></li>
+        <li><xref href="CLI/cli-set-disk-priority.dita"></xref></li>
+        <li><xref href="REST/rest-bucket-set-priority.dita"></xref></li>
+      
+      <li><xref href="Concepts/graceful-failover.dita" ></xref></li>
+        <li><xref href="UI/ui-task-failover-graceful.dita"></xref></li>
+        <li><xref href="CLI/cli-failover-graceful.dita"></xref></li>
+        <li><xref href="REST/rest-failover-graceful.dita"></xref></li>
+      
+      <li><xref href="Concepts/delta-node-recovery.dita"></xref>
+        <p>For information about using delta node recovery via the web console, see <xref href="UI/ui-task-node-recovery-incremental.dita"></xref>.
+          For information about implementing delta node recovery via the CLI, see <xref href="CLI/cli-node-recovery-incremental.dita"></xref>.
+          For information about implementing delta node recovery via the REST API, see <xref href="REST/rest-node-recovery-incremental.dita"></xref>.
+        </p>
+      </li>
+      
+      <li><xref href="Tasks/tasks-backup-restore-incremental.dita"></xref>
+        <p>For information about using incremental backup and restore via the CLI, see <xref href="CLI/cli-increment-backup.dita"></xref>
+        and <xref href="CLI/cli-incremental-restore.dita"></xref>.</p>
+        </li>
+      
+      <li><xref href="Views/views-index-updates.dita"></xref></li>
+      <li><xref href="XDCR/xdcr-pause-resume.dita" ></xref></li>
+        <li><xref href="UI/ui-xdcr-pause-resume.dita"></xref></li>
+        <li><xref href="CLI/cli-xdcr-pause-resume.dita"></xref></li>
+        <li><xref href="REST/rest-xdcr-pause-resume.dita"></xref></li>
+      
+      <li><xref href="XDCR/xdcr-memory-replication.dita"></xref></li>
+      <li><xref href="Misc/security-admin-access.dita"></xref></li>
+      <li><xref href="Misc/security-client-ssl.dita" ></xref></li>
+      <li><xref href="Misc/cluster-wide-info-intro.dita" ></xref></li>
+        <li><xref href="UI/ui-cluster-wide-info.dita" ></xref></li>
+        <li><xref href="CLI/CBcli/cbcli-cluster-wide-info.dita" ></xref></li>
+        <li><xref href="CLI/cbcollect-cluster-wide-info.dita" ></xref></li>
+        <!-- <li><xref href="REST/rest-cluster-wide-info.dita" ></xref></li> -->
+        
+      </ul>
+      
+      
+      
+  </body>
+</topic>
