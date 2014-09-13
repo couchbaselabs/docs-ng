@@ -3,75 +3,154 @@
 <topic id="topic_xgq_zhx_r4">
   <title>Release notes</title>
   <body>
-    <p>This release note is for the 3.0.0 release. It contains a list of known and
-      fixed issues.</p>
-    
+    <p>This release note is for the 3.0.0 release. It contains a list of known and fixed issues.</p>
+
+    <p>Couchbase Server is a NoSQL document database for interactive web applications. It has a
+      flexible data model, is easily scalable, provides consistent high performance and is
+      “always-on,” meaning it can serve application data 24 hours, 7 days a week.</p>
+    <p>The new major features in this release include:</p>
+    <ul>
+      <li>Performance <ul>
+          <li>Tunable memory (option to remove keys and metadata from memory).</li>
+          <li>Bucket disk I/O ejections (for faster persistence to disk).</li>
+          <li>Faster warm up from disk when restarting the server.</li>
+        </ul></li>
+      <li>Availability and reliability <ul>
+          <li>Faster XDCR without persisting to disk on the source cluster.</li>
+          <li>Index building without persisting to disk on the source cluster.</li>
+        </ul></li>
+      <li>Ease of administration <ul>
+          <li>Incremental backup</li>
+          <li>Incremental restore</li>
+        </ul></li>
+      <li>Security <ul>
+          <li>Data and password encryption between client and server</li>
+          <li>Secure administrator access</li>
+        </ul></li>
+    </ul>
+
+    <section><title>New features and behavior changes</title>
+      <p>The following major enhancements include changes to the infrastructure, memory managment,
+        server maintenance, views indexing, and XDCR.</p>
+      <ul>
+        <li>Infrastructure enhancement with <xref href="../Concepts/dcp.dita">Database Change
+            Protocol (DCP)</xref> and <xref href="../Concepts/global-thread-pool.dita"/><p>For DCP
+            statistics via the Web console and CLI, see <xref href="UI/ui-dcp-queues.dita">DCP
+              Queues via UI</xref> and <xref href="../CLI/cli-cbstats-dcp.dita">DCP stats via
+              CLI</xref>.</p></li>
+        <li>Bucket and disk I/O enhancements including: <ul>
+            <li><xref href="../Concepts/bucket-eviction.dita">Bucket metadata ejections</xref> - For
+              more information about bucket metadata ejections, see <xref
+                href="../UI/ui-task-bucket-metadata-ejection.dita"/>, <xref
+                href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>, and <xref
+                href="../REST/rest-bucket-metadata-ejection.dita"/></li>
+            <li><xref href="../Concepts/bucket-priority.dita">Disk I/O priority</xref> - see <xref
+                href="../UI/ui-task-set-bucket-priority.dita"/>, <xref
+                href="../CLI/cli-set-disk-priority.dita"/>, and <xref
+                href="../REST/rest-bucket-set-priority.dita"/></li>
+          </ul></li>
+        <li>Server maintenance enhancements including: <ul>
+            <li><xref href="../Concepts/graceful-failover.dita"/> - For more information about
+              graceful failover via the web console, CLI, and REST API, see <xref
+                href="../UI/ui-task-failover-graceful.dita"/>, <xref
+                href="../CLI/cli-failover-graceful.dita"/>, and <xref
+                href="../REST/rest-failover-graceful.dita"/></li>
+            <li><xref href="../Concepts/delta-node-recovery.dita"/> - For information about using
+              delta node recovery via the web console, CLI, and REST API, see <xref
+                href="../UI/ui-task-node-recovery-incremental.dita"/>, <xref
+                href="../CLI/cli-node-recovery-incremental.dita"/>, and <xref
+                href="../REST/rest-node-recovery-incremental.dita"/>. </li>
+            <li><xref href="../Tasks/tasks-backup-restore-incremental.dita"/> - For information
+              about using incremental backup and restore via the CLI, see <xref
+                href="../CLI/cli-increment-backup.dita"/> and <xref
+                href="../CLI/cli-incremental-restore.dita"/>. </li>
+          </ul></li>
+        <li>Index building enhancement with <xref href="../Views/views-index-updates.dita"/>.</li>
+        <li>XDCR enhancements with <xref href="../XDCR/xdcr-memory-replication.dita"/> and <xref
+            href="../XDCR/xdcr-pause-resume.dita"/> - For more information about pausing and
+          resuming XDCR replication, see <xref href="../UI/ui-xdcr-pause-resume.dita"/>, <xref
+            href="../CLI/cli-xdcr-pause-resume.dita"/>, and <xref
+            href="../REST/rest-xdcr-pause-resume.dita"/>.</li>
+        <li>Security enhancement including <xref href="../Misc/security-admin-access.dita"/> and
+            <xref href="../Misc/security-client-ssl.dita"/></li>
+        <li>Log and log collection improvements with <xref
+            href="../Misc/cluster-wide-info-intro.dita"/> - For more information about collecting
+          diagnostics, see <xref href="../UI/ui-cluster-wide-info.dita"/>, <xref
+            href="../CLI/CBcli/cbcli-cluster-wide-info.dita"/>, and <xref
+            href="../CLI/cbcollect-cluster-wide-info.dita"/>,
+          <!-- <xref href="REST/rest-cluster-wide-info.dita" ></xref> -->
+        </li>
+      </ul>
+    </section>
+
+
+
+
+
+
     <section><title>Couchbase .NET incompatibility</title>
-      <p>An incompatibility between Microsoft
-        Framework 4.0 or earlier, the Couchbase .NET SDK 1.3.7 or earlier, and Couchbase Server 3.0
-        has been identified where the URL generated for a View operation on a Bucket is improperly
-        encoded. This causes view requests to fail with the following message in
-        the body:</p>
+      <p>An incompatibility between Microsoft Framework 4.0 or earlier, the Couchbase .NET SDK 1.3.7
+        or earlier, and Couchbase Server 3.0 has been identified where the URL generated for a View
+        operation on a Bucket is improperly encoded. This causes view requests to fail with the
+        following message in the body:</p>
       <codeblock>"Design document not found, body: {"error":"not_found","reason":"missing"}"</codeblock>
       <dl>
         <dlentry>
           <dt>Impact</dt>
-          <dd>The affected Microsoft .NET versions are 4.0 or earlier, Couchbase .NET SDK 1.3.7 or earlier,
-        and Couchbase Server 3.0 (including Beta) >= 3.0. Microsoft .NET version 4.5 changes the way
-          <codeph>Uri.ToString</codeph> handles it’s Unicode encoding, which resolves the issue,
-        thus clients running on that version or higher of the CLR are not impacted. Aentryitionally,
-        Couchbase Server 2.5 and lower are not impacted.  
-            <note type="note">Couchbase .NET 1.3.8 has a patch which resolves the issue for all versions of Couchbase Server and Microsoft .NET Frameworks. </note>
+          <dd>The affected Microsoft .NET versions are 4.0 or earlier, Couchbase .NET SDK 1.3.7 or
+            earlier, and Couchbase Server 3.0 (including Beta) >= 3.0. Microsoft .NET version 4.5
+            changes the way <codeph>Uri.ToString</codeph> handles it’s Unicode encoding, which
+            resolves the issue, thus clients running on that version or higher of the CLR are not
+            impacted. Additionally, Couchbase Server 2.5 and lower are not impacted. <note
+              type="note">Couchbase .NET 1.3.8 has a patch which resolves the issue for all versions
+              of Couchbase Server and Microsoft .NET Frameworks. </note>
           </dd>
         </dlentry>
         <dlentry>
           <dt>Workaround</dt>
-          <dd>In aentryition to the patch released with Couchbase .NET SDK version 1.3.8, aentry the
+          <dd>In addition to the patch released with Couchbase .NET SDK version 1.3.8, add the
             following element to your App.Config or Web.Config to enable support for all SDK and
-            Server versions. 
-            
-            <codeblock>&lt;uri&gt;
+            Server versions. <codeblock>&lt;uri&gt;
     &lt;iriParsing enabled="true"/&gt;
 &lt;uri&gt;
             </codeblock>
-            
             <p>Customers who are not ready or cannot upgrade their Couchbase .NET SDK’s to 1.3.8 or
-              greater are strongly advised to aentry this element to their deployments if they intend
-              to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
+              greater are strongly advised to aentry this element to their deployments if they
+              intend to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
           </dd>
         </dlentry>
-      
+
         <dlentry>
           <dt>References</dt>
-          <dd><xref href="https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change" format="html"/></dd>
+          <dd><xref
+              href="https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change"
+              format="html"/></dd>
         </dlentry>
       </dl>
-      
-        
     </section>
-    
-    <section><title>Behavior changes</title>
-      
-      <p>The <codeph>stale=false</codeph> view query argument has been enhanced. 
-        It considers all document changes which have been received at the time the query was received. 
-        This means that using the durability requirements or observe feature to block for persistence in application code 
-        before issuing the <codeph>false</codeph>stale query is no longer needed. 
-        It is recommended that you remove all such application level checks after completing the upgrade to the 3.0 release. 
-      </p>
-    
+
+
+
+
+    <section><title>Views behavior change</title>
+      <p>The <codeph>stale=false</codeph> view query argument has been enhanced. It considers all
+        document changes which have been received at the time the query was received. This means
+        that using the durability requirements or observe feature to block for persistence in
+        application code before issuing the <codeph>false</codeph>stale query is no longer needed.
+        It is recommended that you remove all such application level checks after completing the
+        upgrade to the 3.0 release. </p>
     </section>
-    
-    
-    
-    
+
+
+
+
     <section>
       <title>Known issues</title>
-      
       <table>
         <tgroup cols="3">
-          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col1" colwidth="1.54*"/>
           <colspec colname="col2" colwidth="1*"/>
-          <colspec colname="col3" colwidth="3*"/>
+          <colspec colname="col3" colwidth="8.62*"/>
           <thead>
             <row>
               <entry><b>Functional area</b></entry>
@@ -114,6 +193,21 @@
             </row>
             <row>
               <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-12142" scope="external"
+                  format="html">MB-12142</xref></entry>
+              <entry>Rebalance exit due to Bad Replicas error has no support documentation <p>A bad
+                  replicas error message means that replication streams could not be created. There
+                  may be many reasons for this to happen, however, if some of the vBuckets sequence
+                  numbers (which are maintained internally in Couchbase) are invalid, the a log
+                  message displays in the memcached logs similar to the following:</p><codeblock>(DCP Producer) some_dcp_stream_name (vb 0) Stream request failed because the snap start seqno (100) &lt;= start seqno (101) &lt;= snap end seqno (100) is required</codeblock>
+                <p>In order for a DCP producer to accept a request for a DCP stream, the following
+                  must be true:</p>
+                <codeblock>snapshot start seqno &lt;= start seqno &lt;= snapshot end seqno</codeblock>
+                <p>If the above condition is not true for a stream request, contact support to
+                  resolve the issue.</p></entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11820" scope="external"
                   format="html">MB-11820</xref></entry>
               <entry>Beer-sample loading is stuck in a crashed state</entry>
@@ -149,22 +243,17 @@
           </tbody>
         </tgroup>
       </table>
-      
     </section>
-    
-    
-    
-    <section><title>Fixed issues</title>
-      
-      <p>The following are fixed issues.</p>
 
-    
-      
+
+
+    <section><title>Fixed issues</title>
+      <p>The following are fixed issues.</p>
       <table>
         <tgroup cols="3">
-          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col1" colwidth="1.35*"/>
           <colspec colname="col2" colwidth="1*"/>
-          <colspec colname="col3" colwidth="3*"/>
+          <colspec colname="col3" colwidth="7.69*"/>
           <thead>
             <row>
               <entry><b>Functional area</b></entry>
@@ -223,8 +312,6 @@
           </tbody>
         </tgroup>
       </table>
-      
-
     </section>
   </body>
 </topic>
