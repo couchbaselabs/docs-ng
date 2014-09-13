@@ -44,7 +44,7 @@
 		<topicref href="Misc/security-client-ssl.dita" />
   <topicref href="Misc/cluster-wide-info-intro.dita" >
       <topicref href="UI/ui-cluster-wide-info.dita" />
-      <topicref href="CLI/cbcli/cbcli-cluster-wide-info.dita" />
+      <topicref href="CLI/CBcli/cbcli-cluster-wide-info.dita" />
       <topicref href="CLI/cbcollect-cluster-wide-info.dita" />
       <!-- <topicref href="REST/rest-cluster-wide-info.dita" /> -->
    </topicref>

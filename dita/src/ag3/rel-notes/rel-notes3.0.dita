@@ -35,7 +35,7 @@
       <ul>
         <li>Infrastructure enhancement with <xref href="../Concepts/dcp.dita">Database Change
             Protocol (DCP)</xref> and <xref href="../Concepts/global-thread-pool.dita"/><p>For DCP
-            statistics via the Web console and CLI, see <xref href="UI/ui-dcp-queues.dita">DCP
+            statistics via the Web console and CLI, see <xref href="../UI/ui-dcp-queues.dita">DCP
               Queues via UI</xref> and <xref href="../CLI/cli-cbstats-dcp.dita">DCP stats via
               CLI</xref>.</p></li>
         <li>Bucket and disk I/O enhancements including: <ul>
