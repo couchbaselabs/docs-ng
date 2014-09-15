@@ -1,0 +1,109 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Contributing</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a><ul class="nav nav-list"><li><a href="../topics/compatibility.html">Compatibility matrix</a></li><li class="active"><a href="../topics/contributing.html">Contributing</a><ul class="nav nav-list"></ul></li><li><a href="../topics/release-notes.html">Release notes</a></li><li><a href="../topics/licensing.html">Licensing</a></li></ul></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying Buckets</a></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li><a href="../topics/setting-up-logging.html">Setting Up Logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Contributing</h1>
+
+	
+	<div class="body conbody"><p class="shortdesc">The Couchbase .NET SDK is a community driven, open source software project licensed under the Apache 2.0 license. Contributions are welcomed and certainly encouraged! The following section defines the contribution process.
+	</p>
+
+		<div class="section"><h2 class="title sectiontitle">Github</h2>
+			
+			<p class="p">All source associated with the project lives in github at the
+					following repo: <a class="xref" href="https://github.com/couchbase/couchbase-net-client" target="_blank">https://github.com/couchbase/couchbase-net-client</a>
+			</p>
+
+			<p class="p">There are two active branches at the time of this writing:</p>
+
+			<div class="p">
+			<ol class="ol">
+				<li class="li"><a class="xref" href="https://github.com/couchbase/couchbase-net-client/tree/release13" target="_blank">release13</a>: development branch for version 1.X</li>
+
+				<li class="li"><a class="xref" href="https://github.com/couchbase/couchbase-net-client/tree/master" target="_blank">master: </a>development branch for 2.X</li>
+
+			</ol>
+
+			</div>
+
+			<p class="p">Pull requests should be made to the appropriate branch based upon the version of the SDK that the submission is targeting.</p>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Contributor Agreement License</h2>
+			
+			<p class="p">All pull requests must go through a review process before being merged into their respective branches on Github. A prerequisite for accepting a pull request is that the contributor has read and signed the Couchbase Contributor License Agreement (CLA). This can be done through Gerrit, our code review system.</p>
+
+			<p class="p">Gerrit is the official code review system for the Couchbase SDK’s. Community members who wish to contribute, must create a Gerrit account and as previously stated, sign the CLA. The steps for doing this are as follows:
+			</p>
+
+			<div class="p">
+				<ol class="ol">
+					<li class="li">Navigate to review.couchbase.org</li>
+
+					<li class="li">Select “register” from the menu on the top right hand side</li>
+
+					<li class="li">Use can use a Google, Yahoo or any other OpenId account to register</li>
+
+					<li class="li">After you have signed in you will be prompted to verify your email and provide a username</li>
+
+					<li class="li">At the very bottom of the page, click the “New Contributor Agreement” link and follow the directions to sign the CLA and finally “Submit Agreement”
+					</li>
+
+				</ol>
+
+			</div>
+
+			<p class="p">Once you have signed the CLA, it’s official, you can now contribute to the Couchbase .NET SDK!</p>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">The Code Review Process</h2>
+			
+			<p class="p">The typical flow of a community contribution is through a <a class="xref" href="https://help.github.com/articles/using-pull-requests" target="_blank">pull request</a>. Locally, you would <a class="xref" href="https://help.github.com/articles/fork-a-repo" target="_blank">clone</a> the repository, make your changes and <a class="xref" href="https://help.github.com/articles/pushing-to-a-remote" target="_blank">push </a>your changes to your fork of the repository. From
+				there, using Github, you would create a pull request and submit it to the
+				appropriate branch. The maintainer of the SDK will then decide whether to accept or
+				deny the pull request. If the maintainer decides to accept the pull request, then
+				they will push the pull request to <a class="xref" href="https://code.google.com/p/gerrit/" target="_blank">Gerrit</a>, the code review system used
+				internally within Couchbase.</p>
+
+			<p class="p">Once the submission has been pushed to Gerrit, it will be reviewed by one or more Couchbase engineers. Very likely this will be the maintainer of the SDK. 
+				A reviewer will rank the change-set by one of the following values:</p>
+
+			<div class="p">
+				<ol class="ol">
+					<li class="li">+2 looks good to me approved</li>
+
+					<li class="li">+1 looks good, but someone else must approve</li>
+
+					<li class="li">0 no score</li>
+
+					<li class="li">-1 I would prefer you do not submit this</li>
+
+					<li class="li">-2 Do not submit</li>
+
+				</ol>
+
+			</div>
+
+			<p class="p">Gerrit uses the concepts of a change-set and patch-sets, a change-set is the submission under review, a patchset is ammendment to that change-set. The reviewer may ask for several patch-sets to be committed before approving a submission. Typically a score of less than 2 will not be accepted.</p>
+
+			<p class="p">Once the submission has made it through code review, it will pushed from Gerrit to Github. The maintainer will do this for you.</p>
+
+		</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/overview.html" title="The Couchbase .NET SDK 2.0 is the official .NET client library for Couchbase Server. Written entirely in the C# programming language, it targets .NET Framework 4.5 and later and Couchbase Server 2.5 and later.">.NET SDK 2.0 beta</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

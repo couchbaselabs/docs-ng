@@ -1,0 +1,79 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Setting Up Logging</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying Buckets</a></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li class="active"><a href="../topics/setting-up-logging.html">Setting Up Logging</a><ul class="nav nav-list"></ul></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+    <h1 class="title topictitle1">Setting Up Logging</h1>
+
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div class="section context">
+            <p class="p">The SDK uses the Apache Common Infrastructure Libraries for .NET which provides a common interface for logging adapters. In order to use logging within the SDK, you will need to reference the packages for the adapter you wish to use. The following defines the process for using the Log4Net Adapter with the SDK: </p>
+
+        </div>
+
+        <ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Using the Nuget Package Manager in Visual Studio, include the following package
+                    in your project: Common.Logging.Log4Net
+                </span>
+                <div class="itemgroup stepxmp">
+                   <img class="image" id="task_pjw_gg2_3p__image_tpg_c32_3p" src="../images/nuget-common-logging.png">
+                </div>
+            </li>
+<li class="li step stepexpand">
+                <span class="ph cmd">In your App.Config or Web.Config, add the following elements between the <samp class="ph codeph">&lt;configuration&gt;&lt;/configuration&gt;</samp> so that your config looks like this:</span>
+                <div class="itemgroup stepxmp">
+                    <pre class="pre codeblock">
+ &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+ &lt;configuration&gt;
+   &lt;configSections&gt;
+     &lt;sectionGroup name="common"&gt;
+       &lt;section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" /&gt;
+     &lt;/sectionGroup&gt;
+     &lt;section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" /&gt;
+   &lt;/configSections&gt;
+   &lt;common&gt;
+     &lt;logging&gt;
+       &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net"&gt;
+         &lt;arg key="configType" value="INLINE" /&gt;
+       &lt;/factoryAdapter&gt;
+     &lt;/logging&gt;
+   &lt;/common&gt;
+   &lt;log4net&gt;
+     &lt;appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender,log4net"&gt;
+       &lt;layout type="log4net.Layout.PatternLayout,log4net"&gt;
+         &lt;param name="ConversionPattern" value="%d [%t] %-5p %c [%x] &lt;%X{auth}&gt; - %m%n" /&gt;
+       &lt;/layout&gt;
+     &lt;/appender&gt;
+     &lt;root&gt;
+       &lt;priority value="ALL" /&gt;
+       &lt;level value="DEBUG" /&gt;
+       &lt;appender-ref ref="ConsoleAppender" /&gt;
+     &lt;/root&gt;
+  &lt;/log4net&gt;
+  &lt;startup&gt; 
+        &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.1" /&gt;
+     &lt;/startup&gt;
+ &lt;/configuration&gt;
+                    </pre>
+
+                    <div class="note note"><span class="notetitle">Note:</span> Note that in this example, we are creating a FileAppender; there are a
+                        wide variety of possible appenders and configuration options you can
+                        customize to your liking. For more information regarding customizing your
+                        configuration, please check out the Log4Net documentation found <a class="xref" href="http://logging.apache.org/log4net/release/manual/configuration.html" target="_blank">here</a>. </div>
+
+                </div>
+            </li>
+</ol>
+
+    </div>
+
+</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,0 +1,100 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Working with N1QL
+      Queries</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying Buckets</a><ul class="nav nav-list"><li><a href="../topics/view-queries.html">Working With View Queries</a></li><li class="active"><a href="../topics/n1ql-queries.html">Working with N1QL Queries</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li><a href="../topics/setting-up-logging.html">Setting Up Logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Working with N1QL
+      Queries</h1>
+
+ 
+ <div class="body conbody"><p class="shortdesc">Pronounced “nickel”, N1Ql is Couchbase’s next generation language for querying JSON
+    documents. Similar in syntax to traditional SQL found in all relational databases, N1QL is an
+    extended non-first normal form variation which allows you to query nested structures commonly
+    found within the document domain. SDK support for N1QL can be found at two different levels: low
+    level support for ad-hoc N1QL queries and at a higher level abstraction as a LINQ provider
+    (currently in development). </p>
+
+   <p class="p">At the time of writing, N1QL is available as Developer Preview 3 (DP3). To use the developer
+      preview with the SDK, you will need to download and install the N1QL DP3 which can be found
+        <a class="xref" href="http://www.couchbase.com/communities/n1ql" target="_blank">here</a>. Once you have downloaded and extracted DP3, follow the directions to start the
+      tutorial; the client currently only works with the tutorial running on <samp class="ph codeph">localhost:8093</samp></p>
+
+   <p class="p">For running ad-hoc N1QL queries, the client has a single method which takes a string that must be a valid N1QL query. Here is an example of executing a simple query using the SDK:
+   </p>
+
+   <pre class="pre codeblock language-csharp">
+ const string query = "SELECT c FROM tutorial as c";
+ var result = bucket.Query&lt;dynamic&gt;(query);
+ foreach (var row in result.Rows)
+ {
+     Console.WriteLine(row);
+ }
+   </pre>
+
+   <p class="p">Here we create a query which targets the tutorial bucket, aliases it as “c” and returns all of the “children” elements from the documents in that bucket. Then we execute the query using the <span class="keyword apiname">IBucket.Query(...)</span> method, typing it as a CLR dynamic type. The result of the query is then iterated over and displayed to stdout.</p>
+
+   <p class="p">Note the return type of the <span class="keyword apiname">IBucket.Query</span> method is an object implementing the the <span class="keyword apiname">IQueryResult&lt;T&gt;</span> interface:
+   </p>
+
+    <div class="p">
+        
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="concept_bhv_nhq_44__table_c5m_svd_3p" class="table" frame="border" border="1" rules="all">
+            
+            
+            <thead class="thead" align="left">
+              <tr class="row">
+                <th class="entry" valign="top" id="d5972e60">Name</th>
+
+                <th class="entry" valign="top" id="d5972e63">Description</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody class="tbody">
+             
+              <tr class="row">
+                <td class="entry" valign="top" headers="d5972e60 ">Error</td>
+
+                <td class="entry" valign="top" headers="d5972e63 ">The error message returned by the N1QL engine</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry" valign="top" headers="d5972e60 ">Rows</td>
+
+                <td class="entry" valign="top" headers="d5972e63 ">A List&lt;T&gt; of T, which is the result of the query</td>
+
+              </tr>
+
+              <tr class="row">
+                <td class="entry" valign="top" headers="d5972e60 ">Success</td>
+
+                <td class="entry" valign="top" headers="d5972e63 ">true if the query completed successfully</td>
+
+              </tr>
+
+              
+            </tbody>
+
+          </table>
+</div>
+
+      </div>
+
+   
+ </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/querying.html" title="Besides the document and atomic operations, Couchbase supports two other ways of querying your data: Views and N1QL. Views allow you to provide secondary and composite indexes and transform results using Map/Reduce. N1QL is the new language for querying documents in Couchbase Server.">Querying Buckets</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,0 +1,71 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Closing the Connection</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a><ul class="nav nav-list"><li><a href="../topics/configuring-the-client.html">Configuring the client</a></li><li><a href="../topics/configuration-app-config.html">Connecting to buckets</a></li><li class="active"><a href="../topics/closing-connections.html">Closing the Connection</a><ul class="nav nav-list"></ul></li><li><a href="../topics/configuring-ssl.html">Configuring SSL</a></li></ul></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying Buckets</a></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li><a href="../topics/setting-up-logging.html">Setting Up Logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Closing the Connection</h1>
+
+ 
+ <div class="body conbody"><p class="shortdesc">Both <samp class="ph codeph">CouchbaseCluster</samp> and <samp class="ph codeph">CouchbaseCluster</samp> objects implement the IDisposable pattern and also have finalizers. That being said, managing the lifetime of these objects is critical for developing robust, high performance applications. In a typical application, you would create a single, static CouchbaseCluster object that would live the duration of the application or process’s lifetime - create the CouchbaseCluster object when the application starts and call it’s Dispose method when the application shuts down. Depending upon finalization is not suggested, but admissible in certain applications.</p>
+
+  <div class="section">
+   <p class="p">You can close a bucket and release the internal connections by using one of the following
+				methods: </p>
+
+   <ul class="ul">
+    <li class="li">Through finalization and garbage collection (GC)</li>
+
+    <li class="li">Calling <samp class="ph codeph">Dispose</samp> explicitly or implicitly via the <samp class="ph codeph">using</samp> statement</li>
+
+    <li class="li">By calling <samp class="ph codeph">CouchbaseCluster.CloseBucket()</samp> and passing the bucket reference</li>
+
+   </ul>
+
+   <p class="p"> Using finalization and garbage collection is the least dependable method and relies on a
+				certain amount of nondeterminism because you are relying on the common language runtime
+				(CLR) finalization mechanism; just let the object go out of scope. The other methods are
+				preferred because you deterministically control the object's lifetime. Here is an
+				example that uses the <samp class="ph codeph">CouchbaseCluster.CloseBucket()</samp> method: </p>
+
+   <pre class="pre codeblock language-csharp">
+  using (var cluster = new CouchbaseCluster(config))
+  {
+      IBucket bucket = null;
+      try
+      {
+          bucket = cluster.OpenBucket();
+          //use the bucket here
+      }
+      finally
+      {
+          if (bucket != null)
+          {
+              cluster.CloseBucket(bucket);
+          }
+      }
+  }
+		</pre>
+
+   <div class="note note"><span class="notetitle">Note:</span> It’s important to know that the references to the <span class="keyword apiname">CouchbaseBucket</span> (or
+					<span class="keyword apiname">MemcachedBucket</span>) are reference counted because multiple threads
+				might be using the same object. If multiple threads are using the bucket and each calls
+				either <span class="keyword apiname">CouchbaseCluster.CloseBucket()</span> or <span class="keyword apiname">Dispose()</span>
+				(either implicitly through the <samp class="ph codeph">using</samp> statement explicitly), the
+				instance will not be disposed until the reference count reaches zero.</div>
+
+  </div>
+
+ </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/managing-connections.html" title="TCP connections are a finite resource and need to managed appropriately for an application to perform to expectations, scale to demand and work reliably.">Managing server connections</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,0 +1,38 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Working with documents</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li class="active"><a href="../topics/documents.html">Working with documents</a><ul class="nav nav-list"><li><a href="../topics/storing.html">Creating documents</a></li><li><a href="../topics/retrieving.html">Retrieving documents</a></li><li><a href="../topics/updating.html">Updating documents</a></li><li><a href="../topics/deleting.html">Deleting documents</a></li><li><a href="../topics/bulk-operations.html">Bulk operations</a></li><li><a href="../topics/atomic-operations.html">Atomic operations</a></li></ul></li><li><a href="../topics/querying.html">Querying Buckets</a></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li><a href="../topics/setting-up-logging.html">Setting Up Logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Working with documents</h1>
+
+ 
+ <div class="body conbody"><p class="shortdesc">Couchbase Server is a document database at its core. Key values are stored as JSON documents if they are in fact valid JSON; otherwise they are stored as binary blobs. In most cases the intention of the application developer is to store documents as JSON. To make it easier to work with JSON documents, we added document-centric APIs to our SDKs.This section contains information about storing, deleting, and retrieving documents using these APIs.
+ </p>
+
+  <p class="p"></p>
+
+ </div>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../topics/storing.html">Creating documents</a></strong><br>
+The <span class="keyword apiname">IDocument&lt;T&gt;</span> interface represents an abstraction for working with documents in Couchbase Server.   </li>
+<li class="link ulchildlink"><strong><a href="../topics/retrieving.html">Retrieving documents</a></strong><br>
+Documents are retrieved by unique identifier (key). You can retrieve documents in these 		ways: consistent reads using the primary and inconsistent reads using replicas.</li>
+<li class="link ulchildlink"><strong><a href="../topics/updating.html">Updating documents</a></strong><br>
+Documents can be updated in place by either the <span class="keyword apiname">Replace</span> or <span class="keyword apiname">Upsert</span> methods. </li>
+<li class="link ulchildlink"><strong><a href="../topics/deleting.html">Deleting documents</a></strong><br>
+Documents are deleted by unique-identifier (<samp class="ph codeph">Id</samp>) or by passing the document to be deleted into the <span class="keyword apiname">IBucket.Remove(..)</span> method</li>
+<li class="link ulchildlink"><strong><a href="../topics/bulk-operations.html">Bulk operations</a></strong><br>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/atomic-operations.html">Atomic operations</a></strong><br>
+Besides the basic CRUD operations such as <span class="keyword apiname">Insert()</span>, <span class="keyword apiname">Replace()</span> and <span class="keyword apiname">Remove()</span>, the Couchbase SDK also supports atomic operations on a doucument.</li>
+</ul>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

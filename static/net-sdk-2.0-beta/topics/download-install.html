@@ -1,0 +1,186 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Adding the client to an application</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a></li><li><a href="../topics/getting-started.html">Getting started</a><ul class="nav nav-list"><li class="active"><a href="../topics/download-install.html">Adding the client to an application</a><ul class="nav nav-list"></ul></li><li><a href="../topics/hello-couchbase.html">Hello Couchbase!</a></li></ul></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying Buckets</a></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li><a href="../topics/setting-up-logging.html">Setting Up Logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+	<h1 class="title topictitle1">Adding the client to an application</h1>
+
+	<div class="body conbody">
+		<p class="p">You can add the Couchbase .NET SDK to your code by using one of the following methods:
+		</p>
+
+		<div class="p"><ul class="ul">
+			<li class="li">Using NuGet (recommended method)</li>
+
+			<li class="li">Downloading and referencing the binaries</li>
+
+			<li class="li">Building from source yourself</li>
+
+		</ul>
+</div>
+
+		<p class="p">The following sections explain in detail how to get started using each method.</p>
+
+		<div class="section"><h2 class="title sectiontitle">Using NuGet</h2>
+			
+			<p class="p">For every release, we package the binaries and store the latest version in <a class="xref" href="https://www.nuget.org" target="_blank">NuGet</a>. If you are
+				not familiar with NuGet, it’s the official and most widely supported package manager for
+				Microsoft Visual Studio and .NET in general. NuGet.org is a centralized repository for
+				package authors and consumers, and it also defines a suite of tools for authoring and
+				consuming packages.</p>
+
+			<p class="p">Using Visual Studio 2012 or later, follow these steps to get started with the
+				Couchbase .NET SDK: </p>
+
+			
+				<ol class="ol">
+					<li class="li">From the IDE, right-click the project you want to add the dependency to.</li>
+
+					<li class="li">In the context menu, click <span class="ph uicontrol">Manage NuGet Packages</span>.
+					The NuGet package manager modal dialog opens.</li>
+
+					<li class="li">From the Tree View menu on the left, select <span class="ph uicontrol">Online</span> and then
+							<span class="ph uicontrol">nuget.org</span>.</li>
+
+					<li class="li">In the search box at the top right-hand side of the dialog, type
+							<kbd class="ph userinput">CouchbaseNetClient</kbd> and then press enter on your
+						keyboard.</li>
+
+					<li class="li">In the search results, select the CouchbaseNetClient package and then click
+						<span class="ph uicontrol">Install</span>.</li>
+
+				</ol>
+
+			
+			<p class="p">That’s it! NuGet will pull in all required dependencies and reference them. You're ready to start coding!</p>
+
+			
+				<p class="p">As an alternative to using the Visual Studio IDE, you can include the binaries by using the
+				Package Manager Console. The main advantage of using the Package Manager Console is that
+				the NuGet Dialog by default always installs the latest version of the package published
+				to NuGet.org, however the console allows you to define the version of the package you
+				want to include. For users targeting older builds of the SDK, using the Package Manager
+				Console is the best option.</p>
+
+				
+				<p class="p">To use the Package Manager Console to include the SDK in your project:</p>
+
+				
+					<ol class="ol">
+						<li class="li">From the Visual Studio menu bar, click <span class="ph uicontrol">Tools</span>.</li>
+
+						<li class="li">Select <span class="ph menucascade"><span class="ph uicontrol">NuGet Package Manager</span> &gt; <span class="ph uicontrol">Package Manager Console</span></span>.</li>
+
+				<li class="li">In the console, enter the package installation command:
+					<ul class="ul" id="concept553__ul_bgb_lyc_kp">
+						<li class="li">To install the latest version:
+							<pre class="pre">Install-Package CouchbaseNetClient</pre>
+</li>
+
+						<li class="li">To install a specific version, include the version parameter. For example:
+							<pre class="pre">Install-Package CouchbaseNetClient -Version 2.0.0-beta -Pre</pre>
+</li>
+
+					</ul>
+</li>
+
+					</ol>
+		
+			<div class="note note"><span class="notetitle">Note:</span> The Couchbase Client SDK NuGet page can be found <a class="xref" href="https://www.nuget.org/packages/CouchbaseNetClient/" target="_blank">here</a>.</div>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Downloading and referencing the binaries</h2>
+			
+			<p class="p">If you do not want to use NuGet to include the Couchbase .NET SDK in your project, you can
+				download and reference the binaries directly. If you chose this route, you’ll also be
+				responsible for including and resolving dependencies used internally by the SDK.</p>
+
+			<p class="p">To download and reference the binaries directly:</p>
+
+			<div class="p"><ol class="ol">
+					<li class="li">Download the version of the SDK you want to install. The binaries are stored in S3 and the
+						links are available <a class="xref" href="http://tinyurl.com/mgwmpkh">here</a>.</li>
+
+					<li class="li">In Visual Studio, right-click the project you want to include the SDK in and then click
+							<span class="ph uicontrol">Add</span>.</li>
+
+					<li class="li">Click <span class="ph uicontrol">Reference</span> to open the Reference Manager.</li>
+
+					<li class="li">On the left side, click <span class="ph uicontrol">Browse</span> and select the binaries you
+						downloaded.</li>
+
+					<li class="li">Click <span class="ph uicontrol">OK</span>.</li>
+
+				</ol>
+
+			</div>
+
+			<p class="p">After you have referenced the Couchbase .NET SDK binaries, you need to locate and reference
+				the dependencies it uses in a similar fashion. At the time of this writing, the
+				dependencies are: </p>
+
+			<div class="p">
+				<ul class="ul">
+					<li class="li">Apache Common Infrastructure Libraries for .NET v2.0.0: <a class="xref" href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">http://netcommon.sourceforge.net/downloads.html</a></li>
+
+					<li class="li">Json.NET v6.0.1: <a class="xref" href="https://json.codeplex.com/releases/view/126052" target="_blank">https://json.codeplex.com/releases/view/126052</a></li>
+
+				</ul>
+
+			</div>
+
+			<p class="p">Other versions might not be compatible with the current SDK version. </p>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Building from source</h2>
+			
+			<p class="p">If none of the other installation options suffice or if you want to debug the source or perhaps contribute, building directly from the source is the best option for you. All source is located on Github.</p>
+
+			<div class="note note"><span class="notetitle">Note:</span> 
+				<p class="p">The software provided via NuGet and S3 are the official releases that have been
+					through a rigorous testing process. Code on GitHub that is not tagged as an official
+					release should be considered “in development”.</p>
+</div>
+
+			<p class="p">To build the .NET SDK from source:</p>
+
+			<div class="p"><ol class="ol">
+				<li class="li">(<em class="ph i">Optional</em>) Fork the GitHub repository:
+					<a class="xref" href="https://github.com/couchbase/couchbase-net-client/fork">https://github.com/couchbase/couchbase-net-client/fork</a></li>
+
+				<li class="li">Using a Git console, enter the command to clone the repository:
+						<pre class="pre">git clone git@github.com:couchbase/couchbase-net-client.git</pre>
+</li>
+
+				<li class="li">Enter the command to retrieve the latest code from GitHub:
+					<pre class="pre">git pull origin master</pre>
+</li>
+
+				<li class="li">Navigate to the directory that the source was cloned to and open the solution. </li>
+
+				<li class="li">Build the solution.</li>
+
+			</ol>
+</div>
+
+			<p class="p">After you have successfully built the source, it’s then just a matter of referencing the
+				binaries (.DLL files) from your consuming project.</p>
+
+		</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/getting-started.html">Getting started</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

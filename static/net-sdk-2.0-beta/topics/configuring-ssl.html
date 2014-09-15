@@ -1,0 +1,77 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Configuring SSL</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../topics/overview.html">.NET SDK 2.0 beta</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial-intro.html">.NET tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a><ul class="nav nav-list"><li><a href="../topics/configuring-the-client.html">Configuring the client</a></li><li><a href="../topics/configuration-app-config.html">Connecting to buckets</a></li><li><a href="../topics/closing-connections.html">Closing the Connection</a></li><li class="active"><a href="../topics/configuring-ssl.html">Configuring SSL</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying Buckets</a></li><li><a href="../topics/managing-clusters.html">Managing Clusters</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling Errors and Failed Nodes</a></li><li><a href="../topics/setting-up-logging.html">Setting Up Logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="span9">
+ <h1 class="title topictitle1">Configuring SSL</h1>
+
+	
+ <div class="body conbody"><div class="abstract">One of the core features of Couchbase Server is
+		support for encryption of data over the wire between the client and the cluster.
+		This is done through Secure Socket Layer (SSL) encryption.  <span class="shortdesc">You can use SSL to secure the data that moves between your application and the cluster.</span>
+</div>
+
+   
+   <p class="p">To use SSL you need to install an SSL certificate obtained form Couchbase Server on your
+			application server and then configure the client.</p>
+
+ 	
+ 	<div class="section"><h2 class="title sectiontitle">Installing the SSL certificate</h2>
+ 		
+ 	
+ 	<p class="p">To obtain and install the SSL certificate:</p>
+
+   <ol class="ol">
+    <li class="li">Open a browser and navigate to the Couchbase Administration Console of the cluster you want
+				your client to connect to. </li>
+
+			<li class="li">Click <span class="ph menucascade"><span class="ph uicontrol">Settings</span> &gt; <span class="ph uicontrol">Cluster</span></span>.</li>
+
+			<li class="li">In the Configuration section, click <span class="ph uicontrol">Show</span> to display the
+				certificate.
+   
+				<img class="image" id="concept_i4h_5pk_3p__image_r1q_vgd_3p" src="../images/couchbase-ssl.png"></li>
+
+   
+   <li class="li">Copy the entire content of the certificate and store it in a file with a .crt
+    extension on the application server you want to install the certificate on.
+   </li>
+
+   <li class="li"> After you have the certificate on the application server, you need to import it into
+    the local computer certificate store. On Windows, you can do this by using the
+    certificate MMC snap-in: certlm.
+   
+   	<img class="image" id="concept_i4h_5pk_3p__image_yfd_1hd_3p" src="../images/installing-cert.png"></li>
+
+   
+   <li class="li">Under the Trusted Root Certification Authorities root node, right-click <span class="ph menucascade"><span class="ph uicontrol">Certificates</span> &gt; <span class="ph uicontrol">Import</span></span>.</li>
+ 
+   	<li class="li">Follow the wizard to import the certificate you stored on disk.
+   </li>
+
+   </ol>
+
+ 	</div>
+
+   <div class="section"><h2 class="title sectiontitle">Configuring the client</h2>
+			 After you have the certificate installed on your
+			application server, to enable SSL on the client either set  the <samp class="ph codeph">UseSsl</samp>
+			property on the <samp class="ph codeph">ClientConfiguration</samp> or
+				<samp class="ph codeph">BucketConfiguration</samp> to true. Alternatively, you can set the
+				<samp class="ph codeph">UseSsl</samp> property within your Web.Config or App.Config if you are not
+			doing your configuration programmatically.</div>
+
+ </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/managing-connections.html" title="TCP connections are a finite resource and need to managed appropriately for an application to perform to expectations, scale to demand and work reliably.">Managing server connections</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>
