@@ -1,266 +1,291 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a><ul class="nav nav-list"><li><a href="../Install/install-resourceReqs.html">Resource requirements</a></li><li><a href="../Install/install-platforms.html">Supported platforms</a></li><li class="active"><a href="../Install/install-networkPorts.html">Network ports</a><ul class="nav nav-list"></ul></li><li><a href="../Install/install-browsers.html">Supported web browsers</a></li></ul></li><li><a href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu Linux installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/uninstalling.html">Uninstalling</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Network ports</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a></li><li><a href="../install-intro.html">Installation and upgrade</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a><ul class="nav nav-list"><li><a href="../Install/install-resourceReqs.html">Resource requirements</a></li><li><a href="../Install/install-platforms.html">Supported platforms</a></li><li class="active"><a href="../Install/install-networkPorts.html">Network ports</a><ul class="nav nav-list"></ul></li><li><a href="../Install/install-browsers.html">Supported web browsers</a></li></ul></li><li><a href="../Install/RHEL-install-intro.html">Red Hat/Centos installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu/Debian installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
 	<h1 class="title topictitle1">Network ports</h1>
 
 	
-	<div class="body"><p class="shortdesc">Couchbase Server specific network ports for communication between server components and 
-		for communicating with the clients that access the data stored in the Couchbase cluster.</p>
+	<div class="body"><p class="shortdesc">Couchbase Server specific network ports for communication between server components
+		and for communicating with the clients that access the data stored in the Couchbase
+		cluster.</p>
 
-		<p class="p">The ports listed must be available on the host for Couchbase Server to run and operate correctly. 
-			Couchbase Server configures these
-			ports automatically, but you must ensure that your firewall or IP tables configuration
-			allow communication on the specified ports for each usage type. On Linux, the installer
-			will notify you that you need to open these ports.</p>
+		<p class="p">The ports listed must be available on the host for Couchbase Server to run and operate
+			correctly. Couchbase Server configures these ports automatically, but you must ensure
+			that your firewall or IP tables configuration allow communication on the specified ports
+			for each usage type. On Linux, the installer will notify you that you need to open these
+			ports.</p>
 
 		<p class="p">The following table lists the ports used for different types of communication with
 			Couchbase Server, as follows:</p>
 
-		<div class="section"><h2 class="title sectiontitle">Node to node</h2><p class="p">Where noted, these ports are used by Couchbase Server
-				for communication between all nodes within the cluster. You must have these ports
-				open on all to enable nodes to communicate with each other.</p>
-</div>
+		
+		<ul class="ul">
+			<li class="li">Node to node<p class="p">These ports are used by Couchbase Server
+					for communication between all nodes within the cluster. You must have these ports
+					open on all to enable nodes to communicate with each other.</p>
 
-		<div class="section"><h2 class="title sectiontitle">Node to client</h2><p class="p">Where noted, these ports should be open between
-				each node within the cluster and any client nodes accessing data within the
-				cluster.</p>
-</div>
+			</li>
 
-		<div class="section"><h2 class="title sectiontitle">Cluster administration</h2><p class="p">Where noted, these ports should be open and
-				accessible to allow administration, whether using the REST API, command-line
-				clients, and Web browser.</p>
-</div>
+			<li class="li">Node to client<p class="p">These ports are used communication between nodes within a cluster and by
+					client nodes accessing data within a cluster.</p>
 
-		<div class="section"><h2 class="title sectiontitle">XDCR</h2><p class="p">Ports are used for XDCR communication between all nodes in
-				both the source and destination clusters.</p>
+			</li>
 
+			<li class="li">Cluster administration<p class="p">These ports are used for Couchbase administration including the REST API, command-line
+					clients, and Web browser.</p>
+
+			</li>
+
+			<li class="li">XDCR<p class="p">These ports are used for XDCR communication between all nodes in both the source and
+					destination clusters.</p>
+</li>
+
+		</ul>
+
+		
+		
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
-					
-					
-					
-					
-					
-					
-					
-					<thead class="thead" align="left">
-						<tr class="row">
-							<th class="entry" valign="top" id="d60466e68">Port</th>
+				
+				
+				
+				
+				
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" width="14.270613107822411%" id="d56522e70">Port</th>
 
-							<th class="entry" valign="top" id="d60466e71">Description</th>
+						<th class="entry" valign="top" width="25.687103594080334%" id="d56522e73">Description</th>
 
-							<th class="entry" valign="top" id="d60466e74">Node to Node</th>
+						<th class="entry" valign="top" width="10.570824524312895%" id="d56522e76">Node to node</th>
 
-							<th class="entry" valign="top" id="d60466e77">Node to Client</th>
+						<th class="entry" valign="top" width="12.262156448202958%" id="d56522e79">Node to client</th>
 
-							<th class="entry" valign="top" id="d60466e80">Cluster Administration</th>
+						<th class="entry" valign="top" width="14.270613107822411%" id="d56522e82">Cluster admin</th>
 
-							<th class="entry" valign="top" id="d60466e84">XDCR (version 1)</th>
+						<th class="entry" valign="top" width="10.782241014799153%" id="d56522e86">XDCR v1</th>
 
-							<th class="entry" valign="top" id="d60466e87">XDCR (version 2)</th>
+						<th class="entry" valign="top" width="12.156448202959828%" id="d56522e89">XDCR v2</th>
 
-						</tr>
+					</tr>
 
-					</thead>
+				</thead>
 
-					<tbody class="tbody">
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">8091</td>
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">8091</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Web Administration Port</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Web Administration Port</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">Yes</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">Yes</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">Yes</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">Yes</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">8092</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">8092</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Couchbase API Port</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Couchbase API Port</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">Yes</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">Yes</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">Yes</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">11209</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">11207</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Internal Bucket Port</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Internal/External Bucket Port for SSL</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">Yes</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">No</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">No</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">No</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">11210</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">11209</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Internal/External Bucket Port</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Internal Bucket Port</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">Yes</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">Yes</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">No</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">No</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">11211</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">11210</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Client interface (proxy)</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Internal/External Bucket Port</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">No</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">Yes</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">No</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">No</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">11214</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">11211</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Incoming SSL Proxy</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Client interface (proxy)</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">No</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">Yes</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">No</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">11215</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">11214</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Internal Outgoing SSL Proxy</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Incoming SSL Proxy</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">No</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">Yes</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">18091</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">11215</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Internal REST HTTPS for SSL</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Internal Outgoing SSL Proxy</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">No</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">Yes</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">18092</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">18091</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Internal CAPI HTTPS for SSL</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Internal REST HTTPS for SSL</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">No</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">Yes</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">Yes</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">4369</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">18092</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Erlang Port Mapper ( <samp class="ph codeph">epmd</samp> )</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Internal CAPI HTTPS for SSL</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">Yes</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">No</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">No</td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">Yes</td>
 
-						</tr>
+					</tr>
 
-						<tr class="row">
-							<td class="entry" valign="top" headers="d60466e68 ">21100 to 21199 (inclusive)</td>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">4369</td>
 
-							<td class="entry" valign="top" headers="d60466e71 ">Node data exchange</td>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Erlang Port Mapper ( <samp class="ph codeph">epmd</samp> )</td>
 
-							<td class="entry" valign="top" headers="d60466e74 ">Yes</td>
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">Yes</td>
 
-							<td class="entry" valign="top" headers="d60466e77 ">No</td>
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e80 ">No</td>
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e84 ">No</td>
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
 
-							<td class="entry" valign="top" headers="d60466e87 ">No </td>
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">No</td>
 
-						</tr>
+					</tr>
 
-					</tbody>
+					<tr class="row">
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e70 ">21100 to 21199 (inclusive)</td>
 
-				</table>
+						<td class="entry" valign="top" width="25.687103594080334%" headers="d56522e73 ">Node data exchange</td>
+
+						<td class="entry" valign="top" width="10.570824524312895%" headers="d56522e76 ">Yes</td>
+
+						<td class="entry" valign="top" width="12.262156448202958%" headers="d56522e79 ">No</td>
+
+						<td class="entry" valign="top" width="14.270613107822411%" headers="d56522e82 ">No</td>
+
+						<td class="entry" valign="top" width="10.782241014799153%" headers="d56522e86 ">No</td>
+
+						<td class="entry" valign="top" width="12.156448202959828%" headers="d56522e89 ">No </td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
 </div>
-<dl class="dl">
+
+		
+		<dl class="dl">
 				
 					<dt class="dt dlterm">Port 8091</dt>
 
-					<dd class="dd">Used by the Web Console from outside the second level firewall (for
-						REST/HTTP traffic).</dd>
+					<dd class="dd">Used by the web console for REST/HTTP traffic.</dd>
 
 				
 
@@ -271,13 +296,19 @@
 					<dd class="dd">Used to access views, run queries, and update design documents.</dd>
 
 				
+			
+			
+				<dt class="dt dlterm">Port 11207</dt>
+
+				<dd class="dd">Used by smart client libraries to access data nodes using SSL.</dd>
+
+			
 
 
 				
 					<dt class="dt dlterm">Port 11210</dt>
 
-					<dd class="dd">Used by smart client libraries or client-side Moxi to directly connect to
-						the data nodes.</dd>
+					<dd class="dd">Used by smart client libraries or Moxi to directly connect to the data nodes.</dd>
 
 				
 
@@ -285,29 +316,40 @@
 				
 					<dt class="dt dlterm">Port 11211</dt>
 
-					<dd class="dd">Used by pre-existing Couchbase and memcached (non-smart) client libraries
-						that are outside the second level firewall to work.</dd>
+					<dd class="dd">Used by pre-existing Couchbase and memcached (non-smart) client libraries.</dd>
 
 				
 
 
 				
-					<dt class="dt dlterm">Ports 11214, 11215, 18091, and 18092</dt>
+					<dt class="dt dlterm">Ports 11214 and 11215</dt>
 
 					<dd class="dd">Used for SSL XDCR data encryptions.</dd>
 
 				
+			
+				<dt class="dt dlterm">Port 18091</dt>
+
+				<dd class="dd">Used by the web console for REST/HTTP traffic with SSL.</dd>
+
+			
+			
+				<dt class="dt dlterm">Port 18092</dt>
+
+				<dd class="dd">Used to access views, run queries, and update design documents with SSL.</dd>
+
+			
 
 
 				
 					<dt class="dt dlterm">All other Ports</dt>
 
-					<dd class="dd">Used for other Couchbase Server communictions.</dd>
+					<dd class="dd">Used for other Couchbase Server communications.</dd>
 
 				
 
 			</dl>
-</div>
+
 
 	</div>
 
@@ -315,9 +357,7 @@
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Install/pre-install.html" title="Pre-installation describes requirements, supported configurations, reserved or restricted items that are taken under consideration prior to installing Couchbase Server.">Pre-installation</a></div>
 </div>
-</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

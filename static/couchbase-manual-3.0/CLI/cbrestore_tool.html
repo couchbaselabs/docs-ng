@@ -1,7 +1,5 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li class="active"><a href="../CLI/cbrestore_tool.html">cbrestore tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>cbrestore tool</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">CLI overview</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li class="active"><a href="../CLI/cbrestore_tool.html">cbrestore tool</a><ul class="nav nav-list"><li><a href="../CLI/cbrestore-ddocs.html">Restoring design documents</a></li><li><a href="../CLI/cli-incremental-restore.html">Restoring incrementally</a></li></ul></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
   <h1 class="title topictitle1">cbrestore tool</h1>
 
   <div class="body">
@@ -24,9 +22,9 @@
         
         <thead class="thead" align="left">
           <tr class="row">
-            <th class="entry" valign="top" id="d37318e44"><strong class="ph b">Linux</strong></th>
+            <th class="entry" valign="top" id="d34922e44"><strong class="ph b">Linux</strong></th>
 
-            <th class="entry" valign="top" id="d37318e48"><samp class="ph codeph">/opt/couchbase/bin/cbrestore</samp></th>
+            <th class="entry" valign="top" id="d34922e48"><samp class="ph codeph">/opt/couchbase/bin/cbrestore</samp></th>
 
           </tr>
 
@@ -34,16 +32,16 @@
 
         <tbody class="tbody">
           <tr class="row">
-            <td class="entry" valign="top" headers="d37318e44 "><strong class="ph b">Windows</strong></td>
+            <td class="entry" valign="top" headers="d34922e44 "><strong class="ph b">Windows</strong></td>
 
-            <td class="entry" valign="top" headers="d37318e48 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\cbrestore</samp></td>
+            <td class="entry" valign="top" headers="d34922e48 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\cbrestore</samp></td>
 
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" headers="d37318e44 "><strong class="ph b">Mac OS X</strong></td>
+            <td class="entry" valign="top" headers="d34922e44 "><strong class="ph b">Mac OS X</strong></td>
 
-            <td class="entry" valign="top" headers="d37318e48 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/cbrestore</samp></td>
+            <td class="entry" valign="top" headers="d34922e48 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/cbrestore</samp></td>
 
           </tr>
 
@@ -98,88 +96,33 @@
     
     
     
-    <div class="section"><h2 class="title sectiontitle">Using cbrestore for design documents</h2>
-    <p class="p">You can restore design documents to a server node with the option,
-        <samp class="ph codeph">design_doc_only=1</samp>. You can restore from a backup file you create with
-        <samp class="ph codeph">cbbackup</samp>.</p>
-
-    <pre class="pre codeblock"><samp class="ph codeph">&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b a_bucket -B my_bucket
-
-transfer design doc only. bucket msgs will be skipped.
-done
-</samp></pre>
-
-    <p class="p">This will restore design documents from the backup file <samp class="ph codeph">~/backup/a_bucket</samp> to
-      the destination bucket <samp class="ph codeph">my_bucket</samp> in a cluster. If you backed up more than one
-      source bucket, you will need to perform this command more than once. For instance, imagine you
-      did a backup for a cluster with two data buckets and have the backup files
-        <samp class="ph codeph">~/backup/bucket_one/design.json</samp> and
-        <samp class="ph codeph">~/backup/bucket_two/design.json</samp> :</p>
-
-    <pre class="pre codeblock"><samp class="ph codeph">&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_one -B my_bucket
-
-&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_two -B my_bucket
-</samp></pre>
-
-    <p class="p">This will restore design documents in both backup files to a bucket in your cluster named
-        <samp class="ph codeph">my_bucket</samp> After you restore the design documents you can see them in
-      Couchbase Web Console under the Views tab.</p>
-
-    </div>
-
+   
     
     
-    
-    <div class="section"><h2 class="title sectiontitle">Using cbrestore for 1.8.x</h2>
-    <p class="p">You can use <samp class="ph codeph">cbrestore</samp> to backup data from a Couchbase 1.8.x cluster,
-      including 1.8. To do so you use the same command options you use when you backup a 2.0 cluster
-      except you provide it the hostname and port for the 1.8.x cluster. You do not need to even
-      install Couchbase Server 2.0 in order to use <samp class="ph codeph">cbrestore</samp> 2.0 to backup
-      Couchbase Server 1.8.x. . After you get the tool, go to the directory
-      where you cloned the tool and perform the command. For instance:</p>
-
-    <pre class="pre codeblock">./cbrestore ~/backup http://10.3.3.11:8091 -u Administrator -p password -B saslbucket_destination -b saslbucket_source
-</pre>
-
-    <p class="p">This restores all data in the <samp class="ph codeph">bucket-saslbucket_source</samp> directory under
-        <samp class="ph codeph">~/backups</samp> on the physical machine where you run <samp class="ph codeph">cbbackup</samp>.
-      It will restore this data into a bucket named <samp class="ph codeph">saslbucket_destination</samp> in the
-      cluster with the node host:port of <samp class="ph codeph">10.3.3.11:8091</samp>.</p>
-
-    <p class="p">Be aware that if you are trying to restore data to a different cluster, that you should make
-      sure that cluster should have the same number of vBuckets as the cluster that you backed up.
-      If you attempt to restore data from a cluster to a cluster with a different number of
-      vBuckets, it will fail when you use the default port of <samp class="ph codeph">8091</samp>. The default
-      number of vBuckets for Couchbase 2.0 is 1024; in earlier versions of Couchbase, you may have a
-      different number of vBuckets. If you do want to restore data to a cluster with a different
-      number of vBuckets, you should perform this command with port <samp class="ph codeph">11211</samp>, which
-      will accommodate the difference in vBuckets:</p>
-
-    <pre class="pre codeblock">cbrestore /backups/backup-42 memcached://HOST:11211 \
-    --bucket-source=sessions --bucket-destination=sessions2
-</pre>
-
-    </div>
-
+   
     
   </div>
 
   <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../CLI/cbrestore-ddocs.html">Restoring design documents</a></strong><br>
+Design documents are restored using the <samp class="ph codeph">design_doc_only=1</samp> option.</li>
+<li class="link ulchildlink"><strong><a href="../CLI/cli-incremental-restore.html">Restoring incrementally</a></strong><br>
+Incremental restore operations are run by using the <samp class="ph codeph">cbrestore</samp> 			command-line tool. </li>
+</ul>
+
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">CLI reference</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="https://github.com/couchbase/couchbase-cli" target="_blank">Couchbase command-line tools GitHub repository</a></div>
 <div><a class="link" href="../Install/hostnames.html">Using hostnames</a></div>
 <div><a class="link" href="../UI/ui-views-editor.html" title="The Views section allows you to manage your development and production views.">Views</a></div>
 <div><a class="link" href="../CLI/cbbackup_tool.html" title="The cbbackup tool creates a copy of data from an entire running cluster, an entire bucket, a single node, or a single bucket on a single functioning node. Your node or cluster needs to be functioning in order to create the backup. Couchbase Server will write a copy of data onto disk.">cbbackup tool</a></div>
 <div><a class="link" href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></div></div>
 </div>
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

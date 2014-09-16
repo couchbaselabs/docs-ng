@@ -1,0 +1,102 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Failing over nodes</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a><ul class="nav nav-list"><li><a href="../Concepts/dcp.html">Database Change Protocol</a></li><li><a href="../Concepts/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Concepts/bucket-eviction.html">Tunable memory</a></li><li><a href="../Concepts/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Concepts/graceful-failover.html">Graceful failover</a><ul class="nav nav-list"><li><a href="../UI/ui-task-failover-graceful.html">Failing over a node</a></li><li class="active"><a href="../CLI/cli-failover-graceful.html">Failing over nodes</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-failover-graceful.html">Setting graceful failover</a></li></ul></li><li><a href="../Concepts/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Tasks/tasks-backup-restore-incremental.html">Incremental backup and restore</a></li><li><a href="../Views/views-index-updates.html">Stream-based views</a></li><li><a href="../XDCR/xdcr-pause-resume.html">XDCR pause and resume replication</a></li><li><a href="../XDCR/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Misc/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Misc/security-client-ssl.html">Encrypted data access</a></li><li><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Failing over nodes</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">By default, graceful failover is implemented with failing over a node from a cluster using 
+    <samp class="ph codeph">couchbase-cli failover</samp>.</p>
+
+    
+    <div class="section">
+
+      <p class="p">Graceful failover is implemented as the default when <samp class="ph codeph">couchbase-cli
+          failover</samp> is used without the <samp class="ph codeph">--force</samp> option . The
+          <samp class="ph codeph">--force</samp> option fails over the node from the cluster immediately.</p>
+
+      
+      <div class="note note"><span class="notetitle">Note:</span> Be sure to update any scripts that implement failover.</div>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+      <pre class="pre codeblock">couchbase-cli failover
+    --cluster=HOST:PORT
+    --server-failover=HOST:PORT
+    --user=ADMIN 
+    --password=PASSWORD </pre>
+
+    
+    </div>
+
+
+      
+
+      
+      
+      <div class="example"><h2 class="title sectiontitle">Setting failover, readd, recovery, and rebalance operations</h2>
+      <p class="p">The following example shows a failover, readd, recovery and rebalance sequence operations,
+        where as, a node in a cluster is gracefully failed over, the node is re-added to the
+        cluster, a delta recovery is implemented for the node, and rebalance is performed on the
+        cluster:</p>
+
+      
+      <pre class="pre codeblock">
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    -u Administrator -p password	
+				
+couchbase-cli server-readd -c 192.168.0.1:8091 \\	
+    --server-add=192.168.0.2 \\	
+    -u Administrator -p password	
+			
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+    --server-recovery=192.168.0.2 \\	
+    --recovery-type=delta \\	
+    -u Administrator -p password	
+				
+couchbase-cli rebalance -c 192.168.0.1:8091 \\	
+    -u Administrator -p password          
+      </pre>
+
+      </div>
+
+    
+    <div class="example"><h2 class="title sectiontitle">Failing over a node immediately</h2>
+      <p class="p">The following example shows a node failing over immediately, that is, graceful failover is
+        not implemented.</p>
+
+      <pre class="pre codeblock">
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    --force  \\
+    -u Administrator -p password             
+      </pre>
+
+    </div>
+
+      
+    
+    
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/graceful-failover.html" title="Graceful failover allows administrators to safely failover a node from the cluster after all in-flight operations are completed and without data loss.">Graceful failover</a></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../CLI/CBcli/cbcli-servers.html">Server nodes</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

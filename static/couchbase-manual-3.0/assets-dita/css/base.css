@@ -1,19 +1,29 @@
+
 .brand .logo{
 	position:relative;
 	top:2px;
 }
+
+
+
 .navbar .nav{
 	position:relative;
 	top:2px;
 }
 
-.navbar .navbar-inner{
+
+.navbar {
 	background-color:#eee;
 	background-image:none;
 }
 
 ul.nav > li{
 	margin-bottom:initial;
+	margin-left: 1em;
+}
+
+ul.nav > li.active {
+	background-color: #E0E0E0;
 }
 
 body{
@@ -34,6 +44,7 @@ h6{
 
 h1{
 	margin-bottom:0.75em;
+	font-weight: bold;
 }
 
 h2{
@@ -58,6 +69,10 @@ h5{
 
 ul{
 	list-style-type:square;
+}
+
+ul > li > ul > li {
+	list-style-type: disc;
 }
 
 li{
@@ -107,8 +122,14 @@ table, thead, tbody, th, td {
    border-width: 1px;
 	border-collapse: collapse;
 	border-spacing: 0;
+	font-size: inherit;
 }
 */
+
+table {
+	font-size: inherit;
+	border-collapse: collapse;
+}
 
 thead > tr > th{
 	background-color:#e0dfcc;
@@ -144,7 +165,7 @@ div.related-links{
 	font-weight:bold;
 }
 
-.apiname {
+samp, .codeph, .apiname {
 	font-family: monospace;
 }
 
@@ -157,6 +178,9 @@ div.related-links{
 
 .gcse-wrapper{
 	background-color:transparent;
-	border:red 0.5px solid; /* just here to help see what's going on */
+	/*border:red 0.5px solid; /* just here to see what's going on */
+	width: 300px;
+	float: right;
+	
 }
 

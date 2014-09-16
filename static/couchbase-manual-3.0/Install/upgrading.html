@@ -1,7 +1,5 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu Linux installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/uninstalling.html">Uninstalling</a></li><li class="active"><a href="../Install/upgrading.html">Upgrading</a><ul class="nav nav-list"><li><a href="../Install/upgrade-online.html">Online upgrades</a></li><li><a href="../Install/upgrade-offline.html">Offline upgrade</a></li><li><a href="../Install/upgrade-individual-nodes.html">Upgrading individual nodes</a></li><li><a href="../Install/upgrade-xdcr.html">Upgrading with XDCR</a></li><li><a href="../Install/upgrade-from-1.8.html">Upgrading from 1.8</a></li><li><a href="../Install/upgrade-to-2.5.html">Upgrading to 2.5</a></li><li><a href="../Install/upgrade-mac.html">Upgrading on Mac</a></li><li><a href="../Install/upgrade-rhel.html">Upgrading on RHEL</a></li><li><a href="../Install/upgrade-ubuntu.html">Upgrading on Ubuntu</a></li><li><a href="../Install/upgrade-windows.html">Upgrading on Windows</a></li></ul></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Upgrading</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a></li><li><a href="../install-intro.html">Installation and upgrade</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat/Centos installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu/Debian installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li class="active"><a href="../Install/upgrading.html">Upgrading</a><ul class="nav nav-list"><li><a href="../Install/upgrade-online.html">Online upgrades</a></li><li><a href="../Install/upgrade-offline.html">Offline upgrade</a></li><li><a href="../Install/upgrade-individual-nodes.html">Upgrading servers</a></li><li><a href="../Install/upgrade-xdcr.html">Upgrading with XDCR</a></li></ul></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
   <h1 class="title topictitle1">Upgrading</h1>
 
   <div class="body">
@@ -10,23 +8,11 @@
       upgrades or offline upgrades:</p>
 
     <ul class="ul">
-      <li class="li">Couchbase 1.8.1 to Couchbase 2.x</li>
+      <li class="li">Couchbase 2.x to a later version of Couchbase 2.x</li>
 
-      <li class="li">Couchbase 2.0.x to Couchbase 2.1 or higher</li>
-
-      <li class="li">Couchbase 2.1.x to Couchbase 2.2 or higher</li>
-
-      <li class="li">Couchbase 2.2 to Couchbase 2.5 or higher</li>
-
-      <li class="li">Couchbase 2.5 to Couchbase 3.0 or higher</li>
+      <li class="li">Couchbase 2.x to Couchbase 3.0</li>
 
     </ul>
-
-        
-    <p class="p">You cannot perform a direct upgrade from Couchbase Server 1.8.0 to a higher release of
-      Couchbase Server. You must first upgrade from Couchbase Server 1.8 or earlier to Couchbase
-      Server 1.8.1 to provide data compatibility with a higher release of Couchbase Server. After
-      performing this initial upgrade, upgrade to a higher release of Couchbase Server.</p>
 
     <p class="p">You can perform a cluster upgrade in two ways:</p>
 
@@ -45,9 +31,9 @@
         
         <thead class="thead" align="left">
           <tr class="row">
-            <th class="entry" valign="top" width="23.640661938534276%" id="d68402e64">Platform</th>
+            <th class="entry" valign="top" width="23.640661938534276%" id="d64561e52">Platform</th>
 
-            <th class="entry" valign="top" width="76.3593380614657%" id="d68402e67">Location</th>
+            <th class="entry" valign="top" width="76.3593380614657%" id="d64561e55">Location</th>
 
           </tr>
 
@@ -55,16 +41,16 @@
 
         <tbody class="tbody">
           <tr class="row">
-            <td class="entry" valign="top" width="23.640661938534276%" headers="d68402e64 ">Linux</td>
+            <td class="entry" valign="top" width="23.640661938534276%" headers="d64561e52 ">Linux</td>
 
-            <td class="entry" valign="top" width="76.3593380614657%" headers="d68402e67 "><samp class="ph codeph">/opt/couchbase/var/lib/couchbase/config/config.dat</samp></td>
+            <td class="entry" valign="top" width="76.3593380614657%" headers="d64561e55 "><samp class="ph codeph">/opt/couchbase/var/lib/couchbase/config/config.dat</samp></td>
 
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" width="23.640661938534276%" headers="d68402e64 ">Windows</td>
+            <td class="entry" valign="top" width="23.640661938534276%" headers="d64561e52 ">Windows</td>
 
-            <td class="entry" valign="top" width="76.3593380614657%" headers="d68402e67 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat</samp></td>
+            <td class="entry" valign="top" width="76.3593380614657%" headers="d64561e55 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat</samp></td>
 
           </tr>
 
@@ -82,6 +68,118 @@
 </div>
 
     
+    <div class="section"><h2 class="title sectiontitle">Upgrading to 3.0</h2></div>
+
+    
+    <p class="p">With encryption access, the following port is reserved for client access to data nodes using
+      SSL.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="22.675736961451246%" id="d64561e112">Port</th>
+
+              <th class="entry" valign="top" width="77.32426303854876%" id="d64561e115">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="22.675736961451246%" headers="d64561e112 ">11207</td>
+
+              <td class="entry" valign="top" width="77.32426303854876%" headers="d64561e115 ">Internal/External Bucket Port for SSL</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    
+    
+    <div class="section"><h2 class="title sectiontitle">Upgrading to 2.5</h2>
+      
+      <p class="p">Before upgrading to 2.5.x</p>
+
+      
+      <p class="p">If buckets are using any of
+        the following reserved ports, change the port for the bucket. Otherwise, XDCR data
+        encryption is unavailable. (This applies to both offline and online upgrades.)
+      </p>
+
+      <div class="note important"><span class="importanttitle">Important:</span> Ensure that the Secure Socket Layer (SSL) reserved ports are
+        available prior to using XDCR data encryption. </div>
+
+      
+      <p class="p">With XDCR data encryption, the
+          following ports are reserved:</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="22.675736961451246%" id="d64561e161">Port</th>
+
+              <th class="entry" valign="top" width="77.32426303854876%" id="d64561e164">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="22.675736961451246%" headers="d64561e161 ">11214</td>
+
+              <td class="entry" valign="top" width="77.32426303854876%" headers="d64561e164 ">Incoming SSL proxy</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="22.675736961451246%" headers="d64561e161 ">11215</td>
+
+              <td class="entry" valign="top" width="77.32426303854876%" headers="d64561e164 ">Internal outgoing SSL proxy</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="22.675736961451246%" headers="d64561e161 ">18091</td>
+
+              <td class="entry" valign="top" width="77.32426303854876%" headers="d64561e164 ">Internal REST HTTPS for SSL</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="22.675736961451246%" headers="d64561e161 ">18092</td>
+
+              <td class="entry" valign="top" width="77.32426303854876%" headers="d64561e164 ">Internal CAPI HTTPS for SSL </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      
+      <div class="note note"><span class="notetitle">Note:</span> If Couchbase Server 2.5 has more than two (2) replicas, the first swap rebalance takes additional time. 
+        This behavior is expected.</div>
+
+    
+        <div class="note restriction"><span class="restrictiontitle">Restriction:</span> The RPM package manager does not support the  
+        <samp class="ph codeph">--relocate</samp> option because it cannot correctly detect which release should be kept and which should be replaced. 
+        As result, all binary files and their wrapper scripts cannot be correctly installed into the relocated bin directory 
+        during upgrade.
+      </div>
+
+    </div>
+
+    
     
   </div>
 
@@ -91,36 +189,21 @@
 </li>
 <li class="link ulchildlink"><strong><a href="../Install/upgrade-offline.html">Offline upgrade</a></strong><br>
 </li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-individual-nodes.html">Upgrading individual nodes</a></strong><br>
-</li>
+<li class="link ulchildlink"><strong><a href="../Install/upgrade-individual-nodes.html">Upgrading servers</a></strong><br>
+Upgrading Couchbase Server involves performing a backup and then the installation upgrade.</li>
 <li class="link ulchildlink"><strong><a href="../Install/upgrade-xdcr.html">Upgrading with XDCR</a></strong><br>
-The upgrade process depends on the scenario.</li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-from-1.8.html">Upgrading from 1.8</a></strong><br>
-To upgrade from version 1.8.0, upgrade to version 1.8.1 first.</li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-to-2.5.html">Upgrading to 2.5</a></strong><br>
-</li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-mac.html">Upgrading on Mac</a></strong><br>
-</li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-rhel.html">Upgrading on RHEL</a></strong><br>
-</li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-ubuntu.html">Upgrading on Ubuntu</a></strong><br>
-</li>
-<li class="link ulchildlink"><strong><a href="../Install/upgrade-windows.html">Upgrading on Windows</a></strong><br>
-</li>
+The upgrade process when XDCR is implemented depends on the scenario.</li>
 </ul>
 
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Couchbase Installation</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Installation and upgrade</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="../CLI/cbbackup_tool.html" title="The cbbackup tool creates a copy of data from an entire running cluster, an entire bucket, a single node, or a single bucket on a single functioning node. Your node or cluster needs to be functioning in order to create the backup. Couchbase Server will write a copy of data onto disk.">cbbackup tool</a></div>
 <div><a class="link" href="../CLI/cbrestore_tool.html">cbrestore tool</a></div></div>
 </div>
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

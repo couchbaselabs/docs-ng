@@ -1,7 +1,5 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-rza.html">Rack Awareness REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-bucket-info.html">Getting single bucket information</a></li><li><a href="../REST/rest-bucket-get-config.html">Getting bucket configuration</a></li><li><a href="../REST/rest-bucket-stats.html">Getting bucket statistics</a></li><li><a href="../REST/rest-buckets-streamingURI.html">Getting the bucket streaming URI</a></li><li><a href="../REST/rest-buckets-summary.html">Viewing buckets and bucket operations</a></li><li class="active"><a href="../REST/rest-bucket-create.html">Creating and editing buckets</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-bucket-delete.html">Deleting buckets</a></li><li><a href="../REST/rest-bucket-flush.html">Flushing buckets</a></li><li><a href="../REST/rest-bucket-auth.html">Changing bucket authentication</a></li><li><a href="../REST/rest-bucket-readwrite.html">Changing bucket read-write threads</a></li><li><a href="../REST/rest-bucket-memory-quota.html">Increasing bucket memory quota</a></li><li><a href="../REST/rest-bucket-parameters.html">Modifying bucket parameters</a></li></ul></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Creating and editing buckets</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a><ul class="nav nav-list"><li><a href="../REST/overview-rest-api.html">REST API overview</a></li><li><a href="../REST/rest-cluster-intro.html">Cluster REST API</a></li><li><a href="../REST/rest-server-nodes.html">Server nodes REST API</a></li><li><a href="../REST/rest-bucket-intro.html">Buckets REST API</a><ul class="nav nav-list"><li><a href="../REST/rest-bucket-set-priority.html">Setting disk I/O priority</a></li><li><a href="../REST/rest-bucket-metadata-ejection.html">Setting metadata ejection</a></li><li><a href="../REST/rest-bucket-info.html">Getting single bucket information</a></li><li><a href="../REST/rest-bucket-get-config.html">Getting bucket configuration</a></li><li><a href="../REST/rest-bucket-stats.html">Getting bucket statistics</a></li><li><a href="../REST/rest-buckets-streamingURI.html">Getting the bucket streaming URI</a></li><li><a href="../REST/rest-buckets-summary.html">Viewing buckets and bucket operations</a></li><li class="active"><a href="../REST/rest-bucket-create.html">Creating and editing buckets</a><ul class="nav nav-list"></ul></li><li><a href="../REST/rest-bucket-delete.html">Deleting buckets</a></li><li><a href="../REST/rest-bucket-flush.html">Flushing buckets</a></li><li><a href="../REST/rest-bucket-auth.html">Changing bucket authentication</a></li><li><a href="../REST/rest-bucket-readwrite.html">Changing bucket read-write threads</a></li><li><a href="../REST/rest-bucket-memory-quota.html">Increasing bucket memory quota</a></li><li><a href="../REST/rest-bucket-parameters.html">Modifying bucket parameters</a></li></ul></li><li><a href="../REST/rest-views-intro.html">Views REST API</a></li><li><a href="../REST/rest-xdcr-intro.html">XDCR REST API</a></li><li><a href="../REST/compaction-rest-api.html">Compaction REST API</a></li><li><a href="../REST/logs-rest-api.html">Logs REST API</a></li><li><a href="../REST/rest-users.html">Users REST API</a></li></ul></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
 	<h1 class="title topictitle1">Creating and editing buckets</h1>
 
 
@@ -55,9 +53,9 @@
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" width="38.02281368821293%" id="d86463e72">Payload Arguments</th>
+						<th class="entry" valign="top" width="38.02281368821293%" id="d83747e72">Payload Arguments</th>
 
-						<th class="entry" valign="top" width="61.97718631178707%" id="d86463e75">Description</th>
+						<th class="entry" valign="top" width="61.97718631178707%" id="d83747e75">Description</th>
 
 					</tr>
 
@@ -65,52 +63,52 @@
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">authType</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">authType</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Type of authorization to be enabled for the new
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Required parameter. Type of authorization to be enabled for the new
 							bucket as a string. Defaults to blank password if not specified. “sasl”
 							enables authentication. “none” disables authentication.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">bucketType</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">bucketType</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Type of bucket to be created. String value.
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Required parameter. Type of bucket to be created. String value.
 							“memcached” configures as Memcached bucket. “couchbase” configures as
 							Couchbase bucket</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">flushEnabled</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">flushEnabled</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. Enables the ‘flush all’ functionality on the
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Optional parameter. Enables the ‘flush all’ functionality on the
 							specified bucket. Boolean. 1 enables flush all support, 0 disables flush
 							all support. Defaults to 0.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">name</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">name</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Name for new bucket.</td>
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Required parameter. Name for new bucket.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">parallelDBAndViewCompaction</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">parallelDBAndViewCompaction</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. String value. Indicates whether database and view
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Optional parameter. String value. Indicates whether database and view
 							files on disk can be compacted simultaneously. Defaults to
 							“false.”</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">proxyPort</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">proxyPort</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. Numeric. Proxy port on which the bucket
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Required parameter. Numeric. Proxy port on which the bucket
 							communicates. Must be a valid network port which is not already in use.
 							You must provide a valid port number if the authorization type is not
 							SASL.</td>
@@ -118,9 +116,9 @@
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">ramQuotaMB</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">ramQuotaMB</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Required parameter. RAM Quota for new bucket in MB. Numeric. The
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Required parameter. RAM Quota for new bucket in MB. Numeric. The
 							minimum you can specify is 100, and the maximum can only be as great as
 							the memory quota established for the node. If other buckets are
 							associated with a node, RAM Quota can only be as large as the amount
@@ -130,54 +128,54 @@
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">replicaIndex</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">replicaIndex</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. Boolean. 1 enable replica indexes for replica
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Optional parameter. Boolean. 1 enable replica indexes for replica
 							bucket data while 0 disables. Default of 1.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">replicaNumber</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">replicaNumber</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional parameter. Numeric. Number of replicas to be configured for
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Optional parameter. Numeric. Number of replicas to be configured for
 							this bucket. Required parameter when creating a Couchbase bucket.
 							Default 1, minimum 0, maximum 3.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">saslPassword</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">saslPassword</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional Parameter. String. Password for SASL authentication.
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Optional Parameter. String. Password for SASL authentication.
 							Required if SASL authentication has been enabled.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><samp class="ph codeph">threadsNumber</samp></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><samp class="ph codeph">threadsNumber</samp></td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Optional Parameter. Integer from 2 to 8. Change the number of concurrent readers and
 							writers for the data bucket. </td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 "><strong class="ph b">Return Codes</strong></td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 "><strong class="ph b">Return Codes</strong></td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 ">202</td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 ">202</td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Accepted</td>
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Accepted</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 ">204</td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 ">204</td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Bad Request JSON with errors in the form of {“errors”: {…. }} name:
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Bad Request JSON with errors in the form of {“errors”: {…. }} name:
 							Bucket with given name already exists ramQuotaMB: RAM Quota is too large
 							or too small replicaNumber: Must be specified and must be a non-negative
 							integer proxyPort: port is invalid, port is already in use</td>
@@ -185,9 +183,9 @@
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="38.02281368821293%" headers="d86463e72 ">404</td>
+						<td class="entry" valign="top" width="38.02281368821293%" headers="d83747e72 ">404</td>
 
-						<td class="entry" valign="top" width="61.97718631178707%" headers="d86463e75 ">Object Not Found</td>
+						<td class="entry" valign="top" width="61.97718631178707%" headers="d83747e75 ">Object Not Found</td>
 
 					</tr>
 
@@ -270,14 +268,11 @@ name=newbucket&amp;ramQuotaMB=20&amp;authType=none&amp;replicaNumber=2&amp;proxy
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-bucket-intro.html" title="The bucket management and configuration REST API endpoints provide a fine level of control over the individual buckets in the cluster, their configuration, and specific operations.">Buckets REST API</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="../Concepts/concept-readerWriter.html" title="Multi-threaded readers and writers provide multiple processes to simultaneously read and write data on disk. Simultaneous reads and writes increases disk speed and improves the read rate from disk.">Multiple readers and writers</a></div></div>
 </div>
 
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

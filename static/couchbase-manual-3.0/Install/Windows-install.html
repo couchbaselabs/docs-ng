@@ -1,10 +1,93 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu Linux installation</a></li><li class="active"><a href="../Install/Windows-install.html">Microsoft Windows installation</a><ul class="nav nav-list"></ul></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/uninstalling.html">Uninstalling</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Microsoft Windows installation</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a></li><li><a href="../install-intro.html">Installation and upgrade</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat/Centos installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu/Debian installation</a></li><li class="active"><a href="../Install/Windows-install.html">Microsoft Windows installation</a><ul class="nav nav-list"><li><a href="../Install/windows-install-unattended.html">Unattended installation</a></li><li><a href="../Install/uninstall-windows.html">Uninstalling on Windows</a></li><li><a href="../Install/upgrade-windows.html">Upgrading on Windows</a></li></ul></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
   <h1 class="title topictitle1">Microsoft Windows installation</h1>
 
   <div class="body">
+    <p class="p">The following Microsoft Windows operating systems are supported:</p>
+
+    
+    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+        
+        
+        
+        
+        
+        <thead class="thead" align="left">
+          <tr class="row">
+            <th class="entry" valign="top" id="d55173e34"><strong class="ph b">Platform</strong></th>
+
+            <th class="entry" valign="top" id="d55173e38"><strong class="ph b">Version</strong></th>
+
+            <th class="entry" valign="top" id="d55173e42"><strong class="ph b">32 / 64 bit</strong></th>
+
+            <th class="entry" valign="top" id="d55173e46"><strong class="ph b">Supported</strong></th>
+
+            <th class="entry" valign="top" id="d55173e50"><strong class="ph b">Recommended Version</strong></th>
+
+          </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+          <tr class="row">
+            <td class="entry" valign="top" headers="d55173e34 ">Windows 2012</td>
+
+            <td class="entry" valign="top" headers="d55173e38 ">R2 SP1</td>
+
+            <td class="entry" valign="top" headers="d55173e42 ">64 bit</td>
+
+            <td class="entry" valign="top" headers="d55173e46 ">Developer and Production</td>
+
+            <td class="entry" valign="top" headers="d55173e50 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry" valign="top" headers="d55173e34 ">Windows 2008</td>
+
+            <td class="entry" valign="top" headers="d55173e38 ">R2 with SP1</td>
+
+            <td class="entry" valign="top" headers="d55173e42 ">64 bit</td>
+
+            <td class="entry" valign="top" headers="d55173e46 ">Developer and Production</td>
+
+            <td class="entry" valign="top" headers="d55173e50 ">Windows 2008</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry" valign="top" headers="d55173e34 ">Windows 8</td>
+
+            <td class="entry" valign="top" headers="d55173e38 ">&nbsp;</td>
+
+            <td class="entry" valign="top" headers="d55173e42 ">32 and 64 bit</td>
+
+            <td class="entry" valign="top" headers="d55173e46 ">Developer only</td>
+
+            <td class="entry" valign="top" headers="d55173e50 ">&nbsp;</td>
+
+          </tr>
+
+          <tr class="row">
+            <td class="entry" valign="top" headers="d55173e34 ">Windows 7</td>
+
+            <td class="entry" valign="top" headers="d55173e38 ">&nbsp;</td>
+
+            <td class="entry" valign="top" headers="d55173e42 ">32 and 64 bit</td>
+
+            <td class="entry" valign="top" headers="d55173e46 ">Developer only</td>
+
+            <td class="entry" valign="top" headers="d55173e50 ">&nbsp;</td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+</div>
+
+    
     <p class="p">Before installing, check the supported platforms. To
       install on Windows, download the Windows installer package. This is supplied as a Windows
       executable. You can install the package either using the wizard, or by doing an unattended
@@ -13,10 +96,13 @@
       on the machine where you install it.</p>
 
     
-    <p class="p">The TCP/IP port allocation on Windows by default includes a restricted number of ports
+    
+    <p class="p">The TCP/IP port allocation on Windows, by default, includes a restricted number of ports
       available for client communication. For more information on this issue, including information
-      on how to adjust the configuration and increase the available ports, see the MSDN: Avoiding
-      TCP/IP Port Exhaustion article. </p>
+      on how to adjust the configuration and increase the available ports, see 
+      <a class="xref" href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" target="_blank">
+      MSDN: Avoiding TCP/IP Port Exhaustion</a>
+      </p>
 
     
    
@@ -26,13 +112,15 @@
       installation process completes successfully, shut down all other running applications during
       installation. <p class="p">For Windows 2008, you must upgrade your Windows Server 2008 R2 installation
         with Service Pack 1 installed before running Couchbase Server. You can obtain Service Pack 1
-        from [Microsoft TechNet](http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx).
+        from <a class="xref" href="http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx" target="_blank">Microsoft TechNet</a>.
         </p>
-<p class="p">The standard Microsoft Server installation does not provide an adequate number of
+
+      <p class="p">The standard Microsoft Server installation does not provide an adequate number of
         ephemeral ports for Couchbase clusters. Without the correct number of open ephemeral ports,
         you may experience errors during rebalance, timeouts on clients, and failed backups. The
         Couchbase Server installer will check for your current port setting and adjust it if needed.
-        See [Microsoft KB-196271](http://support.microsoft.com/kb/196271). </p>
+        See <a class="xref" href="http://support.microsoft.com/kb/196271" target="_blank">Microsoft KB-196271</a>.
+        </p>
 
     </div>
 
@@ -40,30 +128,27 @@
     
     <div class="section"><h2 class="title sectiontitle">Installation wizard</h2>
       <ol class="ol">
-        <li class="li">Double click on the downloaded executable file.
-          <p class="p">The installer for windows will detect
-            if any redistributable packages included with Couchbase need to be installed or not. If
-            these packaged are not already on your system, the install will automatically install
-            them along with Couchbase Server.</p>
+        <li class="li">Double click on the downloaded executable file. <p class="p">The installer for Windows detects if
+            any redistributable packages included with Couchbase need to be installed or not. If
+            these packages are not already on your system, the install automatically installs them
+            along with Couchbase Server.</p>
+</li>
 
-        </li>
-
-        <li class="li">Follow the install wizard to complete the installation.
-          <p class="p">You will be prompted with the
+        <li class="li">Follow the install wizard to complete the installation. <p class="p">You will be prompted with the
               <samp class="ph codeph">Installation Location</samp> screen. You can change the location where the
             Couchbase Server application is located. Note that this does not configure the location
-            of where the persistent data will be stored, only the location of the server
+            of where the persistent data is stored, only the location of the server
             itself.</p>
 <p class="p">The installer copies necessary files to the system. During the
-            installation process, the installer will also check to ensure that the default
+            installation process, the installer also checks to ensure that the default
             administration port is not already in use by another application. If the default port is
-            unavailable, the installer will prompt for a different port to be used for
-            administration of the Couchbase server. The installer asks you to set up sufficient
-            ports available for the node. By default Microsoft Server will not have an adequate
-            number of ephemeral ports, see <em class="ph i">Microsoft Knowledge Base Article 196271</em></p>
+            unavailable, the installer prompts for a different port to be used for administration of
+            the Couchbase server. The installer asks you to set up sufficient ports available for
+            the node. By default, Microsoft Server will not have an adequate number of ephemeral
+            ports, see <em class="ph i">Microsoft Knowledge Base Article 196271</em></p>
 
-              <img class="image" src="../images/windows_port_check.png" width="300">
-            </li>
+          <img class="image" src="../images/windows_port_check.png" width="300">
+        </li>
 
         <li class="li">Click <span class="ph uicontrol">Yes</span>.
           <p class="p">Without a sufficient number of ephemeral ports, a Couchbase cluster
@@ -78,57 +163,35 @@
 
       </ol>
 
-      <p class="p">After installation you should follow the server setup instructions. </p>
+      <p class="p">After installation, follow the server setup instructions. </p>
 </div>
 
     
     
-    <div class="section"><h2 class="title sectiontitle">Unattended installation</h2><p class="p">To use the unattended installation process,
-        you first record your installation settings in wizard installation. These settings are saved
-        to a file. You can use this file to silently install other nodes of the same
-        version.</p>
-
-      <p class="p">To record your install options, open a Command Terminal or Power and start
-        the installation executable with the <samp class="ph codeph">/r</samp> command-line
-        option:</p>
-<pre class="pre codeblock"><samp class="ph codeph">&gt; couchbase_server_version.exe /r /f1your_file_name.iss
-</samp></pre>
-<p class="p">You
-        will be prompted with installation options, and the wizard will complete the server install.
-        We recommend you accept an increase in <samp class="ph codeph">MaxUserPort</samp>. A file with your
-        options will be recorded at <samp class="ph codeph">C:\Windows\your_file_name.iss</samp>.</p>
-
-      <p class="p">To perform
-        an installation using this recorded setup file, copy the <samp class="ph codeph">your_file_name.iss</samp>
-        file into the same directory as the installer executable. Run the installer from the
-        command-line using the <samp class="ph codeph">/s</samp>
-        option:</p>
-<pre class="pre codeblock"><samp class="ph codeph">&gt; couchbase_server_version.exe /s -f1your_file_name.iss
-</samp></pre>
-<p class="p">You
-        can repeat this process on multiple machines by copying the install package and the
-          <samp class="ph codeph">your_file_name.iss</samp> file to the same directory on each
-      machine.</p>
-
-    </div>
-
+    
   </div>
 
   <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../Install/windows-install-unattended.html">Unattended installation</a></strong><br>
+An unattended installation refers to using a script to install Couchbase Server.</li>
+<li class="link ulchildlink"><strong><a href="../Install/uninstall-windows.html">Uninstalling on Windows</a></strong><br>
+</li>
+<li class="link ulchildlink"><strong><a href="../Install/upgrade-windows.html">Upgrading on Windows</a></strong><br>
+</li>
+</ul>
+
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Couchbase Installation</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Installation and upgrade</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="../Install/install-platforms.html">Supported platforms</a></div>
 <div><a class="link" href="../Install/windows-startup-shutdown.html">Startup and shutdown on Windows</a></div>
 <div><a class="link" href="http://support.microsoft.com/kb/196271" target="_blank">Microsoft Knowledge Base Article 196271</a></div>
 <div><a class="link" href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" target="_blank">MSDN: Avoiding TCP/IP Port Exhaustion</a></div></div>
 </div>
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

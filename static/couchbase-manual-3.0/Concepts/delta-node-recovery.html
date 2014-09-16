@@ -1,0 +1,230 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Delta node recovery</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a><ul class="nav nav-list"><li><a href="../Concepts/dcp.html">Database Change Protocol</a></li><li><a href="../Concepts/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Concepts/bucket-eviction.html">Tunable memory</a></li><li><a href="../Concepts/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Concepts/graceful-failover.html">Graceful failover</a></li><li class="active"><a href="../Concepts/delta-node-recovery.html">Delta node recovery</a><ul class="nav nav-list"><li><a href="../UI/ui-task-node-recovery-incremental.html">Recovering a node</a></li><li><a href="../CLI/cli-node-recovery-incremental.html">Recovering nodes</a></li><li><a href="../REST/rest-node-recovery-incremental.html">Setting recovery type</a></li></ul></li><li><a href="../Tasks/tasks-backup-restore-incremental.html">Incremental backup and restore</a></li><li><a href="../Views/views-index-updates.html">Stream-based views</a></li><li><a href="../XDCR/xdcr-pause-resume.html">XDCR pause and resume replication</a></li><li><a href="../XDCR/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Misc/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Misc/security-client-ssl.html">Encrypted data access</a></li><li><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Delta node recovery</h1>
+
+	
+  
+  <div class="body"><p class="shortdesc">Delta node recovery allows nodes to be re-added to the cluster and incrementally caught
+    up with the data changes.</p>
+
+  	
+    <p class="p">Delta node recovery allows a failed over node to be recovered by re-using the data on its
+      disk and then resynchronizing the data based on the delta change. 
+      The failed over node is checked to identify the point when data
+      mutations stopped and resynchronized beginning at that point. The server node catches up on
+      data mutations for its vBuckets and starts serving data. 
+      Because the original data and data buckets are retained, the cluster starts functioning with minimal downtime. 
+      This operation improves recovery time and network resource usage. </p>
+
+    
+    <p class="p">Server nodes are removed from clusters under many circumstances. 
+      The following are circumstances (among many others) where a server node might be re-added to the cluster 
+      after being failed over.</p>
+
+    
+    <ul class="ul">
+      <li class="li">Node goes down for a short period of time</li>
+
+      <li class="li">Routine maintenance is scheduled</li>
+
+      <li class="li">Network connectivity is briefly disrupted</li>
+
+    </ul>
+
+      
+    <p class="p">When a node is failed over, data files are preserved. 
+      The data files are used either for Couchbase support, data recovery, or delta node recovery.</p>
+
+    
+    <p class="p">In the process of failing over a node, performing maintenance, adding the node back into the
+      cluster, and rebalancing, data is recovered via either full recovery mode or delta recovery
+      mode. With delta recovery mode, Couchbase detects (with the Database Change Protocol)
+      which data files are up-to-date and which are out-of-date and then, during rebalance, the
+      existing data files on the failed over server node are retained and the out-of-date files are
+      updated.</p>
+
+    
+    <p class="p">From the web console, the Delta Recovery and Full Recovery options display after the server node is failed over.
+      Both recovery methods add the server node back into the cluster during the rebalance operation, however, 
+      full recovery removes the node's data prior to the rebalance and delta recovery schedules the node's existing data to be re-used.
+    </p>
+
+    
+    
+    
+    <p class="p">Delta recovery requirements:</p>
+
+    <ul class="ul">
+      <li class="li">A healthy server node and a healthy state for the cluster.</li>
+
+      <li class="li">The server node is failed over. 
+        Delta recovery is not possible for a rebalance-in operation (add server) 
+        or rebalance-out operation (remove server).</li>
+
+      <li class="li">Delta recovery must be possible for all buckets. For example, if delta recovery is
+        possible for a subset of buckets but not possible for another subset of buckets, then the
+        Couchbase cluster does not permit a rebalance operation.</li>
+
+      <li class="li">Because delta recovery relies on the existing data files on the failed over server node's
+        disk, the exact same set of buckets must be transferred to the failed over server node.</li>
+
+      </ul>
+
+    
+    <p class="p">Delta recovery characteristics:</p>
+
+    <ul class="ul">
+      <li class="li">Data files are "warmed up" into memory. Warmed up into memory means that data is loaded
+        into memory. As a minimum, depending on whether metadata is retained in or not, all data
+        file keys are loaded from disk prior to the rebalance operation.</li>
+
+      <li class="li">Indexes must be rebuilt on the server node that is being re-added.</li>
+
+      <li class="li">Use in deployments where data size is much greater than RAM size,  
+        bucket eviction is set to full eviction (metadata is not retained in memory), and 
+        indexes are not defined.</li>
+
+    </ul>
+
+
+    
+    <div class="note tip"><span class="tiptitle">Tip:</span> An environment with a large data footprint might use delta node recovery when
+      re-adding a failed over server node. </div>
+
+    
+
+ 
+ 
+    <div class="section"><h2 class="title sectiontitle">Delta node recovery failure scenarios</h2>
+      
+      <p class="p">The following are conditions where delta node recovery either defaults to full recovery or
+        is not available:</p>
+
+      <ul class="ul">
+        <li class="li">If topology changes occur while a node is pending delta recovery, delta node
+          recovery is impacted. For example,  another node is added, a node is removed, or a node is
+          swapped. </li>
+
+        <li class="li">If a down node is hard failed over and is marked for removal.</li>
+
+        <li class="li">If rebalance-in-out operations are performed 
+          where the number of in and out nodes do not match (swap rebalance works in this case).</li>
+
+        <li class="li">If certain bucket operations are performed while a node is pending delta recovery,
+          delta node recovery is impacted. For example, a new bucket is added, a bucket's replica
+          configuration is changed, or a bucket is flushed.</li>
+
+      </ul>
+
+      
+
+        <p class="p">The provides detailed scenarios where delta node recovery either defaults to full recovery or is not available. </p>
+
+      
+      
+      <ol class="ol">
+            <li class="li">Node 1 is failed over and delta recovery is specified. Now, Node 1 is pending delta
+              recovery.</li>
+
+            <li class="li">Node 2, an active server, goes down. <div class="note note"><span class="notetitle">Note:</span> The rebalance operation is not
+                available.</div>
+</li>
+
+            <li class="li">Fail over Node 2. </li>
+
+            <li class="li">Cancel the pending delta recovery, specify full recovery, and rebalance.</li>
+
+            <li class="li">Repair Node 2, add the server to the cluster, and rebalance.</li>
+
+          </ol>
+
+       
+         
+      
+      <ol class="ol">
+            <li class="li">Node 1 is failed over, delta recovery is specified, and the rebalance operation is
+              started.</li>
+
+            <li class="li">Node 1 crashes and the rebalance operation fails.</li>
+
+            <li class="li">Repair Node 1, re-start the server node, and rebalance. Node1 is added back to the
+              cluster using full recovery.</li>
+
+          </ol>
+
+        
+        
+      <p class="p">The bucket operations that cause rebalance to fail are adding bucket, changing replica
+        configuration, or flushing bucket</p>
+
+      <ol class="ol">
+            <li class="li">Node 1 is failed over, delta recovery is specified, and then a bucket operation is
+              performed.</li>
+
+            <li class="li">Rebalance is performed and fails. <p class="p"><img class="image" src="../images/ui-delta-rebalance-not-available.png" width="360"></p>
+</li>
+
+            <li class="li">Cancel the pending delta recovery, specify full recovery, and rebalance.</li>
+
+          </ol>
+
+          <div class="note note"><span class="notetitle">Note:</span> Bucket deletion does not lead to delta recovery failure.</div>
+
+        
+        
+        
+          <ol class="ol">
+            <li class="li">Both Node 1 and Node 2 are failed over, delta recovery is specified.</li>
+
+            <li class="li">Node 2 crashes.</li>
+
+            <li class="li">Rebalance is performed and fails. <p class="p"><img class="image" src="../images/ui-rebalance-failed.png" width="480"></p>
+</li>
+
+          </ol>
+
+      
+     
+    </div>
+
+    
+    
+    
+  </div>
+
+  
+  <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../UI/ui-task-node-recovery-incremental.html">Recovering a node</a></strong><br>
+Recovery is performed after a server node is failed over and before rebalance         operations. Either Delta or Full recovery can be specified.</li>
+<li class="link ulchildlink"><strong><a href="../CLI/cli-node-recovery-incremental.html">Recovering nodes</a></strong><br>
+To re-add a server node to a cluster, use the <samp class="ph codeph">couchbase-cli</samp> tool and     the <samp class="ph codeph">recovery</samp> command with the <samp class="ph codeph">--recovery-type</samp> parameter. </li>
+<li class="link ulchildlink"><strong><a href="../REST/rest-node-recovery-incremental.html">Setting recovery type</a></strong><br>
+The REST request to specify the recovery type for a node uses the       <samp class="ph codeph">/controller/setRecoveryType</samp> endpoint URI. </li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Features/features.html">Couchbase 3.0 features</a></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/recovery-failover-nodes.html" title="The options for recovering failed over nodes are delta node recovery and full recovery.">Recovering failed over nodes</a></div>
+</div>
+
+<div class="linklist linklist">
+<div><a class="link" href="graceful-failover.html" title="Graceful failover allows administrators to safely failover a node from the cluster after all in-flight operations are completed and without data loss.">Graceful failover</a></div>
+<div><a class="link" href="../CLI/CBcli/cbcli-servers.html">Server nodes</a></div>
+<div><a class="link" href="../REST/rest-server-nodes.html" title="A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server. Each node is as a member of a cluster.">Server nodes REST API</a></div></div>
+</div>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,17 +1,13 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a><ul class="nav nav-list"><li><a href="../Features/dcp.html">Database Change Protocol</a></li><li><a href="../Features/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Features/bucket-eviction.html">Tunable memory</a><ul class="nav nav-list"><li><a href="../Features/ui-task-bucket-metadata-ejection.html">Managing metadata in memory (UI)</a></li><li><a href="../CLI/CBcli/cbcli-bucket-metadata-ejection.html">Managing metadata in memory (CLI)</a></li><li class="active"><a href="../REST/rest-bucket-metadata-ejection.html">Managing metadata in memory (REST API)</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../Features/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Features/graceful-failover.html">Graceful failover</a></li><li><a href="../Features/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Features/increment-backup.html">Incremental backup and restore</a></li><li><a href="../Features/index-updates.html">Stream-based views</a></li><li><a href="../Features/xdcr-pause-resume.html">Pause and resume replication</a></li><li><a href="../Features/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Features/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Features/security-clientServer-comm.html">Encrypted data access</a></li><li><a href="../Features/security-client-ssl.html">Configuring clients for SSL</a></li><li><a href="../Features/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
-  <h1 class="title topictitle1">Managing metadata in memory (REST API)</h1>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Setting metadata ejection</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a><ul class="nav nav-list"><li><a href="../Concepts/dcp.html">Database Change Protocol</a></li><li><a href="../Concepts/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Concepts/bucket-eviction.html">Tunable memory</a><ul class="nav nav-list"><li><a href="../UI/ui-task-bucket-metadata-ejection.html">Managing metadata in memory</a></li><li><a href="../CLI/CBcli/cbcli-bucket-metadata-ejection.html">Setting metadata ejection policy</a></li><li class="active"><a href="../REST/rest-bucket-metadata-ejection.html">Setting metadata ejection</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../Concepts/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Concepts/graceful-failover.html">Graceful failover</a></li><li><a href="../Concepts/delta-node-recovery.html">Delta node recovery</a></li><li><a href="../Tasks/tasks-backup-restore-incremental.html">Incremental backup and restore</a></li><li><a href="../Views/views-index-updates.html">Stream-based views</a></li><li><a href="../XDCR/xdcr-pause-resume.html">XDCR pause and resume replication</a></li><li><a href="../XDCR/xdcr-memory-replication.html">Stream-based XDCR</a></li><li><a href="../Misc/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Misc/security-client-ssl.html">Encrypted data access</a></li><li><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Setting metadata ejection</h1>
 
   
-  <div class="body refbody"><p class="shortdesc">Metadata ejection from memory is set with <samp class="ph codeph">POST
-      pools/default/buckets/default</samp>.</p>
+  <div class="body refbody"><p class="shortdesc">Bucket ejection from memory is set with <samp class="ph codeph">POST
+    pools/default/buckets/default</samp>.</p>
 
-    <div class="section"><h2 class="title sectiontitle">Metadata ejection REST API</h2>
-      
-      <p class="p">The <samp class="ph codeph">evictionPolicy=[valueOnly|fullEviction]</samp> setting specifies whether
-        value-only or full eviction is configured.</p>
+    <div class="section"><h2 class="title sectiontitle">Bucket metadata ejection</h2>
+      <p class="p"> To set the maximum of thread workers, use the <samp class="ph codeph">maxNumberThreads</samp> option. </p>
 
       
       <div class="note important"><span class="importanttitle">Important:</span>  When editing bucket properties, be sure to specify all bucket
@@ -20,7 +16,6 @@
         not intend to change a certain property, re-specify the existing value to avoid this
         behavior.</div>
 
-      
       
       <p class="p">Bucket REST API method and URI paths include:</p>
 
@@ -31,11 +26,11 @@
           
           <thead class="thead" align="left">
             <tr class="row">
-              <th class="entry" valign="top" width="16.806722689075627%" id="d89134e48">HTTP method</th>
+              <th class="entry" valign="top" width="13.623978201634879%" id="d86457e48">HTTP method</th>
 
-              <th class="entry" valign="top" width="40.50420168067227%" id="d89134e51">URI path</th>
+              <th class="entry" valign="top" width="29.972752043596735%" id="d86457e51">URI path</th>
 
-              <th class="entry" valign="top" width="42.6890756302521%" id="d89134e54">Description</th>
+              <th class="entry" valign="top" width="56.403269754768395%" id="d86457e54">Description</th>
 
             </tr>
 
@@ -43,56 +38,56 @@
 
           <tbody class="tbody">
             <tr class="row">
-              <td class="entry" valign="top" width="16.806722689075627%" headers="d89134e48 ">GET</td>
+              <td class="entry" valign="top" width="13.623978201634879%" headers="d86457e48 ">GET</td>
 
-              <td class="entry" valign="top" width="40.50420168067227%" headers="d89134e51 ">/pools/default/buckets</td>
+              <td class="entry" valign="top" width="29.972752043596735%" headers="d86457e51 ">/pools/default/buckets</td>
 
-              <td class="entry" valign="top" width="42.6890756302521%" headers="d89134e54 ">Retrieves all bucket and bucket operations information from a cluster.</td>
-
-            </tr>
-
-            <tr class="row">
-              <td class="entry" valign="top" width="16.806722689075627%" headers="d89134e48 ">GET</td>
-
-              <td class="entry" valign="top" width="40.50420168067227%" headers="d89134e51 ">/pools/default/buckets/default</td>
-
-              <td class="entry" valign="top" width="42.6890756302521%" headers="d89134e54 ">Retrieves information for a single bucket associated with a cluster.</td>
+              <td class="entry" valign="top" width="56.403269754768395%" headers="d86457e54 ">Retrieves all bucket and bucket operations information from a cluster.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" width="16.806722689075627%" headers="d89134e48 ">GET</td>
+              <td class="entry" valign="top" width="13.623978201634879%" headers="d86457e48 ">GET</td>
 
-              <td class="entry" valign="top" width="40.50420168067227%" headers="d89134e51 ">/pools/default/buckets/bucket_name/stats</td>
+              <td class="entry" valign="top" width="29.972752043596735%" headers="d86457e51 ">/pools/default/buckets/default</td>
 
-              <td class="entry" valign="top" width="42.6890756302521%" headers="d89134e54 ">Retrieves bucket statistics for a specific bucket.</td>
-
-            </tr>
-
-            <tr class="row">
-              <td class="entry" valign="top" width="16.806722689075627%" headers="d89134e48 ">POST</td>
-
-              <td class="entry" valign="top" width="40.50420168067227%" headers="d89134e51 ">/pools/default/buckets</td>
-
-              <td class="entry" valign="top" width="42.6890756302521%" headers="d89134e54 ">Creates a new Couchbase bucket.</td>
+              <td class="entry" valign="top" width="56.403269754768395%" headers="d86457e54 ">Retrieves information for a single bucket associated with a cluser.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" width="16.806722689075627%" headers="d89134e48 ">DELETE</td>
+              <td class="entry" valign="top" width="13.623978201634879%" headers="d86457e48 ">GET</td>
 
-              <td class="entry" valign="top" width="40.50420168067227%" headers="d89134e51 ">/pools/default/buckets/bucket_name</td>
+              <td class="entry" valign="top" width="29.972752043596735%" headers="d86457e51 ">/pools/default/buckets/bucket_name/stats</td>
 
-              <td class="entry" valign="top" width="42.6890756302521%" headers="d89134e54 ">Deletes a specific bucket.</td>
+              <td class="entry" valign="top" width="56.403269754768395%" headers="d86457e54 ">Retrieves bucket statistics for a specific bucket.</td>
 
             </tr>
 
             <tr class="row">
-              <td class="entry" valign="top" width="16.806722689075627%" headers="d89134e48 ">POST</td>
+              <td class="entry" valign="top" width="13.623978201634879%" headers="d86457e48 ">POST</td>
 
-              <td class="entry" valign="top" width="40.50420168067227%" headers="d89134e51 ">/pools/default/buckets/default/controller/doFlush</td>
+              <td class="entry" valign="top" width="29.972752043596735%" headers="d86457e51 ">/pools/default/buckets</td>
 
-              <td class="entry" valign="top" width="42.6890756302521%" headers="d89134e54 ">Flushes a specific bucket.</td>
+              <td class="entry" valign="top" width="56.403269754768395%" headers="d86457e54 ">Creates a new Couchbase bucket.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.623978201634879%" headers="d86457e48 ">DELETE</td>
+
+              <td class="entry" valign="top" width="29.972752043596735%" headers="d86457e51 ">/pools/default/buckets/bucket_name</td>
+
+              <td class="entry" valign="top" width="56.403269754768395%" headers="d86457e54 ">Deletes a specific bucket.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.623978201634879%" headers="d86457e48 ">POST</td>
+
+              <td class="entry" valign="top" width="29.972752043596735%" headers="d86457e51 ">/pools/default/buckets/default/controller/doFlush</td>
+
+              <td class="entry" valign="top" width="56.403269754768395%" headers="d86457e54 ">Flushes a specific bucket.</td>
 
             </tr>
 
@@ -108,11 +103,13 @@
 
 <div class="related-links">
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Features/bucket-eviction.html" title="Tunable memory allows both value-only ejection and full metadata ejection from memory.">Tunable memory</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/bucket-eviction.html" title="Tunable memory allows both value-only ejection and full metadata ejection from memory.">Tunable memory</a></div>
 </div>
-</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../REST/rest-bucket-intro.html" title="The bucket management and configuration REST API endpoints provide a fine level of control over the individual buckets in the cluster, their configuration, and specific operations.">Buckets REST API</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

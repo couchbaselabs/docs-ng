@@ -1,0 +1,72 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Backup and restore</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 features</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a><ul class="nav nav-list"><li><a href="../Tasks/tasks-manage-serverWarmup.html">Handling server warmup</a></li><li><a href="../Tasks/tasks-manage-replication.html">Handling replication</a></li><li><a href="../Tasks/tasks-compaction.html">Compacting data files</a></li><li><a href="../Tasks/cluster-maintenance.html">Cluster maintenance</a></li><li><a href="../Tasks/maintenance-server-node.html">Server maintenance</a></li><li class="active"><a href="../Tasks/tasks-backup-restore.html">Backup and restore</a><ul class="nav nav-list"><li><a href="../Tasks/backup-cbbackup.html">Backing up with cbbackup</a></li><li><a href="../Tasks/restore-cbrestore.html">Restoring with cbrestore</a></li><li><a href="../Tasks/tasks-backup-restore-incremental.html">Incremental backup and restore</a></li><li><a href="../Tasks/backup-restore-tween-opsys.html">Backing up and restoring between platforms</a></li></ul></li><li><a href="../Tasks/tasks-manage-xdcr.html">Managing XDCR</a></li></ul></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0-beta.html">Release notes 3.0 beta</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Backup and restore</h1>
+
+  
+  <div class="body"><p class="shortdesc">Backup of your entire cluster periodically to minimize data inconsistency when a restore is required.</p>
+
+    <p class="p">Backing up your data should be a regular process on your cluster to ensure that
+    you do not lose information in the event of a serious hardware or installation
+    failure.</p>
+
+    
+    <p class="p">There are a number of methods for performing a backup:</p>
+
+    
+    <ul class="ul">
+      <li class="li">Using <samp class="ph codeph">cbbackup</samp>
+        <p class="p">The `cbbackup` command enables you to back up a single node, single buckets, or
+          the entire cluster into a flexible backup structure that allows for restoring
+          the data into the same, or different, clusters and buckets. All backups can be
+          performed on a live cluster or node. Using `cbbackup` is the most flexible and
+          recommended backup tool.</p>
+</li>
+
+      <li class="li">Using File Copies
+        <p class="p">A running or offline cluster can be backed up by copying the files on each of
+          the nodes. With this method, you can only restore to a cluster with an identical
+          configuration.</p>
+
+        <div class="note note"><span class="notetitle">Note:</span> Due to the active nature of Couchbase Server it is impossible to create a
+          complete in-time backup and snapshot of the entire cluster. Because data is
+          always being updated and modified, it would be impossible to take an accurate
+          snapshot.</div>
+
+      </li>
+
+    </ul>
+
+    <div class="note note"><span class="notetitle">Note:</span> You should backup and restore your entire cluster to minimize any
+      inconsistencies in data. Couchbase is always per-item consistent, but does not
+      guarantee total cluster consistency or in-order persistence.</div>
+
+    
+  </div>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../Tasks/backup-cbbackup.html">Backing up with cbbackup</a></strong><br>
+</li>
+<li class="link ulchildlink"><strong><a href="../Tasks/restore-cbrestore.html">Restoring with cbrestore</a></strong><br>
+</li>
+<li class="link ulchildlink"><strong><a href="../Tasks/tasks-backup-restore-incremental.html">Incremental backup and restore</a></strong><br>
+Incremental backup and restore enables administrators to quickly back up only modified 		data in the database, making backup and restore more efficient for larger data sets. 		<strong class="ph b">Enterprise Edition only.</strong></li>
+<li class="link ulchildlink"><strong><a href="../Tasks/backup-restore-tween-opsys.html">Backing up and restoring between platforms</a></strong><br>
+</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Tasks/cluster-management.html">Cluster management</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>
