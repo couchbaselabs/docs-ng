@@ -103,17 +103,23 @@
 				problem.</p><p>The format of the design document should include all the views
 				defined in the design document, incorporating both the map and reduce functions for
 				each named view. For
-				example:</p><codeblock><codeph>{"views":{"byloc":{"map":"function (doc, meta) {\n  if (meta.type == \"json\") {\n    emit(doc.city, doc.sales);\n  } else {\n    emit([\"blob\"]);\n  }\n}"}}}
-</codeph></codeblock><p>Formatted,
+				example:</p>
+			
+			<codeblock>{"views":{"byloc":{"map":"function (doc, meta) {\n  if (meta.type == \"json\") {\n    emit(doc.city, doc.sales);\n  } else {\n    emit([\"blob\"]);\n  }\n}"}}}
+</codeblock>
+			
+			<p>Formatted,
 				the design document looks like
-				this:</p><codeblock><codeph>{
+				this:</p>
+			
+			<codeblock>{
    "views" : {
       "byloc" : {
          "map" : "function (doc, meta) {\n  if (meta.type == \"json\") {\n    emit(doc.city, doc.sales);\n  } else {\n    emit([\"blob\"]);\n  }\n}"
       }
    }
 }
-</codeph></codeblock><p>The
+</codeblock><p>The
 				top-level <codeph>views</codeph> field lists one or more view definitions (the
 					<codeph>byloc</codeph> view in this example), and for each view, a corresponding
 					<codeph>map()</codeph> function.</p></section>
