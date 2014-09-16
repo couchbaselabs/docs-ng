@@ -68,7 +68,6 @@
         </tgroup>
       </table>
     
-    <note type="important">Online downgrades from 3.0 to 2.5.1 is not supported. Downgrades require that servers be taken offline.</note>
     
     <section><title>Upgrading to 2.5</title>
       
