@@ -133,9 +133,5 @@
 				<codeph>cbbackup</codeph> and <codeph>cbrestore</codeph>.</note>
 		
 	</body>
-	<related-links>
-		<linklist>
-			<link href="../Tasks/tasks-backup-restore.dita"></link>
-		</linklist>
-	</related-links>
+
 </topic>

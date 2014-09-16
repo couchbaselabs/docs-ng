@@ -57,12 +57,7 @@ http://127.0.0.1:8091/node/controller/rename -d hostname=shz.localdomain
       </ul>
       </section>
       
-      <section><title>Hostnames when upgrading from 1.8.1</title>
-        <p>If you perform an offline upgrade from Couchbase 1.8.1+ and you have a configured hostname using the instructions from 
-          cloud deployment informaiton, the uses this configuration. 
-          If an online upgrade from 1.8.1 is performed, add the hostname when creating the new node.
-            node. </p>
-      </section>
+     
     
       
   </body>

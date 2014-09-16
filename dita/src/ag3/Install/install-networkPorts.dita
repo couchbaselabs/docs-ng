@@ -45,9 +45,9 @@
 						<entry>Description</entry>
 						<entry>Node to node</entry>
 						<entry>Node to client</entry>
-						<entry>Cluster administration</entry>
-						<entry>XDCR (version 1)</entry>
-						<entry>XDCR (version 2)</entry>
+						<entry>Cluster admin</entry>
+						<entry>XDCR v1</entry>
+						<entry>XDCR v2</entry>
 					</row>
 				</thead>
 				<tbody>
@@ -72,7 +72,7 @@
 					<row>
 						<entry>11207</entry>
 						<entry>Internal/External Bucket Port for SSL</entry>
-						<entry>Yes</entry>
+						<entry>No</entry>
 						<entry>Yes</entry>
 						<entry>No</entry>
 						<entry>No</entry>
@@ -111,7 +111,7 @@
 						<entry>No</entry>
 						<entry>No</entry>
 						<entry>No</entry>
-						<entry>Yes</entry>
+						<entry>No</entry>
 						<entry>Yes</entry>
 					</row>
 					<row>
@@ -120,25 +120,25 @@
 						<entry>No</entry>
 						<entry>No</entry>
 						<entry>No</entry>
-						<entry>Yes</entry>
+						<entry>No</entry>
 						<entry>Yes</entry>
 					</row>
 					<row>
 						<entry>18091</entry>
 						<entry>Internal REST HTTPS for SSL</entry>
 						<entry>No</entry>
-						<entry>No</entry>
-						<entry>No</entry>
 						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
 						<entry>Yes</entry>
 					</row>
 					<row>
 						<entry>18092</entry>
 						<entry>Internal CAPI HTTPS for SSL</entry>
 						<entry>No</entry>
-						<entry>No</entry>
-						<entry>No</entry>
 						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
 						<entry>Yes</entry>
 					</row>
 					<row>
@@ -166,8 +166,7 @@
 		<dl>
 				<dlentry>
 					<dt>Port 8091</dt>
-					<dd>Used by the Web Console from outside the second level firewall (for
-						REST/HTTP traffic).</dd>
+					<dd>Used by the web console for REST/HTTP traffic.</dd>
 				</dlentry>
 
 
@@ -184,22 +183,28 @@
 
 				<dlentry>
 					<dt>Port 11210</dt>
-					<dd>Used by smart client libraries or client-side Moxi to directly connect to
-						the data nodes.</dd>
+					<dd>Used by smart client libraries or Moxi to directly connect to the data nodes.</dd>
 				</dlentry>
 
 
 				<dlentry>
 					<dt>Port 11211</dt>
-					<dd>Used by pre-existing Couchbase and memcached (non-smart) client libraries
-						that are outside the second level firewall to work.</dd>
+					<dd>Used by pre-existing Couchbase and memcached (non-smart) client libraries.</dd>
 				</dlentry>
 
 
 				<dlentry>
-					<dt>Ports 11214, 11215, 18091, and 18092</dt>
+					<dt>Ports 11214 and 11215</dt>
 					<dd>Used for SSL XDCR data encryptions.</dd>
 				</dlentry>
+			<dlentry>
+				<dt>Port 18091</dt>
+				<dd>Used by the web console for REST/HTTP traffic with SSL.</dd>
+			</dlentry>
+			<dlentry>
+				<dt>Port 18092</dt>
+				<dd>Used to access views, run queries, and update design documents with SSL.</dd>
+			</dlentry>
 
 
 				<dlentry>
