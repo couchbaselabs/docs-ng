@@ -1,16 +1,83 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat Linux installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu Linux installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li class="active"><a href="../Install/Mac-install.html">Mac OS X installation</a><ul class="nav nav-list"></ul></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/uninstalling.html">Uninstalling</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Mac OS X installation</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat/Centos installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu/Debian installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a></li><li class="active"><a href="../Install/Mac-install.html">Mac OS X installation</a><ul class="nav nav-list"><li><a href="../Install/mac-non-root-sudo.html">Installing as non-root, non-sudo</a></li><li><a href="../Install/mac-uninstall.html">Uninstalling on Mac OS X</a></li><li><a href="../Install/upgrade-mac.html">Upgrading on Mac OS X</a></li></ul></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
  <h1 class="title topictitle1">Mac OS X installation</h1>
 
- <div class="body">
+ 
+ <div class="body"><p class="shortdesc">Mac OS 10.7 and 10.8 are supported, but for development purposes only.</p>
+
+  
   <p class="p">Before you install, make sure you check the supported platforms.
    Couchbase Server on Mac OS X is for development purposes only. The Mac OS X installation uses a
    Zip file which contains a standalone application that can be copied to the
-    <samp class="ph codeph">Applications</samp> folder or to any other location you choose. The installation
+   <samp class="ph codeph">Applications</samp> folder or to any other location you choose. The installation
    location is not the same as the location of the Couchbase data files.</p>
 
+  
+  <p class="p">The following Mac operating systems are supported:</p>
+
+  
+  
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+    
+    
+    
+    
+    
+    <thead class="thead" align="left">
+     <tr class="row">
+      <th class="entry" valign="top" id="d53383e43"><strong class="ph b">Platform</strong></th>
+
+      <th class="entry" valign="top" id="d53383e47"><strong class="ph b">Version</strong></th>
+
+      <th class="entry" valign="top" id="d53383e51"><strong class="ph b">32 / 64 bit</strong></th>
+
+      <th class="entry" valign="top" id="d53383e55"><strong class="ph b">Supported</strong></th>
+
+      <th class="entry" valign="top" id="d53383e59"><strong class="ph b">Recommended Version</strong></th>
+
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr class="row">
+      <td class="entry" valign="top" headers="d53383e43 ">Mac OS</td>
+
+      <td class="entry" valign="top" headers="d53383e47 ">10.7</td>
+
+      <td class="entry" valign="top" headers="d53383e51 ">64 bit</td>
+
+      <td class="entry" valign="top" headers="d53383e55 ">Developer only</td>
+
+      <td class="entry" valign="top" headers="d53383e59 ">Mac OS 10.7 </td>
+
+     </tr>
+
+     <tr class="row">
+      <td class="entry" valign="top" headers="d53383e43 ">Mac OS</td>
+
+      <td class="entry" valign="top" headers="d53383e47 ">10.8</td>
+
+      <td class="entry" valign="top" headers="d53383e51 ">64 bit</td>
+
+      <td class="entry" valign="top" headers="d53383e55 ">Developer only</td>
+
+      <td class="entry" valign="top" headers="d53383e59 ">Mac OS 10.8 </td>
+
+     </tr>
+
+    </tbody>
+
+   </table>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
   <p class="p">Please use the default archive file handler in Mac OS X, Archive Utility, when you unpack the
    Couchbase Server distribution. It is more difficult to diagnose non-functioning or damaged
    installations after extraction by other third party archive extraction tools.</p>
@@ -65,54 +132,28 @@
   </div>
 
   
-  <div class="section"><h2 class="title sectiontitle">Installing on Mac OS X as non-root, non-sudo</h2>
-   <p class="p"><strong class="ph b">This installation is for
-     development purposes only.</strong> There may be cases when you want to install the server as a
-    non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
-    able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OS X:</p>
-
-   <ol class="ol">
-    <li class="li">After you download Couchbase Server, open Terminal and go to the Downloads
-       directory:<p class="p"><samp class="ph codeph"> cd ~/Downloads/ </samp></p>
-</li>
-
-    <li class="li">Unzip the package containing Couchbase Server:<p class="p"><samp class="ph codeph"> open
-       couchbase-server-enterprise_x86_64_2.1.0.zip </samp></p>
-</li>
-
-    <li class="li">Move Couchbase App to your <samp class="ph codeph">/Applications</samp> folder:<p class="p"><samp class="ph codeph"> mv
-       couchbase-server-enterprise_x86_64_2.1.0/Couchbase\ Server.app /Applications/
-     </samp></p>
-</li>
-
-    <li class="li">Start the server from Terminal:<p class="p"><samp class="ph codeph"> open /Applications/Couchbase\ Server.app
-      </samp></p>
-<p class="p">This will enable you to use Couchbase Server as a non-sudo, non-root
-     user.</p>
-</li>
-
-    <li class="li">To stop the server, Click on the Couchbase icon in the menu bar and select Quit Couchbase
-     Server.</li>
-
-   </ol>
-
-  </div>
-
+  
  </div>
 
  <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../Install/mac-non-root-sudo.html">Installing as non-root, non-sudo</a></strong><br>
+Installing on Mac OS X as non-root, non-sudo is for development purposes only.</li>
+<li class="link ulchildlink"><strong><a href="../Install/mac-uninstall.html">Uninstalling on Mac OS X</a></strong><br>
+</li>
+<li class="link ulchildlink"><strong><a href="../Install/upgrade-mac.html">Upgrading on Mac OS X</a></strong><br>
+</li>
+</ul>
+
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Couchbase Installation</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../install-intro.html">Installation and upgrade</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="../Install/install-platforms.html">Supported platforms</a></div>
 <div><a class="link" href="../Install/mac-startup-shutdown.html">Startup and shutdown on Mac OS X</a></div></div>
 </div>
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

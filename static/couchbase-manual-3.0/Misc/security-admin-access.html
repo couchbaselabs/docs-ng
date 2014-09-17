@@ -1,0 +1,144 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Encrypted admin access</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a><ul class="nav nav-list"><li class="active"><a href="../Misc/security-admin-access.html">Encrypted admin access</a><ul class="nav nav-list"></ul></li><li><a href="../Misc/security-client-ssl.html">Encrypted data access</a></li><li><a href="../Tasks/tasks-common.html">Common admin tasks</a></li><li><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></li><li><a href="../Misc/admin-datafiles.html">Data file location</a></li><li><a href="../Misc/install-location.html">Installation location</a></li><li><a href="../Misc/limits.html">Limits</a></li><li><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Encrypted admin access</h1>
+
+  
+  <div class="body"><p class="shortdesc">Encrypted administrator access provides access using Secure Socket Layer (SSL)
+    authentication. <strong class="ph b">Enterprise Edition only.</strong></p>
+
+    
+    <p class="p">The encrypted communication allows a connection to be configured for security using Secure Sockets Layer (SSL) encryption. 
+      Encryption protects data-in-flight from a remote machines to a Couchbase cluster using SSL. 
+      A secure channel is established between the remote machine and the server.</p>
+
+    
+    <p class="p">The server generates a self-signed certification for the initial node which is propagated
+      throughout the server nodes in the cluster. If the self-signed certificate is regenerated or
+      updated, the certificate must be obtained again before secure server communication is
+      re-established. The secure connection is on the cluster-level (rather than bucket-level) and
+      is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
+
+    
+    <div class="p">Encrypted administrator access is used under a variety of situations: 
+      
+      <ul class="ul">
+        <li class="li">An administrator is physically located in a different data center.</li>
+
+        <li class="li">An administrator is outside of the firewall.</li>
+
+        <li class="li">An additional level of security is required.</li>
+  
+      </ul>
+</div>
+
+    
+    <p class="p">Secure administrative access is configured using the same method used for encrypted client-server communication:</p>
+
+    
+    <ol class="ol">
+      <li class="li">Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP.</li>
+
+      <li class="li">Retrieve the SSL self-signed certificate and store in a local file, for example,
+          <samp class="ph codeph">clusterCertificate</samp>.</li>
+
+      <li class="li">Connect to the server through an encrypted port, 18091 REST HTTP or 18092 CAPI HTTP to
+        communicate with the server on a secure channel. <p class="p"><img class="image" src="../images/ui-ssl-ip.png" width="360"></p>
+
+      </li>
+
+    </ol>
+
+    
+    <div class="example"><h2 class="title sectiontitle">SSL certificate</h2>
+      <pre class="pre codeblock">-----BEGIN CERTIFICATE-----
+MIIC/jCCAeigAwIBAgIIE3jc9BofgigwCwYJKoZIhvcNAQEFMCQxIjAgBgNVBAMT
+GUNvdWNoYmFzZSBTZXJ2ZXIgOTRmYTE3YTUwHhcNMTMwMTAxMDAwMDAwWhcNNDkx
+MjMxMjM1OTU5WjAkMSIwIAYDVQQDExlDb3VjaGJhc2UgU2VydmVyIDk0ZmExN2E1
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxaaXsKm06xxzzYqejDAO
+3qW1x6vLz9jcLdZkNQgxGk4+/ulrfK4PSLHARf4vml8Ev3bcOzCwfyDCp2/TCSX0
+qDTn4iBRp9CJtxVyY/xqWkYkld+GGtj28P0CtZ1UKOHCRB7KInzxesxITg/a0vsL
+M8GrcwFpmZEJjeY7HGdUuBRcoMfm2Yn28drmr92SNSsz+npdfEFkQloYStqemOOG
+h1Jn7ldU5rBj/B2zcvh6guDXKKz/bMMeCTX84BmkG3rmiKQwxyizuxtYi5u1BthC
+X3aO58lC9uRMja1lA5TrJnZOCRT24G6VTh2bYhN98W6YmvF9l4ESDR4I7nE8E6Gt
+eQIDAQABozgwNjAOBgNVHQ8BAf8EBAMCAKQwEwYDVR0lBAwwCgYIKwYBBQUHAwEw
+DwYDVR0TAQH/BAUwAwEB/zALBgkqhkiG9w0BAQUDggEBAF0Bz2MpQoBEdOdDRix3
+j0/XGKjH7kI5zDFiOlUvANMeErVZf9kM8xqS7Yd3bCa2rjT1Y8BM3Sciurtrd/Cy
+iTVzpXjQOR/K1AFtiBtuNb2Hx5SXvgeW4p4uNmK74u1UUNmAyb3mwSQ+duuqK/Ef
+D4wTolPTZP5gcricyWI3qUCi3pTeCz/2jcAWn3DI4KVtlAsOy9sFFo4RxBDgmOuS
+klUAb8eu4e2XxcLJ++geYoum0VIKa3ygjpZ800PupwZZetjD8/6tfbYFuoBTXL+r
+27M9ArsOxkVbh3fDQ8b8qnr5sam1P7IfSzqq/Lq4vjh1mvred62zuJlMvY9KmNJU
+rqw=
+-----END CERTIFICATE-----</pre>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Using the Web Console for encrypted access</h2>
+      <p class="p">The certificate is obtained in a variety of methods depending on your preference and the
+        operating system. Either use REST or the Web console to retrieve the certificate and store
+        in a file. With the Web console, copy certificate from <span class="ph uicontrol">Settings &gt; Certificate &gt;
+          Show certificate</span> and paste into a file.</p>
+
+        
+      
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Using REST for encrypted access</h2>
+      <p class="p">The <samp class="ph codeph">GET /pools/default/certificate</samp> REST API HTTP method and URI retrieves the SSL self-signed certificate from the cluster.</p>
+
+      
+      
+    
+
+    
+    
+    
+      <pre class="pre codeblock">curl –X GET  -u adminName:adminPassword
+    http://localHost:Port/pools/default/certificate &gt; ./&lt;certificate_name&gt;     
+    </pre>
+
+
+    
+      <p class="p">The following examples use curl and wget to retrieve the certificat</p>
+
+      <pre class="pre codeblock">curl http://10.5.2.54:8091/pools/default/certificate &gt; clusterCertificate</pre>
+
+      <pre class="pre codeblock">wget http://10.5.2.54:8091/pools/default/certificate -O clusterCertificate</pre>
+
+
+    
+      <p class="p">The following examples use <samp class="ph codeph">curl</samp> and <samp class="ph codeph">wget</samp> with the SSL certificate to retrieve cluster information over an encrypted connection. 
+      The port used is the encrypted REST port, <samp class="ph codeph">18091</samp></p>
+
+    
+    <pre class="pre codeblock">curl --cacert clusterCertificate https://10.5.2.54:18091/pools/default</pre>
+
+    <pre class="pre codeblock">wget --ca-certificate clusterCertificate  https://10.5.2.54:18091/pools/default -O output</pre>
+
+      
+    
+      
+    </div>
+
+   
+    
+    
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/admin-basics.html" title="The administration tools are the Web Console, Command-line interface (CLI) and REST API.">Administration basics</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

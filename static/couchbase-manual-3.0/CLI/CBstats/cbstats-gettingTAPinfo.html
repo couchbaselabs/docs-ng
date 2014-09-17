@@ -1,248 +1,324 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../../install-intro.html">Couchbase Installation</a></li><li><a href="../../admin-intro.html">Couchbase Administration</a></li><li><a href="../../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBstats/cbstats-available.html">Available stats</a></li><li><a href="../../CLI/CBstats/cbstats-checkpoint.html">Checkpoint stats</a></li><li><a href="../../CLI/CBstats/cbstats-dispatcher-job.html">Dispatcher stats and job logs</a></li><li><a href="../../CLI/CBstats/cbstats-generalform.html">General form</a></li><li><a href="../../CLI/CBstats/cbstats-gettingservertiming.html">Getting server timings</a></li><li class="active"><a href="../../CLI/CBstats/cbstats-gettingTAPinfo.html">Getting TAP information</a><ul class="nav nav-list"></ul></li><li><a href="../../CLI/CBstats/cbstats-gettingwarmupinfo.html">Getting warmup information</a></li><li><a href="../../CLI/CBstats/cbstats-hash.html">Hash stats</a></li><li><a href="../../CLI/CBstats/cbstats-keyvkey.html">Stats key and Vkey</a></li><li><a href="../../CLI/CBstats/cbstats-kv.html">KV store stats</a></li><li><a href="../../CLI/CBstats/cbstats-memory.html">Memory stats</a></li><li><a href="../../CLI/CBstats/cbstats-pendingvbucket.html">Pending vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-replicavbucket.html">Replica vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-reset.html">Stats reset</a></li><li><a href="../../CLI/CBstats/cbstats-tap.html">Tap stats</a></li><li><a href="../../CLI/CBstats/cbstats-timing.html">Timing stats</a></li><li><a href="../../CLI/CBstats/cbstats-toplevelstats.html">Toplevel stats</a></li><li><a href="../../CLI/CBstats/cbstats-totalvbucket.html">vBucket total stats</a></li><li><a href="../../CLI/CBstats/cbstats-readwrite.html">Read-write thread stats</a></li><li><a href="../../CLI/CBstats/cbstats-warmup.html">Warmup</a></li></ul></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">Couchbase REST API</a></li><li><a href="../../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9"><h1 class="title topictitle1">Getting TAP information</h1>
-<div class="body"><p class="p">Couchbase Server uses an internal protocol known as TAP to stream information
-about data changes between cluster nodes. Couchbase Server uses the TAP protocol
-during 1) rebalance, 2) replication at other cluster nodes, and 3) persistence
-of items to disk.</p>
-<p class="p"><strong class="ph b">Be aware that this tool is a per-node, per-bucket operation.</strong> That means that
-if you want to perform this operation, you must specify the IP address of a node
-in the cluster and a named bucket. If you do not provided a named bucket, the
-server will apply the setting to any default bucket that exists at the specified
-node. If you want to perform this operation for an entire cluster, you will need
-to perform the command for every node/bucket combination that exists for that
-cluster.</p>
-<p class="p">The following statistics will be output in response to a <samp class="ph codeph">cbstats tap</samp> request:</p>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Getting TAP information</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../../Couchbase-intro.html">Introduction</a></li><li><a href="../../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../../install-intro.html">Installation and upgrade</a></li><li><a href="../../admin-intro.html">Administration</a></li><li><a href="../../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">CLI overview</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBstats/cbstats-toplevelstats.html">Toplevel stats</a></li><li><a href="../../CLI/CBstats/cbstats-totalvbucket.html">vBucket total stats</a></li><li><a href="../../CLI/CBstats/cbstats-replicavbucket.html">Replica vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-pendingvbucket.html">Pending vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-timing.html">Timing stats</a></li><li><a href="../../CLI/CBstats/cbstats-generalform.html">General form</a></li><li><a href="../../CLI/CBstats/cbstats-available.html">Available stats</a></li><li><a href="../../CLI/CBstats/cbstats-hash.html">Hash stats</a></li><li><a href="../../CLI/CBstats/cbstats-checkpoint.html">Checkpoint stats</a></li><li><a href="../../CLI/CBstats/cbstats-memory.html">Memory stats</a></li><li><a href="../../CLI/CBstats/cbstats-keyvkey.html">Stats key and Vkey</a></li><li><a href="../../CLI/CBstats/cbstats-warmup.html">Warmup</a></li><li><a href="../../CLI/CBstats/cbstats-kv.html">KV store stats</a></li><li><a href="../../CLI/CBstats/cbstats-dispatcher-job.html">Dispatcher stats and job logs</a></li><li><a href="../../CLI/CBstats/cbstats-reset.html">Stats reset</a></li><li><a href="../../CLI/CBstats/cbstats-gettingservertiming.html">Getting server timings</a></li><li><a href="../../CLI/CBstats/cbstats-gettingwarmupinfo.html">Getting warmup information</a></li><li><a href="../../CLI/cli-cbstats-dcp.html">DCP statistics</a></li><li><a href="../../CLI/CBstats/cbstats-tap.html">Tap stats</a><ul class="nav nav-list"><li class="active"><a href="../../CLI/CBstats/cbstats-gettingTAPinfo.html">Getting TAP information</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../../CLI/CBstats/cbstats-readwrite.html">Read-write thread stats</a></li></ul></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">REST API reference</a></li><li><a href="../../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Getting TAP information</h1>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d9572e27">ep_tap_total_queue</th>
+	<div class="body">
+		<p class="p">Couchbase Server uses an internal protocol known as TAP to stream information about data
+			changes between cluster nodes. Couchbase Server uses the TAP protocol during 1) rebalance,
+			2) replication at other cluster nodes, and 3) persistence of items to disk.</p>
 
-	<th class="entry" valign="top" id="d9572e30">Sum of tap queue sizes on the current tap queues</th>
+		<p class="p"><strong class="ph b">Be aware that this tool is a per-node, per-bucket operation.</strong> That means that if you
+			want to perform this operation, you must specify the IP address of a node in the cluster
+			and a named bucket. If you do not provided a named bucket, the server will apply the
+			setting to any default bucket that exists at the specified node. If you want to perform
+			this operation for an entire cluster, you will need to perform the command for every
+			node/bucket combination that exists for that cluster.</p>
 
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_total_fetched</td>
+		<p class="p">The following statistics will be output in response to a <samp class="ph codeph">cbstats tap</samp>
+			request:</p>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Sum of all tap messages sent</td>
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d10010e38">Name</th>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_max_pending</td>
+						<th class="entry" valign="top" id="d10010e41">Description</th>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The maximum number of background jobs a tap connection may have</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_fetched</td>
+				</thead>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of tap disk fetches</td>
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_total_queue</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_fetch_requeued</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Sum of tap queue sizes on the current tap queues</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of times a tap background fetch task is requeued.</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_fg_fetched</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_total_fetched</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of tap memory fetches</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Sum of all tap messages sent</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_deletes</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of tap deletion messages sent</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_max_pending</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_throttled</td>
+						<td class="entry" valign="top" headers="d10010e41 ">The maximum number of background jobs a tap connection may have</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of tap messages refused due to throttling.</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_keepalive</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_fetched</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">How long to keep tap connection state after client disconnect.</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Number of tap disk fetches</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_count</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of tap connections.</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_fetch_requeued</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_num_samples</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Number of times a tap background fetch task is requeued.</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The number of tap background fetch samples included in the average</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_min_wait</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_fg_fetched</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The shortest time (µs) for a tap item before it is serviced by the dispatcher</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Number of tap memory fetches</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_max_wait</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The longest time (µs) for a tap item before it is serviced by the dispatcher</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_deletes</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_wait_avg</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Number of tap deletion messages sent</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The average wait time (µs) for a tap item before it is serviced by the dispatcher</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_min_load</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_throttled</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The shortest time (µs) for a tap item to be loaded from the persistence layer</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Number of tap messages refused due to throttling.</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_max_load</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The longest time (µs) for a tap item to be loaded from the persistence layer</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_keepalive</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_bg_load_avg</td>
+						<td class="entry" valign="top" headers="d10010e41 ">How long to keep tap connection state after client disconnect.</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The average time (µs) for a tap item to be loaded from the persistence layer</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_noop_interval</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_count</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The number of secs between a no-op is added to an idle connection</td>
+						<td class="entry" valign="top" headers="d10010e41 ">Number of tap connections</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_backoff_period</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">The number of seconds the tap connection should back off after receiving ETMPFAIL</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_num_samples</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_queue_fill</td>
+						<td class="entry" valign="top" headers="d10010e41 ">The number of tap background fetch samples included in the average</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Total enqueued items</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_queue_drain</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_min_wait</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Total drained items</td>
+						<td class="entry" valign="top" headers="d10010e41 ">The shortest time (µs) for a tap item before it is serviced by the
+							dispatcher</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_queue_backoff</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Total back-off items</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_max_wait</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_queue_backfill</td>
+						<td class="entry" valign="top" headers="d10010e41 ">The longest time (µs) for a tap item before it is serviced by the
+							dispatcher</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of backfill remaining</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_queue_itemondisk</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_wait_avg</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Number of items remaining on disk</td>
+						<td class="entry" valign="top" headers="d10010e41 ">The average wait time (µs) for a tap item before it is serviced by the
+							dispatcher</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_throttle_threshold</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Percentage of memory in use before we throttle tap streams</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_min_load</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e27 ">ep_tap_throttle_queue_cap</td>
+						<td class="entry" valign="top" headers="d10010e41 ">The shortest time (µs) for a tap item to be loaded from the persistence
+							layer</td>
 
-	<td class="entry" valign="top" headers="d9572e30 ">Disk write queue cap to throttle tap streams </td>
+					</tr>
 
-</tr>
-</tbody>
-</table>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_max_load</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">The longest time (µs) for a tap item to be loaded from the persistence
+							layer</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_bg_load_avg</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">The average time (µs) for a tap item to be loaded from the persistence
+							layer</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_noop_interval</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">The number of secs between a no-op is added to an idle connection</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_backoff_period</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">The number of seconds the tap connection should back off after receiving
+							ETMPFAIL</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_queue_fill</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Total enqueued items</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_queue_drain</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Total drained items</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_queue_backoff</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Total back-off items</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_queue_backfill</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Number of backfill remaining</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_queue_itemondisk</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Number of items remaining on disk</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_throttle_threshold</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Percentage of memory in use before we throttle tap streams</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e38 ">ep_tap_throttle_queue_cap</td>
+
+						<td class="entry" valign="top" headers="d10010e41 ">Disk write queue cap to throttle tap streams </td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
 </div>
-<p class="p">You use the <samp class="ph codeph">cbstats tapagg</samp> to get statistics from named tap connections which
-are logically grouped and aggregated together by prefixes.</p>
-<p class="p">For example, if all of your tap connections started with <samp class="ph codeph">rebalance_</samp> or
-<samp class="ph codeph">replication_</samp>, you could call <samp class="ph codeph">cbstats tapagg _</samp> to request stats grouped by
-the prefix starting with <samp class="ph codeph">_</samp>. This would return a set of statistics for
-<samp class="ph codeph">rebalance</samp> and a set for <samp class="ph codeph">replication</samp>. The following are possible values
-returned by <samp class="ph codeph">cbstats tapagg</samp> :</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d9572e272">[prefix]:count</th>
+		<p class="p">You use the <samp class="ph codeph">cbstats tapagg</samp> to get statistics from named tap connections
+			which are logically grouped and aggregated together by prefixes.</p>
 
-	<th class="entry" valign="top" id="d9572e275">Number of connections matching this prefix</th>
+		<p class="p">For example, if all of your tap connections started with <samp class="ph codeph">rebalance_</samp> or
+				<samp class="ph codeph">replication_</samp>, you could call <samp class="ph codeph">cbstats tapagg _</samp> to
+			request stats grouped by the prefix starting with <samp class="ph codeph">_</samp>. This would return a
+			set of statistics for <samp class="ph codeph">rebalance</samp> and a set for
+			<samp class="ph codeph">replication</samp>. The following are possible values returned by <samp class="ph codeph">cbstats
+				tapagg</samp> :</p>
 
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:qlen</td>
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" valign="top" id="d10010e333">Name</th>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Total length of queues with this prefix</td>
+						<th class="entry" valign="top" id="d10010e336">Description</th>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:backfill_remaining</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Number of items needing to be backfilled</td>
+				</thead>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:backoff</td>
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:count</td>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Total number of backoff events</td>
+						<td class="entry" valign="top" headers="d10010e336 ">Number of connections matching this prefix</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:drain</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Total number of items drained</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:qlen</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:fill</td>
+						<td class="entry" valign="top" headers="d10010e336 ">Total length of queues with this prefix</td>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Total number of items filled</td>
+					</tr>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:itemondisk</td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:backfill_remaining</td>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Number of items remaining on disk</td>
+						<td class="entry" valign="top" headers="d10010e336 ">Number of items needing to be backfilled</td>
 
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d9572e272 ">[prefix]:total_backlog_size</td>
+					</tr>
 
-	<td class="entry" valign="top" headers="d9572e275 ">Number of remaining items for replication </td>
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:backoff</td>
 
-</tr>
-</tbody>
-</table>
+						<td class="entry" valign="top" headers="d10010e336 ">Total number of backoff events</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:drain</td>
+
+						<td class="entry" valign="top" headers="d10010e336 ">Total number of items drained</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:fill</td>
+
+						<td class="entry" valign="top" headers="d10010e336 ">Total number of items filled</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:itemondisk</td>
+
+						<td class="entry" valign="top" headers="d10010e336 ">Number of items remaining on disk</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d10010e333 ">[prefix]:total_backlog_size</td>
+
+						<td class="entry" valign="top" headers="d10010e336 ">Number of remaining items for replication </td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
 </div>
-</div>
+
+	</div>
+
 <div class="related-links">
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/cbstats-intro.html">cbstats tool</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../../CLI/CBstats/cbstats-tap.html">Tap stats</a></div>
 </div>
-</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

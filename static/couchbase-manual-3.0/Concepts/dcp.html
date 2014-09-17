@@ -1,0 +1,189 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Database Change Protocol</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a><ul class="nav nav-list"><li><a href="../Concepts/concept-clusterMgr.html">Cluster Manager</a></li><li><a href="../Concepts/concept-dataStorage.html">Data storage</a></li><li><a href="../Concepts/concept-ramQuota.html">RAM quotas</a></li><li><a href="../Concepts/concept-vBucket.html">vBuckets</a></li><li><a href="../Concepts/concept-cacheLayer.html">Caching layer</a></li><li><a href="../Concepts/concept-diskStorage.html">Disk storage</a></li><li><a href="../Concepts/global-thread-pool.html">Shared thread pool</a></li><li><a href="../Concepts/bucket-priority.html">Disk I/O priority</a></li><li><a href="../Concepts/bucket-eviction.html">Tunable memory</a></li><li><a href="../Concepts/concept-docExpiration.html">Expiration</a></li><li><a href="../Concepts/concept-serverWarmup.html">Server warmup</a></li><li><a href="../Concepts/concept-replication.html">Replicas and replication</a></li><li><a href="../Concepts/concepts-TAP.html">TAP</a></li><li class="active"><a href="../Concepts/dcp.html">Database Change Protocol</a><ul class="nav nav-list"></ul></li><li><a href="../Concepts/concept-client-interface.html">Client interface</a></li><li><a href="../Concepts/concepts-statsMonitor.html">Statistics and monitoring</a></li></ul></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Database Change Protocol</h1>
+
+	
+
+	<div class="body"><p class="shortdesc">Database Change Protocol (DCP) is the protocol used to stream data changes to
+		buckets.</p>
+
+		<p class="p">The Database Change Protocol (DCP) is a streaming protocol that significantly reduces
+			latency for view updates. With DCP, changes made to documents in memory are immediately
+			streamed to be indexed without being written to disk. This provides faster view consistency
+			which provides fresher data. DCP reduces latency for cross data center replication (XDCR).
+			Data is replicated memory-to-memory from the source cluster to the destination cluster
+			before being written to disk on the source cluster.</p>
+
+
+		<p class="p">To work with DCP, you need to be familiar with the following concepts, which are listed in
+			alphabetical order for convenience.</p>
+
+
+		<dl class="dl">
+			
+				<dt class="dt dlterm">Application client</dt>
+
+				<dd class="dd">A normal client that transmits read, write, update, delete, and query requests to
+					the server cluster, usually for an interactive web application. </dd>
+
+			
+
+			
+				<dt class="dt dlterm">DCP client</dt>
+
+				<dd class="dd">A special client that streams data from one or more Couchbase server nodes, for
+					purposes of intracluster replication (to be a backup in case the master server
+					fails), indexing (to answer queries in aggregate about the data in the whole
+					cluster), XDCR (to replicate data from one cluster to another cluster, usually
+					located in a separate data center), incremental backup, and any 3rd party component
+					that wants to index, monitor, or analyze Couchbase data in near real time, or in
+					batch mode on a schedule. </dd>
+
+			
+
+			
+				<dt class="dt dlterm">Failover log</dt>
+
+				<dd class="dd">A list of previously known vBucket versions for a vBucket. If a client connects to a
+					server and was previously connected to a different version of a vBucket than that
+					server is currently working with, the failure log is used to find a rollback
+					point.</dd>
+
+			
+
+			
+				<dt class="dt dlterm">History branch</dt>
+
+				<dd class="dd">Whenever a node becomes the master node for a vBucket in the event of a failover or
+					uncontrolled shutdown and restart, if it was not the farthest ahead of all processes
+					watching events on that partition and starts taking mutations, it might reuse
+					sequence numbers that other processes have already seen on this partition. This may
+					be a history branch, and the new master must assign the vBucket a new vBucket version
+					so that DCP clients in the distributed system can recognize that they are ahead of
+					the new master and roll back changes at the point this happened in the stream. During
+					a controlled handover from an old master to a new master, the sequence history cannot
+					have branches, so there is no need to assign a new version to the vBucket being
+					handed off. Controlled handovers occur in the case of a rebalance for elasticity
+					(such as adding or removing a node) or a swap rebalance in the case of an upgrade
+					(such as adding a new version of Couchbase Server to a cluster or removing an old
+					version of Couchbase Server).</dd>
+
+			
+
+			
+				<dt class="dt dlterm">Mutation</dt>
+
+				<dd class="dd">A mutation is an event that deletes a key or changes the value a key points to.
+					Mutations occur when transactions such as create, update, delete or expire are
+					executed.</dd>
+
+			
+
+			
+				<dt class="dt dlterm">Rollback point</dt>
+
+				<dd class="dd">The server uses the failover log to find the first possible history branch between
+					the last time a client was receiving mutations for a vBucket and now. The sequence
+					number of that history branch is the rollback point that is sent to the client.</dd>
+
+			
+
+			
+				<dt class="dt dlterm">Sequence number</dt>
+
+				<dd class="dd">Each mutation that occurs on a vBucket is assigned a number, which strictly
+					increases as events are assigned numbers (there is no harm in skipping numbers, but
+					they must increase), that can be used to order that event against other mutations
+					within the same vBucket. This does not give a cluster-wide ordering of events, but it
+					does enable processes watching events on a vBucket to resume where they left off
+					after a disconnect. </dd>
+
+			
+
+			
+				<dt class="dt dlterm">Server</dt>
+
+				<dd class="dd">A master or replica node that serves as the network storage component of a cluster.
+					For a given partition, only one node can be master in the cluster. If that node fails
+					or becomes unresponsive, the cluster selects a replica node to become the new
+					master.</dd>
+
+			
+
+			
+				<dt class="dt dlterm">Snapshot</dt>
+
+				<dd class="dd">To send a client a consistent picture of the data it has, the server takes a
+					snapshot of the state of its disk write queue or the state of its storage, depending
+					on where it needs to read from to satisfy the client’s current requests. This
+					snapshot represents the exact state of the mutations it contains at the time it was
+					taken. Using this snapshot, the server can send the items that existed at the point
+					in time the snapshot was taken, and only those items, in the state they were in when
+					the snapshot was taken. Snapshots do not imply that everything is locked or copied
+					into a new structure. In the current Couchbase storage subsystem, snapshots are
+					essentially “free." The only cost is when a file is copy compacted to remove garbage
+					and wasted space, the old file cannot be freed until all snapshot holders have
+					released the old file. It’s also possible to “kick” a snapshot holder if the system
+					determines the holder of the snapshot is taking too long. DCP clients that are kicked
+					can reconnect and a new snapshot will be obtained, allowing it to restart from where
+					it left off. </dd>
+
+			
+
+			
+				<dt class="dt dlterm">vBucket</dt>
+
+				<dd class="dd">Couchbase splits the key space into a fixed amount of vBuckets, usually 1024. Keys
+					are deterministically assigned to a vBucket, and vBuckets are assigned to nodes to
+					balance the load across the cluster. </dd>
+
+			
+
+			
+				<dt class="dt dlterm">vBucket stream</dt>
+
+				<dd class="dd">A grouping of messages related to receiving mutations for a specific vBucket. This
+					includes mutation, deletion, and expiration messages and snapshot marker messages.
+					The transport layer provides a way to separate and multiplex multiple streams of
+					information for different vBuckets. All messages between snapshot marker messages are
+					considered to be one snapshot. A snapshot contains only the recent update for any
+					given key within the snapshot window. It might require several complete snapshots to
+					get the current version of the document. </dd>
+
+			
+
+			
+				<dt class="dt dlterm">vBucket version</dt>
+
+				<dd class="dd">A universally unique identifier (UUID) and sequence number pair associated with a
+					vBucket. A new version is assigned to a vBucket by the new master node any time there
+					might have been a history branch. The UUID is a randomly generated number, and the
+					sequence number is the sequence number that vBucket last processed at the time the
+					version was created. </dd>
+
+			
+
+		</dl>
+
+
+
+
+	</div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Concepts/concept-intro.html" title="Couchbase Server concepts include the differenct components and systems that make up an individual Couchbase Server instance and a Couchbase cluster including information and concepts needed to understand the fast and elastic nature, high availability, and high performance of the Couchbase Server database.">Architecture and concepts</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

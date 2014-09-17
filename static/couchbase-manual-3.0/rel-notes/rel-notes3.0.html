@@ -1,0 +1,437 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Release notes</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li class="active"><a href="../rel-notes/rel-notes3.0.html">Release notes</a><ul class="nav nav-list"></ul></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Release notes</h1>
+
+  <div class="body">
+    <p class="p">This release note is for the 3.0.0 release. It contains a list of known and fixed issues.</p>
+
+
+    <p class="p">Couchbase Server is a NoSQL document database for interactive web applications. It has a
+      flexible data model, is easily scalable, provides consistent high performance and is
+      “always-on,” meaning it can serve application data 24 hours, 7 days a week.</p>
+
+    <p class="p">The new major features in this release include:</p>
+
+    <ul class="ul">
+      <li class="li">Performance <ul class="ul">
+          <li class="li">Tunable memory (option to remove keys and metadata from memory).</li>
+
+          <li class="li">Bucket disk I/O ejections (for faster persistence to disk).</li>
+
+          <li class="li">Faster warm up from disk when restarting the server.</li>
+
+        </ul>
+</li>
+
+      <li class="li">Availability and reliability <ul class="ul">
+          <li class="li">Faster XDCR without persisting to disk on the source cluster.</li>
+
+          <li class="li">Index building without persisting to disk on the source cluster.</li>
+
+        </ul>
+</li>
+
+      <li class="li">Ease of administration <ul class="ul">
+          <li class="li">Incremental backup</li>
+
+          <li class="li">Incremental restore</li>
+
+        </ul>
+</li>
+
+      <li class="li">Security <ul class="ul">
+          <li class="li">Data and password encryption between client and server</li>
+
+          <li class="li">Secure administrator access</li>
+
+        </ul>
+</li>
+
+    </ul>
+
+
+    <div class="section"><h2 class="title sectiontitle">New features and behavior changes</h2>
+      <p class="p">The following major enhancements include changes to the infrastructure, memory managment,
+        server maintenance, views indexing, and XDCR.</p>
+
+      <ul class="ul">
+        <li class="li">Infrastructure enhancement with <a class="xref" href="../Concepts/dcp.html" title="Database Change Protocol (DCP) is the protocol used to stream data changes to buckets.">Database Change
+            Protocol (DCP)</a> and <a class="xref" href="../Concepts/global-thread-pool.html" title="A shared thread pool is a collection of threads which are shared across multiple buckets.">Shared thread pool</a><p class="p">For DCP
+            statistics via the Web console and CLI, see <a class="xref" href="../UI/ui-dcp-queues.html" title="DCP queues provide information about the Database Change Protocol (DCP) protocol used to stream data changes to buckets.">DCP
+              Queues via UI</a> and <a class="xref" href="../CLI/cli-cbstats-dcp.html" title="Statistics for Database Change Protocol (DCP) are obtained via the CLI with the cbstats tool.">DCP stats via
+              CLI</a>.</p>
+</li>
+
+        <li class="li">Bucket and disk I/O enhancements including: <ul class="ul">
+            <li class="li"><a class="xref" href="../Concepts/bucket-eviction.html" title="Tunable memory allows both value-only ejection and full metadata ejection from memory.">Bucket metadata ejections</a> - For
+              more information about bucket metadata ejections, see <a class="xref" href="../UI/ui-task-bucket-metadata-ejection.html" title="Tuning memory to retain or eject metatdata is set when creating or editing the bucket properties.">Managing metadata in memory</a>, <a class="xref" href="../CLI/CBcli/cbcli-bucket-metadata-ejection.html" title="Bucket ejection from memory is set with couchbase-cli tool.">Setting metadata ejection policy</a>, and <a class="xref" href="../REST/rest-bucket-metadata-ejection.html" title="Bucket ejection from memory is set with POST pools/default/buckets/default.">Setting metadata ejection</a></li>
+
+            <li class="li"><a class="xref" href="../Concepts/bucket-priority.html" title="Disk I/O priority allows workload priorities to be set at the bucket level.">Disk I/O priority</a> - see <a class="xref" href="../UI/ui-task-set-bucket-priority.html" title="The disk I/O priority for a bucket is set via the Data Bucket panel either when creating a data bucket or when editing a data bucket.">Managing disk I/O priority</a>, <a class="xref" href="../CLI/cli-set-disk-priority.html" title="To set the disk I/O priority for a bucket, use the couchbase-cli tool bucket-create or bucket-edit command and the --bucket-priority=[low|high] option.">Setting bucket priority</a>, and <a class="xref" href="../REST/rest-bucket-set-priority.html" title="The disk I/O priority for a bucket is set with the /pools/default/buckets/bucket_name URI and the threadNumber setting.">Setting disk I/O priority</a></li>
+
+          </ul>
+</li>
+
+        <li class="li">Server maintenance enhancements including: <ul class="ul">
+            <li class="li"><a class="xref" href="../Concepts/graceful-failover.html" title="Graceful failover allows administrators to safely failover a node from the cluster after all in-flight operations are completed and without data loss.">Graceful failover</a> - For more information about
+              graceful failover via the web console, CLI, and REST API, see <a class="xref" href="../UI/ui-task-failover-graceful.html" title="Failover is performed on a specific node via Server Nodes &gt; Failover">Failing over a node</a>, <a class="xref" href="../CLI/cli-failover-graceful.html" title="By default, graceful failover is implemented with failing over a node from a cluster using couchbase-cli failover.">Failing over nodes</a>, and <a class="xref" href="../REST/rest-failover-graceful.html" title="Graceful failover is set through the POST /controller/startGracefulFailover HTTP method and URI.">Setting graceful failover</a></li>
+
+            <li class="li"><a class="xref" href="../Concepts/delta-node-recovery.html" title="Delta node recovery allows nodes to be re-added to the cluster and incrementally caught up with the data changes.">Delta node recovery</a> - For information about using
+              delta node recovery via the web console, CLI, and REST API, see <a class="xref" href="../UI/ui-task-node-recovery-incremental.html" title="Recovery is performed after a server node is failed over and before rebalance operations. Either Delta or Full recovery can be specified.">Recovering a node</a>, <a class="xref" href="../CLI/cli-node-recovery-incremental.html" title="To re-add a server node to a cluster, use the couchbase-cli tool and the recovery command with the --recovery-type parameter.">Recovering nodes</a>, and <a class="xref" href="../REST/rest-node-recovery-incremental.html" title="The REST request to specify the recovery type for a node uses the /controller/setRecoveryType endpoint URI.">Setting recovery type</a>. </li>
+
+            <li class="li"><a class="xref" href="../Tasks/tasks-backup-restore-incremental.html" title="Incremental backup and restore enables administrators to quickly back up only modified data in the database, making backup and restore more efficient for larger data sets. Enterprise Edition only.">Incremental backup and restore</a> - For information
+              about using incremental backup and restore via the CLI, see <a class="xref" href="../CLI/cli-increment-backup.html" title="Incremental backups are run by using the cbbackup command-line tool.">Backing up incrementally</a> and <a class="xref" href="../CLI/cli-incremental-restore.html" title="Incremental restore operations are run by using the cbrestore command-line tool.">Restoring incrementally</a>. </li>
+
+          </ul>
+</li>
+
+        <li class="li">Index building enhancement with <a class="xref" href="../Views/views-index-updates.html" title="Stream-based views reduce latency for view updates, providing faster view consistency and fresher data.">Stream-based views</a>.</li>
+
+        <li class="li">XDCR enhancements with <a class="xref" href="../XDCR/xdcr-memory-replication.html" title="Stream-based XDCR collects data changes from memory on the source cluster and streams the data changes directly to memory on the destination cluster.">Stream-based XDCR</a> and <a class="xref" href="../XDCR/xdcr-pause-resume.html" title="During XDCR replication, the process can be paused and resumed.">XDCR pause and resume replication</a> - For more information about pausing and
+          resuming XDCR replication, see <a class="xref" href="../UI/ui-xdcr-pause-resume.html" title="XDCR replication can be paused and resumed via the web console under the XDCR section.">Pausing XDCR replication</a>, <a class="xref" href="../CLI/cli-xdcr-pause-resume.html" title="The XDCR CLI provides options to pause and resume replication with couchbase-cli xdcr-replicate.">Pausing XDCR replication streams</a>, and <a class="xref" href="../REST/rest-xdcr-pause-resume.html" title="XDCR replication is paused and resumed using the /settings/replications/ URI path and the pauseRequested option.">Pausing XDCR replication streams</a>.</li>
+
+        <li class="li">Security enhancement including <a class="xref" href="../Misc/security-admin-access.html" title="Encrypted administrator access provides access using Secure Socket Layer (SSL) authentication. Enterprise Edition only.">Encrypted admin access</a> and
+            <a class="xref" href="../Misc/security-client-ssl.html" title="The Couchbase Server client libraries support client-side encryption using the Secure Sockets Layer (SSL) protocol. Enterprise Edition only.">Encrypted data access</a></li>
+
+        <li class="li">Log and log collection improvements with <a class="xref" href="../Misc/cluster-wide-info-intro.html" title="The Couchbase support team uses logs and other system diagnostics to analyze customer issues.">Cluster-wide diagnostics</a> - For more information about collecting
+          diagnostics, see <a class="xref" href="../UI/ui-cluster-wide-info.html" title="The web console provides a graphical interface for collecting and sending system diagnostics to the Couchbase support team.">Managing diagnostics</a>, <a class="xref" href="../CLI/CBcli/cbcli-cluster-wide-info.html" title="You can start, stop, and view status of a diagnostics collection by using the couchbase-cli tool.">Diagnostics with couchbase-cli</a>, and <a class="xref" href="../CLI/cbcollect-cluster-wide-info.html" title="You can start, stop, and get collection status by using the cbcollect_info tool.">Diagnostics with cbcollect_info</a>,
+          
+        </li>
+
+      </ul>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="section"><h2 class="title sectiontitle">Couchbase .NET incompatibility</h2>
+      <p class="p">An incompatibility between Microsoft Framework 4.0 or earlier, the Couchbase .NET SDK 1.3.7
+        or earlier, and Couchbase Server 3.0 has been identified where the URL generated for a View
+        operation on a Bucket is improperly encoded. This causes view requests to fail with the
+        following message in the body:</p>
+
+      <pre class="pre codeblock">"Design document not found, body: {"error":"not_found","reason":"missing"}"</pre>
+
+      <dl class="dl">
+        
+          <dt class="dt dlterm">Impact</dt>
+
+          <dd class="dd">The affected Microsoft .NET versions are 4.0 or earlier, Couchbase .NET SDK 1.3.7 or
+            earlier, and Couchbase Server 3.0 (including Beta) &gt;= 3.0. Microsoft .NET version 4.5
+            changes the way <samp class="ph codeph">Uri.ToString</samp> handles it’s Unicode encoding, which
+            resolves the issue, thus clients running on that version or higher of the CLR are not
+            impacted. Additionally, Couchbase Server 2.5 and lower are not impacted. <div class="note note"><span class="notetitle">Note:</span> Couchbase .NET 1.3.8 has a patch which resolves the issue for all versions
+              of Couchbase Server and Microsoft .NET Frameworks. </div>
+
+          </dd>
+
+        
+        
+          <dt class="dt dlterm">Workaround</dt>
+
+          <dd class="dd">In addition to the patch released with Couchbase .NET SDK version 1.3.8, add the
+            following element to your App.Config or Web.Config to enable support for all SDK and
+            Server versions. <pre class="pre codeblock">&lt;uri&gt;
+    &lt;iriParsing enabled="true"/&gt;
+&lt;uri&gt;
+            </pre>
+
+            <p class="p">Customers who are not ready or cannot upgrade their Couchbase .NET SDK’s to 1.3.8 or
+              greater are strongly advised to aentry this element to their deployments if they
+              intend to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
+
+          </dd>
+
+        
+
+        
+          <dt class="dt dlterm">References</dt>
+
+          <dd class="dd"><a class="xref" href="https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change">https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change</a></dd>
+
+        
+      </dl>
+
+    </div>
+
+
+
+
+
+    <div class="section"><h2 class="title sectiontitle">Views behavior change</h2>
+      <p class="p">The <samp class="ph codeph">stale=false</samp> view query argument has been enhanced. It considers all
+        document changes which have been received at the time the query was received. This means
+        that using the durability requirements or observe feature to block for persistence in
+        application code before issuing the <samp class="ph codeph">false</samp>stale query is no longer needed.
+        It is recommended that you remove all such application level checks after completing the
+        upgrade to the 3.0 release. </p>
+
+    </div>
+
+
+
+
+
+    <div class="section"><h2 class="title sectiontitle">Known issues</h2>
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+          
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="13.799283154121863%" id="d136504e524"><strong class="ph b">Functional area</strong></th>
+
+              <th class="entry" valign="top" width="8.960573476702509%" id="d136504e528"><strong class="ph b">Issue</strong></th>
+
+              <th class="entry" valign="top" width="77.24014336917561%" id="d136504e532"><strong class="ph b">Description</strong></th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Installation and upgrade</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11941" target="_blank">MB-11941</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Online upgrade from 2.0 to 3.0 on Ubuntu 12.04 does not work</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Cluster operations</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11928" target="_blank">MB-11928</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Rebalance with delta recovery exited with the message, "{badmatch,
+                {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Installation and upgrade</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11922" target="_blank">MB-11922</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Upgrade to R16 causes 20% regression in view query latency and
+                throughput</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Indexing and querying</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11919" target="_blank">MB-11919</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">There is a 3-5x increase in index size during rebalance with views</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Indexing and querying</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11899" target="_blank">MB-11899</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Indexing progress statistic goes backwards</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Database operations</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-12142" target="_blank">MB-12142</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Rebalance exit due to Bad Replicas error has no support documentation <p class="p">A bad
+                  replicas error message means that replication streams could not be created. There
+                  may be many reasons for this to happen, however, if some of the vBuckets sequence
+                  numbers (which are maintained internally in Couchbase) are invalid, the a log
+                  message displays in the memcached logs similar to the following:</p>
+<pre class="pre codeblock">(DCP Producer) some_dcp_stream_name (vb 0) Stream request failed because the snap start seqno (100) &lt;= start seqno (101) &lt;= snap end seqno (100) is required</pre>
+
+                <p class="p">In order for a DCP producer to accept a request for a DCP stream, the following
+                  must be true:</p>
+
+                <pre class="pre codeblock">snapshot start seqno &lt;= start seqno &lt;= snapshot end seqno</pre>
+
+                <p class="p">If the above condition is not true for a stream request, contact support to
+                  resolve the issue.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Database operations</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11820" target="_blank">MB-11820</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Beer-sample loading is stuck in a crashed state</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">XDCR</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11643" target="_blank">MB-11643</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Incoming workload suffers when XDCR enabled</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">XDCR</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11642" target="_blank">MB-11642</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Intra-replication falling behind under moderate-heavy workload <p class="p">Under a
+                  moderate replication workload (20-30K sets per second), the backlog becomes too
+                  large resulting in high memory usage.</p>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Indexing and querying</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11589" target="_blank">MB-11589</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">Sliding <samp class="ph codeph">endseqno</samp> during initial index build or DCP reading
+                from disk snapshot results in longer <samp class="ph codeph">stale=false</samp> query latency and
+                index startup time</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.799283154121863%" headers="d136504e524 ">Database operations</td>
+
+              <td class="entry" valign="top" width="8.960573476702509%" headers="d136504e528 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11299" target="_blank">MB-11299</a></td>
+
+              <td class="entry" valign="top" width="77.24014336917561%" headers="d136504e532 ">UPR replica streams cannot send items from partial snapshots</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+
+
+
+    <div class="section"><h2 class="title sectiontitle">Fixed issues</h2>
+      <p class="p">The following are fixed issues.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+          
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="13.44621513944223%" id="d136504e741"><strong class="ph b">Functional area</strong></th>
+
+              <th class="entry" valign="top" width="9.9601593625498%" id="d136504e745"><strong class="ph b">Issue</strong></th>
+
+              <th class="entry" valign="top" width="76.59362549800797%" id="d136504e749"><strong class="ph b">Description</strong></th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">Install and upgrade</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-6972" target="_blank">MB-6972</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">Distribute Couchbase Server through yum and ubuntu package repositories</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">Database operations</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11866" target="_blank">MB-11866</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">wbeam.smp RSS suddenly increases to 45GB after an unexpected_binary
+                error</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">vBuckets</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11720" target="_blank">MB-11720</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">Backfilling the entire vBucket can starve other streams that also need to
+                backfill</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">Cluster operations</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11606" target="_blank">MB-11606</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">Error displayed when node did not mark to collect</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">Cluster operations</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11568" target="_blank">MB-11568</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">IP address does not show the same in each step of cluster-wide collect
+                info.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">Database operations</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11405" target="_blank">MB-11405</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">Shared thread pool: high CPU overhead due to OS level context switches /
+                scheduling</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="13.44621513944223%" headers="d136504e741 ">Database operations</td>
+
+              <td class="entry" valign="top" width="9.9601593625498%" headers="d136504e745 "><a class="xref" href="http://www.couchbase.com/issues/browse/MB-11383" target="_blank">MB-11383</a></td>
+
+              <td class="entry" valign="top" width="76.59362549800797%" headers="d136504e749 ">warmup_min_items_threshold setting is not honored correctly in 3.0
+                warmup</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

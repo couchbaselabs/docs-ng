@@ -1,0 +1,112 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Backing up design documents</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">CLI overview</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a><ul class="nav nav-list"><li class="active"><a href="../CLI/cbbackup-ddocs.html">Backing up design documents</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cli-increment-backup.html">Backing up incrementally</a></li></ul></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Backing up design documents</h1>
+
+  
+  <div class="body"><p class="shortdesc">Design documents are backed up with the <samp class="ph codeph">design_doc_only=1</samp> option.</p>
+
+
+    <p class="p">You can backup only design documents from a cluster or bucket with the option,
+      <samp class="ph codeph">design_doc_only=1</samp>. You can later restore the design documents only with
+      <samp class="ph codeph">cbrestore</samp>:</p>
+
+
+    <pre class="pre codeblock">&gt; ./cbbackup http://10.5.2.30:8091 ~/backup -x design_doc_only=1 -b bucket_name
+
+transfer design doc only. bucket msgs will be skipped.
+done
+</pre>
+
+    
+    
+    
+    <p class="p">Where you provide the hostname and port for a node in the cluster. This will make a backup
+      copy of all design documents from <samp class="ph codeph">bucket_name</samp> and store this as
+      <samp class="ph codeph">design.json</samp> in the directory <samp class="ph codeph">~/backup/bucket_name</samp>. If
+      you do not provide a named bucket it will backup design documents for all buckets in the
+      cluster. In this example we did a backup of two design documents on a node and our file
+      will appear as follows:</p>
+
+    
+    <pre class="pre codeblock">[
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "view1":{
+                  "map":"function(doc){emit(doc.key,doc.key_num);}"
+               },
+               "view2":{
+                  "map":"function(doc,meta){emit(meta.id,doc.key);}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-6f9bfe0a",
+            "id":"_design/ddoc1"
+         }
+      }
+   },
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "dothis":{
+                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-4b533871",
+            "id":"_design/ddoc2"
+         }
+      }
+   },
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "dothat":{
+                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-a8b6f59b",
+            "id":"_design/dev_ddoc2"
+         }
+      }
+   }
+]
+</pre>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../CLI/cbbackup_tool.html" title="The cbbackup tool creates a copy of data from an entire running cluster, an entire bucket, a single node, or a single bucket on a single functioning node. Your node or cluster needs to be functioning in order to create the backup. Couchbase Server will write a copy of data onto disk.">cbbackup tool</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

@@ -1,7 +1,5 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li class="active"><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>cbtransfer tool</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">CLI overview</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li class="active"><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
 	<h1 class="title topictitle1">cbtransfer tool</h1>
 
 	<div class="body">
@@ -31,9 +29,9 @@
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" id="d38280e42"><strong class="ph b">Linux</strong></th>
+						<th class="entry" valign="top" id="d35756e42"><strong class="ph b">Linux</strong></th>
 
-						<th class="entry" valign="top" id="d38280e46"><samp class="ph codeph">/opt/couchbase/bin/</samp></th>
+						<th class="entry" valign="top" id="d35756e46"><samp class="ph codeph">/opt/couchbase/bin/</samp></th>
 
 					</tr>
 
@@ -41,16 +39,16 @@
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e42 "><strong class="ph b">Windows</strong></td>
+						<td class="entry" valign="top" headers="d35756e42 "><strong class="ph b">Windows</strong></td>
 
-						<td class="entry" valign="top" headers="d38280e46 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\</samp></td>
+						<td class="entry" valign="top" headers="d35756e46 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\</samp></td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e42 "><strong class="ph b">Mac OS X</strong></td>
+						<td class="entry" valign="top" headers="d35756e42 "><strong class="ph b">Mac OS X</strong></td>
 
-						<td class="entry" valign="top" headers="d38280e46 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/</samp></td>
+						<td class="entry" valign="top" headers="d35756e46 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/</samp></td>
 
 					</tr>
 
@@ -82,9 +80,9 @@ Examples:
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" id="d38280e105">-h, –help</th>
+						<th class="entry" valign="top" id="d35756e105">-h, –help</th>
 
-						<th class="entry" valign="top" id="d38280e108">Command help</th>
+						<th class="entry" valign="top" id="d35756e108">Command help</th>
 
 					</tr>
 
@@ -92,24 +90,24 @@ Examples:
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">–add</td>
+						<td class="entry" valign="top" headers="d35756e105 ">–add</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Use –add instead of –set in order to not overwrite existing items in
+						<td class="entry" valign="top" headers="d35756e108 ">Use –add instead of –set in order to not overwrite existing items in
 							the destination</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-b BUCKET_SOURCE</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-b BUCKET_SOURCE</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Single named bucket from source cluster to transfer</td>
+						<td class="entry" valign="top" headers="d35756e108 ">Single named bucket from source cluster to transfer</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-B BUCKET_DESTINATION, –bucket-destination=BUCKET_DESTINATION</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-B BUCKET_DESTINATION, –bucket-destination=BUCKET_DESTINATION</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Single named bucket on destination cluster which receives transfer.
+						<td class="entry" valign="top" headers="d35756e108 ">Single named bucket on destination cluster which receives transfer.
 							This allows you to transfer to a bucket with a different name as your
 							source bucket. If you do not provide defaults to the same name as the
 							bucket-source</td>
@@ -117,102 +115,102 @@ Examples:
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-i ID, –id=ID</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-i ID, –id=ID</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Transfer only items that match a vbucketID</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-k KEY, –key=KEY</td>
-
-						<td class="entry" valign="top" headers="d38280e108 ">Transfer only items with keys that match a regexp</td>
+						<td class="entry" valign="top" headers="d35756e108 ">Transfer only items that match a vbucketID</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-n, –dry-run</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-k KEY, –key=KEY</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">No actual transfer; just validate parameters, files, connectivity and
+						<td class="entry" valign="top" headers="d35756e108 ">Transfer only items with keys that match a regexp</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d35756e105 ">-n, –dry-run</td>
+
+						<td class="entry" valign="top" headers="d35756e108 ">No actual transfer; just validate parameters, files, connectivity and
 							configurations</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-u USERNAME, –username=USERNAME</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-u USERNAME, –username=USERNAME</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">REST username for source cluster or server node</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-p PASSWORD, –password=PASSWORD</td>
-
-						<td class="entry" valign="top" headers="d38280e108 ">REST password for cluster or server node</td>
+						<td class="entry" valign="top" headers="d35756e108 ">REST username for source cluster or server node</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-t THREADS, –threads=THREADS</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-p PASSWORD, –password=PASSWORD</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Number of concurrent workers threads performing the transfer.
+						<td class="entry" valign="top" headers="d35756e108 ">REST password for cluster or server node</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d35756e105 ">-t THREADS, –threads=THREADS</td>
+
+						<td class="entry" valign="top" headers="d35756e108 ">Number of concurrent workers threads performing the transfer.
 							Defaults to 4.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-v, –verbose</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-v, –verbose</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Verbose logging; provide more verbosity</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">-x EXTRA, –extra=EXTRA</td>
-
-						<td class="entry" valign="top" headers="d38280e108 ">Provide extra, uncommon config parameters</td>
+						<td class="entry" valign="top" headers="d35756e108 ">Verbose logging; provide more verbosity</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">–single-node</td>
+						<td class="entry" valign="top" headers="d35756e105 ">-x EXTRA, –extra=EXTRA</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Transfer from a single server node in a source cluster. This single
+						<td class="entry" valign="top" headers="d35756e108 ">Provide extra, uncommon config parameters</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d35756e105 ">–single-node</td>
+
+						<td class="entry" valign="top" headers="d35756e108 ">Transfer from a single server node in a source cluster. This single
 							server node is a source node URL</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">–source-vbucket-state=SOURCE_VBUCKET_STATE</td>
+						<td class="entry" valign="top" headers="d35756e105 ">–source-vbucket-state=SOURCE_VBUCKET_STATE</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Only transfer from source vbuckets in this state, such as ‘active’
+						<td class="entry" valign="top" headers="d35756e108 ">Only transfer from source vbuckets in this state, such as ‘active’
 							(default) or ‘replica’. Must be used with Couchbase cluster as
 							source.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">–destination-vbucket-state=DESTINATION_VBUCKET_STATE</td>
+						<td class="entry" valign="top" headers="d35756e105 ">–destination-vbucket-state=DESTINATION_VBUCKET_STATE</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Only transfer to destination vbuckets in this state, such as ‘active’
+						<td class="entry" valign="top" headers="d35756e108 ">Only transfer to destination vbuckets in this state, such as ‘active’
 							(default) or ‘replica’. Must be used with Couchbase cluster as
 							destination.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 ">–destination-operation=DESTINATION_OPERATION</td>
+						<td class="entry" valign="top" headers="d35756e105 ">–destination-operation=DESTINATION_OPERATION</td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Perform this operation on transfer. “set” will override an existing
+						<td class="entry" valign="top" headers="d35756e108 ">Perform this operation on transfer. “set” will override an existing
 							document, ‘add’ will not override, ‘get’ will load all keys transferred
 							from a source cluster into the caching layer at the destination.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e105 "><samp class="ph codeph">/path/to/filename</samp></td>
+						<td class="entry" valign="top" headers="d35756e105 "><samp class="ph codeph">/path/to/filename</samp></td>
 
-						<td class="entry" valign="top" headers="d38280e108 ">Export a.csv file from the server or import a.csv file to the server.
+						<td class="entry" valign="top" headers="d35756e108 ">Export a.csv file from the server or import a.csv file to the server.
 						</td>
 
 					</tr>
@@ -231,9 +229,9 @@ Examples:
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" id="d38280e283">batch_max_bytes=400000</th>
+						<th class="entry" valign="top" id="d35756e283">batch_max_bytes=400000</th>
 
-						<th class="entry" valign="top" id="d38280e286">Transfer this # of bytes per batch.</th>
+						<th class="entry" valign="top" id="d35756e286">Transfer this # of bytes per batch.</th>
 
 					</tr>
 
@@ -241,77 +239,77 @@ Examples:
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">batch_max_size=1000</td>
+						<td class="entry" valign="top" headers="d35756e283 ">batch_max_size=1000</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">Transfer this # of documents per batch</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">cbb_max_mb=100000</td>
-
-						<td class="entry" valign="top" headers="d38280e286 ">Split backup file on destination cluster if it exceeds MB</td>
+						<td class="entry" valign="top" headers="d35756e286 ">Transfer this # of documents per batch</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">max_retry=10</td>
+						<td class="entry" valign="top" headers="d35756e283 ">cbb_max_mb=100000</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">Max number of sequential retries if transfer fails</td>
+						<td class="entry" valign="top" headers="d35756e286 ">Split backup file on destination cluster if it exceeds MB</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">nmv_retry=1</td>
+						<td class="entry" valign="top" headers="d35756e283 ">max_retry=10</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">0 or 1, where 1 retries transfer after a NOT_MY_VBUCKET message.
+						<td class="entry" valign="top" headers="d35756e286 ">Max number of sequential retries if transfer fails</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d35756e283 ">nmv_retry=1</td>
+
+						<td class="entry" valign="top" headers="d35756e286 ">0 or 1, where 1 retries transfer after a NOT_MY_VBUCKET message.
 							Default of 1.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">recv_min_bytes=4096</td>
+						<td class="entry" valign="top" headers="d35756e283 ">recv_min_bytes=4096</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">Amount of bytes for every TCP/IP batch transferred</td>
+						<td class="entry" valign="top" headers="d35756e286 ">Amount of bytes for every TCP/IP batch transferred</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">report=5</td>
+						<td class="entry" valign="top" headers="d35756e283 ">report=5</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">Number batches transferred before updating progress bar in
+						<td class="entry" valign="top" headers="d35756e286 ">Number batches transferred before updating progress bar in
 							console</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">report_full=2000</td>
+						<td class="entry" valign="top" headers="d35756e283 ">report_full=2000</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">Number batches transferred before emitting progress information in
+						<td class="entry" valign="top" headers="d35756e286 ">Number batches transferred before emitting progress information in
 							console</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">try_xwm=1</td>
+						<td class="entry" valign="top" headers="d35756e283 ">try_xwm=1</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">As of 2.1, transfer documents with metadata. 1 is default. 0 should
+						<td class="entry" valign="top" headers="d35756e286 ">As of 2.1, transfer documents with metadata. 1 is default. 0 should
 							only be used if you transfer from 1.8.x to 1.8.x.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">data_only=0</td>
+						<td class="entry" valign="top" headers="d35756e283 ">data_only=0</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">For value 1, only transfer data from a backup file or
+						<td class="entry" valign="top" headers="d35756e286 ">For value 1, only transfer data from a backup file or
 							cluster.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d38280e283 ">design_doc_only=0</td>
+						<td class="entry" valign="top" headers="d35756e283 ">design_doc_only=0</td>
 
-						<td class="entry" valign="top" headers="d38280e286 ">For value 1, transfer design documents only from a backup file or
+						<td class="entry" valign="top" headers="d35756e286 ">For value 1, transfer design documents only from a backup file or
 							cluster. Defaults to 0. </td>
 
 					</tr>
@@ -466,11 +464,9 @@ done
 
 <div class="related-links">
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">CLI reference</a></div>
 </div>
-</div></main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

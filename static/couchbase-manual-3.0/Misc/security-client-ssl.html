@@ -1,0 +1,199 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Encrypted data access</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a><ul class="nav nav-list"><li><a href="../Misc/admin-basics.html">Administration basics</a><ul class="nav nav-list"><li><a href="../Misc/security-admin-access.html">Encrypted admin access</a></li><li class="active"><a href="../Misc/security-client-ssl.html">Encrypted data access</a><ul class="nav nav-list"></ul></li><li><a href="../Tasks/tasks-common.html">Common admin tasks</a></li><li><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></li><li><a href="../Misc/admin-datafiles.html">Data file location</a></li><li><a href="../Misc/install-location.html">Installation location</a></li><li><a href="../Misc/limits.html">Limits</a></li><li><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Encrypted data access</h1>
+
+	
+	<div class="body conbody"><div class="abstract">
+		 <span class="shortdesc">The Couchbase Server client libraries support client-side encryption using the
+			Secure Sockets Layer (SSL) protocol. <strong class="ph b">Enterprise Edition only.</strong></span>
+To enable SSL
+		on the client-side, you need to get an SSL certificate from Couchbase Server and then
+		follow the steps specific to the client you are using. </div>
+
+		<p class="p">To obtain the Couchbase Server SSL certificate, access the Couchbase Server web console, 
+			navigate to <span class="ph uicontrol">Settings &gt; Certificate &gt; show certificate &gt;</span>, 
+			and copy the certificate.</p>
+
+		
+		<div class="note note"><span class="notetitle">Note:</span> If the Couchbase Server SSL certificate is regenerated, you will need to 
+		obtain the new certificate.</div>
+
+		
+		<p class="p">The following clients support SSL:</p>
+
+		<ul class="ul">
+			<li class="li">Java</li>
+
+			<li class="li">.NET</li>
+
+			<li class="li">Node.js</li>
+
+			<li class="li">PHP</li>
+
+			<li class="li">C</li>
+
+		</ul>
+
+		
+		<div class="note note"><span class="notetitle">Note:</span> The Couchbase network port, 11207, is used for data communication between the client and the data nodes using SSL.</div>
+
+		
+		<div class="section" id="concept_bd3_rjq_54__java-ssl"><h2 class="title sectiontitle">Configuring the Java client for SSL</h2>
+			
+			<p class="p">To configure SSL for the Java client:</p>
+
+			<ol class="ol">
+				<li class="li">Get the SSL certificate from Couchbase Server.</li>
+
+				<li class="li">Store the certificate in your Java virtual machine (JVM) keystore.
+					<pre class="pre codeblock language-bourne">$ keytool -import -file certificate-file-name</pre>
+</li>
+
+
+				<li class="li">Enable SSL by modifying the <span class="ph filepath">reference.conf</span> configuration
+						file.
+					<p class="p">Set <samp class="ph codeph">sslEnabled</samp> to <samp class="ph codeph">true</samp>, specify the path to the
+						keystore, and provide the keystore password, as shown in the following
+						example:</p>
+
+					<pre class="pre codeblock">com.couchbase.client.bootstrap {
+    sslEnabled = true
+    sslKeystoreFile = /path/to/keystorefile
+    sslKeystorePassword = ""
+}</pre>
+</li>
+
+			</ol>
+
+		</div>
+
+
+		<div class="section" id="concept_bd3_rjq_54__net-ssl"><h2 class="title sectiontitle">Configuring the .NET client for SSL</h2>
+			
+			<p class="p">To configure SSL for the .NET client:</p>
+
+			<ol class="ol">
+				<li class="li">Get the SSL certificate from Couchbase Server.</li>
+
+				<li class="li">Store the certificate in the Microsoft Windows Trusted Root Certification
+					Authorities certificate store.</li>
+
+				<li class="li">Enable SSL support on the client.
+					<p class="p">You can enable SSL at either the cluster level or on a per-Bucket basis. Setting
+						SSL support at the cluster level means that all buckets within the cluster will
+						use SSL. If you want to use SSL only on specific buckets, just configure your
+						individual bucket to use SSL. Here's some examples:</p>
+
+					
+<pre class="pre codeblock">var config = new ClientConfiguration()
+{
+   UseSsl = true
+};
+var cluster = new CouchbaseCluster(config);
+using (var bucket = cluster.OpenBucket())
+{
+	//all buckets opened with this configuration will use SSL
+}  
+ 
+var config = new ClientConfiguration
+{
+	BucketConfigs = new Dictionary&lt;string, BucketConfiguration&gt;
+	{
+		{"customers", new BucketConfiguration
+			{
+			UseSsl = true
+			}}
+		}
+	};
+var cluster = new CouchbaseCluster(config);
+using (var bucket = cluster.OpenBucket("customers"))
+{
+	//only the customers bucket will use SSL
+}
+</pre>
+
+
+				</li>
+
+			</ol>
+
+		</div>
+
+
+		<div class="section" id="concept_bd3_rjq_54__node-ssl"><h2 class="title sectiontitle">Configuring the Node.js client for SSL</h2>
+			
+			<p class="p">To configure SSL for Node.js:</p>
+
+			<ol class="ol">
+				<li class="li">Get the SSL certificate from Couchbase Server.</li>
+
+				<li class="li">Store the certificate in the appropriate certificate storage area for your environment.</li>
+
+				<li class="li">Pass an SSL scheme with your connection string when creating your cluster object, as
+					shown in the following example:
+					<pre class="pre codeblock">var couchbase = require('couchbase');
+var myCluster = new couchbase.Cluster('couchbases://10.1.1.1');
+var myBucket = myCluster.openBucket();</pre>
+</li>
+
+			</ol>
+
+		</div>
+
+
+		<div class="section" id="concept_bd3_rjq_54__php-ssl"><h2 class="title sectiontitle">Configuring the PHP client for SSL</h2>
+			
+			<p class="p">To configure SSL for PHP:</p>
+
+			<ol class="ol">
+				<li class="li">Get the SSL certificate from Couchbase Server.</li>
+
+				<li class="li">Store the certificate in the appropriate certificate storage area for your environment.</li>
+
+				<li class="li">Enable SSL support on the client.</li>
+
+			</ol>
+
+		</div>
+
+
+		<div class="section" id="concept_bd3_rjq_54__c-ssl"><h2 class="title sectiontitle">Configuring the C client for SSL</h2>
+			
+			<p class="p">To configure SSL for C:</p>
+
+			<ol class="ol">
+				<li class="li">Get the SSL certificate from Couchbase Server.</li>
+
+				<li class="li">Store the certificate in the appropriate certificate storage area for your environment.</li>
+
+				<li class="li">Pass an SSL scheme with your connection string when creating your cluster object, as
+					shown in the following example:
+					<pre class="pre codeblock">cropts.v.v3.connstr = "couchbases://securehost.net/mybucket?ca_path=server_ca.pem";</pre>
+</li>
+
+			</ol>
+
+			
+		</div>
+
+
+
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Misc/admin-basics.html" title="The administration tools are the Web Console, Command-line interface (CLI) and REST API.">Administration basics</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

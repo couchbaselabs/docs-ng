@@ -1,0 +1,126 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Recovering nodes</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">CLI overview</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a><ul class="nav nav-list"><li><a href="../CLI/CBcli/cbcli-commands.html">couchbase-cli commands</a></li><li><a href="../CLI/CBcli/cbcli-rza.html">Rack-zone awareness</a></li><li><a href="../CLI/CBcli/cbcli-buckets.html">Buckets</a></li><li><a href="../CLI/CBcli/cbcli-servers.html">Server nodes</a><ul class="nav nav-list"><li><a href="../CLI/cli-failover-graceful.html">Failing over nodes</a></li><li class="active"><a href="../CLI/cli-node-recovery-incremental.html">Recovering nodes</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../CLI/CBcli/cbcli-xdcr.html">XDCR</a></li><li><a href="../CLI/CBcli/cbcli-cluster-wide-info.html">Diagnostics with couchbase-cli</a></li></ul></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Recovering nodes</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc">To re-add a server node to a cluster, use the <samp class="ph codeph">couchbase-cli</samp> tool and
+    the <samp class="ph codeph">recovery</samp> command with the <samp class="ph codeph">--recovery-type</samp> parameter. </p>
+
+    <div class="section">
+      <p class="p">Recovery options are either <samp class="ph codeph">delta</samp> or <samp class="ph codeph">full</samp>.</p>
+
+      
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_lgt_jnb_k4__table_recovery-type" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Recovery type</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="33.44481605351171%" id="d40638e50">Option</th>
+
+              <th class="entry" valign="top" width="66.5551839464883%" id="d40638e53">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="33.44481605351171%" headers="d40638e50 ">--server-recovery=HOST[:PORT]</td>
+
+              <td class="entry" valign="top" width="66.5551839464883%" headers="d40638e53 ">Server to recover</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.44481605351171%" headers="d40638e50 ">--recovery-type=TYPE[delta|full]</td>
+
+              <td class="entry" valign="top" width="66.5551839464883%" headers="d40638e53 ">Type of recovery to be performed for the node</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+      <pre class="pre codeblock">couchbase-cli failover
+    --cluster=HOST:PORT
+    --server-recovery=HOST:PORT
+    --recovery-type=[delta|full]
+    --user=ADMIN 
+    --password=PASSWORD          </pre>
+
+    
+    
+    </div>
+
+    
+    
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Setting recovery type</h2>
+      
+      <p class="p">To set incremental node recovery type for a server:</p>
+
+      <pre class="pre codeblock">       
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+    --server-recovery=192.168.0.2          \\	
+    --recovery-type=delta                   \\	
+    -u Administrator -p password
+      </pre>
+
+    </div>
+     
+    
+    
+    <div class="example"><h2 class="title sectiontitle">Setting failover, readd, recovery, and rebalance operations</h2>
+      <p class="p">The following example shows a failover, readd, recovery and rebalance sequence operations,
+        where as, a node in a cluster is gracefully failed over, the node is re-added to the
+        cluster, a delta recovery is implemented for the node, and rebalance is performed on the
+        cluster:</p>
+
+      
+      <pre class="pre codeblock">
+couchbase-cli failover -c 192.168.0.1:8091 \\	
+    --server-failover=192.168.0.2 \\	
+    -u Administrator -p password	
+				
+couchbase-cli server-readd -c 192.168.0.1:8091 \\	
+    --server-add=192.168.0.2 \\	
+    -u Administrator -p password	
+			
+couchbase-cli recovery -c 192.168.0.1:8091 \\	
+    --server-recovery=192.168.0.2 \\	
+    --recovery-type=delta \\	
+    -u Administrator -p password	
+				
+couchbase-cli rebalance -c 192.168.0.1:8091 \\	
+    -u Administrator -p password          
+      </pre>
+
+    </div>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../CLI/CBcli/cbcli-servers.html">Server nodes</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

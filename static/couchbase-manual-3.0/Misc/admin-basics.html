@@ -1,21 +1,42 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a><ul class="nav nav-list"><li class="active"><a href="../Misc/admin-basics.html">Administration basics</a><ul class="nav nav-list"><li><a href="../Misc/admin-tools.html">Administration tools</a></li><li><a href="../Tasks/tasks-common.html">Common administrative tasks</a></li><li><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></li><li><a href="../Misc/admin-datafiles.html">Data file location</a></li><li><a href="../Misc/install-location.html">Installation location</a></li><li><a href="../Misc/limits.html">Limits</a></li></ul></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Couchbase web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">Couchbase CLI</a></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Administration basics</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a><ul class="nav nav-list"><li class="active"><a href="../Misc/admin-basics.html">Administration basics</a><ul class="nav nav-list"><li><a href="../Misc/security-admin-access.html">Encrypted admin access</a></li><li><a href="../Misc/security-client-ssl.html">Encrypted data access</a></li><li><a href="../Tasks/tasks-common.html">Common admin tasks</a></li><li><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></li><li><a href="../Misc/admin-datafiles.html">Data file location</a></li><li><a href="../Misc/install-location.html">Installation location</a></li><li><a href="../Misc/limits.html">Limits</a></li><li><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></li></ul></li><li><a href="../Concepts/concept-intro.html">Architecture and concepts</a></li><li><a href="../Concepts/bp-deployment-considerations.html">Deployment considerations</a></li><li><a href="../Tasks/cluster-management.html">Cluster management</a></li><li><a href="../Monitoring/monitor-intro.html">Monitoring</a></li><li><a href="../Views/views-intro.html">Views and indexes</a></li><li><a href="../XDCR/xdcr-intro.html">Cross Datacenter Replication (XDCR)</a></li><li><a href="../UI/ui-intro.html">Web console</a></li><li><a href="../Misc/faq.html">FAQs</a></li><li><a href="../Misc/sample-bucket-intro.html">Sample buckets</a></li><li><a href="../Misc/Trbl-intro.html">Troubleshooting</a></li><li><a href="../Misc/deprecated.html">Deprecated items</a></li></ul></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
  <h1 class="title topictitle1">Administration basics</h1>
 
- <div class="body">
-  <p class="p">Couchbase administration is primarily supported through the following methods:</p>
+ 
+ 
+ <div class="body"><p class="shortdesc">The administration tools are the Web Console, Command-line interface (CLI) and REST API.</p>
 
-  
-  <ul class="ul">
-   <li class="li">Web Console</li>
+  <p class="p">Couchbase Server was designed to be as easy to use as possible, and does not require constant
+    attention. Administration is however offered in a number of different tools and systems.</p>
 
-   <li class="li">Command-line interface</li>
+   <p class="p">Couchbase Server provides the following solutions for managing and monitoring your Couchbase Server
+    and cluster:</p>
 
-   <li class="li">REST API</li>
+   <ul class="ul">
+    <li class="li"><strong class="ph b">Web Console</strong>
+     <p class="p">Couchbase Server includes a built-in web-administration console that provides a complete
+      interface for configuring, managing, and monitoring your Couchbase Server installation.</p>
 
-  </ul>
+    </li>
+
+    <li class="li"><strong class="ph b">Command-line Interface (CLI)</strong>
+     <p class="p">Couchbase Server includes a suite of command-line tools that provide information and control
+      over your Couchbase Server and cluster installation. These can be used in combination with
+      your own scripts and management procedures to provide additional functionality, such as
+      automated failover, backups and other procedures. The command-line tools make use of the REST
+      API.</p>
+
+    </li>
+
+    <li class="li"><strong class="ph b">REST API</strong>
+     <p class="p">In addition to the Web Administration console, Couchbase Server incorporates a management
+      interface exposed through the standard HTTP REST protocol. This REST interface can be called
+      from your own custom management and administration scripts to support different
+      operations.</p>
+
+    </li>
+
+   </ul>
 
   
   <div class="section"><h2 class="title sectiontitle">Accessing Couchbase Server directly</h2>
@@ -47,9 +68,11 @@
 
  <div class="related-links">
 <ul class="ullinks">
-<li class="link ulchildlink"><strong><a href="../Misc/admin-tools.html">Administration tools</a></strong><br>
-The administration tools are the Web Console, Command-line interface (CLI) and REST API.</li>
-<li class="link ulchildlink"><strong><a href="../Tasks/tasks-common.html">Common administrative tasks</a></strong><br>
+<li class="link ulchildlink"><strong><a href="../Misc/security-admin-access.html">Encrypted admin access</a></strong><br>
+Encrypted administrator access provides access using Secure Socket Layer (SSL)     authentication. <strong class="ph b">Enterprise Edition only.</strong></li>
+<li class="link ulchildlink"><strong><a href="../Misc/security-client-ssl.html">Encrypted data access</a></strong><br>
+The Couchbase Server client libraries support client-side encryption using the 			Secure Sockets Layer (SSL) protocol. <strong class="ph b">Enterprise Edition only.</strong></li>
+<li class="link ulchildlink"><strong><a href="../Tasks/tasks-common.html">Common admin tasks</a></strong><br>
 </li>
 <li class="link ulchildlink"><strong><a href="../Misc/start-stop-couchbase.html">Starting and stopping Couchbase</a></strong><br>
 Summary of starting and stopping Couchbase on Linux (RHEL and Ubuntu), Windows, and     Mac.</li>
@@ -59,23 +82,22 @@ Couchbase Server stores data files (database and indices) under the <span class=
 The default installation location for Couchbase Server depends on the operating     system.</li>
 <li class="link ulchildlink"><strong><a href="../Misc/limits.html">Limits</a></strong><br>
 Couchbase Server limits and limitations may affect server usage and implementation.</li>
+<li class="link ulchildlink"><strong><a href="../Misc/cluster-wide-info-intro.html">Cluster-wide diagnostics</a></strong><br>
+ The Couchbase support team uses logs and other system diagnostics to analyze customer 		issues. </li>
 </ul>
 
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../admin-intro.html">Couchbase Administration</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../admin-intro.html">Administration</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="../Install/install-browsers.html" title="Mozzila Firefox, Safari, Google Chrome, and IE are supported">Supported web browsers</a></div>
-<div><a class="link" href="../CLI/cli-overview.html">Command-line interface overview</a></div>
+<div><a class="link" href="../CLI/cli-overview.html">CLI overview</a></div>
 <div><a class="link" href="../REST/overview-rest-api.html">REST API overview</a></div>
 <div><a class="link" href="../Concepts/bp-deployment-considerations.html" title="Deployment configuration take into account topics such as restricted access, node communication, swap configuration, and connection timeouts.">Deployment considerations</a></div>
 <div><a class="link" href="http://www.couchbase.com/develop" target="_blank">Couchbase SDKs</a></div></div>
 </div>
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');

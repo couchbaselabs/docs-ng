@@ -1,0 +1,62 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Unattended installation</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a><ul class="nav nav-list"><li><a href="../Install/setup-overview.html">Couchbase setup overview</a></li><li><a href="../Install/pre-install.html">Pre-installation</a></li><li><a href="../Install/RHEL-install-intro.html">Red Hat/Centos installation</a></li><li><a href="../Install/Ubuntu-install.html">Ubuntu/Debian installation</a></li><li><a href="../Install/Windows-install.html">Microsoft Windows installation</a><ul class="nav nav-list"><li class="active"><a href="../Install/windows-install-unattended.html">Unattended installation</a><ul class="nav nav-list"></ul></li><li><a href="../Install/uninstall-windows.html">Uninstalling on Windows</a></li><li><a href="../Install/upgrade-windows.html">Upgrading on Windows</a></li></ul></li><li><a href="../Install/Mac-install.html">Mac OS X installation</a></li><li><a href="../Install/post-install.html">Post-installation</a></li><li><a href="../Install/upgrading.html">Upgrading</a></li><li><a href="../Install/migrating.html">Migrating</a></li></ul></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+  <h1 class="title topictitle1">Unattended installation</h1>
+
+  
+  <div class="body"><p class="shortdesc">An unattended installation refers to using a script to install Couchbase Server.</p>
+
+    
+    <p class="p">To use the unattended installation process:</p>
+
+    <ol class="ol">
+      <li class="li">First record your installation settings in the wizard installation. These settings are saved to a file. 
+        This file is used to silently install other nodes of the same version.
+        <ol class="ol" type="a">
+          <li class="li">Open a Command Terminal or Power and start the installation
+            executable with the <samp class="ph codeph">/r</samp> command-line
+            option:
+            <pre class="pre codeblock">&gt; couchbase_server_version.exe /r /f1your_file_name.iss</pre>
+</li>
+
+          <li class="li">Provide your installation options when prompted. 
+            The wizard complete the server installation and provides a file with your
+            recorded options at <samp class="ph codeph">C:\Windows\your_file_name.iss</samp>.
+            <div class="note note"><span class="notetitle">Note:</span> Accept an increase in <samp class="ph codeph">MaxUserPort</samp> (recommended).</div>
+</li>
+
+        </ol>
+
+      </li>
+
+      <li class="li">Copy the <samp class="ph codeph">your_file_name.iss</samp> file into the same directory as the installer executable. 
+        Run the installer from the command-line using the <samp class="ph codeph">/s</samp>
+        option:
+        <pre class="pre codeblock">&gt; couchbase_server_version.exe /s -f1your_file_name.iss</pre>
+
+      </li>
+
+      <li class="li">To repeat this process on multiple machines, copy the install package and the
+        <samp class="ph codeph">your_file_name.iss</samp> file to the same directory on each machine.</li>
+
+    </ol>
+
+      
+     
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../Install/Windows-install.html">Microsoft Windows installation</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

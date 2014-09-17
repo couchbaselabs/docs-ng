@@ -1,7 +1,5 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server product documentation"><style>
-					body{
-						padding-top:40px; /* make the container go all the way to the bottom of the top bar */
-					}</style><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"><script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid container"><a class="brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="brand" style="color:#000552;" href="/">Couchbase Documentation <small>beta</small></a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></div></header><div id="content" class="container-fluid container"><div class="row-fluid"><nav class="span3"><div class="well"><ul class="nav nav-list"><li><a href="../beta-intro.html">Couchbase 3.0 beta introduction</a></li><li><a href="../Features/features.html">Couchbase 3.0 Features</a></li><li><a href="../install-intro.html">Couchbase Installation</a></li><li><a href="../admin-intro.html">Couchbase Administration</a></li><li><a href="../cli-intro.html">Couchbase CLI</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">Command-line interface overview</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li class="active"><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">Couchbase REST API</a></li><li><a href="../rel-notes/rel-notes3.0beta.html">Release notes (beta)</a></li></ul></div></nav><main class="span9">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>cbhealthchecker tool</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../Couchbase-intro.html">Introduction</a></li><li><a href="../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../install-intro.html">Installation and upgrade</a></li><li><a href="../admin-intro.html">Administration</a></li><li><a href="../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../CLI/cli-overview.html">CLI overview</a></li><li><a href="../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../CLI/cbepctl-intro.html">cbepctl tool</a></li><li class="active"><a href="../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a><ul class="nav nav-list"></ul></li><li><a href="../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../CLI/cbstats-intro.html">cbstats tool</a></li><li><a href="../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../rest-intro.html">REST API reference</a></li><li><a href="../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
 	<h1 class="title topictitle1">cbhealthchecker tool</h1>
 
 	<div class="body">
@@ -39,9 +37,9 @@
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" id="d36005e62">Operating System</th>
+						<th class="entry" valign="top" id="d33442e62">Operating System</th>
 
-						<th class="entry" valign="top" id="d36005e65">Location</th>
+						<th class="entry" valign="top" id="d33442e65">Location</th>
 
 					</tr>
 
@@ -49,23 +47,23 @@
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e62 "><strong class="ph b">Linux</strong></td>
+						<td class="entry" valign="top" headers="d33442e62 "><strong class="ph b">Linux</strong></td>
 
-						<td class="entry" valign="top" headers="d36005e65 "><samp class="ph codeph">/opt/couchbase/bin/</samp></td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e62 "><strong class="ph b">Windows</strong></td>
-
-						<td class="entry" valign="top" headers="d36005e65 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\</samp></td>
+						<td class="entry" valign="top" headers="d33442e65 "><samp class="ph codeph">/opt/couchbase/bin/</samp></td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e62 "><strong class="ph b">Mac OS X</strong></td>
+						<td class="entry" valign="top" headers="d33442e62 "><strong class="ph b">Windows</strong></td>
 
-						<td class="entry" valign="top" headers="d36005e65 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/</samp></td>
+						<td class="entry" valign="top" headers="d33442e65 "><samp class="ph codeph">C:\Program&nbsp;Files\Couchbase\Server\bin\</samp></td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d33442e62 "><strong class="ph b">Mac OS X</strong></td>
+
+						<td class="entry" valign="top" headers="d33442e65 "><samp class="ph codeph">/Applications/Couchbase&nbsp;Server.app/Contents/Resources/couchbase-core/bin/</samp></td>
 
 					</tr>
 
@@ -87,11 +85,11 @@
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" id="d36005e133">Option</th>
+						<th class="entry" valign="top" id="d33442e133">Option</th>
 
-						<th class="entry" valign="top" id="d36005e136">Syntax</th>
+						<th class="entry" valign="top" id="d33442e136">Syntax</th>
 
-						<th class="entry" valign="top" id="d36005e139">Description</th>
+						<th class="entry" valign="top" id="d33442e139">Description</th>
 
 					</tr>
 
@@ -99,97 +97,97 @@
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">CLUSTER</td>
+						<td class="entry" valign="top" headers="d33442e133 ">CLUSTER</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-c HOST[:PORT]</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-c HOST[:PORT]</samp>
 							<samp class="ph codeph">--cluster=HOST[:PORT]</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Hostname and port of a node in the cluster. The default port is
+						<td class="entry" valign="top" headers="d33442e139 ">Hostname and port of a node in the cluster. The default port is
 							8091.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">USERNAME</td>
+						<td class="entry" valign="top" headers="d33442e133 ">USERNAME</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-u USERNAME</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-u USERNAME</samp>
 							<samp class="ph codeph">--user=USERNAME</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Admin username of the cluster.</td>
+						<td class="entry" valign="top" headers="d33442e139 ">Admin username of the cluster.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">PASSWORD</td>
+						<td class="entry" valign="top" headers="d33442e133 ">PASSWORD</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-p PASSWORD</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-p PASSWORD</samp>
 							<samp class="ph codeph">--password=PASSWORD</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Admin password of the cluster.</td>
+						<td class="entry" valign="top" headers="d33442e139 ">Admin password of the cluster.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">OPTIONS</td>
+						<td class="entry" valign="top" headers="d33442e133 ">OPTIONS</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-b BUCKETNAME</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-b BUCKETNAME</samp>
 							<samp class="ph codeph">--bucket=BUCKETNAME</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Specific bucket on which to report. The default is all
+						<td class="entry" valign="top" headers="d33442e139 ">Specific bucket on which to report. The default is all
 							buckets.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">&nbsp;</td>
+						<td class="entry" valign="top" headers="d33442e133 ">&nbsp;</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-i FILENAME</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-i FILENAME</samp>
 							<samp class="ph codeph">--input=FILENAME</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Generate an analysis report from an input JSON file.</td>
+						<td class="entry" valign="top" headers="d33442e139 ">Generate an analysis report from an input JSON file.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">&nbsp;</td>
+						<td class="entry" valign="top" headers="d33442e133 ">&nbsp;</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-o FILENAME</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-o FILENAME</samp>
 							<samp class="ph codeph">--output=FILENAME</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">File name for the HTML report. The default output file name is the
+						<td class="entry" valign="top" headers="d33442e139 ">File name for the HTML report. The default output file name is the
 							report time stamp, for example:
 								<samp class="ph codeph">2013-07-26_13-26-23.html</samp>.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">&nbsp;</td>
+						<td class="entry" valign="top" headers="d33442e133 ">&nbsp;</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-h</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-h</samp>
 							<samp class="ph codeph">--help</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Show the help message and exit.</td>
+						<td class="entry" valign="top" headers="d33442e139 ">Show the help message and exit.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">&nbsp;</td>
+						<td class="entry" valign="top" headers="d33442e133 ">&nbsp;</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-s SCALE</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-s SCALE</samp>
 							<samp class="ph codeph">--scale=SCALE</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Time span (scale) for the statistics: minute, hour, day, week, month
+						<td class="entry" valign="top" headers="d33442e139 ">Time span (scale) for the statistics: minute, hour, day, week, month
 							or year. The default time span is day.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d36005e133 ">&nbsp;</td>
+						<td class="entry" valign="top" headers="d33442e133 ">&nbsp;</td>
 
-						<td class="entry" valign="top" headers="d36005e136 "><samp class="ph codeph">-j</samp>
+						<td class="entry" valign="top" headers="d33442e136 "><samp class="ph codeph">-j</samp>
 							<samp class="ph codeph">--jsononly</samp></td>
 
-						<td class="entry" valign="top" headers="d36005e139 ">Collect data and output only a JSON file. When you use this option,
+						<td class="entry" valign="top" headers="d33442e139 ">Collect data and output only a JSON file. When you use this option,
 							the analysis report is not generated.</td>
 
 					</tr>
@@ -319,17 +317,14 @@ Please find collected stats at '/opt/couchbase/bin/reports/2013-07-26_13-30-36.j
 
 	<div class="related-links">
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">Couchbase CLI</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../cli-intro.html">CLI reference</a></div>
 </div>
 
-<div class="linklist linklist"><strong>Related topics</strong><br>
-
+<div class="linklist linklist">
 <div><a class="link" href="../Concepts/concepts-statsMonitor.html" title="A complete set of statical and monitoring information are provided through the Web Console, CLI, and REST API.">Statistics and monitoring</a></div>
-<div><a class="link" href="../Concepts/concepts-TAP.html" title="The TAP protocol is an internal part of the Couchbase Server system and is used to exchange data throughout the system.">TAP</a></div></div>
+<div><a class="link" href="../Concepts/concepts-TAP.html" title="The TAP protocol is an internal part of the Couchbase Server system that is used to exchange data throughout the system.">TAP</a></div></div>
 </div>
-</main></div></div><footer><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><div class="container-fluid container"><div class="copyright">
-								© 2014 COUCHBASE All rights reserved.
-							</div></div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
 					(function() {
 					var cx = '018016427239405524608:fkg1v30apnm';
 					var gcse = document.createElement('script');
