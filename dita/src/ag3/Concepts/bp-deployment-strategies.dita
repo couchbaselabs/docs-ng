@@ -56,7 +56,7 @@
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="http://dustin.github.com/2010/06/29/memcached-vbuckets.html" scope="external"
         format="html">
         <linktext>vBucket article</linktext>

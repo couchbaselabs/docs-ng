@@ -99,7 +99,7 @@
   </refbody>
   
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../REST/rest-cluster-intro.dita"/>
       <link href="../Install/hostnames.dita"/>
       

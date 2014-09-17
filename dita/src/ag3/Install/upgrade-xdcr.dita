@@ -2,7 +2,7 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_zxk_p14_14">
   <title>Upgrading with XDCR</title>
-  <shortdesc>The upgrade process depends on the scenario.</shortdesc>
+  <shortdesc>The upgrade process when XDCR is implemented depends on the scenario.</shortdesc>
   
   
   <body>

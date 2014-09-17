@@ -28,7 +28,7 @@
           Server will be downloaded to your machine, and you will be prompted to allow the
           installation to take place. Installation will shut down your existing Couchbase Server
           process, install the update, and then restart the service once the installation has been
-          completed.</p><p>Once the installation has been completed you will be asked whether you
+          completed.</p><p>Once the installation has been completed, you will be asked whether you
           want to automatically update Couchbase Server in the future.</p><p>Using the update
           service also sends anonymous usage data to Couchbase on the current version and cluster
           used in your organization. This information is used to improve our service
@@ -38,8 +38,9 @@
       <li>Launch Admin Console at Start<p>If this menu item is checked, then the Web Console for administrating Couchbase Server will
       be opened whenever the Couchbase Server is started. Selecting the menu item will toggle the
       selection.</p></li>
-      <li>Automatically Start at Login<p>If this menu item is checked, then Couchbase Server will be automatically started when the
-      Mac OS X machine starts. Selecting the menu item will toggle the selection.</p></li>
+      <li>Automatically Start at Login<p>If this menu item is checked, then Couchbase Server is
+          automatically started when the Mac OS X machine starts. Selecting the menu item toggles
+          the selection.</p></li>
       <li>Quit Couchbase<p>Selecting this menu option will shut down your running Couchbase Server, and close the menu
       bar interface. To restart, you must open the Couchbase Server application from the
       installation folder.</p></li>

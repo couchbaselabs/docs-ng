@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_wgq_wzw_fp">
+  <title>Backing up and restoring between platforms</title>
+  <body>
+    
+    
+    <p>Couchbase Server on Mac OS X uses a different number of configured vBuckets
+    than the Linux and Windows installations. Because of this, backing up from Mac
+    OS X and restoring to Linux or Windows, or vice versa, requires using the
+    built-in Moxi server and the memcached protocol. Moxi will rehash the stored
+    items into the appropriate bucket.</p>
+    
+    <section><title>Backing up Mac OS X and restoring on Linux/Windows</title>
+      <p>To backup the data from Mac OS X, you can use the standard `cbbackup` tool and
+    options:</p>
+    
+<codeblock>cbbackup http://Administrator:password@mac:8091 /macbackup/today</codeblock>
+    
+    <p>To restore the data to a Linux/Windows cluster, you must connect to the Moxi
+    port (11211) on one of the nodes within your destination cluster and use the
+    Memcached protocol to restore the data. Moxi will rehash the information and
+    distribute the data to the appropriate node within the cluster. For example:</p>
+
+<codeblock>cbrestore /macbackup/today memcached://linux:11211 -b default -B default</codeblock>
+    
+    <p>If you have backed up multiple buckets from your Mac, you must restore to each
+    bucket individually.</p>
+      
+    </section>
+    
+    
+    <section><title>Backing up Linux/Windows and restoring on Mac OS X</title>
+    
+    
+      <p>To backup the data from Linux or Windows, you can use the standard <codeph>cbbackup</codeph>
+    tool and options:</p>
+
+<codeblock>cbbackup http://Administrator:password@linux:8091 /linuxbackup/today</codeblock>
+    
+    <p>To restore to the Mac OS X node or cluster, you must connect to the Moxi port
+    (11211) and use the Memcached protocol to restore the data. Moxi will rehash the
+    information and distribute the data to the appropriate node within the cluster.
+    For example:</p>
+    
+    <codeblock>cbrestore /linuxbackup/today memcached://mac:11211 -b default -B default</codeblock>
+  
+  </section>
+    
+    <section><title>Transferring data directly</title>
+    
+      <p>You can use <codeph>cbtransfer</codeph> to perform the data move directly between Mac OS X and
+    Linux/Windows clusters without creating the backup file, providing you correctly
+    specify the use of the Moxi and Memcached protocol in the destination:</p>
+    
+    <codeblock>
+      cbtransfer http://linux:8091 memcached://mac:11211 -b default -B default
+      cbtransfer http://mac:8091 memcached://linux:11211 -b default -B default
+    </codeblock>
+    
+    <note type="important">These transfers will not transfer design documents, since they are using the
+        Memcached protocol
+      </note>
+    </section>
+    
+    <section><title>Transferring desing documents</title>
+    
+    <p>Because you are restoring data using the Memcached protocol, design documents
+    are not restored. A possible workaround is to modify your backup directory.
+    Using this method, you first delete the document data from the backup directory,
+    and then use the standard restore process. This will restore only the design
+    documents. For example:</p>
+    
+    <codeblock>cbbackup http://Administrator:password@linux:8091 /linuxbackup/today</codeblock>
+    
+      <p>Remove or move the data files from the backup out of the way:</p>
+    
+<codeblock>mv /linuxbackup/today/bucket-default/* /tmp</codeblock>
+    
+      <p>Only the design document data  remains in the backup directory, you can now restore that
+        information using <codeph>cbrestore</codeph> as normal:</p>
+    
+<codeblock>cbrestore /linuxbackup/today http://mac:8091 -b default -B default</codeblock>
+    
+    </section>
+    
+  </body>
+</topic>

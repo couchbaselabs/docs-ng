@@ -3,153 +3,170 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic2659">
 	<title>Network ports</title>
-	<shortdesc>Couchbase Server specific network ports for communication between server components and 
-		for communicating with the clients that access the data stored in the Couchbase cluster.</shortdesc>
+	<shortdesc>Couchbase Server specific network ports for communication between server components
+		and for communicating with the clients that access the data stored in the Couchbase
+		cluster.</shortdesc>
 	<body>
-		<p>The ports listed must be available on the host for Couchbase Server to run and operate correctly. 
-			Couchbase Server configures these
-			ports automatically, but you must ensure that your firewall or IP tables configuration
-			allow communication on the specified ports for each usage type. On Linux, the installer
-			will notify you that you need to open these ports.</p>
+		<p>The ports listed must be available on the host for Couchbase Server to run and operate
+			correctly. Couchbase Server configures these ports automatically, but you must ensure
+			that your firewall or IP tables configuration allow communication on the specified ports
+			for each usage type. On Linux, the installer will notify you that you need to open these
+			ports.</p>
 		<p>The following table lists the ports used for different types of communication with
 			Couchbase Server, as follows:</p>
-		<section><title>Node to node</title><p>Where noted, these ports are used by Couchbase Server
-				for communication between all nodes within the cluster. You must have these ports
-				open on all to enable nodes to communicate with each other.</p></section>
-		<section><title>Node to client</title><p>Where noted, these ports should be open between
-				each node within the cluster and any client nodes accessing data within the
-				cluster.</p></section>
-		<section><title>Cluster administration</title><p>Where noted, these ports should be open and
-				accessible to allow administration, whether using the REST API, command-line
-				clients, and Web browser.</p></section>
-		<section><title>XDCR</title><p>Ports are used for XDCR communication between all nodes in
-				both the source and destination clusters.</p><table>
+		
+		<ul>
+			<li>Node to node<p>These ports are used by Couchbase Server
+					for communication between all nodes within the cluster. You must have these ports
+					open on all to enable nodes to communicate with each other.</p>
+			</li>
+			<li>Node to client<p>These ports are used communication between nodes within a cluster and by
+					client nodes accessing data within a cluster.</p>
+			</li>
+			<li>Cluster administration<p>These ports are used for Couchbase administration including the REST API, command-line
+					clients, and Web browser.</p>
+			</li>
+			<li>XDCR<p>These ports are used for XDCR communication between all nodes in both the source and
+					destination clusters.</p></li>
+		</ul>
+		
+		<table>
 				<tgroup cols="7">
-					<colspec colname="col1"/>
-					<colspec colname="col2"/>
-					<colspec colname="col3"/>
-					<colspec colname="col4"/>
-					<colspec colname="col5"/>
-					<colspec colname="col6"/>
-					<colspec colname="col7"/>
-					<thead>
-						<row>
-							<entry>Port</entry>
-							<entry>Description</entry>
-							<entry>Node to Node</entry>
-							<entry>Node to Client</entry>
-							<entry>Cluster Administration</entry>
-							<entry>XDCR (version 1)</entry>
-							<entry>XDCR (version 2)</entry>
-						</row>
-					</thead>
-					<tbody>
-						<row>
-							<entry>8091</entry>
-							<entry>Web Administration Port</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>8092</entry>
-							<entry>Couchbase API Port</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>11209</entry>
-							<entry>Internal Bucket Port</entry>
-							<entry>Yes</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-						</row>
-						<row>
-							<entry>11210</entry>
-							<entry>Internal/External Bucket Port</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>11211</entry>
-							<entry>Client interface (proxy)</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-						</row>
-						<row>
-							<entry>11214</entry>
-							<entry>Incoming SSL Proxy</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>11215</entry>
-							<entry>Internal Outgoing SSL Proxy</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>18091</entry>
-							<entry>Internal REST HTTPS for SSL</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>18092</entry>
-							<entry>Internal CAPI HTTPS for SSL</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>Yes</entry>
-							<entry>Yes</entry>
-						</row>
-						<row>
-							<entry>4369</entry>
-							<entry>Erlang Port Mapper ( <codeph>epmd</codeph> )</entry>
-							<entry>Yes</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-						</row>
-						<row>
-							<entry>21100 to 21199 (inclusive)</entry>
-							<entry>Node data exchange</entry>
-							<entry>Yes</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No</entry>
-							<entry>No </entry>
-						</row>
-					</tbody>
-				</tgroup>
-			</table><dl>
+				<colspec colname="col1" colwidth="1.35*"/>
+				<colspec colname="col2" colwidth="2.43*"/>
+				<colspec colname="col3" colwidth="1*"/>
+				<colspec colname="col4" colwidth="1.16*"/>
+				<colspec colname="col5" colwidth="1.35*"/>
+				<colspec colname="col6" colwidth="1.02*"/>
+				<colspec colname="col7" colwidth="1.15*"/>
+				<thead>
+					<row>
+						<entry>Port</entry>
+						<entry>Description</entry>
+						<entry>Node to node</entry>
+						<entry>Node to client</entry>
+						<entry>Cluster admin</entry>
+						<entry>XDCR v1</entry>
+						<entry>XDCR v2</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>8091</entry>
+						<entry>Web Administration Port</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>8092</entry>
+						<entry>Couchbase API Port</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>11207</entry>
+						<entry>Internal/External Bucket Port for SSL</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+					</row>
+					<row>
+						<entry>11209</entry>
+						<entry>Internal Bucket Port</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+					</row>
+					<row>
+						<entry>11210</entry>
+						<entry>Internal/External Bucket Port</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>11211</entry>
+						<entry>Client interface (proxy)</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+					</row>
+					<row>
+						<entry>11214</entry>
+						<entry>Incoming SSL Proxy</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>11215</entry>
+						<entry>Internal Outgoing SSL Proxy</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>18091</entry>
+						<entry>Internal REST HTTPS for SSL</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>18092</entry>
+						<entry>Internal CAPI HTTPS for SSL</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>Yes</entry>
+					</row>
+					<row>
+						<entry>4369</entry>
+						<entry>Erlang Port Mapper ( <codeph>epmd</codeph> )</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+					</row>
+					<row>
+						<entry>21100 to 21199 (inclusive)</entry>
+						<entry>Node data exchange</entry>
+						<entry>Yes</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No</entry>
+						<entry>No </entry>
+					</row>
+				</tbody>
+			</tgroup>
+			</table>
+		
+		<dl>
 				<dlentry>
 					<dt>Port 8091</dt>
-					<dd>Used by the Web Console from outside the second level firewall (for
-						REST/HTTP traffic).</dd>
+					<dd>Used by the web console for REST/HTTP traffic.</dd>
 				</dlentry>
 
 
@@ -157,33 +174,45 @@
 					<dt>Port 8092</dt>
 					<dd>Used to access views, run queries, and update design documents.</dd>
 				</dlentry>
+			
+			<dlentry>
+				<dt>Port 11207</dt>
+				<dd>Used by smart client libraries to access data nodes using SSL.</dd>
+			</dlentry>
 
 
 				<dlentry>
 					<dt>Port 11210</dt>
-					<dd>Used by smart client libraries or client-side Moxi to directly connect to
-						the data nodes.</dd>
+					<dd>Used by smart client libraries or Moxi to directly connect to the data nodes.</dd>
 				</dlentry>
 
 
 				<dlentry>
 					<dt>Port 11211</dt>
-					<dd>Used by pre-existing Couchbase and memcached (non-smart) client libraries
-						that are outside the second level firewall to work.</dd>
+					<dd>Used by pre-existing Couchbase and memcached (non-smart) client libraries.</dd>
 				</dlentry>
 
 
 				<dlentry>
-					<dt>Ports 11214, 11215, 18091, and 18092</dt>
+					<dt>Ports 11214 and 11215</dt>
 					<dd>Used for SSL XDCR data encryptions.</dd>
 				</dlentry>
+			<dlentry>
+				<dt>Port 18091</dt>
+				<dd>Used by the web console for REST/HTTP traffic with SSL.</dd>
+			</dlentry>
+			<dlentry>
+				<dt>Port 18092</dt>
+				<dd>Used to access views, run queries, and update design documents with SSL.</dd>
+			</dlentry>
 
 
 				<dlentry>
 					<dt>All other Ports</dt>
-					<dd>Used for other Couchbase Server communictions.</dd>
+					<dd>Used for other Couchbase Server communications.</dd>
 				</dlentry>
 
-			</dl></section>
+			</dl>
+
 	</body>
 </topic>

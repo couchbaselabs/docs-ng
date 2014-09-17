@@ -285,7 +285,7 @@ cbepctl host:11210 -b bucket_name -p bucket_password set type param value
 		
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="CBcli/cbcli-buckets.dita"/>
 			<link href="../REST/rest-bucket-flush.dita"/>
 			<link href="../UI/ui-data-buckets.dita"/>

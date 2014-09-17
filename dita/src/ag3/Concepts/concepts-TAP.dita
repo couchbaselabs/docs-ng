@@ -3,72 +3,15 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic3500">
   <title>TAP</title>
-  <shortdesc>The TAP protocol is an internal part of the Couchbase Server system and is used to
-    exchange data throughout the system. </shortdesc>
+  <shortdesc>The TAP protocol is an internal part of the Couchbase Server system that is used to
+		exchange data throughout the system. </shortdesc>
   <body>
     <p>TAP provides a stream of data of the changes that are occurring within the system. TAP is
-      used during replication, to copy data between vBuckets used for replicas. It is also used
-      during the rebalance procedure to move data between vBuckets and redistribute the information
-      across the system.</p>
+			used during replication to copy data between vBuckets used for replicas. It is also used
+			during the rebalance procedure to move data between vBuckets and redistribute the
+			information across the system.</p>
 
 
-    <section><title>Client interface</title><p>Within Couchbase Server, the techniques and systems
-        used to get information into and out of the database differ according to the level and
-        volume of data that you want to access. The different methods can be identified according to
-        the base operations of Create, Retrieve, Update and Delete:</p>
-      
-      <title>Create</title>
 
-      <p>Information is stored into the database using the memcached protocol interface to
-        store a <i>value</i> against a specified <i>key</i>. Bulk operations for setting the
-        key/value pairs of a large number of documents at the same time are available, and these are
-        more efficient than multiple smaller requests.</p><p>The value stored can be any binary
-        value, including structured and unstructured strings, serialized objects (from the native
-        client language), native binary data (for example, images or audio). For use with the
-        Couchbase Server View engine, information must be stored using the JavaScript Object
-        Notation (JSON) format, which structures information as a object with nested fields, arrays,
-        and scalar datatypes.</p>
-      
-        <title>Retrieve</title>
-      <p>To retrieve information from the database, there are two methods available: By Key and BY View</p>
-      
-      <ul>
-        <li>By Key 
-          <p>If you know the key used to store a particular value, then you can use the
-  memcached protocol (or an appropriate memcached compatible client-library) to
-  retrieve the value stored against a specific key. You can also perform bulk
-  operations.</p></li>
-        <li>By View
-          <p>f you do not know the key, you can use the View system to write a view that
-            outputs the information you need. The view generates one or more rows of
-            information for each JSON object stored in the database. The view definition
-            includes the keys (used to select specific or ranges of information) and values.
-            For example, you could create a view on contact information that outputs the
-            JSON record by the contact's name, and with a value containing the contacts
-            address. Each view also outputs the key used to store the original object. If 
-            the view doesn't contain the information you need, you can use the returned key
-            with the memcached protocol to obtain the complete record.</p>      
-        </li>
-      </ul>
-
-
-        <title>Update</title>
-      <p>To update information in the database, you must use the memcached protocol interface.
-        The memcached protocol includes functions to directly update the entire contents, and also
-        to perform simple operations, such as appending information to the existing record, or
-        incrementing and decrementing integer values.</p>
-        
-        
-        <title>Delete</title>
-      <p>To delete information from Couchbase Server, you need to use the memcached protocol which
-        includes an explicit delete command to remove a key/value pair from the server.</p><p>However, Couchbase Server also allows information to be stored in the database
-        with an expiry value. The expiry value states when a key/value pair should be automatically
-        deleted from the entire database, and can either be specified as a relative time (for
-        example, in 60 seconds), or absolute time (31st December 2012, 12:00pm).</p>
-        
-        <note type="note">The methods of creating, updating and retrieving information are critical 
-          to the way you work with storing data in Couchbase Server.</note>
-    
-    </section>
   </body>
 </topic>

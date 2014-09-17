@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ybk_flw_fp">
+  <title>Restoring design documents</title>
+  <shortdesc>Design documents are restored using the <codeph>design_doc_only=1</codeph> option.</shortdesc>
+  <body>
+    <section><title>Using cbrestore for design documents</title>
+      <p>Design documents are restored to a server node with the option,
+        <codeph>design_doc_only=1</codeph>. You restore the documents from a backup file (create with
+        <codeph>cbbackup</codeph>).</p>
+      <codeblock><codeph>&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b a_bucket -B my_bucket
+
+transfer design doc only. bucket msgs will be skipped.
+done
+</codeph></codeblock>
+      <p>This will restore design documents from the backup file <codeph>~/backup/a_bucket</codeph> to
+        the destination bucket <codeph>my_bucket</codeph> in a cluster. If you backed up more than one
+        source bucket, you will need to perform this command more than once. For instance, imagine you
+        did a backup for a cluster with two data buckets and have the backup files
+        <codeph>~/backup/bucket_one/design.json</codeph> and
+        <codeph>~/backup/bucket_two/design.json</codeph> :</p>
+      <codeblock><codeph>&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_one -B my_bucket
+
+&gt; ./cbrestore ~/backup http://10.3.1.10:8091 -x design_doc_only=1 -b bucket_two -B my_bucket
+</codeph></codeblock>
+      <p>This restores design documents in both backup files to a bucket in your cluster named
+        <codeph>my_bucket</codeph> After you restore the design documents you can see them in
+        Couchbase Web Console under the Views tab.</p>
+    </section>
+    
+  </body>
+</topic>

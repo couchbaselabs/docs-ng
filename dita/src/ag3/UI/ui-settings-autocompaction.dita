@@ -74,7 +74,7 @@
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Concepts/concept-tombstone.dita"></link>
       <link href="../Tasks/tasks-compaction.dita"></link>
       <link href="../REST/rest-bucket-intro.dita"></link>

@@ -2,9 +2,9 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic2887">
-   <title>Rack-Zone Awareness CLI</title>
+   <title>Rack-zone awareness</title>
    <shortdesc>Rack-Zone Awareness allows logical groupings of servers on a cluster where each server
-      group physically belongs to a rack or availability zone. </shortdesc>
+      group physically belongs to a rack or availability zone. <b>Enterprise Edition only.</b></shortdesc>
 
 
    <body>
@@ -13,8 +13,8 @@
          zone. To enable Rack-Zone Awareness, all servers in a cluster must be upgraded. </p>
 
       
-      <note type="note">The Rack Awareness feature with its server group capability is an Enterprise Edition
-         feature.</note>
+      <note type="note">The Rack-Zone Awareness feature with its server group capability is an
+         Enterprise Edition feature.</note>
       <p>To configure servers into groups, use the <codeph>couchbase-cli</codeph> tool with the
             <codeph>group-manage</codeph> command.</p>
       <p>General syntax with <codeph>group-manage</codeph>:</p>

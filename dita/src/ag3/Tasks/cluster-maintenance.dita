@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_f1t_c5c_3p">
+  <title>Cluster maintenance</title>
+  <body>
+    <p>Cluster maintenance involves:</p>
+      <ul>
+        <li>Adding server nodes to clusters.</li>
+        <li>Removing server nodes from clusters.</li>
+        <li>Rebalancing the cluster</li>
+      </ul>
+  </body>
+</topic>

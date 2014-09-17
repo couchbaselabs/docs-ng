@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic907">
-  <title>Failover</title>
+  <title>Failing over nodes</title>
   <shortdesc>Failover is the process of indicating that a node in a cluster is unavailable and that 
   enabling replica vBuckets.</shortdesc>
   <body>
@@ -21,7 +21,7 @@
   </body>
   
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Tasks/tasks-nodeFailover.dita"></link>
     </linklist>
   </related-links>

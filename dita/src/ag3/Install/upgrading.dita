@@ -8,16 +8,9 @@
     <p>The following are the officially supported upgrade paths for Couchbase Server for both online
       upgrades or offline upgrades:</p>
     <ul>
-      <li>Couchbase 1.8.1 to Couchbase 2.0 or higher</li>
-      <li>Couchbase 2.0.x to Couchbase 2.1 or higher</li>
-      <li>Couchbase 2.1.x to Couchbase 2.2 or higher</li>
-      <li>Couchbase 2.2 to Couchbase 2.5 or higher</li>
+      <li>Couchbase 2.x to a later version of Couchbase 2.x</li>
+      <li>Couchbase 2.x to Couchbase 3.0</li>
     </ul>
-        
-    <p>You cannot perform a direct upgrade from Couchbase Server 1.8.0 to a higher release of
-      Couchbase Server. You must first upgrade from Couchbase Server 1.8 or earlier to Couchbase
-      Server 1.8.1 to provide data compatibility with a higher release of Couchbase Server. After
-      performing this initial upgrade, upgrade to a higher release of Couchbase Server.</p>
     <p>You can perform a cluster upgrade in two ways:</p>
     <ul>
       <li>Online upgrades</li>
@@ -26,25 +19,25 @@
     <p>Prior to upgrade, perform a backup of the files.</p>
       <table>
         <tgroup cols="2">
-          <colspec colname="col1"/>
-          <colspec colname="col2"/>
-          <thead>
-            <row>
-              <entry>Platform</entry>
-              <entry>Location</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>Linux</entry>
-              <entry><codeph>/opt/couchbase/var/lib/couchbase/config/config.dat</codeph></entry>
-            </row>
-            <row>
-              <entry>Windows</entry>
-              <entry><codeph>C:\Program Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat</codeph></entry>
-            </row>
-          </tbody>
-        </tgroup>
+        <colspec colname="col1" colwidth="1*"/>
+        <colspec colname="col2" colwidth="3.23*"/>
+        <thead>
+          <row>
+            <entry>Platform</entry>
+            <entry>Location</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>Linux</entry>
+            <entry><codeph>/opt/couchbase/var/lib/couchbase/config/config.dat</codeph></entry>
+          </row>
+          <row>
+            <entry>Windows</entry>
+            <entry><codeph>C:\Program Files\Couchbase\Server\Config\var\lib\couchbase\config\config.dat</codeph></entry>
+          </row>
+        </tbody>
+      </tgroup>
       </table>
 
     
@@ -53,10 +46,86 @@
           Couchbase Server version number when upgrading to the Enterprise Edition.</b> Version
         differences may result in a failed upgrade. </p></section>
     
+    <section><title>Upgrading to 3.0</title></section>
+    
+    <p>With encryption access, the following port is reserved for client access to data nodes using
+      SSL.</p><table>
+        <tgroup cols="2">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="3.41*"/>
+          <thead>
+            <row>
+              <entry>Port</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>11207</entry>
+              <entry>Internal/External Bucket Port for SSL</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    
+    
+    <section><title>Upgrading to 2.5</title>
+      
+      <p>Before upgrading to 2.5.x</p>
+      
+      <p>If buckets are using any of
+        the following reserved ports, change the port for the bucket. Otherwise, XDCR data
+        encryption is unavailable. (This applies to both offline and online upgrades.)
+      </p>
+      <note type="important">Ensure that the Secure Socket Layer (SSL) reserved ports are
+        available prior to using XDCR data encryption. </note>
+      
+      <p>With XDCR data encryption, the
+          following ports are reserved:</p><table>
+            <tgroup cols="2">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="3.41*"/>
+          <thead>
+            <row>
+              <entry>Port</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>11214</entry>
+              <entry>Incoming SSL proxy</entry>
+            </row>
+            <row>
+              <entry>11215</entry>
+              <entry>Internal outgoing SSL proxy</entry>
+            </row>
+            <row>
+              <entry>18091</entry>
+              <entry>Internal REST HTTPS for SSL</entry>
+            </row>
+            <row>
+              <entry>18092</entry>
+              <entry>Internal CAPI HTTPS for SSL </entry>
+            </row>
+          </tbody>
+        </tgroup>
+          </table>
+      
+      <note type="note">If Couchbase Server 2.5 has more than two (2) replicas, the first swap rebalance takes additional time. 
+        This behavior is expected.</note>
+    
+        <note type="restriction">The RPM package manager does not support the  
+        <codeph>--relocate</codeph> option because it cannot correctly detect which release should be kept and which should be replaced. 
+        As result, all binary files and their wrapper scripts cannot be correctly installed into the relocated bin directory 
+        during upgrade.
+      </note>
+    </section>
+    
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../CLI/cbbackup_tool.dita"></link>
       <link href="../CLI/cbrestore_tool.dita"></link>
     </linklist>

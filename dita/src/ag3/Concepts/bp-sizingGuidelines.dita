@@ -477,7 +477,7 @@
 		</section>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../Concepts/bp-cloudDeployment.dita"></link>
 		</linklist>
 	</related-links>

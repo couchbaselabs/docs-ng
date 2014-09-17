@@ -229,7 +229,7 @@ Please find collected stats at '/opt/couchbase/bin/reports/2013-07-26_13-30-36.j
 		
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 
 			
 			<link href="../Concepts/concepts-statsMonitor.dita"/>

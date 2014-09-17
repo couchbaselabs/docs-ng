@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="collect-info-web">
+	<title>Managing diagnostics</title>
+	<shortdesc>The web console provides a graphical interface for collecting and sending system diagnostics to the Couchbase support team.</shortdesc>
+
+	<task id="task_s1v_z3w_h4">
+		<title>Collecting and uploading log information</title>
+
+		<taskbody>
+			<context>You can collect and upload logs via <uicontrol>Log > Collect Information</uicontrol>
+				panel</context>
+			
+			<steps>
+				<step>
+					<cmd>Click <uicontrol>Collect Information</uicontrol>.</cmd>
+				</step>
+				<step>
+					<cmd>In the <wintitle>Collect Information</wintitle> window, select the nodes you
+						want to report on.</cmd>
+					<info>
+						<p>You can choose to report on all accessible nodes or select one or more specific
+							accessible nodes. You can collect information only from accessible nodes.
+								<term>Accessible nodes</term> are nodes that are in the Up or Pending state.
+							You cannot select nodes in the Down state because they cannot respond to
+							cluster messages.</p>
+					</info>
+					<choicetable>
+						<chrow>
+							<choption><uicontrol>All accessible nodes</uicontrol></choption>
+							<chdesc>Collects logs for all accessible nodes in the cluster. </chdesc>
+						</chrow>
+						<chrow>
+							<choption><uicontrol>Selected nodes</uicontrol></choption>
+							<chdesc>Collects logs for a subset of the nodes in the cluster.</chdesc>
+						</chrow>
+					</choicetable>
+				</step>
+				<step>
+					<cmd>If you want to send the report to Couchbase, select the <uicontrol>Upload to
+							Couchbase</uicontrol> check box and fill in the additional
+						fields.</cmd>
+					<info>
+						<p>The <uicontrol>Upload to Couchbase</uicontrol> check box is selected by default. The additional fields are:</p>
+						<ul>
+							<li><uicontrol>Upload to host</uicontrol>—enter the name of the host that you
+								want the logs uploaded to. The host name can be either your own server or a
+								specific server to which Couchbase support asked you to upload the
+								files.</li>
+							<li><uicontrol>Customer name</uicontrol>—enter the name of your company. This
+								field is used to create file names for the logs and the URL that the files
+								are uploaded to.</li>
+							<li><uicontrol>Ticket number</uicontrol>—enter the Couchbase support ticket
+								number associated with the request for logs. This field is optional, but if
+								specified it is used as a path component of the URL that the files are
+								uploaded to.</li>
+						</ul>
+					</info>
+				</step>
+				<step>
+					<cmd>Click <uicontrol>Collect</uicontrol>.</cmd>
+					<info>
+						<p>The <wintitle>Collect Results</wintitle> window appears and begins to display
+						the status of the collection process. The status display continues to update until
+						the collection process is complete. The current status of each node is displayed.
+						The node statuses are:</p> 
+						<ul>
+							<li><uicontrol>Pending</uicontrol>—collection hasn’t started on the node.</li>
+							<li><uicontrol>Collection in progress</uicontrol>—collection is currently
+								running on the node.</li>
+							<li><uicontrol>Collected</uicontrol>—collection is complete. This status is
+								displayed only if the logs will not be uploaded to a server.</li>
+							<li><uicontrol>Uploaded</uicontrol>—collection is complete and the logs have
+								been uploaded to a server.</li>
+							<li><uicontrol>Failed to collect</uicontrol>—collection was unsuccessful. When
+								available, additional information about the failure is shown in the Details
+								column.</li>
+							<li><uicontrol>Collected, failed to upload</uicontrol>—collection was
+								successful, but the logs could not be uploaded. When available, additional
+								information about the failure is shown in the Details column.</li>
+							<li><uicontrol>Cancelled</uicontrol>—the user canceled collection for this
+								node.</li>
+						</ul>
+					</info>
+				</step>
+				<step>
+					<cmd>View the results.</cmd>
+					<info>
+						<p>After the collection process finishes, the <wintitle>Collection
+								Results</wintitle> window contains a summary of the collection process
+							result. The summary contains the following lists:</p>
+						<ul>
+							<li>Logs that were successfully uploaded. The list includes the destination URL
+								for each log file. If you didn't choose to upload the files to Couchbase,
+								you can use this information to locate the files and upload them
+								manually.</li>
+							<li>Logs that were collected but couldn't be uploaded. The list includes the
+								node and path for each log file that couldn't be uploaded.</li>
+							<li>Nodes that could not be collected from.</li>
+						</ul>
+					</info>
+				</step>
+
+			</steps>
+		</taskbody>
+	</task>
+
+	<task id="cancel-collection">
+		<title>Canceling information collection</title>
+		<taskbody>
+			<context>You can cancel the collection process at any time before it finishes. </context>
+			<steps>
+				<step>
+					<cmd>In the <wintitle>Collect results</wintitle> window, click
+							<uicontrol>Cancel</uicontrol>.</cmd>
+				</step>
+				<step>
+					<cmd>Verify whether you want to cancel the collection process.</cmd>
+				</step>
+			</steps>
+		</taskbody>
+	</task>
+
+	<task id="hide-collect">
+		<title>Hiding the collection results window</title>
+		<taskbody>
+			<context>You can hide the <wintitle>Collection results</wintitle> window before the
+				collection process finishes by clicking the <uicontrol>Close</uicontrol> button in the
+				window title bar. You will receive a notification when the collection process
+				finishes.</context>
+		</taskbody>
+	</task>
+
+	<task id="show-collect">
+		<title>Showing the collection results window</title>
+		<taskbody>
+			<context>If you closed the <wintitle>Collection results</wintitle> window before the
+				collection process finished, you can bring it back up to review the results.</context>
+			<steps>
+				<step>
+					<cmd>Select the <uicontrol>Logs</uicontrol> tab.</cmd>
+				</step>
+				<step>
+					<cmd>Click <uicontrol>View Log Collect Status</uicontrol>.</cmd>
+				</step>
+			</steps>
+		</taskbody>
+	</task>
+
+
+			
+</task>
+

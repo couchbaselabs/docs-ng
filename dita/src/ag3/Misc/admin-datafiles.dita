@@ -62,8 +62,8 @@
 			path individually. <note type="important">Changing the data path for a node that is
 				already part of a cluster permanently deletes the stored data.</note>
 			<note type="tip">When using the command line tool, the data file and index file path
-				settings cannot be changed individually. To change the setting individually, use the
-				REST API.</note>
+				settings cannot be changed individually. 
+				To change the setting individually, use the REST API.</note>
 		</section>
 		
 			
@@ -79,13 +79,12 @@ couchbase-cli node-init -c 10.5.2.54:8091 \
 		
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
-			<link href="../Tasks/rebalance-swap-rebalance.dita"/>
+		<linklist>
 			<link href="../Tasks/rebalance-adding-nodes.dita"/>
-			<link href="../Tasks/rebalance-performing.dita"/>
-			<link href="../Tasks/rebalance-cluster.dita"/>
-			<link href="../REST/rest-node-index-path.dita"/>
 			<link href="../REST/rest-cluster-removenode.dita"></link>
+			<link href="../Tasks/tasks-rebalance.dita"/>
+			<link href="../Tasks/rebalance-swap-rebalance.dita"/>
+			<link href="../REST/rest-node-index-path.dita"/>
 			<link href="../REST/overview-rest-api.dita"></link>
 			<link href="../REST/rest-server-nodes.dita"></link>
 		</linklist>

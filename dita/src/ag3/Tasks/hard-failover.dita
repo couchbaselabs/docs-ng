@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_mkw_5qc_3p">
+  <title>Hard failover</title>
+  <body>
+    <p>With hard failover, the server node is immediately failed over from the cluster.  </p>
+
+     <p>During failover, replica vBuckets are promoted to active vBuckets and active vBuckets on the
+      failed over node are transitioned to replica vBuckets. After a node is failed over, it can be
+      added back to the cluster via delta or full recovery. When a node is added back to the cluster
+      after a failover has been performed, the replica vBuckets on the failed over node are
+      resynchronized and promoted back to active. Topology changes (such as adding, removing, or
+      failing over a server) after a failover, initiates a different type of rebalance operation. </p>
+      
+      <p>Hard failover is typically used when the node is in a bad state. Auto-failover is a hard failover.
+      The following conditions are usually present when hard failover is used:</p>
+      
+      <ul>
+        <li>The server node is not healthy.</li>
+        <li>Each active vBucket does not have an equivalent replica bucket.</li>
+        <li>No replica buckets are present.</li>
+      </ul>
+      
+
+  </body>
+</topic>

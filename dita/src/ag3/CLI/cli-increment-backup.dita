@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="reference_n41_ppb_k4">
+  <title>Backing up incrementally</title>
+  <abstract><shortdesc>Incremental backups are run by using the <codeph>cbbackup</codeph>
+			command-line tool.</shortdesc>The updated <codeph>cbbackup</codeph> tool adds a new option
+		to support incremental backups. The tool still supports the existing options.</abstract>
+
+	<conbody>
+  	
+		<p>The general format of the <codeph>cbbackup</codeph> command is:</p>
+		<codeblock>cbbackup [options] source backup_dir </codeblock>
+		<p>The following table describes the new backup mode option:</p>
+      
+<table>
+	<tgroup cols="2">
+		<thead>
+			<row>
+				<entry>Option</entry>
+				<entry>Description</entry>
+			</row>
+		</thead>
+		<tbody>
+			<row>
+				<entry><codeph>-m MODE</codeph>, <codeph>--mode=MODE</codeph></entry>
+				<entry>Backup mode. The mode option takes any one of the following values: <dl>
+								<dlentry>
+									<dt><codeph>full</codeph></dt>
+									<dd>Perform a full backup</dd>
+								</dlentry>
+								<dlentry>
+									<dt><codeph>diff</codeph></dt>
+									<dd>Perform a differential incremental backup, which backs up only the
+										changes since the last full or incremental backup.</dd>
+								</dlentry>
+								<dlentry>
+									<dt><codeph>accu</codeph></dt>
+									<dd>Perform a cumulative incremental backup, which backs up all changes
+										since the last full backup.</dd>
+								</dlentry>
+							</dl></entry>
+			</row>
+		</tbody>
+	</tgroup>
+	
+</table>
+		
+		<p>The following example requests a full backup of all the data on the specified cluster:</p>
+		<codeblock>cbbackup -m full http://example.com:8091 /backups/backup-1</codeblock>
+		
+    
+		<p>After an initial full backup, you can perform incremental backups. This example requests a differential incremental backup of all the data on the specified cluster:</p>
+		<codeblock>cbbackup -m diff http://example.com:8091 /backups/backup-1</codeblock>
+		
+		<p>This example requests a cumulative incremental backup of all the data on the specified cluster:</p>
+		<codeblock>cbbackup -m accu http://example.com:8091 /backups/backup-1</codeblock>
+		     
+      
+	</conbody>	     
+    
+  
+</concept>

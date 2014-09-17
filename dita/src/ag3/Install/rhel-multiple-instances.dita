@@ -8,9 +8,9 @@
     <note type="attention">Multiple instance on one machine is recommended for development purposes only.</note>
     
     <section><title>Requirements</title>
-    <p>Ensure that a minumum of 4GN RAN and 8 Core CPU are available for each Couchbase instance. 
-      When installing multiple instances of Couchbase on a physical machine, install as one of the
-      following:</p>
+    <p>Ensure that a minumum of 4Gb RAM and 8 Core CPU are available for each Couchbase instance.
+        When installing multiple instances of Couchbase on a physical machine, install as one of the
+        following:</p>
       <ul>
         <li>sudo user</li>
         <li>non-root, non-sudo user</li>

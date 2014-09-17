@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_qxr_djy_p4">
+  <title>Uninstalling on Ubuntu Linux</title>
+  <shortdesc>Uninstalling on Ubuntu or Debian involves using the <codeph>dpkg</codeph> command</shortdesc>
+  <body>
+    
+    
+    <p>Before removing Couchbase Server, do the following:
+      <ul>
+        <li>Shutdown Couchbase Server. </li>
+        <li>If your machine is part of an active cluster, rebalance the cluster to take
+          the node out of the configuration. </li>
+        <li>Update clients to point to an available node within the Couchbase Server cluster.</li>
+      </ul></p>
+    
+    <p>To uninstall the software on a Ubuntu Linux system, run the following command:</p>
+    
+    <codeblock>&gt; sudo dpkg -r couchbase-server
+</codeblock>
+    
+    <p>Refer to the Ubuntu documentation for more information about uninstalling packages using <codeph>dpkg</codeph>.</p>
+    <p>You may need to delete the data files associated with your installation. 
+      The default installation location is <codeph>/opt</codeph>. 
+      If an alternative location for your data files was specified, separately delete each data
+    directory from your system.</p>
+
+
+    
+  </body>
+</topic>

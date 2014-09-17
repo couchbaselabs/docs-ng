@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_fn5_ykc_3p">
+ <title>Server maintenance</title>
+ <shortdesc>Server maintenance involves failing over (removing) a server node from a cluster and
+  then re-adding the same server node after performing maintenance activities. </shortdesc>
+ <conbody>
+  <p>Server node maintenance involves:</p>
+  <ol>
+   <li>Failing over a server node with either graceful failover or hard failover.</li>
+   <li>Specifying either delta node recovery or full recovery.</li>
+   <li>Re-adding and rebalancing the server node.</li>
+  </ol>
+ </conbody>
+</concept>

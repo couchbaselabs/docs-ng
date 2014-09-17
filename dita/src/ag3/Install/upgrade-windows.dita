@@ -10,16 +10,11 @@ the default location, <codeph>C:\Program Files\Couchbase\Server</codeph>, the C
 installer will put the latest version at the same location.
     </p>
     
-    <section><title>Windows upgrade from 1.8.1 notes</title>
-      <p>If you have
-      configured your Couchbase Server nodes to use hostnames, rather than IP addresses, to
-      identify themselves within the cluster, ensure that the IP and hostname configuration is
-      correct both before the upgrade and after upgrading the software.</p>
-    </section>
+
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Install/hostnames.dita"></link>
     </linklist>
   </related-links>

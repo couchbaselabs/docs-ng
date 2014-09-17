@@ -19,7 +19,7 @@
       deleted. This frees up RAM and disk for more active data.</p>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../CLI/cbepctl-intro.dita"></link>
     </linklist>
   </related-links>

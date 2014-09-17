@@ -17,7 +17,7 @@
  ep_workload:policy:      Optimized for read data access
 </codeblock>
       
-      <p>This result example indicates three reader threads and two writer threads on
+      <p>This example indicates three reader threads and two writer threads on
           <codeph>bucket_name</codeph> in the cluster at <codeph>hostname:11210</codeph>. The
         vBucket map for the data bucket is grouped into multiple shards, where one read worker
         accesses one of the shards. In this example, there is one reader for each of the three

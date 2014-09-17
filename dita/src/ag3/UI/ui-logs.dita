@@ -3,11 +3,24 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic180">
   <title>Log</title>
-  <shortdesc>The Log section provides a built-in event log for Couchbase Server.</shortdesc>
+  <shortdesc>The Log section provides a built-in event log and diagnostics collection section.</shortdesc>
   <body>
+    
+    <section><title>Log</title>
     <p>
       The event log allows you to identify activity and errors within the Couchbase cluster.</p>
     
-        <image href="../images/web-console-server-log.png" width="720"></image>
+        <image href="../images/ui-log-log.png" width="720"></image>
+    
+    </section>
+    
+    <section><title>Collect Information</title>
+      <p>The collection information section allows you to collect logs and diagnostic information from 
+        either all nodes or selected nodes in a cluster. In addition, upload options are provided.</p>
+        
+        <image href="../images/ui-log-collect-info.png" width="720"></image>
+    
+    </section>
+    
   </body>
 </topic>

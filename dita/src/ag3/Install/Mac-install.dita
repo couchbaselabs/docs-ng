@@ -3,12 +3,58 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic3637">
  <title>Mac OS X installation</title>
+ <shortdesc>Mac OS 10.7 and 10.8 are supported, but for development purposes only.</shortdesc>
  <body>
+  
   <p>Before you install, make sure you check the supported platforms.
    Couchbase Server on Mac OS X is for development purposes only. The Mac OS X installation uses a
    Zip file which contains a standalone application that can be copied to the
-    <codeph>Applications</codeph> folder or to any other location you choose. The installation
+   <codeph>Applications</codeph> folder or to any other location you choose. The installation
    location is not the same as the location of the Couchbase data files.</p>
+  
+  <p>The following Mac operating systems are supported:</p>
+  
+  <table>
+   <tgroup cols="5">
+    <colspec colname="col1"/>
+    <colspec colname="col2"/>
+    <colspec colname="col3"/>
+    <colspec colname="col4"/>
+    <colspec colname="col5"/>
+    <thead>
+     <row>
+      <entry><b>Platform</b></entry>
+      <entry><b>Version</b></entry>
+      <entry><b>32 / 64 bit</b></entry>
+      <entry><b>Supported</b></entry>
+      <entry><b>Recommended Version</b></entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry>Mac OS</entry>
+      <entry>10.7</entry>
+      <entry>64 bit</entry>
+      <entry>Developer only</entry>
+      <entry>Mac OS 10.7 </entry>
+     </row>
+     <row>
+      <entry>Mac OS</entry>
+      <entry>10.8</entry>
+      <entry>64 bit</entry>
+      <entry>Developer only</entry>
+      <entry>Mac OS 10.8 </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  
+  
+  
+  
+  
+  
+  
   <p>Please use the default archive file handler in Mac OS X, Archive Utility, when you unpack the
    Couchbase Server distribution. It is more difficult to diagnose non-functioning or damaged
    installations after extraction by other third party archive extraction tools.</p>
@@ -49,29 +95,10 @@
      <codeph>/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/</codeph>.</p>
   </section>
   
-  <section><title>Installing on Mac OS X as non-root, non-sudo</title>
-   <p><b>This installation is for
-     development purposes only.</b> There may be cases when you want to install the server as a
-    non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
-    able to run Couchbase Server and all Couchbase command-line tools. To do so on Mac OS X:</p>
-   <ol>
-    <li>After you download Couchbase Server, open Terminal and go to the Downloads
-       directory:<p><codeph> cd ~/Downloads/ </codeph></p></li>
-    <li>Unzip the package containing Couchbase Server:<p><codeph> open
-       couchbase-server-enterprise_x86_64_2.1.0.zip </codeph></p></li>
-    <li>Move Couchbase App to your <codeph>/Applications</codeph> folder:<p><codeph> mv
-       couchbase-server-enterprise_x86_64_2.1.0/Couchbase\ Server.app /Applications/
-     </codeph></p></li>
-    <li>Start the server from Terminal:<p><codeph> open /Applications/Couchbase\ Server.app
-      </codeph></p><p>This will enable you to use Couchbase Server as a non-sudo, non-root
-     user.</p></li>
-    <li>To stop the server, Click on the Couchbase icon in the menu bar and select Quit Couchbase
-     Server.</li>
-   </ol>
-  </section>
+  
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../Install/install-platforms.dita"/>
    <link href="../Install/mac-startup-shutdown.dita"/>
    

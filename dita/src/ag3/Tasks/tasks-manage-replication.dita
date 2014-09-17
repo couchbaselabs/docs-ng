@@ -114,7 +114,7 @@
     </section>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="tasks-nodeFailover.dita"></link>
       <link href="tasks-rebalance.dita"/>
       <link href="../UI/ui-data-buckets.dita"></link>

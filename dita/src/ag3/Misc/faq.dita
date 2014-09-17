@@ -33,27 +33,11 @@
       </dlentry>
       <dlentry>
         <dt>Which ports does Couchbase Server need?</dt>
-        <dd>
-          <ul>
-            <li>4369 - Erlang port mapper (epmd)</li>
-            <li>8091 - GUI and REST interface</li>
-            <li>8092 - Couchbase API port</li>
-            <li>11209, 11210, 11211, 11214, 11215 - Bucket and proxy ports</li>
-            <li>18091, 18092 - Internal REST and CAPI HTTPS for SSL</li>
-            <li>21100 to 21199 - Inclusive for dynamic cluster communication</li>
-          </ul></dd>
+        <dd>See the Network ports section for up to date information.</dd>
       </dlentry>
       <dlentry>
         <dt>What hardware and platforms does Couchbase Server support?</dt>
-        <dd>
-          <ul>
-            <li>Red Hat and CentOS versions 5, update 2 and higher</li>
-            <li>Ubuntu 9</li>
-            <li>Windows Server 2008</li>
-            <li>Mac OS X (Community support only)</li>
-            <li>32-bit and 64-bit versions</li>
-          </ul>
-        </dd>
+        <dd>See the Supported platforms section for up to date information.</dd>
       </dlentry>
       <dlentry>
         <dt>How can I get Couchbase on a different OS?</dt>

@@ -2,12 +2,59 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic3429">
- <title>Ubuntu Linux installation</title>
+ <title>Ubuntu/Debian installation</title>
+  <shortdesc>This installation information applies to both Ubuntu and Debian platforms.</shortdesc>
  <body>
+   
+   <p>The following Ubuntu and Ubuntu-based operating systems such as Debian platforms are supported:</p>
+   
+   <table>
+     <tgroup cols="5">
+       <colspec colname="col1"/>
+       <colspec colname="col2"/>
+       <colspec colname="col3"/>
+       <colspec colname="col4"/>
+       <colspec colname="col5"/>
+       <thead>
+         <row>
+           <entry><b>Platform</b></entry>
+           <entry><b>Version</b></entry>
+           <entry><b>32 / 64 bit</b></entry>
+           <entry><b>Supported</b></entry>
+           <entry><b>Recommended Version</b></entry>
+         </row>
+       </thead>
+       <tbody>
+         <row>
+           <entry>Ubuntu Linux</entry>
+           <entry>10.04</entry>
+           <entry>32 and 64 bit</entry>
+           <entry>Developer and Production</entry>
+           <entry/>
+         </row>
+         <row>
+           <entry>Ubuntu Linux</entry>
+           <entry>12.04</entry>
+           <entry>32 and 64 bit</entry>
+           <entry>Developer and Production</entry>
+           <entry>Ubuntu 12.04</entry>
+         </row>
+         <row>
+           <entry>Debian Linux</entry>
+           <entry>7</entry>
+           <entry>64 bit</entry>
+           <entry>Developer and Production</entry>
+           <entry>Debian 7.0</entry>
+         </row>
+       </tbody>
+     </tgroup>
+   </table>
+   
   
-  <section><title>Installing on Ubuntu</title><p>To install:</p><ol>
-    <li>For Ubuntu version 12.04, you need to install a specific OpenSSL dependency by
-       running:<p><codeph> root-&gt; apt-get install libssl0.9.8 </codeph></p></li>
+  <section><title>Installing on Ubuntu or Debian</title><p>To install:</p><ol>
+    <li>For Ubuntu version 12.04 and Debian 7, you need OpenSSL 1.x. Install a specific OpenSSL
+          dependency by running:<p><codeph> root-&gt; apt-get install libssl&lt;version>
+            </codeph></p></li>
     <li>The Ubuntu Couchbase installation uses the DEB package. To install, use the
       <codeph>dpkg</codeph> command-line tool using the DEB file that you downloaded. The following
      example uses <codeph>sudo</codeph> which will require root-access to allow
@@ -57,27 +104,10 @@ ureadahead will be reprofiled on next reboot
     access the web administration interface. </p>
   </section>
 
-  <section><title>Installing on Ubuntu as non-root, non-sudo</title><p><b>This installation is for
-     development purposes only.</b> There may be cases when you want to install the server as a
-    non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
-    able to run Couchbase Server and all Couchbase command-line tools. To do so on Ubuntu:</p><ol>
-    <li>After you download the Couchbase DEB package, go to the directory where it is located and
-     extract it:<p><codeph> &gt; dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb
-       $HOME </codeph></p><p>In the directory where you extracted the files, you will see
-       <codeph>opt</codeph> and <codeph>etc</codeph> subdirectories.</p></li>
-    <li>After you extract the Couchbase Server install files, go to the subdirectory:<p><codeph> cd
-       opt/couchbase </codeph></p></li>
-    <li>Run this password-related script:<p><codeph> ./bin/install/reloc.sh `pwd`
-      </codeph></p><p>This enables you to continue the install as a non-root, non-sudo
-     user.</p></li>
-    <li>To run the server:<p><codeph> ./bin/couchbase-server -- -noinput -detached
-     </codeph></p></li>
-    <li>To stop the server:<p><codeph> ./bin/couchbase-server -k </codeph></p></li>
-   </ol>
-  </section>
+ 
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../Install/install-platforms.dita"></link>
    <link href="../Install/install-networkPorts.dita"></link>
    <link href="../Install/linux-startup-shutdown.dita"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_swj_j45_j4">
-  <title>Ejecting metadata (REST API)</title>
+  <title>Setting metadata ejection</title>
   <shortdesc>Bucket ejection from memory is set with <codeph>POST
     pools/default/buckets/default</codeph>.</shortdesc>
   <refbody>
-    <section><title>Bucket metadata ejection REST API</title>
+    <section><title>Bucket metadata ejection</title>
       <p> To set the maximum of thread workers, use the <codeph>maxNumberThreads</codeph> option. </p>
       
       <note type="important"> When editing bucket properties, be sure to specify all bucket
@@ -18,8 +18,8 @@
       <table>
         <tgroup cols="3">
           <colspec colname="col1" colwidth="1*"/>
-          <colspec colname="col2" colwidth="2.41*"/>
-          <colspec colname="col3" colwidth="2.54*"/>
+          <colspec colname="col2" colwidth="2.2*"/>
+          <colspec colname="col3" colwidth="4.14*"/>
           <thead>
             <row>
               <entry>HTTP method</entry>
@@ -36,7 +36,7 @@
             <row>
               <entry>GET</entry>
               <entry>/pools/default/buckets/default</entry>
-              <entry>Retrieves information for a single bucket associated with a cluster.</entry>
+              <entry>Retrieves information for a single bucket associated with a cluser.</entry>
             </row>
             <row>
               <entry>GET</entry>

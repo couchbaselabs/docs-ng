@@ -140,7 +140,7 @@
 		</table>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../CBcli/cbcli-buckets.dita"/>
 			<link href="../../REST/rest-bucket-flush.dita"/>
 			<link href="../../UI/ui-data-buckets.dita"/>

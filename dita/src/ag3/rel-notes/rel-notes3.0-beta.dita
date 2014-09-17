@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.entryd">
+<topic id="topic_xgq_zhx_r4">
+  <title>Release notes 3.0 beta</title>
+  <body>
+    <p>This release note is for the 3.0.0 BETA release. It contains a list of known and fixed
+      issues.</p>
+    
+    <section><title>Couchbase .NET incompatibility</title>
+      <p>An incompatibility between Microsoft
+        Framework 4.0 or earlier, the Couchbase .NET SDK 1.3.7 or earlier, and Couchbase Server 3.0
+        has been identified where the URL generated for a View operation on a Bucket is improperly
+        encoded. This causes view requests to fail with the following message in
+        the body:</p>
+      <codeblock>"Design document not found, body: {"error":"not_found","reason":"missing"}"</codeblock>
+      <dl>
+        <dlentry>
+          <dt>Impact</dt>
+          <dd>The affected Microsoft .NET versions are 4.0 or earlier, Couchbase .NET SDK 1.3.7 or earlier,
+        and Couchbase Server 3.0 (including Beta) >= 3.0. Microsoft .NET version 4.5 changes the way
+          <codeph>Uri.ToString</codeph> handles it’s Unicode encoding, which resolves the issue,
+        thus clients running on that version or higher of the CLR are not impacted. Aentryitionally,
+        Couchbase Server 2.5 and lower are not impacted.  
+            <note type="note">Couchbase .NET 1.3.8 has a patch which resolves the issue for all versions of Couchbase Server and Microsoft .NET Frameworks. </note>
+          </dd>
+        </dlentry>
+        <dlentry>
+          <dt>Workaround</dt>
+          <dd>In aentryition to the patch released with Couchbase .NET SDK version 1.3.8, aentry the
+            following element to your App.Config or Web.Config to enable support for all SDK and
+            Server versions. 
+            
+            <codeblock>&lt;uri&gt;
+    &lt;iriParsing enabled="true"/&gt;
+&lt;uri&gt;
+            </codeblock>
+            
+            <p>Customers who are not ready or cannot upgrade their Couchbase .NET SDK’s to 1.3.8 or
+              greater are strongly advised to aentry this element to their deployments if they intend
+              to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
+          </dd>
+        </dlentry>
+      
+        <dlentry>
+          <dt>References</dt>
+          <dd><xref href="https://connect.microsoft.com/VisualStudio/feedback/details/758479/system-uri-tostring-behaviour-change" format="html"/></dd>
+        </dlentry>
+      </dl>
+      
+        
+    </section>
+    
+    <section><title>Behavior changes</title>
+      
+      <p>The <codeph>stale=false</codeph> view query argument has been enhanced. 
+        It considers all document changes which have been received at the time the query was received. 
+        This means that using the durability requirements or observe feature to block for persistence in application code 
+        before issuing the <codeph>false</codeph>stale query is no longer needed. 
+        It is recommended that you remove all such application level checks after completing the upgrade to the 3.0 release. 
+      </p>
+    
+    </section>
+    
+    
+    
+    
+    <section>
+      <title>Known issues</title>
+      
+      <table>
+        <tgroup cols="3">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="1*"/>
+          <colspec colname="col3" colwidth="3*"/>
+          <thead>
+            <row>
+              <entry><b>Functional area</b></entry>
+              <entry><b>Issue</b></entry>
+              <entry><b>Description</b></entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Install and upgrade</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11941" scope="external"
+                  format="html">MB-11941</xref></entry>
+              <entry>Online upgrade from 2.0 to 3.0 on Ubuntu 12.04 does not work</entry>
+            </row>
+            <row>
+              <entry>Install and upgrade</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11922" scope="external"
+                format="html">MB-11922</xref></entry>
+              <entry>Upgrade to R16 causes 20% regression in view query latency and
+                throughput</entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11820" scope="external"
+                  format="html">MB-11820</xref></entry>
+              <entry>Beer-sample loading is stuck in a crashed state</entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11299" scope="external"
+                format="html">MB-11299</xref></entry>
+              <entry>UPR replica streams cannot send items from partial snapshots</entry>
+            </row>
+            <row>
+              <entry>Cluster operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11928" scope="external"
+                format="html">MB-11928</xref></entry>
+              <entry>Rebalance with delta recovery exited with the message, "{badmatch,
+                {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</entry>
+            </row>
+            <row>
+              <entry>XDCR</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11643" scope="external"
+                  format="html">MB-11643</xref></entry>
+              <entry>Incoming workload suffers when XDCR enabled</entry>
+            </row>
+            <row>
+              <entry>XDCR</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11642" scope="external"
+                  format="html">MB-11642</xref></entry>
+              <entry>Intra-replication falling behind under moderate-heavy workload <p>Under a
+                  moderate replication workload (20-30K sets per second), the backlog becomes too
+                  large resulting in high memory usage.</p></entry>
+            </row>
+            <row>
+              <entry>Indexing and querying</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11919" scope="external"
+                format="html">MB-11919</xref></entry>
+              <entry>There is a 3-5x increase in index size during rebalance with views</entry>
+            </row>
+            <row>
+              <entry>Indexing and querying</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11899" scope="external"
+                format="html">MB-11899</xref></entry>
+              <entry>Indexing progress statistic goes backwards</entry>
+            </row>
+            <row>
+              <entry>Indexing and querying</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11589" scope="external"
+                  format="html">MB-11589</xref></entry>
+              <entry>Sliding <codeph>endseqno</codeph> during initial index build or DCP reading
+                from disk snapshot results in longer <codeph>stale=false</codeph> query latency and
+                index startup time</entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+    </section>
+    
+    
+    
+    <section><title>Fixed issues</title>
+      
+      <p>The following are fixed issues.</p>
+
+    
+      
+      <table>
+        <tgroup cols="3">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="1*"/>
+          <colspec colname="col3" colwidth="3*"/>
+          <thead>
+            <row>
+              <entry><b>Functional area</b></entry>
+              <entry><b>Issue</b></entry>
+              <entry><b>Description</b></entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Install and upgrade</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-6972" scope="external"
+                  format="html">MB-6972</xref></entry>
+              <entry>Distribute Couchbase Server through yum and ubuntu package repositories</entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11866" scope="external"
+                  format="html">MB-11866</xref></entry>
+              <entry>wbeam.smp RSS suddenly increases to 45GB after an unexpected_binary
+                error</entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11405" scope="external"
+                format="html">MB-11405</xref></entry>
+              <entry>Shared thread pool: high CPU overhead due to OS level context switches /
+                scheduling</entry>
+            </row>
+            <row>
+              <entry>Database operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11383" scope="external"
+                format="html">MB-11383</xref></entry>
+              <entry>warmup_min_items_threshold setting is not honored correctly in 3.0
+                warmup</entry>
+            </row>
+            <row>
+            <entry>Cluster operations</entry>
+            <entry><xref href="http://www.couchbase.com/issues/browse/MB-11606" scope="external"
+              format="html">MB-11606</xref></entry>
+            <entry>Error displayed when node did not mark to collect</entry>
+            </row>
+            <row>
+              <entry>Cluster operations</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
+                format="html">MB-11568</xref></entry>
+              <entry>IP address does not show the same in each step of cluster-wide collect
+                info.</entry>
+            </row>
+            <row>
+              <entry>vBuckets</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11720" scope="external"
+                  format="html">MB-11720</xref></entry>
+              <entry>Backfilling the entire vBucket can starve other streams that also need to
+                backfill</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+
+    </section>
+  </body>
+</topic>

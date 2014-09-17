@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic2084"><title>Server nodes CLI</title><body><p>To set a data path for an unprovisioned cluster:</p><codeblock><codeph>
+<topic xml:lang="en-us" id="topic2084"><title>Server nodes</title><body><p>To set a data path for an unprovisioned cluster:</p><codeblock><codeph>
 couchbase-cli node-init -c 192.168.0.1:8091 \
        --node-init-data-path=/tmp/data \
        --node-init-index-path=/tmp/index

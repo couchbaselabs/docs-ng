@@ -56,7 +56,7 @@ HTTP/1.1 401 Unauthorized WWW-Authenticate: Basic realm="Couchbase Server Admin 
     </taskbody>
     
     <related-links>
-        <linklist><title>Related topics</title>
+        <linklist>
             <link href="../REST/rest-users.dita"></link>
             <link href="http://www.couchbase.com/communities/all-client-libraries" scope="external" format="html"><linktext>Couchbase, All Client Libraries</linktext></link>
         </linklist>

@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic7920">
-  <title>XDCR CLI</title>
+  <title>XDCR</title>
   <body>
     <p>To create a XDCR remote cluster:</p>
     <codeblock><codeph>    couchbase-cli xdcr-setup -c 192.168.0.1:8091 \
@@ -217,7 +217,7 @@ Certificate matches what seen on GUI
     
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../../XDCR/xdcr-intro.dita"></link>
       <link href="../../Tasks/tasks-manage-xdcr-dataEncryption.dita"/>
       <link href="../../Tasks/tasks-manage-xdcr.dita"/>

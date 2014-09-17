@@ -1,57 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
 <concept id="concept_ggp_tqp_yn">
- <title>Stream-based views</title>
- <shortdesc>Indexing is performed as soon as data changes in memory without waiting for persistence to disk. 
-  As a result, views have up-to-date data and faster queries.</shortdesc>
- <conbody>
-  
-  <p>Indexing occurs as soon as data changes in memory due to the Database Change Protocol (DCP), 
-   a stream-based protocol. 
-   With DCP, changes made to documents in-memory are immediately streamed to be indexed without being written to disk. 
-   This provides faster view consistency which provides fresher data.</p>
-    
-   <ul>
-    <li>Views are updated with key-value sooner</li>
-    <li>Lag time for view consistency is reduced</li> 
-    <li>Views are more closely synch with the data</li>
-   </ul>
-   
-   <note type="note">When a Couchbase Server cluster has both 2.x and 3.0 servers, the Couchbase 3.0
-   server has faster indexing.</note>
-  
-  
-   
-   <p>When the <codeph>stale=false</codeph> query is run, the indexer picks up changes that occurred (latest data) after the query was issued. 
-    The changes are picked up from memory and not disk. The index occurs in the following manner:</p>
-  
-  
-  <ol>
-   <li>A set request comes in from the application.</li>
-   <li>Couchbase Server responds back that they key is written.</li>
-   <li>Couchbase Server quickly replicates the data out to memory on the other nodes.</li>
-   <li>At the same time, data is put into a write queue to be persisted to disk.</li>
-  </ol>
-  
-  <draft-comment author="ruth">Need GRAPHIC - see ppt slide</draft-comment>
-  
+
+	<title>Stream-based views</title>
+	<abstract>
+		<shortdesc>Stream-based views reduce latency for view updates, providing faster view
+			consistency and fresher data.</shortdesc> This feature uses the new streaming protocol,
+		Database Change Protocol (DCP). </abstract>
 
 
+	<conbody>
 
-  <section><title>Impacted documentation</title>
-  <ul>
-   <li>Views and view operations</li>
-  </ul>
-  </section> 
-  
+		<p>With DCP, data does not need to be persisted to disk before you can retrieve it with a view
+			query. DCP offers the following benefits for views: </p>
+		<ul>
+			<li>Views are updated with key-value data sooner.</li>
+			<li>Latency for view updates is reduced.</li>
+			<li>Views are more closely synchronized with the data.</li>
+		</ul>
+		
+		<p>When you submit a view query, you can include a parameter that specifies your data
+			freshness requirements. The name of the parameter is <codeph>stale</codeph> and it takes
+			the following values:</p>
+
+		<ul>
+			<li><codeph>ok</codeph>—The server returns the current entries from the index file.</li>
+			<li><codeph>update_after</codeph>—The server returns the current entries from the index,
+				and then initiates an index update.</li>
+			<li><codeph>false</codeph>—The server waits for the indexer to finish the changes that
+				correspond to the current key-value document set and then returns the latest entries
+				from the view index.</li>
+		</ul>
+
+		<p>Every 5 seconds the automatic update process checks whether 5000 changes have occurred. If a
+			minimum of 5000 changes occurred, an index update is triggered. Otherwise, no update is
+			triggered. When triggered, the indexer requests from DCP all changes since it was last run.
+			The default number of changes to check for is 5000, but that number can be configured by
+			setting the <codeph>updateMinChanges</codeph> option. The update interval can also be
+			configured by setting the <codeph>updateInterval</codeph> option. </p>
+
+		<p>When an application sends a query that has the <codeph>stale</codeph> parameter set to
+			false, the application receives all recent changes to the documents, including changes that
+			haven't yet been persisted to disk.</p>
+
+		<note othertype="Best practice" type="other">For better scalability and throughput, we recommend
+			setting the value of the <codeph>stale</codeph> parameter to <codeph>ok</codeph>. With the
+			stream-based views feature, data returned when <codeph>stale</codeph> is set to
+				<codeph>ok</codeph> is closer to the key-value data, even though it might not include
+			all of it.</note>
+
+	</conbody>
  
-
-
- </conbody>
- 
- <related-links>
-  <linklist><title>Related topics</title>
-   <link href="../Views/views-operation.dita"></link>
-  </linklist>
- </related-links>
 </concept>

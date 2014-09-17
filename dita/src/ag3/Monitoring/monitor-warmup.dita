@@ -155,7 +155,7 @@
 		</table>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../Concepts/concept-serverWarmup.dita"></link>
 		</linklist>
 	</related-links>

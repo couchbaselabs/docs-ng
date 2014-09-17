@@ -9,7 +9,7 @@
     <p>See Couchbase issuee MB-6219.</p>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="http://www.couchbase.com/issues/browse/MB-6219" scope="external" format="html">
         <linktext>http://www.couchbase.com/issues/browse/MB–6219</linktext>
       </link>

@@ -4,6 +4,57 @@
 <topic xml:lang="en-us" id="topic4669">
   <title>Microsoft Windows installation</title>
   <body>
+    <p>The following Microsoft Windows operating systems are supported:</p>
+    
+    <table>
+      <tgroup cols="5">
+        <colspec colname="col1"/>
+        <colspec colname="col2"/>
+        <colspec colname="col3"/>
+        <colspec colname="col4"/>
+        <colspec colname="col5"/>
+        <thead>
+          <row>
+            <entry><b>Platform</b></entry>
+            <entry><b>Version</b></entry>
+            <entry><b>32 / 64 bit</b></entry>
+            <entry><b>Supported</b></entry>
+            <entry><b>Recommended Version</b></entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>Windows 2012</entry>
+            <entry>R2 SP1</entry>
+            <entry>64 bit</entry>
+            <entry>Developer and Production</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>Windows 2008</entry>
+            <entry>R2 with SP1</entry>
+            <entry>64 bit</entry>
+            <entry>Developer and Production</entry>
+            <entry>Windows 2008</entry>
+          </row>
+          <row>
+            <entry>Windows 8</entry>
+            <entry/>
+            <entry>32 and 64 bit</entry>
+            <entry>Developer only</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>Windows 7</entry>
+            <entry/>
+            <entry>32 and 64 bit</entry>
+            <entry>Developer only</entry>
+            <entry/>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    
     <p>Before installing, check the supported platforms. To
       install on Windows, download the Windows installer package. This is supplied as a Windows
       executable. You can install the package either using the wizard, or by doing an unattended
@@ -11,10 +62,13 @@
       the machine before you start the installation process. You also need administrator privileges
       on the machine where you install it.</p>
     
-    <p>The TCP/IP port allocation on Windows by default includes a restricted number of ports
+    
+    <p>The TCP/IP port allocation on Windows, by default, includes a restricted number of ports
       available for client communication. For more information on this issue, including information
-      on how to adjust the configuration and increase the available ports, see the MSDN: Avoiding
-      TCP/IP Port Exhaustion article. </p>
+      on how to adjust the configuration and increase the available ports, see 
+      <xref href="http://msdn.microsoft.com/en-us/library/aa560610(v=bts.20).aspx" scope="external" format="html">
+      MSDN: Avoiding TCP/IP Port Exhaustion</xref>
+      </p>
     
    
     <note type="important">Couchbase Server uses the Microsoft C++ redistributable package, which
@@ -23,37 +77,36 @@
       installation process completes successfully, shut down all other running applications during
       installation. <p>For Windows 2008, you must upgrade your Windows Server 2008 R2 installation
         with Service Pack 1 installed before running Couchbase Server. You can obtain Service Pack 1
-        from [Microsoft TechNet](http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx).
-        </p><p>The standard Microsoft Server installation does not provide an adequate number of
+        from <xref href="http://technet.microsoft.com/en-us/library/ff817647(v=ws.10).aspx" format="html" scope="external">Microsoft TechNet</xref>.
+        </p>
+      <p>The standard Microsoft Server installation does not provide an adequate number of
         ephemeral ports for Couchbase clusters. Without the correct number of open ephemeral ports,
         you may experience errors during rebalance, timeouts on clients, and failed backups. The
         Couchbase Server installer will check for your current port setting and adjust it if needed.
-        See [Microsoft KB-196271](http://support.microsoft.com/kb/196271). </p>
+        See <xref href="http://support.microsoft.com/kb/196271" format="html" scope="external">Microsoft KB-196271</xref>.
+        </p>
     </note>
       
     
     <section><title>Installation wizard</title>
       <ol>
-        <li>Double click on the downloaded executable file.
-          <p>The installer for windows will detect
-            if any redistributable packages included with Couchbase need to be installed or not. If
-            these packaged are not already on your system, the install will automatically install
-            them along with Couchbase Server.</p>
-        </li>
-        <li>Follow the install wizard to complete the installation.
-          <p>You will be prompted with the
+        <li>Double click on the downloaded executable file. <p>The installer for Windows detects if
+            any redistributable packages included with Couchbase need to be installed or not. If
+            these packages are not already on your system, the install automatically installs them
+            along with Couchbase Server.</p></li>
+        <li>Follow the install wizard to complete the installation. <p>You will be prompted with the
               <codeph>Installation Location</codeph> screen. You can change the location where the
             Couchbase Server application is located. Note that this does not configure the location
-            of where the persistent data will be stored, only the location of the server
+            of where the persistent data is stored, only the location of the server
             itself.</p><p>The installer copies necessary files to the system. During the
-            installation process, the installer will also check to ensure that the default
+            installation process, the installer also checks to ensure that the default
             administration port is not already in use by another application. If the default port is
-            unavailable, the installer will prompt for a different port to be used for
-            administration of the Couchbase server. The installer asks you to set up sufficient
-            ports available for the node. By default Microsoft Server will not have an adequate
-            number of ephemeral ports, see <i>Microsoft Knowledge Base Article 196271</i></p>
-              <image href="../images/windows_port_check.png" width="300"></image>
-            </li>
+            unavailable, the installer prompts for a different port to be used for administration of
+            the Couchbase server. The installer asks you to set up sufficient ports available for
+            the node. By default, Microsoft Server will not have an adequate number of ephemeral
+            ports, see <i>Microsoft Knowledge Base Article 196271</i></p>
+          <image href="../images/windows_port_check.png" width="300"/>
+        </li>
         <li>Click <uicontrol>Yes</uicontrol>.
           <p>Without a sufficient number of ephemeral ports, a Couchbase cluster
             fails during rebalance and backup; other operations such as client requests will
@@ -63,33 +116,13 @@
             </li>
         <li>Restart the server for the port changes to be applied.</li>
       </ol>
-      <p>After installation you should follow the server setup instructions. </p></section>
+      <p>After installation, follow the server setup instructions. </p></section>
     
     
-    <section><title>Unattended installation</title><p>To use the unattended installation process,
-        you first record your installation settings in wizard installation. These settings are saved
-        to a file. You can use this file to silently install other nodes of the same
-        version.</p>
-      <p>To record your install options, open a Command Terminal or Power and start
-        the installation executable with the <codeph>/r</codeph> command-line
-        option:</p><codeblock><codeph>&gt; couchbase_server_version.exe /r /f1your_file_name.iss
-</codeph></codeblock><p>You
-        will be prompted with installation options, and the wizard will complete the server install.
-        We recommend you accept an increase in <codeph>MaxUserPort</codeph>. A file with your
-        options will be recorded at <codeph>C:\Windows\your_file_name.iss</codeph>.</p>
-      <p>To perform
-        an installation using this recorded setup file, copy the <codeph>your_file_name.iss</codeph>
-        file into the same directory as the installer executable. Run the installer from the
-        command-line using the <codeph>/s</codeph>
-        option:</p><codeblock><codeph>&gt; couchbase_server_version.exe /s -f1your_file_name.iss
-</codeph></codeblock><p>You
-        can repeat this process on multiple machines by copying the install package and the
-          <codeph>your_file_name.iss</codeph> file to the same directory on each
-      machine.</p>
-    </section>
+    
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../Install/install-platforms.dita"></link>
       <link href="../Install/windows-startup-shutdown.dita"></link>
       <link href="http://support.microsoft.com/kb/196271" scope="external" format="html">

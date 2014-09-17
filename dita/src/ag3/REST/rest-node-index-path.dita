@@ -6,9 +6,10 @@
   <refbody>
     
     <section><title>HTTP method and URI</title>
-    <p>The path for the index files can be configured with the <codeph>index_path</codeph>.</p>
+    <p>The path for the index files is configured with the <codeph>index_path</codeph>
+        parameter.</p>
       <codeblock>
-        POST /nodes/self/controller/settings
+POST /nodes/self/controller/settings
       </codeblock>
     </section>
       
@@ -34,8 +35,8 @@ Content-Type: application/json
 Content-Length: 0
 </codeblock>
     
-    <note type="note">If you try to set the data path at this endpoint, you will receive the
-        following error:
+    <note type="note">If you try to set the data path at this endpoint, the following error
+        displays:
         <codeblock>
 ERROR: unable to init 10.3.4.23 (400) Bad Request
 {u'error': u'Changing data of nodes that are part of provisioned cluster is not supported'}

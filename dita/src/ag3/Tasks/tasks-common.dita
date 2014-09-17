@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic3716">
-  <title>Common administrative tasks</title>
+  <title>Common admin tasks</title>
   <body>
     <p>For general running and configuration, Couchbase Server is self-managing. The management
       infrastructure and components of the Couchbase Server system are able to adapt to the
@@ -67,7 +67,7 @@
   </body>
   
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../CLI/cli-overview.dita"></link>
       <link href="../REST/overview-rest-api.dita"></link>
     </linklist>

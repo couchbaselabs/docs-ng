@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic3414">
-	<title>Command-line interface overview</title>
+	<title>CLI overview</title>
 	<body>
 		
 		<p>Couchbase Server includes a number of command-line tools that can be used to manage and
@@ -227,7 +227,7 @@
 			</table></section>
 	</body>
 	<related-links>
-		<linklist><title>Related topics</title>
+		<linklist>
 			<link href="../REST/overview-rest-api.dita"/>
 		</linklist>
 	</related-links>

@@ -72,152 +72,59 @@
          nodes. This will also include all design documents; do note however that you will need to
          rebuild any indexes after you restore the data. To backup an entire cluster and all buckets
          for that cluster:</p>
-      <codeblock><codeph>&gt; cbbackup http://HOST:8091 ~/backups \
+      <codeblock>&gt; cbbackup http://HOST:8091 ~/backups \
           -u Administrator -p password
-</codeph></codeblock>
+</codeblock>
       <p>Where <codeph>~/backups</codeph> is the directory where you want to store the data. When
          you perform this operation, be aware that cbbackup will create the following directory
          structure and files in the <codeph>~/backups</codeph> directory assuming you have two
          buckets in your cluster named <codeph>my_name</codeph> and <codeph>sasl</codeph> and two
          nodes <codeph>N1</codeph> and <codeph>N2</codeph> :</p>
-      <codeblock><codeph>~/backups
+      <codeblock>~/backups
         bucket-my_name
             N1
             N2
         bucket-sasl
             N1
             N2
-</codeph></codeblock>
+</codeblock>
       <p>Where <codeph>bucket-my_name</codeph> and <codeph>bucket-sasl</codeph> are directories
          containing data files and where <codeph>N1</codeph> and <codeph>N2</codeph> are two sets of
          data files for each node in the cluster. To backup a single bucket in a cluster:</p>
-      <codeblock><codeph>&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+      
+      <codeblock>&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
   -u Administrator -p password \
   -b default
-</codeph></codeblock>
+</codeblock>
       <p>In this case <codeph>-b default</codeph> specifies you want to backup data from the default
          bucket in a cluster. You could also provide any other given bucket in the cluster that you
          want to backup. To backup all the data stored in multiple buckets from a single node which
          access the buckets:</p>
-      <codeblock><codeph>&gt; cbbackup http://HOST:8091 /backups/ \
+      <codeblock>&gt; cbbackup http://HOST:8091 /backups/ \
   -u Administrator -p password \
   --single-node
-</codeph></codeblock>
+</codeblock>
       <p>This is an example of how to backup data from a single bucket on a single node follows:</p>
-      <codeblock><codeph>&gt; cbbackup http://HOST:8091 /backups \
+      <codeblock>&gt; cbbackup http://HOST:8091 /backups \
   -u Administrator -p password \
   --single-node \
   -b bucket_name
-</codeph></codeblock>
+</codeblock>
       <p>This example shows you how you can specify keys that are backed up using the <codeph>-
             k</codeph> option. For example, to backup all keys from a bucket with the prefix
          ‘object’:</p>
-      <codeblock><codeph>&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
+      
+      <codeblock>&gt; cbbackup http://HOST:8091 /backups/backup-20120501 \
   -u Administrator -p password \
   -b bucket_name \
   -k '^object.*'
-</codeph></codeblock>
-      <p>For more information on using <codeph>cbbackup</codeph> scenarios when you may want to use
-         it and best practices for backup and restore of data with Couchbase Server.</p>
-      <p><b>Backing Up Design Documents Only</b></p>
-      <p>You can backup only design documents from a cluster or bucket with the option,
-            <codeph>design_doc_only=1</codeph>. You can later restore the design documents only with
-            <codeph>cbrestore</codeph>:</p>
-      <codeblock><codeph>&gt; ./cbbackup http://10.5.2.30:8091 ~/backup -x design_doc_only=1 -b bucket_name
-
-transfer design doc only. bucket msgs will be skipped.
-done
-</codeph></codeblock>
-      <p>Where you provide the hostname and port for a node in the cluster. This will make a backup
-         copy of all design documents from <codeph>bucket_name</codeph> and store this as
-            <codeph>design.json</codeph> in the directory <codeph>~/backup/bucket_name</codeph>. If
-         you do not provide a named bucket it will backup design documents for all buckets in the
-         cluster. In this example we did a backup of two design documents on a node and our file
-         will appear as follows:</p>
-      <codeblock><codeph>[
-   {
-      "controllers":{
-         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/compactView",
-         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/setUpdateMinChanges"
-      },
-      "doc":{
-         "json":{
-            "views":{
-               "view1":{
-                  "map":"function(doc){emit(doc.key,doc.key_num);}"
-               },
-               "view2":{
-                  "map":"function(doc,meta){emit(meta.id,doc.key);}"
-               }
-            }
-         },
-         "meta":{
-            "rev":"1-6f9bfe0a",
-            "id":"_design/ddoc1"
-         }
-      }
-   },
-   {
-      "controllers":{
-         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/compactView",
-         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/setUpdateMinChanges"
-      },
-      "doc":{
-         "json":{
-            "views":{
-               "dothis":{
-                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
-               }
-            }
-         },
-         "meta":{
-            "rev":"1-4b533871",
-            "id":"_design/ddoc2"
-         }
-      }
-   },
-   {
-      "controllers":{
-         "compact":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/compactView",
-         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/setUpdateMinChanges"
-      },
-      "doc":{
-         "json":{
-            "views":{
-               "dothat":{
-                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
-               }
-            }
-         },
-         "meta":{
-            "rev":"1-a8b6f59b",
-            "id":"_design/dev_ddoc2"
-         }
-      }
-   }
-]
-</codeph></codeblock>
-      <p><b>Using cbbackup from Couchbase Server 2.0 with 1.8.x</b></p>
-      <p>You can use <codeph>cbbackup</codeph> 2.x to backup data from a Couchbase 1.8.x cluster,
-         including 1.8. To do so you use the same command options you use when you backup a 2.0
-         cluster except you provide it the hostname and port for the 1.8.x cluster. You do not need
-         to even install Couchbase Server 2.0 in order to use <codeph>cbbackup 2.x</codeph> to
-         backup Couchbase Server 1.8.x. After you get the tool, go to
-         the directory where you cloned the tool and perform the command. For instance:</p>
-      <codeblock><codeph>./cbbackup http://1.8_host_name:port ~/backup -u Administrator -p password
-</codeph></codeblock>
-      <p>This creates a backup of all buckets in the 1.8 cluster at <codeph>~/backups</codeph> on
-         the physical machine where you run <codeph>cbbackup</codeph>. So if you want to make the
-         backup on the machine containing the 1.8.x data bucket, you should copy the tool on that
-         machine. As in the case where you perform backup with Couchbase 2.0, you can use
-            <codeph>cbbackup 2.0</codeph> options to backup all buckets in a cluster, backup a named
-         bucket, backup the default bucket, or backup the data buckets associated with a single
-         node.</p>
-      <note type="note">The <codeph>cbrestore</codeph> tool can also be used to restore backup
-         data onto a 1.8.x cluster.</note>
+</codeblock>
+      <p/>
+      
+      
    </body>
    <related-links>
-      <linklist><title>Related topics</title>
+      <linklist>
 
          
          

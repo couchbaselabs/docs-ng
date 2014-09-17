@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic7058">
-  <title>Rack Awareness REST API</title>
+  <title>Using rack-zone awareness</title>
 
     <shortdesc>The Rack Awareness feature allows logical groupings of servers on a cluster where
     each server group physically belongs to a rack or availability zone. </shortdesc>

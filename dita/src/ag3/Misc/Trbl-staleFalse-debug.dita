@@ -299,7 +299,7 @@
          implementation is broken.</p>
    </body>
    <related-links>
-      <linklist><title>Related topics</title>
+      <linklist>
          <link href="http://www.couchbase.com/issues/browse/MB-7161" scope="external" format="html">
             <linktext>MB–7161</linktext>
          </link>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ez4_kkw_fp">
+  <title>Backing up design documents</title>
+  <shortdesc>Design documents are backed up with the <codeph>design_doc_only=1</codeph> option.</shortdesc>
+  <body>
+
+    <p>You can backup only design documents from a cluster or bucket with the option,
+      <codeph>design_doc_only=1</codeph>. You can later restore the design documents only with
+      <codeph>cbrestore</codeph>:</p>
+
+    <codeblock>&gt; ./cbbackup http://10.5.2.30:8091 ~/backup -x design_doc_only=1 -b bucket_name
+
+transfer design doc only. bucket msgs will be skipped.
+done
+</codeblock>
+    
+    
+    
+    <p>Where you provide the hostname and port for a node in the cluster. This will make a backup
+      copy of all design documents from <codeph>bucket_name</codeph> and store this as
+      <codeph>design.json</codeph> in the directory <codeph>~/backup/bucket_name</codeph>. If
+      you do not provide a named bucket it will backup design documents for all buckets in the
+      cluster. In this example we did a backup of two design documents on a node and our file
+      will appear as follows:</p>
+    
+    <codeblock>[
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc1/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "view1":{
+                  "map":"function(doc){emit(doc.key,doc.key_num);}"
+               },
+               "view2":{
+                  "map":"function(doc,meta){emit(meta.id,doc.key);}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-6f9bfe0a",
+            "id":"_design/ddoc1"
+         }
+      }
+   },
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fddoc2/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "dothis":{
+                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-4b533871",
+            "id":"_design/ddoc2"
+         }
+      }
+   },
+   {
+      "controllers":{
+         "compact":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/compactView",
+         "setUpdateMinChanges":"/pools/default/buckets/default/ddocs/_design%2Fdev_ddoc2/controller/setUpdateMinChanges"
+      },
+      "doc":{
+         "json":{
+            "views":{
+               "dothat":{
+                  "map":"function (doc, meta) {\n  emit(meta.id, null);\n}"
+               }
+            }
+         },
+         "meta":{
+            "rev":"1-a8b6f59b",
+            "id":"_design/dev_ddoc2"
+         }
+      }
+   }
+]
+</codeblock>
+  </body>
+</topic>

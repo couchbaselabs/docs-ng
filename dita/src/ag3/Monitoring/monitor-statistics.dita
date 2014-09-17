@@ -48,7 +48,7 @@
       </ul></section>
     <section><title>stats command</title><p>This displays a large list of statistics related to the
         Couchbase process including the underlying engine (ep_* stats).</p></section>
-    <section><title>dispatcher command</title><p>This statistic will show what the dispatcher is
+    <section><title>dispatcher command</title><p>This statistic shows what the dispatcher is
         currently
         doing:</p><codeblock><codeph>dispatcher
      runtime: 45ms
@@ -92,7 +92,7 @@ nio_dispatcher
           service. </note></section>
   </body>
   <related-links>
-    <linklist><title>Related topics</title>
+    <linklist>
       <link href="../REST/overview-rest-api.dita"></link>
       <link href="../CLI/cbstats-intro.dita"></link>
       <link href="http://github.com/membase/ep-engine/blob/master/docs/stats.org" scope="external"

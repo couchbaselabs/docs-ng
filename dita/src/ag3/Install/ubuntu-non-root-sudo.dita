@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_gdp_bcf_2p">
+  <title>Installing as non-root, non-sudo</title>
+  <shortdesc>Installing on Ubuntu as non-root, non-sudo is for development purposes only.</shortdesc>
+  <body>
+    <p>There may be cases when you want to install the server as a
+      non-root, non-sudo user. If you perform a non-sudo, non-root installation you will be still be
+      able to run Couchbase Server and all Couchbase command-line tools. To do so on Ubuntu:</p>
+    
+    
+    <ol>
+        <li>After downloading the Couchbase DEB package, go to the directory where it is located and
+        extract it:<p>
+          <codeph> &gt; dpkg-deb -x couchbase-server-community_x86_64_2.0.0-1767-rel.deb $HOME
+          </codeph></p><p>In the directory where you extracted the files, you will see
+            <codeph>opt</codeph> and <codeph>etc</codeph> subdirectories.</p></li>
+        <li>After you extract the Couchbase Server install files, go to the subdirectory:
+          <p><codeph> cd opt/couchbase </codeph></p></li>
+        <li>Run this password-related script:<p><codeph> ./bin/install/reloc.sh `pwd`
+        </codeph></p><p>This enables you to continue the install as a non-root, non-sudo
+          user.</p></li>
+        <li>To run the server:<p><codeph> ./bin/couchbase-server -- -noinput -detached
+        </codeph></p></li>
+        <li>To stop the server:<p><codeph> ./bin/couchbase-server -k </codeph></p></li>
+    </ol>
+
+  </body>
+</topic>

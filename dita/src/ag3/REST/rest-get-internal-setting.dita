@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic808">
+  <title>Viewing internal settings</title>
+  <shortdesc>Internal settings are for Couchbase use only.</shortdesc>
+  <body>
+    <p>These internal settings change cluster behavior, performance, and timing and are exposed only
+      via the REST API. The <codeph>/internalSettings</codeph> parameters are implemented on the server level. </p>
+    
+    <note type="warning">These settings are for internal Couchbase use only and are not supported
+      for public consumption.</note>
+    
+    <note type="note">The Maximum Parallel Indexer setting can also be implemented on the global level via 
+      <codeph>/settings/maxParallelIndexers globalValue</codeph>.</note>
+    
+    
+    <table>
+      <tgroup cols="2">
+        <colspec colname="col1" colwidth="1*"/>
+        <colspec colname="col2" colwidth="2.3*"/>
+        <thead>
+          <row>
+            <entry>Get internal settings</entry>
+            <entry>Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><b>Method</b></entry>
+            <entry><codeph>GET /internalSettings</codeph></entry>
+          </row>
+          <row>
+            <entry><b>Request Data</b></entry>
+            <entry>None</entry>
+          </row>
+          <row>
+            <entry><b>Response Data</b></entry>
+            <entry>JSON of current settings</entry>
+          </row>
+          <row>
+            <entry><b>Authentication Required</b></entry>
+            <entry>no</entry>
+          </row>
+          <row>
+            <entry><b>Return Codes</b></entry>
+            <entry>HTTP/1.1 200 OK</entry>
+          </row>
+          <row><entry></entry><entry>HTTP/1.1 500 Internal Server Error</entry></row>
+        </tbody>
+      </tgroup>
+    </table>
+    
+    
+    
+    <section><title>GET /internalSettings</title>
+      
+      <codeblock>
+// Curl syntax
+curl --username=ADMIN --password=PASSWORD HOST:PORT/internalSettings  
+    
+// Curl example
+curl -u admin:password1 http://10.4.2.4:8091/internalSettings
+    
+// Results
+{
+    "capiRequestLimit": "", 
+    "dropRequestMemoryThresholdMiB": "", 
+    "indexAwareRebalanceDisabled": false, 
+    "maxBucketCount": 10, 
+    "maxParallelIndexers": 4, 
+    "maxParallelReplicaIndexers": 2, 
+    "rebalanceIgnoreViewCompactions": false, 
+    "rebalanceIndexPausingDisabled": false, 
+    "rebalanceIndexWaitingDisabled": false, 
+    "rebalanceMovesBeforeCompaction": 64, 
+    "rebalanceMovesPerNode": 1, 
+    "restRequestLimit": "", 
+    "xdcrAnticipatoryDelay": 0, 
+    "xdcrCheckpointInterval": 1800, 
+    "xdcrDocBatchSizeKb": 2048, 
+    "xdcrFailureRestartInterval": 30, 
+    "xdcrMaxConcurrentReps": 32, 
+    "xdcrOptimisticReplicationThreshold": 256, 
+    "xdcrWorkerBatchSize": 500
+}    </codeblock>
+      
+      <note type="note">The following internal parameters are deprecated. Use the equivalent
+        parameter in <codeph>/settings/replications</codeph>
+        instead.<codeblock>xdcrCheckpointInterval
+xdcrDocBatchSizeKb
+xdcrFailureRestartInterval
+xdcrMaxConcurrentReps
+xdcrOptimisticReplicationThreshold
+xdcrWorkerBatchSize      </codeblock></note>
+
+    </section>
+    
+
+    
+    <section><title>POST /internalSettings</title>
+      <p>For example, to update the maximum number of buckets:</p>
+      
+    <codeblock>// Example
+curl -v -X POST http://Administrator:password@10.5.2.117:8091/internalSettings -d maxBucketCount=15
+
+// Results
+* About to connect() to 10.5.2.117 port 8091 (#0)
+*   Trying 10.5.2.117... connected
+* Connected to 10.5.2.117 (10.5.2.117) port 8091 (#0)
+* Server auth using Basic with user 'Administrator'
+> POST /internalSettings HTTP/1.1
+> Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+> User-Agent: curl/7.21.4 (x86_64-unknown-linux-gnu) libcurl/7.21.4 OpenSSL/0.9.8b zlib/1.2.3
+> Host: 10.5.2.117:8091
+> Accept: */*
+> Content-Length: 17
+> Content-Type: application/x-www-form-urlencoded 
+
+  HTTP/1.1 200 OK
+  Server: Couchbase Server
+  Pragma: no-cache
+  Date: Tue, 09 Sep 2014 01:01:57 GMT
+  Content-Type: application/json
+  Content-Length: 2
+  Cache-Control: no-cache
+  
+* Connection #0 to host 10.5.2.117 left intact
+* Closing connection #0</codeblock>
+    </section>
+    
+    <section><title>GET and POST /settings/maxParallelIndexers</title><p>To set the Maximum Parallel
+        Indexer parameter on the global level, use the
+          <codeph>/settings/maxParallelIndexers</codeph> URI and <codeph>globalValue</codeph>
+        parameter. The value range is 1 to 1024. Default: 4. The results provide the global and
+        node-specific parallel indexer configuration.</p> 
+      
+      <table>
+        <tgroup cols="2">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="2.9*"/>
+          <colspec colnum="3" colname="c3" colwidth="3.73*"/>
+          <thead>
+            <row>
+              <entry>HTTP</entry>
+              <entry>URI</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>GET</entry>
+              <entry>/settings/maxParallelIndexers</entry>
+              <entry>Retrieves the global and node-specific parallel indexer configuration.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/settings/maxParallelIndexers globalValue</entry>
+              <entry>Sets and retrieves the new global and node-specific parallel indexer
+                configuration. Value range: 1 to 1024. Default: 4</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+      <p>For example, to view the current setting:</p>
+      
+      <codeblock>
+// Example via browser
+http://10.5.2.55:8091/settings/maxParallelIndexers
+
+// Results
+{"globalValue":4,"nodes":{"ns_1@10.5.2.55":4}}
+
+
+// Example via curl
+curl -u Administrator:password http://10.5.2.117:8091/settings/maxParallelIndexers
+
+// Results 
+{
+    "globalValue": 4, 
+    "nodes": {
+        "ns_1@10.5.2.117": 4
+    }
+}
+      </codeblock>
+      
+      
+      <p>For example, to change the setting, use the POST method with the
+          <codeph>/settings/maxParallelIndexers</codeph> URI and <codeph>globalValue</codeph>
+        parameter. Value range: 1 to 1024. Default: 4.</p>
+        
+      <codeblock>
+// Example
+ curl  -X POST -u Administrator:password http://10.5.2.117:8091/settings/maxParallelIndexers -d globalValue=8
+ 
+// Results 
+{
+    "globalValue": 8, 
+    "nodes": {
+        "ns_1@10.5.2.117": 8
+    }
+} 
+      </codeblock>
+    </section>
+
+  </body>
+
+</topic>

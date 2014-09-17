@@ -194,7 +194,7 @@ shell&gt; ./cbrecovery http://Administrator:password@&lt;From_IP&gt;:8091 \
    and <codeph>msg</codeph> is the number of documents recovered.</p>
  </body>
  <related-links>
-  <linklist><title>Related topics</title>
+  <linklist>
    <link href="../Tasks/tasks-nodeFailover.dita"></link>
    <link href="../XDCR/xdcr-intro.dita"></link>
    <link href="../Tasks/tasks-manage-xdcr.dita"></link>

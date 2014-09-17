@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic1980">
- <title>Couchbase web console</title>
+ <title>Web console</title>
  
  <shortdesc>The Couchbase web console is the main tool for managing the Couchbase environment.</shortdesc>
  

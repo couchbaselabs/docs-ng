@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic xml:lang="en-us" id="topic3383">
+	<title>Managing advanced XDCR settings</title>
+	<shortdesc>The XDCR advanced settings change replication behavior, performance, and timing.</shortdesc>
+	<body>
+		<p>The URI endpoints are available to change global settings for cluster replications
+			and to change settings for a specific replication ID.
+			
+			<table frame="all"
+				id="table_xdcr_settings_uri">
+				<title>XDCR URI paths for settings</title>
+				<tgroup cols="2">
+					<colspec colname="c1" colnum="1" colwidth="1*"/>
+					<colspec colname="c2" colnum="2" colwidth="1.35*"/>
+					<thead>
+						<row>
+							<entry>URI path</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>/settings/replications/</entry>
+							<entry>Global setting supplied to all replications for a cluster.</entry>
+						</row>
+						<row>
+							<entry>/settings/replications/[replication_id]</entry>
+							<entry>Settings for a specific replication for a bucket.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table></p>
+		
+		<section><title>GET /settings/replications</title>
+			<p>To retrieve all settings from /setting/replications:</p>
+			
+			<codeblock>
+// Curl example
+curl -u Administrator:password 10.5.2.54:8091/settings/replications
+
+// Results
+{
+    "checkpointInterval": 1800, 
+    "connectionTimeout": 180, 
+    "docBatchSizeKb": 2048, 
+    "failureRestartInterval": 30, 
+    "httpConnections": 20, 
+    "maxConcurrentReps": 16, 
+    "optimisticReplicationThreshold": 256, 
+    "pauseRequested": false, 
+    "retriesPerRequest": 2, 
+    "socketOptions": {
+        "keepalive": true, 
+        "nodelay": false
+    }, 
+    "supervisorMaxR": 25, 
+    "supervisorMaxT": 5, 
+    "workerBatchSize": 500, 
+    "workerProcesses": 4
+}
+				</codeblock>
+			
+		</section>
+		
+		<p>In the REST API, you can change the settings globally for all replications or for a specific
+			replication ID. </p>
+		<table frame="all"
+			id="table_xdcr_settings">
+			<title>XDCR advanced settings</title>
+			<tgroup cols="3">
+				<colspec colname="col1" colwidth="1*"/>
+				<colspec colname="col2" colwidth="1.1*"/>
+				<colspec colname="col3" colwidth="2.29*"/>
+				<thead>
+					<row>
+						<entry>Parameter</entry>
+						<entry>Value</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>checkpointInterval</entry>
+						<entry>Integer (10 to 14400).</entry>
+						<entry>Default: 1800. Web console equivalent: XDCR Checkpoint
+							Interval.</entry>
+					</row>
+					<row>
+						<entry>connectionTimeout</entry>
+						<entry>Integer (10 to 10000)</entry>
+						<entry>Default: 180.</entry>
+					</row>
+					<row>
+						<entry>docBatchSizeKb</entry>
+						<entry>Integer (10 to 10000)</entry>
+						<entry>Default: 2048. Web console equivalent: XDCR Batch Size (KB).</entry>
+					</row>
+					<row>
+						<entry>failureRestartInterval</entry>
+						<entry>Integer (1 to 300)</entry>
+						<entry>Default: 30. Web console equivalent: XDCR Failure Retry
+							Interval.</entry>
+					</row>
+					<row>
+						<entry>httpConnections</entry>
+						<entry>Integer (1 to 100)</entry>
+						<entry>Default: 20. Number of maximum simultaneous HTTP connections
+							used.</entry>
+					</row>
+					<row>
+						<entry>maxConcurrentReps</entry>
+						<entry>Integer (2 to 256)</entry>
+						<entry>Default: 16. Web console equivalent: XDCR Max Replications per
+							Bucket.</entry>
+					</row>
+					<row>
+						<entry>optimisticReplicationThreshold</entry>
+						<entry>Integer (0 to (20*1024*1024))</entry>
+						<entry>Default: 256. Web console equivalent: XDCR Optimistic Replication
+							Threshold.</entry>
+					</row>
+					<row>
+						<entry>pauseRequested</entry>
+						<entry>Boolean (true or false)</entry>
+						<entry>Initially set at false. Web console via <uicontrol>XDCR > Ongoing
+								replications > Status</uicontrol>. Pauses the XDCR replication
+							stream. <b>Enterprise Edition only.</b></entry>
+					</row>
+					<row>
+						<entry>retriesPerRequest</entry>
+						<entry>Integer (1 to 100)</entry>
+						<entry>Default: 2</entry>
+					</row>
+					<row>
+						<entry>socketOptions</entry>
+						<entry>Term. </entry>
+						<entry>Additional parameters are keepalive (true or false) and nodelay
+							(false or true).</entry>
+					</row>
+					<row>
+						<entry>supervisorMaxR</entry>
+						<entry>Integer (1 to 1000)</entry>
+						<entry>Default: 25</entry>
+					</row>
+					<row>
+						<entry>supervisorMaxT</entry>
+						<entry>Integer (1 to 1000)</entry>
+						<entry>Default: 5</entry>
+					</row>
+					<row>
+						<entry>workerProcesses</entry>
+						<entry>Integer (1 to 128)</entry>
+						<entry>Default: 4. Web console equivalent: XDCR Workers per Replication. The
+							number of worker processes for each vbucket replicator in XDCR. This
+							setting is available with memcached or REST. </entry>
+					</row>
+					<row>
+						<entry>workerBatchSize</entry>
+						<entry>Integer (500 to 10000)</entry>
+						<entry>Default: 500. Web console equivalent: XDCR Batch Count.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+
+
+	</body>
+
+</topic>

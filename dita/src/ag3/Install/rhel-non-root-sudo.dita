@@ -2,7 +2,7 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_atz_r3s_g4">
   <title>Installing as non-root, non-sudo</title>
-  <shortdesc>Installing as non-root, non-sudo is for development purposes only.</shortdesc>
+  <shortdesc>Installing on RHEL as non-root, non-sudo is for development purposes only.</shortdesc>
   <body>
     <note type="attention">This installation is
       for development purposes only.</note> 
