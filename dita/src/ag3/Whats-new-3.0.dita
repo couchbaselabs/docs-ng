@@ -2,84 +2,109 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_hdg_nkd_54">
   <title>What's new in 3.0</title>
-  <shortdesc>Couchbase Server 3.0 is a major release that provides significant enhancements to 
-  performance, availability and reliability, ease of administration, and security.</shortdesc>
+  <shortdesc>Couchbase Server 3.0 is a major release that provides significant enhancements to
+    scalability, performance, availability and reliability, ease of administration, and
+    security.</shortdesc>
   <body>
-    <p>Couchbase Server is a NoSQL document database for interactive web applications. It has a
-      flexible data model, is easily scalable, provides consistent high performance and is
-      “always-on,” meaning it can serve application data 24 hours, 7 days a week.</p>
-    <p>The new major feature in this release include:</p>
+    <p>The new major features in this release include:</p>
     <ul>
       <li>Performance <ul>
-          <li>Tunable memory (option to remove keys and metadata from memory).</li>
-          <li>Bucket disk I/O ejections (for faster persistence to disk).</li>
-          <li>Faster warm up from disk when restarting the server.</li>
-        </ul></li>
+        <li>Tunable memory with additional options for tuning memory utilization with large
+          databases.</li>
+        <li>Auto-tuning and shared thread pool for auto-configuration of resource allocation and
+          for improved I/O throughput.</li>
+        <li>Improved latency for durability operations (observe) such as <codeph>replicatTo</codeph> and <codeph>persistTo</codeph>.</li>
+        <li>Lower latency indexing on views and faster view updates.</li>
+      </ul></li>
       <li>Availability and reliability <ul>
-          <li>Faster XDCR without persisting to disk on the source cluster.</li>
-          <li>Index building without persisting to disk on the source cluster.</li>
-        </ul></li>
+        <li>Lower latency XDCR with memory to memory replication.</li>
+        <li>Delta node recovery for fast recovery of a failed node.</li>
+        <li>High performance rebalance operation.</li>
+        <li>Incremental backups.</li>
+      </ul></li>
       <li>Ease of administration <ul>
-          <li>Incremental backup</li>
-          <li>Incremental restore</li>
-        </ul></li>
+        <li>Ability to pause and resume with XDCR replication for improved efficiency during maintenance.</li>
+        <li>Improved resource governance with bucket priorities.</li>
+        <li>Graceful failover for failovers without data loss.</li>
+        <li>Cluster-wide diagnostics for simplified troubleshooting and debugging.</li>
+      </ul></li>
       <li>Security <ul>
-          <li>Data and password encryption between client and server</li>
-          <li>Secure administrator access</li>
-        </ul></li>
+        <li>Encryption for data access and query access.</li>
+        <li>Encryption for administrator access via the web console, CLI, and REST API.</li>
+      </ul></li>
     </ul>
     
     <section><title>New features</title>
     
     <ul>
-      <li>Infrastructure enhancement with <xref href="Concepts/dcp.dita">Database Change Protocol
-            (DCP)</xref> and <xref href="Concepts/global-thread-pool.dita"/><p>For DCP statistics
-            via the Web console and CLI, see <xref href="UI/ui-dcp-queues.dita">DCP Queues via
-              UI</xref> and <xref href="CLI/cli-cbstats-dcp.dita">DCP stats via CLI</xref>.</p></li>
+      <li>Infrastructure enhancements including: 
+        <ul>
+          <li><xref href="Concepts/dcp.dita">Database Change
+            Protocol (DCP)</xref></li>
+          <li><xref href="Concepts/global-thread-pool.dita"/>
+            <p>For information about DCP
+            statistics, see <xref href="UI/ui-dcp-queues.dita"></xref> via the web console and <xref href="CLI/cli-cbstats-dcp.dita"></xref> via the CLI.</p></li>
+        </ul></li>
       <li>Bucket and disk I/O enhancements including: <ul>
-            <li><xref href="Concepts/bucket-eviction.dita">Bucket metadata ejections</xref> - For
-              more information about bucket metadata ejections, see <xref
-                href="UI/ui-task-bucket-metadata-ejection.dita"/>, <xref
-                href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>, and <xref
-                href="REST/rest-bucket-metadata-ejection.dita"/></li>
-            <li><xref href="Concepts/bucket-priority.dita">Disk I/O priority</xref> - see <xref
-                href="UI/ui-task-set-bucket-priority.dita"/>, <xref
-                href="CLI/cli-set-disk-priority.dita"/>, and <xref
-                href="REST/rest-bucket-set-priority.dita"/></li>
+            <li><xref href="Concepts/bucket-eviction.dita">Bucket metadata ejections</xref>
+              <p>For information about bucket metadata ejections, see <xref
+                href="UI/ui-task-bucket-metadata-ejection.dita"/> via the web console, 
+                <xref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/> via the CLI, and 
+                <xref href="REST/rest-bucket-metadata-ejection.dita"/> via the REST API.</p></li>
+            <li><xref href="Concepts/bucket-priority.dita">Disk I/O priority</xref>
+              <p>For information about changing disk I/P priority, see <xref
+                  href="UI/ui-task-set-bucket-priority.dita"/> via the web console, <xref
+                  href="CLI/cli-set-disk-priority.dita"/> via the CLI, and <xref
+                  href="REST/rest-bucket-set-priority.dita"/> via the REST API.</p></li>
           </ul></li>
       <li>Server maintenance enhancements including: <ul>
-            <li><xref href="Concepts/graceful-failover.dita"/> - For more information about graceful
-              failover via the web console, CLI, and REST API, see <xref
-                href="UI/ui-task-failover-graceful.dita"/>, <xref
-                href="CLI/cli-failover-graceful.dita"/>, and <xref
-                href="REST/rest-failover-graceful.dita"/></li>
-            <li><xref href="Concepts/delta-node-recovery.dita"/> - For information about using delta
-              node recovery via the web console, CLI, and REST API, see <xref
-                href="UI/ui-task-node-recovery-incremental.dita"/>, <xref
-                href="CLI/cli-node-recovery-incremental.dita"/>, and <xref
-                href="REST/rest-node-recovery-incremental.dita"/>. </li>
-            <li><xref href="Tasks/tasks-backup-restore-incremental.dita"/> - For information about
+            <li><xref href="Concepts/graceful-failover.dita"/>
+              <p>For information about graceful failover, see <xref
+                href="UI/ui-task-failover-graceful.dita"/> via the web console, <xref
+                  href="CLI/cli-failover-graceful.dita"/> via the CLI, and <xref
+                    href="REST/rest-failover-graceful.dita"/> via the REST API.</p></li>
+            <li><xref href="Concepts/delta-node-recovery.dita"/>
+              <p>For information about using delta
+              node recovery, see <xref
+                href="UI/ui-task-node-recovery-incremental.dita"/> via the web console, <xref
+                  href="CLI/cli-node-recovery-incremental.dita"/> via the CLI, and <xref
+                    href="REST/rest-node-recovery-incremental.dita"/> via the REST API.</p></li>
+            <li><xref href="Tasks/tasks-backup-restore-incremental.dita"/>
+              <p>For information about
               using incremental backup and restore via the CLI, see <xref
                 href="CLI/cli-increment-backup.dita"/> and <xref
-                href="CLI/cli-incremental-restore.dita"/>. </li>
+                  href="CLI/cli-incremental-restore.dita"/>.</p></li>
           </ul></li>
       <li>Views enhancement with <xref href="Views/views-index-updates.dita"/>.</li>
-      <li>XDCR enhancements with <xref href="XDCR/xdcr-memory-replication.dita"/> and <xref href="XDCR/xdcr-pause-resume.dita"/> - 
-            For more information about pausing and resuming XDCR replication, see 
-            <xref href="UI/ui-xdcr-pause-resume.dita"/>, 
-            <xref href="CLI/cli-xdcr-pause-resume.dita"/>, and 
-            <xref href="REST/rest-xdcr-pause-resume.dita"/>.</li>
-      <li>Security enhancement including <xref href="Misc/security-admin-access.dita"/> and <xref href="Misc/security-client-ssl.dita"/></li>
-      <li>Log and log collection improvements with <xref href="Misc/cluster-wide-info-intro.dita"/> - For more information about collecting diagnostics, see 
-            <xref href="UI/ui-cluster-wide-info.dita"/>, 
-            <xref href="CLI/CBcli/cbcli-cluster-wide-info.dita"/>, and 
-            <xref href="CLI/cbcollect-cluster-wide-info.dita"/>, 
-            <!-- <xref href="REST/rest-cluster-wide-info.dita" ></xref> -->
-          </li>
+      <li>XDCR enhancements including <xref href="XDCR/xdcr-memory-replication.dita"/> and <xref
+            href="XDCR/xdcr-pause-resume.dita"/>
+          <p>For information about pausing and resuming XDCR replication, 
+            see <xref href="UI/ui-xdcr-pause-resume.dita"/> via the web console, <xref
+              href="CLI/cli-xdcr-pause-resume.dita"/>  via the CLI, and <xref
+                href="REST/rest-xdcr-pause-resume.dita"/> via the REST API.</p></li>
+      <li>Security enhancement including <xref href="Misc/security-admin-access.dita"/> and <xref
+            href="Misc/security-client-ssl.dita"/>.</li>
+      <li>Log and log collection improvements with <xref href="Misc/cluster-wide-info-intro.dita"/>
+      <p>For more information about collecting diagnostics, see <xref
+        href="UI/ui-cluster-wide-info.dita"/> via the web console, <xref
+          href="CLI/CBcli/cbcli-cluster-wide-info.dita"/> via the CLI, and <xref
+              href="CLI/cbcollect-cluster-wide-info.dita"/> via the CLI.
+        <!-- <xref href="REST/rest-cluster-wide-info.dita" ></xref> --></p>
+        </li>
         </ul>
-            
-          
-            
+
+    </section>
+    
+    <section><title>Enterprise Edition only</title>
+      <p>The following features are only available with Couchbase Server 3.0 Enterprise Edition:</p>
+      
+      <ul>
+        <li>Incremental backup</li>
+        <li>Incremental restore</li>
+        <li>Encrypted admin access</li>
+        <li>Encrypted data access</li>
+      </ul>
+    
     </section>
     
     

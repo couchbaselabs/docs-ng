@@ -11,78 +11,106 @@
     <p>The new major features in this release include:</p>
     <ul>
       <li>Performance <ul>
-          <li>Tunable memory (option to remove keys and metadata from memory).</li>
-          <li>Bucket disk I/O ejections (for faster persistence to disk).</li>
-          <li>Faster warm up from disk when restarting the server.</li>
+          <li>Tunable memory with additional options for tuning memory utilization with large
+            databases.</li>
+          <li>Auto-tuning and shared thread pool for auto-configuration of resource allocation and
+            for improved I/O throughput.</li>
+          <li>Improved latency for durability operations (observe) such as <codeph>replicatTo</codeph> and <codeph>persistTo</codeph>.</li>
+          <li>Lower latency indexing on views and faster view updates.</li>
         </ul></li>
       <li>Availability and reliability <ul>
-          <li>Faster XDCR without persisting to disk on the source cluster.</li>
-          <li>Index building without persisting to disk on the source cluster.</li>
+          <li>Lower latency XDCR with memory to memory replication.</li>
+        <li>Delta node recovery for fast recovery of a failed node.</li>
+        <li>High performance rebalance operation.</li>
+        <li>Incremental backups.</li>
         </ul></li>
       <li>Ease of administration <ul>
-          <li>Incremental backup</li>
-          <li>Incremental restore</li>
+          <li>Ability to pause and resume with XDCR replication for improved efficiency during maintenance.</li>
+          <li>Improved resource governance with bucket priorities.</li>
+        <li>Graceful failover for failovers without data loss.</li>
+        <li>Cluster-wide diagnostics for simplified troubleshooting and debugging.</li>
         </ul></li>
       <li>Security <ul>
-          <li>Data and password encryption between client and server</li>
-          <li>Secure administrator access</li>
+          <li>Encryption for data access and query access.</li>
+          <li>Encryption for administrator access via the web console, CLI, and REST API.</li>
         </ul></li>
     </ul>
 
     <section><title>New features and behavior changes</title>
-      <p>The following major enhancements include changes to the infrastructure, memory managment,
+      <p>The following major enhancements include changes to the infrastructure, memory management,
         server maintenance, views indexing, and XDCR.</p>
       <ul>
-        <li>Infrastructure enhancement with <xref href="../Concepts/dcp.dita">Database Change
-            Protocol (DCP)</xref> and <xref href="../Concepts/global-thread-pool.dita"/><p>For DCP
-            statistics via the Web console and CLI, see <xref href="../UI/ui-dcp-queues.dita">DCP
-              Queues via UI</xref> and <xref href="../CLI/cli-cbstats-dcp.dita">DCP stats via
-              CLI</xref>.</p></li>
+        <li>Infrastructure enhancements including: 
+          <ul>
+            <li><xref href="Concepts/dcp.dita">Database Change
+              Protocol (DCP)</xref></li>
+            <li><xref href="Concepts/global-thread-pool.dita"/>
+              <p>For information about DCP
+                statistics, see <xref href="UI/ui-dcp-queues.dita"></xref> via the web console and <xref href="CLI/cli-cbstats-dcp.dita"></xref> via the CLI.</p></li>
+          </ul></li>
         <li>Bucket and disk I/O enhancements including: <ul>
-            <li><xref href="../Concepts/bucket-eviction.dita">Bucket metadata ejections</xref> - For
-              more information about bucket metadata ejections, see <xref
-                href="../UI/ui-task-bucket-metadata-ejection.dita"/>, <xref
-                href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/>, and <xref
-                href="../REST/rest-bucket-metadata-ejection.dita"/></li>
-            <li><xref href="../Concepts/bucket-priority.dita">Disk I/O priority</xref> - see <xref
-                href="../UI/ui-task-set-bucket-priority.dita"/>, <xref
-                href="../CLI/cli-set-disk-priority.dita"/>, and <xref
-                href="../REST/rest-bucket-set-priority.dita"/></li>
-          </ul></li>
+          <li><xref href="Concepts/bucket-eviction.dita">Bucket metadata ejections</xref>
+            <p>For information about bucket metadata ejections, see <xref
+              href="UI/ui-task-bucket-metadata-ejection.dita"/> via the web console, 
+              <xref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/> via the CLI, and 
+              <xref href="REST/rest-bucket-metadata-ejection.dita"/> via the REST API.</p></li>
+          <li><xref href="Concepts/bucket-priority.dita">Disk I/O priority</xref>
+            <p>For information about changing disk I/P priority, see <xref
+              href="UI/ui-task-set-bucket-priority.dita"/> via the web console, <xref
+                href="CLI/cli-set-disk-priority.dita"/> via the CLI, and <xref
+                  href="REST/rest-bucket-set-priority.dita"/> via the REST API.</p></li>
+        </ul></li>
         <li>Server maintenance enhancements including: <ul>
-            <li><xref href="../Concepts/graceful-failover.dita"/> - For more information about
-              graceful failover via the web console, CLI, and REST API, see <xref
-                href="../UI/ui-task-failover-graceful.dita"/>, <xref
-                href="../CLI/cli-failover-graceful.dita"/>, and <xref
-                href="../REST/rest-failover-graceful.dita"/></li>
-            <li><xref href="../Concepts/delta-node-recovery.dita"/> - For information about using
-              delta node recovery via the web console, CLI, and REST API, see <xref
-                href="../UI/ui-task-node-recovery-incremental.dita"/>, <xref
-                href="../CLI/cli-node-recovery-incremental.dita"/>, and <xref
-                href="../REST/rest-node-recovery-incremental.dita"/>. </li>
-            <li><xref href="../Tasks/tasks-backup-restore-incremental.dita"/> - For information
-              about using incremental backup and restore via the CLI, see <xref
-                href="../CLI/cli-increment-backup.dita"/> and <xref
-                href="../CLI/cli-incremental-restore.dita"/>. </li>
-          </ul></li>
-        <li>Index building enhancement with <xref href="../Views/views-index-updates.dita"/>.</li>
-        <li>XDCR enhancements with <xref href="../XDCR/xdcr-memory-replication.dita"/> and <xref
-            href="../XDCR/xdcr-pause-resume.dita"/> - For more information about pausing and
-          resuming XDCR replication, see <xref href="../UI/ui-xdcr-pause-resume.dita"/>, <xref
-            href="../CLI/cli-xdcr-pause-resume.dita"/>, and <xref
-            href="../REST/rest-xdcr-pause-resume.dita"/>.</li>
-        <li>Security enhancement including <xref href="../Misc/security-admin-access.dita"/> and
-            <xref href="../Misc/security-client-ssl.dita"/></li>
-        <li>Log and log collection improvements with <xref
-            href="../Misc/cluster-wide-info-intro.dita"/> - For more information about collecting
-          diagnostics, see <xref href="../UI/ui-cluster-wide-info.dita"/>, <xref
-            href="../CLI/CBcli/cbcli-cluster-wide-info.dita"/>, and <xref
-            href="../CLI/cbcollect-cluster-wide-info.dita"/>,
-          <!-- <xref href="REST/rest-cluster-wide-info.dita" ></xref> -->
+          <li><xref href="Concepts/graceful-failover.dita"/>
+            <p>For information about graceful failover, see <xref
+              href="UI/ui-task-failover-graceful.dita"/> via the web console, <xref
+                href="CLI/cli-failover-graceful.dita"/> via the CLI, and <xref
+                  href="REST/rest-failover-graceful.dita"/> via the REST API.</p></li>
+          <li><xref href="Concepts/delta-node-recovery.dita"/>
+            <p>For information about using delta
+              node recovery, see <xref
+                href="UI/ui-task-node-recovery-incremental.dita"/> via the web console, <xref
+                  href="CLI/cli-node-recovery-incremental.dita"/> via the CLI, and <xref
+                    href="REST/rest-node-recovery-incremental.dita"/> via the REST API.</p></li>
+          <li><xref href="Tasks/tasks-backup-restore-incremental.dita"/>
+            <p>For information about
+              using incremental backup and restore via the CLI, see <xref
+                href="CLI/cli-increment-backup.dita"/> and <xref
+                  href="CLI/cli-incremental-restore.dita"/>.</p></li>
+        </ul></li>
+        <li>Views enhancement with <xref href="Views/views-index-updates.dita"/>.</li>
+        <li>XDCR enhancements including <xref href="XDCR/xdcr-memory-replication.dita"/> and <xref
+          href="XDCR/xdcr-pause-resume.dita"/>
+          <p>For information about pausing and resuming XDCR replication, 
+            see <xref href="UI/ui-xdcr-pause-resume.dita"/> via the web console, <xref
+              href="CLI/cli-xdcr-pause-resume.dita"/>  via the CLI, and <xref
+                href="REST/rest-xdcr-pause-resume.dita"/> via the REST API.</p></li>
+        <li>Security enhancement including <xref href="Misc/security-admin-access.dita"/> and <xref
+          href="Misc/security-client-ssl.dita"/>.</li>
+        <li>Log and log collection improvements with <xref href="Misc/cluster-wide-info-intro.dita"/>
+          <p>For more information about collecting diagnostics, see <xref
+            href="UI/ui-cluster-wide-info.dita"/> via the web console, <xref
+              href="CLI/CBcli/cbcli-cluster-wide-info.dita"/> via the CLI, and <xref
+                href="CLI/cbcollect-cluster-wide-info.dita"/> via the CLI.
+            <!-- <xref href="REST/rest-cluster-wide-info.dita" ></xref> --></p>
         </li>
       </ul>
+      
     </section>
-
+    
+    <section><title>Enterprise Edition only features</title>
+      <p>The following features are only available with Couchbase Server 3.0 Enterprise Edition:</p>
+      
+      <ul>
+        <li>Incremental backup</li>
+        <li>Incremental restore</li>
+        <li>Encrypted admin access</li>
+        <li>Encrypted data access</li>
+      </ul>
+      
+    </section>
+    
+    
 
 
 
@@ -146,103 +174,8 @@
 
     <section>
       <title>Known issues</title>
-      <table>
-        <tgroup cols="3">
-          <colspec colname="col1" colwidth="1.54*"/>
-          <colspec colname="col2" colwidth="1*"/>
-          <colspec colname="col3" colwidth="8.62*"/>
-          <thead>
-            <row>
-              <entry><b>Functional area</b></entry>
-              <entry><b>Issue</b></entry>
-              <entry><b>Description</b></entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>Installation and upgrade</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11941" scope="external"
-                  format="html">MB-11941</xref></entry>
-              <entry>Online upgrade from 2.0 to 3.0 on Ubuntu 12.04 does not work</entry>
-            </row>
-            <row>
-              <entry>Cluster operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11928" scope="external"
-                  format="html">MB-11928</xref></entry>
-              <entry>Rebalance with delta recovery exited with the message, "{badmatch,
-                {error,{failed_nodes,['ns_1@172.23.96.14']}}}"</entry>
-            </row>
-            <row>
-              <entry>Installation and upgrade</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11922" scope="external"
-                  format="html">MB-11922</xref></entry>
-              <entry>Upgrade to R16 causes 20% regression in view query latency and
-                throughput</entry>
-            </row>
-            <row>
-              <entry>Indexing and querying</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11919" scope="external"
-                  format="html">MB-11919</xref></entry>
-              <entry>There is a 3-5x increase in index size during rebalance with views</entry>
-            </row>
-            <row>
-              <entry>Indexing and querying</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11899" scope="external"
-                  format="html">MB-11899</xref></entry>
-              <entry>Indexing progress statistic goes backwards</entry>
-            </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-12142" scope="external"
-                  format="html">MB-12142</xref></entry>
-              <entry>Rebalance exit due to Bad Replicas error has no support documentation <p>A bad
-                  replicas error message means that replication streams could not be created. There
-                  may be many reasons for this to happen, however, if some of the vBuckets sequence
-                  numbers (which are maintained internally in Couchbase) are invalid, the a log
-                  message displays in the memcached logs similar to the following:</p><codeblock>(DCP Producer) some_dcp_stream_name (vb 0) Stream request failed because the snap start seqno (100) &lt;= start seqno (101) &lt;= snap end seqno (100) is required</codeblock>
-                <p>In order for a DCP producer to accept a request for a DCP stream, the following
-                  must be true:</p>
-                <codeblock>snapshot start seqno &lt;= start seqno &lt;= snapshot end seqno</codeblock>
-                <p>If the above condition is not true for a stream request, contact support to
-                  resolve the issue.</p></entry>
-            </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11820" scope="external"
-                  format="html">MB-11820</xref></entry>
-              <entry>Beer-sample loading is stuck in a crashed state</entry>
-            </row>
-            <row>
-              <entry>XDCR</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11643" scope="external"
-                  format="html">MB-11643</xref></entry>
-              <entry>Incoming workload suffers when XDCR enabled</entry>
-            </row>
-            <row>
-              <entry>XDCR</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11642" scope="external"
-                  format="html">MB-11642</xref></entry>
-              <entry>Intra-replication falling behind under moderate-heavy workload <p>Under a
-                  moderate replication workload (20-30K sets per second), the backlog becomes too
-                  large resulting in high memory usage.</p></entry>
-            </row>
-            <row>
-              <entry>Indexing and querying</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11589" scope="external"
-                  format="html">MB-11589</xref></entry>
-              <entry>Sliding <codeph>endseqno</codeph> during initial index build or DCP reading
-                from disk snapshot results in longer <codeph>stale=false</codeph> query latency and
-                index startup time</entry>
-            </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11299" scope="external"
-                  format="html">MB-11299</xref></entry>
-              <entry>UPR replica streams cannot send items from partial snapshots</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
+      <p>N/A</p>
+      
     </section>
 
 
@@ -263,52 +196,42 @@
           </thead>
           <tbody>
             <row>
-              <entry>Install and upgrade</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-6972" scope="external"
-                  format="html">MB-6972</xref></entry>
-              <entry>Distribute Couchbase Server through yum and ubuntu package repositories</entry>
-            </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11866" scope="external"
-                  format="html">MB-11866</xref></entry>
-              <entry>wbeam.smp RSS suddenly increases to 45GB after an unexpected_binary
-                error</entry>
-            </row>
-            <row>
               <entry>vBuckets</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11720" scope="external"
-                  format="html">MB-11720</xref></entry>
-              <entry>Backfilling the entire vBucket can starve other streams that also need to
-                backfill</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-10059" scope="external"
+                  format="html">MB-10059</xref></entry>
+              <entry>Replica vbucket simply ignores rev_seq values of new items from the active vbucket.</entry>
+            </row>
+            <row>
+              <entry>vBucket</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11037" scope="external"
+                format="html">MB-11037</xref></entry>
+              <entry>High replication latency due to the racing in pausing and resuming TAP connection notifier.</entry>
+            </row>
+            <row>
+              <entry>vBucket</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11411" scope="external"
+                  format="html">MB-11411</xref></entry>
+              <entry>Warmup with an access log always sets the loaded document's rev-id to 1.</entry>
+            </row>   
+            <row>
+              <entry>Views</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-10921" scope="external"
+                format="html">MB-10921</xref></entry>
+              <entry>File descriptor leak in views with reduce.</entry>
+            </row>
+            <row>
+              <entry>Views</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11187" scope="external"
+                format="html">MB-11187</xref></entry>
+              <entry>V8 crashes on memory allocation errors, closes erlang on some indexing loads .</entry>
             </row>
             <row>
               <entry>Cluster operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11606" scope="external"
-                  format="html">MB-11606</xref></entry>
-              <entry>Error displayed when node did not mark to collect</entry>
+              <entry><xref href="http://www.couchbase.com/issues/browse/CBSE-1301" scope="external"
+                  format="html">CBSE-1301</xref></entry>
+              <entry>Rebalance failing when adding a 2.5.1 hotfix node.</entry>
             </row>
-            <row>
-              <entry>Cluster operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11568" scope="external"
-                  format="html">MB-11568</xref></entry>
-              <entry>IP address does not show the same in each step of cluster-wide collect
-                info.</entry>
-            </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11405" scope="external"
-                  format="html">MB-11405</xref></entry>
-              <entry>Shared thread pool: high CPU overhead due to OS level context switches /
-                scheduling</entry>
-            </row>
-            <row>
-              <entry>Database operations</entry>
-              <entry><xref href="http://www.couchbase.com/issues/browse/MB-11383" scope="external"
-                  format="html">MB-11383</xref></entry>
-              <entry>warmup_min_items_threshold setting is not honored correctly in 3.0
-                warmup</entry>
-            </row>
+
           </tbody>
         </tgroup>
       </table>

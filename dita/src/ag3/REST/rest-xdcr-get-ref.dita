@@ -14,7 +14,7 @@
     <p>Replace the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above example
       with your actual values.</p>
     <p>You provide credentials for the cluster and also the hostname and port for the remote
-      cluster. This will generate a request similar to the following sample:</p>
+      cluster. This generates a request similar to the following sample:</p>
     <codeblock><codeph>GET /pools/default/remoteClusters HTTP/1.1
 Authorization: Basic QWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
 User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5

@@ -2,8 +2,9 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="topic_fs1_tfg_rn">
   <title>FAQs</title>
+  <shortdesc>Frequently asked questions</shortdesc>
   <body>
-    <p>Topic paragraph</p>
+    
     <dl>
       <dlentry>
         <dt>What clients do I use with Couchbase?</dt>
