@@ -74,17 +74,15 @@
     used, or less frequently used. Items with lower bit values have lower scores and are considered
     more frequently used. The bit values, corresponding scores and status are as follows:</p>
    <table>
-    <tgroup cols="5">
+    <tgroup cols="4">
      <colspec colname="col1"/>
      <colspec colname="col2"/>
      <colspec colname="col3"/>
      <colspec colname="col4"/>
-     <colspec colname="col5"/>
      <thead>
       <row>
        <entry><b>Binary NRU</b></entry>
        <entry><b>Score</b></entry>
-       <entry><b>Working Set Replication Status (WSR)</b></entry>
        <entry><b>Access Pattern</b></entry>
        <entry><b>Description</b></entry>
       </row>
@@ -93,36 +91,31 @@
       <row>
        <entry>00</entry>
        <entry>0</entry>
-       <entry>TRUE</entry>
        <entry>Set by write access to 00. Decremented by read access or no access.</entry>
        <entry>Most heavily used item.</entry>
       </row>
       <row>
        <entry>01</entry>
        <entry>1</entry>
-       <entry>Set to TRUE</entry>
        <entry>Decremented by read access.</entry>
        <entry>Frequently access item.</entry>
       </row>
       <row>
        <entry>10</entry>
        <entry>2</entry>
-       <entry>Set to FALSE</entry>
        <entry>Initial value or decremented by read access.</entry>
        <entry>Default for new items.</entry>
       </row>
       <row>
        <entry>11</entry>
        <entry>3</entry>
-       <entry>Set to FALSE</entry>
        <entry>Incremented by item pager for eviction.</entry>
        <entry>Less frequently used item.</entry>
       </row>
      </tbody>
     </tgroup>
    </table>
-   <p>When WSR is set to TRUE it means that an item should be replicated to a replica vBucket. There
-    are two processes which change the NRU for an item: </p>
+   <p>There are two processes which change the NRU for an item: </p>
    <ul>
     <li>A client reads or writes an item, the server decrements NRU and lowers the item’s score</li>
     <li>A daily process which creates a list of frequently-used items in RAM. After this process

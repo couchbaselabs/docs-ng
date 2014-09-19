@@ -8,10 +8,10 @@
   
   <p>The following summarizes the behavior of value-only versus full metadata ejection: </p>
   <ul>
-   <li>Value-only ejection (the default) removes the data but keeps all keys and metadata in memory.
-    When the value bucket ejection occurs, the item's value is reset. </li>
-   <li>Full metadata ejection removes all data including keys, metadata, and key-values, thus, 
-    reducing the RAM requirement for large buckets.</li>
+   <li>Value-only ejection (the default) removes the data from cache but keeps all keys and metadata
+    fields for non-resident items. When the value bucket ejection occurs, the item's value is reset. </li>
+   <li>Full metadata ejection removes all data including keys, metadata, and key-values from cache
+    for non-resident items. Full metadata ejection reduces RAM requirement for large buckets.</li>
   </ul>
   
   <p>Full-bucket ejection supports very large data footprints (a large number of datasets or items/keys) 
@@ -26,15 +26,16 @@
   
   <draft-comment author="Ruth" disposition="open" status="unchanged">Need GRAPHICs: Ejection Logic Table</draft-comment>
   
-  <p>For information on how to eject metadata from memory, see the Couchbase Websole, CLI, and REST
-   API sections.</p>
+  <p>For information on how to eject metadata from memory, see the Couchbase web console, CLI, and
+   REST API sections.</p>
 
 
   
   
   <section><title>Backward compatibility</title>
-   <p>In previous releases, the values for all active data sets are ejected and the metadata and key
-    value are not ejection. In version 3.0, both value and metadata and key value are ejected.</p>
+   <p>With full metadata ejection, an item’s key and metadata is ejected along with its value. In
+    previous releases, an item’s value is only ejected from cache while its key and metadata remain
+    in cache.</p>
 
   </section> 
   

@@ -10,7 +10,8 @@
     <ul>
       <li>Performance <ul>
         <li>Tunable memory with additional options for tuning memory utilization with large
-          databases.</li>
+            databases. Tuning options include  ejecting a key and its metadata (along with its
+            value) from cache.</li>
         <li>Auto-tuning and shared thread pool for auto-configuration of resource allocation and
           for improved I/O throughput.</li>
         <li>Improved latency for durability operations (observe) such as <codeph>replicatTo</codeph> and <codeph>persistTo</codeph>.</li>
@@ -25,7 +26,7 @@
       <li>Ease of administration <ul>
         <li>Ability to pause and resume with XDCR replication for improved efficiency during maintenance.</li>
         <li>Improved resource governance with bucket priorities.</li>
-        <li>Graceful failover for failovers without data loss.</li>
+        <li>Graceful failover for failing over server without data loss.</li>
         <li>Cluster-wide diagnostics for simplified troubleshooting and debugging.</li>
       </ul></li>
       <li>Security <ul>
