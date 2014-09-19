@@ -33,79 +33,122 @@ curl -u Administrator:password http://10.5.2.54:8091/pools/default/remoteCluster
             
             <section><title>Destination endpoints</title>
                 
-                <p>The destination endpoint follows the <codeph>/pools/default/buckets/[bucket_name]/stats/</codeph> URI using the following syntax:</p>
+                <p>The destination endpoint follows the
+                    <codeph>/pools/default/buckets/[bucket_name]/stats/</codeph> URI endpoint:</p>
                 <codeblock>
 http://[local_host]:[port]/pools/default/buckets/[bucket_name]/stats/[destination_endpoint]
-
-// where the [destination_endpoint] syntax is:
+                </codeblock>
+                
+                <p>Where the [destination_endpoint] syntax is:</p>
+                <codeblock>
 replications/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]
 
+// HTTP string with full URI endpoint
+http://[local_host]:[port]/pools/default/buckets/[bucket_name]/stats/replications/[UUID]/[source_bucket]/[destination_bucket]/[stat_name]
                 </codeblock>
                 
                 <note type="important">You need to provide a properly URL-encoded URI string for the destination endpoint when requesting XDCR statistics. 
                 For example, <codeph>http://[local_host]:[port]/pools/default/buckets/[bucket_name]/stats/replications%2F[UUID]%2F[source_bucket]%2F[destination_bucket]%2Fdocs_written</codeph></note>
                
-                
-                <codeblock>
-# where a possible [destination endpoint] includes:
+   
+                <table>
+                    <tgroup cols="2">
+                    <colspec colname="col1" colwidth="1*"/>
+                    <colspec colname="col2" colwidth="3.23*"/>
+                    <thead>
+                        <row>
+                            <entry>Stat name</entry>
+                            <entry>Description</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>docs_written</entry>
+                            <entry>Number of documents written to the destination cluster via
+                                XDCR.</entry>
+                        </row>
+                        <row>
+                            <entry>data_replicated</entry>
+                            <entry>Size of data replicated in bytes.</entry>
+                        </row>
+                        <row>
+                            <entry>changes_left</entry>
+                            <entry>Number of updates still pending replication.</entry>
+                        </row>
+                        <row>
+                            <entry>docs_checked</entry>
+                            <entry>Number of documents checked for changes.</entry>
+                        </row>
+                        <row>
+                            <entry>num_checkpoints</entry>
+                            <entry>Number of checkpoints issued in replication queue.</entry>
+                        </row>
+                        <row>
+                            <entry>num_failedckpts</entry>
+                            <entry>Number of checkpoints failed during replication.</entry>
+                        </row>
+                        <row>
+                            <entry>size_rep_queue</entry>
+                            <entry>Size of replication queue in bytes.</entry>
+                        </row>
+                        <row>
+                            <entry>active_vbreps</entry>
+                            <entry>Active vBucket replicators.</entry>
+                        </row>
+                        <row>
+                            <entry>waiting_vbreps</entry>
+                            <entry>Waiting vBucket replicators.</entry>
+                        </row>
+                        <row>
+                            <entry>time_committing</entry>
+                            <entry>Seconds elapsed during replication.</entry>
+                        </row>
+                        <row>
+                            <entry>time_working</entry>
+                            <entry>Time working in seconds including wait time.</entry>
+                        </row>
+                        <row>
+                            <entry>bandwidth_usage</entry>
+                            <entry>Bandwidth used during replication.</entry>
+                        </row>
+                        <row>
+                            <entry>docs_latency_aggr</entry>
+                            <entry>Aggregate time waiting to send changes to destination cluster in
+                                milliseconds.</entry>
+                        </row>
+                        <row>
+                            <entry>docs_latency_wt</entry>
+                            <entry>Weighted average latency for sending replicated changes to
+                                destination cluster.</entry>
+                        </row>
+                        <row>
+                            <entry>docs_rep_queue</entry>
+                            <entry>Number of documents in replication queue.</entry>
+                        </row>
+                        <row>
+                            <entry>meta_latency_aggr</entry>
+                            <entry>Aggregate time to request and receive metadata about documents.
+                                XDCR uses this for conflict resolution prior to sending the document
+                                into the replication queue.</entry>
+                        </row>
+                        <row>
+                            <entry>meta_latency_wt</entry>
+                            <entry>Weighted average time for requesting document metadata. XDCR uses
+                                this for conflict resolution prior to sending the document into the
+                                replication queue.</entry>
+                        </row>
+                        <row>
+                            <entry>rate_replication</entry>
+                            <entry>Bytes replicated per second.</entry>
+                        </row>
+                        <row>
+                            <entry>docs_opt_repd</entry>
+                            <entry>Number of docs sent optimistically.</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+                </table>
 
-# number of documents written to destination cluster via XDCR
-replications/[UUID]/[source_bucket]/[destination_bucket]/docs_written
-
-# size of data replicated in bytes
-replications/[UUID]/[source_bucket]/[destination_bucket]/data_replicated
-
-# number of updates still pending replication
-replications/[UUID]/[source_bucket]/[destination_bucket]/changes_left
-
-# number of documents checked for changes
-replications/[UUID]/[source_bucket]/[destination_bucket]/docs_checked
-
-# number of checkpoints issued in replication queue
-replications/[UUID]/[source_bucket]/[destination_bucket]/num_checkpoints
-
-# number of checkpoints failed during replication
-replications/[UUID]/[source_bucket]/[destination_bucket]/num_failedckpts
-
-# size of replication queue in bytes
-replications/[UUID]/[source_bucket]/[destination_bucket]/size_rep_queue
-
-# active vBucket replicators
-replications/[UUID]/[source_bucket]/[destination_bucket]/active_vbreps
-
-# waiting vBucket replicators
-replications/[UUID]/[source_bucket]/[destination_bucket]/waiting_vbreps
-
-# seconds elapsed during replication
-replications/[UUID]/[source_bucket]/[destination_bucket]/time_committing
-
-# time working in seconds including wait time
-replications/[UUID]/[source_bucket]/[destination_bucket]/time_working
-
-# bandwidth used during replication
-replications/[UUID]/[source_bucket]/[destination_bucket]/bandwidth_usage
-
-# aggregate time waiting to send changes to destination cluster in milliseconds
-# weighted average latency for sending replicated changes to destination cluster
-replications/[UUID]/[source_bucket]/[destination_bucket]/docs_latency_aggr
-replications/[UUID]/[source_bucket]/[destination_bucket]/docs_latency_wt
-
-# Number of documents in replication queue
-replications/[UUID]/[source_bucket]/[destination_bucket]/docs_rep_queue
-
-# aggregate time to request and receive metadata about documents
-# weighted average time for requesting document metadata
-# XDCR uses this for conflict resolution prior to sending document into replication queue
-replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_aggr
-replications/[UUID]/[source_bucket]/[destination_bucket]/meta_latency_wt
-
-# bytes replicated per second
-replications/[UUID]/[source_bucket]/[destination_bucket]/rate_replication
-# number of docs sent optimistically 
-replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
-
-</codeblock>
-        
         </section>
         
         <section><title>Retrieving <codeph>docs_written</codeph> stats</title>
@@ -156,8 +199,8 @@ replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
         </section>
         
         <section><title>Retrieving <codeph>docs_opt_repd</codeph> stats</title>
-        <p>To get <codeph>docs_opt_repd</codeph>, you first get the replication id for a source and
-            destination bucket. First get a list active tasks for a cluster:</p>
+        <p>To get <codeph>docs_opt_repd</codeph>, get the replication id for a source and
+                destination bucket via a list of the active tasks for a cluster:</p>
         <codeblock>curl -s -u admin:password \
     http://localhost:8091/pools/default/tasks
 </codeblock>
@@ -174,7 +217,8 @@ replications/[UUID]/[source_bucket]/[destination_bucket]/docs_opt_repd
 </codeblock>
         <p>With this replication id you can get a sampling of stats for
                 <codeph>docs_opt_repd</codeph>:</p>
-        <codeblock>http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
+            <codeblock>curl -s -u admin:password \
+http://10.3.121.119:8091/pools/default/buckets/default/stats/ \
 replications%2fdef03dbf5e968a47309194ebe052ed21%2fbucket_source%2fbucket_destination%2fdocs_opt_repd 
 </codeblock>
         <p>This results in output similar to the following:</p>

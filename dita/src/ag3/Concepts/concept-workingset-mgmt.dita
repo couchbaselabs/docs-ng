@@ -13,8 +13,8 @@
    with the disk persistence system to ensure that data in RAM has been persisted to disk and can be
    safely retrieved back into RAM if the item is requested. </p>
   <p> In addition to memory quota for the caching layer, there are two watermarks the engine uses to
-   determine when it is necessary to start persisting more data to disk. These are `mem_low_wat` and
-   `mem_high_wat`. </p>
+   determine when it is necessary to start persisting more data to disk. These are <codeph>mem_low_wat</codeph> and
+   <codeph>mem_high_wat</codeph>. </p>
   <p> As the caching layer becomes full of data, eventually the mem_low_wat is passed. At this time,
    no action is taken. As data continues to load, it eventually reaches mem_high_wat. At this point,
    a background job is scheduled to ensure items are migrated to disk and that memory is available
@@ -83,7 +83,7 @@
       <row>
        <entry><b>Binary NRU</b></entry>
        <entry><b>Score</b></entry>
-       <entry><b>Access Pattern</b></entry>
+       <entry><b>Access pattern</b></entry>
        <entry><b>Description</b></entry>
       </row>
      </thead>
@@ -148,8 +148,8 @@
      <thead>
       <row>
        <entry><b>Version</b></entry>
-       <entry><b>High Water Mark</b></entry>
-       <entry><b>Low Water Mark</b></entry>
+       <entry><b>High water mark</b></entry>
+       <entry><b>Low water mark</b></entry>
       </row>
      </thead>
      <tbody>

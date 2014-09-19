@@ -8,7 +8,8 @@
     <p>Couchbase Server is a NoSQL document database for interactive web applications. It has a
       flexible data model, is easily scalable, provides consistent high performance and is
       “always-on,” meaning it can serve application data 24 hours, 7 days a week.</p>
-    <p>The new major features in this release include:</p>
+    <p>Couchbase Server performance, availabiity and reliability, ease of administration, and
+      security is significantly improved the </p>
     <ul>
       <li>Performance <ul>
           <li>Tunable memory with additional options for tuning memory utilization with large
@@ -27,7 +28,7 @@
       <li>Ease of administration <ul>
           <li>Ability to pause and resume with XDCR replication for improved efficiency during maintenance.</li>
           <li>Improved resource governance with bucket priorities.</li>
-        <li>Graceful failover for failovers without data loss.</li>
+        <li>Graceful failover for failing over servers without data loss.</li>
         <li>Cluster-wide diagnostics for simplified troubleshooting and debugging.</li>
         </ul></li>
       <li>Security <ul>
@@ -42,57 +43,58 @@
       <ul>
         <li>Infrastructure enhancements including: 
           <ul>
-            <li><xref href="Concepts/dcp.dita">Database Change
+            <li><xref href="../Concepts/dcp.dita">Database Change
               Protocol (DCP)</xref></li>
-            <li><xref href="Concepts/global-thread-pool.dita"/>
+            <li><xref href="../Concepts/global-thread-pool.dita"/>
               <p>For information about DCP
-                statistics, see <xref href="UI/ui-dcp-queues.dita"></xref> via the web console and <xref href="CLI/cli-cbstats-dcp.dita"></xref> via the CLI.</p></li>
+                statistics, see <xref href="../UI/ui-dcp-queues.dita"></xref> via the web console and 
+                <xref href="../CLI/cli-cbstats-dcp.dita"></xref> via the CLI.</p></li>
           </ul></li>
-        <li>Bucket and disk I/O enhancements including: <ul>
-          <li><xref href="Concepts/bucket-eviction.dita">Bucket metadata ejections</xref>
-            <p>For information about bucket metadata ejections, see <xref
-              href="UI/ui-task-bucket-metadata-ejection.dita"/> via the web console, 
-              <xref href="CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/> via the CLI, and 
-              <xref href="REST/rest-bucket-metadata-ejection.dita"/> via the REST API.</p></li>
-          <li><xref href="Concepts/bucket-priority.dita">Disk I/O priority</xref>
-            <p>For information about changing disk I/P priority, see <xref
-              href="UI/ui-task-set-bucket-priority.dita"/> via the web console, <xref
-                href="CLI/cli-set-disk-priority.dita"/> via the CLI, and <xref
-                  href="REST/rest-bucket-set-priority.dita"/> via the REST API.</p></li>
-        </ul></li>
+        <li>Tunable memory and disk I/O enhancements including: <ul>
+            <li><xref href="../Concepts/bucket-eviction.dita"/>
+              <p>For information about tunable memory, see <xref
+                  href="../UI/ui-task-bucket-metadata-ejection.dita"/> via the web console, <xref
+                  href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/> via the CLI, and <xref
+                  href="../REST/rest-bucket-metadata-ejection.dita"/> via the REST API.</p></li>
+            <li><xref href="../Concepts/bucket-priority.dita">Disk I/O priority</xref>
+              <p>For information about changing disk I/O priority, see <xref
+                  href="../UI/ui-task-set-bucket-priority.dita"/> via the web console, <xref
+                  href="../CLI/cli-set-disk-priority.dita"/> via the CLI, and <xref
+                  href="../REST/rest-bucket-set-priority.dita"/> via the REST API.</p></li>
+          </ul></li>
         <li>Server maintenance enhancements including: <ul>
-          <li><xref href="Concepts/graceful-failover.dita"/>
+          <li><xref href="../Concepts/graceful-failover.dita"/>
             <p>For information about graceful failover, see <xref
-              href="UI/ui-task-failover-graceful.dita"/> via the web console, <xref
-                href="CLI/cli-failover-graceful.dita"/> via the CLI, and <xref
-                  href="REST/rest-failover-graceful.dita"/> via the REST API.</p></li>
-          <li><xref href="Concepts/delta-node-recovery.dita"/>
+              href="../UI/ui-task-failover-graceful.dita"/> via the web console, <xref
+                href="../CLI/cli-failover-graceful.dita"/> via the CLI, and <xref
+                  href="../REST/rest-failover-graceful.dita"/> via the REST API.</p></li>
+          <li><xref href="../Concepts/delta-node-recovery.dita"/>
             <p>For information about using delta
               node recovery, see <xref
-                href="UI/ui-task-node-recovery-incremental.dita"/> via the web console, <xref
-                  href="CLI/cli-node-recovery-incremental.dita"/> via the CLI, and <xref
-                    href="REST/rest-node-recovery-incremental.dita"/> via the REST API.</p></li>
-          <li><xref href="Tasks/tasks-backup-restore-incremental.dita"/>
+                href="../UI/ui-task-node-recovery-incremental.dita"/> via the web console, <xref
+                  href="../CLI/cli-node-recovery-incremental.dita"/> via the CLI, and <xref
+                    href="../REST/rest-node-recovery-incremental.dita"/> via the REST API.</p></li>
+          <li><xref href="../Tasks/tasks-backup-restore-incremental.dita"/>
             <p>For information about
               using incremental backup and restore via the CLI, see <xref
-                href="CLI/cli-increment-backup.dita"/> and <xref
-                  href="CLI/cli-incremental-restore.dita"/>.</p></li>
+                href="../CLI/cli-increment-backup.dita"/> and <xref
+                  href="../CLI/cli-incremental-restore.dita"/>.</p></li>
         </ul></li>
-        <li>Views enhancement with <xref href="Views/views-index-updates.dita"/>.</li>
-        <li>XDCR enhancements including <xref href="XDCR/xdcr-memory-replication.dita"/> and <xref
-          href="XDCR/xdcr-pause-resume.dita"/>
+        <li>Views enhancement with <xref href="../Views/views-index-updates.dita"/>.</li>
+        <li>XDCR enhancements including <xref href="../XDCR/xdcr-memory-replication.dita"/> and <xref
+          href="../XDCR/xdcr-pause-resume.dita"/>
           <p>For information about pausing and resuming XDCR replication, 
-            see <xref href="UI/ui-xdcr-pause-resume.dita"/> via the web console, <xref
-              href="CLI/cli-xdcr-pause-resume.dita"/>  via the CLI, and <xref
-                href="REST/rest-xdcr-pause-resume.dita"/> via the REST API.</p></li>
-        <li>Security enhancement including <xref href="Misc/security-admin-access.dita"/> and <xref
-          href="Misc/security-client-ssl.dita"/>.</li>
-        <li>Log and log collection improvements with <xref href="Misc/cluster-wide-info-intro.dita"/>
+            see <xref href="../UI/ui-xdcr-pause-resume.dita"/> via the web console, <xref
+              href="../CLI/cli-xdcr-pause-resume.dita"/>  via the CLI, and <xref
+                href="../REST/rest-xdcr-pause-resume.dita"/> via the REST API.</p></li>
+        <li>Security enhancement including <xref href="../Misc/security-admin-access.dita"/> and <xref
+          href="../Misc/security-client-ssl.dita"/>.</li>
+        <li>Log and log collection improvements with <xref href="../Misc/cluster-wide-info-intro.dita"/>
           <p>For more information about collecting diagnostics, see <xref
-            href="UI/ui-cluster-wide-info.dita"/> via the web console, <xref
-              href="CLI/CBcli/cbcli-cluster-wide-info.dita"/> via the CLI, and <xref
-                href="CLI/cbcollect-cluster-wide-info.dita"/> via the CLI.
-            <!-- <xref href="REST/rest-cluster-wide-info.dita" ></xref> --></p>
+            href="../UI/ui-cluster-wide-info.dita"/> via the web console, <xref
+              href="../CLI/CBcli/cbcli-cluster-wide-info.dita"/> via the CLI, and <xref
+                href="../CLI/cbcollect-cluster-wide-info.dita"/> via the CLI.
+            <!-- <xref href="../REST/rest-cluster-wide-info.dita" ></xref> --></p>
         </li>
       </ul>
       
@@ -106,6 +108,7 @@
         <li>Incremental restore</li>
         <li>Encrypted admin access</li>
         <li>Encrypted data access</li>
+        <li>Rack-zone awareness (implemented in Couchbase version 2.5)</li>
       </ul>
       
     </section>
@@ -143,8 +146,8 @@
 &lt;uri&gt;
             </codeblock>
             <p>Customers who are not ready or cannot upgrade their Couchbase .NET SDK’s to 1.3.8 or
-              greater are strongly advised to aentry this element to their deployments if they
-              intend to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
+              greater are strongly advised to add this element to their deployments if they intend
+              to use the Couchbase .NET SDK with Couchbase Server 3.0 or greater.</p>
           </dd>
         </dlentry>
 
@@ -181,12 +184,13 @@
 
 
     <section><title>Fixed issues</title>
-      <p>The following are fixed issues.</p>
+      <p>There are many bugs fixed in this release. Some of the notable fixes include the
+        following:</p>
       <table>
         <tgroup cols="3">
-          <colspec colname="col1" colwidth="1.35*"/>
+          <colspec colname="col1" colwidth="1.03*"/>
           <colspec colname="col2" colwidth="1*"/>
-          <colspec colname="col3" colwidth="7.69*"/>
+          <colspec colname="col3" colwidth="4.44*"/>
           <thead>
             <row>
               <entry><b>Functional area</b></entry>
@@ -199,31 +203,35 @@
               <entry>vBuckets</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-10059" scope="external"
                   format="html">MB-10059</xref></entry>
-              <entry>Replica vbucket simply ignores rev_seq values of new items from the active vbucket.</entry>
+              <entry>Replica vbucket simply ignores rev_seq values of new items from the active
+                vbucket.</entry>
             </row>
             <row>
               <entry>vBucket</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11037" scope="external"
-                format="html">MB-11037</xref></entry>
-              <entry>High replication latency due to the racing in pausing and resuming TAP connection notifier.</entry>
+                  format="html">MB-11037</xref></entry>
+              <entry>High replication latency due to the racing in pausing and resuming TAP
+                connection notifier.</entry>
             </row>
             <row>
               <entry>vBucket</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11411" scope="external"
                   format="html">MB-11411</xref></entry>
-              <entry>Warmup with an access log always sets the loaded document's rev-id to 1.</entry>
-            </row>   
+              <entry>Warmup with an access log always sets the loaded document's rev-id to
+                1.</entry>
+            </row>
             <row>
               <entry>Views</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-10921" scope="external"
-                format="html">MB-10921</xref></entry>
+                  format="html">MB-10921</xref></entry>
               <entry>File descriptor leak in views with reduce.</entry>
             </row>
             <row>
               <entry>Views</entry>
               <entry><xref href="http://www.couchbase.com/issues/browse/MB-11187" scope="external"
-                format="html">MB-11187</xref></entry>
-              <entry>V8 crashes on memory allocation errors, closes erlang on some indexing loads .</entry>
+                  format="html">MB-11187</xref></entry>
+              <entry>V8 crashes on memory allocation errors, closes erlang on some indexing loads
+                .</entry>
             </row>
             <row>
               <entry>Cluster operations</entry>
@@ -231,7 +239,6 @@
                   format="html">CBSE-1301</xref></entry>
               <entry>Rebalance failing when adding a 2.5.1 hotfix node.</entry>
             </row>
-
           </tbody>
         </tgroup>
       </table>
