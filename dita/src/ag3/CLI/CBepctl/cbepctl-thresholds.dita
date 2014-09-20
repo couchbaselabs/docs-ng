@@ -50,9 +50,5 @@
         not change these defaults.</p><p>For technical information about the ejection process, the
         role of NRU and server processes related to ejection.</p></section>
   </body>
-  <related-links>
-    <linklist>
-      <link href="../../Tasks/tasks-manage-workingset.dita"/>
-    </linklist>
-  </related-links>
+  
 </topic>
