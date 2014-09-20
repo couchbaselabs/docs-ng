@@ -105,15 +105,14 @@
             the Couchbase server. The installer asks you to set up sufficient ports available for
             the node. By default, Microsoft Server will not have an adequate number of ephemeral
             ports, see <i>Microsoft Knowledge Base Article 196271</i></p>
-          <image href="../images/windows_port_check.png" width="300"/>
+          <image href="../images/windows_port_check.png" width="720"/>
         </li>
-        <li>Click <uicontrol>Yes</uicontrol>.
-          <p>Without a sufficient number of ephemeral ports, a Couchbase cluster
-            fails during rebalance and backup; other operations such as client requests will
-            timeout. If you already changed this setting you can click no. The installer will
-            display this panel to confirm the update:</p>
-              <image href="../images/windows_port_check2.png" width="300"></image>
-            </li>
+        <li>Click <uicontrol>Yes</uicontrol>. <p>Without a sufficient number of ephemeral ports, a
+            Couchbase cluster fails during rebalance and backup; other operations such as client
+            requests will timeout. If you already changed this setting you can click no. The
+            installer displays this panel to confirm the update:</p>
+          <image href="../images/windows_port_check2.png" width="720"/>
+        </li>
         <li>Restart the server for the port changes to be applied.</li>
       </ol>
       <p>After installation, follow the server setup instructions. </p></section>

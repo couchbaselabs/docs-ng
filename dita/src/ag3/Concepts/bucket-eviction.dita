@@ -6,7 +6,8 @@
  <conbody>
   
   
-  <p>The following summarizes the behavior of value-only versus full metadata ejection: </p>
+  <p>The cache management approach for item ejection is implemented with value-only ejection and
+   full metadata ejection: </p>
   <ul>
    <li>Value-only ejection (the default) removes the data from cache but keeps all keys and metadata
     fields for non-resident items. When the value bucket ejection occurs, the item's value is reset. </li>

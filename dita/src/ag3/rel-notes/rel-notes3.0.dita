@@ -5,100 +5,127 @@
   <body>
     <p>This release note is for the 3.0.0 release. It contains a list of known and fixed issues.</p>
 
-    <p>Couchbase Server is a NoSQL document database for interactive web applications. It has a
-      flexible data model, is easily scalable, provides consistent high performance and is
-      “always-on,” meaning it can serve application data 24 hours, 7 days a week.</p>
-    <p>Couchbase Server performance, availabiity and reliability, ease of administration, and
-      security is significantly improved the </p>
+    <p>Couchbase Server 3.0 is our major release which extends our lead as the most performant and
+      scalable NoSQL database for mission critical enterprise applications. In addition to adding
+      great new functionality for the enterprise, 3.0 delivers many new features that make it easier
+      for developers and administrators to work with Couchbase Server, making it the best choice for
+      your NoSQL projects.</p>
+    
+    <p>The major new enhancements and features available in Couchbase Server 3.0 include: </p>
+    
     <ul>
-      <li>Performance <ul>
-          <li>Tunable memory with additional options for tuning memory utilization with large
-            databases.</li>
-          <li>Auto-tuning and shared thread pool for auto-configuration of resource allocation and
-            for improved I/O throughput.</li>
-          <li>Improved latency for durability operations (observe) such as <codeph>replicatTo</codeph> and <codeph>persistTo</codeph>.</li>
-          <li>Lower latency indexing on views and faster view updates.</li>
-        </ul></li>
-      <li>Availability and reliability <ul>
-          <li>Lower latency XDCR with memory to memory replication.</li>
-        <li>Delta node recovery for fast recovery of a failed node.</li>
-        <li>High performance rebalance operation.</li>
-        <li>Incremental backups.</li>
-        </ul></li>
-      <li>Ease of administration <ul>
-          <li>Ability to pause and resume with XDCR replication for improved efficiency during maintenance.</li>
-          <li>Improved resource governance with bucket priorities.</li>
-        <li>Graceful failover for failing over servers without data loss.</li>
-        <li>Cluster-wide diagnostics for simplified troubleshooting and debugging.</li>
-        </ul></li>
-      <li>Security <ul>
-          <li>Encryption for data access and query access.</li>
-          <li>Encryption for administrator access via the web console, CLI, and REST API.</li>
-        </ul></li>
+      
+      <li><b>Performance and scale</b> <p>Run at planet scale with more data, faster I/O and improved
+          indexing.</p>
+        <ul>
+          <li>Tunable memory allows you to configure memory to optimize metadata, data caching and
+            eviction strategies, allowing configurations ranging from full in-memory database to
+            large disk-based datasets.</li>
+          <li>Shared thread pool per node delivers high I/O throughput and low latency for data
+            reads, writes and other operations such as database warm-up.</li>
+          <li>Stream-based views based on Database Change Protocol (DCP), a new streaming protocol,
+            reduces latency for view updates, providing faster view consistency and fresher
+            data.</li>
+        </ul>
+        <p>For more information, see:</p>
+        <ul>
+          <li><xref href="../Concepts/dcp.dita">Database Change Protocol (DCP)</xref> concepts.</li>
+          <li><xref href="../Concepts/global-thread-pool.dita"/> concepts, <xref
+              href="../UI/ui-dcp-queues.dita"/> via the web console, and <xref
+              href="../CLI/cli-cbstats-dcp.dita"/> via the CLI.</li>
+          <li><xref href="../Concepts/bucket-eviction.dita"/> concepts, <xref
+              href="../UI/ui-task-bucket-metadata-ejection.dita"/> via the web console, <xref
+              href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/> via the CLI, and <xref
+              href="../REST/rest-bucket-metadata-ejection.dita"/> via the REST API.</li>
+          <li><xref href="../Views/views-index-updates.dita"/>concepts.</li>
+        </ul>
+      
+      </li>
+      
+      
+      <li><b>Ultra-high availability</b>
+        <p>Highly available apps with faster and easier data replication across multiple data centers, and advanced disaster recovery options.</p>
+        <ul>
+          <li>Stream-based XDCR (cross data center replication) lowers XDCR latency using memory-to-memory replication of data 
+            from the source cluster to the destination cluster -- even before it hits disk.</li>
+          <li>Delta-node recovery allows nodes to be quickly added back after they are repaired, 
+            so they can catch up incrementally from where they left off.</li>
+          <li>Incremental backup and restore allows administrators to quickly backup only modified data in the database, 
+            making backup more efficient for larger datasets.</li>
+        </ul>
+      <p>For more information, see:</p>
+        <ul>
+          <li><xref href="../XDCR/xdcr-memory-replication.dita"/> concepts.</li>
+          <li><xref href="../Concepts/delta-node-recovery.dita"/> concepts, <xref
+              href="../UI/ui-task-node-recovery-incremental.dita"/> via the web console, <xref
+              href="../CLI/cli-node-recovery-incremental.dita"/> via the CLI, and <xref
+              href="../REST/rest-node-recovery-incremental.dita"/> via the REST API.</li>
+          <li><xref href="../Tasks/tasks-backup-restore-incremental.dita"/> concepts, <xref
+              href="../CLI/cli-increment-backup.dita"/> and <xref
+              href="../CLI/cli-incremental-restore.dita"/>.</li>
+        </ul>
+      </li>
+      
+      
+      <li><b>Improved security</b>
+        <p>Secure on-the-wire data access for apps and admins.</p><ul>
+          <li>Encrypted admin access enables HTTPS access for the Couchbase admin console and the REST API.</li>
+          <li>Encrypted data access with SSL encrypts data in-flight between client and server.</li>
+      </ul>
+        <p>For more information, see:</p>
+        <ul>
+          <li><xref href="../Misc/security-admin-access.dita"/> basics.</li>
+          <li><xref href="../Misc/security-client-ssl.dita"/> basics.</li>
+        </ul>
+      </li>
+      
+      <li><b>Simplified administration</b> 
+        <p>Easy cluster management and resource governance.</p>
+        <ul>
+          <li>Pause and resume XDCR enables XDCR streams between source and destination clusters 
+            to be paused during maintenance windows and resumed later, continuing from where they left off.</li>
+          <li>Graceful failover enables nodes to be safely removed from the cluster after all in-flight ops are completed.
+          </li>
+          <li>Bucket priority enables prioritization of buckets so that additional I/O resources can be assigned 
+            to higher priority buckets for faster workload execution.</li>
+          <li>Cluster-wide diagnostics for improved cluster management.</li>
+        </ul>
+        <p>For more information, see:</p>
+        <ul>
+          <li><xref href="../XDCR/xdcr-pause-resume.dita"/> concepts, <xref
+              href="../UI/ui-xdcr-pause-resume.dita"/> via the web console, <xref
+              href="../CLI/cli-xdcr-pause-resume.dita"/> via the CLI, and <xref
+              href="../REST/rest-xdcr-pause-resume.dita"/> via the REST API.</li>
+          <li><xref href="../Concepts/graceful-failover.dita"/> concepts, <xref
+              href="../UI/ui-task-failover-graceful.dita"/> via the web console, <xref
+              href="../CLI/cli-failover-graceful.dita"/> via the CLI, and <xref
+              href="../REST/rest-failover-graceful.dita"/> via the REST API.</li>
+          <li>
+            <xref href="../Concepts/bucket-priority.dita"/> concepts, <xref
+              href="../UI/ui-task-set-bucket-priority.dita"/> via the web console, <xref
+              href="../CLI/cli-set-disk-priority.dita"/> via the CLI, and <xref
+              href="../REST/rest-bucket-set-priority.dita"/> via the REST API.</li>
+          <li><xref href="../Misc/cluster-wide-info-intro.dita"/> concepts, <xref
+              href="../UI/ui-cluster-wide-info.dita"/> via the web console, <xref
+              href="../CLI/CBcli/cbcli-cluster-wide-info.dita"/> via the CLI, and <xref
+              href="../CLI/cbcollect-cluster-wide-info.dita"/> via the CLI.
+            <!-- <xref href="../REST/rest-cluster-wide-info.dita" ></xref> --></li>
+        </ul>
+      </li>
+      
+      <li><b>Developer empowerment</b>
+      <p>Building richer and more powerful apps.</p>
+      <ul>
+        <li>Fully integrated native JSON means your application can work with high level objects 
+          which can automatically be serialized to JSON through the Couchbase APIs.</li>
+        <li>Powerful async and reactive interfaces in Java , and .NET enable building richer apps, with better IO performance.</li>
+        <li>Rich framework integrations with open source frameworks such as Spring, gEvent, twisted and Ottoman.</li>
+      </ul>
+      </li>
+      
     </ul>
 
-    <section><title>New features and behavior changes</title>
-      <p>The following major enhancements include changes to the infrastructure, memory management,
-        server maintenance, views indexing, and XDCR.</p>
-      <ul>
-        <li>Infrastructure enhancements including: 
-          <ul>
-            <li><xref href="../Concepts/dcp.dita">Database Change
-              Protocol (DCP)</xref></li>
-            <li><xref href="../Concepts/global-thread-pool.dita"/>
-              <p>For information about DCP
-                statistics, see <xref href="../UI/ui-dcp-queues.dita"></xref> via the web console and 
-                <xref href="../CLI/cli-cbstats-dcp.dita"></xref> via the CLI.</p></li>
-          </ul></li>
-        <li>Tunable memory and disk I/O enhancements including: <ul>
-            <li><xref href="../Concepts/bucket-eviction.dita"/>
-              <p>For information about tunable memory, see <xref
-                  href="../UI/ui-task-bucket-metadata-ejection.dita"/> via the web console, <xref
-                  href="../CLI/CBcli/cbcli-bucket-metadata-ejection.dita"/> via the CLI, and <xref
-                  href="../REST/rest-bucket-metadata-ejection.dita"/> via the REST API.</p></li>
-            <li><xref href="../Concepts/bucket-priority.dita">Disk I/O priority</xref>
-              <p>For information about changing disk I/O priority, see <xref
-                  href="../UI/ui-task-set-bucket-priority.dita"/> via the web console, <xref
-                  href="../CLI/cli-set-disk-priority.dita"/> via the CLI, and <xref
-                  href="../REST/rest-bucket-set-priority.dita"/> via the REST API.</p></li>
-          </ul></li>
-        <li>Server maintenance enhancements including: <ul>
-          <li><xref href="../Concepts/graceful-failover.dita"/>
-            <p>For information about graceful failover, see <xref
-              href="../UI/ui-task-failover-graceful.dita"/> via the web console, <xref
-                href="../CLI/cli-failover-graceful.dita"/> via the CLI, and <xref
-                  href="../REST/rest-failover-graceful.dita"/> via the REST API.</p></li>
-          <li><xref href="../Concepts/delta-node-recovery.dita"/>
-            <p>For information about using delta
-              node recovery, see <xref
-                href="../UI/ui-task-node-recovery-incremental.dita"/> via the web console, <xref
-                  href="../CLI/cli-node-recovery-incremental.dita"/> via the CLI, and <xref
-                    href="../REST/rest-node-recovery-incremental.dita"/> via the REST API.</p></li>
-          <li><xref href="../Tasks/tasks-backup-restore-incremental.dita"/>
-            <p>For information about
-              using incremental backup and restore via the CLI, see <xref
-                href="../CLI/cli-increment-backup.dita"/> and <xref
-                  href="../CLI/cli-incremental-restore.dita"/>.</p></li>
-        </ul></li>
-        <li>Views enhancement with <xref href="../Views/views-index-updates.dita"/>.</li>
-        <li>XDCR enhancements including <xref href="../XDCR/xdcr-memory-replication.dita"/> and <xref
-          href="../XDCR/xdcr-pause-resume.dita"/>
-          <p>For information about pausing and resuming XDCR replication, 
-            see <xref href="../UI/ui-xdcr-pause-resume.dita"/> via the web console, <xref
-              href="../CLI/cli-xdcr-pause-resume.dita"/>  via the CLI, and <xref
-                href="../REST/rest-xdcr-pause-resume.dita"/> via the REST API.</p></li>
-        <li>Security enhancement including <xref href="../Misc/security-admin-access.dita"/> and <xref
-          href="../Misc/security-client-ssl.dita"/>.</li>
-        <li>Log and log collection improvements with <xref href="../Misc/cluster-wide-info-intro.dita"/>
-          <p>For more information about collecting diagnostics, see <xref
-            href="../UI/ui-cluster-wide-info.dita"/> via the web console, <xref
-              href="../CLI/CBcli/cbcli-cluster-wide-info.dita"/> via the CLI, and <xref
-                href="../CLI/cbcollect-cluster-wide-info.dita"/> via the CLI.
-            <!-- <xref href="../REST/rest-cluster-wide-info.dita" ></xref> --></p>
-        </li>
-      </ul>
-      
-    </section>
+    
     
     <section><title>Enterprise Edition only features</title>
       <p>The following features are only available with Couchbase Server 3.0 Enterprise Edition:</p>

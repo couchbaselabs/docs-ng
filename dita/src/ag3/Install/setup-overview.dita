@@ -21,10 +21,54 @@
       <li>Setup the new Couchbase Server system by completing the web-based setup instructions.
           </li>
     </ol>
-    <note type="warning">Implement the same operating system on all machines within a cluster. If
-      XDCR is used, implement the same operating system on the other clusters. Mixed deployments,
-      such as a cluster with both Linux and Windows server nodes, are not supported. This
-      incompatibility is due to differences in the number of shards between platforms.    </note>
+    <note type="warning">Implement the same operating system on all machines within each discreet
+      cluster. If XDCR is used, implement the same operating system on the target cluster(s) as the
+      source cluster(s). Mixed clusters and/or mixed XDCR deployments are not supported. There is
+      incompatibility due to differences in the number of shards between platforms. </note>
+    
+    
+      <table frame="all" id="table_sqb_db3_mp">
+        <title>Example deployments</title>
+        <tgroup cols="3">
+          <colspec colname="c1" colnum="1" colwidth="1*"/>
+          <colspec colname="c2" colnum="2" colwidth="2.08*"/>
+          <colspec colname="newCol3" colnum="3" colwidth="1.54*"/>
+          <thead>
+            <row>
+              <entry>Scenario</entry>
+              <entry>Implementation</entry>
+              <entry>Compatibility</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Standalone cluster</entry>
+              <entry>Cluster A with 4 nodes all Linux OR all Windows</entry>
+              <entry>OK</entry>
+            </row>
+            <row>
+              <entry>Standalone cluster</entry>
+              <entry>Cluster A with 2 nodes Linux AND 2 nodes Windows</entry>
+              <entry>NOT OK</entry>
+            </row>
+            <row>
+              <entry>Separate discreet clusters</entry>
+              <entry>Cluster A = Linux, Cluster B = Windows</entry>
+              <entry>OK</entry>
+            </row>
+            <row>
+              <entry>Replicating clusters</entry>
+              <entry>Cluster A = Linux with XDCR to Cluster B = Linux</entry>
+              <entry>OK</entry>
+            </row>
+            <row>
+              <entry>Replicating clusters</entry>
+              <entry>Cluster A = Windows with XDCR to Cluster B = Linux</entry>
+              <entry>NOT OK</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
     
   </body>
   <related-links>

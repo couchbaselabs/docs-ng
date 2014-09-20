@@ -6,36 +6,15 @@
     scalability, performance, availability and reliability, ease of administration, and
     security.</shortdesc>
   <body>
-    <p>The new major features in this release include:</p>
-    <ul>
-      <li>Performance <ul>
-        <li>Tunable memory with additional options for tuning memory utilization with large
-            databases. Tuning options include  ejecting a key and its metadata (along with its
-            value) from cache.</li>
-        <li>Auto-tuning and shared thread pool for auto-configuration of resource allocation and
-          for improved I/O throughput.</li>
-        <li>Improved latency for durability operations (observe) such as <codeph>replicatTo</codeph> and <codeph>persistTo</codeph>.</li>
-        <li>Lower latency indexing on views and faster view updates.</li>
-      </ul></li>
-      <li>Availability and reliability <ul>
-        <li>Lower latency XDCR with memory to memory replication.</li>
-        <li>Delta node recovery for fast recovery of a failed node.</li>
-        <li>High performance rebalance operation.</li>
-        <li>Incremental backups.</li>
-      </ul></li>
-      <li>Ease of administration <ul>
-        <li>Ability to pause and resume with XDCR replication for improved efficiency during maintenance.</li>
-        <li>Improved resource governance with bucket priorities.</li>
-        <li>Graceful failover for failing over server without data loss.</li>
-        <li>Cluster-wide diagnostics for simplified troubleshooting and debugging.</li>
-      </ul></li>
-      <li>Security <ul>
-        <li>Encryption for data access and query access.</li>
-        <li>Encryption for administrator access via the web console, CLI, and REST API.</li>
-      </ul></li>
-    </ul>
+    
+    <p>Couchbase Server 3.0 is our major release which extends our lead as the most performant and scalable NoSQL database for mission critical enterprise applications. 
+      In addition to adding great new functionality for the enterprise, 3.0 delivers many new features 
+      that make it easier for developers and administrators to work with Couchbase Server, making it the best choice for your NoSQL projects.</p>
+    
+ 
     
     <section><title>New features</title>
+      <p>The major new enhancements and features available in Couchbase Server 3.0 include: </p>
     
     <ul>
       <li>Infrastructure enhancements including: 
@@ -104,6 +83,7 @@
         <li>Incremental restore</li>
         <li>Encrypted admin access</li>
         <li>Encrypted data access</li>
+        <li>Rack-zone awareness (implemented in Couchbase Server release 2.5)</li>
       </ul>
     
     </section>
